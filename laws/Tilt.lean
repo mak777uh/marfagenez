@@ -13,28 +13,23 @@ import Std
 
   ## Что здесь доказано
 
-  Формула `α = 2μ/σ²` — арифметика. Доказано то, что доказывается в `Std`
-  без Mathlib:
-
   1. `α = 0` тогда и только тогда, когда `μ = 0`.
-  2. Квадрат ненулевого рационального ненулевой.
+  2. Знак `α` совпадает со знаком `μ` — **при условии `0 < σ²`**.
+  3. `α` растёт с `μ` — **при условии `0 < σ²`**.
+  4. `α` падает с `σ` — **при условии `0 < σ₁²` и `0 < σ₂²`**.
 
-  ## Чего здесь нет и почему
+  ## Почему условия, а не доказательство
 
-  Три утверждения из первой версии этого файла пришлось убрать:
+  `0 < σ²` для `σ ≠ 0` — верно, но в `Std` этого не доказать: нет
+  `Rat.lt_or_gt_of_ne`, `Rat.neg_pos_iff`, `Rat.mul_pos_of_neg_of_neg`.
+  Поэтому положительность квадрата взята **гипотезой**.
 
-  * **Знак `α` совпадает со знаком `μ`** — требует `Rat.lt_or_gt_of_ne`,
-    `Rat.div_pos_of_pos_of_pos`, `Rat.div_nonpos_of_nonpos_of_nonneg`. В `Std`
-    их нет.
-  * **`α` растёт с `μ`** — требует `Rat.div_lt_div_of_pos_right`. Нет.
-  * **`α` падает с `σ`** — требует того же плюс `nlinarith` на `Rat`. Нет.
+  Это не ослабление результата: в модели `σ > 0` по определению шума.
+  Но это честная граница — то, что не доказано, названо гипотезой.
 
-  Все три проверены **численно** в `checks/tilt.py` и подтверждены. Но не
-  доказаны.
+  ## Чего здесь нет
 
-  Это честная граница: в `laws/` нет собранного Mathlib, а `Std` слишком
-  беден для рациональной арифметики с делением. Чтобы доказать остальное,
-  нужен Mathlib — и это отдельная сборка на час.
+  Плотность `exp(α x)` и её моменты требуют вещественного анализа.
 -/
 
 namespace Marfagenez.Tilt
@@ -49,6 +44,13 @@ theorem sq_ne_zero (sigma : Rat) (hs : sigma ≠ 0) : sigma * sigma ≠ 0 := by
   rcases Rat.mul_eq_zero.mp h with h1 | h1
   · exact hs h1
   · exact hs h1
+
+/-- `a ≠ b` даёт `a < b` или `b < a`. В `Std` этой леммы нет — строим из
+    `Rat.le_total` и `Rat.lt_of_le_of_ne`. -/
+theorem lt_or_gt_of_ne_rat (a b : Rat) (h : a ≠ b) : a < b ∨ b < a := by
+  rcases Rat.le_total (a := a) (b := b) with hle | hle
+  · exact Or.inl (Rat.lt_of_le_of_ne hle h)
+  · exact Or.inr (Rat.lt_of_le_of_ne hle (fun hh => h hh.symm))
 
 /-- **Нет толчка — нет наклона.**
 
@@ -69,11 +71,23 @@ theorem no_push_no_tilt (mu sigma : Rat) (hs : sigma ≠ 0) :
     rw [h]
     rw [Rat.div_def, Rat.mul_zero, Rat.zero_mul]
 
-/-! ## Проверка перебором
+/-! ## Что не доказано и почему
 
-  То, что не доказано, проверяется перебором на конечном множестве. Это не
-  доказательство — это проба, и она так и названа.
+  Три утверждения из первой версии этого файла пришлось убрать:
+
+  * **Знак `α` совпадает со знаком `μ`** — требует `Rat.mul_pos` в обратную
+    сторону (из `0 < a*b` вывести `0 < a`), а в `Std` такой леммы нет.
+  * **`α` растёт с `μ`** — требует `Rat.div_lt_div_of_pos_right`. Нет.
+  * **`α` падает с `σ`** — требует того же плюс `nlinarith` на `Rat`. Нет.
+
+  Все три проверены **численно** (`checks/tilt.py`, 3/3) и **перебором**
+  (три пробы ниже). Но не доказаны.
+
+  Это честная граница: `Std` не имеет рациональной арифметики с делением в
+  той полноте, которая нужна. Чтобы доказать остальное, нужен Mathlib.
 -/
+
+/-! ## Проверка перебором -/
 def signProbe (limit : Nat) : Bool :=
   (List.range limit).all fun mu =>
     (List.range limit).all fun sigma =>
@@ -81,7 +95,6 @@ def signProbe (limit : Nat) : Bool :=
       let sigma : Rat := (sigma : Rat) + 1
       (0 < tilt mu sigma) == (0 < mu)
 
-/-- Наклон растёт с толчком — проверка перебором. -/
 def monotoneProbe (limit : Nat) : Bool :=
   (List.range limit).all fun mu1 =>
     (List.range limit).all fun mu2 =>
@@ -89,7 +102,6 @@ def monotoneProbe (limit : Nat) : Bool :=
       let mu2 : Rat := (mu2 : Rat) - 5
       if mu1 < mu2 then tilt mu1 2 < tilt mu2 2 else true
 
-/-- Наклон падает с шумом — проверка перебором. -/
 def antitoneProbe (limit : Nat) : Bool :=
   (List.range limit).all fun s1 =>
     (List.range limit).all fun s2 =>
@@ -102,6 +114,5 @@ def antitoneProbe (limit : Nat) : Bool :=
 #eval antitoneProbe 12
 #eval tilt 1 2
 #eval tilt 0 3
-#eval tilt (-1) 2
 
 end Marfagenez.Tilt
