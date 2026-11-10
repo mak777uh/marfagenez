@@ -97,16 +97,22 @@ docs/          замысел, отброшенное, границы
 ## Быстрый старт
 
 ```bash
-# ядро
+# ядро — 59 тестов, все проходят
 cd core && cargo test --release
 
-# законы
-cd laws && lake build
+# законы — без Mathlib, собирается за секунды
+cd laws && lean Bridge.lean && lean Race.lean
 
-# пробы
-python checks/verify_all.py
-python checks/gates.py
+# сверка Rust и Lean на 309 входах
+cd laws && lean -o Bridge.olean Bridge.lean
+python checks/bridge.py
+
+# численные проверки
+node checks/verify_all.js    # 10 утверждений
+node checks/audit.js         # 7 утверждений
 ```
+
+**Чего в репозитории нет:** `checks/verify_all.py` и `checks/gates.py` не существуют. Проверки написаны на JavaScript, а не на Python. Это исправлено здесь, а не в коде — но если README и код расходятся, прав код.
 
 ---
 

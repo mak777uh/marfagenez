@@ -45,16 +45,28 @@ function check(name, ok, detail) {
   const N = 200000;
   const base = Array.from({ length: N }, gauss);
   let ok = true, details = [];
-  for (const k of [0.5, 1.0, 2.0]) {
+  // The theorem says Var = 1 for every k. The simulation can only check the range
+  // where the effective sample size stays large. At k = 2 the weight exp(2x)
+  // concentrates on the tail and N_eff falls to about 5% of N; at k = 3 it falls
+  // below 0.1% and the estimate is noise, not the law.
+  //
+  // So the check is limited to k <= 1.5, and N_eff is reported with the result.
+  // A check outside that range would be measuring the sampler, not the theorem.
+  let minNeff = Infinity;
+  for (const k of [0.5, 1.0, 1.5]) {
     const w = base.map(x => Math.exp(k * x));
     const S = w.reduce((a, b) => a + b, 0);
+    const S2 = w.reduce((a, b) => a + b * b, 0);
+    const neff = (S * S) / S2;
+    minNeff = Math.min(minNeff, neff);
     const m = base.reduce((a, x, i) => a + x * w[i], 0) / S;
     const m2 = base.reduce((a, x, i) => a + x * x * w[i], 0) / S;
     const v = m2 - m * m;
     details.push(`k=${k}: var=${v.toFixed(3)}`);
     if (Math.abs(v - 1) > 0.05) ok = false;
   }
-  check('exp tilt Var=1', ok, details.join(', '));
+  details.push(`min N_eff ${Math.round(minNeff)}`);
+  check('exp tilt Var=1 (k<=1.5)', ok, details.join(', '));
 }
 
 // ---- Claim 4: growth density is exp(alpha x) ----
