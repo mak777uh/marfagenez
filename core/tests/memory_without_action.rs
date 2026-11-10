@@ -27,6 +27,7 @@
 
 #![cfg(test)]
 
+use medium_core::boundary::OutsideExperiment;
 use medium_core::child::{Child, Medium};
 use medium_core::room::{Room, Shape};
 use medium_core::HalfWidth;
@@ -87,9 +88,8 @@ fn run(mode: Mode, n: usize, noise: f64, seed: u64, steps: usize, b: f64, gain: 
                     let gap = memory[i] - c.position()[0];
                     let mut shifted = c.position().to_vec();
                     shifted[0] += gain * gap;
-                    let room2 = Room::new(Shape::Box, HalfWidth::new(b).unwrap(), dims).unwrap();
-                    let folded = room2.fold(&shifted).unwrap();
-                    c.set_position(folded).unwrap();
+                    let experiment = OutsideExperiment::declare();
+            experiment.act(c, |_| shifted).unwrap();
                 }
             }
         }

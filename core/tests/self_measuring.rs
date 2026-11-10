@@ -28,6 +28,7 @@
 
 #![cfg(test)]
 
+use medium_core::boundary::OutsideExperiment;
 use medium_core::child::{Child, Medium};
 use medium_core::room::{Room, Shape};
 use medium_core::HalfWidth;
@@ -88,11 +89,9 @@ where
                 medium.step(c).unwrap();
                 let mut shifted = c.position().to_vec();
                 shifted[0] += extra;
-                let folded = medium.room().fold(&shifted).unwrap();
-                // Put the child back inside the room through the medium's boundary.
-                let room2 = Room::new(Shape::Box, HalfWidth::new(b).unwrap(), dims).unwrap();
-                let _ = room2;
-                c.set_position(folded);
+                // The experiment acts on the child, named as what it is.
+                let experiment = OutsideExperiment::declare();
+                experiment.act(c, |_| shifted).unwrap();
             } else {
                 medium.step(c).unwrap();
             }

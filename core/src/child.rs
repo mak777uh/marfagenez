@@ -92,13 +92,11 @@ impl Child {
 
     /// Sets the child's position directly.
     ///
-    /// This exists for experiments **outside** the medium that model something the
-    /// child does to itself — self-measurement, for instance. The medium never calls
-    /// it: the medium only folds, and folding goes through `place`.
-    ///
-    /// The point of having it here rather than on `Medium` is that the change is the
-    /// child's own, not the medium's.
-    pub fn set_position(&mut self, position: Vec<f64>) -> Option<()> {
+    /// **Crate-private on purpose.** The only way to reach it from outside the crate
+    /// is [`crate::boundary::OutsideExperiment`], which names what it is doing. This
+    /// closes the hole the previous version of this module left open: a public
+    /// `set_position` let any caller write back into the child without admitting it.
+    pub(crate) fn set_position(&mut self, position: Vec<f64>) -> Option<()> {
         if position.len() != self.traits.len() {
             return None;
         }
