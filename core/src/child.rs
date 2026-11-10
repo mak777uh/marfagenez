@@ -113,6 +113,15 @@ impl Medium {
         &self.room
     }
 
+    /// Replaces the room in place, keeping the same noise sequence.
+    ///
+    /// This exists for experiments **outside** the medium that need a room which
+    /// changes over time. It is deliberately a method of `Medium` rather than of
+    /// `Child`: the room belongs to the medium, and the child cannot change it.
+    pub fn set_room(&mut self, room: Room) {
+        self.room = room;
+    }
+
     /// One step of the cycle: the child moves, the medium keeps the boundary.
     ///
     /// Returns `None` if the child's number of traits does not match the room, which
