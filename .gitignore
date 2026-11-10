@@ -1,0 +1,24 @@
+# Build artifacts
+target/
+.lake/
+*.olean
+*.ilean
+*.c
+*.trace
+*.hash
+__pycache__/
+*.pyc
+node_modules/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local
+.env
+*.local
