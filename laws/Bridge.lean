@@ -1,74 +1,102 @@
-import Mathlib
+import Std
 
 /-!
-  The bridge law: from counting to measure.
+  # Мост: Rust и Lean на одном множестве входов
 
-  The project has two halves.
+  Это не доказательство равенства двух реализаций. Это **сверка на конечном
+  множестве** — и она так и названа.
 
-  * The **counting half** (`Std` only): traits are natural numbers, populations are
-    finite, and a law is a statement about `Nat`. Eleven files live here.
-  * The **measure half** (`Mathlib`): traits are real functions on a probability
-    space, and a law is a statement about integrals. Only two files lived here.
+  ## Зачем
 
-  The two halves were never connected. This file builds the bridge.
+  В проекте `medium` три теоремы оказались ложными, потому что Lean доказывал
+  **то, что мы сформулировали**, а формулировали неверно. Lean не ловит ложную
+  постановку.
 
-  The idea is simple and it is the first principle: a finite population *is* a
-  probability measure. If `n` cells are counted and each is equally likely, the
-  probability of one cell is `1/n`. Counting is measure with a uniform weight.
+  Мост ловит другое: он сравнивает **решение Lean** с **решением Rust** на одних
+  и тех же входах. Если они расходятся — одна из реализаций неверна, и это видно
+  сразу, без чтения доказательства.
 
-  Once that is seen, the selection law proved abstractly over a probability measure
-  applies to a finite population of cells, with no new mathematics.
+  ## Почему без Mathlib
+
+  `import Mathlib` загружает 6+ GB в память на каждый запуск. Для моста это
+  не нужно: функции здесь — арифметика на `Int`, а `#eval` работает на `Std`.
+  Мост должен быть дешёвым, иначе его не будут запускать.
+
+  ## Как устроено
+
+  1. Lean определяет чистую функцию (например, `foldReflect`).
+  2. Python генерирует `Probe.lean` с `#eval` на наборе входов.
+  3. Lean печатает ответы.
+  4. Python сравнивает с ответами Rust.
+  5. Расхождение — ошибка, а не «ограничение модели».
+
+  ## Что это доказывает и чего нет
+
+  **Доказывает:** на перечисленных входах обе реализации дают одно и то же.
+
+  **Не доказывает:** что функции равны на всех входах. Это невозможно без
+  формального определения одной функции через другую.
+
+  **Не доказывает:** что постановка верна. Если обе реализации повторяют одну
+  ошибку, сверка её не увидит.
 -/
 
-namespace Medium
+namespace Marfagenez.Bridge
 
-open MeasureTheory ProbabilityTheory
+/-! ## 1. Отражение
 
-/-- **The uniform weight law.**
-    A finite population of `n` cells, each equally likely, has total probability one.
-    Counting is measure with a uniform weight. -/
-theorem uniform_weight_total (n : ℕ) (hn : 0 < n) :
-    ∑ _i ∈ Finset.range n, ((n : ℝ)⁻¹) = 1 := by
-  rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul]
-  field_simp
+Складка точки в комнату `[-B, B]`. Период `4B`, сдвиг на `B` — та самая деталь,
+которая в проекте `medium` была потеряна (давала половину интервала).
 
-/-- **The bridge law.**
-    The selection law holds for a finite population.
+Rust: `Reflect::apply` в `core/src/lib.rs`, но там float. Здесь — целые, чтобы
+сверка была точной.
+-/
+def foldReflect (b x : Int) : Int :=
+  let period := 4 * b
+  let u := (x + b) % period
+  let u := if u < 0 then u + period else u
+  if u ≤ 2 * b then u - b else 3 * b - u
 
-    If the survivors' trait is at least the population's trait almost everywhere,
-    then the survivors' mean trait is at least the population's mean trait. This is
-    `selection_raises_mean` from the measure half, and it now speaks about a finite
-    population of cells, because a finite population is a probability measure.
+/-! ## 2. Дисперсия равномерного
 
-    The counting half and the measure half are the same mathematics. -/
-theorem finite_population_selection
-    (μ : Measure ℝ) [IsProbabilityMeasure μ]
-    (popTrait survTrait : ℝ → ℝ)
-    (hpop : Integrable popTrait μ) (hsurv : Integrable survTrait μ)
-    (h : popTrait ≤ᵐ[μ] survTrait) :
-    ∫ x, popTrait x ∂μ <= ∫ x, survTrait x ∂μ :=
-  integral_mono_ae hpop hsurv h
+`B²/3` — закон комнаты. В целых числах: `3 · Var = B²`.
+-/
+def uniformVarianceNum (b : Int) : Int := b * b
 
-/-- **The mean is bounded by the extremes.**
-    The mean trait of a population lies between the smallest and the largest trait.
-    Selection can only move the mean inside the range that the population already
-    spans: it cannot invent a trait that no cell has.
+/-! ## 3. Число черт и форма комнаты
 
-    This is the first-principles statement of what selection can and cannot do. -/
-theorem mean_between_extremes
-    (μ : Measure ℝ) [IsProbabilityMeasure μ]
-    (X : ℝ → ℝ)
-    (lo hi : ℝ)
-    (hX : Integrable X μ)
-    (hlo : ∀ᵐ x ∂μ, lo <= X x)
-    (hhi : ∀ᵐ x ∂μ, X x <= hi) :
-    lo <= ∫ x, X x ∂μ ∧ ∫ x, X x ∂μ <= hi := by
-  constructor
-  · have hconst : Integrable (fun _ : ℝ => lo) μ := integrable_const lo
-    have := integral_mono_ae hconst hX hlo
-    simpa using this
-  · have hconst : Integrable (fun _ : ℝ => hi) μ := integrable_const hi
-    have := integral_mono_ae hX hconst hhi
-    simpa using this
+`Var = d/(d+2)·R²` — закон размерности. В целых числах: `(d+2)·Var = d·R²`.
+-/
+def dimensionVarianceNum (d r : Int) : Int := d * r * r
 
-end Medium
+/-! ## 4. Границы складки — проверяется перебором, не доказательством
+
+`foldReflect` должен попадать в `[-B, B]`. Это проверяется перебором на
+конечном множестве (см. `checks/bridge.py`), а не теоремой: для `Int` с
+отрицательными входами доказательство требует разбора знаков, и это отдельная
+работа. Перебор здесь честнее: он покрывает ровно те входы, которые
+используются, и говорит об этом прямо.
+-/
+def foldInRange (b : Int) (n : Nat) : Bool :=
+  (List.range n).all fun i =>
+    let x := -b * n + i
+    let r := foldReflect b x
+    decide (-b ≤ r ∧ r ≤ b)
+
+#eval foldInRange 3 49
+#eval foldInRange 5 81
+
+/-! ## 5. Что сверяется
+
+Python (`checks/bridge.py`) генерирует `Probe.lean` с `#eval` на этих функциях
+и сравнивает с ответами Rust. Набор входов — все `x` в `[-8B, 8B]` для нескольких
+`B`, то есть **исчерпание**, а не выборка.
+-/
+
+#eval foldReflect 3 4
+#eval foldReflect 3 12
+#eval foldReflect 3 0
+#eval uniformVarianceNum 3
+#eval dimensionVarianceNum 4 3
+
+end Marfagenez.Bridge
