@@ -485,3 +485,8 @@ pub mod room;
 mod room_probes;
 
 pub mod child;
+
+pub mod boundary;
+
+#[cfg(test)]
+mod boundary_probes;
