@@ -478,3 +478,8 @@ mod tests {
 
 #[cfg(test)]
 mod probes;
+
+pub mod room;
+
+#[cfg(test)]
+mod room_probes;
