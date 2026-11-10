@@ -24,7 +24,7 @@
 #![forbid(unsafe_code)]
 
 use crate::child::{Child, Medium};
-use crate::room::Room;
+
 
 /// An experiment that acts on a child from outside the medium.
 ///
