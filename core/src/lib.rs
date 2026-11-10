@@ -483,3 +483,5 @@ pub mod room;
 
 #[cfg(test)]
 mod room_probes;
+
+pub mod child;
