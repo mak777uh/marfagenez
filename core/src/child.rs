@@ -89,6 +89,22 @@ impl Child {
     pub(crate) fn place(&mut self, folded: Vec<f64>) {
         self.traits = folded;
     }
+
+    /// Sets the child's position directly.
+    ///
+    /// This exists for experiments **outside** the medium that model something the
+    /// child does to itself — self-measurement, for instance. The medium never calls
+    /// it: the medium only folds, and folding goes through `place`.
+    ///
+    /// The point of having it here rather than on `Medium` is that the change is the
+    /// child's own, not the medium's.
+    pub fn set_position(&mut self, position: Vec<f64>) -> Option<()> {
+        if position.len() != self.traits.len() {
+            return None;
+        }
+        self.traits = position;
+        Some(())
+    }
 }
 
 /// The medium: a room, and nothing else.
