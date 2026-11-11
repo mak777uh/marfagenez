@@ -1,0 +1,195 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "memory-vs-remember",
+  "run_id": "run-2026-11-11T21-05-35",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 2000,
+    "every": 2000,
+    "n": 40,
+    "cells": 40,
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02
+  },
+  "arithmetic": {
+    "difference": "`remember` updates the memory only when the organism is NOT on the remembered cell; `memory` updates on every step.",
+    "prediction_A": "uniform field, one-shot choice -> survivors spread over many cells",
+    "prediction_B": "uniform field, real memory -> survivors on few cells (all equal, nothing to learn)",
+    "prediction_C": "gradient, real memory -> survivors at the right edge",
+    "why_B_is_specific": "In a uniform field every cell is equally good, so a memory that keeps updating has nothing to prefer and the organism should not wander the way the one-shot chooser does. A smaller spread for B than for A is the signature of the update rule, not of the field."
+  },
+  "conditions": {
+    "A": {
+      "label": "remember / uniform",
+      "metrics": {
+        "policy": "remember",
+        "field": "uniform",
+        "alive": 32,
+        "total": 40,
+        "distinct_cells": 32,
+        "all_still": true,
+        "max_cell": 39,
+        "cells": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          35,
+          36,
+          37,
+          38,
+          39
+        ],
+        "trace_file": "results/memory-vs-remember/trace-remember-1794431136.json"
+      },
+      "hash": "43ba4e484c07dc20"
+    },
+    "B": {
+      "label": "memory / uniform",
+      "metrics": {
+        "policy": "memory",
+        "field": "uniform",
+        "alive": 25,
+        "total": 40,
+        "distinct_cells": 25,
+        "all_still": true,
+        "max_cell": 39,
+        "cells": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          9,
+          10,
+          11,
+          14,
+          16,
+          18,
+          19,
+          20,
+          23,
+          24,
+          25,
+          28,
+          29,
+          30,
+          33,
+          34,
+          35,
+          37,
+          38,
+          39
+        ],
+        "trace_file": "results/memory-vs-remember/trace-memory-1794431136.json"
+      },
+      "hash": "831ba94d036c4264"
+    },
+    "C": {
+      "label": "memory / gradient",
+      "metrics": {
+        "policy": "memory",
+        "field": "gradient",
+        "alive": 33,
+        "total": 40,
+        "distinct_cells": 26,
+        "all_still": true,
+        "max_cell": 38,
+        "cells": [
+          1,
+          2,
+          2,
+          3,
+          6,
+          7,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          14,
+          15,
+          15,
+          16,
+          17,
+          20,
+          21,
+          24,
+          24,
+          25,
+          26,
+          28,
+          31,
+          32,
+          33,
+          34,
+          34,
+          36,
+          37,
+          37,
+          38
+        ],
+        "trace_file": "results/memory-vs-remember/trace-memory-1794431136.json"
+      },
+      "hash": "f7bf918c3b8e139e"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "C: max cell 38 of 39 — a real memory must find the maximum of the gradient"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "A: 32 distinct cells — must match EXP-07's 32-cell spread for the one-shot chooser"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "B: 25 distinct cells vs A's 32 — the update rule must change the spread, not the field (both are uniform)"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the update rule changes the outcome: in the same uniform field the one-shot chooser spreads over many cells and the updating memory does not, and on a gradient the updating memory finds the maximum"
+  },
+  "hashes": {
+    "A": "43ba4e484c07dc20",
+    "B": "831ba94d036c4264",
+    "C": "f7bf918c3b8e139e"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "`Policy::Memory` was added in this experiment; it is not yet covered by the Rust test suite.",
+    "A uniform field is degenerate: there is no best cell, so the difference between the two rules may not appear on fields with a unique maximum.",
+    "The conclusion is about the update rule, not about memory in general."
+  ],
+  "command": "python3 checks/exp08_memory_vs_remember.py",
+  "created_at": "2026-11-11T21:05:35.682377+00:00"
+}

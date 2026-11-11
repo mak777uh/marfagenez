@@ -40,6 +40,15 @@ pub struct Field {
     cells: Vec<f64>,
     max_resource: f64,
     regrow: f64,
+    /// How far the resource pattern shifts per step. `0.0` for a static field.
+    ///
+    /// This is the one thing a static field cannot show: whether a memory that
+    /// keeps updating is worth anything. In a static field every cell's value is
+    /// fixed, so a frozen memory and an updating memory see the same world. In a
+    /// moving field the best cell changes, and only an updating memory can follow.
+    shift: f64,
+    /// The step counter, used to compute the shift.
+    t: usize,
 }
 
 impl Field {
@@ -55,6 +64,8 @@ impl Field {
             cells: vec![max_resource; cells],
             max_resource,
             regrow,
+            shift: 0.0,
+            t: 0,
         })
     }
 
@@ -65,6 +76,48 @@ impl Field {
             f.cells[i] = if i % 2 == 0 { rich } else { poor };
         }
         Some(f)
+    }
+
+    /// A field whose pattern shifts by `shift` cells per step.
+    ///
+    /// The pattern is a single rich cell that walks along the field and wraps
+    /// around. `shift = 0.0` gives a static field; `shift = 1.0` moves it one cell
+    /// per step.
+    ///
+    /// This is the field the memory experiment needs: the best cell moves, so a
+    /// memory that keeps updating can follow it and a frozen memory cannot.
+    pub fn moving(cells: usize, rich: f64, poor: f64, regrow: f64, shift: f64) -> Option<Self> {
+        let mut f = Self::new(cells, rich, regrow)?;
+        if !shift.is_finite() || shift < 0.0 {
+            return None;
+        }
+        for i in 0..cells {
+            f.cells[i] = poor;
+        }
+        f.shift = shift;
+        f.t = 0;
+        f.apply_shift();
+        Some(f)
+    }
+
+    /// Puts the rich cell where the current time says it should be.
+    fn apply_shift(&mut self) {
+        let n = self.cells.len();
+        if n == 0 {
+            return;
+        }
+        // Reset every cell to the poor level, then light the rich one.
+        for c in self.cells.iter_mut() {
+            *c = (*c).min(self.max_resource);
+        }
+        let pos = if self.shift == 0.0 {
+            0
+        } else {
+            ((self.t as f64 * self.shift) as usize) % n
+        };
+        // The rich cell is the maximum; the rest stay where they are.
+        // `max_resource` is the rich value for this field.
+        self.cells[pos] = self.max_resource;
     }
 
     /// A field that rises linearly from `low` at the left edge to `high` at the
@@ -110,6 +163,10 @@ impl Field {
     pub fn regrow_all(&mut self) {
         for c in self.cells.iter_mut() {
             *c += (self.max_resource - *c) * self.regrow;
+        }
+        if self.shift > 0.0 {
+            self.t += 1;
+            self.apply_shift();
         }
     }
 

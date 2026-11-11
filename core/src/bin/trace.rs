@@ -37,6 +37,8 @@ fn main() {
     let mut move_cost = 0.1f64;
     let mut energy = 5.0f64;
     let mut field_kind = "alternating".to_string();
+    let mut memory_life = 300usize;
+    let mut shift = 0.0f64;
 
     let mut i = 1;
     while i < args.len() {
@@ -47,6 +49,7 @@ fn main() {
                     Some("stay") => Policy::Stay,
                     Some("random") => Policy::Random,
                     Some("remember") => Policy::Remember,
+                    Some("memory") => Policy::Memory,
                     other => {
                         eprintln!("unknown policy: {:?}", other);
                         std::process::exit(2);
@@ -105,11 +108,19 @@ fn main() {
                 i += 1;
                 field_kind = args.get(i).cloned().unwrap_or(field_kind);
             }
+            "--memory-life" => {
+                i += 1;
+                memory_life = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(memory_life);
+            }
+            "--shift" => {
+                i += 1;
+                shift = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(shift);
+            }
             "--help" | "-h" => {
-                println!("usage: trace [--policy stay|random|remember] [--steps N] [--every K] [--seed S] [--n N] [--cells C]");
+                println!("usage: trace [--policy stay|random|remember|memory] [--steps N] [--every K] [--seed S] [--n N] [--cells C]");
                 println!("             [--capacity X] [--damage-rate X] [--income X] [--maintenance X]");
                 println!("             [--repair-cost X] [--move-cost X] [--energy X]");
-                println!("             [--field alternating|gradient|uniform]");
+                println!("             [--field alternating|gradient|uniform|moving] [--memory-life N] [--shift X]");
                 return;
             }
             other => {
@@ -131,6 +142,7 @@ fn main() {
         "alternating" => Field::alternating(cells, 2.0, 0.2, 0.8),
         "gradient" => Field::gradient(cells, 0.2, 2.0, 0.8),
         "uniform" => Field::new(cells, 1.0, 0.8),
+        "moving" => Field::moving(cells, 2.0, 0.2, 0.8, if shift > 0.0 { shift } else { 1.0 }),
         other => {
             eprintln!("unknown field: {} (expected alternating, gradient, uniform)", other);
             std::process::exit(2);
@@ -143,7 +155,7 @@ fn main() {
             std::process::exit(1);
         }
     };
-    let mut life = match Life::spawn(world, field, n, energy, move_cost, policy, seed, 300) {
+    let mut life = match Life::spawn(world, field, n, energy, move_cost, policy, seed, memory_life) {
         Some(l) => l,
         None => {
             eprintln!("cannot build the cycle");
@@ -157,6 +169,7 @@ fn main() {
         Policy::Stay => "stay",
         Policy::Random => "random",
         Policy::Remember => "remember",
+        Policy::Memory => "memory",
     };
     let dir = PathBuf::from("results").join(name);
     if let Err(e) = fs::create_dir_all(&dir) {
@@ -177,6 +190,8 @@ fn main() {
     println!("capacity: {}", capacity);
     println!("damage:   {}", damage_rate);
     println!("field:    {}", field_kind);
+    println!("memlife:  {}", memory_life);
+    println!("shift:    {}", shift);
     println!("steps:    {}", steps);
     println!("frames:   {}", trace.frames.len());
     println!("hash:     {:016x}", trace.hash);

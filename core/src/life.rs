@@ -51,7 +51,17 @@ pub enum Policy {
     Random,
     /// Remember the richest cell seen and return to it, exploring when the memory is
     /// empty.
+    ///
+    /// **This is a one-shot choice, not a memory.** The memory is updated only when
+    /// the organism is NOT standing on the remembered cell, so once it arrives the
+    /// memory never changes again. See `docs/FINDING-remember-is-choice.md`.
     Remember,
+    /// Keep the best cell seen so far and move toward it, **updating the memory on
+    /// every step** — including while standing on it.
+    ///
+    /// The difference from [`Policy::Remember`] is exactly the update rule: this one
+    /// can change its mind. If a richer cell appears, the organism leaves.
+    Memory,
 }
 
 /// A reading taken from outside the cycle.
@@ -173,7 +183,18 @@ impl Life {
             // The current cell is observed first, but if it is the best so far the
             // memory points here -- and then the organism would never leave. So the
             // memory is updated only when the organism is NOT already standing on it.
-            if r.memory.best_cell != r.cell {
+            // The update rule is where `Remember` and `Memory` differ.
+            //
+            // `Remember` updates only when the organism is NOT on the remembered
+            // cell, so once it arrives the memory is frozen — a one-shot choice.
+            //
+            // `Memory` updates on every step, so a richer cell seen later replaces
+            // the memory and the organism can change its mind.
+            let update_memory = match self.policy {
+                Policy::Memory => true,
+                _ => r.memory.best_cell != r.cell,
+            };
+            if update_memory {
                 r.memory.observe(r.cell, here);
             }
             r.memory.decay(self.memory_life);
@@ -195,6 +216,16 @@ impl Life {
                     // If the memory is empty (nothing seen yet), explore: move at
                     // random. A remembering organism that has seen nothing must look
                     // around, or it never finds anything to remember.
+                    if r.memory.best_level <= 0.0 {
+                        let u = self.rng.uniform();
+                        if u < 0.5 { -1 } else { 1 }
+                    } else {
+                        r.direction()
+                    }
+                }
+                Policy::Memory => {
+                    // Same direction rule, but the memory keeps updating, so the
+                    // organism can leave a cell that was once the best.
                     if r.memory.best_level <= 0.0 {
                         let u = self.rng.uniform();
                         if u < 0.5 { -1 } else { 1 }
@@ -272,6 +303,7 @@ impl Life {
             Policy::Stay => "stay",
             Policy::Random => "random",
             Policy::Remember => "remember",
+            Policy::Memory => "memory",
         }
     }
 
