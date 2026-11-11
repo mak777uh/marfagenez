@@ -1,0 +1,113 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "sighted-depletes",
+  "run_id": "run-2026-11-11T21-22-03",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 2000,
+    "every": 2000,
+    "n": 40,
+    "cells": 40,
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02,
+    "max_resource": 2.0,
+    "regrow": 0.8
+  },
+  "arithmetic": {
+    "regrow": "c <- c + (max_resource - c) * regrow",
+    "max_resource": 2.0,
+    "regrow_rate": 0.8,
+    "income": 0.8,
+    "one_organism_equilibrium": "0.8*(2.0 - c*) = 0.8  =>  c* = 1.0",
+    "two_organisms_equilibrium": "0.8*(2.0 - c*) = 1.6  =>  c* = 0.0",
+    "prediction": "A sighted organism gathers on rich cells, so more organisms share each cell, so the equilibrium falls. The blind organism never moves, so it does not gather, so the field holds."
+  },
+  "conditions": {
+    "A": {
+      "label": "remember / alternating",
+      "metrics": {
+        "policy": "remember",
+        "field": "alternating",
+        "alive": 39,
+        "total": 40,
+        "distinct_cells": 27,
+        "moving": 0,
+        "mean_field_start": 1.8050000000000002,
+        "mean_field_end": 1.8050000000000002,
+        "depletion": 0.0,
+        "crowding": 1.4444444444444444,
+        "trace_file": "results/sighted-depletes/trace-remember-1794432124.json"
+      },
+      "hash": "3e2fd5cdcdf94261"
+    },
+    "B": {
+      "label": "sighted / alternating",
+      "metrics": {
+        "policy": "sighted",
+        "field": "alternating",
+        "alive": 40,
+        "total": 40,
+        "distinct_cells": 40,
+        "moving": 24,
+        "mean_field_start": 1.8,
+        "mean_field_end": 1.8,
+        "depletion": 0.0,
+        "crowding": 1.0,
+        "trace_file": "results/sighted-depletes/trace-sighted-1794432124.json"
+      },
+      "hash": "0f2eaccf4f903ad2"
+    },
+    "C": {
+      "label": "sighted / uniform",
+      "metrics": {
+        "policy": "sighted",
+        "field": "uniform",
+        "alive": 39,
+        "total": 40,
+        "distinct_cells": 39,
+        "moving": 13,
+        "mean_field_start": 0.804999975,
+        "mean_field_end": 0.804999975,
+        "depletion": 0.0,
+        "crowding": 1.0,
+        "trace_file": "results/sighted-depletes/trace-sighted-1794432124.json"
+      },
+      "hash": "3ab23cd8e2cd68e4"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "B moves (24) and A does not (0) — sight must produce movement"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "C moves 13 — in a uniform field there is nothing to prefer, so a sighted organism must stay"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "B depletes by 0.000, A by 0.000, C by 0.000 — depletion must come from gathering on rich cells, not from the policy"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "control tests failed: silent, specific"
+  },
+  "hashes": {
+    "A": "3e2fd5cdcdf94261",
+    "B": "0f2eaccf4f903ad2",
+    "C": "3ab23cd8e2cd68e4"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "`Policy::Sighted` is new in this round and is not yet covered by the Rust test suite.",
+    "Depletion is measured as the mean cell value at the end against the start; a different measure might show a different picture.",
+    "The two-organism equilibrium (c* = 0) is arithmetic, not a measurement; the field did not reach 0 in the run.",
+    "The conclusion is about this model's regrowth rule, not about depletion in general."
+  ],
+  "command": "python3 checks/exp09_sighted_depletes.py",
+  "created_at": "2026-11-11T21:22:03.995752+00:00"
+}
