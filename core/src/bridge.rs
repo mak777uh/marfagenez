@@ -36,7 +36,6 @@
 // `unsafe` block below has a SAFETY comment. The rest of the crate forbids it.
 #![allow(unsafe_code)]
 
-use std::os::raw::c_int;
 
 // The Lean functions, as exported by `laws/FFI.lean` and compiled to C.
 extern "C" {
