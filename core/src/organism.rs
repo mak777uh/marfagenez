@@ -123,6 +123,22 @@ impl Organism {
         self.alive
     }
 
+    /// Spends energy on an action. Returns `false` if the organism cannot afford it,
+    /// in which case nothing is changed.
+    ///
+    /// This is the hook a move uses: the walker calls it before taking the resource,
+    /// so that a move costs energy directly rather than being hidden in the income.
+    pub fn spend(&mut self, amount: f64) -> bool {
+        if !amount.is_finite() || amount < 0.0 {
+            return false;
+        }
+        if self.energy < amount {
+            return false;
+        }
+        self.energy -= amount;
+        true
+    }
+
     /// One step of life.
     ///
     /// `resource` is how much energy is available in the environment this step. It
@@ -275,6 +291,19 @@ mod tests {
         // Further steps do nothing.
         assert!(!o.step(&world, 100.0));
         assert!(!o.is_alive());
+    }
+
+    #[test]
+    fn spend_reduces_energy_or_refuses() {
+        let mut o = Organism::healthy(1.0).unwrap();
+        assert!(o.spend(0.3));
+        assert!((o.energy() - 0.7).abs() < 1e-12);
+        // Cannot afford more than there is.
+        assert!(!o.spend(1.0));
+        assert!((o.energy() - 0.7).abs() < 1e-12);
+        // Invalid amounts are refused.
+        assert!(!o.spend(-1.0));
+        assert!(!o.spend(f64::NAN));
     }
 
     #[test]

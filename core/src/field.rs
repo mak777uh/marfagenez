@@ -1,0 +1,286 @@
+//! # Resources and action
+//!
+//! The organism in `organism.rs` takes whatever resource the world offers. It has no
+//! **action**: it cannot influence its income. This module adds the first action.
+//!
+//! ## The world
+//!
+//! A one-dimensional line of `cells` cells. Each cell holds a resource level in
+//! `[0, max_resource]`. Resources regrow toward the maximum at `regrow` per step.
+//!
+//! ## The organism
+//!
+//! An organism sits in a cell and can **move** one cell left or right. Moving costs
+//! energy. The resource it gains is the level in the cell it ends up in.
+//!
+//! ## The question
+//!
+//! Does having an action help? The plan's EXP-02 compares:
+//!
+//! | condition | the organism |
+//! |---|---|
+//! | **A** | cannot move; takes what its cell offers |
+//! | **B** | moves toward the richer neighbour |
+//! | **C** | moves at random |
+//!
+//! If B survives where A does not, the action has a causal effect.
+//!
+//! ## What this module does not have
+//!
+//! No memory, no learning, no reproduction. The action is a fixed rule. The point is
+//! to measure whether the rule helps, not to evolve one.
+
+#![forbid(unsafe_code)]
+
+use crate::organism::{Organism, World};
+
+/// A one-dimensional world of cells, each holding a resource.
+#[derive(Debug, Clone)]
+pub struct Field {
+    cells: Vec<f64>,
+    max_resource: f64,
+    regrow: f64,
+}
+
+impl Field {
+    /// Builds a field. Returns `None` for zero cells or invalid parameters.
+    pub fn new(cells: usize, max_resource: f64, regrow: f64) -> Option<Self> {
+        if cells == 0 || !max_resource.is_finite() || max_resource <= 0.0 {
+            return None;
+        }
+        if !regrow.is_finite() || !(0.0..=1.0).contains(&regrow) {
+            return None;
+        }
+        Some(Self {
+            cells: vec![max_resource; cells],
+            max_resource,
+            regrow,
+        })
+    }
+
+    /// A field where every second cell is rich and the others are poor.
+    pub fn alternating(cells: usize, rich: f64, poor: f64, regrow: f64) -> Option<Self> {
+        let mut f = Self::new(cells, rich, regrow)?;
+        for i in 0..cells {
+            f.cells[i] = if i % 2 == 0 { rich } else { poor };
+        }
+        Some(f)
+    }
+
+    pub fn cells(&self) -> usize {
+        self.cells.len()
+    }
+
+    pub fn level(&self, cell: usize) -> f64 {
+        self.cells.get(cell).copied().unwrap_or(0.0)
+    }
+
+    /// Takes up to `amount` from a cell and returns what was actually taken.
+    pub fn take(&mut self, cell: usize, amount: f64) -> f64 {
+        if cell >= self.cells.len() || amount <= 0.0 {
+            return 0.0;
+        }
+        let taken = self.cells[cell].min(amount);
+        self.cells[cell] -= taken;
+        taken
+    }
+
+    /// Regrows every cell toward the maximum.
+    pub fn regrow_all(&mut self) {
+        for c in self.cells.iter_mut() {
+            *c += (self.max_resource - *c) * self.regrow;
+        }
+    }
+
+    /// The richer of the two neighbours of `cell`, or `None` at the ends.
+    pub fn richer_neighbour(&self, cell: usize) -> Option<usize> {
+        let left = cell.checked_sub(1);
+        let right = if cell + 1 < self.cells.len() {
+            Some(cell + 1)
+        } else {
+            None
+        };
+        match (left, right) {
+            (None, None) => None,
+            (Some(l), None) => Some(l),
+            (None, Some(r)) => Some(r),
+            (Some(l), Some(r)) => {
+                if self.cells[l] >= self.cells[r] {
+                    Some(l)
+                } else {
+                    Some(r)
+                }
+            }
+        }
+    }
+}
+
+/// What the organism does when it can act.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Action {
+    /// Stay in the cell.
+    Stay,
+    /// Move one cell left.
+    Left,
+    /// Move one cell right.
+    Right,
+}
+
+/// An organism that lives in a field and can act.
+#[derive(Debug, Clone, Copy)]
+pub struct Walker {
+    pub organism: Organism,
+    pub cell: usize,
+    /// Energy spent on a move.
+    pub move_cost: f64,
+}
+
+impl Walker {
+    pub fn new(organism: Organism, cell: usize, move_cost: f64) -> Option<Self> {
+        if !move_cost.is_finite() || move_cost < 0.0 {
+            return None;
+        }
+        Some(Self {
+            organism,
+            cell,
+            move_cost,
+        })
+    }
+
+    /// Chooses an action. The rule is fixed: move toward the richer neighbour if it
+    /// is richer than the current cell, otherwise stay.
+    pub fn choose(&self, field: &Field) -> Action {
+        let here = field.level(self.cell);
+        match field.richer_neighbour(self.cell) {
+            Some(n) if field.level(n) > here => {
+                if n < self.cell {
+                    Action::Left
+                } else {
+                    Action::Right
+                }
+            }
+            _ => Action::Stay,
+        }
+    }
+
+    /// One step: act, pay for the move, take the resource, then live.
+    ///
+    /// Returns `true` if the organism is still alive.
+    ///
+    /// ## The order matters
+    ///
+    /// 1. The action is applied and **paid for** by `Organism::spend`. If the
+    ///    organism cannot afford the move, it stays where it is and pays nothing.
+    /// 2. The resource is taken from the cell the organism now occupies.
+    /// 3. The organism lives one step with what was taken.
+    /// 4. The field regrows.
+    ///
+    /// The earlier version of this function had a `pay_move` that did nothing: the
+    /// move cost was never applied, so moving was free. That is fixed here.
+    pub fn step(&mut self, field: &mut Field, world: &World, action: Action) -> bool {
+        if !self.organism.is_alive() {
+            return false;
+        }
+
+        // 1. Apply the action, paying for it if it is a move.
+        match action {
+            Action::Stay => {}
+            Action::Left => {
+                if self.cell > 0 && self.organism.spend(self.move_cost) {
+                    self.cell -= 1;
+                }
+            }
+            Action::Right => {
+                if self.cell + 1 < field.cells() && self.organism.spend(self.move_cost) {
+                    self.cell += 1;
+                }
+            }
+        }
+
+        // 2. Take the resource from the cell the organism occupies.
+        let taken = field.take(self.cell, world.income);
+
+        // 3. Live one step with what was taken.
+        let alive = self.organism.step(world, taken);
+
+        // 4. The field regrows.
+        field.regrow_all();
+
+        alive
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn field_rejects_invalid() {
+        assert!(Field::new(0, 1.0, 0.1).is_none());
+        assert!(Field::new(10, 0.0, 0.1).is_none());
+        assert!(Field::new(10, 1.0, 2.0).is_none());
+        assert!(Field::new(10, 1.0, 0.1).is_some());
+    }
+
+    #[test]
+    fn alternating_field_has_rich_and_poor() {
+        let f = Field::alternating(10, 1.0, 0.1, 0.1).unwrap();
+        assert!((f.level(0) - 1.0).abs() < 1e-12);
+        assert!((f.level(1) - 0.1).abs() < 1e-12);
+    }
+
+    #[test]
+    fn take_reduces_the_cell() {
+        let mut f = Field::new(5, 1.0, 0.0).unwrap();
+        let taken = f.take(0, 0.3);
+        assert!((taken - 0.3).abs() < 1e-12);
+        assert!((f.level(0) - 0.7).abs() < 1e-12);
+    }
+
+    #[test]
+    fn take_is_limited_by_what_is_there() {
+        let mut f = Field::new(5, 1.0, 0.0).unwrap();
+        f.take(0, 0.9);
+        let taken = f.take(0, 1.0);
+        assert!((taken - 0.1).abs() < 1e-12);
+    }
+
+    #[test]
+    fn regrow_moves_toward_max() {
+        let mut f = Field::new(5, 1.0, 0.5).unwrap();
+        f.take(0, 1.0);
+        assert!((f.level(0) - 0.0).abs() < 1e-12);
+        f.regrow_all();
+        assert!((f.level(0) - 0.5).abs() < 1e-12);
+    }
+
+    #[test]
+    fn richer_neighbour_finds_the_rich_side() {
+        let f = Field::alternating(10, 1.0, 0.1, 0.1).unwrap();
+        // Cell 1 is poor; its neighbours are 0 (rich) and 2 (rich).
+        assert!(f.richer_neighbour(1).is_some());
+        // Cell 0 has only the right neighbour.
+        assert_eq!(f.richer_neighbour(0), Some(1));
+        // Cell 9 has only the left neighbour.
+        assert_eq!(f.richer_neighbour(9), Some(8));
+    }
+
+    #[test]
+    fn walker_moves_toward_the_richer_cell() {
+        let f = Field::alternating(10, 1.0, 0.1, 0.1).unwrap();
+        let o = Organism::healthy(5.0).unwrap();
+        let w = Walker::new(o, 1, 0.1).unwrap();
+        // Cell 1 is poor; both neighbours are rich. The rule picks one of them.
+        let a = w.choose(&f);
+        assert!(a == Action::Left || a == Action::Right);
+    }
+
+    #[test]
+    fn walker_stays_when_already_richest() {
+        let f = Field::alternating(10, 1.0, 0.1, 0.1).unwrap();
+        let o = Organism::healthy(5.0).unwrap();
+        let w = Walker::new(o, 0, 0.1).unwrap();
+        // Cell 0 is rich; cell 1 is poor, so there is no reason to move.
+        assert_eq!(w.choose(&f), Action::Stay);
+    }
+}
