@@ -95,14 +95,21 @@ def predicted_ceiling(capacity: float, damage_rate: float) -> float:
     return capacity - MAINTENANCE - damage_rate * REPAIR_COST
 
 
-def wsl(cmd: str) -> str:
-    """Runs a shell command in WSL and returns its stdout."""
-    out = subprocess.run(
-        ["wsl", "-e", "bash", "-c", cmd],
-        capture_output=True, text=True, timeout=300,
-    )
+def in_wsl() -> bool:
+    """True when we are already inside WSL (no `wsl` wrapper needed)."""
+    try:
+        with open("/proc/version", encoding="utf-8") as f:
+            return "microsoft" in f.read().lower()
+    except OSError:
+        return False
+
+
+def shell(cmd: str) -> str:
+    """Runs a shell command, in WSL if we are there, else through `wsl`."""
+    argv = ["bash", "-c", cmd] if in_wsl() else ["wsl", "-e", "bash", "-c", cmd]
+    out = subprocess.run(argv, capture_output=True, text=True, timeout=300)
     if out.returncode != 0:
-        raise SystemExit(f"WSL command failed:\n{cmd}\n{out.stderr}")
+        raise SystemExit(f"command failed:\n{cmd}\n{out.stderr}")
     return out.stdout
 
 
@@ -120,7 +127,7 @@ def run_arm(capacity: float, damage_rate: float) -> dict:
         f"--maintenance {MAINTENANCE}",
         f"--repair-cost {REPAIR_COST}",
     ])
-    out = wsl(f"cd {WSL_CORE} && ./target/release/trace {args}")
+    out = shell(f"cd {WSL_CORE} && ./target/release/trace {args}")
 
     m = re.search(r"hash:\s+([0-9a-f]+)", out)
     if not m:
@@ -132,12 +139,18 @@ def run_arm(capacity: float, damage_rate: float) -> dict:
         raise SystemExit(f"no file in output:\n{out}")
     wsl_path = f.group(1)
 
-    # Copy the trace out of WSL into the repo so the artifact is on disk here.
+    # Copy the trace into the repo so the artifact is on disk here.
     local_rel = Path("results") / "frozen-ceiling" / Path(wsl_path).name
     local_abs = ROOT / local_rel
     local_abs.parent.mkdir(parents=True, exist_ok=True)
-    wsl(f"cp {WSL_CORE}/{wsl_path} /mnt/c/Users/Admin/Documents/Qoder/"
-        f"2026-10-18/82ab86cd/marfagenez/{local_rel.as_posix()}")
+    src = Path(WSL_CORE) / wsl_path
+    if in_wsl():
+        local_abs.write_bytes(src.read_bytes())
+    else:
+        shell(
+            f"cp {WSL_CORE}/{wsl_path} /mnt/c/Users/Admin/Documents/Qoder/"
+            f"2026-10-18/82ab86cd/marfagenez/{local_rel.as_posix()}"
+        )
 
     data = json.loads(local_abs.read_text(encoding="utf-8"))
     last = data["frames"][-1]
