@@ -12,6 +12,15 @@
 Экспорт НЕ пересчитывает. Он только передаёт то, что уже посчитано.
 Если чего-то нет в JSON — этого нет и в визуализации.
 
+## Два вида данных
+
+1. **Эксперименты** (`results/<experiment>/run-*.json`) — сводки: условия,
+   сравнения, вердикты. Это `Census`-уровень.
+
+2. **Трассировки** (`results/<policy>/trace-*.json`) — покадровые записи:
+   где каждый организм, что он видел, что помнил, куда шёл. Это
+   `Trace`-уровень, наблюдение без суждения (P204).
+
 Запуск: python3 checks/export.py
 """
 
@@ -26,11 +35,10 @@ RESULTS = ROOT / "results"
 OUT = ROOT.parent / "medium-viz" / "data.js"
 
 
-def load_all() -> list[dict]:
-    if not RESULTS.exists():
-        return []
+def load_experiments() -> list[dict]:
+    """Сводки экспериментов: run-*.json."""
     out = []
-    for p in sorted(RESULTS.glob("*/*.json")):
+    for p in sorted(RESULTS.glob("*/run-*.json")):
         try:
             out.append(json.loads(p.read_text(encoding="utf-8")))
         except Exception as e:
@@ -39,24 +47,46 @@ def load_all() -> list[dict]:
     return out
 
 
+def load_traces() -> list[dict]:
+    """Покадровые трассировки: trace-*.json."""
+    out = []
+    for p in sorted(RESULTS.glob("*/trace-*.json")):
+        try:
+            t = json.loads(p.read_text(encoding="utf-8"))
+            t["_file"] = p.name
+            out.append(t)
+        except Exception as e:
+            print(f"skip {p}: {e}", file=sys.stderr)
+    # Keep the newest trace per policy.
+    newest: dict[str, dict] = {}
+    for t in out:
+        pol = t.get("policy", "unknown")
+        newest[pol] = t  # sorted, so the last one wins
+    return list(newest.values())
+
+
 def main() -> int:
-    results = load_all()
-    if not results:
+    experiments = load_experiments()
+    traces = load_traces()
+
+    if not experiments and not traces:
         print("Нет результатов. Запустите эксперименты сначала.")
         return 1
 
     # Keep only the newest run per experiment, so the panel is not crowded.
-    newest: dict[str, dict] = {}
-    for r in results:
+    newest_exp: dict[str, dict] = {}
+    for r in experiments:
         eid = r.get("experiment_id", "unknown")
-        if eid not in newest:
-            newest[eid] = r
+        if eid not in newest_exp:
+            newest_exp[eid] = r
 
     payload = {
-        "schema": "marfagenez.viz-data.v1",
-        "generated_at": results[0].get("created_at", ""),
-        "experiments": list(newest.values()),
-        "total_runs": len(results),
+        "schema": "marfagenez.viz-data.v2",
+        "generated_at": experiments[0].get("created_at", "") if experiments else "",
+        "experiments": list(newest_exp.values()),
+        "traces": traces,
+        "total_runs": len(experiments),
+        "total_traces": len(traces),
     }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -64,11 +94,14 @@ def main() -> int:
     js += "export const DATA = " + json.dumps(payload, ensure_ascii=False, indent=2) + ";\n"
     OUT.write_text(js, encoding="utf-8")
 
-    print(f"Экспортировано {len(newest)} экспериментов из {len(results)} прогонов")
+    print(f"Экспортировано {len(newest_exp)} экспериментов из {len(experiments)} прогонов")
+    print(f"Экспортировано {len(traces)} трассировок")
     print(f"Записано: {OUT}")
-    for eid, r in newest.items():
+    for eid, r in newest_exp.items():
         n_cond = len(r.get("conditions", {}))
         print(f"  {eid}: {n_cond} условий")
+    for t in traces:
+        print(f"  trace {t.get('policy')}: {len(t.get('frames', []))} кадров, hash {t.get('hash')}")
     return 0
 
 
