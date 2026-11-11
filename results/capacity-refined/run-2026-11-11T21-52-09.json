@@ -1,0 +1,128 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "capacity-refined",
+  "run_id": "run-2026-11-11T21-52-09",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 3000,
+    "every": 3000,
+    "cells": 40,
+    "policy": "sighted",
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02,
+    "regrow": 0.8,
+    "income": 0.8
+  },
+  "arithmetic": {
+    "survival_capacity": "k_survive = M * r / income (equilibrium c* = 0)",
+    "feeding_capacity": "k_feed = (M - income) * r / income (equilibrium c* = income)",
+    "why_two": "The organism takes min(income, c). If c* < income it gets less than the full income and lives below the energy ceiling, but it lives. So there are two capacities: how many can survive at all, and how many are fully fed.",
+    "predictions": {
+      "A": {
+        "survive": 80.0,
+        "feed": 48.0
+      },
+      "B": {
+        "survive": 160.0,
+        "feed": 128.00000000000003
+      },
+      "C": {
+        "survive": 40,
+        "feed": 40
+      }
+    }
+  },
+  "conditions": {
+    "A": {
+      "label": "alternating, M=2.0, n=100",
+      "metrics": {
+        "field": "alternating",
+        "n": 100,
+        "rich": 2.0,
+        "poor": 0.2,
+        "alive": 80,
+        "total": 100,
+        "survival": 0.8,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 2.0,
+        "at_ceiling": 80,
+        "mean_energy": 9.37,
+        "trace_file": "results/capacity-refined/trace-sighted-1794433929.json"
+      },
+      "hash": "695232581152d106"
+    },
+    "B": {
+      "label": "alternating, M=4.0, n=200",
+      "metrics": {
+        "field": "alternating",
+        "n": 200,
+        "rich": 4.0,
+        "poor": 0.5,
+        "alive": 160,
+        "total": 200,
+        "survival": 0.8,
+        "distinct_cells": 40,
+        "max_crowd": 4,
+        "mean_crowd": 4.0,
+        "at_ceiling": 160,
+        "mean_energy": 9.37,
+        "trace_file": "results/capacity-refined/trace-sighted-1794433929.json"
+      },
+      "hash": "e754bfb9a8167c65"
+    },
+    "C": {
+      "label": "uniform, M=4.0, n=200",
+      "metrics": {
+        "field": "uniform",
+        "n": 200,
+        "rich": 4.0,
+        "poor": 0.5,
+        "alive": 79,
+        "total": 200,
+        "survival": 0.395,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 1.975,
+        "at_ceiling": 79,
+        "mean_energy": 9.37,
+        "trace_file": "results/capacity-refined/trace-sighted-1794433929.json"
+      },
+      "hash": "c6549f485e120ef7"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A: 80 alive vs predicted survival capacity 80 — must reproduce EXP-12's 80"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "C (uniform): 79 alive — a uniform field gives no reason to move, so the ceiling must stay at the number of cells (40)"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "B: 160 alive, 160 at the energy ceiling — survival capacity predicts 160, feeding capacity predicts 128"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "control tests failed: silent"
+  },
+  "hashes": {
+    "A": "695232581152d106",
+    "B": "e754bfb9a8167c65",
+    "C": "c6549f485e120ef7"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "The two capacities differ only when M > income; at M = 2.0 they are 2 and 1.2, close enough that the measurement may not separate them.",
+    "`at_ceiling` uses a 9.36 threshold, which is the ceiling at these parameters; a different capacity parameter would move it.",
+    "The conclusion is about this model's take rule min(income, c), not about feeding in general."
+  ],
+  "command": "python3 checks/exp14_capacity_refined.py",
+  "created_at": "2026-11-11T21:52:09.088034+00:00"
+}
