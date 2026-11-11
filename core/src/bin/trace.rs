@@ -39,6 +39,9 @@ fn main() {
     let mut field_kind = "alternating".to_string();
     let mut memory_life = 300usize;
     let mut shift = 0.0f64;
+    let mut rich = 2.0f64;
+    let mut poor = 0.2f64;
+    let mut regrow = 0.8f64;
 
     let mut i = 1;
     while i < args.len() {
@@ -117,11 +120,24 @@ fn main() {
                 i += 1;
                 shift = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(shift);
             }
+            "--rich" => {
+                i += 1;
+                rich = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(rich);
+            }
+            "--poor" => {
+                i += 1;
+                poor = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(poor);
+            }
+            "--regrow" => {
+                i += 1;
+                regrow = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(regrow);
+            }
             "--help" | "-h" => {
                 println!("usage: trace [--policy stay|random|remember|memory|sighted] [--steps N] [--every K] [--seed S] [--n N] [--cells C]");
                 println!("             [--capacity X] [--damage-rate X] [--income X] [--maintenance X]");
                 println!("             [--repair-cost X] [--move-cost X] [--energy X]");
                 println!("             [--field alternating|gradient|uniform|moving] [--memory-life N] [--shift X]");
+                println!("             [--rich X] [--poor X] [--regrow X]");
                 return;
             }
             other => {
@@ -140,10 +156,10 @@ fn main() {
         capacity,
     };
     let field = match field_kind.as_str() {
-        "alternating" => Field::alternating(cells, 2.0, 0.2, 0.8),
-        "gradient" => Field::gradient(cells, 0.2, 2.0, 0.8),
-        "uniform" => Field::new(cells, 1.0, 0.8),
-        "moving" => Field::moving(cells, 2.0, 0.2, 0.8, if shift > 0.0 { shift } else { 1.0 }),
+        "alternating" => Field::alternating(cells, rich, poor, regrow),
+        "gradient" => Field::gradient(cells, poor, rich, regrow),
+        "uniform" => Field::new(cells, (rich + poor) / 2.0, regrow),
+        "moving" => Field::moving(cells, rich, poor, regrow, if shift > 0.0 { shift } else { 1.0 }),
         other => {
             eprintln!("unknown field: {} (expected alternating, gradient, uniform)", other);
             std::process::exit(2);
@@ -194,6 +210,9 @@ fn main() {
     println!("field:    {}", field_kind);
     println!("memlife:  {}", memory_life);
     println!("shift:    {}", shift);
+    println!("rich:     {}", rich);
+    println!("poor:     {}", poor);
+    println!("regrow:   {}", regrow);
     println!("steps:    {}", steps);
     println!("frames:   {}", trace.frames.len());
     println!("hash:     {:016x}", trace.hash);
