@@ -7,6 +7,7 @@
 -/
 
 import Medium.BodySize
+import Medium.Field
 import Medium.Boundary
 import Medium.Bounded
 import Medium.Bridge
