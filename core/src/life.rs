@@ -62,6 +62,15 @@ pub enum Policy {
     /// The difference from [`Policy::Remember`] is exactly the update rule: this one
     /// can change its mind. If a richer cell appears, the organism leaves.
     Memory,
+    /// Look at the two neighbours and step toward the richer one.
+    ///
+    /// This is the first policy with **feedback from the world**: every other policy
+    /// sees only its own cell, so it can never learn that a better cell exists
+    /// nearby. See `docs/FINDING-memory-weak.md`.
+    ///
+    /// Ties go to `0` (stay), so in a uniform field a sighted organism does not
+    /// move — there is nothing to prefer.
+    Sighted,
 }
 
 /// A reading taken from outside the cycle.
@@ -233,6 +242,27 @@ impl Life {
                         r.direction()
                     }
                 }
+                Policy::Sighted => {
+                    // Look at both neighbours and step toward the richer one.
+                    // A tie goes to `0`: in a uniform field there is nothing to
+                    // prefer, so a sighted organism stays put.
+                    let left = if r.cell > 0 {
+                        self.field.level(r.cell - 1)
+                    } else {
+                        f64::NEG_INFINITY
+                    };
+                    let right = if r.cell + 1 < cells {
+                        self.field.level(r.cell + 1)
+                    } else {
+                        f64::NEG_INFINITY
+                    };
+                    let best = here.max(left).max(right);
+                    if best > here {
+                        if left >= right { -1 } else { 1 }
+                    } else {
+                        0
+                    }
+                }
             };
             if direction != 0 && r.organism.spend(r.move_cost) {
                 let nc = r.cell as i64 + direction as i64;
@@ -304,6 +334,7 @@ impl Life {
             Policy::Random => "random",
             Policy::Remember => "remember",
             Policy::Memory => "memory",
+            Policy::Sighted => "sighted",
         }
     }
 

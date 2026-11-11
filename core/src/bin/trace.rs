@@ -50,6 +50,7 @@ fn main() {
                     Some("random") => Policy::Random,
                     Some("remember") => Policy::Remember,
                     Some("memory") => Policy::Memory,
+                    Some("sighted") => Policy::Sighted,
                     other => {
                         eprintln!("unknown policy: {:?}", other);
                         std::process::exit(2);
@@ -117,7 +118,7 @@ fn main() {
                 shift = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(shift);
             }
             "--help" | "-h" => {
-                println!("usage: trace [--policy stay|random|remember|memory] [--steps N] [--every K] [--seed S] [--n N] [--cells C]");
+                println!("usage: trace [--policy stay|random|remember|memory|sighted] [--steps N] [--every K] [--seed S] [--n N] [--cells C]");
                 println!("             [--capacity X] [--damage-rate X] [--income X] [--maintenance X]");
                 println!("             [--repair-cost X] [--move-cost X] [--energy X]");
                 println!("             [--field alternating|gradient|uniform|moving] [--memory-life N] [--shift X]");
@@ -170,6 +171,7 @@ fn main() {
         Policy::Random => "random",
         Policy::Remember => "remember",
         Policy::Memory => "memory",
+        Policy::Sighted => "sighted",
     };
     let dir = PathBuf::from("results").join(name);
     if let Err(e) = fs::create_dir_all(&dir) {
