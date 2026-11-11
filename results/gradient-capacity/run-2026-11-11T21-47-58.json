@@ -1,0 +1,109 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "gradient-capacity",
+  "run_id": "run-2026-11-11T21-47-58",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 2000,
+    "every": 2000,
+    "cells": 40,
+    "n": 80,
+    "policy": "sighted",
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02,
+    "max_resource": 2.0,
+    "regrow": 0.8
+  },
+  "arithmetic": {
+    "k_max_per_cell": 2.0,
+    "cells": 40,
+    "n": 80,
+    "alternating_does_not_discriminate": "gathering: 20 rich cells * 2.0 = 40.0; spreading: 40 cells * 1 = 40. Both give 40.",
+    "gradient_discriminates": "gathering: 1 best cell * 2.0 = 2.0; spreading: 40 cells * 1 = 40. A factor of 20.0.",
+    "prediction": "If organisms gather, the gradient arm survives about 2.0 of 80. If they spread, it survives about 40."
+  },
+  "conditions": {
+    "A": {
+      "label": "uniform (control)",
+      "metrics": {
+        "field": "uniform",
+        "n": 80,
+        "alive": 40,
+        "total": 80,
+        "survival": 0.5,
+        "distinct_cells": 40,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "max_cell": 39,
+        "trace_file": "results/gradient-capacity/trace-sighted-1794433678.json"
+      },
+      "hash": "44d9148f47670836"
+    },
+    "B": {
+      "label": "alternating",
+      "metrics": {
+        "field": "alternating",
+        "n": 80,
+        "alive": 76,
+        "total": 80,
+        "survival": 0.95,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 1.9,
+        "max_cell": 39,
+        "trace_file": "results/gradient-capacity/trace-sighted-1794433678.json"
+      },
+      "hash": "619f349459dd55bb"
+    },
+    "C": {
+      "label": "gradient",
+      "metrics": {
+        "field": "gradient",
+        "n": 80,
+        "alive": 78,
+        "total": 80,
+        "survival": 0.975,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 1.95,
+        "max_cell": 39,
+        "trace_file": "results/gradient-capacity/trace-sighted-1794433678.json"
+      },
+      "hash": "7d6e8755d20ee33a"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A (uniform): 40 alive — must reproduce EXP-10's 40"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "B (alternating): 76 alive — both hypotheses predict 40 here, so this arm cannot discriminate and must not"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "C (gradient): 78 alive, max crowd 2 — gathering predicts ~2, spreading predicts ~40"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "control tests failed: silent"
+  },
+  "hashes": {
+    "A": "44d9148f47670836",
+    "B": "619f349459dd55bb",
+    "C": "7d6e8755d20ee33a"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "The gradient arm's prediction is a two-way choice (gather or spread); an intermediate outcome would be `void` for the question.",
+    "`Policy::Sighted` is not yet covered by the Rust test suite.",
+    "The conclusion is about this model's movement rule, not about crowding in general."
+  ],
+  "command": "python3 checks/exp11_gradient_capacity.py",
+  "created_at": "2026-11-11T21:47:58.279895+00:00"
+}
