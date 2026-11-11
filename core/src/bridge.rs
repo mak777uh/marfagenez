@@ -45,10 +45,28 @@ extern "C" {
     fn marfa_race_lost(b: u64, sigma: u64) -> u8;
     fn marfa_fold_shifted(b: u64, x: u64) -> u64;
 
+    // Reaction law
+    fn marfa_reaction_changes(gain: u64, reaction: u64) -> u8;
+    fn marfa_zero_gain_keeps(gain: u64) -> u8;
+
+    // Time law
+    fn marfa_distance_to_wall(b: u64, spread: u64) -> u64;
+    fn marfa_time_to_narrow(b: u64, spread: u64, mu: u64) -> u64;
+    fn marfa_naive_time(b: u64, mu: u64) -> u64;
+    fn marfa_sooner_than_naive(b: u64, spread: u64, mu: u64) -> u8;
+
+    // Tilt law
+    fn marfa_tilt_num(mu: u64) -> u64;
+    fn marfa_tilt_den(sigma: u64) -> u64;
+    fn marfa_tilt_sign(mu: u64) -> u64;
+    fn marfa_tilt_zero_iff(mu: u64) -> u8;
+
     // The Lean runtime. Not declared in `lean.h`, but exported by `libleanshared`.
     fn lean_initialize();
     fn lean_init_task_manager();
     fn lean_io_mark_end_initialization();
+    fn lean_initialize_thread();
+    fn lean_finalize_thread();
 }
 
 /// Initialises the Lean runtime exactly once.
@@ -60,8 +78,21 @@ extern "C" {
 /// `std::sync::Once` makes it safe to call from any thread and any number of times.
 fn init_runtime() {
     // The Lean runtime is initialised by a constructor in `FFI.c`, which runs before
-    // `main` in the main thread. Nothing to do here: calling `lean_initialize` again
-    // from a test thread would be too late and would abort.
+    // `main` in the main thread. But Lean 4 requires **every thread** that calls into
+    // it to register itself first, with `lean_initialize_thread`.
+    //
+    // Without this, the first call from a Rust test thread aborts with "failed to
+    // initiate panic": the runtime tries to raise a Lean exception and the thread has
+    // no Lean state to raise it in.
+    //
+    // The registration is per thread, so `thread_local!` is the right scope. The
+    // destructor calls `lean_finalize_thread` on thread exit.
+    thread_local! {
+        static INIT: () = unsafe {
+            lean_initialize_thread();
+        };
+    }
+    INIT.with(|_| ());
 }
 
 /// The saturation law, computed by Lean.
@@ -100,6 +131,76 @@ pub fn lean_fold_shifted(b: u64, x: u64) -> u64 {
     init_runtime();
     // SAFETY: pure arithmetic, as above.
     unsafe { marfa_fold_shifted(b, x) }
+}
+
+/// Whether a reaction changes the step, computed by Lean.
+pub fn lean_reaction_changes(gain: u64, reaction: u64) -> bool {
+    init_runtime();
+    // SAFETY: pure arithmetic on `UInt64`, as above. Lean's `Bool` is a byte.
+    unsafe { marfa_reaction_changes(gain, reaction) != 0 }
+}
+
+/// Whether a zero gain keeps the step, computed by Lean.
+pub fn lean_zero_gain_keeps(gain: u64) -> bool {
+    init_runtime();
+    // SAFETY: pure arithmetic, as above.
+    unsafe { marfa_zero_gain_keeps(gain) != 0 }
+}
+
+/// The distance to the wall `b - spread`, computed by Lean.
+pub fn lean_distance_to_wall(b: u64, spread: u64) -> u64 {
+    init_runtime();
+    // SAFETY: pure arithmetic, as above.
+    unsafe { marfa_distance_to_wall(b, spread) }
+}
+
+/// The time to narrow, computed by Lean.
+pub fn lean_time_to_narrow(b: u64, spread: u64, mu: u64) -> u64 {
+    init_runtime();
+    // SAFETY: pure arithmetic, as above.
+    unsafe { marfa_time_to_narrow(b, spread, mu) }
+}
+
+/// The naive time `B/mu`, computed by Lean.
+pub fn lean_naive_time(b: u64, mu: u64) -> u64 {
+    init_runtime();
+    // SAFETY: pure arithmetic, as above.
+    unsafe { marfa_naive_time(b, mu) }
+}
+
+/// Whether the time to narrow is less than the naive time, computed by Lean.
+pub fn lean_sooner_than_naive(b: u64, spread: u64, mu: u64) -> bool {
+    init_runtime();
+    // SAFETY: pure arithmetic, as above.
+    unsafe { marfa_sooner_than_naive(b, spread, mu) != 0 }
+}
+
+/// The numerator of the tilt `2mu`, computed by Lean.
+pub fn lean_tilt_num(mu: u64) -> u64 {
+    init_runtime();
+    // SAFETY: pure arithmetic, as above.
+    unsafe { marfa_tilt_num(mu) }
+}
+
+/// The denominator of the tilt `sigma^2`, computed by Lean.
+pub fn lean_tilt_den(sigma: u64) -> u64 {
+    init_runtime();
+    // SAFETY: pure arithmetic, as above.
+    unsafe { marfa_tilt_den(sigma) }
+}
+
+/// The sign of the tilt: `0` for no push, `1` for a positive push.
+pub fn lean_tilt_sign(mu: u64) -> u64 {
+    init_runtime();
+    // SAFETY: pure arithmetic, as above.
+    unsafe { marfa_tilt_sign(mu) }
+}
+
+/// Whether the tilt is zero exactly when there is no push, computed by Lean.
+pub fn lean_tilt_zero_iff(mu: u64) -> bool {
+    init_runtime();
+    // SAFETY: pure arithmetic, as above.
+    unsafe { marfa_tilt_zero_iff(mu) != 0 }
 }
 
 /// The same saturation law, computed in Rust.
@@ -219,6 +320,60 @@ mod tests {
                 );
             }
         }
+    }
+
+    #[test]
+    fn reaction_law_is_exported() {
+        // The reaction law: `g != 0` and `reaction != 0` changes the step.
+        assert!(lean_reaction_changes(1, 1));
+        assert!(!lean_reaction_changes(0, 1));
+        assert!(!lean_reaction_changes(1, 0));
+        // And a zero gain keeps the step.
+        assert!(lean_zero_gain_keeps(0));
+        assert!(!lean_zero_gain_keeps(1));
+    }
+
+    #[test]
+    fn time_law_is_exported() {
+        // The distance to the wall is `b - spread`.
+        assert_eq!(lean_distance_to_wall(100, 58), 42);
+        assert_eq!(lean_distance_to_wall(100, 100), 0);
+        assert_eq!(lean_distance_to_wall(100, 150), 0);
+
+        // The time to narrow is `ceil(distance / mu)`.
+        assert_eq!(lean_time_to_narrow(100, 58, 1), 42);
+        assert_eq!(lean_naive_time(100, 1), 100);
+
+        // And it is sooner than the naive time.
+        assert!(lean_sooner_than_naive(100, 58, 1));
+        // A correction: with no spread the distance is zero, so the time to narrow is
+        // zero, which is still *less* than the naive `B/mu`. The first version of this
+        // test asserted the opposite and was wrong.
+        assert!(lean_sooner_than_naive(100, 100, 1));
+    }
+
+    #[test]
+    fn tilt_law_is_exported() {
+        // The tilt is `2mu / sigma^2`, as a fraction.
+        assert_eq!(lean_tilt_num(5), 10);
+        assert_eq!(lean_tilt_den(3), 9);
+        // The sign: zero for no push, one otherwise.
+        assert_eq!(lean_tilt_sign(0), 0);
+        assert_eq!(lean_tilt_sign(5), 1);
+        // And the tilt is zero exactly when there is no push.
+        assert!(lean_tilt_zero_iff(0));
+        assert!(!lean_tilt_zero_iff(5));
+    }
+
+    #[test]
+    fn all_five_laws_are_reachable() {
+        // One call per law, so that a missing export shows up as a link error rather
+        // than as a silently passing test.
+        let _ = lean_saturation(9, 16); // saturation
+        let _ = lean_fill_time(3, 1); // race
+        let _ = lean_reaction_changes(1, 1); // reaction
+        let _ = lean_time_to_narrow(100, 58, 1); // time
+        let _ = lean_tilt_num(5); // tilt
     }
 
     #[test]

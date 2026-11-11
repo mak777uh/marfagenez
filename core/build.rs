@@ -131,14 +131,23 @@ fn main() {
     if let Ok(mut text) = std::fs::read_to_string(&c_file) {
         text.push_str(
             "\n/* Initialise the Lean runtime before main, in the main thread. */\n\
+             #include <lean/lean.h>\n\
              extern void lean_initialize(void);\n\
              extern void lean_io_mark_end_initialization(void);\n\
              extern void lean_init_task_manager(void);\n\
+             extern lean_object* initialize_Std(uint8_t builtin);\n\
              __attribute__((constructor))\n\
              static void marfa_lean_boot(void) {\n\
                  lean_initialize();\n\
                  lean_io_mark_end_initialization();\n\
                  lean_init_task_manager();\n\
+                 /* Initialise the module's global constants. Without this the\n\
+                    runtime is up but `marfa_reaction_time` and friends are null. */\n\
+                 lean_object* res = initialize_Std(1);\n\
+                 if (!lean_io_result_is_ok(res)) {\n\
+                     lean_io_result_show_error(res);\n\
+                 }\n\
+                 lean_dec_ref(res);\n\
              }\n",
         );
         let _ = std::fs::write(&c_file, text);
