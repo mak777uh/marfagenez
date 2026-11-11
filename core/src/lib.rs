@@ -490,3 +490,5 @@ pub mod boundary;
 
 #[cfg(test)]
 mod boundary_probes;
+
+pub mod cycle;

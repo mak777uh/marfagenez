@@ -115,7 +115,7 @@ impl MediumAction {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::room::Shape;
+    use crate::room::{Room, Shape};
     use crate::HalfWidth;
 
     fn setup() -> (Medium, Child) {
