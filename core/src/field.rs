@@ -67,6 +67,27 @@ impl Field {
         Some(f)
     }
 
+    /// A field that rises linearly from `low` at the left edge to `high` at the
+    /// right edge.
+    ///
+    /// This is the field the `remember` experiment needs: a gradient has a single
+    /// best cell, so an organism that finds the best and stops will end up at the
+    /// right edge. An alternating field has twenty equally best cells, so "the
+    /// best" is not a single place.
+    pub fn gradient(cells: usize, low: f64, high: f64, regrow: f64) -> Option<Self> {
+        let mut f = Self::new(cells, high, regrow)?;
+        if cells == 1 {
+            f.cells[0] = high;
+            return Some(f);
+        }
+        let span = high - low;
+        for i in 0..cells {
+            let t = i as f64 / (cells - 1) as f64;
+            f.cells[i] = low + span * t;
+        }
+        Some(f)
+    }
+
     pub fn cells(&self) -> usize {
         self.cells.len()
     }

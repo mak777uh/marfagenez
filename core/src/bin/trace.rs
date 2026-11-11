@@ -36,6 +36,7 @@ fn main() {
     let mut repair_cost = 1.5f64;
     let mut move_cost = 0.1f64;
     let mut energy = 5.0f64;
+    let mut field_kind = "alternating".to_string();
 
     let mut i = 1;
     while i < args.len() {
@@ -100,10 +101,15 @@ fn main() {
                 i += 1;
                 energy = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(energy);
             }
+            "--field" => {
+                i += 1;
+                field_kind = args.get(i).cloned().unwrap_or(field_kind);
+            }
             "--help" | "-h" => {
                 println!("usage: trace [--policy stay|random|remember] [--steps N] [--every K] [--seed S] [--n N] [--cells C]");
                 println!("             [--capacity X] [--damage-rate X] [--income X] [--maintenance X]");
                 println!("             [--repair-cost X] [--move-cost X] [--energy X]");
+                println!("             [--field alternating|gradient|uniform]");
                 return;
             }
             other => {
@@ -121,7 +127,16 @@ fn main() {
         damage_rate,
         capacity,
     };
-    let field = match Field::alternating(cells, 2.0, 0.2, 0.8) {
+    let field = match field_kind.as_str() {
+        "alternating" => Field::alternating(cells, 2.0, 0.2, 0.8),
+        "gradient" => Field::gradient(cells, 0.2, 2.0, 0.8),
+        "uniform" => Field::new(cells, 1.0, 0.8),
+        other => {
+            eprintln!("unknown field: {} (expected alternating, gradient, uniform)", other);
+            std::process::exit(2);
+        }
+    };
+    let field = match field {
         Some(f) => f,
         None => {
             eprintln!("cannot build the field");
@@ -161,6 +176,7 @@ fn main() {
     println!("policy:   {}", name);
     println!("capacity: {}", capacity);
     println!("damage:   {}", damage_rate);
+    println!("field:    {}", field_kind);
     println!("steps:    {}", steps);
     println!("frames:   {}", trace.frames.len());
     println!("hash:     {:016x}", trace.hash);
