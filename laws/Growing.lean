@@ -66,31 +66,7 @@ theorem fixed_room_cannot_match_moving_child
     Real.sqrt (2 * μ₁ / αstar) ≠ Real.sqrt (2 * μ₂ / αstar) :=
   no_single_optimal_space μ₁ μ₂ αstar h₁ h₂ hα h
 
-/-- **Tracking beats freezing.**
-    A room that tracks the child's drive gives both growth and range; a frozen room
-    gives one or the other.
-
-    The table shows this: every tracking lag gives a product near `0.37`, while the
-    frozen room gives `0.105`. -/
-theorem tracking_beats_freezing
-    (tracked frozen : ℝ)
-    (h : frozen < tracked) :
-    frozen < tracked := h
-
-/-- **The result is insensitive to the lag.**
-    Even a very slow tracking room works, as long as it tracks at all. The table
-    shows `τ = 1` and `τ = 1000` giving the same product.
-
-    This is why the requirement is "track", not "track quickly". -/
-theorem lag_insensitive (τ₁ τ₂ tracked : ℝ) (h : tracked = tracked) :
-    tracked = tracked := rfl
-
-/-- **The corrected law.**
-    The requirement on a room is not "constant" or "responsive" but **matched in
-    time**: constant for a constant child, changing for a growing child.
-
-    A constant room is the special case of a child whose drive does not move. -/
-theorem matched_in_time (μ : ℝ) (hμ : 0 < μ) :
-    μ = μ := rfl
+-- REMOVED: `tracking_beats_freezing` was a tautology (proved `X = X` or returned a
+-- hypothesis). Deleted 2026-11-11; see docs/ELIMINATED.md.
 
 end Medium

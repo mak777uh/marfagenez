@@ -47,10 +47,7 @@ theorem zero_lag_zero_period (k : Nat) :
   unfold periodOf
   exact Nat.mul_zero k
 
-/-- **The ratio law.**
-    The ratio of two periods equals the ratio of the two lags, when the lags are
-    positive and the constant is the same. -/
-theorem period_ratio (k tau : Nat) :
-    periodOf k tau = k * tau := rfl
+-- REMOVED: `period_ratio` was a tautology (proved `X = X` or returned a
+-- hypothesis). Deleted 2026-11-11; see docs/ELIMINATED.md.
 
 end Medium

@@ -41,16 +41,8 @@ namespace Medium
 
 open MeasureTheory ProbabilityTheory
 
-/-- **The dimension law.**
-    A uniform population in a `d`-dimensional ball of radius `R` has spread
-    `d/(d+2) · R²`.
-
-    One formula covers the line, the disc, and every higher dimension. The
-    coefficient is the only thing that changes, and it is set by the dimension alone.
-    -/
-theorem dimension_law (d : ℕ) (R : ℝ) :
-    (d : ℝ) / ((d : ℝ) + 2) * R ^ 2
-      = (d : ℝ) / ((d : ℝ) + 2) * R ^ 2 := rfl
+-- REMOVED: `dimension_law` was a tautology (proved `X = X` or returned a
+-- hypothesis). Deleted 2026-11-11; see docs/ELIMINATED.md.
 
 /-- **The one-dimensional case.**
     For `d = 1` the coefficient is `1/3`, which is the `B²/3` law. -/

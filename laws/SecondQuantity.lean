@@ -68,15 +68,8 @@ namespace Medium
 
 open MeasureTheory ProbabilityTheory Real
 
-/-- **Pulling cannot raise the mean.**
-    If every child is pulled toward the population mean, the mean does not move: the
-    pull is zero when all values are equal.
-
-    The table shows this: `mean k = 1.80` for every teaching strength. -/
-theorem pull_cannot_raise_mean
-    (k : ℕ → ℝ) (d : ℕ)
-    (hconst : ∀ i, k i = k 0) :
-    k 0 = k 0 := rfl
+-- REMOVED: `pull_cannot_raise_mean` was a tautology (proved `X = X` or returned a
+-- hypothesis). Deleted 2026-11-11; see docs/ELIMINATED.md.
 
 /-- **Additive transfer runs away.**
     If every child's capability is raised in proportion to the population mean, the

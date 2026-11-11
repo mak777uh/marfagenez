@@ -48,17 +48,8 @@ namespace Medium
 
 open MeasureTheory ProbabilityTheory
 
-/-- **Reflection does not contract distance.**
-    Reflection is an isometry on each side of the wall, so it preserves the distance
-    between two points that lie on the same side.
-
-    This is why trajectories do not merge, and why convergence cannot be proved by a
-    contraction argument on paths. The convergence lives in the distribution. -/
-theorem reflection_is_isometry_inside
-    (B x y : ℝ)
-    (hx : x ≤ B) (hy : y ≤ B)
-    (hx' : -B ≤ x) (hy' : -B ≤ y) :
-    |x - y| = |x - y| := rfl
+-- REMOVED: `reflection_is_isometry_inside` was a tautology (proved `X = X` or returned a
+-- hypothesis). Deleted 2026-11-11; see docs/ELIMINATED.md.
 
 /-- **The fold identifies points.**
     Reflection maps two points `4B` apart to the same place.

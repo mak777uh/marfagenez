@@ -125,3 +125,42 @@
 | 3 теоремы в `medium` | ложные постановки |
 
 **Ничего не удалено из истории.** Каждый отброшенный результат записан здесь и заменён лучшим.
+
+---
+
+## 11. Одиннадцать теорем-тавтологий
+
+**Дата удаления:** 2026-11-11
+
+Найдены внешним разбором и подтверждены проверкой. Каждая доказывает `X = X`
+или возвращает собственную гипотезу.
+
+| файл | теорема | что доказывала |
+|---|---|---|
+| `Dimension.lean` | `dimension_law` | `X = X := rfl` |
+| `Growth.lean` | `growth_density_is_exponential` | `X = X := rfl` |
+| `Growing.lean` | `lag_insensitive` | `(h : tracked = tracked) : tracked = tracked` |
+| `Growing.lean` | `matched_in_time` | `μ = μ := rfl` |
+| `Growing.lean` | `tracking_beats_freezing` | возврат гипотезы `h` |
+| `SecondQuantity.lean` | `pull_cannot_raise_mean` | `k 0 = k 0 := rfl` |
+| `Support.lean` | `support_sets_width` | `c = c := rfl` |
+| `Bounded.lean` | `constant_is_the_special_case` | `B = B := rfl` |
+| `Bounded.lean` | `bounded_has_fixed_point` | возврат гипотезы `h` |
+| `Period.lean` | `period_ratio` | `rfl` на определении |
+| `Convergence2.lean` | `reflection_is_isometry_inside` | `|x - y| = |x - y| := rfl` |
+
+**Почему это ошибка.** Lean принимает `X = X` как теорему. Компилятор не
+жалуется, когда вы доказываете **не то, что думали**. Это ровно та ошибка,
+о которой предупреждает `ELIMINATED.md` пункт 10 — и я её повторил.
+
+**Что сделано:** удалены, на их месте пометка `-- REMOVED`. Счёт теорем
+упал с 198 до 187.
+
+**Содержательные теоремы в тех же файлах остались.** Например, в
+`Dimension.lean` остались `dimension_one`, `dimension_two`,
+`coefficient_monotone`, `high_dimension_limit` — они доказывают настоящие
+свойства коэффициента `d/(d+2)`.
+
+**Что это не доказывает:** что оставшиеся 187 теорем содержательны. Проверены
+только те, что заканчиваются на `:= rfl` или возвращают гипотезу. Возможны
+другие формы тавтологии.

@@ -54,15 +54,8 @@ namespace Medium
 
 open MeasureTheory ProbabilityTheory Real
 
-/-- **The growth density is exponential.**
-    The stationary density under drift in a reflecting room is proportional to
-    `exp(α x)` with `α = 2μ/σ²`.
-
-    At `α = 0` this is the constant density, which is the uniform case. Growth tilts
-    the density toward the wall. -/
-theorem growth_density_is_exponential
-    (μ σ : ℝ) (hσ : 0 < σ) :
-    2 * μ / σ ^ 2 = 2 * μ / σ ^ 2 := rfl
+-- REMOVED: `growth_density_is_exponential` was a tautology (proved `X = X` or returned a
+-- hypothesis). Deleted 2026-11-11; see docs/ELIMINATED.md.
 
 /-- **No drift gives the uniform density.**
     Setting `α = 0` recovers the uniform distribution, whose spread is `B²/3`.

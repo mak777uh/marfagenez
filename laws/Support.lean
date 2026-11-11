@@ -51,17 +51,8 @@ theorem feedback_self_cancels
   rw [hm]
   ring
 
-/-- **The external floor law.**
-    The equilibrium width of the environment is exactly the external floor `c`,
-    not `k·mean + c`.
-
-    This is the quantitative answer to "how much external support is needed?": the
-    support must supply the whole width. Whatever the population contributes to its
-    own ceiling is cancelled by the population settling at zero mean. -/
-theorem support_sets_width
-    (k m c : ℝ)
-    (h : k * m + c = c) :
-    c = c := rfl
+-- REMOVED: `support_sets_width` was a tautology (proved `X = X` or returned a
+-- hypothesis). Deleted 2026-11-11; see docs/ELIMINATED.md.
 
 /-- **The zero-mean attractor.**
     The mean is driven to zero by the symmetric wall regardless of `k` and `c`.

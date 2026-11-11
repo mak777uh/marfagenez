@@ -61,22 +61,7 @@ theorem ceiling_sets_range (Bmax : ℝ) (hB : 0 < Bmax) :
     (Bmax / Real.sqrt 3) ^ 2 = Bmax ^ 2 / 3 := by
   rw [div_pow, Real.sq_sqrt (by norm_num : (0:ℝ) ≤ 3)]
 
-/-- **Bounded response is stable; unbounded is not.**
-    The difference between the two is not the response rule but whether the rule has
-    a ceiling.
-
-    Stated as the arithmetic: a response clamped to `[Bmin, Bmax]` always has a fixed
-    point in that interval, while a response proportional to the spread with
-    coefficient above one has only the zero fixed point. -/
-theorem bounded_has_fixed_point (Bmin Bmax : ℝ) (h : Bmin ≤ Bmax) :
-    Bmin ≤ Bmax := h
-
-/-- **The correction to the previous law.**
-    `Medium/Responding.lean` said only a constant room holds. The correct statement
-    is that only a room with a **bounded** response holds.
-
-    A constant room is the special case `Bmin = Bmax`. -/
-theorem constant_is_the_special_case (B : ℝ) (hB : 0 < B) :
-    B = B := rfl
+-- REMOVED: `bounded_has_fixed_point` was a tautology (proved `X = X` or returned a
+-- hypothesis). Deleted 2026-11-11; see docs/ELIMINATED.md.
 
 end Medium
