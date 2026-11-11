@@ -1,81 +1,114 @@
 import Mathlib
-import Medium.Stationary
+import Medium.Field
 
 /-!
-  The convergence law: the corrected model forgets where it started.
+# The field: convergence to equilibrium
 
-  The previous file proved that the uniform distribution is invariant under
-  reflection, so `B²/3` is the spread **of the equilibrium**. It did not prove that
-  the model **reaches** that equilibrium. This file takes that step.
+`Field.lean` proved the equilibrium `c* = M - t/r`. This file proves that the
+step **moves the cell toward** that equilibrium and never past it.
 
-  Numerical experiment. Measure the Wasserstein distance from the evolving population
-  to the uniform distribution on `[-B, B]`, from four very different starting shapes:
+## Why this and not "the spread shrinks"
 
-  | start | n=1 | n=10 | n=50 | n=200 | n=1000 |
-  |-------|-----|------|------|-------|--------|
-  | `N(0, 0.5)` | 2.033 | 1.641 | 0.793 | 0.053 | 0.008 |
-  | `N(0, 3)` | 0.340 | 0.290 | 0.145 | 0.009 | 0.013 |
-  | point mass at 0 | 2.259 | 1.742 | 0.831 | 0.056 | 0.010 |
-  | `U[-2, 2]` | 1.476 | 1.275 | 0.626 | 0.041 | 0.010 |
+The measurement in `EXP-09` suggested that a sighted organism levels the field.
+The natural theorem would be "the spread of the field shrinks monotonically".
 
-  Every start converges to the same distribution, and the distance falls
-  monotonically. Two independent trajectories started far apart also merge:
-  their Wasserstein distance fell from `1.987` to `0.019`.
+**That theorem is false.** Two cells with the same `M` and `r` but different
+takes cross over:
 
-  The contrast with the original model could not be sharper. Under clamping the
-  population converges too — but to a **point**, not to a distribution:
+| step | rich (taken from) | poor (not taken) | spread |
+|---|---|---|---|
+| 0 | 2.000 | 0.200 | 1.800 |
+| 1 | 1.840 | 1.640 | 0.200 |
+| 2 | 1.808 | 1.928 | **−0.120** |
 
-  | model | limit |
-  |-------|-------|
-  | original (clamp) | delta at the ceiling, spread `0` |
-  | corrected (reflect) | uniform on `[-B, B]`, spread `B²/3` |
+The rich cell falls, the poor cell rises, and after two steps the poor cell is
+richer. The spread changes sign, so its absolute value does not shrink
+monotonically.
 
-  Both converge. Only one keeps diversity. **Convergence is not the property that
-  matters — the limit is.**
+What *is* true, and what this file proves, is the local statement: from either
+side, the step moves the cell toward `c*` and does not overshoot it.
+
+## What is proved
+
+* `step_lt_self` — above the equilibrium, the step decreases the cell
+* `step_gt_self` — below the equilibrium, the step increases the cell
+* `step_at_equilibrium` — at the equilibrium, the step leaves the cell alone
+* `step_approaches` — the gap to the equilibrium is multiplied by `(1-r)`
+* `gap_shrinks` — the absolute gap shrinks by `(1-r)`
+* `gap_strictly_shrinks` — and strictly, unless already at equilibrium
+
+## What is NOT proved
+
+That a *field* of many cells converges to a uniform one. The cells interact only
+through which organism stands where, and that is a different model.
 -/
 
 namespace Medium
 
-open MeasureTheory ProbabilityTheory
+/-- The equilibrium of a cell taken from every step. -/
+noncomputable def equilibrium (M r t : ℝ) : ℝ := M - t / r
 
-/-- **The forgetting law.**
-    The corrected model's limit does not depend on the starting distribution.
+/-- **Above the equilibrium, the step decreases the cell.**
 
-    Every starting shape in the experiment converges to the same uniform
-    distribution. The environment erases the initial condition: what the population
-    was before it met the walls no longer matters, only the walls remain.
+`cellStep - c = (M - c) * r - t`, which is negative exactly when `c > M - t/r`. -/
+theorem step_lt_self {M r t c : ℝ} (hr : 0 < r) (h : equilibrium M r t < c) :
+    cellStep M r t c < c := by
+  unfold cellStep equilibrium at *
+  have h1 : M - c < t / r := by linarith
+  rw [lt_div_iff₀ hr] at h1
+  nlinarith
 
-    This is the same erasure seen in `FINDING-walls-erase-shape.md`, now stated as a
-    convergence property rather than a small-window limit. -/
-theorem limit_independent_of_start
-    (B : ℝ) (hB : 0 < B) :
-    B ^ 2 / 3 = (1 / 3 : ℝ) * B ^ 2 := by
+/-- **Below the equilibrium, the step increases the cell.** -/
+theorem step_gt_self {M r t c : ℝ} (hr : 0 < r) (h : c < equilibrium M r t) :
+    c < cellStep M r t c := by
+  unfold cellStep equilibrium at *
+  have h1 : t / r < M - c := by linarith
+  rw [div_lt_iff₀ hr] at h1
+  nlinarith
+
+/-- **At the equilibrium, the step leaves the cell alone.** -/
+theorem step_at_equilibrium {M r t : ℝ} (hr : r ≠ 0) :
+    cellStep M r t (equilibrium M r t) = equilibrium M r t := by
+  unfold cellStep equilibrium
+  field_simp
   ring
 
-/-- **The monotone decay law.**
-    The distance to the equilibrium decreases at every step.
+/-- **The gap to the equilibrium is multiplied by `(1 - r)` every step.**
 
-    A sequence that decreases and is bounded below converges. This is the analytic
-    skeleton of the numerical observation: the distance fell at every checkpoint
-    from every starting shape. -/
-theorem monotone_bounded_converges
-    (d : ℕ → ℝ)
-    (hmono : ∀ n, d (n + 1) ≤ d n)
-    (hbdd : ∃ L, ∀ n, L ≤ d n) :
-    ∃ L, ∀ n, L ≤ d n :=
-  hbdd
+This is the quantitative form of "the step approaches". With `0 < r < 1` the
+factor is in `(0, 1)`, so the gap goes to zero. -/
+theorem step_approaches {M r t c : ℝ} (hr : r ≠ 0) :
+    cellStep M r t c - equilibrium M r t = (c - equilibrium M r t) * (1 - r) := by
+  unfold cellStep equilibrium
+  field_simp
+  ring
 
-/-- **The convergence contrast.**
-    Both models converge; only the corrected one converges to a spread.
+/-- **The absolute gap shrinks by the factor `(1 - r)`.** -/
+theorem gap_shrinks {M r t c : ℝ} (hr0 : 0 < r) (hr1 : r < 1) :
+    |cellStep M r t c - equilibrium M r t|
+      = |c - equilibrium M r t| * (1 - r) := by
+  rw [step_approaches (ne_of_gt hr0), abs_mul]
+  have : |1 - r| = 1 - r := abs_of_pos (by linarith)
+  rw [this]
 
-    The original model's limit is a point mass, which has spread zero. The corrected
-    model's limit is the uniform distribution, which has spread `B²/3`. So the
-    question "does the population settle?" has the same answer for both. The
-    question "does it settle *with diversity*?" separates them. -/
-theorem convergence_contrast
-    (B : ℝ)
-    (hB : 0 < B) :
-    0 < (1 / 3 : ℝ) * B ^ 2 := by
-  positivity
+/-- **The gap strictly shrinks** unless the cell is already at equilibrium. -/
+theorem gap_strictly_shrinks {M r t c : ℝ} (hr0 : 0 < r) (hr1 : r < 1)
+    (h : c ≠ equilibrium M r t) :
+    |cellStep M r t c - equilibrium M r t| < |c - equilibrium M r t| := by
+  rw [gap_shrinks hr0 hr1]
+  have hpos : 0 < |c - equilibrium M r t| := abs_pos.mpr (sub_ne_zero.mpr h)
+  nlinarith
+
+/-- **No overshoot: from above, the cell stays above the equilibrium.**
+
+The gap is multiplied by `1 - r`, which is non-negative when `r ≤ 1`, so the
+cell cannot jump past `c*`. -/
+theorem no_overshoot {M r t c : ℝ} (hr0 : 0 < r) (hr1 : r ≤ 1)
+    (h : equilibrium M r t ≤ c) :
+    equilibrium M r t ≤ cellStep M r t c := by
+  have hgap := step_approaches (M := M) (r := r) (t := t) (c := c) (ne_of_gt hr0)
+  have hnonneg : 0 ≤ (c - equilibrium M r t) * (1 - r) :=
+    mul_nonneg (by linarith) (by linarith)
+  linarith
 
 end Medium

@@ -8,6 +8,7 @@
 
 import Medium.BodySize
 import Medium.Field
+import Medium.Convergence
 import Medium.Boundary
 import Medium.Bounded
 import Medium.Bridge
