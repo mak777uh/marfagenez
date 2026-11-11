@@ -1,0 +1,117 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "field-stable",
+  "run_id": "run-2026-11-11T22-03-23",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 2000,
+    "every": 10,
+    "cells": 40,
+    "policy": "sighted",
+    "field": "alternating",
+    "rich": 2.0,
+    "poor": 0.2,
+    "regrow": 0.8
+  },
+  "arithmetic": {
+    "metric": "spread = max(field) - min(field), mean = mean(field)",
+    "why_not_delta": "EXP-15 measured the frame-to-frame change of the field. That measures the MOVEMENT of organisms, not the stability of the field: organisms move and take from different cells, so the field changes locally even when it is globally stable.",
+    "equilibrium": "c* = M - k*income/r for k organisms on a cell",
+    "prediction": "With 40 cells and n organisms, only n cells are occupied, so the mean field should be between the occupied equilibrium and M."
+  },
+  "conditions": {
+    "A": {
+      "label": "n=8 (k=0.2)",
+      "metrics": {
+        "n": 8,
+        "k": 0.2,
+        "alive": 8,
+        "total": 8,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "early_spread": 0.16614831999999996,
+        "late_spread": 0.16620287999999994,
+        "early_mean": 1.9600000755,
+        "late_mean": 1.9600000755,
+        "spread_stable": true,
+        "mean_stable": true,
+        "frames": 200,
+        "trace_file": "results/field-stable/A-trace-sighted-1794434603.json"
+      },
+      "hash": "131091f9f8fb2bca"
+    },
+    "B": {
+      "label": "n=20 (k=0.5)",
+      "metrics": {
+        "n": 20,
+        "k": 0.5,
+        "alive": 20,
+        "total": 20,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "early_spread": 0.15291849999999987,
+        "late_spread": 0.13333399999999984,
+        "early_mean": 1.8999999985,
+        "late_mean": 1.9,
+        "spread_stable": true,
+        "mean_stable": true,
+        "frames": 200,
+        "trace_file": "results/field-stable/B-trace-sighted-1794434603.json"
+      },
+      "hash": "e7dbea55c9980588"
+    },
+    "C": {
+      "label": "n=80 (k=2.0)",
+      "metrics": {
+        "n": 80,
+        "k": 2.0,
+        "alive": 76,
+        "total": 80,
+        "max_crowd": 2,
+        "mean_crowd": 1.9,
+        "early_spread": 0.1601864799999999,
+        "late_spread": 0.16266153999999994,
+        "early_mean": 1.610025391,
+        "late_mean": 1.620385666,
+        "spread_stable": true,
+        "mean_stable": true,
+        "frames": 200,
+        "trace_file": "results/field-stable/C-trace-sighted-1794434603.json"
+      },
+      "hash": "a07d54444f32c240"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "spreads: A 0.1661->0.1662, B 0.1529->0.1333, C 0.1602->0.1627 — every arm must settle"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "no spread grows over the run — a field that settled must not drift"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "late spreads: A 0.1662, B 0.1333, C 0.1627 — the spread must depend on the load, or the metric is blind"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the field's spread and mean settle in every arm and the spread depends on the load: the field stabilises, and the movement of organisms does not unsettle it"
+  },
+  "hashes": {
+    "A": "131091f9f8fb2bca",
+    "B": "e7dbea55c9980588",
+    "C": "a07d54444f32c240"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "The threshold k_stable = 1 - r does NOT appear in the field: the field settles at every k tested. It remains arithmetic for a single cell.",
+    "The spread is measured as max - min, which is sensitive to a single cell; a variance would be less so.",
+    "`Policy::Sighted` is not yet covered by the Rust test suite."
+  ],
+  "command": "python3 checks/exp16_field_stable.py",
+  "created_at": "2026-11-11T22:03:23.144483+00:00"
+}
