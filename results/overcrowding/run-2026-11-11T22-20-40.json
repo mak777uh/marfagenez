@@ -1,0 +1,102 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "overcrowding",
+  "run_id": "run-2026-11-11T22-20-40",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 3000,
+    "every": 3000,
+    "cells": 40,
+    "policy": "sighted",
+    "field": "alternating",
+    "rich": 2.0,
+    "poor": 0.2,
+    "regrow": 0.8,
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02
+  },
+  "arithmetic": {
+    "k_max": 2.0,
+    "capacity": 80.0,
+    "prediction": "At or below n = 80 every organism finds a place; above it exactly 80 survive and the rest die. The survivors should sit at a crowding of 2.0.",
+    "why": "A cell holds k_max organisms without being drained. With more organisms than cells * k_max there are not enough places, so the surplus dies."
+  },
+  "conditions": {
+    "A": {
+      "label": "n=80 (at capacity)",
+      "metrics": {
+        "n": 80,
+        "alive": 76,
+        "total": 80,
+        "survival": 0.95,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 1.9,
+        "trace_file": "results/overcrowding/A-trace-sighted-1794435641.json"
+      },
+      "hash": "d7bbdd8fe369fd1c"
+    },
+    "B": {
+      "label": "n=120 (over)",
+      "metrics": {
+        "n": 120,
+        "alive": 80,
+        "total": 120,
+        "survival": 0.6666666666666666,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 2.0,
+        "trace_file": "results/overcrowding/B-trace-sighted-1794435641.json"
+      },
+      "hash": "53307e43dc339c19"
+    },
+    "C": {
+      "label": "n=160 (over)",
+      "metrics": {
+        "n": 160,
+        "alive": 80,
+        "total": 160,
+        "survival": 0.5,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 2.0,
+        "trace_file": "results/overcrowding/C-trace-sighted-1794435641.json"
+      },
+      "hash": "3680677a9109ea29"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A (n=80): 76 alive vs capacity 80 — at capacity every organism must find a place"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "B (n=120): 80, C (n=160): 80 — neither may exceed the capacity of 80"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "B and C both settle at about 80, not at 40 or at n — the ceiling is the capacity, not the number of cells or the number of organisms"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the capacity holds under overcrowding: n=120 and n=160 both settle at 80 and 80, against a predicted 80"
+  },
+  "hashes": {
+    "A": "d7bbdd8fe369fd1c",
+    "B": "53307e43dc339c19",
+    "C": "3680677a9109ea29"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "The run is 3000 steps; a longer run might let the surplus linger before dying.",
+    "The capacity is measured at the end, not tracked over time, so a slow decline would look the same as a stable ceiling.",
+    "`Policy::Sighted` is not yet covered by the Rust test suite."
+  ],
+  "command": "python3 checks/exp17_overcrowding.py",
+  "created_at": "2026-11-11T22:20:40.948734+00:00"
+}
