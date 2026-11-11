@@ -53,14 +53,15 @@ def check_one(path: Path, data: dict) -> list[str]:
         problems.append("§1: arithmetic is empty")
 
     # §2 controls
+    #
+    # The contract requires the three tests to be RECORDED, not to pass. A test
+    # that failed is a result — the verdict must then be `failed` or `void`, and
+    # that is checked under §4. Recording a failed test is doing the work
+    # correctly; omitting it is the defect.
     controls = data.get("controls") or {}
     missing = [t for t in CONTROL_TESTS if t not in controls]
     if missing:
         problems.append(f"§2: missing control tests: {', '.join(missing)}")
-    else:
-        failed = [t for t in CONTROL_TESTS if not controls[t].get("passed", False)]
-        if failed:
-            problems.append(f"§2: control tests failed: {', '.join(failed)}")
 
     # §4 verdict
     verdict = data.get("verdict")
@@ -70,12 +71,20 @@ def check_one(path: Path, data: dict) -> list[str]:
         kind = verdict.get("kind")
         if kind not in VERDICTS:
             problems.append(f"§4: unknown verdict {kind!r}")
-        # A failed control cannot be `passed`.
+        # A failed control cannot be `passed` — that is the defect §4 exists for.
         if kind == "passed" and controls:
             failed = [t for t in CONTROL_TESTS if not controls.get(t, {}).get("passed", False)]
             if failed:
                 problems.append(
                     f"§4: verdict is `passed` but controls failed: {', '.join(failed)}"
+                )
+        # And a failed control with a `failed` or `void` verdict is correct.
+        if kind in ("failed", "void") and controls:
+            failed = [t for t in CONTROL_TESTS if not controls.get(t, {}).get("passed", False)]
+            if not failed and kind == "failed":
+                problems.append(
+                    "§4: verdict is `failed` but every control passed — "
+                    "the failure is unexplained"
                 )
 
     # §5 hashes
