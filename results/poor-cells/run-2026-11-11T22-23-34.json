@@ -1,0 +1,102 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "poor-cells",
+  "run_id": "run-2026-11-11T22-23-34",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 3000,
+    "every": 3000,
+    "cells": 40,
+    "policy": "sighted",
+    "rich": 2.0,
+    "regrow": 0.8,
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02,
+    "income": 0.8
+  },
+  "arithmetic": {
+    "balance_on_rich_moving": 0.07000000000000006,
+    "balance_on_poor_moving": -0.53,
+    "threshold_fraction_on_poor": 0.11666666666666675,
+    "prediction": "An organism dies when it spends more than 11.7% of its time on cells below income. In alternating it oscillates onto poor cells; in gradient it walks away from them.",
+    "why_not_movement": "Movement costs 0.1 per step, which lowers the balance from 0.170 to 0.070 but keeps it positive. What kills is standing on a cell below income, where the balance is -0.43."
+  },
+  "conditions": {
+    "A": {
+      "label": "alternating, poor=0.2",
+      "metrics": {
+        "field": "alternating",
+        "n": 80,
+        "poor": 0.2,
+        "alive": 76,
+        "total": 80,
+        "loss": 4,
+        "frac_poor": 0.0,
+        "trace_file": "results/poor-cells/A-trace-sighted-1794435815.json"
+      },
+      "hash": "d7bbdd8fe369fd1c"
+    },
+    "B": {
+      "label": "gradient, poor=0.2",
+      "metrics": {
+        "field": "gradient",
+        "n": 80,
+        "poor": 0.2,
+        "alive": 78,
+        "total": 80,
+        "loss": 2,
+        "frac_poor": 0.0,
+        "trace_file": "results/poor-cells/B-trace-sighted-1794435815.json"
+      },
+      "hash": "9c3d436c15c17132"
+    },
+    "C": {
+      "label": "alternating, poor=1.0",
+      "metrics": {
+        "field": "alternating",
+        "n": 80,
+        "poor": 1.0,
+        "alive": 78,
+        "total": 80,
+        "loss": 2,
+        "frac_poor": 0.0,
+        "trace_file": "results/poor-cells/C-trace-sighted-1794435815.json"
+      },
+      "hash": "2c441532965c669b"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A: loss 4 — must reproduce EXP-18's 4"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "C (poor=1.0): loss 2 — with no poor cells there is nothing to die on, so the loss must vanish"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "B loses 2 against A's 4, and spends 0.0% of its time on poor cells against A's 0.0% — the loss must track the poor time"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "control tests failed: specific"
+  },
+  "hashes": {
+    "A": "d7bbdd8fe369fd1c",
+    "B": "9c3d436c15c17132",
+    "C": "2c441532965c669b"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "`frac_poor` counts time on cells below `income` after the step; the cell value at the moment of taking may differ.",
+    "The threshold 11.7% is arithmetic for one organism alone; with many organisms the cell value changes and so does the threshold.",
+    "`Policy::Sighted` is not yet covered by the Rust test suite."
+  ],
+  "command": "python3 checks/exp19_poor_cells.py",
+  "created_at": "2026-11-11T22:23:34.880107+00:00"
+}
