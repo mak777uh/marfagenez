@@ -81,6 +81,18 @@ impl Memory {
 /// An organism with memory.
 #[derive(Debug, Clone)]
 pub struct Remembering {
+    /// The direction chosen on the last step, stored so a reading can show the
+    /// decision the organism actually made rather than the one it would make now.
+    ///
+    /// Recomputing `direction()` at reading time gives a value consistent with the
+    /// field AFTER the step, which is not the decision the organism took. See
+    /// `docs/FINDING-trace-inconsistent.md`.
+    pub last_direction: i32,
+    /// What the organism actually took from its cell on the last step.
+    ///
+    /// Like `last_direction`, this is stored rather than recomputed: the cell's
+    /// value after the step is not the value the organism took from.
+    pub last_taken: f64,
     pub organism: Organism,
     pub cell: usize,
     pub memory: Memory,
@@ -95,6 +107,8 @@ impl Remembering {
             return None;
         }
         Some(Self {
+            last_direction: 0,
+            last_taken: 0.0,
             organism,
             cell,
             memory: Memory::new(cell, level),

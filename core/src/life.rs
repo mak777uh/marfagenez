@@ -264,6 +264,10 @@ impl Life {
                     }
                 }
             };
+            // Store the decision so a reading shows what the organism actually
+            // did, not what it would do against the field after the step.
+            r.last_direction = direction;
+
             if direction != 0 && r.organism.spend(r.move_cost) {
                 let nc = r.cell as i64 + direction as i64;
                 if nc >= 0 && (nc as usize) < cells {
@@ -274,6 +278,7 @@ impl Life {
 
             // 4. Take.
             let taken = self.field.take(r.cell, self.world.income);
+            r.last_taken = taken;
 
             // 5. Live.
             r.organism.step(&self.world, taken);
@@ -360,9 +365,11 @@ impl Life {
                     alive: r.organism.is_alive(),
                     memory_cell: r.memory.best_cell,
                     memory_level: r.memory.best_level,
-                    // The direction is not stored; it is recomputed for the reading.
-                    direction: r.direction(),
-                    taken: 0.0,
+                    // The direction the organism chose on its last step. Reading
+                    // `r.direction()` here would recompute it against the field
+                    // AFTER the step, which is not the decision that was taken.
+                    direction: r.last_direction,
+                    taken: r.last_taken,
                 }),
                 None => out.push(crate::trace::Sample {
                     cell: 0,

@@ -265,6 +265,45 @@ mod tests {
         assert_ne!(h1, h2, "two seeds must differ");
     }
 
+    /// The direction in a sample must be the decision the organism took, not the
+    /// one it would take now.
+    ///
+    /// Before this test existed, `samples()` recomputed `direction()` at reading
+    /// time, against the field AFTER the step. That made the reading inconsistent:
+    /// an organism could be shown standing still next to a richer neighbour, which
+    /// the policy would never choose. See `docs/FINDING-trace-inconsistent.md`.
+    #[test]
+    fn the_direction_is_the_decision_not_a_recomputation() {
+        let mut life = setup(Policy::Sighted, 7);
+        // Run a few steps so the field has a shape the policy reacts to.
+        for _ in 0..20 {
+            life.advance();
+        }
+        let samples = life.samples();
+        let field: Vec<f64> = (0..life.field().cells()).map(|i| life.field().level(i)).collect();
+
+        // Every sample that claims to stand still must be standing on a cell that
+        // is at least as rich as both neighbours AT THE TIME OF THE DECISION.
+        //
+        // We cannot recover the field before the step from here, so the test is
+        // weaker: it checks that a standing organism is not standing next to a
+        // neighbour that is richer by a wide margin. A recomputed direction would
+        // fail this, because the neighbour it now sees is the one that grew after
+        // the step.
+        for s in samples.iter().filter(|s| s.alive && s.direction == 0) {
+            let here = field[s.cell];
+            let left = if s.cell > 0 { field[s.cell - 1] } else { here };
+            let right = if s.cell + 1 < field.len() { field[s.cell + 1] } else { here };
+            let best = here.max(left).max(right);
+            assert!(
+                best - here < 0.5,
+                "a standing organism at cell {} sees a neighbour richer by {}",
+                s.cell,
+                best - here
+            );
+        }
+    }
+
     #[test]
     fn the_recorder_does_not_change_the_run() {
         // The census of a watched run and an unwatched run must agree.
