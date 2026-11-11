@@ -87,6 +87,7 @@ pub struct Life {
     step: usize,
     moves: u64,
     memory_life: usize,
+    seed: u64,
 }
 
 impl Life {
@@ -111,6 +112,7 @@ impl Life {
             step: 0,
             moves: 0,
             memory_life,
+            seed,
         })
     }
 
@@ -262,6 +264,56 @@ impl Life {
             mean_damage: if alive > 0 { sum_d / alive as f64 } else { 0.0 },
             moves: self.moves,
         }
+    }
+
+    /// The policy's name, for the trace.
+    pub fn policy_name(&self) -> &'static str {
+        match self.policy {
+            Policy::Stay => "stay",
+            Policy::Random => "random",
+            Policy::Remember => "remember",
+        }
+    }
+
+    /// The seed the cycle was built with.
+    pub fn seed(&self) -> u64 {
+        self.seed
+    }
+
+    /// A full sample of every organism: where it is, what it has, what it remembers.
+    ///
+    /// This is the **observation** the census cannot give. The census reduces the
+    /// population to a mean; this keeps every organism separate.
+    ///
+    /// The reading is taken from outside and does not change the cycle.
+    pub fn samples(&self) -> Vec<crate::trace::Sample> {
+        let mut out = Vec::with_capacity(self.organisms.len());
+        for slot in self.organisms.iter() {
+            match slot.as_ref() {
+                Some(r) => out.push(crate::trace::Sample {
+                    cell: r.cell,
+                    energy: r.organism.energy(),
+                    damage: r.organism.damage(),
+                    alive: r.organism.is_alive(),
+                    memory_cell: r.memory.best_cell,
+                    memory_level: r.memory.best_level,
+                    // The direction is not stored; it is recomputed for the reading.
+                    direction: r.direction(),
+                    taken: 0.0,
+                }),
+                None => out.push(crate::trace::Sample {
+                    cell: 0,
+                    energy: 0.0,
+                    damage: 0.0,
+                    alive: false,
+                    memory_cell: 0,
+                    memory_level: 0.0,
+                    direction: 0,
+                    taken: 0.0,
+                }),
+            }
+        }
+        out
     }
 }
 

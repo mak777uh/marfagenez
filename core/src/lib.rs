@@ -591,3 +591,4 @@ pub mod field;
 pub mod memory;
 
 pub mod life;
+pub mod trace;
