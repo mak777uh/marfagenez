@@ -10,22 +10,41 @@
 ## Формат
 
     {
-      "schema": "marfagenez.experiment-result.v1",
-      "experiment_id": "observe-vs-act",
+      "schema": "marfagenez.experiment-result.v2",
+      "experiment_id": "frozen-ceiling",
       "run_id": "run-2026-11-11T10-00-00",
       "model_commit": "abc1234",
       "seed": 20250101,
       "parameters": {...},
-      "conditions": {
-        "A": {"label": "...", "metrics": {...}},
+
+      "arithmetic": {...},        // §1: арифметика ДО прогона
+      "conditions": {             // плечи
+        "A": {"label": "...", "metrics": {...}, "hash": "..."},
         "B": {...}
       },
-      "series": {
-        "A": {"steps": [...], "values": [...]}
+      "series": {...},
+      "controls": {               // §2: три теста контроля
+        "fires":    {"passed": true, "evidence": "..."},
+        "silent":   {"passed": true, "evidence": "..."},
+        "specific": {"passed": true, "evidence": "..."}
       },
-      "limitations": [...],
-      "command": "python3 checks/observe_vs_act.py"
+      "verdict": {                // §4: четыре исхода
+        "kind": "passed",
+        "reason": "..."
+      },
+      "hashes": {"A": "...", "B": "...", "C": "..."},  // §5
+      "limitations": [...],       // §6
+      "command": "python3 checks/exp05_frozen.py"
     }
+
+## Четыре вердикта, не два (§4)
+
+- `passed` — эффект есть, контроли прошли
+- `failed` — эффекта нет
+- `void` — манипуляция не связана с миром, контроль сломан, или плечи
+  неразличимы (одинаковые хэши). **Ничего не узнали о механизме.**
+- `insensitive by construction` — арифметика говорит, что плечи не могут
+  различаться. **Ничего не узнали о механизме, но узнали о дизайне.**
 
 ## Правило
 
@@ -42,8 +61,19 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-SCHEMA = "marfagenez.experiment-result.v1"
+SCHEMA = "marfagenez.experiment-result.v2"
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
+
+#: The four outcomes. Not two (AGENTS.md §4).
+VERDICTS = (
+    "passed",
+    "failed",
+    "void",
+    "insensitive by construction",
+)
+
+#: The three control tests every control must pass (AGENTS.md §2).
+CONTROL_TESTS = ("fires", "silent", "specific")
 
 
 def _git_commit() -> str:
@@ -73,12 +103,29 @@ def new_result(
         "model_commit": _git_commit(),
         "seed": seed,
         "parameters": parameters,
+        "arithmetic": {},
         "conditions": {},
         "series": {},
+        "controls": {},
+        "verdict": None,
+        "hashes": {},
         "limitations": [],
         "command": command,
         "created_at": now.isoformat(),
     }
+
+
+def set_arithmetic(result: dict[str, Any], arithmetic: dict[str, Any]) -> None:
+    """Records the pre-registration arithmetic (AGENTS.md §1).
+
+    The arithmetic must be written **before** the run. It says what makes the
+    difference: income, cost, ratio, break-even. If the whole field is above the
+    threshold in both arms, the experiment is insensitive by construction.
+
+    The arithmetic is not a guarantee. E1's arithmetic modelled two of three terms
+    and predicted dissolution where every arm survived.
+    """
+    result["arithmetic"] = arithmetic
 
 
 def add_condition(
@@ -86,9 +133,47 @@ def add_condition(
     key: str,
     label: str,
     metrics: dict[str, Any],
+    trace_hash: str | None = None,
 ) -> None:
-    """Adds one condition (A/B/C) with its metrics."""
-    result["conditions"][key] = {"label": label, "metrics": metrics}
+    """Adds one condition (A/B/C) with its metrics and its dynamics hash.
+
+    The hash is rule 5: two arms with the same hash are one arm.
+    """
+    entry: dict[str, Any] = {"label": label, "metrics": metrics}
+    if trace_hash is not None:
+        entry["hash"] = trace_hash
+        result["hashes"][key] = trace_hash
+    result["conditions"][key] = entry
+
+
+def add_control(
+    result: dict[str, Any],
+    test: str,
+    passed: bool,
+    evidence: str,
+) -> None:
+    """Records one of the three control tests (AGENTS.md §2).
+
+    - `fires`    — the control fires where the effect is known to be present
+    - `silent`   — the control stays silent where the effect is known to be absent
+    - `specific` — the control separates the mechanism under test from every other
+                   mechanism that produces the same direction
+
+    A control that fails (1) is broken. A control that fails (2) is broken.
+    A control that passes both but fails (3) is blind.
+    """
+    if test not in CONTROL_TESTS:
+        raise ValueError(
+            f"unknown control test: {test!r}; expected one of {CONTROL_TESTS}"
+        )
+    result["controls"][test] = {"passed": bool(passed), "evidence": evidence}
+
+
+def set_verdict(result: dict[str, Any], kind: str, reason: str) -> None:
+    """Sets the verdict. Four outcomes, not two (AGENTS.md §4)."""
+    if kind not in VERDICTS:
+        raise ValueError(f"unknown verdict: {kind!r}; expected one of {VERDICTS}")
+    result["verdict"] = {"kind": kind, "reason": reason}
 
 
 def add_series(

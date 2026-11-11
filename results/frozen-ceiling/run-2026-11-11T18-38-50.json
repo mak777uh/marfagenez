@@ -1,0 +1,119 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "frozen-ceiling",
+  "run_id": "run-2026-11-11T18-38-50",
+  "model_commit": "5f084eb",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 500,
+    "every": 500,
+    "n": 40,
+    "cells": 40,
+    "policy": "stay",
+    "maintenance": 0.6,
+    "repair_cost": 1.5
+  },
+  "arithmetic": {
+    "formula": "capacity - maintenance - damage_rate * repair_cost",
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "predicted": {
+      "A": 99.37,
+      "B": 9.370000000000001,
+      "C": 9.25
+    },
+    "balance_on_rich": {
+      "A": 0.17000000000000007,
+      "B": 0.17000000000000007,
+      "C": 0.050000000000000044
+    },
+    "note": "The balance must stay positive or the organism dies before reaching the ceiling. At damage_rate=0.10 the balance is +0.05, so 500 steps give 25.0 of headroom against the 0.12 the ceiling moves."
+  },
+  "conditions": {
+    "A": {
+      "label": "capacity=100.0",
+      "metrics": {
+        "capacity": 100.0,
+        "damage_rate": 0.02,
+        "alive": 37,
+        "total": 40,
+        "mean_energy": 89.6972972972973,
+        "max_energy": 90.0,
+        "energies": [
+          89.2,
+          89.4,
+          90.0
+        ],
+        "predicted_ceiling": 99.37,
+        "trace_file": "results\\frozen-ceiling\\trace-stay-1794422333.json"
+      },
+      "hash": "eb4896253d2b22df"
+    },
+    "B": {
+      "label": "control (capacity=10.0)",
+      "metrics": {
+        "capacity": 10.0,
+        "damage_rate": 0.02,
+        "alive": 37,
+        "total": 40,
+        "mean_energy": 9.37,
+        "max_energy": 9.37,
+        "energies": [
+          9.37
+        ],
+        "predicted_ceiling": 9.370000000000001,
+        "trace_file": "results\\frozen-ceiling\\trace-stay-1794422333.json"
+      },
+      "hash": "c44df220d00c8ab2"
+    },
+    "C": {
+      "label": "damage_rate=0.10",
+      "metrics": {
+        "capacity": 10.0,
+        "damage_rate": 0.1,
+        "alive": 37,
+        "total": 40,
+        "mean_energy": 9.25,
+        "max_energy": 9.25,
+        "energies": [
+          9.25
+        ],
+        "predicted_ceiling": 9.25,
+        "trace_file": "results\\frozen-ceiling\\trace-stay-1794422334.json"
+      },
+      "hash": "05e725b7169e31f9"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A: max energy 90.0000 vs B's ceiling 9.3700 — must be well above"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "B: max energy 9.3700 vs predicted 9.3700 — must match"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "C: ceiling moved by 0.120000, the formula predicts 0.120000 (= (0.10-0.02)*1.5). A different mechanism would not move by exactly this amount."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "all three arms sit on the predicted ceilings; the ceiling is capacity - maintenance - damage_rate*repair_cost, not an equilibrium"
+  },
+  "hashes": {
+    "A": "eb4896253d2b22df",
+    "B": "c44df220d00c8ab2",
+    "C": "05e725b7169e31f9"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "One policy (`stay`). `remember` and `random` are not tested in this run.",
+    "The formula is read off `Organism::step`; if that code changes, the arithmetic must be re-derived.",
+    "The ceiling is a property of the model's update order, not of life."
+  ],
+  "command": "python3 checks/exp05_frozen.py",
+  "created_at": "2026-11-11T18:38:50.741167+00:00"
+}

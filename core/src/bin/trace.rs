@@ -29,6 +29,13 @@ fn main() {
     let mut seed = 20250101u64;
     let mut n = 40usize;
     let mut cells = 40usize;
+    let mut capacity = 10.0f64;
+    let mut damage_rate = 0.02f64;
+    let mut income = 0.8f64;
+    let mut maintenance = 0.6f64;
+    let mut repair_cost = 1.5f64;
+    let mut move_cost = 0.1f64;
+    let mut energy = 5.0f64;
 
     let mut i = 1;
     while i < args.len() {
@@ -65,8 +72,38 @@ fn main() {
                 i += 1;
                 cells = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(cells);
             }
+            "--capacity" => {
+                i += 1;
+                capacity = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(capacity);
+            }
+            "--damage-rate" => {
+                i += 1;
+                damage_rate = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(damage_rate);
+            }
+            "--income" => {
+                i += 1;
+                income = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(income);
+            }
+            "--maintenance" => {
+                i += 1;
+                maintenance = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(maintenance);
+            }
+            "--repair-cost" => {
+                i += 1;
+                repair_cost = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(repair_cost);
+            }
+            "--move-cost" => {
+                i += 1;
+                move_cost = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(move_cost);
+            }
+            "--energy" => {
+                i += 1;
+                energy = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(energy);
+            }
             "--help" | "-h" => {
                 println!("usage: trace [--policy stay|random|remember] [--steps N] [--every K] [--seed S] [--n N] [--cells C]");
+                println!("             [--capacity X] [--damage-rate X] [--income X] [--maintenance X]");
+                println!("             [--repair-cost X] [--move-cost X] [--energy X]");
                 return;
             }
             other => {
@@ -78,11 +115,11 @@ fn main() {
     }
 
     let world = World {
-        income: 0.8,
-        maintenance_cost: 0.6,
-        repair_cost: 1.5,
-        damage_rate: 0.02,
-        capacity: 10.0,
+        income,
+        maintenance_cost: maintenance,
+        repair_cost,
+        damage_rate,
+        capacity,
     };
     let field = match Field::alternating(cells, 2.0, 0.2, 0.8) {
         Some(f) => f,
@@ -91,7 +128,7 @@ fn main() {
             std::process::exit(1);
         }
     };
-    let mut life = match Life::spawn(world, field, n, 5.0, 0.1, policy, seed, 300) {
+    let mut life = match Life::spawn(world, field, n, energy, move_cost, policy, seed, 300) {
         Some(l) => l,
         None => {
             eprintln!("cannot build the cycle");
@@ -122,6 +159,8 @@ fn main() {
     }
 
     println!("policy:   {}", name);
+    println!("capacity: {}", capacity);
+    println!("damage:   {}", damage_rate);
     println!("steps:    {}", steps);
     println!("frames:   {}", trace.frames.len());
     println!("hash:     {:016x}", trace.hash);
