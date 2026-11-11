@@ -10,6 +10,7 @@ import Medium.BodySize
 import Medium.Field
 import Medium.Convergence
 import Medium.Capacity
+import Medium.Regimes
 import Medium.Boundary
 import Medium.Bounded
 import Medium.Bridge
