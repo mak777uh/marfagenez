@@ -583,3 +583,5 @@ mod boundary_probes;
 pub mod cycle;
 
 pub mod bridge;
+
+pub mod organism;
