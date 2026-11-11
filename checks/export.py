@@ -48,21 +48,28 @@ def load_experiments() -> list[dict]:
 
 
 def load_traces() -> list[dict]:
-    """Покадровые трассировки: trace-*.json."""
+    """Покадровые трассировки: trace-*.json, где бы они ни лежали.
+
+    Ищем рекурсивно: файл может быть и в `results/<policy>/`, и в `results/`.
+    Для каждой политики берём ту, где больше кадров — длинный прогон
+    информативнее короткого.
+    """
     out = []
-    for p in sorted(RESULTS.glob("*/trace-*.json")):
+    for p in sorted(RESULTS.rglob("trace-*.json")):
         try:
             t = json.loads(p.read_text(encoding="utf-8"))
             t["_file"] = p.name
             out.append(t)
         except Exception as e:
             print(f"skip {p}: {e}", file=sys.stderr)
-    # Keep the newest trace per policy.
-    newest: dict[str, dict] = {}
+    # Keep the longest trace per policy: more frames = more to see.
+    best: dict[str, dict] = {}
     for t in out:
         pol = t.get("policy", "unknown")
-        newest[pol] = t  # sorted, so the last one wins
-    return list(newest.values())
+        n = len(t.get("frames", []))
+        if pol not in best or n > len(best[pol].get("frames", [])):
+            best[pol] = t
+    return list(best.values())
 
 
 def main() -> int:
