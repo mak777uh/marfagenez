@@ -1,0 +1,111 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "gradient-loss",
+  "run_id": "run-2026-11-11T22-22-13",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 3000,
+    "every": 3000,
+    "cells": 40,
+    "policy": "sighted",
+    "rich": 2.0,
+    "poor": 0.2,
+    "regrow": 0.8,
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02
+  },
+  "arithmetic": {
+    "k_max": 2.0,
+    "capacity": 80.0,
+    "formula": "N_survive = min(n, C) - loss_in_transit",
+    "prediction": "On alternating at n=80 the loss was 4 (76 of 80). On gradient the organism walks in one direction instead of oscillating, so the loss should be larger: B should survive fewer than A.",
+    "why": "In alternating the organism steps to a neighbour and back, so the distance travelled is short. In gradient it walks the same way every step until it reaches the end."
+  },
+  "conditions": {
+    "A": {
+      "label": "alternating, n=80",
+      "metrics": {
+        "field": "alternating",
+        "n": 80,
+        "alive": 76,
+        "total": 80,
+        "loss": 4,
+        "survival": 0.95,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 1.9,
+        "max_cell": 39,
+        "trace_file": "results/gradient-loss/A-trace-sighted-1794435733.json"
+      },
+      "hash": "d7bbdd8fe369fd1c"
+    },
+    "B": {
+      "label": "gradient, n=80",
+      "metrics": {
+        "field": "gradient",
+        "n": 80,
+        "alive": 78,
+        "total": 80,
+        "loss": 2,
+        "survival": 0.975,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 1.95,
+        "max_cell": 39,
+        "trace_file": "results/gradient-loss/B-trace-sighted-1794435733.json"
+      },
+      "hash": "9c3d436c15c17132"
+    },
+    "C": {
+      "label": "gradient, n=120",
+      "metrics": {
+        "field": "gradient",
+        "n": 120,
+        "alive": 80,
+        "total": 120,
+        "loss": 40,
+        "survival": 0.6666666666666666,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 2.0,
+        "max_cell": 39,
+        "trace_file": "results/gradient-loss/C-trace-sighted-1794435733.json"
+      },
+      "hash": "8a1f2e67b9982644"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A (alternating, n=80): 76 alive — must reproduce EXP-17's 76"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "B (gradient, n=80): 78 alive — must not exceed the capacity of 80"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "B loses 2 against A's 4 — walking in one direction must cost more than oscillating"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "control tests failed: specific"
+  },
+  "hashes": {
+    "A": "d7bbdd8fe369fd1c",
+    "B": "9c3d436c15c17132",
+    "C": "8a1f2e67b9982644"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "The loss is measured as n minus survivors at the end; organisms that die early and late are not separated.",
+    "A gradient with a different slope would change the walking distance and so the loss.",
+    "`Policy::Sighted` is not yet covered by the Rust test suite."
+  ],
+  "command": "python3 checks/exp18_gradient_loss.py",
+  "created_at": "2026-11-11T22:22:13.063189+00:00"
+}
