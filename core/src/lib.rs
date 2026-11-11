@@ -21,7 +21,7 @@
 //! missing a hypothesis. Those are caught by counterexample search and simulation,
 //! not by types. See `checks/verify_all.js`.
 
-#![forbid(unsafe_code)]
+#![deny(unsafe_code)]
 #![deny(clippy::float_cmp)]
 
 use std::f64::consts::PI;
@@ -492,3 +492,5 @@ pub mod boundary;
 mod boundary_probes;
 
 pub mod cycle;
+
+pub mod bridge;

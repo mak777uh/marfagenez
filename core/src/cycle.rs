@@ -29,30 +29,68 @@ use crate::room::Room;
 /// A reading taken from outside the medium.
 ///
 /// This is the only thing the cycle emits. The medium never reads it back.
-#[derive(Debug, Clone, Copy, PartialEq)]
+///
+/// A child is not one number. The reading therefore carries **per-trait** moments,
+/// and a [`Reading::first`] helper for the one-trait case.
+#[derive(Debug, Clone, PartialEq)]
 pub struct Reading {
     /// How many steps have been taken.
     pub step: usize,
-    /// The population's mean on the first trait.
-    pub mean: f64,
-    /// The population's spread on the first trait.
-    pub spread: f64,
+    /// The population's mean, one entry per trait.
+    pub means: Vec<f64>,
+    /// The population's spread, one entry per trait.
+    pub spreads: Vec<f64>,
     /// The room's half-width at this step.
     pub half_width: f64,
+    /// The room's shape at this step.
+    pub shape: crate::room::Shape,
 }
 
 impl Reading {
-    /// The spread as a fraction of the room's law `B/√3`.
+    /// The first trait's mean, for the one-trait case.
+    pub fn mean(&self) -> f64 {
+        self.means.first().copied().unwrap_or(0.0)
+    }
+
+    /// The first trait's spread, for the one-trait case.
+    pub fn spread(&self) -> f64 {
+        self.spreads.first().copied().unwrap_or(0.0)
+    }
+
+    /// The **average** spread over all traits.
     ///
-    /// This is the number the laws are about: `1.0` means the population has filled
-    /// the room; below `1.0` means it has not.
+    /// This is the quantity the laws are about: for a box it should be `B/√3`
+    /// whatever the number of traits; for a ball it falls as the traits grow.
+    pub fn average_spread(&self) -> f64 {
+        if self.spreads.is_empty() {
+            return 0.0;
+        }
+        self.spreads.iter().sum::<f64>() / self.spreads.len() as f64
+    }
+
+    /// The number of traits.
+    pub fn dims(&self) -> usize {
+        self.spreads.len()
+    }
+
+    /// The average spread as a fraction of the room's law `B/√3`.
+    ///
+    /// `1.0` means the population has filled the room; below `1.0` means it has not.
     pub fn fraction_of_law(&self) -> f64 {
         let law = self.half_width / 3.0_f64.sqrt();
         if law > 0.0 {
-            self.spread / law
+            self.average_spread() / law
         } else {
             0.0
         }
+    }
+
+    /// The total variance across all traits.
+    ///
+    /// For a uniform population in a ball this is `d/(d+2)·R²`; in a box it is
+    /// `d·B²/3`.
+    pub fn total_variance(&self) -> f64 {
+        self.spreads.iter().map(|s| s * s).sum()
     }
 }
 
@@ -136,23 +174,36 @@ impl Cycle {
     }
 
     /// Takes a reading from outside. The medium does not call this.
+    ///
+    /// One mean and one spread **per trait**. A child is not one number, and the
+    /// laws distinguish a room that bounds each trait (a box) from one that bounds
+    /// the whole child (a ball) — which only shows up when there is more than one
+    /// trait.
     pub fn read(&self) -> Reading {
         let n = self.population.len();
-        let mean = self.population.iter().map(|c| c.position()[0]).sum::<f64>() / n as f64;
-        let var = self
-            .population
-            .iter()
-            .map(|c| {
-                let x = c.position()[0] - mean;
-                x * x
-            })
-            .sum::<f64>()
-            / n as f64;
+        let dims = self.room().dims();
+        let mut means = Vec::with_capacity(dims);
+        let mut spreads = Vec::with_capacity(dims);
+        for k in 0..dims {
+            let mean = self.population.iter().map(|c| c.position()[k]).sum::<f64>() / n as f64;
+            let var = self
+                .population
+                .iter()
+                .map(|c| {
+                    let x = c.position()[k] - mean;
+                    x * x
+                })
+                .sum::<f64>()
+                / n as f64;
+            means.push(mean);
+            spreads.push(var.sqrt());
+        }
         Reading {
             step: self.step,
-            mean,
-            spread: var.sqrt(),
+            means,
+            spreads,
             half_width: self.room().half_width().get(),
+            shape: self.room().shape(),
         }
     }
 }
@@ -233,12 +284,64 @@ mod tests {
     }
 
     #[test]
+    fn a_box_keeps_the_law_with_many_traits() {
+        // The law `box_keeps_every_trait`: for a box the average spread is B/sqrt(3)
+        // whatever the number of traits.
+        let mut spreads = Vec::new();
+        for dims in [1, 4, 8] {
+            let room = Room::new(Shape::Box, HalfWidth::new(3.0).unwrap(), dims).unwrap();
+            let mut c = Cycle::born(room, 600, 0.3, 11).unwrap();
+            let readings = c.run(8000, 8000);
+            let frac = readings.last().unwrap().fraction_of_law();
+            spreads.push(frac);
+        }
+        println!("box fractions of law for d = 1, 4, 8: {:?}", spreads);
+        for f in &spreads {
+            assert!(
+                (f - 1.0).abs() < 0.15,
+                "a box should reach the law for every d: {:?}",
+                spreads
+            );
+        }
+    }
+
+    #[test]
+    fn a_ball_squeezes_as_traits_grow() {
+        // The law `ball_squeezes_traits`: for a ball the per-trait spread falls as the
+        // number of traits grows.
+        let mut fractions = Vec::new();
+        for dims in [1, 4, 8] {
+            let room = Room::new(Shape::Ball, HalfWidth::new(3.0).unwrap(), dims).unwrap();
+            let mut c = Cycle::born(room, 600, 0.3, 12).unwrap();
+            let readings = c.run(8000, 8000);
+            fractions.push(readings.last().unwrap().fraction_of_law());
+        }
+        println!("ball fractions of law for d = 1, 4, 8: {:?}", fractions);
+        assert!(
+            fractions[0] > fractions[1] && fractions[1] > fractions[2],
+            "a ball should squeeze as d grows: {:?}",
+            fractions
+        );
+    }
+
+    #[test]
+    fn the_reading_carries_every_trait() {
+        let room = Room::new(Shape::Box, HalfWidth::new(3.0).unwrap(), 5).unwrap();
+        let c = Cycle::born(room, 100, 0.3, 13).unwrap();
+        let r = c.read();
+        assert_eq!(r.dims(), 5);
+        assert_eq!(r.means.len(), 5);
+        assert_eq!(r.spreads.len(), 5);
+        assert_eq!(r.shape, Shape::Box);
+    }
+
+    #[test]
     fn the_reading_is_not_part_of_the_medium() {
         // The medium has no method returning a Reading. The cycle does, and it is the
         // cycle's job to take it from outside.
         let c = cycle(3.0, 100, 0.3, 5);
         let r = c.read();
         assert_eq!(r.step, 0);
-        assert!(r.spread.is_finite());
+        assert!(r.spread().is_finite());
     }
 }
