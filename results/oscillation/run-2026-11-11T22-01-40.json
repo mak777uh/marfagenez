@@ -1,0 +1,137 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "oscillation",
+  "run_id": "run-2026-11-11T22-01-40",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 2000,
+    "every": 10,
+    "cells": 40,
+    "policy": "sighted",
+    "field": "alternating",
+    "rich": 2.0,
+    "poor": 0.2,
+    "regrow": 0.8,
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02
+  },
+  "arithmetic": {
+    "thresholds": {
+      "k_stable": 0.19999999999999996,
+      "k_feed": 1.2,
+      "k_max": 2.0
+    },
+    "metric": "mean |c_i(t+1) - c_i(t)| over the field",
+    "prediction": "Below k_stable = 0.19999999999999996 the field change must decay; above it the change must not decay. With 40 cells, k = n/40, so n = 7 is the boundary.",
+    "note": "This is a single-cell arithmetic applied to a field where organisms move, so k is not exactly n/cells. The boundary may shift."
+  },
+  "conditions": {
+    "A": {
+      "label": "n=4 (k=0.1)",
+      "metrics": {
+        "n": 4,
+        "k": 0.1,
+        "alive": 4,
+        "total": 4,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "mean_delta": 0.0357813743718593,
+        "early_delta": 0.03470179679487179,
+        "late_delta": 0.036253079487179485,
+        "decays": false,
+        "frames": 200,
+        "trace_file": "results/oscillation/trace-sighted-1794434500.json"
+      },
+      "hash": "8950dd105ad4d22c"
+    },
+    "B": {
+      "label": "n=8 (k=0.2)",
+      "metrics": {
+        "n": 8,
+        "k": 0.2,
+        "alive": 8,
+        "total": 8,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "mean_delta": 0.05421895414572864,
+        "early_delta": 0.05342085576923076,
+        "late_delta": 0.05464361282051282,
+        "decays": false,
+        "frames": 200,
+        "trace_file": "results/oscillation/trace-sighted-1794434500.json"
+      },
+      "hash": "131091f9f8fb2bca"
+    },
+    "C": {
+      "label": "n=20 (k=0.5)",
+      "metrics": {
+        "n": 20,
+        "k": 0.5,
+        "alive": 20,
+        "total": 20,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "mean_delta": 0.004331239070351757,
+        "early_delta": 0.022100424999999993,
+        "late_delta": 0.0,
+        "decays": true,
+        "frames": 200,
+        "trace_file": "results/oscillation/trace-sighted-1794434501.json"
+      },
+      "hash": "e7dbea55c9980588"
+    },
+    "D": {
+      "label": "n=80 (k=2.0)",
+      "metrics": {
+        "n": 80,
+        "k": 2.0,
+        "alive": 76,
+        "total": 80,
+        "max_crowd": 2,
+        "mean_crowd": 1.9,
+        "mean_delta": 0.02593634032663311,
+        "early_delta": 0.018317269871794804,
+        "late_delta": 0.03289053525641022,
+        "decays": false,
+        "frames": 200,
+        "trace_file": "results/oscillation/trace-sighted-1794434501.json"
+      },
+      "hash": "a07d54444f32c240"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "A (k=0.1): change 0.03470 -> 0.03625 — below the threshold the change must decay"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "A: late change 0.03625 — a stable field must stop changing"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "D (k=2.0): late change 0.03289 against A's 0.03625 — above the threshold the change must persist"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "control tests failed: fires, silent, specific"
+  },
+  "hashes": {
+    "A": "8950dd105ad4d22c",
+    "B": "131091f9f8fb2bca",
+    "C": "e7dbea55c9980588",
+    "D": "a07d54444f32c240"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "The threshold k_stable = 1 - r is arithmetic for ONE cell; in a field the organisms move and k is not exactly n/cells, so the boundary may shift.",
+    "The metric is the mean absolute change of the field; a different metric might place the boundary elsewhere.",
+    "`Policy::Sighted` is not yet covered by the Rust test suite."
+  ],
+  "command": "python3 checks/exp15_oscillation.py",
+  "created_at": "2026-11-11T22:01:40.536873+00:00"
+}
