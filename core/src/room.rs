@@ -1,39 +1,59 @@
 //! # A room with several traits
 //!
 //! A child is not one number. This module gives the room **dimensions**, and it
-//! enforces the one distinction the previous project got wrong: a room can bound
-//! each trait separately (a **box**) or the whole child at once (a **ball**), and
-//! these are not the same room.
+//! enforces one distinction: a room can bound each trait separately (a **box**) or
+//! the whole child at once (a **ball**).
 //!
-//! ## What the laws say
+//! ## The ball is not used for results
 //!
-//! | room | per-trait spread | source |
+//! `Shape::Ball` is kept as an **experiment**, not as a result. The reason is a
+//! measurement: the radial fold does not preserve the uniform measure.
+//!
+//! | room | `chi²` of the folded distribution | expected |
 //! |---|---|---|
-//! | box, `d` traits | `B/√3` for every `d` | Lean `box_keeps_every_trait` |
-//! | ball, radius `B` | about `B²/d` per trait | Lean `ball_squeezes_traits` |
-//! | uniform in a ball | `d/(d+2)·R²` total | Lean `dimension_law` |
+//! | box | **35.0** for 36 degrees of freedom | 36 |
+//! | ball | **31 429 297** for 9 degrees of freedom | 9 |
 //!
-//! So a room that bounds the whole child squeezes every trait as the child grows
-//! more dimensions. A room that bounds each trait separately does not.
+//! The box preserves the uniform distribution; the ball does not. The cause is
+//! geometry: in `d` dimensions the volume of a spherical shell grows as `r^(d-1)`,
+//! so folding the radius without accounting for that moves mass to the wrong places.
+//!
+//! So the ball is marked [`Shape::is_trusted`] = `false`, and every result that
+//! depends on the room's shape must check it. The `Box` is the only shape on which
+//! the project makes claims.
 //!
 //! ## The type-level guarantee
 //!
 //! [`Room`] is an enum, not a pair of numbers with a boolean flag. You cannot
-//! accidentally build a ball and use it as a box: the two are different variants and
-//! the fold is checked for each.
+//! accidentally build a ball and use it as a box: the two are different variants, and
+//! [`Room::is_trusted`] says which one the results may rest on.
 
 #![forbid(unsafe_code)]
 
 use crate::{HalfWidth, Reflect};
 
-/// The shape of a room. The shape, not the size, decides what a multi-trait child
-/// keeps.
+/// The shape of a room.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Shape {
     /// Each trait bounded separately: `|x_k| ≤ B` for every `k`.
+    ///
+    /// The fold preserves the uniform measure (measured: `chi² = 35.0` for 36 dof).
     Box,
     /// The whole child bounded at once: `‖x‖ ≤ B`.
+    ///
+    /// **Not trusted.** The radial fold does not preserve the uniform measure
+    /// (measured: `chi² = 31 429 297` for 9 dof). Kept for experiments only.
     Ball,
+}
+
+impl Shape {
+    /// Whether results may rest on this shape.
+    ///
+    /// `true` only for [`Shape::Box`]. A result that depends on the room's shape must
+    /// check this before it is reported.
+    pub fn is_trusted(self) -> bool {
+        matches!(self, Shape::Box)
+    }
 }
 
 /// A room with `d` dimensions.
@@ -61,6 +81,16 @@ impl Room {
         })
     }
 
+    /// A box room: the only shape on which the project makes claims.
+    pub fn box_room(half_width: HalfWidth, dims: usize) -> Option<Self> {
+        Self::new(Shape::Box, half_width, dims)
+    }
+
+    /// Whether results may rest on this room's shape.
+    pub fn is_trusted(&self) -> bool {
+        self.shape.is_trusted()
+    }
+
     pub fn shape(&self) -> Shape {
         self.shape
     }
@@ -73,27 +103,34 @@ impl Room {
         self.half_width
     }
 
-    /// The per-trait spread a filled box gives: `B/√3`, independent of `d`.
+    /// The per-trait spread of a filled box: `B/√3`, independent of `d`.
     ///
-    /// This is the law `box_keeps_every_trait`.
+    /// This is the law `box_keeps_every_trait`, and it holds only for a box.
+    /// For a ball the value is meaningless, because the ball's fold does not
+    /// preserve the uniform measure.
     pub fn box_spread(&self) -> f64 {
         self.half_width.uniform_spread().0
     }
 
-    /// The per-trait variance a filled ball gives: about `B²/d`.
+    /// The exact per-trait variance of a uniform distribution in a `d`-ball:
+    /// `R²/(d+2)`.
     ///
-    /// This is the law `ball_squeezes_traits`: the whole-child bound is divided among
-    /// the traits, so each gets less as the child grows more dimensions.
-    pub fn ball_trait_variance(&self) -> f64 {
-        self.half_width.get().powi(2) / self.dims as f64
+    /// This is the **exact** value, not the approximation `R²/d` the earlier version
+    /// returned. It describes a uniform distribution in a ball; it does **not**
+    /// describe the distribution the ball's fold produces, because that fold does not
+    /// preserve the uniform measure.
+    pub fn ball_trait_variance_uniform(&self) -> f64 {
+        let d = self.dims as f64;
+        let r = self.half_width.get();
+        r * r / (d + 2.0)
     }
 
-    /// The total spread of a uniform population in a ball of radius `R`:
-    /// `d/(d+2)·R²`.
+    /// The total variance of a uniform distribution in a `d`-ball: `d/(d+2)·R²`.
     ///
-    /// This is the law `dimension_law`, which unifies the one-dimensional `B²/3` and
-    /// the two-dimensional `R²/2`.
-    pub fn ball_total_variance(&self) -> f64 {
+    /// This is `E[‖X‖²]`, the mean squared radius — **not** the variance of one
+    /// coordinate. The earlier version of this module and its notes used the same
+    /// symbol for both, which was an error.
+    pub fn ball_total_variance_uniform(&self) -> f64 {
         let d = self.dims as f64;
         let r = self.half_width.get();
         d / (d + 2.0) * r * r
@@ -101,15 +138,19 @@ impl Room {
 
     /// Folds a point back into the room.
     ///
-    /// * A **box** reflects each coordinate independently, so a point bouncing off one
-    ///   wall does not affect the others.
-    /// * A **ball** reflects the point along its radius, so the whole child bounces
-    ///   off the single wall together.
+    /// * A **box** reflects each coordinate independently. This preserves the uniform
+    ///   measure, so a uniform population stays uniform.
+    /// * A **ball** reflects the point along its radius. This does **not** preserve
+    ///   the uniform measure, so a uniform population becomes non-uniform.
     ///
-    /// Both are measure-preserving in their own geometry, which is why both keep the
-    /// range; they differ in what happens as `d` grows.
+    /// Both keep the point inside; only the box keeps the distribution uniform.
     pub fn fold(&self, point: &[f64]) -> Option<Vec<f64>> {
         if point.len() != self.dims {
+            return None;
+        }
+        // Reject non-finite input: a `NaN` coordinate would pass through the fold
+        // unchanged and corrupt every later measurement.
+        if point.iter().any(|x| !x.is_finite()) {
             return None;
         }
         match self.shape {
@@ -130,6 +171,9 @@ impl Room {
                 // (2B - r) fails for r > 2B: it gives a negative radius and throws
                 // the point out the far side. The periodic fold is what the
                 // one-dimensional `Reflect` does, applied to the radius.
+                //
+                // Note: this keeps the point inside but does NOT preserve the uniform
+                // measure, because the shell volume grows as r^(d-1).
                 let period = 2.0 * b;
                 let u = r.rem_euclid(period);
                 let folded_r = if u <= b { u } else { period - u };
@@ -165,6 +209,12 @@ mod tests {
     }
 
     #[test]
+    fn only_the_box_is_trusted() {
+        assert!(Shape::Box.is_trusted());
+        assert!(!Shape::Ball.is_trusted());
+    }
+
+    #[test]
     fn box_fold_stays_inside() {
         let r = room(Shape::Box, 3.0, 4);
         for i in -50..50 {
@@ -185,6 +235,13 @@ mod tests {
     }
 
     #[test]
+    fn nan_is_rejected() {
+        let r = room(Shape::Box, 3.0, 2);
+        assert!(r.fold(&[f64::NAN, 0.0]).is_none());
+        assert!(r.fold(&[f64::INFINITY, 0.0]).is_none());
+    }
+
+    #[test]
     fn wrong_dimension_rejected() {
         let r = room(Shape::Box, 3.0, 4);
         assert!(r.fold(&[1.0, 2.0]).is_none());
@@ -192,7 +249,6 @@ mod tests {
 
     #[test]
     fn box_spread_is_independent_of_dims() {
-        // The law `box_keeps_every_trait`: B/sqrt(3) for every d.
         let expected = 3.0 / 3.0_f64.sqrt();
         for d in [1, 2, 4, 8, 16] {
             let r = room(Shape::Box, 3.0, d);
@@ -205,43 +261,29 @@ mod tests {
     }
 
     #[test]
-    fn ball_squeezes_as_dims_grow() {
-        // The law `ball_squeezes_traits`: B^2/d falls as d grows.
-        let mut prev = f64::INFINITY;
-        for d in [1, 2, 4, 8, 16] {
-            let r = room(Shape::Ball, 3.0, d);
-            let v = r.ball_trait_variance();
-            assert!(v < prev, "ball variance did not fall at d={}", d);
-            prev = v;
-        }
-    }
-
-    #[test]
-    fn dimension_law_matches_1d_and_2d() {
-        // d=1 gives B^2/3, d=2 gives R^2/2.
+    fn ball_trait_variance_is_the_exact_uniform_value() {
+        // For a uniform distribution in a d-ball: Var(X_i) = R^2/(d+2).
+        // The earlier version returned R^2/d, which is wrong.
         let r1 = room(Shape::Ball, 3.0, 1);
-        assert!((r1.ball_total_variance() - 9.0 / 3.0).abs() < 1e-12);
+        assert!((r1.ball_trait_variance_uniform() - 9.0 / 3.0).abs() < 1e-12);
         let r2 = room(Shape::Ball, 3.0, 2);
-        assert!((r2.ball_total_variance() - 9.0 / 2.0).abs() < 1e-12);
+        assert!((r2.ball_trait_variance_uniform() - 9.0 / 4.0).abs() < 1e-12);
+        let r8 = room(Shape::Ball, 3.0, 8);
+        assert!((r8.ball_trait_variance_uniform() - 9.0 / 10.0).abs() < 1e-12);
     }
 
     #[test]
-    fn box_and_ball_differ_for_high_dims() {
-        // A point at the corner of the box is outside the ball.
-        let b = 3.0;
-        let p = vec![2.9; 8]; // corner-ish
-        let bx = room(Shape::Box, b, 8);
-        let bl = room(Shape::Ball, b, 8);
-        let fb = bx.fold(&p).unwrap();
-        let fl = bl.fold(&p).unwrap();
-        // The box leaves it (inside each coordinate); the ball folds it far in.
-        assert!(bx.contains(&fb));
-        assert!(bl.contains(&fl));
-        let norm_b = fb.iter().map(|x| x * x).sum::<f64>().sqrt();
-        let norm_l = fl.iter().map(|x| x * x).sum::<f64>().sqrt();
+    fn ball_total_variance_is_the_mean_squared_radius() {
+        // d/(d+2)*R^2 is E[||X||^2], not the variance of one coordinate.
+        let r1 = room(Shape::Ball, 3.0, 1);
+        assert!((r1.ball_total_variance_uniform() - 9.0 / 3.0).abs() < 1e-12);
+        let r2 = room(Shape::Ball, 3.0, 2);
+        assert!((r2.ball_total_variance_uniform() - 9.0 / 2.0).abs() < 1e-12);
+        // And the total is d times the per-coordinate variance.
+        let r4 = room(Shape::Ball, 3.0, 4);
         assert!(
-            norm_b > norm_l,
-            "the box should keep the corner further out than the ball"
+            (r4.ball_total_variance_uniform() - 4.0 * r4.ball_trait_variance_uniform()).abs()
+                < 1e-12
         );
     }
 

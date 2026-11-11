@@ -172,6 +172,44 @@ mod probes {
     }
 
     #[test]
+    fn probe_oscillation_looks_converged() {
+        // The planted defect: a series that returns to its starting value without
+        // converging. The earlier `Converged::check` compared only the first and the
+        // last value, so this series passed.
+        //
+        // `1, 10, 1, 10, 1` — the ends match, and there is no convergence at all.
+        let s = |v: f64| Spread(v);
+        let oscillating = vec![s(1.0), s(10.0), s(1.0), s(10.0), s(1.0)];
+
+        assert!(
+            Converged::check(&oscillating, 5, 0.05).is_none(),
+            "GATE FAILED: an oscillating series was accepted as converged"
+        );
+
+        // And a genuinely settled series must still be accepted.
+        let settled = vec![s(1.0), s(1.001), s(0.999), s(1.0), s(1.0)];
+        assert!(
+            Converged::check(&settled, 5, 0.05).is_some(),
+            "a settled series must be accepted"
+        );
+    }
+
+    #[test]
+    fn probe_slow_drift_looks_converged() {
+        // A second planted defect: a slow drift whose ends are close but whose slope
+        // is not zero. The range check alone would accept it; the trend check must
+        // reject it.
+        let s = |v: f64| Spread(v);
+        // Rises by 0.02 each step over 5 steps: total drift 0.08, which is 8% of the
+        // mean. With tolerance 0.05 the drift must be caught.
+        let drifting = vec![s(1.00), s(1.02), s(1.04), s(1.06), s(1.08)];
+        assert!(
+            Converged::check(&drifting, 5, 0.05).is_none(),
+            "GATE FAILED: a drifting series was accepted as converged"
+        );
+    }
+
+    #[test]
     fn probe_short_run_looks_converged() {
         // The subtler defect: a run that is flat because it has not started moving.
         // The window requirement is what catches it.

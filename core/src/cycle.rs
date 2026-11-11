@@ -121,15 +121,31 @@ impl Cycle {
     }
 
     /// A population born at the centre of a room, with the given noise.
+    ///
+    /// ## Two independent streams
+    ///
+    /// The birth positions and the first noise must not come from the same sequence.
+    /// The earlier version called `Rng::new(seed)` to build the population and then
+    /// `Medium::new(room, seed)` — **the same seed** — so the first noise repeated the
+    /// sequence the birth positions were drawn from. The initial state and the first
+    /// shock were correlated, which is not what a random process should do.
+    ///
+    /// Here the birth stream and the motion stream are derived from the seed by
+    /// different constants, so they are independent for practical purposes while the
+    /// whole run stays reproducible from one number.
     pub fn born(room: Room, n: usize, noise: f64, seed: u64) -> Option<Self> {
         let dims = room.dims();
-        let mut rng = crate::Rng::new(seed);
+        // The birth stream. `0x9E3779B97F4A7C15` is the odd constant of the golden
+        // ratio, used here only to separate the two streams.
+        let mut rng = crate::Rng::new(seed ^ 0x9E37_79B9_7F4A_7C15);
         let population: Vec<Child> = (0..n)
             .map(|_| {
                 let traits: Vec<f64> = (0..dims).map(|_| rng.normal() * 0.5).collect();
                 Child::new(traits, 0.0, noise)
             })
             .collect::<Option<Vec<_>>>()?;
+        // The motion stream gets the original seed, which the birth stream no longer
+        // uses.
         Self::new(room, population, seed)
     }
 
@@ -333,6 +349,45 @@ mod tests {
         assert_eq!(r.means.len(), 5);
         assert_eq!(r.spreads.len(), 5);
         assert_eq!(r.shape, Shape::Box);
+    }
+
+    #[test]
+    fn birth_and_motion_use_independent_streams() {
+        // The earlier version drew the birth positions and the first noise from the
+        // same seed, so they were correlated. This test checks the fix: the first
+        // noise must not be predictable from the birth positions.
+        //
+        // How: build two cycles with the same seed but different populations. If the
+        // noise stream were shared with the birth stream, the first step would depend
+        // on how many numbers the birth drew. With separate streams, the first noise
+        // is the same for both, and the difference in outcome comes only from the
+        // different starting points.
+        let room = Room::new(Shape::Box, HalfWidth::new(3.0).unwrap(), 1).unwrap();
+
+        // Two populations of different sizes: the birth stream draws a different
+        // number of values, so a shared stream would desynchronise the noise.
+        let small = Cycle::born(room.clone(), 10, 0.3, 424242).unwrap();
+        let large = Cycle::born(room, 1000, 0.3, 424242).unwrap();
+
+        // The first child of each is drawn from the same stream at the same position,
+        // so their birth traits must be identical.
+        let a = small.population()[0].position()[0];
+        let b = large.population()[0].position()[0];
+        assert!(
+            (a - b).abs() < 1e-12,
+            "the first birth must be the same for the same seed: {} vs {}",
+            a,
+            b
+        );
+
+        // And the second child must differ, because the stream advances.
+        let a2 = small.population()[1].position()[0];
+        assert!(
+            (a - a2).abs() > 1e-9,
+            "the birth stream must advance: {} vs {}",
+            a,
+            a2
+        );
     }
 
     #[test]

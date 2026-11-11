@@ -223,21 +223,71 @@ pub struct Converged {
 }
 
 impl Converged {
-    /// Issues the token only when the spread stopped changing over `window` steps.
+    /// Issues the token only when the spread has genuinely settled over `window`
+    /// steps.
+    ///
+    /// ## A correction
+    ///
+    /// The earlier version compared only the **first** and the **last** value of the
+    /// window. That accepts `1, 10, 1, 10, 1`: the ends match and there is no
+    /// convergence at all. Three checks are needed instead:
+    ///
+    /// 1. **Range**: every value in the window lies within `tolerance` of the mean.
+    /// 2. **Trend**: the fitted slope is small compared with the value.
+    /// 3. **Oscillation**: no step-to-step jump exceeds `tolerance`.
+    ///
+    /// A series that passes all three has stopped moving, not merely returned to where
+    /// it started.
     pub fn check(history: &[Spread], window: usize, tolerance: f64) -> Option<Self> {
-        if history.len() < window || window < 2 {
+        if history.len() < window || window < 3 {
             return None;
         }
         let tail = &history[history.len() - window..];
-        let first = tail[0].0;
-        let last = tail[tail.len() - 1].0;
-        if (last - first).abs() <= tolerance * first.abs().max(1e-12) {
-            Some(Self {
-                steps: history.len(),
-            })
-        } else {
-            None
+        let values: Vec<f64> = tail.iter().map(|s| s.0).collect();
+
+        if values.iter().any(|v| !v.is_finite()) {
+            return None;
         }
+
+        let n = values.len() as f64;
+        let mean = values.iter().sum::<f64>() / n;
+        let scale = mean.abs().max(1e-12);
+
+        // 1. Range: every value within `tolerance` of the mean.
+        let max_dev = values
+            .iter()
+            .map(|v| (v - mean).abs())
+            .fold(0.0_f64, f64::max);
+        if max_dev > tolerance * scale {
+            return None;
+        }
+
+        // 2. Trend: the slope of the least-squares line, in units of the mean per
+        // step, must be small. A slow drift is not convergence.
+        let x_mean = (n - 1.0) / 2.0;
+        let mut num = 0.0;
+        let mut den = 0.0;
+        for (i, v) in values.iter().enumerate() {
+            let dx = i as f64 - x_mean;
+            num += dx * (v - mean);
+            den += dx * dx;
+        }
+        let slope = if den > 0.0 { num / den } else { 0.0 };
+        // The total drift across the window must be within tolerance.
+        if (slope * (n - 1.0)).abs() > tolerance * scale {
+            return None;
+        }
+
+        // 3. Oscillation: no step-to-step jump larger than the tolerance.
+        for w in values.windows(2) {
+            if (w[1] - w[0]).abs() > tolerance * scale {
+                return None;
+            }
+        }
+
+        Some(Self {
+            steps: history.len(),
+        })
     }
 }
 
