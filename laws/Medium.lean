@@ -9,6 +9,7 @@
 import Medium.BodySize
 import Medium.Field
 import Medium.Convergence
+import Medium.Capacity
 import Medium.Boundary
 import Medium.Bounded
 import Medium.Bridge
@@ -18,8 +19,6 @@ import Medium.Child
 import Medium.Choice
 import Medium.Circle
 import Medium.Compression
-import Medium.Convergence
-import Medium.Convergence2
 import Medium.Corrected
 import Medium.Density
 import Medium.Dimension
