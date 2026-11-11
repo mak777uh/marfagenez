@@ -1,0 +1,228 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "capacity-curve",
+  "run_id": "run-2026-11-11T21-49-27",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 3000,
+    "every": 3000,
+    "cells": 40,
+    "policy": "sighted",
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02,
+    "max_resource": 2.0,
+    "regrow": 0.8,
+    "ns": [
+      20,
+      40,
+      60,
+      80,
+      100
+    ],
+    "fields": [
+      "uniform",
+      "alternating"
+    ]
+  },
+  "arithmetic": {
+    "k_max_per_cell": 2.0,
+    "cells": 40,
+    "capacity": 80.0,
+    "hard_capacity_model": "survivors(n) = min(n, capacity)",
+    "prediction_uniform": "A uniform field gives no reason to move, so every organism keeps its own cell: survivors ~ min(n, cells) = min(n, 40).",
+    "prediction_alternating": "An alternating field makes the organism move, so it can use the second place on a cell: survivors ~ min(n, 80.0)."
+  },
+  "conditions": {
+    "uniform-n20": {
+      "label": "uniform, n=20",
+      "metrics": {
+        "field": "uniform",
+        "n": 20,
+        "alive": 20,
+        "total": 20,
+        "survival": 1.0,
+        "distinct_cells": 20,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "trace_file": "results/capacity-curve/trace-sighted-1794433767.json"
+      },
+      "hash": "658766108a1ef1fc"
+    },
+    "uniform-n40": {
+      "label": "uniform, n=40",
+      "metrics": {
+        "field": "uniform",
+        "n": 40,
+        "alive": 39,
+        "total": 40,
+        "survival": 0.975,
+        "distinct_cells": 39,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "trace_file": "results/capacity-curve/trace-sighted-1794433767.json"
+      },
+      "hash": "ef9f9c2bef558f3d"
+    },
+    "uniform-n60": {
+      "label": "uniform, n=60",
+      "metrics": {
+        "field": "uniform",
+        "n": 60,
+        "alive": 40,
+        "total": 60,
+        "survival": 0.6666666666666666,
+        "distinct_cells": 40,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "trace_file": "results/capacity-curve/trace-sighted-1794433767.json"
+      },
+      "hash": "9f445de46318ec74"
+    },
+    "uniform-n80": {
+      "label": "uniform, n=80",
+      "metrics": {
+        "field": "uniform",
+        "n": 80,
+        "alive": 40,
+        "total": 80,
+        "survival": 0.5,
+        "distinct_cells": 40,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "trace_file": "results/capacity-curve/trace-sighted-1794433768.json"
+      },
+      "hash": "5825ba36d86e3d1e"
+    },
+    "uniform-n100": {
+      "label": "uniform, n=100",
+      "metrics": {
+        "field": "uniform",
+        "n": 100,
+        "alive": 40,
+        "total": 100,
+        "survival": 0.4,
+        "distinct_cells": 40,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "trace_file": "results/capacity-curve/trace-sighted-1794433768.json"
+      },
+      "hash": "6ab7325154be29fa"
+    },
+    "alternating-n20": {
+      "label": "alternating, n=20",
+      "metrics": {
+        "field": "alternating",
+        "n": 20,
+        "alive": 20,
+        "total": 20,
+        "survival": 1.0,
+        "distinct_cells": 20,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "trace_file": "results/capacity-curve/trace-sighted-1794433768.json"
+      },
+      "hash": "1e52716d8dba2359"
+    },
+    "alternating-n40": {
+      "label": "alternating, n=40",
+      "metrics": {
+        "field": "alternating",
+        "n": 40,
+        "alive": 40,
+        "total": 40,
+        "survival": 1.0,
+        "distinct_cells": 40,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "trace_file": "results/capacity-curve/trace-sighted-1794433768.json"
+      },
+      "hash": "9159f9e5cb39139a"
+    },
+    "alternating-n60": {
+      "label": "alternating, n=60",
+      "metrics": {
+        "field": "alternating",
+        "n": 60,
+        "alive": 60,
+        "total": 60,
+        "survival": 1.0,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 1.5,
+        "trace_file": "results/capacity-curve/trace-sighted-1794433768.json"
+      },
+      "hash": "af5fadb4e41af1ac"
+    },
+    "alternating-n80": {
+      "label": "alternating, n=80",
+      "metrics": {
+        "field": "alternating",
+        "n": 80,
+        "alive": 76,
+        "total": 80,
+        "survival": 0.95,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 1.9,
+        "trace_file": "results/capacity-curve/trace-sighted-1794433768.json"
+      },
+      "hash": "cdefb72378ca7c70"
+    },
+    "alternating-n100": {
+      "label": "alternating, n=100",
+      "metrics": {
+        "field": "alternating",
+        "n": 100,
+        "alive": 80,
+        "total": 100,
+        "survival": 0.8,
+        "distinct_cells": 40,
+        "max_crowd": 2,
+        "mean_crowd": 2.0,
+        "trace_file": "results/capacity-curve/trace-sighted-1794433768.json"
+      },
+      "hash": "695232581152d106"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "n=20: uniform 20/20, alternating 20/20 — at low density both fields must keep almost everyone"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "uniform: n=20->20, n=40->39, n=60->40, n=80->40, n=100->40 — a uniform field gives no reason to move, so survivors must stay near the number of cells"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "n=100: alternating 80 vs uniform 40 — movement must raise the ceiling"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "control tests failed: silent"
+  },
+  "hashes": {
+    "uniform-n20": "658766108a1ef1fc",
+    "uniform-n40": "ef9f9c2bef558f3d",
+    "uniform-n60": "9f445de46318ec74",
+    "uniform-n80": "5825ba36d86e3d1e",
+    "uniform-n100": "6ab7325154be29fa",
+    "alternating-n20": "1e52716d8dba2359",
+    "alternating-n40": "9159f9e5cb39139a",
+    "alternating-n60": "af5fadb4e41af1ac",
+    "alternating-n80": "cdefb72378ca7c70",
+    "alternating-n100": "695232581152d106"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "The hard-capacity model min(n, C) is a model, not a measurement; the measured curve may be softer.",
+    "`Policy::Sighted` is not yet covered by the Rust test suite.",
+    "The conclusion is about this model's movement rule and regrowth, not about carrying capacity in general."
+  ],
+  "command": "python3 checks/exp12_capacity_curve.py",
+  "created_at": "2026-11-11T21:49:27.494235+00:00"
+}
