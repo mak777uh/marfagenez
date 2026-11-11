@@ -59,14 +59,49 @@ impl HalfWidth {
 // ---------------------------------------------------------------------------
 
 /// A mean. Cannot be passed where a [`Spread`] is expected.
+///
+/// The field is private so that a non-finite mean cannot be constructed. The earlier
+/// version had `pub f64`, which allowed `Mean(f64::NAN)` from anywhere.
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
-pub struct Mean(pub f64);
+pub struct Mean(f64);
+
+impl Mean {
+    /// Builds a mean. Returns `None` for a non-finite value.
+    pub fn new(v: f64) -> Option<Self> {
+        if v.is_finite() {
+            Some(Self(v))
+        } else {
+            None
+        }
+    }
+
+    pub fn get(self) -> f64 {
+        self.0
+    }
+}
 
 /// A spread (standard deviation). Cannot be passed where a [`Mean`] is expected.
+///
+/// The field is private so that a negative or non-finite spread cannot be
+/// constructed. The earlier version had `pub f64`, which allowed `Spread(-100.0)`.
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
-pub struct Spread(pub f64);
+pub struct Spread(f64);
 
 impl Spread {
+    /// Builds a spread. Returns `None` for a negative or non-finite value, because a
+    /// standard deviation is never negative.
+    pub fn new(v: f64) -> Option<Self> {
+        if v.is_finite() && v >= 0.0 {
+            Some(Self(v))
+        } else {
+            None
+        }
+    }
+
+    pub fn get(self) -> f64 {
+        self.0
+    }
+
     /// The spread as a fraction of the room's uniform spread.
     pub fn relative_to(self, room: HalfWidth) -> f64 {
         self.0 / room.uniform_spread().0
@@ -88,12 +123,16 @@ impl Moments {
         if xs.is_empty() {
             return None;
         }
+        // Reject non-finite input: a single NaN would poison the mean and the spread.
+        if xs.iter().any(|x| !x.is_finite()) {
+            return None;
+        }
         let n = xs.len();
         let mean = xs.iter().sum::<f64>() / n as f64;
         let var = xs.iter().map(|x| (x - mean) * (x - mean)).sum::<f64>() / n as f64;
         Some(Self {
-            mean: Mean(mean),
-            spread: Spread(var.sqrt()),
+            mean: Mean::new(mean)?,
+            spread: Spread::new(var.sqrt())?,
             n,
         })
     }

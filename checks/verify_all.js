@@ -197,4 +197,7 @@ if (pass === results.length) {
   console.log('ALL CLAIMS VERIFIED — safe to port.');
 } else {
   console.log('SOME CLAIMS FAILED — do NOT port until fixed.');
+  // Exit non-zero so CI sees the failure. The earlier version printed FAIL and
+  // returned success, which made a red result look green.
+  process.exit(1);
 }

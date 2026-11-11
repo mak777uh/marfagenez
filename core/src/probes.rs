@@ -172,6 +172,48 @@ mod probes {
     }
 
     #[test]
+    fn probe_negative_spread_is_impossible() {
+        // The planted defect: a negative standard deviation. The earlier version had
+        // `Spread(pub f64)`, so `Spread(-100.0)` compiled. Now the field is private
+        // and the constructor refuses.
+        assert!(
+            Spread::new(-100.0).is_none(),
+            "GATE FAILED: a negative spread was accepted"
+        );
+        assert!(Spread::new(0.0).is_some(), "zero spread is valid");
+        assert!(Spread::new(1.5).is_some(), "a positive spread is valid");
+    }
+
+    #[test]
+    fn probe_non_finite_mean_is_impossible() {
+        assert!(
+            Mean::new(f64::NAN).is_none(),
+            "GATE FAILED: a NaN mean was accepted"
+        );
+        assert!(
+            Mean::new(f64::INFINITY).is_none(),
+            "GATE FAILED: an infinite mean was accepted"
+        );
+        assert!(Mean::new(0.0).is_some());
+        assert!(Mean::new(-5.0).is_some(), "a negative mean is valid");
+    }
+
+    #[test]
+    fn probe_nan_sample_is_rejected() {
+        // The planted defect: a sample containing NaN. The earlier `measure` would
+        // return a NaN mean and a NaN spread without complaint.
+        assert!(
+            Moments::measure(&[1.0, f64::NAN, 3.0]).is_none(),
+            "GATE FAILED: a sample with NaN produced moments"
+        );
+        assert!(
+            Moments::measure(&[1.0, f64::INFINITY]).is_none(),
+            "GATE FAILED: a sample with infinity produced moments"
+        );
+        assert!(Moments::measure(&[1.0, 2.0, 3.0]).is_some());
+    }
+
+    #[test]
     fn probe_oscillation_looks_converged() {
         // The planted defect: a series that returns to its starting value without
         // converging. The earlier `Converged::check` compared only the first and the

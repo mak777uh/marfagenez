@@ -170,3 +170,8 @@ for (const r of results) {
 }
 console.log();
 console.log(`${pass}/${results.length} claims verified`);
+if (pass < results.length) {
+  // Exit non-zero so CI sees the failure. The earlier version printed FAIL and
+  // returned success, which made a red result look green.
+  process.exit(1);
+}
