@@ -167,8 +167,13 @@ impl Life {
             // 1. See the current cell.
             let here = self.field.level(r.cell);
 
-            // 2. Remember.
-            r.memory.observe(r.cell, here);
+            // 2. Remember. Only a cell that is RICHER than the memory replaces it.
+            // The current cell is observed first, but if it is the best so far the
+            // memory points here -- and then the organism would never leave. So the
+            // memory is updated only when the organism is NOT already standing on it.
+            if r.memory.best_cell != r.cell {
+                r.memory.observe(r.cell, here);
+            }
             r.memory.decay(self.memory_life);
 
             // 3. Act.
@@ -184,7 +189,17 @@ impl Life {
                         1
                     }
                 }
-                Policy::Remember => r.direction(),
+                Policy::Remember => {
+                    // If the memory is empty (nothing seen yet), explore: move at
+                    // random. A remembering organism that has seen nothing must look
+                    // around, or it never finds anything to remember.
+                    if r.memory.best_level <= 0.0 {
+                        let u = self.rng.uniform();
+                        if u < 0.5 { -1 } else { 1 }
+                    } else {
+                        r.direction()
+                    }
+                }
             };
             if direction != 0 && r.organism.spend(r.move_cost) {
                 let nc = r.cell as i64 + direction as i64;
@@ -313,7 +328,10 @@ mod tests {
             damage_rate: 0.02,
             capacity: 10.0,
         };
-        let field = Field::new(10, 0.0, 0.0).unwrap();
+        // A field with the smallest legal resource, and income = 0: nothing can be
+        // taken, so nothing can be earned. `Field::new` refuses a zero maximum, so
+        // the field is not empty -- the *income* is what is zero.
+        let field = Field::new(10, 0.01, 0.0).unwrap();
         let mut life = Life::spawn(world, field, 10, 1.0, 0.1, Policy::Stay, 1, 100).unwrap();
         life.run(100, 100);
         assert_eq!(life.census().alive, 0, "all should die without resources");
