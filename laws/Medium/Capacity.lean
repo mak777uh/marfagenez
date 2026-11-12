@@ -5,17 +5,22 @@ import Medium.Convergence
 /-!
 # Carrying capacity: how many organisms a cell can hold
 
-## Two different capacities — do not confuse them
+## Three quantities that were confused — keep them apart
 
 * `capacity M r t₀ = M*r / t₀` — **feeding** capacity: how many full portions of
-  `t₀` the regrowth puts back per step. This is a fact about the field alone.
-* `M*r / (t₀*(1-r))` — **survival** capacity: how many organisms can stand on a
-  cell without the cell's equilibrium falling below `t₀`. It is larger by the
-  factor `1/(1-r)`, because a cell that is eaten from recovers only `r` of the
-  gap per step.
+  `t₀` the regrowth puts back per step. A fact about the field alone.
+* `M*r / (t₀*(1-r))` — the **stock** the cell settles at, expressed in portions.
+  It is larger by `1/(1-r)`, and it is **not** a number of organisms.
+* `k_max` — the **count** of organisms one cell actually feeds. This is the one
+  the experiments measure. See `docs/FINDING-k-max-is-a-count.md`.
 
-The experiments measure the **feeding** one: `C = 80` at 40 cells with
-`k_feed = 2` (`results/overcrowding/run-2026-11-11T22-20-40.json`).
+The first two are closed formulas. The third is not: it is a recursion, because
+the cell is eaten sequentially and a cell that is eaten down to nothing falls to
+`M*r`, not to `M*r/(1-r)`. At `M = 2, t₀ = 0.8, r = 0.8, maint = 0.6` the stock
+formula says `2.25` and the count is `2`, giving `C = 40 * 2 = 80`
+(`results/EXP-22/run-2026-11-12T12-46-12.json`: 40/40, 80/80, 80/120, 80/160).
+
+
 
 ## The mistake this file used to make
 
@@ -136,5 +141,77 @@ theorem no_second_place {M r t₀ : ℝ} (ht₀ : 0 < t₀) (h : capacity M r t�
   intro k hk hcover
   have hk_le : k ≤ capacity M r t₀ := (capacity_iff ht₀ k).mp hcover
   linarith
+
+/-!
+## `k_max` as a count: the recursion the model actually runs
+
+`capacity` above answers "how much does the cell hand out". It does not answer
+"how many organisms survive", because the take is sequential and the cell
+cannot go below zero. The two differ by a factor that depends on `income` and
+`maintenance`, so no closed formula in `M, r, t₀` alone can give the count.
+
+The recursion below is the one `core/src/field.rs` runs: the cell starts at
+`M`, each organism takes `min(t₀, what is left)`, and an organism survives
+only if what it took is at least `maint`.
+-/
+
+/-- One organism takes `t₀` from the cell, or whatever is left if less. -/
+noncomputable def takeOne (t₀ c : ℝ) : ℝ := min t₀ c
+
+/-- The cell after `k` organisms have taken from it in turn. -/
+noncomputable def afterTakes (t₀ : ℝ) : ℕ → ℝ → ℝ
+  | 0, c => c
+  | k + 1, c => afterTakes t₀ k (c - takeOne t₀ c)
+
+/-- **The cell never goes below zero, however many organisms take from it.** -/
+theorem afterTakes_nonneg {t₀ c : ℝ} (hc : 0 ≤ c) (k : ℕ) :
+    0 ≤ afterTakes t₀ k c := by
+  induction k generalizing c with
+  | zero => exact hc
+  | succ k ih =>
+      exact ih (by unfold takeOne; linarith [min_le_right t₀ c])
+
+/-- **The cell never gains from being eaten.** -/
+theorem afterTakes_le {t₀ c : ℝ} (ht₀ : 0 ≤ t₀) (hc : 0 ≤ c) (k : ℕ) :
+    afterTakes t₀ k c ≤ c := by
+  induction k generalizing c with
+  | zero => exact le_rfl
+  | succ k ih =>
+      have h1 : afterTakes t₀ k (c - takeOne t₀ c) ≤ c - takeOne t₀ c :=
+        ih (by unfold takeOne; linarith [min_le_right t₀ c])
+      have h2 : 0 ≤ takeOne t₀ c := by unfold takeOne; exact le_min ht₀ hc
+      show afterTakes t₀ k (c - takeOne t₀ c) ≤ c
+      linarith
+
+/-- **The first organism is fed exactly when the cell holds `maint`.** -/
+theorem first_fed_iff {t₀ maint c : ℝ} :
+    maint ≤ takeOne t₀ c ↔ maint ≤ t₀ ∧ maint ≤ c := by
+  unfold takeOne
+  exact le_min_iff
+
+/-- **Two organisms on a cell that feeds them both: what is left after two.**
+
+This is the arithmetic behind `EXP-22`: at `M = 2, t₀ = 0.8, r = 0.8` the
+cell settles at `1.8`, one organism takes `0.8` and leaves `1.0`, a second
+takes `0.8` and leaves `0.2`, and a third gets `0.2 < 0.6 = maint`. -/
+theorem two_takes {t₀ c : ℝ} (ht₀ : 0 < t₀) (hc : 2 * t₀ ≤ c) :
+    afterTakes t₀ 2 c = c - 2 * t₀ := by
+  have h1 : takeOne t₀ c = t₀ := min_eq_left (by linarith)
+  have h2 : takeOne t₀ (c - t₀) = t₀ := min_eq_left (by linarith)
+  show c - takeOne t₀ c - takeOne t₀ (c - takeOne t₀ c) = c - 2 * t₀
+  rw [h1, h2]
+  ring
+
+/-- **A third organism on that cell gets `c - 2*t₀`.** -/
+theorem three_takes {t₀ c : ℝ} (ht₀ : 0 < t₀) (hc : 2 * t₀ ≤ c) :
+    afterTakes t₀ 3 c = c - 2 * t₀ - min t₀ (c - 2 * t₀) := by
+  have h1 : takeOne t₀ c = t₀ := min_eq_left (by linarith)
+  have h2 : takeOne t₀ (c - t₀) = t₀ := min_eq_left (by linarith)
+  show c - takeOne t₀ c - takeOne t₀ (c - takeOne t₀ c)
+      - takeOne t₀ (c - takeOne t₀ c - takeOne t₀ (c - takeOne t₀ c))
+    = c - 2 * t₀ - min t₀ (c - 2 * t₀)
+  rw [h1, h2]
+  show c - t₀ - t₀ - min t₀ (c - t₀ - t₀) = c - 2 * t₀ - min t₀ (c - 2 * t₀)
+  ring_nf
 
 end Medium
