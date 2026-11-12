@@ -45,36 +45,61 @@ Two old claims are now known to be wrong and are kept here only as history:
 
 That the population actually reaches `cells * k_feed`. That needs a model of
 movement and of who stands where; the experiments measure it, this file does not
-prove it. The measurement gives `C = 80` at 40 cells with `k_feed = 2`
-(`results/overcrowding/run-2026-11-11T22-20-40.json`).
+prove it.
 
-**The `k_max = 10` anomaly, resolved 2026-11-12.** A claim circulated after the
-formula fix that `k_max` is 10 and the capacity law gives `C = 400`. It has been
-traced: `--capacity` in the Rust binary is **the energy ceiling `E_max`**, not a
-per-cell occupancy limit (`core/src/organism.rs:164`). Reading `--capacity 10` as
-`k_max = 10` is the whole of it. There is no `k_max = 10`.
+## What the measurements say, and what they no longer say
 
-**And `C` is not a single number.** Measured at `M = 2.0`, `r = 0.8`,
-`income = 1.2`, `maintenance = 0.6`, `damage_rate = 0.02`, `repair_cost = 1.5`,
-40 cells, 160 organisms, 8000 steps (`docs/FINDING-the-capacity-is-a-line-not-a-number.md`):
+**The old `C = 80` is void.** It was recorded while the clamp ran right after the
+income, which erased `move_cost` (see
+`docs/FINDING-the-cap-is-applied-after-the-spend.md`). Every capacity number
+measured before 2026-11-12 23:00 describes a dynamics that no longer exists.
 
-    E_max   alive   crowding   energy mean
-      8       40      1.00        7.3700
-      9       42      1.05        8.3481
-     10       42      1.05        9.3481
+**Measured under the current order** (`exp75`, 40 cells, `rich = 2.0`, `n = 160`,
+4000 steps, `sighted`, `move_cost = 0`, `income = 1.2`, `maintenance = 0.6`,
+`damage_rate = 0.02`, `repair_cost = 1.5`, `E_max = 10`):
 
-The cost of staying alive one step is `COST = maintenance + damage_rate *
-repair_cost = 0.63`, and the steady energy is `E* = E_max - COST` exactly
-(8 - 0.63 = 7.37, 9 - 0.63 = 8.37, 10 - 0.63 = 9.37). The second organism on a
-cell takes `c* - income = 1.7 - 1.2 = 0.5`, which is **below** the 0.63 it needs,
-so at `E_max = 8` the capacity is exactly one per cell and `C = 40`. At
-`E_max = 9` and 10 two organisms sit two to a cell, burning the `0.31` of savings
-they have above the single-organism steady state at `0.13` per step. They are not
-in equilibrium; the run stopped at 8000 steps before they finished sliding.
+    poor    alternating   uniform
+    0.2     20            0
+    0.8     20            40
+    1.2     20            40
+    1.6     40            40
 
-So `C` is a **line in `E_max`**, not a number, and any `C` quoted without `E_max`
-is not a law. The `C = 80` above was taken at different parameters
-(`results/overcrowding/run-2026-11-11T22-20-40.json`) and has not been re-run.
+All eight runs: `crowding = 1.00`, mean energy `10.0000`.
+
+The reading: **capacity is the number of cells that can feed an organism.** A
+cell with `poor = 0.2` cannot feed at all, so `alternating` -- half rich, half
+poor -- has 20 usable cells and `C = 20`. `uniform` at `poor = 0.2` feeds nobody
+and the whole population dies. Once `poor >= income` every cell feeds and the
+field shape stops mattering: `C = cells = 40`. The transition is at
+`poor = income`, which is what `feed_share_iff` says with `k = 1`.
+
+This is `feed_share` read as a count: a cell supports `k` organisms exactly when
+`k * t0 <= M * r`. With `M = 2.0`, `r = 0.8`, `t0 = income = 1.2` that gives
+`k_feed = 1.33`, so one organism per cell and `cells * 1 = 40`. The measured 40
+matches. The measured 20 matches "half the cells do not feed".
+
+**The steady energy is `E_max`, not `E_max - COST`.** With the clamp at the end
+of the step, an organism whose energy would exceed `E_max` is set to `E_max`, so
+the steady state of a well-fed organism is exactly the ceiling: measured
+`10.0000` at `E_max = 10`, `20.0000` at `E_max = 20`, residual `+0.000000`. The
+old `E* = E_max - COST = 8.97` described an intermediate value inside the step
+and is retired.
+
+**`--capacity` is the energy ceiling `E_max`**, not a per-cell occupancy limit
+(`core/src/organism.rs:164`). There is no `k_max`. Reading `--capacity 10` as
+`k_max = 10` and concluding `C = 400` was the whole of that anomaly.
+
+## What is still open
+
+- Why one cell holds exactly one organism even when `k_feed = 1.33`. The
+  fractional part is not spent: no run has shown two organisms sharing a cell
+  under the current order. `no_second_place` below proves the `k_feed <= 1` case
+  only; the `1 < k_feed < 2` case is measured, not proved.
+- Where exactly the transition sits between `poor = 0.2` and `poor = 0.8`. The
+  arithmetic says `poor = income = 1.2`, and `poor = 1.2` gives 40, but nothing
+  was measured between 0.8 and 1.2.
+- Whether a larger `E_max` lets a cell hold two organisms. The old answer was yes
+  at `E_max = 9`; that was measured under the old order and has not been redone.
 -/
 
 namespace Medium

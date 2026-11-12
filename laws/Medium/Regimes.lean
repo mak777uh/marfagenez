@@ -59,10 +59,19 @@ Numerically at `M = 2, r = 0.8, t0 = 0.8`:
 `k = M * r / t₀` exactly — the `t₀` cancels out of the numerator. At the
 project's numbers that is 2.0, not 6.0.
 
-So `feedCapacity` and `k_max` coincide at these numbers, and the claim that
-"a cell stays in the full regime up to 6" is dead. What the measurement in
-`results/overcrowding/run-2026-11-11T22-20-40.json` shows (crowding 2, `C = 80`
-on 40 cells) is consistent with `feedCapacity = 2`, not with 6.
+So the claim that "a cell stays in the full regime up to 6" is dead. The
+measurement that used to accompany this paragraph (`crowding 2`, `C = 80` on 40
+cells, `results/overcrowding/run-2026-11-11T22-20-40.json`) was recorded under
+the old clamp order and is void; it is no longer cited here as support for
+anything.
+
+What the current measurement says (`exp75`, 40 cells, `rich = 2.0`,
+`n = 160`, 4000 steps, `sighted`) is `crowding = 1.00` and mean energy
+`10.0000` in all eight runs, with `C = 20` when half the cells are too poor to
+feed and `C = 40` when every cell feeds. So the measured occupancy is one per
+cell, below the `feedCapacity = 2` this file derives. The gap between the bound
+and the measurement is recorded in `Medium/Capacity.lean` as open: this file
+proves a cell *can* feed two, not that two ever arrive.
 -/
 
 import Medium.Field
