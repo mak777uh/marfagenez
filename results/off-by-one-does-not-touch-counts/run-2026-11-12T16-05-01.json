@@ -1,0 +1,70 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "off-by-one-does-not-touch-counts",
+  "run_id": "run-2026-11-12T16-05-01",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "steps": 400,
+    "every": 10,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "income": 1,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "move_cost": 0.05,
+    "energy": 5,
+    "field": "uniform",
+    "policy": "random"
+  },
+  "arithmetic": {
+    "stand_still": "count of living samples with direction 0 / living samples",
+    "alignment": "direction is written during advance, so it belongs to the frame",
+    "claim_to_check": "density changes standing: 0.846 at n=80, 0.0 at n=8"
+  },
+  "conditions": {
+    "n8": {
+      "label": "n8",
+      "metrics": {
+        "stand_still": 0.3688
+      },
+      "hash": "2a3ab58c9c40502c"
+    },
+    "n80": {
+      "label": "n80",
+      "metrics": {
+        "stand_still": 0.3194
+      },
+      "hash": "23058b42e67f1648"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "n=80 0.3194 vs n=8 0.3688"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "n=8 stand still 0.3688, expected near 0"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "n=80 stand still 0.3194, expected between 0.5 and 1.0"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "числа внутри кадра не сдвинуты: плотность меняет стояние, как и было измерено"
+  },
+  "hashes": {
+    "n8": "2a3ab58c9c40502c",
+    "n80": "23058b42e67f1648"
+  },
+  "limitations": [
+    "one seed, one field, one policy; this checks that the counts reproduce, not that the earlier explanation of WHY they differ was right"
+  ],
+  "command": "python3 checks/exp45_off_by_one_does_not_touch_counts.py",
+  "created_at": "2026-11-12T16:05:01.853318+00:00"
+}

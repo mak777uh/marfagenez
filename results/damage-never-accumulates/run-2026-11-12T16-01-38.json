@@ -1,0 +1,91 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "damage-never-accumulates",
+  "run_id": "run-2026-11-12T16-01-38",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "n": 1,
+    "steps": 60,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "energy": 5,
+    "field": "uniform",
+    "income": 0,
+    "regrow": 0
+  },
+  "arithmetic": {
+    "affordable": "energy/repair_cost >= 2 while energy >= 1",
+    "repaired": "min(affordable, damage) = damage, always",
+    "consequence": "damage is cleared every step; death is energy only",
+    "step_cost": "maintenance + damage_rate*repair_cost = 0.1 + 0.1 = 0.2"
+  },
+  "conditions": {
+    "move0": {
+      "label": "move0",
+      "metrics": {
+        "drops": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "distinct_drops": [
+          0.2
+        ]
+      },
+      "hash": "efe62324f25e1d41"
+    },
+    "move0.2": {
+      "label": "move0.2",
+      "metrics": {
+        "drops": [
+          0.2,
+          0.2,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ],
+        "distinct_drops": [
+          0.2,
+          0.4
+        ]
+      },
+      "hash": "c402581392eba435"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "move 0: distinct drops [0.2], arithmetic 0.2"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "no step costs more than maintenance+repair: max 0.2"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "move 0.2: distinct drops [0.2, 0.4], expected [0.2, 0.4]"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "урон не накапливается: ремонт всегда по карману, смерть — только энергия"
+  },
+  "hashes": {
+    "move0": "efe62324f25e1d41",
+    "move0.2": "c402581392eba435"
+  },
+  "limitations": [
+    "one organism, no food; with food the same per-step cost applies but the organism can outlive the budget, so this says nothing about a fed field"
+  ],
+  "command": "python3 checks/exp39_damage_never_accumulates.py",
+  "created_at": "2026-11-12T16:01:38.103840+00:00"
+}
