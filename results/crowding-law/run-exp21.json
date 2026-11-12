@@ -1,110 +1,108 @@
 {
- "schema": "marfagenez.experiment-result.v2",
- "name": "exp21_crowding_law",
- "question": "is crowding = (M - income)/maintenance, or was that a fit?",
- "arithmetic": {
-  "M": 2.0,
-  "income": 0.8,
-  "r": 0.8,
-  "cells": 40,
-  "candidate": "(M - income) / maintenance",
-  "A": "floor(M*r/income), independent of maintenance"
- },
- "conditions": [
-  {
-   "name": "uniform field, sighted policy",
-   "cells": 40,
-   "n": 160,
-   "steps": 1200,
-   "r": 0.8,
-   "income": 0.8
+  "schema": "marfagenez.experiment-result.v2",
+  "id": "EXP-21",
+  "title": "is crowding = (M - income)/maintenance, or was that a fit?",
+  "arithmetic": {
+    "M": 2.0,
+    "income": 0.8,
+    "r": 0.8,
+    "cells": 40,
+    "candidate": "(M - income) / maintenance",
+    "A": "floor(M*r/income), independent of maintenance"
+  },
+  "conditions": [
+    {
+      "name": "uniform field, sighted policy",
+      "cells": 40,
+      "n": 160,
+      "steps": 1200,
+      "r": 0.8,
+      "income": 0.8
+    }
+  ],
+  "rows": [
+    {
+      "maintenance": 0.4,
+      "alive": 77,
+      "occupied_cells": 40,
+      "crowding": 1.925,
+      "field_mean": 1.615,
+      "trace_hash": "2b28e9f73b15d9ab",
+      "pred_candidate": 3.0,
+      "pred_A": 2.0
+    },
+    {
+      "maintenance": 0.6,
+      "alive": 77,
+      "occupied_cells": 40,
+      "crowding": 1.925,
+      "field_mean": 1.615,
+      "trace_hash": "b083d23759d6f075",
+      "pred_candidate": 2.0,
+      "pred_A": 2.0
+    },
+    {
+      "maintenance": 0.8,
+      "alive": 77,
+      "occupied_cells": 40,
+      "crowding": 1.925,
+      "field_mean": 1.615,
+      "trace_hash": "7e2b6bc46916e56e",
+      "pred_candidate": 1.5,
+      "pred_A": 2.0
+    },
+    {
+      "maintenance": 1.0,
+      "alive": 0,
+      "occupied_cells": 0,
+      "crowding": 0.0,
+      "field_mean": 2.0,
+      "trace_hash": "ce899bb294e2b426",
+      "pred_candidate": 1.2,
+      "pred_A": 2.0
+    },
+    {
+      "maintenance": 1.2,
+      "alive": 0,
+      "occupied_cells": 0,
+      "crowding": 0.0,
+      "field_mean": 2.0,
+      "trace_hash": "ce899bb294e2b426",
+      "pred_candidate": 1.0,
+      "pred_A": 2.0
+    }
+  ],
+  "controls": {
+    "fires": {
+      "ok": true,
+      "detail": "crowding values across maintenance: [1.925, 1.925, 1.925, 0.0, 0.0]"
+    },
+    "silent": {
+      "ok": false,
+      "detail": "seed 7 crowd=1.925, seed 11 crowd=1.9474"
+    },
+    "specific": {
+      "ok": false,
+      "detail": "m=0.40 measured=1.93 predicted=3.00; m=0.60 measured=1.93 predicted=2.00; m=0.80 measured=1.93 predicted=1.50; m=1.00 measured=0.00 predicted=1.20; m=1.20 measured=0.00 predicted=1.00"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "crowding 1.925 was one draw, not a law: alive/occupied shrinks both numerator and denominator when cells are empty (see EXP-26)"
+  },
+  "limitations": [
+    "One policy (sighted) and one field shape (uniform).",
+    "The candidate was suggested by the crowding=2 measurement itself; the",
+    "test is whether it predicts OTHER maintenance values, not whether it",
+    "reproduces the one it came from.",
+    "Crowding is measured on occupied cells only; a law about empty cells is",
+    "not tested here.",
+    "maintenance 1.0 and 1.2 are one arm, not two: both end with alive = 0 and the field at M = 2.0, so the trace is the same. The law is not testable above the point where the population dies out."
+  ],
+  "hashes": {
+    "0.4": "2b28e9f73b15d9ab",
+    "0.6": "b083d23759d6f075",
+    "0.8": "7e2b6bc46916e56e",
+    "1.0/1.2": "ce899bb294e2b426"
   }
- ],
- "rows": [
-  {
-   "maintenance": 0.4,
-   "alive": 77,
-   "occupied_cells": 40,
-   "crowding": 1.925,
-   "field_mean": 1.615,
-   "trace_hash": "2b28e9f73b15d9ab",
-   "pred_candidate": 3.0,
-   "pred_A": 2.0
-  },
-  {
-   "maintenance": 0.6,
-   "alive": 77,
-   "occupied_cells": 40,
-   "crowding": 1.925,
-   "field_mean": 1.615,
-   "trace_hash": "b083d23759d6f075",
-   "pred_candidate": 2.0,
-   "pred_A": 2.0
-  },
-  {
-   "maintenance": 0.8,
-   "alive": 77,
-   "occupied_cells": 40,
-   "crowding": 1.925,
-   "field_mean": 1.615,
-   "trace_hash": "7e2b6bc46916e56e",
-   "pred_candidate": 1.5,
-   "pred_A": 2.0
-  },
-  {
-   "maintenance": 1.0,
-   "alive": 0,
-   "occupied_cells": 0,
-   "crowding": 0.0,
-   "field_mean": 2.0,
-   "trace_hash": "ce899bb294e2b426",
-   "pred_candidate": 1.2,
-   "pred_A": 2.0
-  },
-  {
-   "maintenance": 1.2,
-   "alive": 0,
-   "occupied_cells": 0,
-   "crowding": 0.0,
-   "field_mean": 2.0,
-   "trace_hash": "ce899bb294e2b426",
-   "pred_candidate": 1.0,
-   "pred_A": 2.0
-  }
- ],
- "hashes": {
-  "mnt0.4": "2b28e9f73b15d9ab",
-  "mnt0.6": "b083d23759d6f075",
-  "mnt0.8": "7e2b6bc46916e56e",
-  "mnt1.0+1.2": "ce899bb294e2b426"
- },
- "controls": {
-  "fires": {
-   "passed": true,
-   "detail": "crowding values across maintenance: [1.925, 1.925, 1.925, 0.0, 0.0]"
-  },
-  "silent": {
-   "passed": false,
-   "detail": "seed 7 crowd=1.925, seed 11 crowd=1.9474"
-  },
-  "specific": {
-   "passed": false,
-   "detail": "m=0.40 measured=1.93 predicted=3.00; m=0.60 measured=1.93 predicted=2.00; m=0.80 measured=1.93 predicted=1.50; m=1.00 measured=0.00 predicted=1.20; m=1.20 measured=0.00 predicted=1.00"
-  }
- },
- "verdict": {
-  "kind": "failed",
-  "reason": "EXPLAINED: the candidate crowding = (M - income)/maintenance predicts 3.0, 2.0 and 1.5 at maintenance 0.40, 0.60 and 0.80, and the measurement gives 1.925 at all three. The candidate was read off the maintenance = 0.60 point, so that point cannot count as evidence; the two other points miss by 1.5x and 1.4x. The `fires` control passed for the wrong reason: the metric moved only when every organism died at maintenance >= 1.00."
- },
- "limitations": [
-  "One policy (sighted) and one field shape (uniform).",
-  "The candidate was suggested by the crowding=2 measurement itself; the",
-  "test is whether it predicts OTHER maintenance values, not whether it",
-  "reproduces the one it came from.",
-  "Crowding is measured on occupied cells only; a law about empty cells is",
-  "not tested here.",
-  "maintenance 1.00 and 1.20 share one trace hash: both kill every organism, so the two parameter values are one arm, not two.",
-  "maintenance 1.00 and 1.20 share one trace hash: both kill every organism, so the two parameter values are one arm, not two."
- ],
- "what_this_does_not_prove": "It does not show the crowding law is unknown, only that this candidate is not it. The law that survived is EXP-25's k_max = 1 + floor((M*r - maintenance - damage_rate)/income)."
 }

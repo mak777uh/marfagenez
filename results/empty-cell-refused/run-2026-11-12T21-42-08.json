@@ -1,0 +1,85 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "empty-cell-refused",
+  "run_id": "run-2026-11-12T21-42-08",
+  "model_commit": "unknown",
+  "seed": 7,
+  "parameters": {
+    "cells": 3,
+    "energy": 10.0,
+    "move_cost": 0.05,
+    "read_budget": 3
+  },
+  "arithmetic": {
+    "rule": "best = max(here, left, right); move only if best > here",
+    "equal": "best == here -> 0",
+    "richer": "best = 3.2 > 2.4, right better -> +1",
+    "enter-empty": "best = 1.6 == here -> 0 (does not enter)",
+    "leave-empty": "best = 1.6 > 0.0, left better -> -1 (does leave)",
+    "stay": "never looks -> 0 in every shape",
+    "read_budget": "3: underfoot + both neighbours; 2 silently drops the right"
+  },
+  "conditions": {
+    "sighted": {
+      "label": "Sighted",
+      "metrics": {
+        "equal": 0,
+        "richer": 1,
+        "enter-empty": 0,
+        "leave-empty": -1
+      },
+      "hash": "Sighted:equal=0,richer=1,enter-empty=0,leave-empty=-1"
+    },
+    "stay": {
+      "label": "Stay",
+      "metrics": {
+        "equal": 0,
+        "richer": 0,
+        "enter-empty": 0,
+        "leave-empty": 0
+      },
+      "hash": "Stay:equal=0,richer=0,enter-empty=0,leave-empty=0"
+    },
+    "random": {
+      "label": "Random",
+      "metrics": {
+        "equal": -1,
+        "richer": -1,
+        "enter-empty": -1,
+        "leave-empty": -1
+      },
+      "hash": "Random:equal=-1,richer=-1,enter-empty=-1,leave-empty=-1"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "richer neighbour -> 1 (expected non-zero)"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "equal neighbours -> 0 (expected 0)"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "empty neighbour -> 0, richer neighbour -> 1 (must differ)"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "sighted stays on an empty neighbour (0) and leaves an empty cell for a richer one (-1); the decision rule refuses emptiness exactly as EXP-26 assumed, and every prediction matched"
+  },
+  "hashes": {
+    "sighted": "Sighted:equal=0,richer=1,enter-empty=0,leave-empty=-1",
+    "stay": "Stay:equal=0,richer=0,enter-empty=0,leave-empty=0",
+    "random": "Random:equal=-1,richer=-1,enter-empty=-1,leave-empty=-1"
+  },
+  "limitations": [
+    "three cells, one organism, one step: this is the decision rule in isolation, not a population",
+    "the empty neighbour is empty at the moment of looking; a cell that empties later in the same step is not covered",
+    "what this does not prove: it does not show that empty cells at n = 160 come from this rule. It shows the rule cannot fill them, which is the mechanism EXP-26 assumed."
+  ],
+  "command": "/root/marfagenez/core/target/release/empty_cell",
+  "created_at": "2026-11-12T21:42:08.869758+00:00"
+}

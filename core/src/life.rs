@@ -225,6 +225,29 @@ impl Life {
         self.policy
     }
 
+    /// Puts organism `i` on cell `cell`.
+    ///
+    /// This exists so a test can build a situation the spawners cannot express:
+    /// `spawn_even` fills cells in order and `spawn` draws at random, so neither
+    /// can place one organism in the middle of a hand-built field. Returns
+    /// `false` if there is no such organism or the cell is outside the field.
+    ///
+    /// It does not touch the memory: what the organism remembers stays what it
+    /// remembered, which is the point -- a test that moves an organism wants to
+    /// see what it decides from where it now stands.
+    pub fn move_to(&mut self, i: usize, cell: usize) -> bool {
+        if cell >= self.field.cells() {
+            return false;
+        }
+        match self.organisms.get_mut(i) {
+            Some(Some(r)) => {
+                r.cell = cell;
+                true
+            }
+            _ => false,
+        }
+    }
+
     /// Advances every living organism by one step.
     pub fn advance(&mut self) -> Option<()> {
         let cells = self.field.cells();

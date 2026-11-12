@@ -57,7 +57,10 @@ from __future__ import annotations
 
 from typing import Any
 
-from . import result as R
+try:  # imported as a package (`from checks.experiment import Experiment`)
+    from . import result as R
+except ImportError:  # run as a script from `checks/` (`python3 exp27_....py`)
+    import result as R
 
 
 class ExperimentError(RuntimeError):
