@@ -1,0 +1,178 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp70-the-threshold-offset-is-the-window",
+  "run_id": "run-2026-11-12T22-51-10",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "n": 160,
+    "cells": 40,
+    "frames": 8000,
+    "income": 1.2,
+    "M": 2.0,
+    "regrow": 0.8,
+    "move_cost": 0.1,
+    "field": "uniform",
+    "rich": 2.4,
+    "poor": 1.6,
+    "e_max": 10,
+    "e_0": 5.0,
+    "damage": 0.02,
+    "repair": 1.5,
+    "step_counts": [
+      8000,
+      16000,
+      32000
+    ],
+    "policies": [
+      "stay",
+      "sighted"
+    ],
+    "bisection_resolution": 1e-05
+  },
+  "arithmetic": {
+    "true_threshold": 1.17,
+    "survival_condition": "E_0 > STEPS * (maintenance + damage*repair - income)",
+    "predicted_offset": 5.0,
+    "offset_times_steps": "should equal E_0 = 5.0 at every step count",
+    "mover_threshold_if_always_moving": 1.0699999999999998,
+    "mover_threshold_if_never_moving": 1.17,
+    "mover_threshold_general": "income - damage*repair - move_fraction*move_cost"
+  },
+  "conditions": {
+    "offset_scaling": {
+      "label": "offset measured at three step counts",
+      "metrics": {
+        "points": [
+          {
+            "steps": 8000,
+            "measured": 1.1706237792968752,
+            "offset": 0.0006237792968752931,
+            "offset_times_steps": 4.990234375002345
+          },
+          {
+            "steps": 16000,
+            "measured": 1.170316162109375,
+            "offset": 0.00031616210937501776,
+            "offset_times_steps": 5.058593750000284
+          },
+          {
+            "steps": 32000,
+            "measured": 1.1701550292968752,
+            "offset": 0.00015502929687527534,
+            "offset_times_steps": 4.960937500008811
+          }
+        ],
+        "predicted_offset_times_steps": 5.0
+      }
+    },
+    "move_fraction": {
+      "label": "how often a mover actually moves",
+      "metrics": {
+        "sighted": [
+          {
+            "policy": "sighted",
+            "maintenance": 1.0,
+            "steps": 8000,
+            "deficit": -0.16999999999999993,
+            "alive": 40,
+            "energy_mean": 8.97,
+            "energy_min": 8.97,
+            "occupied": 40,
+            "move_fraction": 0.0008451793589111845,
+            "frames": 8000
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.1,
+            "steps": 8000,
+            "deficit": -0.06999999999999984,
+            "alive": 38,
+            "energy_mean": 8.868421052631579,
+            "energy_min": 8.84,
+            "occupied": 38,
+            "move_fraction": 0.10014639558318617,
+            "frames": 8000
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.16,
+            "steps": 8000,
+            "deficit": -0.010000000000000009,
+            "alive": 40,
+            "energy_mean": 8.81,
+            "energy_min": 8.81,
+            "occupied": 40,
+            "move_fraction": 0.00031507362116296484,
+            "frames": 8000
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.19,
+            "steps": 8000,
+            "deficit": 0.020000000000000018,
+            "alive": 0,
+            "energy_mean": null,
+            "energy_min": null,
+            "occupied": 0,
+            "move_fraction": 0.23191256830601092,
+            "frames": 8000
+          }
+        ],
+        "stay": {
+          "policy": "stay",
+          "maintenance": 1.0,
+          "steps": 8000,
+          "deficit": -0.16999999999999993,
+          "alive": 40,
+          "energy_mean": 8.97,
+          "energy_min": 8.97,
+          "occupied": 40,
+          "move_fraction": 0.0,
+          "frames": 8000
+        }
+      }
+    }
+  },
+  "series": {
+    "offset_vs_steps": {
+      "steps": [
+        8000,
+        16000,
+        32000
+      ],
+      "values": [
+        0.0006237792968752931,
+        0.00031616210937501776,
+        0.00015502929687527534
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "stay at maintenance 1.0 survives at STEPS 8000 and 32000"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "stay at maintenance 1.3 is empty at STEPS 8000 and 32000"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "offset*STEPS = ['4.9902', '5.0586', '4.9609'], spread 0.0977, mean 5.0033 against E_0 = 5.0. A constant product means the offset is 1/STEPS, not a constant or a multiple of STEPS."
+    }
+  },
+  "verdict": {
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
+  },
+  "hashes": {},
+  "limitations": [
+    "One seed, one field shape. The offset law is about the apparatus, so it should hold for any seed; that is not tested here.",
+    "The move fraction is measured over the whole run, including the transient before the field settles. A mover may move more early and less late; the threshold depends on the late fraction, which this does not separate.",
+    "STEPS 32000 with --every 1 writes a large trace; the run was done once per maintenance value, not repeated.",
+    "The bisection resolution is 1e-5, so an offset of 1.56e-4 at STEPS 32000 is 16 resolution steps — enough to see, not enough to fit a slope precisely."
+  ],
+  "command": "python3 checks/exp70_the_threshold_offset_is_the_window.py",
+  "created_at": "2026-11-12T22:51:10.653780+00:00"
+}

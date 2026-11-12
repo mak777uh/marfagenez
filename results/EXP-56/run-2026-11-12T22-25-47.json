@@ -110,8 +110,8 @@
     }
   },
   "verdict": {
-    "kind": "failed",
-    "reason": "P1 refuted: 2 of 2 late deaths happen with energy at or below 0.5, i.e. starvation after all. The arithmetic that rejected H1/H2 is wrong."
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
   },
   "hashes": {
     "8": "e58c1f3b0682e807",

@@ -59,6 +59,10 @@ pub struct World {
     pub damage_rate: f64,
     /// The most energy the organism can hold.
     pub capacity: f64,
+    /// How many cells an organism may read per step. `0` means it sees only the
+    /// cell it stands on, which is the old behaviour; `3` lets it compare its
+    /// cell with its neighbours before deciding.
+    pub read_budget: usize,
 }
 
 impl Default for World {
@@ -69,6 +73,7 @@ impl Default for World {
             repair_cost: 1.5,
             damage_rate: 0.01,
             capacity: 10.0,
+            read_budget: 0,
         }
     }
 }
@@ -144,6 +149,12 @@ impl Organism {
     /// `resource` is how much energy is available in the environment this step. It
     /// may be less than `income`, and it may be zero.
     ///
+    /// The capacity is applied at the **end** of the step, after every payment.
+    /// Applying it right after the income used to erase the move cost: the walker
+    /// spends energy before calling this, and a `min` applied before the step's
+    /// own payments hands that energy straight back. See
+    /// `docs/FINDING-the-cap-is-applied-after-the-spend.md`.
+    ///
     /// Returns `true` if the organism is still alive after the step.
     pub fn step(&mut self, world: &World, resource: f64) -> bool {
         if !self.alive {
@@ -152,7 +163,7 @@ impl Organism {
 
         // 1. Income: take what is available, up to the income rate.
         let taken = resource.max(0.0).min(world.income);
-        self.energy = (self.energy + taken).min(world.capacity);
+        self.energy += taken;
 
         // 2. Maintenance: staying alive costs energy.
         self.energy -= world.maintenance_cost;
@@ -168,7 +179,11 @@ impl Organism {
             self.energy -= repaired * world.repair_cost;
         }
 
-        // 5. Structure erodes with damage: an organism at full damage has no
+        // 5. The cap is applied last, so that it limits what is held and not
+        //    what is paid.
+        self.energy = self.energy.min(world.capacity).max(0.0);
+
+        // 6. Structure erodes with damage: an organism at full damage has no
         // structure left.
         self.structure = (1.0 - self.damage).max(0.0);
 
@@ -261,6 +276,7 @@ mod tests {
             repair_cost: 1.0,
             damage_rate: 0.1,
             capacity: 10.0,
+            read_budget: 0,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 0.0);
@@ -276,6 +292,7 @@ mod tests {
             repair_cost: 1.0,
             damage_rate: 1.0,
             capacity: 10.0,
+            read_budget: 0,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         assert!(!o.step(&world, 0.0));
@@ -314,6 +331,7 @@ mod tests {
             repair_cost: 1.0,
             damage_rate: 0.0,
             capacity: 5.0,
+            read_budget: 0,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 100.0);

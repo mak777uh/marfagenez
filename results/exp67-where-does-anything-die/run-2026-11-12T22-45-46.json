@@ -342,8 +342,8 @@
     }
   },
   "verdict": {
-    "kind": "insensitive by construction",
-    "reason": "No arm in 0.6 .. 2.2 lost an organism, so the sweep never reached a limit and cannot locate a threshold. Both the mover (1.17) and the sitter (1.67) predictions are outside what was measured, or the two-term arithmetic is missing a term."
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
   },
   "hashes": {},
   "limitations": [

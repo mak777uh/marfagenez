@@ -242,11 +242,22 @@ fn main() {
         eprintln!("cannot create {}: {}", dir.display(), e);
         std::process::exit(1);
     }
+    // Milliseconds, not seconds. A second is long enough for several runs to
+    // land on the same name, and the later one silently overwrites the earlier
+    // one. That happened: three different hashes were written to
+    // `trace-sighted-1794524986.json` in one second, and a check that looked
+    // for "the newest file" read whichever survived. If the name still
+    // collides, add a counter rather than overwrite.
     let stamp = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
-        .map(|d| d.as_secs())
+        .map(|d| d.as_millis())
         .unwrap_or(0);
-    let path = dir.join(format!("trace-{}-{}.json", name, stamp));
+    let mut path = dir.join(format!("trace-{}-{}.json", name, stamp));
+    let mut n = 1;
+    while path.exists() {
+        path = dir.join(format!("trace-{}-{}-{}.json", name, stamp, n));
+        n += 1;
+    }
     if let Err(e) = fs::write(&path, trace.to_json()) {
         eprintln!("cannot write {}: {}", path.display(), e);
         std::process::exit(1);

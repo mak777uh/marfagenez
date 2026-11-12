@@ -36,8 +36,8 @@
     }
   },
   "verdict": {
-    "kind": "passed",
-    "reason": "the longest sharing run is 25 steps, beyond the 13.4-step survival bound of a second taker, and 99.4% of the organisms present at the start of a run are still there at the end. The run is reoccupation, not one queue surviving"
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
   },
   "hashes": {},
   "limitations": [

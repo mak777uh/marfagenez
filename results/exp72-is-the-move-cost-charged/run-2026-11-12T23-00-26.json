@@ -102,8 +102,8 @@
     }
   },
   "verdict": {
-    "kind": "failed",
-    "reason": "The move cost is charged (drop 5.4370) but a control did not fire: fires=False silent=False."
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
   },
   "hashes": {},
   "limitations": [

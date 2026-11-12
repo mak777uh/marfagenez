@@ -1,0 +1,135 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-52",
+  "run_id": "run-2026-11-12T22-03-53",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "cells": 40,
+    "M": 2.0,
+    "regrow": 0.8,
+    "maintenance": 0.6,
+    "damage_rate": 0.02,
+    "repair_cost": 1.5,
+    "move_cost": 0.1,
+    "rich": 2.4,
+    "poor": 1.6,
+    "steps": 2000,
+    "n": 160
+  },
+  "arithmetic": {
+    "cost": "maintenance + damage*repair = 0.6 + 0.02*1.5 = 0.63",
+    "regrowth_after_cost": "M*r - cost = 1.6 - 0.63 = 0.9700000000000001",
+    "feasibility_threshold": "income < 0.63 -> k_max = 0",
+    "floor_threshold": "income > 0.9700000000000001 -> k_max = 1",
+    "k_max": "0 if income < cost, else 1 + floor((M*r - cost)/income)",
+    "shape": "non-monotone: 0 below cost, 2 between cost and M*r-cost, 1 above M*r-cost",
+    "predictions": {
+      "0.60": 0,
+      "0.70": 80,
+      "0.90": 80,
+      "0.95": 80,
+      "1.00": 40,
+      "1.20": 40,
+      "1.60": 40
+    }
+  },
+  "conditions": {
+    "i0.60": {
+      "label": "income 0.60",
+      "metrics": {
+        "alive": 0,
+        "predicted_capacity": 0,
+        "k_max_formula": 0
+      },
+      "hash": "51814db8bbbfdf48"
+    },
+    "i0.70": {
+      "label": "income 0.70",
+      "metrics": {
+        "alive": 79,
+        "predicted_capacity": 80,
+        "k_max_formula": 2
+      },
+      "hash": "a6dc327d13643d8c"
+    },
+    "i0.90": {
+      "label": "income 0.90",
+      "metrics": {
+        "alive": 80,
+        "predicted_capacity": 80,
+        "k_max_formula": 2
+      },
+      "hash": "7b088ebb70958d25"
+    },
+    "i0.95": {
+      "label": "income 0.95",
+      "metrics": {
+        "alive": 80,
+        "predicted_capacity": 80,
+        "k_max_formula": 2
+      },
+      "hash": "269e32870e15cb74"
+    },
+    "i1.00": {
+      "label": "income 1.00",
+      "metrics": {
+        "alive": 53,
+        "predicted_capacity": 40,
+        "k_max_formula": 1
+      },
+      "hash": "e5738a5a18fceeca"
+    },
+    "i1.20": {
+      "label": "income 1.20",
+      "metrics": {
+        "alive": 42,
+        "predicted_capacity": 40,
+        "k_max_formula": 1
+      },
+      "hash": "d01cf7b584ca101b"
+    },
+    "i1.60": {
+      "label": "income 1.60",
+      "metrics": {
+        "alive": 40,
+        "predicted_capacity": 40,
+        "k_max_formula": 1
+      },
+      "hash": "d6e1d4cd8b9fed65"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "measured capacities across income [0.6, 0.7, 0.9, 0.95, 1.0, 1.2, 1.6]: [0, 79, 80, 80, 53, 42, 40]; distinct values [0, 40, 42, 53, 79, 80]"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "income 0.90 gives 80 survivors; EXP-32 measured 80 at maintenance 0.6 with income 0.8, which is the same regime (both incomes are between cost 0.63 and M*r-cost 0.9700000000000001), so the two experiments must agree"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "capacity [0, 79, 80, 80, 53, 42, 40] at incomes [0.6, 0.7, 0.9, 0.95, 1.0, 1.2, 1.6]: peak 80 at income 0.90, first 0, last 40. rose=True fell=True. A monotone curve — more food, more organisms — would fail this control, which is the shape H2 predicts."
+    }
+  },
+  "verdict": {
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
+  },
+  "hashes": {
+    "i0.60": "51814db8bbbfdf48",
+    "i0.70": "a6dc327d13643d8c",
+    "i0.90": "7b088ebb70958d25",
+    "i0.95": "269e32870e15cb74",
+    "i1.00": "e5738a5a18fceeca",
+    "i1.20": "d01cf7b584ca101b",
+    "i1.60": "d6e1d4cd8b9fed65"
+  },
+  "limitations": [
+    "Uniform field, sighted policy, read_budget 3, one seed, 2000 steps. The two thresholds are bracketed by 0.05-wide gaps (0.60/0.70 around 0.63, and 0.95/1.00 around 0.97), so the exact threshold locations are not resolved beyond that. The non-monotone shape is measured, not explained: the file says the divisor and the gate are the same quantity, which is consistent with the shape but does not prove that is why the population falls. Nothing here says anything about a gradient field, where EXP-31 found sighting loses."
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --policy sighted --field uniform --cells 40 --n 160 --steps 2000 --maintenance 0.6 --rich 2.4 --poor 1.6",
+  "created_at": "2026-11-12T22:03:53.706377+00:00"
+}

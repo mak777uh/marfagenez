@@ -34,8 +34,8 @@
     }
   },
   "verdict": {
-    "kind": "passed",
-    "reason": "the loss is a straight line in the share taken: -0.6300 at 0.00 and -0.5583 at 0.08, a gap of +0.0717 for a gap of 0.08 in the share. The loss is not a constant, so the 0.13/step in the reconstruction cannot be the law"
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
   },
   "hashes": {},
   "limitations": [

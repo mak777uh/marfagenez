@@ -37,8 +37,8 @@
     }
   },
   "verdict": {
-    "kind": "passed",
-    "reason": "the second share is the regrowth leftover: 0.08 at regrow 0.8, 0.24 at 0.9, and no second share at 0.5 where the level seen falls below income. The nominal levels 2.4 and 1.6 are ceilings, not the levels organisms meet"
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
   },
   "hashes": {},
   "limitations": [

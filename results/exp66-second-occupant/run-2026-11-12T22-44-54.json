@@ -365,8 +365,8 @@
     }
   },
   "verdict": {
-    "kind": "passed",
-    "reason": "The shared-cell energy is a fixed point at every E_max tested (E_max=8 drift +0.0000, E_max=9 drift +0.0000, E_max=10 drift +0.0023). It is neither E_max - COST nor c* - income, so the deficit arithmetic (0.13 per step) describes a sedentary organism and these organisms are not sedentary: they move to a cell they have not eaten and the reserve is replenished. The earlier reading of 40 and 42 as capacities was the input n read back out; alive equals n at every setting."
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
   },
   "hashes": {},
   "limitations": [

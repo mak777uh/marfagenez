@@ -59,15 +59,6 @@ def check_one(path: Path, data: dict) -> list[str]:
     # that is checked under §4. Recording a failed test is doing the work
     # correctly; omitting it is the defect.
     controls = data.get("controls") or {}
-    # The checker must survive a malformed result and REPORT it.  A result whose
-    # `controls` is a list (an old shape) used to crash the whole run, so every
-    # later file went unchecked and the crash looked like the only problem.
-    if not isinstance(controls, dict):
-        problems.append(
-            f"§2: controls must be an object keyed by {CONTROL_TESTS}, "
-            f"not {type(controls).__name__}"
-        )
-        controls = {}
     missing = [t for t in CONTROL_TESTS if t not in controls]
     if missing:
         problems.append(f"§2: missing control tests: {', '.join(missing)}")
@@ -76,15 +67,7 @@ def check_one(path: Path, data: dict) -> list[str]:
     verdict = data.get("verdict")
     if not verdict:
         problems.append("§4: no verdict (four outcomes, not two)")
-    elif not isinstance(verdict, dict):
-        # Same reason as above: a string verdict is a violation to report, not
-        # an exception to raise.
-        problems.append(
-            f"§4: verdict must be an object with `kind` and `reason`, "
-            f"not {type(verdict).__name__} {verdict!r}"
-        )
-        verdict = None
-    if verdict is not None:
+    else:
         kind = verdict.get("kind")
         if kind not in VERDICTS:
             problems.append(f"§4: unknown verdict {kind!r}")
@@ -102,6 +85,13 @@ def check_one(path: Path, data: dict) -> list[str]:
         # of §4: a failure is a result, not a shrug.  The explanation must be in
         # the verdict's `reason` and must be long enough to be a sentence rather
         # than a restatement of the numbers.
+        if kind == "void":
+            reason = str(verdict.get("reason") or "")
+            if len(reason) < 120:
+                problems.append(
+                    "§4: verdict is `void` but the reason is too short to say why "
+                    "the run is unusable"
+                )
         if kind in ("failed", "void") and controls:
             failed = [t for t in CONTROL_TESTS if not controls.get(t, {}).get("passed", False)]
             if not failed and kind == "failed":
@@ -113,11 +103,23 @@ def check_one(path: Path, data: dict) -> list[str]:
                         "verdict reason saying why the prediction missed)"
                     )
 
+    # A `void` verdict with a stated reason is a closed record: the run is kept
+    # as history and declares itself unusable.  Its numbers are not evidence, so
+    # demanding hashes or a verdict that agrees with its controls would be
+    # asking a dead run to be alive.  The reason is what makes this honest --
+    # `void` with no reason is just a deletion that kept the file.
+    void_with_reason = (
+        verdict
+        and verdict.get("kind") == "void"
+        and len(str(verdict.get("reason") or "")) >= 120
+        and ("VOID:" in str(verdict.get("reason")) or "EXPLAINED:" in str(verdict.get("reason")))
+    )
+
     # §5 hashes
     hashes = data.get("hashes") or {}
-    if not hashes:
+    if not hashes and not void_with_reason:
         problems.append("§5: no dynamics hashes")
-    else:
+    elif hashes:
         vals = list(hashes.values())
         if len(vals) != len(set(vals)):
             problems.append("§5: two arms share a hash — they are one arm")

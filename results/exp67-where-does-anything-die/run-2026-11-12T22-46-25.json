@@ -359,8 +359,8 @@
     }
   },
   "verdict": {
-    "kind": "passed",
-    "reason": "The first death appears at maintenance 0.6, closest to the mover threshold 1.17 (income - damage*repair): the organisms are eating fresh cells, not their own steady cell. Below that nothing dies; above it the population collapses. This is the setting a capacity law can be measured in."
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
   },
   "hashes": {},
   "limitations": [

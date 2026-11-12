@@ -242,7 +242,7 @@
   },
   "verdict": {
     "kind": "void",
-    "reason": "the second law was read off a single seed; n=160 varies with seed (77/74/72)"
+    "reason": "VOID: the second crowding law was read off a single seed, and n=160 varies with the seed (77 / 74 / 72 across three seeds). A law that moves with the seed is a sample, not a law. The run is kept as a record of the reading; its numbers are not usable as evidence for any law. See docs/FINDING-the-capacity-is-a-line-not-a-number.md."
   },
   "what_this_does_not_prove": "It does not prove the Lean model matches the Rust model. It does not prove anything about a field that is not uniform. It does not prove that k_max is the only thing that matters for capacity -- measured `alive` varies with seed (72-78) while max_per_cell stays 2.",
   "limitations": "The law assumes the cell is drained to zero each step, which needs k*income >= M*r. It says nothing about a population too sparse to keep a cell drained, and nothing about movement: a moving population redistributes and the per-cell count becomes a distribution, not a single number. It also assumes energy is a buffer that absorbs a deficit for a while -- measured energies at r=0.70 drift down (1.399 -> 0.200 over 1200 steps), so max_per_cell = 2 is a quasi-steady state, not a permanent one. The law predicts the count, not how long it lasts. mnt = 1.0 and 1.2 at r = 0.9 are one arm: both end with alive = 0 and the field at M = 2.0, so the trace is identical. Above the death threshold the law has nothing to say.",

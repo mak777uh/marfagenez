@@ -1,0 +1,429 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp69-a-sitter-dies-at-the-same-maintenance",
+  "run_id": "run-2026-11-12T22-49-18",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "n": 160,
+    "cells": 40,
+    "steps": 8000,
+    "every": 8000,
+    "income": 1.2,
+    "M": 2.0,
+    "regrow": 0.8,
+    "move_cost": 0.1,
+    "field": "uniform",
+    "rich": 2.4,
+    "poor": 1.6,
+    "e_max": 10,
+    "damage_repair_points": [
+      [
+        0.02,
+        1.5
+      ],
+      [
+        0.04,
+        1.5
+      ],
+      [
+        0.0,
+        1.5
+      ]
+    ],
+    "policies": [
+      "stay",
+      "sighted"
+    ]
+  },
+  "arithmetic": {
+    "c_star": 1.7000000000000004,
+    "take_at_fixed_point": 1.2,
+    "predicted_threshold": 1.17,
+    "old_sitter_prediction_wrong": 1.67,
+    "why_old_was_wrong": "c* is a level, not a take; take = min(income, level)",
+    "prediction": "stay collapses at 1.17, the same as sighted",
+    "damage_law": "threshold = income - damage*repair, slope -1 in damage*repair"
+  },
+  "conditions": {
+    "stay_vs_sighted": {
+      "label": "same settings, two policies",
+      "metrics": {
+        "stay_threshold": 1.1706542968749998,
+        "sighted_threshold": 1.1700683593749996,
+        "predicted": 1.17,
+        "old_sitter_prediction": 1.67,
+        "stay_trail": [
+          {
+            "policy": "stay",
+            "maintenance": 1.15,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.18,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 8.82,
+            "energy_min": 8.82,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          },
+          {
+            "policy": "stay",
+            "maintenance": 1.1749999999999998,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2049999999999998,
+            "alive": 0,
+            "occupied": 0,
+            "energy_mean": null,
+            "energy_min": null,
+            "field_mean": 2.0,
+            "field_min": 2.0,
+            "field_max": 2.0
+          },
+          {
+            "policy": "stay",
+            "maintenance": 1.1624999999999999,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.1925,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 8.8075,
+            "energy_min": 8.8075,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          },
+          {
+            "policy": "stay",
+            "maintenance": 1.1687499999999997,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.1987499999999998,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 8.80125,
+            "energy_min": 8.80125,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          },
+          {
+            "policy": "stay",
+            "maintenance": 1.1718749999999998,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2018749999999998,
+            "alive": 0,
+            "occupied": 0,
+            "energy_mean": null,
+            "energy_min": null,
+            "field_mean": 2.0,
+            "field_min": 2.0,
+            "field_max": 2.0
+          },
+          {
+            "policy": "stay",
+            "maintenance": 1.1703124999999996,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2003124999999997,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 2.5,
+            "energy_min": 2.5,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          },
+          {
+            "policy": "stay",
+            "maintenance": 1.1710937499999998,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2010937499999998,
+            "alive": 0,
+            "occupied": 0,
+            "energy_mean": null,
+            "energy_min": null,
+            "field_mean": 2.0,
+            "field_min": 2.0,
+            "field_max": 2.0
+          },
+          {
+            "policy": "stay",
+            "maintenance": 1.1707031249999997,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2007031249999998,
+            "alive": 0,
+            "occupied": 0,
+            "energy_mean": null,
+            "energy_min": null,
+            "field_mean": 2.0,
+            "field_min": 2.0,
+            "field_max": 2.0
+          },
+          {
+            "policy": "stay",
+            "maintenance": 1.1705078124999997,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2005078124999997,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 0.9375,
+            "energy_min": 0.9375,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          },
+          {
+            "policy": "stay",
+            "maintenance": 1.1706054687499998,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2006054687499998,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 0.15625,
+            "energy_min": 0.15625,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          }
+        ],
+        "sighted_trail": [
+          {
+            "policy": "sighted",
+            "maintenance": 1.15,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.18,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 8.82,
+            "energy_min": 8.82,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.1749999999999998,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2049999999999998,
+            "alive": 0,
+            "occupied": 0,
+            "energy_mean": null,
+            "energy_min": null,
+            "field_mean": 2.0,
+            "field_min": 2.0,
+            "field_max": 2.0
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.1624999999999999,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.1925,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 8.8075,
+            "energy_min": 8.8075,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.1687499999999997,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.1987499999999998,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 8.80125,
+            "energy_min": 8.80125,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.1718749999999998,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2018749999999998,
+            "alive": 0,
+            "occupied": 0,
+            "energy_mean": null,
+            "energy_min": null,
+            "field_mean": 2.0,
+            "field_min": 2.0,
+            "field_max": 2.0
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.1703124999999996,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2003124999999997,
+            "alive": 0,
+            "occupied": 0,
+            "energy_mean": null,
+            "energy_min": null,
+            "field_mean": 2.0,
+            "field_min": 2.0,
+            "field_max": 2.0
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.1695312499999997,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.1995312499999997,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 8.35591905,
+            "energy_min": 5.0076,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.1699218749999996,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.1999218749999996,
+            "alive": 40,
+            "occupied": 40,
+            "energy_mean": 5.23091905,
+            "energy_min": 1.8826,
+            "field_mean": 1.7,
+            "field_min": 1.7,
+            "field_max": 1.7
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.1701171874999996,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2001171874999996,
+            "alive": 0,
+            "occupied": 0,
+            "energy_mean": null,
+            "energy_min": null,
+            "field_mean": 2.0,
+            "field_min": 2.0,
+            "field_max": 2.0
+          },
+          {
+            "policy": "sighted",
+            "maintenance": 1.1700195312499995,
+            "damage": 0.02,
+            "repair": 1.5,
+            "cost": 1.2000195312499995,
+            "alive": 22,
+            "occupied": 22,
+            "energy_mean": 0.6801143181818182,
+            "energy_min": 0.04375,
+            "field_mean": 1.8350000000000002,
+            "field_min": 1.7,
+            "field_max": 2.0
+          }
+        ]
+      }
+    },
+    "damage_line": {
+      "label": "damage*repair 0.00, 0.03, 0.06",
+      "metrics": {
+        "points": [
+          {
+            "damage": 0.02,
+            "repair": 1.5,
+            "damage_repair": 0.03,
+            "predicted": 1.17,
+            "measured": 1.1706347656249998,
+            "distance": 0.0006347656249998668
+          },
+          {
+            "damage": 0.04,
+            "repair": 1.5,
+            "damage_repair": 0.06,
+            "predicted": 1.14,
+            "measured": 1.1406347656249998,
+            "distance": 0.0006347656249998668
+          },
+          {
+            "damage": 0.0,
+            "repair": 1.5,
+            "damage_repair": 0.0,
+            "predicted": 1.2,
+            "measured": 1.2006347656249998,
+            "distance": 0.0006347656249998668
+          }
+        ]
+      }
+    }
+  },
+  "series": {
+    "stay_bisection": {
+      "steps": [
+        1.15,
+        1.1749999999999998,
+        1.1624999999999999,
+        1.1687499999999997,
+        1.1718749999999998,
+        1.1703124999999996,
+        1.1710937499999998,
+        1.1707031249999997,
+        1.1705078124999997,
+        1.1706054687499998
+      ],
+      "values": [
+        40.0,
+        0.0,
+        40.0,
+        40.0,
+        0.0,
+        40.0,
+        0.0,
+        0.0,
+        40.0,
+        40.0
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "stay at maintenance 1.0: alive 40, energy mean 8.9700, field 1.7000..1.7000"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "stay at maintenance 1.3: alive 0; the dying side is empty"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "stay threshold 1.170654: distance to 1.17 is 0.000654, distance to the old sitter prediction 1.67 is 0.499346. The arm separates the two predictions."
+    }
+  },
+  "verdict": {
+    "kind": "void",
+    "reason": "VOID: recorded before the clamp was moved to the end of the step (`core/src/organism.rs`, 2026-11-12). With the clamp after the income `move_cost` was erased, so this run measures a dynamics that no longer exists. See `docs/FINDING-the-cap-is-applied-after-the-spend.md` and `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`. Kept as a record; the numbers are not usable."
+  },
+  "hashes": {},
+  "limitations": [
+    "One seed, one field shape, one E_max. The thresholds are properties of these settings.",
+    "The trace samples only the last step, so the bisection locates where the population is empty at step 8000, not where it dies.",
+    "A stay organism's cell settles at c* = 1.7, above income 1.2, so its take is capped by income and the two regimes coincide here. The experiment does not test the regime where c* < income (t > 3.2 at these settings), where the thresholds would separate.",
+    "damage*repair was varied only through damage, with repair fixed at 1.5. The law says only the product matters; this does not separate the two factors."
+  ],
+  "command": "python3 checks/exp69_a_sitter_dies_at_the_same_maintenance.py",
+  "created_at": "2026-11-12T22:49:18.844579+00:00"
+}
