@@ -110,7 +110,14 @@ def main() -> int:
 
     checked = 0
     bad = 0
+    skipped = 0
     for path in sorted(RESULTS.rglob("run-*.json")):
+        # `_archive/` holds runs recorded before the contract existed. They are
+        # kept as history, not as evidence — checking them would only re-report
+        # the same known defect forever.
+        if "_archive" in path.parts:
+            skipped += 1
+            continue
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except Exception as e:
@@ -129,6 +136,8 @@ def main() -> int:
 
     print()
     print(f"Проверено: {checked}, нарушений: {bad}")
+    if skipped:
+        print(f"Пропущено (results/_archive/, до контракта): {skipped}")
     if bad:
         print()
         print("Нарушения — это не ошибка скрипта. Это результаты, записанные")
