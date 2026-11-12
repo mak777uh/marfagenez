@@ -83,8 +83,6 @@ theorem step_gt_self {M r t c : ℝ} (hr : 0 < r) (h : c < equilibrium M r t) :
 theorem step_at_equilibrium {M r t : ℝ} (hr : r ≠ 0) :
     cellStep M r t (equilibrium M r t) = equilibrium M r t := by
   unfold cellStep equilibrium
-  -- In this Mathlib version `field_simp` yields an identity off by r^2 * t, so
-  -- the division is cleared by hand: write t as (t/r) * r.
   field_simp
   ring
 
