@@ -8,6 +8,7 @@
 
 import Medium.BodySize
 import Medium.Field
+import Medium.FoldPeriodic
 import Medium.Convergence
 import Medium.Feed
 import Medium.Capacity
