@@ -20,7 +20,32 @@
 
 ## Что доказано (уровень A)
 
-### Lean — 228 теорем и лемм в 53 файлах, 0 sorry
+### Lean — две библиотеки, 266 теорем и лемм, 1 sorry
+
+| библиотека | файлов | теорем | sorry | команда |
+|---|---|---|---|---|
+| `Medium` — модель клетки | 53 | **239** | **0** | `lake build` |
+| `Legacy` — стена/гонка/наклон | 9 | 27 | 1 | `lake build Legacy` |
+
+`Medium` — то, что относится к среде ребёнка: `cellStep`, `equilibrium`,
+`capacity`, `Regimes`, `CapacityLaw`. `Legacy` — другой язык (стена,
+свободный ход, гонка, наклон) на `Nat`/`UInt64`, не связанный с моделью
+клетки; он собирается отдельной `lean_lib`, чтобы не смешивать переменные.
+
+**Команда:**
+```bash
+cd laws && lake build && lake build Legacy
+# Build completed successfully (18320 jobs).   -- Medium
+# Build completed successfully (18238 jobs).   -- Legacy
+```
+
+**Проверка отсутствия дыр:**
+```bash
+grep -rn 'sorry' Medium/*.lean | wc -l   # 0
+grep -rn 'sorry' Legacy/*.lean           # только Convergence2.lean:64
+```
+
+### Legacy — что доказано (уровень A)
 
 | утверждение | файл | что именно доказано |
 |---|---|---|
@@ -36,12 +61,6 @@
 | `α = 0 ⇔ μ = 0` | `Tilt.lean` | закон наклона |
 | `(B − spread)/μ < B/μ` | `Time.lean` | время до стены |
 | **`FFI.saturation` = `Saturation.spread`** | `Equiv.lean` | **эквивалентность** |
-
-**Команда:**
-```bash
-cd laws && lean Saturation.lean && lean Race.lean && lean Reaction.lean \
-  && lean Tilt.lean && lean Time.lean && LEAN_PATH=. lean Equiv.lean
-```
 
 ### Verus — 41 verified
 
@@ -134,6 +153,7 @@ cd core && cargo test --release -- --test-threads=1
 | 3 теоремы в `medium` | ложные постановки | `ELIMINATED.md` п.10 |
 | `varianceF_bound` | ложна: `isFinite` не исключает underflow, контрпример `b = 2⁻⁵³⁷` | `LESSONS.md` урок 2 |
 | `fold_identifies`, `mean_le_of_all_le` | ложные постановки, исправлены | `LESSONS.md` урок 2 |
+| `Convergence2.fold_identifies` (второй раз) | `%` на `ℝ` не периодичен по `4B`; теперь явный `sorry`, не доказательство | `laws/Legacy/README.md` |
 | «`c* = M − t/r`» | не тот порядок операций; верно `M − t(1−r)/r` | `FINDING-correct-equilibrium.md` |
 | «`k_max = M·r/(t₀(1−r))`» | верное число по неверной причине; забор последовательный | `FINDING-crowding-is-two.md` |
 | «тормоз сужает до 0.9 закона» | измерено 0.954; тест противоречил sweep | `LESSON-two-tests-disagreed.md` |
