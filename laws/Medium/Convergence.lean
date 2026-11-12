@@ -85,7 +85,7 @@ theorem step_at_equilibrium {M r t : ℝ} (hr : r ≠ 0) :
     cellStep M r t (equilibrium M r t) = equilibrium M r t := by
   unfold cellStep equilibrium
   field_simp
-  ring
+  ring_nf
 
 /-- **The gap to the equilibrium is multiplied by `(1 - r)` every step.**
 
@@ -95,7 +95,7 @@ theorem step_approaches {M r t c : ℝ} (hr : r ≠ 0) :
     cellStep M r t c - equilibrium M r t = (c - equilibrium M r t) * (1 - r) := by
   unfold cellStep equilibrium
   field_simp
-  ring
+  ring_nf
 
 /-- **The absolute gap shrinks by the factor `(1 - r)`.** -/
 theorem gap_shrinks {M r t c : ℝ} (hr0 : 0 < r) (hr1 : r < 1) :
