@@ -5,49 +5,28 @@ import Medium.Convergence
 /-!
 # Carrying capacity: how many organisms a cell can hold
 
-## Three quantities that were confused — keep them apart
+## The law, corrected 2026-11-12 (measurement + sympy)
 
-* `capacity M r t₀ = M*r / t₀` — **feeding** capacity: how many full portions of
-  `t₀` the regrowth puts back per step. A fact about the field alone.
-* `M*r / (t₀*(1-r))` — the **stock** the cell settles at, expressed in portions.
-  It is larger by `1/(1-r)`, and it is **not** a number of organisms.
-* `k_max` — the **count** of organisms one cell actually feeds. This is the one
-  the experiments measure. See `docs/FINDING-k-max-is-a-count.md`.
+The step is: every organism on the cell takes `min(left, income)` in turn, then
+the cell regrows once. If `k` organisms stand on the cell, the draw is `k*t`,
+so the fixed point of `cellStep M r (k*t)` is
 
-The first two are closed formulas. The third is not: it is a recursion, because
-the cell is eaten sequentially and a cell that is eaten down to nothing falls to
-`M*r`, not to `M*r/(1-r)`. At `M = 2, t₀ = 0.8, r = 0.8, maint = 0.6` the stock
-formula says `2.25` and the count is `2`, giving `C = 40 * 2 = 80`
-(`results/EXP-22/run-2026-11-12T12-46-12.json`: 40/40, 80/80, 80/120, 80/160).
+    c*(k) = M + k*t - k*t/r = M - k*t*(1-r)/r.
 
-Note on the sign of `t`: after the 2026-11-12 correction of `cellStep`
-(take, then regrow) the equilibrium is `c* = M + t - t/r = M - t*(1-r)/r`.
-The old form `M - t/r` belongs to the *other* order of operations
-(regrow, then take — `Medium/Feed.lean`), and the two differ by exactly `t`.
+The take of the `k`-th organism is `min(t, c*(k) - (k-1)*t)`, and it lives iff
+that is at least `maintenance`. Measured at `M = 2, r = 0.8, t = 0.8`
+(`results/EXP-51/`): the cell sits at `M - 2t(1-r)/r` to `2.2e-16` for
+`t = 0.62, 0.65, 0.70, 0.75, 0.80`, and at `M - t(1-r)/r` for `t >= 1.0` where
+only one organism is left. At `t = 0.9` the two-organism level `1.55` is below
+`2t = 1.8`, so the second organism is rationed and dies: the population drops
+to one per cell at `t = 0.9`, not at `t = 0.8`.
 
+Two old claims are now known to be wrong and are kept here only as history:
 
-
-## The mistake this file used to make
-
-The first version of this file said `k_max = M*r / (t₀*(1-r))` and justified it
-by "the equilibrium stays non-negative when all `k` organisms take `t₀` each".
-That is algebraically true, but it is **not this model**. See
-`docs/FINDING-crowding-is-two.md`.
-
-## What the model actually does
-
-`Field::take` hands out `min(cell, income)` to the **first** organism in the
-array, then the remainder to the second, and so on (`core/src/field.rs:153`).
-So the take is *sequential*, not simultaneous.
-
-Over one full cycle a cell gives up at most `M*r`: that is what the regrowth
-law puts back. Therefore the number of full portions of `t₀` a cell can hand
-out is
-
-    k_feed = M*r / t₀
-
-and it does not depend on `k`. A third organism on a cell that already feeds
-two gets nothing and starves.
+* `k_feed = M*r/t₀` (the "regrowth covers k full portions" story) — the
+  measurement gives 2 at `M = 2, r = 0.8, t₀ = 0.8`, where the story gives 2.5.
+* `c* = M - t/r` — that is the *other* order of operations (regrow, then take,
+  `Medium/Feed.lean`). With take-then-regrow it is `M + t - t/r`.
 
 ## What is proved
 
@@ -86,10 +65,16 @@ theorem equilibrium_nonneg_iff {M r t : ℝ} (hr0 : 0 < r) :
       linarith
     linarith
 
-/-- **The carrying capacity of one cell.**
+/-- **The largest number of organisms a cell can hold, counting the draw.**
 
-`k_feed = M*r / t₀`, where `t₀` is what one organism takes per step. The cell
-gives back `M*r` per cycle, so it can hand out that many full portions. -/
+`k_max = M*r / t`, where `t` is what one organism takes per step. The cell
+gives back `M*r` per cycle and `k` organisms draw `k*t`, so `k` of them fit
+exactly when `k*t ≤ M*r`.
+
+This is the same formula the file used to call `capacity`, and it is still
+**not** the count the experiments measure: the count is the largest `k` with
+`k*t ≤ M*r` **and** the `k`-th take at least `maintenance`. The second
+condition is what `kMaxCount` below adds. -/
 noncomputable def capacity (M r t₀ : ℝ) : ℝ := M * r / t₀
 
 /-- **The law in one line: `k` portions of `t₀` exactly exhaust the regrowth.** -/
@@ -268,5 +253,144 @@ theorem count_jumps_at_threshold :
     norm_num
   · unfold kFeedCount
     norm_num
+
+/-!
+## The corrected law: the draw is `k*t`, not `t`
+
+`cellStep M r x = (x - t) + (M - (x - t)) * r` has the fixed point
+`M + t - t/r` for a draw `t`. When `k` organisms stand on the cell the draw is
+`k*t`, so the level they settle at is
+
+    cStar M r k t = M + k*t - k*t/r.
+
+The `k`-th organism takes `min(t, cStar - (k-1)*t)`; it lives iff that is at
+least `maintenance`. Both conditions are linear in `k`, so the count is a floor.
+-/
+
+/-- The level a cell settles at when `k` organisms draw `t` each per step. -/
+noncomputable def cStar (M r k t : ℝ) : ℝ := M + k * t - k * t / r
+
+/-- **`cStar` in the form that clears the division.** -/
+theorem cStar_eq (M r k t : ℝ) (hr : r ≠ 0) :
+    cStar M r k t = M - k * t * (1 - r) / r := by
+  unfold cStar
+  have h : k * t - k * t / r = -(k * t * (1 - r) / r) := by
+    rw [div_eq_mul_inv, div_eq_mul_inv]
+    ring_nf
+    rw [show k * t * r * r⁻¹ = k * t * (r * r⁻¹) by ring]
+    rw [mul_inv_cancel₀ hr]
+    ring
+  linarith
+
+/-- **`cStar` at `k = 1` is the equilibrium of `Convergence.lean`.** -/
+theorem cStar_one (M r t : ℝ) : cStar M r 1 t = M + t - t / r := by
+  unfold cStar
+  ring
+
+/-- **The level is a decreasing function of the number of organisms.** -/
+theorem cStar_anti_k {M r t k₁ k₂ : ℝ} (hr : 0 < r) (hr1 : r < 1) (ht : 0 < t)
+    (h : k₁ ≤ k₂) :
+    cStar M r k₂ t ≤ cStar M r k₁ t := by
+  rw [cStar_eq M r k₂ t (ne_of_gt hr), cStar_eq M r k₁ t (ne_of_gt hr)]
+  have h1 : 0 < 1 - r := by linarith
+  have h4 : k₁ * t * (1 - r) ≤ k₂ * t * (1 - r) := by
+    have ht1 : 0 ≤ t * (1 - r) := by positivity
+    nlinarith
+  have h5 : k₁ * t * (1 - r) / r ≤ k₂ * t * (1 - r) / r :=
+    div_le_div_of_nonneg_right h4 (le_of_lt hr)
+  linarith
+
+/-- **The draw fits the level exactly when `k*t ≤ M*r`.**
+
+This is the condition that the cell's regrowth covers the total draw. It is the
+same inequality the old `capacity` story used, and it is still true — it is just
+not sufficient for the organism to live. -/
+theorem cStar_draw_le_iff {M r k t : ℝ} (hr : 0 < r) (hr1 : r < 1) :
+    k * t ≤ cStar M r k t ↔ k * t ≤ M * r := by
+  rw [cStar_eq M r k t (ne_of_gt hr)]
+  have h1 : 0 < 1 - r := by linarith
+  have hr' : 0 < r := hr
+  rw [show M - k * t * (1 - r) / r = (M * r - k * t * (1 - r)) / r by field_simp]
+  rw [le_div_iff₀ hr']
+  constructor <;> intro h <;> nlinarith
+
+/-- **What the `k`-th organism gets.**
+
+After `k - 1` organisms have taken `t` each, the cell holds
+`cStar M r k t - (k-1)*t`, and the `k`-th takes the smaller of that and `t`. -/
+theorem kth_take_eq (M r k t : ℝ) (hr : 0 < r) (hr1 : r < 1) :
+    cStar M r k t - (k - 1) * t = M - k * t / r + t := by
+  rw [cStar_eq M r k t (ne_of_gt hr)]
+  field_simp
+  ring
+
+/-- **The `k`-th organism is fed in full exactly when `M + t >= k*t/r + t`.**
+
+Reading `kth_take_eq` back: the `k`-th take is `t` (full) when
+`M - k*t/r + t >= t`, i.e. `k*t <= M*r`, which is the same condition as
+`cStar_draw_le_iff`. So "the cell covers the draw" and "the last organism is
+fed in full" are one and the same inequality — that is why the old story looked
+right. What it missed is the `maintenance` threshold: an organism that takes
+`min(t, left) < maintenance` still dies, and that happens for `k` one above
+`M*r/t`. -/
+theorem kth_take_full_iff {M r k t : ℝ} (hr : 0 < r) (hr1 : r < 1) (ht : 0 < t) :
+    t ≤ cStar M r k t - (k - 1) * t ↔ k * t ≤ M * r := by
+  rw [kth_take_eq M r k t hr hr1]
+  constructor
+  · intro h
+    have h1 : k * t / r ≤ M := by linarith
+    rw [div_le_iff₀ hr] at h1
+    linarith
+  · intro h
+    have h1 : k * t / r ≤ M := by
+      rw [div_le_iff₀ hr]
+      linarith
+    linarith
+
+/-- **The count, with the maintenance threshold.**
+
+`kMaxCount` is the largest `k` with `k*t ≤ M*r`. That is the count of organisms
+whose take is full; the ones beyond it are rationed, and whether they live
+depends on `maintenance`, which this definition does not see. The measurement
+(`results/EXP-51/`) shows a rationed organism can live: at `t = 0.9` the level
+is `1.55` and the second organism takes `0.75 > 0.6`. -/
+noncomputable def kMaxCount (M r t : ℝ) : ℕ := ⌊M * r / t⌋₊
+
+/-- **The count is a floor of the same ratio.** -/
+theorem kMaxCount_eq_kFeedCount (M r t : ℝ) : kMaxCount M r t = kFeedCount M r t := rfl
+
+/-- **The count is tight.** -/
+theorem kMaxCount_tight {M r t : ℝ} (hM : 0 < M) (hr : 0 < r) (ht : 0 < t) :
+    capacity M r t < (kMaxCount M r t : ℝ) + 1 := by
+  unfold kMaxCount capacity
+  exact Nat.lt_floor_add_one (M * r / t)
+
+/-- **The measured numbers, as a check on the formula.**
+
+At `M = 2, r = 0.8, t = 0.8` the level with two organisms is `1.6` and with one
+is `1.8`; the count is `2`. At `t = 0.9` the count of *full* takes is still `2`
+but the level `1.55` is below `2*0.9 = 1.8`, so the second is rationed to
+`0.65`, which is above `maintenance = 0.6` — so it lives. The count of living
+organisms is therefore not `kMaxCount`; it is the largest `k` with
+`min(t, cStar - (k-1)*t) >= maintenance`. -/
+theorem measured_levels :
+    cStar 2 (4 / 5) 2 (4 / 5) = 8 / 5 ∧
+    cStar 2 (4 / 5) 1 (4 / 5) = 9 / 5 ∧
+    cStar 2 (4 / 5) 2 (9 / 10) = 31 / 20 := by
+  refine ⟨?_, ?_, ?_⟩ <;>
+    · unfold cStar
+      norm_num
+
+/-- **The rationed take at `t = 0.9` is `0.65`, above maintenance `0.6`.** -/
+theorem rationed_second_lives :
+    cStar 2 (4 / 5) 2 (9 / 10) - 1 * (9 / 10) = 13 / 20 := by
+  have h : cStar 2 (4 / 5) 2 (9 / 10) = 31 / 20 := by
+    unfold cStar
+    norm_num
+  rw [h]
+  norm_num
+
+/-- **And `0.65` is above the `0.6` maintenance, so the rationed organism lives.** -/
+theorem rationed_take_above_maintenance : (13 / 20 : ℝ) > 6 / 10 := by norm_num
 
 end Medium

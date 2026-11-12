@@ -36,12 +36,13 @@ It is a COUNT, not a stock divided by a portion: the cell hands out
 `min(t₀, c_k)` where `c_k` is what remained after `k - 1` takes. `k_max` is the
 largest `k` with `min(t₀, c_k) ≥ maintenance`.
 
-At `M = 2, r = 0.8, t₀ = 0.8, maintenance = 0.6` the equilibrium is `c* = 1.8`,
-and the takes are 0.8, 0.8, 0.2 — so `k_max = 2`, not `M * r / t₀ = 2` by
-coincidence of the numbers and not `2.25` from the old stock formula. The
-recursion that the model actually executes is `takeOne` / `afterTakes` in
-`Capacity.lean`; `results/EXP-22/` measured exactly `40 * min(k, 2)` survivors
-for `k = 1..4`.
+At `M = 2, r = 0.8, t₀ = 0.8, maintenance = 0.6` the one-organism equilibrium is
+`c* = 1.8` and the two-organism level is `cStar(2) = 1.6`. With two organisms
+standing on the cell the takes are 0.8, 0.8 — both full, and both above
+`maintenance = 0.6`. A third would take `1.6 - 1.6 = 0.0`, below maintenance, so
+the count of *full* takes is `k_max = ⌊M*r/t₀⌋ = ⌊2.0⌋ = 2`. The recursion that
+the model actually executes is `takeOne` / `afterTakes` in `Capacity.lean`;
+`results/EXP-22/` measured exactly `40 * min(k, 2)` survivors for `k = 1..4`.
 
 `feedCapacity` (this file) is a different question: for which `k` is the cell
 still in the FULL regime, i.e. `k * t0 <= c*` so nobody is rationed?
@@ -50,7 +51,7 @@ still in the FULL regime, i.e. `k * t0 <= c*` so nobody is rationed?
 
 Numerically at `M = 2, r = 0.8, t0 = 0.8`:
 
-    k_max = 2,   feedCapacity = 6.0
+    k_max = ⌊M*r/t₀⌋ = 2,   feedCapacity = 6.0
 
 So a cell can feed 2 organisms, but stays in the full regime (nobody rationed)
 up to 6. Between 2 and 6 the cell is rationed; the measurement in
