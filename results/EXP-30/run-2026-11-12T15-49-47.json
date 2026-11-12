@@ -1,0 +1,197 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-30",
+  "run_id": "run-2026-11-12T15-49-47",
+  "model_commit": "unknown",
+  "seed": 7,
+  "parameters": {
+    "n": 120,
+    "cells": 120,
+    "steps": 1200,
+    "seeds": "1..10"
+  },
+  "arithmetic": {
+    "reads_per_step": {
+      "stay": 0,
+      "random": 0,
+      "remember": 1,
+      "memory": 1,
+      "sighted": 3
+    },
+    "prediction": "sighted saturates at budget 3; below 3 it cannot compare"
+  },
+  "conditions": {
+    "uniform_b1": {
+      "label": "sighted, uniform field, read budget 1",
+      "metrics": {
+        "mean_alive_of_120": 76.3,
+        "per_seed": [
+          72,
+          70,
+          78,
+          80,
+          72,
+          82,
+          79,
+          73,
+          76,
+          81
+        ]
+      },
+      "hash": "6b2b97c0fc72882f"
+    },
+    "uniform_b2": {
+      "label": "sighted, uniform field, read budget 2",
+      "metrics": {
+        "mean_alive_of_120": 109.2,
+        "per_seed": [
+          106,
+          103,
+          109,
+          113,
+          103,
+          115,
+          114,
+          109,
+          109,
+          111
+        ]
+      },
+      "hash": "8e332aa32f7c466e"
+    },
+    "uniform_b3": {
+      "label": "sighted, uniform field, read budget 3",
+      "metrics": {
+        "mean_alive_of_120": 114.6,
+        "per_seed": [
+          118,
+          109,
+          115,
+          117,
+          108,
+          117,
+          117,
+          117,
+          114,
+          114
+        ]
+      },
+      "hash": "9c573e0c699f8048"
+    },
+    "uniform_b4": {
+      "label": "sighted, uniform field, read budget 4",
+      "metrics": {
+        "mean_alive_of_120": 114.6,
+        "per_seed": [
+          118,
+          109,
+          115,
+          117,
+          108,
+          117,
+          117,
+          117,
+          114,
+          114
+        ]
+      }
+    },
+    "gradient_b1": {
+      "label": "sighted, gradient field, read budget 1",
+      "metrics": {
+        "mean_alive_of_120": 56.9,
+        "per_seed": [
+          54,
+          51,
+          59,
+          64,
+          50,
+          64,
+          57,
+          56,
+          56,
+          58
+        ]
+      },
+      "hash": "71c6735333a4b5f3"
+    },
+    "gradient_b2": {
+      "label": "sighted, gradient field, read budget 2",
+      "metrics": {
+        "mean_alive_of_120": 0.0,
+        "per_seed": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "hash": "a89c0cf38596d597"
+    },
+    "gradient_b3": {
+      "label": "sighted, gradient field, read budget 3",
+      "metrics": {
+        "mean_alive_of_120": 49.4,
+        "per_seed": [
+          52,
+          51,
+          50,
+          51,
+          49,
+          50,
+          46,
+          50,
+          48,
+          47
+        ]
+      },
+      "hash": "7cffb58e286f39b8"
+    },
+    "blind_sighted": {
+      "label": "sighted with read budget 0 — no neighbours to compare",
+      "metrics": {
+        "alive": 79,
+        "note": "same trace as `stay`: a sighted organism that cannot read does what a blind one does"
+      }
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "sighted at budget 3 survives 114.6 of 120, at budget 1 survives 76.3"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "stay and random produce the same trace hash at budget 0 and budget 1: stay 870435c692217f1f / 870435c692217f1f, random 98cc101a40bd8a2e / 98cc101a40bd8a2e"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "saturation exactly at the counted number 3: budget 3 = 114.6, budget 4 = 114.6 (equal), budget 2 = 109.2 (lower); a blind sighted organism reproduces `stay` exactly (870435c692217f1f), so the arm that carries the effect is the one that reads, not the label"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "counted reads per step (sighted = 3); saturation at exactly 3 on a uniform field (114.6 = 114.6); non-monotone on a gradient (budget 1 = 56.9, budget 2 = 0.0); non-reading policies unchanged by construction (same hash)."
+  },
+  "hashes": {
+    "uniform_b1": "6b2b97c0fc72882f",
+    "uniform_b2": "8e332aa32f7c466e",
+    "uniform_b3": "9c573e0c699f8048",
+    "gradient_b1": "71c6735333a4b5f3",
+    "gradient_b2": "a89c0cf38596d597",
+    "gradient_b3": "7cffb58e286f39b8"
+  },
+  "limitations": [
+    "What this does not prove: that 3 is the right budget for any policy other than sighted (it is the counted minimum for comparing three cells); that partial sight is always worse than none (measured on one field shape, ten seeds); that reading has a cost (here it is free but limited — a model where reading costs energy is a different medium and has not been measured); that 0 survivors at budget 2 on a gradient is a law (the mechanism — walk one way, never correct — is the claim, the number 0 is an observation).",
+    "One read is worth a lot to `remember` (11 -> 84 survivors), but this compares two budgets only; it does not show the memory is the mechanism, only that without a read the memory never fills."
+  ],
+  "command": "python3 checks/exp30_read_budget.py",
+  "created_at": "2026-11-12T15:49:47.178134+00:00"
+}

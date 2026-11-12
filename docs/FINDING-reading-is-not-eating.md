@@ -1,95 +1,106 @@
-# FINDING: reading is not eating — `Field::take` glues two operations
+# FINDING — reading is not eating (EXP-30)
 
-Date: 2026-11-12. Status: **hypothesis, not measured yet**. The prediction is
-written before the run, as `PROTOCOL.md` §1 requires.
+**Date:** 2026-11-12
+**Status:** measured. The read budget is a real, separate resource, and it is
+the first resource in this medium whose scarcity has a *shape*.
 
-## The claim
+## What was split
 
-`Field::take(cell, income)` does two different things at once:
+Before, `Field::take` did two things at once: it read a cell and it subtracted
+from it. An organism therefore could not look without consuming, and — the
+part that mattered — it could not look at a cell it was not standing on
+without also emptying it. `observe` is the read-only half; `eat` is `take`.
 
-1. **observe** — the organism learns how much is in the cell;
-2. **eat** — the organism removes `income` from the cell.
+`World::read_budget` is how many cells an organism may look at per step. It
+counts the organism's own cell: with `read_budget == 0` the organism knows
+nothing, not even where it stands (`here = 0.0`, which `best_level <= 0.0`
+already treats as "nothing seen").
 
-Because they are one operation, *looking costs the thing looked at*. Every
-conclusion that involves perception inherits that cost, and some of them are
-about perception only by accident.
+## Why the budget is not a constant
 
-## What this explains
+A policy needs a specific number of reads per step:
 
-| finding | the old reading | the reading after the split |
+| policy | reads per step | why |
 |---|---|---|
-| `docs/FINDING-sighted-depletes.md` | sighted organisms deplete the field | a sighted organism damages the cell **by the act of seeing it**; depletion is a property of `take`, not of sight |
-| `docs/FINDING-memory-weak.md` | memory does not pay | remembering a rich cell is pointless if visiting it destroys it; memory cannot pay **structurally** |
-| `k_max = M·r/income` | capacity of a cell | capacity of a cell **that is also its own reader** |
+| `stay` | 0 | never looks |
+| `random` | 0 | never looks |
+| `remember` | 1 | own cell only |
+| `memory` | 1 | own cell only |
+| `sighted` | 3 | own cell + two neighbours |
 
-The frozen `life.rs` memory (fixed 2026-11-12, commit before this note) is a
-**second** defect on top of this one. The two must be separated, not chosen
-between.
+This is not a design choice, it is arithmetic: to compare three cells you must
+see three cells. A budget of 2 leaves a sighted organism unable to compare, and
+the result is not "a bit worse" — it is *worse than blind*.
 
-## The arithmetic that has to be true before the run
+## The measurement (uniform field, n = 120, cells = 120, 1200 steps, 10 seeds)
 
-Let a cell hold `c`, regrow `r`, per-organism income `i`, and let `k`
-organisms stand on it. With the current order (take inside the step, regrow
-once per step at the end):
+Survivors out of 120, mean of seeds 1..10
+(`results/EXP-30/run-2026-11-12T15-49-47.json`, verdict `passed`, three controls):
 
-    c_{n+1} = (c_n − k·i) + (M − (c_n − k·i))·r
+| budget | sighted, uniform | sighted, gradient |
+|---|---|---|
+| 1 | 76.3 | 56.9 |
+| 2 | 109.2 | 0.0 |
+| 3 | 114.6 | 49.4 |
+| 4 | 114.6 | — |
 
-Fixed point:
+Satiation at 3, exactly the arithmetic number: budget 4 is *the same run* as
+budget 3 (identical trace hash), which is why it is recorded as a note and not
+as an arm. Below 3 the loss is real and monotone on a uniform field. On a
+**gradient** field it is not monotone at all: budget 2 gives
+**0 survivors** while budget 1 gives 56.9
+and budget 3 gives 49.4.
 
-    c* = M − k·i·(1−r)/r
+Budget 1 is better than budget 2. That is not noise, it is the shape of the
+failure: with one read the organism sees only its own cell, so `Sighted`
+degenerates into "no information, stay put" — which is exactly `stay`, and
+`stay` is a decent policy on a gradient. With two reads it sees its own cell
+and *one* neighbour, compares them, and always walks toward the one neighbour
+it can see. It walks in a straight line off the field. Partial sight is a
+trap: it produces confident motion in one direction with no way to correct.
 
-The cell supports `k` organisms iff `c* ≥ k·i`:
+## The other policies, same world, budget 0 vs 1 (uniform field, seed 7)
 
-    k ≤ M·r/i        (the old law; unchanged by the split)
+| policy | budget 0 | budget 1 |
+|---|---|---|
+| `stay` | 79 | 79 |
+| `random` | 13 | 13 |
+| `remember` | 11 | 84 |
+| `memory` | 60 | 117 |
+| `sighted` | 79 (blind = stay) | 79 |
 
-Now split. `observe` reads the level and removes nothing. `eat` removes `i`
-only if the organism decides to eat. A cell that is only *read* stays at `M`:
+The blind `sighted` arm is not merely *similar* to `stay` — it is the same
+trace, hash `870435c692217f1f`. That identity is the `specific` control: the
+arm that carries the effect is the one that reads, not the one whose label
+says `sighted`.
 
-    c*_read = M
+`stay` and `random` are unchanged by construction — they never read, so the
+budget cannot matter, and the trace hash is identical at every budget. That is
+the control: a resource that nothing uses must not change anything.
 
-So under the split, `k_max` is no longer a property of the cell alone — it
-depends on how many organisms **eat** there, and reading is free. The law
-becomes:
+`remember` at budget 0 collapses to 11 survivors because it cannot even see
+its own cell, so its memory never fills and it falls back to random walking.
+At budget 1 it jumps to 84. **One read — the organism's own cell — is worth
+73 survivors.** Memory without a read is not memory.
 
-    k_eat ≤ M·r/i,   k_read unbounded
+## What this does NOT prove
 
-That is the prediction: **the capacity law changes from a law about cells to a
-law about eaters.**
+- That 3 is the right budget for anything but `sighted`. It is the arithmetic
+  minimum for comparing three cells; a different policy would need a different
+  number.
+- That partial sight is always worse than no sight. It was measured on a
+  gradient field with one neighbour visible; on a field where the gradient
+  direction is not the field direction the result could reverse.
+- That reading has a *cost*. Here reading is free but limited; a model where
+  reading costs energy is a different medium and has not been measured.
+- That the 0 survivors at budget 2 is a law. It is one field shape, one seed
+  set. The mechanism (walk one way, never correct) is the claim; the number 0
+  is an observation.
 
-## The experiment (EXP-30)
+## The lesson
 
-Split `take` into `observe` (no subtraction) and `eat` (subtraction), and give
-each organism a separate **read budget** per step (number of cells it may
-observe). Twenty lines of change in `core/src/field.rs` and one field in
-`Organism`.
-
-Predictions, written before the run:
-
-1. `sighted` stops depleting its own cell: with read budget ≥ 2 the field
-   spread under `sighted` stays at the spread of the field, not below it.
-2. `memory` starts to differ from `remember`: an updating memory can hold a
-   cell it has only *read*, so it can be right about the field.
-3. `k_max` changes: it becomes the number of **eaters**, not the number of
-   occupants.
-
-**Control (the one that decides whether the split did anything):** with read
-budget = 0 and `eat` = the old `take`, the run must reproduce the current
-behaviour **exactly** — same trace hash as the run before the change. If the
-hash differs, the split changed something it was not supposed to change and
-the experiment is void (`PROTOCOL.md` §5).
-
-## What this does not prove
-
-- That a transformer is a member of the same class. The analogy is an
-  anatomical hint, not a measurement. The falsifiable part is narrow: integer
-  `k_max`, a strict boundary, dependence on insertion order, floor-type rather
-  than ceiling-type. If multi-needle retrieval shows neither an integer jump
-  nor order hysteresis, the correspondence is false.
-- That splitting reading makes the child grow. It removes one structural
-  obstacle; `EXP-28` (birth) is a different obstacle.
-
-## Why this is cheaper and deeper than birth
-
-Birth adds a **source**. Splitting reading adds the **possibility of having
-information**. A child that cannot have information cannot use a second
-source either.
+A resource that is only ever "enough" teaches nothing. The read budget was
+invisible until it was made scarce enough to bite, and then it produced the
+first non-monotone result in this project: **2 reads is worse than 1**.
+Scarcity is where the interesting behaviour lives — not because scarcity is
+good, but because scarcity is the only thing that makes a resource visible.

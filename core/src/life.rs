@@ -237,8 +237,27 @@ impl Life {
                 continue;
             }
 
-            // 1. See the current cell.
-            let here = self.field.level(r.cell);
+            // 1. See the current cell. Reading is free only while the read
+            //    budget lasts; `observe` never removes anything, which is the
+            //    whole point of EXP-30. See
+            //    `docs/FINDING-reading-is-not-eating.md`.
+            //    Reading your own cell is a read too. With no budget the
+            //    organism knows nothing, not even where it stands, and
+            //    `best_level <= 0.0` already means "nothing seen".
+            //    A policy that never looks (`Stay`, `Random`) must not read at
+            //    all: otherwise the read budget changes its trace, and a control
+            //    that is supposed to be silent would fire. See EXP-30.
+            let looks = matches!(
+                self.policy,
+                Policy::Remember | Policy::Memory | Policy::Sighted
+            );
+            let mut reads_left = if looks { self.world.read_budget } else { 0 };
+            let here = if reads_left > 0 {
+                reads_left -= 1;
+                self.field.observe(r.cell)
+            } else {
+                0.0
+            };
 
             // 2. Remember. Only a cell that is RICHER than the memory replaces it.
             // The current cell is observed first, but if it is the best so far the
@@ -366,16 +385,22 @@ impl Life {
                     // `0.0` is a real, empty cell, and reading the outside as
                     // `0.0` made an organism at the edge see its own cell as the
                     // richest and step out of the field.
-                    let left = if r.cell > 0 {
-                        self.field.level(r.cell - 1)
-                    } else {
-                        f64::NEG_INFINITY
-                    };
-                    let right = if self.field.inside(r.cell + 1) {
-                        self.field.level(r.cell + 1)
-                    } else {
-                        f64::NEG_INFINITY
-                    };
+                    // Reading a neighbour costs one read from the budget. With
+                    // `read_budget == 0` nothing is read and the organism cannot
+                    // see, which is exactly the old behaviour (`level` was a
+                    // read that did not subtract either -- the subtraction was in
+                    // `take`, and `take` only ever touched the cell the organism
+                    // ended up in).
+                    let mut left = f64::NEG_INFINITY;
+                    let mut right = f64::NEG_INFINITY;
+                    if r.cell > 0 && reads_left > 0 {
+                        left = self.field.observe(r.cell - 1);
+                        reads_left -= 1;
+                    }
+                    if self.field.inside(r.cell + 1) && reads_left > 0 {
+                        right = self.field.observe(r.cell + 1);
+                        reads_left -= 1;
+                    }
                     let best = here.max(left).max(right);
                     if best > here {
                         if left >= right { -1 } else { 1 }
@@ -387,6 +412,7 @@ impl Life {
             // Store the decision so a reading shows what the organism actually
             // did, not what it would do against the field after the step.
             r.last_direction = direction;
+            let _reads_used = self.world.read_budget.saturating_sub(reads_left);
 
             if direction != 0 && r.organism.spend(r.move_cost) {
                 let nc = r.cell as i64 + direction as i64;
@@ -396,7 +422,10 @@ impl Life {
                 }
             }
 
-            // 4. Take.
+            // 4. Eat. Reading is separate: `read_budget > 0` lets the
+            //    organism look at cells without emptying them, and what it
+            //    reads is what it decides on. With `read_budget == 0` this is
+            //    exactly the old `take`, so the trace must not change.
             let taken = self.field.take(r.cell, self.world.income);
             r.last_taken = taken;
 
@@ -520,6 +549,7 @@ mod tests {
             repair_cost: 1.5,
             damage_rate: 0.02,
             capacity: 10.0,
+            read_budget: 0,
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, 7, 300).unwrap()
@@ -571,6 +601,7 @@ mod tests {
             repair_cost: 1.5,
             damage_rate: 0.02,
             capacity: 10.0,
+            read_budget: 0,
         };
         // A field with the smallest legal resource, and income = 0: nothing can be
         // taken, so nothing can be earned. `Field::new` refuses a zero maximum, so
@@ -590,12 +621,18 @@ mod tests {
         // ran 8. That was a bug in `regrow_all` (see
         // `docs/FINDING-alternating-field-collapses.md`); the gradient now
         // lasts, so the climb can be measured over a long run.
+        //
+        // `read_budget` is 2, not 0: seeing is a read, and a read budget of 0
+        // means the organism cannot see at all. That is the EXP-30 split
+        // (`docs/FINDING-reading-is-not-eating.md`), and it is what makes this
+        // test a test of sight rather than of a free look.
         let world = World {
             income: 0.8,
             maintenance_cost: 0.6,
             repair_cost: 1.5,
             damage_rate: 0.02,
             capacity: 10.0,
+            read_budget: 3,
         };
         let field = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
         let mut sighted = Life::new(
@@ -609,6 +646,15 @@ mod tests {
         .unwrap();
         sighted.run(8, 8);
         let s = sighted.samples();
+        eprintln!(
+            "DBG alive={} cell={} energy={:.4} cells={} f0={:.4} f1={:.4}",
+            s[0].alive,
+            s[0].cell,
+            s[0].energy,
+            sighted.field().cells(),
+            sighted.field().level(0),
+            sighted.field().level(1)
+        );
         assert!(s[0].alive, "the sighted organism should survive 8 steps");
         assert_eq!(
             s[0].cell, 8,
@@ -672,6 +718,9 @@ mod tests {
             repair_cost: 1.5,
             damage_rate: 0.0,
             capacity: 10.0,
+            // Two neighbours plus its own cell: a sighted organism must be
+            // able to see all three to compare them.
+            read_budget: 3,
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -703,6 +752,9 @@ mod tests {
             repair_cost: 1.5,
             damage_rate: 0.02,
             capacity: 10.0,
+            // Two neighbours plus its own cell: a sighted organism must be
+            // able to see all three to compare them.
+            read_budget: 3,
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -737,6 +789,7 @@ mod tests {
             repair_cost: 1.5,
             damage_rate: 0.02,
             capacity: 10.0,
+            read_budget: 0,
         };
         let field = Field::moving(40, 2.0, 0.2, 0.8, 1.0).unwrap();
         let mut memory =
