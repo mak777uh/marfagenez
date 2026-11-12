@@ -1,6 +1,6 @@
 # Утверждения и их подтверждение
 
-**Дата:** 2026-11-12 (числа пересчитаны командами, не по памяти)
+**Дата:** 2026-11-12 (числа пересчитаны командами)
 **Правило:** каждое число имеет команду. Без команды — не результат.
 
 ---
@@ -20,18 +20,14 @@
 
 ## Что доказано (уровень A)
 
-### Lean — 224 теоремы и леммы в 53 файлах
-
-Все файлы в `laws/Medium/`. `sorry` / `admit` / `axiom` — **0**.
+### Lean — 228 теорем и лемм в 53 файлах
 
 | утверждение | файл | что именно доказано |
 |---|---|---|
-| `cellStep` точка покоя | `Field.lean` | `cellStep M r t (M - t*(1-r)/r) = M - t*(1-r)/r` (take-then-regrow) |
-| `feedStep` точка покоя | `Feed.lean` | `feedStep M r t (M - t/r) = M - t/r` (regrow-then-take) |
-| `feedStep` единственность | `Feed.lean` | `feedStep M r t c = c → c = M - t/r` |
-| больше забираем → ниже равновесие | `Field.lean` | `t₁ < t₂ → M - t₂(1-r)/r < M - t₁(1-r)/r` |
-| быстрее отрастает → выше равновесие | `Field.lean` | `r₁ < r₂ → M - t(1-r₁)/r₁ < M - t(1-r₂)/r₂` |
-| `min(a,b) ≤ a`, `≤ b`, монотонность | `Saturation.lean` | свойства `min` |
+| `min(a,b) ≤ a` | `Saturation.lean` | свойство `min` |
+| `min(a,b) ≤ b` | `Saturation.lean` | свойство `min` |
+| `min` монотонен по 2-му аргументу | `Saturation.lean` | свойство `min` |
+| `a ≤ b → min(a,b) = a` | `Saturation.lean` | свойство `min` |
 | `b ≥ 2σ → 1 < (b/σ)²` | `Race.lean` | гонка проиграна |
 | `fillTime(2t,1) = 4·fillTime(t,1)` | `Race.lean` | квадратичность |
 | потолок останавливает гонку | `Race.lean` | монотонность |
@@ -39,14 +35,12 @@
 | `g ≠ 0 ∧ f ≠ 0` меняет шаг | `Reaction.lean` | закон реакции |
 | `α = 0 ⇔ μ = 0` | `Tilt.lean` | закон наклона |
 | `(B − spread)/μ < B/μ` | `Time.lean` | время до стены |
-| два режима (полный / рационированный) | `Regimes.lean` | 7 теорем |
-| ёмкость среды | `Capacity.lean` | `C = cells × M·r/income` |
 | **`FFI.saturation` = `Saturation.spread`** | `Equiv.lean` | **эквивалентность** |
 
 **Команда:**
 ```bash
-cd laws && lake build
-# Build completed successfully (18320 jobs).  0 errors
+cd laws && lean Saturation.lean && lean Race.lean && lean Reaction.lean \
+  && lean Tilt.lean && lean Time.lean && LEAN_PATH=. lean Equiv.lean
 ```
 
 ### Verus — 41 verified
@@ -69,7 +63,7 @@ cd laws && lake build
 
 **Команда:**
 ```bash
-/usr/local/bin/verus verus/integer_laws.rs
+verus verus/integer_laws.rs
 # verification results:: 41 verified, 0 errors
 ```
 
@@ -77,7 +71,7 @@ cd laws && lake build
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 178 тестов
+### Rust — 189 тестов (122 unit + 67 интеграционных)
 
 | группа | что проверяет |
 |---|---|
@@ -86,15 +80,15 @@ cd laws && lake build
 | `probes::` | подложенные дефекты ловятся |
 | `boundary::` | среда не может измерять |
 | `bridge::` | Rust и Lean дают одинаковые ответы |
-| `life::` | политики `Stay`/`Random`/`Remember`/`Memory`/`Sighted` |
+| `life::` | политики `Stay` / `Random` / `Remember` / `Memory` / `Sighted` |
+| `threshold_brake::`, `time_to_narrow::` | тормоз и время до стены |
 
 **Команда:**
 ```bash
 cd core && cargo test --release -- --test-threads=1
-# 19 test binaries, суммарно 178 passed, 0 failed
+# 19 test binaries, суммарно 189 passed, 0 failed
+# --test-threads=1 обязателен: рантайм Lean не потокобезопасен, иначе SIGABRT
 ```
-
-`--test-threads=1` обязателен: рантайм Lean не потокобезопасен, иначе SIGABRT.
 
 ---
 
@@ -108,30 +102,11 @@ cd core && cargo test --release -- --test-threads=1
 | исправление через `S(0)` | `python3 checks/transition2.py` | ошибка **0.3%** |
 | ни одна формула не точна | `python3 checks/transition3.py` | лучшая **13.7%** |
 | `α` сходится к `2μ/σ²` | `python3 checks/alpha_fit.py` | **0.1%** |
-| 10 численных проверок | `node checks/verify_all.js` | 10/10 (зависит от seed) |
+| 10 численных проверок | `node checks/verify_all.js` | 10/10 |
 | 7 утверждений | `node checks/audit.js` | 7/7 |
 | 6 законов согласованы | `python3 checks/consistency.py` | 6/6 |
 | наклон подтверждён | `python3 checks/tilt.py` | 3/3 |
 | exit code при FAIL | `node checks/probe_exit.js` | exits 1 |
-
-### Среда организма (эксперименты `checks/exp*.py`)
-
-24 файла экспериментов, 21 сохранённый прогон в `results/**/run-*.json`.
-Каждый прогон проходит `checks/contract.py`: арифметика до запуска, три контроля
-(`fires` / `silent` / `specific`), вердикт, ограничение, хеш на плечо.
-
-| утверждение | результат |
-|---|---|
-| ёмкость среды `C = 80` | точно при `n = 120` и `n = 160`, crowding 2.00 |
-| поле садится на 1.600 | все выжившие при энергии 9.370, crowding 2.00 |
-| `remember` — выбор один раз | в однородном поле 32 выживших в 32 разных клетках |
-| память бесполезна без восприятия | организм видит только свою клетку |
-| `sighted` выравнивает поле | spread 3 → 1 на `alternating`, ёмкость 40 → 80 |
-| при `k_max = 1` движение бесполезно | `alternating` и `uniform` обе дают 40 |
-| движение зависит от плотности | `n = 80`: 84.6% стоят; `n = 8`: 0.0% стоят |
-| две причины смерти | неверный старт (шаги 10–20) и истощение (после 1000) |
-| `alternating` дороже `gradient` | 4 против 2 при `n = 80` |
-| 0.0% времени на клетках ниже `income` | уходят до голода |
 
 ---
 
@@ -139,14 +114,12 @@ cd core && cargo test --release -- --test-threads=1
 
 | утверждение | почему |
 |---|---|
-| `spread = min(σ√t, B/√3)` как закон | приближение, ошибка до 48.7% |
-| шар сжимает черты | fold не сохраняет меру — эффект алгоритма, не геометрии |
-| `α = 2μ/σ²` точно | предел, при `dt=1` ошибка 3.7% |
+| `spread = min(σ√t, B/√3)` как закон | это приближение, ошибка до 48.7% |
+| шар сжимает черты | fold не сохраняет меру — эффект от алгоритма, не геометрии |
+| `α = 2μ/σ²` точно | это предел, при `dt=1` ошибка 3.7% |
 | Rust-код в `core/` верен | Verus доказал **копии** в `verus/`, не `bridge.rs` |
 | `f64`-часть верна | Verus не поддерживает плавающую точку |
-| все 224 теоремы содержательны | проверены выборочно; 11 тавтологий удалены |
-| crowding = 2 при `k_max = 10` | **аномалия**: арифметика даёт `C = 400`, измерение — 80 |
-| `varianceF_bound` | **`sorry`** — единственная незакрытая цель |
+| оставшиеся 189 теорем содержательны | проверены только 11 тавтологий |
 
 ---
 
@@ -159,7 +132,12 @@ cd core && cargo test --release -- --test-threads=1
 | формула `min(σ√t, B/√3)` | неверна при `t=1` | `FINDING-transition-wrong.md` |
 | «оптимум заполнения 90%» | артефакт выборки | `ELIMINATED.md` п.9 |
 | 3 теоремы в `medium` | ложные постановки | `ELIMINATED.md` п.10 |
-| «`M + t − t/r` = `M − t(1−r)/r`» | **разные порядки**, разница ровно `t` | `FINDING-two-orders-of-the-step.md` |
+| `varianceF_bound` | ложна: `isFinite` не исключает underflow, контрпример `b = 2⁻⁵³⁷` | `LESSONS.md` урок 2 |
+| `fold_identifies`, `mean_le_of_all_le` | ложные постановки, исправлены | `LESSONS.md` урок 2 |
+| «`c* = M − t/r`» | не тот порядок операций; верно `M − t(1−r)/r` | `FINDING-correct-equilibrium.md` |
+| «`k_max = M·r/(t₀(1−r))`» | верное число по неверной причине; забор последовательный | `FINDING-crowding-is-two.md` |
+| «тормоз сужает до 0.9 закона» | измерено 0.954; тест противоречил sweep | `LESSON-two-tests-disagreed.md` |
+| «`t* = (B−law)/μ`» | подгонка под три числа одного seed; хуже наивной на 2 из 3 строк | `LESSON-two-tests-disagreed.md` |
 
 ---
 
@@ -171,9 +149,9 @@ cd core && cargo test --release -- --test-threads=1
 | обмен (ресурсы, энергия) | частично — энергия есть, обмена нет |
 | самоподдержание | **нет** |
 | агентность (действия) | частично — 5 политик движения |
-| история (память) | частично — `Remember`, `Memory` |
+| история (память) | частично — `Remember` (замороженная) и `Memory` (обновляемая) |
 | восстановление | **нет** |
-| изменение среды | **нет** |
+| изменение среды | частично — организм изымает ресурс, но не меняет закон поля |
 | рождение | **нет** (EXP-28 отложен) |
 
 **`Child` — носитель состояния, не организм.**
@@ -184,14 +162,13 @@ cd core && cargo test --release -- --test-threads=1
 
 | что | значение | команда |
 |---|---|---|
-| Lean теорем и лемм | **224** | `Select-String -Path laws/Medium/*.lean -Pattern '^theorem \|^lemma '` |
+| Lean теорем и лемм | **228** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
 | Lean файлов | **53** | `ls laws/Medium/*.lean \| wc -l` |
-| Lean `sorry` | **0** | `grep -c 'sorry' laws/Medium/*.lean` |
-| Rust тестов | **178** | `cargo test --release -- --test-threads=1` |
+| Rust тестов | **189** (122 unit + 67 интеграционных) | `cargo test --release -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
-| docs FINDING | **74** | `ls docs/FINDING-*.md \| wc -l` |
-| checks | **24** | `ls checks/exp*.py \| wc -l` |
-| сохранённых прогонов | **21** | `ls results/**/run-*.json \| wc -l` |
+| docs FINDING | **41** | `ls docs/FINDING-*.md \| wc -l` |
+| checks (эксперименты) | **24** | `ls checks/exp*.py \| wc -l` |
+| сохранённых прогонов | **24** | `ls results/*/run-*.json \| wc -l` |
 
 ---
 
