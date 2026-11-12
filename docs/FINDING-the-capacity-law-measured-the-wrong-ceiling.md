@@ -156,6 +156,48 @@ not fit this point. **No fourth version of the formula was attempted**: a
 formula that needs the movement rule in it is a description of the dynamics,
 not a law about the field.
 
+### The rotation is measured, not inferred
+
+The samples carry no organism id, but the sample order is the organism order
+and `Life::advance` walks that order every step, so the index is the identity.
+The organisms that are second occupant in each sample:
+
+```
+step 1000: 22, 67
+step 2000: 42, 52
+step 3000: 36, 67
+step 4000: 24, 54
+step 5000: 24, 26
+step 6000: 32, 49
+step 7000: 28, 67
+step 8000: 52, 56
+```
+
+Sixteen second-occupant positions over eight samples, taken by thirteen
+different organisms. Only 24, 52 and 67 appear twice. No organism holds the
+losing position for even two consecutive samples.
+
+### Turning movement off removes the extra two
+
+If the 42 comes from rotation, then forbidding rotation should remove it. Same
+parameters, same seed, 8000 steps, `--policy stay` instead of `--policy sighted`
+(`core/results/stay/trace-stay-1794521130.json`):
+
+| policy | alive | occupied cells | occupancy histogram |
+|---|---:|---:|---|
+| sighted | 42 | 40 | 38 cells × 1, 2 cells × 2 |
+| stay | 40 | 40 | 40 cells × 1 |
+
+Standing still gives exactly 40 with no sharing at all — the number the
+formula predicted. Moving gives 42, and the whole surplus is the rotation.
+The two policies have different trace hashes (`stay` `e111513f03c76d3f`), so
+these are two arms and not one arm measured twice (PROTOCOL.md §5).
+
+This is the cleanest statement of what went wrong: the formula described the
+`stay` case and was checked against `sighted` numbers that happened to coincide
+in the maintenance sweep. The coincidence was the six saturated points of
+EXP-32.
+
 ## What this does not prove
 
 - One seed, one field kind (uniform), one policy (sighted), 2000 steps.
