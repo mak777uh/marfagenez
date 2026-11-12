@@ -42,6 +42,7 @@ fn main() {
     let mut rich = 2.0f64;
     let mut poor = 0.2f64;
     let mut regrow = 0.8f64;
+    let mut feed = false;
 
     let mut i = 1;
     while i < args.len() {
@@ -128,6 +129,9 @@ fn main() {
                 i += 1;
                 poor = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(poor);
             }
+            "--feed" => {
+                feed = true;
+            }
             "--regrow" => {
                 i += 1;
                 regrow = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(regrow);
@@ -180,6 +184,9 @@ fn main() {
         }
     };
 
+    if feed {
+        life.feed = true;
+    }
     let trace = record(&mut life, steps, every);
 
     let name = match policy {
@@ -213,6 +220,7 @@ fn main() {
     println!("rich:     {}", rich);
     println!("poor:     {}", poor);
     println!("regrow:   {}", regrow);
+    println!("feed:     {}", feed);
     println!("steps:    {}", steps);
     println!("frames:   {}", trace.frames.len());
     println!("hash:     {:016x}", trace.hash);

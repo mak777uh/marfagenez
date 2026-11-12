@@ -69,3 +69,26 @@ with its absence.
 2. `richer_neighbour` returned the **left** cell when the two neighbours were
    equal, so every walker drifted left in a uniform field. Fixed: a tie is
    `None`, and `Walker::choose` stays.
+
+## The ordering of regrow and take
+
+`Life::advance` does, per organism: look → decide → move → take. Then, once per
+step, `regrow_all`. So the field an organism sees is the field **after** the
+previous step's takes and **one** regrow. A cell eaten last step is still low.
+
+The other medium is `feed = true`: regrow first, then let everybody look and
+eat. Every organism then sees the field at full value, and eating creates no
+reason to move. The two are different models, not a bug in either:
+
+| model | what the organism sees | does eating make it leave? |
+|---|---|---|
+| `feed = false` (default) | field after last step's takes | yes |
+| `feed = true` | field at full value | no |
+
+They give different traces (`c8b8953583201d1b` vs `6cccae2d1adcd59b` for
+`sighted`, `n = 80`, `uniform`, 1000 steps) and, for `stay`, different traces
+too (`b6bc4fb63a16d1b7` vs `65e47a2d1d214db7`) — because the take in a given
+step lands on a regrown or an unregrown cell.
+
+**What this does not prove:** which ordering is the right one for the child.
+That is a modelling choice, and it is not settled.

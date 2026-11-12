@@ -107,6 +107,18 @@ pub struct Life {
     moves: u64,
     memory_life: usize,
     seed: u64,
+    /// If true, the field is regrown **before** the organisms act, so that a
+    /// cell eaten last step has recovered by the time anybody looks at it.
+    ///
+    /// This is the difference between two mediums:
+    ///
+    /// * `feed = false` (default): take, then regrow. A cell that was eaten is
+    ///   still low when the next organism looks at it, so the *next* organism
+    ///   sees a hole and treats it as a reason to move.
+    /// * `feed = true`: regrow, then take. Every organism sees the field at its
+    ///   full value, so eating does not create a reason to move. This is the
+    ///   model in which `c' = (c - t) + (M - (c - t))*r` describes the cell.
+    pub feed: bool,
 }
 
 impl Life {
@@ -132,6 +144,7 @@ impl Life {
             moves: 0,
             memory_life,
             seed,
+            feed: false,
         })
     }
 
@@ -179,6 +192,9 @@ impl Life {
     /// Advances every living organism by one step.
     pub fn advance(&mut self) -> Option<()> {
         let cells = self.field.cells();
+        if self.feed {
+            self.field.regrow_all();
+        }
         for slot in self.organisms.iter_mut() {
             let Some(r) = slot.as_mut() else { continue };
             if !r.organism.is_alive() {
@@ -291,8 +307,10 @@ impl Life {
             // 6. Death is handled inside `step`; nothing to do here.
         }
 
-        // The field regrows once per step.
-        self.field.regrow_all();
+        // The field regrows once per step. In `feed` mode it already did.
+        if !self.feed {
+            self.field.regrow_all();
+        }
         self.step += 1;
         Some(())
     }
