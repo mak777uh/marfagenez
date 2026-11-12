@@ -9,6 +9,7 @@
 import Medium.BodySize
 import Medium.Field
 import Medium.Convergence
+import Medium.Feed
 import Medium.Capacity
 import Medium.Regimes
 import Medium.Boundary
