@@ -1,0 +1,113 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "standing-is-a-uniform-third",
+  "run_id": "run-2026-11-12T16-09-20",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {},
+  "arithmetic": {
+    "choices": "n=400 x 40 steps x 5 seeds = 80000 decisions at most",
+    "standard_error": "SE(p) at p=2/3 and N=80000 is sqrt(0.2222/80000) = 0.00167",
+    "discriminator": "0.625 is 25 SE from 2/3, so 80000 draws decide it; within 3 SE of 2/3 means EXP-41 was a small sample",
+    "predicted": "p(choose a move) = 2/3, p(stay) = 1/3"
+  },
+  "conditions": {
+    "seed1": {
+      "label": "seed 1",
+      "metrics": {
+        "chosen": 10000,
+        "moved": 6551,
+        "p_choose": 0.6551
+      },
+      "hash": "40bd71fa379e135a"
+    },
+    "seed2": {
+      "label": "seed 2",
+      "metrics": {
+        "chosen": 10000,
+        "moved": 6625,
+        "p_choose": 0.6625
+      },
+      "hash": "7ce0375ad1e46dbd"
+    },
+    "seed3": {
+      "label": "seed 3",
+      "metrics": {
+        "chosen": 10000,
+        "moved": 6738,
+        "p_choose": 0.6738
+      },
+      "hash": "bf01904139ddd4ca"
+    },
+    "seed4": {
+      "label": "seed 4",
+      "metrics": {
+        "chosen": 10000,
+        "moved": 6690,
+        "p_choose": 0.669
+      },
+      "hash": "a41a37f69726acc2"
+    },
+    "seed5": {
+      "label": "seed 5",
+      "metrics": {
+        "chosen": 10000,
+        "moved": 6671,
+        "p_choose": 0.6671
+      },
+      "hash": "d769c253fa4d9502"
+    }
+  },
+  "series": {
+    "p_choose": {
+      "steps": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0
+      ],
+      "values": [
+        0.6551,
+        0.6625,
+        0.6738,
+        0.669,
+        0.6671
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "p_choose 0.6655 vs coin 0.5 over 50000 choices"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "remember: 0 standing of 3000 alive; stay: 3000 of 3000 - the counter reads both ends"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "SE 0.00211 < 0.005 over 50000 choices, so 1/3 and 2/3 are 158 SE apart"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "p(choose a move) = 0.6655 over 50000 choices, 0.6 SE from 2/3 (z = -0.55); the 0.625 of EXP-41 was a sample of 24, not a bias"
+  },
+  "hashes": {
+    "seed1": "40bd71fa379e135a",
+    "seed2": "7ce0375ad1e46dbd",
+    "seed3": "bf01904139ddd4ca",
+    "seed4": "a41a37f69726acc2",
+    "seed5": "d769c253fa4d9502"
+  },
+  "limitations": [
+    "one policy (random) and one field (uniform); a biased draw would be visible here but the cause of the bias would not",
+    "the 0.625 of EXP-41 came from 24 choices on one organism; this run uses 50000, so it can only say the draw is not biased, not why EXP-41 was low",
+    "the silent control uses remember and stay, not a second random run: it checks that the counter can read both ends, not that the draw is unbiased",
+    "organisms die during the run, so later frames contribute fewer choices; the count is over living samples only",
+    "the decision is read from `direction`, which EXP-44 showed is the decision of the frame it appears in, not of the next step"
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --steps 40 --every 1 --cells 120 --capacity 10 --damage-rate 0.2 --maintenance 0.1 --repair-cost 0.5 --energy 5 --field uniform --income 0 --regrow 0 --policy random --n 400 --move-cost 0 --seed S for S in 1..5",
+  "created_at": "2026-11-12T16:09:20.847611+00:00"
+}
