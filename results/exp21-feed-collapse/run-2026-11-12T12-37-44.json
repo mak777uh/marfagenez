@@ -1,0 +1,80 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp21-feed-collapse",
+  "run_id": "run-2026-11-12T12-37-44",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "n": 8,
+    "cells": 8,
+    "steps": 40,
+    "every": 1,
+    "policy": "stay",
+    "field": "uniform"
+  },
+  "arithmetic": {
+    "order_feed_true": "c1 = c + (M-c)*r ; c2 = c1 - min(c1, k*t)",
+    "order_feed_false": "c1 = c - min(c, k*t) ; c2 = c1 + (M-c1)*r",
+    "fixed_point_feed_true": "c* = M - t/r",
+    "fixed_point_feed_false": "c* = M + t - t/r",
+    "r": 0.5,
+    "t": 1.0,
+    "t_over_r": 2.0,
+    "A_feed_true_M_2.0": 0.0,
+    "B_feed_false_M_2.0": 1.0,
+    "C_feed_true_M_4.0": 2.0
+  },
+  "conditions": {
+    "A": {
+      "label": "feed=true, M=2.0=t/r",
+      "metrics": {
+        "final_field": 0.5
+      },
+      "hash": "32a33c19ce73e873"
+    },
+    "B": {
+      "label": "feed=false, M=2.0",
+      "metrics": {
+        "final_field": 1.25
+      },
+      "hash": "322701db80030537"
+    },
+    "C": {
+      "label": "feed=true, M=4.0>t/r",
+      "metrics": {
+        "final_field": 2.0
+      },
+      "hash": "a25be7fb0dc751b7"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "A: final field 0.500000, must be < 0.01"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "B: final field 1.250000, must be > 0.5 (same M=2.0, r=0.5, t=1.0, feed=false)"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "C: final field 2.000000, must be > 1.0 (feed=true but M=4.0 > t/r=2.0)"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "A=0.500000, B=1.250000, C=2.000000 — prediction did not hold."
+  },
+  "hashes": {
+    "A": "32a33c19ce73e873",
+    "B": "322701db80030537",
+    "C": "a25be7fb0dc751b7"
+  },
+  "limitations": [
+    "This shows the FIELD collapses. It does not show what happens to the organisms: n=8, cells=8, maintenance=0, move-cost=0, so they have no reason to move and no cost for staying. Whether a population can survive on a collapsing field is a separate question, not answered here.",
+    "Only Policy::Stay, only uniform fields, only one seed. A moving population meets a different k on each cell each step, which this experiment does not exercise."
+  ],
+  "command": "python3 checks/exp21_feed_collapse.py",
+  "created_at": "2026-11-12T12:37:44.508703+00:00"
+}

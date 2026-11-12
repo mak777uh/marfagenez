@@ -1,0 +1,93 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp21-feed-collapse",
+  "run_id": "run-2026-11-12T12-38-39",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "n": 8,
+    "cells": 8,
+    "steps": 40,
+    "every": 1,
+    "policy": "stay",
+    "field": "uniform"
+  },
+  "arithmetic": {
+    "order_feed_true": "c1 = c + (M-c)*r ; c2 = c1 - min(c1, k*t)",
+    "order_feed_false": "c1 = c - min(c, k*t) ; c2 = c1 + (M-c1)*r",
+    "fixed_point_feed_true": "c* = M - k*t/r",
+    "fixed_point_feed_false": "c* = M + k*t - k*t/r while c1 > 0, else c* = M*r",
+    "r": 0.5,
+    "t": 1.0,
+    "t_over_r": 2.0,
+    "layout_seed_1": {
+      "k0": 2,
+      "k1": 4,
+      "k2": 2
+    },
+    "A_mean_formula": "(2*M + 4*(M - 2.0) + 2*max(M - 4.0, 0)) / 8",
+    "B_mean_formula": "(2*M + 6*M*r) / 8",
+    "A_feed_true_M_2.0_mean": 0.5,
+    "B_feed_false_M_2.0_mean": 1.25,
+    "C_feed_true_M_4.0_mean": 2.0
+  },
+  "conditions": {
+    "A": {
+      "label": "feed=true, M=2.0=t/r",
+      "metrics": {
+        "mean_field": 0.5,
+        "min_field": 0.0,
+        "max_field": 2.0
+      },
+      "hash": "32a33c19ce73e873"
+    },
+    "B": {
+      "label": "feed=false, M=2.0",
+      "metrics": {
+        "mean_field": 1.25,
+        "min_field": 1.0,
+        "max_field": 2.0
+      },
+      "hash": "322701db80030537"
+    },
+    "C": {
+      "label": "feed=true, M=4.0>t/r",
+      "metrics": {
+        "mean_field": 2.0,
+        "min_field": 0.0,
+        "max_field": 4.0
+      },
+      "hash": "a25be7fb0dc751b7"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A: min field 0.000000 < 0.01 — cells with k>=2 are eaten clean"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "B: min field 1.000000 > 0.5 — same M=2.0, r=0.5, t=1.0, feed=false keeps every cell alive"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "C: min field 0.000000 < 0.01 and mean 2.000000 > 1.0 — feed=true with M=4.0 > t/r still empties the k=2 cells but keeps the rest at M - t/r = 2.0"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "A mean=0.5000 min=0.0000; B mean=1.2500 min=1.0000; C mean=2.0000 min=0.0000. The field does not collapse as a whole — it SEGREGATES: cells with k >= 2 are eaten clean, empty cells sit at M untouched, single-occupancy cells sit at M - t/r. The mean is a mixture of those three values and is not an equilibrium."
+  },
+  "hashes": {
+    "A": "32a33c19ce73e873",
+    "B": "322701db80030537",
+    "C": "a25be7fb0dc751b7"
+  },
+  "limitations": [
+    "The layout (which cells hold 0, 1 or 2 organisms) is set by the seed and by Policy::Stay. A moving population would redistribute k every step, and the per-cell fixed point M - k*t/r would then be a moving target, not an equilibrium. This experiment does not exercise that.",
+    "This shows what happens to the FIELD. It does not show what happens to the organisms: maintenance=0 and move-cost=0 here, so an organism on a cleared cell pays nothing for staying and nothing for moving. Whether a population survives on a segregated field is a separate question."
+  ],
+  "command": "python3 checks/exp21_feed_collapse.py",
+  "created_at": "2026-11-12T12:38:39.714449+00:00"
+}

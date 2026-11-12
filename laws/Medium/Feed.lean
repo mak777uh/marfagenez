@@ -81,6 +81,55 @@ theorem feed_equilibrium_nonneg_iff {M r t : ℝ} (hr : 0 < r) :
       linarith
     linarith
 
+/-- **Regrow, then take, with `k` organisms on the cell.**
+
+`k` organisms each take `t` after the cell has regrown. The equilibrium is
+`M - k*t/r`: the take is multiplied by `k` because they all take before the
+next regrowth. -/
+noncomputable def feedStepK (M r t : ℝ) (k : ℕ) (c : ℝ) : ℝ :=
+  let c₁ := c + (M - c) * r
+  c₁ - k * t
+
+/-- **The equilibrium of regrow-then-take with `k` organisms is `M - k*t/r`.**
+
+Measured exactly at `n = 8, cells = 8, r = 0.5, t = 1.0, M = 2.0` and
+`M = 4.0` (`docs/FINDING-field-segregates.md`): a cell with `k = 1` sits at
+`M - t/r`, a cell with `k = 2` sits at `max(M - 2t/r, 0)`. -/
+theorem feed_fixed_point_k {M r t : ℝ} (k : ℕ) (hr : r ≠ 0) :
+    feedStepK M r t k (M - k * t / r) = M - k * t / r := by
+  simp only [feedStepK]
+  field_simp
+  ring
+
+/-- **It is the only fixed point, for `k` organisms.** -/
+theorem feed_fixed_point_k_unique {M r t c : ℝ} (k : ℕ) (hr : r ≠ 0)
+    (h : feedStepK M r t k c = c) : c = M - k * t / r := by
+  simp only [feedStepK] at h
+  have h2 : (M - c) * r = k * t := by linarith
+  have h3 : M - c = k * t / r := by
+    rw [eq_div_iff hr]
+    linarith
+  linarith
+
+/-- **`k` organisms empty the cell exactly when `k*t ≥ M*r`.**
+
+`M - k*t/r ≤ 0` iff `M*r ≤ k*t`. This is the per-cell condition behind the
+segregation: at `r = 0.5, t = 1.0, M = 2.0` the threshold is `k ≥ 1`, and the
+measurement shows a `k = 2` cell at exactly `0.0` while a `k = 1` cell sits at
+`0.0` as well — both emptied, but for the same reason. At `M = 4.0` the
+threshold is `k ≥ 2`, and the `k = 1` cells stay at `2.0`. -/
+theorem feed_k_empties_iff {M r t : ℝ} (k : ℕ) (hr : 0 < r) :
+    M - k * t / r ≤ 0 ↔ M * r ≤ k * t := by
+  constructor
+  · intro h
+    have h1 : M ≤ k * t / r := by linarith
+    rwa [le_div_iff₀ hr] at h1
+  · intro h
+    have h1 : M ≤ k * t / r := by
+      rw [le_div_iff₀ hr]
+      linarith
+    linarith
+
 /-- **The two orders of operations differ by exactly one take.**
 
 `equilibrium M r t - (M - t/r) = t`. This is the whole content of
