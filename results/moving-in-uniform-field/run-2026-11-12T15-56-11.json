@@ -1,0 +1,137 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "moving-in-uniform-field",
+  "run_id": "run-2026-11-12T15-56-11",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "steps": 1200,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "income": 1.0,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "move_cost": 0.05,
+    "energy": 5.0,
+    "field": "uniform"
+  },
+  "arithmetic": {
+    "formula": "per organism per step = income/share - maintenance - damage_rate*repair_cost",
+    "alone": "1 - 0.1 - 0.2*0.5 = 0.8",
+    "two_on_one_cell": "0.5 - 0.1 - 0.2*0.5 = 0.2",
+    "prediction": "0.8 > 0.2, so sharing a cell is strictly worse; movement that splits a pair must pay for itself"
+  },
+  "conditions": {
+    "stay_n120": {
+      "label": "stay n120",
+      "metrics": {
+        "alive": 72,
+        "moved": 0,
+        "mean_energy": 9.8
+      },
+      "hash": "292dea0c88323b79"
+    },
+    "random_n120": {
+      "label": "random n120",
+      "metrics": {
+        "alive": 108,
+        "moved": 78,
+        "mean_energy": 9.501
+      },
+      "hash": "9162541d8c1070fd"
+    },
+    "stay_n60": {
+      "label": "stay n60",
+      "metrics": {
+        "alive": 46,
+        "moved": 0,
+        "mean_energy": 9.8
+      },
+      "hash": "64eb3000a972e8af"
+    },
+    "random_n60": {
+      "label": "random n60",
+      "metrics": {
+        "alive": 60,
+        "moved": 40,
+        "mean_energy": 9.661
+      },
+      "hash": "b1745a5ae9c6cc3b"
+    },
+    "stay_n30": {
+      "label": "stay n30",
+      "metrics": {
+        "alive": 26,
+        "moved": 0,
+        "mean_energy": 9.8
+      },
+      "hash": "f8c4cee0d921bf57"
+    },
+    "random_n30": {
+      "label": "random n30",
+      "metrics": {
+        "alive": 30,
+        "moved": 21,
+        "mean_energy": 9.77
+      },
+      "hash": "25294ec975a8bb4c"
+    },
+    "sighted_n120": {
+      "label": "sighted n120 (same arm as stay)",
+      "metrics": {
+        "alive": 72,
+        "moved": 0,
+        "mean_energy": 9.8
+      }
+    },
+    "sighted_n60": {
+      "label": "sighted n60 (same arm as stay)",
+      "metrics": {
+        "alive": 46,
+        "moved": 0,
+        "mean_energy": 9.8
+      }
+    },
+    "sighted_n30": {
+      "label": "sighted n30 (same arm as stay)",
+      "metrics": {
+        "alive": 26,
+        "moved": 0,
+        "mean_energy": 9.8
+      }
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "stay 72 < random 108 at n=120"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "sighted hash 292dea0c88323b79 == stay hash 292dea0c88323b79"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "gap random-stay: n120=36 > n60=14 > n30=4"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "движение в однородном поле окупается ровно за счёт разрежения пар"
+  },
+  "hashes": {
+    "stay_n120": "292dea0c88323b79",
+    "random_n120": "9162541d8c1070fd",
+    "stay_n60": "64eb3000a972e8af",
+    "random_n60": "b1745a5ae9c6cc3b",
+    "stay_n30": "f8c4cee0d921bf57",
+    "random_n30": "25294ec975a8bb4c"
+  },
+  "limitations": [
+    "one seed per arm; the cause is inferred from the crowding trend, not measured per cell - the trace does not report how many organisms share a cell, so the double-repair mechanism is not directly observed"
+  ],
+  "command": "python3 checks/exp31_moving_in_uniform.py",
+  "created_at": "2026-11-12T15:56:11.536215+00:00"
+}
