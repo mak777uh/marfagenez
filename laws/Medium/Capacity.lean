@@ -5,29 +5,44 @@ import Medium.Convergence
 /-!
 # Carrying capacity: how many organisms a cell can hold
 
-The equilibrium of one cell is `c* = M + t - t/r` (see `Convergence`). A cell
-survives `k` organisms when the equilibrium stays non-negative:
+## The mistake this file used to make
 
-`0 ≤ M + k*t₀ - k*t₀/r`  ⟺  `k ≤ M*r / (t₀*(1-r))`.
+The first version of this file said `k_max = M*r / (t₀*(1-r))` and justified it
+by "the equilibrium stays non-negative when all `k` organisms take `t₀` each".
+That is algebraically true, but it is **not this model**. See
+`docs/FINDING-crowding-is-two.md`.
 
-So the per-cell capacity is `k_max = M*r / (t₀*(1-r))` and the field holds
-`cells * k_max` organisms. When `r = 1` (instant regrowth) the capacity is
-infinite: whatever is taken comes back at once.
+## What the model actually does
+
+`Field::take` hands out `min(cell, income)` to the **first** organism in the
+array, then the remainder to the second, and so on (`core/src/field.rs:153`).
+So the take is *sequential*, not simultaneous.
+
+Over one full cycle a cell gives up at most `M*r`: that is what the regrowth
+law puts back. Therefore the number of full portions of `t₀` a cell can hand
+out is
+
+    k_feed = M*r / t₀
+
+and it does not depend on `k`. A third organism on a cell that already feeds
+two gets nothing and starves.
 
 ## What is proved
 
 * `equilibrium_nonneg_iff` — `0 ≤ c*` exactly when `t*(1-r) ≤ M*r`
-* `capacity` — `k_max = M*r / (t₀*(1-r))`
-* `capacity_iff` — `k ≤ k_max` exactly when the equilibrium is non-negative
+* `capacity` — `k_feed = M*r / t₀`
+* `capacity_iff` — the cell's regrowth covers `k` full portions exactly when `k ≤ k_feed`
+* `capacity_equals_give_back` — `k_feed * t₀ = M*r`, the whole content of the law
 * `capacity_mono_M`, `capacity_mono_r`, `capacity_anti_income`
 * `capacity_infinite_at_full_regrowth` — at `r = 1` no finite `k` starves the cell
-* `no_second_place` — when `k_max ≤ 1`, a second organism cannot be supported
+* `no_second_place` — when `k_feed ≤ 1`, a second organism cannot be supported
 
 ## What is NOT proved
 
-That the population actually reaches `cells * k_max`. That needs a model of
+That the population actually reaches `cells * k_feed`. That needs a model of
 movement and of who stands where; the experiments measure it, this file does not
-prove it.
+prove it. The measurement gives `C = 80` at 40 cells with `k_feed = 2`
+(`results/overcrowding/run-2026-11-11T22-20-40.json`).
 -/
 
 namespace Medium
@@ -51,54 +66,43 @@ theorem equilibrium_nonneg_iff {M r t : ℝ} (hr0 : 0 < r) :
 
 /-- **The carrying capacity of one cell.**
 
-`k_max = M*r / (t₀*(1-r))`, where `t₀` is what one organism takes per step. -/
-noncomputable def capacity (M r t₀ : ℝ) : ℝ := M * r / (t₀ * (1 - r))
+`k_feed = M*r / t₀`, where `t₀` is what one organism takes per step. The cell
+gives back `M*r` per cycle, so it can hand out that many full portions. -/
+noncomputable def capacity (M r t₀ : ℝ) : ℝ := M * r / t₀
 
-/-- **A cell holds `k` organisms exactly when the equilibrium is non-negative.** -/
-theorem capacity_iff {M r t₀ : ℝ} (hr0 : 0 < r) (hr1 : r < 1) (ht₀ : 0 < t₀)
-    (k : ℝ) :
-    0 ≤ equilibrium M r (k * t₀) ↔ k ≤ capacity M r t₀ := by
-  rw [equilibrium_nonneg_iff hr0]
+/-- **The law in one line: `k` portions of `t₀` exactly exhaust the regrowth.** -/
+theorem capacity_equals_give_back {M r t₀ : ℝ} (ht₀ : t₀ ≠ 0) :
+    capacity M r t₀ * t₀ = M * r := by
   unfold capacity
-  have hpos : 0 < t₀ * (1 - r) := mul_pos ht₀ (by linarith)
-  rw [le_div_iff₀ hpos]
-  constructor <;> intro h <;> nlinarith
+  field_simp
+
+/-- **A cell feeds `k` organisms exactly when its regrowth covers `k` portions.** -/
+theorem capacity_iff {M r t₀ : ℝ} (ht₀ : 0 < t₀) (k : ℝ) :
+    k * t₀ ≤ M * r ↔ k ≤ capacity M r t₀ := by
+  unfold capacity
+  rw [le_div_iff₀ ht₀]
 
 /-- **A richer cell holds more.** -/
-theorem capacity_mono_M {M₁ M₂ r t₀ : ℝ} (hr : 0 < r) (hr1 : r < 1)
-    (ht₀ : 0 < t₀) (h : M₁ ≤ M₂) :
+theorem capacity_mono_M {M₁ M₂ r t₀ : ℝ} (hr : 0 ≤ r) (ht₀ : 0 < t₀)
+    (h : M₁ ≤ M₂) :
     capacity M₁ r t₀ ≤ capacity M₂ r t₀ := by
   unfold capacity
-  have hpos : 0 < t₀ * (1 - r) := mul_pos ht₀ (by linarith)
-  exact div_le_div_of_nonneg_right (by nlinarith) (le_of_lt hpos)
+  exact div_le_div_of_nonneg_right (by nlinarith) (le_of_lt ht₀)
 
 /-- **Faster regrowth holds more.** -/
-theorem capacity_mono_r {M r₁ r₂ t₀ : ℝ} (hM : 0 < M) (hr₁ : 0 < r₁)
-    (h : r₁ ≤ r₂) (hr₂ : r₂ < 1) (ht₀ : 0 < t₀) :
+theorem capacity_mono_r {M r₁ r₂ t₀ : ℝ} (hM : 0 < M)
+    (ht₀ : 0 < t₀) (h : r₁ ≤ r₂) :
     capacity M r₁ t₀ ≤ capacity M r₂ t₀ := by
   unfold capacity
-  have h1 : 0 < t₀ * (1 - r₁) := mul_pos ht₀ (by linarith)
-  have h2 : 0 < t₀ * (1 - r₂) := mul_pos ht₀ (by linarith)
-  -- Split into two monotone steps: first the numerator, then the denominator.
-  have key1 : M * r₁ / (t₀ * (1 - r₁)) ≤ M * r₂ / (t₀ * (1 - r₁)) := by
-    apply div_le_div_of_nonneg_right _ (le_of_lt h1)
-    nlinarith
-  have key2 : M * r₂ / (t₀ * (1 - r₁)) ≤ M * r₂ / (t₀ * (1 - r₂)) := by
-    apply div_le_div_of_nonneg_left _ h2
-    · nlinarith
-    · nlinarith
-  linarith
+  exact div_le_div_of_nonneg_right (by nlinarith) (le_of_lt ht₀)
 
 /-- **A bigger take holds less.** -/
 theorem capacity_anti_income {M r t₁ t₂ : ℝ} (hM : 0 < M) (hr : 0 < r)
-    (hr1 : r < 1) (ht₁ : 0 < t₁) (h : t₁ ≤ t₂) :
+    (ht₁ : 0 < t₁) (h : t₁ ≤ t₂) :
     capacity M r t₂ ≤ capacity M r t₁ := by
   unfold capacity
-  have hpos : 0 < 1 - r := by linarith
   have hMr : 0 < M * r := mul_pos hM hr
-  have h1 : 0 < t₁ * (1 - r) := mul_pos ht₁ hpos
-  have h2 : 0 < t₂ * (1 - r) := mul_pos (by linarith) hpos
-  exact div_le_div_of_nonneg_left (le_of_lt hMr) h1 (by nlinarith)
+  exact div_le_div_of_nonneg_left (le_of_lt hMr) ht₁ (by linarith)
 
 /-- **At full regrowth nothing starves the cell.** -/
 theorem capacity_infinite_at_full_regrowth {M t₀ k : ℝ} (hM : 0 < M) :
@@ -115,11 +119,10 @@ noncomputable def totalCapacity (cells : ℕ) (M r t₀ : ℝ) : ℝ :=
 
 When `capacity M r t₀ ≤ 1`, movement cannot find a second place. This is the
 arithmetic behind the `M = 1.0` measurement, where movement made no difference. -/
-theorem no_second_place {M r t₀ : ℝ} (hr0 : 0 < r) (hr1 : r < 1) (ht₀ : 0 < t₀)
-    (h : capacity M r t₀ ≤ 1) :
-    ∀ k : ℝ, 1 < k → ¬ (0 ≤ equilibrium M r (k * t₀)) := by
-  intro k hk hnonneg
-  have hcap := (capacity_iff hr0 hr1 ht₀ k).mp hnonneg
+theorem no_second_place {M r t₀ : ℝ} (ht₀ : 0 < t₀) (h : capacity M r t₀ ≤ 1) :
+    ∀ k : ℝ, 1 < k → ¬ (k * t₀ ≤ M * r) := by
+  intro k hk hcover
+  have hk_le : k ≤ capacity M r t₀ := (capacity_iff ht₀ k).mp hcover
   linarith
 
 end Medium
