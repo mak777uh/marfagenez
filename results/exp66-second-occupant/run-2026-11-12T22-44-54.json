@@ -1,0 +1,379 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp66-second-occupant",
+  "run_id": "run-2026-11-12T22-44-54",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "n": 160,
+    "cells": 40,
+    "steps": 40000,
+    "every": 2000,
+    "policy": "sighted",
+    "read_budget": 3,
+    "income": 1.2,
+    "M": 2.0,
+    "regrow": 0.8,
+    "maintenance": 0.6,
+    "damage_rate": 0.02,
+    "repair_cost": 1.5,
+    "move_cost": 0.1,
+    "field": "uniform",
+    "rich": 2.4,
+    "poor": 1.6,
+    "e_max": [
+      8,
+      9,
+      10
+    ]
+  },
+  "arithmetic": {
+    "cost": 0.63,
+    "c_star": 1.7000000000000002,
+    "second_share": 0.5000000000000002,
+    "deficit_per_step": 0.12999999999999978,
+    "alone_steady_by_e_max": {
+      "8": 7.37,
+      "9": 8.37,
+      "10": 9.37
+    },
+    "prediction_a_sedentary": "shared energy falls, organism dies",
+    "prediction_b_moving": "shared energy freezes at a fixed point"
+  },
+  "conditions": {
+    "e_max_8": {
+      "label": "E_max = 8",
+      "metrics": {
+        "final_alive": 160,
+        "final_crowding": 4.0,
+        "final_shared_energy_mean": 1.8077358490566038,
+        "final_alone_energy_mean": 7.37,
+        "shared_energy_tail_drift": 0.0
+      }
+    },
+    "e_max_9": {
+      "label": "E_max = 9",
+      "metrics": {
+        "final_alive": 160,
+        "final_crowding": 4.0,
+        "final_shared_energy_mean": 2.053018867924528,
+        "final_alone_energy_mean": 8.37,
+        "shared_energy_tail_drift": 0.0
+      }
+    },
+    "e_max_10": {
+      "label": "E_max = 10",
+      "metrics": {
+        "final_alive": 160,
+        "final_crowding": 4.0,
+        "final_shared_energy_mean": 2.408930779874214,
+        "final_alone_energy_mean": 9.37,
+        "shared_energy_tail_drift": 0.002294966037735602
+      }
+    }
+  },
+  "series": {
+    "alive_e8": {
+      "steps": [
+        2000,
+        4000,
+        6000,
+        8000,
+        10000,
+        12000,
+        14000,
+        16000,
+        18000,
+        20000,
+        22000,
+        24000,
+        26000,
+        28000,
+        30000,
+        32000,
+        34000,
+        36000,
+        38000,
+        40000
+      ],
+      "values": [
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160
+      ]
+    },
+    "shared_energy_e8": {
+      "steps": [
+        2000,
+        4000,
+        6000,
+        8000,
+        10000,
+        12000,
+        14000,
+        16000,
+        18000,
+        20000,
+        22000,
+        24000,
+        26000,
+        28000,
+        30000,
+        32000,
+        34000,
+        36000,
+        38000,
+        40000
+      ],
+      "values": [
+        1.8900064968553458,
+        1.8448930817610065,
+        1.8518238993710692,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038,
+        1.8077358490566038
+      ]
+    },
+    "alive_e9": {
+      "steps": [
+        2000,
+        4000,
+        6000,
+        8000,
+        10000,
+        12000,
+        14000,
+        16000,
+        18000,
+        20000,
+        22000,
+        24000,
+        26000,
+        28000,
+        30000,
+        32000,
+        34000,
+        36000,
+        38000,
+        40000
+      ],
+      "values": [
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160
+      ]
+    },
+    "shared_energy_e9": {
+      "steps": [
+        2000,
+        4000,
+        6000,
+        8000,
+        10000,
+        12000,
+        14000,
+        16000,
+        18000,
+        20000,
+        22000,
+        24000,
+        26000,
+        28000,
+        30000,
+        32000,
+        34000,
+        36000,
+        38000,
+        40000
+      ],
+      "values": [
+        2.147868132075472,
+        2.1545283018867925,
+        2.143912006289308,
+        2.1525157232704397,
+        2.147264157232704,
+        2.1479695723270438,
+        2.135151786163522,
+        2.139773578616352,
+        2.053018867924528,
+        2.053018867924528,
+        2.053018867924528,
+        2.053018867924528,
+        2.053018867924528,
+        2.053018867924528,
+        2.053018867924528,
+        2.053018867924528,
+        2.053018867924528,
+        2.053018867924528,
+        2.053018867924528,
+        2.053018867924528
+      ]
+    },
+    "alive_e10": {
+      "steps": [
+        2000,
+        4000,
+        6000,
+        8000,
+        10000,
+        12000,
+        14000,
+        16000,
+        18000,
+        20000,
+        22000,
+        24000,
+        26000,
+        28000,
+        30000,
+        32000,
+        34000,
+        36000,
+        38000,
+        40000
+      ],
+      "values": [
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160
+      ]
+    },
+    "shared_energy_e10": {
+      "steps": [
+        2000,
+        4000,
+        6000,
+        8000,
+        10000,
+        12000,
+        14000,
+        16000,
+        18000,
+        20000,
+        22000,
+        24000,
+        26000,
+        28000,
+        30000,
+        32000,
+        34000,
+        36000,
+        38000,
+        40000
+      ],
+      "values": [
+        2.4057297672955973,
+        2.4123899371069184,
+        2.401773641509434,
+        2.4103773584905657,
+        2.40512579245283,
+        2.4058312075471697,
+        2.393013421383648,
+        2.397635213836478,
+        2.3915199119496857,
+        2.4064528176100626,
+        2.4023842893081757,
+        2.409554509433962,
+        2.4064377358490563,
+        2.406012578616352,
+        2.392848899371069,
+        2.400912157232704,
+        2.4074842704402513,
+        2.406036729559748,
+        2.404460157232704,
+        2.408930779874214
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "E_max=8 alone-energy 7.3700 vs predicted E_max-COST = 7.3700"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "alive equals n=160 at every frame of every E_max arm: no capacity limit appears at these settings"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "E_max=9 shared energy 2.0530: differs from E_max-COST=8.3700 and from second share 0.5000; tail drift +0.0000 over the last quarter"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "The shared-cell energy is a fixed point at every E_max tested (E_max=8 drift +0.0000, E_max=9 drift +0.0000, E_max=10 drift +0.0023). It is neither E_max - COST nor c* - income, so the deficit arithmetic (0.13 per step) describes a sedentary organism and these organisms are not sedentary: they move to a cell they have not eaten and the reserve is replenished. The earlier reading of 40 and 42 as capacities was the input n read back out; alive equals n at every setting."
+  },
+  "hashes": {},
+  "limitations": [
+    "One seed. One field shape (uniform 2.0, built as (rich+poor)/2). alive = n was checked at six values of n and three of E_max in a separate sweep, not swept here.",
+    "The trace samples every 2000 steps, so an organism that dies and is replaced within one sampling interval is invisible here.",
+    "This does not measure a capacity. At these settings nothing dies, so these settings cannot state a capacity law. A setting with a real limit has to be found first."
+  ],
+  "command": "python3 checks/exp66_second_occupant.py",
+  "created_at": "2026-11-12T22:44:54.182766+00:00"
+}

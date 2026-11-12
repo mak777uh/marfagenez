@@ -1,3 +1,13 @@
+> **WITHDRAWN IN ITS CENTRAL CLAIM, 2026-11-12.** The table below is real data
+> from real runs, but the rows labelled `n = 160` are not from `n = 160`. A sweep
+> of `--n` with everything else fixed shows `alive = n` exactly at every setting
+> (40 -> 40, 42 -> 42, 80 -> 80, 120 -> 120, 160 -> 160, 200 -> 200): nothing
+> dies, and the "40" and "42" were `--n 40` and `--n 42` read back as results.
+> The arithmetic in this note is correct and stands. The measurement is not a
+> measurement of capacity. See
+> `docs/FINDING-the-capacity-finding-was-reading-its-own-input.md`.
+> The text below is left as written, not silently edited.
+
 # FINDING: the carrying capacity is a line, not a number
 
 2026-11-12. Follows the formula correction in `Medium/Field.lean` and the
@@ -87,3 +97,4 @@ sharing a cell and are rationed below `income`.
   been re-run here. What is established is that `C` depends on `E_max`, so a
   single number quoted without `E_max` is not a law.
 - **Anything about a non-uniform field.** This is the uniform field only.
+
