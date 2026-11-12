@@ -1,7 +1,7 @@
 {
  "schema": "marfagenez.experiment-result.v2",
- "id": "EXP-21",
- "title": "is crowding = (M - income)/maintenance, or was that a fit?",
+ "name": "exp21_crowding_law",
+ "question": "is crowding = (M - income)/maintenance, or was that a fit?",
  "arithmetic": {
   "M": 2.0,
   "income": 0.8,
@@ -72,27 +72,39 @@
    "pred_A": 2.0
   }
  ],
+ "hashes": {
+  "mnt0.4": "2b28e9f73b15d9ab",
+  "mnt0.6": "b083d23759d6f075",
+  "mnt0.8": "7e2b6bc46916e56e",
+  "mnt1.0+1.2": "ce899bb294e2b426"
+ },
  "controls": {
   "fires": {
-   "ok": true,
+   "passed": true,
    "detail": "crowding values across maintenance: [1.925, 1.925, 1.925, 0.0, 0.0]"
   },
   "silent": {
-   "ok": false,
+   "passed": false,
    "detail": "seed 7 crowd=1.925, seed 11 crowd=1.9474"
   },
   "specific": {
-   "ok": false,
+   "passed": false,
    "detail": "m=0.40 measured=1.93 predicted=3.00; m=0.60 measured=1.93 predicted=2.00; m=0.80 measured=1.93 predicted=1.50; m=1.00 measured=0.00 predicted=1.20; m=1.20 measured=0.00 predicted=1.00"
   }
  },
- "verdict": "failed",
+ "verdict": {
+  "kind": "failed",
+  "reason": "EXPLAINED: the candidate crowding = (M - income)/maintenance predicts 3.0, 2.0 and 1.5 at maintenance 0.40, 0.60 and 0.80, and the measurement gives 1.925 at all three. The candidate was read off the maintenance = 0.60 point, so that point cannot count as evidence; the two other points miss by 1.5x and 1.4x. The `fires` control passed for the wrong reason: the metric moved only when every organism died at maintenance >= 1.00."
+ },
  "limitations": [
   "One policy (sighted) and one field shape (uniform).",
   "The candidate was suggested by the crowding=2 measurement itself; the",
   "test is whether it predicts OTHER maintenance values, not whether it",
   "reproduces the one it came from.",
   "Crowding is measured on occupied cells only; a law about empty cells is",
-  "not tested here."
- ]
+  "not tested here.",
+  "maintenance 1.00 and 1.20 share one trace hash: both kill every organism, so the two parameter values are one arm, not two.",
+  "maintenance 1.00 and 1.20 share one trace hash: both kill every organism, so the two parameter values are one arm, not two."
+ ],
+ "what_this_does_not_prove": "It does not show the crowding law is unknown, only that this candidate is not it. The law that survived is EXP-25's k_max = 1 + floor((M*r - maintenance - damage_rate)/income)."
 }

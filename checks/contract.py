@@ -59,6 +59,15 @@ def check_one(path: Path, data: dict) -> list[str]:
     # that is checked under §4. Recording a failed test is doing the work
     # correctly; omitting it is the defect.
     controls = data.get("controls") or {}
+    # The checker must survive a malformed result and REPORT it.  A result whose
+    # `controls` is a list (an old shape) used to crash the whole run, so every
+    # later file went unchecked and the crash looked like the only problem.
+    if not isinstance(controls, dict):
+        problems.append(
+            f"§2: controls must be an object keyed by {CONTROL_TESTS}, "
+            f"not {type(controls).__name__}"
+        )
+        controls = {}
     missing = [t for t in CONTROL_TESTS if t not in controls]
     if missing:
         problems.append(f"§2: missing control tests: {', '.join(missing)}")
@@ -67,7 +76,15 @@ def check_one(path: Path, data: dict) -> list[str]:
     verdict = data.get("verdict")
     if not verdict:
         problems.append("§4: no verdict (four outcomes, not two)")
-    else:
+    elif not isinstance(verdict, dict):
+        # Same reason as above: a string verdict is a violation to report, not
+        # an exception to raise.
+        problems.append(
+            f"§4: verdict must be an object with `kind` and `reason`, "
+            f"not {type(verdict).__name__} {verdict!r}"
+        )
+        verdict = None
+    if verdict is not None:
         kind = verdict.get("kind")
         if kind not in VERDICTS:
             problems.append(f"§4: unknown verdict {kind!r}")
