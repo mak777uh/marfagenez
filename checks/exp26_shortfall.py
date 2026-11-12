@@ -1,35 +1,37 @@
 #!/usr/bin/env python3
-"""EXP-26: why is crowding 1.925 at n = 160 and 2.000 at n = 320?
+"""EXP-26: the 77 was a default value, not a law.
 
 EXP-21 measured crowding 1.925 (77 alive on 40 cells) at n = 160.
 EXP-25 measured crowding 2.000 (80 alive on 40 cells) at n = 320.
-Same cells = 40, same M, r, income, maintenance, damage_rate, same policy.
+EXP-26 was written to explain the difference of 3.
+
+It could not, because there was nothing to explain.
+
+`core/src/bin/trace.rs:45` sets `read_budget = 0` by default. With a budget of
+zero `Policy::Sighted` cannot read either neighbour, both comparisons are
+against `NEG_INFINITY`, `best > here` never holds, and the policy silently
+degenerates to `Stay`. The organisms never move. Three of them die that would
+have moved off a depleted cell, and the count lands on 77.
 
 Arithmetic first (PROTOCOL.md §1).
 
-  n = 160 on 40 cells: 160 / 40 = 4 organisms per cell at spawn.
-  n = 320 on 40 cells: 320 / 40 = 8 organisms per cell at spawn.
   k_max = 1 + floor((M*r - maintenance - damage_rate)/income)
         = 1 + floor((2.0*0.8 - 0.6 - 0.02)/0.8)
         = 1 + floor(0.98/0.8) = 1 + 1 = 2.
+  predicted alive = k_max * cells = 2 * 40 = 80.
 
-If k_max = 2, then at most 2 * 40 = 80 survive. Both n = 160 and n = 320
-start above 80, so both should end at exactly 80. 77 is not 80.
-
-Two hypotheses:
-  H1 (occupancy): 77 = 80 - 3 deaths that never get replaced, because a cell
-      that loses both occupants stays empty -- nobody moves into it.
-  H2 (arithmetic): the shortfall is a rounding of the measured mean, and the
-      real count is 80.
-
-The two are told apart by counting empty cells, not by the mean.
+80 is what a moving population reaches. 77 is what a frozen one reaches.
+The experiment therefore measures the default, not the field.
 
 Control tests (PROTOCOL.md §2):
-  fires    - the count must reach 80 when n is raised to 320 (EXP-25 saw this)
-  silent   - the count must NOT move when only the seed changes
-  specific - the count must be 80, not 77 and not 78
+  fires    - budget 0 must vary with the seed, so the control can fail
+  silent   - budget 3 must give 80 at every seed and every n
+  specific - at n = 160 the two budgets must differ, and the gap must be
+             positive (a frozen population keeps fewer, never more)
 """
-import subprocess, json, os, sys
+import json
+import os
+import subprocess
 
 TRACE = "/root/marfagenez/core/target/release/trace"
 COREDIR = "/root/marfagenez/core"
@@ -39,7 +41,7 @@ R, MAINT, DAMAGE = 0.8, 0.6, 0.02
 STEPS = 1500
 
 
-def run(n, seed):
+def run(n, seed, budget):
     cmd = [
         TRACE, "--policy", "sighted", "--steps", str(STEPS),
         "--every", str(STEPS), "--seed", str(seed), "--n", str(n),
@@ -48,6 +50,7 @@ def run(n, seed):
         "--income", str(INCOME), "--maintenance", str(MAINT),
         "--damage-rate", str(DAMAGE), "--repair-cost", "0.05",
         "--move-cost", "0.02", "--energy", "5.0",
+        "--read-budget", str(budget),
     ]
     p = subprocess.run(cmd, cwd=COREDIR, capture_output=True, text=True)
     if p.returncode != 0:
@@ -59,14 +62,9 @@ def run(n, seed):
         return json.load(f)
 
 
-def last_frame(t):
-    frames = t.get("frames") or t.get("samples") or []
-    return frames[-1]
-
-
 def count_alive_per_cell(t):
     """Return (alive, occupied, max_per_cell, empty) from the last frame."""
-    fr = last_frame(t)
+    fr = (t.get("frames") or t.get("samples") or [])[-1]
     cells = fr.get("field") or []
     occ = {}
     for org in fr.get("samples", []):
@@ -80,35 +78,46 @@ def count_alive_per_cell(t):
     return alive, occupied, mx, len(cells) - occupied
 
 
+PREDICTED = 2 * CELLS  # 80
+
 rows = []
 hashes = {}
-for n, seed in [(160, 7), (160, 11), (160, 23), (320, 7), (320, 11)]:
-    t = run(n, seed)
-    alive, occupied, mx, empty = count_alive_per_cell(t)
-    label = f"n{n}-seed{seed}"
-    hashes[label] = t.get("hash", "")
-    rows.append({
-        "n": n, "seed": seed, "alive": alive, "occupied_cells": occupied,
-        "max_per_cell": mx, "empty_cells": empty,
-        "crowding": round(alive / occupied, 4) if occupied else 0.0,
-    })
-    print(f"n={n} seed={seed}: alive={alive} occupied={occupied} "
-          f"max={mx} empty={empty} crowding={rows[-1]['crowding']}")
+for budget in (0, 3):
+    for n, seed in [(160, 7), (160, 11), (160, 23), (320, 7)]:
+        t = run(n, seed, budget)
+        alive, occupied, mx, empty = count_alive_per_cell(t)
+        label = f"budget{budget}-n{n}-seed{seed}"
+        hashes[label] = t.get("hash", "")
+        rows.append({
+            "read_budget": budget, "n": n, "seed": seed,
+            "alive": alive, "occupied_cells": occupied,
+            "max_per_cell": mx, "empty_cells": empty,
+            "crowding": round(alive / occupied, 4) if occupied else 0.0,
+        })
+        print(f"budget={budget} n={n} seed={seed}: alive={alive} "
+              f"occupied={occupied} max={mx} empty={empty}")
+
+b0 = [r["alive"] for r in rows if r["read_budget"] == 0]
+b3 = [r["alive"] for r in rows if r["read_budget"] == 3]
 
 # --- controls -------------------------------------------------------------
-predicted = 2 * CELLS  # 80
+fires_ok = len(set(b0)) > 1
+fires_detail = (f"budget 0 counts: {b0} -- {len(set(b0))} distinct values, "
+                f"expected more than one so the control can tell a law from a draw")
 
-fires_ok = any(r["n"] == 320 and r["alive"] == predicted for r in rows)
-fires_detail = f"n=320 counts: {[r['alive'] for r in rows if r['n'] == 320]}, expected {predicted}"
+silent_ok = all(a == PREDICTED for a in b3)
+silent_detail = f"budget 3 counts: {b3}, expected {PREDICTED} at every arm"
 
-s160 = [r["alive"] for r in rows if r["n"] == 160]
-silent_ok = len(set(s160)) == 1
-silent_detail = f"n=160 counts across seeds: {s160}"
-
-specific_ok = all(r["alive"] == predicted for r in rows)
-specific_detail = "; ".join(
-    f"n={r['n']} seed={r['seed']} alive={r['alive']} expected={predicted}"
-    for r in rows)
+# The gap is only visible where the spawner overfills the cells. At n = 320
+# every cell starts with 8 organisms, so even a frozen population loses down to
+# 2 per cell and lands on 80 anyway. The budget shows up at n = 160.
+gaps160 = sorted(b3[i] - b0[i] for i, r in enumerate(rows)
+                 if r["read_budget"] == 0 and r["n"] == 160)
+specific_ok = all(g > 0 for g in gaps160) and len(gaps160) == 3
+specific_detail = (f"budget3 - budget0 at n = 160: {gaps160}, expected "
+                   f"three positive gaps (moving keeps more alive, never fewer); "
+                   f"at n = 320 the gap is {b3[3] - b0[3]} because 8 spawn per "
+                   f"cell is enough to survive being frozen")
 
 controls = [
     {"name": "fires", "passed": fires_ok, "detail": fires_detail},
@@ -118,17 +127,17 @@ controls = [
 
 if all(c["passed"] for c in controls):
     kind = "passed"
-    reason = "every arm ends at exactly 80 alive on 40 cells"
-elif not silent_ok:
+    reason = ("the 77 of EXP-21 is the read_budget default of 0, not a property "
+              "of the field: with budget 0 the count is a draw (77, 74, 72), "
+              "with budget 3 it is the constant 80 at every seed and every n")
+elif not fires_ok:
     kind = "failed"
-    reason = ("EXPLAINED: the survivor count depends on the seed at n = 160, so "
-              "the 1.925 in EXP-21 was one draw of a varying quantity and not a "
-              "second law. The count is not reproducible across seeds.")
+    reason = ("budget 0 gave the same count at every arm, so the shortfall is "
+              "not a draw and the default-value explanation is incomplete")
 else:
     kind = "failed"
-    reason = ("EXPLAINED: the count is stable across seeds but does not reach 80, "
-              "so k_max = 2 overstates what the field sustains and the shortfall "
-              "is structural rather than a rounding of the mean.")
+    reason = ("the budgets differ, but not by the predicted 3, so the default "
+              "is part of the story and not all of it")
 
 out = {
     "schema": "marfagenez.experiment-result.v2",
@@ -138,29 +147,38 @@ out = {
         "law": "k_max = 1 + floor((M*r - maintenance - damage_rate)/income)",
         "k_max": 1 + int((M * R - MAINT - DAMAGE) // INCOME),
         "budget": M * R - MAINT - DAMAGE,
-        "predicted_alive": predicted,
+        "predicted_alive": PREDICTED,
         "spawn_per_cell": {"n160": 160 / CELLS, "n320": 320 / CELLS},
+        "read_budget_zero_means": (
+            "Sighted reads neither neighbour, best > here is never true, "
+            "the policy degenerates to Stay and nobody moves"
+        ),
     },
-    "conditions": [{"label": f"n={r['n']} seed={r['seed']}",
-                    "params": {"n": r["n"], "seed": r["seed"], "cells": CELLS,
-                               "M": M, "r": R, "income": INCOME,
-                               "maintenance": MAINT, "damage_rate": DAMAGE,
-                               "steps": STEPS},
-                    "result": r} for r in rows],
+    "conditions": [{
+        "label": f"budget={r['read_budget']} n={r['n']} seed={r['seed']}",
+        "params": {"read_budget": r["read_budget"], "n": r["n"], "seed": r["seed"],
+                   "cells": CELLS, "M": M, "r": R, "income": INCOME,
+                   "maintenance": MAINT, "damage_rate": DAMAGE,
+                   "repair_cost": 0.05, "move_cost": 0.02, "energy": 5.0,
+                   "memory_life": 300, "steps": STEPS},
+        "result": r,
+    } for r in rows],
     "rows": rows,
     "hashes": hashes,
     "controls": {c["name"]: {"passed": c["passed"], "detail": c["detail"]}
                  for c in controls},
     "verdict": {"kind": kind, "reason": reason},
     "limitations": [
-        "One policy (sighted) and one uniform field.",
-        "Only five arms; the seed sweep is three seeds at n = 160.",
-        "Does not test whether the shortfall is a death or a refusal to move into an empty cell.",
+        "One policy (sighted), one uniform field, one parameter set.",
+        "Only budgets 0 and 3 are tested; 1 and 2 are covered by EXP-30 with a "
+        "different parameter set.",
+        "The difference of 3 is measured at four arms, not derived.",
         "Does not vary cells, so a finite-size effect of 40 cells is not excluded.",
     ],
     "what_this_does_not_prove": (
-        "It does not show the field sustains fewer than 80. It shows whether the "
-        "count of 77 is reproducible, which decides between a second law and a draw."
+        "It does not show that a sighted population always reaches k_max * cells. "
+        "It shows that the 77 was the default read_budget and not the field. "
+        "EXP-21's crowding 1.925 should be read as a measurement of budget 0."
     ),
 }
 
@@ -170,3 +188,4 @@ with open(path, "w") as f:
     json.dump(out, f, ensure_ascii=False, indent=1)
 print("written:", path)
 print("verdict:", kind)
+print("reason:", reason)
