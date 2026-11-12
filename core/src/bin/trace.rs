@@ -42,6 +42,7 @@ fn main() {
     let mut rich = 2.0f64;
     let mut poor = 0.2f64;
     let mut regrow = 0.8f64;
+    let mut read_budget: usize = 0;
     let mut feed = false;
     let mut even = false;
 
@@ -137,6 +138,10 @@ fn main() {
                 i += 1;
                 even = matches!(args.get(i).map(|s| s.as_str()), Some("even"));
             }
+            "--read-budget" => {
+                i += 1;
+                read_budget = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(read_budget);
+            }
             "--regrow" => {
                 i += 1;
                 regrow = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(regrow);
@@ -147,6 +152,7 @@ fn main() {
                 println!("             [--repair-cost X] [--move-cost X] [--energy X]");
                 println!("             [--field alternating|gradient|uniform|moving] [--memory-life N] [--shift X]");
                 println!("             [--rich X] [--poor X] [--regrow X] [--layout even]");
+                println!("             [--read-budget N]  cells the organism may read per step without eating");
                 return;
             }
             other => {
@@ -163,6 +169,7 @@ fn main() {
         repair_cost,
         damage_rate,
         capacity,
+        read_budget,
     };
     let field = match field_kind.as_str() {
         "alternating" => Field::alternating(cells, rich, poor, regrow),
@@ -181,6 +188,30 @@ fn main() {
             std::process::exit(1);
         }
     };
+    // A field that is asked to be uneven but is built from equal levels is not
+    // uneven. `uniform` is `(rich + poor) / 2`, so `--rich 2 --poor 2` makes
+    // `alternating`, `gradient` and `uniform` the same constant field, with the
+    // same dynamics hash. EXP-31 measured a gradient arm that was a flat field
+    // for exactly this reason.
+    if rich == poor && (field_kind == "alternating" || field_kind == "gradient") {
+        eprintln!(
+            "refusing to run: --field {} with --rich {} == --poor {} is a flat field.\n             uniform is built as (rich + poor) / 2, so all three kinds coincide\n             and the uneven arm measures nothing. Give the two levels different\n             values, e.g. --rich 2.4 --poor 1.6, or pass --field uniform if a\n             flat field is what you mean.",
+            field_kind, rich, poor
+        );
+        std::process::exit(2);
+    }
+    // A sighted policy with a read budget of zero cannot see. It does not error
+    // and it does not warn: `best > here` is never true, so it silently becomes
+    // `Stay`. EXP-26 measured that default for months and called it a law.
+    if matches!(policy, Policy::Sighted) && read_budget == 0 {
+        eprintln!(
+            "refusing to run: --policy sighted with --read-budget 0 is not sighted.\n             A budget of zero reads neither neighbour, so the policy degenerates to
+             stay without any error. Pass --read-budget 3 (underfoot + both
+             neighbours) or choose --policy stay if standing still is what you mean."
+        );
+        std::process::exit(2);
+    }
+
     let spawned = if even {
         Life::spawn_even(world, field, n, energy, move_cost, policy, seed, memory_life)
     } else {
