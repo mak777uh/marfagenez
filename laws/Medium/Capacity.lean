@@ -23,10 +23,13 @@ to one per cell at `t = 0.9`, not at `t = 0.8`.
 
 Two old claims are now known to be wrong and are kept here only as history:
 
-* `k_feed = M*r/t₀` (the "regrowth covers k full portions" story) — the
-  measurement gives 2 at `M = 2, r = 0.8, t₀ = 0.8`, where the story gives 2.5.
 * `c* = M - t/r` — that is the *other* order of operations (regrow, then take,
   `Medium/Feed.lean`). With take-then-regrow it is `M + t - t/r`.
+* `k_feed = 2.5` at `M = 2, r = 0.8, t₀ = 0.8` — this file used to say the
+  "regrowth covers k full portions" story gives 2.5 while the measurement gives
+  2. That was itself wrong: the story gives `M*r/t₀ = 2.0` exactly, and the
+  measurement agrees. There was never a discrepancy. (Corrected 2026-11-12;
+  see `Medium/Regimes.lean`, where `feedCapacity` had the same error.)
 
 ## What is proved
 
@@ -44,6 +47,15 @@ That the population actually reaches `cells * k_feed`. That needs a model of
 movement and of who stands where; the experiments measure it, this file does not
 prove it. The measurement gives `C = 80` at 40 cells with `k_feed = 2`
 (`results/overcrowding/run-2026-11-11T22-20-40.json`).
+
+**An open anomaly, stated so it is not forgotten.** At `n = 120` and `n = 160`
+the measured `C` is 80 and the crowding is 2.00 on every occupied cell. But the
+`maintenance = 0.6` threshold admits a third organism too: the third take is
+`c*(3) - 2t = 1.4 - 1.6 < 0`, so it is rationed to 0 and dies — which is why
+the count stops at 2. The *arithmetic* of `kMaxCount` and the *measurement*
+agree at 2. What is unexplained is the earlier claim `k_max = 10` that
+circulated after the formula fix: it does not come from this file and has not
+been reproduced.
 -/
 
 namespace Medium

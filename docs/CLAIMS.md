@@ -20,11 +20,11 @@
 
 ## Что доказано (уровень A)
 
-### Lean — две библиотеки, 266 теорем и лемм, 1 sorry
+### Lean — две библиотеки, 261 теорема и лемма, 1 sorry
 
 | библиотека | файлов | теорем | sorry | команда |
 |---|---|---|---|---|
-| `Medium` — модель клетки | 53 | **239** | **0** | `lake build` |
+| `Medium` — модель клетки | 52 | **234** | **0** | `lake build` |
 | `Legacy` — стена/гонка/наклон | 9 | 27 | 1 | `lake build Legacy` |
 
 `Medium` — то, что относится к среде ребёнка: `cellStep`, `equilibrium`,
@@ -35,7 +35,7 @@
 **Команда:**
 ```bash
 cd laws && lake build && lake build Legacy
-# Build completed successfully (18320 jobs).   -- Medium
+# Build completed successfully (18322 jobs).   -- Medium
 # Build completed successfully (18238 jobs).   -- Legacy
 ```
 
