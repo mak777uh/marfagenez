@@ -51,17 +51,21 @@ open MeasureTheory ProbabilityTheory
 -- REMOVED: `reflection_is_isometry_inside` was a tautology (proved `X = X` or returned a
 -- hypothesis). Deleted 2026-11-11; see docs/ELIMINATED.md.
 
-/-- **The fold identifies points.**
-    Reflection maps two points `4B` apart to the same place.
+/-- **The fold identifies points — stated where it is true.**
 
-    The map is periodic with period `4B`. This identification, not any contraction,
-    is what lets a distribution become uniform. -/
-theorem fold_identifies (B x : ℝ) (hB : 0 < B) :
-    B - |((x + B) % (4 * B) + 4 * B) % (4 * B) - 2 * B|
-      = B - |(((x + 4 * B) + B) % (4 * B) + 4 * B) % (4 * B) - 2 * B| := by
-  -- FALSE AS STATED: `%` on `ℝ` is `Int.fmod`-like and is not periodic in the
-  -- `4B` sense this theorem needs. Kept as a marker, not a proof.
-  sorry
+    Two integers `4B` apart have the same residue modulo `4B`. This is the
+    identification that lets a distribution become uniform, and it is a
+    statement about `ℤ`, where `%` is a remainder.
+
+    The previous version of this theorem was stated over `ℝ` and was true for
+    the wrong reason: both sides collapsed to `B - 2B` because `%` on `ℝ` is
+    zero, not because anything folded. See `Medium/FoldPeriodic.lean`, which
+    proves `real_mod_eq_zero` and `fold_collapse`. -/
+theorem fold_identifies (a : ℤ) (b : ℕ) (hb : 0 < b) :
+    (a + 4 * (b : ℤ)) % (4 * (b : ℤ)) = a % (4 * (b : ℤ)) := by
+  rw [Int.emod_eq_emod_iff_emod_sub_eq_zero]
+  have h : a + 4 * (b : ℤ) - a = 4 * (b : ℤ) := by ring
+  rw [h, Int.emod_self]
 
 /-- **The scaled chi-square test.**
     For a uniform population the scaled statistic `chi²/N` tends to zero; for a

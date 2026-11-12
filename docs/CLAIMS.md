@@ -20,12 +20,12 @@
 
 ## Что доказано (уровень A)
 
-### Lean — две библиотеки, 264 теоремы и леммы, 1 sorry
+### Lean — две библиотеки, 264 теоремы и леммы, 0 sorry
 
 | библиотека | файлов | теорем | sorry | команда |
 |---|---|---|---|---|
 | `Medium` — модель клетки | 53 | **237** | **0** | `lake build` |
-| `Legacy` — стена/гонка/наклон | 9 | 27 | 1 | `lake build Legacy` |
+| `Legacy` — стена/гонка/наклон | 9 | 27 | **0** | `lake build Legacy` |
 
 `Medium` — то, что относится к среде ребёнка: `cellStep`, `equilibrium`,
 `capacity`, `Regimes`, `CapacityLaw`, `FoldPeriodic`. `Legacy` — другой язык (стена,
@@ -42,12 +42,23 @@ cd laws && lake build && lake build Legacy
 **Проверка отсутствия дыр:**
 ```bash
 grep -rn 'sorry' Medium/*.lean | wc -l   # 0 (два вхождения — слова в комментариях FoldPeriodic)
-grep -rn 'sorry' Legacy/*.lean           # только Convergence2.lean:64
+grep -rn 'sorry' Legacy/*.lean           # 0
 ```
 
-`sorry` в `Legacy/Convergence2.lean:64` — не недоказанное утверждение, а
-**опровергнутое**: `fold_identifies` ложно, потому что `%` на `ℝ` тождественно
-`0`. См. `FINDING-percent-on-real-is-zero.md` и `Medium/FoldPeriodic.lean`.
+**`sorry` больше нет нигде.** `Legacy/Convergence2.lean:64` держал
+`fold_identifies` как `sorry` с пометкой «ложно». Это было неточно: `%` на `ℝ`
+тождественно `0` (`a - b*(a/b) = a - a = 0`), поэтому обе стороны старой
+формулировки схлопывались в `B - 2B`, и теорема была **истинна по пустой
+причине** — она ничего не складывала.
+
+Заменено 2026-11-13 на честную формулировку над `ℤ`, где `%` — остаток:
+
+```lean
+theorem fold_identifies (a : ℤ) (b : ℕ) (hb : 0 < b) :
+    (a + 4 * (b : ℤ)) % (4 * (b : ℤ)) = a % (4 * (b : ℤ))
+```
+
+См. `FINDING-percent-on-real-is-zero.md` и `Medium/FoldPeriodic.lean`.
 
 ### Legacy — что доказано (уровень A)
 
@@ -169,7 +180,7 @@ cd core && cargo test --release -- --test-threads=1
 | 3 теоремы в `medium` | ложные постановки | `ELIMINATED.md` п.10 |
 | `varianceF_bound` | ложна: `isFinite` не исключает underflow, контрпример `b = 2⁻⁵³⁷` | `LESSONS.md` урок 2 |
 | `fold_identifies`, `mean_le_of_all_le` | ложные постановки, исправлены | `LESSONS.md` урок 2 |
-| `Convergence2.fold_identifies` (второй раз) | `%` на `ℝ` не периодичен по `4B`; теперь явный `sorry`, не доказательство | `laws/Legacy/README.md` |
+| `Convergence2.fold_identifies` (второй раз) | `%` на `ℝ` тождественно `0`, теорема была истинна по пустой причине; переписана над `ℤ` 2026-11-13 | `docs/FINDING-percent-on-real-is-zero.md` |
 | «`c* = M − t/r`» | не тот порядок операций; верно `M − t(1−r)/r` | `FINDING-correct-equilibrium.md` |
 | «`k_max = M·r/(t₀(1−r))`» | верное число по неверной причине; забор последовательный | `FINDING-crowding-is-two.md` |
 | «тормоз сужает до 0.9 закона» | измерено 0.954; тест противоречил sweep | `LESSON-two-tests-disagreed.md` |
@@ -201,7 +212,7 @@ cd core && cargo test --release -- --test-threads=1
 | Lean теорем и лемм (`Medium`) | **237** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
 | Lean файлов с теоремами | **53** `Medium` + 9 `Legacy` | `grep -l '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
-| Lean `sorry` | **0** в `Medium`, **1** в `Legacy` (опровергнутое утверждение) | `grep -rn 'sorry' laws/*/*.lean \| wc -l` |
+| Lean `sorry` | **0** в `Medium`, **0** в `Legacy` | `grep -rn 'sorry' laws/*/*.lean \| wc -l` |
 | Rust тестов | **189** (122 unit + 67 интеграционных) | `cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
 | docs FINDING | **87** | `ls docs/FINDING-*.md \| wc -l` |
