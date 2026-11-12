@@ -38,6 +38,17 @@ use crate::organism::{Organism, World};
 #[derive(Debug, Clone)]
 pub struct Field {
     cells: Vec<f64>,
+    /// The ceiling of each cell: what it regrows toward.
+    ///
+    /// This used to be one number for the whole field (`max_resource`), which
+    /// meant every cell regrew toward the richest level. A poor cell in an
+    /// alternating field climbed to the rich level in about six steps and the
+    /// pattern was gone. Measured in
+    /// `docs/FINDING-alternating-field-collapses.md`.
+    ceil: Vec<f64>,
+    /// The poor level of a moving field: every cell that is not lit regrows
+    /// toward this. Unused for static fields.
+    poor: f64,
     max_resource: f64,
     regrow: f64,
     /// How far the resource pattern shifts per step. `0.0` for a static field.
@@ -62,6 +73,8 @@ impl Field {
         }
         Some(Self {
             cells: vec![max_resource; cells],
+            ceil: vec![max_resource; cells],
+            poor: 0.0,
             max_resource,
             regrow,
             shift: 0.0,
@@ -73,7 +86,9 @@ impl Field {
     pub fn alternating(cells: usize, rich: f64, poor: f64, regrow: f64) -> Option<Self> {
         let mut f = Self::new(cells, rich, regrow)?;
         for i in 0..cells {
-            f.cells[i] = if i % 2 == 0 { rich } else { poor };
+            let level = if i % 2 == 0 { rich } else { poor };
+            f.cells[i] = level;
+            f.ceil[i] = level;
         }
         Some(f)
     }
@@ -91,8 +106,10 @@ impl Field {
         if !shift.is_finite() || shift < 0.0 {
             return None;
         }
+        f.poor = poor;
         for i in 0..cells {
             f.cells[i] = poor;
+            f.ceil[i] = poor;
         }
         f.shift = shift;
         f.t = 0;
@@ -106,17 +123,20 @@ impl Field {
         if n == 0 {
             return;
         }
-        // Reset every cell to the poor level, then light the rich one.
-        for c in self.cells.iter_mut() {
-            *c = (*c).min(self.max_resource);
-        }
         let pos = if self.shift == 0.0 {
             0
         } else {
             ((self.t as f64 * self.shift) as usize) % n
         };
-        // The rich cell is the maximum; the rest stay where they are.
-        // `max_resource` is the rich value for this field.
+        // The ceiling moves with the light, not just the level. When only the
+        // level moved, `regrow_all` pulled the rich cell back down to the poor
+        // ceiling it still had, and the rich cell was erased one step after it
+        // was lit. Measured: `results/memory/trace-memory-1794496601.json`.
+        for i in 0..n {
+            self.ceil[i] = self.poor;
+            self.cells[i] = self.cells[i].min(self.poor);
+        }
+        self.ceil[pos] = self.max_resource;
         self.cells[pos] = self.max_resource;
     }
 
@@ -131,12 +151,15 @@ impl Field {
         let mut f = Self::new(cells, high, regrow)?;
         if cells == 1 {
             f.cells[0] = high;
+            f.ceil[0] = high;
             return Some(f);
         }
         let span = high - low;
         for i in 0..cells {
             let t = i as f64 / (cells - 1) as f64;
-            f.cells[i] = low + span * t;
+            let level = low + span * t;
+            f.cells[i] = level;
+            f.ceil[i] = level;
         }
         Some(f)
     }
@@ -171,10 +194,15 @@ impl Field {
         taken
     }
 
-    /// Regrows every cell toward the maximum.
+    /// Regrows every cell toward its **own** ceiling.
+    ///
+    /// It used to regrow toward one `max_resource` for the whole field, so a
+    /// poor cell climbed to the rich level and an alternating field became
+    /// uniform in about six steps. See
+    /// `docs/FINDING-alternating-field-collapses.md`.
     pub fn regrow_all(&mut self) {
-        for c in self.cells.iter_mut() {
-            *c += (self.max_resource - *c) * self.regrow;
+        for (c, top) in self.cells.iter_mut().zip(self.ceil.iter()) {
+            *c += (*top - *c) * self.regrow;
         }
         if self.shift > 0.0 {
             self.t += 1;
@@ -322,6 +350,66 @@ mod tests {
         let f = Field::alternating(10, 1.0, 0.1, 0.1).unwrap();
         assert!((f.level(0) - 1.0).abs() < 1e-12);
         assert!((f.level(1) - 0.1).abs() < 1e-12);
+    }
+
+    #[test]
+    fn alternating_field_keeps_its_shape() {
+        // The bug this test exists for: `regrow_all` pulled every cell toward
+        // one `max_resource`, so a poor cell climbed to the rich level in about
+        // six steps and the alternating field became uniform. Measured in
+        // `docs/FINDING-alternating-field-collapses.md`.
+        //
+        // A poor cell at 0.2 regrowing toward 2.0 at r = 0.8:
+        //   0.2 -> 1.64 -> 1.928 -> 1.9856 -> ... -> 2.0
+        let mut f = Field::alternating(10, 2.0, 0.2, 0.8).unwrap();
+        for _ in 0..100 {
+            f.regrow_all();
+        }
+        for i in 0..10 {
+            let want = if i % 2 == 0 { 2.0 } else { 0.2 };
+            assert!(
+                (f.level(i) - want).abs() < 1e-12,
+                "cell {i} drifted to {}, expected {want}",
+                f.level(i)
+            );
+        }
+    }
+
+    #[test]
+    fn gradient_keeps_its_shape() {
+        let mut f = Field::gradient(11, 0.0, 2.0, 0.8).unwrap();
+        for _ in 0..100 {
+            f.regrow_all();
+        }
+        for i in 0..11 {
+            let want = 2.0 * i as f64 / 10.0;
+            assert!(
+                (f.level(i) - want).abs() < 1e-12,
+                "cell {i} drifted to {}, expected {want}",
+                f.level(i)
+            );
+        }
+    }
+
+    #[test]
+    fn a_cell_held_by_k_organisms_settles_at_the_predicted_level() {
+        // A cell with k organisms loses k * income per step and regrows once.
+        // Fixed point: c = M - k * income * (1 - r) / r.
+        // M = 2.0, income = 0.8, r = 0.8  =>  k=1: 1.8, k=2: 1.6.
+        for (k, want) in [(1usize, 1.8f64), (2, 1.6)] {
+            let mut f = Field::new(1, 2.0, 0.8).unwrap();
+            for _ in 0..500 {
+                for _ in 0..k {
+                    f.take(0, 0.8);
+                }
+                f.regrow_all();
+            }
+            assert!(
+                (f.level(0) - want).abs() < 1e-9,
+                "k={k}: settled at {}, expected {want}",
+                f.level(0)
+            );
+        }
     }
 
     #[test]

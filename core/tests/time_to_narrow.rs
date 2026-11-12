@@ -120,38 +120,70 @@ fn the_room_is_spent_sooner_than_b_over_mu() {
     // has to travel `B - B/sqrt(3) = 0.42 B` before the narrowing starts.
     //
     // The corrected estimate is `t* = (B - B/sqrt(3)) / mu`.
+    //
+    // That correction is also wrong, and this test used to assert it. Re-measured
+    // (2026-11-12, seed 1501, n = 1200, noise 0.3, threshold 0.9):
+    //
+    // | push | B/mu | (B-law)/mu | measured |
+    // |---|---|---|---|
+    // | 0.020 | 150 | 63 | 110 |
+    // | 0.050 | 60 | 25 | 32 |
+    // | 0.100 | 30 | 13 | 12 |
+    //
+    // The corrected estimate is worse than the naive one at push 0.02 (63 vs 150,
+    // measured 110) and at push 0.05 (25 vs 60, measured 32). It is only closer at
+    // push 0.1, and that is the case where the two predictions are closest together.
+    // So neither formula is the law, and the "corrected" one was fitted to three
+    // numbers from one seed. What the data does support:
+    //
+    //   * the time falls as the push grows, roughly as `1/mu`;
+    //   * the product `mu * t*` is not constant (2.20, 1.60, 1.20), so the law is not
+    //     `t* = const/mu` either;
+    //   * the naive `B/mu` is an upper bound in all three rows.
+    //
+    // The honest claim is the bound, not the estimate.
     let b = 3.0;
     let noise = 0.3;
     let law = b / 3.0_f64.sqrt();
     let mut rows = Vec::new();
 
     for push in [0.02, 0.05, 0.1] {
-        let predicted = (b - law) / push;
-        let measured = time_to_narrow(push, 1200, noise, 1501, 80000, b, 0.9);
-        rows.push((push, predicted, measured));
+        let measured = time_to_narrow(push, 1200, noise, 1501, 80000, b, 0.9)
+            .expect("every push should narrow");
+        rows.push((push, measured));
     }
 
-    println!("push -> corrected (B-law)/mu, measured");
-    for (push, predicted, measured) in &rows {
-        match measured {
-            Some(m) => println!("  {:.3} -> {:.0}, measured {}", push, predicted, m),
-            None => println!("  {:.3} -> {:.0}, never narrowed", push, predicted),
-        }
+    println!("push -> B/mu, (B-law)/mu, measured");
+    for (push, m) in &rows {
+        println!(
+            "  {:.3} -> {:.0}, {:.0}, measured {}",
+            push,
+            b / push,
+            (b - law) / push,
+            m
+        );
     }
 
-    // The corrected estimate should be closer than the naive one.
-    for (push, predicted, measured) in &rows {
-        let m = measured.expect("every push should narrow") as f64;
+    // The naive estimate is an upper bound.
+    for (push, m) in &rows {
         let naive = b / push;
-        let err_corrected = (m - predicted).abs() / m;
-        let err_naive = (m - naive).abs() / m;
         assert!(
-            err_corrected < err_naive,
-            "the corrected estimate should be closer for push {}: measured {} corrected {:.0} naive {:.0}",
+            (*m as f64) < naive,
+            "the push should narrow sooner than B/mu for push {}: measured {} naive {:.0}",
             push,
             m,
-            predicted,
             naive
+        );
+    }
+    // The time falls strictly as the push grows.
+    for w in rows.windows(2) {
+        assert!(
+            w[0].1 > w[1].1,
+            "a stronger push should narrow sooner: {} at {} vs {} at {}",
+            w[0].1,
+            w[0].0,
+            w[1].1,
+            w[1].0
         );
     }
 }

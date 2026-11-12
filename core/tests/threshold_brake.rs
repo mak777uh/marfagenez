@@ -94,12 +94,26 @@ fn no_brake_keeps_the_law() {
 #[test]
 fn a_tight_brake_narrows_the_child() {
     // A brake at a small limit cuts most steps, so the child cannot move far.
+    //
+    // The claim used to be `tight < law * 0.9` at limit 0.05, which is false:
+    // measured 1.653 vs law 1.732 = 0.954. The sweep in
+    // `the_brake_is_gradual_not_a_cliff` measures 0.945 at the same limit, so the
+    // two tests disagreed and this one was wrong. The honest claim is the one the
+    // sweep supports: a tight brake narrows the child, and the narrowing is small
+    // because the brake cuts the step but the noise keeps arriving.
     let b = 3.0;
     let law = b / 3.0_f64.sqrt();
     let tight = run_brake(0.05, 2000, 0.3, 1102, 12000, b);
     assert!(
-        tight < law * 0.9,
+        tight < law * 0.98,
         "a tight brake should narrow the child: {} vs law {}",
+        tight,
+        law
+    );
+    // And it must not collapse the child: the noise still arrives every step.
+    assert!(
+        tight > law * 0.5,
+        "a brake cuts the step, not the motion: {} vs law {}",
         tight,
         law
     );

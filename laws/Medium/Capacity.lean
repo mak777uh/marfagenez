@@ -219,4 +219,54 @@ theorem three_takes {t₀ c : ℝ} (ht₀ : 0 < t₀) (hc : 2 * t₀ ≤ c) :
   show c - t₀ - t₀ - min t₀ (c - t₀ - t₀) = c - 2 * t₀ - min t₀ (c - 2 * t₀)
   ring_nf
 
+/-!
+## The count is a floor, not a ceiling
+
+`k_feed = M*r/t₀` is a real number. The number of organisms a cell actually
+feeds is the largest integer `k` with `k*t₀ ≤ M*r`, which is `⌊M*r/t₀⌋`, and
+that is a **floor**. This is where the model stops being linear: `capacity` is
+continuous in `r` and `M`, the count is not.
+
+The floor is also the reason a small change in `r` can cost a whole organism:
+at `M = 2, t₀ = 0.8` the count is `⌊2.5 r⌋`, so it drops from 2 to 1 the
+moment `r` falls below `0.8`, and from 1 to 0 below `0.4`.
+-/
+
+/-- The count of organisms a cell feeds: the largest `k` with `k*t₀ ≤ M*r`. -/
+noncomputable def kFeedCount (M r t₀ : ℝ) : ℕ :=
+  ⌊M * r / t₀⌋₊
+
+/-- **The count never exceeds the continuous capacity.** -/
+theorem kFeedCount_le_capacity {M r t₀ : ℝ} (hM : 0 ≤ M) (hr : 0 ≤ r)
+    (ht₀ : 0 < t₀) :
+    (kFeedCount M r t₀ : ℝ) ≤ capacity M r t₀ := by
+  unfold kFeedCount capacity
+  exact Nat.floor_le (div_nonneg (mul_nonneg hM hr) (le_of_lt ht₀))
+
+/-- **The count is tight: one more organism does not fit.** -/
+theorem kFeedCount_tight {M r t₀ : ℝ} :
+    capacity M r t₀ < (kFeedCount M r t₀ : ℝ) + 1 := by
+  unfold kFeedCount capacity
+  exact Nat.lt_floor_add_one (M * r / t₀)
+
+/-- **The count is a floor: `k` organisms fit exactly when `k ≤ ⌊M*r/t₀⌋`.** -/
+theorem kFeedCount_iff {M r t₀ : ℝ} (hM : 0 < M) (hr : 0 ≤ r) (ht₀ : 0 < t₀)
+    (k : ℕ) :
+    (k : ℝ) * t₀ ≤ M * r ↔ k ≤ kFeedCount M r t₀ := by
+  unfold kFeedCount
+  have hnn : (0 : ℝ) ≤ M * r / t₀ := div_nonneg (mul_nonneg (le_of_lt hM) hr) (le_of_lt ht₀)
+  rw [Nat.le_floor_iff hnn, le_div_iff₀ ht₀]
+
+/-- **The count jumps down by a whole organism at a threshold.**
+
+At `M = 2, t₀ = 0.8` the count is `⌊2.5 r⌋`: two organisms at `r = 0.8`, one
+just below. This is the discontinuity the continuous `capacity` does not have. -/
+theorem count_jumps_at_threshold :
+    kFeedCount 2 (4 / 5) (4 / 5) = 2 ∧ kFeedCount 2 (79 / 100) (4 / 5) = 1 := by
+  constructor
+  · unfold kFeedCount
+    norm_num
+  · unfold kFeedCount
+    norm_num
+
 end Medium

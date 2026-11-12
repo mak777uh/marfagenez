@@ -1,0 +1,92 @@
+{
+  "policy": "stay",
+  "seed": 20250101,
+  "hash": "6e5efa4cf039910b",
+  "steps": 6,
+  "frames": [
+    {
+      "step": 1,
+      "field": [2.000000,1.600000,2.000000,1.640000,1.680000,1.600000,2.000000,1.600000,1.840000,1.640000],
+      "samples": [
+        {"cell":4,"energy":5.170000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":4.570000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.200000},
+        {"cell":4,"energy":5.170000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":8,"energy":5.170000,"damage":0.000000,"alive":true,"memory_cell":8,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":4.370000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.000000},
+        {"cell":5,"energy":4.570000,"damage":0.000000,"alive":true,"memory_cell":5,"memory_level":0.000000,"direction":0,"taken":0.200000},
+        {"cell":7,"energy":4.570000,"damage":0.000000,"alive":true,"memory_cell":7,"memory_level":0.000000,"direction":0,"taken":0.200000},
+        {"cell":1,"energy":4.370000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.000000}
+      ]
+    },
+    {
+      "step": 2,
+      "field": [2.000000,1.600000,2.000000,1.928000,1.616000,1.760000,2.000000,1.760000,1.808000,1.928000],
+      "samples": [
+        {"cell":4,"energy":5.340000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":4.740000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":4,"energy":5.340000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":8,"energy":5.340000,"damage":0.000000,"alive":true,"memory_cell":8,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":4.540000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":5,"energy":4.740000,"damage":0.000000,"alive":true,"memory_cell":5,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":7,"energy":4.740000,"damage":0.000000,"alive":true,"memory_cell":7,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":3.740000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.000000}
+      ]
+    },
+    {
+      "step": 3,
+      "field": [2.000000,1.600000,2.000000,1.985600,1.603200,1.792000,2.000000,1.792000,1.801600,1.985600],
+      "samples": [
+        {"cell":4,"energy":5.510000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":4.910000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":4,"energy":5.510000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":8,"energy":5.510000,"damage":0.000000,"alive":true,"memory_cell":8,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":4.710000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":5,"energy":4.910000,"damage":0.000000,"alive":true,"memory_cell":5,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":7,"energy":4.910000,"damage":0.000000,"alive":true,"memory_cell":7,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":3.110000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.000000}
+      ]
+    },
+    {
+      "step": 4,
+      "field": [2.000000,1.600000,2.000000,1.997120,1.600640,1.798400,2.000000,1.798400,1.800320,1.997120],
+      "samples": [
+        {"cell":4,"energy":5.680000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":5.080000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":4,"energy":5.680000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":8,"energy":5.680000,"damage":0.000000,"alive":true,"memory_cell":8,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":4.880000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":5,"energy":5.080000,"damage":0.000000,"alive":true,"memory_cell":5,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":7,"energy":5.080000,"damage":0.000000,"alive":true,"memory_cell":7,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":2.480000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.000000}
+      ]
+    },
+    {
+      "step": 5,
+      "field": [2.000000,1.600000,2.000000,1.999424,1.600128,1.799680,2.000000,1.799680,1.800064,1.999424],
+      "samples": [
+        {"cell":4,"energy":5.850000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":5.250000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":4,"energy":5.850000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":8,"energy":5.850000,"damage":0.000000,"alive":true,"memory_cell":8,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":5.050000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":5,"energy":5.250000,"damage":0.000000,"alive":true,"memory_cell":5,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":7,"energy":5.250000,"damage":0.000000,"alive":true,"memory_cell":7,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":1.850000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.000000}
+      ]
+    },
+    {
+      "step": 6,
+      "field": [2.000000,1.600000,2.000000,1.999885,1.600026,1.799936,2.000000,1.799936,1.800013,1.999885],
+      "samples": [
+        {"cell":4,"energy":6.020000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":5.420000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":4,"energy":6.020000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":8,"energy":6.020000,"damage":0.000000,"alive":true,"memory_cell":8,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":5.220000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":5,"energy":5.420000,"damage":0.000000,"alive":true,"memory_cell":5,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":7,"energy":5.420000,"damage":0.000000,"alive":true,"memory_cell":7,"memory_level":0.000000,"direction":0,"taken":0.800000},
+        {"cell":1,"energy":1.220000,"damage":0.000000,"alive":true,"memory_cell":1,"memory_level":0.000000,"direction":0,"taken":0.000000}
+      ]
+    }
+  ]
+}

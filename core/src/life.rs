@@ -250,15 +250,78 @@ impl Life {
             // cell, so once it arrives the memory is frozen — a one-shot choice.
             //
             // `Memory` updates on every step, so a richer cell seen later replaces
-            // the memory and the organism can change its mind.
+            // the memory and the organism can change its mind. It must also be able
+            // to DROP a memory: in a moving field the remembered cell goes poor, and
+            // a memory that only ever rises pins the organism to a dead cell forever.
+            // Measured before the fix: 8 organisms on a 40-cell moving field kept
+            // memory cells 3, 4, 12, 1, 37, 22, 10, 6 for 50 steps while the rich
+            // cell travelled; the field they stood on was 0.2 everywhere.
             let update_memory = match self.policy {
                 Policy::Memory => true,
                 _ => r.memory.best_cell != r.cell,
             };
             if update_memory {
-                r.memory.observe(r.cell, here);
+                // `Memory` keeps the live level of the cell it stands on, so that
+                // `direction()` can notice the remembered cell has gone poor.
+                if self.policy == Policy::Memory && r.memory.best_cell == r.cell {
+                    r.memory.best_level = here;
+                    r.memory.age = 0;
+                } else {
+                    r.memory.observe(r.cell, here);
+                }
             }
             r.memory.decay(self.memory_life);
+
+            // A memory of a cell that is no longer worth going to is dropped.
+            // Otherwise `direction()` keeps walking toward a cell that has dried up.
+            if self.policy == Policy::Memory
+                && r.memory.best_cell != r.cell
+                && r.memory.best_level <= here
+            {
+                r.memory.best_cell = r.cell;
+                r.memory.best_level = here;
+                r.memory.age = 0;
+            }
+            // The memory must be able to point AWAY from the current cell, or the
+            // organism never moves. A memory that only records "the richest cell I
+            // have stood on" is always the current cell the moment the organism
+            // arrives, so `direction()` returns 0 forever. `Memory` therefore also
+            // remembers the best cell it has SEEN anywhere -- the richer neighbour.
+            // Measured before: 8 organisms, 40-cell moving field, 50 steps, memory
+            // cells 3, 4, 12, 1, 37, 22, 10, 6 unchanged, direction 0 every step.
+            if self.policy == Policy::Memory {
+                let left = if r.cell > 0 {
+                    self.field.level(r.cell - 1)
+                } else {
+                    f64::NEG_INFINITY
+                };
+                let right = if self.field.inside(r.cell + 1) {
+                    self.field.level(r.cell + 1)
+                } else {
+                    f64::NEG_INFINITY
+                };
+                let best = here.max(left).max(right);
+                let target = if left >= right { r.cell.wrapping_sub(1) } else { r.cell + 1 };
+                if best > here && best > r.memory.best_level {
+                    r.memory.best_cell = target;
+                    r.memory.best_level = best;
+                    r.memory.age = 0;
+                }
+            }
+            // Debug: DBG_MEMORY=1 prints the memory decision each step.
+            if std::env::var("DBG_MEMORY").is_ok() && self.step < 4 {
+                eprintln!(
+                    "step {} org cell {} here {:.3} mem {} level {:.3} dir {}",
+                    self.step,
+                    r.cell,
+                    here,
+                    r.memory.best_cell,
+                    r.memory.best_level,
+                    r.direction()
+                );
+            }
+
+
 
             // 3. Act.
             let direction = match self.policy {
@@ -523,9 +586,10 @@ mod tests {
         // A gradient rises left to right, so a sighted organism steps right on
         // every step, one cell per step. `stay` is the control: it cannot climb.
         //
-        // The gradient itself is erased in 9 steps (see
-        // `a_gradient_is_erased_within_ten_steps`), so the climb is measured over
-        // the steps where the gradient still exists, not over a long run.
+        // The gradient used to be erased in 9 steps, which is why this test only
+        // ran 8. That was a bug in `regrow_all` (see
+        // `docs/FINDING-alternating-field-collapses.md`); the gradient now
+        // lasts, so the climb can be measured over a long run.
         let world = World {
             income: 0.8,
             maintenance_cost: 0.6,
@@ -571,28 +635,24 @@ mod tests {
     }
 
     #[test]
-    fn a_gradient_is_erased_within_ten_steps() {
-        // The field regrows toward `max_resource`, which is the HIGHEST cell of the
-        // gradient, so a gradient is not a lasting feature of this medium: it is a
-        // transient. Measured: after 9 steps every cell is at 2.0 (see the trace in
-        // `docs/FINDING-gradient-is-transient.md`).
-        //
-        // This is why `sighted` cannot climb a gradient here: by the time it has
-        // taken ten steps the gradient is gone. The test pins the fact, so nobody
-        // reads `gradient` as a permanent landscape again.
+    fn a_gradient_is_not_erased() {
+        // This test used to assert the opposite: that the gradient is erased in
+        // nine steps. It was true, and it was a bug. `regrow_all` pulled every
+        // cell toward one `max_resource` (the highest cell), so the gradient
+        // collapsed to a flat field. Now each cell regrows toward its own
+        // ceiling, and the gradient is a lasting feature of the medium.
+        // See `docs/FINDING-alternating-field-collapses.md`.
         let mut f = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
-        for _ in 0..9 {
+        for _ in 0..100 {
             f.regrow_all();
         }
         let spread = (0..40)
             .map(|c| f.level(c))
             .fold(f64::NEG_INFINITY, f64::max)
             - (0..40).map(|c| f.level(c)).fold(f64::INFINITY, f64::min);
-        // The spread is 0.2 * (1 - 0.8)^9 = 2.68e-7 times the 1.8 span, i.e.
-        // 9.2e-7 in absolute terms. The gradient is gone to six digits.
         assert!(
-            spread < 1e-5,
-            "the gradient should be erased after 9 steps, spread {spread}"
+            (spread - 1.8).abs() < 1e-12,
+            "the gradient should keep its 1.8 span, got {spread}"
         );
     }
 
@@ -689,6 +749,7 @@ mod tests {
             distinct.len() > 1,
             "an updating memory should hold different cells, got {distinct:?}"
         );
+        let _ = distinct;
 
         let mut remember =
             Life::spawn(world, field, 8, 5.0, 0.1, Policy::Remember, 3, 300).unwrap();
