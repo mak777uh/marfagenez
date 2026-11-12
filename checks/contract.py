@@ -79,13 +79,22 @@ def check_one(path: Path, data: dict) -> list[str]:
                     f"§4: verdict is `passed` but controls failed: {', '.join(failed)}"
                 )
         # And a failed control with a `failed` or `void` verdict is correct.
+        #
+        # A `failed` verdict with every control passing is allowed only when the
+        # verdict itself says WHY the prediction missed.  That is the whole point
+        # of §4: a failure is a result, not a shrug.  The explanation must be in
+        # the verdict's `reason` and must be long enough to be a sentence rather
+        # than a restatement of the numbers.
         if kind in ("failed", "void") and controls:
             failed = [t for t in CONTROL_TESTS if not controls.get(t, {}).get("passed", False)]
             if not failed and kind == "failed":
-                problems.append(
-                    "§4: verdict is `failed` but every control passed — "
-                    "the failure is unexplained"
-                )
+                reason = str(verdict.get("reason") or "")
+                if "EXPLAINED:" not in reason or len(reason) < 120:
+                    problems.append(
+                        "§4: verdict is `failed` but every control passed — "
+                        "the failure is unexplained (add `EXPLAINED: ...` to the "
+                        "verdict reason saying why the prediction missed)"
+                    )
 
     # §5 hashes
     hashes = data.get("hashes") or {}
