@@ -34,11 +34,11 @@ Two old claims are now known to be wrong and are kept here only as history:
 ## What is proved
 
 * `equilibrium_nonneg_iff` — `0 ≤ c*` exactly when `t*(1-r) ≤ M*r`
-* `capacity` — `k_feed = M*r / t₀`
-* `capacity_iff` — the cell's regrowth covers `k` full portions exactly when `k ≤ k_feed`
-* `capacity_equals_give_back` — `k_feed * t₀ = M*r`, the whole content of the law
-* `capacity_mono_M`, `capacity_mono_r`, `capacity_anti_income`
-* `capacity_infinite_at_full_regrowth` — at `r = 1` no finite `k` starves the cell
+* `feed_share` — `k_feed = M*r / t₀`
+* `feed_share_iff` — the cell's regrowth covers `k` full portions exactly when `k ≤ k_feed`
+* `feed_share_equals_give_back` — `k_feed * t₀ = M*r`, the whole content of the law
+* `feed_share_mono_M`, `feed_share_mono_r`, `feed_share_anti_income`
+* `feed_share_infinite_at_full_regrowth` — at `r = 1` no finite `k` starves the cell
 * `no_second_place` — when `k_feed ≤ 1`, a second organism cannot be supported
 
 ## What is NOT proved
@@ -48,14 +48,33 @@ movement and of who stands where; the experiments measure it, this file does not
 prove it. The measurement gives `C = 80` at 40 cells with `k_feed = 2`
 (`results/overcrowding/run-2026-11-11T22-20-40.json`).
 
-**An open anomaly, stated so it is not forgotten.** At `n = 120` and `n = 160`
-the measured `C` is 80 and the crowding is 2.00 on every occupied cell. But the
-`maintenance = 0.6` threshold admits a third organism too: the third take is
-`c*(3) - 2t = 1.4 - 1.6 < 0`, so it is rationed to 0 and dies — which is why
-the count stops at 2. The *arithmetic* of `kMaxCount` and the *measurement*
-agree at 2. What is unexplained is the earlier claim `k_max = 10` that
-circulated after the formula fix: it does not come from this file and has not
-been reproduced.
+**The `k_max = 10` anomaly, resolved 2026-11-12.** A claim circulated after the
+formula fix that `k_max` is 10 and the capacity law gives `C = 400`. It has been
+traced: `--capacity` in the Rust binary is **the energy ceiling `E_max`**, not a
+per-cell occupancy limit (`core/src/organism.rs:164`). Reading `--capacity 10` as
+`k_max = 10` is the whole of it. There is no `k_max = 10`.
+
+**And `C` is not a single number.** Measured at `M = 2.0`, `r = 0.8`,
+`income = 1.2`, `maintenance = 0.6`, `damage_rate = 0.02`, `repair_cost = 1.5`,
+40 cells, 160 organisms, 8000 steps (`docs/FINDING-the-capacity-is-a-line-not-a-number.md`):
+
+    E_max   alive   crowding   energy mean
+      8       40      1.00        7.3700
+      9       42      1.05        8.3481
+     10       42      1.05        9.3481
+
+The cost of staying alive one step is `COST = maintenance + damage_rate *
+repair_cost = 0.63`, and the steady energy is `E* = E_max - COST` exactly
+(8 - 0.63 = 7.37, 9 - 0.63 = 8.37, 10 - 0.63 = 9.37). The second organism on a
+cell takes `c* - income = 1.7 - 1.2 = 0.5`, which is **below** the 0.63 it needs,
+so at `E_max = 8` the capacity is exactly one per cell and `C = 40`. At
+`E_max = 9` and 10 two organisms sit two to a cell, burning the `0.31` of savings
+they have above the single-organism steady state at `0.13` per step. They are not
+in equilibrium; the run stopped at 8000 steps before they finished sliding.
+
+So `C` is a **line in `E_max`**, not a number, and any `C` quoted without `E_max`
+is not a law. The `C = 80` above was taken at different parameters
+(`results/overcrowding/run-2026-11-11T22-20-40.json`) and has not been re-run.
 -/
 
 namespace Medium
@@ -83,48 +102,48 @@ theorem equilibrium_nonneg_iff {M r t : ℝ} (hr0 : 0 < r) :
 gives back `M*r` per cycle and `k` organisms draw `k*t`, so `k` of them fit
 exactly when `k*t ≤ M*r`.
 
-This is the same formula the file used to call `capacity`, and it is still
+This is the same formula the file used to call `capacity` (renamed `feed_share` on 2026-11-12: it is how much the cell hands out, not how much it holds), and it is still
 **not** the count the experiments measure: the count is the largest `k` with
 `k*t ≤ M*r` **and** the `k`-th take at least `maintenance`. The second
 condition is what `kMaxCount` below adds. -/
-noncomputable def capacity (M r t₀ : ℝ) : ℝ := M * r / t₀
+noncomputable def feed_share (M r t₀ : ℝ) : ℝ := M * r / t₀
 
 /-- **The law in one line: `k` portions of `t₀` exactly exhaust the regrowth.** -/
-theorem capacity_equals_give_back {M r t₀ : ℝ} (ht₀ : t₀ ≠ 0) :
-    capacity M r t₀ * t₀ = M * r := by
-  unfold capacity
+theorem feed_share_equals_give_back {M r t₀ : ℝ} (ht₀ : t₀ ≠ 0) :
+    feed_share M r t₀ * t₀ = M * r := by
+  unfold feed_share
   field_simp
 
 /-- **A cell feeds `k` organisms exactly when its regrowth covers `k` portions.** -/
-theorem capacity_iff {M r t₀ : ℝ} (ht₀ : 0 < t₀) (k : ℝ) :
-    k * t₀ ≤ M * r ↔ k ≤ capacity M r t₀ := by
-  unfold capacity
+theorem feed_share_iff {M r t₀ : ℝ} (ht₀ : 0 < t₀) (k : ℝ) :
+    k * t₀ ≤ M * r ↔ k ≤ feed_share M r t₀ := by
+  unfold feed_share
   rw [le_div_iff₀ ht₀]
 
 /-- **A richer cell holds more.** -/
-theorem capacity_mono_M {M₁ M₂ r t₀ : ℝ} (hr : 0 ≤ r) (ht₀ : 0 < t₀)
+theorem feed_share_mono_M {M₁ M₂ r t₀ : ℝ} (hr : 0 ≤ r) (ht₀ : 0 < t₀)
     (h : M₁ ≤ M₂) :
-    capacity M₁ r t₀ ≤ capacity M₂ r t₀ := by
-  unfold capacity
+    feed_share M₁ r t₀ ≤ feed_share M₂ r t₀ := by
+  unfold feed_share
   exact div_le_div_of_nonneg_right (by nlinarith) (le_of_lt ht₀)
 
 /-- **Faster regrowth holds more.** -/
-theorem capacity_mono_r {M r₁ r₂ t₀ : ℝ} (hM : 0 < M)
+theorem feed_share_mono_r {M r₁ r₂ t₀ : ℝ} (hM : 0 < M)
     (ht₀ : 0 < t₀) (h : r₁ ≤ r₂) :
-    capacity M r₁ t₀ ≤ capacity M r₂ t₀ := by
-  unfold capacity
+    feed_share M r₁ t₀ ≤ feed_share M r₂ t₀ := by
+  unfold feed_share
   exact div_le_div_of_nonneg_right (by nlinarith) (le_of_lt ht₀)
 
 /-- **A bigger take holds less.** -/
-theorem capacity_anti_income {M r t₁ t₂ : ℝ} (hM : 0 < M) (hr : 0 < r)
+theorem feed_share_anti_income {M r t₁ t₂ : ℝ} (hM : 0 < M) (hr : 0 < r)
     (ht₁ : 0 < t₁) (h : t₁ ≤ t₂) :
-    capacity M r t₂ ≤ capacity M r t₁ := by
-  unfold capacity
+    feed_share M r t₂ ≤ feed_share M r t₁ := by
+  unfold feed_share
   have hMr : 0 < M * r := mul_pos hM hr
   exact div_le_div_of_nonneg_left (le_of_lt hMr) ht₁ (by linarith)
 
 /-- **At full regrowth nothing starves the cell.** -/
-theorem capacity_infinite_at_full_regrowth {M t₀ k : ℝ} (hM : 0 < M) :
+theorem feed_share_infinite_at_full_regrowth {M t₀ k : ℝ} (hM : 0 < M) :
     0 ≤ equilibrium M 1 (k * t₀) := by
   unfold equilibrium
   norm_num
@@ -132,22 +151,22 @@ theorem capacity_infinite_at_full_regrowth {M t₀ k : ℝ} (hM : 0 < M) :
 
 /-- **The total capacity of a field.** -/
 noncomputable def totalCapacity (cells : ℕ) (M r t₀ : ℝ) : ℝ :=
-  (cells : ℝ) * capacity M r t₀
+  (cells : ℝ) * feed_share M r t₀
 
 /-- **A cell that holds one organism gains nothing from a second place.**
 
-When `capacity M r t₀ ≤ 1`, movement cannot find a second place. This is the
+When `feed_share M r t₀ ≤ 1`, movement cannot find a second place. This is the
 arithmetic behind the `M = 1.0` measurement, where movement made no difference. -/
-theorem no_second_place {M r t₀ : ℝ} (ht₀ : 0 < t₀) (h : capacity M r t₀ ≤ 1) :
+theorem no_second_place {M r t₀ : ℝ} (ht₀ : 0 < t₀) (h : feed_share M r t₀ ≤ 1) :
     ∀ k : ℝ, 1 < k → ¬ (k * t₀ ≤ M * r) := by
   intro k hk hcover
-  have hk_le : k ≤ capacity M r t₀ := (capacity_iff ht₀ k).mp hcover
+  have hk_le : k ≤ feed_share M r t₀ := (feed_share_iff ht₀ k).mp hcover
   linarith
 
 /-!
 ## `k_max` as a count: the recursion the model actually runs
 
-`capacity` above answers "how much does the cell hand out". It does not answer
+`feed_share` above answers "how much does the cell hand out". It does not answer
 "how many organisms survive", because the take is sequential and the cell
 cannot go below zero. The two differ by a factor that depends on `income` and
 `maintenance`, so no closed formula in `M, r, t₀` alone can give the count.
@@ -221,7 +240,7 @@ theorem three_takes {t₀ c : ℝ} (ht₀ : 0 < t₀) (hc : 2 * t₀ ≤ c) :
 
 `k_feed = M*r/t₀` is a real number. The number of organisms a cell actually
 feeds is the largest integer `k` with `k*t₀ ≤ M*r`, which is `⌊M*r/t₀⌋`, and
-that is a **floor**. This is where the model stops being linear: `capacity` is
+that is a **floor**. This is where the model stops being linear: `feed_share` is
 continuous in `r` and `M`, the count is not.
 
 The floor is also the reason a small change in `r` can cost a whole organism:
@@ -234,16 +253,16 @@ noncomputable def kFeedCount (M r t₀ : ℝ) : ℕ :=
   ⌊M * r / t₀⌋₊
 
 /-- **The count never exceeds the continuous capacity.** -/
-theorem kFeedCount_le_capacity {M r t₀ : ℝ} (hM : 0 ≤ M) (hr : 0 ≤ r)
+theorem kFeedCount_le_feed_share {M r t₀ : ℝ} (hM : 0 ≤ M) (hr : 0 ≤ r)
     (ht₀ : 0 < t₀) :
-    (kFeedCount M r t₀ : ℝ) ≤ capacity M r t₀ := by
-  unfold kFeedCount capacity
+    (kFeedCount M r t₀ : ℝ) ≤ feed_share M r t₀ := by
+  unfold kFeedCount feed_share
   exact Nat.floor_le (div_nonneg (mul_nonneg hM hr) (le_of_lt ht₀))
 
 /-- **The count is tight: one more organism does not fit.** -/
 theorem kFeedCount_tight {M r t₀ : ℝ} :
-    capacity M r t₀ < (kFeedCount M r t₀ : ℝ) + 1 := by
-  unfold kFeedCount capacity
+    feed_share M r t₀ < (kFeedCount M r t₀ : ℝ) + 1 := by
+  unfold kFeedCount feed_share
   exact Nat.lt_floor_add_one (M * r / t₀)
 
 /-- **The count is a floor: `k` organisms fit exactly when `k ≤ ⌊M*r/t₀⌋`.** -/
@@ -257,7 +276,7 @@ theorem kFeedCount_iff {M r t₀ : ℝ} (hM : 0 < M) (hr : 0 ≤ r) (ht₀ : 0 <
 /-- **The count jumps down by a whole organism at a threshold.**
 
 At `M = 2, t₀ = 0.8` the count is `⌊2.5 r⌋`: two organisms at `r = 0.8`, one
-just below. This is the discontinuity the continuous `capacity` does not have. -/
+just below. This is the discontinuity the continuous `feed_share` does not have. -/
 theorem count_jumps_at_threshold :
     kFeedCount 2 (4 / 5) (4 / 5) = 2 ∧ kFeedCount 2 (79 / 100) (4 / 5) = 1 := by
   constructor
@@ -315,7 +334,7 @@ theorem cStar_anti_k {M r t k₁ k₂ : ℝ} (hr : 0 < r) (hr1 : r < 1) (ht : 0 
 /-- **The draw fits the level exactly when `k*t ≤ M*r`.**
 
 This is the condition that the cell's regrowth covers the total draw. It is the
-same inequality the old `capacity` story used, and it is still true — it is just
+same inequality the old `feed_share` story used, and it is still true — it is just
 not sufficient for the organism to live. -/
 theorem cStar_draw_le_iff {M r k t : ℝ} (hr : 0 < r) (hr1 : r < 1) :
     k * t ≤ cStar M r k t ↔ k * t ≤ M * r := by
@@ -373,8 +392,8 @@ theorem kMaxCount_eq_kFeedCount (M r t : ℝ) : kMaxCount M r t = kFeedCount M r
 
 /-- **The count is tight.** -/
 theorem kMaxCount_tight {M r t : ℝ} (hM : 0 < M) (hr : 0 < r) (ht : 0 < t) :
-    capacity M r t < (kMaxCount M r t : ℝ) + 1 := by
-  unfold kMaxCount capacity
+    feed_share M r t < (kMaxCount M r t : ℝ) + 1 := by
+  unfold kMaxCount feed_share
   exact Nat.lt_floor_add_one (M * r / t)
 
 /-- **The measured numbers, as a check on the formula.**
