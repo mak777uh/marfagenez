@@ -1,0 +1,120 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-55",
+  "run_id": "run-2026-11-12T22-10-22",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "income": 1.2,
+    "M": 2.0,
+    "rich": 2.4,
+    "poor": 1.6,
+    "regrow": 0.8,
+    "maintenance": 0.6,
+    "damage_rate": 0.02,
+    "repair_cost": 1.5,
+    "move_cost": 0.1,
+    "read_budget": 3,
+    "steps": 8000,
+    "n": 160,
+    "cells": 40,
+    "field": "uniform"
+  },
+  "arithmetic": "c* = M + income - income/r = 2.0 + 1.2 - 1.2/0.8 = 1.7000\ncost = maintenance + damage*repair = 0.6 + 0.02*1.5 = 0.6300\nfirst taker: min(c*, income) = 1.2000 -> net +0.5700/step\nsecond taker: min(c* - income, income) = 0.5000 -> net -0.1300/step\na second occupant survives at most E_max / 0.13 steps, so the\nsurplus requires E_max > 0.13 * T_rot where T_rot is the rotation\nperiod. cells fixed at 40; M = (rich + poor)/2 = (2.4 + 1.6)/2 = 2.0.\n--capacity is the energy ceiling E_max, not a per-cell occupancy limit\n(core/src/organism.rs:61); --rich/--poor set M and default to 2.0/0.2,\ni.e. M = 1.1, so every parameter is stated explicitly here.",
+  "conditions": {
+    "emax4": {
+      "label": "E_max 4",
+      "metrics": {
+        "E_max": 4,
+        "survival_steps": 30.77,
+        "alive": 40,
+        "surplus": 0,
+        "crowding": 1.0,
+        "moved": 0
+      },
+      "hash": "ce348d53f217b9b0"
+    },
+    "emax6": {
+      "label": "E_max 6",
+      "metrics": {
+        "E_max": 6,
+        "survival_steps": 46.15,
+        "alive": 40,
+        "surplus": 0,
+        "crowding": 1.0,
+        "moved": 0
+      },
+      "hash": "5168593ff7332eae"
+    },
+    "emax8": {
+      "label": "E_max 8",
+      "metrics": {
+        "E_max": 8,
+        "survival_steps": 61.54,
+        "alive": 40,
+        "surplus": 0,
+        "crowding": 1.0,
+        "moved": 0
+      },
+      "hash": "03c68976d18533a5"
+    },
+    "emax9": {
+      "label": "E_max 9",
+      "metrics": {
+        "E_max": 9,
+        "survival_steps": 69.23,
+        "alive": 42,
+        "surplus": 2,
+        "crowding": 1.05,
+        "moved": 8
+      },
+      "hash": "173f3dafddadacad"
+    },
+    "emax10": {
+      "label": "E_max 10",
+      "metrics": {
+        "E_max": 10,
+        "survival_steps": 76.92,
+        "alive": 42,
+        "surplus": 2,
+        "crowding": 1.05,
+        "moved": 8
+      },
+      "hash": "b07fb981607a8947"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "surpluses [0, 0, 0, 2, 2]: at least one is positive, so the sweep does see a surplus above the bound."
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "alive vs cells: 40>=40, 40>=40, 40>=40, 42>=40, 42>=40. The capacity law is a lower bound and is never violated."
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "surpluses [0, 0, 0, 2, 2] are not all zero, so the arms differ in the quantity the question is about."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "The surplus is gated by the energy ceiling: [0, 0, 0, 2, 2] at E_max [4, 6, 8, 9, 10]. It is 0 below 9 and 2 from 9 up, so P1 and P2 hold and the gate is a step, not a ramp. The closed form E_max > 0.13 * T_rot puts the gate at T_rot between 62 and 69 steps, which is where it was measured."
+  },
+  "hashes": {
+    "emax4": "ce348d53f217b9b0",
+    "emax6": "5168593ff7332eae",
+    "emax8": "03c68976d18533a5",
+    "emax9": "173f3dafddadacad",
+    "emax10": "b07fb981607a8947"
+  },
+  "limitations": [
+    "One seed, one income (1.2), one move_cost (0.10), cells fixed at 40. The sweep changes the energy ceiling only.",
+    "Samples carry no organism id, so the surplus is alive minus cells, not a count of which organisms share which cell.",
+    "Five energy ceilings. The gate is bracketed, not located, and T_rot is not measured directly - the survival-steps column is a prediction that the gate should track, not a measurement of the rotation period.",
+    "Two earlier runs of this experiment (varying cells at E_max 2.0, then varying E_max with M left at its default 1.1) both measured surplus 0 everywhere and were discarded. They are recorded here because they looked like results and were not."
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --policy sighted --steps 8000 --field uniform --move-cost 0.1 --cells 40",
+  "created_at": "2026-11-12T22:10:22.144553+00:00"
+}
