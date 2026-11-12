@@ -20,6 +20,11 @@ the cell is eaten sequentially and a cell that is eaten down to nothing falls to
 formula says `2.25` and the count is `2`, giving `C = 40 * 2 = 80`
 (`results/EXP-22/run-2026-11-12T12-46-12.json`: 40/40, 80/80, 80/120, 80/160).
 
+Note on the sign of `t`: after the 2026-11-12 correction of `cellStep`
+(take, then regrow) the equilibrium is `c* = M + t - t/r = M - t*(1-r)/r`.
+The old form `M - t/r` belongs to the *other* order of operations
+(regrow, then take — `Medium/Feed.lean`), and the two differ by exactly `t`.
+
 
 
 ## The mistake this file used to make

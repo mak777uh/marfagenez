@@ -95,21 +95,36 @@ theorem uniform_stays_uniform {M r t c : ℝ} (h : cellStep M r t c = c) :
   rw [hc']
   exact h
 
-/-- **The equilibrium is lower when more is taken.** -/
-theorem more_taken_lower {M r t₁ t₂ : ℝ} (hr : 0 < r) (h : t₁ < t₂) :
-    M - t₂ / r < M - t₁ / r := by
-  have : t₂ / r > t₁ / r := by
-    exact div_lt_div_of_pos_right h hr
+/-- **The equilibrium is lower when more is taken.**
+
+`c* = M - t*(1-r)/r`, so a larger take makes `c*` smaller. -/
+theorem more_taken_lower {M r t₁ t₂ : ℝ} (hr : 0 < r) (hr1 : r < 1) (h : t₁ < t₂) :
+    M - t₂ * (1 - r) / r < M - t₁ * (1 - r) / r := by
+  have hpos : 0 < 1 - r := by linarith
+  have hm : t₁ * (1 - r) < t₂ * (1 - r) := mul_lt_mul_of_pos_right h hpos
+  have h2 : t₁ * (1 - r) / r < t₂ * (1 - r) / r :=
+    div_lt_div_of_pos_right hm hr
+  have e1 : M - t₁ * (1 - r) / r - (M - t₂ * (1 - r) / r)
+      = t₂ * (1 - r) / r - t₁ * (1 - r) / r := by ring
+  have h4 : 0 < M - t₁ * (1 - r) / r - (M - t₂ * (1 - r) / r) := by
+    rw [e1]; linarith
   linarith
 
 /-- **The equilibrium is higher when regrowth is faster.**
 
-`c* = M - t/r`, so a larger `r` makes `t/r` smaller and `c*` larger. -/
+`c* = M - t*(1-r)/r = M - t/r + t`, so a larger `r` makes `t/r` smaller and
+`c*` larger. -/
 theorem faster_regrow_higher {M t r₁ r₂ : ℝ} (ht : 0 < t) (hr₁ : 0 < r₁) (h : r₁ < r₂) :
-    M - t / r₁ < M - t / r₂ := by
+    M - t * (1 - r₁) / r₁ < M - t * (1 - r₂) / r₂ := by
   have hr₂ : 0 < r₂ := lt_trans hr₁ h
-  have h2 : t / r₂ < t / r₁ := by
-    exact div_lt_div_of_pos_left ht hr₁ h
+  have h2 : t / r₂ < t / r₁ := div_lt_div_of_pos_left ht hr₁ h
+  have e1 : M - t * (1 - r₁) / r₁ = M - t / r₁ + t := by
+    field_simp
+    ring
+  have e2 : M - t * (1 - r₂) / r₂ = M - t / r₂ + t := by
+    field_simp
+    ring
+  rw [e1, e2]
   linarith
 
 end Medium

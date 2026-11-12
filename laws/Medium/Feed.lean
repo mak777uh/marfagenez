@@ -10,21 +10,29 @@ import Medium.Convergence
 
 The model has a second order, `feed = true` (`core/src/life.rs:115-121`):
 regrow first, then take. It is a different world, and its equilibrium is
-different by exactly `t`:
+lower by exactly `t`:
 
     c* = M - t/r
 
-This file proves that. The measured values are in
+So `M + t - t/r` (take-then-regrow) and `M - t/r` (regrow-then-take) are two
+different worlds, and the gap between them is exactly one take.
+
+This file proves the regrow-then-take equilibrium. The measured values are in
 `docs/FINDING-two-orders-two-equilibria.md` (8 of 8 exact).
 
 ## Why the difference is `t`
 
 Take-then-regrow: the organism takes from a full cell, then the cell regrows
-toward `M` from what is left. The taken amount is partly put back.
+toward `M` from what is left. The taken amount is partly put back, so the
+equilibrium sits one take higher.
 
-Regrow-then-take: the cell is already at `M` when it regrows, so regrowth does
-nothing, and then the organism takes. The equilibrium is lower by exactly one
-take, because the take is never followed by a regrowth in the same step.
+Regrow-then-take: the cell regrows toward `M` first, and then the organism
+takes. The take is never followed by a regrowth in the same step, so the
+equilibrium is lower by exactly one take.
+
+Note: `M + t - t/r` and `M - t*(1-r)/r` are NOT equal — they differ by `t`.
+Only `M - t/r` is a fixed point of `feedStep`. Verified numerically before
+patching; assuming otherwise costs a long detour.
 
 ## What is proved
 
@@ -54,7 +62,6 @@ theorem feed_fixed_point {M r t : ℝ} (hr : r ≠ 0) :
   field_simp
   ring
 
-/-- **It is the only fixed point.** -/
 theorem feed_fixed_point_unique {M r t c : ℝ} (hr : r ≠ 0)
     (h : feedStep M r t c = c) : c = M - t / r := by
   simp only [feedStep] at h

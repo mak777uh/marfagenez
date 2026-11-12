@@ -53,7 +53,8 @@ noncomputable def equilibrium (M r t : ℝ) : ℝ := M + t - t / r
 
 /-- **Above the equilibrium, the step decreases the cell.**
 
-`cellStep - c = (M - c) * r - t`, which is negative exactly when `c > M - t/r`. -/
+`cellStep - c = (M - c + t) * r - t`, which is negative exactly when
+`c > M + t - t/r`. -/
 theorem step_lt_self {M r t c : ℝ} (hr : 0 < r) (h : equilibrium M r t < c) :
     cellStep M r t c < c := by
   unfold cellStep equilibrium at *
