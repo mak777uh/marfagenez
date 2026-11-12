@@ -163,12 +163,12 @@ cd core && cargo test --release -- --test-threads=1
 | что | значение | команда |
 |---|---|---|
 | Lean теорем и лемм | **228** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
-| Lean файлов | **53** | `ls laws/Medium/*.lean \| wc -l` |
+| Lean файлов | **53** (в них теоремы) | `grep -l '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
 | Rust тестов | **189** (122 unit + 67 интеграционных) | `cargo test --release -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
-| docs FINDING | **41** | `ls docs/FINDING-*.md \| wc -l` |
-| checks (эксперименты) | **24** | `ls checks/exp*.py \| wc -l` |
-| сохранённых прогонов | **24** | `ls results/*/run-*.json \| wc -l` |
+| docs FINDING | **42** | `ls docs/FINDING-*.md \| wc -l` |
+| checks (эксперименты) | **25** | `ls checks/exp*.py \| wc -l` |
+| сохранённых прогонов | **25** | `ls results/*/run-*.json \| wc -l` |
 
 ---
 
