@@ -194,6 +194,19 @@ impl Field {
         taken
     }
 
+    /// Reads a cell without removing anything from it.
+    ///
+    /// This is what `take` used to conflate with eating: before EXP-30 the only
+    /// way to know a cell was to eat from it, so a sighted organism that looked
+    /// at a cell also emptied it. `observe` removes nothing; `eat` does.
+    /// See `docs/FINDING-reading-is-not-eating.md`.
+    pub fn observe(&self, cell: usize) -> f64 {
+        if cell >= self.cells.len() {
+            return 0.0;
+        }
+        self.cells[cell]
+    }
+
     /// Regrows every cell toward its **own** ceiling.
     ///
     /// It used to regrow toward one `max_resource` for the whole field, so a

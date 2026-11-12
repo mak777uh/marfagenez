@@ -583,6 +583,65 @@ mod tests {
         Life::spawn(world, field, 40, 5.0, 0.1, policy, 7, 300).unwrap()
     }
 
+    /// Two organisms on one rich cell: does the cell feed both?
+    ///
+    /// This is the question EXP-76 could not ask, because neither spawner can
+    /// place two organisms on the same cell on purpose: `spawn_even` fills cells
+    /// in order and `spawn` draws at random. So the situation is built by hand
+    /// with `move_to`.
+    ///
+    /// Arithmetic first. One organism on a rich cell (`M = 2.0`, `r = 0.8`)
+    /// settles at `c* = 1.7` and takes `min(c*, income) = min(1.7, 1.2) = 1.2`
+    /// against a cost of `0.6 + 0.02 * 1.5 = 0.63`, surplus `+0.57`.
+    ///
+    /// Two organisms: the first takes `1.2`, leaving `0.4`; the second takes
+    /// `min(0.4, 1.2) = 0.4`. Total `1.6` out of the cell, and the cell regrows
+    /// to `0.4 + (2.0 - 0.4) * 0.8 = 1.68` at the end of the step, so the next
+    /// step starts higher and the pair settles at `c* = 1.6`, where the first
+    /// takes `1.2` and the second takes `0.4`. The second's intake is `0.4`,
+    /// which is BELOW the cost `0.63`: the second organism starves.
+    ///
+    /// So the arithmetic says a rich cell feeds exactly one, and the second one
+    /// on it dies. The measurement should show alive = 1 after enough steps.
+    ///
+    /// What this would mean if it holds: `crowding = 1.00` is not a property of
+    /// the movement rule (as EXP-76's prediction said) but a property of the
+    /// feeding rule -- a cell feeds one organism because the second one's share
+    /// falls under the cost of staying alive.
+    #[test]
+    fn a_rich_cell_feeds_one_organism_not_two() {
+        let world = World {
+            income: 1.2,
+            maintenance_cost: 0.6,
+            repair_cost: 1.5,
+            damage_rate: 0.02,
+            capacity: 10.0,
+            read_budget: 3,
+        };
+        // A field of four rich cells: `Field::new` makes every cell equal to
+        // `max_resource`, so there is no need for a setter.
+        let field = Field::new(4, 2.0, 0.8).unwrap();
+        // Two organisms, both starting on cell 2, a rich one.
+        let mut life =
+            Life::spawn(world, field, 2, 10.0, 0.0, Policy::Stay, 1, 300).unwrap();
+        assert!(life.move_to(0, 2), "organism 0 should move to cell 2");
+        assert!(life.move_to(1, 2), "organism 1 should move to cell 2");
+
+        // Both start on the same cell: this is the situation being tested.
+        assert_eq!(life.census().alive, 2);
+        assert_eq!(life.census().total, 2);
+
+        let censuses = life.run(4000, 400);
+        let last = censuses.last().expect("some census");
+        // The arithmetic says the second intake (0.4) is below the cost (0.63),
+        // so exactly one survives.
+        assert_eq!(
+            last.alive, 1,
+            "a rich cell should feed one organism, not two: alive = {} at step {}",
+            last.alive, last.step
+        );
+    }
+
     #[test]
     fn empty_population_is_refused() {
         let world = World::default();
