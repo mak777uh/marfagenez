@@ -20,7 +20,7 @@
 
 ## Что доказано (уровень A)
 
-### Lean — 228 теорем и лемм в 53 файлах
+### Lean — 228 теорем и лемм в 53 файлах, 0 sorry
 
 | утверждение | файл | что именно доказано |
 |---|---|---|
@@ -166,9 +166,9 @@ cd core && cargo test --release -- --test-threads=1
 | Lean файлов | **53** (в них теоремы) | `grep -l '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
 | Rust тестов | **189** (122 unit + 67 интеграционных) | `cargo test --release -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
-| docs FINDING | **42** | `ls docs/FINDING-*.md \| wc -l` |
-| checks (эксперименты) | **25** | `ls checks/exp*.py \| wc -l` |
-| сохранённых прогонов | **25** | `ls results/*/run-*.json \| wc -l` |
+| docs FINDING | **43** | `ls docs/FINDING-*.md \| wc -l` |
+| checks (эксперименты) | **45** | `ls checks/exp*.py \| wc -l` |
+| сохранённых прогонов | **52** | `ls results/*/run-*.json \| wc -l` |
 
 ---
 
