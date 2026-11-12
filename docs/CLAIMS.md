@@ -20,30 +20,34 @@
 
 ## Что доказано (уровень A)
 
-### Lean — две библиотеки, 261 теорема и лемма, 1 sorry
+### Lean — две библиотеки, 264 теоремы и леммы, 1 sorry
 
 | библиотека | файлов | теорем | sorry | команда |
 |---|---|---|---|---|
-| `Medium` — модель клетки | 52 | **234** | **0** | `lake build` |
+| `Medium` — модель клетки | 53 | **237** | **0** | `lake build` |
 | `Legacy` — стена/гонка/наклон | 9 | 27 | 1 | `lake build Legacy` |
 
 `Medium` — то, что относится к среде ребёнка: `cellStep`, `equilibrium`,
-`capacity`, `Regimes`, `CapacityLaw`. `Legacy` — другой язык (стена,
+`capacity`, `Regimes`, `CapacityLaw`, `FoldPeriodic`. `Legacy` — другой язык (стена,
 свободный ход, гонка, наклон) на `Nat`/`UInt64`, не связанный с моделью
 клетки; он собирается отдельной `lean_lib`, чтобы не смешивать переменные.
 
 **Команда:**
 ```bash
 cd laws && lake build && lake build Legacy
-# Build completed successfully (18322 jobs).   -- Medium
+# Build completed successfully (18324 jobs).   -- Medium
 # Build completed successfully (18238 jobs).   -- Legacy
 ```
 
 **Проверка отсутствия дыр:**
 ```bash
-grep -rn 'sorry' Medium/*.lean | wc -l   # 0
+grep -rn 'sorry' Medium/*.lean | wc -l   # 0 (два вхождения — слова в комментариях FoldPeriodic)
 grep -rn 'sorry' Legacy/*.lean           # только Convergence2.lean:64
 ```
+
+`sorry` в `Legacy/Convergence2.lean:64` — не недоказанное утверждение, а
+**опровергнутое**: `fold_identifies` ложно, потому что `%` на `ℝ` тождественно
+`0`. См. `FINDING-percent-on-real-is-zero.md` и `Medium/FoldPeriodic.lean`.
 
 ### Legacy — что доказано (уровень A)
 
@@ -104,10 +108,22 @@ verus verus/integer_laws.rs
 
 **Команда:**
 ```bash
+export PATH=/root/.elan/bin:$PATH          # иначе build.rs не найдёт lean и соберёт заглушку
 cd core && cargo test --release -- --test-threads=1
 # 19 test binaries, суммарно 189 passed, 0 failed
 # --test-threads=1 обязателен: рантайм Lean не потокобезопасен, иначе SIGABRT
 ```
+
+Две ловушки, обе внешние к коду:
+
+1. **`lean` не на PATH** → `build.rs` пишет `lean -c failed — building the stub`,
+   линковка падает на `undefined symbol: marfa_*`. Лечится `export PATH=/root/.elan/bin:$PATH`.
+2. **`laws/FFI.lean` не синхронизирован в WSL** → `lean -c` даёт
+   `no such file or directory (error code: 2)`. Лечится `cp` из Windows-репо.
+3. **`cargo test` без `--test`** запускает ещё и doctest, а `rustdoc` не установлен
+   (`could not execute process rustdoc ... No such file or directory`). Это не падение
+   тестов: строка `189 passed, 0 failed` уже напечатана выше. Чтобы не видеть
+   ложный `error:`, запускать `cargo test --release --tests -- --test-threads=1`.
 
 ---
 
@@ -138,7 +154,7 @@ cd core && cargo test --release -- --test-threads=1
 | `α = 2μ/σ²` точно | это предел, при `dt=1` ошибка 3.7% |
 | Rust-код в `core/` верен | Verus доказал **копии** в `verus/`, не `bridge.rs` |
 | `f64`-часть верна | Verus не поддерживает плавающую точку |
-| оставшиеся 189 теорем содержательны | проверены только 11 тавтологий |
+| оставшиеся 226 теорем содержательны | проверены только 11 тавтологий из 237 |
 
 ---
 
@@ -182,13 +198,19 @@ cd core && cargo test --release -- --test-threads=1
 
 | что | значение | команда |
 |---|---|---|
-| Lean теорем и лемм | **228** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
-| Lean файлов | **53** (в них теоремы) | `grep -l '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
-| Rust тестов | **189** (122 unit + 67 интеграционных) | `cargo test --release -- --test-threads=1` |
+| Lean теорем и лемм (`Medium`) | **237** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
+| Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
+| Lean файлов с теоремами | **53** `Medium` + 9 `Legacy` | `grep -l '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
+| Lean `sorry` | **0** в `Medium`, **1** в `Legacy` (опровергнутое утверждение) | `grep -rn 'sorry' laws/*/*.lean \| wc -l` |
+| Rust тестов | **189** (122 unit + 67 интеграционных) | `cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
-| docs FINDING | **43** | `ls docs/FINDING-*.md \| wc -l` |
+| docs FINDING | **87** | `ls docs/FINDING-*.md \| wc -l` |
 | checks (эксперименты) | **45** | `ls checks/exp*.py \| wc -l` |
-| сохранённых прогонов | **52** | `ls results/*/run-*.json \| wc -l` |
+| сохранённых прогонов | **38** | `ls results/*/run-*.json \| wc -l` |
+
+Все числа в этой таблице пересчитаны 2026-11-12 после исправления `cellStep`;
+предыдущая версия (`228` теорем, `43` FINDING, `52` прогона) была снята с
+устаревшего состояния дерева.
 
 ---
 
