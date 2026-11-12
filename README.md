@@ -267,7 +267,7 @@ cd core && cargo test --release -- --test-threads=1
 cd laws && lake build
 ```
 
-**Ожидаемый результат:** `Build completed successfully (18314 jobs)`.
+**Ожидаемый результат:** `Build completed successfully (18326 jobs)`.
 
 `laws/.lake/packages` — симлинк на собранный Mathlib. Если он ведёт на
 несуществующий путь, `lake build` попытается скачать Mathlib заново.
