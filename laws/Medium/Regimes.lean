@@ -27,6 +27,31 @@
   Everything here is stated for `r < 1`: at `r = 1` the cell refills
   completely and `feedCapacity` is infinite (see `Capacity.lean`).
 -/
+/-
+## Two different capacities — do not confuse them
+
+`capacity` (`Capacity.lean`) counts how many organisms a cell can FEED at all:
+
+    k_feed = M * r / t0
+
+It comes from the sequential take: per cycle the cell gives back at most `M * r`,
+so `k_feed = M * r / t0` full portions fit.
+
+`feedCapacity` (this file) is a different question: for which `k` is the cell
+still in the FULL regime, i.e. `k * t0 <= c*` so nobody is rationed?
+
+    feedCapacity M r t0 = (M - t0) * r / (t0 * (1 - r))
+
+The two agree only as `r -> 1`. Numerically at `M = 2, r = 0.8, t0 = 0.8`:
+
+    k_feed = 2.0,   feedCapacity = 6.0
+
+So a cell can feed 2 organisms, but stays in the full regime (nobody rationed)
+up to 6. Between 2 and 6 the cell is rationed but nobody dies — the measurement
+in `results/overcrowding/run-2026-11-11T22-20-40.json` shows exactly crowding 2
+and `C = 80` on 40 cells, i.e. `k_feed`, not `feedCapacity`.
+-/
+
 import Medium.Field
 import Medium.Convergence
 import Medium.Capacity
