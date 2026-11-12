@@ -1,8 +1,20 @@
 # The late deaths are starvation in a queue, and the queue is longer than any stretch
 
+> **Superseded in part, 2026-11-12.** EXP-61 measured the occupancy runs directly
+> and there is no queue: the longest run on one cell is 25 steps but 99.1% of runs
+> are one step long, and 99.4% of the organisms present at the start are still
+> present at the end. The "queue of 25" in this note is the length of a single
+> run, not a line of 25 organisms, and the `mates [15]` list is the other slots
+> **on the same cell**, not 15 companions. See
+> `docs/FINDING-the-late-deaths-are-latecomers.md` and
+> `docs/FINDING-the-latecomer-walks-a-full-field.md`. This note is left as
+> written, including the numbers that no longer hold, because the prediction was
+> registered before the measurement and silently rewriting it would hide the
+> error.
+
 **Date:** 2026-11-12
 **Experiments:** EXP-56 (`checks/exp56_late_deaths.py`), EXP-57 (`checks/exp57_every.py`)
-**Status:** mechanism measured; one number in EXP-55 contradicted
+**Status:** mechanism measured; one number in EXP-55 contradicted; **the queue reading superseded by EXP-61**
 
 ## What EXP-55 left open
 

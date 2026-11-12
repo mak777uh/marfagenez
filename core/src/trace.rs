@@ -56,6 +56,9 @@ pub struct Sample {
     pub memory_level: f64,
     pub direction: i32,
     pub taken: f64,
+    /// The cell the organism was on before it moved this step. Equal to `cell`
+    /// when it stood still.
+    pub prev_cell: usize,
 }
 
 /// The whole population, at one step.
@@ -132,9 +135,9 @@ impl Trace {
                 out.push_str(&format!(
                     "        {{\"slot\":{},\"cell\":{},\"energy\":{:.6},\"damage\":{:.6},\
                      \"alive\":{},\"memory_cell\":{},\"memory_level\":{:.6},\
-                     \"direction\":{},\"taken\":{:.6}}}",
+                     \"direction\":{},\"taken\":{:.6},\"prev_cell\":{}}}",
                     s.slot, s.cell, s.energy, s.damage, s.alive, s.memory_cell, s.memory_level,
-                    s.direction, s.taken
+                    s.direction, s.taken, s.prev_cell
                 ));
                 if j + 1 < f.samples.len() {
                     out.push(',');

@@ -93,6 +93,13 @@ pub struct Remembering {
     /// Like `last_direction`, this is stored rather than recomputed: the cell's
     /// value after the step is not the value the organism took from.
     pub last_taken: f64,
+    /// The cell the organism was on **before** it moved on the last step.
+    ///
+    /// `cell` is where it is now; this is where it came from. Without it a death
+    /// can be described but not traced: EXP-62 found latecomers dying with
+    /// 0.0749 energy one step after arriving, and could not say where they had
+    /// been. See `docs/FINDING-the-late-deaths-are-latecomers.md`.
+    pub last_cell: usize,
     pub organism: Organism,
     pub cell: usize,
     pub memory: Memory,
@@ -109,6 +116,7 @@ impl Remembering {
         Some(Self {
             last_direction: 0,
             last_taken: 0.0,
+            last_cell: cell,
             organism,
             cell,
             memory: Memory::new(cell, level),

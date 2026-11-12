@@ -435,6 +435,7 @@ impl Life {
             // Store the decision so a reading shows what the organism actually
             // did, not what it would do against the field after the step.
             r.last_direction = direction;
+            r.last_cell = r.cell;
             let _reads_used = self.world.read_budget.saturating_sub(reads_left);
 
             if direction != 0 && r.organism.spend(r.move_cost) {
@@ -545,6 +546,7 @@ impl Life {
                     // AFTER the step, which is not the decision that was taken.
                     direction: r.last_direction,
                     taken: r.last_taken,
+                    prev_cell: r.last_cell,
                 }),
                 None => out.push(crate::trace::Sample {
                     slot: slot_id,
@@ -556,6 +558,7 @@ impl Life {
                     memory_level: 0.0,
                     direction: 0,
                     taken: 0.0,
+                    prev_cell: 0,
                 }),
             }
         }
