@@ -145,8 +145,20 @@ impl Field {
         self.cells.len()
     }
 
+    /// The resource in `cell`. A cell outside the field holds nothing, so the
+    /// answer is `0.0`, not a panic.
+    ///
+    /// It used to be `unwrap_or(0.0)`, which is the same number for a field of
+    /// resources -- but `0.0` is also a real level, so a sighted organism at the
+    /// edge saw "outside" as an empty cell and stepped out of the field. The
+    /// caller that needs "no cell there" asks `cell < cells()` instead.
     pub fn level(&self, cell: usize) -> f64 {
         self.cells.get(cell).copied().unwrap_or(0.0)
+    }
+
+    /// True if `cell` is inside the field.
+    pub fn inside(&self, cell: usize) -> bool {
+        cell < self.cells.len()
     }
 
     /// Takes up to `amount` from a cell and returns what was actually taken.
@@ -183,7 +195,12 @@ impl Field {
             (Some(l), None) => Some(l),
             (None, Some(r)) => Some(r),
             (Some(l), Some(r)) => {
-                if self.cells[l] >= self.cells[r] {
+                // A tie is not a choice: `None` says "neither side is richer".
+                // Returning the left cell on a tie makes a walker drift left in a
+                // uniform field, which is not what "toward the richer cell" means.
+                if self.cells[l] == self.cells[r] {
+                    None
+                } else if self.cells[l] > self.cells[r] {
                     Some(l)
                 } else {
                     Some(r)
@@ -333,10 +350,57 @@ mod tests {
     }
 
     #[test]
+    fn any_take_opens_a_hole_and_the_hole_is_a_gradient() {
+        // The field regrows toward `max_resource`, not toward the cell's own value,
+        // so a cell that loses anything regrows to `max_resource` and every cell
+        // that lost nothing stays at `max_resource`. After one step the field is
+        // uniform again and the hole is gone.
+        //
+        // This is the fact that makes a "uniform" field non-uniform the moment
+        // anybody eats: the eater's own cell falls below its neighbours, and a
+        // sighted organism sees its neighbours as richer and steps away. The
+        // medium produces a gradient out of any take, whether or not one was put
+        // there.
+        let mut f = Field::new(5, 2.0, 0.8).unwrap();
+        f.take(2, 0.8);
+        assert!((f.level(2) - 1.2).abs() < 1e-12);
+        f.regrow_all();
+        // 1.2 + (2.0 - 1.2) * 0.8 = 1.84: one step closes 80% of the gap.
+        assert!(
+            (f.level(2) - 1.84).abs() < 1e-12,
+            "one step closes 80% of the hole, got {}",
+            f.level(2)
+        );
+        // The gap shrinks by (1 - regrow) per step: 0.8 * 0.2^3 = 0.0064.
+        f.regrow_all();
+        f.regrow_all();
+        assert!(
+            (f.level(2) - 1.9936).abs() < 1e-12,
+            "three steps leave 0.2^3 of the hole, got {}",
+            f.level(2)
+        );
+        // The neighbours never moved: they were already at the maximum.
+        assert!((f.level(1) - 2.0).abs() < 1e-12);
+        assert!((f.level(3) - 2.0).abs() < 1e-12);
+    }
+
+    #[test]
+    fn a_tie_between_neighbours_is_not_a_choice() {
+        // A uniform field has no richer side. Returning the left cell on a tie
+        // would make every walker drift left, which is not "toward the richer".
+        let f = Field::new(10, 1.0, 0.0).unwrap();
+        assert_eq!(f.richer_neighbour(5), None);
+        let o = Organism::healthy(5.0).unwrap();
+        let w = Walker::new(o, 5, 0.1).unwrap();
+        assert_eq!(w.choose(&f), Action::Stay);
+    }
+
+    #[test]
     fn richer_neighbour_finds_the_rich_side() {
         let f = Field::alternating(10, 1.0, 0.1, 0.1).unwrap();
-        // Cell 1 is poor; its neighbours are 0 (rich) and 2 (rich).
-        assert!(f.richer_neighbour(1).is_some());
+        // Cell 1 is poor; its neighbours are 0 (rich) and 2 (rich) and equally
+        // rich, so neither is richer: a tie is not a choice.
+        assert_eq!(f.richer_neighbour(1), None);
         // Cell 0 has only the right neighbour.
         assert_eq!(f.richer_neighbour(0), Some(1));
         // Cell 9 has only the left neighbour.
@@ -348,9 +412,9 @@ mod tests {
         let f = Field::alternating(10, 1.0, 0.1, 0.1).unwrap();
         let o = Organism::healthy(5.0).unwrap();
         let w = Walker::new(o, 1, 0.1).unwrap();
-        // Cell 1 is poor; both neighbours are rich. The rule picks one of them.
-        let a = w.choose(&f);
-        assert!(a == Action::Left || a == Action::Right);
+        // Cell 1 is poor; both neighbours are rich and equally rich. A tie is
+        // not a choice, so the walker stays: there is nothing to prefer.
+        assert_eq!(w.choose(&f), Action::Stay);
     }
 
     #[test]

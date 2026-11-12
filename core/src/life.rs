@@ -246,12 +246,17 @@ impl Life {
                     // Look at both neighbours and step toward the richer one.
                     // A tie goes to `0`: in a uniform field there is nothing to
                     // prefer, so a sighted organism stays put.
+                    //
+                    // "No neighbour" is `NEG_INFINITY`, not `0.0`: a level of
+                    // `0.0` is a real, empty cell, and reading the outside as
+                    // `0.0` made an organism at the edge see its own cell as the
+                    // richest and step out of the field.
                     let left = if r.cell > 0 {
                         self.field.level(r.cell - 1)
                     } else {
                         f64::NEG_INFINITY
                     };
-                    let right = if r.cell + 1 < cells {
+                    let right = if self.field.inside(r.cell + 1) {
                         self.field.level(r.cell + 1)
                     } else {
                         f64::NEG_INFINITY
@@ -457,6 +462,193 @@ mod tests {
         let mut life = Life::spawn(world, field, 10, 1.0, 0.1, Policy::Stay, 1, 100).unwrap();
         life.run(100, 100);
         assert_eq!(life.census().alive, 0, "all should die without resources");
+    }
+
+    #[test]
+    fn a_sighted_policy_climbs_the_gradient() {
+        // A gradient rises left to right, so a sighted organism steps right on
+        // every step, one cell per step. `stay` is the control: it cannot climb.
+        //
+        // The gradient itself is erased in 9 steps (see
+        // `a_gradient_is_erased_within_ten_steps`), so the climb is measured over
+        // the steps where the gradient still exists, not over a long run.
+        let world = World {
+            income: 0.8,
+            maintenance_cost: 0.6,
+            repair_cost: 1.5,
+            damage_rate: 0.02,
+            capacity: 10.0,
+        };
+        let field = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
+        let mut sighted = Life::new(
+            world,
+            field.clone(),
+            vec![Remembering::new(Organism::healthy(5.0).unwrap(), 0, 0.0, 0.1, 300).unwrap()],
+            Policy::Sighted,
+            7,
+            300,
+        )
+        .unwrap();
+        sighted.run(8, 8);
+        let s = sighted.samples();
+        assert!(s[0].alive, "the sighted organism should survive 8 steps");
+        assert_eq!(
+            s[0].cell, 8,
+            "a sighted organism should climb one cell per step, ended at {}",
+            s[0].cell
+        );
+
+        let mut staying = Life::new(
+            world,
+            field,
+            vec![Remembering::new(Organism::healthy(5.0).unwrap(), 0, 0.0, 0.1, 300).unwrap()],
+            Policy::Stay,
+            7,
+            300,
+        )
+        .unwrap();
+        staying.run(8, 8);
+        let t = staying.samples();
+        assert_eq!(
+            t[0].cell, 0,
+            "a staying organism cannot climb, ended at {}",
+            t[0].cell
+        );
+    }
+
+    #[test]
+    fn a_gradient_is_erased_within_ten_steps() {
+        // The field regrows toward `max_resource`, which is the HIGHEST cell of the
+        // gradient, so a gradient is not a lasting feature of this medium: it is a
+        // transient. Measured: after 9 steps every cell is at 2.0 (see the trace in
+        // `docs/FINDING-gradient-is-transient.md`).
+        //
+        // This is why `sighted` cannot climb a gradient here: by the time it has
+        // taken ten steps the gradient is gone. The test pins the fact, so nobody
+        // reads `gradient` as a permanent landscape again.
+        let mut f = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
+        for _ in 0..9 {
+            f.regrow_all();
+        }
+        let spread = (0..40)
+            .map(|c| f.level(c))
+            .fold(f64::NEG_INFINITY, f64::max)
+            - (0..40).map(|c| f.level(c)).fold(f64::INFINITY, f64::min);
+        // The spread is 0.2 * (1 - 0.8)^9 = 2.68e-7 times the 1.8 span, i.e.
+        // 9.2e-7 in absolute terms. The gradient is gone to six digits.
+        assert!(
+            spread < 1e-5,
+            "the gradient should be erased after 9 steps, spread {spread}"
+        );
+    }
+
+    #[test]
+    fn a_sighted_policy_stays_put_in_a_uniform_field() {
+        // Nothing to prefer: ties go to `0`. This is the control that separates
+        // "climbs" from "moves for no reason".
+        //
+        // The organism must not eat, or the field stops being uniform: the field
+        // regrows toward `max_resource`, so after one take the eater's own cell is
+        // below its neighbours and the neighbours ARE richer (see
+        // `any_take_opens_a_hole_and_the_hole_is_a_gradient`). So the income here
+        // is zero and the field is never touched.
+        let world = World {
+            income: 0.0,
+            maintenance_cost: 0.0,
+            repair_cost: 1.5,
+            damage_rate: 0.0,
+            capacity: 10.0,
+        };
+        let field = Field::new(40, 2.0, 0.8).unwrap();
+        let mut life = Life::new(
+            world,
+            field,
+            vec![Remembering::new(Organism::healthy(5.0).unwrap(), 20, 0.0, 0.1, 300).unwrap()],
+            Policy::Sighted,
+            7,
+            300,
+        )
+        .unwrap();
+        life.run(100, 100);
+        assert_eq!(life.census().moves, 0, "a uniform field gives no reason to move");
+        assert_eq!(life.samples()[0].cell, 20);
+    }
+
+    #[test]
+    fn an_eating_sighted_organism_never_stands_still() {
+        // The other half of the same fact: once the organism eats, its own cell is
+        // the poorest of the three it can see, so it steps away on every step. It
+        // is not "searching"; it is running from the hole it just made.
+        //
+        // What this does NOT prove: that this is bad. It is only a fact about the
+        // medium. Whether the wandering costs more than it gains is measured, not
+        // proved here.
+        let world = World {
+            income: 0.8,
+            maintenance_cost: 0.6,
+            repair_cost: 1.5,
+            damage_rate: 0.02,
+            capacity: 10.0,
+        };
+        let field = Field::new(40, 2.0, 0.8).unwrap();
+        let mut life = Life::new(
+            world,
+            field,
+            vec![Remembering::new(Organism::healthy(5.0).unwrap(), 20, 0.0, 0.1, 300).unwrap()],
+            Policy::Sighted,
+            7,
+            300,
+        )
+        .unwrap();
+        life.run(100, 100);
+        let moves = life.census().moves;
+        assert!(
+            moves >= 99,
+            "an eating sighted organism should step away almost every step, moved {moves} times"
+        );
+    }
+
+    #[test]
+    fn a_memory_policy_keeps_updating_its_memory() {
+        // In a moving field the rich cell walks one step per cycle, so a memory
+        // that observes every step must follow it. This is the difference between
+        // `Memory` (updates always) and `Remember` (frozen once arrived).
+        //
+        // What this does NOT prove: that updating memory helps survival. Both
+        // policies are measured in `checks/exp13_memory_vs_remember.py`; the
+        // memory is only useful if the organism can act on it.
+        let world = World {
+            income: 0.8,
+            maintenance_cost: 0.6,
+            repair_cost: 1.5,
+            damage_rate: 0.02,
+            capacity: 10.0,
+        };
+        let field = Field::moving(40, 2.0, 0.2, 0.8, 1.0).unwrap();
+        let mut memory =
+            Life::spawn(world, field.clone(), 8, 5.0, 0.1, Policy::Memory, 3, 300).unwrap();
+        memory.run(50, 50);
+        let m = memory.samples();
+        let distinct: std::collections::BTreeSet<usize> =
+            m.iter().filter(|x| x.alive).map(|x| x.memory_cell).collect();
+        assert!(
+            distinct.len() > 1,
+            "an updating memory should hold different cells, got {distinct:?}"
+        );
+
+        let mut remember =
+            Life::spawn(world, field, 8, 5.0, 0.1, Policy::Remember, 3, 300).unwrap();
+        remember.run(50, 50);
+        let r = remember.samples();
+        let distinct_frozen: std::collections::BTreeSet<usize> =
+            r.iter().filter(|x| x.alive).map(|x| x.memory_cell).collect();
+        assert!(
+            distinct_frozen.len() <= distinct.len(),
+            "a frozen memory should be at least as concentrated as an updating one \
+             ({} vs {})",
+            distinct_frozen.len(),
+            distinct.len()
+        );
     }
 
     #[test]

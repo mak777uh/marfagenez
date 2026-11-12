@@ -4,7 +4,7 @@ import Medium.Field
 /-!
 # The field: convergence to equilibrium
 
-`Field.lean` proved the equilibrium `c* = M - t/r`. This file proves that the
+`Field.lean` proved the equilibrium `c* = M - t*(1-r)/r`. This file proves that the
 step **moves the cell toward** that equilibrium and never past it.
 
 ## Why this and not "the spread shrinks"

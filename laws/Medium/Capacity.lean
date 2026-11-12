@@ -5,6 +5,18 @@ import Medium.Convergence
 /-!
 # Carrying capacity: how many organisms a cell can hold
 
+## Two different capacities — do not confuse them
+
+* `capacity M r t₀ = M*r / t₀` — **feeding** capacity: how many full portions of
+  `t₀` the regrowth puts back per step. This is a fact about the field alone.
+* `M*r / (t₀*(1-r))` — **survival** capacity: how many organisms can stand on a
+  cell without the cell's equilibrium falling below `t₀`. It is larger by the
+  factor `1/(1-r)`, because a cell that is eaten from recovers only `r` of the
+  gap per step.
+
+The experiments measure the **feeding** one: `C = 80` at 40 cells with
+`k_feed = 2` (`results/overcrowding/run-2026-11-11T22-20-40.json`).
+
 ## The mistake this file used to make
 
 The first version of this file said `k_max = M*r / (t₀*(1-r))` and justified it
