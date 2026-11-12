@@ -1,0 +1,89 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "unevenness-or-move-cost",
+  "run_id": "run-2026-11-12T15-58-42",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "n": 240,
+    "steps": 1200,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "income": 1,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "energy": 5,
+    "regrow": 1.0,
+    "field": "uniform",
+    "layout": "even"
+  },
+  "arithmetic": {
+    "per_organism": "income/k - maintenance - damage*repair - move_cost*moved",
+    "k2_stay": "1/2 - 0.1 - 0.1 = 0.3 per step",
+    "k2_random": "0.3 - 0.05*moved_fraction",
+    "prediction": "if the win is unevenness-smoothing, it survives high move cost; if it is cheap movement, it dies"
+  },
+  "conditions": {
+    "stay": {
+      "label": "even k=2, regrow=1, stay (move cost is not used)",
+      "metrics": {
+        "alive": 120,
+        "mean_energy": 9.8
+      }
+    },
+    "random_move0.05": {
+      "label": "even k=2, regrow=1, move-cost=0.05, random",
+      "metrics": {
+        "alive": 154,
+        "mean_energy": 9.264
+      },
+      "hash": "c6f8de97bce343f4"
+    },
+    "random_move0.2": {
+      "label": "even k=2, regrow=1, move-cost=0.2, random",
+      "metrics": {
+        "alive": 109,
+        "mean_energy": 9.356
+      },
+      "hash": "649d18ee9838cfc6"
+    },
+    "random_move0.4": {
+      "label": "even k=2, regrow=1, move-cost=0.4, random",
+      "metrics": {
+        "alive": 69,
+        "mean_energy": 9.161
+      },
+      "hash": "10f20e8b61481a2c"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "move 0.05: stay 120, random 154 (EXP-32: 120, 132)"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "move 0.4: gap -51"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "gap by move cost: 0.05:34 > 0.2:-11 > 0.4:-51"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "выигрыш random — плата за движение, а не размывание неравномерности"
+  },
+  "hashes": {
+    "random_move0.05": "c6f8de97bce343f4",
+    "random_move0.2": "649d18ee9838cfc6",
+    "random_move0.4": "10f20e8b61481a2c"
+  },
+  "limitations": [
+    "one seed; `stay` is identical at every move cost by construction (it never moves), so the monotonicity control is really a statement about `random` alone"
+  ],
+  "command": "python3 checks/exp34_unevenness_or_move_cost.py",
+  "created_at": "2026-11-12T15:58:42.111076+00:00"
+}
