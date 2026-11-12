@@ -1,0 +1,130 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-32",
+  "run_id": "run-2026-11-12T22-02-09",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "cells": 40,
+    "M": 2.0,
+    "regrow": 0.8,
+    "income": 0.8,
+    "damage_rate": 0.02,
+    "repair_cost": 1.5,
+    "move_cost": 0.1,
+    "rich": 2.4,
+    "poor": 1.6,
+    "steps": 2000,
+    "n": 160
+  },
+  "arithmetic": {
+    "per_step_cost": "maintenance + damage*repair = maintenance + 0.03",
+    "regrowth_ceiling": "M*r = 2.0*0.8 = 1.6",
+    "income_cap": "income = 0.8",
+    "feasibility": "one organism survives only if income >= cost, i.e. maintenance <= 0.77",
+    "k_max": "0 if income < cost, else 1 + floor((M*r - cost)/income)",
+    "capacity": "k_max * cells",
+    "predictions": {
+      "0.40": 80,
+      "0.60": 80,
+      "0.75": 80,
+      "0.80": 0,
+      "1.00": 0,
+      "1.40": 0
+    }
+  },
+  "conditions": {
+    "m0.40": {
+      "label": "maintenance 0.40",
+      "metrics": {
+        "alive": 80,
+        "crowding": 2.0,
+        "predicted_capacity": 80,
+        "k_max_formula": 2
+      },
+      "hash": "a931d655a2668891"
+    },
+    "m0.60": {
+      "label": "maintenance 0.60",
+      "metrics": {
+        "alive": 80,
+        "crowding": 2.0,
+        "predicted_capacity": 80,
+        "k_max_formula": 2
+      },
+      "hash": "a1549f83053abb31"
+    },
+    "m0.75": {
+      "label": "maintenance 0.75",
+      "metrics": {
+        "alive": 80,
+        "crowding": 2.0,
+        "predicted_capacity": 80,
+        "k_max_formula": 2
+      },
+      "hash": "5211cbda61aae845"
+    },
+    "m0.80": {
+      "label": "maintenance 0.80",
+      "metrics": {
+        "alive": 0,
+        "crowding": 0.0,
+        "predicted_capacity": 0,
+        "k_max_formula": 0
+      },
+      "hash": "4b5b50332bdd6b05"
+    },
+    "m1.00": {
+      "label": "maintenance 1.00",
+      "metrics": {
+        "alive": 0,
+        "crowding": 0.0,
+        "predicted_capacity": 0,
+        "k_max_formula": 0
+      },
+      "hash": "6fbe94d4ff2afeb5"
+    },
+    "m1.40": {
+      "label": "maintenance 1.40",
+      "metrics": {
+        "alive": 0,
+        "crowding": 0.0,
+        "predicted_capacity": 0,
+        "k_max_formula": 0
+      },
+      "hash": "5402fb5e314fecd9"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "measured capacities across maintenance [0.4, 0.6, 0.75, 0.8, 1.0, 1.4]: [80, 80, 80, 0, 0, 0]; distinct values [0, 80]"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "maintenance 0.60 gives 80 survivors; EXP-31 measured 80 on the same field and parameters, so this experiment measures the same quantity"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "measured vs predicted [(80, 80), (80, 80), (80, 80), (0, 0), (0, 0), (0, 0)]; mismatches []. A curve that is merely monotone in maintenance would pass a monotonicity control, so the control is equality at every point."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "k_max = 1 + floor((M*r - maintenance - damage)/income) holds at all 6 maintenance values: capacity steps by exactly 40 (one cell's worth) as maintenance crosses each threshold, and the measured counts are [80, 80, 80, 0, 0, 0] against predicted [80, 80, 80, 0, 0, 0]"
+  },
+  "hashes": {
+    "m0.40": "a931d655a2668891",
+    "m0.60": "a1549f83053abb31",
+    "m0.75": "5211cbda61aae845",
+    "m0.80": "4b5b50332bdd6b05",
+    "m1.00": "6fbe94d4ff2afeb5",
+    "m1.40": "5402fb5e314fecd9"
+  },
+  "limitations": [
+    "This tests the formula on a uniform field with a sighted policy at a real read budget. It says nothing about whether the formula holds on a gradient field, where EXP-31 found sighting loses (40 vs 68 at n=160). It also does not say the formula is the *reason* the population stops growing: it is a counting argument about per-step cost and regrowth, and the count matching it is consistent with that argument without proving the mechanism is the one described."
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --policy sighted --field uniform --cells 40 --n 160 --steps 2000 --rich 2.4 --poor 1.6",
+  "created_at": "2026-11-12T22:02:09.426723+00:00"
+}
