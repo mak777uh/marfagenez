@@ -1,0 +1,350 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "name": "exp25_crowding_law",
+  "question": "Does k_max = 1 + floor((M*r - maintenance - damage)/income) hold on parameters that did not take part in deriving it?",
+  "arithmetic": {
+    "law": "k_max = 1 + floor((M*r - maintenance - damage_rate)/income)",
+    "jump_r": "r = (income + maintenance + damage_rate)/M",
+    "derivation": "life.rs:429-441 draws for every organism, then regrow_all() once, so on one cell the draws are sequential with no regrowth between them. The cell is drained to zero and regrows to M*r, so the step starts at c = M*r and the k-th organism gets min(income, M*r - (k-1)*income). organism.rs:148-182 gives the per-step ledger net = taken - maintenance_cost - damage_rate, so a survivor needs taken >= maintenance_cost + damage_rate.",
+    "first_version_was_wrong": "The first version omitted damage_rate and treated maintenance as a minimum share rather than a fixed per-step cost. It also assumed maintenance could be varied freely; with income = 0.8 and damage_rate = 0.02 any maintenance >= 0.78 kills everyone, because taken is capped at income.",
+    "saturation": "n = 320 = 8 x 40 cells, so every cell starts crowded",
+    "damage_rate": 0.02,
+    "predicted_k_max": [
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "conditions": [
+    {
+      "label": "M=2.0 r=0.65 inc=0.8 mnt=0.6",
+      "params": {
+        "M": 2.0,
+        "r": 0.65,
+        "income": 0.8,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 320,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02
+      },
+      "result": {
+        "predicted": 1,
+        "alive": 40,
+        "cells_occupied": 40,
+        "max_per_cell": 1,
+        "field_min": 1.569231,
+        "field_max": 1.569231,
+        "trace_hash": "fe29c76eee396d1b"
+      },
+      "trace_hash": "fe29c76eee396d1b"
+    },
+    {
+      "label": "M=2.0 r=0.7 inc=0.8 mnt=0.6",
+      "params": {
+        "M": 2.0,
+        "r": 0.7,
+        "income": 0.8,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 320,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02
+      },
+      "result": {
+        "predicted": 1,
+        "alive": 40,
+        "cells_occupied": 40,
+        "max_per_cell": 1,
+        "field_min": 1.657143,
+        "field_max": 1.657143,
+        "trace_hash": "1a56c5efc5f5ada2"
+      },
+      "trace_hash": "1a56c5efc5f5ada2"
+    },
+    {
+      "label": "M=2.0 r=0.75 inc=0.8 mnt=0.6",
+      "params": {
+        "M": 2.0,
+        "r": 0.75,
+        "income": 0.8,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 320,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02
+      },
+      "result": {
+        "predicted": 2,
+        "alive": 80,
+        "cells_occupied": 40,
+        "max_per_cell": 2,
+        "field_min": 1.5,
+        "field_max": 1.5,
+        "trace_hash": "c9d5bb5cf10dc041"
+      },
+      "trace_hash": "c9d5bb5cf10dc041"
+    },
+    {
+      "label": "M=2.0 r=0.8 inc=0.8 mnt=0.6",
+      "params": {
+        "M": 2.0,
+        "r": 0.8,
+        "income": 0.8,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 320,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02
+      },
+      "result": {
+        "predicted": 2,
+        "alive": 80,
+        "cells_occupied": 40,
+        "max_per_cell": 2,
+        "field_min": 1.6,
+        "field_max": 1.6,
+        "trace_hash": "331b752bfd60e461"
+      },
+      "trace_hash": "331b752bfd60e461"
+    },
+    {
+      "label": "M=2.0 r=0.8 inc=0.7 mnt=0.6",
+      "params": {
+        "M": 2.0,
+        "r": 0.8,
+        "income": 0.7,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 320,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02
+      },
+      "result": {
+        "predicted": 2,
+        "alive": 80,
+        "cells_occupied": 40,
+        "max_per_cell": 2,
+        "field_min": 1.65,
+        "field_max": 1.65,
+        "trace_hash": "972df5148688e177"
+      },
+      "trace_hash": "972df5148688e177"
+    },
+    {
+      "label": "M=2.0 r=0.8 inc=0.9 mnt=0.6",
+      "params": {
+        "M": 2.0,
+        "r": 0.8,
+        "income": 0.9,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 320,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02
+      },
+      "result": {
+        "predicted": 2,
+        "alive": 80,
+        "cells_occupied": 40,
+        "max_per_cell": 2,
+        "field_min": 1.6,
+        "field_max": 1.6,
+        "trace_hash": "80ce349a9072d35f"
+      },
+      "trace_hash": "80ce349a9072d35f"
+    },
+    {
+      "label": "M=3.0 r=0.6 inc=0.8 mnt=0.6",
+      "params": {
+        "M": 3.0,
+        "r": 0.6,
+        "income": 0.8,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 320,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02
+      },
+      "result": {
+        "predicted": 2,
+        "alive": 80,
+        "cells_occupied": 40,
+        "max_per_cell": 2,
+        "field_min": 1.933333,
+        "field_max": 1.933333,
+        "trace_hash": "d1ed9f6d93d0c24b"
+      },
+      "trace_hash": "d1ed9f6d93d0c24b"
+    },
+    {
+      "label": "M=2.5 r=0.8 inc=0.8 mnt=0.6",
+      "params": {
+        "M": 2.5,
+        "r": 0.8,
+        "income": 0.8,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 320,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02
+      },
+      "result": {
+        "predicted": 2,
+        "alive": 80,
+        "cells_occupied": 40,
+        "max_per_cell": 2,
+        "field_min": 2.1,
+        "field_max": 2.1,
+        "trace_hash": "0b4e5c55e7bf9cab"
+      },
+      "trace_hash": "0b4e5c55e7bf9cab"
+    },
+    {
+      "label": "M=2.0 r=1.0 inc=0.8 mnt=0.6",
+      "params": {
+        "M": 2.0,
+        "r": 1.0,
+        "income": 0.8,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 320,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02
+      },
+      "result": {
+        "predicted": 2,
+        "alive": 80,
+        "cells_occupied": 40,
+        "max_per_cell": 2,
+        "field_min": 2.0,
+        "field_max": 2.0,
+        "trace_hash": "555f108a9d4b2293"
+      },
+      "trace_hash": "555f108a9d4b2293"
+    },
+    {
+      "label": "M=4.0 r=0.5 inc=0.8 mnt=0.6",
+      "params": {
+        "M": 4.0,
+        "r": 0.5,
+        "income": 0.8,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 320,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02
+      },
+      "result": {
+        "predicted": 2,
+        "alive": 80,
+        "cells_occupied": 40,
+        "max_per_cell": 2,
+        "field_min": 2.4,
+        "field_max": 2.4,
+        "trace_hash": "14e3e97791a49cd5"
+      },
+      "trace_hash": "14e3e97791a49cd5"
+    },
+    {
+      "label": "silent: n=cells=40, layout=even, r=0.8",
+      "params": {
+        "M": 2.0,
+        "r": 0.8,
+        "income": 0.8,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 40,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02,
+        "layout": "even"
+      },
+      "result": {
+        "alive": 40,
+        "cells_occupied": 40,
+        "max_per_cell": 1,
+        "field_min": 1.8,
+        "field_max": 1.8,
+        "trace_hash": "7f75993dc01be74f"
+      },
+      "trace_hash": "7f75993dc01be74f"
+    },
+    {
+      "label": "silent: n=cells=40, layout=even, r=0.95",
+      "params": {
+        "M": 2.0,
+        "r": 0.95,
+        "income": 0.8,
+        "maintenance": 0.6,
+        "cells": 40,
+        "n": 40,
+        "steps": 1500,
+        "seed": 7,
+        "damage_rate": 0.02,
+        "layout": "even"
+      },
+      "result": {
+        "alive": 40,
+        "cells_occupied": 40,
+        "max_per_cell": 1,
+        "field_min": 1.957895,
+        "field_max": 1.957895,
+        "trace_hash": "7e86f61eae4e5527"
+      },
+      "trace_hash": "7e86f61eae4e5527"
+    }
+  ],
+  "controls": {
+    "fires": {
+      "passed": true,
+      "detail": "derivation arms give [1, 1, 2, 2], predicted [1, 1, 2, 2]"
+    },
+    "silent": {
+      "passed": true,
+      "detail": "n = cells = 40 (one organism per cell) gives [1, 1], expected [1, 1]"
+    },
+    "specific": {
+      "passed": true,
+      "detail": "on the 6 arms that did not take part in deriving it: new law 6/6, old law floor(M*r/income) 5/6"
+    }
+  },
+  "hashes": {
+    "M2.0-r0.65-inc0.8-mnt0.6": "fe29c76eee396d1b",
+    "M2.0-r0.7-inc0.8-mnt0.6": "1a56c5efc5f5ada2",
+    "M2.0-r0.75-inc0.8-mnt0.6": "c9d5bb5cf10dc041",
+    "M2.0-r0.8-inc0.8-mnt0.6": "331b752bfd60e461",
+    "M2.0-r0.8-inc0.7-mnt0.6": "972df5148688e177",
+    "M2.0-r0.8-inc0.9-mnt0.6": "80ce349a9072d35f",
+    "M3.0-r0.6-inc0.8-mnt0.6": "d1ed9f6d93d0c24b",
+    "M2.5-r0.8-inc0.8-mnt0.6": "0b4e5c55e7bf9cab",
+    "M2.0-r1.0-inc0.8-mnt0.6": "555f108a9d4b2293",
+    "M4.0-r0.5-inc0.8-mnt0.6": "14e3e97791a49cd5"
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "The law predicted 10/10 arms. On the 6 arms that did not take part in deriving it the law scored 6/6 and the previous candidate floor(M*r/income) scored 5/6. Controls: fires=True, silent=True, specific=True."
+  },
+  "limitations": [
+    "The law assumes the cell is drained to zero each step, which needs k*income >= M*r. It says nothing about a population too sparse to keep a cell drained, and nothing about movement: a moving population redistributes and the per-cell count becomes a distribution, not a single number. It assumes damage_rate is small enough that repair is always affordable, which holds only while energy > 0. It does not predict how long a quasi-steady state lasts: measured energies at r = 0.70 drift down (1.399 -> 0.200 over 1200 steps).",
+    "The silent control needs --layout even. Without it, n = cells is a random spawn with replacement and some cells start with two organisms, which `stay` never separates. The first version of this control measured the spawn, not the law."
+  ],
+  "what_this_does_not_prove": "It does not prove the Lean model matches the Rust model. It does not prove anything about a field that is not uniform. It does not prove that k_max is the only thing that matters for capacity -- measured `alive` varies with seed while max_per_cell stays fixed."
+}

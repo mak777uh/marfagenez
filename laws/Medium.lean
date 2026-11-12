@@ -13,6 +13,7 @@ import Medium.Convergence
 import Medium.Feed
 import Medium.Capacity
 import Medium.CapacityLaw
+import Medium.Crowding
 import Medium.Regimes
 import Medium.Boundary
 import Medium.Bounded
