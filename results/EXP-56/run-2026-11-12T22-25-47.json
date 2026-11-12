@@ -1,0 +1,126 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-56",
+  "run_id": "run-2026-11-12T22-25-47",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "n": 160,
+    "cells": 40,
+    "rich": 2.4,
+    "poor": 1.6,
+    "regrow": 0.8,
+    "move_cost": 0.1,
+    "read_budget": 3,
+    "steps": 8000,
+    "every": 1,
+    "policy": "sighted"
+  },
+  "arithmetic": {
+    "top_energy_at_Emax8": 7.37,
+    "per_step_spend": 0.63,
+    "second_occupant_loss": 0.13,
+    "queue_steps_needed": 56.7,
+    "longest_queue_measured": 25,
+    "poor_cell_income": 1.6,
+    "move_cost": 0.1,
+    "alone_on_poor_net": 0.87,
+    "prediction": "H1 and H2 rejected by arithmetic; H3 (damage) is the only survivor"
+  },
+  "conditions": {
+    "8": {
+      "label": "capacity=8",
+      "metrics": {
+        "alive": 40,
+        "surplus": 0,
+        "deaths_total": 120,
+        "deaths_late": 2,
+        "top_energy": 7.37,
+        "late": [
+          {
+            "step": 3578,
+            "slot": 54,
+            "cell": 23,
+            "energy": 0.074928,
+            "damage": 0.0,
+            "taken": 0.5,
+            "direction": 1,
+            "mates_on_cell": [
+              15
+            ],
+            "energy_now": 0.0,
+            "field_at_death": 1.7
+          },
+          {
+            "step": 6804,
+            "slot": 67,
+            "cell": 10,
+            "energy": 0.074167,
+            "damage": 0.0,
+            "taken": 0.5,
+            "direction": 1,
+            "mates_on_cell": [
+              11
+            ],
+            "energy_now": 0.0,
+            "field_at_death": 1.7
+          }
+        ]
+      },
+      "hash": "e58c1f3b0682e807"
+    },
+    "9": {
+      "label": "capacity=9",
+      "metrics": {
+        "alive": 42,
+        "surplus": 2,
+        "deaths_total": 118,
+        "deaths_late": 0,
+        "top_energy": 8.37,
+        "late": []
+      },
+      "hash": "048de50d02d8aad7"
+    },
+    "10": {
+      "label": "capacity=10",
+      "metrics": {
+        "alive": 42,
+        "surplus": 2,
+        "deaths_total": 118,
+        "deaths_late": 0,
+        "top_energy": 9.37,
+        "late": []
+      },
+      "hash": "ca7f4c87a7410a7a"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "surplus at 8000 steps: E_max 8 -> +0, E_max 9 -> +2; the decay must be reproduced (0 and +2) for there to be a death to explain"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "E_max 10 has 0 late deaths; the arm where the surplus is stable must show the effect absent"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "2 counted deaths, earliest step 3578; the initial collapse at steps 8-25 is a different phenomenon and must not be counted"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "P1 refuted: 2 of 2 late deaths happen with energy at or below 0.5, i.e. starvation after all. The arithmetic that rejected H1/H2 is wrong."
+  },
+  "hashes": {
+    "8": "e58c1f3b0682e807",
+    "9": "048de50d02d8aad7",
+    "10": "ca7f4c87a7410a7a"
+  },
+  "limitations": [
+    "Single seed (20250101), single geometry (n 160, cells 40, rich 2.4, poor 1.6, regrow 0.8). The slot id is stable within a run but says nothing about lineage: a slot is a position in the array, not a parent-child relation. Frames are sampled every step, so the per-death state is the step before the death. What is still missing is the reason the organism was in that state: the trace records where it was and what it held, not which decision it took or why, so a death can be described but not yet explained."
+  ],
+  "command": "python3 checks/exp56_late_deaths.py",
+  "created_at": "2026-11-12T22:25:47.238871+00:00"
+}

@@ -530,9 +530,10 @@ impl Life {
     /// The reading is taken from outside and does not change the cycle.
     pub fn samples(&self) -> Vec<crate::trace::Sample> {
         let mut out = Vec::with_capacity(self.organisms.len());
-        for slot in self.organisms.iter() {
+        for (slot_id, slot) in self.organisms.iter().enumerate() {
             match slot.as_ref() {
                 Some(r) => out.push(crate::trace::Sample {
+                    slot: slot_id,
                     cell: r.cell,
                     energy: r.organism.energy(),
                     damage: r.organism.damage(),
@@ -546,6 +547,7 @@ impl Life {
                     taken: r.last_taken,
                 }),
                 None => out.push(crate::trace::Sample {
+                    slot: slot_id,
                     cell: 0,
                     energy: 0.0,
                     damage: 0.0,

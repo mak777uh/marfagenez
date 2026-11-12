@@ -43,6 +43,11 @@ use crate::life::Life;
 /// One organism, at one step.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Sample {
+    /// The slot the organism occupied. Slots are stable for the whole run, so
+    /// this is the identity of the organism. Without it a death can only be
+    /// attributed by guessing from (cell, energy), which fails exactly when two
+    /// organisms share a cell -- the case worth measuring.
+    pub slot: usize,
     pub cell: usize,
     pub energy: f64,
     pub damage: f64,
@@ -125,10 +130,10 @@ impl Trace {
             out.push_str("      \"samples\": [\n");
             for (j, s) in f.samples.iter().enumerate() {
                 out.push_str(&format!(
-                    "        {{\"cell\":{},\"energy\":{:.6},\"damage\":{:.6},\
+                    "        {{\"slot\":{},\"cell\":{},\"energy\":{:.6},\"damage\":{:.6},\
                      \"alive\":{},\"memory_cell\":{},\"memory_level\":{:.6},\
                      \"direction\":{},\"taken\":{:.6}}}",
-                    s.cell, s.energy, s.damage, s.alive, s.memory_cell, s.memory_level,
+                    s.slot, s.cell, s.energy, s.damage, s.alive, s.memory_cell, s.memory_level,
                     s.direction, s.taken
                 ));
                 if j + 1 < f.samples.len() {
@@ -200,6 +205,7 @@ mod tests {
             repair_cost: 1.5,
             damage_rate: 0.02,
             capacity: 10.0,
+            read_budget: 0,
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, seed, 300).unwrap()

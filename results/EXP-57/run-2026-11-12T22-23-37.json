@@ -1,0 +1,76 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-57",
+  "run_id": "run-2026-11-12T22-23-37",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 8000,
+    "capacity": 8
+  },
+  "arithmetic": {
+    "steps": 8000,
+    "every_8000_last_frame": 8000,
+    "every_1_last_frame": 8000,
+    "every_7_last_frame": 7994,
+    "prediction": "H2 rejected: both --every 1 and --every 8000 end at step 8000"
+  },
+  "conditions": {
+    "1": {
+      "label": "every=1",
+      "metrics": {
+        "frames": 8000,
+        "last_step": 8000,
+        "alive": 47
+      },
+      "hash": "8cd5775efe3d55f6"
+    },
+    "8000": {
+      "label": "every=8000",
+      "metrics": {
+        "frames": 1,
+        "last_step": 8000,
+        "alive": 47
+      },
+      "hash": "43553bab8030507e"
+    },
+    "7": {
+      "label": "every=7",
+      "metrics": {
+        "frames": 1142,
+        "last_step": 7994,
+        "alive": 47
+      },
+      "hash": "6fb21d50ef90ba72"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "last frame step: --every 1 -> 8000, --every 8000 -> 8000; both must be 8000 for the comparison to be at the same moment"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "--every 7 lands at step 7994, not 8000; the control is recorded as a known one-step difference, not as agreement"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "the compared quantity is the alive count at the last frame, not the hash; a hash difference is expected because the hash is over the frames"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "alive is identical (47) at the same step, so --every does not change the physics. The EXP-55/EXP-56 disagreement must come from the parameter list, and the parameter list is where to look next."
+  },
+  "hashes": {
+    "1": "8cd5775efe3d55f6",
+    "8000": "43553bab8030507e",
+    "7": "6fb21d50ef90ba72"
+  },
+  "limitations": [
+    "One seed, one geometry, one capacity (8). The experiment separates the two explanations for the EXP-55/EXP-56 disagreement but does not by itself say which of them is right if both runs agree here and disagree there: that would point at the parameter list, not at --every."
+  ],
+  "command": "python3 checks/exp57_every.py",
+  "created_at": "2026-11-12T22:23:37.107242+00:00"
+}
