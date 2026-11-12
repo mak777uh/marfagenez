@@ -1,3 +1,5 @@
+> **SUPERSEDED 2026-11-12.** The formula in this note was swept only along `maintenance`, which exercises the numerator. Sweeping `income` (EXP-52) shows the divisor was wrong and the predicted capacity is a ceiling, not a reached value. See `docs/FINDING-the-capacity-law-measured-the-wrong-ceiling.md`. The measurements below are real; the interpretation is not.
+
 # Ёмкость — обрыв, а не склон
 
 **Дата:** 2026-11-13
