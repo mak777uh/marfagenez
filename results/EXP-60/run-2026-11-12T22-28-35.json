@@ -1,0 +1,51 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-60",
+  "run_id": "run-2026-11-12T22-28-35",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 3000,
+    "n": 160,
+    "cells": 40,
+    "field": "alternating"
+  },
+  "arithmetic": {
+    "level_seen_0.8": "1.6 * 0.8 = 1.28",
+    "level_seen_0.9": "1.6 * 0.9 = 1.44",
+    "level_seen_0.5": "1.6 * 0.5 = 0.80",
+    "first_share": "min(level_seen, 1.2)",
+    "second_share_0.8": "1.28 - 1.2 = 0.08",
+    "second_share_0.9": "1.44 - 1.2 = 0.24",
+    "second_share_0.5": "0.80 < 1.2, so no second share exists",
+    "cost": "0.6 + 0.02*1.5 = 0.63"
+  },
+  "conditions": {},
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "regrow 0.8 shows a share at 0.08: [0.0, 0.08, 0.72, 1.2]"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "regrow 0.5 shows a share at 0.80 and none at 0.08: [0.0, 0.8, 1.2]"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "regrow 0.9 shows a share at 0.24 and none at 0.08: [0.0, 0.24, 0.96, 1.2]"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the second share is the regrowth leftover: 0.08 at regrow 0.8, 0.24 at 0.9, and no second share at 0.5 where the level seen falls below income. The nominal levels 2.4 and 1.6 are ceilings, not the levels organisms meet"
+  },
+  "hashes": {},
+  "limitations": [
+    "One seed (20250101) and one field pair. The claim is about which shares exist and their size, not about how often each occurs.",
+    "The queue order is inferred from take() being sequential, not observed. The trace records the share, not the position in the queue.",
+    "This does not explain why the queue length is 25, nor why E_max 9 and 10 show no late deaths."
+  ],
+  "command": "checks/exp60_second_share_is_the_leftover.py",
+  "created_at": "2026-11-12T22:28:35.836438+00:00"
+}

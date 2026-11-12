@@ -1,0 +1,50 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-61",
+  "run_id": "run-2026-11-12T22-29-09",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 8000,
+    "n": 160,
+    "cells": 40,
+    "every": 1
+  },
+  "arithmetic": {
+    "cost": "0.6 + 0.02*1.5 = 0.63",
+    "second_taker_loss": "0.63 - 0.08 = 0.55",
+    "third_taker_loss": "0.63",
+    "top_energy": "7.37",
+    "survival_bound_second": "7.37 / 0.55 = 13.4 steps",
+    "survival_bound_third": "7.37 / 0.63 = 11.7 steps",
+    "claim": "a run longer than the survival bound cannot be one queue; it must be reoccupation"
+  },
+  "conditions": {},
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "10834 runs of shared occupancy, peak 7 organisms on one cell"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "every run has peak > 1 (min peak 2); a cell with one organism is not a shared cell"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "longest run 25 steps vs survival bound 13.4 steps; a run beyond the bound cannot be one queue"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the longest sharing run is 25 steps, beyond the 13.4-step survival bound of a second taker, and 99.4% of the organisms present at the start of a run are still there at the end. The run is reoccupation, not one queue surviving"
+  },
+  "hashes": {},
+  "limitations": [
+    "One seed (20250101). The run length is a maximum over 40 cells and 8000 steps, so it is a tail, not a typical value.",
+    "The survival bound uses the top energy 7.37 measured in EXP-56; an organism that arrived with less energy has a shorter bound, so the bound is generous.",
+    "This does not explain why the run is 25 rather than 15 or 40. It only shows that a run of that length cannot be one queue."
+  ],
+  "command": "checks/exp61_occupancy_runs.py",
+  "created_at": "2026-11-12T22:29:09.216466+00:00"
+}
