@@ -1,0 +1,116 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp72-is-the-move-cost-charged",
+  "run_id": "run-2026-11-12T23-00-26",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "n": 160,
+    "cells": 40,
+    "steps": 4000,
+    "frames": 2000,
+    "income": 1.2,
+    "regrow": 0.8,
+    "e_max": 10,
+    "e_0": 5.0,
+    "damage": 0.02,
+    "repair": 1.5,
+    "field": "uniform",
+    "rich": 2.4,
+    "poor": 1.6,
+    "policy": "sighted",
+    "maintenance": 1.0
+  },
+  "arithmetic": {
+    "surplus_at_maintenance_1": 0.16999999999999996,
+    "predicted_energy_growth": "steps * (surplus - move_fraction*move_cost)",
+    "note": "maintenance 1.0 is below the threshold 1.17, so nobody dies and the energy keeps growing until E_max. The mean energy at the end is then a direct readout of the surplus."
+  },
+  "conditions": {
+    "energy_vs_move_cost": {
+      "label": "mean energy after 4000 steps at maintenance 1.0",
+      "metrics": {
+        "points": [
+          {
+            "move_cost": 0.0,
+            "maintenance": 1.0,
+            "alive": 40,
+            "energy_mean": 8.97,
+            "energy_max": 8.97,
+            "move_fraction": 0.0004855698598072661,
+            "steps": 4000
+          },
+          {
+            "move_cost": 0.2,
+            "maintenance": 1.0,
+            "alive": 40,
+            "energy_mean": 8.97,
+            "energy_max": 8.97,
+            "move_fraction": 0.0008341841181304315,
+            "steps": 4000
+          },
+          {
+            "move_cost": 1.0,
+            "maintenance": 1.0,
+            "alive": 23,
+            "energy_mean": 1.5395652173913041,
+            "energy_max": 6.0,
+            "move_fraction": 0.6952220628883763,
+            "steps": 4000
+          },
+          {
+            "move_cost": 5.0,
+            "maintenance": 1.0,
+            "alive": 23,
+            "energy_mean": 3.5330434782608697,
+            "energy_max": 5.0,
+            "move_fraction": 0.8004367830714755,
+            "steps": 4000
+          }
+        ]
+      }
+    }
+  },
+  "series": {
+    "move_cost": {
+      "steps": [
+        0.0,
+        0.2,
+        1.0,
+        5.0
+      ],
+      "values": [
+        8.97,
+        8.97,
+        1.5395652173913041,
+        3.5330434782608697
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "move_cost 0.0: energy_max 8.970000 against E_max 10. With no move cost and a positive surplus every survivor must fill up."
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "move_cost 0.0: alive 40 of 160. Below the threshold nobody should die, so a death here would mean the threshold is not where the law says."
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "mean energy falls from 8.9700 to 3.5330 as move_cost goes 0.0 to 5.0, a drop of 5.4370. If the drop is zero the move cost is not reaching the energy."
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "The move cost is charged (drop 5.4370) but a control did not fire: fires=False silent=False."
+  },
+  "hashes": {},
+  "limitations": [
+    "One seed, one field shape, one read budget.",
+    "The mean energy is read at a fixed step, so a population that reaches E_max early shows no further difference. The test is therefore only sensitive while the mean is below E_max.",
+    "This proves the cost is charged, not how large the charge is per move. The move fraction is measured, not controlled."
+  ],
+  "command": "python3 checks/exp72_is_the_move_cost_charged.py",
+  "created_at": "2026-11-12T23:00:26.538857+00:00"
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp71-does-hunger-feed-back-into-moving",
+  "run_id": "run-2026-11-12T22-57-11",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "n": 160,
+    "cells": 40,
+    "steps": 8000,
+    "frames": 4000,
+    "income": 1.2,
+    "regrow": 0.8,
+    "e_max": 10,
+    "e_0": 5.0,
+    "damage": 0.02,
+    "repair": 1.5,
+    "field": "uniform",
+    "rich": 2.4,
+    "poor": 1.6,
+    "move_costs": [
+      0.0,
+      0.1,
+      0.3
+    ],
+    "policy": "sighted",
+    "bisection_resolution": 1e-05
+  },
+  "arithmetic": {
+    "true_threshold_no_move": 1.17,
+    "deficit_without_move": "maintenance + damage*repair - income",
+    "deficit_with_move": "maintenance + damage*repair - income + f*move_cost",
+    "predicted_threshold": "income - damage*repair - f*move_cost",
+    "competing_prediction": "threshold does not move with move_cost",
+    "death_steps_without_loop": {
+      "0.0": 124.99999999999989,
+      "0.1": 55.55555555555551,
+      "0.3": 26.3157894736842
+    },
+    "death_test_maintenance": 1.25
+  },
+  "conditions": {
+    "threshold_line": {
+      "label": "threshold at three move costs",
+      "metrics": {
+        "points": [
+          {
+            "move_cost": 0.0,
+            "threshold": 1.1706275939941406,
+            "offset_from_law": 0.0006275939941406961
+          },
+          {
+            "move_cost": 0.1,
+            "threshold": 1.1700630187988281,
+            "offset_from_law": 6.301879882819605e-05
+          },
+          {
+            "move_cost": 0.3,
+            "threshold": 1.1702156066894531,
+            "offset_from_law": 0.00021560668945319605
+          }
+        ],
+        "slope": -0.001068115234375,
+        "law_threshold": 1.17
+      }
+    },
+    "death_time": {
+      "label": "steps to extinction at maintenance 1.25",
+      "metrics": {
+        "points": [
+          {
+            "move_cost": 0.0,
+            "death_step": 64,
+            "predicted_without_loop": 124.99999999999989,
+            "move_fraction": 0.18910741301059,
+            "alive_at_end": 0
+          },
+          {
+            "move_cost": 0.1,
+            "death_step": 64,
+            "predicted_without_loop": 55.55555555555551,
+            "move_fraction": 0.11027568922305764,
+            "alive_at_end": 0
+          },
+          {
+            "move_cost": 0.3,
+            "death_step": 64,
+            "predicted_without_loop": 26.3157894736842,
+            "move_fraction": 0.11608961303462322,
+            "alive_at_end": 0
+          }
+        ]
+      }
+    }
+  },
+  "series": {
+    "threshold_vs_move_cost": {
+      "steps": [
+        0.0,
+        0.1,
+        0.3
+      ],
+      "values": [
+        1.1706275939941406,
+        1.1700630187988281,
+        1.1702156066894531
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "move_cost 0.0: threshold 1.170628 against the law plus window 1.170625"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "move_cost 5.0 at maintenance 1.0: alive 23. A move cost far above the income kills, so the cost is being charged at all."
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "slope of threshold in move_cost is -0.001068; a slope of 0 would mean survivors never pay for moving and the loop cannot exist."
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "Threshold moved (slope -0.001068) but a control did not fire: fires=True silent=False."
+  },
+  "hashes": {},
+  "limitations": [
+    "One seed, one field shape, one E_max, one read budget.",
+    "The slope is fitted through three points, so it is a direction, not a precise coefficient. The move fraction at the threshold is not measured directly; it is inferred from the slope.",
+    "Death is read from the sampled frames, whose spacing is steps/frames = 2. The death step is therefore known to within 2 steps, not exactly.",
+    "The loop, if it exists, is not separated from the trivial effect that a larger move_cost raises the deficit directly. The slope measures the total effect; how much of it is the loop and how much is the direct cost is not separated."
+  ],
+  "command": "python3 checks/exp71_does_hunger_feed_back_into_moving.py",
+  "created_at": "2026-11-12T22:57:11.050247+00:00"
+}
