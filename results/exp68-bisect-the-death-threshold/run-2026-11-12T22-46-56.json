@@ -1,0 +1,169 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp68-bisect-the-death-threshold",
+  "run_id": "run-2026-11-12T22-46-56",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "n": 160,
+    "cells": 40,
+    "steps": 8000,
+    "every": 8000,
+    "policy": "sighted",
+    "read_budget": 3,
+    "income": 1.2,
+    "M": 2.0,
+    "regrow": 0.8,
+    "damage_rate": 0.02,
+    "repair_cost": 1.5,
+    "move_cost": 0.1,
+    "field": "uniform",
+    "rich": 2.4,
+    "poor": 1.6,
+    "e_max": 10,
+    "bisect_resolution": 0.0001
+  },
+  "arithmetic": {
+    "predicted_threshold": 1.17,
+    "formula": "income - damage_rate*repair_cost",
+    "prediction_a": "bisection lands on 1.17 +- 1e-4",
+    "prediction_b": "energy just below threshold = E_max - COST",
+    "prediction_c": "otherwise a term is missing from the net"
+  },
+  "conditions": {
+    "bisection": {
+      "label": "maintenance in [1.1, 1.2]",
+      "metrics": {
+        "threshold": 1.1700683593749996,
+        "lo_survives": 1.1700195312499995,
+        "hi_dies": 1.1701171874999996,
+        "trail": [
+          {
+            "maintenance": 1.15,
+            "cost": 1.18,
+            "alive": 40,
+            "energy_mean": 8.82,
+            "energy_min": 8.82
+          },
+          {
+            "maintenance": 1.1749999999999998,
+            "cost": 1.2049999999999998,
+            "alive": 0,
+            "energy_mean": null,
+            "energy_min": null
+          },
+          {
+            "maintenance": 1.1624999999999999,
+            "cost": 1.1925,
+            "alive": 40,
+            "energy_mean": 8.8075,
+            "energy_min": 8.8075
+          },
+          {
+            "maintenance": 1.1687499999999997,
+            "cost": 1.1987499999999998,
+            "alive": 40,
+            "energy_mean": 8.80125,
+            "energy_min": 8.80125
+          },
+          {
+            "maintenance": 1.1718749999999998,
+            "cost": 1.2018749999999998,
+            "alive": 0,
+            "energy_mean": null,
+            "energy_min": null
+          },
+          {
+            "maintenance": 1.1703124999999996,
+            "cost": 1.2003124999999997,
+            "alive": 0,
+            "energy_mean": null,
+            "energy_min": null
+          },
+          {
+            "maintenance": 1.1695312499999997,
+            "cost": 1.1995312499999997,
+            "alive": 40,
+            "energy_mean": 8.35591905,
+            "energy_min": 5.0076
+          },
+          {
+            "maintenance": 1.1699218749999996,
+            "cost": 1.1999218749999996,
+            "alive": 40,
+            "energy_mean": 5.23091905,
+            "energy_min": 1.8826
+          },
+          {
+            "maintenance": 1.1701171874999996,
+            "cost": 1.2001171874999996,
+            "alive": 0,
+            "energy_mean": null,
+            "energy_min": null
+          },
+          {
+            "maintenance": 1.1700195312499995,
+            "cost": 1.2000195312499995,
+            "alive": 22,
+            "energy_mean": 0.6801143181818182,
+            "energy_min": 0.04375
+          }
+        ]
+      }
+    }
+  },
+  "series": {
+    "bisection": {
+      "steps": [
+        1.15,
+        1.1749999999999998,
+        1.1624999999999999,
+        1.1687499999999997,
+        1.1718749999999998,
+        1.1703124999999996,
+        1.1695312499999997,
+        1.1699218749999996,
+        1.1701171874999996,
+        1.1700195312499995
+      ],
+      "values": [
+        40.0,
+        0.0,
+        40.0,
+        40.0,
+        0.0,
+        0.0,
+        40.0,
+        40.0,
+        0.0,
+        22.0
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "maintenance 1.1: alive 38; the surviving side is present"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "maintenance 1.2: alive 0; the dying side is empty"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "threshold 1.170068 vs predicted 1.170000 (distance 0.000068); energy just below it 8.434525 vs E_max - COST 8.800480 (distance 0.365956)"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "The threshold is 1.170068, which is 0.000068 from income - damage*repair = 1.170000. The per-step net is not income - maintenance - damage*repair; a term is missing."
+  },
+  "hashes": {},
+  "limitations": [
+    "One seed, one field shape, one E_max. The threshold is a property of these settings, not yet of the model.",
+    "The trace samples only the last step. The bisection locates where the population is empty at step 8000, which is not the same as where it dies.",
+    "A threshold at income - damage*repair is consistent with the organisms always finding a full cell. It does not show that they always will: at higher crowding the take per step falls below income and the threshold must move."
+  ],
+  "command": "python3 checks/exp68_bisect_the_death_threshold.py",
+  "created_at": "2026-11-12T22:46:56.864456+00:00"
+}

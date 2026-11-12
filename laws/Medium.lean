@@ -13,6 +13,7 @@ import Medium.Convergence
 import Medium.Feed
 import Medium.Capacity
 import Medium.CapacityLaw
+import Medium.DeathLaw
 import Medium.Crowding
 import Medium.Regimes
 import Medium.Boundary
