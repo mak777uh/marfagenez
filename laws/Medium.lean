@@ -11,7 +11,6 @@ import Medium.Field
 import Medium.Convergence
 import Medium.Feed
 import Medium.Capacity
-import Medium.CapacityLaw
 import Medium.Regimes
 import Medium.Boundary
 import Medium.Bounded

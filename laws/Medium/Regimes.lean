@@ -19,7 +19,7 @@
     * the cell is in the full regime iff `k * t₀ ≤ c*`;
     * substituting `c*` and clearing denominators gives
 
-          feedCapacity M r t₀ = (M - t₀) * r / (t₀ * (1 - r))
+          feedCapacity M r t₀ = M * r / t₀
 
       so the full regime holds iff `k ≤ feedCapacity M r t₀`
       (requires `0 < r`, `r < 1`, `0 < t₀`).
@@ -47,18 +47,22 @@ the model actually executes is `takeOne` / `afterTakes` in `Capacity.lean`;
 `feedCapacity` (this file) is a different question: for which `k` is the cell
 still in the FULL regime, i.e. `k * t0 <= c*` so nobody is rationed?
 
-    feedCapacity M r t0 = (M - t0) * r / (t0 * (1 - r))
+    feedCapacity M r t0 = M * r / t0
 
 Numerically at `M = 2, r = 0.8, t0 = 0.8`:
 
-    k_max = ⌊M*r/t₀⌋ = 2,   feedCapacity = 6.0
+    feedCapacity = 2.0
 
-So a cell can feed 2 organisms, but stays in the full regime (nobody rationed)
-up to 6. Between 2 and 6 the cell is rationed; the measurement in
-`results/overcrowding/run-2026-11-11T22-20-40.json` shows crowding 2 and
-`C = 80` on 40 cells, i.e. `k_max`, not `feedCapacity`. Note that `k_max` here
-is set by the `maintenance` threshold (0.6), not by the portion size `t₀` (0.8):
-the third take of 0.2 is below `maintenance`, which is what kills it.
+**This used to say 6.0, and 6.0 was wrong.** The old formula was
+`(M - t₀) * r / (t₀ * (1 - r))`, derived from the pre-2026-11-12 equilibrium
+`M - t/r`. Solving `k * t₀ = M + k*t₀ - k*t₀/r` symbolically (sympy) gives
+`k = M * r / t₀` exactly — the `t₀` cancels out of the numerator. At the
+project's numbers that is 2.0, not 6.0.
+
+So `feedCapacity` and `k_max` coincide at these numbers, and the claim that
+"a cell stays in the full regime up to 6" is dead. What the measurement in
+`results/overcrowding/run-2026-11-11T22-20-40.json` shows (crowding 2, `C = 80`
+on 40 cells) is consistent with `feedCapacity = 2`, not with 6.
 -/
 
 import Medium.Field
@@ -69,7 +73,7 @@ namespace Medium
 
 /-- Number of organisms a cell can feed in full (no rationing),
     as a function of the maintenance cost `t₀` per organism. -/
-noncomputable def feedCapacity (M r t₀ : ℝ) : ℝ := (M - t₀) * r / (t₀ * (1 - r))
+noncomputable def feedCapacity (M r t₀ : ℝ) : ℝ := M * r / t₀
 
 /-- Clearing the division in c* = M + x - x/r:
     x ≤ M + x - x/r iff x ≤ M * r. -/
@@ -83,32 +87,23 @@ theorem le_equilibrium_iff {M r x : ℝ} (hr : 0 < r) :
   constructor <;> intro h <;> nlinarith
 
 /-- The cell is in the full regime exactly when the draw fits the
-    equilibrium level. -/
-theorem full_regime_of_le_feedCapacity {M r t₀ k : ℝ} (hr0 : 0 < r) (hr1 : r < 1)
-    (ht₀ : 0 < t₀) (hMr : t₀ ≤ M * r) (h : k * t₀ ≤ M * r) :
+    equilibrium level.  The two conditions are the same condition:
+    `k * t₀ ≤ equilibrium M r (k * t₀)` iff `k ≤ M * r / t₀`. -/
+theorem full_regime_of_le_feedCapacity {M r t₀ k : ℝ} (hr0 : 0 < r)
+    (ht₀ : 0 < t₀) (h : k * t₀ ≤ M * r) :
     k ≤ feedCapacity M r t₀ := by
   unfold feedCapacity
-  rw [le_div_iff₀ (mul_pos ht₀ (by linarith : (0:ℝ) < 1 - r))]
-  have h1 : k * t₀ * (1 - r) ≤ M * r * (1 - r) := by nlinarith [h, sub_pos.mpr hr1]
-  have h2 : M * r * (1 - r) ≤ (M - t₀) * r := by nlinarith [hMr, hr0]
-  linarith [h1, h2]
+  rw [le_div_iff₀ ht₀]
+  nlinarith [h]
 
-/-- The converse does **not** hold: `feedCapacity` is an upper bound on `k`
-    that the equilibrium level allows, but the full regime needs the
-    stronger `k * t₀ ≤ M * r`.  At `M = 2, r = 0.8, t₀ = 0.8` we get
-    `feedCapacity = 6` while `M * r / t₀ = 2`, so `k = 3` satisfies the
-    full-regime bound but violates `k * t₀ ≤ M * r`.
-    The two coincide only when `k ≤ 1`. -/
-theorem full_regime_iff {M r t₀ k : ℝ} (hr0 : 0 < r) (hr1 : r < 1) (ht₀ : 0 < t₀)
-    (hMr : t₀ ≤ M * r) (hk : k ≤ 1) :
+/-- The full regime and `feedCapacity` say the same thing — there is no
+    gap between them.  (Before 2026-11-12 this file claimed a gap: `k_max = 2`
+    but `feedCapacity = 6`.  That came from the pre-fix equilibrium
+    `M - t/r`.  With `c* = M + t - t/r` the two coincide exactly.) -/
+theorem full_regime_iff {M r t₀ k : ℝ} (hr0 : 0 < r) (ht₀ : 0 < t₀) :
     k * t₀ ≤ equilibrium M r (k * t₀) ↔ k ≤ feedCapacity M r t₀ := by
   rw [le_equilibrium_iff hr0]
-  constructor
-  · intro h
-    exact full_regime_of_le_feedCapacity hr0 hr1 ht₀ hMr h
-  · intro h
-    unfold feedCapacity at h
-    rw [le_div_iff₀ (mul_pos ht₀ (by linarith : (0:ℝ) < 1 - r))] at h
-    nlinarith [h, hr0, hr1, ht₀, hk]
+  unfold feedCapacity
+  rw [le_div_iff₀ ht₀]
 
 end Medium
