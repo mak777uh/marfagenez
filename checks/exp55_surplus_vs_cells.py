@@ -37,16 +37,26 @@ rotation period T_rot:
     E_max > 0.13 * T_rot
 
 So the surplus should be gated by E_max, and the gate should sit at a value
-that grows with the rotation period. This is the first closed form for the
-surplus in this project, and unlike the capacity law it is derived from the
-per-step arithmetic rather than fitted.
+that grows with the rotation period.
 
-Predictions:
+THIS CLOSED FORM IS DEAD. It was written down here as the first derived law of
+the surplus, and it is wrong. checks/measure_rotation.py measured T_rot
+directly: median 1 step, not 62-69. The derived gate would be E_max > 0.13,
+seventy times below the measured one. Worse, the inequality was circular --
+T_rot was read off the gate position, so it could not fail there.
+
+The docstring is kept in this form on purpose. The run below still reproduces
+the gate, and the verdict says the mechanism is unknown. A file that quietly
+rewrote its own history would hide exactly the mistake worth keeping.
+
+Predictions, as they were registered before the run:
   P1 the surplus is 0 for small E_max and 2 for large E_max.
   P2 the gate is a step, not a ramp, because a second occupant either
      survives to its turn or does not.
   P3 the gate lies between E_max 8 and 9, since 8/0.13 = 61.5 and
-     9/0.13 = 69.2 steps bracket the rotation period measured in EXP-54.
+     9/0.13 = 69.2 steps bracket the rotation period inferred from EXP-54.
+     P3 is REFUTED by measure_rotation.py. It is recorded as refuted, not
+     deleted, because the prediction was made before the measurement.
 """
 
 import json
@@ -80,18 +90,27 @@ FIRST = min(CSTAR, INCOME)
 SECOND = min(CSTAR - INCOME, INCOME)
 LOSS = COST - SECOND
 
-ARITHMETIC = (
-    f"c* = M + income - income/r = {M} + {INCOME} - {INCOME}/{R} = {CSTAR:.4f}\n"
-    f"cost = maintenance + damage*repair = {MAINT} + {DAMAGE}*{REPAIR} = {COST:.4f}\n"
-    f"first taker: min(c*, income) = {FIRST:.4f} -> net {FIRST - COST:+.4f}/step\n"
-    f"second taker: min(c* - income, income) = {SECOND:.4f} -> net {SECOND - COST:+.4f}/step\n"
-    f"a second occupant survives at most E_max / {LOSS:.2f} steps, so the\n"
-    f"surplus requires E_max > {LOSS:.2f} * T_rot where T_rot is the rotation\n"
-    f"period. cells fixed at {CELLS}; M = (rich + poor)/2 = ({M + 0.4:.1f} + {M - 0.4:.1f})/2 = {M}.\n"
-    f"--capacity is the energy ceiling E_max, not a per-cell occupancy limit\n"
-    f"(core/src/organism.rs:61); --rich/--poor set M and default to 2.0/0.2,\n"
-    f"i.e. M = 1.1, so every parameter is stated explicitly here."
-)
+ARITHMETIC = {
+    "c_star": f"M + income - income/r = {M} + {INCOME} - {INCOME}/{R} = {CSTAR:.4f}",
+    "cost": f"maintenance + damage*repair = {MAINT} + {DAMAGE}*{REPAIR} = {COST:.4f}",
+    "first_taker": f"min(c*, income) = {FIRST:.4f} -> net {FIRST - COST:+.4f}/step",
+    "second_taker": (
+        f"min(c* - income, income) = {SECOND:.4f} -> net {SECOND - COST:+.4f}/step"
+    ),
+    "survival": (
+        f"a second occupant survives at most E_max / {LOSS:.2f} steps, so the "
+        f"surplus requires E_max > {LOSS:.2f} * T_rot where T_rot is the rotation period"
+    ),
+    "field": (
+        f"cells fixed at {CELLS}; M = (rich + poor)/2 = "
+        f"({M + 0.4:.1f} + {M - 0.4:.1f})/2 = {M}"
+    ),
+    "capacity_flag": (
+        "--capacity is the energy ceiling E_max, not a per-cell occupancy limit "
+        "(core/src/organism.rs:61); --rich/--poor set M and default to 2.0/0.2, "
+        "i.e. M = 1.1, so every parameter is stated explicitly here"
+    ),
+}
 
 EMAX = [4, 6, 8, 9, 10]
 
@@ -259,10 +278,13 @@ def main():
         reason = (
             f"The surplus is gated by the energy ceiling: {surpluses} at E_max "
             f"{EMAX}. It is 0 below {first_positive} and 2 from {first_positive} "
-            f"up, so P1 and P2 hold and the gate is a step, not a ramp. The "
-            f"closed form E_max > {LOSS:.2f} * T_rot puts the gate at "
-            f"T_rot between {8 / LOSS:.0f} and {9 / LOSS:.0f} steps, which is "
-            f"where it was measured."
+            f"up, so P1 and P2 hold and the gate is a step, not a ramp. "
+            f"P3 is NOT confirmed: the closed form E_max > {LOSS:.2f} * T_rot "
+            f"was checked against a direct measurement of T_rot "
+            f"(checks/measure_rotation.py) and is wrong -- T_rot is 1 step, "
+            f"not {8 / LOSS:.0f} to {9 / LOSS:.0f}, and the stretch statistics "
+            f"are identical at E_max 8, 9 and 10. The gate is real and "
+            f"reproducible; its mechanism is unknown."
         )
     else:
         kind = "failed"
