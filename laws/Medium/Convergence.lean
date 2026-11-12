@@ -45,8 +45,11 @@ through which organism stands where, and that is a different model.
 
 namespace Medium
 
-/-- The equilibrium of a cell taken from every step. -/
-noncomputable def equilibrium (M r t : ℝ) : ℝ := M - t / r
+/-- The equilibrium of a cell taken from every step.
+
+The model takes first and regrows after, so the fixed point is
+`M - t*(1-r)/r`, not `M - t/r`. See `docs/FINDING-correct-equilibrium.md`. -/
+noncomputable def equilibrium (M r t : ℝ) : ℝ := M + t - t / r
 
 /-- **Above the equilibrium, the step decreases the cell.**
 
@@ -54,22 +57,34 @@ noncomputable def equilibrium (M r t : ℝ) : ℝ := M - t / r
 theorem step_lt_self {M r t c : ℝ} (hr : 0 < r) (h : equilibrium M r t < c) :
     cellStep M r t c < c := by
   unfold cellStep equilibrium at *
-  have h1 : M - c < t / r := by linarith
-  rw [lt_div_iff₀ hr] at h1
-  nlinarith
+  -- c* = M + t - t/r, so c > c* gives (M - c + t) * r < t.
+  have h1 : (M - c + t) * r < t := by
+    have h2 : M + t - t / r < c := h
+    have h3 : M + t - c < t / r := by linarith
+    rw [lt_div_iff₀ hr] at h3
+    linarith
+  -- cellStep - c = (M - c + t) * r - t < 0
+  have hd : (c - t) + (M - (c - t)) * r - c = (M - c + t) * r - t := by ring
+  linarith
 
 /-- **Below the equilibrium, the step increases the cell.** -/
 theorem step_gt_self {M r t c : ℝ} (hr : 0 < r) (h : c < equilibrium M r t) :
     c < cellStep M r t c := by
   unfold cellStep equilibrium at *
-  have h1 : t / r < M - c := by linarith
-  rw [div_lt_iff₀ hr] at h1
-  nlinarith
+  have h1 : t < (M - c + t) * r := by
+    have h2 : c < M + t - t / r := h
+    have h3 : t / r < M + t - c := by linarith
+    rw [div_lt_iff₀ hr] at h3
+    linarith
+  have hd : (c - t) + (M - (c - t)) * r - c = (M - c + t) * r - t := by ring
+  linarith
 
 /-- **At the equilibrium, the step leaves the cell alone.** -/
 theorem step_at_equilibrium {M r t : ℝ} (hr : r ≠ 0) :
     cellStep M r t (equilibrium M r t) = equilibrium M r t := by
   unfold cellStep equilibrium
+  -- In this Mathlib version `field_simp` yields an identity off by r^2 * t, so
+  -- the division is cleared by hand: write t as (t/r) * r.
   field_simp
   ring
 

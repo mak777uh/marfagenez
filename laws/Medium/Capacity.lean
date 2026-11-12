@@ -5,108 +5,121 @@ import Medium.Convergence
 /-!
 # Carrying capacity: how many organisms a cell can hold
 
-The experiments measured a formula:
+The equilibrium of one cell is `c* = M + t - t/r` (see `Convergence`). A cell
+survives `k` organisms when the equilibrium stays non-negative:
 
-| `M` | `k_max` | predicted `C` | measured `C` |
-|---|---|---|---|
-| 2.0 | 2 | 80 | **80** |
-| 1.0 | 1 | 40 | **40** |
-| 4.0 | 4 | 160 | **160** |
+`0 ≤ M + k*t₀ - k*t₀/r`  ⟺  `k ≤ M*r / (t₀*(1-r))`.
 
-with `C = cells * k_max` and `k_max = M * r / income`.
-
-This file proves the arithmetic behind `k_max`: it is exactly the condition
-under which the cell's equilibrium is non-negative.
+So the per-cell capacity is `k_max = M*r / (t₀*(1-r))` and the field holds
+`cells * k_max` organisms. When `r = 1` (instant regrowth) the capacity is
+infinite: whatever is taken comes back at once.
 
 ## What is proved
 
-* `equilibrium_nonneg_iff` — `0 ≤ c*` exactly when `t ≤ M * r`
-* `capacity` — the number of organisms a cell can hold, `k_max = M * r / t₀`
+* `equilibrium_nonneg_iff` — `0 ≤ c*` exactly when `t*(1-r) ≤ M*r`
+* `capacity` — `k_max = M*r / (t₀*(1-r))`
 * `capacity_iff` — `k ≤ k_max` exactly when the equilibrium is non-negative
-* `capacity_mono_M` — a richer cell holds more
-* `capacity_mono_r` — a faster regrowth holds more
-* `capacity_anti_income` — a bigger take holds less
+* `capacity_mono_M`, `capacity_mono_r`, `capacity_anti_income`
+* `capacity_infinite_at_full_regrowth` — at `r = 1` no finite `k` starves the cell
+* `no_second_place` — when `k_max ≤ 1`, a second organism cannot be supported
 
 ## What is NOT proved
 
-That the population actually reaches `C = cells * k_max`. That needs a model of
+That the population actually reaches `cells * k_max`. That needs a model of
 movement and of who stands where; the experiments measure it, this file does not
-prove it. The gap is stated at the end.
+prove it.
 -/
 
 namespace Medium
 
-/-- **The equilibrium is non-negative exactly when the take is at most `M * r`.**
+/-- **The equilibrium is non-negative exactly when `t*(1-r) ≤ M*r`.**
 
-`c* = M - t/r`, so `0 ≤ c*` iff `t/r ≤ M` iff `t ≤ M * r`. -/
-theorem equilibrium_nonneg_iff {M r t : ℝ} (hr : 0 < r) :
-    0 ≤ equilibrium M r t ↔ t ≤ M * r := by
+`c* = M + t - t/r = M - t*(1-r)/r`. -/
+theorem equilibrium_nonneg_iff {M r t : ℝ} (hr0 : 0 < r) :
+    0 ≤ equilibrium M r t ↔ t * (1 - r) ≤ M * r := by
   unfold equilibrium
+  have h2 : t - t / r = -(t * (1 - r) / r) := by field_simp; ring
   constructor
   · intro h
-    have : t / r ≤ M := by linarith
-    rwa [div_le_iff₀ hr] at this
+    have h1 : t * (1 - r) / r ≤ M := by linarith
+    rwa [div_le_iff₀ hr0] at h1
   · intro h
-    have h2 : t / r ≤ M := by
-      rw [div_le_iff₀ hr]
+    have h1 : t * (1 - r) / r ≤ M := by
+      rw [div_le_iff₀ hr0]
       linarith
     linarith
 
 /-- **The carrying capacity of one cell.**
 
-`k_max = M * r / t₀`, where `t₀` is what one organism takes per step. -/
-noncomputable def capacity (M r t₀ : ℝ) : ℝ := M * r / t₀
+`k_max = M*r / (t₀*(1-r))`, where `t₀` is what one organism takes per step. -/
+noncomputable def capacity (M r t₀ : ℝ) : ℝ := M * r / (t₀ * (1 - r))
 
-/-- **A cell holds `k` organisms exactly when the equilibrium is non-negative.**
-
-This is the arithmetic behind the measured capacity. -/
-theorem capacity_iff {M r t₀ : ℝ} (hr : 0 < r) (ht₀ : 0 < t₀) (k : ℝ) :
+/-- **A cell holds `k` organisms exactly when the equilibrium is non-negative.** -/
+theorem capacity_iff {M r t₀ : ℝ} (hr0 : 0 < r) (hr1 : r < 1) (ht₀ : 0 < t₀)
+    (k : ℝ) :
     0 ≤ equilibrium M r (k * t₀) ↔ k ≤ capacity M r t₀ := by
-  rw [equilibrium_nonneg_iff hr]
+  rw [equilibrium_nonneg_iff hr0]
   unfold capacity
-  rw [le_div_iff₀ ht₀]
+  have hpos : 0 < t₀ * (1 - r) := mul_pos ht₀ (by linarith)
+  rw [le_div_iff₀ hpos]
+  constructor <;> intro h <;> nlinarith
 
 /-- **A richer cell holds more.** -/
-theorem capacity_mono_M {M₁ M₂ r t₀ : ℝ} (hr : 0 < r) (ht₀ : 0 < t₀) (h : M₁ ≤ M₂) :
+theorem capacity_mono_M {M₁ M₂ r t₀ : ℝ} (hr : 0 < r) (hr1 : r < 1)
+    (ht₀ : 0 < t₀) (h : M₁ ≤ M₂) :
     capacity M₁ r t₀ ≤ capacity M₂ r t₀ := by
   unfold capacity
-  exact div_le_div_of_nonneg_right (by nlinarith) (le_of_lt ht₀)
+  have hpos : 0 < t₀ * (1 - r) := mul_pos ht₀ (by linarith)
+  exact div_le_div_of_nonneg_right (by nlinarith) (le_of_lt hpos)
 
 /-- **Faster regrowth holds more.** -/
-theorem capacity_mono_r {M r₁ r₂ t₀ : ℝ} (hM : 0 < M) (h : r₁ ≤ r₂)
-    (ht₀ : 0 < t₀) :
+theorem capacity_mono_r {M r₁ r₂ t₀ : ℝ} (hM : 0 < M) (hr₁ : 0 < r₁)
+    (h : r₁ ≤ r₂) (hr₂ : r₂ < 1) (ht₀ : 0 < t₀) :
     capacity M r₁ t₀ ≤ capacity M r₂ t₀ := by
   unfold capacity
-  exact div_le_div_of_nonneg_right (by nlinarith) (le_of_lt ht₀)
+  have h1 : 0 < t₀ * (1 - r₁) := mul_pos ht₀ (by linarith)
+  have h2 : 0 < t₀ * (1 - r₂) := mul_pos ht₀ (by linarith)
+  -- Split into two monotone steps: first the numerator, then the denominator.
+  have key1 : M * r₁ / (t₀ * (1 - r₁)) ≤ M * r₂ / (t₀ * (1 - r₁)) := by
+    apply div_le_div_of_nonneg_right _ (le_of_lt h1)
+    nlinarith
+  have key2 : M * r₂ / (t₀ * (1 - r₁)) ≤ M * r₂ / (t₀ * (1 - r₂)) := by
+    apply div_le_div_of_nonneg_left _ h2
+    · nlinarith
+    · nlinarith
+  linarith
 
 /-- **A bigger take holds less.** -/
 theorem capacity_anti_income {M r t₁ t₂ : ℝ} (hM : 0 < M) (hr : 0 < r)
-    (ht₁ : 0 < t₁) (h : t₁ ≤ t₂) :
+    (hr1 : r < 1) (ht₁ : 0 < t₁) (h : t₁ ≤ t₂) :
     capacity M r t₂ ≤ capacity M r t₁ := by
   unfold capacity
-  have hpos : 0 < M * r := mul_pos hM hr
-  exact div_le_div_of_nonneg_left (le_of_lt hpos) ht₁ h
+  have hpos : 0 < 1 - r := by linarith
+  have hMr : 0 < M * r := mul_pos hM hr
+  have h1 : 0 < t₁ * (1 - r) := mul_pos ht₁ hpos
+  have h2 : 0 < t₂ * (1 - r) := mul_pos (by linarith) hpos
+  exact div_le_div_of_nonneg_left (le_of_lt hMr) h1 (by nlinarith)
+
+/-- **At full regrowth nothing starves the cell.** -/
+theorem capacity_infinite_at_full_regrowth {M t₀ k : ℝ} (hM : 0 < M) :
+    0 ≤ equilibrium M 1 (k * t₀) := by
+  unfold equilibrium
+  norm_num
+  linarith
 
 /-- **The total capacity of a field.** -/
 noncomputable def totalCapacity (cells : ℕ) (M r t₀ : ℝ) : ℝ :=
   (cells : ℝ) * capacity M r t₀
 
-/-- **The total capacity is the number of cells times the per-cell capacity.** -/
-theorem totalCapacity_eq (cells : ℕ) (M r t₀ : ℝ) :
-    totalCapacity cells M r t₀ = (cells : ℝ) * (M * r / t₀) := by
-  unfold totalCapacity capacity
-  rfl
-
 /-- **A cell that holds one organism gains nothing from a second place.**
 
-When `capacity M r t₀ ≤ 1`, the number of organisms a cell can hold is at most
-one, so movement cannot find a second place. This is the arithmetic behind the
-`M = 1.0` measurement, where movement made no difference. -/
-theorem no_second_place {M r t₀ : ℝ} (hr : 0 < r) (ht₀ : 0 < t₀)
+When `capacity M r t₀ ≤ 1`, movement cannot find a second place. This is the
+arithmetic behind the `M = 1.0` measurement, where movement made no difference. -/
+theorem no_second_place {M r t₀ : ℝ} (hr0 : 0 < r) (hr1 : r < 1) (ht₀ : 0 < t₀)
     (h : capacity M r t₀ ≤ 1) :
     ∀ k : ℝ, 1 < k → ¬ (0 ≤ equilibrium M r (k * t₀)) := by
   intro k hk hnonneg
-  have hcap := (capacity_iff hr ht₀ k).mp hnonneg
+  have hcap := (capacity_iff hr0 hr1 ht₀ k).mp hnonneg
   linarith
 
 end Medium

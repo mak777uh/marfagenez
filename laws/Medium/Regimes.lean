@@ -1,118 +1,81 @@
-import Mathlib
+/-
+  Medium/Regimes.lean
+
+  Two regimes of a cell: the organism is either fed in full
+  (`income ≤ c`, no rationing) or rationed (`c < income`).
+
+  Rewritten for the corrected step order: the organism takes first,
+  then the cell regrows.
+
+      cellStep M r t c = (c - t) + (M - (c - t)) * r
+
+  whose fixed point is
+
+      c* = M + t - t / r.
+
+  Consequences for a cell that must feed `k` organisms at cost `t₀` each:
+
+    * income per organism is `t₀`; total draw is `k * t₀`;
+    * the cell is in the full regime iff `k * t₀ ≤ c*`;
+    * substituting `c*` and clearing denominators gives
+
+          feedCapacity M r t₀ = (M - t₀) * r / (t₀ * (1 - r))
+
+      so the full regime holds iff `k ≤ feedCapacity M r t₀`
+      (requires `0 < r`, `r < 1`, `0 < t₀`).
+
+  Everything here is stated for `r < 1`: at `r = 1` the cell refills
+  completely and `feedCapacity` is infinite (see `Capacity.lean`).
+-/
 import Medium.Field
 import Medium.Convergence
 import Medium.Capacity
 
-/-!
-# Two regimes: full income and rationed income
-
-`Field.lean` proved the equilibrium `c* = M - t/r` for a **fixed** take `t`.
-But the model's take is not fixed: an organism takes `min(income, c)`, so the
-take depends on the cell's value.
-
-This gives **two regimes**:
-
-| regime | condition | take | equilibrium |
-|---|---|---|---|
-| full | `c ≥ income` | `t = k * income` | `c* = M - k*income/r` |
-| rationed | `c < income` | `t = k * c` | `c* = M*r/(r + k)` |
-
-The rationed equilibrium is **always positive** — the cell never reaches zero,
-because the organisms take less as the cell empties. The full equilibrium can be
-zero or negative — that is the capacity limit.
-
-## Why this matters
-
-The measured capacity `C = cells * M*r/income` is the point where the **full**
-equilibrium hits zero. Below that point the cell is in the full regime and feeds
-everyone. Above it the cell falls into the rationed regime, the organisms get
-less than `income`, and the balance `c* - (maintenance + damage*repair)` decides
-whether they live.
-
-## What is proved
-
-* `rationed_equilibrium` — the equilibrium in the rationed regime
-* `rationed_positive` — it is always positive
-* `rationed_below_full` — it is below `income`, so the regime is self-consistent
-* `full_regime_iff` — the full regime holds exactly when `k ≤ k_feed`
-* `feed_capacity` — `k_feed = (M - income)*r/income`
-* `rationed_balance_pos` — when the rationed equilibrium exceeds the upkeep, the
-  organism survives even in the rationed regime
--/
-
 namespace Medium
 
-/-- One step of a cell when `k` organisms each take `min(income, c)`. -/
-noncomputable def cellStepRationed (M r k c : ℝ) : ℝ :=
-  c + (M - c) * r - k * c
+/-- Number of organisms a cell can feed in full (no rationing),
+    as a function of the maintenance cost `t₀` per organism. -/
+noncomputable def feedCapacity (M r t₀ : ℝ) : ℝ := (M - t₀) * r / (t₀ * (1 - r))
 
-/-- **The rationed equilibrium.**
+/-- Clearing the division in c* = M + x - x/r:
+    x ≤ M + x - x/r iff x ≤ M * r. -/
+theorem le_equilibrium_iff {M r x : ℝ} (hr : 0 < r) :
+    x ≤ equilibrium M r x ↔ x ≤ M * r := by
+  unfold equilibrium
+  have e : M + x - x / r = (M * r + x * (r - 1)) / r := by
+    field_simp
+    ring
+  rw [e, le_div_iff₀ hr]
+  constructor <;> intro h <;> nlinarith
 
-`c* = c* + (M - c*)*r - k*c*` gives `c* * (r + k) = M * r`, so
-`c* = M*r/(r + k)`. -/
-theorem rationed_equilibrium {M r k : ℝ} (h : r + k ≠ 0) :
-    cellStepRationed M r k (M * r / (r + k)) = M * r / (r + k) := by
-  unfold cellStepRationed
-  field_simp
-  ring
+/-- The cell is in the full regime exactly when the draw fits the
+    equilibrium level. -/
+theorem full_regime_of_le_feedCapacity {M r t₀ k : ℝ} (hr0 : 0 < r) (hr1 : r < 1)
+    (ht₀ : 0 < t₀) (hMr : t₀ ≤ M * r) (h : k * t₀ ≤ M * r) :
+    k ≤ feedCapacity M r t₀ := by
+  unfold feedCapacity
+  rw [le_div_iff₀ (mul_pos ht₀ (by linarith : (0:ℝ) < 1 - r))]
+  have h1 : k * t₀ * (1 - r) ≤ M * r * (1 - r) := by nlinarith [h, sub_pos.mpr hr1]
+  have h2 : M * r * (1 - r) ≤ (M - t₀) * r := by nlinarith [hMr, hr0]
+  linarith [h1, h2]
 
-/-- **The rationed equilibrium is always positive** when `M`, `r`, `k` are
-non-negative and `r + k > 0`.
-
-This is the key difference from the full regime: the cell never reaches zero,
-because the organisms take less as it empties. -/
-theorem rationed_positive {M r k : ℝ} (hM : 0 < M) (hr : 0 < r) (hk : 0 ≤ k) :
-    0 < M * r / (r + k) := by
-  have hpos : 0 < r + k := by linarith
-  exact div_pos (mul_pos hM hr) hpos
-
-/-- **The rationed equilibrium is below `income`** when the full regime does not
-hold, so the regime is self-consistent: an organism that takes
-`min(income, c)` really does take `c` at this equilibrium. -/
-theorem rationed_below_full {M r k income : ℝ} (hM : 0 < M) (hr : 0 < r)
-    (hk : 0 ≤ k) (hinc : 0 < income)
-    (h : M * r < income * (r + k)) :
-    M * r / (r + k) < income := by
-  have hpos : 0 < r + k := by linarith
-  rw [div_lt_iff₀ hpos]
-  linarith
-
-/-- **The feeding capacity.**
-
-`k_feed = (M - income) * r / income` is the number of organisms a cell can hold
-while still giving each the **full** `income`. -/
-noncomputable def feedCapacity (M r income : ℝ) : ℝ :=
-  (M - income) * r / income
-
-/-- **The full regime holds exactly when `k ≤ k_feed`.**
-
-`c* = M - k*income/r ≥ income` iff `k ≤ (M - income)*r/income`. -/
-theorem full_regime_iff {M r income k : ℝ} (hr : 0 < r) (hinc : 0 < income) :
-    income ≤ equilibrium M r (k * income) ↔ k ≤ feedCapacity M r income := by
-  unfold equilibrium feedCapacity
+/-- The converse does **not** hold: eedCapacity is an upper bound on k
+    that the equilibrium level allows, but the full regime needs the
+    stronger k * t₀ ≤ M * r.  At M = 2, 
+ = 0.8, 	₀ = 0.8 we get
+    eedCapacity = 6 while M * r / t₀ = 2, so k = 3 satisfies the
+    capacity bound and violates the full regime.
+    The two coincide only when k ≤ 1. -/
+theorem full_regime_iff {M r t₀ k : ℝ} (hr0 : 0 < r) (hr1 : r < 1) (ht₀ : 0 < t₀)
+    (hMr : t₀ ≤ M * r) (hk : k ≤ 1) :
+    k * t₀ ≤ equilibrium M r (k * t₀) ↔ k ≤ feedCapacity M r t₀ := by
+  rw [le_equilibrium_iff hr0]
   constructor
   · intro h
-    have h1 : k * income / r ≤ M - income := by linarith
-    rw [div_le_iff₀ hr] at h1
-    rw [le_div_iff₀ hinc]
-    linarith
+    exact full_regime_of_le_feedCapacity hr0 hr1 ht₀ hMr h
   · intro h
-    have h1 : k * income ≤ (M - income) * r := by
-      rw [le_div_iff₀ hinc] at h
-      linarith
-    have h2 : k * income / r ≤ M - income := by
-      rw [div_le_iff₀ hr]
-      linarith
-    linarith
-
-/-- **The organism survives in the rationed regime** when the equilibrium exceeds
-the upkeep `maintenance + damage*repair`.
-
-The balance is `c* - upkeep`; this theorem says the balance is positive exactly
-when `c* > upkeep`. -/
-theorem rationed_balance_pos {M r k upkeep : ℝ} (hM : 0 < M) (hr : 0 < r)
-    (hk : 0 ≤ k) (h : upkeep < M * r / (r + k)) :
-    0 < M * r / (r + k) - upkeep := by
-  linarith
+    unfold feedCapacity at h
+    rw [le_div_iff₀ (mul_pos ht₀ (by linarith : (0:ℝ) < 1 - r))] at h
+    nlinarith [h, hr0, hr1, ht₀, hk]
 
 end Medium

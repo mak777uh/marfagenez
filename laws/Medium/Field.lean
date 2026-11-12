@@ -46,8 +46,19 @@ depends on the whole field. It is stated as an open question at the end.
 
 namespace Medium
 
-/-- One step of a cell: regrow toward `M`, then take `t`. -/
-def cellStep (M r t c : ℝ) : ℝ := c + (M - c) * r - t
+/-- One step of a cell.
+
+**The order matters.** The model takes first and regrows after:
+
+1. the organisms take `t` from the cell: `c - t`
+2. the field regrows toward `M`: `(c - t) + (M - (c - t)) * r`
+
+An earlier version of this file wrote `c + (M - c) * r - t`, which regrows from
+the full cell and then subtracts the take. That is a different model, and its
+equilibrium is `M - t/r` instead of `M - t*(1-r)/r`. The measurement settled it:
+at `M = 2`, `r = 0.8`, `t = 1.6` the field settles at **1.6**, which the second
+form gives and the first does not. See `docs/FINDING-correct-equilibrium.md`. -/
+def cellStep (M r t c : ℝ) : ℝ := (c - t) + (M - (c - t)) * r
 
 /-- **The cell never exceeds `M`** when the take is non-negative and the rate is
 at most one. -/
@@ -67,9 +78,9 @@ theorem cellStep_mono {M r t c₁ c₂ : ℝ} (hr0 : 0 ≤ r) (hr1 : r ≤ 1) (h
 
 /-- **The equilibrium of a cell taken from every step.**
 
-`c* = c* + (M - c*) * r - t` gives `c* = M - t / r` when `r ≠ 0`. -/
+`c* = (c* - t) + (M - (c* - t)) * r` gives `c* = M - t*(1-r)/r` when `r ≠ 0`. -/
 theorem fixed_point {M r t : ℝ} (hr : r ≠ 0) :
-    cellStep M r t (M - t / r) = M - t / r := by
+    cellStep M r t (M - t * (1 - r) / r) = M - t * (1 - r) / r := by
   unfold cellStep
   field_simp
   ring
