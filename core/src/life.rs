@@ -148,6 +148,42 @@ impl Life {
         })
     }
 
+    /// Builds a population of `n` healthy organisms placed round-robin over the
+    /// field: organism `i` goes to cell `i % cells`, so with `n = k * cells`
+    /// every cell carries exactly `k` of them.
+    ///
+    /// This exists to test the per-cell law `c* = M - k*t/r`. With `spawn` the
+    /// cells get a random multinomial load, so a run meant to be "one organism
+    /// per cell" actually has cells with two and three on them, and the law
+    /// cannot be checked against it.
+    pub fn spawn_even(
+        world: World,
+        field: Field,
+        n: usize,
+        energy: f64,
+        move_cost: f64,
+        policy: Policy,
+        seed: u64,
+        memory_life: usize,
+    ) -> Option<Self> {
+        if n == 0 {
+            return None;
+        }
+        let cells = field.cells();
+        if cells == 0 {
+            return None;
+        }
+        let mut pop = Vec::with_capacity(n);
+        for i in 0..n {
+            let cell = i % cells;
+            let o = Organism::healthy(energy)?;
+            let mut r = Remembering::new(o, cell, 0.0, move_cost, memory_life)?;
+            r.memory.best_level = 0.0;
+            pop.push(r);
+        }
+        Self::new(world, field, pop, policy, seed, memory_life)
+    }
+
     /// Builds a population of `n` healthy organisms spread over the field.
     pub fn spawn(
         world: World,

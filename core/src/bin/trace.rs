@@ -43,6 +43,7 @@ fn main() {
     let mut poor = 0.2f64;
     let mut regrow = 0.8f64;
     let mut feed = false;
+    let mut even = false;
 
     let mut i = 1;
     while i < args.len() {
@@ -132,6 +133,10 @@ fn main() {
             "--feed" => {
                 feed = true;
             }
+            "--layout" => {
+                i += 1;
+                even = matches!(args.get(i).map(|s| s.as_str()), Some("even"));
+            }
             "--regrow" => {
                 i += 1;
                 regrow = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(regrow);
@@ -141,7 +146,7 @@ fn main() {
                 println!("             [--capacity X] [--damage-rate X] [--income X] [--maintenance X]");
                 println!("             [--repair-cost X] [--move-cost X] [--energy X]");
                 println!("             [--field alternating|gradient|uniform|moving] [--memory-life N] [--shift X]");
-                println!("             [--rich X] [--poor X] [--regrow X]");
+                println!("             [--rich X] [--poor X] [--regrow X] [--layout even]");
                 return;
             }
             other => {
@@ -176,7 +181,12 @@ fn main() {
             std::process::exit(1);
         }
     };
-    let mut life = match Life::spawn(world, field, n, energy, move_cost, policy, seed, memory_life) {
+    let spawned = if even {
+        Life::spawn_even(world, field, n, energy, move_cost, policy, seed, memory_life)
+    } else {
+        Life::spawn(world, field, n, energy, move_cost, policy, seed, memory_life)
+    };
+    let mut life = match spawned {
         Some(l) => l,
         None => {
             eprintln!("cannot build the cycle");

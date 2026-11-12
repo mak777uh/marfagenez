@@ -1,0 +1,102 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-22",
+  "run_id": "run-2026-11-12T12-46-12",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "income": 0.8,
+    "maintenance": 0.6,
+    "regrow": 0.8,
+    "M": 2.0,
+    "cells": 40,
+    "steps": 3000,
+    "feed": true
+  },
+  "arithmetic": {
+    "model": "One cell with k organisms, feed=true: c <- M; k times c -= min(income, c); c <- c + (M-c)*r. The cell settles at c* = M - income*(1-r)/r while c > income. An organism is fed if min(income, c_left) >= maintenance. k_max = largest k where the last organism still gets that much. At M=2, income=0.8, maintenance=0.6, r=0.8: c* = 2 - 0.8*0.2/0.8 = 1.8. k=1: last gets min(0.8, 1.8) = 0.8 >= 0.6 -> fed. k=2: after one takes, c = 1.0, last gets min(0.8, 1.0) = 0.8 >= 0.6 -> fed. k=3: after two take, c = 1.8 - 1.6 = 0.2, last gets 0.2 < 0.6 -> starves. So k_max = 2 at M = 2, and capacity = 40 cells * 2 = 80, not 160."
+  },
+  "conditions": {
+    "k1": {
+      "label": "40 organisms on 40 cells",
+      "metrics": {
+        "alive": 40,
+        "occupied": 40,
+        "crowding": 1.0
+      },
+      "hash": "d311970646f0b807"
+    },
+    "k2": {
+      "label": "80 organisms on 40 cells",
+      "metrics": {
+        "alive": 80,
+        "occupied": 40,
+        "crowding": 2.0
+      },
+      "hash": "df7bacae8b641d67"
+    },
+    "k3": {
+      "label": "120 organisms on 40 cells",
+      "metrics": {
+        "alive": 80,
+        "occupied": 40,
+        "crowding": 2.0
+      },
+      "hash": "dcc7e95eb6b41827"
+    },
+    "k4": {
+      "label": "160 organisms on 40 cells",
+      "metrics": {
+        "alive": 80,
+        "occupied": 40,
+        "crowding": 2.0
+      },
+      "hash": "0844ffe888fde2e7"
+    }
+  },
+  "series": {
+    "crowding": {
+      "steps": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "values": [
+        1.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "at k=3, 80 of 120 alive -- the third organism on a cell starves"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "k=1: 40/40 alive; k=2: 80/80 alive -- one and two organisms are both fed"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "recursion says k=2 fed, k=3 not; measurement says k=2 alive 80/80, k=3 alive 80/120"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "k_max is a count (2 at M=2), not a stock (2.25); capacity 80 follows"
+  },
+  "hashes": {
+    "k1": "d311970646f0b807",
+    "k2": "df7bacae8b641d67",
+    "k3": "dcc7e95eb6b41827",
+    "k4": "0844ffe888fde2e7"
+  },
+  "limitations": [
+    "Only k = 1..4 at M = 2.0, one seed, no movement, no damage. The recursion is the model's own step, not an independent derivation; it is checked against the Rust run, not against nature."
+  ],
+  "command": "python3 checks/exp22_k_max.py",
+  "created_at": "2026-11-12T12:46:12.193163+00:00"
+}
