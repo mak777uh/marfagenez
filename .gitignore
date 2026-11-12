@@ -22,3 +22,7 @@ Thumbs.db
 # Local
 .env
 *.local
+
+# Agent scratch
+.dsh-switchman/
+
