@@ -12,7 +12,7 @@
 | **§1** | есть `arithmetic`, и он не пуст |
 | **§2** | есть все три контроля: `fires`, `silent`, `specific` |
 | **§4** | есть `verdict` из четырёх |
-| **§5** | есть `hashes`, и они **не совпадают** |
+| **§5** | есть `hashes`, и они **не совпадают** (кроме групп, объявленных в `expected_coincident`) |
 | **§6** | есть `limitations` |
 
 ## Четыре исхода, не два
@@ -116,13 +116,40 @@ def check_one(path: Path, data: dict) -> list[str]:
     )
 
     # §5 hashes
+    #
+    # Rule 5 says "two arms with the same hash are one arm".  That is a warning
+    # about a *false* contrast: if two arms were meant to differ and their
+    # dynamics are identical, the difference was never tested.
+    #
+    # But an experiment may deliberately contain arms that are *supposed* to
+    # coincide -- a control arm.  EXP-37 varies `move_cost` under `stay`, and
+    # `stay` never moves, so all four `stay` arms are the same run by
+    # construction.  Reporting that as a violation would push an author to
+    # delete the very arm that proves the parameter is inert.
+    #
+    # So the experiment declares which arms are allowed to coincide, in
+    # `expected_coincident` (a list of arm-key groups).  A collision inside a
+    # declared group is fine; any other collision is a violation.
     hashes = data.get("hashes") or {}
     if not hashes and not void_with_reason:
         problems.append("§5: no dynamics hashes")
     elif hashes:
-        vals = list(hashes.values())
-        if len(vals) != len(set(vals)):
-            problems.append("§5: two arms share a hash — they are one arm")
+        groups = data.get("expected_coincident") or []
+        allowed = set()
+        for g in groups:
+            allowed.add(frozenset(g))
+        seen: dict[str, list[str]] = {}
+        for k, v in hashes.items():
+            seen.setdefault(v, []).append(k)
+        for h, keys in seen.items():
+            if len(keys) < 2:
+                continue
+            if frozenset(keys) in allowed:
+                continue
+            problems.append(
+                "§5: arms %s share hash %s — they are one arm (declare them in "
+                "`expected_coincident` if that is intended)" % (sorted(keys), h)
+            )
 
     # §6 limitations
     if not data.get("limitations"):

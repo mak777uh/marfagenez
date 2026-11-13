@@ -200,6 +200,19 @@ fn main() {
         );
         std::process::exit(2);
     }
+    // A uniform field is `(rich + poor) / 2`, so leaving both at their defaults
+    // builds a field at a level nobody chose -- and it does so silently. The
+    // defaults are `rich 2.0`, `poor 0.2`, so the level is 1.1, not the 2.0 a
+    // reader of the command line would assume. A run at `M = 1.1` with
+    // `income 1.2` saturates at `M*r = 0.88` and reports a capacity of 40 with
+    // a surplus of 2 that looks like a rotation and is really a different
+    // world. See `docs/FINDING-the-surplus-was-a-field-built-at-the-wrong-level.md`.
+    if field_kind == "uniform" && !rich_set && !poor_set {
+        eprintln!(
+            "refusing to run: --field uniform with neither --rich nor --poor set.\n             uniform is built as (rich + poor) / 2 and the defaults are\n             rich 2.0, poor 0.2, so this would build a field at M = 1.10 --\n             a level nobody chose. Pass the level you mean, e.g.\n             --rich 2.4 --poor 1.6 for M = 2.0."
+        );
+        std::process::exit(2);
+    }
     // A sighted policy with a read budget of zero cannot see. It does not error
     // and it does not warn: `best > here` is never true, so it silently becomes
     // `Stay`. EXP-26 measured that default for months and called it a law.

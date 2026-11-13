@@ -136,10 +136,27 @@ class Experiment:
     def hashes(self) -> dict[str, str]:
         return dict(self._result["hashes"])
 
+    def expect_coincident(self, *arms: str) -> None:
+        """Declares a group of arms that are *supposed* to share one hash.
+
+        Rule 5 warns that two arms with the same hash are one arm.  That is a
+        warning about a false contrast.  But a control arm is often meant to
+        coincide: EXP-37 varies `move_cost` under `stay`, and `stay` never
+        moves, so every `stay` arm is the same run by construction.  Declaring
+        the group says "this collision is the finding, not a mistake".
+        """
+        self._result.setdefault("expected_coincident", []).append(list(arms))
+
     def hashes_are_distinct(self) -> bool:
-        """Two arms with the same hash are one arm (§5)."""
-        h = list(self._result["hashes"].values())
-        return len(h) == len(set(h))
+        """True when no two arms share a hash outside a declared group (§5)."""
+        allowed = {frozenset(g) for g in self._result.get("expected_coincident", [])}
+        seen: dict[str, list[str]] = {}
+        for k, v in self._result["hashes"].items():
+            seen.setdefault(v, []).append(k)
+        for keys in seen.values():
+            if len(keys) > 1 and frozenset(keys) not in allowed:
+                return False
+        return True
 
     # -- limitations and verdict -------------------------------------------
 

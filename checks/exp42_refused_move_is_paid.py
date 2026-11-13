@@ -41,7 +41,7 @@ BIN = ROOT / "core/target/release/trace"
 
 COMMON = ["--steps", "40", "--every", "1", "--capacity", "10",
           "--damage-rate", "0.2", "--maintenance", "0.1", "--repair-cost", "0.5",
-          "--energy", "5", "--field", "uniform", "--seed", "1",
+          "--energy", "5", "--field", "uniform", "--rich", "2.0", "--poor", "0.2", "--seed", "1",
           "--income", "0", "--regrow", "0", "--policy", "random"]
 
 
@@ -67,7 +67,8 @@ def classify(r, move_cost):
             taken.append(drop)
     return {"refused_drops": sorted(set(refused)), "taken_drops": sorted(set(taken)),
             "still_drops": sorted(set(still)),
-            "n_refused": len(refused), "n_taken": len(taken), "n_still": len(still)}
+            "n_refused": len(refused), "n_taken": len(taken), "n_still": len(still),
+            "hash": r["hash"]}
 
 
 def main():
@@ -100,7 +101,7 @@ def main():
                     "policy": "random", "cells": "2 or 120"},
     )
     for key, a in arms.items():
-        exp.add_arm(key, key, a, trace_hash=None)
+        exp.add_arm(key, key, a, trace_hash=a.pop("hash"))
 
     edge = arms["edge0.2"]
 

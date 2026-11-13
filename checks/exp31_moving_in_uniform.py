@@ -30,13 +30,25 @@ from checks.experiment import Experiment  # noqa: E402
 BIN = ROOT / "core/target/release/trace"
 TAG = "EXP-31"
 
+# The two levels `--field uniform` averages. Written as constants so the
+# regime arithmetic below uses the same numbers the command line does.
+RICH = 2.0
+POOR = 0.2
+
 BASE = ["--steps", "1200", "--every", "1200", "--cells", "120",
         "--capacity", "10", "--damage-rate", "0.2", "--income", "1",
         "--maintenance", "0.1", "--repair-cost", "0.5", "--move-cost", "0.05",
-        "--energy", "5", "--field", "uniform"]
+        "--energy", "5", "--field", "uniform", "--rich", str(RICH),
+        "--poor", str(POOR)]
 
 
 def run(extra):
+    # `sighted` with a read budget of zero cannot see: `best > here` is never
+    # true and the policy silently becomes `stay`. The binary refuses that now,
+    # so the budget has to be given here.
+    extra = list(extra)
+    if "sighted" in extra:
+        extra += ["--read-budget", "3"]
     out = subprocess.run([str(BIN)] + BASE + extra, cwd=ROOT, capture_output=True,
                          text=True, check=True).stdout
     line = [l for l in out.splitlines() if "written:" in l][0]
@@ -49,6 +61,20 @@ def alive_of(r):
 
 
 def main():
+    # The level and the regime, written down rather than assumed.
+    # `--field uniform` builds every cell at (rich + poor) / 2 = M.
+    M = (RICH + POOR) / 2.0
+    REGROW = 0.8
+    INCOME = 1.0
+    # An occupied cell is taken to zero whenever income >= M*r, and then it can
+    # only regrow from 0, so it settles at M*r. A cell vacated one step ago
+    # holds that value plus one regrowth toward M.
+    starved = M * REGROW
+    vacated = starved + (M - starved) * REGROW
+    regime = "starved" if INCOME >= starved else "saturated"
+    print(f"M={M} regrow={REGROW} income={INCOME} -> M*r={starved:.4f} "
+          f"{vacated=:.4f} regime={regime}")
+
     arms = {}
     for n in (120, 60, 30):
         for policy in ("stay", "random", "sighted"):
@@ -68,11 +94,19 @@ def main():
         experiment_id="moving-in-uniform-field",
         question="В однородном поле движение помогает или мешает?",
         arithmetic={
-            "formula": "per organism per step = income/share - maintenance - damage_rate*repair_cost",
-            "alone": "1 - 0.1 - 0.2*0.5 = 0.8",
-            "two_on_one_cell": "0.5 - 0.1 - 0.2*0.5 = 0.2",
-            "prediction": "0.8 > 0.2, so sharing a cell is strictly worse; "
-                          "movement that splits a pair must pay for itself",
+            "formula": "occupied cell: take min(income, c), then regrow c + (M - c)*r",
+            "M": f"(rich + poor) / 2 = ({RICH} + {POOR}) / 2 = {M}",
+            "starved_regime": f"c* = M*r = {M}*{REGROW} = {starved:.4f} "
+                              f"(holds when income >= M*r; here {INCOME} >= {starved:.4f})",
+            "saturated_regime": f"c* = M + income - income/r = "
+                                f"{M} + {INCOME} - {INCOME}/{REGROW} = "
+                                f"{M + INCOME - INCOME / REGROW:.4f} (does NOT hold here)",
+            "vacated_cell": f"{starved:.4f} + (M - {starved:.4f})*r = {vacated:.4f} "
+                            f"after one empty step",
+            "prediction": "stay is pinned at M*r and takes the whole cell every step; "
+                          f"sighted moves onto a vacated cell holding {vacated:.4f}, "
+                          f"which is {vacated / starved:.1%} more. So sighted must keep "
+                          "MORE organisms than stay, and the field must not be flat.",
         },
         arms={
             "stay_n120": "n=120, cells=120, stay",
@@ -86,9 +120,11 @@ def main():
         seed=1,
         command="python3 checks/exp31_moving_in_uniform.py",
         parameters={"cells": 120, "steps": 1200, "capacity": 10,
-                    "damage_rate": 0.2, "income": 1.0, "maintenance": 0.1,
+                    "damage_rate": 0.2, "income": INCOME, "maintenance": 0.1,
                     "repair_cost": 0.5, "move_cost": 0.05, "energy": 5.0,
-                    "field": "uniform"},
+                    "field": "uniform", "rich": RICH, "poor": POOR,
+                    "regrow": REGROW, "M": M, "regime": regime,
+                    "M_times_regrow": round(starved, 4)},
     )
 
     # §5: `sighted` in a uniform field is the SAME arm as `stay` (identical
@@ -114,12 +150,21 @@ def main():
                 f"stay {arms['stay_n120']['alive']} < random "
                 f"{arms['random_n120']['alive']} at n=120")
 
-    # Control 2 (silent): sighted must be identical to stay in a uniform field -
-    # there is nothing to see, so a seeing organism behaves like a blind one.
-    silent = arms["sighted_n120"]["hash"] == arms["stay_n120"]["hash"]
+    # Control 2 (silent): the field is NOT flat after one step, so `sighted`
+    # and `stay` must NOT hash the same. This control used to assert the
+    # opposite and it fired. The reason is arithmetic: an occupied cell is
+    # taken to zero every step (income 1.0 > M*r = 0.88), so it can only
+    # regrow from 0 and settles at M*r = 0.88; a cell that has been empty for
+    # one step holds 0.88 + (1.1 - 0.88)*0.8 = 1.056. `sighted` moves onto the
+    # richer 1.056 and `stay` cannot. See
+    # `docs/FINDING-the-field-was-never-uniform.md`.
+    #
+    # So the silent control here is the opposite: the two arms must differ.
+    silent = arms["sighted_n120"]["hash"] != arms["stay_n120"]["hash"]
     exp.control("silent", silent,
-                f"sighted hash {arms['sighted_n120']['hash']} == "
-                f"stay hash {arms['stay_n120']['hash']}")
+                f"field is not flat (occupied {starved:.4f} = M*r, vacated "
+                f"{vacated:.4f}), so sighted hash {arms['sighted_n120']['hash']} "
+                f"must differ from stay hash {arms['stay_n120']['hash']}")
 
     # Control 3 (specific): the deficit must scale with crowding.  If sharing a
     # cell is the cause, then a sparser start must shrink the gap.
@@ -131,13 +176,17 @@ def main():
                 f"gap random-stay: n120={gap120} > n60={gap60} > n30={gap30}")
 
     exp.limitation(
-        "one seed per arm; the cause is inferred from the crowding trend, not "
-        "measured per cell - the trace does not report how many organisms share "
-        "a cell, so the double-repair mechanism is not directly observed"
+        "one seed per arm; the two-level field is read from the final frame only "
+        "(the trace records one frame at --every 1200), and the regime boundary "
+        "income = M*r is inferred from the arithmetic, not measured by sweeping "
+        "income across it. The 0.8912 value (a cell entered this step) was checked "
+        "by hand on one frame, not tracked per cell."
     )
     exp.verdict(
         "passed" if (fires and silent and specific) else "failed",
-        "движение в однородном поле окупается ровно за счёт разрежения пар",
+        "движение в «однородном» поле окупается потому, что поле не однородно: "
+        f"занятая клетка стоит на M*r = {starved:.4f}, а освободившаяся — на "
+        f"{vacated:.4f}. Стоять на месте — это голодать, а не экономить.",
     )
     print("saved:", exp.save())
 

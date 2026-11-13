@@ -1,0 +1,127 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "crossing-is-death",
+  "run_id": "run-2026-11-13T01-06-27",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "n": 1,
+    "steps": 1200,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "energy": 5,
+    "field": "uniform",
+    "income": 0,
+    "regrow": 0
+  },
+  "arithmetic": {
+    "step_cost": "maintenance + damage_rate*repair_cost = 0.1 + 0.1 = 0.2",
+    "lone_survival_no_food": "energy / step_cost = 5/0.2 = 25 steps",
+    "with_move_cost": "5/(0.2 + move_cost)",
+    "prediction": "stay dies at 25; random dies at 5/(0.2+move_cost)",
+    "frame_numbering": "death inside advance #k is first seen in frame k+1, so the measured step is the budget + 1"
+  },
+  "conditions": {
+    "stay_move0": {
+      "label": "stay move0",
+      "metrics": {
+        "death_step": 26
+      },
+      "hash": "d8cb3ec00d1e2473"
+    },
+    "random_move0": {
+      "label": "random move0",
+      "metrics": {
+        "death_step": 26
+      },
+      "hash": "e3dfef0206834101"
+    },
+    "stay_move0.05": {
+      "label": "stay move0.05",
+      "metrics": {
+        "death_step": 26
+      },
+      "hash": "d8cb3ec00d1e2473"
+    },
+    "random_move0.05": {
+      "label": "random move0.05",
+      "metrics": {
+        "death_step": 22
+      },
+      "hash": "afdf5b3a6616b1e2"
+    },
+    "stay_move0.1211": {
+      "label": "stay move0.1211",
+      "metrics": {
+        "death_step": 26
+      },
+      "hash": "d8cb3ec00d1e2473"
+    },
+    "random_move0.1211": {
+      "label": "random move0.1211",
+      "metrics": {
+        "death_step": 18
+      },
+      "hash": "8c9fd5703074d735"
+    },
+    "stay_move0.2": {
+      "label": "stay move0.2",
+      "metrics": {
+        "death_step": 26
+      },
+      "hash": "d8cb3ec00d1e2473"
+    },
+    "random_move0.2": {
+      "label": "random move0.2",
+      "metrics": {
+        "death_step": 15
+      },
+      "hash": "9ff844dfa7fafde5"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "stay, no food: dies at step 26, arithmetic says 25 + 1 frame"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "random move 0.2 dies at 15 < stay 26"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "move 0.05: died 22 vs predicted 21.0; move 0.1211: died 18 vs predicted 16.6; move 0.2: died 15 vs predicted 13.5"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "смерть наступает по бюджету energy/(step_cost+move_cost), с точностью кадра: 5/(0.2+move_cost) + 1"
+  },
+  "hashes": {
+    "stay_move0": "d8cb3ec00d1e2473",
+    "random_move0": "e3dfef0206834101",
+    "stay_move0.05": "d8cb3ec00d1e2473",
+    "random_move0.05": "afdf5b3a6616b1e2",
+    "stay_move0.1211": "d8cb3ec00d1e2473",
+    "random_move0.1211": "8c9fd5703074d735",
+    "stay_move0.2": "d8cb3ec00d1e2473",
+    "random_move0.2": "9ff844dfa7fafde5"
+  },
+  "limitations": [
+    "one organism, no food at all; this measures the death threshold, not the competition that sets the crossing in a fed field.  The prediction assumes the organism moves on every step, which `random` does not do, so the moving arms are only checked to within one step."
+  ],
+  "command": "python3 checks/exp37_crossing_is_death.py",
+  "created_at": "2026-11-13T01:06:27.668507+00:00",
+  "expected_coincident": [
+    [
+      "stay_move0",
+      "stay_move0.05",
+      "stay_move0.1211",
+      "stay_move0.2"
+    ]
+  ]
+}

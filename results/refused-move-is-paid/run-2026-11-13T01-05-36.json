@@ -1,0 +1,113 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "refused-move-is-paid",
+  "run_id": "run-2026-11-13T01-05-36",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "steps": 40,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "energy": 5,
+    "field": "uniform",
+    "income": 0,
+    "regrow": 0,
+    "policy": "random",
+    "cells": "2 or 120"
+  },
+  "arithmetic": {
+    "step_still": "0.1 + 0.2*0.5 = 0.2",
+    "step_moved": "0.2 + move_cost",
+    "refused_move": "if charged: 0.2 + move_cost; if not: 0.2"
+  },
+  "conditions": {
+    "edge0": {
+      "label": "edge0",
+      "metrics": {
+        "refused_drops": [
+          0.2
+        ],
+        "taken_drops": [
+          0.2
+        ],
+        "still_drops": [
+          0.2
+        ],
+        "n_refused": 10,
+        "n_taken": 4,
+        "n_still": 10
+      },
+      "hash": "0a99adc5f4c5b296"
+    },
+    "edge0.2": {
+      "label": "edge0.2",
+      "metrics": {
+        "refused_drops": [
+          0.2,
+          0.4
+        ],
+        "taken_drops": [
+          0.4
+        ],
+        "still_drops": [
+          0.2,
+          0.4
+        ],
+        "n_refused": 6,
+        "n_taken": 3,
+        "n_still": 4
+      },
+      "hash": "1463fb8d4ffa2138"
+    },
+    "wide0.2": {
+      "label": "wide0.2",
+      "metrics": {
+        "refused_drops": [
+          0.2
+        ],
+        "taken_drops": [
+          0.4
+        ],
+        "still_drops": [
+          0.2,
+          0.4
+        ],
+        "n_refused": 3,
+        "n_taken": 6,
+        "n_still": 4
+      },
+      "hash": "b551f910c1eac61d"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "two cells, move 0.2: 6 refused moves out of 9"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "still drops on two cells: [0.2, 0.4]"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "refused [0.2, 0.4] vs taken [0.4]"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "отказанный ход оплачивается как сделанный: цена платится до проверки границы"
+  },
+  "hashes": {
+    "edge0": "0a99adc5f4c5b296",
+    "edge0.2": "1463fb8d4ffa2138",
+    "wide0.2": "b551f910c1eac61d"
+  },
+  "limitations": [
+    "two cells is the extreme case; the wide-field arm only shows that refusals are rare there, not that they are absent"
+  ],
+  "command": "python3 checks/exp42_refused_move_is_paid.py",
+  "created_at": "2026-11-13T01:05:36.416775+00:00"
+}

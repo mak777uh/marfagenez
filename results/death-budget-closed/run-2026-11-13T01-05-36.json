@@ -1,0 +1,107 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "death-budget-closed",
+  "run_id": "run-2026-11-13T01-05-36",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "n": 1,
+    "steps": 60,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "energy": 5,
+    "field": "uniform",
+    "income": 0,
+    "regrow": 0,
+    "policy": "random"
+  },
+  "arithmetic": {
+    "step_cost_still": "0.1 + 0.2*0.5 = 0.2",
+    "step_cost_moving": "0.2 + move_cost",
+    "mean_cost": "0.2 + move_cost * p_move",
+    "death_step": "5 / mean_cost + 1 (frame numbering)"
+  },
+  "conditions": {
+    "move0": {
+      "label": "move0",
+      "metrics": {
+        "death_step": 26,
+        "moved": 15,
+        "alive_frames": 25,
+        "p_move": 0.6,
+        "predicted": 26.0,
+        "error": 0.0
+      },
+      "hash": "efe62324f25e1d41"
+    },
+    "move0.1": {
+      "label": "move0.1",
+      "metrics": {
+        "death_step": 20,
+        "moved": 12,
+        "alive_frames": 19,
+        "p_move": 0.6316,
+        "predicted": 20.0,
+        "error": 0.0
+      },
+      "hash": "011828c9454ea39c"
+    },
+    "move0.2": {
+      "label": "move0.2",
+      "metrics": {
+        "death_step": 15,
+        "moved": 9,
+        "alive_frames": 14,
+        "p_move": 0.6429,
+        "predicted": 16.22,
+        "error": -1.22
+      },
+      "hash": "c402581392eba435"
+    },
+    "move0.4": {
+      "label": "move0.4",
+      "metrics": {
+        "death_step": 12,
+        "moved": 7,
+        "alive_frames": 11,
+        "p_move": 0.6364,
+        "predicted": 12.0,
+        "error": 0.0
+      },
+      "hash": "9d20ad0088b1c740"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "move 0: death 26, EXP-37 measured 26"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "naive prediction off by >1 step at ['move0.1', 'move0.2', 'move0.4']"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "max |error| 1.22 over costs 0/0.1/0.2/0.4; p_move {'move0': 0.6, 'move0.1': 0.6316, 'move0.2': 0.6429, 'move0.4': 0.6364}"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "модель смерти закрыта: шаг стоит 0.2 + move_cost*p_move, ошибка <= 1 шага"
+  },
+  "hashes": {
+    "move0": "efe62324f25e1d41",
+    "move0.1": "011828c9454ea39c",
+    "move0.2": "c402581392eba435",
+    "move0.4": "9d20ad0088b1c740"
+  },
+  "limitations": [
+    "one organism, no food, one seed; p_move is measured, not derived, so this closes the death budget but does not predict movement from the policy alone"
+  ],
+  "command": "python3 checks/exp40_death_budget_closed.py",
+  "created_at": "2026-11-13T01:05:36.038883+00:00"
+}

@@ -41,7 +41,7 @@ BIN = ROOT / "core/target/release/trace"
 
 BASE = ["--steps", "60", "--every", "1", "--cells", "120", "--capacity", "10",
         "--damage-rate", "0.2", "--maintenance", "0.1", "--repair-cost", "0.5",
-        "--energy", "5", "--field", "uniform", "--n", "1", "--seed", "1",
+        "--energy", "5", "--field", "uniform", "--rich", "2.0", "--poor", "0.2", "--n", "1", "--seed", "1",
         "--income", "0", "--regrow", "0", "--policy", "random"]
 
 
@@ -58,20 +58,20 @@ def analyse(r):
     death_step = frames[-1]["step"] + 1 if len(alive) == len(frames) else \
         frames[len(alive)]["step"]
     moved = sum(1 for f in frames[:len(alive)] if f["samples"][0]["direction"] != 0)
-    return death_step, moved, len(alive)
+    return death_step, moved, len(alive), r["hash"]
 
 
 def main():
     arms = {}
     for cost in (0.0, 0.1, 0.2, 0.4):
         r = run(["--move-cost", f"{cost:g}"])
-        death, moved, n_alive = analyse(r)
+        death, moved, n_alive, h = analyse(r)
         p_move = moved / n_alive if n_alive else 0.0
         predicted = 5.0 / (0.2 + cost * p_move) + 1.0
         arms[f"move{cost:g}"] = {
             "death_step": death, "moved": moved, "alive_frames": n_alive,
             "p_move": round(p_move, 4), "predicted": round(predicted, 2),
-            "error": round(death - predicted, 2),
+            "error": round(death - predicted, 2), "hash": h,
         }
         print(f"move {cost:g}: death {death}, moved {moved}/{n_alive}, "
               f"p_move {p_move:.3f}, predicted {predicted:.2f}, err {death-predicted:+.2f}")
@@ -94,7 +94,7 @@ def main():
                     "policy": "random"},
     )
     for key, a in arms.items():
-        exp.add_arm(key, key.replace("_", " "), a, trace_hash=None)
+        exp.add_arm(key, key.replace("_", " "), a, trace_hash=a.pop("hash"))
 
     errs = [abs(a["error"]) for a in arms.values()]
     pm = {k: a["p_move"] for k, a in arms.items()}

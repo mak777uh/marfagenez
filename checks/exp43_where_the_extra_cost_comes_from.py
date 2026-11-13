@@ -36,7 +36,7 @@ BIN = ROOT / "core/target/release/trace"
 
 COMMON = ["--steps", "40", "--every", "1", "--capacity", "10",
           "--damage-rate", "0.2", "--maintenance", "0.1", "--repair-cost", "0.5",
-          "--energy", "5", "--field", "uniform", "--seed", "1",
+          "--energy", "5", "--field", "uniform", "--rich", "2.0", "--poor", "0.2", "--seed", "1",
           "--income", "0", "--regrow", "0", "--policy", "random"]
 
 
@@ -65,10 +65,12 @@ def table(r):
 
 def main():
     arms = {}
+    hashes = {}
     for cells in (2, 120):
         r = run(["--n", "1", "--cells", str(cells), "--move-cost", "0.2"])
         rows = table(r)
         arms[f"cells{cells}"] = rows
+        hashes[f"cells{cells}"] = r["hash"]
         print(f"cells {cells}:")
         for x in rows[:12]:
             print("  ", x)
@@ -90,7 +92,8 @@ def main():
                     "policy": "random", "move_cost": 0.2, "cells": "2 or 120"},
     )
     for key, rows in arms.items():
-        exp.add_arm(key, key, {"rows": rows[:14], "n": len(rows)}, trace_hash=None)
+        exp.add_arm(key, key, {"rows": rows[:14], "n": len(rows)},
+                    trace_hash=hashes[key])
 
     allrows = arms["cells2"] + arms["cells120"]
     pred = [round(0.1 + 0.5 * x["dmg_before"] + 0.2 * x["moved"], 6) for x in allrows]

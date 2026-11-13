@@ -1,0 +1,145 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "moving-in-uniform-field",
+  "run_id": "run-2026-11-13T01-03-46",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "steps": 1200,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "income": 1.0,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "move_cost": 0.05,
+    "energy": 5.0,
+    "field": "uniform",
+    "rich": 2.0,
+    "poor": 0.2,
+    "regrow": 0.8,
+    "M": 1.1,
+    "regime": "starved",
+    "M_times_regrow": 0.88
+  },
+  "arithmetic": {
+    "formula": "occupied cell: take min(income, c), then regrow c + (M - c)*r",
+    "M": "(rich + poor) / 2 = (2.0 + 0.2) / 2 = 1.1",
+    "starved_regime": "c* = M*r = 1.1*0.8 = 0.8800 (holds when income >= M*r; here 1.0 >= 0.8800)",
+    "saturated_regime": "c* = M + income - income/r = 1.1 + 1.0 - 1.0/0.8 = 0.8500 (does NOT hold here)",
+    "vacated_cell": "0.8800 + (M - 0.8800)*r = 1.0560 after one empty step",
+    "prediction": "stay is pinned at M*r and takes the whole cell every step; sighted moves onto a vacated cell holding 1.0560, which is 120.0% more. So sighted must keep MORE organisms than stay, and the field must not be flat."
+  },
+  "conditions": {
+    "stay_n120": {
+      "label": "stay n120",
+      "metrics": {
+        "alive": 72,
+        "moved": 0,
+        "mean_energy": 10.0
+      },
+      "hash": "f4094529697ed36d"
+    },
+    "random_n120": {
+      "label": "random n120",
+      "metrics": {
+        "alive": 109,
+        "moved": 76,
+        "mean_energy": 9.563
+      },
+      "hash": "af19b969291c4076"
+    },
+    "stay_n60": {
+      "label": "stay n60",
+      "metrics": {
+        "alive": 46,
+        "moved": 0,
+        "mean_energy": 10.0
+      },
+      "hash": "dc7f9637a0b14f4b"
+    },
+    "random_n60": {
+      "label": "random n60",
+      "metrics": {
+        "alive": 60,
+        "moved": 40,
+        "mean_energy": 9.861
+      },
+      "hash": "1335e0fb89ab8353"
+    },
+    "stay_n30": {
+      "label": "stay n30",
+      "metrics": {
+        "alive": 26,
+        "moved": 0,
+        "mean_energy": 10.0
+      },
+      "hash": "b0309536c84b39ff"
+    },
+    "random_n30": {
+      "label": "random n30",
+      "metrics": {
+        "alive": 30,
+        "moved": 21,
+        "mean_energy": 9.97
+      },
+      "hash": "4fa01254c347b414"
+    },
+    "sighted_n120": {
+      "label": "sighted n120 (same arm as stay)",
+      "metrics": {
+        "alive": 106,
+        "moved": 20,
+        "mean_energy": 10.0
+      }
+    },
+    "sighted_n60": {
+      "label": "sighted n60 (same arm as stay)",
+      "metrics": {
+        "alive": 60,
+        "moved": 60,
+        "mean_energy": 10.0
+      }
+    },
+    "sighted_n30": {
+      "label": "sighted n30 (same arm as stay)",
+      "metrics": {
+        "alive": 30,
+        "moved": 30,
+        "mean_energy": 10.0
+      }
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "stay 72 < random 109 at n=120"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "field is not flat (occupied 0.8800 = M*r, vacated 1.0560), so sighted hash b171812ccee2ca60 must differ from stay hash f4094529697ed36d"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "gap random-stay: n120=37 > n60=14 > n30=4"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "движение в «однородном» поле окупается потому, что поле не однородно: занятая клетка стоит на M*r = 0.8800, а освободившаяся — на 1.0560. Стоять на месте — это голодать, а не экономить."
+  },
+  "hashes": {
+    "stay_n120": "f4094529697ed36d",
+    "random_n120": "af19b969291c4076",
+    "stay_n60": "dc7f9637a0b14f4b",
+    "random_n60": "1335e0fb89ab8353",
+    "stay_n30": "b0309536c84b39ff",
+    "random_n30": "4fa01254c347b414"
+  },
+  "limitations": [
+    "one seed per arm; the two-level field is read from the final frame only (the trace records one frame at --every 1200), and the regime boundary income = M*r is inferred from the arithmetic, not measured by sweeping income across it. The 0.8912 value (a cell entered this step) was checked by hand on one frame, not tracked per cell."
+  ],
+  "command": "python3 checks/exp31_moving_in_uniform.py",
+  "created_at": "2026-11-13T01:03:46.534851+00:00"
+}

@@ -50,7 +50,7 @@ BIN = ROOT / "core/target/release/trace"
 
 COMMON = ["--steps", "40", "--every", "1", "--capacity", "10",
           "--damage-rate", "0.2", "--maintenance", "0.1", "--repair-cost", "0.5",
-          "--energy", "5", "--field", "uniform", "--seed", "1",
+          "--energy", "5", "--field", "uniform", "--rich", "2.0", "--poor", "0.2", "--seed", "1",
           "--income", "0", "--regrow", "0", "--policy", "random"]
 
 
@@ -78,9 +78,11 @@ def rows_of(r, move_cost):
 
 def main():
     arms = {}
+    hashes = {}
     for cells in (2, 120):
         r = run(["--n", "1", "--cells", str(cells), "--move-cost", "0.2"])
         arms[f"cells{cells}"] = rows_of(r, 0.2)
+        hashes[f"cells{cells}"] = r["hash"]
         print(f"cells {cells}: {len(arms[f'cells{cells}'])} steps")
 
     exp = Experiment(
@@ -100,7 +102,7 @@ def main():
                     "policy": "random", "move_cost": 0.2, "cells": "2 or 120"},
     )
     for key, rows in arms.items():
-        exp.add_arm(key, key, {"rows": rows, "n": len(rows)}, trace_hash=None)
+        exp.add_arm(key, key, {"rows": rows, "n": len(rows)}, trace_hash=hashes[key])
 
     allrows = arms["cells2"] + arms["cells120"]
     prev_err = [round(x["drop"] - (0.2 + 0.2 * (x["dir_prev"] != 0)), 6) for x in allrows]

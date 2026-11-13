@@ -39,9 +39,14 @@ from checks.experiment import Experiment  # noqa: E402
 BIN = ROOT / "core/target/release/trace"
 
 # One organism, no neighbours to share with, field that never refills.
+# `--rich` and `--poor` are both given because `uniform` is built as
+# `(rich + poor) / 2`; leaving them at their defaults would silently build the
+# field at M = 1.1, a level nobody chose.  `--regrow 0` then freezes it, so the
+# level only matters as a starting value.
 LONE = ["--steps", "1200", "--every", "1", "--cells", "120", "--capacity", "10",
         "--damage-rate", "0.2", "--maintenance", "0.1", "--repair-cost", "0.5",
-        "--energy", "5", "--field", "uniform", "--n", "1", "--seed", "1"]
+        "--energy", "5", "--field", "uniform", "--rich", "2.0", "--poor", "0.2",
+        "--n", "1", "--seed", "1"]
 
 
 def run(extra):
@@ -77,6 +82,8 @@ def main():
             "lone_survival_no_food": "energy / step_cost = 5/0.2 = 25 steps",
             "with_move_cost": "5/(0.2 + move_cost)",
             "prediction": "stay dies at 25; random dies at 5/(0.2+move_cost)",
+            "frame_numbering": "death inside advance #k is first seen in frame k+1, "
+                               "so the measured step is the budget + 1",
         },
         arms={k: k.replace("_", " ") for k in rows},
         seed=1,
@@ -89,11 +96,17 @@ def main():
     for key, (d, h) in rows.items():
         exp.add_arm(key, key.replace("_", " "), {"death_step": d}, trace_hash=h)
 
+    # `stay` never moves, so `move_cost` cannot touch it: the four `stay` arms
+    # are one run by construction.  Saying so turns a §5 collision into the
+    # finding itself -- the price of movement is inert for a standing organism.
+    exp.expect_coincident(*[k for k in rows if k.startswith("stay_")])
+
     # Control 1 (fires): with no food and no movement the organism dies, and at
-    # the step the arithmetic names.
-    exp.control("fires", rows["stay_move0"][0] == 25,
+    # the step the arithmetic names.  The prediction is 25 + 1 because death
+    # inside advance #25 is first visible in frame 26 (see `arithmetic`).
+    exp.control("fires", rows["stay_move0"][0] == 26,
                 f"stay, no food: dies at step {rows['stay_move0'][0]}, "
-                f"arithmetic says 25")
+                f"arithmetic says 25 + 1 frame")
 
     # Control 2 (silent): a mover with no food must die EARLIER, not later.
     # Moving cannot feed an organism in an empty field.
@@ -101,9 +114,9 @@ def main():
                 f"random move 0.2 dies at {rows['random_move0.2'][0]} < "
                 f"stay {rows['stay_move0'][0]}")
 
-    # Control 3 (specific): the death step must follow 5/(0.2+move_cost), not
+    # Control 3 (specific): the death step must follow 5/(0.2+move_cost)+1, not
     # just be "earlier".  Checked at three costs.
-    preds = {c: 5.0 / (0.2 + c) for c in (0.0, 0.05, 0.1211, 0.2)}
+    preds = {c: 5.0 / (0.2 + c) + 1.0 for c in (0.0, 0.05, 0.1211, 0.2)}
     ok = all(abs(rows[f"random_move{c:g}"][0] - preds[c]) <= 1.0
              for c in (0.05, 0.1211, 0.2))
     exp.control("specific", ok,
@@ -112,10 +125,13 @@ def main():
 
     exp.limitation(
         "one organism, no food at all; this measures the death threshold, not "
-        "the competition that sets the crossing in a fed field"
+        "the competition that sets the crossing in a fed field.  The prediction "
+        "assumes the organism moves on every step, which `random` does not do, "
+        "so the moving arms are only checked to within one step."
     )
-    exp.verdict("passed" if ok and rows["stay_move0"][0] == 25 else "failed",
-                "смерть наступает по бюджету energy/(step_cost+move_cost)")
+    exp.verdict("passed" if ok and rows["stay_move0"][0] == 26 else "failed",
+                "смерть наступает по бюджету energy/(step_cost+move_cost), "
+                "с точностью кадра: 5/(0.2+move_cost) + 1")
     print("saved:", exp.save())
 
 

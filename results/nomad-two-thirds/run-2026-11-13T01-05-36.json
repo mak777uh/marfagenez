@@ -1,0 +1,80 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "nomad-two-thirds",
+  "run_id": "run-2026-11-13T01-05-36",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "n": 1,
+    "steps": 60,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "energy": 5,
+    "field": "uniform",
+    "income": 0,
+    "regrow": 0,
+    "policy": "random"
+  },
+  "arithmetic": {
+    "draw": "Policy::Random draws from {-1, 0, +1}; if uniform, p_choose = 2/3",
+    "p_move": "p_choose minus moves the field refuses",
+    "death": "5 / (0.2 + move_cost*p_move) + 1"
+  },
+  "conditions": {
+    "move0": {
+      "label": "move0",
+      "metrics": {
+        "alive_frames": 25,
+        "steps": 24,
+        "chosen": 15,
+        "moved": 14,
+        "p_choose": 0.625,
+        "p_move": 0.5833
+      },
+      "hash": "efe62324f25e1d41"
+    },
+    "move0.2": {
+      "label": "move0.2",
+      "metrics": {
+        "alive_frames": 14,
+        "steps": 13,
+        "chosen": 9,
+        "moved": 8,
+        "p_choose": 0.6923,
+        "p_move": 0.6154
+      },
+      "hash": "c402581392eba435"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "p_choose [0.625, 0.6923] vs coin 0.5"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "chosen vs moved: [(15, 14), (9, 8)]"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "p_move [0.5833, 0.6154] vs 2/3 = 0.667"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "выбор направления не монетка: p_move около 2/3, поле ходы не отказывает"
+  },
+  "hashes": {
+    "move0": "efe62324f25e1d41",
+    "move0.2": "c402581392eba435"
+  },
+  "limitations": [
+    "one organism, no food, one seed; 60 steps gives ~25 samples, so p_move is known to about +-0.05 and the 2/3 reading is consistent with, not proof of, a uniform three-way draw"
+  ],
+  "command": "python3 checks/exp41_nomad_two_thirds.py",
+  "created_at": "2026-11-13T01:05:36.205300+00:00"
+}

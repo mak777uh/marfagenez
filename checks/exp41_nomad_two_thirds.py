@@ -34,7 +34,7 @@ BIN = ROOT / "core/target/release/trace"
 
 BASE = ["--steps", "60", "--every", "1", "--cells", "120", "--capacity", "10",
         "--damage-rate", "0.2", "--maintenance", "0.1", "--repair-cost", "0.5",
-        "--energy", "5", "--field", "uniform", "--n", "1", "--seed", "1",
+        "--energy", "5", "--field", "uniform", "--rich", "2.0", "--poor", "0.2", "--n", "1", "--seed", "1",
         "--income", "0", "--regrow", "0", "--policy", "random"]
 
 
@@ -55,7 +55,8 @@ def analyse(r):
     n = len(frames) - 1
     return {"alive_frames": len(frames), "steps": n,
             "chosen": chosen, "moved": moved,
-            "p_choose": round(chosen / n, 4), "p_move": round(moved / n, 4)}
+            "p_choose": round(chosen / n, 4), "p_move": round(moved / n, 4),
+            "hash": r["hash"]}
 
 
 def main():
@@ -82,7 +83,7 @@ def main():
                     "policy": "random"},
     )
     for key, a in arms.items():
-        exp.add_arm(key, key.replace("_", " "), a, trace_hash=None)
+        exp.add_arm(key, key.replace("_", " "), a, trace_hash=a.pop("hash"))
 
     pc = [a["p_choose"] for a in arms.values()]
     pm = [a["p_move"] for a in arms.values()]

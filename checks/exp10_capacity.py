@@ -106,12 +106,14 @@ def shell(cmd: str) -> str:
 def run_arm(n: int) -> dict:
     args = " ".join([
         "--policy sighted",
+        "--read-budget 3",
         f"--steps {STEPS}",
         f"--every {EVERY}",
         f"--seed {SEED}",
         f"--n {n}",
         f"--cells {CELLS}",
         "--field uniform",
+        "--rich 2.0 --poor 0.2",
         f"--capacity {CAPACITY}",
         f"--move-cost {MOVE_COST}",
         f"--maintenance {MAINTENANCE}",
