@@ -37,7 +37,8 @@ It is a COUNT, not a stock divided by a portion: the cell hands out
 largest `k` with `min(t₀, c_k) ≥ maintenance`.
 
 At `M = 2, r = 0.8, t₀ = 0.8, maintenance = 0.6` the one-organism equilibrium is
-`c* = 1.8` and the two-organism level is `cStar(2) = 1.6`. With two organisms
+`c* = M + t₀ - t₀/r = 1.2` and the two-organism level is
+`cStar(2) = M - 2*t₀*(1-r)/r = 1.6`. With two organisms
 standing on the cell the takes are 0.8, 0.8 — both full, and both above
 `maintenance = 0.6`. A third would take `1.6 - 1.6 = 0.0`, below maintenance, so
 the count of *full* takes is `k_max = ⌊M*r/t₀⌋ = ⌊2.0⌋ = 2`. The recursion that

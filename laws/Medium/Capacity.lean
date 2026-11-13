@@ -14,22 +14,15 @@ so the fixed point of `cellStep M r (k*t)` is
     c*(k) = M + k*t - k*t/r = M - k*t*(1-r)/r.
 
 The take of the `k`-th organism is `min(t, c*(k) - (k-1)*t)`, and it lives iff
-that is at least `maintenance`. Measured at `M = 2, r = 0.8, t = 0.8`
-(`results/EXP-51/`): the cell sits at `M - 2t(1-r)/r` to `2.2e-16` for
-`t = 0.62, 0.65, 0.70, 0.75, 0.80`, and at `M - t(1-r)/r` for `t >= 1.0` where
-only one organism is left. At `t = 0.9` the two-organism level `1.55` is below
-`2t = 1.8`, so the second organism is rationed and dies: the population drops
-to one per cell at `t = 0.9`, not at `t = 0.8`.
+that is at least `maintenance`.
 
-Two old claims are now known to be wrong and are kept here only as history:
+Two old claims are wrong and are kept here only as history:
 
-* `c* = M - t/r` — that is the *other* order of operations (regrow, then take,
+* `c* = M - t/r` -- that is the *other* order of operations (regrow, then take,
   `Medium/Feed.lean`). With take-then-regrow it is `M + t - t/r`.
-* `k_feed = 2.5` at `M = 2, r = 0.8, t₀ = 0.8` — this file used to say the
-  "regrowth covers k full portions" story gives 2.5 while the measurement gives
-  2. That was itself wrong: the story gives `M*r/t₀ = 2.0` exactly, and the
-  measurement agrees. There was never a discrepancy. (Corrected 2026-11-12;
-  see `Medium/Regimes.lean`, where `feedCapacity` had the same error.)
+* `k_feed = 2.5` at `M = 2, r = 0.8, t0 = 0.8` -- the "regrowth covers k full
+  portions" story gives `M*r/t0 = 2.0` exactly, and the measurement agrees.
+  There was never a discrepancy.
 
 ## What is proved
 
@@ -47,88 +40,7 @@ That the population actually reaches `cells * k_feed`. That needs a model of
 movement and of who stands where; the experiments measure it, this file does not
 prove it.
 
-## What the measurements say, and what they no longer say
-
-**The old `C = 80` is void.** It was recorded while the clamp ran right after the
-income, which erased `move_cost` (see
-`docs/FINDING-the-cap-is-applied-after-the-spend.md`). Every capacity number
-measured before 2026-11-12 23:00 describes a dynamics that no longer exists.
-
-**Measured under the current order** (`exp75`, 40 cells, `rich = 2.0`, `n = 160`,
-4000 steps, `sighted`, `move_cost = 0`, `income = 1.2`, `maintenance = 0.6`,
-`damage_rate = 0.02`, `repair_cost = 1.5`, `E_max = 10`):
-
-    poor    alternating   uniform
-    0.2     20            0
-    0.8     20            40
-    1.2     20            40
-    1.6     40            40
-
-All eight runs: `crowding = 1.00`, mean energy `10.0000`.
-
-The reading: **capacity is the number of cells that can feed an organism.** A
-cell with `poor = 0.2` cannot feed at all, so `alternating` -- half rich, half
-poor -- has 20 usable cells and `C = 20`. `uniform` at `poor = 0.2` feeds nobody
-and the whole population dies. Once `poor >= income` every cell feeds and the
-field shape stops mattering: `C = cells = 40`. The transition is at
-`poor = income`, which is what `feed_share_iff` says with `k = 1`.
-
-This is `feed_share` read as a count: a cell supports `k` organisms exactly when
-`k * t0 <= M * r`. With `M = 2.0`, `r = 0.8`, `t0 = income = 1.2` that gives
-`k_feed = 1.33`, so one organism per cell and `cells * 1 = 40`. The measured 40
-matches. The measured 20 matches "half the cells do not feed".
-
-**The steady energy is `E_max`, not `E_max - COST`.** With the clamp at the end
-of the step, an organism whose energy would exceed `E_max` is set to `E_max`, so
-the steady state of a well-fed organism is exactly the ceiling: measured
-`10.0000` at `E_max = 10`, `20.0000` at `E_max = 20`, residual `+0.000000`. The
-old `E* = E_max - COST = 8.97` described an intermediate value inside the step
-and is retired.
-
-**`--capacity` is the energy ceiling `E_max`**, not a per-cell occupancy limit
-(`core/src/organism.rs:164`). There is no `k_max`. Reading `--capacity 10` as
-`k_max = 10` and concluding `C = 400` was the whole of that anomaly.
-
-## The transition, measured (2026-11-13)
-
-The transition is **not** at `poor = income`, which is what the arithmetic
-suggested and what this file used to claim. It is at
-
-    poor · (1 + r) = income        poor = income / (1 + r)
-
-At `income = 0.8, r = 0.8` that is `poor = 0.8/1.8 = 0.4444`. Measured: `0.4`
-gives 40 survivors, `0.6` gives 60. The old guess `poor = income = 0.8` is
-wrong by a factor of 1.8, and the measurement at `poor = 1.2` that "confirmed"
-it was confirming the wrong number — 60 survivors at 1.2 says nothing about
-where the edge between 40 and 60 is.
-
-Why `1 + r`: a cell that nobody takes from settles at `M`, because
-`cellStep M r 0 M = M`. A cell that one organism takes `t` from settles at
-`M + t - t/r = M - t*(1-r)/r`. The organism lives iff that is at least
-`need`, so the boundary is `M - t*(1-r)/r = need`, i.e.
-`t = (M - need)*r/(1-r)`.
-
-The same law governs `rich`. At `poor = 0.2` the transition sits between
-`rich = 2.70` (40 survivors, rich level `2.300`) and `rich = 2.80`
-(60 survivors, rich level `2.240`). The boundary the arithmetic gives is
-`rich = 2.75`, where the level is `need = 2.3` exactly.
-
-## What is still open
-
-- Whether the second transition (`60 -> 80`) sits at the same law. It was
-  measured at `poor = 1.78` (60) / `1.79` (80), which is close to
-  `1.8 · (1 + r)` but not equal to it, and the level jumps from `1.580` to
-  `1.432` across that edge — a jump the one-cell law does not predict.
-- Whether a larger `E_max` lets a cell hold two organisms. The old answer was yes
-  at `E_max = 9`; that was measured under the old order and has not been redone.
-
-*Retired 2026-11-13:* "why one cell holds exactly one organism even when
-`k_feed = 1.33`". It does not. One organism per cell is what the `sighted`
-policy produces in a uniform field, not a property of the cell. The count of
-living organisms on a cell is `kSatCount` below, and it is 2 at
-`M = 2, r = 0.8, t = 0.9, need = 0.6`. See
-`docs/FINDING-one-per-cell-was-a-strategy.md`. -/
-
+-/
 namespace Medium
 
 /-- **The equilibrium is non-negative exactly when `t*(1-r) ≤ M*r`.**
