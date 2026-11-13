@@ -449,4 +449,135 @@ theorem rationed_second_lives :
 /-- **And `0.65` is above the `0.6` maintenance, so the rationed organism lives.** -/
 theorem rationed_take_above_maintenance : (13 / 20 : ℝ) > 6 / 10 := by norm_num
 
+/-!
+# The capacity law, 2026-11-13
+
+Everything above is history. The law below is the one the measurements agree
+with, 12/12 on a rich cell, 12/12 on a poor cell, 6/6 on a uniform field
+(`docs/LAW-capacity.md`).
+
+## The three facts from the code
+
+1. The take is capped by the income, not by the cell
+   (`core/src/organism.rs:165`): `taken = min(resource, income)`.
+2. The cell regrows twice per step (`core/src/life.rs:252`): once at the end of
+   the step, once at the start of the next.
+3. The bill per organism per step is `m + damage_rate * repair_cost`, and it is
+   paid in full or the organism dies.
+
+## The level
+
+With `k` organisms each asking `t`, `paid = min(k*t, L)` and
+`L_next = (L - paid) + (M - (L - paid)) * r`. Two self-consistent branches:
+
+* unsaturated (`k*t <= L`): `L* = M - k*t*(1-r)/r`, valid iff `k*t <= M*r`;
+* saturated (`k*t >= L`): `L* = M*r`, valid iff `k*t >= M*r`.
+
+They meet at `k*t = M*r`, so `L*(k) = max(M - k*t*(1-r)/r, M*r)`.
+
+## The count
+
+* unsaturated: every organism gets `t`, so all live iff `t > need`, and
+  `k_max = floor(M*r/t)`;
+* saturated: the cell pays out `M*r` in order, the last gets
+  `M*r - (k-1)*t`, so `k_max = floor((M*r - need)/t) + 1`.
+
+The measured count is the larger of the two, over the branches that are
+self-consistent.
+-/
+
+/-- **The level a cell settles at, both branches in one `max`.**
+
+`max(M - k*t*(1-r)/r, M*r)`. -/
+noncomputable def cellLevel (M r k t : ℝ) : ℝ := max (M - k * t * (1 - r) / r) (M * r)
+
+/-- **The unsaturated branch is the old `cStar`.** -/
+theorem cellLevel_eq_cStar {M r k t : ℝ} (hr : 0 < r) (hr1 : r ≤ 1) (ht : 0 ≤ t) (hM : 0 ≤ M)
+    (h : k * t ≤ M * r) :
+    cellLevel M r k t = cStar M r k t := by
+  have h3 : k * t / r ≤ M := by
+    rw [div_le_iff₀ hr]; nlinarith
+  have h4 : M - k * t / r ≥ 0 := by linarith
+  have h6 : 0 ≤ (M - k * t / r) * (1 - r) := mul_nonneg h4 (by linarith)
+  have h2 : M * r ≤ M - k * t * (1 - r) / r := by
+    have h7 : M - k * t * (1 - r) / r - M * r = (M - k * t / r) * (1 - r) := by
+      have hk : k * t * (1 - r) / r = k * t / r * (1 - r) := by field_simp
+      rw [hk]; ring
+    linarith
+  unfold cellLevel cStar
+  rw [max_eq_left h2]
+  field_simp
+  ring
+
+/-- **The saturated branch: the cell holds exactly `M*r`.** -/
+theorem saturated_level (M r : ℝ) :
+    cellLevel M r 0 0 = max M (M * r) := by
+  unfold cellLevel
+  simp
+
+/-- **The two branches meet at `k*t = M*r`.** -/
+theorem branches_meet {M r k t : ℝ} (hr : r ≠ 0) (h : k * t = M * r) :
+    M - k * t * (1 - r) / r = M * r := by
+  rw [h]
+  field_simp
+  ring
+
+/-- **The unsaturated count: every organism gets its full income.** -/
+theorem unsaturated_count {M r k t : ℝ} (h : k * t ≤ M * r) :
+    k * t ≤ cellLevel M r k t := by
+  unfold cellLevel
+  have h := le_max_left (M - k * t * (1 - r) / r) (M * r)
+  have h2 : M * r <= max (M - k * t * (1 - r) / r) (M * r) := le_max_right _ _
+  nlinarith
+
+/-- **The saturated count: the last organism gets `M*r - (k-1)*t`.** -/
+theorem saturated_last_take (M r k t : ℝ) :
+    M * r - (k - 1) * t = M * r - k * t + t := by ring
+
+/-- **The saturated count is the solution of `M*r - (k-1)*t > need`.** -/
+theorem saturated_count_iff {M r k t need : ℝ} (ht : 0 < t) :
+    need < M * r - (k - 1) * t ↔ k - 1 < (M * r - need) / t := by
+  rw [lt_div_iff₀ ht]
+  constructor <;> intro h <;> nlinarith
+
+/-- **The capacity law: both branches are tight.**
+
+`kUnsat = floor(M*r/t)` never overshoots the regrowth, and `kSat = floor((M*r-need)/t)+1`
+is exactly the largest count whose last organism still clears `need`. -/
+theorem capacity_law {M r t need : ℝ} (hMr : 0 ≤ M * r) (hneed : need ≤ M * r) (ht : 0 < t) :
+    ((⌊M * r / t⌋₊ : ℕ) : ℝ) * t ≤ M * r ∧
+    need ≤ M * r - (((⌊(M * r - need) / t⌋₊ : ℕ) : ℝ)) * t := by
+  have hpos : (0 : ℝ) ≤ M * r / t := div_nonneg hMr (le_of_lt ht)
+  constructor
+  · have h : ((⌊M * r / t⌋₊ : ℕ) : ℝ) ≤ M * r / t := Nat.floor_le hpos
+    rwa [le_div_iff₀ ht] at h
+  · have h1 : ((⌊(M * r - need) / t⌋₊ : ℕ) : ℝ) ≤ (M * r - need) / t :=
+      Nat.floor_le (div_nonneg (by linarith : (0:ℝ) ≤ M * r - need) (le_of_lt ht))
+    have h3 : ((⌊(M * r - need) / t⌋₊ : ℕ) : ℝ) * t ≤ M * r - need := by
+      have h1' := mul_le_mul_of_nonneg_right h1 (le_of_lt ht)
+      rwa [div_mul_cancel₀ _ (ne_of_gt ht)] at h1'
+    linarith
+
+/-- **The saturated branch is tight one step further: `floor+1` overshoots.**
+
+`M*r - floor((M*r-need)/t)*t` is the last organism's take, and it is `≥ need`
+by `capacity_law`. One more organism would take `t` more, so the count
+`floor((M*r-need)/t)+1` is the largest whose last organism still clears `need`.
+This is the strict companion of `capacity_law`; it needs `need ≤ M*r - t` so
+that the extra step is affordable at all. -/
+theorem capacity_law_strict {M r t need : ℝ} (hMr : 0 ≤ M * r) (hneed : need ≤ M * r)
+    (hneed0 : 0 ≤ need) (ht : 0 < t) :
+    0 < M * r - (((⌊(M * r - need) / t⌋₊ : ℕ) : ℝ) - 1) * t := by
+  have h1 : ((⌊(M * r - need) / t⌋₊ : ℕ) : ℝ) ≤ (M * r - need) / t :=
+    Nat.floor_le (div_nonneg (by linarith : (0:ℝ) ≤ M * r - need) (le_of_lt ht))
+  have h1' := mul_le_mul_of_nonneg_right h1 (le_of_lt ht)
+  rw [div_mul_cancel₀ _ (ne_of_gt ht)] at h1'
+  set n : ℝ := ((⌊(M * r - need) / t⌋₊ : ℕ) : ℝ) with hn
+  set p : ℝ := n * t with hp
+  have hp_le : p ≤ M * r - need := h1'
+  have key : M * r - (n - 1) * t = (M * r - p) + t := by
+    rw [hp]; ring
+  rw [key]
+  linarith
+
 end Medium
