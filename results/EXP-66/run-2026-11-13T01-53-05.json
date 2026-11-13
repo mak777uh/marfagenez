@@ -1,0 +1,141 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-66",
+  "run_id": "run-2026-11-13T01-53-05",
+  "model_commit": "unknown",
+  "seed": 7,
+  "parameters": {},
+  "arithmetic": {
+    "max_packing": "20 rich cells * 2 + 20 poor cells * 1 = 60",
+    "rich_cell_two": "1.92 - 2*income 1.0 = -0.08, emptied, regrows to 1.92",
+    "poor_cell_one": "1.35 - 1*income 1.0 = 0.35, regrows to 1.35",
+    "step_cost": "0.6 + 0.05 + 0.01 = 0.66",
+    "ring": "cell 39's right neighbour is cell 0"
+  },
+  "conditions": {
+    "seed-1": {
+      "label": "alternating 2.4/1.6, seed 1",
+      "metrics": {
+        "alive": 60,
+        "occupied_cells": 40,
+        "doubled_cells": 20,
+        "moving_at_end": 0,
+        "on_rich_cells": 40,
+        "on_poor_cells": 20,
+        "unclassified": 0
+      },
+      "hash": "5fb0570eae4c7c05"
+    },
+    "seed-2": {
+      "label": "alternating 2.4/1.6, seed 2",
+      "metrics": {
+        "alive": 55,
+        "occupied_cells": 40,
+        "doubled_cells": 15,
+        "moving_at_end": 0,
+        "on_rich_cells": 35,
+        "on_poor_cells": 20,
+        "unclassified": 0
+      },
+      "hash": "4829547c03246281"
+    },
+    "seed-3": {
+      "label": "alternating 2.4/1.6, seed 3",
+      "metrics": {
+        "alive": 60,
+        "occupied_cells": 40,
+        "doubled_cells": 20,
+        "moving_at_end": 0,
+        "on_rich_cells": 40,
+        "on_poor_cells": 20,
+        "unclassified": 0
+      },
+      "hash": "dca5f9c17ceb5325"
+    },
+    "seed-7": {
+      "label": "alternating 2.4/1.6, seed 7",
+      "metrics": {
+        "alive": 60,
+        "occupied_cells": 40,
+        "doubled_cells": 20,
+        "moving_at_end": 0,
+        "on_rich_cells": 40,
+        "on_poor_cells": 20,
+        "unclassified": 0
+      },
+      "hash": "6fab226a3d3c36e5"
+    },
+    "seed-11": {
+      "label": "alternating 2.4/1.6, seed 11",
+      "metrics": {
+        "alive": 59,
+        "occupied_cells": 40,
+        "doubled_cells": 19,
+        "moving_at_end": 0,
+        "on_rich_cells": 39,
+        "on_poor_cells": 20,
+        "unclassified": 0
+      },
+      "hash": "4c0ce664ddc39509"
+    },
+    "seed-42": {
+      "label": "alternating 2.4/1.6, seed 42",
+      "metrics": {
+        "alive": 59,
+        "occupied_cells": 40,
+        "doubled_cells": 19,
+        "moving_at_end": 0,
+        "on_rich_cells": 39,
+        "on_poor_cells": 20,
+        "unclassified": 0
+      },
+      "hash": "8a09ec454ac1e4a1"
+    },
+    "uniform-n40": {
+      "label": "uniform 2.0, n=40, seed 7",
+      "metrics": {
+        "alive": 40,
+        "occupied_cells": 40,
+        "doubled_cells": 0,
+        "moving_at_end": 0
+      },
+      "hash": "ba876e1f4c10ee39"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "per seed (alive, occupied, doubled, moving): s1=(60,40,20,0), s2=(55,40,15,0), s3=(60,40,20,0), s7=(60,40,20,0), s11=(59,40,19,0), s42=(59,40,19,0); maximal packing is 60"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "uniform n=40: 40 alive, 0 doubled"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "per seed (on_rich, on_poor, unclassified, poor_overfull): s1=(40,20,0,0), s2=(35,20,0,0), s3=(40,20,0,0), s7=(40,20,0,0), s11=(39,20,0,0), s42=(39,20,0,0)"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "six seeds reach 60/55/60/60/59/59 alive over all 40 cells with nothing moving, and every organism sits on a local max or min of the ring"
+  },
+  "hashes": {
+    "seed-1": "5fb0570eae4c7c05",
+    "seed-2": "4829547c03246281",
+    "seed-3": "dca5f9c17ceb5325",
+    "seed-7": "6fab226a3d3c36e5",
+    "seed-11": "4c0ce664ddc39509",
+    "seed-42": "8a09ec454ac1e4a1",
+    "uniform-n40": "ba876e1f4c10ee39"
+  },
+  "limitations": [
+    "Perturbation is not injected. Six starts show the packing forms repeatedly, which is evidence that it is a property of the rule, but it does not show the packing survives a disturbance once formed.",
+    "One field shape (alternating 2.4/1.6) and one move_cost. EXP-64 showed move_cost does not matter here, but other field shapes were not run.",
+    "The trace binary cannot rewind or inject, so 'stable' here means 'reached from six starts', not 'returns after being pushed'.",
+    "EXP-65 failed on controls that this experiment replaced. Its result is kept as a record of a metric bug (ring boundary treated as a wall), not as evidence against the checkerboard."
+  ],
+  "command": "trace --policy sighted --cells 40 --steps 50000 --field alternating --rich 2.4 --poor 1.6 --seed {1,2,3,7,11,42}",
+  "created_at": "2026-11-13T01:53:05.539725+00:00"
+}
