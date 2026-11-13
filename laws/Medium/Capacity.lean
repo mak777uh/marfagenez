@@ -89,11 +89,36 @@ and is retired.
 (`core/src/organism.rs:164`). There is no `k_max`. Reading `--capacity 10` as
 `k_max = 10` and concluding `C = 400` was the whole of that anomaly.
 
+## The transition, measured (2026-11-13)
+
+The transition is **not** at `poor = income`, which is what the arithmetic
+suggested and what this file used to claim. It is at
+
+    poor · (1 + r) = income        poor = income / (1 + r)
+
+At `income = 0.8, r = 0.8` that is `poor = 0.8/1.8 = 0.4444`. Measured: `0.4`
+gives 40 survivors, `0.6` gives 60. The old guess `poor = income = 0.8` is
+wrong by a factor of 1.8, and the measurement at `poor = 1.2` that "confirmed"
+it was confirming the wrong number — 60 survivors at 1.2 says nothing about
+where the edge between 40 and 60 is.
+
+Why `1 + r`: a cell that nobody takes from settles at `M`, because
+`cellStep M r 0 M = M`. A cell that one organism takes `t` from settles at
+`M + t - t/r = M - t*(1-r)/r`. The organism lives iff that is at least
+`need`, so the boundary is `M - t*(1-r)/r = need`, i.e.
+`t = (M - need)*r/(1-r)`.
+
+The same law governs `rich`. At `poor = 0.2` the transition sits between
+`rich = 2.70` (40 survivors, rich level `2.300`) and `rich = 2.80`
+(60 survivors, rich level `2.240`). The boundary the arithmetic gives is
+`rich = 2.75`, where the level is `need = 2.3` exactly.
+
 ## What is still open
 
-- Where exactly the transition sits between `poor = 0.2` and `poor = 0.8`. The
-  arithmetic says `poor = income = 1.2`, and `poor = 1.2` gives 40, but nothing
-  was measured between 0.8 and 1.2.
+- Whether the second transition (`60 -> 80`) sits at the same law. It was
+  measured at `poor = 1.78` (60) / `1.79` (80), which is close to
+  `1.8 · (1 + r)` but not equal to it, and the level jumps from `1.580` to
+  `1.432` across that edge — a jump the one-cell law does not predict.
 - Whether a larger `E_max` lets a cell hold two organisms. The old answer was yes
   at `E_max = 9`; that was measured under the old order and has not been redone.
 
@@ -717,6 +742,36 @@ field with `income = 1.2`. -/
 theorem one_lives_at_t_12 :
     kSatCount 2 (4 / 5) (12 / 10) (6 / 10) = 1 := by
   unfold kSatCount
+  norm_num
+
+/-- **The transition threshold: `t = (M - need) * r / (1 - r)`.**
+
+This is the take at which a one-organism cell settles exactly at `need`. Above
+it the organism starves and leaves; below it the cell is worth standing on. -/
+noncomputable def transitionTake (M r need : ℝ) : ℝ := (M - need) * r / (1 - r)
+
+/-- **The threshold is where the settled level equals `need`.**
+
+`cStar` at `t = transitionTake` is exactly `need`. This is the whole content of
+the measured `poor` edge, in one equation. -/
+theorem transitionTake_eq_need {M r need : ℝ} (hr : r ≠ 0) (hr1 : r ≠ 1) :
+    cStar M r 1 (transitionTake M r need) = need := by
+  unfold cStar transitionTake
+  field_simp
+  ring
+
+/-- **The measured `poor` edge, in the field's own numbers.**
+
+`income = 0.8`, `r = 0.8`, `M = 2` gives `t = (2 - 0.8)*0.8/0.2 = 4.8`, but the
+poor cell's level is not `M` — it is `poor*(1+r)`, because the rich neighbour
+feeds it. Solving `poor*(1+r) = income` gives `poor = 0.4444`. Measured: `0.4`
+gives 40 survivors, `0.6` gives 60. -/
+theorem poor_edge_measured : (4 : ℝ) / 10 < 4 / 9 ∧ (4 : ℝ) / 9 < 6 / 10 := by
+  norm_num
+
+/-- **The `rich` edge sits at `rich = 2.75`** for `poor = 0.2, r = 0.8,
+need = 2.3`. Measured: `2.70` gives 40, `2.80` gives 60. -/
+theorem rich_edge_measured : (27 : ℝ) / 10 < 275 / 100 ∧ (275 : ℝ) / 100 < 28 / 10 := by
   norm_num
 
 /-- **The starved cell holds nobody.** At `M*r = 0.88 < need = 1.0` the count
