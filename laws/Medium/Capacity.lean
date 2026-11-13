@@ -580,4 +580,69 @@ theorem capacity_law_strict {M r t need : ℝ} (hMr : 0 ≤ M * r) (hneed : need
   rw [key]
   linarith
 
+/-! ## The starved regime, and the number the field actually shows
+
+`cellLevel_eq_cStar` needs `k*t ≤ M*r`: it says the cell settles at `cStar`
+because it can still afford everyone. When `k*t > M*r` the cell cannot, and
+`cellLevel` returns `M*r`. The two branches are not interchangeable and the
+difference is not small — it is the whole reason a moving organism does better
+than a standing one (see `docs/FINDING-the-field-was-never-uniform.md`).
+
+Worked at the measured parameters `M = 1.1, r = 0.8, income = 1.0`, where
+`M*r = 0.88 < income`, so *nobody* is fed: `kMaxCount = 0`. -/
+
+/-- **In the starved regime the level is `M*r`, not `cStar`.**
+
+`cStar = 0.85` here and `M*r = 0.88`; the `max` in `cellLevel` picks `0.88`.
+Getting this backwards is easy: `0.88` looks like a `cStar` and is not one. -/
+theorem starved_level_measured :
+    cellLevel (11 / 10) (8 / 10) 1 1 = 88 / 100 := by
+  unfold cellLevel
+  norm_num
+
+/-- **`cStar` at the same point is lower than `M*r`** — this is what makes the
+regime starved rather than fed. -/
+theorem cStar_below_Mr_measured :
+    cStar (11 / 10) (8 / 10) 1 1 = 85 / 100 := by
+  unfold cStar
+  norm_num
+
+/-- **The threshold itself: `M*r < income`, so no organism is fed.** -/
+theorem nobody_fed_measured : (88 / 100 : ℝ) < 1 := by norm_num
+
+/-- **The fed regime does reach `cStar`.** At the default field
+`M = 2, r = 0.8, income = 0.2` a cell holds `k = 8` and sits at `1.6`, which is
+both `cStar` and `M*r` — the branches meet exactly at `k*t = M*r`. -/
+theorem fed_level_measured :
+    cellLevel 2 (8 / 10) 8 (2 / 10) = 8 / 5 := by
+  unfold cellLevel
+  norm_num
+
+/-- **The same point is `cStar` too**, so `cellLevel_eq_cStar` applies here. -/
+theorem fed_level_is_cStar_measured :
+    cStar 2 (8 / 10) 8 (2 / 10) = 8 / 5 := by
+  unfold cStar
+  norm_num
+
+/-- **The starved branch dominates exactly when the cell cannot pay.**
+
+If `M*r < k*t` then `cStar < M*r`, so `cellLevel = M*r`. This is the general
+form of `starved_level_measured`, and it is the statement that was missing:
+`cellLevel_eq_cStar` covers the other side only. -/
+theorem starved_branch {M r k t : ℝ} (hr : 0 < r) (hr1 : r < 1) (hM : 0 ≤ M)
+    (h : M * r < k * t) :
+    cellLevel M r k t = M * r := by
+  have h1 : M < k * t / r := by
+    rw [lt_div_iff₀ hr]
+    nlinarith
+  have h2 : M - k * t * (1 - r) / r < M * r := by
+    have h3 : 0 < 1 - r := by linarith
+    have h4 : M * (1 - r) < k * t * (1 - r) / r := by
+      have hk : k * t * (1 - r) / r = k * t / r * (1 - r) := by field_simp
+      rw [hk]
+      exact mul_lt_mul_of_pos_right h1 h3
+    nlinarith
+  unfold cellLevel
+  exact max_eq_right (le_of_lt h2)
+
 end Medium
