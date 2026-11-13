@@ -41,10 +41,15 @@ fn main() {
     let mut shift = 0.0f64;
     let mut rich = 2.0f64;
     let mut poor = 0.2f64;
+    // Whether the level was chosen or left at the default. A uniform
+    // field built from defaults is a field nobody asked for.
+    let mut rich_set = false;
+    let mut poor_set = false;
     let mut regrow = 0.8f64;
     let mut read_budget: usize = 0;
     let mut feed = false;
     let mut even = false;
+    let mut start_cells: Option<Vec<usize>> = None;
 
     let mut i = 1;
     while i < args.len() {
@@ -126,10 +131,12 @@ fn main() {
             "--rich" => {
                 i += 1;
                 rich = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(rich);
+                rich_set = true;
             }
             "--poor" => {
                 i += 1;
                 poor = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(poor);
+                poor_set = true;
             }
             "--feed" => {
                 feed = true;
@@ -137,6 +144,28 @@ fn main() {
             "--layout" => {
                 i += 1;
                 even = matches!(args.get(i).map(|s| s.as_str()), Some("even"));
+            }
+            "--start-cell" => {
+                i += 1;
+                let raw = args.get(i).map(|s| s.as_str()).unwrap_or("");
+                let mut v = Vec::new();
+                for part in raw.split(',') {
+                    let part = part.trim();
+                    if part.is_empty() {
+                        continue;
+                    }
+                    match part.parse::<usize>() {
+                        Ok(c) => v.push(c),
+                        Err(_) => {
+                            eprintln!(
+                                "refusing to run: --start-cell {} is not a list of cell indices.\n             Pass e.g. --start-cell 0,2 to put organism 0 on cell 0 and\n             organism 1 on cell 2. The list must have exactly --n entries.",
+                                raw
+                            );
+                            std::process::exit(2);
+                        }
+                    }
+                }
+                start_cells = Some(v);
             }
             "--read-budget" => {
                 i += 1;
@@ -151,7 +180,7 @@ fn main() {
                 println!("             [--capacity X] [--damage-rate X] [--income X] [--maintenance X]");
                 println!("             [--repair-cost X] [--move-cost X] [--energy X]");
                 println!("             [--field alternating|gradient|uniform|moving] [--memory-life N] [--shift X]");
-                println!("             [--rich X] [--poor X] [--regrow X] [--layout even]");
+                println!("             [--rich X] [--poor X] [--regrow X] [--layout even] [--start-cell 0,2]");
                 println!("             [--read-budget N]  cells the organism may read per step without eating");
                 return;
             }
@@ -207,9 +236,9 @@ fn main() {
     // `income 1.2` saturates at `M*r = 0.88` and reports a capacity of 40 with
     // a surplus of 2 that looks like a rotation and is really a different
     // world. See `docs/FINDING-the-surplus-was-a-field-built-at-the-wrong-level.md`.
-    if field_kind == "uniform" && !rich_set && !poor_set {
+    if field_kind == "uniform" && !(rich_set && poor_set) {
         eprintln!(
-            "refusing to run: --field uniform with neither --rich nor --poor set.\n             uniform is built as (rich + poor) / 2 and the defaults are\n             rich 2.0, poor 0.2, so this would build a field at M = 1.10 --\n             a level nobody chose. Pass the level you mean, e.g.\n             --rich 2.4 --poor 1.6 for M = 2.0."
+            "refusing to run: --field uniform without both --rich and --poor.\n             uniform is built as (rich + poor) / 2, so an unset one falls\n             back to its default and the level becomes one nobody chose.\n             The defaults are\n             rich 2.0, poor 0.2, so this would build a field at M = 1.10 --\n             a level nobody chose. Pass the level you mean, e.g.\n             --rich 2.4 --poor 1.6 for M = 2.0."
         );
         std::process::exit(2);
     }
@@ -225,7 +254,37 @@ fn main() {
         std::process::exit(2);
     }
 
-    let spawned = if even {
+    // `--start-cell` is the only way to ask a question about a particular
+    // cell: `spawn` places organisms at random and `spawn_even` puts organism
+    // `i` on cell `i % cells`, so without it a placement arm silently becomes
+    // the even arm (EXP-83 D, EXP-84).
+    if let Some(ref sc) = start_cells {
+        if sc.len() != n {
+            eprintln!(
+                "refusing to run: --start-cell has {} entries but --n is {}.\n             One index per organism, e.g. --n 2 --start-cell 0,2.",
+                sc.len(),
+                n
+            );
+            std::process::exit(2);
+        }
+        let cells_now = field.cells();
+        for (i, c) in sc.iter().enumerate() {
+            if *c >= cells_now {
+                eprintln!(
+                    "refusing to run: --start-cell puts organism {} on cell {} but the field has {} cells (0..{}).",
+                    i,
+                    c,
+                    cells_now,
+                    cells_now - 1
+                );
+                std::process::exit(2);
+            }
+        }
+    }
+
+    let spawned = if let Some(ref sc) = start_cells {
+        Life::spawn_at(world, field, sc, energy, move_cost, policy, seed, memory_life)
+    } else if even {
         Life::spawn_even(world, field, n, energy, move_cost, policy, seed, memory_life)
     } else {
         Life::spawn(world, field, n, energy, move_cost, policy, seed, memory_life)
