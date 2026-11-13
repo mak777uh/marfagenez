@@ -1,0 +1,95 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-63",
+  "run_id": "run-2026-11-13T01-50-13",
+  "model_commit": "unknown",
+  "seed": 7,
+  "parameters": {},
+  "arithmetic": {
+    "single_cell_equilibrium": "M + income - income/r = 1.75",
+    "doubled_cell_equilibrium": "M*r = 1.6",
+    "second_seat_net": "0.60 - 0.66 = -0.06 per step",
+    "steps_to_die_from_10": "10.0 / 0.06 = 166",
+    "food_ceiling_per_round": "cells * M * r = 40 * 1.6 = 64 units",
+    "organisms_that_can_eat": "64 / need = 64 / 0.6 = 106 (upper bound)"
+  },
+  "conditions": {
+    "u20k": {
+      "label": "20000 steps",
+      "metrics": {
+        "alive": 50,
+        "doubled_cells": 10,
+        "field_lo": 1.6,
+        "field_hi": 1.75,
+        "alive_at_quarter": 51,
+        "alive_at_half": 50
+      },
+      "hash": "f1392fd2554d213d"
+    },
+    "u100k": {
+      "label": "100000 steps",
+      "metrics": {
+        "alive": 47,
+        "doubled_cells": 7,
+        "field_lo": 1.6,
+        "field_hi": 1.75,
+        "alive_at_quarter": 50,
+        "alive_at_half": 47
+      },
+      "hash": "5ab748e2032c6911"
+    },
+    "u500k": {
+      "label": "500000 steps",
+      "metrics": {
+        "alive": 47,
+        "doubled_cells": 7,
+        "field_lo": 1.6,
+        "field_hi": 1.75,
+        "alive_at_quarter": 47,
+        "alive_at_half": 47
+      },
+      "hash": "a82cb8a8e45d0313"
+    },
+    "u500k-n40": {
+      "label": "n=40, 500k steps",
+      "metrics": {
+        "alive": 40,
+        "doubled_cells": 0,
+        "field_lo": 1.75,
+        "field_hi": 1.75
+      },
+      "hash": "160a4266b54a1189"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "500k: 7 doubled cells, field lo 1.6000 (M*r = 1.6)"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "n=40 at 500k: 40 alive, 0 doubled"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "alive at 20k 50 vs 500k 47 (equal means the population settled before 20k and the EXP-61/62 gap is a parameter difference)"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "alive 20k 50, 100k 47, 500k 47; n=40 at 500k gives 40"
+  },
+  "hashes": {
+    "u20k": "f1392fd2554d213d",
+    "u100k": "5ab748e2032c6911",
+    "u500k": "a82cb8a8e45d0313",
+    "u500k-n40": "160a4266b54a1189"
+  },
+  "limitations": [
+    "One seed. A drifting population under one seed does not prove the drift is systematic; it only shows that 20k steps is not enough here.",
+    "The series is sampled 20 times, so a population that oscillates between samples would look constant."
+  ],
+  "command": "trace --policy sighted --field uniform --cells 40 --steps {20000,100000,500000}",
+  "created_at": "2026-11-13T01:50:13.598242+00:00"
+}

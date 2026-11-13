@@ -1,0 +1,90 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-62",
+  "run_id": "run-2026-11-13T01-49-42",
+  "model_commit": "unknown",
+  "seed": 7,
+  "parameters": {},
+  "arithmetic": {
+    "second_seat_income": "1.6 - 1.0 = 0.60",
+    "second_seat_cost": "0.6 + 0.05 + 0.02*0.5 = 0.66",
+    "second_seat_net": "0.60 - 0.66 = -0.06 per step",
+    "steps_to_die": "10.0 / 0.06 = 166",
+    "single_cell_equilibrium": "M + income - income/r = 2 + 1 - 1.25 = 1.75",
+    "doubled_cell_equilibrium": "M*r = 2*0.8 = 1.6"
+  },
+  "conditions": {
+    "uniform": {
+      "label": "uniform field",
+      "metrics": {
+        "alive": 50,
+        "doubled_cells": 10,
+        "mean_per_cell": 1.25,
+        "field_lo": 1.6,
+        "field_hi": 1.75
+      },
+      "hash": "f1392fd2554d213d"
+    },
+    "gradient": {
+      "label": "gradient field",
+      "metrics": {
+        "alive": 33,
+        "doubled_cells": 3,
+        "mean_per_cell": 0.825,
+        "field_lo": 1.3903,
+        "field_hi": 2.1483
+      },
+      "hash": "248bdf9a83505fa5"
+    },
+    "alternating": {
+      "label": "alternating field",
+      "metrics": {
+        "alive": 60,
+        "doubled_cells": 20,
+        "mean_per_cell": 1.5,
+        "field_lo": 1.35,
+        "field_hi": 1.92
+      },
+      "hash": "6fd680dadeb1f7a5"
+    },
+    "uniform-n40": {
+      "label": "uniform, n=40",
+      "metrics": {
+        "alive": 40,
+        "doubled_cells": 0
+      },
+      "hash": "ba35a24ebeaac029"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "uniform: 10 doubled cells, field lo 1.6000 (arithmetic M*r = 1.6), hi 1.7500 (single-cell c* = 1.75)"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "n=40 on 40 cells: 40 alive, 0 doubled"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "alive counts: uniform 50, gradient 33, alternating 60"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "uniform 50 alive with 10 doubled cells at 1.6; n=40 gives 40 alive and no doubling; fields differ (3 distinct alive counts)"
+  },
+  "hashes": {
+    "uniform": "f1392fd2554d213d",
+    "gradient": "248bdf9a83505fa5",
+    "alternating": "6fd680dadeb1f7a5",
+    "uniform-n40": "ba35a24ebeaac029"
+  },
+  "limitations": [
+    "Rotation of the second seat is inferred, not observed: the trace records occupancy per frame, and EXP-61 counted 45 different organisms over the last 20 frames. This experiment does not repeat that count.",
+    "The three fields differ in more than uniformity -- gradient and alternating also change the mean level, so a difference in alive counts is not attributable to movement alone."
+  ],
+  "command": "trace --policy sighted --steps 20000 --n 80 --cells 40 --capacity 2 --field {uniform,gradient,alternating}",
+  "created_at": "2026-11-13T01:49:42.034761+00:00"
+}
