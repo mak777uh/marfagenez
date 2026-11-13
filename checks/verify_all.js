@@ -2,10 +2,29 @@
 // This checks every numerical claim in the Lean theorems against simulation.
 // If a claim fails, it must not be ported to Rust/C.
 
+// A seeded PRNG, so that a run can be repeated. `Math.random` made every run a
+// different experiment: a claim could pass on one run and fail on the next with
+// no code change, and a failure could not be reproduced at all. The seed is
+// printed, and can be overridden with `--seed N`.
+const SEED = (() => {
+  const i = process.argv.indexOf("--seed");
+  if (i >= 0 && process.argv[i + 1]) return Number(process.argv[i + 1]) >>> 0;
+  return 20250101;
+})();
+let _state = SEED;
+function rand() {
+  // mulberry32
+  _state = (_state + 0x6d2b79f5) >>> 0;
+  let t = _state;
+  t = Math.imul(t ^ (t >>> 15), t | 1);
+  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+}
+
 function gauss() {
   let u = 0, v = 0;
-  while (!u) u = Math.random();
-  while (!v) v = Math.random();
+  while (!u) u = rand();
+  while (!v) v = rand();
   return Math.sqrt(-2 * Math.log(u)) * Math.cos(6.283185307 * v);
 }
 
@@ -50,7 +69,15 @@ const check = (name, ok, detail) => results.push({ name, ok, detail });
     const m2 = base.reduce((a, x, i) => a + x * x * w[i], 0) / S;
     worst = Math.max(worst, Math.abs(m2 - m * m - 1));
   }
-  check('exp tilt Var=1', worst < 0.06, `max deviation ${worst.toFixed(3)}`);
+  // The claim is exact: tilting N(0,1) by exp(k*x) gives N(k,1), so Var = 1
+  // for every k. The check is an estimator, and its noise is set by the
+  // effective sample size ESS = N*exp(-k^2), not by N: at k = 2 and
+  // N = 300000 that is 5492. Measured over 40 seeds
+  // (`checks/exp88_exp_tilt_noise.py`, `results/exp-tilt-noise/seeds.json`)
+  // the deviation has mean 0.047 and sd 0.041, so 0.06 was 1.5 sd and 12 of
+  // 40 seeds failed it. The threshold below is mean + 4 sd from that
+  // measurement, not a guess.
+  check('exp tilt Var=1', worst < 0.21, `max deviation ${worst.toFixed(3)}`);
 }
 
 // 4. growth density exp(alpha x)
@@ -82,8 +109,8 @@ const check = (name, ok, detail) => results.push({ name, ok, detail });
   let worst = 0;
   const f = v => { const Q = 4 * B; return B - Math.abs((((v + B) % Q + Q) % Q) - 2 * B); };
   for (let i = 0; i < 200000; i++) {
-    const x = Math.random() * 40 - 20;
-    const y = x + (Math.random() - 0.5) * 0.01;
+    const x = rand() * 40 - 20;
+    const y = x + (rand() - 0.5) * 0.01;
     const d0 = Math.abs(x - y);
     if (d0 > 1e-12) worst = Math.max(worst, Math.abs(f(x) - f(y)) / d0);
   }
@@ -184,6 +211,7 @@ const check = (name, ok, detail) => results.push({ name, ok, detail });
 }
 
 console.log('=== VERIFICATION BEFORE PORTING TO RUST/C ===');
+console.log(`seed ${SEED}`);
 console.log();
 let pass = 0;
 for (const r of results) {
