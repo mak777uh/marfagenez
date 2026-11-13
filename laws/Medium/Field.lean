@@ -105,6 +105,43 @@ theorem settles_at_one_point_seven_five :
   unfold cellStep
   norm_num
 
+
+/-- **A cell that is emptied every round settles at `M * r`, not at `c*`.**
+
+`c* = M + income - income/r` is the equilibrium of a cell that keeps a
+reserve: one occupant takes `income`, the cell falls to `c* - income`, and one
+regrow brings it back to `c*`.
+
+A cell with TWO occupants is emptied completely: the first takes `income`,
+the second takes what is left. An empty cell regrows to `M * r` in one step,
+and `M * r` is a fixed point of the step that takes nothing.
+
+Measured (EXP-61, 200k steps, n = 80, 40 cells, `sighted`, uniform `M = 2`,
+`r = 0.8`): all doubled cells read exactly `1.6 = 2 * 0.8`, all single cells
+read `1.72 .. 1.75`. At n = 40, where no cell is doubled, every cell reads
+exactly `1.75`.
+
+The two equilibria differ because the step order is: every organism takes,
+then the field regrows once (`core/src/life.rs:464`). -/
+theorem empty_cell_regrows_to_M_mul_r (M r : ℝ) :
+    cellStep M r 0 0 = M * r := by
+  unfold cellStep
+  ring
+
+/-- The doubled-cell equilibrium, at the measured parameters. -/
+theorem doubled_cell_settles_at_one_point_six :
+    cellStep 2 (4 / 5) 0 0 = 8 / 5 := by
+  unfold cellStep
+  norm_num
+
+/-- **The two equilibria are different**, so occupancy is observable in the
+field. A cell holding one organism and a cell holding two cannot sit at the
+same value. -/
+theorem two_equilibria_differ :
+    cellStep 2 (4 / 5) 1 (7 / 4) ≠ cellStep 2 (4 / 5) 0 0 := by
+  unfold cellStep
+  norm_num
+
 /-- **A uniform field stays uniform** when every cell takes the same amount.
 
 This is the arithmetic behind the measurement: a field whose cells are all equal
