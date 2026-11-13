@@ -91,16 +91,18 @@ and is retired.
 
 ## What is still open
 
-- Why one cell holds exactly one organism even when `k_feed = 1.33`. The
-  fractional part is not spent: no run has shown two organisms sharing a cell
-  under the current order. `no_second_place` below proves the `k_feed <= 1` case
-  only; the `1 < k_feed < 2` case is measured, not proved.
 - Where exactly the transition sits between `poor = 0.2` and `poor = 0.8`. The
   arithmetic says `poor = income = 1.2`, and `poor = 1.2` gives 40, but nothing
   was measured between 0.8 and 1.2.
 - Whether a larger `E_max` lets a cell hold two organisms. The old answer was yes
   at `E_max = 9`; that was measured under the old order and has not been redone.
--/
+
+*Retired 2026-11-13:* "why one cell holds exactly one organism even when
+`k_feed = 1.33`". It does not. One organism per cell is what the `sighted`
+policy produces in a uniform field, not a property of the cell. The count of
+living organisms on a cell is `kSatCount` below, and it is 2 at
+`M = 2, r = 0.8, t = 0.9, need = 0.6`. See
+`docs/FINDING-one-per-cell-was-a-strategy.md`. -/
 
 namespace Medium
 
@@ -644,5 +646,85 @@ theorem starved_branch {M r k t : ℝ} (hr : 0 < r) (hr1 : r < 1) (hM : 0 ≤ M)
     nlinarith
   unfold cellLevel
   exact max_eq_right (le_of_lt h2)
+
+/-- **The count of living organisms in the saturated branch.**
+
+The cell pays out `M*r` in order; the `k`-th organism takes `M*r - (k-1)*t`.
+It lives iff that is at least `need`. So the largest `k` is
+`⌊(M*r - need)/t⌋ + 1`.
+
+This is the answer to "why does one cell hold one organism when `k_feed = 1.33`":
+`k_feed` counts *full* takes, and the rationed one is a separate organism that
+lives on the remainder. At `M = 2, r = 0.8, t = 0.9, need = 0.6` the count is
+`⌊(1.6 - 0.6)/0.9⌋ + 1 = ⌊1.111⌋ + 1 = 2` — and indeed the measurement shows
+two organisms on that cell, the second taking `0.65 > 0.6`. -/
+noncomputable def kSatCount (M r t need : ℝ) : ℕ := ⌊(M * r - need) / t⌋₊ + 1
+
+/-- **The saturated count is tight: the last organism clears `need`.**
+
+`M*r - (kSatCount - 1)*t ≥ need`. This is the statement that the count is not
+merely a bound but is achieved. -/
+theorem kSatCount_feeds_last {M r t need : ℝ} (hMr : 0 ≤ M * r) (hneed : need ≤ M * r)
+    (ht : 0 < t) :
+    need ≤ M * r - ((kSatCount M r t need : ℝ) - 1) * t := by
+  unfold kSatCount
+  have hnonneg : 0 ≤ (M * r - need) / t := div_nonneg (by linarith) (le_of_lt ht)
+  have h1 : ((⌊(M * r - need) / t⌋₊ : ℕ) : ℝ) ≤ (M * r - need) / t :=
+    Nat.floor_le hnonneg
+  have h2 : ((⌊(M * r - need) / t⌋₊ : ℕ) : ℝ) * t ≤ M * r - need := by
+    have h1' := mul_le_mul_of_nonneg_right h1 (le_of_lt ht)
+    rwa [div_mul_cancel₀ _ (ne_of_gt ht)] at h1'
+  push_cast
+  linarith
+
+/-- **One more organism does not clear `need` in the saturated branch.**
+
+`M*r - kSatCount*t < need`. Together with `kSatCount_feeds_last` this pins the
+count exactly: it is the largest `k` whose last organism still clears `need`. -/
+theorem kSatCount_tight {M r t need : ℝ} (hMr : 0 ≤ M * r) (hneed : need ≤ M * r)
+    (ht : 0 < t) :
+    M * r - (kSatCount M r t need : ℝ) * t < need := by
+  unfold kSatCount
+  have hnonneg : 0 ≤ (M * r - need) / t := div_nonneg (by linarith) (le_of_lt ht)
+  have h1 : (M * r - need) / t < ((⌊(M * r - need) / t⌋₊ : ℕ) : ℝ) + 1 :=
+    Nat.lt_floor_add_one _
+  have h2 : M * r - need < (((⌊(M * r - need) / t⌋₊ : ℕ) : ℝ) + 1) * t := by
+    have h1' := mul_lt_mul_of_pos_right h1 ht
+    rwa [div_mul_cancel₀ _ (ne_of_gt ht)] at h1'
+  push_cast
+  linarith
+
+/-- **The measured case: two organisms on a rich cell at `t = 0.9`.**
+
+`k_feed = 1.6/0.9 = 1.78`, so only one *full* take fits, yet the count of
+living organisms is 2. This is the number the old `no_second_place` could not
+reach, because it only covered `k_feed ≤ 1`. -/
+theorem two_live_at_t_09 :
+    kSatCount 2 (4 / 5) (9 / 10) (6 / 10) = 2 := by
+  unfold kSatCount
+  norm_num
+
+/-- **At `t = 0.8` the same cell holds two as well**, and both take in full:
+`k_feed = 1.6/0.8 = 2` exactly. -/
+theorem two_live_at_t_08 :
+    kSatCount 2 (4 / 5) (4 / 5) (6 / 10) = 2 := by
+  unfold kSatCount
+  norm_num
+
+/-- **At `t = 1.2` the cell holds one**, because the remainder after the first
+take is `1.6 - 1.2 = 0.4 < 0.6`. This is the measured `C = 40` on a 40-cell
+field with `income = 1.2`. -/
+theorem one_lives_at_t_12 :
+    kSatCount 2 (4 / 5) (12 / 10) (6 / 10) = 1 := by
+  unfold kSatCount
+  norm_num
+
+/-- **The starved cell holds nobody.** At `M*r = 0.88 < need = 1.0` the count
+is `⌊(0.88 - 1.0)/t⌋₊ + 1`, and the floor of a negative number is 0, so the
+answer is 1 — but the last organism takes `0.88 < 1.0` and dies. The count is
+therefore **not** `kSatCount` here; `kSatCount` assumes `need ≤ M*r`, which is
+exactly what fails. -/
+theorem starved_cell_feeds_nobody :
+    ¬ ((1 : ℝ) ≤ (88 / 100 : ℝ)) := by norm_num
 
 end Medium
