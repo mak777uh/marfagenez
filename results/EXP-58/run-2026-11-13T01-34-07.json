@@ -1,0 +1,80 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-58",
+  "run_id": "run-2026-11-13T01-34-07",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 40,
+    "M": 2.0,
+    "regrow": 0.8,
+    "need": 0.6,
+    "income": 1.2,
+    "steps": 200000,
+    "every": 1000,
+    "n": 80
+  },
+  "arithmetic": {
+    "cell_yield": "M*r = 2.0*0.8 = 1.6",
+    "first_taker": "takes 1.2, leaving 0.40000000000000013",
+    "remainder_vs_need": "remainder 0.40000000000000013 against need 0.6: below",
+    "k_max": "1 + floor((1.6 - 0.6)/1.2) = 1",
+    "ceiling": "40 cells * 1 = 40 organisms",
+    "buffer_life": "a second organism losing 0.2 per step with E_max 10 survives 10/0.2 = 50 steps",
+    "threshold": "the regime flips at income = M*r - need = 1.0",
+    "prediction": "alive > 40, and the second occupant of a doubled cell takes below need 0.6"
+  },
+  "conditions": {
+    "i1.20": {
+      "label": "income 1.20",
+      "metrics": {
+        "alive_first": 45,
+        "alive_last": 43,
+        "alive_min": 43,
+        "alive_max": 45,
+        "ceiling": 40,
+        "crowding": {
+          "1": 37,
+          "2": 3
+        },
+        "moved_mean_taken": 1.1446,
+        "moved_below_need": 655,
+        "moved_n": 8348,
+        "second_occupants": 3,
+        "second_taken": [
+          0.4998,
+          0.5,
+          0.496
+        ]
+      },
+      "hash": "de64f4c305fde43b"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "alive 43 (range 43..45) against ceiling 40 = 40 cells * k_max 1. The excess is 3."
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "3 doubled cells at the last frame, 8348 moved transitions. A run with no doubled cell would make the second-occupant measurement empty."
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "second occupants take [0.5, 0.5, 0.496] against need 0.6. The hypothesis this rejects is that a second organism takes need or more, which would make the ceiling 80 instead of 40."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the field holds 43 against a ceiling of 40, and the excess is paid for by stored energy: the second occupant of a doubled cell takes [0.5, 0.5, 0.496] against need 0.6, losing 0.2 per step out of a buffer of 10. The ceiling is a bound on sustained occupancy, not on transient occupancy. The threshold is income = M*r - need = 1.0: below it a second organism breaks even and k_max is 2; above it the buffer is what allows the excess"
+  },
+  "hashes": {
+    "i1.20": "de64f4c305fde43b"
+  },
+  "limitations": [
+    "One regime (M=2.0, r=0.8, need=0.6, income=1.2, damage_rate=0.02, E_max=10, sighted with read_budget=3, seed 1). The excess is small (3 organisms on 40 cells) and its dependence on E_max and on the number of cells is not measured. `taken` is sampled once per 1000 steps, so below-need fractions are lower bounds. The mechanism is inferred from the second occupants of doubled cells at one frame plus the transition table; individual organisms were not tracked through a full excursion, so the survival time of about 50 steps is arithmetic, not a measurement."
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --policy sighted --field uniform --cells 40 --n 80 --steps 200000 --every 1000 --maintenance 0.6 --rich 2.0 --poor 2.0 --income 1.2 --read-budget 3",
+  "created_at": "2026-11-13T01:34:07.478410+00:00"
+}
