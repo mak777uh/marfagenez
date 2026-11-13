@@ -27,8 +27,12 @@ about it.
 A single cell with value `c`, maximum `M`, regrowth rate `r`, and a take `t`:
 
 ```
-step M r t c = c + (M - c) * r - t
+step M r t c = (c - t) + (M - (c - t)) * r
 ```
+
+The take happens first, then the cell regrows toward `M`. Its equilibrium is
+`M - t*(1-r)/r`, which for `M = 2`, `r = 0.8`, `t = 1.0` is **1.75** - the value
+the field actually settles at with one organism per cell (EXP-59).
 
 ## What is proved
 
@@ -56,7 +60,7 @@ namespace Medium
 An earlier version of this file wrote `c + (M - c) * r - t`, which regrows from
 the full cell and then subtracts the take. That is a different model, and its
 equilibrium is `M - t/r` instead of `M - t*(1-r)/r`. The measurement settled it:
-at `M = 2`, `r = 0.8`, `t = 1.6` the field settles at **1.6**, which the second
+at `M = 2`, `r = 0.8`, `t = 1.0` the field settles at **1.75**, which the second
 form gives and the first does not. See `docs/FINDING-correct-equilibrium.md`. -/
 def cellStep (M r t c : ℝ) : ℝ := (c - t) + (M - (c - t)) * r
 
@@ -84,6 +88,22 @@ theorem fixed_point {M r t : ℝ} (hr : r ≠ 0) :
   unfold cellStep
   field_simp
   ring
+
+/-- **The field settles at 1.75**, not at `M*r = 1.6`.
+
+This is the number EXP-59 measured directly: with one organism per cell,
+`M = 2`, `r = 0.8`, `income = 1.0`, the cell value settles at **1.75**.
+
+The difference `1.75 - 1.6 = 0.15` is the margin that decides whether a second
+organism can live on the same cell. It gets `1.75 - 1.0 = 0.75`, and its net after
+`need`, `move_cost` and damage is `+0.09`; on a cell that has fallen back to
+`M*r = 1.6` it gets `0.6` and its net is `-0.06`. That is why the field holds
+about 48 organisms and not `cells * k_max = 80`.
+See `docs/FINDING-capacity-is-about-48.md`. -/
+theorem settles_at_one_point_seven_five :
+    cellStep 2 (4 / 5) 1 (7 / 4) = 7 / 4 := by
+  unfold cellStep
+  norm_num
 
 /-- **A uniform field stays uniform** when every cell takes the same amount.
 

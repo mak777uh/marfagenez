@@ -1,0 +1,177 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-59",
+  "run_id": "run-2026-11-13T01-37-10",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {},
+  "arithmetic": {
+    "formula_c_single": "M + income - income/r",
+    "c_single": 1.75,
+    "t_first": 1.0,
+    "t_second": 0.75,
+    "net_single": 0.34,
+    "net_second": 0.09,
+    "net_floor": -0.06,
+    "k_max": 2,
+    "static_bound": 80
+  },
+  "conditions": {
+    "10": {
+      "label": "n=10",
+      "metrics": {
+        "n": 10,
+        "alive": 10,
+        "cells_used": 10,
+        "max_crowd": 1,
+        "survived_frac": 1.0,
+        "hash": "c70916947e6181fa"
+      },
+      "hash": "c70916947e6181fa"
+    },
+    "20": {
+      "label": "n=20",
+      "metrics": {
+        "n": 20,
+        "alive": 20,
+        "cells_used": 20,
+        "max_crowd": 1,
+        "survived_frac": 1.0,
+        "hash": "2fa3bb704b559dce"
+      },
+      "hash": "2fa3bb704b559dce"
+    },
+    "30": {
+      "label": "n=30",
+      "metrics": {
+        "n": 30,
+        "alive": 30,
+        "cells_used": 30,
+        "max_crowd": 1,
+        "survived_frac": 1.0,
+        "hash": "c01a78c0699b208b"
+      },
+      "hash": "c01a78c0699b208b"
+    },
+    "40": {
+      "label": "n=40",
+      "metrics": {
+        "n": 40,
+        "alive": 40,
+        "cells_used": 40,
+        "max_crowd": 1,
+        "survived_frac": 1.0,
+        "hash": "4405d70c5746d995"
+      },
+      "hash": "4405d70c5746d995"
+    },
+    "50": {
+      "label": "n=50",
+      "metrics": {
+        "n": 50,
+        "alive": 47,
+        "cells_used": 40,
+        "max_crowd": 2,
+        "survived_frac": 0.94,
+        "hash": "cd4060cc2136f0ee"
+      },
+      "hash": "cd4060cc2136f0ee"
+    },
+    "60": {
+      "label": "n=60",
+      "metrics": {
+        "n": 60,
+        "alive": 48,
+        "cells_used": 40,
+        "max_crowd": 2,
+        "survived_frac": 0.8,
+        "hash": "b9e0d65f965f4949"
+      },
+      "hash": "b9e0d65f965f4949"
+    },
+    "70": {
+      "label": "n=70",
+      "metrics": {
+        "n": 70,
+        "alive": 47,
+        "cells_used": 40,
+        "max_crowd": 2,
+        "survived_frac": 0.6714285714285714,
+        "hash": "4512b36c1f4927a4"
+      },
+      "hash": "4512b36c1f4927a4"
+    },
+    "80": {
+      "label": "n=80",
+      "metrics": {
+        "n": 80,
+        "alive": 46,
+        "cells_used": 40,
+        "max_crowd": 2,
+        "survived_frac": 0.575,
+        "hash": "4cbee3bc20bbc1cd"
+      },
+      "hash": "4cbee3bc20bbc1cd"
+    },
+    "120": {
+      "label": "n=120",
+      "metrics": {
+        "n": 120,
+        "alive": 46,
+        "cells_used": 40,
+        "max_crowd": 2,
+        "survived_frac": 0.38333333333333336,
+        "hash": "f1509b8dc906b898"
+      },
+      "hash": "f1509b8dc906b898"
+    },
+    "160": {
+      "label": "n=160",
+      "metrics": {
+        "n": 160,
+        "alive": 42,
+        "cells_used": 40,
+        "max_crowd": 2,
+        "survived_frac": 0.2625,
+        "hash": "d4f5920dd352d824"
+      },
+      "hash": "d4f5920dd352d824"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "peak alive 48 against static bound 80; the bound is unreached"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "for n <= cells every organism survives: n=10 alive=10, n=20 alive=20, n=30 alive=30, n=40 alive=40"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "for n > cells alive ranges 42..48 (spread 6), strictly between 40 and 80"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "capacity saturates at 42-48 for n > 40, not at the static bound 80"
+  },
+  "hashes": {
+    "10": "c70916947e6181fa",
+    "20": "2fa3bb704b559dce",
+    "30": "c01a78c0699b208b",
+    "40": "4405d70c5746d995",
+    "50": "cd4060cc2136f0ee",
+    "60": "b9e0d65f965f4949",
+    "70": "4512b36c1f4927a4",
+    "80": "4cbee3bc20bbc1cd",
+    "120": "f1509b8dc906b898",
+    "160": "d4f5920dd352d824"
+  },
+  "limitations": [
+    "The saturation value is an upper estimate: the 10M-step run showed the count still drifting down by one or two. The experiment does not identify which cells admit a second occupant, and it does not separate the move cost from the damage cost as the reason the second occupant fails."
+  ],
+  "command": "python3 checks/exp59_capacity_sweep.py",
+  "created_at": "2026-11-13T01:37:10.197333+00:00"
+}
