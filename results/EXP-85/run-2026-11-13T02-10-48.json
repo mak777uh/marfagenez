@@ -1,0 +1,238 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-85",
+  "run_id": "run-2026-11-13T02-10-48",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 4,
+    "rich": 2.4,
+    "poor": 1.6,
+    "income": 1.0,
+    "maintenance": 0.6,
+    "damage_rate": 0.05,
+    "repair_cost": 1.5,
+    "capacity": 10.0,
+    "start_energy": 1.0,
+    "steps": 400
+  },
+  "arithmetic": {
+    "law": "L* = M - income*(1-regrow)/regrow  (0 < regrow < 1, L* >= 0)",
+    "M": 2.4,
+    "income": 1.0,
+    "regrow_A": 0.8,
+    "L*_A": 2.15,
+    "regrow_B": 1.0,
+    "L*_B": 2.4,
+    "regrow_C": 0.0,
+    "L*_C": "regrow 0 leaves (M - income) forever: the cell empties",
+    "regrow_D": 0.8,
+    "income_D": 2.0,
+    "L*_D": 1.9,
+    "threshold": "L* >= 0  <=>  income <= M*regrow = 1.92",
+    "note": "the same threshold as Capacity.lean's 0 <= c*"
+  },
+  "conditions": {
+    "A": {
+      "label": "rich cell 0, regrow 0.8, income 1.0, 400 steps",
+      "metrics": {
+        "regrow": 0.8,
+        "income": 1.0,
+        "start_cell": 0,
+        "cells": [
+          0
+        ],
+        "alive": [
+          true
+        ],
+        "energy": [
+          10.0
+        ],
+        "field": [
+          2.15,
+          1.6,
+          2.4,
+          1.6
+        ],
+        "taken": [
+          1.0
+        ],
+        "frames": 1
+      },
+      "hash": "2a4631810a737290"
+    },
+    "B": {
+      "label": "rich cell 0, regrow 1.0, income 1.0, 400 steps",
+      "metrics": {
+        "regrow": 1.0,
+        "income": 1.0,
+        "start_cell": 0,
+        "cells": [
+          0
+        ],
+        "alive": [
+          true
+        ],
+        "energy": [
+          10.0
+        ],
+        "field": [
+          2.4,
+          1.6,
+          2.4,
+          1.6
+        ],
+        "taken": [
+          1.0
+        ],
+        "frames": 1
+      },
+      "hash": "3de031810a737290"
+    },
+    "C": {
+      "label": "rich cell 0, regrow 0.0, income 1.0, 400 steps",
+      "metrics": {
+        "regrow": 0.0,
+        "income": 1.0,
+        "start_cell": 0,
+        "cells": [
+          0
+        ],
+        "alive": [
+          false
+        ],
+        "energy": [
+          0.0
+        ],
+        "field": [
+          0.0,
+          1.6,
+          2.4,
+          1.6
+        ],
+        "taken": [
+          0.0
+        ],
+        "frames": 1
+      },
+      "hash": "65eb6d67bb938742"
+    },
+    "D": {
+      "label": "rich cell 0, regrow 0.8, income 2.0 (> M*r = 1.92), 400 steps",
+      "metrics": {
+        "regrow": 0.8,
+        "income": 2.0,
+        "start_cell": 0,
+        "cells": [
+          0
+        ],
+        "alive": [
+          true
+        ],
+        "energy": [
+          10.0
+        ],
+        "field": [
+          1.92,
+          1.6,
+          2.4,
+          1.6
+        ],
+        "taken": [
+          1.92
+        ],
+        "frames": 1
+      },
+      "hash": "08428c70a87a5f1b"
+    }
+  },
+  "series": {
+    "A": {
+      "steps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "values": [
+        2.15,
+        1.6,
+        2.4,
+        1.6
+      ]
+    },
+    "B": {
+      "steps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "values": [
+        2.4,
+        1.6,
+        2.4,
+        1.6
+      ]
+    },
+    "C": {
+      "steps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "values": [
+        0.0,
+        1.6,
+        2.4,
+        1.6
+      ]
+    },
+    "D": {
+      "steps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "values": [
+        1.92,
+        1.6,
+        2.4,
+        1.6
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A (regrow 0.8) settles at 2.150000, strictly below the ceiling 2.40. A cell eaten every step and regrown at 0.8 cannot stay at its ceiling."
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "B (regrow 1.0) settles at 2.400000, exactly the ceiling 2.40. A complete regrowth hides the meal."
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "B - A = 0.250000 and income*(1-regrow)/regrow = 0.250000. The prediction has no free parameter: it is the meal times the fraction the regrowth does not restore, divided by that same fraction."
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "the settled level does not follow M - income*(1-regrow)/regrow: A reads 2.150000 (predicted 2.150000), B reads 2.400000 (predicted 2.400000), C reads 0.000000 (predicted 0), D reads 1.920000 (predicted 0). EXPLAINED: arms A, B and C match the law exactly, so the law is not what failed. D is the arm where income (2.0) exceeds the threshold M*regrow (1.92), and there the arithmetic predicted the cell would empty. It did not: it settled at 1.92, which is exactly M*regrow, not the law's value 1.9. The law assumes the organism takes `income` from the cell and the cell then regrows; when the cell cannot supply `income`, `Field::take` returns only what is there (min(cell, amount)), so the organism removes the whole stock and the cell regrows from zero. The measured 1.92 is the fixed point of that second regime -- take-everything-then-regrow -- which is a different law from the one under test. The prediction missed because the threshold was crossed, not because the arithmetic was wrong."
+  },
+  "hashes": {
+    "A": "2a4631810a737290",
+    "B": "3de031810a737290",
+    "C": "65eb6d67bb938742",
+    "D": "08428c70a87a5f1b"
+  },
+  "limitations": [
+    "One organism on one rich cell. It measures the settled level of a cell, not the capacity of a field: how many organisms can live on this level is a different question and is not touched here.",
+    "The law assumes the organism eats `income` every step and never moves. A moving organism samples several cells and the level it leaves behind depends on its path; EXP-66's 2.15 on a full ring is the same law but reached by a different route.",
+    "`income > M*regrow` empties the cell, but this experiment does not follow the organism after that. Whether it starves or finds another cell is the subject of the capacity experiments."
+  ],
+  "command": "python3 checks/exp85_where_a_fed_on_cell_settles.py",
+  "created_at": "2026-11-13T02:10:48.114686+00:00"
+}

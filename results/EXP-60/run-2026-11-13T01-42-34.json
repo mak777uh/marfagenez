@@ -1,0 +1,99 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-60",
+  "run_id": "run-2026-11-13T01-42-34",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {},
+  "arithmetic": {
+    "formula_c_star": "M + income - income/r",
+    "c_star": 1.75,
+    "after_take": 0.75,
+    "after_one_regrow": 1.75,
+    "regrow_restores_cell": true,
+    "consequence": "a cell can feed a new organism every step",
+    "static_bound": 80,
+    "baseline_budget": 3,
+    "cells": 40
+  },
+  "conditions": {
+    "budget3_n80": {
+      "label": "read_budget=3, n=80",
+      "metrics": {
+        "alive": 46,
+        "cells_used": 40,
+        "max_crowd": 2,
+        "survived_frac": 0.575
+      },
+      "hash": "4cbee3bc20bbc1cd"
+    },
+    "budget40_n80": {
+      "label": "read_budget=40, n=80",
+      "metrics": {
+        "alive": 46,
+        "cells_used": 40,
+        "max_crowd": 2,
+        "survived_frac": 0.575
+      },
+      "hash": "4cbee3bc20bbc1cd"
+    },
+    "budget80_n80": {
+      "label": "read_budget=80, n=80",
+      "metrics": {
+        "alive": 46,
+        "cells_used": 40,
+        "max_crowd": 2,
+        "survived_frac": 0.575
+      },
+      "hash": "4cbee3bc20bbc1cd"
+    },
+    "budget40_n40": {
+      "label": "read_budget=40, n=40",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "max_crowd": 1,
+        "survived_frac": 1.0
+      },
+      "hash": "4405d70c5746d995"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "budget40 alive=46 vs budget3 alive=46: expected at least +10, got 0"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "n=40 budget=40 alive=40: expected 40 (no crowding), got 40"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "budget40 alive=46: expected strictly between 40 and 80, got 46"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "The controls did not agree with the read-budget story. See the control messages for which one broke."
+  },
+  "hashes": {
+    "budget3_n80": "4cbee3bc20bbc1cd",
+    "budget40_n80": "4cbee3bc20bbc1cd",
+    "budget80_n80": "4cbee3bc20bbc1cd",
+    "budget40_n40": "4405d70c5746d995"
+  },
+  "limitations": [
+    "The controls did not agree with the read-budget story. See the control messages for which one broke.",
+    "expected_coincident declared after the run: read_budget does not reach the trace: all three budgets produce the same run. The collision is the finding, not a false contrast."
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --policy sighted --field uniform --cells 40 --steps 200000",
+  "created_at": "2026-11-13T01:42:34.383909+00:00",
+  "expected_coincident": [
+    [
+      "budget3_n80",
+      "budget40_n80",
+      "budget80_n80"
+    ]
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-64",
+  "run_id": "run-2026-11-13T01-51-27",
+  "model_commit": "unknown",
+  "seed": 7,
+  "parameters": {},
+  "arithmetic": {
+    "step_cost": "need + move_cost + damage*repair = 0.6 + 0.05 + 0.01 = 0.66",
+    "step_cost_no_move": "0.6 + 0.01 = 0.61",
+    "poor_cell_take_at_1.6": "min(1.6, income 1.0) = 1.0",
+    "gradient_span": "2.4 - 1.6 = 0.8 over 40 cells = 0.02 per cell",
+    "steps_to_cross_gradient": "0.8 / 0.02 = 40 steps",
+    "alternating_step": "every rich cell is 1 step from a poor cell",
+    "food_ceiling": "cells * M * r = 40 * 1.6 = 64 per round"
+  },
+  "conditions": {
+    "g0.00": {
+      "label": "gradient, move_cost 0.00",
+      "metrics": {
+        "alive": 31,
+        "doubled_cells": 1,
+        "moving_at_end": 19,
+        "alive_at_half": 31
+      },
+      "hash": "776a11024176b726"
+    },
+    "g0.05": {
+      "label": "gradient, move_cost 0.05",
+      "metrics": {
+        "alive": 33,
+        "doubled_cells": 3,
+        "moving_at_end": 21,
+        "alive_at_half": 33
+      },
+      "hash": "a2762663097c1ab7"
+    },
+    "g0.20": {
+      "label": "gradient, move_cost 0.20",
+      "metrics": {
+        "alive": 34,
+        "doubled_cells": 2,
+        "moving_at_end": 25,
+        "alive_at_half": 34
+      },
+      "hash": "0c932a0d8638f351"
+    },
+    "a0.00": {
+      "label": "alternating, move_cost 0.00",
+      "metrics": {
+        "alive": 60,
+        "doubled_cells": 20,
+        "moving_at_end": 0,
+        "alive_at_half": 60
+      },
+      "hash": "6fab226a3d3c36e5"
+    },
+    "a0.05": {
+      "label": "alternating, move_cost 0.05",
+      "metrics": {
+        "alive": 60,
+        "doubled_cells": 20,
+        "moving_at_end": 0,
+        "alive_at_half": 60
+      },
+      "hash": "6fab226a3d3c36e5"
+    },
+    "a0.20": {
+      "label": "alternating, move_cost 0.20",
+      "metrics": {
+        "alive": 60,
+        "doubled_cells": 20,
+        "moving_at_end": 0,
+        "alive_at_half": 60
+      },
+      "hash": "6fab226a3d3c36e5"
+    },
+    "u0.20-n40": {
+      "label": "uniform, move_cost 0.20, n=40",
+      "metrics": {
+        "alive": 40,
+        "doubled_cells": 0,
+        "moving_at_end": 0
+      },
+      "hash": "ba876e1f4c10ee39"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "at move_cost 0.00 gradient 31 vs alternating 60 (gap 29); at 0.05 gradient 33 vs alternating 60 (gap 27). A free step should shrink the gap if distance is what hurts the gradient."
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "uniform n=40 at move_cost 0.20: 40 alive, 0 doubled"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "gradient falls -3 (from 31 to 34) as move_cost goes 0.00 -> 0.20; alternating falls 0 (from 60 to 60). Account B predicts the gradient is hurt more."
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "controls failed: fires, specific"
+  },
+  "hashes": {
+    "g0.00": "776a11024176b726",
+    "g0.05": "a2762663097c1ab7",
+    "g0.20": "0c932a0d8638f351",
+    "a0.00": "6fab226a3d3c36e5",
+    "a0.05": "6fab226a3d3c36e5",
+    "a0.20": "6fab226a3d3c36e5",
+    "u0.20-n40": "ba876e1f4c10ee39"
+  },
+  "limitations": [
+    "move_cost also changes how many organisms can afford to move at all, so a fall in alive count is not attributable to distance alone.",
+    "One seed and 50k steps. EXP-63 showed a population can still be falling at 20k, so these counts may not be steady states.",
+    "The gradient and alternating fields differ in shape, not only in distance: the gradient's rich cells are contiguous, the alternating field's are isolated. The two accounts cannot be fully separated by move_cost alone.",
+    "expected_coincident declared after the run: move_cost does not reach the trace either: the three arms coincide, which is the finding."
+  ],
+  "command": "trace --policy sighted --cells 40 --steps 50000 --field {gradient,alternating} --move-cost {0.0,0.05,0.20}",
+  "created_at": "2026-11-13T01:51:27.228919+00:00",
+  "expected_coincident": [
+    [
+      "a0.00",
+      "a0.05",
+      "a0.20"
+    ]
+  ]
+}

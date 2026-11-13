@@ -1,0 +1,270 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-80",
+  "run_id": "run-2026-11-13T02-07-35",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 4,
+    "rich": 2.4,
+    "poor": 1.6,
+    "regrow": 0.8,
+    "income": 1.0,
+    "maintenance": 0.6,
+    "damage_rate": 0.05,
+    "repair_cost": 1.5,
+    "capacity": 10.0,
+    "start_energy": 1.0,
+    "steps": 10
+  },
+  "arithmetic": {
+    "surplus_per_step": 0.325,
+    "cap": 10.0,
+    "start": 1.0,
+    "steps": 10,
+    "uncapped_gain": 4.25,
+    "capped": false,
+    "predicted_ratio_0p30_over_0p05": 5.999999999999999,
+    "note": "at the cap the surplus 0.325 per step swamps any move_cost below 0.325, so every energy reading at the cap is blind to move_cost. Starting at 1.0 and stopping at 10 steps keeps the arm below the cap."
+  },
+  "conditions": {
+    "A": {
+      "label": "sighted, move_cost 0.00, 10 steps from 1.00",
+      "metrics": {
+        "energy_start": 1.325,
+        "energy_end": 4.25,
+        "moves": 0,
+        "alive_end": true,
+        "cells": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "hash": "79ddfb89102f43e9"
+    },
+    "B": {
+      "label": "sighted, move_cost 0.05, 10 steps from 1.00",
+      "metrics": {
+        "energy_start": 1.325,
+        "energy_end": 4.25,
+        "moves": 0,
+        "alive_end": true,
+        "cells": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "hash": "79ddfb89102f43e9"
+    },
+    "C": {
+      "label": "sighted, move_cost 0.30, 10 steps from 1.00",
+      "metrics": {
+        "energy_start": 1.325,
+        "energy_end": 4.25,
+        "moves": 0,
+        "alive_end": true,
+        "cells": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "hash": "79ddfb89102f43e9"
+    },
+    "D": {
+      "label": "stay, move_cost 0.00, 10 steps from 1.00",
+      "metrics": {
+        "energy_start": 1.325,
+        "energy_end": 4.25,
+        "moves": 0,
+        "alive_end": true,
+        "cells": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "hash": "79ddfb89102f43e9"
+    }
+  },
+  "series": {
+    "A": {
+      "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "values": [
+        1.325,
+        1.65,
+        1.975,
+        2.3,
+        2.625,
+        2.95,
+        3.275,
+        3.6,
+        3.925,
+        4.25
+      ]
+    },
+    "B": {
+      "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "values": [
+        1.325,
+        1.65,
+        1.975,
+        2.3,
+        2.625,
+        2.95,
+        3.275,
+        3.6,
+        3.925,
+        4.25
+      ]
+    },
+    "C": {
+      "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "values": [
+        1.325,
+        1.65,
+        1.975,
+        2.3,
+        2.625,
+        2.95,
+        3.275,
+        3.6,
+        3.925,
+        4.25
+      ]
+    },
+    "D": {
+      "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "values": [
+        1.325,
+        1.65,
+        1.975,
+        2.3,
+        2.625,
+        2.95,
+        3.275,
+        3.6,
+        3.925,
+        4.25
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "E(stay, mc 0.00) - E(sighted, mc 0.05) = 0.000000. It must be strictly positive: the charge has to be visible below the cap."
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "E(stay, mc 0.00) - E(sighted, mc 0.00) = 0.000000. A free move must cost nothing, so this must be exactly zero."
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "gap(0.30) / gap(0.05) = undefined, predicted 6.00. The charge must be linear in move_cost and applied once per move: a ratio of 1.00 would mean once per step, 30.00 would mean quadratic, 0.00 would mean saturated."
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "the gap between the stay arm and the moving arm is 0.000000 even below the cap, so `move_cost` is not charged at all. Every reading in this project that used move_cost as a treatment is void."
+  },
+  "hashes": {
+    "A": "79ddfb89102f43e9",
+    "B": "79ddfb89102f43e9",
+    "C": "79ddfb89102f43e9",
+    "D": "79ddfb89102f43e9"
+  },
+  "limitations": [
+    "The move fraction `f` is measured, not predicted. The ratio 6.00 holds only if `f` is the same at move_cost 0.05 and 0.30, which it is here because `Sighted` decides on the field and not on its own energy. A policy that reads its own energy would break the ratio.",
+    "Ten steps on a four-cell ring. A longer run reaches the cap and the charge disappears again, so this measures the charge and not its long-run effect.",
+    "This does not say whether the charge is applied before or after eating inside the step. It says it is applied once.",
+    "expected_coincident declared after the run: move_cost is not charged at all in these arms, so all four are one run. That is exactly what the run reports."
+  ],
+  "command": "python3 checks/exp80_where_can_the_move_cost_be_seen.py",
+  "created_at": "2026-11-13T02:07:35.282847+00:00",
+  "expected_coincident": [
+    [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  ]
+}

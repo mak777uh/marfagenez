@@ -44,8 +44,16 @@
   "limitations": [
     "One seed (20250101) and one field pair. The claim is about which shares exist and their size, not about how often each occurs.",
     "The queue order is inferred from take() being sequential, not observed. The trace records the share, not the position in the queue.",
-    "This does not explain why the queue length is 25, nor why E_max 9 and 10 show no late deaths."
+    "This does not explain why the queue length is 25, nor why E_max 9 and 10 show no late deaths.",
+    "expected_coincident declared after the run: read_budget does not reach the trace: all three budgets produce the same run. The collision is the finding, not a false contrast."
   ],
   "command": "checks/exp60_second_share_is_the_leftover.py",
-  "created_at": "2026-11-12T22:28:35.836438+00:00"
+  "created_at": "2026-11-12T22:28:35.836438+00:00",
+  "expected_coincident": [
+    [
+      "budget3_n80",
+      "budget40_n80",
+      "budget80_n80"
+    ]
+  ]
 }

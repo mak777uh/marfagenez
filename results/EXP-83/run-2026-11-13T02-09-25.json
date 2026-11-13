@@ -1,0 +1,191 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-83",
+  "run_id": "run-2026-11-13T02-09-25",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 4,
+    "rich": 2.4,
+    "poor": 1.6,
+    "income": 1.0,
+    "maintenance": 0.6,
+    "damage_rate": 0.05,
+    "repair_cost": 1.5,
+    "capacity": 10.0,
+    "start_energy": 1.0,
+    "steps": 1
+  },
+  "arithmetic": {
+    "built_alternating": [
+      2.4,
+      1.6,
+      2.4,
+      1.6
+    ],
+    "ceil": [
+      2.4,
+      1.6,
+      2.4,
+      1.6
+    ],
+    "income": 1.0,
+    "organism_cell": 0,
+    "after_meal_cell0": 1.4,
+    "regrow_0.8_level0": 2.2,
+    "regrow_0.0_level0": 1.4,
+    "regrow_1.0_level0": 2.4,
+    "visible_drop_at_0.8": -0.19999999999999973,
+    "note": "the visible drop after eating income from a rich cell is -(1 - regrow) * income, not -income"
+  },
+  "conditions": {
+    "A": {
+      "label": "alternating 2.4/1.6, regrow 0.8, 1 step, stay on cell 0",
+      "metrics": {
+        "regrow": 0.8,
+        "levels_frame0": [
+          2.2,
+          1.6,
+          2.4,
+          1.6
+        ],
+        "organism_cells": [
+          0
+        ],
+        "taken": [
+          1.0
+        ]
+      },
+      "hash": "4f91d517f03ddec3"
+    },
+    "B": {
+      "label": "alternating 2.4/1.6, regrow 0.0, 1 step, stay on cell 0",
+      "metrics": {
+        "regrow": 0.0,
+        "levels_frame0": [
+          1.4,
+          1.6,
+          2.4,
+          1.6
+        ],
+        "organism_cells": [
+          0
+        ],
+        "taken": [
+          1.0
+        ]
+      },
+      "hash": "7fc358932dccaaf7"
+    },
+    "C": {
+      "label": "alternating 2.4/1.6, regrow 1.0, 1 step, stay on cell 0",
+      "metrics": {
+        "regrow": 1.0,
+        "levels_frame0": [
+          2.4,
+          1.6,
+          2.4,
+          1.6
+        ],
+        "organism_cells": [
+          0
+        ],
+        "taken": [
+          1.0
+        ]
+      },
+      "hash": "6dab4fab4e036c36"
+    },
+    "D": {
+      "label": "alternating 2.4/1.6, regrow 0.8, 1 step, stay on cell 1 (poor)",
+      "metrics": {
+        "regrow": 0.8,
+        "levels_frame0": [
+          2.2,
+          1.6,
+          2.4,
+          1.6
+        ],
+        "organism_cells": [
+          0
+        ],
+        "taken": [
+          1.0
+        ]
+      },
+      "hash": "4f91d517f03ddec3"
+    }
+  },
+  "series": {
+    "A": {
+      "steps": [
+        0
+      ],
+      "values": [
+        2.2
+      ]
+    },
+    "B": {
+      "steps": [
+        0
+      ],
+      "values": [
+        1.4
+      ]
+    },
+    "C": {
+      "steps": [
+        0
+      ],
+      "values": [
+        2.4
+      ]
+    },
+    "D": {
+      "steps": [
+        0
+      ],
+      "values": [
+        2.2
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "B (regrow 0.0) shows cell 0 at 1.400000; with no regrowth the eaten cell must stay eaten at 1.400000."
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "C (regrow 1.0) shows cell 0 at 2.400000; a full regrowth must restore the ceiling 2.400000 and hide the meal completely."
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "A (regrow 0.8) shows cell 0 at 2.200000 (predicted 2.2 = 1.4 + 0.8*1.0) and D shows the poor cell 1 at 1.600000 (predicted 1.4 = 0.6 + 0.8*1.0). The echo tracks regrow exactly, so it is a post-meal post-regrowth reading."
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "the echo does not track regrow as the arithmetic says: regrow 0.0 gives 1.400000 (predicted 1.400000), 0.8 gives 2.200000 (predicted 2.2), 1.0 gives 2.400000 (predicted 2.400000), and the poor cell gives 1.600000 (predicted 1.4). The frame is not simply post-regrowth."
+  },
+  "hashes": {
+    "A": "4f91d517f03ddec3",
+    "B": "7fc358932dccaaf7",
+    "C": "6dab4fab4e036c36",
+    "D": "4f91d517f03ddec3"
+  },
+  "limitations": [
+    "One step on four cells. It shows that the first frame is post-regrowth; it does not measure how much food is really in the field over a run.",
+    "It does not say the ordering is wrong. Eat-then-regrow is a choice, and the same choice that puts the cap after the spend. It says the trace cannot show the meal, so a claim about depletion has to be made from `taken` and not from the field.",
+    "`--regrow 1.0` restores the ceiling every step, so the field is a constant and the organisms never deplete anything. That arm is a control, not a world.",
+    "expected_coincident declared after the run: A and D are the same run by construction."
+  ],
+  "command": "python3 checks/exp83_the_frame_is_taken_after_the_regrowth.py",
+  "created_at": "2026-11-13T02:09:25.570633+00:00",
+  "expected_coincident": [
+    [
+      "A",
+      "D"
+    ]
+  ]
+}
