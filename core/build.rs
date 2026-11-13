@@ -20,11 +20,11 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 
 fn main() {
-    println!("cargo:rerun-if-changed=../laws/FFI.lean");
+    println!("cargo:rerun-if-changed=../laws/Legacy/FFI.lean");
     println!("cargo:rerun-if-changed=build.rs");
 
     let out_dir = PathBuf::from(env::var("OUT_DIR").expect("OUT_DIR"));
-    let laws_dir = Path::new("../laws");
+    let laws_dir = Path::new("../laws/Legacy");
 
     let lean = match find_lean() {
         Some(p) => p,

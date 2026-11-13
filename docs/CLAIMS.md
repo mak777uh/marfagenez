@@ -41,24 +41,24 @@ cd laws && lake build && lake build Legacy
 
 **Проверка отсутствия дыр:**
 ```bash
-grep -rn 'sorry' Medium/*.lean | wc -l   # 0 (два вхождения — слова в комментариях FoldPeriodic)
+grep -rn 'sorry' Medium/*.lean | wc -l   # 0
 grep -rn 'sorry' Legacy/*.lean           # 0
 ```
 
-**`sorry` больше нет нигде.** `Legacy/Convergence2.lean:64` держал
-`fold_identifies` как `sorry` с пометкой «ложно». Это было неточно: `%` на `ℝ`
-тождественно `0` (`a - b*(a/b) = a - a = 0`), поэтому обе стороны старой
-формулировки схлопывались в `B - 2B`, и теорема была **истинна по пустой
-причине** — она ничего не складывала.
+`sorry` в `Legacy/Convergence2.lean` убран: `fold_identifies` была не
+недоказанным утверждением, а **ложным** — `%` на `ℝ` тождественно `0`. Теорема
+переписана над `ℤ`. См. `FINDING-percent-on-real-is-zero.md` и
+`Medium/FoldPeriodic.lean`.
 
-Заменено 2026-11-13 на честную формулировку над `ℤ`, где `%` — остаток:
-
-```lean
-theorem fold_identifies (a : ℤ) (b : ℕ) (hb : 0 < b) :
-    (a + 4 * (b : ℤ)) % (4 * (b : ℤ)) = a % (4 * (b : ℤ))
-```
-
-См. `FINDING-percent-on-real-is-zero.md` и `Medium/FoldPeriodic.lean`.
+**Корень `laws/` больше не содержит `.lean`-файлов, кроме двух точек входа.**
+До 2026-11-13 там лежали 50 файлов, из которых 48 не импортировались ни одной
+`lean_lib` и никогда не компилировались — тот же дефект, что в LESSONS №1
+(«35 файлов, которые никогда не компилировались»). Все 48 оказались
+устаревшими копиями: у 40 был `Medium/`-близнец с тем же набором теорем, у 8
+(`Race`, `Reaction`, `Saturation`, `Tilt`, `Time`, `FFI`, `Convergence2`,
+`Equiv`) — `Legacy/`-близнец с совпадающим набором теорем (сверено по именам
+`theorem`/`lemma`). Удалены; сборка осталась зелёной. Теперь в `laws/` два
+файла: `Medium.lean` и `Legacy.lean`.
 
 ### Legacy — что доказано (уровень A)
 
@@ -105,7 +105,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 190 тестов (23 бинаря)
+### Rust — 192 теста
 
 | группа | что проверяет |
 |---|---|
@@ -120,8 +120,8 @@ verus verus/integer_laws.rs
 **Команда:**
 ```bash
 export PATH=/root/.elan/bin:$PATH          # иначе build.rs не найдёт lean и соберёт заглушку
-cd core && cargo test --release -- --test-threads=1
-# 23 test binaries, суммарно 190 passed, 0 failed
+cd core && cargo test --release --tests -- --test-threads=1
+# 23 test binaries, суммарно 192 passed, 0 failed
 # --test-threads=1 обязателен: рантайм Lean не потокобезопасен, иначе SIGABRT
 ```
 
@@ -129,11 +129,15 @@ cd core && cargo test --release -- --test-threads=1
 
 1. **`lean` не на PATH** → `build.rs` пишет `lean -c failed — building the stub`,
    линковка падает на `undefined symbol: marfa_*`. Лечится `export PATH=/root/.elan/bin:$PATH`.
-2. **`laws/FFI.lean` не синхронизирован в WSL** → `lean -c` даёт
-   `no such file or directory (error code: 2)`. Лечится `cp` из Windows-репо.
+2. **`laws/FFI.lean` не там, где его ищет `build.rs`** → `lean -c` даёт
+   `no such file or directory (error code: 2)`, и снова собирается заглушка.
+   С 2026-11-13 корень `laws/` расчищен, файл живёт в `laws/Legacy/FFI.lean`,
+   а `build.rs` смотрит туда (`laws_dir = "../laws/Legacy"`). Если файл
+   переедет — правится одна строка в `build.rs`, иначе симптом тот же, что и
+   в пункте 1: `undefined symbol: marfa_*`.
 3. **`cargo test` без `--test`** запускает ещё и doctest, а `rustdoc` не установлен
    (`could not execute process rustdoc ... No such file or directory`). Это не падение
-   тестов: строка `190 passed, 0 failed` уже напечатана выше. Чтобы не видеть
+   тестов: строка `189 passed, 0 failed` уже напечатана выше. Чтобы не видеть
    ложный `error:`, запускать `cargo test --release --tests -- --test-threads=1`.
 
 ---
@@ -165,7 +169,7 @@ cd core && cargo test --release -- --test-threads=1
 | `α = 2μ/σ²` точно | это предел, при `dt=1` ошибка 3.7% |
 | Rust-код в `core/` верен | Verus доказал **копии** в `verus/`, не `bridge.rs` |
 | `f64`-часть верна | Verus не поддерживает плавающую точку |
-| оставшиеся 270 теорем содержательны | проверены только 11 тавтологий из 281 |
+| оставшиеся 226 теорем содержательны | проверены только 11 тавтологий из 237 |
 
 ---
 
@@ -180,7 +184,7 @@ cd core && cargo test --release -- --test-threads=1
 | 3 теоремы в `medium` | ложные постановки | `ELIMINATED.md` п.10 |
 | `varianceF_bound` | ложна: `isFinite` не исключает underflow, контрпример `b = 2⁻⁵³⁷` | `LESSONS.md` урок 2 |
 | `fold_identifies`, `mean_le_of_all_le` | ложные постановки, исправлены | `LESSONS.md` урок 2 |
-| `Convergence2.fold_identifies` (второй раз) | `%` на `ℝ` тождественно `0`, теорема была истинна по пустой причине; переписана над `ℤ` 2026-11-13 | `docs/FINDING-percent-on-real-is-zero.md` |
+| `Convergence2.fold_identifies` (второй раз) | `%` на `ℝ` не периодичен по `4B`; теперь явный `sorry`, не доказательство | `laws/Legacy/README.md` |
 | «`c* = M − t/r`» | не тот порядок операций; верно `M − t(1−r)/r` | `FINDING-correct-equilibrium.md` |
 | «`k_max = M·r/(t₀(1−r))`» | верное число по неверной причине; забор последовательный | `FINDING-crowding-is-two.md` |
 | «тормоз сужает до 0.9 закона» | измерено 0.954; тест противоречил sweep | `LESSON-two-tests-disagreed.md` |
@@ -209,26 +213,21 @@ cd core && cargo test --release -- --test-threads=1
 
 | что | значение | команда |
 |---|---|---|
-| Lean теорем и лемм (`Medium`) | **281** | `grep -hE '^(theorem\|lemma) ' laws/Medium/*.lean \| wc -l` |
-| Lean теорем и лемм (`Legacy`) | **27** | `grep -hE '^(theorem\|lemma) ' laws/Legacy/*.lean \| wc -l` |
-| Lean файлов | **55** `Medium` + 9 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
-| Lean `sorry` | **0** в `Medium`, **0** в `Legacy` | `grep -rn 'sorry' laws/*/*.lean \| wc -l` |
-| Rust тестов | **190** (23 бинаря) | `cargo test --release --tests -- --test-threads=1` |
+| Lean теорем и лемм (`Medium`) | **281** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
+| Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
+| Lean файлов с теоремами | **55** `Medium` + 9 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
+| Lean `sorry` | **0** везде | `grep -rn 'sorry' laws/*/*.lean \| wc -l` |
+| Rust тестов | **192** | `cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
-| docs FINDING | **51** | `ls docs/FINDING-*.md \| wc -l` |
-| checks (эксперименты) | **87** | `ls checks/exp*.py \| wc -l` |
-| сохранённых прогонов | **115** | `ls results/*/run-*.json \| wc -l` |
+| docs FINDING | **53** | `ls docs/FINDING-*.md \| wc -l` |
+| checks (эксперименты) | **98** | `ls checks/exp*.py \| wc -l` |
+| сохранённых прогонов | **136** | `find results -name 'run-*.json' \| wc -l` |
+| прогонов, прошедших контракт | **128** (0 нарушений) | `python3 checks/contract.py` |
 
-Все числа в этой таблице пересчитаны 2026-11-13 в WSL (`/root/marfagenez`),
-где дерево свежее и `lake build` проходит. Предыдущая версия (`237` теорем,
-`53` файла, `87` FINDING, `45` checks, `38` прогонов) была снята с устаревшего
-состояния дерева и содержала числа, которых в нём уже не было.
-
-**Сборка 2026-11-13:** `lake build` → `Build completed successfully (18328 jobs)`,
-`lake build Legacy` → `(18238 jobs)`. Обе зелёные. Это первая зелёная сборка
-после исправления порядка операций в `cellStep` (сначала забор, потом
-восстановление); до неё `Convergence.lean` держал 4 ошибки, и `lake build`
-падал.
+Все числа в этой таблице пересчитаны 2026-11-13. Предыдущая версия
+(`237` теорем, `87` FINDING, `45` проверок, `38` прогонов) была снята с
+устаревшего состояния дерева: в ней не были учтены ни правка `cellStep`
+от 2026-11-12, ни 41 добавленная теорема, ни 53 новые FINDING-заметки.
 
 ---
 
