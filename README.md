@@ -213,35 +213,13 @@ x_{t+1}=R_B(x_t+\mu+\sigma\xi_t)
 
 ## Быстрый старт
 
-### Всё в WSL
-
-**Rust-ядро собирается и запускается только в WSL.** На Windows линковка падает:
-
-```text
-undefined reference to `GetHostNameW'
-collect2.exe: error: ld returned 1 exit status
-```
-
-Это дефект toolchain `x86_64-pc-windows-gnu`, не кода. Поэтому весь проект
-живёт в `/root/marfagenez` внутри WSL.
-
-### Один скрипт — всё
-
-```bash
-wsl -e bash /root/marfagenez/run.sh          # всё: тесты, Lean, эксперименты, экспорт
-wsl -e bash /root/marfagenez/run.sh test     # только тесты Rust
-wsl -e bash /root/marfagenez/run.sh lean     # только сборка Lean
-wsl -e bash /root/marfagenez/run.sh exp      # только эксперименты
-wsl -e bash /root/marfagenez/run.sh export   # только экспорт в визуализатор
-```
-
 ### Требования
 
 - Rust и Cargo;
 - Lean 4 через Elan;
 - GCC для сборки C FFI;
-- Python 3 с NumPy, SciPy, SymPy;
-- Node.js — **только для `checks/verify_all.js` и `checks/audit.js`**.
+- Python 3;
+- Node.js для JavaScript-проверок.
 
 Для математической сборки используется зафиксированный файл `laws/lean-toolchain`.
 
@@ -255,22 +233,22 @@ cd marfagenez
 ### Сборка и тесты Rust
 
 ```bash
-cd core && cargo test --release -- --test-threads=1
+cargo test --manifest-path core/Cargo.toml --release -- --test-threads=1
 ```
 
-Однопоточный режим **обязателен**: Lean runtime не потокобезопасен, при
-параллельном запуске процесс абортится (`SIGABRT`).
+Однопоточный режим важен при использовании Lean runtime в тестах.
+
+Если Lean или необходимые библиотеки отсутствуют, `build.rs` может собрать заглушку FFI. В таком случае Rust-ядро может собраться, но проверки настоящего Lean-моста будут недоступны.
 
 ### Сборка математической части
 
 ```bash
-cd laws && lake build
+cd laws
+lake build
+cd ..
 ```
 
-**Ожидаемый результат:** `Build completed successfully (18326 jobs)`.
-
-`laws/.lake/packages` — симлинк на собранный Mathlib. Если он ведёт на
-несуществующий путь, `lake build` попытается скачать Mathlib заново.
+При первой сборке может потребоваться загрузка и компиляция Mathlib.
 
 ### Запуск базовой модели
 
@@ -310,32 +288,8 @@ cargo run --manifest-path core/Cargo.toml --release --bin trace -- \
 | `--seed` | Начальное значение генератора |
 | `--n` | Количество организмов |
 | `--cells` | Количество ячеек среды |
-| `--capacity` | Максимум энергии |
-| `--damage-rate` | Повреждение за шаг |
-| `--income` | Доход с клетки за шаг |
-| `--maintenance` | Расход на поддержание |
-| `--repair-cost` | Стоимость единицы ремонта |
-| `--move-cost` | Стоимость шага |
-| `--energy` | Стартовая энергия |
 
 Результаты записываются в `results/`.
-
-### Эксперименты по контракту
-
-Каждый эксперимент обязан пройти пять проверок (`AGENTS.md`):
-
-1. арифметика написана **до** прогона;
-2. контроль срабатывает, молчит и специфичен;
-3. каждое плечо пишет хэш динамики;
-4. вердикт из четырёх: `passed`, `failed`, `void`, `insensitive by construction`;
-5. записано «что это не доказывает».
-
-```bash
-python3 checks/exp05_frozen.py   # эксперимент
-python3 checks/contract.py       # проверка всех результатов
-```
-
-`contract.py` возвращает 1, если какой-то результат нарушает контракт.
 
 ### Дополнительные проверки
 

@@ -112,8 +112,10 @@ def main():
                              "leaving costs move_cost. If the surplus is a rotation "
                              "it must fall with move_cost.",
         },
-        arms={"A_free": "move_cost=0.00", "B_paid": "move_cost=0.20",
-              "C_stay": "policy=stay, move_cost=0.00"},
+        arms={"A_free": "move_cost=0.00, random layout",
+              "B_paid": "move_cost=0.20, random layout",
+              "C_stay": "policy=stay, move_cost=0.00, random layout",
+              "D_even": "move_cost=0.00, even layout"},
         seed=1,
         command="python3 checks/exp88_is_the_surplus_a_rotation.py",
         parameters={"M": M, "regrow": R, "cells": CELLS, "income": INCOME,
@@ -123,7 +125,7 @@ def main():
 
     base = [
         "--field", "uniform", "--rich", "2.0", "--poor", "2.0", "--regrow", "0.8",
-        "--cells", str(CELLS), "--n", "160",
+        "--cells", str(CELLS), "--n", "160", "--layout", "random",
         "--income", str(INCOME), "--maintenance", str(MAINTENANCE),
         "--damage-rate", str(DAMAGE), "--repair-cost", str(REPAIR),
         "--capacity", "10", "--energy", "10.0",
@@ -134,6 +136,8 @@ def main():
         ("A_free", ["--policy", "sighted", "--read-budget", "3", "--move-cost", "0.0"]),
         ("B_paid", ["--policy", "sighted", "--read-budget", "3", "--move-cost", "0.2"]),
         ("C_stay", ["--policy", "stay", "--move-cost", "0.0"]),
+        ("D_even", ["--policy", "sighted", "--read-budget", "3", "--move-cost", "0.0",
+                    "--layout", "even"]),
     ]
 
     for key, extra in arms:

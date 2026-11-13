@@ -18,7 +18,7 @@ use std::path::PathBuf;
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::organism::World;
+use medium_core::organism::{ShareProtocol, World};
 use medium_core::trace::record;
 
 fn main() {
@@ -48,6 +48,7 @@ fn main() {
     let mut regrow = 0.8f64;
     let mut read_budget: usize = 0;
     let mut feed = false;
+    let mut share = "sequential".to_string();
     // Even is the default. A random layout is a variable nobody wrote down:
     // EXP-87 read a random placement as an even one and spent three runs on
     // it (docs/FINDING-087). A question about cells needs to know which cell
@@ -181,6 +182,10 @@ fn main() {
                 }
                 start_cells = Some(v);
             }
+            "--share" => {
+                i += 1;
+                share = args.get(i).cloned().unwrap_or(share);
+            }
             "--read-budget" => {
                 i += 1;
                 read_budget = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(read_budget);
@@ -213,6 +218,14 @@ fn main() {
         damage_rate,
         capacity,
         read_budget,
+        share: match share.as_str() {
+            "sequential" => ShareProtocol::Sequential,
+            "proportional" => ShareProtocol::Proportional,
+            other => {
+                eprintln!("unknown --share {other}: use sequential or proportional");
+                std::process::exit(2);
+            }
+        },
     };
     let field = match field_kind.as_str() {
         "alternating" => Field::alternating(cells, rich, poor, regrow),
@@ -358,7 +371,12 @@ fn main() {
     println!("rich:     {}", rich);
     println!("poor:     {}", poor);
     println!("regrow:   {}", regrow);
+    // What the organisms could see. Two runs with the same policy and seed
+    // but different budgets are different experiments, and the header used
+    // to say nothing about it.
+    println!("reads:    {}", read_budget);
     println!("feed:     {}", feed);
+    println!("share:    {}", share);
     println!("steps:    {}", steps);
     println!("frames:   {}", trace.frames.len());
     println!("hash:     {:016x}", trace.hash);

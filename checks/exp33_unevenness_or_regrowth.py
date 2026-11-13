@@ -32,7 +32,7 @@ BIN = ROOT / "core/target/release/trace"
 BASE = ["--steps", "1200", "--every", "1200", "--cells", "120", "--capacity", "10",
         "--damage-rate", "0.2", "--income", "1", "--maintenance", "0.1",
         "--repair-cost", "0.5", "--move-cost", "0.05", "--energy", "5",
-        "--field", "uniform", "--layout", "even", "--n", "240"]
+        "--field", "uniform", "--rich", "2.0", "--poor", "0.2", "--layout", "even", "--n", "240"]
 
 
 def run(extra):

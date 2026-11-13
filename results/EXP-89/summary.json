@@ -1,0 +1,192 @@
+{
+ "A_r80_M20": {
+  "params": {
+   "policy": "stay",
+   "n": 160,
+   "cells": 40,
+   "steps": 4000,
+   "every": 1000,
+   "income": 0.6,
+   "maintenance": 0.6,
+   "move_cost": 0.0,
+   "read_budget": 0,
+   "layout": "even",
+   "regrow": 0.8,
+   "m": 2.0
+  },
+  "hash": "2b7f1da1b0ad3f45",
+  "path": "results/stay/trace-stay-1794552578795.json",
+  "first": {
+   "alive": 80,
+   "crowding": 2.0,
+   "cells_used": 40,
+   "mean_energy": 10.0,
+   "max_cell_load": 2
+  },
+  "last": {
+   "alive": 80,
+   "crowding": 2.0,
+   "cells_used": 40,
+   "mean_energy": 10.0,
+   "max_cell_load": 2
+  },
+  "field_last": [
+   1.7,
+   1.7,
+   1.7,
+   1.7
+  ]
+ },
+ "B_r90_M20": {
+  "params": {
+   "policy": "stay",
+   "n": 160,
+   "cells": 40,
+   "steps": 4000,
+   "every": 1000,
+   "income": 0.6,
+   "maintenance": 0.6,
+   "move_cost": 0.0,
+   "read_budget": 0,
+   "layout": "even",
+   "regrow": 0.9,
+   "m": 2.0
+  },
+  "hash": "38e0908dc69eca45",
+  "path": "results/stay/trace-stay-1794552578935.json",
+  "first": {
+   "alive": 120,
+   "crowding": 3.0,
+   "cells_used": 40,
+   "mean_energy": 10.0,
+   "max_cell_load": 3
+  },
+  "last": {
+   "alive": 120,
+   "crowding": 3.0,
+   "cells_used": 40,
+   "mean_energy": 10.0,
+   "max_cell_load": 3
+  },
+  "field_last": [
+   1.8,
+   1.8,
+   1.8,
+   1.8
+  ]
+ },
+ "C_r95_M20": {
+  "params": {
+   "policy": "stay",
+   "n": 160,
+   "cells": 40,
+   "steps": 4000,
+   "every": 1000,
+   "income": 0.6,
+   "maintenance": 0.6,
+   "move_cost": 0.0,
+   "read_budget": 0,
+   "layout": "even",
+   "regrow": 0.95,
+   "m": 2.0
+  },
+  "hash": "d106493ac7652205",
+  "path": "results/stay/trace-stay-1794552579065.json",
+  "first": {
+   "alive": 120,
+   "crowding": 3.0,
+   "cells_used": 40,
+   "mean_energy": 10.0,
+   "max_cell_load": 3
+  },
+  "last": {
+   "alive": 120,
+   "crowding": 3.0,
+   "cells_used": 40,
+   "mean_energy": 10.0,
+   "max_cell_load": 3
+  },
+  "field_last": [
+   1.905263,
+   1.905263,
+   1.905263,
+   1.905263
+  ]
+ },
+ "D_r80_M30": {
+  "params": {
+   "policy": "stay",
+   "n": 160,
+   "cells": 40,
+   "steps": 4000,
+   "every": 1000,
+   "income": 0.6,
+   "maintenance": 0.6,
+   "move_cost": 0.0,
+   "read_budget": 0,
+   "layout": "even",
+   "regrow": 0.8,
+   "m": 3.0
+  },
+  "hash": "946c5b42f6c6cec5",
+  "path": "results/stay/trace-stay-1794552579228.json",
+  "first": {
+   "alive": 160,
+   "crowding": 4.0,
+   "cells_used": 40,
+   "mean_energy": 10.0,
+   "max_cell_load": 4
+  },
+  "last": {
+   "alive": 160,
+   "crowding": 4.0,
+   "cells_used": 40,
+   "mean_energy": 10.0,
+   "max_cell_load": 4
+  },
+  "field_last": [
+   2.4,
+   2.4,
+   2.4,
+   2.4
+  ]
+ },
+ "E_r90_M30": {
+  "params": {
+   "policy": "stay",
+   "n": 160,
+   "cells": 40,
+   "steps": 4000,
+   "every": 1000,
+   "income": 0.6,
+   "maintenance": 0.6,
+   "move_cost": 0.0,
+   "read_budget": 0,
+   "layout": "even",
+   "regrow": 0.9,
+   "m": 3.0
+  },
+  "hash": "8bb3e6f99288ff05",
+  "path": "results/stay/trace-stay-1794552579380.json",
+  "first": {
+   "alive": 160,
+   "crowding": 4.0,
+   "cells_used": 40,
+   "mean_energy": 10.0,
+   "max_cell_load": 4
+  },
+  "last": {
+   "alive": 160,
+   "crowding": 4.0,
+   "cells_used": 40,
+   "mean_energy": 10.0,
+   "max_cell_load": 4
+  },
+  "field_last": [
+   2.733333,
+   2.733333,
+   2.733333,
+   2.733333
+  ]
+ }
+}

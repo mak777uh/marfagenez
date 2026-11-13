@@ -66,7 +66,7 @@ def run(maintenance, seed=7):
         "alive": len(alive),
         "occupied_cells": len(occupied),
         "crowding": round(crowd, 4),
-        "field_mean": round(sum(fr["cells"]) / len(fr["cells"]), 4),
+        "field_mean": round(sum(fr["field"]) / len(fr["field"]), 4),
         "trace_hash": hashlib.sha256(blob).hexdigest()[:16],
     }
 

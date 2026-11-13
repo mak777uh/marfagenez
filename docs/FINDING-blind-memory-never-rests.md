@@ -118,44 +118,17 @@ strictly more movement than `random`, not the same thing.
 The title of this note is therefore too strong. The measured statement
 is: **with no information, `memory` moves by a coin toss that has no
 "stay" outcome.** Calling it `random` was a guess that the comparison
-refuted. The file is named `FINDING-blind-memory-never-rests.md` for the
-claim that survived, not for the one that did not.
-
-## The comparison, step by step
-
-The claim "the disagreements are all `random` standing still" was a reading
-of two sequences, so it was checked position by position. Same run as above:
-
-```
-step  2: random +0  memory +1   <- random stood still
-step  4: random +0  memory -1   <- random stood still
-step  6: random +0  memory +1   <- random stood still
-step  7: random +0  memory +1   <- random stood still
-step 13: random +0  memory +1   <- random stood still
-step 16: random +0  memory +1   <- random stood still
-step 17: random +0  memory -1   <- random stood still
-step 19: random +0  memory -1   <- random stood still
-step 20: random +0  memory -1   <- random stood still
-step 22: random +0  memory +1   <- random stood still
-```
-
-10 disagreements, 10 of them at a step where `random` returned `0`. Zero
-disagreements where both moved. `random` stood still 10/30 steps, `memory`
-0/30. This is the sharp form of the claim: the two policies differ **only**
-in the stay outcome, not in which way they move when they do move.
+refuted.
 
 ## What to do next
 
 1. Decide whether "no information means random walk" is the intended
    design. If it is, say so in the policy table, because a policy named
    `memory` that never stands still when blind will be misread again.
-2. ~~Make the two coin tosses comparable, or say why they differ.~~
-   Done: the step-by-step comparison above shows the difference is exactly
-   the stay outcome and nothing else. Whether it *should* differ is still
-   open -- the code does not say it was chosen.
-3. ~~Record `read_budget` in the trace header.~~ Done. `Trace` carries
-   `read_budget`, `to_json` writes it, and the `trace` binary prints
-   `reads:`. Both runs above report `reads: 0`, which is the condition the
-   whole note depends on.
+2. Make the two coin tosses comparable, or say why they differ. A blind
+   `memory` that cannot rest will deplete a field faster than a blind
+   `random` that can, and nothing in the code says that was chosen.
+3. Record `read_budget` in the trace header. It is not there now, and
+   every claim in this note depends on it.
 4. The same three questions apply to `Remember`, which has the same coin
    toss. Not measured.

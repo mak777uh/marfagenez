@@ -213,12 +213,13 @@ mod tests {
 
     fn setup(policy: Policy, seed: u64) -> Life {
         let world = World {
-            income: 0.8,
+            income: 1.0,
             maintenance_cost: 0.6,
             repair_cost: 1.5,
-            damage_rate: 0.02,
+            damage_rate: 0.01,
             capacity: 10.0,
             read_budget: 0,
+            share: Default::default(),
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, seed, 300).unwrap()

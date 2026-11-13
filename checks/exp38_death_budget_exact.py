@@ -36,7 +36,7 @@ BIN = ROOT / "core/target/release/trace"
 
 LONE = ["--steps", "60", "--every", "1", "--cells", "120", "--capacity", "10",
         "--damage-rate", "0.2", "--maintenance", "0.1", "--repair-cost", "0.5",
-        "--energy", "5", "--field", "uniform", "--n", "1", "--seed", "1",
+        "--energy", "5", "--field", "uniform", "--rich", "2.0", "--poor", "0.2", "--n", "1", "--seed", "1",
         "--income", "0", "--regrow", "0"]
 
 

@@ -7,7 +7,7 @@ def run(c, steps=6, every=1, seed=20250101):
            '--seed', str(seed), '--n', str(c['n']), '--cells', str(c['cells']),
            '--capacity', str(c['M']), '--regrow', str(c['r']),
            '--income', str(c.get('income',1.0)), '--maintenance', str(c.get('maint',0.6)),
-           '--damage-rate', str(c.get('dmg',0.01)), '--field', 'uniform', '--energy', '10']
+           '--damage-rate', str(c.get('dmg',0.01)), '--field', 'uniform', '--rich', '2.0', '--poor', '0.2', '--energy', '10']
     out = subprocess.run(cmd, capture_output=True, text=True)
     return out.stdout
 

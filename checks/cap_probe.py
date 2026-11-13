@@ -8,7 +8,7 @@ def run_raw(args, tag):
 
 BASE = ['--policy','stay','--steps','6','--every','1','--seed','20250101',
         '--n','40','--cells','40','--regrow','0.8','--income','1.0',
-        '--maintenance','0.6','--damage-rate','0.01','--field','uniform','--energy','10']
+        '--maintenance','0.6','--damage-rate','0.01','--field','uniform', '--rich', '2.0', '--poor', '0.2','--energy','10']
 
 for cap in ['2.0', '1.0', '4.0']:
     out, err = run_raw(BASE + ['--capacity', cap], cap)

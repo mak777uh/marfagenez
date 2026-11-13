@@ -47,6 +47,35 @@ pub struct Organism {
 }
 
 /// The parameters of the world. All are per step.
+/// Who gets what when several organisms stand on one cell.
+///
+/// `Sequential` is the original protocol: organisms are stepped in
+/// index order and each takes `min(income, what is left)`. The first
+/// one on the cell eats first, so adding a `k`-th organism does not
+/// touch the first `k-1`.
+///
+/// `Proportional` splits one `income` among all the organisms on the
+/// cell at once: each gets `income / k`. Adding a `k`-th organism
+/// dilutes everyone, which is what a softmax attention head does when
+/// another key is inserted.
+///
+/// The two give different integer laws for how many organisms a cell
+/// can hold on the SAME resource and the SAME eater. See
+/// `checks/exp99_protocol_capacity.py`.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum ShareProtocol {
+    /// Index order, `min(income, rest)` each.
+    Sequential,
+    /// One `income` split evenly among everyone on the cell.
+    Proportional,
+}
+
+impl Default for ShareProtocol {
+    fn default() -> Self {
+        Self::Sequential
+    }
+}
+
 #[derive(Debug, Clone, Copy)]
 pub struct World {
     /// Energy gained per step when a resource is available.
@@ -62,6 +91,8 @@ pub struct World {
     /// How many cells an organism may read per step. `0` means it sees only the
     /// cell it stands on, which is the old behaviour; `3` lets it compare its
     /// cell with its neighbours before deciding.
+    /// Who gets what when several organisms stand on one cell.
+    pub share: ShareProtocol,
     pub read_budget: usize,
 }
 
@@ -74,6 +105,7 @@ impl Default for World {
             damage_rate: 0.01,
             capacity: 10.0,
             read_budget: 0,
+            share: ShareProtocol::Sequential,
         }
     }
 }
@@ -277,6 +309,7 @@ mod tests {
             damage_rate: 0.1,
             capacity: 10.0,
             read_budget: 0,
+            share: Default::default(),
         };
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 0.0);
@@ -293,6 +326,7 @@ mod tests {
             damage_rate: 1.0,
             capacity: 10.0,
             read_budget: 0,
+            share: Default::default(),
         };
         let mut o = Organism::healthy(0.0).unwrap();
         assert!(!o.step(&world, 0.0));
@@ -332,6 +366,7 @@ mod tests {
             damage_rate: 0.0,
             capacity: 5.0,
             read_budget: 0,
+            share: Default::default(),
         };
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 100.0);

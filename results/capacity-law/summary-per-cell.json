@@ -1,0 +1,102 @@
+[
+ {
+  "M": 2.0,
+  "r": 0.8,
+  "t": 0.6,
+  "mc": 0.1,
+  "per_cell": 3,
+  "capacity": 60,
+  "measured": 60,
+  "ok": true
+ },
+ {
+  "M": 2.0,
+  "r": 0.8,
+  "t": 0.6,
+  "mc": 0.3,
+  "per_cell": 3,
+  "capacity": 60,
+  "measured": 60,
+  "ok": true
+ },
+ {
+  "M": 2.0,
+  "r": 0.9,
+  "t": 0.6,
+  "mc": 0.1,
+  "per_cell": 3,
+  "capacity": 60,
+  "measured": 60,
+  "ok": true
+ },
+ {
+  "M": 3.0,
+  "r": 0.8,
+  "t": 0.6,
+  "mc": 0.1,
+  "per_cell": 4,
+  "capacity": 80,
+  "measured": 80,
+  "ok": true
+ },
+ {
+  "M": 2.0,
+  "r": 0.8,
+  "t": 1.0,
+  "mc": 0.1,
+  "per_cell": 2,
+  "capacity": 40,
+  "measured": 40,
+  "ok": true
+ },
+ {
+  "M": 2.0,
+  "r": 0.8,
+  "t": 1.0,
+  "mc": 0.5,
+  "per_cell": 2,
+  "capacity": 40,
+  "measured": 40,
+  "ok": true
+ },
+ {
+  "M": 2.0,
+  "r": 0.8,
+  "t": 0.2,
+  "mc": 0.1,
+  "per_cell": 8,
+  "capacity": 160,
+  "measured": 160,
+  "ok": true
+ },
+ {
+  "M": 2.0,
+  "r": 0.5,
+  "t": 0.6,
+  "mc": 0.1,
+  "per_cell": 2,
+  "capacity": 40,
+  "measured": 40,
+  "ok": true
+ },
+ {
+  "M": 4.0,
+  "r": 0.8,
+  "t": 0.6,
+  "mc": 0.1,
+  "per_cell": 6,
+  "capacity": 120,
+  "measured": 120,
+  "ok": true
+ },
+ {
+  "M": 4.0,
+  "r": 0.8,
+  "t": 0.9,
+  "mc": 0.1,
+  "per_cell": 4,
+  "capacity": 80,
+  "measured": 80,
+  "ok": true
+ }
+]

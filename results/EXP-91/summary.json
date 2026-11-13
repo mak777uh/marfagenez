@@ -1,0 +1,35 @@
+[
+ {
+  "n": 40,
+  "alive": 40,
+  "level_min": 1.85,
+  "level_max": 1.85,
+  "level_mean": 1.85,
+  "pred_one": 1.25,
+  "pred_two": 0.888889,
+  "hash": "91ccb255548076f5",
+  "path": "results/stay/trace-stay-1794552612410.json"
+ },
+ {
+  "n": 80,
+  "alive": 80,
+  "level_min": 1.7,
+  "level_max": 1.7,
+  "level_mean": 1.7,
+  "pred_one": 1.25,
+  "pred_two": 0.888889,
+  "hash": "e1603b057e9770a5",
+  "path": "results/stay/trace-stay-1794552612516.json"
+ },
+ {
+  "n": 120,
+  "alive": 120,
+  "level_min": 1.6,
+  "level_max": 1.6,
+  "level_mean": 1.6,
+  "pred_one": 1.25,
+  "pred_two": 0.888889,
+  "hash": "7ae463fe355cb4a5",
+  "path": "results/stay/trace-stay-1794552612626.json"
+ }
+]

@@ -37,7 +37,7 @@ fixed point is `M - taken*(1-r)/r`. -/
 theorem cellStepWith_fixed (M r taken : ℝ) (hr : r ≠ 0) (hL : taken ≤ M - taken * (1 - r) / r) :
     cellStepWith M r taken (M - taken * (1 - r) / r) = M - taken * (1 - r) / r := by
   unfold cellStepWith
-  rw [min_eq_right hL]
+  rw [min_eq_left hL]
   field_simp
   ring
 
@@ -58,7 +58,13 @@ theorem emptied_is_stable (M r taken : ℝ) (hL : M * r ≤ taken) :
 /-- The law, in the form EXP-94 tested: for `k` organisms taking `t` each,
 the settled level is `M - k*t*(1-r)/r` while `k*t ≤ M*r`, and `M*r`
 after that. -/
-theorem settled_level (M r t : ℝ) (k : ℕ) (hr : r ≠ 0) (hr1 : r ≤ 1) (ht : 0 ≤ t) :
+theorem kt_one_sub_div_le (a r : ℝ) (hr0 : 0 < r) (hr1 : r ≤ 1) (ha : 0 ≤ a) :
+    a * (1 - r) / r ≤ a := by
+  rw [div_le_iff₀ hr0]
+  have h : (0:ℝ) ≤ a * r := mul_nonneg ha (le_of_lt hr0)
+  nlinarith
+
+theorem settled_level (M r t : ℝ) (k : ℕ) (hr0 : 0 < r) (hr1 : r ≤ 1) (ht : 0 ≤ t) (hM : 0 ≤ M) :
     (k * t ≤ M * r →
       cellStepWith M r (k * t) (M - k * t * (1 - r) / r) = M - k * t * (1 - r) / r) ∧
     (M * r ≤ k * t → cellStepWith M r (k * t) (M * r) = M * r) := by
@@ -67,13 +73,12 @@ theorem settled_level (M r t : ℝ) (k : ℕ) (hr : r ≠ 0) (hr1 : r ≤ 1) (ht
     have hkt : (0:ℝ) ≤ (k:ℝ) * t := by
       have : (0:ℝ) ≤ (k:ℝ) := by exact_mod_cast Nat.zero_le k
       exact mul_nonneg this ht
+    have hkey : (k:ℝ) * t * (1 - r) / r ≤ (k:ℝ) * t :=
+      kt_one_sub_div_le ((k:ℝ) * t) r hr0 hr1 hkt
     have hL : (k:ℝ) * t ≤ M - (k:ℝ) * t * (1 - r) / r := by
-      have hnonneg : (0:ℝ) ≤ (k:ℝ) * t * (1 - r) / r := by
-        apply div_nonneg
-        · nlinarith
-        · linarith
-      linarith
-    exact cellStepWith_fixed M r ((k:ℝ) * t) hr hL
+      have hM0 : (0:ℝ) ≤ M := hM
+      nlinarith [hkey, h, hM0]
+    exact cellStepWith_fixed M r ((k:ℝ) * t) (ne_of_gt hr0) hL
   · intro h
     exact emptied_is_stable M r ((k:ℝ) * t) h
 

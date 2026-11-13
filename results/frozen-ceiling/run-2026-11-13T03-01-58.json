@@ -1,0 +1,131 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "frozen-ceiling",
+  "run_id": "run-2026-11-13T03-01-58",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 1200,
+    "every": 500,
+    "n": 40,
+    "cells": 40,
+    "policy": "stay",
+    "maintenance": 0.6,
+    "repair_cost": 1.5
+  },
+  "arithmetic": {
+    "formula": "capacity",
+    "formula_note": "The clamp runs LAST in Organism::step (commit b4d116e), so the step ends on capacity whenever income covers the spend. The spend does not enter the ceiling; it only decides whether it is reached.",
+    "superseded_formula": "capacity - maintenance - damage_rate * repair_cost",
+    "superseded_note": "That was correct while min(capacity) ran right after the income. The 2026-11-13 run of this experiment failed on it: A measured 100.0 not 99.37, B 10.0 not 9.37, C 10.0 not 9.25. The failure was correct — the code and the text had diverged.",
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "rich_income": 0.8,
+    "predicted": {
+      "A": 100.0,
+      "B": 10.0,
+      "C": 10.0
+    },
+    "balance_on_rich": {
+      "A": 0.17000000000000007,
+      "B": 0.17000000000000007,
+      "C": 0.050000000000000044
+    },
+    "balance_note": "The balance must stay positive or the organism dies before reaching the ceiling. At damage_rate=0.10 the balance is +0.05.",
+    "steps_to_ceiling": {
+      "A": 558.8235294117645,
+      "B": 0.0,
+      "C": 99.99999999999991
+    },
+    "steps_note": "An arm reaches its ceiling only after (ceiling - 5.0) / balance steps. A needs 559 steps; the run is 1200. C needs 100."
+  },
+  "conditions": {
+    "A": {
+      "label": "capacity=100.0",
+      "metrics": {
+        "capacity": 100.0,
+        "damage_rate": 0.02,
+        "alive": 20,
+        "total": 40,
+        "mean_energy": 100.0,
+        "max_energy": 100.0,
+        "energies": [
+          100.0
+        ],
+        "predicted_ceiling": 100.0,
+        "balance_on_rich": 0.17000000000000007,
+        "trace_file": "results/frozen-ceiling/trace-stay-1794538918362.json"
+      },
+      "hash": "1840df8ae41b1029"
+    },
+    "B": {
+      "label": "control (capacity=10.0)",
+      "metrics": {
+        "capacity": 10.0,
+        "damage_rate": 0.02,
+        "alive": 20,
+        "total": 40,
+        "mean_energy": 10.0,
+        "max_energy": 10.0,
+        "energies": [
+          10.0
+        ],
+        "predicted_ceiling": 10.0,
+        "balance_on_rich": 0.17000000000000007,
+        "trace_file": "results/frozen-ceiling/trace-stay-1794538918421.json"
+      },
+      "hash": "d0fd422ddd05dc11"
+    },
+    "C": {
+      "label": "damage_rate=0.10",
+      "metrics": {
+        "capacity": 10.0,
+        "damage_rate": 0.1,
+        "alive": 20,
+        "total": 40,
+        "mean_energy": 10.0,
+        "max_energy": 10.0,
+        "energies": [
+          10.0
+        ],
+        "predicted_ceiling": 10.0,
+        "balance_on_rich": 0.050000000000000044,
+        "trace_file": "results/frozen-ceiling/trace-stay-1794538918486.json"
+      },
+      "hash": "679fa3ec82dd9441"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A: max energy 100.0000 vs its own predicted ceiling 100.0000 — must have REACHED the ceiling, not merely grown past B's"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "B: max energy 10.0000 vs predicted 10.0000 — must match"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "C: ceiling moved by 0.000000 when damage_rate went 0.02 -> 0.10; the formula says 0.000000 because the clamp is last. An income/spend equilibrium would have moved it by 0.120000."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "all three arms sit on their capacity; the ceiling is capacity, not an income/spend equilibrium and not capacity minus the spend"
+  },
+  "hashes": {
+    "A": "1840df8ae41b1029",
+    "B": "d0fd422ddd05dc11",
+    "C": "679fa3ec82dd9441"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "One policy (`stay`). `remember` and `random` are not tested in this run.",
+    "The formula is read off `Organism::step`; if that code changes, the arithmetic must be re-derived. It has already changed once (b4d116e).",
+    "The ceiling is a property of the model's update order, not of life. It says nothing about whether an organism SHOULD be able to sit at its capacity; it says only that this model lets it.",
+    "The `specific` control cannot distinguish `E_max = capacity` from any other formula that does not contain the spend. It rules out the income/spend equilibrium, not every alternative."
+  ],
+  "command": "python3 checks/exp05_frozen.py",
+  "created_at": "2026-11-13T03:01:58.300577+00:00"
+}

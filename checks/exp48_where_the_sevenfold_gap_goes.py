@@ -59,7 +59,7 @@ TRACE = os.path.join(ROOT, 'core', 'target', 'release', 'trace')
 
 BASE = ['--steps', '200', '--every', '1', '--cells', '120', '--capacity', '10',
         '--damage-rate', '0.2', '--maintenance', '0.1', '--repair-cost', '0.5',
-        '--energy', '5', '--field', 'uniform', '--layout', 'even',
+        '--energy', '5', '--field', 'uniform', '--rich', '2.0', '--poor', '0.2', '--layout', 'even',
         '--seed', '1', '--n', '120', '--income', '2', '--policy', 'random']
 
 

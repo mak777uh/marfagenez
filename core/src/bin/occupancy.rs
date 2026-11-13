@@ -42,7 +42,7 @@ use std::env;
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::world::World;
+use medium_core::organism::World;
 
 /// Occupancy of each cell: how many living organisms stand on it.
 fn occupancy(life: &Life) -> Vec<usize> {
@@ -80,26 +80,35 @@ fn main() {
     let income = 0.8;
     let maintenance = 0.6;
     let damage_rate = 0.02;
-    let energy = 10.0;
-    let move_cost = 0.05;
+    let energy = 5.0;
+    let move_cost = 0.02;
+    let repair_cost = 0.05;
 
-    let world = World::new(3, 1, income, maintenance, damage_rate, 0.0).expect("world");
+    let world = World {
+        income,
+        maintenance_cost: maintenance,
+        repair_cost,
+        damage_rate,
+        capacity: 10.0,
+        read_budget: 3,
+        share: Default::default(),
+    };
     let field = Field::new(cells, capacity, regrow).expect("field");
-    let mut life = Life::spawn_even(
-        world,
-        field,
-        n,
-        energy,
-        move_cost,
-        Policy::Sighted,
-        seed,
-        100_000,
-    )
+    let spawner = if args.iter().any(|a| a == "--random") {
+        "random"
+    } else {
+        "even"
+    };
+    let mut life = if spawner == "random" {
+        Life::spawn(world, field, n, energy, move_cost, Policy::Sighted, seed, 300)
+    } else {
+        Life::spawn_even(world, field, n, energy, move_cost, Policy::Sighted, seed, 300)
+    }
     .expect("population");
 
     println!(
-        "n={} cells={} steps={} seed={} M={} r={} income={} maintenance={} damage={}",
-        n, cells, steps, seed, capacity, regrow, income, maintenance, damage_rate
+        "n={} cells={} steps={} seed={} spawn={} M={} r={} income={} maintenance={} damage={}",
+        n, cells, steps, seed, spawner, capacity, regrow, income, maintenance, damage_rate
     );
     println!();
     println!(

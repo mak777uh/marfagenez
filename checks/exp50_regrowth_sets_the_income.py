@@ -51,7 +51,7 @@ TRACE = os.path.join(ROOT, 'core', 'target', 'release', 'trace')
 
 BASE = ['--steps', '200', '--every', '1', '--cells', '120', '--capacity', '10',
         '--damage-rate', '0.2', '--maintenance', '0.1', '--repair-cost', '0.5',
-        '--energy', '5', '--field', 'uniform', '--layout', 'even',
+        '--energy', '5', '--field', 'uniform', '--rich', '2.0', '--poor', '0.2', '--layout', 'even',
         '--seed', '1', '--income', '2', '--policy', 'stay', '--n', '1',
         '--move-cost', '0']
 
@@ -68,6 +68,8 @@ def run(extra):
         raise RuntimeError(out.stderr[-400:])
     path = [l for l in out.stdout.splitlines() if 'written:' in l][0]
     path = path.split('written:', 1)[1].strip()
+    if not os.path.isabs(path):
+        path = os.path.join(ROOT, path)
     with open(path, encoding='utf-8') as f:
         return json.load(f)
 

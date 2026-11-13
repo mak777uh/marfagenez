@@ -44,8 +44,7 @@ Told apart by running the same arms at both budgets.
 The field is built with rich = 2.4, poor = 1.6, not rich = poor = 2.0. With
 rich == poor the three field kinds are the same constant field and the
 gradient arm measures nothing (this was found here: all three hashes matched).
-The mean is still 2.0, so the arithmetic above is unchanged. `trace` now
-refuses `--field alternating|gradient` with rich == poor for this reason.
+The mean is still 2.0, so the arithmetic above is unchanged.
 
 Control tests (PROTOCOL.md §2):
   fires    - the two arms must disagree on the uniform field, so the control

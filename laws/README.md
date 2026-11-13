@@ -109,7 +109,7 @@ ls .lake/build/lib/lean/Medium/*.olean | wc -l           # 48
 | `no_noise_no_range` | доказывала `0 < μ` из `0 < μ` — тавтология |
 | `learning_destroys_product` | доказывала `p₁ < p₀` из `p₁ < p₀` — тавтология |
 | `exploration_is_not_optional` | доказывала `0 < σ` из `0 < σ` — тавтология |
-| `fold_identifies` | `%` на `ℝ` тождественно `0` — была **истинна по пустой причине**; переписана над `ℤ` |
+| `fold_identifies` | использовала `%` на `ℝ` как периодичность — **ложно** |
 | `mean_le_of_all_le` | требовала `X ≥ 0`, но не имела этой гипотезы |
 | `coefficient_monotone` | использовала `div_le_div_iff`, которой нет в Mathlib |
 

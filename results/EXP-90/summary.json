@@ -1,0 +1,57 @@
+[
+ {
+  "t": 0.6,
+  "c_star": 1.85,
+  "kSat_A": 2,
+  "kSat_B": 3,
+  "alive": 80,
+  "measured_k": 2,
+  "crowding": 2.0,
+  "hash": "2b7f1da1b0ad3f45",
+  "path": "results/stay/trace-stay-1794552595707.json"
+ },
+ {
+  "t": 0.7,
+  "c_star": 1.825,
+  "kSat_A": 2,
+  "kSat_B": 2,
+  "alive": 80,
+  "measured_k": 2,
+  "crowding": 2.0,
+  "hash": "39edcbd2bb14a705",
+  "path": "results/stay/trace-stay-1794552595833.json"
+ },
+ {
+  "t": 0.75,
+  "c_star": 1.8125,
+  "kSat_A": 2,
+  "kSat_B": 2,
+  "alive": 80,
+  "measured_k": 2,
+  "crowding": 2.0,
+  "hash": "7f77d0e6c3950dc5",
+  "path": "results/stay/trace-stay-1794552595959.json"
+ },
+ {
+  "t": 0.9,
+  "c_star": 1.775,
+  "kSat_A": 2,
+  "kSat_B": 2,
+  "alive": 80,
+  "measured_k": 2,
+  "crowding": 2.0,
+  "hash": "5fec1dfb78469d45",
+  "path": "results/stay/trace-stay-1794552596089.json"
+ },
+ {
+  "t": 1.2,
+  "c_star": 1.7,
+  "kSat_A": 1,
+  "kSat_B": 1,
+  "alive": 40,
+  "measured_k": 1,
+  "crowding": 1.0,
+  "hash": "5a7c8e6e4f90c265",
+  "path": "results/stay/trace-stay-1794552596199.json"
+ }
+]

@@ -40,7 +40,7 @@
 
 use crate::field::Field;
 use crate::memory::Remembering;
-use crate::organism::{Organism, World};
+use crate::organism::{Organism, ShareProtocol, World};
 
 /// How an organism decides where to go.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -294,6 +294,25 @@ impl Life {
         if self.feed {
             self.field.regrow_all();
         }
+        // How many living organisms stand on each cell, counted before
+        // anyone moves. The proportional protocol splits one `income`
+        // among them, so the denominator is the crowd they started the
+        // step in, not the crowd after the moves.
+        // Live crowd per cell. It starts as the crowd at the beginning of
+        // the step and is kept current as organisms move, so the denominator
+        // is the number of organisms that actually eat here, not the number
+        // that started here.
+        let mut share_counts = vec![0usize; cells];
+        if self.world.share == ShareProtocol::Proportional {
+            for slot in self.organisms.iter() {
+                if let Some(r) = slot.as_ref() {
+                    if r.organism.is_alive() && r.cell < cells {
+                        share_counts[r.cell] += 1;
+                    }
+                }
+            }
+        }
+
         for slot in self.organisms.iter_mut() {
             let Some(r) = slot.as_mut() else { continue };
             if !r.organism.is_alive() {
@@ -487,7 +506,16 @@ impl Life {
             if direction != 0 && r.organism.spend(r.move_cost) {
                 let nc = r.cell as i64 + direction as i64;
                 if nc >= 0 && (nc as usize) < cells {
+                    if self.world.share == ShareProtocol::Proportional
+                        && r.cell < cells
+                        && share_counts[r.cell] > 0
+                    {
+                        share_counts[r.cell] -= 1;
+                    }
                     r.cell = nc as usize;
+                    if self.world.share == ShareProtocol::Proportional && r.cell < cells {
+                        share_counts[r.cell] += 1;
+                    }
                     self.moves += 1;
                 }
             }
@@ -496,7 +524,23 @@ impl Life {
             //    organism look at cells without emptying them, and what it
             //    reads is what it decides on. With `read_budget == 0` this is
             //    exactly the old `take`, so the trace must not change.
-            let taken = self.field.take(r.cell, self.world.income);
+            let taken = match self.world.share {
+                ShareProtocol::Sequential => {
+                    self.field.take(r.cell, self.world.income)
+                }
+                ShareProtocol::Proportional => {
+                    // Everyone eating on the cell gets `income / k`, where
+                    // `k` is the crowd on that cell at this moment (moves
+                    // already applied). The share is also capped by what the
+                    // cell holds, so the total taken from a cell never
+                    // exceeds `income` however many organisms stand on it --
+                    // that is the structural difference from the sequential
+                    // protocol, where the total is `k * income`.
+                    let k = share_counts.get(r.cell).copied().unwrap_or(0).max(1);
+                    let share = self.world.income / k as f64;
+                    self.field.take(r.cell, share)
+                }
+            };
             r.last_taken = taken;
 
             // 5. Live.
@@ -624,6 +668,7 @@ mod tests {
             damage_rate: 0.02,
             capacity: 10.0,
             read_budget: 0,
+            share: Default::default(),
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, 7, 300).unwrap()
@@ -663,6 +708,7 @@ mod tests {
             damage_rate: 0.02,
             capacity: 10.0,
             read_budget: 3,
+            share: Default::default(),
         };
         // A field of four rich cells: `Field::new` makes every cell equal to
         // `max_resource`, so there is no need for a setter.
@@ -738,6 +784,7 @@ mod tests {
             damage_rate: 0.05,
             capacity: 10.0,
             read_budget: 3,
+            share: Default::default(),
         };
         let field = Field::alternating(4, 2.4, 1.6, 0.8).expect("alternating field");
         let mut life =
@@ -893,6 +940,7 @@ mod tests {
             damage_rate: 0.02,
             capacity: 10.0,
             read_budget: 0,
+            share: Default::default(),
         };
         // A field with the smallest legal resource, and income = 0: nothing can be
         // taken, so nothing can be earned. `Field::new` refuses a zero maximum, so
@@ -924,6 +972,7 @@ mod tests {
             damage_rate: 0.02,
             capacity: 10.0,
             read_budget: 3,
+            share: Default::default(),
         };
         let field = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
         let mut sighted = Life::new(
@@ -1012,6 +1061,7 @@ mod tests {
             // Two neighbours plus its own cell: a sighted organism must be
             // able to see all three to compare them.
             read_budget: 3,
+            share: Default::default(),
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1046,6 +1096,7 @@ mod tests {
             // Two neighbours plus its own cell: a sighted organism must be
             // able to see all three to compare them.
             read_budget: 3,
+            share: Default::default(),
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1062,6 +1113,41 @@ mod tests {
         assert!(
             moves >= 99,
             "an eating sighted organism should step away almost every step, moved {moves} times"
+        );
+    }
+
+    #[test]
+    fn the_sample_reports_what_was_taken_not_what_was_asked_for() {
+        // `Sample::taken` used to be recomputed at read time from the field
+        // *after* the step, so it could disagree with what the organism got.
+        // It now stores the value `field.take` returned. This test pins that:
+        // ask for more than the cell holds and the sample must show the cell's
+        // value, not the income.
+        //
+        // What this does NOT prove: that the stored value is used by any
+        // policy. No policy reads `taken`; it is a reading only.
+        let world = World {
+            income: 5.0,          // ask for 5.0
+            maintenance_cost: 0.0,
+            repair_cost: 0.0,
+            damage_rate: 0.0,
+            capacity: 100.0,
+            read_budget: 0,
+            share: Default::default(),
+        };
+        // A flat field at 0.5: every cell holds far less than the income.
+        let field = Field::new(8, 0.5, 1.0).unwrap();
+        let mut life = Life::spawn(world, field, 1, 50.0, 0.0, Policy::Stay, 1, 300).unwrap();
+        life.run(1, 1);
+        let s = &life.samples()[0];
+        assert!(
+            (s.taken - 0.5).abs() < 1e-12,
+            "the cell held 0.5, so the take is 0.5, not the income 5.0; got {}",
+            s.taken
+        );
+        assert!(
+            s.taken < 5.0,
+            "a take equal to the income would mean the cap did not bite"
         );
     }
 
@@ -1085,6 +1171,7 @@ mod tests {
             // never records a level and the test would measure the coin, not
             // the memory. See docs/FINDING-blind-memory-never-rests.md.
             read_budget: 3,
+            share: Default::default(),
         };
         let field = Field::moving(40, 2.0, 0.2, 0.8, 1.0).unwrap();
         let mut memory =

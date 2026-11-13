@@ -37,6 +37,7 @@ fn world() -> World {
         damage_rate: 0.01,
         capacity: 10.0,
         read_budget: 3,
+        share: Default::default(),
     }
 }
 

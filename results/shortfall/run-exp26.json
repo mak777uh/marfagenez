@@ -10,12 +10,14 @@
   "spawn_per_cell": {
    "n160": 4.0,
    "n320": 8.0
-  }
+  },
+  "read_budget_zero_means": "Sighted reads neither neighbour, best > here is never true, the policy degenerates to Stay and nobody moves"
  },
  "conditions": [
   {
-   "label": "n=160 seed=7",
+   "label": "budget=0 n=160 seed=7",
    "params": {
+    "read_budget": 0,
     "n": 160,
     "seed": 7,
     "cells": 40,
@@ -24,9 +26,14 @@
     "income": 0.8,
     "maintenance": 0.6,
     "damage_rate": 0.02,
+    "repair_cost": 0.05,
+    "move_cost": 0.02,
+    "energy": 5.0,
+    "memory_life": 300,
     "steps": 1500
    },
    "result": {
+    "read_budget": 0,
     "n": 160,
     "seed": 7,
     "alive": 77,
@@ -37,8 +44,9 @@
    }
   },
   {
-   "label": "n=160 seed=11",
+   "label": "budget=0 n=160 seed=11",
    "params": {
+    "read_budget": 0,
     "n": 160,
     "seed": 11,
     "cells": 40,
@@ -47,9 +55,14 @@
     "income": 0.8,
     "maintenance": 0.6,
     "damage_rate": 0.02,
+    "repair_cost": 0.05,
+    "move_cost": 0.02,
+    "energy": 5.0,
+    "memory_life": 300,
     "steps": 1500
    },
    "result": {
+    "read_budget": 0,
     "n": 160,
     "seed": 11,
     "alive": 74,
@@ -60,8 +73,9 @@
    }
   },
   {
-   "label": "n=160 seed=23",
+   "label": "budget=0 n=160 seed=23",
    "params": {
+    "read_budget": 0,
     "n": 160,
     "seed": 23,
     "cells": 40,
@@ -70,9 +84,14 @@
     "income": 0.8,
     "maintenance": 0.6,
     "damage_rate": 0.02,
+    "repair_cost": 0.05,
+    "move_cost": 0.02,
+    "energy": 5.0,
+    "memory_life": 300,
     "steps": 1500
    },
    "result": {
+    "read_budget": 0,
     "n": 160,
     "seed": 23,
     "alive": 72,
@@ -83,8 +102,9 @@
    }
   },
   {
-   "label": "n=320 seed=7",
+   "label": "budget=0 n=320 seed=7",
    "params": {
+    "read_budget": 0,
     "n": 320,
     "seed": 7,
     "cells": 40,
@@ -93,9 +113,14 @@
     "income": 0.8,
     "maintenance": 0.6,
     "damage_rate": 0.02,
+    "repair_cost": 0.05,
+    "move_cost": 0.02,
+    "energy": 5.0,
+    "memory_life": 300,
     "steps": 1500
    },
    "result": {
+    "read_budget": 0,
     "n": 320,
     "seed": 7,
     "alive": 80,
@@ -106,9 +131,39 @@
    }
   },
   {
-   "label": "n=320 seed=11",
+   "label": "budget=3 n=160 seed=7",
    "params": {
-    "n": 320,
+    "read_budget": 3,
+    "n": 160,
+    "seed": 7,
+    "cells": 40,
+    "M": 2.0,
+    "r": 0.8,
+    "income": 0.8,
+    "maintenance": 0.6,
+    "damage_rate": 0.02,
+    "repair_cost": 0.05,
+    "move_cost": 0.02,
+    "energy": 5.0,
+    "memory_life": 300,
+    "steps": 1500
+   },
+   "result": {
+    "read_budget": 3,
+    "n": 160,
+    "seed": 7,
+    "alive": 80,
+    "occupied_cells": 40,
+    "max_per_cell": 2,
+    "empty_cells": 0,
+    "crowding": 2.0
+   }
+  },
+  {
+   "label": "budget=3 n=160 seed=11",
+   "params": {
+    "read_budget": 3,
+    "n": 160,
     "seed": 11,
     "cells": 40,
     "M": 2.0,
@@ -116,11 +171,74 @@
     "income": 0.8,
     "maintenance": 0.6,
     "damage_rate": 0.02,
+    "repair_cost": 0.05,
+    "move_cost": 0.02,
+    "energy": 5.0,
+    "memory_life": 300,
     "steps": 1500
    },
    "result": {
-    "n": 320,
+    "read_budget": 3,
+    "n": 160,
     "seed": 11,
+    "alive": 80,
+    "occupied_cells": 40,
+    "max_per_cell": 2,
+    "empty_cells": 0,
+    "crowding": 2.0
+   }
+  },
+  {
+   "label": "budget=3 n=160 seed=23",
+   "params": {
+    "read_budget": 3,
+    "n": 160,
+    "seed": 23,
+    "cells": 40,
+    "M": 2.0,
+    "r": 0.8,
+    "income": 0.8,
+    "maintenance": 0.6,
+    "damage_rate": 0.02,
+    "repair_cost": 0.05,
+    "move_cost": 0.02,
+    "energy": 5.0,
+    "memory_life": 300,
+    "steps": 1500
+   },
+   "result": {
+    "read_budget": 3,
+    "n": 160,
+    "seed": 23,
+    "alive": 80,
+    "occupied_cells": 40,
+    "max_per_cell": 2,
+    "empty_cells": 0,
+    "crowding": 2.0
+   }
+  },
+  {
+   "label": "budget=3 n=320 seed=7",
+   "params": {
+    "read_budget": 3,
+    "n": 320,
+    "seed": 7,
+    "cells": 40,
+    "M": 2.0,
+    "r": 0.8,
+    "income": 0.8,
+    "maintenance": 0.6,
+    "damage_rate": 0.02,
+    "repair_cost": 0.05,
+    "move_cost": 0.02,
+    "energy": 5.0,
+    "memory_life": 300,
+    "steps": 1500
+   },
+   "result": {
+    "read_budget": 3,
+    "n": 320,
+    "seed": 7,
     "alive": 80,
     "occupied_cells": 40,
     "max_per_cell": 2,
@@ -131,6 +249,7 @@
  ],
  "rows": [
   {
+   "read_budget": 0,
    "n": 160,
    "seed": 7,
    "alive": 77,
@@ -140,6 +259,7 @@
    "crowding": 1.925
   },
   {
+   "read_budget": 0,
    "n": 160,
    "seed": 11,
    "alive": 74,
@@ -149,6 +269,7 @@
    "crowding": 1.9474
   },
   {
+   "read_budget": 0,
    "n": 160,
    "seed": 23,
    "alive": 72,
@@ -158,6 +279,7 @@
    "crowding": 1.9459
   },
   {
+   "read_budget": 0,
    "n": 320,
    "seed": 7,
    "alive": 80,
@@ -167,8 +289,39 @@
    "crowding": 2.0
   },
   {
-   "n": 320,
+   "read_budget": 3,
+   "n": 160,
+   "seed": 7,
+   "alive": 80,
+   "occupied_cells": 40,
+   "max_per_cell": 2,
+   "empty_cells": 0,
+   "crowding": 2.0
+  },
+  {
+   "read_budget": 3,
+   "n": 160,
    "seed": 11,
+   "alive": 80,
+   "occupied_cells": 40,
+   "max_per_cell": 2,
+   "empty_cells": 0,
+   "crowding": 2.0
+  },
+  {
+   "read_budget": 3,
+   "n": 160,
+   "seed": 23,
+   "alive": 80,
+   "occupied_cells": 40,
+   "max_per_cell": 2,
+   "empty_cells": 0,
+   "crowding": 2.0
+  },
+  {
+   "read_budget": 3,
+   "n": 320,
+   "seed": 7,
    "alive": 80,
    "occupied_cells": 40,
    "max_per_cell": 2,
@@ -177,35 +330,38 @@
   }
  ],
  "hashes": {
-  "n160-seed7": "8c3ecbc241868c2c",
-  "n160-seed11": "a0bc7823259cf117",
-  "n160-seed23": "3544c5f5c811de9d",
-  "n320-seed7": "3b60e959ab4fe7c7",
-  "n320-seed11": "210fcb96d66333a3"
+  "budget0-n160-seed7": "8c3ecbc241868c2c",
+  "budget0-n160-seed11": "a0bc7823259cf117",
+  "budget0-n160-seed23": "3544c5f5c811de9d",
+  "budget0-n320-seed7": "3b60e959ab4fe7c7",
+  "budget3-n160-seed7": "8239276f2b8e4e1f",
+  "budget3-n160-seed11": "a6ee2c5d37bea653",
+  "budget3-n160-seed23": "0bfe3b5cf803ad29",
+  "budget3-n320-seed7": "c2c5e162996e182f"
  },
  "controls": {
   "fires": {
    "passed": true,
-   "detail": "n=320 counts: [80, 80], expected 80"
+   "detail": "budget 0 counts: [77, 74, 72, 80] -- 4 distinct values, expected more than one so the control can tell a law from a draw"
   },
   "silent": {
-   "passed": false,
-   "detail": "n=160 counts across seeds: [77, 74, 72]"
+   "passed": true,
+   "detail": "budget 3 counts: [80, 80, 80, 80], expected 80 at every arm"
   },
   "specific": {
-   "passed": false,
-   "detail": "n=160 seed=7 alive=77 expected=80; n=160 seed=11 alive=74 expected=80; n=160 seed=23 alive=72 expected=80; n=320 seed=7 alive=80 expected=80; n=320 seed=11 alive=80 expected=80"
+   "passed": true,
+   "detail": "budget3 - budget0 at n = 160: [3, 6, 8], expected three positive gaps (moving keeps more alive, never fewer); at n = 320 the gap is 0 because 8 spawn per cell is enough to survive being frozen"
   }
  },
  "verdict": {
-  "kind": "failed",
-  "reason": "EXPLAINED: the survivor count depends on the seed at n = 160, so the 1.925 in EXP-21 was one draw of a varying quantity and not a second law. The count is not reproducible across seeds."
+  "kind": "passed",
+  "reason": "the 77 of EXP-21 is the read_budget default of 0, not a property of the field: with budget 0 the count is a draw (77, 74, 72), with budget 3 it is the constant 80 at every seed and every n"
  },
  "limitations": [
-  "One policy (sighted) and one uniform field.",
-  "Only five arms; the seed sweep is three seeds at n = 160.",
-  "Does not test whether the shortfall is a death or a refusal to move into an empty cell.",
+  "One policy (sighted), one uniform field, one parameter set.",
+  "Only budgets 0 and 3 are tested; 1 and 2 are covered by EXP-30 with a different parameter set.",
+  "The difference of 3 is measured at four arms, not derived.",
   "Does not vary cells, so a finite-size effect of 40 cells is not excluded."
  ],
- "what_this_does_not_prove": "It does not show the field sustains fewer than 80. It shows whether the count of 77 is reproducible, which decides between a second law and a draw."
+ "what_this_does_not_prove": "It does not show that a sighted population always reaches k_max * cells. It shows that the 77 was the default read_budget and not the field. EXP-21's crowding 1.925 should be read as a measurement of budget 0."
 }

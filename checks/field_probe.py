@@ -8,7 +8,7 @@ def run(cells=40, M=2.0, r=0.8, n=40, income=1.0, maint=0.6, dmg=0.01,
            '--seed', str(seed), '--n', str(n), '--cells', str(cells),
            '--capacity', str(M), '--regrow', str(r),
            '--income', str(income), '--maintenance', str(maint),
-           '--damage-rate', str(dmg), '--field', 'uniform', '--energy', '10']
+           '--damage-rate', str(dmg), '--field', 'uniform', '--rich', '2.0', '--poor', '0.2', '--energy', '10']
     out = subprocess.run(cmd, capture_output=True, text=True).stdout
     p = [l for l in out.splitlines() if l.startswith('written:')][0].split(':',1)[1].strip()
     return json.load(open('/root/marfagenez/' + p))
