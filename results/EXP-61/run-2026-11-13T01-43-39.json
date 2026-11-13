@@ -1,0 +1,81 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-61",
+  "run_id": "run-2026-11-13T01-43-39",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {},
+  "arithmetic": {
+    "formula_single": "M + income - income/r",
+    "c_single": 1.75,
+    "formula_double": "M*r  (cell emptied every round)",
+    "c_double": 1.6,
+    "cost_per_step": 0.66,
+    "second_income": 0.6,
+    "net_second": -0.06,
+    "steps_to_die_from_10": 166.67,
+    "step_order": "all organisms take, then the field regrows once (core/src/life.rs:464)"
+  },
+  "conditions": {
+    "n80": {
+      "label": "n=80, 200000 steps",
+      "metrics": {
+        "alive": 46,
+        "cells_used": 40,
+        "max_crowd": 2,
+        "doubled_cells": 6,
+        "doubled_mean": 1.6,
+        "single_mean": 1.743621,
+        "second_take_mean": 0.744989,
+        "second_take_min": 0.72,
+        "second_take_max": 0.75,
+        "organisms_in_second_seat_last20": 45
+      },
+      "hash": "4cbee3bc20bbc1cd"
+    },
+    "n40": {
+      "label": "n=40, 200000 steps",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "max_crowd": 1,
+        "doubled_cells": 0,
+        "doubled_mean": null,
+        "single_mean": 1.75,
+        "second_take_mean": null,
+        "second_take_min": null,
+        "second_take_max": null,
+        "organisms_in_second_seat_last20": 0
+      },
+      "hash": "4405d70c5746d995"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "doubled cells read 1.6 (arithmetic 1.6), single cells read 1.743621 (arithmetic 1.75)"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "n=40: alive=40, max_crowd=1; expected 40 alive and crowd 1"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "second seat takes 0.744989 (arithmetic 0.6000000000000001); expected near 0.60, not near 1.0"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "The two-equilibrium arithmetic did not match the measurement. See the control messages for which one broke."
+  },
+  "hashes": {
+    "n80": "4cbee3bc20bbc1cd",
+    "n40": "4405d70c5746d995"
+  },
+  "limitations": [
+    "The two-equilibrium arithmetic did not match the measurement. See the control messages for which one broke."
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --policy sighted --field uniform --cells 40 --steps 200000",
+  "created_at": "2026-11-13T01:43:39.725628+00:00"
+}

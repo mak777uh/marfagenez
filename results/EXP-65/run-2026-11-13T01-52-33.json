@@ -1,0 +1,134 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-65",
+  "run_id": "run-2026-11-13T01-52-33",
+  "model_commit": "unknown",
+  "seed": 7,
+  "parameters": {},
+  "arithmetic": {
+    "max_packing": "20 rich cells * 2 + 20 poor cells * 1 = 60",
+    "rich_cell_two": "1.92 - 2*income 1.0 = -0.08, emptied, regrows to 1.92",
+    "poor_cell_one": "1.35 - 1*income 1.0 = 0.35, regrows to 1.35",
+    "step_cost": "0.6 + 0.05 + 0.01 = 0.66",
+    "cells": "40 (20 rich, 20 poor)"
+  },
+  "conditions": {
+    "seed-1": {
+      "label": "alternating 2.4/1.6, seed 1",
+      "metrics": {
+        "alive": 60,
+        "occupied_cells": 40,
+        "doubled_cells": 20,
+        "moving_at_end": 0,
+        "on_rich_cells": 40,
+        "on_poor_cells": 19
+      },
+      "hash": "5fb0570eae4c7c05"
+    },
+    "seed-2": {
+      "label": "alternating 2.4/1.6, seed 2",
+      "metrics": {
+        "alive": 55,
+        "occupied_cells": 40,
+        "doubled_cells": 15,
+        "moving_at_end": 0,
+        "on_rich_cells": 35,
+        "on_poor_cells": 19
+      },
+      "hash": "4829547c03246281"
+    },
+    "seed-3": {
+      "label": "alternating 2.4/1.6, seed 3",
+      "metrics": {
+        "alive": 60,
+        "occupied_cells": 40,
+        "doubled_cells": 20,
+        "moving_at_end": 0,
+        "on_rich_cells": 40,
+        "on_poor_cells": 19
+      },
+      "hash": "dca5f9c17ceb5325"
+    },
+    "seed-7": {
+      "label": "alternating 2.4/1.6, seed 7",
+      "metrics": {
+        "alive": 60,
+        "occupied_cells": 40,
+        "doubled_cells": 20,
+        "moving_at_end": 0,
+        "on_rich_cells": 40,
+        "on_poor_cells": 19
+      },
+      "hash": "6fab226a3d3c36e5"
+    },
+    "seed-11": {
+      "label": "alternating 2.4/1.6, seed 11",
+      "metrics": {
+        "alive": 59,
+        "occupied_cells": 40,
+        "doubled_cells": 19,
+        "moving_at_end": 0,
+        "on_rich_cells": 39,
+        "on_poor_cells": 19
+      },
+      "hash": "4c0ce664ddc39509"
+    },
+    "seed-42": {
+      "label": "alternating 2.4/1.6, seed 42",
+      "metrics": {
+        "alive": 59,
+        "occupied_cells": 40,
+        "doubled_cells": 19,
+        "moving_at_end": 0,
+        "on_rich_cells": 39,
+        "on_poor_cells": 19
+      },
+      "hash": "8a09ec454ac1e4a1"
+    },
+    "uniform-n40": {
+      "label": "uniform 2.0, n=40, seed 7",
+      "metrics": {
+        "alive": 40,
+        "occupied_cells": 40,
+        "doubled_cells": 0,
+        "moving_at_end": 0
+      },
+      "hash": "ba876e1f4c10ee39"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "per seed (alive, occupied, doubled, moving): s1=(60,40,20,0), s2=(55,40,15,0), s3=(60,40,20,0), s7=(60,40,20,0), s11=(59,40,19,0), s42=(59,40,19,0)"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "uniform n=40: 40 alive, 0 doubled"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "per seed (doubled, on_rich, on_poor): s1=(20,40,19), s2=(15,35,19), s3=(20,40,19), s7=(20,40,19), s11=(19,39,19), s42=(19,39,19)"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "controls failed: fires, specific"
+  },
+  "hashes": {
+    "seed-1": "5fb0570eae4c7c05",
+    "seed-2": "4829547c03246281",
+    "seed-3": "dca5f9c17ceb5325",
+    "seed-7": "6fab226a3d3c36e5",
+    "seed-11": "4c0ce664ddc39509",
+    "seed-42": "8a09ec454ac1e4a1",
+    "uniform-n40": "ba876e1f4c10ee39"
+  },
+  "limitations": [
+    "Perturbation is not injected. The experiment shows the packing forms from six different random starts, which is evidence that it is a property of the rule, but it does not show the packing survives a disturbance once formed.",
+    "All arms use one field shape (alternating 2.4/1.6) and one move_cost. EXP-64 showed move_cost does not matter here, but other field shapes were not run.",
+    "The trace binary cannot rewind or inject, so 'stable' here means 'reached from six starts', not 'returns after being pushed'."
+  ],
+  "command": "trace --policy sighted --cells 40 --steps 50000 --field alternating --rich 2.4 --poor 1.6 --seed {1,2,3,7,11,42}",
+  "created_at": "2026-11-13T01:52:33.024934+00:00"
+}

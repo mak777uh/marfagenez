@@ -1,0 +1,85 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "standing-is-the-policys-own-branch",
+  "run_id": "run-2026-11-13T00-58-40",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "steps": 400,
+    "every": 10,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "income": 1,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "move_cost": 0.05,
+    "energy": 5,
+    "field": "uniform"
+  },
+  "arithmetic": {
+    "random": "u<1/3 -> -1, u<2/3 -> 0, else +1, so p(stay) = 1/3",
+    "old_claim": "n=80 84.6% still, n=8 0.0% still (remember, alternating field)",
+    "exp45": "random on uniform: 0.3194 at n=80, 0.3688 at n=8"
+  },
+  "conditions": {
+    "random_n8": {
+      "label": "random_n8",
+      "metrics": {
+        "stand_still": 0.3688
+      },
+      "hash": "8ceb67c142bb265c"
+    },
+    "random_n80": {
+      "label": "random_n80",
+      "metrics": {
+        "stand_still": 0.3194
+      },
+      "hash": "c4e0552f81731e67"
+    },
+    "remember_n8": {
+      "label": "remember_n8",
+      "metrics": {
+        "stand_still": 0.0
+      },
+      "hash": "58d8ac946b6d4b7a"
+    },
+    "remember_n80": {
+      "label": "remember_n80",
+      "metrics": {
+        "stand_still": 0.0
+      },
+      "hash": "1f7f94a3e65fd839"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "n=8: random 0.3688 vs remember 0.0"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "random: n=8 0.3688 vs n=80 0.3194"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "random stand still [0.3688, 0.3194] vs 1/3 = 0.333"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "стояние задаёт ветка политики (1/3 у random), а не плотность"
+  },
+  "hashes": {
+    "random_n8": "8ceb67c142bb265c",
+    "random_n80": "c4e0552f81731e67",
+    "remember_n8": "58d8ac946b6d4b7a",
+    "remember_n80": "1f7f94a3e65fd839"
+  },
+  "limitations": [
+    "uniform field only; the old 84.6%/0.0% pair came from `remember` on an alternating field, and this experiment does not re-run that configuration"
+  ],
+  "command": "python3 checks/exp46_standing_is_the_policys_own_branch.py",
+  "created_at": "2026-11-13T00:58:40.282618+00:00"
+}

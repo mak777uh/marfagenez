@@ -1,0 +1,167 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-82",
+  "run_id": "run-2026-11-13T02-08-39",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 4,
+    "steps": 10,
+    "income": 1.0,
+    "maintenance": 0.6,
+    "damage_rate": 0.05,
+    "repair_cost": 1.5,
+    "capacity": 10.0,
+    "start_energy": 1.0,
+    "regrow": 0.8,
+    "read_budget": 3
+  },
+  "arithmetic": {
+    "cells": 4,
+    "spawn_even_rule": "cell = i % cells -> starts [0, 1] for n=2",
+    "exp81_measured_starts_n2": [
+      0,
+      2
+    ],
+    "sighted_stay_rule": "returns 0 whenever best <= here",
+    "uniform_field_consequence": "best == here everywhere -> 0 moves",
+    "exp81_measured_uniform_moves": 9,
+    "contradiction": "both of the above cannot hold if the flags reach the field; one of the two flags is being dropped"
+  },
+  "conditions": {
+    "A": {
+      "label": "alternating",
+      "metrics": {
+        "returncode": 0,
+        "levels": [
+          2.2,
+          1.6,
+          2.2,
+          1.6
+        ],
+        "starts": [
+          0,
+          2
+        ],
+        "ends": [
+          0,
+          2
+        ]
+      },
+      "hash": "3a874d7966915d16"
+    },
+    "B": {
+      "label": "uniform",
+      "metrics": {
+        "returncode": 0,
+        "levels": [
+          1.6,
+          1.6,
+          1.6,
+          1.4
+        ],
+        "starts": [
+          3
+        ],
+        "ends": [
+          0
+        ]
+      },
+      "hash": "b94fd2223b7f5d53"
+    },
+    "C": {
+      "label": "rich==poor",
+      "metrics": {
+        "returncode": 2,
+        "levels": null,
+        "starts": null,
+        "ends": null
+      }
+    },
+    "D": {
+      "label": "no flag",
+      "metrics": {
+        "returncode": 0,
+        "levels": [
+          1.8,
+          0.2,
+          1.8,
+          0.2
+        ],
+        "starts": [
+          0,
+          2
+        ],
+        "ends": [
+          0,
+          2
+        ]
+      },
+      "hash": "5ade08a79b58e5ff"
+    }
+  },
+  "series": {
+    "A": {
+      "steps": [
+        0
+      ],
+      "values": [
+        0
+      ]
+    },
+    "B": {
+      "steps": [
+        0
+      ],
+      "values": [
+        0
+      ]
+    },
+    "C": {
+      "steps": [
+        0
+      ],
+      "values": [
+        2
+      ]
+    },
+    "D": {
+      "steps": [
+        0
+      ],
+      "values": [
+        0
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "A echoed field levels [2.2, 1.6, 2.2, 1.6]; it must be [2.4, 1.6, 2.4, 1.6]. If it is not, `--field` is not reaching the field."
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "B echoed levels [1.6, 1.6, 1.6, 1.4] and moved from [3] to [0]. On a uniform field there is nothing to see and nothing to move toward."
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "A started on [0, 2]; `spawn_even` says [0, 1]. EXP-81 measured [0, 2]."
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "the run does not stand on the field it was asked for: A's field is [2.2, 1.6, 2.2, 1.6], not [2.4, 1.6, 2.4, 1.6]; B's field is [1.6, 1.6, 1.6, 1.4], not uniform 1.6; B moved from [3] to [0] on a uniform field; A started on [0, 2], not [0, 1]."
+  },
+  "hashes": {
+    "A": "3a874d7966915d16",
+    "B": "b94fd2223b7f5d53",
+    "D": "5ade08a79b58e5ff"
+  },
+  "limitations": [
+    "Four cells and ten steps. This checks that the arguments reach the field and the spawner; it does not check that the field evolves as the model says over a long run.",
+    "The check reads the trace's own echo of its field. If the trace echoed the arguments instead of the field, this would pass while the field was wrong -- the same failure one level down. The echo is the level that could be checked here.",
+    "It does not say which of EXP-81's arms were affected. Every arm built by the same helper is suspect, and EXP-80's four identical arms are the obvious next suspect."
+  ],
+  "command": "python3 checks/exp82_the_field_is_not_the_field.py",
+  "created_at": "2026-11-13T02:08:39.795174+00:00"
+}

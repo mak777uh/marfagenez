@@ -1,0 +1,243 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-81",
+  "run_id": "run-2026-11-13T02-07-55",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 4,
+    "rich": 2.4,
+    "poor": 1.6,
+    "regrow": 0.8,
+    "income": 1.0,
+    "maintenance": 0.6,
+    "damage_rate": 0.05,
+    "repair_cost": 1.5,
+    "capacity": 10.0,
+    "start_energy": 1.0,
+    "steps": 10,
+    "move_cost": 0.0,
+    "read_budget": 3
+  },
+  "arithmetic": {
+    "cells": 4,
+    "rich": 2.4,
+    "poor": 1.6,
+    "levels": [
+      2.4,
+      1.6,
+      2.4,
+      1.6
+    ],
+    "even_layout_placement": "organism i -> cell i % cells",
+    "n1_start": 0,
+    "n1_start_level": 2.4,
+    "n1_left": "outside the field -> NEG_INFINITY",
+    "n1_right": 1.6,
+    "n1_best": 2.4,
+    "n1_decision": "best == here -> 0 (stay)",
+    "n2_starts": [
+      0,
+      1
+    ],
+    "n2_poor_start": 1,
+    "n2_poor_here": 1.6,
+    "n2_poor_neighbours": [
+      2.4,
+      2.4
+    ],
+    "n2_poor_decision": "best 2.4 > here 1.6 -> +-1 (move)",
+    "uniform_decision": "best == here everywhere -> 0 (stay)"
+  },
+  "conditions": {
+    "A": {
+      "label": "A, n=1, alternating",
+      "metrics": {
+        "n": 1,
+        "field": "alternating",
+        "starts": [
+          0
+        ],
+        "ends": [
+          0
+        ],
+        "moves": 0,
+        "energies_end": [
+          4.25
+        ]
+      },
+      "hash": "79ddfb89102f43e9"
+    },
+    "B": {
+      "label": "B, n=2, alternating",
+      "metrics": {
+        "n": 2,
+        "field": "alternating",
+        "starts": [
+          0,
+          2
+        ],
+        "ends": [
+          0,
+          2
+        ],
+        "moves": 0,
+        "energies_end": [
+          4.25,
+          4.25
+        ]
+      },
+      "hash": "3a874d7966915d16"
+    },
+    "C": {
+      "label": "C, n=4, alternating",
+      "metrics": {
+        "n": 4,
+        "field": "alternating",
+        "starts": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "ends": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "moves": 0,
+        "energies_end": [
+          4.25,
+          4.25,
+          4.25,
+          4.25
+        ]
+      },
+      "hash": "a24d7c1fdd758e8b"
+    },
+    "D": {
+      "label": "D, n=1, uniform",
+      "metrics": {
+        "n": 1,
+        "field": "uniform",
+        "starts": [
+          0
+        ],
+        "ends": [
+          3
+        ],
+        "moves": 9,
+        "energies_end": [
+          4.25
+        ]
+      },
+      "hash": "1cadb40d146aa6af"
+    }
+  },
+  "series": {
+    "A": {
+      "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "values": [
+        0
+      ]
+    },
+    "B": {
+      "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "values": [
+        0
+      ]
+    },
+    "C": {
+      "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "values": [
+        0
+      ]
+    },
+    "D": {
+      "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "values": [
+        9
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "B (n=2, one organism on the poor cell 1) moved 0 times. It must move: its neighbours are both rich."
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "D (uniform 1.6) moved 9 times. A uniform field gives no reason to move, so this must be zero."
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "A (n=1, cell 0, rich) moved 0 times and B (n=2, cell 1, poor) moved 0 times, on the same field with the same policy and the same cost. The only difference is the starting cell."
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "B did not move either, so `Sighted` does not move even from a poor cell with two rich neighbours. The disagreement with EXP-79's passing C arm is then real and unresolved."
+  },
+  "hashes": {
+    "A": "79ddfb89102f43e9",
+    "B": "3a874d7966915d16",
+    "C": "a24d7c1fdd758e8b",
+    "D": "1cadb40d146aa6af"
+  },
+  "limitations": [
+    "Ten steps on a four-cell ring with one to four organisms. The field regrows toward its own ceiling every step, so a rich cell refills and the geometry does not change; a longer run would let the poor cells drift and the paths would not be comparable.",
+    "This says where the organism starts and whether it moves. It does not say the move is optimal: `Sighted` sees one cell each way and cannot know that the cell behind it is also rich.",
+    "`--layout even` is the only placement used here. The random spawner would spread the starts and the pair (A, B) would not be a controlled comparison."
+  ],
+  "command": "python3 checks/exp81_why_the_sighted_organism_stands_still.py",
+  "created_at": "2026-11-13T02:07:55.091891+00:00"
+}

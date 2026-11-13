@@ -1,0 +1,178 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-54",
+  "run_id": "run-2026-11-12T22-08-13",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 8000,
+    "bound": 40,
+    "base": [
+      "--seed",
+      "20250101",
+      "--n",
+      "160",
+      "--cells",
+      "40",
+      "--capacity",
+      "10",
+      "--damage-rate",
+      "0.02",
+      "--income",
+      "1.2",
+      "--maintenance",
+      "0.6",
+      "--repair-cost",
+      "1.5",
+      "--field",
+      "uniform",
+      "--rich",
+      "2.4",
+      "--poor",
+      "1.6",
+      "--regrow",
+      "0.8",
+      "--memory-life",
+      "100000"
+    ]
+  },
+  "arithmetic": {
+    "c_star": "M + income - income/r = 2.0 + 1.2 - 1.5 = 1.70",
+    "cost": "maintenance + damage*repair = 0.6 + 0.02*1.5 = 0.63",
+    "net_alone": "income - cost = 1.2 - 0.63 = +0.57 per step",
+    "first_taker": "min(c*, income) = 1.20 -> +0.57 per step",
+    "second_taker": "min(c* - 1.20, income) = 0.50 -> -0.13 per step",
+    "death_if_staying": "9.37 / 0.13 = 72 steps",
+    "bound": "40 cells, one organism each",
+    "prediction_P1": "surplus 0 at some move_cost in (0.1, 0.6)",
+    "prediction_P2": "the fall is a step, not a slope",
+    "prediction_P3": "no sight -> no movement -> no surplus"
+  },
+  "conditions": {
+    "mc0.10": {
+      "label": "sighted, move_cost 0.10, read_budget 3",
+      "metrics": {
+        "alive": 42,
+        "occupied": 40,
+        "doubles": 2,
+        "max_per_cell": 2,
+        "moved": 8,
+        "surplus": 2,
+        "same_trajectory_as": []
+      },
+      "hash": "dc72611c46380c29"
+    },
+    "mc0.15": {
+      "label": "sighted, move_cost 0.15, read_budget 3",
+      "metrics": {
+        "alive": 42,
+        "occupied": 40,
+        "doubles": 2,
+        "max_per_cell": 2,
+        "moved": 6,
+        "surplus": 2,
+        "same_trajectory_as": []
+      },
+      "hash": "679fed741f6d254f"
+    },
+    "mc0.18": {
+      "label": "sighted, move_cost 0.18, read_budget 3",
+      "metrics": {
+        "alive": 40,
+        "occupied": 40,
+        "doubles": 0,
+        "max_per_cell": 1,
+        "moved": 0,
+        "surplus": 0,
+        "same_trajectory_as": []
+      },
+      "hash": "417ec8155e6e8e02"
+    },
+    "mc0.20": {
+      "label": "sighted, move_cost 0.20, read_budget 3",
+      "metrics": {
+        "alive": 40,
+        "occupied": 40,
+        "doubles": 0,
+        "max_per_cell": 1,
+        "moved": 0,
+        "surplus": 0,
+        "same_trajectory_as": []
+      },
+      "hash": "635203ad196c8aba"
+    },
+    "mc0.30": {
+      "label": "sighted, move_cost 0.30, read_budget 3",
+      "metrics": {
+        "alive": 40,
+        "occupied": 40,
+        "doubles": 0,
+        "max_per_cell": 1,
+        "moved": 0,
+        "surplus": 0,
+        "same_trajectory_as": []
+      },
+      "hash": "6d57cc02c00e1f67"
+    },
+    "mc0.60": {
+      "label": "sighted, move_cost 0.60, read_budget 3",
+      "metrics": {
+        "alive": 40,
+        "occupied": 40,
+        "doubles": 0,
+        "max_per_cell": 1,
+        "moved": 0,
+        "surplus": 0,
+        "same_trajectory_as": []
+      },
+      "hash": "fce923f1876e66f0"
+    },
+    "blind": {
+      "label": "sighted, read_budget 1 (neighbours invisible, cannot move)",
+      "metrics": {
+        "alive": 40,
+        "occupied": 40,
+        "doubles": 0,
+        "moved": 0,
+        "surplus": 0
+      },
+      "hash": "e111513f03c76d3f"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "alive counts across the sweep: [40, 42]"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "blind arm moved 0 organisms; expected 0"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "blind arm alive 40; expected exactly the bound 40"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "The surplus is a step, not a slope: it is 2 while movement is cheap and 0 once it is not, with nothing in between. Removing sight removes movement and the surplus with it, at the same price, so the surplus is bought by movement and not by the field."
+  },
+  "hashes": {
+    "mc0.10": "dc72611c46380c29",
+    "mc0.15": "679fed741f6d254f",
+    "mc0.18": "417ec8155e6e8e02",
+    "mc0.20": "635203ad196c8aba",
+    "mc0.30": "6d57cc02c00e1f67",
+    "mc0.60": "fce923f1876e66f0",
+    "blind": "e111513f03c76d3f"
+  },
+  "limitations": [
+    "Samples carry no organism id, so the two second occupants cannot be followed as individuals; 'rotation' is inferred from the cell index changing between samples, not from identity.",
+    "One seed (20250101) only. The surplus is not shown to be stable across seeds, and EXP-52 already found a different surplus (53 vs 40) at income 1.0, so this threshold belongs to income 1.2 and is not a field constant.",
+    "The trace binary refuses read_budget 0 for sighted, so 'no movement' was produced by read_budget 1, which also removes the organism's view of the cell underfoot. Blindness and immobility are not separated here.",
+    "The sweep is coarse: six prices. The threshold is bracketed to (0.15, 0.20) but not located, and the claim that the fall is a step rests on no arm landing between 2 and 0."
+  ],
+  "command": "python3 checks/exp54_surplus_price.py",
+  "created_at": "2026-11-12T22:08:13.370617+00:00"
+}

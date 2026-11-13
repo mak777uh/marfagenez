@@ -1,0 +1,97 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "crossing-shape",
+  "run_id": "run-2026-11-13T00-58-36",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "n": 240,
+    "steps": 1200,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "energy": 5,
+    "regrow": 1.0,
+    "field": "uniform",
+    "layout": "even",
+    "policy": "random",
+    "bisection_iters": 7
+  },
+  "arithmetic": {
+    "share_at_k2": "income/2",
+    "budget_at_k2": "income/2 - 0.1 - 0.05 = income/2 - 0.15",
+    "candidates": {
+      "proportional_to_income": "crossing/income constant",
+      "proportional_to_budget": "crossing tracks income/2 - 0.15",
+      "constant": "crossing independent of income"
+    }
+  },
+  "conditions": {
+    "income1": {
+      "label": "income 1, crossing 0.1602",
+      "metrics": {
+        "crossing_move_cost": 0.1602,
+        "crossing_over_income": 0.1602,
+        "share_income_over_k": 0.5,
+        "alive_at_crossing": 115
+      },
+      "hash": "4e0f254392b51693"
+    },
+    "income1.5": {
+      "label": "income 1.5, crossing 0.1133",
+      "metrics": {
+        "crossing_move_cost": 0.1133,
+        "crossing_over_income": 0.0755,
+        "share_income_over_k": 0.75,
+        "alive_at_crossing": 125
+      }
+    },
+    "income2": {
+      "label": "income 2, crossing 0.1133",
+      "metrics": {
+        "crossing_move_cost": 0.1133,
+        "crossing_over_income": 0.0566,
+        "share_income_over_k": 1.0,
+        "alive_at_crossing": 125
+      }
+    },
+    "income3": {
+      "label": "income 3, crossing 0.1133",
+      "metrics": {
+        "crossing_move_cost": 0.1133,
+        "crossing_over_income": 0.0378,
+        "share_income_over_k": 1.5,
+        "alive_at_crossing": 125
+      }
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "bracket holds at all 4 incomes"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "stay's per-step budget income/2 - 0.15 is positive for every income tested, so stay can never lose by construction"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "crossing/income falls monotonically: 0.1602, 0.0755, 0.0566, 0.0378; spread 0.293"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "точка безразличия падает с ростом дохода - не пропорциональна ему"
+  },
+  "hashes": {
+    "income1": "4e0f254392b51693"
+  },
+  "limitations": [
+    "one seed, discrete survivor count; `regrow=1` removes field differences, so this says nothing about a gradient field"
+  ],
+  "command": "python3 checks/exp36_crossing_shape.py",
+  "created_at": "2026-11-13T00:58:36.202065+00:00"
+}

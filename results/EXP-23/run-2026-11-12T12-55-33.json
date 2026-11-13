@@ -1,0 +1,122 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-23",
+  "run_id": "run-2026-11-12T12-55-33",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "income": 0.8,
+    "maintenance": 0.6,
+    "regrow": 0.8,
+    "cells": 40,
+    "n": 160,
+    "steps": 3000,
+    "feed": true
+  },
+  "arithmetic": {
+    "model": "stay never moves, so the step-1 seating must survive. A cell feeds at most k_max organisms, so survivors = sum over cells of min(occupancy, k_max). k_max from the take recursion: at M=4.0, c*=3.8, takes 0.8,0.8,0.8,0.8,0.0 -> k_max=4. At M=2.25, c*=2.05, takes 0.8,0.8,0.2 -> k_max=2. With 160 organisms randomly on 40 cells, some cells get 9 and some get 1, so min(occupancy, k_max) is strictly below 160 even when the field could hold 160.",
+    "k_max_M4": 4,
+    "k_max_M225": 2
+  },
+  "conditions": {
+    "random-seating-M4.0": {
+      "label": "random seating, M=4.0",
+      "metrics": {
+        "alive": 126,
+        "occupied": 40,
+        "predicted": 126,
+        "k_max": 4
+      },
+      "hash": "f62a099115471487"
+    },
+    "even-seating-M4.0": {
+      "label": "even seating, M=4.0",
+      "metrics": {
+        "alive": 160,
+        "occupied": 40,
+        "predicted": 160,
+        "k_max": 4
+      },
+      "hash": "49b30e34e1ef6ea7"
+    },
+    "random-seating-M2.25": {
+      "label": "random seating, M=2.25",
+      "metrics": {
+        "alive": 77,
+        "occupied": 40,
+        "predicted": 77,
+        "k_max": 2
+      },
+      "hash": "f959d0d2f5cabfa4"
+    },
+    "even-seating-M2.25": {
+      "label": "even seating, M=2.25",
+      "metrics": {
+        "alive": 80,
+        "occupied": 40,
+        "predicted": 80,
+        "k_max": 2
+      },
+      "hash": "e79aa3bc2fe9c467"
+    }
+  },
+  "series": {
+    "alive": {
+      "steps": [
+        4.0,
+        4.0,
+        2.25,
+        2.25
+      ],
+      "values": [
+        126.0,
+        160.0,
+        77.0,
+        80.0
+      ]
+    },
+    "predicted": {
+      "steps": [
+        4.0,
+        4.0,
+        2.25,
+        2.25
+      ],
+      "values": [
+        126.0,
+        160.0,
+        77.0,
+        80.0
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "random seating at M=4.0: 126 of 160 alive -- overcrowded cells kill"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "even seating at M=4.0: 160 of 160 alive -- 4 per cell is exactly k_max"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "random M=4.0: alive 126 vs predicted 126; random M=2.25: alive 77 vs predicted 77; even M=2.25: 80 -- the two k_max give different counts"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "random seating explains the anomaly: survivors = sum min(occupancy, k_max)"
+  },
+  "hashes": {
+    "random-seating-M4.0": "f62a099115471487",
+    "even-seating-M4.0": "49b30e34e1ef6ea7",
+    "random-seating-M2.25": "f959d0d2f5cabfa4",
+    "even-seating-M2.25": "e79aa3bc2fe9c467"
+  },
+  "limitations": [
+    "One seed, `stay` only, no movement, no damage, one field shape. The prediction uses the same take recursion the model runs, so it is a consistency check, not an independent derivation. `alternating` gave the same numbers as `uniform` under random seating; that is recorded but not explained."
+  ],
+  "command": "python3 checks/exp23_seating.py",
+  "created_at": "2026-11-12T12:55:33.966407+00:00"
+}

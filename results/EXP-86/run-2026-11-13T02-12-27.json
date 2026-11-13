@@ -1,0 +1,144 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-86",
+  "run_id": "run-2026-11-13T02-12-27",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 4,
+    "rich": 2.4,
+    "poor": 1.6,
+    "regrow": 0.8,
+    "maintenance": 0.6,
+    "damage_rate": 0.05,
+    "repair_cost": 1.5,
+    "capacity": 10.0,
+    "start_energy": 1.0,
+    "steps": 400
+  },
+  "arithmetic": {
+    "M": 2.4,
+    "regrow": 0.8,
+    "M_r": 1.92,
+    "unsaturated_law": "L* = M - income*(1-r)/r",
+    "A_predicted": 2.15,
+    "B_predicted": 1.92,
+    "C_predicted": "M - M*r*(1-r)/r = M*r = 1.92, the two regimes meet",
+    "why": "Field::take takes min(cell, amount), so a cell cannot be overdrawn; once empty it regrows to M*r and is emptied again, so the frame always reads M*r",
+    "consequence": "a starved cell's true income is M*regrow, not the nominal income"
+  },
+  "conditions": {
+    "A": {
+      "label": "income 1.0 < M*r = 1.92 (unsaturated)",
+      "metrics": {
+        "income": 1.0,
+        "cells": [
+          0
+        ],
+        "alive": [
+          true
+        ],
+        "energy": [
+          10.0
+        ],
+        "field": [
+          2.15,
+          1.6,
+          2.4,
+          1.6
+        ],
+        "taken": [
+          1.0
+        ],
+        "hash": "2a4631810a737290"
+      },
+      "hash": "2a4631810a737290"
+    },
+    "B": {
+      "label": "income 2.0 > M*r (starved)",
+      "metrics": {
+        "income": 2.0,
+        "cells": [
+          0
+        ],
+        "alive": [
+          true
+        ],
+        "energy": [
+          10.0
+        ],
+        "field": [
+          1.92,
+          1.6,
+          2.4,
+          1.6
+        ],
+        "taken": [
+          1.92
+        ],
+        "hash": "08428c70a87a5f1b"
+      },
+      "hash": "08428c70a87a5f1b"
+    }
+  },
+  "series": {
+    "A": {
+      "steps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "values": [
+        2.15,
+        1.6,
+        2.4,
+        1.6
+      ]
+    },
+    "B": {
+      "steps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "values": [
+        1.92,
+        1.6,
+        2.4,
+        1.6
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "B (income 2.0) reads 1.920000, strictly below the ceiling 2.40. A cell that cannot meet its demand must be visibly short."
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "A (income 1.0) reads 2.150000, the unsaturated law 2.150000. The threshold must not disturb the regime below it."
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "A reads 2.150000 and B reads 1.920000. The difference is the threshold: below M*r = 1.92 the cell holds what the formula says, above it the cell holds only what the supply gives. If both read the same number the threshold would be doing nothing."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "a starved cell settles at M*regrow = 1.9200, not at the negative level the formula would give. Measured 1.920000 at income 2.0. The unsaturated arm reads 2.150000. `Field::take` cannot overdraw a cell, so the frame always reads M*regrow. A second arm at income 1.92 was run and produced the same hash as income 2.0 -- the demand is capped by the cell, so the two are one run and their agreement is a fact about `min`, not a second measurement."
+  },
+  "hashes": {
+    "A": "2a4631810a737290",
+    "B": "08428c70a87a5f1b"
+  },
+  "limitations": [
+    "One organism on one cell. It measures the level a starved cell holds, not how many organisms such a cell can support over a long run.",
+    "The reading is the frame, which is taken after the regrowth. The cell is empty at the moment of the take and at M*regrow at the moment of the frame; both are true and only one of them is visible.",
+    "Only one saturated point is measured. The claim 'the demand does not matter above the threshold' follows from `Field::take`'s `min`, not from a second measurement: an arm at income 1.92 was run and came back with the same hash as income 2.0.",
+    "This does not say the organism is fine. It says the organism receives M*regrow per step. Whether that is enough to survive depends on maintenance, damage and repair, which this experiment holds fixed."
+  ],
+  "command": "python3 checks/exp86_the_field_cannot_go_below_zero.py",
+  "created_at": "2026-11-13T02:12:27.782880+00:00"
+}

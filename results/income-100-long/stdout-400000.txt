@@ -1,0 +1,14 @@
+policy:   sighted
+capacity: 10
+damage:   0.02
+field:    uniform
+memlife:  300
+shift:    0
+rich:     2
+poor:     2
+regrow:   0.8
+feed:     false
+steps:    400000
+frames:   400
+hash:     59de1a0eb1f14fb1
+written:  results/sighted/trace-sighted-1794533402044.json

@@ -1,0 +1,449 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp31_capacity_was_forty",
+  "run_id": "run-2026-11-12T21-51-00",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "cells": 40,
+    "capacity": 10.0,
+    "M": 2.0,
+    "r": 0.8,
+    "income": 0.8,
+    "maintenance": 0.6,
+    "damage_rate": 0.02,
+    "repair_cost": 1.5,
+    "move_cost": 0.1,
+    "energy": 5.0,
+    "memory_life": 100000,
+    "steps": 2000,
+    "rich": 2.4,
+    "poor": 1.6,
+    "sighted_read_budget": 3
+  },
+  "arithmetic": {
+    "law": "k_max = 1 + floor((M*r - maintenance - damage)/income)",
+    "k_max": 2,
+    "upper_bound_alive": 80,
+    "stationary_bound_alive": 40,
+    "why_40": "a stationary population cannot exceed one per cell: the second organism on a cell eats it to the floor, and the cell regrows at r per step, which feeds one",
+    "read_budget_zero_means": "Sighted reads neither neighbour, best > here is never true, the policy becomes Stay",
+    "rich_poor": "rich=2.4 poor=1.6; rich == poor makes all three field kinds the same constant field"
+  },
+  "conditions": {
+    "stay-uniform-n40": {
+      "label": "stay uniform n=40",
+      "metrics": {
+        "policy": "stay",
+        "field": "uniform",
+        "n": 40,
+        "alive": 37,
+        "occupied_cells": 25,
+        "max_per_cell": 2,
+        "crowding": 1.48,
+        "field_spread": 0.4,
+        "field_mean": 1.815
+      },
+      "hash": "cd113e6c00d7be18"
+    },
+    "stay-uniform-n80": {
+      "label": "stay uniform n=80",
+      "metrics": {
+        "policy": "stay",
+        "field": "uniform",
+        "n": 80,
+        "alive": 59,
+        "occupied_cells": 34,
+        "max_per_cell": 2,
+        "crowding": 1.7353,
+        "field_spread": 0.4,
+        "field_mean": 1.705
+      },
+      "hash": "7bef75685e58253c"
+    },
+    "stay-uniform-n120": {
+      "label": "stay uniform n=120",
+      "metrics": {
+        "policy": "stay",
+        "field": "uniform",
+        "n": 120,
+        "alive": 72,
+        "occupied_cells": 37,
+        "max_per_cell": 2,
+        "crowding": 1.9459,
+        "field_spread": 0.4,
+        "field_mean": 1.64
+      },
+      "hash": "0abfd56d42e8c925"
+    },
+    "stay-uniform-n160": {
+      "label": "stay uniform n=160",
+      "metrics": {
+        "policy": "stay",
+        "field": "uniform",
+        "n": 160,
+        "alive": 76,
+        "occupied_cells": 40,
+        "max_per_cell": 2,
+        "crowding": 1.9,
+        "field_spread": 0.2,
+        "field_mean": 1.62
+      },
+      "hash": "0f69fc3a68c06437"
+    },
+    "stay-alternating-n40": {
+      "label": "stay alternating n=40",
+      "metrics": {
+        "policy": "stay",
+        "field": "alternating",
+        "n": 40,
+        "alive": 32,
+        "occupied_cells": 25,
+        "max_per_cell": 2,
+        "crowding": 1.28,
+        "field_spread": 1.0,
+        "field_mean": 1.84
+      },
+      "hash": "46b86e3fa5e6024b"
+    },
+    "stay-alternating-n80": {
+      "label": "stay alternating n=80",
+      "metrics": {
+        "policy": "stay",
+        "field": "alternating",
+        "n": 80,
+        "alive": 47,
+        "occupied_cells": 34,
+        "max_per_cell": 2,
+        "crowding": 1.3824,
+        "field_spread": 1.0,
+        "field_mean": 1.765
+      },
+      "hash": "95c0510e37d2c1f5"
+    },
+    "stay-alternating-n120": {
+      "label": "stay alternating n=120",
+      "metrics": {
+        "policy": "stay",
+        "field": "alternating",
+        "n": 120,
+        "alive": 54,
+        "occupied_cells": 37,
+        "max_per_cell": 2,
+        "crowding": 1.4595,
+        "field_spread": 1.0,
+        "field_mean": 1.73
+      },
+      "hash": "259c3b4900cb3baf"
+    },
+    "stay-alternating-n160": {
+      "label": "stay alternating n=160",
+      "metrics": {
+        "policy": "stay",
+        "field": "alternating",
+        "n": 160,
+        "alive": 58,
+        "occupied_cells": 40,
+        "max_per_cell": 2,
+        "crowding": 1.45,
+        "field_spread": 0.8,
+        "field_mean": 1.71
+      },
+      "hash": "a70f9d0879b61be0"
+    },
+    "stay-gradient-n40": {
+      "label": "stay gradient n=40",
+      "metrics": {
+        "policy": "stay",
+        "field": "gradient",
+        "n": 40,
+        "alive": 33,
+        "occupied_cells": 25,
+        "max_per_cell": 2,
+        "crowding": 1.32,
+        "field_spread": 0.9179,
+        "field_mean": 1.8368
+      },
+      "hash": "6fac2aa2fec78a86"
+    },
+    "stay-gradient-n80": {
+      "label": "stay gradient n=80",
+      "metrics": {
+        "policy": "stay",
+        "field": "gradient",
+        "n": 80,
+        "alive": 52,
+        "occupied_cells": 34,
+        "max_per_cell": 2,
+        "crowding": 1.5294,
+        "field_spread": 0.7795,
+        "field_mean": 1.7429
+      },
+      "hash": "3c16e42cb41efba6"
+    },
+    "stay-gradient-n120": {
+      "label": "stay gradient n=120",
+      "metrics": {
+        "policy": "stay",
+        "field": "gradient",
+        "n": 120,
+        "alive": 64,
+        "occupied_cells": 37,
+        "max_per_cell": 2,
+        "crowding": 1.7297,
+        "field_spread": 0.7385,
+        "field_mean": 1.6853
+      },
+      "hash": "07add8527a22975c"
+    },
+    "stay-gradient-n160": {
+      "label": "stay gradient n=160",
+      "metrics": {
+        "policy": "stay",
+        "field": "gradient",
+        "n": 160,
+        "alive": 68,
+        "occupied_cells": 40,
+        "max_per_cell": 2,
+        "crowding": 1.7,
+        "field_spread": 0.6,
+        "field_mean": 1.6653
+      },
+      "hash": "24b45cd64b29652f"
+    },
+    "sighted-uniform-n40": {
+      "label": "sighted uniform n=40",
+      "metrics": {
+        "policy": "sighted",
+        "field": "uniform",
+        "n": 40,
+        "alive": 40,
+        "occupied_cells": 40,
+        "max_per_cell": 1,
+        "crowding": 1.0,
+        "field_spread": 0.0,
+        "field_mean": 1.8
+      },
+      "hash": "0f1c8e6a3334f275"
+    },
+    "sighted-uniform-n80": {
+      "label": "sighted uniform n=80",
+      "metrics": {
+        "policy": "sighted",
+        "field": "uniform",
+        "n": 80,
+        "alive": 76,
+        "occupied_cells": 40,
+        "max_per_cell": 2,
+        "crowding": 1.9,
+        "field_spread": 0.16,
+        "field_mean": 1.62
+      },
+      "hash": "6e249cbff32bef75"
+    },
+    "sighted-uniform-n120": {
+      "label": "sighted uniform n=120",
+      "metrics": {
+        "policy": "sighted",
+        "field": "uniform",
+        "n": 120,
+        "alive": 80,
+        "occupied_cells": 40,
+        "max_per_cell": 2,
+        "crowding": 2.0,
+        "field_spread": 0.0,
+        "field_mean": 1.6
+      },
+      "hash": "237a0ce9da991ecb"
+    },
+    "sighted-uniform-n160": {
+      "label": "sighted uniform n=160",
+      "metrics": {
+        "policy": "sighted",
+        "field": "uniform",
+        "n": 160,
+        "alive": 80,
+        "occupied_cells": 40,
+        "max_per_cell": 2,
+        "crowding": 2.0,
+        "field_spread": 0.0,
+        "field_mean": 1.6
+      },
+      "hash": "274023b22a4c7544"
+    },
+    "sighted-alternating-n40": {
+      "label": "sighted alternating n=40",
+      "metrics": {
+        "policy": "sighted",
+        "field": "alternating",
+        "n": 40,
+        "alive": 40,
+        "occupied_cells": 36,
+        "max_per_cell": 2,
+        "crowding": 1.1111,
+        "field_spread": 0.8,
+        "field_mean": 1.8
+      },
+      "hash": "b13e0dfbea5ed1c0"
+    },
+    "sighted-alternating-n80": {
+      "label": "sighted alternating n=80",
+      "metrics": {
+        "policy": "sighted",
+        "field": "alternating",
+        "n": 80,
+        "alive": 60,
+        "occupied_cells": 40,
+        "max_per_cell": 2,
+        "crowding": 1.5,
+        "field_spread": 0.6,
+        "field_mean": 1.7
+      },
+      "hash": "fd47142f44f305c8"
+    },
+    "sighted-alternating-n120": {
+      "label": "sighted alternating n=120",
+      "metrics": {
+        "policy": "sighted",
+        "field": "alternating",
+        "n": 120,
+        "alive": 60,
+        "occupied_cells": 40,
+        "max_per_cell": 2,
+        "crowding": 1.5,
+        "field_spread": 0.6,
+        "field_mean": 1.7
+      },
+      "hash": "a075d6c370353e21"
+    },
+    "sighted-alternating-n160": {
+      "label": "sighted alternating n=160",
+      "metrics": {
+        "policy": "sighted",
+        "field": "alternating",
+        "n": 160,
+        "alive": 60,
+        "occupied_cells": 40,
+        "max_per_cell": 2,
+        "crowding": 1.5,
+        "field_spread": 0.6,
+        "field_mean": 1.7
+      },
+      "hash": "54e2e9604d50be0d"
+    },
+    "sighted-gradient-n40": {
+      "label": "sighted gradient n=40",
+      "metrics": {
+        "policy": "sighted",
+        "field": "gradient",
+        "n": 40,
+        "alive": 34,
+        "occupied_cells": 25,
+        "max_per_cell": 2,
+        "crowding": 1.36,
+        "field_spread": 0.4985,
+        "field_mean": 1.83
+      },
+      "hash": "7c80c3e5b3b3a001"
+    },
+    "sighted-gradient-n80": {
+      "label": "sighted gradient n=80",
+      "metrics": {
+        "policy": "sighted",
+        "field": "gradient",
+        "n": 80,
+        "alive": 37,
+        "occupied_cells": 29,
+        "max_per_cell": 3,
+        "crowding": 1.2759,
+        "field_spread": 0.6446,
+        "field_mean": 1.8176
+      },
+      "hash": "00e5755a762cf16f"
+    },
+    "sighted-gradient-n120": {
+      "label": "sighted gradient n=120",
+      "metrics": {
+        "policy": "sighted",
+        "field": "gradient",
+        "n": 120,
+        "alive": 40,
+        "occupied_cells": 34,
+        "max_per_cell": 2,
+        "crowding": 1.1765,
+        "field_spread": 0.6933,
+        "field_mean": 1.8
+      },
+      "hash": "3d98a8307f8bd0ee"
+    },
+    "sighted-gradient-n160": {
+      "label": "sighted gradient n=160",
+      "metrics": {
+        "policy": "sighted",
+        "field": "gradient",
+        "n": 160,
+        "alive": 40,
+        "occupied_cells": 31,
+        "max_per_cell": 2,
+        "crowding": 1.2903,
+        "field_spread": 0.7267,
+        "field_mean": 1.8
+      },
+      "hash": "e78b3af474a39617"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "stay uniform alive: [37, 59, 72, 76]; sighted(budget 3) uniform alive: [40, 76, 80, 80]"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "sighted(budget 3) uniform alive at n >= 120: [80, 80], expected a constant equal to the arithmetic bound 80 (k_max=2 per cell on 40 cells); the stationary bound 40 applies to the stay arm, which moves nothing"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "sighted(budget 3) gradient alive: [34, 37, 40, 40]; uniform: [40, 76, 80, 80]; expected gradient strictly fewer at every n | on an uneven field stay and sighted must differ: stay=46b86e3fa5e6 sighted=b13e0dfbea5e; on a flat field they may coincide: stay=cd113e6c00d7 sighted=0f1c8e6a3334"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "with a real read budget the sighted population on a uniform field reaches the arithmetic bound of 80 at saturation, while the arm that cannot see reaches 76; the two arms differ, so the old 80 was not produced by a sighted policy"
+  },
+  "hashes": {
+    "stay-uniform-n40": "cd113e6c00d7be18",
+    "stay-uniform-n80": "7bef75685e58253c",
+    "stay-uniform-n120": "0abfd56d42e8c925",
+    "stay-uniform-n160": "0f69fc3a68c06437",
+    "stay-alternating-n40": "46b86e3fa5e6024b",
+    "stay-alternating-n80": "95c0510e37d2c1f5",
+    "stay-alternating-n120": "259c3b4900cb3baf",
+    "stay-alternating-n160": "a70f9d0879b61be0",
+    "stay-gradient-n40": "6fac2aa2fec78a86",
+    "stay-gradient-n80": "3c16e42cb41efba6",
+    "stay-gradient-n120": "07add8527a22975c",
+    "stay-gradient-n160": "24b45cd64b29652f",
+    "sighted-uniform-n40": "0f1c8e6a3334f275",
+    "sighted-uniform-n80": "6e249cbff32bef75",
+    "sighted-uniform-n120": "237a0ce9da991ecb",
+    "sighted-uniform-n160": "274023b22a4c7544",
+    "sighted-alternating-n40": "b13e0dfbea5ed1c0",
+    "sighted-alternating-n80": "fd47142f44f305c8",
+    "sighted-alternating-n120": "a075d6c370353e21",
+    "sighted-alternating-n160": "54e2e9604d50be0d",
+    "sighted-gradient-n40": "7c80c3e5b3b3a001",
+    "sighted-gradient-n80": "00e5755a762cf16f",
+    "sighted-gradient-n120": "3d98a8307f8bd0ee",
+    "sighted-gradient-n160": "e78b3af474a39617"
+  },
+  "limitations": [
+    "One seed (20250101) for every arm.",
+    "One parameter set; the 40/80 boundary is not swept in M, r or income here.",
+    "The stationary arm is `--policy stay`, not the refused `sighted --read-budget 0`. Their equivalence is argued from the code path and checked only indirectly, by showing the two policies do differ on an uneven field; the control slot for it is folded into `specific` because the contract allows exactly three control names.",
+    "Does not re-run the eleven affected experiments; it re-measures their shared parameter set.",
+    "Does not prove that sighting is useless. It proves that the capacity of 80 on a uniform field was produced by a policy that could not see, and that a policy which can see reaches 40 there. What sighting buys on an uneven field is a separate question."
+  ],
+  "command": "python3 checks/exp31_capacity_was_forty.py",
+  "created_at": "2026-11-12T21:51:00.805492+00:00"
+}

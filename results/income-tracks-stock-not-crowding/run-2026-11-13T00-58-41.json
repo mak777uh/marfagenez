@@ -1,0 +1,83 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "income-tracks-stock-not-crowding",
+  "run_id": "run-2026-11-13T00-58-41",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {},
+  "arithmetic": {
+    "step_cost": "0.1 + 0.2*0.5 = 0.2",
+    "crowding_prediction": "n=120 on 120 cells, k=6.7 per cell -> income/k = 0.30; n=30 on 120 cells, k=1 -> income 2.0, a factor 6.7 higher",
+    "stock_prediction": "a cell eaten every step only holds what regrew (0.2 per step by default), so the income is near 0.2-0.3 at both densities",
+    "discriminator": "the ratio of income at n=30 to income at n=120: near 6.7 means crowding, near 1 means stock"
+  },
+  "conditions": {
+    "n30": {
+      "label": "n=30",
+      "metrics": {
+        "n": 30,
+        "mean_income_taken": 0.2978,
+        "alive_at_end": 29,
+        "cells_occupied": 21,
+        "mean_per_cell": 1.38,
+        "samples": 5903
+      },
+      "hash": "465d29f10f20d787"
+    },
+    "n60": {
+      "label": "n=60",
+      "metrics": {
+        "n": 60,
+        "mean_income_taken": 0.2993,
+        "alive_at_end": 59,
+        "cells_occupied": 41,
+        "mean_per_cell": 1.44,
+        "samples": 11927
+      },
+      "hash": "36046ab6c20f0f32"
+    },
+    "n120": {
+      "label": "n=120",
+      "metrics": {
+        "n": 120,
+        "mean_income_taken": 0.2977,
+        "alive_at_end": 116,
+        "cells_occupied": 70,
+        "mean_per_cell": 1.66,
+        "samples": 23652
+      },
+      "hash": "9940aa9a6f860811"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "income taken by density: {'n30': 0.2978, 'n60': 0.2993, 'n120': 0.2977}"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "one organism alone on 120 cells takes 0.30519045226130653 per step, so no crowding is needed for the income to be low"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "income n=30 / n=120 = 1.00, below the midpoint 2.6 between crowding (6.7) and stock (1.0)"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "income n=30/n=120 = 1.00 (crowding predicts 6.7, stock predicts 1.0); a lone organism takes 0.30519045226130653 per step, so the limit is the cell stock, not the number of organisms"
+  },
+  "hashes": {
+    "n30": "465d29f10f20d787",
+    "n60": "36046ab6c20f0f32",
+    "n120": "9940aa9a6f860811"
+  },
+  "limitations": [
+    "income is recovered from the energy drop, so it assumes the step cost is 0.2 + move_cost*moved; EXP-39 supports that",
+    "the trace does not report the cell stock, so \"stock\" is inferred from the absence of crowding, not read directly",
+    "one seed and one regrow (the default 0.2); a higher regrow would separate the two predictions more sharply and was not tried"
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --steps 200 --every 1 --cells 120 --capacity 10 --damage-rate 0.2 --maintenance 0.1 --repair-cost 0.5 --energy 5 --field uniform --rich 2.0 --poor 0.2 --layout even --seed 1 --income 2 --policy random --move-cost 0.1211 --n 30|60|120",
+  "created_at": "2026-11-13T00:58:41.847580+00:00"
+}

@@ -1,0 +1,134 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-77",
+  "run_id": "run-2026-11-13T02-04-30",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 40,
+    "rich": 2.4,
+    "poor": 1.6,
+    "regrow": 0.8,
+    "income": 1.0,
+    "maintenance": 0.6,
+    "damage_rate": 0.05,
+    "repair_cost": 1.5,
+    "capacity": 10.0,
+    "steps": 50000,
+    "policy": "sighted",
+    "move_cost": 0,
+    "layout": "even"
+  },
+  "arithmetic": {
+    "need": 0.675,
+    "levels": {
+      "rich_k1": 2.15,
+      "rich_k2": 1.92,
+      "rich_k3": 1.92,
+      "poor_k1": 1.35,
+      "poor_k2": 1.2800000000000002,
+      "poor_k3": 1.2800000000000002
+    },
+    "takes": {
+      "rich_k2": [
+        1.0,
+        0.9199999999999999
+      ],
+      "rich_k3_third": -0.08000000000000007,
+      "poor_k2_second": 0.28000000000000025
+    },
+    "predicted_count": 60,
+    "note": "the checkerboard is the unique arrangement that saturates both cell types: rich cannot hold a third, poor cannot hold a second"
+  },
+  "conditions": {
+    "n39": {
+      "label": "50000 steps, alternating 2.4/1.6, layout even, n=39",
+      "metrics": {
+        "alive": 39,
+        "occupied": 39,
+        "moving": 0,
+        "on_max": 20,
+        "on_min": 19,
+        "neither": 0,
+        "empty_cells": [
+          39
+        ],
+        "empty_rich": [],
+        "empty_poor": [
+          39
+        ],
+        "overfull": [],
+        "field_min": 1.35,
+        "field_max": 2.15
+      },
+      "hash": "4bbe8896f1cd347b"
+    },
+    "n40": {
+      "label": "50000 steps, alternating 2.4/1.6, layout even, n=40",
+      "metrics": {
+        "alive": 40,
+        "occupied": 40,
+        "moving": 0,
+        "on_max": 20,
+        "on_min": 20,
+        "neither": 0,
+        "empty_cells": [],
+        "empty_rich": [],
+        "empty_poor": [],
+        "overfull": [],
+        "field_min": 1.35,
+        "field_max": 2.15
+      },
+      "hash": "50750b30df092c68"
+    },
+    "n42": {
+      "label": "50000 steps, alternating 2.4/1.6, layout even, n=42",
+      "metrics": {
+        "alive": 42,
+        "occupied": 40,
+        "moving": 0,
+        "on_max": 20,
+        "on_min": 20,
+        "neither": 0,
+        "empty_cells": [],
+        "empty_rich": [],
+        "empty_poor": [],
+        "overfull": [],
+        "field_min": 1.35,
+        "field_max": 2.15
+      },
+      "hash": "4ecb35449affea86"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "n=42 (two seats too many) must fall back to 60, not stay above it: alive = 42, overfull cells = []"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "n=40 must reproduce EXP-66: alive = 40, moving = 0"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "n=39: empty cells = [39] (rich [], poor [39]); on_max+on_min = 39 vs alive = 39. The hole must be POOR: a hole at a rich cell fills, because a neighbour on a poor cell sees a richer neighbour and walks onto it."
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "hole kept = [39] (empty [39]), excess died = False (alive 42 at n=42). At least one push rearranged the arrangement, so it is a reachable state and not an attractor."
+  },
+  "hashes": {
+    "n39": "4bbe8896f1cd347b",
+    "n40": "50750b30df092c68",
+    "n42": "4ecb35449affea86"
+  },
+  "limitations": [
+    "The pushes are a missing seat and extra seats. Neither is a local rearrangement at fixed count -- moving one organism from a rich cell to a poor cell while every other organism stays put. The trace binary cannot express that start, so 'stable' here does not yet mean 'stable against every rearrangement'.",
+    "Only one field amplitude is tested (rich 2.4 / poor 1.6). A weaker contrast may have a different arrangement, and the arithmetic above says when: the poor cell stops feeding one when min(M_poor, income) < need, i.e. below M_poor = 0.675.",
+    "move_cost is 0, so this says nothing about whether moving is affordable -- only about where the population ends up when it is free."
+  ],
+  "command": "python3 checks/exp77_how_much_slack_does_the_checkerboard_have.py",
+  "created_at": "2026-11-13T02:04:30.280620+00:00"
+}

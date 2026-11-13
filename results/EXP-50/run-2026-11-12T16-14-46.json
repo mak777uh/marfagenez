@@ -1,0 +1,125 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-50",
+  "run_id": "run-2026-11-12T16-14-46",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {},
+  "arithmetic": {
+    "field": "c -> c - min(c, income), then c -> c + (ceil - c) * g",
+    "field_fixed_point": "c* = ceil - income * (1 - g) / g",
+    "at_g_0.2": "c* = 10 - 2 * 0.8 / 0.2 = 2.0, take = min(2.0, 2) = 2.0",
+    "cell_after_one_step_g_0.2": "10 - 2 = 8, 8 + 2 * 0.2 = 8.4",
+    "organism_net_per_step": "take - maintenance - damage * repair = t - 0.2",
+    "organism_break_even": "t = 0.2"
+  },
+  "conditions": {
+    "regrow0.05": {
+      "label": "regrow 0.05",
+      "metrics": {
+        "regrow": 0.05,
+        "cell_start": 10.0,
+        "cell_after_1": 8.1,
+        "cell_after_2": 6.295,
+        "cell_after_3": 4.58025,
+        "predicted_1": 8.1,
+        "predicted_2": 6.295,
+        "predicted_3": 4.58025,
+        "tail_cell": 0.5,
+        "energy_after_20": 9.8
+      },
+      "hash": "5eb218ff41abc3de"
+    },
+    "regrow0.2": {
+      "label": "regrow 0.2",
+      "metrics": {
+        "regrow": 0.2,
+        "cell_start": 10.0,
+        "cell_after_1": 8.4,
+        "cell_after_2": 7.12,
+        "cell_after_3": 6.096,
+        "predicted_1": 8.4,
+        "predicted_2": 7.12,
+        "predicted_3": 6.096,
+        "tail_cell": 2.0,
+        "energy_after_20": 9.8
+      },
+      "hash": "319a85300392a11e"
+    },
+    "regrow0.5": {
+      "label": "regrow 0.5",
+      "metrics": {
+        "regrow": 0.5,
+        "cell_start": 10.0,
+        "cell_after_1": 9.0,
+        "cell_after_2": 8.5,
+        "cell_after_3": 8.25,
+        "predicted_1": 9.0,
+        "predicted_2": 8.5,
+        "predicted_3": 8.25,
+        "tail_cell": 8.0,
+        "energy_after_20": 9.8
+      },
+      "hash": "cbec00be8cdf36a2"
+    },
+    "regrow1.0": {
+      "label": "regrow 1.0",
+      "metrics": {
+        "regrow": 1.0,
+        "cell_start": 10.0,
+        "cell_after_1": 10.0,
+        "cell_after_2": 10.0,
+        "cell_after_3": 10.0,
+        "predicted_1": 10.0,
+        "predicted_2": 10.0,
+        "predicted_3": 10.0,
+        "tail_cell": 10.0,
+        "energy_after_20": 9.8
+      },
+      "hash": "7220a30ac576265d"
+    },
+    "take_0.5": {
+      "label": "regrow 0.2, income 0.5",
+      "metrics": {
+        "regrow": 0.2,
+        "income_setting": 0.5,
+        "energy_start": 5.3,
+        "energy_after_20": 9.8,
+        "predicted_after_20": 9.8,
+        "cell_tail": 8.0
+      },
+      "hash": "ba111c170ee6a41f"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "the field law predicts the cell level to 8.88e-16 over 4 regrowth rates"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "regrow 1.0: the eaten cell is back at the ceiling 10.0 to 0.00e+00 over 200 steps"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "tail cell at income 2: 2.0 (law says 2.0), at income 0.5: 8.0 (law says 8.0)"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the field law c -> c - min(c, income) then c -> c + (ceil - c) * g holds exactly; the 0.30 of EXP-48 is the energy readout, not the field law, because a full organism clamps at capacity before it pays maintenance"
+  },
+  "hashes": {
+    "regrow0.05": "5eb218ff41abc3de",
+    "regrow0.2": "319a85300392a11e",
+    "regrow0.5": "cbec00be8cdf36a2",
+    "regrow1.0": "7220a30ac576265d",
+    "take_0.5": "ba111c170ee6a41f"
+  },
+  "limitations": [
+    "the field law is checked on one cell of a uniform field with one organism; it says nothing about several organisms on one cell, where the take is shared and the order of eating matters"
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --steps 200 --every 1 --cells 120 --capacity 10 --rich 10 --poor 10 --damage-rate 0.2 --maintenance 0.1 --repair-cost 0.5 --energy 5 --field uniform --layout even --seed 1 --income 2 --policy stay --n 1 --move-cost 0 --regrow G for G in 0.05..1.0, then --regrow 0.2 --income 0.5",
+  "created_at": "2026-11-12T16:14:46.128994+00:00"
+}

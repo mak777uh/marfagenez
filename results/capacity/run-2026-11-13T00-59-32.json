@@ -1,0 +1,103 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "capacity",
+  "run_id": "run-2026-11-13T00-59-32",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 2000,
+    "every": 2000,
+    "cells": 40,
+    "policy": "sighted",
+    "field": "uniform",
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02,
+    "max_resource": 2.0,
+    "regrow": 0.8
+  },
+  "arithmetic": {
+    "equilibrium": "c* = M - t/r, t = k * income",
+    "capacity_formula": "k_max = M * r / income",
+    "k_max": 2.0,
+    "total_capacity": 80.0,
+    "note": "k_max = 2.0 * 0.8 / 0.8 = 2.0. 40 cells hold 80.0 organisms. With 40 organisms there is twice the room needed, so death cannot be from cell capacity.",
+    "hypothesis": "If deaths come from crowding, then n=20 should lose fewer and n=80 should lose more, both relative to n=40."
+  },
+  "conditions": {
+    "A": {
+      "label": "n=40 (control)",
+      "metrics": {
+        "n": 40,
+        "alive": 39,
+        "total": 40,
+        "survival": 0.975,
+        "distinct_cells": 39,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "trace_file": "results/capacity/trace-sighted-1794531572829.json"
+      },
+      "hash": "f2926b58efa94eb1"
+    },
+    "B": {
+      "label": "n=20",
+      "metrics": {
+        "n": 20,
+        "alive": 20,
+        "total": 20,
+        "survival": 1.0,
+        "distinct_cells": 20,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "trace_file": "results/capacity/trace-sighted-1794531572889.json"
+      },
+      "hash": "12c1b0c91cf53475"
+    },
+    "C": {
+      "label": "n=80",
+      "metrics": {
+        "n": 80,
+        "alive": 40,
+        "total": 80,
+        "survival": 0.5,
+        "distinct_cells": 40,
+        "max_crowd": 1,
+        "mean_crowd": 1.0,
+        "trace_file": "results/capacity/trace-sighted-1794531572955.json"
+      },
+      "hash": "64a25d1dbbf61790"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "C (n=80): 40/80 = 50.0% vs A (n=40): 97.5% — crowding must lower survival"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "A: 39 alive — must match EXP-07's 32"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "B (n=20): 20/20 = 100.0% vs A's 97.5% — less crowding must help, but not perfectly (some still die)"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "control tests failed: silent, specific"
+  },
+  "hashes": {
+    "A": "f2926b58efa94eb1",
+    "B": "12c1b0c91cf53475",
+    "C": "64a25d1dbbf61790"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "The capacity formula k_max = M*r/income assumes all organisms on a cell take the full income every step; a moving organism takes less.",
+    "A uniform field is degenerate: there is no best cell, so the sighted organism has nothing to prefer and the crowding is the only variable.",
+    "The conclusion is about this model's regrowth rule, not about carrying capacity in general."
+  ],
+  "command": "python3 checks/exp10_capacity.py",
+  "created_at": "2026-11-13T00:59:32.767089+00:00"
+}

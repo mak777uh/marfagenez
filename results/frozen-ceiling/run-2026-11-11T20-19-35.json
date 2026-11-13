@@ -1,0 +1,123 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "frozen-ceiling",
+  "run_id": "run-2026-11-11T20-19-35",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "steps": 1200,
+    "every": 500,
+    "n": 40,
+    "cells": 40,
+    "policy": "stay",
+    "maintenance": 0.6,
+    "repair_cost": 1.5
+  },
+  "arithmetic": {
+    "formula": "capacity - maintenance - damage_rate * repair_cost",
+    "maintenance": 0.6,
+    "repair_cost": 1.5,
+    "predicted": {
+      "A": 99.37,
+      "B": 9.370000000000001,
+      "C": 9.25
+    },
+    "balance_on_rich": {
+      "A": 0.17000000000000007,
+      "B": 0.17000000000000007,
+      "C": 0.050000000000000044
+    },
+    "balance_note": "The balance must stay positive or the organism dies before reaching the ceiling. At damage_rate=0.10 the balance is +0.05.",
+    "steps_to_ceiling": {
+      "A": 555.1176470588233,
+      "B": 0.0,
+      "C": 84.99999999999993
+    },
+    "steps_note": "An arm reaches its ceiling only after (ceiling - 5.0) / balance steps. A needed 555 steps; the first run used 500 and stopped at 90.0, short of 99.37. The run is now 1200 steps."
+  },
+  "conditions": {
+    "A": {
+      "label": "capacity=100.0",
+      "metrics": {
+        "capacity": 100.0,
+        "damage_rate": 0.02,
+        "alive": 37,
+        "total": 40,
+        "mean_energy": 99.37,
+        "max_energy": 99.37,
+        "energies": [
+          99.37
+        ],
+        "predicted_ceiling": 99.37,
+        "trace_file": "results/frozen-ceiling/trace-stay-1794428376.json"
+      },
+      "hash": "3927a50ffc5a86a2"
+    },
+    "B": {
+      "label": "control (capacity=10.0)",
+      "metrics": {
+        "capacity": 10.0,
+        "damage_rate": 0.02,
+        "alive": 37,
+        "total": 40,
+        "mean_energy": 9.37,
+        "max_energy": 9.37,
+        "energies": [
+          9.37
+        ],
+        "predicted_ceiling": 9.370000000000001,
+        "trace_file": "results/frozen-ceiling/trace-stay-1794428376.json"
+      },
+      "hash": "9a2a530976dea817"
+    },
+    "C": {
+      "label": "damage_rate=0.10",
+      "metrics": {
+        "capacity": 10.0,
+        "damage_rate": 0.1,
+        "alive": 37,
+        "total": 40,
+        "mean_energy": 9.25,
+        "max_energy": 9.25,
+        "energies": [
+          9.25
+        ],
+        "predicted_ceiling": 9.25,
+        "trace_file": "results/frozen-ceiling/trace-stay-1794428376.json"
+      },
+      "hash": "021050865e095c39"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A: max energy 99.3700 vs its own predicted ceiling 99.3700 — must have REACHED the ceiling, not merely grown past B's"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "B: max energy 9.3700 vs predicted 9.3700 — must match"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "C: ceiling moved by 0.120000, the formula predicts 0.120000 (= (0.10-0.02)*1.5). A different mechanism would not move by exactly this amount."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "all three arms sit on the predicted ceilings; the ceiling is capacity - maintenance - damage_rate*repair_cost, not an equilibrium"
+  },
+  "hashes": {
+    "A": "3927a50ffc5a86a2",
+    "B": "9a2a530976dea817",
+    "C": "021050865e095c39"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "One policy (`stay`). `remember` and `random` are not tested in this run.",
+    "The formula is read off `Organism::step`; if that code changes, the arithmetic must be re-derived.",
+    "The ceiling is a property of the model's update order, not of life."
+  ],
+  "command": "python3 checks/exp05_frozen.py",
+  "created_at": "2026-11-11T20:19:35.964362+00:00"
+}

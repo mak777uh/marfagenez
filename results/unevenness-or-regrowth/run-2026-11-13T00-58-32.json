@@ -1,0 +1,108 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "unevenness-or-regrowth",
+  "run_id": "run-2026-11-13T00-58-32",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "n": 240,
+    "steps": 1200,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "income": 1,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "move_cost": 0.05,
+    "energy": 5,
+    "field": "uniform",
+    "layout": "even"
+  },
+  "arithmetic": {
+    "steady_state": "cell value settles where regrow*(ceil - c) = taken",
+    "taken": "min(income, cell) per organism on the cell",
+    "prediction": "if the gain is 'leaving the cell to recover', then a fast regrow makes the gap vanish"
+  },
+  "conditions": {
+    "stay_regrow0.2": {
+      "label": "stay regrow0.2",
+      "metrics": {
+        "alive": 120,
+        "mean_energy": 10.0
+      },
+      "hash": "70ef51a041e7432f"
+    },
+    "random_regrow0.2": {
+      "label": "random regrow0.2",
+      "metrics": {
+        "alive": 44,
+        "mean_energy": 9.109
+      },
+      "hash": "7cc0cc2e64a1bc30"
+    },
+    "stay_regrow0.5": {
+      "label": "stay regrow0.5",
+      "metrics": {
+        "alive": 120,
+        "mean_energy": 10.0
+      },
+      "hash": "70f2b58b470e9d4f"
+    },
+    "random_regrow0.5": {
+      "label": "random regrow0.5",
+      "metrics": {
+        "alive": 96,
+        "mean_energy": 9.233
+      },
+      "hash": "88ebcf62df6a566f"
+    },
+    "stay_regrow0.9": {
+      "label": "stay regrow0.9",
+      "metrics": {
+        "alive": 120,
+        "mean_energy": 10.0
+      },
+      "hash": "4d76620718d9c057"
+    },
+    "random_regrow0.9": {
+      "label": "random regrow0.9",
+      "metrics": {
+        "alive": 133,
+        "mean_energy": 9.517
+      },
+      "hash": "8e3455bf853f09b4"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "regrow 0.2: random 44 > stay 120"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "regrow 0.9: gap 13"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "gap by regrow: 0.2:-76 > 0.5:-24 > 0.9:13"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "преимущество движения — уход с клетки, а не сама скорость"
+  },
+  "hashes": {
+    "stay_regrow0.2": "70ef51a041e7432f",
+    "random_regrow0.2": "7cc0cc2e64a1bc30",
+    "stay_regrow0.5": "70f2b58b470e9d4f",
+    "random_regrow0.5": "88ebcf62df6a566f",
+    "stay_regrow0.9": "4d76620718d9c057",
+    "random_regrow0.9": "8e3455bf853f09b4"
+  },
+  "limitations": [
+    "one seed; `regrow` also changes the cell's steady-state level, so the gap could shrink because both arms get richer rather than because leaving a cell stopped mattering"
+  ],
+  "command": "python3 checks/exp33_unevenness_or_regrowth.py",
+  "created_at": "2026-11-13T00:58:32.467536+00:00"
+}

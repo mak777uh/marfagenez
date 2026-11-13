@@ -1,0 +1,218 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-84",
+  "run_id": "run-2026-11-13T02-09-43",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 4,
+    "rich": 2.4,
+    "poor": 1.6,
+    "regrow": 0.8,
+    "income": 1.0,
+    "maintenance": 0.6,
+    "damage_rate": 0.05,
+    "repair_cost": 1.5,
+    "capacity": 10.0,
+    "start_energy": 1.0
+  },
+  "arithmetic": {
+    "built": [
+      2.4,
+      1.6,
+      2.4,
+      1.6
+    ],
+    "income": 1.0,
+    "regrow": 0.8,
+    "rich_after_meal": 1.4,
+    "rich_frame0": 2.2,
+    "poor_after_meal": 0.6000000000000001,
+    "poor_frame0": 1.4000000000000001,
+    "untouched_poor": 1.6,
+    "step2_from_2.2": "2.2 - 1.0 = 1.2, then 1.2 + 0.8*(2.4-1.2) = 2.16",
+    "note": "at regrow 0.8 an organism that eats income 1.0 from a rich cell settles at 2.16, not 2.4: the meal removes more than the regrowth restores"
+  },
+  "conditions": {
+    "A": {
+      "label": "n=1 even (cell 0), 1 step",
+      "metrics": {
+        "n": 1,
+        "steps": 1,
+        "cells": [
+          0
+        ],
+        "frames": [
+          [
+            2.2,
+            1.6,
+            2.4,
+            1.6
+          ]
+        ],
+        "taken": [
+          [
+            1.0
+          ]
+        ]
+      },
+      "hash": "4f91d517f03ddec3"
+    },
+    "B": {
+      "label": "n=2 even (cells 0 and 1), 1 step",
+      "metrics": {
+        "n": 2,
+        "steps": 1,
+        "cells": [
+          0,
+          1
+        ],
+        "frames": [
+          [
+            2.2,
+            1.4,
+            2.4,
+            1.6
+          ]
+        ],
+        "taken": [
+          [
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "hash": "fa972b2d4c4b031e"
+    },
+    "C": {
+      "label": "n=4 even (all cells), 1 step",
+      "metrics": {
+        "n": 4,
+        "steps": 1,
+        "cells": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "frames": [
+          [
+            2.2,
+            1.4,
+            2.2,
+            1.4
+          ]
+        ],
+        "taken": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "hash": "91513283fe1dd8c8"
+    },
+    "D": {
+      "label": "n=1 even (cell 0), 2 steps",
+      "metrics": {
+        "n": 1,
+        "steps": 2,
+        "cells": [
+          0
+        ],
+        "frames": [
+          [
+            2.2,
+            1.6,
+            2.4,
+            1.6
+          ],
+          [
+            2.16,
+            1.6,
+            2.4,
+            1.6
+          ]
+        ],
+        "taken": [
+          [
+            1.0
+          ],
+          [
+            1.0
+          ]
+        ]
+      },
+      "hash": "fe1f808cabd3df06"
+    }
+  },
+  "series": {
+    "A": {
+      "steps": [
+        0
+      ],
+      "values": [
+        1.6
+      ]
+    },
+    "B": {
+      "steps": [
+        0
+      ],
+      "values": [
+        1.4
+      ]
+    },
+    "C": {
+      "steps": [
+        0
+      ],
+      "values": [
+        1.4
+      ]
+    },
+    "D": {
+      "steps": [
+        0,
+        1
+      ],
+      "values": [
+        1.6,
+        1.6
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "B (organisms on cells 0 and 1) shows the poor cell 1 at 1.400000; an organism standing on it must eat it down to 0.6 and regrow it to 1.4."
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "A (organism on cell 0 only) shows the poor cell 1 at 1.600000, exactly untouched. Nothing on cell 0 may reach cell 1."
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "A and B agree on cell 0 (2.200000 vs 2.200000) and differ on cell 1 (1.600000 vs 1.400000). The only difference between the arms is one organism on the poor cell."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the poor cell can be eaten, but only by an organism standing on it, and the command line can only put organisms on cells 0..n-1. B shows cell 1 at 1.400 after one step and A shows it at 1.600; the difference is one organism. EXP-83's D arm passed `--layout even` with `--n 1`, so it ran the same run as A and its prediction about the poor cell could not have been tested. The frame is post-regrowth: frame 1 of D shows cell 0 at 2.1600, which is the second meal and the second regrowth, not the built 2.4."
+  },
+  "hashes": {
+    "A": "4f91d517f03ddec3",
+    "B": "fa972b2d4c4b031e",
+    "C": "91513283fe1dd8c8",
+    "D": "fe1f808cabd3df06"
+  },
+  "limitations": [
+    "Four cells, one and two steps. It shows the placement and the first meal; it does not follow the field to its settled level, which EXP-66 measured at 1.35 / 2.15 for a full ring.",
+    "`--layout even` is the only placement the command line offers, so a question about an arbitrary cell cannot be asked from a trace at all. The unit-test path (`Life::move_to`) can, and EXP-79 used it.",
+    "This does not say the settled level is wrong. It says the first frame is a post-meal post-regrowth reading, so the settled level 2.16 is the level at which the meal and the regrowth balance, not the ceiling."
+  ],
+  "command": "python3 checks/exp84_the_trace_cannot_place_an_organism.py",
+  "created_at": "2026-11-13T02:09:43.855723+00:00"
+}

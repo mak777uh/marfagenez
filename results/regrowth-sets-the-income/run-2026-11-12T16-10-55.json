@@ -1,0 +1,105 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "regrowth-sets-the-income",
+  "run_id": "run-2026-11-12T16-10-55",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {},
+  "arithmetic": {
+    "step_cost": "0.1 + 0.2*0.5 = 0.2, and a staying organism pays nothing else",
+    "law": "income = min(regrow, income): a cell eaten every step holds only what regrew",
+    "prediction": "regrow 0.05 -> 0.05, 0.2 -> 0.2, 0.5 -> 0.5, 1.0 -> 1.0; and with regrow 1.0 and income 0.5 the take is capped by income, not by the stock",
+    "discriminator": "EXP-48 measured 0.30 at regrow 0.2; if the sweep gives 0.30 at every regrow the law is wrong and the cap is elsewhere in the code"
+  },
+  "conditions": {
+    "regrow0.05": {
+      "label": "regrow 0.05",
+      "metrics": {
+        "regrow": 0.05,
+        "mean_income": 0.055,
+        "min_income": 0.055,
+        "max_income": 0.055,
+        "samples": 40
+      },
+      "hash": "cafe18c1daa1af21"
+    },
+    "regrow0.2": {
+      "label": "regrow 0.2",
+      "metrics": {
+        "regrow": 0.2,
+        "mean_income": 0.2196,
+        "min_income": 0.2,
+        "max_income": 0.22,
+        "samples": 199
+      },
+      "hash": "2d2555786841eccd"
+    },
+    "regrow0.5": {
+      "label": "regrow 0.5",
+      "metrics": {
+        "regrow": 0.5,
+        "mean_income": 0.2196,
+        "min_income": 0.2,
+        "max_income": 0.55,
+        "samples": 199
+      },
+      "hash": "c9951c12ab49779c"
+    },
+    "regrow1.0": {
+      "label": "regrow 1.0",
+      "metrics": {
+        "regrow": 1.0,
+        "mean_income": 0.2196,
+        "min_income": 0.2,
+        "max_income": 1.1,
+        "samples": 199
+      },
+      "hash": "0af4fbe60ecca5f6"
+    },
+    "capped": {
+      "label": "regrow 1.0, income 0.5",
+      "metrics": {
+        "regrow": 1.0,
+        "income_setting": 0.5,
+        "mean_income": 0.2226,
+        "min_income": 0.2,
+        "max_income": 0.5,
+        "samples": 199
+      },
+      "hash": "0948a4f00fc1dd59"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "regrow 0.05: income 0.055 (cap is 2.0)"
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "regrow 1.0, income 0.5: take 0.2226, cap 0.5"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "income by regrow: {0.05: 0.055, 0.2: 0.2196, 0.5: 0.2196, 1.0: 0.2196}"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "controls fires=True silent=False specific=False; income {0.05: 0.055, 0.2: 0.2196, 0.5: 0.2196, 1.0: 0.2196}"
+  },
+  "hashes": {
+    "regrow0.05": "cafe18c1daa1af21",
+    "regrow0.2": "2d2555786841eccd",
+    "regrow0.5": "c9951c12ab49779c",
+    "regrow1.0": "0af4fbe60ecca5f6",
+    "capped": "0948a4f00fc1dd59"
+  },
+  "limitations": [
+    "one organism, one seed: with a single organism there is no crowding, so this says nothing about how two organisms split a cell",
+    "income is recovered from the energy drop, which assumes the step cost is exactly 0.2; EXP-39 supports that for a standing organism",
+    "the trace does not report the cell stock, so the law is confirmed by its prediction and not by reading the stock"
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --steps 200 --every 1 --cells 120 --capacity 10 --damage-rate 0.2 --maintenance 0.1 --repair-cost 0.5 --energy 5 --field uniform --layout even --seed 1 --income 2 --policy stay --n 1 --move-cost 0 --regrow G for G in 0.05..1.0, then --regrow 1.0 --income 0.5",
+  "created_at": "2026-11-12T16:10:55.179302+00:00"
+}

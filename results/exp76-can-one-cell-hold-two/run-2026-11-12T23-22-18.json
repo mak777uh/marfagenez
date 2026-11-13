@@ -1,0 +1,105 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp76-can-one-cell-hold-two",
+  "run_id": "run-2026-11-12T23-22-18",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 40,
+    "rich": 2.0,
+    "poor": 0.2,
+    "income": 1.2,
+    "maintenance": 0.6,
+    "damage_rate": 0.02,
+    "repair_cost": 1.5,
+    "capacity": 10.0,
+    "steps": 4000,
+    "policy": "sighted",
+    "read_budget": 3,
+    "move_cost": 0,
+    "layout": "even"
+  },
+  "arithmetic": {
+    "cost_per_step": 0.63,
+    "rich_one_organism": {
+      "c_star": 1.7,
+      "intake": 1.2,
+      "surplus": 0.57
+    },
+    "rich_two_organisms": {
+      "c_star": 1.6,
+      "first_intake": 1.2,
+      "second_intake": 0.40000000000000013,
+      "second_surplus": -0.22999999999999987
+    },
+    "poor_one_organism": {
+      "c_star": 0.16,
+      "intake": 0.16,
+      "surplus": -0.47
+    },
+    "note": "the code does not split a cell between occupants (organism.rs:165); each takes min(c, income) in turn"
+  },
+  "conditions": {
+    "n160": {
+      "label": "4000 steps, alternating, rich=2.0 poor=0.2, layout even, E_max=10.0",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0
+      },
+      "hash": "ee53a22c9b717285"
+    },
+    "n40": {
+      "label": "4000 steps, alternating, rich=2.0 poor=0.2, layout even, E_max=10.0",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0
+      },
+      "hash": "2a06ca522f82238d"
+    },
+    "n20": {
+      "label": "4000 steps, alternating, rich=2.0 poor=0.2, layout even, E_max=10.0",
+      "metrics": {
+        "alive": 11,
+        "cells_used": 11,
+        "crowding": 1.0,
+        "energy_mean": 10.0
+      },
+      "hash": "9bc4c6caddac8ea7"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "n=40 (twice the rich cells) must not raise the population above the number of rich cells: alive = 20 at n = 40, rich cells = 20"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "n=160 must reproduce exp75's 20 survivors: alive = 20 at n = 160"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "arm C: alive = 11, cells beyond the block = [20]; the eleventh organism must be the one that walked from cell 19 onto rich cell 20"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "crowding stayed at 1.00 in all three arms. The reason is the feeding rule, not the movement rule: a rich cell settles at c* = 1.6 with two organisms on it, the first takes the full income 1.2, and the second takes the remaining 0.4, which is below the cost 0.63. The second organism starves. Checked directly in the Rust test `life::tests::a_rich_cell_feeds_one_organism_not_two`, which places both organisms on one rich cell with `move_to` and gets alive = 1 after 4000 steps. A poor cell settles at c* = 0.16 and yields 0.16 against the same cost, so it feeds nobody. The capacity of an alternating field is therefore the number of rich cells, one organism each, and both halves of that sentence are arithmetic."
+  },
+  "hashes": {
+    "n160": "ee53a22c9b717285",
+    "n40": "2a06ca522f82238d",
+    "n20": "9bc4c6caddac8ea7"
+  },
+  "limitations": [
+    "This does not prove that no policy can ever place two organisms on one cell. It shows that when two are placed there, one dies. A policy that moves on ties could still put two on a cell for a while; the run would then show a transient crowding above 1.00 that decays. Only the final frame is read here.",
+    "The second share 0.4 is computed from the settled content c* = 1.6, which assumes both organisms eat in the same step in a fixed order. The code iterates the population in index order, so the order is fixed, but the value 1.6 was solved by hand and not read off the trace of the two-organism test.",
+    "Arm C (n = 20) puts ten organisms on poor cells and ten on rich cells because `--layout even` fills cells 0..19 in order and every second cell is rich. The result alive = 11 depends on that layout: the organism on cell 19 escapes onto cell 20 because it is the one poor cell in the block with a rich neighbour on the outside. A block that ended on a rich cell would give 10, and a block in the middle of the field would give 10. The prediction of 11 was written before the run and the run agreed."
+  ],
+  "command": "python3 checks/exp76_can_one_cell_hold_two.py",
+  "created_at": "2026-11-12T23:22:18.796374+00:00"
+}

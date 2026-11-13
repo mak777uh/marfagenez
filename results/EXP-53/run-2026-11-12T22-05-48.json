@@ -1,0 +1,82 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-53",
+  "run_id": "run-2026-11-12T22-05-48",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "cells": 40,
+    "M": 2.0,
+    "regrow": 0.8,
+    "income": 1.2,
+    "maintenance": 0.6,
+    "damage_rate": 0.02,
+    "repair_cost": 1.5,
+    "move_cost": 0.1,
+    "rich": 2.4,
+    "poor": 1.6,
+    "steps": 8000,
+    "n": 160
+  },
+  "arithmetic": {
+    "cost": "maintenance + damage*repair = 0.6 + 0.02*1.5 = 0.63",
+    "equilibrium": "c* = M + income - income/r = 2.0 + 1.2 - 1.2/0.8 = 1.7000000000000004",
+    "first_take": "min(c*, income) = min(1.7000000000000004, 1.2) = 1.2",
+    "left_after_first": "c* - income = 0.5000000000000004",
+    "second_take": "min(0.5000000000000004, 1.2) = 0.5000000000000004",
+    "second_net": "0.5000000000000004 - 0.63 = -0.12999999999999956 per step",
+    "steps_to_death": "9.37 / 0.12999999999999956 = 72.1 steps",
+    "prediction_stay": "every double resolves within 72 steps, so after 8000 steps at most 40 survive, with no sharing",
+    "prediction_sighted": "a losing organism can leave before the clock runs out, so some surplus survives"
+  },
+  "conditions": {
+    "stay": {
+      "label": "policy stay",
+      "metrics": {
+        "alive": 40,
+        "occupied_cells": 40,
+        "double_occupied": 0,
+        "max_per_cell": 1
+      },
+      "hash": "e111513f03c76d3f"
+    },
+    "sighted": {
+      "label": "policy sighted",
+      "metrics": {
+        "alive": 42,
+        "occupied_cells": 40,
+        "double_occupied": 2,
+        "max_per_cell": 2
+      },
+      "hash": "dc72611c46380c29"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "stay alive 40 doubles 0; sighted alive 42 doubles 2"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "stay has 0 double-occupied cells and max 1 per cell; arithmetic says a permanent second occupant takes 0.5000000000000004 against cost 0.63 and dies in 72 steps, and the run is 8000 steps"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "sighted has 2 double-occupied cells at the end. The claim is not merely that sighted differs from stay but that it keeps sharing alive; a sighted run with no sharing would fail this"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the surplus is movement: forbidding movement settles the population at 40 with no sharing, while sighted holds 42 with 2 cells shared. The 2 extra organisms exist only because a losing organism can leave before its 72-step clock runs out"
+  },
+  "hashes": {
+    "stay": "e111513f03c76d3f",
+    "sighted": "dc72611c46380c29"
+  },
+  "limitations": [
+    "One seed, one field kind (uniform), one income (1.20), 8000 steps. The rotation itself is not timed here: EXP-52 sampled every 1000 steps and saw thirteen different organisms in sixteen second-occupant positions, but a rotation faster than one sample cannot be resolved from that data. The claim is that the surplus requires movement, not that it is exactly 2 for all parameters. Nothing here says whether the surplus grows or shrinks with move_cost, read_budget or n."
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --cells 40 --n 160 --steps 8000 --income 1.2 --maintenance 0.6 --field uniform",
+  "created_at": "2026-11-12T22:05:48.594045+00:00"
+}

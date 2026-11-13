@@ -1,0 +1,83 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "where-the-sevenfold-gap-goes",
+  "run_id": "run-2026-11-13T00-58-41",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {},
+  "arithmetic": {
+    "step_cost": "maintenance 0.1 + damage_rate 0.2 * repair_cost 0.5 = 0.2",
+    "shared_cell": "two organisms on a cell take income/2 = 1.0 each with income 2, so a mover nets 1.0 - 0.2 - 0.1211 = +0.68",
+    "if_income_were_zero": "a mover would lose 0.2 + 0.1211*2/3 = 0.2807 per step, so its energy would fall 56 units over 200 steps",
+    "discriminator": "energy rises or falls at the crossing; the recovered income says by how much the assumed 1.0 is wrong"
+  },
+  "conditions": {
+    "at_crossing": {
+      "label": "move cost 0.1211",
+      "metrics": {
+        "move_cost": 0.1211,
+        "mean_income_taken": 0.2977,
+        "min_income_taken": -0.0,
+        "max_income_taken": 1.1,
+        "alive_at_end": 116,
+        "samples": 23652
+      },
+      "hash": "9940aa9a6f860811"
+    },
+    "below": {
+      "label": "move cost 0.05",
+      "metrics": {
+        "move_cost": 0.05,
+        "mean_income_taken": 0.2531,
+        "min_income_taken": -0.0,
+        "max_income_taken": 1.1,
+        "alive_at_end": 119,
+        "samples": 23816
+      },
+      "hash": "34c4be124d868e4b"
+    },
+    "above": {
+      "label": "move cost 0.4",
+      "metrics": {
+        "move_cost": 0.4,
+        "mean_income_taken": 0.471,
+        "min_income_taken": -0.0,
+        "max_income_taken": 1.28,
+        "alive_at_end": 83,
+        "samples": 19547
+      },
+      "hash": "b58812368558e842"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "mean income taken at the crossing 0.2977 vs the assumed 1.0 (half of income 2)"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "no income, no movement: recovered income max |x| = 7.22e-16 over 2880 samples"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "mean income by move cost: {'at_crossing': 0.2977, 'below': 0.2531, 'above': 0.471}"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "at the crossing the organism takes 0.2977 per step, not the 1.0 that a shared cell would give; the arithmetic that predicts a crossing at 0.8 assumes an income the organism does not get"
+  },
+  "hashes": {
+    "at_crossing": "9940aa9a6f860811",
+    "below": "34c4be124d868e4b",
+    "above": "b58812368558e842"
+  },
+  "limitations": [
+    "income is recovered from the energy drop, so it assumes the step cost is exactly 0.2 + move_cost*moved; EXP-39 supports that but it was measured without income",
+    "the trace does not report how many organisms share a cell, so the recovered income says \"less than half a cell\" without saying how the cell was split",
+    "one seed, one density (n=120 on 120 cells); the crossing of EXP-36 was measured with the same setup, so the comparison holds but nothing generalises"
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --steps 200 --every 1 --cells 120 --capacity 10 --damage-rate 0.2 --maintenance 0.1 --repair-cost 0.5 --energy 5 --field uniform --rich 2.0 --poor 0.2 --layout even --seed 1 --n 120 --income 2 --policy random --move-cost 0.1211|0.05|0.4",
+  "created_at": "2026-11-13T00:58:41.128599+00:00"
+}

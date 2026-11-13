@@ -1,0 +1,110 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "pair-penalty-or-queue",
+  "run_id": "run-2026-11-13T00-58-31",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "steps": 1200,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "income": 1,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "move_cost": 0.05,
+    "energy": 5,
+    "field": "uniform",
+    "layout": "even"
+  },
+  "arithmetic": {
+    "per_organism": "income/k - maintenance - damage_rate*repair_cost",
+    "k1": "1/1 - 0.1 - 0.2*0.5 = 0.8 per step",
+    "k2": "1/2 - 0.1 - 0.2*0.5 = 0.3 per step",
+    "k3": "1/3 - 0.1 - 0.2*0.5 = 0.033 per step",
+    "pair_penalty_predicts": "all organisms survive at k=1,2; k=3 is marginal",
+    "queue_predicts": "only the first on each cell survives: 120 of 240, 120 of 360"
+  },
+  "conditions": {
+    "stay_k1": {
+      "label": "stay k1",
+      "metrics": {
+        "alive": 120,
+        "mean_energy": 10.0
+      },
+      "hash": "9b3ef3ce95c7deef"
+    },
+    "random_k1": {
+      "label": "random k1",
+      "metrics": {
+        "alive": 112,
+        "mean_energy": 9.456
+      },
+      "hash": "1fbda09c254bee98"
+    },
+    "stay_k2": {
+      "label": "stay k2",
+      "metrics": {
+        "alive": 120,
+        "mean_energy": 10.0
+      },
+      "hash": "8b2f51a041e7432f"
+    },
+    "random_k2": {
+      "label": "random k2",
+      "metrics": {
+        "alive": 127,
+        "mean_energy": 9.617
+      },
+      "hash": "aa6ea1f4a1d69dd4"
+    },
+    "stay_k3": {
+      "label": "stay k3",
+      "metrics": {
+        "alive": 120,
+        "mean_energy": 10.0
+      },
+      "hash": "7bbf476c4d20edaf"
+    },
+    "random_k3": {
+      "label": "random k3",
+      "metrics": {
+        "alive": 127,
+        "mean_energy": 9.421
+      },
+      "hash": "3907738cc5399317"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "stay per cell: k1=120 > k2=60.0"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "stay at k=1 keeps 120 of 120"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "stay at k=2 keeps 120, queue predicts 120"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "на общей клетке платится двойной ремонт, а не очередь: k=2 держит больше 120"
+  },
+  "hashes": {
+    "stay_k1": "9b3ef3ce95c7deef",
+    "random_k1": "1fbda09c254bee98",
+    "stay_k2": "8b2f51a041e7432f",
+    "random_k2": "aa6ea1f4a1d69dd4",
+    "stay_k3": "7bbf476c4d20edaf",
+    "random_k3": "3907738cc5399317"
+  },
+  "limitations": [
+    "one seed; `stay` never moves so the k=2 result is the initial pairing held for 1200 steps, not an equilibrium the population found; the trace does not record which organism ate first on a shared cell"
+  ],
+  "command": "python3 checks/exp32_pair_or_queue.py",
+  "created_at": "2026-11-13T00:58:31.970564+00:00"
+}

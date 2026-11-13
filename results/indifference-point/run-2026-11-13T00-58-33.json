@@ -1,0 +1,75 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "indifference-point",
+  "run_id": "run-2026-11-13T00-58-33",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 120,
+    "n": 240,
+    "steps": 1200,
+    "capacity": 10,
+    "damage_rate": 0.2,
+    "maintenance": 0.1,
+    "repair_cost": 0.5,
+    "energy": 5,
+    "regrow": 1.0,
+    "field": "uniform",
+    "layout": "even",
+    "policy": "random",
+    "bisection_iters": 6
+  },
+  "arithmetic": {
+    "per_organism": "income/k - maintenance - damage*repair - move_cost*moved",
+    "stay_k2": "0.3 per step regardless of move_cost",
+    "prediction": "crossing scales with income, so crossing/income is constant"
+  },
+  "conditions": {
+    "income1": {
+      "label": "income 1, crossing 0.1438",
+      "metrics": {
+        "crossing_move_cost": 0.1438,
+        "crossing_over_income": 0.1438,
+        "alive_at_crossing": 125
+      },
+      "hash": "34fc203c007e66d9"
+    },
+    "income2": {
+      "label": "income 2, crossing 0.1187",
+      "metrics": {
+        "crossing_move_cost": 0.1187,
+        "crossing_over_income": 0.0594,
+        "alive_at_crossing": 122
+      },
+      "hash": "3b1f3e287c85175e"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "income 1: at half-crossing 149 > 120, at 1.5x 100 <= 120"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "stay never moves, so move cost cannot reach it - verified structurally in EXP-34 (identical hash 96423e3d8f35e06f at move cost 0.05, 0.2, 0.4)"
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "crossing/income: 0.1438 vs 0.0594"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "точка безразличия задаётся отношением move_cost/income"
+  },
+  "hashes": {
+    "income1": "34fc203c007e66d9",
+    "income2": "3b1f3e287c85175e"
+  },
+  "limitations": [
+    "bisection on a discrete count of survivors; the crossing is a band, not a point, and 6 iterations resolve it to ~0.0125 in move cost"
+  ],
+  "command": "python3 checks/exp35_indifference_point.py",
+  "created_at": "2026-11-13T00:58:33.900833+00:00"
+}

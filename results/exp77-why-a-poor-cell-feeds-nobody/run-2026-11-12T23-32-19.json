@@ -1,0 +1,409 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "exp77-why-a-poor-cell-feeds-nobody",
+  "run_id": "run-2026-11-12T23-32-19",
+  "model_commit": "unknown",
+  "seed": 20250103,
+  "parameters": {
+    "n": 160,
+    "cells": 40,
+    "steps": 4000,
+    "income": 1.2,
+    "regrow": 0.8,
+    "maintenance": 1.0,
+    "damage": 0.02,
+    "repair": 1.5,
+    "cost": 1.03,
+    "rich": 2.0,
+    "poor_sweep": [
+      0.2,
+      0.6,
+      0.9,
+      1.0,
+      1.02,
+      1.03,
+      1.04,
+      1.1,
+      1.2,
+      1.6
+    ],
+    "policy": "sighted",
+    "read_budget": 3,
+    "layout": "even",
+    "clamp": "end of step"
+  },
+  "arithmetic": {
+    "cost": "maintenance + damage*repair = 1.0300",
+    "equilibrium": "c* = M + income - income/r = 1.7000",
+    "k_max_by_the_law": "1 + floor((c* - cost)/income) = 1",
+    "what_a_cell_actually_gives": "min(ceiling, income); regrowth aims at the cell's own ceiling, so a cell below c* stays at its ceiling",
+    "alternating_transition": "poor = cost = 1.0300",
+    "uniform_level": "(rich + poor)/2, one level for the whole field",
+    "uniform_transition": "(rich + poor)/2 = cost -> poor = 0.0600",
+    "predicted_alternating": "20 below the transition, 40 at or above it",
+    "predicted_uniform": "0 only below poor = 0.06, so 40 across the sweep"
+  },
+  "conditions": {
+    "poor0.20-alternating": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": 1.2,
+        "poor_taken_min": null,
+        "poor_taken_max": null
+      },
+      "hash": "3e5982669bd4f0a9"
+    },
+    "poor0.20-uniform": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 0,
+        "cells_used": 0,
+        "crowding": null,
+        "energy_mean": null,
+        "rich_taken_min": null,
+        "poor_taken_min": null,
+        "poor_taken_max": null
+      },
+      "hash": "bfdbd15911250db5"
+    },
+    "poor0.60-alternating": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": 1.2,
+        "poor_taken_min": null,
+        "poor_taken_max": null
+      },
+      "hash": "07b96aa35cc892aa"
+    },
+    "poor0.60-uniform": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": null,
+        "poor_taken_min": 1.04,
+        "poor_taken_max": 1.04
+      },
+      "hash": "e286a5d8ac9c40c5"
+    },
+    "poor0.90-alternating": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": 1.2,
+        "poor_taken_min": null,
+        "poor_taken_max": null
+      },
+      "hash": "e44dba456f351c75"
+    },
+    "poor0.90-uniform": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": null,
+        "poor_taken_min": 1.16,
+        "poor_taken_max": 1.16
+      },
+      "hash": "46e5b460fbd723b5"
+    },
+    "poor1.00-alternating": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": 1.2,
+        "poor_taken_min": null,
+        "poor_taken_max": null
+      },
+      "hash": "943121d8c0078c25"
+    },
+    "poor1.00-uniform": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": null,
+        "poor_taken_min": 1.2,
+        "poor_taken_max": 1.2
+      },
+      "hash": "ae069b6590ce2305"
+    },
+    "poor1.02-alternating": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": 1.2,
+        "poor_taken_min": null,
+        "poor_taken_max": null
+      },
+      "hash": "5a7d3d7b1d432d65"
+    },
+    "poor1.02-uniform": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": null,
+        "poor_taken_min": 1.2,
+        "poor_taken_max": 1.2
+      },
+      "hash": "83c249532af64ccd"
+    },
+    "poor1.03-alternating": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": 1.2,
+        "poor_taken_min": null,
+        "poor_taken_max": null
+      },
+      "hash": "ac65066c0e83352d"
+    },
+    "poor1.03-uniform": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": null,
+        "poor_taken_min": 1.2,
+        "poor_taken_max": 1.2
+      },
+      "hash": "66fa3163dd1c3ae5"
+    },
+    "poor1.04-alternating": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": 1.2,
+        "poor_taken_min": null,
+        "poor_taken_max": null
+      },
+      "hash": "45ca2c4b71adc111"
+    },
+    "poor1.04-uniform": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": null,
+        "poor_taken_min": 1.2,
+        "poor_taken_max": 1.2
+      },
+      "hash": "a9619249c75df23d"
+    },
+    "poor1.10-alternating": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": 1.2,
+        "poor_taken_min": null,
+        "poor_taken_max": null
+      },
+      "hash": "3e471ead3e9a16a9"
+    },
+    "poor1.10-uniform": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": null,
+        "poor_taken_min": 1.2,
+        "poor_taken_max": 1.2
+      },
+      "hash": "ff0083c9955bb30d"
+    },
+    "poor1.20-alternating": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 20,
+        "cells_used": 20,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": 1.2,
+        "poor_taken_min": null,
+        "poor_taken_max": null
+      },
+      "hash": "7ad522dc324eba31"
+    },
+    "poor1.20-uniform": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": null,
+        "poor_taken_min": 1.2,
+        "poor_taken_max": 1.2
+      },
+      "hash": "e10f4c672d5d1635"
+    },
+    "poor1.60-alternating": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": 1.2,
+        "poor_taken_min": 1.2,
+        "poor_taken_max": 1.2
+      },
+      "hash": "4faa618c19ce1935"
+    },
+    "poor1.60-uniform": {
+      "label": "4000 steps, sighted, read_budget 3, layout even",
+      "metrics": {
+        "alive": 40,
+        "cells_used": 40,
+        "crowding": 1.0,
+        "energy_mean": 10.0,
+        "rich_taken_min": null,
+        "poor_taken_min": 1.2,
+        "poor_taken_max": 1.2
+      },
+      "hash": "51ac52b4a07916ed"
+    }
+  },
+  "series": {
+    "alternating_alive_by_poor": {
+      "steps": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        40
+      ],
+      "values": [
+        0.2,
+        0.6,
+        0.9,
+        1.0,
+        1.02,
+        1.03,
+        1.04,
+        1.1,
+        1.2,
+        1.6
+      ]
+    },
+    "uniform_alive_by_poor": {
+      "steps": [
+        0,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "values": [
+        0.2,
+        0.6,
+        0.9,
+        1.0,
+        1.02,
+        1.03,
+        1.04,
+        1.1,
+        1.2,
+        1.6
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "poor below the alternating transition 1.03 (0.20, 0.60, 0.90, 1.00, 1.02): alternating must give 20 (the rich cells) and uniform 40 (its level (rich+poor)/2 is above cost). Measured 0.20: alt 20 / uni 0, 0.60: alt 20 / uni 40, 0.90: alt 20 / uni 40, 1.00: alt 20 / uni 40, 1.02: alt 20 / uni 40."
+    },
+    "silent": {
+      "passed": false,
+      "evidence": "poor at or above the alternating transition 1.03 (1.03, 1.04, 1.10, 1.20, 1.60): both shapes must give 40. Measured 1.03: alt 20 / uni 40, 1.04: alt 20 / uni 40, 1.10: alt 20 / uni 40, 1.20: alt 20 / uni 40, 1.60: alt 40 / uni 40."
+    },
+    "specific": {
+      "passed": false,
+      "evidence": "the transition must be a step at cost = 1.03: poor 1.02 gives 20, poor 1.04 gives 20. At 1.04 a poor cell must hand over 1.04 itself (measured 0.0000), not the equilibrium 1.7000, and a rich cell must hand over income 1.20 (measured 1.2000)."
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "fires=False silent=False specific=False. See the conditions table."
+  },
+  "hashes": {
+    "poor0.20-alternating": "3e5982669bd4f0a9",
+    "poor0.20-uniform": "bfdbd15911250db5",
+    "poor0.60-alternating": "07b96aa35cc892aa",
+    "poor0.60-uniform": "e286a5d8ac9c40c5",
+    "poor0.90-alternating": "e44dba456f351c75",
+    "poor0.90-uniform": "46e5b460fbd723b5",
+    "poor1.00-alternating": "943121d8c0078c25",
+    "poor1.00-uniform": "ae069b6590ce2305",
+    "poor1.02-alternating": "5a7d3d7b1d432d65",
+    "poor1.02-uniform": "83c249532af64ccd",
+    "poor1.03-alternating": "ac65066c0e83352d",
+    "poor1.03-uniform": "66fa3163dd1c3ae5",
+    "poor1.04-alternating": "45ca2c4b71adc111",
+    "poor1.04-uniform": "a9619249c75df23d",
+    "poor1.10-alternating": "3e471ead3e9a16a9",
+    "poor1.10-uniform": "ff0083c9955bb30d",
+    "poor1.20-alternating": "7ad522dc324eba31",
+    "poor1.20-uniform": "e10f4c672d5d1635",
+    "poor1.60-alternating": "4faa618c19ce1935",
+    "poor1.60-uniform": "51ac52b4a07916ed"
+  },
+  "limitations": [
+    "One seed, one rich level (2.0), one income (1.2). The transition is bracketed to 0.02 around cost; it is not located to machine precision.",
+    "The claim 'a cell feeds iff its ceiling >= cost' is read from what organisms take in the last step. It is not a proof: an organism could in principle survive on a cell that gives less than cost by drawing down stored energy. 4000 steps is long enough that this would show as a slow decline rather than survival, but the decline is not measured here.",
+    "This does not touch the rotation surplus of EXP-52 (42 against a bound of 40 at income = 1.00). That surplus is a dynamical quantity and this experiment uses layout even, which starts saturated."
+  ],
+  "command": "python3 checks/exp77_why_a_poor_cell_feeds_nobody.py",
+  "created_at": "2026-11-12T23:32:19.370318+00:00"
+}

@@ -1,0 +1,152 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-24",
+  "run_id": "run-2026-11-12T13-03-34",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "steps": 3000,
+    "cells": 40,
+    "n": 160
+  },
+  "arithmetic": {
+    "income": 0.8,
+    "maintenance": 0.6,
+    "cells": 40,
+    "organisms_per_cell_at_start": 4,
+    "recursion_start": 4.0,
+    "rich": 4.0,
+    "poor": 0.5,
+    "margin": 1e-09,
+    "note": "recursion starts at M=rich, comparison is strict, prediction computed before any run"
+  },
+  "conditions": {
+    "even_r020": {
+      "label": "alternating, even seating, regrow 0.20",
+      "metrics": {
+        "alive": 40,
+        "level": 0.8,
+        "k_max": 1,
+        "predicted": 40,
+        "spread": 0.0
+      },
+      "hash": "459d3cbfd2f78467"
+    },
+    "even_r040": {
+      "label": "alternating, even seating, regrow 0.40",
+      "metrics": {
+        "alive": 80,
+        "level": 1.6,
+        "k_max": 2,
+        "predicted": 80,
+        "spread": 0.0
+      },
+      "hash": "0e0c37a3d6dd24c7"
+    },
+    "even_r060": {
+      "label": "alternating, even seating, regrow 0.60",
+      "metrics": {
+        "alive": 120,
+        "level": 2.4,
+        "k_max": 3,
+        "predicted": 120,
+        "spread": 0.0
+      },
+      "hash": "7d090a3871c8343f"
+    },
+    "even_r080": {
+      "label": "alternating, even seating, regrow 0.80",
+      "metrics": {
+        "alive": 160,
+        "level": 3.2,
+        "k_max": 4,
+        "predicted": 160,
+        "spread": 0.0
+      },
+      "hash": "7b7c5ba7b5e7d547"
+    },
+    "even_r095": {
+      "label": "alternating, even seating, regrow 0.95",
+      "metrics": {
+        "alive": 160,
+        "level": 3.831579,
+        "k_max": 4,
+        "predicted": 160,
+        "spread": 0.0
+      },
+      "hash": "abede386a967392f"
+    }
+  },
+  "series": {
+    "even_r020": {
+      "steps": [
+        3000.0
+      ],
+      "values": [
+        40.0
+      ]
+    },
+    "even_r040": {
+      "steps": [
+        3000.0
+      ],
+      "values": [
+        80.0
+      ]
+    },
+    "even_r060": {
+      "steps": [
+        3000.0
+      ],
+      "values": [
+        120.0
+      ]
+    },
+    "even_r080": {
+      "steps": [
+        3000.0
+      ],
+      "values": [
+        160.0
+      ]
+    },
+    "even_r095": {
+      "steps": [
+        3000.0
+      ],
+      "values": [
+        160.0
+      ]
+    }
+  },
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "regrow 0.20 gives 40 survivors, regrow 0.95 gives 160"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "final field spread is under 1e-9 in every arm"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "predicted capacities are [40, 80, 120, 160]"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "k_max = max{k : every eater takes > maintenance} reproduces all five arms: [40, 80, 120, 160, 160]"
+  },
+  "hashes": {
+    "even_r020": "459d3cbfd2f78467",
+    "even_r040": "0e0c37a3d6dd24c7",
+    "even_r060": "7d090a3871c8343f",
+    "even_r080": "7b7c5ba7b5e7d547",
+    "even_r095": "abede386a967392f"
+  },
+  "limitations": [
+    "Uniform-at-the-end fields only, Policy::Stay only, one seed, cells=40, n=160.  The alternating field starts non-uniform; it is uniform at the end only because regrow pulls every cell toward rich.  Nothing here covers moving organisms or fields that stay non-uniform, and nothing here covers the transient."
+  ],
+  "command": "python3 checks/exp24_kmax_floor.py",
+  "created_at": "2026-11-12T13:03:34.570224+00:00"
+}
