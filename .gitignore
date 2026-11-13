@@ -10,6 +10,14 @@ __pycache__/
 *.pyc
 node_modules/
 
+# Raw traces are artifacts, not records. A single sighted trace is 66-177 MB;
+# seven of them broke the GitHub push on 2026-11-13 (GH001, one file over the
+# 100 MB hard limit). The record of a run is the run-*.json under results/,
+# which carries the trace's hash. The trace itself is reproducible from the
+# command in that file. PROTOCOL.md: do not commit artifacts.
+results/*/trace-*.json
+results/*/trace-*.jsonl
+
 # Editor
 .vscode/
 .idea/

@@ -7,49 +7,75 @@
 
 Два объяснения:
 - **равновесие:** организм нашёл баланс и держится
-- **потолок:** организм упёрся в `capacity - maintenance - repair`
+- **потолок:** организм упёрся в предел, который задаёт модель
 
 ## Арифметика (написана ДО прогона, §1)
 
-`Organism::step` каждый шаг:
-1. `energy = min(energy + taken, capacity)`
+**Версия 2026-11-13, после переноса clamp в конец шага.**
+
+Старая версия этого файла предсказывала `capacity - maintenance -
+damage_rate * repair_cost = 9.37`. Это было верно, пока `min(capacity)`
+стоял сразу после дохода. Коммит `b4d116e` перенёс его в конец шага
+(иначе `move_cost` стирался потолком, см.
+`docs/FINDING-the-cap-is-applied-after-the-spend.md`), и предсказание
+перестало соответствовать коду.
+
+Текущий порядок в `Organism::step`:
+1. `energy += taken`
 2. `energy -= maintenance`
 3. `damage += damage_rate`
 4. ремонт: `energy -= repaired * repair_cost`
+5. `energy = min(energy, capacity)`   <- clamp ПОСЛЕДНИМ
 
-Если `energy + taken >= capacity`, то после шага:
+Пока `energy + taken - maintenance - damage_rate*repair_cost >= capacity`,
+шаг заканчивается на `capacity`:
 ```
-energy = capacity - maintenance - damage_rate * repair_cost
+E_max = capacity
+```
+Расходы не двигают потолок — они решают, ДОСТИГАЕТ ли организм потолка.
+Баланс на богатой клетке (доход 0.8, клетка насыщена) должен быть
+положительным, иначе организм умрёт раньше:
+```
+balance = 0.8 - maintenance - damage_rate * repair_cost
 ```
 
-При `capacity = 10.0`, `maintenance = 0.6`, `damage_rate = 0.02`,
-`repair_cost = 1.5`:
+При `maintenance = 0.6`, `repair_cost = 1.5`:
 ```
-E_max = 10.0 - 0.6 - 0.02 * 1.5 = 10.0 - 0.6 - 0.03 = 9.37
+damage_rate = 0.02 -> balance = +0.17  (потолок достижим)
+damage_rate = 0.10 -> balance = +0.05  (потолок достижим, но медленнее)
 ```
-
-**Совпадает с наблюдением 9.370.** Значит это потолок.
 
 ## Плечи
 
 | ключ | что меняем | предсказанный потолок | баланс на богатой |
 |---|---|---|---|
-| **A** | `capacity = 100.0` | **99.37** | +0.170 |
-| **B** | ничего (контроль) | **9.37** | +0.170 |
-| **C** | `damage_rate = 0.10` | **9.25** | +0.050 |
+| **A** | `capacity = 100.0` | **100.0** | +0.170 |
+| **B** | ничего (контроль) | **10.0** | +0.170 |
+| **C** | `damage_rate = 0.10` | **10.0** | +0.050 |
 
 ## Контроль (§2)
 
-1. **Срабатывает:** A даёт энергию > 9.37 (потолок сдвинулся вверх)
-2. **Молчит:** B даёт ровно 9.37 (как в наблюдении)
-3. **Специфичен:** C даёт 9.25, а не 9.37 — значит дело именно в формуле
-   `capacity - maintenance - damage*repair`, а не в чём-то ещё
+1. **Срабатывает:** A доходит до 100.0 — своего собственного потолка,
+   а не просто «выше, чем у B»
+2. **Молчит:** B даёт ровно 10.0
+3. **Специфичен:** C при впятеро большем `damage_rate` даёт **тот же**
+   10.0, что и B. Это и есть подпись механизма: потолок задаёт `capacity`,
+   а не расходы. Если бы энергию держало равновесие «доход = расходы», C
+   ушёл бы с потолка (баланс +0.05 всё ещё положителен, но запас
+   прочности втрое меньше, и любая просадка дохода его бы сбила).
 
 ## Почему это специфично
 
-Если бы энергия зависела от чего-то другого (например, от поля), то
-изменение `damage_rate` не сдвинуло бы её на предсказанную величину.
-Сдвиг ровно на `(0.10 - 0.02) * 1.5 = 0.12` — это подпись формулы.
+Формула `E_max = capacity` не содержит `damage_rate`, `maintenance` или
+`repair_cost`. Поэтому C обязан совпасть с B с точностью до 1e-6, хотя
+`damage_rate` у него в пять раз больше. Совпадение — предсказание, а не
+отсутствие эффекта: A показывает, что потолок двигается, когда двигают
+`capacity`.
+
+Старая версия проверяла обратное — что C сдвинется на
+`(0.10-0.02)*1.5 = 0.12`. Она провалилась 2026-11-13 именно потому, что
+clamp переехал, а арифметика осталась. Провал был верным: код и текст
+разошлись.
 
 ## Запуск
 
@@ -88,11 +114,22 @@ MAINTENANCE = 0.6
 REPAIR_COST = 1.5
 DAMAGE_BASE = 0.02
 DAMAGE_HIGH = 0.10
+RICH_INCOME = 0.8
 
 
-def predicted_ceiling(capacity: float, damage_rate: float) -> float:
-    """The arithmetic: where the energy stops."""
-    return capacity - MAINTENANCE - damage_rate * REPAIR_COST
+def predicted_ceiling(capacity: float) -> float:
+    """The arithmetic: where the energy stops.
+
+    With the clamp last, the step ends on `capacity` whenever the income covers
+    the spend. The spend does not enter this number — it only decides whether
+    the ceiling is reached at all.
+    """
+    return capacity
+
+
+def balance_on_rich(damage_rate: float) -> float:
+    """Income minus spend on a saturated cell. Must be > 0 to reach the ceiling."""
+    return RICH_INCOME - MAINTENANCE - damage_rate * REPAIR_COST
 
 
 def in_wsl() -> bool:
@@ -177,29 +214,40 @@ def main() -> int:
     }
 
     arithmetic = {
-        "formula": "capacity - maintenance - damage_rate * repair_cost",
+        "formula": "capacity",
+        "formula_note": (
+            "The clamp runs LAST in Organism::step (commit b4d116e), so the "
+            "step ends on capacity whenever income covers the spend. The spend "
+            "does not enter the ceiling; it only decides whether it is reached."
+        ),
+        "superseded_formula": "capacity - maintenance - damage_rate * repair_cost",
+        "superseded_note": (
+            "That was correct while min(capacity) ran right after the income. "
+            "The 2026-11-13 run of this experiment failed on it: A measured "
+            "100.0 not 99.37, B 10.0 not 9.37, C 10.0 not 9.25. The failure was "
+            "correct — the code and the text had diverged."
+        ),
         "maintenance": MAINTENANCE,
         "repair_cost": REPAIR_COST,
+        "rich_income": RICH_INCOME,
         "predicted": {
-            key: predicted_ceiling(cap, dmg) for key, (_, cap, dmg) in arms.items()
+            key: predicted_ceiling(cap) for key, (_, cap, _) in arms.items()
         },
         "balance_on_rich": {
-            key: 0.8 - MAINTENANCE - dmg * REPAIR_COST
-            for key, (_, _, dmg) in arms.items()
+            key: balance_on_rich(dmg) for key, (_, _, dmg) in arms.items()
         },
         "balance_note": (
             "The balance must stay positive or the organism dies before reaching "
             "the ceiling. At damage_rate=0.10 the balance is +0.05."
         ),
         "steps_to_ceiling": {
-            "A": (predicted_ceiling(100.0, DAMAGE_BASE) - 5.0) / (0.8 - MAINTENANCE - DAMAGE_BASE * REPAIR_COST),
+            "A": (predicted_ceiling(100.0) - 5.0) / balance_on_rich(DAMAGE_BASE),
             "B": 0.0,
-            "C": (predicted_ceiling(CAPACITY, DAMAGE_HIGH) - 5.0) / (0.8 - MAINTENANCE - DAMAGE_HIGH * REPAIR_COST),
+            "C": (predicted_ceiling(CAPACITY) - 5.0) / balance_on_rich(DAMAGE_HIGH),
         },
         "steps_note": (
-            "An arm reaches its ceiling only after (ceiling - 5.0) / balance steps. "
-            "A needed 555 steps; the first run used 500 and stopped at 90.0, short "
-            "of 99.37. The run is now 1200 steps."
+            "An arm reaches its ceiling only after (ceiling - 5.0) / balance "
+            "steps. A needs 559 steps; the run is 1200. C needs 100."
         ),
     }
 
@@ -232,7 +280,8 @@ def main() -> int:
                 "mean_energy": r["mean_energy"],
                 "max_energy": r["max_energy"],
                 "energies": r["energies"],
-                "predicted_ceiling": predicted_ceiling(cap, dmg),
+                "predicted_ceiling": predicted_ceiling(cap),
+                "balance_on_rich": balance_on_rich(dmg),
                 "trace_file": r["file"],
             },
             trace_hash=r["hash"],
@@ -263,15 +312,19 @@ def main() -> int:
         f"{pred['B']:.4f} — must match",
     )
 
-    shift = pred["B"] - pred["C"]
+    # Specific: five times the damage rate must NOT move the ceiling. The
+    # ceiling is capacity; the spend decides only whether it is reached. A
+    # mechanism that held the energy at an income/spend equilibrium would put
+    # C below B by (0.10-0.02)*1.5 = 0.12.
     observed_shift = results["B"]["max_energy"] - results["C"]["max_energy"]
-    specific = abs(observed_shift - shift) < 1e-6
+    specific = abs(observed_shift) < 1e-6
     exp.control(
         "specific",
         specific,
-        f"C: ceiling moved by {observed_shift:.6f}, the formula predicts "
-        f"{shift:.6f} (= (0.10-0.02)*1.5). A different mechanism would not "
-        f"move by exactly this amount.",
+        f"C: ceiling moved by {observed_shift:.6f} when damage_rate went "
+        f"0.02 -> 0.10; the formula says 0.000000 because the clamp is last. "
+        f"An income/spend equilibrium would have moved it by "
+        f"{(DAMAGE_HIGH - DAMAGE_BASE) * REPAIR_COST:.6f}.",
     )
 
     # -- verdict ------------------------------------------------------------
@@ -281,8 +334,8 @@ def main() -> int:
     elif all(exp.result["controls"][t]["passed"] for t in ("fires", "silent", "specific")):
         exp.verdict(
             "passed",
-            "all three arms sit on the predicted ceilings; the ceiling is "
-            "capacity - maintenance - damage_rate*repair_cost, not an equilibrium",
+            "all three arms sit on their capacity; the ceiling is capacity, "
+            "not an income/spend equilibrium and not capacity minus the spend",
         )
     else:
         failed = [
@@ -297,10 +350,17 @@ def main() -> int:
     )
     exp.limitation(
         "The formula is read off `Organism::step`; if that code changes, the "
-        "arithmetic must be re-derived."
+        "arithmetic must be re-derived. It has already changed once (b4d116e)."
     )
     exp.limitation(
-        "The ceiling is a property of the model's update order, not of life."
+        "The ceiling is a property of the model's update order, not of life. "
+        "It says nothing about whether an organism SHOULD be able to sit at "
+        "its capacity; it says only that this model lets it."
+    )
+    exp.limitation(
+        "The `specific` control cannot distinguish `E_max = capacity` from any "
+        "other formula that does not contain the spend. It rules out the "
+        "income/spend equilibrium, not every alternative."
     )
 
     path = exp.save()
