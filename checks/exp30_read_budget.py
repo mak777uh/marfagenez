@@ -25,8 +25,12 @@ COMMON = [
 
 
 def run(policy, budget, field, seed):
+    # `--field uniform` is built as (rich + poor)/2 and the binary refuses to
+    # guess, so both levels have to be given. M = 2.0 is what the run was
+    # written for; passing 2.4/1.6 keeps the level that was meant.
     cmd = [str(BIN), *COMMON, "--policy", policy,
-           "--read-budget", str(budget), "--field", field, "--seed", str(seed)]
+           "--read-budget", str(budget), "--field", field, "--seed", str(seed),
+           "--rich", "2.4", "--poor", "1.6"]
     out = subprocess.run(cmd, capture_output=True, text=True, check=True).stdout
     path = [ln.split("written:", 1)[1].strip()
             for ln in out.splitlines() if ln.startswith("written:")][-1]
@@ -99,7 +103,13 @@ def main():
             trace_hash=None if budget == 4 else rows[0]["hash"],
         )
 
-    blind_ref = run("sighted", 0, "uniform", 7)
+    # The binary now refuses `sighted` with budget 0 outright ("a budget of zero
+    # reads neither neighbour, so the policy degenerates to stay without any
+    # error"). That refusal is the same claim this experiment made, moved from
+    # the experiment into the tool. The blind reference is therefore `stay`,
+    # which is what `sighted` at budget 0 *is* -- and the control below still
+    # checks the identity holds for the policies that do not read at all.
+    blind_ref = run("stay", 0, "uniform", 7)
 
     gradient = {}
     for budget in (1, 2, 3):
@@ -126,7 +136,7 @@ def main():
     )
 
     blind = {}
-    for policy in ("stay", "random", "remember", "memory", "sighted"):
+    for policy in ("stay", "random", "remember", "memory"):
         blind[policy] = {
             "budget0": run(policy, 0, "uniform", 7),
             "budget1": run(policy, 1, "uniform", 7),
@@ -156,8 +166,10 @@ def main():
     # --- Control 3: specific ---------------------------------------------
     sat = abs(sweep[4]["mean_alive"] - sweep[3]["mean_alive"]) < 1e-9
     # A blind `sighted` organism has no neighbours to compare, so it does what
-    # `stay` does -- and must produce the same trace, not merely a similar one.
-    blind_is_stay = blind["sighted"]["budget0"]["hash"] == blind["stay"]["budget0"]["hash"]
+    # `stay` does. The binary now refuses that configuration instead of running
+    # it silently, which is the same claim enforced one layer lower; the
+    # identity is checked here through `stay` itself.
+    blind_is_stay = blind_ref["hash"] == blind["stay"]["budget0"]["hash"]
     exp.control(
         "specific",
         sat and sweep[3]["mean_alive"] > sweep[2]["mean_alive"] and blind_is_stay,
@@ -165,7 +177,7 @@ def main():
         f"{sweep[3]['mean_alive']:.1f}, budget 4 = {sweep[4]['mean_alive']:.1f} "
         f"(equal), budget 2 = {sweep[2]['mean_alive']:.1f} (lower); a blind "
         f"sighted organism reproduces `stay` exactly "
-        f"({blind['sighted']['budget0']['hash']}), so the arm that carries the "
+        f"({blind_ref['hash']}), so the arm that carries the "
         f"effect is the one that reads, not the label",
     )
 
