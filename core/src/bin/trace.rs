@@ -48,7 +48,11 @@ fn main() {
     let mut regrow = 0.8f64;
     let mut read_budget: usize = 0;
     let mut feed = false;
-    let mut even = false;
+    // Even is the default. A random layout is a variable nobody wrote down:
+    // EXP-87 read a random placement as an even one and spent three runs on
+    // it (docs/FINDING-087). A question about cells needs to know which cell
+    // each organism is on, so the default must be the one the docstring says.
+    let mut even = true;
     let mut start_cells: Option<Vec<usize>> = None;
 
     let mut i = 1;
@@ -143,7 +147,17 @@ fn main() {
             }
             "--layout" => {
                 i += 1;
-                even = matches!(args.get(i).map(|s| s.as_str()), Some("even"));
+                match args.get(i).map(|s| s.as_str()) {
+                    Some("even") => even = true,
+                    Some("random") => even = false,
+                    other => {
+                        eprintln!(
+                            "refusing to run: --layout {:?} is not a layout.\n             Use --layout even (organism i on cell i % cells, the default)\n             or --layout random (each organism on a cell drawn from the seed).",
+                            other.unwrap_or("")
+                        );
+                        std::process::exit(2);
+                    }
+                }
             }
             "--start-cell" => {
                 i += 1;

@@ -750,15 +750,39 @@ mod tests {
         );
 
         // D. The charge is the parameter and nothing else. The same start with
-        //    move_cost 0.05 must end 0.05 lower in energy than arm C.
+        //    move_cost 0.05 must end 0.05 lower in energy than the free arm.
+        //
+        //    The first version of this arm used `capacity = 10` and started at
+        //    10.0, so both arms ended at 10.0: `Organism::step` applies
+        //    `energy.min(world.capacity)` at the end (organism.rs:184) and the
+        //    cap erased the charge before it could be read. The difference was
+        //    0 instead of 0.05 and the test failed for the right reason — the
+        //    arm could not see what it claimed to measure. Raise the cap and
+        //    start below it, so the cap cannot bind on either arm.
+        let roomy = World {
+            capacity: 100.0,
+            ..world
+        };
+        let mut free_life =
+            Life::spawn(roomy, Field::alternating(4, 2.4, 1.6, 0.8).expect("field"),
+                        1, 10.0, 0.0, Policy::Sighted, 1, 100000)
+                .expect("one organism");
+        assert!(free_life.move_to(0, 1), "D: free organism 0 starts on cell 1");
         let mut paid_life =
-            Life::spawn(world, Field::alternating(4, 2.4, 1.6, 0.8).expect("field"),
+            Life::spawn(roomy, Field::alternating(4, 2.4, 1.6, 0.8).expect("field"),
                         1, 10.0, 0.05, Policy::Sighted, 1, 100000)
                 .expect("one organism");
-        assert!(paid_life.move_to(0, 1), "D: organism 0 should move to cell 1");
-        let free_energy = after_step[0].energy;
+        assert!(paid_life.move_to(0, 1), "D: paid organism 0 starts on cell 1");
+        free_life.advance().expect("one step");
         paid_life.advance().expect("one step");
+        let free_energy = free_life.samples()[0].energy;
         let paid_energy = paid_life.samples()[0].energy;
+        assert!(
+            free_energy < roomy.capacity,
+            "D_cap_does_not_bind: the free arm ended at the cap {} — the arm \
+             cannot see a charge it is not allowed to keep",
+            roomy.capacity
+        );
         assert!(
             (free_energy - paid_energy - 0.05).abs() < 1e-12,
             "D_move_cost_is_charged_exactly: free arm ended at {}, paid arm at \
