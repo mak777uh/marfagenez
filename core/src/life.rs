@@ -122,6 +122,15 @@ pub struct Life {
 }
 
 impl Life {
+    /// The world the organisms live in, for the recorder to write down.
+    ///
+    /// The recorder needs it because a run is only reproducible if the header
+    /// says what the organisms could see. Two traces with the same policy and
+    /// seed but different read budgets are different experiments.
+    pub fn world(&self) -> &World {
+        &self.world
+    }
+
     /// Builds a cycle. Returns `None` for an empty population or a field with no cells.
     pub fn new(
         world: World,
@@ -363,16 +372,22 @@ impl Life {
             // Measured before: 8 organisms, 40-cell moving field, 50 steps, memory
             // cells 3, 4, 12, 1, 37, 22, 10, 6 unchanged, direction 0 every step.
             if self.policy == Policy::Memory {
-                let left = if r.cell > 0 {
-                    self.field.level(r.cell - 1)
-                } else {
-                    f64::NEG_INFINITY
-                };
-                let right = if self.field.inside(r.cell + 1) {
-                    self.field.level(r.cell + 1)
-                } else {
-                    f64::NEG_INFINITY
-                };
+                // Each neighbour read costs one from the budget, exactly as in
+                // the `sighted` branch. It used to call `Field::level`, which
+                // is a plain array read and does not touch `read_budget`, so
+                // `--policy memory --read-budget 0` still saw both neighbours
+                // and walked around a uniform field. See
+                // `docs/FINDING-memory-sees-for-free.md`.
+                let mut left = f64::NEG_INFINITY;
+                let mut right = f64::NEG_INFINITY;
+                if r.cell > 0 && reads_left > 0 {
+                    left = self.field.observe(r.cell - 1);
+                    reads_left -= 1;
+                }
+                if self.field.inside(r.cell + 1) && reads_left > 0 {
+                    right = self.field.observe(r.cell + 1);
+                    reads_left -= 1;
+                }
                 let best = here.max(left).max(right);
                 let target = if left >= right { r.cell.wrapping_sub(1) } else { r.cell + 1 };
                 if best > here && best > r.memory.best_level {
@@ -794,6 +809,44 @@ mod tests {
     }
 
     #[test]
+    fn spawn_even_puts_organism_i_on_cell_i_mod_cells() {
+        // The default layout is `even` (core/src/bin/trace.rs). If `spawn_even`
+        // ever stops being `i % cells`, every crowding experiment silently
+        // measures the spawner instead of the field — which is exactly what
+        // EXP-87 did before the default was fixed (docs/FINDING-087).
+        let world = World::default();
+        let field = Field::new(4, 2.0, 0.8).expect("field");
+        for n in [4usize, 8, 12] {
+            let life = Life::spawn_even(world, field.clone(), n, 10.0, 0.0,
+                                        Policy::Stay, 1, 100000)
+                .expect("population");
+            let cells: Vec<usize> = life.samples().iter().map(|s| s.cell).collect();
+            let want: Vec<usize> = (0..n).map(|i| i % 4).collect();
+            assert_eq!(
+                cells, want,
+                "A_spawn_even_is_i_mod_cells: n = {} placed {:?}, not {:?}",
+                n, cells, want
+            );
+        }
+
+        // B. And the two layouts must actually differ, or the flag is inert and
+        //    a run that says `even` cannot be told from one that does not.
+        let even = Life::spawn_even(world, field.clone(), 8, 10.0, 0.0,
+                                    Policy::Stay, 7, 100000)
+            .expect("even population");
+        let random = Life::spawn(world, field, 8, 10.0, 0.0,
+                                 Policy::Stay, 7, 100000)
+            .expect("random population");
+        let even_cells: Vec<usize> = even.samples().iter().map(|s| s.cell).collect();
+        let random_cells: Vec<usize> = random.samples().iter().map(|s| s.cell).collect();
+        assert_ne!(
+            even_cells, random_cells,
+            "B_layouts_differ: --layout even and --layout random produced the              same placement {:?}, so the flag cannot be tested",
+            even_cells
+        );
+    }
+
+    #[test]
     fn empty_population_is_refused() {
         let world = World::default();
         let field = Field::new(10, 1.0, 0.1).unwrap();
@@ -1027,7 +1080,11 @@ mod tests {
             repair_cost: 1.5,
             damage_rate: 0.02,
             capacity: 10.0,
-            read_budget: 0,
+            // A memory that cannot read a neighbour has nothing to remember.
+            // Budget 3 = underfoot + both neighbours; at budget 0 the policy
+            // never records a level and the test would measure the coin, not
+            // the memory. See docs/FINDING-blind-memory-never-rests.md.
+            read_budget: 3,
         };
         let field = Field::moving(40, 2.0, 0.2, 0.8, 1.0).unwrap();
         let mut memory =

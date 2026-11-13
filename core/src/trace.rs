@@ -76,6 +76,13 @@ pub struct Trace {
     pub hash: u64,
     pub policy: &'static str,
     pub seed: u64,
+    /// How many cells each organism could read per step.
+    ///
+    /// Recorded because it decides what the run *means*: a `memory` organism
+    /// with a budget of zero cannot see a neighbour, and the same policy at
+    /// budget 3 behaves differently. A trace without this number cannot be
+    /// compared to another trace.
+    pub read_budget: usize,
 }
 
 impl Trace {
@@ -116,6 +123,7 @@ impl Trace {
         out.push_str("{\n");
         out.push_str(&format!("  \"policy\": \"{}\",\n", self.policy));
         out.push_str(&format!("  \"seed\": {},\n", self.seed));
+        out.push_str(&format!("  \"read_budget\": {},\n", self.read_budget));
         out.push_str(&format!("  \"hash\": \"{:016x}\",\n", self.hash));
         out.push_str(&format!("  \"steps\": {},\n", self.frames.len()));
         out.push_str("  \"frames\": [\n");
@@ -163,6 +171,7 @@ impl Trace {
 /// project's rule 9 — the readout is a camera, not a hand.
 pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
     let every = every.max(1);
+    let read_budget = life.world().read_budget;
     let mut frames = Vec::new();
     for _ in 0..steps {
         if life.advance().is_none() {
@@ -178,6 +187,7 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         hash,
         policy: life.policy_name(),
         seed: life.seed(),
+        read_budget,
     }
 }
 
