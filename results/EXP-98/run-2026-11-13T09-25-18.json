@@ -1,0 +1,51 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-98",
+  "run_id": "run-2026-11-13T09-25-18",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {},
+  "arithmetic": {
+    "supply per cell per step": "M*r (the cell is emptied and regrows once)",
+    "cost per step": "maintenance + damage_rate*repair_cost",
+    "k_max": "0 if income < cost or M*r < cost, else floor((M*r - cost)/income) + 1",
+    "capacity": "cells * k_max"
+  },
+  "conditions": {
+    "grid": {
+      "label": "one cell, k = law + 3 organisms, 1500 steps",
+      "metrics": {
+        "points": 15,
+        "mismatches": 0
+      },
+      "hash": "6e083c8b6fe1073b"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "the law reproduces 15 of 15 grid points"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "M=1: law 1 measured 1; M=2: law 1 measured 1; M=3: law 1 measured 1; M=4: law 1 measured 1"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "r 0.8->0.5: 8->5; cost 0.1->0.5: 8->0 (income 0.2)"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the crowding law holds on all 15 grid points"
+  },
+  "hashes": {
+    "grid": "6e083c8b6fe1073b"
+  },
+  "limitations": [
+    "Measured on a single cell with `stay` organisms, maintenance > 0, and a cell that is emptied every step. It says nothing about a field where organisms move between cells, and nothing when maintenance is 0, where an organism that takes nothing still does not die."
+  ],
+  "command": "checks/exp98_crowding_law.py",
+  "created_at": "2026-11-13T09:25:18.699878+00:00"
+}
