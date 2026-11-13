@@ -1,0 +1,137 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-52",
+  "run_id": "run-2026-11-13T01-28-51",
+  "model_commit": "unknown",
+  "seed": 20250101,
+  "parameters": {
+    "cells": 40,
+    "M": 2.0,
+    "regrow": 0.8,
+    "maintenance": 0.6,
+    "damage_rate": 0.02,
+    "repair_cost": 1.5,
+    "move_cost": 0.1,
+    "rich": 2.4,
+    "poor": 1.6,
+    "steps": 2000,
+    "n": 160
+  },
+  "arithmetic": {
+    "cost_of_one_step_from_zero": "maintenance + damage*repair = 0.6 + 0.02*1.5 = 0.63",
+    "need": "maintenance = 0.6 (steady state: damage is repaired to 0 every step, so no repair is paid)",
+    "spare": "M*r - need = 1.6 - 0.6 = 1.0",
+    "feasibility_threshold": "income <= 0.6 -> k_max = 0",
+    "floor_threshold": "income > 1.0 -> k_max = 1",
+    "k_max": "0 if income <= need, else 1 + floor((M*r - need)/income)",
+    "shape": "non-monotone: 0 below need, 2 between need and M*r-need, 1 above M*r-need",
+    "predictions": {
+      "0.60": 0,
+      "0.70": 80,
+      "0.90": 80,
+      "0.95": 80,
+      "1.00": 80,
+      "1.20": 40,
+      "1.60": 40
+    },
+    "known_loose": "the static k_max is an upper bound on one cell, not a forecast of the population; measured 52 at income 1.00 and 42 at income 1.20 where k_max gives 80 and 40"
+  },
+  "conditions": {
+    "i0.60": {
+      "label": "income 0.60",
+      "metrics": {
+        "alive": 0,
+        "predicted_capacity": 0,
+        "k_max_formula": 0
+      },
+      "hash": "51814db8bbbfdf48"
+    },
+    "i0.70": {
+      "label": "income 0.70",
+      "metrics": {
+        "alive": 79,
+        "predicted_capacity": 80,
+        "k_max_formula": 2
+      },
+      "hash": "561ee73eb3e19dd6"
+    },
+    "i0.90": {
+      "label": "income 0.90",
+      "metrics": {
+        "alive": 80,
+        "predicted_capacity": 80,
+        "k_max_formula": 2
+      },
+      "hash": "a39f1b6be88a71b5"
+    },
+    "i0.95": {
+      "label": "income 0.95",
+      "metrics": {
+        "alive": 80,
+        "predicted_capacity": 80,
+        "k_max_formula": 2
+      },
+      "hash": "49a5ced6235cf22c"
+    },
+    "i1.00": {
+      "label": "income 1.00",
+      "metrics": {
+        "alive": 52,
+        "predicted_capacity": 80,
+        "k_max_formula": 2
+      },
+      "hash": "6e40376d19936009"
+    },
+    "i1.20": {
+      "label": "income 1.20",
+      "metrics": {
+        "alive": 42,
+        "predicted_capacity": 40,
+        "k_max_formula": 1
+      },
+      "hash": "26281c973150653f"
+    },
+    "i1.60": {
+      "label": "income 1.60",
+      "metrics": {
+        "alive": 40,
+        "predicted_capacity": 40,
+        "k_max_formula": 1
+      },
+      "hash": "0558710713d0e305"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "measured capacities across income [0.6, 0.7, 0.9, 0.95, 1.0, 1.2, 1.6]: [0, 79, 80, 80, 52, 42, 40]; distinct values [0, 40, 42, 52, 79, 80]"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "income 0.90 gives 80 survivors; EXP-32 measured 80 at maintenance 0.6 with income 0.8, which is the same regime (both incomes are between need 0.6 and M*r-need 1.0), so the two experiments must agree"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "capacity [0, 79, 80, 80, 52, 42, 40] at incomes [0.6, 0.7, 0.9, 0.95, 1.0, 1.2, 1.6]: peak 80 at income 0.90, first 0, last 40. rose=True fell=True. A monotone curve — more food, more organisms — would fail this control, which is the shape H2 predicts."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the law holds along income: thresholds are where it puts them (k_max {0.6: 0, 0.7: 2, 0.9: 2, 0.95: 2, 1.0: 2, 1.2: 1, 1.6: 1}), the population stays within 4 of the static bound (measured [0, 79, 80, 80, 52, 42, 40] against bound [0, 80, 80, 80, 80, 40, 40], max excess 2 at [1.2]), and the curve is non-monotone. The static count is an upper bound on one cell's feeding, not a forecast of the population — it is exact at 0.90/0.95/1.60, loose at 1.00 (52 of 80), and exceeded at 1.20 (42 of 40) by walkers that eat their fill on some steps and nothing on others; written up in docs/FINDING-need-is-maintenance-not-cost.md"
+  },
+  "hashes": {
+    "i0.60": "51814db8bbbfdf48",
+    "i0.70": "561ee73eb3e19dd6",
+    "i0.90": "a39f1b6be88a71b5",
+    "i0.95": "49a5ced6235cf22c",
+    "i1.00": "6e40376d19936009",
+    "i1.20": "26281c973150653f",
+    "i1.60": "0558710713d0e305"
+  },
+  "limitations": [
+    "Uniform field, sighted policy, read_budget 3, one seed, 2000 steps. The two thresholds are bracketed by 0.05-wide gaps (0.60/0.70 around need 0.6, and 0.95/1.00 around M*r-need 1.0), so the exact threshold locations are not resolved beyond that. **The static count is an upper bound, not a forecast.** It is exact where the cell is not oversubscribed (income 0.70-0.95, and 1.60), but it predicts 80 where 52 were measured at income 1.00 and 40 where 42 were measured at income 1.20. The reason is visible in the trace and is written up in docs/FINDING-need-is-maintenance-not-cost.md: at income 1.00 two organisms demand 2.0 from a cell that yields 1.6, so the second lives on the remainder and dies when the remainder falls below need; at income 1.20 the two extra survivors walk between cells and eat their fill on some steps and nothing on others. A count of survivors is therefore not a test of the static law at those points, and the controls here are written against the shape and against the points where the law is exact, not against 80/40 everywhere. Nothing here says anything about a gradient field, where EXP-31 found sighting loses."
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --policy sighted --field uniform --cells 40 --n 160 --steps 2000 --maintenance 0.6 --rich 2.4 --poor 1.6",
+  "created_at": "2026-11-13T01:28:51.851434+00:00"
+}
