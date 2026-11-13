@@ -1,6 +1,6 @@
 # Утверждения и их подтверждение
 
-**Дата:** 2026-11-12 (числа пересчитаны командами)
+**Дата:** 2026-11-13 (числа пересчитаны командами)
 **Правило:** каждое число имеет команду. Без команды — не результат.
 
 ---
@@ -20,11 +20,11 @@
 
 ## Что доказано (уровень A)
 
-### Lean — две библиотеки, 264 теоремы и леммы, 0 sorry
+### Lean — две библиотеки, 308 теорем и лемм, 0 sorry
 
 | библиотека | файлов | теорем | sorry | команда |
 |---|---|---|---|---|
-| `Medium` — модель клетки | 53 | **237** | **0** | `lake build` |
+| `Medium` — модель клетки | 55 | **281** | **0** | `lake build` |
 | `Legacy` — стена/гонка/наклон | 9 | 27 | **0** | `lake build Legacy` |
 
 `Medium` — то, что относится к среде ребёнка: `cellStep`, `equilibrium`,
@@ -35,7 +35,7 @@
 **Команда:**
 ```bash
 cd laws && lake build && lake build Legacy
-# Build completed successfully (18324 jobs).   -- Medium
+# Build completed successfully (18328 jobs).   -- Medium
 # Build completed successfully (18238 jobs).   -- Legacy
 ```
 
@@ -105,7 +105,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 189 тестов (122 unit + 67 интеграционных)
+### Rust — 190 тестов (23 бинаря)
 
 | группа | что проверяет |
 |---|---|
@@ -121,7 +121,7 @@ verus verus/integer_laws.rs
 ```bash
 export PATH=/root/.elan/bin:$PATH          # иначе build.rs не найдёт lean и соберёт заглушку
 cd core && cargo test --release -- --test-threads=1
-# 19 test binaries, суммарно 189 passed, 0 failed
+# 23 test binaries, суммарно 190 passed, 0 failed
 # --test-threads=1 обязателен: рантайм Lean не потокобезопасен, иначе SIGABRT
 ```
 
@@ -133,7 +133,7 @@ cd core && cargo test --release -- --test-threads=1
    `no such file or directory (error code: 2)`. Лечится `cp` из Windows-репо.
 3. **`cargo test` без `--test`** запускает ещё и doctest, а `rustdoc` не установлен
    (`could not execute process rustdoc ... No such file or directory`). Это не падение
-   тестов: строка `189 passed, 0 failed` уже напечатана выше. Чтобы не видеть
+   тестов: строка `190 passed, 0 failed` уже напечатана выше. Чтобы не видеть
    ложный `error:`, запускать `cargo test --release --tests -- --test-threads=1`.
 
 ---
@@ -165,7 +165,7 @@ cd core && cargo test --release -- --test-threads=1
 | `α = 2μ/σ²` точно | это предел, при `dt=1` ошибка 3.7% |
 | Rust-код в `core/` верен | Verus доказал **копии** в `verus/`, не `bridge.rs` |
 | `f64`-часть верна | Verus не поддерживает плавающую точку |
-| оставшиеся 226 теорем содержательны | проверены только 11 тавтологий из 237 |
+| оставшиеся 270 теорем содержательны | проверены только 11 тавтологий из 281 |
 
 ---
 
@@ -209,20 +209,27 @@ cd core && cargo test --release -- --test-threads=1
 
 | что | значение | команда |
 |---|---|---|
-| Lean теорем и лемм (`Medium`) | **237** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
-| Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
-| Lean файлов с теоремами | **53** `Medium` + 9 `Legacy` | `grep -l '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
+| Lean теорем и лемм (`Medium`) | **281** | `grep -hE '^(theorem\|lemma) ' laws/Medium/*.lean \| wc -l` |
+| Lean теорем и лемм (`Legacy`) | **27** | `grep -hE '^(theorem\|lemma) ' laws/Legacy/*.lean \| wc -l` |
+| Lean файлов | **55** `Medium` + 9 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
 | Lean `sorry` | **0** в `Medium`, **0** в `Legacy` | `grep -rn 'sorry' laws/*/*.lean \| wc -l` |
-| Rust тестов | **189** (122 unit + 67 интеграционных) | `cargo test --release --tests -- --test-threads=1` |
+| Rust тестов | **190** (23 бинаря) | `cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
-| docs FINDING | **87** | `ls docs/FINDING-*.md \| wc -l` |
-| checks (эксперименты) | **45** | `ls checks/exp*.py \| wc -l` |
-| сохранённых прогонов | **38** | `ls results/*/run-*.json \| wc -l` |
+| docs FINDING | **51** | `ls docs/FINDING-*.md \| wc -l` |
+| checks (эксперименты) | **87** | `ls checks/exp*.py \| wc -l` |
+| сохранённых прогонов | **115** | `ls results/*/run-*.json \| wc -l` |
 
-Все числа в этой таблице пересчитаны 2026-11-12 после исправления `cellStep`;
-предыдущая версия (`228` теорем, `43` FINDING, `52` прогона) была снята с
-устаревшего состояния дерева.
+Все числа в этой таблице пересчитаны 2026-11-13 в WSL (`/root/marfagenez`),
+где дерево свежее и `lake build` проходит. Предыдущая версия (`237` теорем,
+`53` файла, `87` FINDING, `45` checks, `38` прогонов) была снята с устаревшего
+состояния дерева и содержала числа, которых в нём уже не было.
+
+**Сборка 2026-11-13:** `lake build` → `Build completed successfully (18328 jobs)`,
+`lake build Legacy` → `(18238 jobs)`. Обе зелёные. Это первая зелёная сборка
+после исправления порядка операций в `cellStep` (сначала забор, потом
+восстановление); до неё `Convergence.lean` держал 4 ошибки, и `lake build`
+падал.
 
 ---
 
-*МАРФАГЕНЕЗ++ · CLAIMS.md · 2026-11-12*
+*МАРФАГЕНЕЗ++ · CLAIMS.md · 2026-11-13*
