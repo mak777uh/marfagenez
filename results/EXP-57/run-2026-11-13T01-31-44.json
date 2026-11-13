@@ -1,0 +1,70 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-57",
+  "run_id": "run-2026-11-13T01-31-44",
+  "model_commit": "unknown",
+  "seed": 1,
+  "parameters": {
+    "cells": 40,
+    "M": 2.0,
+    "regrow": 0.8,
+    "need": 0.6,
+    "income": 1.0,
+    "steps": 400000,
+    "every": 1000,
+    "n": 80
+  },
+  "arithmetic": {
+    "cell_yield": "M*r = 2.0*0.8 = 1.6",
+    "first_taker": "takes min(income, yield) = min(1.0, 1.6) = 1.0",
+    "second_taker": "gets at most 1.6 - 1.0 = 0.6000000000000001, which equals need 0.6",
+    "total_food": "cells * M*r = 40 * 1.6 = 64.0 per step",
+    "total_need": "n_alive * need; at 46 that is 27.599999999999998",
+    "static_bound": "k_max = 1 + floor((1.6 - 0.6)/1.0) = 2, so 40 organisms",
+    "total_food_bound": "cells * M*r / need = 106.7",
+    "prediction": "movers average well above need; the fraction of steps below need is small but non-zero"
+  },
+  "conditions": {
+    "i1.00": {
+      "label": "income 1.00",
+      "metrics": {
+        "alive": 46,
+        "cells_used": 40,
+        "moved_n": 18064,
+        "moved_mean_taken": 0.959,
+        "moved_below_need": 3,
+        "stayed_n": 646,
+        "stayed_mean_taken": 0.9659,
+        "stayed_below_need": 0
+      },
+      "hash": "59de1a0eb1f14fb1"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "alive 46 against ceiling 80; the field is 34 below the ceiling. If this were 0 there would be no gap to explain."
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "moved n=18064, stayed n=646 over 400 frames. A run where nothing moved would make the comparison empty."
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "moved mean taken 0.9590 against need 0.6. The rejected hypothesis was a mean near 0.68 (need + 0.08); this control fails if the mean is within 0.2 of need, so it could have confirmed that hypothesis and did not."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the field sits 34 below its ceiling: 46 organisms on 40 cells against k_max*40 = 80. Movers average 0.9590 of taken against need 0.6, and only 3 of 18064 sampled transitions fall below need, so the gap is not organisms scraping remainders — they eat their fill and the ceiling is missed for another reason. The first version of this claim said movers average 0.68 and that the population exceeded the ceiling; both were wrong and are retracted in the FINDING"
+  },
+  "hashes": {
+    "i1.00": "59de1a0eb1f14fb1"
+  },
+  "limitations": [
+    "One regime (M 2.0, r 0.8, need 0.6, income 1.0, damage_rate 0.02, default move_cost), one seed, sighted with read_budget 3, 400000 steps sampled every 1000. The `taken` table samples the walk once per thousand steps, so a bad value on an unsampled step is not counted and the below-need count is a lower bound. `moved` is defined as a change of cell between consecutive frames, so an organism that leaves and returns between two frames is counted as `stayed`. Nothing here measures where movers go or whether they revisit cells, and nothing here says the total-food bound cells*M*r/need is achievable — 46 is far below 106 and what blocks the rest is not known."
+  ],
+  "command": "/root/marfagenez/core/target/release/trace --policy sighted --field uniform --cells 40 --n 80 --steps 400000 --every 1000 --maintenance 0.6 --rich 2.0 --poor 2.0 --income 1.0 --read-budget 3",
+  "created_at": "2026-11-13T01:31:44.814543+00:00"
+}
