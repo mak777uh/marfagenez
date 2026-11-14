@@ -294,15 +294,21 @@ impl Life {
         if self.feed {
             self.field.regrow_all();
         }
-        // How many living organisms stand on each cell, counted before
-        // anyone moves. The proportional protocol splits one `income`
-        // among them, so the denominator is the crowd they started the
-        // step in, not the crowd after the moves.
-        // Live crowd per cell. It starts as the crowd at the beginning of
-        // the step and is kept current as organisms move, so the denominator
-        // is the number of organisms that actually eat here, not the number
-        // that started here.
+        // `share_counts` is the number of organisms that have NOT yet eaten
+        // on each cell. It starts as the crowd at the beginning of the step,
+        // is kept current as organisms move, and drops by one each time an
+        // organism eats. The proportional protocol hands out
+        // `remaining / not_yet_eaten`, so the parts add up to one `income`.
+        //
+        // `share_left` is the part of one `income` still unclaimed on each
+        // cell. The proportional protocol splits ONE `income` per cell among
+        // everyone who eats there, so the budget has to be decremented as it
+        // is claimed. Dividing `income` by the live crowd at the moment of
+        // eating is not enough: an organism that eats before the crowd grows
+        // takes `income / 1`, and the newcomer then takes `income / 2`, for
+        // `1.5 * income` from one cell. See `tests/proportional_share.rs`.
         let mut share_counts = vec![0usize; cells];
+        let mut share_left = vec![self.world.income; cells];
         if self.world.share == ShareProtocol::Proportional {
             for slot in self.organisms.iter() {
                 if let Some(r) = slot.as_ref() {
@@ -529,16 +535,26 @@ impl Life {
                     self.field.take(r.cell, self.world.income)
                 }
                 ShareProtocol::Proportional => {
-                    // Everyone eating on the cell gets `income / k`, where
-                    // `k` is the crowd on that cell at this moment (moves
-                    // already applied). The share is also capped by what the
-                    // cell holds, so the total taken from a cell never
-                    // exceeds `income` however many organisms stand on it --
-                    // that is the structural difference from the sequential
-                    // protocol, where the total is `k * income`.
+                    // Everyone eating on the cell splits ONE `income` among
+                    // the organisms that have not yet eaten here, so
+                    // `remaining / k` gives each of them an equal part of what
+                    // is still unclaimed. With no movement this is exactly
+                    // `income / k`. With movement it keeps the cell's total at
+                    // or below `income` -- the structural difference from the
+                    // sequential protocol, where the total is `k * income`.
+                    //
+                    // Both counters must move together: decrementing the
+                    // budget alone would shrink every later share, and two
+                    // organisms would get 0.5 and 0.25 instead of 0.5 and 0.5.
                     let k = share_counts.get(r.cell).copied().unwrap_or(0).max(1);
-                    let share = self.world.income / k as f64;
-                    self.field.take(r.cell, share)
+                    let remaining = share_left.get(r.cell).copied().unwrap_or(0.0);
+                    let share = remaining / k as f64;
+                    let got = self.field.take(r.cell, share);
+                    if r.cell < cells {
+                        share_left[r.cell] = (remaining - got).max(0.0);
+                        share_counts[r.cell] = share_counts[r.cell].saturating_sub(1);
+                    }
+                    got
                 }
             };
             r.last_taken = taken;
