@@ -91,7 +91,20 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
     `a_hair_below_the_boundary_kills`,
     `capacity_does_not_change_sustainability` (**specific** — ёмкость
     0.1…1000.0, вердикт не двигается).
-- **Проверено:** `./run.sh test` — Rust 209 passed, 0 failed (202 + 7 новых).
+- **Проверено:** `./run.sh test` — Rust 210 passed, 0 failed (202 + 7 + 1).
+- **D-2 сделано:** `core/src/_exp79_test.rs` (95 строк, ни в одном `mod`)
+  перенесён в `core/tests/exp79.rs` и стал живым тестом
+  `exp79_the_poor_cell_organism_decides_to_move`. Это не удаление мусора:
+  файл содержал четыре арма EXP-79, и один из них — A, `spend(0.0)` — молча
+  проверял, что бесплатный ход разрешён, во всех армах с `move_cost = 0`.
+  При переносе файл пришлось править по факту, а не по памяти: `Field`
+  теперь живёт в `medium_core::field`, `Organism::energy` стал методом
+  `energy()`, а `Sample::last_direction` переименован в `direction`.
+  Плечо D сначала упало: `free arm ended at 10, paid arm at 10, difference 0
+  instead of 0.05` — при полном баке доход 1.0 минус поддержание 0.6 даёт
+  +0.4, и потолок `capacity` съедает списание хода целиком. Плечо D теперь
+  запускается при `income == maintenance_cost`, где энергию двигает только
+  ход.
 - **Не сделано:** `docs/PLAN-NEXT.md` §3 B2 всё ещё содержит ложный
   контрпример `capacity < maintenance_cost` — исправить при следующем
   касании плана. `checks/log_check.py` не написан; `docs/UNREPRODUCIBLE.md`
