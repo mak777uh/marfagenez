@@ -277,36 +277,63 @@ do_agents() {
 
 # ---------------------------------------------------------------------------
 
+# Диспетчер `all` обязан сохранять первый провал: голый `|| RC=$?` затирал
+# его следующим успехом. Проверка подменяет `do_*` заглушками и смотрит на
+# пару (баннер, код), поэтому ловит регрессию в самом `case`, а не только
+# в функциях.
+do_dispatcher() {
+  echo "=== диспетчер: провал не теряется ==="
+  python3 checks/dispatcher.py
+}
+
+# ---------------------------------------------------------------------------
+
+# Каждая проверка записывается в RC, если он ещё ноль. Голый `|| RC=$?`
+# затирал предыдущий провал следующим успехом: `exp` падал, `agents`
+# проходил, и `all` печатал «ВСЁ ЗЕЛЁНОЕ» с кодом 0. Тот же дефект, что уже
+# чинили в do_lean и do_exp, только на уровне диспетчера: провал выглядел
+# как успех, потому что последним в списке стоял тот, кто прошёл.
+#
+# `keep` не маскирует код: первый провал и есть причина, остальные --
+# следствия того же прогона.
+keep() {
+  local rc=$1
+  if [ "$rc" -ne 0 ] && [ "$RC" -eq 0 ]; then RC=$rc; fi
+  return 0
+}
+
 RC=0
 case "$WHAT" in
-  test)   do_test || RC=$? ;;
-  lean)   do_lean || RC=$? ;;
-  reach)  do_reach || RC=$? ;;
-  exp)    do_exp || RC=$? ;;
-  models) do_models || RC=$? ;;
-  verus)  do_verus || RC=$? ;;
-  claims) do_claims || RC=$? ;;
-  export) do_export || RC=$? ;;
-  agents) do_agents || RC=$? ;;
+  test)   do_test;   keep $? ;;
+  lean)   do_lean;   keep $? ;;
+  reach)  do_reach;  keep $? ;;
+  dispatcher) do_dispatcher; keep $? ;;
+  exp)    do_exp;    keep $? ;;
+  models) do_models; keep $? ;;
+  verus)  do_verus;  keep $? ;;
+  claims) do_claims; keep $? ;;
+  export) do_export; keep $? ;;
+  agents) do_agents; keep $? ;;
   all)
-    do_test   || RC=$?
-    do_lean   || RC=$?
-    do_reach  || RC=$?
-    do_verus  || RC=$?
-    do_exp    || RC=$?
-    do_claims || RC=$?
-    do_export || RC=$?
-    do_agents || RC=$?
+    do_test;   keep $?
+    do_lean;   keep $?
+    do_reach;  keep $?
+    do_dispatcher; keep $?
+    do_verus;  keep $?
+    do_exp;    keep $?
+    do_claims; keep $?
+    do_export; keep $?
+    do_agents; keep $?
     ;;
   *)
-    echo "usage: run.sh [all|test|lean|reach|verus|exp|models|claims|export|agents]"
+    echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|claims|export|agents]"
     exit 2
     ;;
 esac
 
 echo
 if [ "$RC" -ne 0 ]; then
-  echo "ЕСТЬ ПРОВАЛЫ"
+  echo "ЕСТЬ ПРОВАЛЫ (код $RC)"
   exit 1
 fi
 echo "ВСЁ ЗЕЛЁНОЕ"
