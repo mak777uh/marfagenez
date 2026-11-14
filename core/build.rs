@@ -235,14 +235,42 @@ fn find_lean() -> Option<PathBuf> {
 ///
 /// The crate then builds, and `bridge::available()` reports `false`.
 fn write_stub(out_dir: &Path) {
+    // Every symbol that `bridge.rs` declares must be defined here, or the crate
+    // fails to link when Lean is absent. That failure is not a skip: it is a
+    // broken build on any machine without a Lean toolchain, which is exactly the
+    // machine the stub exists for. `checks/stub_covers_bridge.py` guards the list.
     let stub = r#"
 #include <stdint.h>
 
+/* The five laws that `FFI.lean` exports. */
 uint64_t marfa_saturation(uint64_t a, uint64_t b) { (void)a; (void)b; return 0; }
 uint64_t marfa_fraction_pct(uint64_t a, uint64_t b) { (void)a; (void)b; return 0; }
 uint64_t marfa_fill_time(uint64_t a, uint64_t b) { (void)a; (void)b; return 0; }
 uint8_t  marfa_race_lost(uint64_t a, uint64_t b) { (void)a; (void)b; return 0; }
 uint64_t marfa_fold_shifted(uint64_t a, uint64_t b) { (void)a; (void)b; return 0; }
+
+/* Reaction law. */
+uint8_t  marfa_reaction_changes(uint64_t gain, uint64_t reaction) { (void)gain; (void)reaction; return 0; }
+uint8_t  marfa_zero_gain_keeps(uint64_t gain) { (void)gain; return 0; }
+
+/* Time law. */
+uint64_t marfa_distance_to_wall(uint64_t b, uint64_t spread) { (void)b; (void)spread; return 0; }
+uint64_t marfa_time_to_narrow(uint64_t b, uint64_t spread, uint64_t mu) { (void)b; (void)spread; (void)mu; return 0; }
+uint64_t marfa_naive_time(uint64_t b, uint64_t mu) { (void)b; (void)mu; return 0; }
+uint8_t  marfa_sooner_than_naive(uint64_t b, uint64_t spread, uint64_t mu) { (void)b; (void)spread; (void)mu; return 0; }
+
+/* Tilt law. */
+uint64_t marfa_tilt_num(uint64_t mu) { (void)mu; return 0; }
+uint64_t marfa_tilt_den(uint64_t sigma) { (void)sigma; return 0; }
+uint64_t marfa_tilt_sign(uint64_t mu) { (void)mu; return 0; }
+uint8_t  marfa_tilt_zero_iff(uint64_t mu) { (void)mu; return 0; }
+
+/* The Lean runtime. The stub never calls into Lean, so these do nothing. */
+void lean_initialize(void) {}
+void lean_init_task_manager(void) {}
+void lean_io_mark_end_initialization(void) {}
+void lean_initialize_thread(void) {}
+void lean_finalize_thread(void) {}
 "#;
     let c_file = out_dir.join("stub.c");
     std::fs::write(&c_file, stub).expect("write stub");
@@ -266,4 +294,5 @@ uint64_t marfa_fold_shifted(uint64_t a, uint64_t b) { (void)a; (void)b; return 0
     }
 
     println!("cargo:rustc-link-search=native={}", out_dir.display());
+    println!("cargo:rustc-link-lib=static=ffi");
 }

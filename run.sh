@@ -113,6 +113,9 @@ do_exp() {
   # отбрасывался целиком: провал второй проверки был невидим, и прогон с
   # вердиктом `failed` печатал «ВСЁ ЗЕЛЁНОЕ».
   local rc=0
+  echo "--- stub_covers_bridge.py ---"
+  python3 checks/stub_covers_bridge.py || rc=$?
+  echo
   echo "--- contract.py ---"
   python3 checks/contract.py || rc=$?
   echo
@@ -127,6 +130,11 @@ do_exp() {
     echo "    FAIL: exp05_frozen.py вернул $rc_exp"
     rc=1
   fi
+  echo
+  echo "--- exp99_protocol_capacity.py ---"
+  # В отличие от exp05_frozen.py, здесь печатается весь вывод: таблица
+  # лестницы и есть результат, а не только вердикт.
+  python3 checks/exp99_protocol_capacity.py || rc=$?
   return $rc
 }
 
