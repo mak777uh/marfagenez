@@ -25,7 +25,8 @@
 
 2. **Порядок шага** (`organism.rs:159-197`):
    income → maintenance → damage → repair → `energy.min(capacity).max(0.0)`
-   → structure → смерть (`energy<=0 || structure<=0 || damage>=1`).
+   → смерть (`energy<=0 || damage>=1`). `structure` убран 2026-11-14:
+   он был равен `1 - damage` и не добавлял условия.
 
 3. **Восстановление дважды за шаг.** `Life::advance` (`core/src/life.rs:252`):
    `if feed { regrow_all() }` → шаг каждого организма → `if !feed { regrow_all() }`.

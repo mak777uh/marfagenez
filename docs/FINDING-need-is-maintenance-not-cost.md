@@ -40,7 +40,7 @@ if self.energy > 0.0 && self.damage > 0.0 {        // 4. починиться, �
     self.energy -= repaired * world.repair_cost;
 }
 self.energy = self.energy.min(world.capacity).max(0.0);
-if self.energy <= 0.0 || self.structure <= 0.0 { self.alive = false; }
+if self.energy <= 0.0 || self.damage >= 1.0 { self.alive = false; }
 ```
 
 Смерть наступает при `energy <= 0` **после** шага 4. Значит выжить в одном шаге

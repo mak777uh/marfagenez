@@ -183,13 +183,23 @@ do_claims() {
   # Теперь seed фиксирован, повтор прогона обязан дать тот же результат.
   # node есть и в Windows, и в WSL; вызываем через powershell.exe, потому что
   # так исторически работает и это проверено.
-  local win out rc
-  win=$(wslpath -w "$PWD/checks/verify_all.js")
+  local out rc
   # `| tail` вернул бы код tail, а не node -- провал проверки стал бы
   # невидимым. Поэтому сначала пишем в файл, потом печатаем хвост.
   out=$(mktemp)
-  powershell.exe -NoProfile -Command "node '$win'" >"$out" 2>&1
-  rc=$?
+  # Node есть и в WSL, и в Windows. Раньше вызов шёл только через
+  # powershell.exe: без него (или из окружения без Windows в PATH) проверка
+  # не запускалась вовсе, а код возврата терялся. Теперь сначала пробуем
+  # node из самого WSL и только потом powershell.exe.
+  if command -v node >/dev/null 2>&1; then
+    node "$PWD/checks/verify_all.js" >"$out" 2>&1
+    rc=$?
+  else
+    local win
+    win=$(wslpath -w "$PWD/checks/verify_all.js")
+    powershell.exe -NoProfile -Command "node '$win'" >"$out" 2>&1
+    rc=$?
+  fi
   tail -4 "$out"
   # Код возврата powershell.exe ничего не значит: он 0 и когда node упал.
   # Единственный признак успеха -- строка вердикта в выводе.

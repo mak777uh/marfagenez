@@ -133,8 +133,7 @@ def run(condition: str, seed: int = SEED) -> dict:
                 damage[i] -= repaired
                 energy[i] -= repaired * REPAIR_COST
 
-            structure = max(1.0 - damage[i], 0.0)
-            if energy[i] <= 0 or structure <= 0 or damage[i] >= 1.0:
+            if energy[i] <= 0 or damage[i] >= 1.0:
                 alive[i] = False
                 lifetime[i] = step
                 energy[i] = max(energy[i], 0.0)

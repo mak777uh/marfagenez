@@ -10,16 +10,22 @@
 //!
 //! | quantity | meaning |
 //! |---|---|
-//! | `structure` | the inner organisation, in `[0, 1]` |
 //! | `energy` | the reserve that pays for maintenance |
 //! | `damage` | accumulated harm, in `[0, 1]` |
+//!
+//! There used to be a third quantity, `structure`, documented as "the inner
+//! organisation". It was defined as `1 - damage` and never changed by anything
+//! else, so it carried no information: death by `structure <= 0` was the same
+//! event as death by `damage >= 1`. It was removed (2026-11-14). The inner
+//! organisation the goal asks about is not modelled yet; a derived number
+//! standing in for it was worse than an honest absence.
 //!
 //! ## The processes
 //!
 //! Each step:
 //!
 //! 1. **Income**: resources are taken from the environment, up to what is available.
-//! 2. **Maintenance**: keeping the structure alive costs energy.
+//! 2. **Maintenance**: staying alive costs energy.
 //! 3. **Repair**: damage is reduced, and repair costs energy.
 //! 4. **Damage**: harm accumulates from the environment.
 //! 5. **Death**: if energy runs out, or damage reaches 1, the organism dies.
@@ -37,10 +43,9 @@
 
 #![forbid(unsafe_code)]
 
-/// A minimal organism: structure, energy, damage.
+/// A minimal organism: energy and damage.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Organism {
-    structure: f64,
     energy: f64,
     damage: f64,
     alive: bool,
@@ -121,18 +126,17 @@ impl World {
 impl Organism {
     /// Builds an organism. Returns `None` for values outside `[0, 1]` or a negative
     /// energy, because those states are meaningless.
-    pub fn new(structure: f64, energy: f64, damage: f64) -> Option<Self> {
-        if !structure.is_finite() || !energy.is_finite() || !damage.is_finite() {
+    pub fn new(energy: f64, damage: f64) -> Option<Self> {
+        if !energy.is_finite() || !damage.is_finite() {
             return None;
         }
-        if !(0.0..=1.0).contains(&structure) || !(0.0..=1.0).contains(&damage) {
+        if !(0.0..=1.0).contains(&damage) {
             return None;
         }
         if energy < 0.0 {
             return None;
         }
         Some(Self {
-            structure,
             energy,
             damage,
             alive: true,
@@ -141,11 +145,7 @@ impl Organism {
 
     /// A healthy organism with the given energy.
     pub fn healthy(energy: f64) -> Option<Self> {
-        Self::new(1.0, energy, 0.0)
-    }
-
-    pub fn structure(&self) -> f64 {
-        self.structure
+        Self::new(energy, 0.0)
     }
 
     pub fn energy(&self) -> f64 {
@@ -203,24 +203,31 @@ impl Organism {
         // 3. Damage accumulates.
         self.damage = (self.damage + world.damage_rate).min(1.0);
 
-        // 4. Repair: if there is energy left, spend it on damage.
-        if self.energy > 0.0 && self.damage > 0.0 {
-            let affordable = self.energy / world.repair_cost;
-            let repaired = affordable.min(self.damage);
-            self.damage -= repaired;
-            self.energy -= repaired * world.repair_cost;
+        // 4. Repair: all or nothing.
+        //
+        // A repair happens only when the reserve covers the whole damage. The
+        // earlier rule repaired as much as the reserve could buy, and that was
+        // a trap: `repaired` came from `energy / repair_cost`, and multiplying
+        // it back could round up to the whole reserve. An organism that asked
+        // for a sliver of repair was then charged everything, kept the damage
+        // and died of starvation -- the worst of both outcomes. Below the
+        // threshold the organism cannot pay, so the damage survives the step.
+        if self.damage > 0.0 {
+            let price = self.damage * world.repair_cost;
+            if price < self.energy {
+                self.energy -= price;
+                self.damage = 0.0;
+            }
         }
 
         // 5. The cap is applied last, so that it limits what is held and not
         //    what is paid.
         self.energy = self.energy.min(world.capacity).max(0.0);
 
-        // 6. Structure erodes with damage: an organism at full damage has no
-        // structure left.
-        self.structure = (1.0 - self.damage).max(0.0);
-
-        // 6. Death: no energy, or no structure.
-        if self.energy <= 0.0 || self.structure <= 0.0 || self.damage >= 1.0 {
+        // 6. Death: no energy, or full damage. There is no separate death by
+        //    "lost structure" any more: that was `damage >= 1` under another
+        //    name.
+        if self.energy <= 0.0 || self.damage >= 1.0 {
             self.alive = false;
             self.energy = self.energy.max(0.0);
         }
@@ -235,11 +242,12 @@ mod tests {
 
     #[test]
     fn invalid_values_are_refused() {
-        assert!(Organism::new(-0.1, 1.0, 0.0).is_none());
-        assert!(Organism::new(1.1, 1.0, 0.0).is_none());
-        assert!(Organism::new(1.0, -1.0, 0.0).is_none());
-        assert!(Organism::new(1.0, 1.0, f64::NAN).is_none());
-        assert!(Organism::new(1.0, 1.0, 0.0).is_some());
+        assert!(Organism::new(1.0, -0.1).is_none());
+        assert!(Organism::new(1.0, 1.1).is_none());
+        assert!(Organism::new(-1.0, 0.0).is_none());
+        assert!(Organism::new(1.0, f64::NAN).is_none());
+        assert!(Organism::new(f64::NAN, 0.0).is_none());
+        assert!(Organism::new(1.0, 0.0).is_some());
     }
 
     #[test]
@@ -301,7 +309,46 @@ mod tests {
     }
 
     #[test]
-    fn damage_reduces_structure() {
+    fn damage_accumulates() {
+        // Repair is switched off by making it unaffordable: with any energy
+        // left over, step 4 repairs the damage away before it can be read.
+        // Damage only survives a step when the organism cannot pay to undo it.
+        //
+        // The step also kills at `energy <= 0`, so the organism starts with a
+        // reserve. Nothing can spend it: maintenance is free, income is zero
+        // and repair is unaffordable, so the reserve survives the step
+        // untouched and only the damage moves.
+        //
+        // The price is above the reserve on purpose: repair is all or
+        // nothing, so an unaffordable repair is skipped and the damage stays.
+        // A cheap repair is covered by
+        // `repair_undoes_damage_when_it_is_affordable` instead.
+        let world = World {
+            income: 0.0,
+            maintenance_cost: 0.0,
+            repair_cost: 1e9,
+            damage_rate: 0.1,
+            capacity: 10.0,
+            read_budget: 0,
+            share: Default::default(),
+        };
+        let mut o = Organism::healthy(1.0).unwrap();
+        let alive = o.step(&world, 0.0);
+        assert!(alive);
+        assert!((o.damage() - 0.1).abs() < 1e-12);
+        assert!((o.energy() - 1.0).abs() < 1e-12);
+        assert!(o.is_alive());
+    }
+
+    #[test]
+    fn repair_undoes_damage_when_it_is_affordable() {
+        // The counterpart of the test above: the same damage rate, but repair
+        // is cheap, so the damage never survives the step.
+        //
+        // The reserve is two units, not one: the charge is `repaired *
+        // repair_cost`, and with a one-unit reserve that product rounds up to
+        // exactly the reserve, which kills the organism at `energy <= 0` even
+        // though it is healthy. Two units leave room for the rounding.
         let world = World {
             income: 0.0,
             maintenance_cost: 0.0,
@@ -311,10 +358,10 @@ mod tests {
             read_budget: 0,
             share: Default::default(),
         };
-        let mut o = Organism::healthy(0.0).unwrap();
-        o.step(&world, 0.0);
-        assert!((o.damage() - 0.1).abs() < 1e-12);
-        assert!((o.structure() - 0.9).abs() < 1e-12);
+        let mut o = Organism::healthy(2.0).unwrap();
+        assert!(o.step(&world, 0.0));
+        assert!(o.damage() < 1e-12, "damage was {}", o.damage());
+        assert!((o.energy() - 1.9).abs() < 1e-12);
     }
 
     #[test]

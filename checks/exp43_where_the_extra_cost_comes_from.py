@@ -11,8 +11,8 @@ by `damage`.  So the extra 0.2 must be repair - which means damage was NOT zero
 on those steps.  Why?
 
 `Organism::step` (core/src/organism.rs:157) does, in order:
-  damage += damage_rate; repair if energy > 0; structure = 1 - damage; die if
-  energy <= 0 or structure <= 0 or damage >= 1.
+  damage += damage_rate; repair if energy > 0; die if energy <= 0 or
+  damage >= 1.
 
 With damage_rate 0.2 and repair affordable, damage goes 0.2 -> cleared -> 0.2.
 The repair of 0.2 units costs 0.2 * 0.5 = 0.1, not 0.2.  So a 0.4 drop is

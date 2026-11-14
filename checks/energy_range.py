@@ -38,8 +38,7 @@ def run(damage_rate: float, seed: int = SEED) -> dict:
         damage = damage - repaired
         energy = energy - repaired * REPAIR_COST
 
-        structure = np.maximum(1.0 - damage, 0.0)
-        died = alive & ((energy <= 0) | (structure <= 0) | (damage >= 1.0))
+        died = alive & ((energy <= 0) | (damage >= 1.0))
         alive = alive & ~died
         energy = np.maximum(energy, 0.0)
 

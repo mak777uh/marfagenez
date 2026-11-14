@@ -43,7 +43,7 @@ energy += min(resource, income)      затем зажим до world.capacity
 energy -= maintenance_cost
 damage += damage_rate
 ремонт: energy / repair_cost  идёт на damage, то есть стоит ровно damage_rate
-смерть если energy <= 0 или structure <= 0
+смерть если energy <= 0 или damage >= 1
 ```
 
 Итог за шаг: `net = taken − maintenance_cost − damage_rate`. Значит выживает тот,

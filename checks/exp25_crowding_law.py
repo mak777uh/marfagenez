@@ -15,7 +15,7 @@ lesson). The first version said the k-th organism survives iff its take is
     damage += damage_rate
     repair: spend energy / repair_cost on damage, so the cost is exactly
             damage_rate whenever energy > 0
-    die if energy <= 0 or structure <= 0
+    die if energy <= 0 or damage >= 1
 
 So the per-step ledger of every organism is
 
