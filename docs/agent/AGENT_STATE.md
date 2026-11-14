@@ -59,7 +59,7 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
   - Тест `core/tests/proportional_share.rs`: `Stay`-контроль (точное
     деление), `fires`-регрессия (толпа растёт в шаге) и `Sequential`-контроль
     (фикс не протёк в другой протокол).
-- **Проверено:** `./run.sh all` — Rust 198 passed, Lean 290+27 теорем,
+- **Проверено:** `./run.sh all` — Rust 197 passed, Lean 290+27 теорем,
   `sorry: 0`, Verus 41 verified, контракт 149 записей / 0 нарушений,
   `verify_all.js` 10/10, `ВСЁ ЗЕЛЁНОЕ`.
 - **Не сделано:** `checks/log_check.py` не написан; `docs/UNREPRODUCIBLE.md`

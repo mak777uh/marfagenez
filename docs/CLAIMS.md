@@ -116,7 +116,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 194 теста
+### Rust — 197 тестов
 
 | группа | что проверяет |
 |---|---|
@@ -127,12 +127,13 @@ verus verus/integer_laws.rs
 | `bridge::` | Rust и Lean дают одинаковые ответы |
 | `life::` | политики `Stay` / `Random` / `Remember` / `Memory` / `Sighted` |
 | `threshold_brake::`, `time_to_narrow::` | тормоз и время до стены |
+| `proportional_share::` | `Proportional` делит один `income` на клетку: части складываются в него и равны |
 
 **Команда:**
 ```bash
 export PATH=/root/.elan/bin:$PATH          # иначе build.rs не найдёт lean и соберёт заглушку
 cd core && cargo test --release --tests -- --test-threads=1
-# суммарно 194 passed, 0 failed
+# суммарно 197 passed, 0 failed
 # --test-threads=1 обязателен: рантайм Lean не потокобезопасен, иначе SIGABRT
 ```
 
@@ -228,7 +229,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
 | Lean файлов с теоремами | **56** `Medium` + **8** `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
 | Lean `sorry` | **0** везде | `grep -rn 'sorry' laws/*/*.lean \| wc -l` |
-| Rust тестов | **194** | `cargo test --release --tests -- --test-threads=1` |
+| Rust тестов | **197** | `cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
 | docs FINDING | **139** | `ls docs/FINDING-*.md \| wc -l` |
 | checks (эксперименты) | **109** | `ls checks/exp*.py \| wc -l` |
