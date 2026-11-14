@@ -140,6 +140,12 @@ do_exp() {
   # Числа теорем в живой документации против дерева. Датированные записи
   # (FINDING-*, LESSONS, VISION) не трогаются: это история, а не заявка.
   python3 checks/log_check.py || rc=$?
+  echo
+  echo "--- capacity_two_answers.py ---"
+  # Две формулы ёмкости в одном репозитории: LAW-capacity.md (жёсткая
+  # граница) и capacity_law.py (среднее по ансамблю). Скрипт печатает
+  # обе и падает, если порядок нарушится.
+  python3 checks/capacity_two_answers.py || rc=$?
   return $rc
 }
 
