@@ -108,8 +108,8 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 - **A1 сделано (2026-11-14):** `checks/log_check.py` — гейт живых чисел
   теорем/файлов в документации против дерева. Считает теоремы и файлы одной
   функцией для обеих библиотек (Medium 290 в 56 файлах, Legacy 27 в 7, всего
-  317 в 63), живой `sorry` = 0, Rust `#[test]` = 127. Заморожено 149 файлов
-  (датированные записи): `LESSONS.md`, `docs/ELIMINATED.md`, `docs/MASTER_PLAN.md`,
+  317 в 63), живой `sorry` = 0, Rust `#[test]` = 127. Заморожено 149
+  документов (датированные записи): `LESSONS.md`, `docs/ELIMINATED.md`, `docs/MASTER_PLAN.md`,
   `docs/PLAN*.md`, `docs/VISION.md`, `docs/FINDING-*`, `docs/SYNTHESIS-*`,
   `docs/LAW-*`. Маркер `historical`/`историческ`/`на эту дату`/`→` в окне трёх
   строк до числа снимает требование; дата в заголовке раздела покрывает весь
@@ -134,8 +134,8 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
   `find_disagreement()` не прошёлся по границам `bill`. Встроен в `run.sh all`.
 - **Не сделано:** `docs/PLAN-NEXT.md` §3 B2 всё ещё содержит ложный
   контрпример `capacity < maintenance_cost` — исправить при следующем
-  касании плана. `docs/PLAN-NEXT.md:92` §2 A3 говорит «317 в 66 файлах» —
-  верно 63 (файл заморожен, правка фактическая). Не прогонялись:
+  касании плана. `docs/PLAN-NEXT.md:92` §2 A3 завышает число файлов на три
+  (верно 63; файл заморожен, правка фактическая). Не прогонялись:
   `run.sh models` (~25 мин), `checks/audit.js`.
 
 ---
