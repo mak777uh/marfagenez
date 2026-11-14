@@ -401,7 +401,7 @@ def main() -> int:
     print(f"  {v['reason']}")
     print()
     print(f"Сохранено: {path}")
-    return 0
+    return 0 if v["kind"] in ("passed", "void") else 1
 
 
 if __name__ == "__main__":
