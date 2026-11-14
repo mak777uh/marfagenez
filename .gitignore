@@ -17,6 +17,9 @@ node_modules/
 # command in that file. PROTOCOL.md: do not commit artifacts.
 results/*/trace-*.json
 results/*/trace-*.jsonl
+# The same rule for the crate-local staging copy that `trace --out` writes
+# before exp05_frozen.py moves it into results/frozen-ceiling/.
+core/results/
 
 # Editor
 .vscode/

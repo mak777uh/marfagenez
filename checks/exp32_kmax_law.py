@@ -123,13 +123,15 @@ def k_max(maintenance):
 def run_arm(maintenance):
     """Runs one arm and returns the last frame's alive count plus the hash.
 
-    `trace` picks its own output path (`results/<policy>/trace-<stamp>.json`)
-    and prints it as `written:`, so the path is read back from stdout rather
-    than passed in. The hash is printed too, which is what the contract wants.
+    `trace` writes only where told: `--out` names one file, overwritten per
+    run. It used to invent `results/<policy>/trace-<stamp>.json` per call, and
+    those accumulated. The hash is printed too, which is what the contract wants.
     """
     os.makedirs(OUT, exist_ok=True)
+    trace_path = os.path.join(OUT, "trace-last.json")
     cmd = [
         TRACE,
+        "--out", trace_path,
         "--policy", "sighted",
         "--steps", str(STEPS),
         "--every", "100",
@@ -153,22 +155,19 @@ def run_arm(maintenance):
     if out.returncode != 0:
         raise SystemExit(f"trace failed for maintenance={maintenance}:\n{out.stderr}")
 
-    written = None
     trace_hash = ""
     for line in out.stdout.splitlines():
-        if line.startswith("written:"):
-            written = line.split(":", 1)[1].strip()
-        elif line.startswith("hash:"):
+        if line.startswith("hash:"):
             trace_hash = line.split(":", 1)[1].strip()
-    if written is None:
-        raise SystemExit(f"trace printed no `written:` line:\n{out.stdout}")
+    if not trace_hash:
+        raise SystemExit(f"trace printed no `hash:` line:\n{out.stdout}")
 
-    with open(os.path.join(ROOT, written)) as f:
+    with open(trace_path) as f:
         data = json.load(f)
     frames = data.get("frames") or []
     samples = frames[-1]["samples"] if frames else []
     alive = sum(1 for s in samples if s.get("alive"))
-    return {"alive": alive, "hash": trace_hash, "path": written}
+    return {"alive": alive, "hash": trace_hash, "path": trace_path}
 
 
 def main():

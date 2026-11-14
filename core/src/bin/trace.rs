@@ -55,6 +55,13 @@ fn main() {
     // each organism is on, so the default must be the one the docstring says.
     let mut even = true;
     let mut start_cells: Option<Vec<usize>> = None;
+    // Where the trace goes. The default used to be `results/<policy>/` with a
+    // millisecond stamp, which made every run a new file and never removed
+    // one: 30 GB of traces accumulated under `core/results/` by 2026-11-13.
+    // A trace is an artifact, not a record (PROTOCOL.md). The record of a run
+    // is its printed hash. So the default is now to print and not write;
+    // `--out PATH` writes one file where you ask, `--out -` writes to stdout.
+    let mut out: Option<String> = None;
 
     let mut i = 1;
     while i < args.len() {
@@ -186,6 +193,19 @@ fn main() {
                 i += 1;
                 share = args.get(i).cloned().unwrap_or(share);
             }
+            "--out" => {
+                i += 1;
+                match args.get(i) {
+                    Some(p) => out = Some(p.clone()),
+                    None => {
+                        eprintln!("refusing to run: --out needs a path (or - for stdout)");
+                        std::process::exit(2);
+                    }
+                }
+            }
+            "--no-write" => {
+                out = None;
+            }
             "--read-budget" => {
                 i += 1;
                 read_budget = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(read_budget);
@@ -201,6 +221,7 @@ fn main() {
                 println!("             [--field alternating|gradient|uniform|moving] [--memory-life N] [--shift X]");
                 println!("             [--rich X] [--poor X] [--regrow X] [--layout even] [--start-cell 0,2]");
                 println!("             [--read-budget N]  cells the organism may read per step without eating");
+                println!("             [--out PATH]  write the trace here (- for stdout). Default: do not write.");
                 return;
             }
             other => {
@@ -336,30 +357,35 @@ fn main() {
         Policy::Memory => "memory",
         Policy::Sighted => "sighted",
     };
-    let dir = PathBuf::from("results").join(name);
-    if let Err(e) = fs::create_dir_all(&dir) {
-        eprintln!("cannot create {}: {}", dir.display(), e);
-        std::process::exit(1);
-    }
-    // Milliseconds, not seconds. A second is long enough for several runs to
-    // land on the same name, and the later one silently overwrites the earlier
-    // one. That happened: three different hashes were written to
-    // `trace-sighted-1794524986.json` in one second, and a check that looked
-    // for "the newest file" read whichever survived. If the name still
-    // collides, add a counter rather than overwrite.
-    let stamp = std::time::SystemTime::now()
-        .duration_since(std::time::UNIX_EPOCH)
-        .map(|d| d.as_millis())
-        .unwrap_or(0);
-    let mut path = dir.join(format!("trace-{}-{}.json", name, stamp));
-    let mut n = 1;
-    while path.exists() {
-        path = dir.join(format!("trace-{}-{}-{}.json", name, stamp, n));
-        n += 1;
-    }
-    if let Err(e) = fs::write(&path, trace.to_json()) {
-        eprintln!("cannot write {}: {}", path.display(), e);
-        std::process::exit(1);
+    // Write only where asked. The old behaviour chose a path itself, under
+    // `results/<policy>/trace-<policy>-<ms>.json`, and nothing ever removed
+    // one of those files: by 2026-11-13 there were 1792 of them and 30 GB
+    // under `core/results/`. Every `ls`, `grep` and `git status` over the
+    // tree then walked 30 GB, which is what made the machine crawl.
+    //
+    // A trace is reproducible from the printed hash and the arguments, so it
+    // is an artifact, not a record (PROTOCOL.md). The default is to print and
+    // not write. `--out PATH` writes exactly one file where you say.
+    if let Some(dest) = out.as_deref() {
+        let json = trace.to_json();
+        if dest == "-" {
+            println!("{}", json);
+        } else {
+            let path = PathBuf::from(dest);
+            if let Some(parent) = path.parent() {
+                if !parent.as_os_str().is_empty() {
+                    if let Err(e) = fs::create_dir_all(parent) {
+                        eprintln!("cannot create {}: {}", parent.display(), e);
+                        std::process::exit(1);
+                    }
+                }
+            }
+            if let Err(e) = fs::write(&path, json) {
+                eprintln!("cannot write {}: {}", path.display(), e);
+                std::process::exit(1);
+            }
+            eprintln!("wrote {}", path.display());
+        }
     }
 
     println!("policy:   {}", name);
@@ -380,5 +406,9 @@ fn main() {
     println!("steps:    {}", steps);
     println!("frames:   {}", trace.frames.len());
     println!("hash:     {:016x}", trace.hash);
-    println!("written:  {}", path.display());
+    match out.as_deref() {
+        Some("-") => println!("written:  stdout"),
+        Some(dest) => println!("written:  {}", dest),
+        None => println!("written:  nothing (pass --out PATH to save the trace)"),
+    }
 }

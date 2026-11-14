@@ -116,6 +116,10 @@ DAMAGE_BASE = 0.02
 DAMAGE_HIGH = 0.10
 RICH_INCOME = 0.8
 
+#: Where `trace` writes its JSON, relative to the crate. The file is copied
+#: into `results/frozen-ceiling/` below; this is only the staging path.
+TRACE_DIR = "results/frozen-ceiling"
+
 
 def predicted_ceiling(capacity: float) -> float:
     """The arithmetic: where the energy stops.
@@ -163,6 +167,10 @@ def run_arm(capacity: float, damage_rate: float) -> dict:
         f"--damage-rate {damage_rate}",
         f"--maintenance {MAINTENANCE}",
         f"--repair-cost {REPAIR_COST}",
+        # `trace` no longer picks a path for itself: since the 2026-11-13
+        # change the default is to print and write nothing, and it says
+        # `written: nothing`. The path has to be asked for.
+        f"--out {WSL_CORE}/{TRACE_DIR}/trace-stay.json",
     ])
     out = shell(f"cd {WSL_CORE} && ./target/release/trace {args}")
 
@@ -171,9 +179,11 @@ def run_arm(capacity: float, damage_rate: float) -> dict:
         raise SystemExit(f"no hash in output:\n{out}")
     h = m.group(1)
 
+    # `trace` prints `wrote <path>` on stderr and `written: <path>` on stdout;
+    # the default is `written: nothing`, which is not a path.
     f = re.search(r"written:\s+(\S+)", out)
-    if not f:
-        raise SystemExit(f"no file in output:\n{out}")
+    if not f or f.group(1) == "nothing":
+        raise SystemExit(f"trace wrote no file:\n{out}")
     wsl_path = f.group(1)
 
     # Copy the trace into the repo so the artifact is on disk here.

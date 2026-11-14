@@ -20,6 +20,12 @@ takes cross over:
 | 0 | 2.000 | 0.200 | 1.800 |
 | 1 | 1.840 | 1.640 | 0.200 |
 | 2 | 1.808 | 1.928 | **−0.120** |
+[PARTIAL: the table is reproduced in `docs/FINDING-convergence.md` and the trace
+`results/oscillation/trace-sighted-1794434500.json` shows the same values, but no
+`checks/*.py` recomputes it. The naive closed form `c + r*(M - c) - t` with
+`M = 2`, `r = 0.2`, `t = 0.2` does NOT reproduce the poor cell (it gives
+0.200 -> 0.560 -> 0.848, not 1.640 -> 1.928); the real update takes the regrown
+field into account. Treat the numbers as a worked example, not a rerun.]
 
 The rich cell falls, the poor cell rises, and after two steps the poor cell is
 richer. The spread changes sign, so its absolute value does not shrink

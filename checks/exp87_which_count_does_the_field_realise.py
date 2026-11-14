@@ -44,21 +44,15 @@ def k_sat_count(t):
 def run_trace(args):
     """Runs the trace and returns the JSON it wrote.
 
-    `trace` prints a summary and writes the frames to
-    `results/<policy>/trace-<policy>-<ms>.json`. It does not print JSON, so the
-    path has to be read out of the summary line `written:  ...`.
+    `trace` writes only where told: `--out` names one file, overwritten per
+    run. It used to pick `results/<policy>/trace-<policy>-<ms>.json` itself.
     """
-    out = subprocess.run([TRACE] + args, capture_output=True, text=True)
+    path = os.path.join(ROOT, "results", "exp87", "trace-last.json")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    out = subprocess.run([TRACE, "--out", path] + args, capture_output=True, text=True)
     if out.returncode != 0:
         raise ExperimentError("trace failed: %s\n%s" % (out.returncode, out.stderr[-2000:]))
-    path = None
-    for line in out.stdout.splitlines():
-        if line.startswith("written:"):
-            path = line.split(":", 1)[1].strip()
-    if path is None:
-        raise ExperimentError("trace printed no `written:` line:\n%s" % out.stdout[-2000:])
-    full = path if os.path.isabs(path) else os.path.join(ROOT, path)
-    with open(full) as f:
+    with open(path) as f:
         return json.load(f)
 
 

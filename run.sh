@@ -91,6 +91,24 @@ do_exp() {
   return $rc
 }
 
+# Not part of `all`: the three simulations take ~25 minutes each.
+# Run explicitly when the tables in laws/Medium/{Budget,Corrected,Child}.lean change.
+do_models() {
+  section "Модели из laws/Medium (Budget, Corrected, Child)"
+  # Таблицы в Budget.lean и Corrected.lean были помечены [UNVERIFIED]: числа не
+  # воспроизводились ни одним скриптом. Здесь они воспроизводятся.
+  local rc=0
+  echo "--- budget_model.py ---"
+  python3 checks/budget_model.py 2>&1 | tail -8 || rc=$?
+  echo
+  echo "--- corrected_model.py ---"
+  python3 checks/corrected_model.py 2>&1 | tail -8 || rc=$?
+  echo
+  echo "--- room_model.py ---"
+  python3 checks/room_model.py 2>&1 | tail -8 || rc=$?
+  return $rc
+}
+
 do_claims() {
   section "Проверки утверждений (verify_all.js)"
   # Без seed проверка была разным экспериментом при каждом запуске:
@@ -129,6 +147,7 @@ case "$WHAT" in
   lean)   do_lean || RC=$? ;;
   reach)  do_reach || RC=$? ;;
   exp)    do_exp || RC=$? ;;
+  models) do_models || RC=$? ;;
   claims) do_claims || RC=$? ;;
   export) do_export || RC=$? ;;
   all)
@@ -140,7 +159,7 @@ case "$WHAT" in
     do_export || RC=$?
     ;;
   *)
-    echo "usage: run.sh [all|test|lean|reach|exp|claims|export]"
+    echo "usage: run.sh [all|test|lean|reach|exp|models|claims|export]"
     exit 2
     ;;
 esac

@@ -84,16 +84,13 @@ def run(feed, M, r=0.5, t=1.0, n=8, cells=8, steps=40, every=1):
     ]
     if feed:
         args.append("--feed")
-    proc = subprocess.run(args, check=True, capture_output=True)
-    # The binary prints a short report and writes the frames to
-    # results/<policy>/trace-<policy>-<pid>.json. Read the file it names.
-    written = None
-    for line in proc.stdout.decode().splitlines():
-        if line.startswith("written:"):
-            written = ROOT / line.split(":", 1)[1].strip()
-    if written is None or not written.exists():
-        raise RuntimeError(f"trace did not write a file: {proc.stdout!r}")
-    raw = written.read_bytes()
+    # The binary no longer picks a path of its own: `--out PATH` writes where
+    # we say. One file per run, overwritten, so a check leaves nothing behind.
+    out = ROOT / "results" / "feed-collapse" / "trace-last.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    args += ["--out", str(out)]
+    subprocess.run(args, check=True, capture_output=True)
+    raw = out.read_bytes()
     h = hashlib.sha256(raw).hexdigest()[:16]
     return json.loads(raw), h
 

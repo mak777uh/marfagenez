@@ -101,21 +101,17 @@ def run_arm(exp, emax, label):
 
     args = list(BASE)
     args[args.index(None)] = str(emax)
-    cmd = ["cargo", "run", "--release", "--quiet", "--bin", "trace", "--"] + args
     cwd = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "core")
+    # trace writes only where told (`--out`), one file per run.
+    trace_path = os.path.join(cwd, "results", "late-deaths", "trace-last.json")
+    os.makedirs(os.path.dirname(trace_path), exist_ok=True)
+    args += ["--out", trace_path]
+    cmd = ["cargo", "run", "--release", "--quiet", "--bin", "trace", "--"] + args
     out = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
     if out.returncode != 0:
         raise SystemExit(f"{label}: trace failed\n{out.stderr[-2000:]}")
-    # trace writes the JSON to results/<policy>/trace-<policy>-<stamp>.json and
-    # prints a summary on stdout, so the path is read from the summary.
-    written = [
-        line.split(":", 1)[1].strip()
-        for line in out.stdout.splitlines()
-        if line.startswith("written:")
-    ]
-    if not written:
-        raise SystemExit(f"{label}: no 'written:' line\n{out.stdout[-2000:]}")
-    data = json.load(open(os.path.join(cwd, written[0])))
+    # trace writes only where told (`--out`), one file per run.
+    data = json.load(open(trace_path))
     frames = data["frames"]
     last = frames[-1]
     alive = [s for s in last["samples"] if s["alive"]]

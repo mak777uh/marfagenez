@@ -97,19 +97,15 @@ def run_trace(n, cells, M, seed, steps=3000):
         "--steps", str(steps),
         "--every", str(steps),
     ]
+    # The binary writes only where told: `--out` names one file, overwritten
+    # per run. It used to invent results/<policy>/trace-<policy>-<ms>.json for
+    # every call, and 1792 of those reached 30 GB.
+    path = os.path.join(ROOT, "results", "EXP-22", "trace-last.json")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    cmd += ["--out", path]
     out = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
     if out.returncode != 0:
         raise RuntimeError(out.stderr[-2000:])
-    # The binary writes results/<policy>/trace-<policy>-<pid>.json and prints
-    # the path on the "written:" line.
-    path = None
-    for line in out.stdout.splitlines():
-        if line.startswith("written:"):
-            path = line.split(":", 1)[1].strip()
-    if path is None:
-        raise RuntimeError("no written: line in\n" + out.stdout[-2000:])
-    if not os.path.isabs(path):
-        path = os.path.join(ROOT, path)
     with open(path, encoding="utf-8") as f:
         return json.load(f)
 
