@@ -28,7 +28,8 @@
 > `Regimes.lean`. Все числа уровня C в этом файле, полученные при старом
 > порядке (потолок `C = 80`, `E* = E_max − COST`, `c* = 1.8`), **отозваны** —
 > см. `docs/FINDING-140-the-step-order-was-wrong.md`. Проверка:
-> `cd laws && lake build` → 18328 jobs, 0 errors.
+> `cd laws && lake build` → 0 errors. Число jobs не пишем: оно зависит от
+> кэша Mathlib, а не от кода.
 
 ### Lean — две библиотеки, 317 теорем и лемм, 0 живых sorry
 
@@ -45,7 +46,7 @@
 **Команда:**
 ```bash
 cd laws && lake build && lake build Legacy
-# Build completed successfully (18328 jobs).   -- Medium
+# Build completed successfully.   -- Medium (число jobs зависит от кэша)
 # Build completed successfully (18238 jobs).   -- Legacy
 ```
 
@@ -115,7 +116,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 192 теста
+### Rust — 194 теста
 
 | группа | что проверяет |
 |---|---|
@@ -131,7 +132,7 @@ verus verus/integer_laws.rs
 ```bash
 export PATH=/root/.elan/bin:$PATH          # иначе build.rs не найдёт lean и соберёт заглушку
 cd core && cargo test --release --tests -- --test-threads=1
-# 23 test binaries, суммарно 192 passed, 0 failed
+# суммарно 194 passed, 0 failed
 # --test-threads=1 обязателен: рантайм Lean не потокобезопасен, иначе SIGABRT
 ```
 
@@ -223,22 +224,29 @@ cd core && cargo test --release --tests -- --test-threads=1
 
 | что | значение | команда |
 |---|---|---|
-| Lean теорем и лемм (`Medium`) | **281** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
+| Lean теорем и лемм (`Medium`) | **290** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
-| Lean файлов с теоремами | **55** `Medium` + 9 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
+| Lean файлов с теоремами | **56** `Medium` + **8** `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
 | Lean `sorry` | **0** везде | `grep -rn 'sorry' laws/*/*.lean \| wc -l` |
-| Rust тестов | **192** | `cargo test --release --tests -- --test-threads=1` |
+| Rust тестов | **194** | `cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
-| docs FINDING | **53** | `ls docs/FINDING-*.md \| wc -l` |
-| checks (эксперименты) | **98** | `ls checks/exp*.py \| wc -l` |
-| сохранённых прогонов | **136** | `find results -name 'run-*.json' \| wc -l` |
-| прогонов, прошедших контракт | **128** (0 нарушений) | `python3 checks/contract.py` |
+| docs FINDING | **139** | `ls docs/FINDING-*.md \| wc -l` |
+| checks (эксперименты) | **109** | `ls checks/exp*.py \| wc -l` |
+| сохранённых прогонов | **159** | `find results -name 'run-*.json' \| wc -l` |
+| прогонов, прошедших контракт | **151** (0 нарушений) | `python3 checks/contract.py` |
 
-Все числа в этой таблице пересчитаны 2026-11-13. Предыдущая версия
-(`237` теорем, `87` FINDING, `45` проверок, `38` прогонов) была снята с
-устаревшего состояния дерева: в ней не были учтены ни правка `cellStep`
-от 2026-11-12, ни 41 добавленная теорема, ни 53 новые FINDING-заметки.
+Все числа в этой таблице пересчитаны 2026-11-14 прогоном, а не чтением.
+
+Предыдущая версия (`281` теорема в `55` файлах `Medium`, `192` теста, `53`
+FINDING, `98` проверок, `136` прогонов) была **ложна не по давности, а по
+существу**: команда проверки стояла в той же строке таблицы и давала 290, а не
+281. Число никогда не следовало из своей же команды — это ровно тот дефект,
+который `PROTOCOL.md` §3 объявляет главным: проза сильнее артефакта. Он пережил
+правку от 2026-11-13, которая заявляла «все числа пересчитаны».
+
+Урок на будущее: число в документе должно быть **выводом** команды из той же
+строки. Если команду не прогнали — числа нет.
 
 ---
 
-*МАРФАГЕНЕЗ++ · CLAIMS.md · 2026-11-13*
+*МАРФАГЕНЕЗ++ · CLAIMS.md · 2026-11-14*
