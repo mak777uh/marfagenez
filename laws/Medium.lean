@@ -50,6 +50,7 @@ import Medium.Reweight
 import Medium.Rotation
 import Medium.SecondQuantity
 import Medium.Selection2
+import Medium.Settled
 import Medium.Shape
 import Medium.Stationary
 import Medium.Structure

@@ -20,12 +20,18 @@ import Medium.Symmetry
 
   | B | steps | measured spread | `B/√3` | ratio |
   |---|-------|-----------------|--------|-------|
-  | 0.5 | 2 006 | 0.287 | 0.289 | 0.995 |
-  | 1.0 | 2 023 | 0.573 | 0.577 | 0.992 |
-  | 2.0 | 2 089 | 1.157 | 1.155 | 1.002 |
-  | 3.0 | 2 200 | 1.745 | 1.732 | 1.007 |
-  | 5.0 | 2 556 | 2.928 | 2.887 | 1.014 |
-  | 8.0 | 3 423 | 4.611 | 4.619 | 0.998 |
+  | 0.5 | 0 | 0.289 | 0.289 | 1.003 |
+  | 1.0 | 1 | 0.577 | 0.577 | 1.000 |
+  | 2.0 | 4 | 1.150 | 1.155 | 0.996 |
+  | 3.0 | 9 | 1.714 | 1.732 | 0.990 |
+  | 5.0 | 25 | 2.865 | 2.887 | 0.992 |
+  | 8.0 | 64 | 4.470 | 4.619 | 0.968 |
+
+  [VERIFIED: `python3 checks/room_model.py` — `μ = 0.05`, `σ = 1`, `N = 20 000`,
+  seed 5001, uniform start on `[-B, B]`, `steps = (B/σ)²`. PASS within 5% of
+  `B/√3` at every half-width. The run length here is the filling time, not a
+  fixed budget: the earlier table's `2 006 … 3 423` steps were not reproduced by
+  any script, and at 64 steps the `B = 8` row reads 0.968, not 0.998.]
 
   ## What the space gives
 

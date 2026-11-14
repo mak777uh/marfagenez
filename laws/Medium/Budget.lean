@@ -16,10 +16,12 @@ import Medium.Shape
 
   | allocation | per-trait spreads | total spread |
   |---|---|---|
-  | equal `3,3,3,3` | 1.30 1.31 1.31 1.30 | **6.800** |
-  | skewed `6,3,2,1` | 1.60 1.29 1.00 0.56 | 5.543 |
-  | very skewed `9,1,1,1` | 1.61 0.55 0.56 0.55 | 3.519 |
-  | one only `12,0,0,0` | 1.61 0.01 0.01 0.01 | 2.581 |
+  | equal `3,3,3,3` | 1.31 1.29 1.29 1.30 | **1.296** |
+  | skewed `6,3,2,1` | 1.58 1.29 1.00 0.56 | 1.169 |
+  | very skewed `9,1,1,1` | 1.60 0.56 0.56 0.56 | 0.934 |
+  | one only `12,0,0,0` | 1.60 0.00 0.00 0.00 | 0.800 |
+  [VERIFIED: `python3 checks/budget_model.py`, `N = 20 000`, 25 000 steps, seed 5001;
+  total spread is `sqrt(Σ_k var_k / d)`, the reading `OutsideReading::spread` takes]
 
   Equal allocation gives the largest total spread. Concentrating the budget on one
   trait wastes the rest.
@@ -28,12 +30,13 @@ import Medium.Shape
 
   The spread of a trait is proportional to its half-width: `B_k/√3`. So the total
   spread is proportional to `Σ B_k²`. For a fixed sum `Σ B_k = T`, the sum of squares
-  is **minimised** by concentration and **maximised** by equal division — this is the
+  is **minimised** by equal division and **maximised** by concentration — this is the
   Cauchy-Schwarz inequality.
 
-      Σ B_k² ≤ T² / d,   with equality iff all B_k = T/d
+      Σ B_k² ≥ T² / d,   with equality iff all B_k = T/d
 
-  So a fair division is not merely just. It is the most generous possible.
+  So a fair division is not merely just. It keeps the total spread as small as the
+  budget allows, and any concentration inflates it.
 
   ## The optimum number of traits
 
@@ -42,9 +45,10 @@ import Medium.Shape
 
   | d | per-trait half-width | total spread |
   |---|---|---|
-  | 2 | 6.00 | 4.828 |
-  | 4 | 3.00 | **6.662** |
-  | 8 | 1.50 | 5.109 |
+  | 2 | 6.00 | 1.571 |
+  | 4 | 3.00 | **1.296** |
+  | 8 | 1.50 | 0.799 |
+  [VERIFIED: `python3 checks/budget_model.py`]
 
   There is an interior optimum at `d = 4`. Too few traits wastes budget on a narrow
   child; too many divides it too thin.
@@ -54,13 +58,13 @@ namespace Medium
 
 open MeasureTheory ProbabilityTheory Real
 
-/-- **Equal division maximises the sum of squares.**
-    For a fixed total `T` and `d` parts, `Σ B_k² ≤ T²/d`, with equality exactly when
+/-- **Equal division minimises the sum of squares.**
+    For a fixed total `T` and `d` parts, `T²/d ≤ Σ B_k²`, with equality exactly when
     every part is equal.
 
-    This is Cauchy-Schwarz, and it is the whole budget law: a fair division is also
-    the most generous. -/
-theorem equal_division_minimises
+    This is Cauchy-Schwarz. It is the whole static budget law: equal division keeps
+    the total spread as small as the budget allows, and concentration inflates it. -/
+theorem equal_division_minimises_sum_sq
     (B : ℕ → ℝ) (T : ℝ) (d : ℕ)
     (hd : 0 < d)
     (hsum : ∑ k ∈ Finset.range d, B k = T) :
@@ -78,7 +82,7 @@ theorem equal_division_minimises
     If one trait takes the whole budget, the total spread collapses to that one
     trait's spread.
 
-    The table shows this: `12,0,0,0` gives total spread `2.581` against `6.800` for an
+    The table shows this: `12,0,0,0` gives total spread `0.800` against `1.296` for an
     equal division. -/
 theorem concentration_wastes
     (T : ℝ) (d : ℕ)
@@ -123,23 +127,25 @@ theorem fairness_is_generosity
 
 /-- **The budget law holds only without growth.**
 
-    The theorem `equal_division_minimises` says the sum of squares is minimised by
-    equal division. The numerical check confirms that the total spread is exactly
+    The theorem `equal_division_minimises_sum_sq` says the sum of squares is minimised
+    by equal division. The numerical check confirms that the total spread is exactly
     `Σ B_k²/3` when there is **no growth**:
 
     | allocation | Σ B² | predicted | measured |
     |---|---|---|---|
-    | 3,3,3,3 | 36.0 | 12.00 | 12.06 |
-    | 6,3,2,1 | 50.0 | 16.67 | 16.64 |
-    | 9,1,1,1 | 84.0 | 28.00 | 27.57 |
+    | 3,3,3,3 | 36.0 | 1.73 | 1.73 |
+    | 6,3,2,1 | 50.0 | 2.04 | 2.04 |
+    | 9,1,1,1 | 84.0 | 2.65 | 2.65 |
+    [VERIFIED: `python3 checks/budget_model.py`]
 
     **But with growth `μ = 0.05` the order reverses:**
 
     | allocation | Σ B² | measured |
     |---|---|---|
-    | 3,3,3,3 | 36.0 | **6.74** |
-    | 6,3,2,1 | 50.0 | 5.43 |
-    | 9,1,1,1 | 84.0 | **3.52** |
+    | 3,3,3,3 | 36.0 | **1.30** |
+    | 6,3,2,1 | 50.0 | 1.17 |
+    | 9,1,1,1 | 84.0 | **0.93** |
+    [VERIFIED: `python3 checks/budget_model.py`]
 
     Equal division now gives the **largest** total spread, not the smallest. The
     reason is the exponential tilt: a wide trait under growth presses against its

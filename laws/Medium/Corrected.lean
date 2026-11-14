@@ -19,6 +19,10 @@ import Medium.Project
      sticking to it. Clamping piles mass on the wall — a numerical experiment showed
      the share of cells on the wall growing to 1.16% — while reflection leaves the
      wall clean (0.00%).
+     [VERIFIED: `python3 checks/corrected_model.py` — the clamp share depends on
+     how long the clamp has been running. At 200 generations, `B = 5`,
+     `σ = 0.3`, `N = 20 000`, seed 424242: clamp 3.74%, reflect 0.00%. The
+     contrast is reproduced; the exact 1.16% is not asserted here.]
 
   3. **External ceiling.** The wall is fixed by the environment, not by the
      population. A self-referential wall cancels itself and leaves only its external
@@ -28,10 +32,11 @@ import Medium.Project
 
   | steps | mean | spread | on wall |
   |-------|------|--------|---------|
-  | 1 | −0.013 | 1.039 | 0.00% |
-  | 100 | +0.013 | 2.623 | 0.00% |
-  | 1000 | −0.018 | 2.874 | 0.00% |
-  | 4000 | +0.015 | 2.892 | 0.00% |
+  | 1 | +0.002 | 0.580 | 0.00% |
+  | 100 | +0.020 | 2.571 | 0.00% |
+  | 1000 | −0.020 | 2.896 | 0.00% |
+  | 4000 | +0.020 | 2.887 | 0.00% |
+  [VERIFIED: `python3 checks/corrected_model.py`, `N = 20 000`, seed 424242]
 
   The spread settles at `B/√3 = 2.887`, which is the spread of the uniform
   distribution on `[-B, B]`, and the wall stays empty.
@@ -41,7 +46,8 @@ import Medium.Project
   | model | spread |
   |-------|--------|
   | original (deterministic + clamp) | **0.0000** |
-  | corrected (independent + reflect) | **2.8344** |
+  | corrected (independent + reflect) | **2.8187** |
+  [VERIFIED: `python3 checks/corrected_model.py`]
 
   The corrected model keeps its diversity. The original loses all of it.
 -/

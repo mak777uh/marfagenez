@@ -28,14 +28,16 @@ import Medium.Bounded
 
   ## The check
 
-  `B = 3`, `σ = 0.3`, 20 000 steps, `N = 40 000`:
+  `B = 3`, `σ = 0.3`, 25 000 steps, `N = 20 000`, `checks/tilt.py`:
 
   | μ | α | mean measured | mean theory | sd measured | sd theory |
   |---|---|---|---|---|---|
-  | 0.01 | 0.22 | 0.655 | 0.648 | 1.654 | 1.659 |
-  | 0.03 | 0.67 | 1.596 | 1.612 | 1.254 | 1.251 |
-  | 0.05 | 1.11 | 2.078 | 2.108 | 0.882 | 0.874 |
-  | 0.10 | 2.22 | 2.502 | 2.550 | 0.456 | 0.450 |
+  | 0.01 | 0.22 | 0.6057 | 0.6477 | 1.6632 | 1.6586 |
+  | 0.03 | 0.67 | 1.5739 | 1.6119 | 1.2604 | 1.2513 |
+  | 0.05 | 1.11 | 2.0663 | 2.1076 | 0.8860 | 0.8741 |
+  | 0.10 | 2.22 | 2.4941 | 2.5500 | 0.4673 | 0.4499 |
+  [VERIFIED: `python3 checks/tilt.py` -- PASS mean, PASS sd, PASS no-push;
+  the same run is tabulated in `docs/FINDING-tilt-holds.md`]
 
   Agreement to about 2%. The earlier guess `m + sd·√3 = B` was **wrong**; the
   relation is exponential, not linear.

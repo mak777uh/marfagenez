@@ -55,31 +55,68 @@ theorem emptied_is_stable (M r taken : ℝ) (hL : M * r ≤ taken) :
     cellStepWith M r taken (M * r) = M * r := by
   exact cellStepWith_emptied M r taken hL
 
-/-- The law, in the form EXP-94 tested: for `k` organisms taking `t` each,
-the settled level is `M - k*t*(1-r)/r` while `k*t ≤ M*r`, and `M*r`
-after that. -/
-theorem kt_one_sub_div_le (a r : ℝ) (hr0 : 0 < r) (hr1 : r ≤ 1) (ha : 0 ≤ a) :
-    a * (1 - r) / r ≤ a := by
-  rw [div_le_iff₀ hr0]
-  have h : (0:ℝ) ≤ a * r := mul_nonneg ha (le_of_lt hr0)
-  nlinarith
+/-!
+## The fixed point, stated against `cellLevel`
 
-theorem settled_level (M r t : ℝ) (k : ℕ) (hr0 : 0 < r) (hr1 : r ≤ 1) (ht : 0 ≤ t) (hM : 0 ≤ M) :
-    (k * t ≤ M * r →
-      cellStepWith M r (k * t) (M - k * t * (1 - r) / r) = M - k * t * (1 - r) / r) ∧
-    (M * r ≤ k * t → cellStepWith M r (k * t) (M * r) = M * r) := by
-  constructor
-  · intro h
-    have hkt : (0:ℝ) ≤ (k:ℝ) * t := by
-      have : (0:ℝ) ≤ (k:ℝ) := by exact_mod_cast Nat.zero_le k
-      exact mul_nonneg this ht
-    have hkey : (k:ℝ) * t * (1 - r) / r ≤ (k:ℝ) * t :=
-      kt_one_sub_div_le ((k:ℝ) * t) r hr0 hr1 hkt
-    have hL : (k:ℝ) * t ≤ M - (k:ℝ) * t * (1 - r) / r := by
-      have hM0 : (0:ℝ) ≤ M := hM
-      nlinarith [hkey, h, hM0]
-    exact cellStepWith_fixed M r ((k:ℝ) * t) (ne_of_gt hr0) hL
-  · intro h
-    exact emptied_is_stable M r ((k:ℝ) * t) h
+`cellLevel` (`Capacity.lean`) is what a cell settles at. The two theorems
+below say it is a fixed point of `cellStepWith`, branch by branch: the same
+content as `cellStepWith_fixed` and `cellStepWith_emptied`, but stated so the
+law and the fixed point are visibly one object.
+-/
+
+/-- **The unsaturated branch is a fixed point.**  While `k*t ≤ M*r` the cell
+settles at `M - k*t*(1-r)/r` and stays there. -/
+theorem cellLevel_fixed_unsaturated {M r k t : ℝ} (hr0 : 0 < r) (hr1 : r ≤ 1)
+    (hM : 0 ≤ M) (h : k * t ≤ M * r) :
+    cellStepWith M r (k * t) (cellLevel M r k t) = cellLevel M r k t := by
+  -- The draw clears the cell's own level, which is what `cellStepWith_fixed`
+  -- needs as its hypothesis. `linarith` cannot see this through the
+  -- subtraction, so the inequality is normalised by hand first.
+  have hL : k * t ≤ M - k * t * (1 - r) / r := by
+    rw [le_sub_iff_add_le]
+    have hk : k * t + k * t * (1 - r) / r = k * t / r := by
+      field_simp
+      ring
+    rw [hk]
+    have h1 : k * t * r ≤ M * r * r := mul_le_mul_of_nonneg_right h hr0.le
+    have h2 : M * r * r ≤ M * r := by
+      nlinarith [mul_nonneg hM hr0.le, mul_nonneg (mul_nonneg hM hr0.le) hr0.le]
+    have hMr : 0 ≤ M * r := mul_nonneg hM hr0.le
+    rw [div_le_iff₀ hr0]
+    nlinarith
+  have hcl : cellLevel M r k t = M - k * t * (1 - r) / r := by
+    have hMr : M * r ≤ M - k * t * (1 - r) / r := by
+      have hgap : M - k * t * (1 - r) / r - M * r = (M - k * t / r) * (1 - r) := by
+        have hk : k * t * (1 - r) / r = k * t / r * (1 - r) := by field_simp
+        rw [hk]; ring
+      have h3 : k * t / r ≤ M := by
+        rw [div_le_iff₀ hr0]; nlinarith
+      have h4 : 0 ≤ M - k * t / r := by linarith
+      have h6 : 0 ≤ (M - k * t / r) * (1 - r) := mul_nonneg h4 (by linarith)
+      linarith
+    unfold cellLevel
+    exact max_eq_left hMr
+  rw [hcl]
+  exact cellStepWith_fixed M r (k * t) (ne_of_gt hr0) hL
+
+/-- **The saturated branch is a fixed point.**  Once `M*r ≤ k*t` the cell is
+emptied of the draw and sits at `M*r`. -/
+theorem cellLevel_fixed_saturated {M r k t : ℝ} (hr0 : 0 < r) (hr1 : r ≤ 1)
+    (h : M * r ≤ k * t) :
+    cellStepWith M r (k * t) (cellLevel M r k t) = cellLevel M r k t := by
+  have hgap : M - k * t * (1 - r) / r - M * r = (M - k * t / r) * (1 - r) := by
+    have hk : k * t * (1 - r) / r = k * t / r * (1 - r) := by field_simp
+    rw [hk]; ring
+  have h3 : M ≤ k * t / r := by
+    rw [le_div_iff₀ hr0]; nlinarith
+  have h4 : M - k * t / r ≤ 0 := by linarith
+  have h6 : (M - k * t / r) * (1 - r) ≤ 0 := mul_nonpos_of_nonpos_of_nonneg h4 (by linarith)
+  have h2 : M - k * t * (1 - r) / r ≤ M * r := by linarith
+  have hcl : cellLevel M r k t = M * r := by
+    unfold cellLevel
+    rw [max_eq_right h2]
+  rw [hcl]
+  exact cellStepWith_emptied M r (k * t) h
+
 
 end Medium
