@@ -83,6 +83,14 @@ pub struct Trace {
     /// budget 3 behaves differently. A trace without this number cannot be
     /// compared to another trace.
     pub read_budget: usize,
+    /// How the income on a shared cell is divided.
+    ///
+    /// `sequential` and `proportional` give **different integer laws** for how
+    /// many organisms a cell holds on the same resource (see
+    /// `checks/exp99_protocol_capacity.py`). A trace that does not record which
+    /// one ran cannot be compared to another trace — and two arms that differ
+    /// only in the protocol would look like one arm.
+    pub share: &'static str,
 }
 
 impl Trace {
@@ -112,7 +120,26 @@ impl Trace {
                 mix(s.memory_level.to_bits());
                 mix(s.direction as i64 as u64);
                 mix(s.taken.to_bits());
+                // `prev_cell` is where the organism came from. Two runs that
+                // differ only in movement history are different dynamics; leaving
+                // it out let a moved organism and a standing one hash the same.
+                mix(s.prev_cell as u64);
             }
+        }
+        h
+    }
+
+    /// The protocol, folded into the hash.
+    ///
+    /// `compute_hash` sees only the frames. The protocol is not in them: at the
+    /// same field and the same energies, `sequential` and `proportional` can
+    /// produce identical frames for a while. Folding the name in makes the two
+    /// arms different by construction, which is what AGENTS.md §3 asks for.
+    pub fn hash_with_protocol(frames: &[Frame], share: &str) -> u64 {
+        let mut h = Self::compute_hash(frames);
+        for b in share.as_bytes() {
+            h ^= *b as u64;
+            h = h.wrapping_mul(0x0000_0100_0000_01b3);
         }
         h
     }
@@ -124,6 +151,7 @@ impl Trace {
         out.push_str(&format!("  \"policy\": \"{}\",\n", self.policy));
         out.push_str(&format!("  \"seed\": {},\n", self.seed));
         out.push_str(&format!("  \"read_budget\": {},\n", self.read_budget));
+        out.push_str(&format!("  \"share\": \"{}\",\n", self.share));
         out.push_str(&format!("  \"hash\": \"{:016x}\",\n", self.hash));
         out.push_str(&format!("  \"steps\": {},\n", self.frames.len()));
         out.push_str("  \"frames\": [\n");
@@ -181,13 +209,15 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
             frames.push(snapshot(life));
         }
     }
-    let hash = Trace::compute_hash(&frames);
+    let share = life.world().share.name();
+    let hash = Trace::hash_with_protocol(&frames, share);
     Trace {
         frames,
         hash,
         policy: life.policy_name(),
         seed: life.seed(),
         read_budget,
+        share,
     }
 }
 

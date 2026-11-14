@@ -81,6 +81,20 @@ impl Default for ShareProtocol {
     }
 }
 
+impl ShareProtocol {
+    /// The name that goes into a trace and its hash.
+    ///
+    /// The protocol decides how many organisms a cell holds on the same
+    /// resource, so a trace that does not record it cannot be compared to
+    /// another trace. `Trace::hash_with_protocol` folds this string in.
+    pub fn name(self) -> &'static str {
+        match self {
+            Self::Sequential => "sequential",
+            Self::Proportional => "proportional",
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy)]
 pub struct World {
     /// Energy gained per step when a resource is available.
