@@ -180,20 +180,12 @@ cargo run --release --bin trace -- --policy stay --steps 500 --every 10
 wsl -e bash /root/marfagenez/run.sh all
 ```
 
-| проверка | что | на 2026-11-14 |
-|---|---|---|
-| `cd core && cargo test --release -- --test-threads=1` | тесты Rust | **194 passed, 0 failed** |
-| `cd laws && lake build` | теоремы `Medium` | **290 теорем в 56 файлах, 0 `sorry`** |
-| `cd laws && lake build Legacy` | теоремы `Legacy` | **27 теорем в 8 файлах, 0 `sorry`** |
-| `verus verus/integer_laws.rs` | целочисленные законы | **41 verified, 0 errors** |
-| `node checks/verify_all.js` | утверждения перед портом | **10/10, `ALL CLAIMS VERIFIED`** |
-| `python3 checks/contract.py` | каждый результат по контракту | **151 проверено, 0 нарушений** |
-| `python3 checks/exp05_frozen.py` | эксперимент | **`passed`**, три контроля OK |
-| `python3 checks/reach.py --strict` | файл в репозитории = файл в сборке | **0 недостижимых** |
-| `bash run.sh agents` | контракт `AGENTS.md` | **зелёное** |
-
-Число jobs у `lake build` здесь не приводится: оно зависит от кэша Mathlib, а не
-от кода, поэтому не является утверждением о репозитории.
+| проверка | что |
+|---|---|
+| `cargo test --release -- --test-threads=1` | 127 тестов Rust |
+| `lake build` | 317 теорем, 63 файла |
+| `python3 checks/contract.py` | каждый результат по контракту |
+| `python3 checks/exp05_frozen.py` | эксперимент |
 
 **Локально зелёное — не проверено.** Если проверка не запускалась в этом
 окружении — это «не проверено здесь», а не «прошло».
@@ -280,6 +272,9 @@ wsl -e bash /root/marfagenez/run.sh all
 ---
 
 ## 15. Из сессии 2026-11-11
+
+Датированная запись: числа ниже — состояние на 2026-11-11, не сегодняшнее.
+`checks/log_check.py` пропускает этот раздел по маркеру «Датированная запись».
 
 | отказ | как выглядело | защита |
 |---|---|---|

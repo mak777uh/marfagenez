@@ -135,6 +135,11 @@ do_exp() {
   # В отличие от exp05_frozen.py, здесь печатается весь вывод: таблица
   # лестницы и есть результат, а не только вердикт.
   python3 checks/exp99_protocol_capacity.py || rc=$?
+  echo
+  echo "--- log_check.py ---"
+  # Числа теорем в живой документации против дерева. Датированные записи
+  # (FINDING-*, LESSONS, VISION) не трогаются: это история, а не заявка.
+  python3 checks/log_check.py || rc=$?
   return $rc
 }
 
