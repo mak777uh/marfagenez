@@ -29,6 +29,10 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from experiment import Experiment  # noqa: E402
+import os as _os
+import sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from counts import how_many_fit, k_max  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRACE = os.path.join(ROOT, "core", "target", "release", "trace")
@@ -66,7 +70,7 @@ def k_max_law(M, r, income, cost):
     supply = M * r
     if income < cost or supply < cost:
         return 0
-    return int((supply - cost) // income) + 1
+    return k_max(supply - cost, income)
 
 
 GRID = [

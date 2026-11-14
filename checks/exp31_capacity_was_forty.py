@@ -67,6 +67,10 @@ import sys
 ROOT = pathlib.Path("/root/marfagenez")
 sys.path.insert(0, str(ROOT))
 from checks.experiment import Experiment  # noqa: E402
+import os as _os
+import sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from counts import how_many_fit, k_max  # noqa: E402
 
 BIN = ROOT / "core" / "target" / "release" / "trace"
 CELLS = 40
@@ -123,7 +127,7 @@ def run(policy, field, n, budget=None):
     }
 
 
-k_max = 1 + int((M * R - MAINTENANCE - DAMAGE) // INCOME)
+k_max = k_max(M * R - MAINTENANCE - DAMAGE, INCOME)
 upper_bound = k_max * CELLS
 stationary_bound = CELLS
 

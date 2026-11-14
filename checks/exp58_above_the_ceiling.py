@@ -32,6 +32,10 @@ from collections import Counter, defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from experiment import Experiment  # noqa: E402
+import os as _os
+import sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from counts import how_many_fit, k_max  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRACE = os.path.join(ROOT, "core", "target", "release", "trace")
@@ -45,7 +49,7 @@ N = 80
 STEPS = 200000
 EVERY = 1000
 SEED = 1
-K_MAX = 1 + int((M * R - NEED) // INCOME)
+K_MAX = k_max(M * R - NEED, INCOME)
 CEILING = CELLS * K_MAX
 
 

@@ -27,6 +27,10 @@ from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from experiment import Experiment  # noqa: E402
+import os as _os
+import sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from counts import how_many_fit, k_max  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRACE = os.path.join(ROOT, "core", "target", "release", "trace")
@@ -130,7 +134,7 @@ def main():
         "total_food": f"cells * M*r = {CELLS} * {M * R} = {CELLS * M * R} per step",
         "total_need": f"n_alive * need; at 46 that is {46 * NEED}",
         "static_bound": f"k_max = 1 + floor(({M * R} - {NEED})/{INCOME}) = "
-                        f"{1 + int((M * R - NEED) // INCOME)}, so {CELLS} organisms",
+                        f"{k_max(M * R - NEED, INCOME)}, so {CELLS} organisms",
         "total_food_bound": f"cells * M*r / need = {CELLS * M * R / NEED:.1f}",
         "prediction": "movers average well above need; the fraction of steps "
                       "below need is small but non-zero",
@@ -188,7 +192,7 @@ def main():
     moved = r["moved"]
     stayed = r["stayed"]
 
-    static_bound = CELLS * (1 + int((M * R - NEED) // INCOME))
+    static_bound = CELLS * (k_max(M * R - NEED, INCOME))
 
     # fires: the phenomenon to explain is a field that sits *below* its
     # ceiling. The first version of this control asserted the opposite

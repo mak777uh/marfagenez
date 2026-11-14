@@ -84,6 +84,8 @@ from result import (
     set_verdict,
 )
 
+from counts import how_many_fit, k_max  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CORE = os.path.join(ROOT, "core")
 
@@ -179,7 +181,7 @@ def main():
         "cost": "maintenance + damage*repair = %.4f" % COST,
         "equilibrium": "c* = M + income - income/r = %.4f" % (RICH + INCOME - INCOME / R),
         "k_max_by_the_law": "1 + floor((c* - cost)/income) = %d"
-                            % (1 + int((RICH + INCOME - INCOME / R - COST) // INCOME)),
+                            % (k_max(RICH + INCOME - INCOME / R - COST, INCOME)),
         "what_a_cell_actually_gives": "min(ceiling, income); regrowth aims at "
                                       "the cell's own ceiling, so a cell below "
                                       "c* stays at its ceiling",

@@ -61,6 +61,10 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from experiment import Experiment  # noqa: E402
+import os as _os
+import sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from counts import how_many_fit, k_max  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRACE = os.path.join(ROOT, "core", "target", "release", "trace")
@@ -122,7 +126,7 @@ def main():
     net_single = t_first - NEED - MOVE - DAMAGE * REPAIR
     net_second = t_second - NEED - MOVE - DAMAGE * REPAIR
     net_floor = (M * R - INCOME) - NEED - MOVE - DAMAGE * REPAIR
-    k_max = 1 + int((M * R - INCOME) // NEED)
+    k_max = k_max(M * R - INCOME, NEED)
     static_bound = CELLS * k_max
 
     exp = Experiment(

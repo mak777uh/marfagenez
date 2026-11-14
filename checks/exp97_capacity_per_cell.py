@@ -56,6 +56,10 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+import os as _os
+import sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from counts import how_many_fit, k_max  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 TRACE = ROOT / "core" / "target" / "release" / "trace"
@@ -101,7 +105,7 @@ def measure(cells, n, M, r, t, maintenance, steps=1500):
 
 
 def capacity_per_cell(M, r, t, mc):
-    full = int((M * r) // t)
+    full = how_many_fit(M * r, t)
     remainder = M * r - full * t
     return full + (1 if remainder > mc else 0)
 

@@ -32,6 +32,10 @@ Control tests (PROTOCOL.md §2):
 import json
 import os
 import subprocess
+import os as _os
+import sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from counts import how_many_fit, k_max  # noqa: E402
 
 TRACE = "/root/marfagenez/core/target/release/trace"
 COREDIR = "/root/marfagenez/core"
@@ -145,7 +149,7 @@ out = {
     "question": "Why is crowding 1.925 at n = 160 and 2.000 at n = 320, with cells = 40 in both?",
     "arithmetic": {
         "law": "k_max = 1 + floor((M*r - maintenance - damage_rate)/income)",
-        "k_max": 1 + int((M * R - MAINT - DAMAGE) // INCOME),
+        "k_max": k_max(M * R - MAINT - DAMAGE, INCOME),
         "budget": M * R - MAINT - DAMAGE,
         "predicted_alive": PREDICTED,
         "spawn_per_cell": {"n160": 160 / CELLS, "n320": 320 / CELLS},

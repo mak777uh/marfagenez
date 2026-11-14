@@ -18,6 +18,10 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+import os as _os
+import sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from counts import how_many_fit, k_max  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 TRACE = ROOT / "core" / "target" / "release" / "trace"
@@ -63,7 +67,7 @@ def measure(cells, n, M, r, t, steps=400):
 
 
 def ksat(M, r, t):
-    return int((M * r) // t) + 1
+    return k_max(M * r, t)
 
 
 def main():
