@@ -118,8 +118,61 @@ impl Default for World {
 impl World {
     /// Whether the world lets an organism survive at all: income must exceed the
     /// maintenance cost, or nothing can live.
+    ///
+    /// This is a modelling statement, not an input check: an unviable world is
+    /// well formed and may be exactly what an experiment wants to show. Use
+    /// [`World::validate`] for the "are these numbers at all" question.
     pub fn is_viable(&self) -> bool {
         self.income > self.maintenance_cost
+    }
+
+    /// Rejects parameters that make the arithmetic meaningless.
+    ///
+    /// `World` keeps `pub` fields, so nothing stops a caller from writing
+    /// `maintenance_cost = NaN`. The arithmetic does not fail loudly on that:
+    /// `energy -= NaN` makes the energy NaN, `NaN.min(capacity)` returns
+    /// `capacity` because `f64::min` drops the NaN side, and the death test
+    /// `energy <= 0.0` is then false. The result is an organism that survives
+    /// on a full tank forever, paying nothing, with no error anywhere.
+    ///
+    /// The same shape of hole exists for `income = NaN` (`resource.min(NaN)`
+    /// returns `resource`, so a cell is drained whole instead of at the income
+    /// rate) and for negative costs (free survival by construction).
+    ///
+    /// Returns the name of the first bad field, so the caller can tell which
+    /// one to fix.
+    pub fn validate(&self) -> Result<(), String> {
+        if !self.income.is_finite() || self.income < 0.0 {
+            return Err(format!(
+                "income must be finite and non-negative, got {}",
+                self.income
+            ));
+        }
+        if !self.maintenance_cost.is_finite() || self.maintenance_cost < 0.0 {
+            return Err(format!(
+                "maintenance_cost must be finite and non-negative, got {}",
+                self.maintenance_cost
+            ));
+        }
+        if !self.repair_cost.is_finite() || self.repair_cost < 0.0 {
+            return Err(format!(
+                "repair_cost must be finite and non-negative, got {}",
+                self.repair_cost
+            ));
+        }
+        if !self.damage_rate.is_finite() || self.damage_rate < 0.0 {
+            return Err(format!(
+                "damage_rate must be finite and non-negative, got {}",
+                self.damage_rate
+            ));
+        }
+        if !self.capacity.is_finite() || self.capacity <= 0.0 {
+            return Err(format!(
+                "capacity must be finite and positive, got {}",
+                self.capacity
+            ));
+        }
+        Ok(())
     }
 }
 

@@ -132,6 +132,12 @@ impl Life {
     }
 
     /// Builds a cycle. Returns `None` for an empty population or a field with no cells.
+    ///
+    /// Also returns `None` when `world` fails [`World::validate`]. Every
+    /// constructor funnels through here, so this is the one place where a world
+    /// starts driving a simulation. Without the check, `maintenance_cost = NaN`
+    /// produces an organism that cannot die: the NaN is erased by `f64::min`,
+    /// not propagated, and nothing reports it.
     pub fn new(
         world: World,
         field: Field,
@@ -141,6 +147,9 @@ impl Life {
         memory_life: usize,
     ) -> Option<Self> {
         if organisms.is_empty() || field.cells() == 0 {
+            return None;
+        }
+        if world.validate().is_err() {
             return None;
         }
         Some(Self {
