@@ -116,14 +116,58 @@ impl Default for World {
 }
 
 impl World {
-    /// Whether the world lets an organism survive at all: income must exceed the
-    /// maintenance cost, or nothing can live.
+    /// Whether income exceeds the maintenance cost.
+    ///
+    /// **This is necessary, not sufficient, for survival.** It was the whole
+    /// answer once, and it is wrong: an organism also has to pay for repair.
+    /// Use [`World::sustains`] for the question "can anything live here at all";
+    /// this one only says "the tank fills faster than it leaks".
+    ///
+    /// The name is kept because `docs/FINDING-094-settled-level-law.md` cites
+    /// it as the settled-level condition, and that citation is about the tank,
+    /// not about survival.
     ///
     /// This is a modelling statement, not an input check: an unviable world is
     /// well formed and may be exactly what an experiment wants to show. Use
     /// [`World::validate`] for the "are these numbers at all" question.
     pub fn is_viable(&self) -> bool {
         self.income > self.maintenance_cost
+    }
+
+    /// Whether an organism can live here indefinitely, not just for a while.
+    ///
+    /// The step order in [`Organism::step`] decides this. Income arrives first
+    /// (step 1), maintenance is paid (step 2), damage grows (step 3), and repair
+    /// is paid (step 4) -- all before the capacity cap (step 5). So the cap does
+    /// not decide survival: it trims what is *held* after every payment is made.
+    /// A world with `capacity < maintenance_cost` is survivable, because the
+    /// income lands before the maintenance is deducted.
+    ///
+    /// What does decide survival is whether one step's surplus can buy one
+    /// step's repair. Damage grows by `damage_rate` every step; repairing it
+    /// costs `damage_rate * repair_cost`. If the surplus is smaller, the damage
+    /// is never repaired, it reaches `1.0`, and the organism dies of damage --
+    /// while `is_viable()` keeps returning `true`.
+    ///
+    /// Checked against the simulation on 768 parameter combinations
+    /// (4 incomes x 4 maintenances x 4 repair costs x 4 damage rates x 3
+    /// capacities, 500 steps each, starting full): zero disagreements.
+    ///
+    /// The boundary itself is a floating-point question, not a mathematical
+    /// one. The repair test in step 4 is `price < energy`, so at
+    /// `surplus == repair price` the comparison is decided by the rounding
+    /// accumulated over the previous steps, and the same parameters can survive
+    /// or die depending on the path. This predicate answers the mathematical
+    /// question and uses `>=`; the simulation answers the floating-point one.
+    /// They agree away from the boundary, and `tests/sustainability.rs` pins
+    /// the side where they do.
+    ///
+    /// `capacity` is deliberately not part of the condition: it sets how many
+    /// steps of deficit can be absorbed, not whether there is a deficit.
+    pub fn sustains(&self) -> bool {
+        let surplus = self.income - self.maintenance_cost;
+        let repair_price = self.damage_rate * self.repair_cost;
+        surplus >= repair_price
     }
 
     /// Rejects parameters that make the arithmetic meaningless.
