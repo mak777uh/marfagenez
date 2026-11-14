@@ -115,7 +115,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 192 теста
+### Rust — 210 тестов
 
 | группа | что проверяет |
 |---|---|
@@ -131,7 +131,7 @@ verus verus/integer_laws.rs
 ```bash
 export PATH=/root/.elan/bin:$PATH          # иначе build.rs не найдёт lean и соберёт заглушку
 cd core && cargo test --release --tests -- --test-threads=1
-# 23 test binaries, суммарно 192 passed, 0 failed
+# тестовых бинарей: 23; суммарно 210 passed, 0 failed
 # --test-threads=1 обязателен: рантайм Lean не потокобезопасен, иначе SIGABRT
 ```
 
@@ -197,7 +197,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | `Convergence2.fold_identifies` (второй раз) | `%` на `ℝ` не периодичен по `4B`; теперь явный `sorry`, не доказательство | `laws/Legacy/README.md` |
 | «`c* = M − t/r`» | не тот порядок операций; верно `M − t(1−r)/r` | `FINDING-correct-equilibrium.md` |
 | «`k_max = M·r/(t₀(1−r))`» | верное число по неверной причине; забор последовательный | `FINDING-crowding-is-two.md` |
-| «тормоз сужает до 0.9 закона» | измерено 0.954; тест противоречил sweep | `LESSON-two-tests-disagreed.md` |
+| «тормоз сужает до 0.9 закона» | измерено 0.954; проверка противоречила sweep | `LESSON-two-tests-disagreed.md` |
 | «`t* = (B−law)/μ`» | подгонка под три числа одного seed; хуже наивной на 2 из 3 строк | `LESSON-two-tests-disagreed.md` |
 
 ---
@@ -227,7 +227,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
 | Lean файлов с теоремами | **55** `Medium` + 9 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
 | Lean `sorry` | **0** везде | `grep -rn 'sorry' laws/*/*.lean \| wc -l` |
-| Rust тестов | **192** | `cargo test --release --tests -- --test-threads=1` |
+| Rust тестов | **210** | `cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
 | docs FINDING | **53** | `ls docs/FINDING-*.md \| wc -l` |
 | checks (эксперименты) | **98** | `ls checks/exp*.py \| wc -l` |
