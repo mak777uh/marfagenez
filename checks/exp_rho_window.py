@@ -60,12 +60,12 @@ Two predictions, both falsifiable:
   doubles the number of points that are `alive`, because an `alive` point is
   one whose predicted death time `1/damage_rate` is longer than `T`.
 
-The horizon is computed per point, not fixed (the task, and
-`.dsh-switchman/REVIEW-6-...md:40-68`):
-
-    T = 1/damage_rate + capacity / (maintenance_cost - taken + damage_rate*repair_cost)
-
-which is the damage clock plus the energy clock, whichever runs out first.
+The horizon is computed per point, not fixed: it is an **upper bound** on the
+lifetime of the point (see `t_predicted()`), so that a point recorded `alive`
+at `T` is alive for real and not cut off. The bound is a **maximum** of two
+clocks, not a minimum, because a successful repair resets the damage: the
+damage clock can fire later than the energy that pays for the repair, and
+the horizon has to cover the later one.
 
 ## What is measured
 
@@ -136,11 +136,19 @@ POLICIES = ("stay", "random", "remember", "memory", "sighted")
 READ_BUDGET = {"sighted": 1}
 
 #: The horizon is capped so that the whole grid finishes. The cap is recorded
-#: in the result and any point that hits it is marked `horizon_capped`.
+#: in the result and any point that hits it is marked `horizon_capped`. It is
+#: also the bound for a point that is not self-supporting but whose energy does
+#: not fall on its own: no finite clock is known there, and this grid's finite
+#: lifetimes are far below the cap (see `t_predicted`).
 T_CAP = 20000
 
 #: The measured horizon is `T` and `2T` (B2).
 HORIZON_MULTIPLIERS = (1, 2)
+
+#: Headroom over the computed bound. The bound is a real number, the death
+#: step is an integer, and the death is checked after the repair attempt, so
+#: two steps cover the rounding on both sides.
+T_MARGIN = 2
 
 
 def supply(m_field: float = M_FIELD, regrow: float = REGROW) -> float:
@@ -149,17 +157,46 @@ def supply(m_field: float = M_FIELD, regrow: float = REGROW) -> float:
 
 
 def t_predicted(dr: float, rc: float, income: float, m_field: float = M_FIELD) -> int:
-    """The horizon a point needs, from the two clocks that can kill it.
+    """An upper bound on the lifetime of the point, in steps.
 
-    The damage clock is `1/dr` steps (damage reaches 1). The energy clock is
-    `capacity / deficit` where `deficit = maint - taken + dr*rc` is the net
-    drain per step; it is infinite when the point sustains itself.
+    The bound is built from the step order in `core/src/organism.rs:418-460`
+    and must hold for every run, not for the typical one: a point recorded
+    `alive` at `T` is then alive for real, not cut off.
+
+    Before any repair the per-step change is
+
+        surplus = taken - maintenance_cost
+
+    and one repair of one step of damage costs `dr * rc`. Three regimes:
+
+    * `surplus >= dr * rc`: self-supporting (`World::sustains()`). The damage
+      is cleared every step and the energy never falls, so the lifetime is
+      unbounded. `T_CAP` here would only repeat the same frame, so the horizon
+      is one damage clock, `1/dr`: the step at which the damage would have
+      reached 1.0 without the repair.
+    * `surplus < 0` (`drain > 0`): the energy falls by at least `drain` per
+      step whatever the organism does -- a repair only spends more -- so death
+      by energy cannot come later than `capacity / drain`. The damage clock
+      can be *shorter* than the lifetime (a successful repair resets the
+      damage), so the horizon is the maximum of the two clocks. The old
+      formula took the minimum, i.e. the first clock to fire, not the last
+      one that matters.
+    * `surplus >= 0` but `surplus < dr * rc`: the energy does not fall on its
+      own, so the energy clock is unbounded and the horizon is `T_CAP`. The
+      damage clock alone is not an upper bound here: a repair resets the
+      damage, and it is the energy that pays for it that eventually runs out.
+      The old formula charged `dr * rc` every step and so saw a drain that
+      is not there, which cut the horizon short.
     """
     taken = min(income, supply(m_field))
-    deficit = MAINT - taken + dr * rc
-    damage_clock = 1.0 / dr
-    energy_clock = CAPACITY / deficit if deficit > 0 else math.inf
-    return int(math.ceil(min(damage_clock, energy_clock))) + 1
+    surplus = taken - MAINT
+    if surplus >= dr * rc:
+        return int(math.ceil(1.0 / dr)) + T_MARGIN
+    energy_clock = CAPACITY / -surplus if surplus < 0 else math.inf
+    clock = max(1.0 / dr, energy_clock)
+    if math.isinf(clock):
+        return T_CAP
+    return int(math.ceil(clock)) + T_MARGIN
 
 
 def rho(dr: float, rc: float, income: float) -> float:
@@ -259,7 +296,12 @@ def main() -> int:
         "sustains_in_rho": "rho <= 1 - maintenance_cost / income",
         "taken": f"min(income, M * regrow) = min(income, {supply():g}) -- the field is never the limit on this grid",
         "lower_edge_at_income_1": 1.0 - MAINT / 1.0,
-        "horizon": "ceil(min(1/damage_rate, capacity/(maintenance - taken + damage_rate*repair_cost))) + 1",
+        "horizon": (
+            "upper bound on the lifetime, +2 steps: sustaining -> "
+            "ceil(1/damage_rate); drain = maintenance - taken > 0 -> "
+            "ceil(max(1/damage_rate, capacity/drain)); drain <= 0 and not "
+            "sustaining -> t_cap"
+        ),
         "horizon_cap": T_CAP,
         "prediction_P1": "the death cause changes at rho = 1 - maint/income, not at 0.8",
         "prediction_P2": "if the upper edge is the horizon, alive points double when T doubles",
@@ -498,9 +540,25 @@ def main() -> int:
         "`t_capped` and excluded from the P1 comparison."
     )
     exp.limitation(
+        "the horizon is an upper bound on the lifetime, not the lifetime: it is "
+        "chosen so that no death inside it is missed, and the step it names is "
+        "not the step of death. Where the point is perennial it is one damage "
+        "clock; where the energy cannot fall on its own it is `T_CAP`."
+    )
+    exp.limitation(
         "one organism on a uniform field: no competition, no sharing, no memory "
         "content. A policy that differs here differs for movement alone."
     )
+    exp.limitation(
+        "two pairs of arms share a dynamics hash and are one arm, not two: "
+        "`sighted` with `read_budget = 1` on a uniform field reads the cell it "
+        "stands on and nothing else, which is `stay`; `memory` and `remember` "
+        "differ only in what they do with a remembered value, and on a uniform "
+        "field the remembered value never differs from the fresh one. Five "
+        "policy names are three policy dynamics on this grid."
+    )
+    exp.expect_coincident("sighted", "stay")
+    exp.expect_coincident("memory", "remember")
 
     # -- verdict (§4) -------------------------------------------------------
     reason = (

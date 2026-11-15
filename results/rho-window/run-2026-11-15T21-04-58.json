@@ -1,8 +1,8 @@
 {
   "schema": "marfagenez.experiment-result.v2",
   "experiment_id": "rho-window",
-  "run_id": "run-2026-11-15T19-54-32",
-  "model_commit": "e9a16c6",
+  "run_id": "run-2026-11-15T21-04-58",
+  "model_commit": "e373206",
   "seed": 1,
   "parameters": {
     "damage_rate": [
@@ -56,7 +56,7 @@
     "sustains_in_rho": "rho <= 1 - maintenance_cost / income",
     "taken": "min(income, M * regrow) = min(income, 1.6) -- the field is never the limit on this grid",
     "lower_edge_at_income_1": 0.4,
-    "horizon": "ceil(min(1/damage_rate, capacity/(maintenance - taken + damage_rate*repair_cost))) + 1",
+    "horizon": "upper bound on the lifetime, +2 steps: sustaining -> ceil(1/damage_rate); drain = maintenance - taken > 0 -> ceil(max(1/damage_rate, capacity/drain)); drain <= 0 and not sustaining -> t_cap",
     "horizon_cap": 20000,
     "prediction_P1": "the death cause changes at rho = 1 - maint/income, not at 0.8",
     "prediction_P2": "if the upper edge is the horizon, alive points double when T doubles"
@@ -65,62 +65,62 @@
     "stay": {
       "label": "policy=stay",
       "metrics": {
-        "alive_points_at_T": 109,
+        "alive_points_at_T": 57,
         "points": 144,
         "reference_rho": 0.015,
-        "reference_lifetime": 101,
+        "reference_lifetime": 102,
         "reference_cause": "alive",
-        "reference_energy_acc": 980.03
+        "reference_energy_acc": 990.03
       },
-      "hash": "5bc83763de36c4be"
+      "hash": "b3441a8e05d38c69"
     },
     "random": {
       "label": "policy=random",
       "metrics": {
-        "alive_points_at_T": 109,
+        "alive_points_at_T": 57,
         "points": 144,
         "reference_rho": 0.015,
-        "reference_lifetime": 101,
+        "reference_lifetime": 102,
         "reference_cause": "alive",
-        "reference_energy_acc": 980.03
+        "reference_energy_acc": 990.03
       },
-      "hash": "75e5488f1c63abca"
+      "hash": "1f0cb9ce2a5b9ef1"
     },
     "remember": {
       "label": "policy=remember",
       "metrics": {
-        "alive_points_at_T": 109,
+        "alive_points_at_T": 57,
         "points": 144,
         "reference_rho": 0.015,
-        "reference_lifetime": 101,
+        "reference_lifetime": 102,
         "reference_cause": "alive",
-        "reference_energy_acc": 980.03
+        "reference_energy_acc": 990.03
       },
-      "hash": "d89690d663e0c23f"
+      "hash": "eda69886d71fef10"
     },
     "memory": {
       "label": "policy=memory",
       "metrics": {
-        "alive_points_at_T": 109,
+        "alive_points_at_T": 57,
         "points": 144,
         "reference_rho": 0.015,
-        "reference_lifetime": 101,
+        "reference_lifetime": 102,
         "reference_cause": "alive",
-        "reference_energy_acc": 980.03
+        "reference_energy_acc": 990.03
       },
-      "hash": "d89690d663e0c23f"
+      "hash": "eda69886d71fef10"
     },
     "sighted": {
       "label": "policy=sighted",
       "metrics": {
-        "alive_points_at_T": 109,
+        "alive_points_at_T": 57,
         "points": 144,
         "reference_rho": 0.015,
-        "reference_lifetime": 101,
+        "reference_lifetime": 102,
         "reference_cause": "alive",
-        "reference_energy_acc": 980.03
+        "reference_energy_acc": 990.03
       },
-      "hash": "5bc83763de36c4be"
+      "hash": "b3441a8e05d38c69"
     }
   },
   "series": {},
@@ -134,27 +134,39 @@
       "evidence": "56 points satisfy sustains() and every policy is alive at T in all of them"
     },
     "specific": {
-      "passed": false,
-      "evidence": "death by damage at 0 non-sustaining points, death by energy at 0 sustaining points (must be 0: a sustaining point cannot starve)"
+      "passed": true,
+      "evidence": "death by damage at 46 non-sustaining points, death by energy at 0 sustaining points (must be 0: a sustaining point cannot starve)"
     }
   },
   "verdict": {
     "kind": "void",
-    "reason": "VOID: P1 (lower edge = sustains()) refuted: 53 of 144 points disagree with the predicate. P2 (upper edge = horizon) refuted: 109 alive points at T, 79 at 2T. B1 (boundary depends on rho alone) refuted: 19 rho values split across factors. B2 (upper edge moves with T): yes, largest alive rho 48.0 at T and 16.0 at 2T. B3 (window reproduces when the field varies): no, 19 of 54 points disagree with the predicate (12 of 30 field-limited). Policies distinguished at 0 of 144 points; 109 points identical because every policy is alive, 35 because every policy is dead."
+    "reason": "VOID: P1 (lower edge = sustains()) refuted: 1 of 144 points disagree with the predicate. P2 (upper edge = horizon) refuted: 57 alive points at T, 57 at 2T. B1 (boundary depends on rho alone) refuted: 19 rho values split across factors. B2 (upper edge moves with T): no, largest alive rho 0.48 at T and 0.48 at 2T. B3 (window reproduces when the field varies): yes, 0 of 54 points disagree with the predicate (0 of 30 field-limited). Policies distinguished at 0 of 144 points; 57 points identical because every policy is alive, 87 because every policy is dead."
   },
   "hashes": {
-    "stay": "5bc83763de36c4be",
-    "random": "75e5488f1c63abca",
-    "remember": "d89690d663e0c23f",
-    "memory": "d89690d663e0c23f",
-    "sighted": "5bc83763de36c4be"
+    "stay": "b3441a8e05d38c69",
+    "random": "1f0cb9ce2a5b9ef1",
+    "remember": "eda69886d71fef10",
+    "memory": "eda69886d71fef10",
+    "sighted": "b3441a8e05d38c69"
   },
   "limitations": [
     "core has no repair policies: `none`/`worst`/`round`/`cheapest` do not exist, so the strategy the finding measured cannot be reproduced. What is measured here is the movement policy, which is a different question.",
     "the grid fixes `M = 2.0` and `regrow = 0.8`, so `taken = min(income, 1.6)` and the field is never the limit. This measures the arithmetic of the organism, not the field. B3 varies `M` separately and is reported apart.",
     "the horizon is capped at T_CAP steps; points that hit the cap are marked `t_capped` and excluded from the P1 comparison.",
-    "one organism on a uniform field: no competition, no sharing, no memory content. A policy that differs here differs for movement alone."
+    "the horizon is an upper bound on the lifetime, not the lifetime: it is chosen so that no death inside it is missed, and the step it names is not the step of death. Where the point is perennial it is one damage clock; where the energy cannot fall on its own it is `T_CAP`.",
+    "one organism on a uniform field: no competition, no sharing, no memory content. A policy that differs here differs for movement alone.",
+    "two pairs of arms share a dynamics hash and are one arm, not two: `sighted` with `read_budget = 1` on a uniform field reads the cell it stands on and nothing else, which is `stay`; `memory` and `remember` differ only in what they do with a remembered value, and on a uniform field the remembered value never differs from the fresh one. Five policy names are three policy dynamics on this grid."
   ],
   "command": "python3 checks/exp_rho_window.py",
-  "created_at": "2026-11-15T19:54:32.082814+00:00"
+  "created_at": "2026-11-15T21:04:58.764553+00:00",
+  "expected_coincident": [
+    [
+      "sighted",
+      "stay"
+    ],
+    [
+      "memory",
+      "remember"
+    ]
+  ]
 }
