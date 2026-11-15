@@ -18,6 +18,7 @@
 
 from __future__ import annotations
 
+import re
 import subprocess
 import sys
 import tempfile
@@ -39,6 +40,7 @@ MARKER = "\nRC=0\ncase \"$WHAT\" in"
 
 STUBS = """do_test(){{ :; }}; do_lean(){{ :; }}; do_reach(){{ :; }}
 do_dispatcher(){{ :; }}; do_verus(){{ :; }}
+do_audit(){{ :; }}
 do_exp(){{ return {exp_rc}; }}
 do_claims(){{ return {claims_rc}; }}; do_export(){{ :; }}; do_models(){{ :; }}
 do_agents(){{ return {agents_rc}; }}
@@ -74,14 +76,27 @@ def build(directory: Path, exp_rc: int, agents_rc: int, claims_rc: int = 0) -> P
 def run(script: Path, target: str) -> tuple[int, str]:
     # `cd` не нужен: run.sh сам делает `cd /root/marfagenez`, а заглушки
     # ничего не читают. Код возврата берётся от процесса, не от конвейера.
-    p = subprocess.run(
-        ["bash", str(script), target],
-        capture_output=True,
-        text=True,
-        timeout=120,
-    )
+    # Таймаут -- не исключение, а результат: иначе один медленный случай
+    # роняет весь прогон трейсбеком, и остальные случаи не проверяются вовсе.
+    # Так и случилось, когда в `all` добавили `audit`: заглушки для него не
+    # было, настоящая `do_audit` пошла работать по-настоящему, и вместо
+    # вердикта мы получили TimeoutExpired без единого слова о причине.
+    try:
+        p = subprocess.run(
+            ["bash", str(script), target],
+            capture_output=True,
+            text=True,
+            timeout=TIMEOUT,
+        )
+    except subprocess.TimeoutExpired:
+        return TIMEOUT_RC, f"ТАЙМАУТ: {target} не уложился в {TIMEOUT} с"
     return p.returncode, p.stdout + p.stderr
 
+
+#: Предел на один случай. Заглушки ничего не читают, так что упираться
+#: в него может только незаглушённая `do_*` -- и это уже провал.
+TIMEOUT = 120
+TIMEOUT_RC = -9
 
 CASES = [
     # (имя, exp_rc, agents_rc, claims_rc, цель, ожидаемый код, ожидаемый баннер)
@@ -104,9 +119,28 @@ CASES = [
 ]
 
 
+def unstubbed() -> list[str]:
+    """`do_*` из run.sh, для которых нет заглушки.
+
+    Заглушка обязана покрывать КАЖДУЮ функцию: незаглушённая `do_*`
+    выполняется по-настоящему и упирается в таймаут. Проверка ловит это
+    сразу и по имени -- таймаут о причине молчит.
+    """
+    text = RUN.read_text(encoding="utf-8")
+    defined = set(re.findall(r"^do_([a-z0-9_]+)\(\)", text, re.MULTILINE))
+    stubbed = set(re.findall(r"do_([a-z0-9_]+)\(\)\{\{", STUBS))
+    return sorted(defined - stubbed)
+
+
 def main() -> int:
     if not RUN.exists():
         print(f"нет {RUN}", file=sys.stderr)
+        return 1
+
+    missing = unstubbed()
+    if missing:
+        print(f"    FAIL: без заглушки остались do_*: {', '.join(missing)}")
+        print("       незаглушённая функция выполняется по-настоящему")
         return 1
 
     failures = 0
