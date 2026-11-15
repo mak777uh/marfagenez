@@ -37,7 +37,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
 
-VERDICTS = ("passed", "failed", "void", "insensitive by construction")
+VERDICTS = ("passed", "failed", "void", "insensitive by construction", "not applicable")
 CONTROL_TESTS = ("fires", "silent", "specific")
 
 
@@ -91,6 +91,17 @@ def check_one(path: Path, data: dict) -> list[str]:
                 problems.append(
                     "§4: verdict is `void` but the reason is too short to say why "
                     "the run is unusable"
+                )
+        # `not applicable` is not `void`: nothing was measured because there was
+        # nothing to measure.  It still needs a reason, and the reason must name
+        # the parameters at which the carrier is absent — otherwise the entry
+        # reads as a claim about the world rather than about one point in it.
+        if kind == "not applicable":
+            reason = str(verdict.get("reason") or "")
+            if len(reason) < 120:
+                problems.append(
+                    "§4: verdict is `not applicable` but the reason is too short "
+                    "to say what is absent and at which parameters"
                 )
         if kind in ("failed", "void") and controls:
             failed = [t for t in CONTROL_TESTS if not controls.get(t, {}).get("passed", False)]
