@@ -245,6 +245,38 @@ do_claims() {
   return $rc
 }
 
+do_audit() {
+  section "Аудит численных утверждений (audit.js)"
+  # audit.js проверял те же численные утверждения, что и verify_all.js, но
+  # не запускался ниоткуда: проверка была, а гейта не было. Красный аудит
+  # ничего не останавливал.
+  #
+  # Заодно закрыт seed: до этого в файле стоял Math.random, и одно и то же
+  # утверждение проходило и падало без изменения кода, а провал нельзя было
+  # воспроизвести. Теперь seed печатается и принимается через --seed N.
+  local out rc
+  out=$(mktemp)
+  if command -v node >/dev/null 2>&1; then
+    node "$PWD/checks/audit.js" >"$out" 2>&1
+    rc=$?
+  else
+    local win
+    win=$(wslpath -w "$PWD/checks/audit.js")
+    powershell.exe -NoProfile -Command "node '$win'" >"$out" 2>&1
+    rc=$?
+  fi
+  tail -4 "$out"
+  # Код возврата powershell.exe ничего не значит, а `| tail` вернул бы код
+  # tail. Единственный признак успеха -- строка вердикта в выводе.
+  if grep -q 'claims verified' "$out" && ! grep -q '^FAIL' "$out"; then
+    rc=0
+  else
+    rc=1
+  fi
+  rm -f "$out"
+  return $rc
+}
+
 do_export() {
   section "Экспорт в визуализатор"
   python3 checks/export.py
@@ -360,6 +392,7 @@ case "$WHAT" in
   models) do_models; keep $? models ;;
   verus)  do_verus;  keep $? verus ;;
   claims) do_claims; keep $? claims ;;
+  audit)  do_audit;  keep $? audit ;;
   export) do_export; keep $? export ;;
   agents) do_agents; keep $? agents ;;
   all)
@@ -370,11 +403,12 @@ case "$WHAT" in
     do_verus;  keep $? verus
     do_exp;    keep $? exp
     do_claims; keep $? claims
+    do_audit;  keep $? audit
     do_export; keep $? export
     do_agents; keep $? agents
     ;;
   *)
-    echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|claims|export|agents]"
+    echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|claims|audit|export|agents]"
     exit 2
     ;;
 esac

@@ -1,7 +1,26 @@
+// A seeded PRNG, so that a run can be repeated. `Math.random` made every run a
+// different experiment: a claim could pass on one run and fail on the next with
+// no code change, and a failure could not be reproduced at all. The seed is
+// printed, and can be overridden with `--seed N`.
+const SEED = (() => {
+  const i = process.argv.indexOf("--seed");
+  if (i >= 0 && process.argv[i + 1]) return Number(process.argv[i + 1]) >>> 0;
+  return 20250101;
+})();
+let _state = SEED;
+function rand() {
+  // mulberry32
+  _state = (_state + 0x6d2b79f5) >>> 0;
+  let t = _state;
+  t = Math.imul(t ^ (t >>> 15), t | 1);
+  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+}
+
 function gauss() {
   let u = 0, v = 0;
-  while (!u) u = Math.random();
-  while (!v) v = Math.random();
+  while (!u) u = rand();
+  while (!v) v = rand();
   return Math.sqrt(-2 * Math.log(u)) * Math.cos(6.283185307 * v);
 }
 
@@ -99,8 +118,8 @@ function check(name, ok, detail) {
   const B = 3;
   let worst = 0;
   for (let i = 0; i < 100000; i++) {
-    const x = Math.random() * 40 - 20;
-    const y = x + (Math.random() - 0.5) * 0.01;
+    const x = rand() * 40 - 20;
+    const y = x + (rand() - 0.5) * 0.01;
     const d0 = Math.abs(x - y);
     const f = v => { const Q = 4 * B; return B - Math.abs((((v + B) % Q + Q) % Q) - 2 * B); };
     if (d0 > 1e-12) worst = Math.max(worst, Math.abs(f(x) - f(y)) / d0);
@@ -161,6 +180,7 @@ function check(name, ok, detail) {
 }
 
 console.log('=== AUDIT OF NUMERICAL CLAIMS ===');
+console.log(`seed ${SEED}`);
 console.log();
 let pass = 0;
 for (const r of results) {
