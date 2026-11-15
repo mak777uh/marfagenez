@@ -18,7 +18,7 @@ use std::path::PathBuf;
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::organism::{ShareProtocol, World};
+use medium_core::organism::{ShareProtocol, TieBreak, World};
 use medium_core::trace::record;
 
 /// Parses the value that follows `--flag`, refusing to fall back to a default.
@@ -75,6 +75,11 @@ fn main() {
     let mut read_budget: usize = 0;
     let mut feed = false;
     let mut share = "sequential".to_string();
+    // The tie-break is a parameter of the world, not a detail of the code:
+    // on a uniform field every comparison ties, so this alone decides which
+    // way the population walks. Default `left` reproduces every run recorded
+    // before the parameter existed.
+    let mut tiebreak = "left".to_string();
     // Even is the default. A random layout is a variable nobody wrote down:
     // EXP-87 read a random placement as an even one and spent three runs on
     // it (docs/FINDING-087). A question about cells needs to know which cell
@@ -161,6 +166,21 @@ fn main() {
             "--memory-life" => {
                 i += 1;
                 memory_life = number::<usize>(&args, i, "--memory-life");
+            }
+            "--tiebreak" => {
+                i += 1;
+                match args.get(i).map(|s| s.as_str()) {
+                    Some("left") | Some("right") | Some("random") => {
+                        tiebreak = args[i].clone();
+                    }
+                    other => {
+                        eprintln!(
+                            "refusing to run: --tiebreak {:?} is not a tie-break.\n             Use --tiebreak left (ties go left, the default),\n             --tiebreak right (the mirror, kept to check `left` against a drift\n             the other way) or --tiebreak random (drawn from the stream).",
+                            other.unwrap_or("")
+                        );
+                        std::process::exit(2);
+                    }
+                }
             }
             "--shift" => {
                 i += 1;
@@ -272,6 +292,11 @@ fn main() {
                 eprintln!("unknown --share {other}: use sequential or proportional");
                 std::process::exit(2);
             }
+        },
+        tiebreak: match tiebreak.as_str() {
+            "left" => TieBreak::Left,
+            "right" => TieBreak::Right,
+            _ => TieBreak::Random,
         },
     };
     let field = match field_kind.as_str() {

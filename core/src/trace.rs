@@ -91,6 +91,14 @@ pub struct Trace {
     /// one ran cannot be compared to another trace — and two arms that differ
     /// only in the protocol would look like one arm.
     pub share: &'static str,
+    /// How a tie between two equal neighbours is resolved.
+    ///
+    /// On a uniform field every comparison is a tie, so this parameter alone
+    /// decides which way the population walks. A trace that does not record it
+    /// cannot be compared to another trace: two arms that differ only in the
+    /// tie-break would look like one arm, and the left drift would look like a
+    /// property of the environment instead of a property of the rule.
+    pub tiebreak: &'static str,
 }
 
 impl Trace {
@@ -136,9 +144,26 @@ impl Trace {
     /// produce identical frames for a while. Folding the name in makes the two
     /// arms different by construction, which is what AGENTS.md §3 asks for.
     pub fn hash_with_protocol(frames: &[Frame], share: &str) -> u64 {
+        Self::hash_with_protocol_and_tiebreak(frames, share, "")
+    }
+
+    /// The protocol **and** the tie-break, folded into the hash.
+    ///
+    /// Same argument as `hash_with_protocol`, one parameter further: the
+    /// tie-break does not appear in the frames until it has already moved
+    /// somebody, and on a field where it never ties it does not appear at all.
+    /// Folding the name in makes `left` and `right` different arms by
+    /// construction, which is what AGENTS.md §3 asks for — otherwise the two
+    /// would collide and the collision would be read as "the parameter did not
+    /// reach the simulation".
+    pub fn hash_with_protocol_and_tiebreak(
+        frames: &[Frame],
+        share: &str,
+        tiebreak: &str,
+    ) -> u64 {
         let mut h = Self::compute_hash(frames);
-        for b in share.as_bytes() {
-            h ^= *b as u64;
+        for b in share.bytes().chain(tiebreak.bytes()) {
+            h ^= b as u64;
             h = h.wrapping_mul(0x0000_0100_0000_01b3);
         }
         h
@@ -152,6 +177,7 @@ impl Trace {
         out.push_str(&format!("  \"seed\": {},\n", self.seed));
         out.push_str(&format!("  \"read_budget\": {},\n", self.read_budget));
         out.push_str(&format!("  \"share\": \"{}\",\n", self.share));
+        out.push_str(&format!("  \"tiebreak\": \"{}\",\n", self.tiebreak));
         out.push_str(&format!("  \"hash\": \"{:016x}\",\n", self.hash));
         out.push_str(&format!("  \"steps\": {},\n", self.frames.len()));
         out.push_str("  \"frames\": [\n");
@@ -210,7 +236,8 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         }
     }
     let share = life.world().share.name();
-    let hash = Trace::hash_with_protocol(&frames, share);
+    let tiebreak = life.world().tiebreak.name();
+    let hash = Trace::hash_with_protocol_and_tiebreak(&frames, share, tiebreak);
     Trace {
         frames,
         hash,
@@ -218,6 +245,7 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         seed: life.seed(),
         read_budget,
         share,
+        tiebreak,
     }
 }
 
@@ -239,7 +267,7 @@ fn snapshot(life: &Life) -> Frame {
 mod tests {
     use super::*;
     use crate::life::{Life, Policy};
-    use crate::organism::World;
+    use crate::organism::{TieBreak, World};
 
     fn setup(policy: Policy, seed: u64) -> Life {
         let world = World {
@@ -249,6 +277,7 @@ mod tests {
             damage_rate: 0.01,
             capacity: 10.0,
             read_budget: 0,
+            tiebreak: TieBreak::Left,
             share: Default::default(),
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();

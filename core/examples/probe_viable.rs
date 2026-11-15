@@ -45,7 +45,7 @@ fn main() {
                             damage_rate: damage,
                             capacity: cap,
                             ..World::default()
-                        };
+        };
                         let actual = survives(&w, 500);
                         let pred = predicted(&w);
                         if actual == pred {

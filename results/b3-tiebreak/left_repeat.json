@@ -1,0 +1,46 @@
+{
+  "policy": "sighted",
+  "seed": 20250101,
+  "read_budget": 10,
+  "share": "sequential",
+  "tiebreak": "left",
+  "hash": "bc23e7b10b71f188",
+  "steps": 5,
+  "frames": [
+    {
+      "step": 4,
+      "field": [1.000000,1.000000,0.840000,0.968000,0.993600,0.998720,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000],
+      "samples": [
+        {"slot":0,"cell":2,"energy":5.380000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.840000,"direction":-1,"taken":0.800000,"prev_cell":3}
+      ]
+    },
+    {
+      "step": 8,
+      "field": [0.993600,0.966720,0.839744,0.999949,0.999990,0.999998,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000],
+      "samples": [
+        {"slot":0,"cell":2,"energy":5.660000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.840000,"direction":1,"taken":0.800000,"prev_cell":1}
+      ]
+    },
+    {
+      "step": 12,
+      "field": [0.999990,0.999947,0.999744,0.998720,0.993600,0.968000,0.840000,1.000000,1.000000,1.000000,1.000000,1.000000],
+      "samples": [
+        {"slot":0,"cell":6,"energy":5.940000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.840000,"direction":1,"taken":0.800000,"prev_cell":5}
+      ]
+    },
+    {
+      "step": 16,
+      "field": [1.000000,1.000000,1.000000,0.999998,0.999990,0.999949,0.999744,0.998720,0.993600,0.968000,0.840000,1.000000],
+      "samples": [
+        {"slot":0,"cell":10,"energy":6.220000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.840000,"direction":1,"taken":0.800000,"prev_cell":9}
+      ]
+    },
+    {
+      "step": 20,
+      "field": [1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,0.999998,0.839990,0.967949,0.993344,0.998720],
+      "samples": [
+        {"slot":0,"cell":8,"energy":6.500000,"damage":0.000000,"alive":true,"memory_cell":4,"memory_level":0.840000,"direction":-1,"taken":0.800000,"prev_cell":9}
+      ]
+    }
+  ]
+}

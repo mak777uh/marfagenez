@@ -423,8 +423,45 @@ impl Life {
                     reads_left -= 1;
                 }
                 let best = here.max(left).max(right);
-                let target = if left >= right { r.cell.wrapping_sub(1) } else { r.cell + 1 };
-                if best > here && best > r.memory.best_level {
+                // A tie between the two neighbours used to go left always.
+                // The rule is now a `World` parameter and goes into the trace.
+                // See `TieBreak`.
+                //
+                // Reachability, measured on a uniform field, `--read-budget` 3,
+                // 40 steps, seed 20250101 (left vs right arms):
+                //   n=1, any start         -> SAME   (one organism always sees
+                //                                      symmetric neighbours)
+                //   n=2, 20,21 (symmetric) -> SAME
+                //   n=2, 10,14 (asymmetric)-> DIFF
+                //   n=6, 10,14,18,22,26,30 -> DIFF   (left -> 1,7,15,23,31,39;
+                //                                      right -> 9,11,13,15,17,19)
+                // So the branch fires whenever the local neighbourhood is
+                // asymmetric, and it is the ASYMMETRY OF THE STARTING
+                // CONFIGURATION that decides, not the population size. An
+                // earlier single-organism measurement (0 calls to `pick`) held
+                // only for that symmetric case and does not generalise.
+                // The branch is reachable in `Sighted` too, where it mirrors
+                // the trajectory (left ends at cell 8, right at cell 2).
+                let step_dir = if left > right {
+                    -1
+                } else if right > left {
+                    1
+                } else {
+                    self.world.tiebreak.pick(&mut self.rng) as i32
+                };
+                let target = if step_dir < 0 {
+                    r.cell.wrapping_sub(1)
+                } else {
+                    r.cell + 1
+                };
+                // A neighbour is taken when it is strictly richer than the cell
+                // the organism stands on. When it is exactly as rich, the choice
+                // is a genuine tie and belongs to `TieBreak` -- otherwise the
+                // gate above starves the tie-break: on a uniform field
+                // `best == here` always, memory is never set, `direction()`
+                // returns 0, and the parameter changes nothing but the hash.
+                let take = best > here || (best == here && best > r.memory.best_level);
+                if take && best > r.memory.best_level {
                     r.memory.best_cell = target;
                     r.memory.best_level = best;
                     r.memory.age = 0;
@@ -506,7 +543,13 @@ impl Life {
                     }
                     let best = here.max(left).max(right);
                     if best > here {
-                        if left >= right { -1 } else { 1 }
+                        if left > right {
+                            -1
+                        } else if right > left {
+                            1
+                        } else {
+                            self.world.tiebreak.pick(&mut self.rng) as i32
+                        }
                     } else {
                         0
                     }
@@ -684,6 +727,7 @@ impl Life {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::organism::TieBreak;
 
     fn setup(policy: Policy) -> Life {
         let world = World {
@@ -693,6 +737,7 @@ mod tests {
             damage_rate: 0.02,
             capacity: 10.0,
             read_budget: 0,
+            tiebreak: TieBreak::Left,
             share: Default::default(),
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
@@ -733,6 +778,7 @@ mod tests {
             damage_rate: 0.02,
             capacity: 10.0,
             read_budget: 3,
+            tiebreak: TieBreak::Left,
             share: Default::default(),
         };
         // A field of four rich cells: `Field::new` makes every cell equal to
@@ -809,6 +855,7 @@ mod tests {
             damage_rate: 0.05,
             capacity: 10.0,
             read_budget: 3,
+            tiebreak: TieBreak::Left,
             share: Default::default(),
         };
         let field = Field::alternating(4, 2.4, 1.6, 0.8).expect("alternating field");
@@ -965,6 +1012,7 @@ mod tests {
             damage_rate: 0.02,
             capacity: 10.0,
             read_budget: 0,
+            tiebreak: TieBreak::Left,
             share: Default::default(),
         };
         // A field with the smallest legal resource, and income = 0: nothing can be
@@ -997,6 +1045,7 @@ mod tests {
             damage_rate: 0.02,
             capacity: 10.0,
             read_budget: 3,
+            tiebreak: TieBreak::Left,
             share: Default::default(),
         };
         let field = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
@@ -1086,6 +1135,7 @@ mod tests {
             // Two neighbours plus its own cell: a sighted organism must be
             // able to see all three to compare them.
             read_budget: 3,
+            tiebreak: TieBreak::Left,
             share: Default::default(),
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
@@ -1121,6 +1171,7 @@ mod tests {
             // Two neighbours plus its own cell: a sighted organism must be
             // able to see all three to compare them.
             read_budget: 3,
+            tiebreak: TieBreak::Left,
             share: Default::default(),
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
@@ -1158,6 +1209,7 @@ mod tests {
             damage_rate: 0.0,
             capacity: 100.0,
             read_budget: 0,
+            tiebreak: TieBreak::Left,
             share: Default::default(),
         };
         // A flat field at 0.5: every cell holds far less than the income.
@@ -1196,6 +1248,7 @@ mod tests {
             // never records a level and the test would measure the coin, not
             // the memory. See docs/FINDING-blind-memory-never-rests.md.
             read_budget: 3,
+            tiebreak: TieBreak::Left,
             share: Default::default(),
         };
         let field = Field::moving(40, 2.0, 0.2, 0.8, 1.0).unwrap();

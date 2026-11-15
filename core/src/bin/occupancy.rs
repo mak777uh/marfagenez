@@ -42,7 +42,7 @@ use std::env;
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::organism::World;
+use medium_core::organism::{World, TieBreak};
 
 /// Occupancy of each cell: how many living organisms stand on it.
 fn occupancy(life: &Life) -> Vec<usize> {
@@ -91,6 +91,7 @@ fn main() {
         damage_rate,
         capacity: 10.0,
         read_budget: 3,
+        tiebreak: TieBreak::Left,
         share: Default::default(),
     };
     let field = Field::new(cells, capacity, regrow).expect("field");

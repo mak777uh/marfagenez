@@ -18,7 +18,7 @@
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::organism::{Organism, World};
+use medium_core::organism::{Organism, TieBreak, World};
 
 #[test]
 fn exp79_the_poor_cell_organism_decides_to_move() {
@@ -57,6 +57,7 @@ fn exp79_the_poor_cell_organism_decides_to_move() {
         damage_rate: 0.05,
         capacity: 10.0,
         read_budget: 3,
+        tiebreak: TieBreak::Left,
         ..World::default()
     };
     let field = Field::alternating(4, 2.4, 1.6, 0.8).expect("alternating field");

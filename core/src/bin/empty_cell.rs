@@ -27,7 +27,7 @@
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::organism::World;
+use medium_core::organism::{World, TieBreak};
 
 fn world() -> World {
     World {
@@ -37,6 +37,7 @@ fn world() -> World {
         damage_rate: 0.01,
         capacity: 10.0,
         read_budget: 3,
+        tiebreak: TieBreak::Left,
         share: Default::default(),
     }
 }

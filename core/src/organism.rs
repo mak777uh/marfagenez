@@ -95,6 +95,66 @@ impl ShareProtocol {
     }
 }
 
+/// What an organism does when its two neighbours are equally rich.
+///
+/// The rule `if left >= right { go left }` looks like a detail and is not: on
+/// a uniform field every comparison is a tie, so the organism walks left
+/// forever. That is a systematic drift produced by the tie-break, not by the
+/// environment, and it was never written into a trace -- two runs that differ
+/// only in this rule hash the same.
+///
+/// `Left` is the historical behaviour and stays the default, so no committed
+/// number moves. `Random` draws from the organism's own stream, which makes
+/// the drift measurable: on a uniform field the mean displacement should be
+/// zero, and `Left` is the control that shows what a drift looks like.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum TieBreak {
+    /// Ties go left. Systematic drift on a symmetric field.
+    Left,
+    /// Ties go right. The mirror image, kept so `Left` can be checked
+    /// against something that drifts the other way.
+    Right,
+    /// Ties are drawn from the stream. No drift expected.
+    Random,
+}
+
+impl Default for TieBreak {
+    fn default() -> Self {
+        Self::Left
+    }
+}
+
+impl TieBreak {
+    /// The name that goes into a trace and its hash.
+    pub fn name(self) -> &'static str {
+        match self {
+            Self::Left => "left",
+            Self::Right => "right",
+            Self::Random => "random",
+        }
+    }
+
+    /// Resolves a tie: `-1` for left, `+1` for right.
+    ///
+    /// `rng` is only touched by `Random`; the deterministic rules must not
+    /// consume from the stream, or turning the tie-break on would shift every
+    /// other draw (movement, noise) and change runs that are supposed to be
+    /// identical.
+    pub fn pick(self, rng: &mut crate::Rng) -> i32 {
+        match self {
+            Self::Left => -1,
+            Self::Right => 1,
+            Self::Random => {
+                if rng.uniform() < 0.5 {
+                    -1
+                } else {
+                    1
+                }
+            }
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy)]
 pub struct World {
     /// Energy gained per step when a resource is available.
@@ -113,6 +173,8 @@ pub struct World {
     /// Who gets what when several organisms stand on one cell.
     pub share: ShareProtocol,
     pub read_budget: usize,
+    /// What happens when both neighbours are equally rich. See [`TieBreak`].
+    pub tiebreak: TieBreak,
 }
 
 impl Default for World {
@@ -125,6 +187,7 @@ impl Default for World {
             capacity: 10.0,
             read_budget: 0,
             share: ShareProtocol::Sequential,
+            tiebreak: TieBreak::Left,
         }
     }
 }
@@ -394,6 +457,7 @@ mod tests {
         let world = World {
             income: 0.5,
             maintenance_cost: 0.6,
+            tiebreak: TieBreak::Left,
             ..Default::default()
         };
         assert!(!world.is_viable());
@@ -442,6 +506,7 @@ mod tests {
             capacity: 10.0,
             read_budget: 0,
             share: Default::default(),
+            tiebreak: TieBreak::Left,
         };
         let mut o = Organism::healthy(1.0).unwrap();
         let alive = o.step(&world, 0.0);
@@ -468,6 +533,7 @@ mod tests {
             capacity: 10.0,
             read_budget: 0,
             share: Default::default(),
+            tiebreak: TieBreak::Left,
         };
         let mut o = Organism::healthy(2.0).unwrap();
         assert!(o.step(&world, 0.0));
@@ -485,6 +551,7 @@ mod tests {
             capacity: 10.0,
             read_budget: 0,
             share: Default::default(),
+            tiebreak: TieBreak::Left,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         assert!(!o.step(&world, 0.0));
@@ -525,6 +592,7 @@ mod tests {
             capacity: 5.0,
             read_budget: 0,
             share: Default::default(),
+            tiebreak: TieBreak::Left,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 100.0);

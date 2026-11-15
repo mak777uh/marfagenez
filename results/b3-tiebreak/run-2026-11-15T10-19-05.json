@@ -1,0 +1,139 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "b3-tiebreak",
+  "run_id": "run-2026-11-15T10-19-05",
+  "model_commit": "a1dfbad",
+  "seed": 20250101,
+  "parameters": {
+    "policy": "sighted",
+    "n": 1,
+    "cells": 12,
+    "start_cell": 5,
+    "steps": 20,
+    "read_budget": 10
+  },
+  "arithmetic": {
+    "formula": "position(T) = start + sign * T under a deterministic tie-break",
+    "field": "uniform, rich=poor=1.0, regrow=0.8",
+    "start_cell": 5,
+    "cells": 12,
+    "steps": 20,
+    "predicted_left_final": -15,
+    "predicted_right_final": 25,
+    "predicted_separation": 40,
+    "note": "neighbours are never eaten by a single organism, so left == right at every comparison and the tie-break decides every step"
+  },
+  "conditions": {
+    "L": {
+      "label": "tiebreak=left",
+      "metrics": {
+        "final_cells": [
+          8
+        ],
+        "trajectory": [
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            6
+          ],
+          [
+            10
+          ],
+          [
+            8
+          ]
+        ],
+        "final_position": 8
+      },
+      "hash": "bc23e7b10b71f188"
+    },
+    "R": {
+      "label": "tiebreak=right",
+      "metrics": {
+        "final_cells": [
+          2
+        ],
+        "trajectory": [
+          [
+            8
+          ],
+          [
+            10
+          ],
+          [
+            6
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        "final_position": 2
+      },
+      "hash": "b104987a19837f0e"
+    },
+    "N": {
+      "label": "tiebreak=random",
+      "metrics": {
+        "final_cells": [
+          8
+        ],
+        "trajectory": [
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            6
+          ],
+          [
+            10
+          ],
+          [
+            8
+          ]
+        ],
+        "final_position": 8
+      },
+      "hash": "755acdd27fd9b75a"
+    }
+  },
+  "series": {},
+  "controls": {
+    "silent": {
+      "passed": true,
+      "evidence": "repeating left with seed 20250101 gives the same hash (bc23e7b10b71f188 vs bc23e7b10b71f188)"
+    },
+    "fires": {
+      "passed": true,
+      "evidence": "left ends at [8], right at [2]: the tie-break changes positions, not only the hash"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "positions differ ([8] vs [2], random [8]) AND all three hashes differ, so the contrast is not the embedded name alone"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "left and right end at different cells ([8] vs [2]), so the rule is a parameter of the dynamics and not a constant"
+  },
+  "hashes": {
+    "L": "bc23e7b10b71f188",
+    "R": "b104987a19837f0e",
+    "N": "755acdd27fd9b75a"
+  },
+  "limitations": [
+    "One organism on a uniform field with a single seed. This shows the parameter reaches the dynamics; it does NOT show that the original left drift of a population was caused by the tie-break, and it says nothing about `Memory`, where the tie branch is unreachable because the organism eats its own cell before comparing the neighbours.",
+    "The random arm ended at the same cell as `left` ([8]) by coincidence of this single seed. A sweep over seeds 1..8 splits evenly between the two extreme cells, so `Random` is live; this run alone would not show it."
+  ],
+  "command": "python3 checks/exp_b3_tiebreak.py",
+  "created_at": "2026-11-15T10:19:05.728127+00:00"
+}
