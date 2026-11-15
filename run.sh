@@ -122,6 +122,13 @@ do_exp() {
   echo "--- stub_covers_bridge.py ---"
   python3 checks/stub_covers_bridge.py || rc=$?
   echo
+  echo "--- stub_links.sh ---"
+  # Список символов и линковка — разные дефекты. stub_covers_bridge.py
+  # сравнивает имена; он не заметит, что архив не собрался, а write_stub
+  # игнорирует код возврата `ar`. Здесь crate собирается без lean, и
+  # отвечает линкер.
+  bash checks/stub_links.sh || rc=$?
+  echo
   echo "--- contract.py ---"
   python3 checks/contract.py || rc=$?
   echo
