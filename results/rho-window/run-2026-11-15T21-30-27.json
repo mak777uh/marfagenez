@@ -1,0 +1,6228 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "rho-window",
+  "run_id": "run-2026-11-15T21-30-27",
+  "model_commit": "a0a5672",
+  "seed": 1,
+  "parameters": {
+    "damage_rate": [
+      0.001,
+      0.003,
+      0.01,
+      0.03,
+      0.1,
+      0.3
+    ],
+    "income": [
+      0.3,
+      0.5,
+      0.7,
+      0.9,
+      1.0,
+      1.5
+    ],
+    "repair_cost": [
+      1.5,
+      6.0,
+      24.0,
+      48.0
+    ],
+    "maintenance_cost": 0.6,
+    "capacity": 10.0,
+    "move_cost": 0.0,
+    "energy0": 5.0,
+    "cells": 8,
+    "regrow": 0.8,
+    "m_field": 2.0,
+    "policies": [
+      "stay",
+      "random",
+      "remember",
+      "memory",
+      "sighted"
+    ],
+    "read_budget": {
+      "sighted": 1
+    },
+    "horizon_multipliers": [
+      1,
+      2
+    ],
+    "t_cap": 20000
+  },
+  "arithmetic": {
+    "rho": "damage_rate * repair_cost / income",
+    "sustains": "taken - maintenance_cost >= damage_rate * repair_cost",
+    "sustains_in_rho": "rho <= 1 - maintenance_cost / income",
+    "taken": "min(income, M * regrow) = min(income, 1.6) -- the field is never the limit on this grid",
+    "lower_edge_at_income_1": 0.4,
+    "horizon": "upper bound on the lifetime, +2 steps: sustaining -> ceil(1/damage_rate); drain = maintenance - taken > 0 -> ceil(max(1/damage_rate, capacity/drain)); drain <= 0 and not sustaining -> t_cap",
+    "horizon_cap": 20000,
+    "prediction_P1": "the death cause changes at rho = 1 - maint/income, not at 0.8",
+    "prediction_P2": "if the upper edge is the horizon, alive points double when T doubles",
+    "cadence": "repair is all-or-nothing and needed once per ceil(1/damage_rate) steps; the repair at the damage cap costs repair_cost, so alive <=> ceil(1/damage_rate) * (taken - maintenance_cost) >= repair_cost",
+    "cadence_in_rho": "rho <= (1 - maintenance_cost/income) * damage_rate * ceil(1/damage_rate)",
+    "cadence_strictness": "`price < energy` in the code suggests a strict `>`, but no grid point is at equality on this grid, so strict and non-strict are the same prediction here",
+    "prediction_P3": "P3 replaces `sustains()` as the alive test: it implies it, and the upper edge of the window is the lower edge times damage_rate * ceil(1/damage_rate)"
+  },
+  "conditions": {
+    "stay": {
+      "label": "policy=stay",
+      "metrics": {
+        "alive_points_at_T": 57,
+        "points": 144,
+        "reference_rho": 0.015,
+        "reference_lifetime": 102,
+        "reference_cause": "alive",
+        "reference_energy_acc": 990.03
+      },
+      "hash": "b3441a8e05d38c69"
+    },
+    "random": {
+      "label": "policy=random",
+      "metrics": {
+        "alive_points_at_T": 57,
+        "points": 144,
+        "reference_rho": 0.015,
+        "reference_lifetime": 102,
+        "reference_cause": "alive",
+        "reference_energy_acc": 990.03
+      },
+      "hash": "1f0cb9ce2a5b9ef1"
+    },
+    "remember": {
+      "label": "policy=remember",
+      "metrics": {
+        "alive_points_at_T": 57,
+        "points": 144,
+        "reference_rho": 0.015,
+        "reference_lifetime": 102,
+        "reference_cause": "alive",
+        "reference_energy_acc": 990.03
+      },
+      "hash": "eda69886d71fef10"
+    },
+    "memory": {
+      "label": "policy=memory",
+      "metrics": {
+        "alive_points_at_T": 57,
+        "points": 144,
+        "reference_rho": 0.015,
+        "reference_lifetime": 102,
+        "reference_cause": "alive",
+        "reference_energy_acc": 990.03
+      },
+      "hash": "eda69886d71fef10"
+    },
+    "sighted": {
+      "label": "policy=sighted",
+      "metrics": {
+        "alive_points_at_T": 57,
+        "points": 144,
+        "reference_rho": 0.015,
+        "reference_lifetime": 102,
+        "reference_cause": "alive",
+        "reference_energy_acc": 990.03
+      },
+      "hash": "b3441a8e05d38c69"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": false,
+      "evidence": "0 of 144 points have policies with different lifetime or accumulated energy; 144 points are identical across all 5 policies"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "56 points satisfy sustains() and every policy is alive at T in all of them"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "death by damage at 46 non-sustaining points, death by energy at 0 sustaining points (must be 0: a sustaining point cannot starve)"
+    }
+  },
+  "verdict": {
+    "kind": "void",
+    "reason": "VOID: P1 (lower edge = sustains()) refuted: 1 of 144 points disagree with the predicate. P2 (upper edge = horizon) refuted: 57 alive points at T, 57 at 2T. B1 (boundary depends on rho alone) refuted: 19 rho values split across factors. B2 (upper edge moves with T): no, largest alive rho 0.48 at T and 0.48 at 2T. P3 (alive <=> ceil(1/dr)*(taken-maint) >= rc) confirmed: 0 of 144 points disagree, 57 predicted alive and 57 measured alive; 0 points at equality, so this grid does not settle `>` against `>=`. B3 (window reproduces when the field varies): yes, 0 of 54 points disagree with the predicate (0 of 30 field-limited). Policies distinguished at 0 of 144 points; 57 points identical because every policy is alive, 87 because every policy is dead."
+  },
+  "hashes": {
+    "stay": "b3441a8e05d38c69",
+    "random": "1f0cb9ce2a5b9ef1",
+    "remember": "eda69886d71fef10",
+    "memory": "eda69886d71fef10",
+    "sighted": "b3441a8e05d38c69"
+  },
+  "limitations": [
+    "core has no repair policies: `none`/`worst`/`round`/`cheapest` do not exist, so the strategy the finding measured cannot be reproduced. What is measured here is the movement policy, which is a different question.",
+    "the grid fixes `M = 2.0` and `regrow = 0.8`, so `taken = min(income, 1.6)` and the field is never the limit. This measures the arithmetic of the organism, not the field. B3 varies `M` separately and is reported apart.",
+    "the horizon is capped at T_CAP steps; points that hit the cap are marked `t_capped` and excluded from the P1 comparison.",
+    "the cadence law is tested on 6 damage rates, 4 repair costs and 6 incomes, one seed, one organism per point. It is a law about this grid and this step order, not about every `dr`: `ceil(1/dr)` has jumps, and no grid point sits exactly on `cadence_energy == repair_cost`, so the strictness of the inequality is not measured.",
+    "the per-point table is in `points` (144 rows x 5 policies), so the verdict is now checkable by reading the record; it still says nothing about a point outside the grid.",
+    "the horizon is an upper bound on the lifetime, not the lifetime: it is chosen so that no death inside it is missed, and the step it names is not the step of death. Where the point is perennial it is one damage clock; where the energy cannot fall on its own it is `T_CAP`.",
+    "one organism on a uniform field: no competition, no sharing, no memory content. A policy that differs here differs for movement alone.",
+    "two pairs of arms share a dynamics hash and are one arm, not two: `sighted` with `read_budget = 1` on a uniform field reads the cell it stands on and nothing else, which is `stay`; `memory` and `remember` differ only in what they do with a remembered value, and on a uniform field the remembered value never differs from the fresh one. Five policy names are three policy dynamics on this grid."
+  ],
+  "command": "python3 checks/exp_rho_window.py",
+  "created_at": "2026-11-15T21:30:27.325023+00:00",
+  "points": [
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 1.5,
+      "income": 0.3,
+      "rho": 0.005,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 1000,
+      "cadence_energy": -300.0,
+      "predicted_cadence": false,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.996
+        },
+        "random": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.996
+        },
+        "remember": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.996
+        },
+        "memory": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.996
+        },
+        "sighted": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.996
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 6.0,
+      "income": 0.3,
+      "rho": 0.02,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 1000,
+      "cadence_energy": -300.0,
+      "predicted_cadence": false,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.384
+        },
+        "random": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.384
+        },
+        "remember": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.384
+        },
+        "memory": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.384
+        },
+        "sighted": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.384
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 24.0,
+      "income": 0.3,
+      "rho": 0.08,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 1000,
+      "cadence_energy": -300.0,
+      "predicted_cadence": false,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 36.12
+        },
+        "random": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 36.12
+        },
+        "remember": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 36.12
+        },
+        "memory": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 36.12
+        },
+        "sighted": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 36.12
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 48.0,
+      "income": 0.3,
+      "rho": 0.16,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 1000,
+      "cadence_energy": -300.0,
+      "predicted_cadence": false,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 33.46
+        },
+        "random": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 33.46
+        },
+        "remember": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 33.46
+        },
+        "memory": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 33.46
+        },
+        "sighted": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 33.46
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 1.5,
+      "income": 0.5,
+      "rho": 0.003,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 1000,
+      "cadence_energy": -100.0,
+      "predicted_cadence": false,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 50,
+          "cause": "energy",
+          "energy_acc": 120.6625
+        },
+        "random": {
+          "lifetime": 50,
+          "cause": "energy",
+          "energy_acc": 120.6625
+        },
+        "remember": {
+          "lifetime": 50,
+          "cause": "energy",
+          "energy_acc": 120.6625
+        },
+        "memory": {
+          "lifetime": 50,
+          "cause": "energy",
+          "energy_acc": 120.6625
+        },
+        "sighted": {
+          "lifetime": 50,
+          "cause": "energy",
+          "energy_acc": 120.6625
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 6.0,
+      "income": 0.5,
+      "rho": 0.012,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 1000,
+      "cadence_energy": -100.0,
+      "predicted_cadence": false,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 48,
+          "cause": "energy",
+          "energy_acc": 115.432
+        },
+        "random": {
+          "lifetime": 48,
+          "cause": "energy",
+          "energy_acc": 115.432
+        },
+        "remember": {
+          "lifetime": 48,
+          "cause": "energy",
+          "energy_acc": 115.432
+        },
+        "memory": {
+          "lifetime": 48,
+          "cause": "energy",
+          "energy_acc": 115.432
+        },
+        "sighted": {
+          "lifetime": 48,
+          "cause": "energy",
+          "energy_acc": 115.432
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 24.0,
+      "income": 0.5,
+      "rho": 0.048,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 1000,
+      "cadence_energy": -100.0,
+      "predicted_cadence": false,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 41,
+          "cause": "energy",
+          "energy_acc": 98.32
+        },
+        "random": {
+          "lifetime": 41,
+          "cause": "energy",
+          "energy_acc": 98.32
+        },
+        "remember": {
+          "lifetime": 41,
+          "cause": "energy",
+          "energy_acc": 98.32
+        },
+        "memory": {
+          "lifetime": 41,
+          "cause": "energy",
+          "energy_acc": 98.32
+        },
+        "sighted": {
+          "lifetime": 41,
+          "cause": "energy",
+          "energy_acc": 98.32
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 48.0,
+      "income": 0.5,
+      "rho": 0.096,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 1000,
+      "cadence_energy": -100.0,
+      "predicted_cadence": false,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 35,
+          "cause": "energy",
+          "energy_acc": 81.988
+        },
+        "random": {
+          "lifetime": 35,
+          "cause": "energy",
+          "energy_acc": 81.988
+        },
+        "remember": {
+          "lifetime": 35,
+          "cause": "energy",
+          "energy_acc": 81.988
+        },
+        "memory": {
+          "lifetime": 35,
+          "cause": "energy",
+          "energy_acc": 81.988
+        },
+        "sighted": {
+          "lifetime": 35,
+          "cause": "energy",
+          "energy_acc": 81.988
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 1.5,
+      "income": 0.7,
+      "rho": 0.002142857,
+      "taken": 0.7,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 100.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9895.5875
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9895.5875
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9895.5875
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9895.5875
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9895.5875
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 6.0,
+      "income": 0.7,
+      "rho": 0.008571429,
+      "taken": 0.7,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 100.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9889.514
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9889.514
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9889.514
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9889.514
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9889.514
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 24.0,
+      "income": 0.7,
+      "rho": 0.034285714,
+      "taken": 0.7,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 100.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9858.02
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9858.02
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9858.02
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9858.02
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9858.02
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 48.0,
+      "income": 0.7,
+      "rho": 0.068571429,
+      "taken": 0.7,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 100.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9782.112
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9782.112
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9782.112
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9782.112
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9782.112
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 1.5,
+      "income": 0.9,
+      "rho": 0.001666667,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 300.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9980.596
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9980.596
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9980.596
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9980.596
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9980.596
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 6.0,
+      "income": 0.9,
+      "rho": 0.006666667,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 300.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9979.982
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9979.982
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9979.982
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9979.982
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9979.982
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 24.0,
+      "income": 0.9,
+      "rho": 0.026666667,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 300.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9977.196
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9977.196
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9977.196
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9977.196
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9977.196
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 48.0,
+      "income": 0.9,
+      "rho": 0.053333333,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 300.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9972.88
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9972.88
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9972.88
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9972.88
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9972.88
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 1.5,
+      "income": 1.0,
+      "rho": 0.0015,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 400.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9991.083
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9991.083
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9991.083
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9991.083
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9991.083
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 6.0,
+      "income": 1.0,
+      "rho": 0.006,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 400.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9990.732
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9990.732
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9990.732
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9990.732
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9990.732
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 24.0,
+      "income": 1.0,
+      "rho": 0.024,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 400.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9989.216
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9989.216
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9989.216
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9989.216
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9989.216
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 48.0,
+      "income": 1.0,
+      "rho": 0.048,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 400.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9986.96
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9986.96
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9986.96
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9986.96
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 9986.96
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 1.5,
+      "income": 1.5,
+      "rho": 0.001,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 900.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.4775
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.4775
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.4775
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.4775
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.4775
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 6.0,
+      "income": 1.5,
+      "rho": 0.004,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 900.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.41
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.41
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.41
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.41
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.41
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 24.0,
+      "income": 1.5,
+      "rho": 0.016,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 900.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.14
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.14
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.14
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.14
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10008.14
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 48.0,
+      "income": 1.5,
+      "rho": 0.032,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 1000,
+      "cadence_energy": 900.0,
+      "predicted_cadence": true,
+      "t": 1002,
+      "t_predicted": 1002,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10007.78
+        },
+        "random": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10007.78
+        },
+        "remember": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10007.78
+        },
+        "memory": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10007.78
+        },
+        "sighted": {
+          "lifetime": 1002,
+          "cause": "alive",
+          "energy_acc": 10007.78
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 1.5,
+      "income": 0.3,
+      "rho": 0.015,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 334,
+      "cadence_energy": -100.2,
+      "predicted_cadence": false,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.588
+        },
+        "random": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.588
+        },
+        "remember": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.588
+        },
+        "memory": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.588
+        },
+        "sighted": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 38.588
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 6.0,
+      "income": 0.3,
+      "rho": 0.06,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 334,
+      "cadence_energy": -100.2,
+      "predicted_cadence": false,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 36.84
+        },
+        "random": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 36.84
+        },
+        "remember": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 36.84
+        },
+        "memory": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 36.84
+        },
+        "sighted": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 36.84
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 24.0,
+      "income": 0.3,
+      "rho": 0.24,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 334,
+      "cadence_energy": -100.2,
+      "predicted_cadence": false,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 14,
+          "cause": "energy",
+          "energy_acc": 31.148
+        },
+        "random": {
+          "lifetime": 14,
+          "cause": "energy",
+          "energy_acc": 31.148
+        },
+        "remember": {
+          "lifetime": 14,
+          "cause": "energy",
+          "energy_acc": 31.148
+        },
+        "memory": {
+          "lifetime": 14,
+          "cause": "energy",
+          "energy_acc": 31.148
+        },
+        "sighted": {
+          "lifetime": 14,
+          "cause": "energy",
+          "energy_acc": 31.148
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 48.0,
+      "income": 0.3,
+      "rho": 0.48,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 334,
+      "cadence_energy": -100.2,
+      "predicted_cadence": false,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.696
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.696
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.696
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.696
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.696
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 1.5,
+      "income": 0.5,
+      "rho": 0.009,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 334,
+      "cadence_energy": -33.4,
+      "predicted_cadence": false,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 48,
+          "cause": "energy",
+          "energy_acc": 117.124
+        },
+        "random": {
+          "lifetime": 48,
+          "cause": "energy",
+          "energy_acc": 117.124
+        },
+        "remember": {
+          "lifetime": 48,
+          "cause": "energy",
+          "energy_acc": 117.124
+        },
+        "memory": {
+          "lifetime": 48,
+          "cause": "energy",
+          "energy_acc": 117.124
+        },
+        "sighted": {
+          "lifetime": 48,
+          "cause": "energy",
+          "energy_acc": 117.124
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 6.0,
+      "income": 0.5,
+      "rho": 0.036,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 334,
+      "cadence_energy": -33.4,
+      "predicted_cadence": false,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 43,
+          "cause": "energy",
+          "energy_acc": 103.446
+        },
+        "random": {
+          "lifetime": 43,
+          "cause": "energy",
+          "energy_acc": 103.446
+        },
+        "remember": {
+          "lifetime": 43,
+          "cause": "energy",
+          "energy_acc": 103.446
+        },
+        "memory": {
+          "lifetime": 43,
+          "cause": "energy",
+          "energy_acc": 103.446
+        },
+        "sighted": {
+          "lifetime": 43,
+          "cause": "energy",
+          "energy_acc": 103.446
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 24.0,
+      "income": 0.5,
+      "rho": 0.144,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 334,
+      "cadence_energy": -33.4,
+      "predicted_cadence": false,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 30,
+          "cause": "energy",
+          "energy_acc": 70.18
+        },
+        "random": {
+          "lifetime": 30,
+          "cause": "energy",
+          "energy_acc": 70.18
+        },
+        "remember": {
+          "lifetime": 30,
+          "cause": "energy",
+          "energy_acc": 70.18
+        },
+        "memory": {
+          "lifetime": 30,
+          "cause": "energy",
+          "energy_acc": 70.18
+        },
+        "sighted": {
+          "lifetime": 30,
+          "cause": "energy",
+          "energy_acc": 70.18
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 48.0,
+      "income": 0.5,
+      "rho": 0.288,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 334,
+      "cadence_energy": -33.4,
+      "predicted_cadence": false,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 22,
+          "cause": "energy",
+          "energy_acc": 48.78
+        },
+        "random": {
+          "lifetime": 22,
+          "cause": "energy",
+          "energy_acc": 48.78
+        },
+        "remember": {
+          "lifetime": 22,
+          "cause": "energy",
+          "energy_acc": 48.78
+        },
+        "memory": {
+          "lifetime": 22,
+          "cause": "energy",
+          "energy_acc": 48.78
+        },
+        "sighted": {
+          "lifetime": 22,
+          "cause": "energy",
+          "energy_acc": 48.78
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 1.5,
+      "income": 0.7,
+      "rho": 0.006428571,
+      "taken": 0.7,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 33.4,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3231.599
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3231.599
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3231.599
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3231.599
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3231.599
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 6.0,
+      "income": 0.7,
+      "rho": 0.025714286,
+      "taken": 0.7,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 33.4,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3210.06
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3210.06
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3210.06
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3210.06
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3210.06
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 24.0,
+      "income": 0.7,
+      "rho": 0.102857143,
+      "taken": 0.7,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 33.4,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 2916.068
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 2916.068
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 2916.068
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 2916.068
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 2916.068
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 48.0,
+      "income": 0.7,
+      "rho": 0.205714286,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 334,
+      "cadence_energy": 33.4,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 447,
+          "cause": "damage",
+          "energy_acc": 3119.368
+        },
+        "random": {
+          "lifetime": 447,
+          "cause": "damage",
+          "energy_acc": 3119.368
+        },
+        "remember": {
+          "lifetime": 447,
+          "cause": "damage",
+          "energy_acc": 3119.368
+        },
+        "memory": {
+          "lifetime": 447,
+          "cause": "damage",
+          "energy_acc": 3119.368
+        },
+        "sighted": {
+          "lifetime": 447,
+          "cause": "damage",
+          "energy_acc": 3119.368
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 1.5,
+      "income": 0.9,
+      "rho": 0.005,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 100.2,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3320.188
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3320.188
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3320.188
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3320.188
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3320.188
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 6.0,
+      "income": 0.9,
+      "rho": 0.02,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 100.2,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3318.146
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3318.146
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3318.146
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3318.146
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3318.146
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 24.0,
+      "income": 0.9,
+      "rho": 0.08,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 100.2,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3307.668
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3307.668
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3307.668
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3307.668
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3307.668
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 48.0,
+      "income": 0.9,
+      "rho": 0.16,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 100.2,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3282.368
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3282.368
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3282.368
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3282.368
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3282.368
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 1.5,
+      "income": 1.0,
+      "rho": 0.0045,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 133.6,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3330.849
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3330.849
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3330.849
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3330.849
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3330.849
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 6.0,
+      "income": 1.0,
+      "rho": 0.018,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 133.6,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3329.762
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3329.762
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3329.762
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3329.762
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3329.762
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 24.0,
+      "income": 1.0,
+      "rho": 0.072,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 133.6,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3324.36
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3324.36
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3324.36
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3324.36
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3324.36
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 48.0,
+      "income": 1.0,
+      "rho": 0.144,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 133.6,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3313.64
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3313.64
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3313.64
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3313.64
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3313.64
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 1.5,
+      "income": 1.5,
+      "rho": 0.003,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 300.6,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3348.4325
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3348.4325
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3348.4325
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3348.4325
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3348.4325
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 6.0,
+      "income": 1.5,
+      "rho": 0.012,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 300.6,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3348.23
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3348.23
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3348.23
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3348.23
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3348.23
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 24.0,
+      "income": 1.5,
+      "rho": 0.048,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 300.6,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3347.388
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3347.388
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3347.388
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3347.388
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3347.388
+        }
+      }
+    },
+    {
+      "damage_rate": 0.003,
+      "repair_cost": 48.0,
+      "income": 1.5,
+      "rho": 0.096,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 334,
+      "cadence_energy": 300.6,
+      "predicted_cadence": true,
+      "t": 336,
+      "t_predicted": 336,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3345.876
+        },
+        "random": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3345.876
+        },
+        "remember": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3345.876
+        },
+        "memory": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3345.876
+        },
+        "sighted": {
+          "lifetime": 336,
+          "cause": "alive",
+          "energy_acc": 3345.876
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 1.5,
+      "income": 0.3,
+      "rho": 0.05,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": -30.0,
+      "predicted_cadence": false,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 37.2
+        },
+        "random": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 37.2
+        },
+        "remember": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 37.2
+        },
+        "memory": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 37.2
+        },
+        "sighted": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 37.2
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 6.0,
+      "income": 0.3,
+      "rho": 0.2,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": -30.0,
+      "predicted_cadence": false,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 32.26
+        },
+        "random": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 32.26
+        },
+        "remember": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 32.26
+        },
+        "memory": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 32.26
+        },
+        "sighted": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 32.26
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 24.0,
+      "income": 0.3,
+      "rho": 0.8,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": -30.0,
+      "predicted_cadence": false,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 10,
+          "cause": "energy",
+          "energy_acc": 20.7
+        },
+        "random": {
+          "lifetime": 10,
+          "cause": "energy",
+          "energy_acc": 20.7
+        },
+        "remember": {
+          "lifetime": 10,
+          "cause": "energy",
+          "energy_acc": 20.7
+        },
+        "memory": {
+          "lifetime": 10,
+          "cause": "energy",
+          "energy_acc": 20.7
+        },
+        "sighted": {
+          "lifetime": 10,
+          "cause": "energy",
+          "energy_acc": 20.7
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 48.0,
+      "income": 0.3,
+      "rho": 1.6,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": -30.0,
+      "predicted_cadence": false,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 13.64
+        },
+        "random": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 13.64
+        },
+        "remember": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 13.64
+        },
+        "memory": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 13.64
+        },
+        "sighted": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 13.64
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 1.5,
+      "income": 0.5,
+      "rho": 0.03,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": -10.0,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 44,
+          "cause": "energy",
+          "energy_acc": 106.21
+        },
+        "random": {
+          "lifetime": 44,
+          "cause": "energy",
+          "energy_acc": 106.21
+        },
+        "remember": {
+          "lifetime": 44,
+          "cause": "energy",
+          "energy_acc": 106.21
+        },
+        "memory": {
+          "lifetime": 44,
+          "cause": "energy",
+          "energy_acc": 106.21
+        },
+        "sighted": {
+          "lifetime": 44,
+          "cause": "energy",
+          "energy_acc": 106.21
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 6.0,
+      "income": 0.5,
+      "rho": 0.12,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": -10.0,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 32,
+          "cause": "energy",
+          "energy_acc": 75.64
+        },
+        "random": {
+          "lifetime": 32,
+          "cause": "energy",
+          "energy_acc": 75.64
+        },
+        "remember": {
+          "lifetime": 32,
+          "cause": "energy",
+          "energy_acc": 75.64
+        },
+        "memory": {
+          "lifetime": 32,
+          "cause": "energy",
+          "energy_acc": 75.64
+        },
+        "sighted": {
+          "lifetime": 32,
+          "cause": "energy",
+          "energy_acc": 75.64
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 24.0,
+      "income": 0.5,
+      "rho": 0.48,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": -10.0,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 34.48
+        },
+        "random": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 34.48
+        },
+        "remember": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 34.48
+        },
+        "memory": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 34.48
+        },
+        "sighted": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 34.48
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 48.0,
+      "income": 0.5,
+      "rho": 0.96,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": -10.0,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 19.6
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 19.6
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 19.6
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 19.6
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 19.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 1.5,
+      "income": 0.7,
+      "rho": 0.021428571,
+      "taken": 0.7,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 10.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 875.435
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 875.435
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 875.435
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 875.435
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 875.435
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 6.0,
+      "income": 0.7,
+      "rho": 0.085714286,
+      "taken": 0.7,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 10.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 720.12
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 720.12
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 720.12
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 720.12
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 720.12
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 24.0,
+      "income": 0.7,
+      "rho": 0.342857143,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": 10.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 135,
+          "cause": "damage",
+          "energy_acc": 591.7
+        },
+        "random": {
+          "lifetime": 135,
+          "cause": "damage",
+          "energy_acc": 591.7
+        },
+        "remember": {
+          "lifetime": 135,
+          "cause": "damage",
+          "energy_acc": 591.7
+        },
+        "memory": {
+          "lifetime": 135,
+          "cause": "damage",
+          "energy_acc": 591.7
+        },
+        "sighted": {
+          "lifetime": 135,
+          "cause": "damage",
+          "energy_acc": 591.7
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 48.0,
+      "income": 0.7,
+      "rho": 0.685714286,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": 10.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 113,
+          "cause": "damage",
+          "energy_acc": 531.36
+        },
+        "random": {
+          "lifetime": 113,
+          "cause": "damage",
+          "energy_acc": 531.36
+        },
+        "remember": {
+          "lifetime": 113,
+          "cause": "damage",
+          "energy_acc": 531.36
+        },
+        "memory": {
+          "lifetime": 113,
+          "cause": "damage",
+          "energy_acc": 531.36
+        },
+        "sighted": {
+          "lifetime": 113,
+          "cause": "damage",
+          "energy_acc": 531.36
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 1.5,
+      "income": 0.9,
+      "rho": 0.016666667,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 30.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 978.605
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 978.605
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 978.605
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 978.605
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 978.605
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 6.0,
+      "income": 0.9,
+      "rho": 0.066666667,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 30.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 970.4
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 970.4
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 970.4
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 970.4
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 970.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 24.0,
+      "income": 0.9,
+      "rho": 0.266666667,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 30.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 814.16
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 814.16
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 814.16
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 814.16
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 814.16
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 48.0,
+      "income": 0.9,
+      "rho": 0.533333333,
+      "taken": 0.9,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": 30.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 127,
+          "cause": "damage",
+          "energy_acc": 899.84
+        },
+        "random": {
+          "lifetime": 127,
+          "cause": "damage",
+          "energy_acc": 899.84
+        },
+        "remember": {
+          "lifetime": 127,
+          "cause": "damage",
+          "energy_acc": 899.84
+        },
+        "memory": {
+          "lifetime": 127,
+          "cause": "damage",
+          "energy_acc": 899.84
+        },
+        "sighted": {
+          "lifetime": 127,
+          "cause": "damage",
+          "energy_acc": 899.84
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 1.5,
+      "income": 1.0,
+      "rho": 0.015,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 40.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 990.03
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 990.03
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 990.03
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 990.03
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 990.03
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 6.0,
+      "income": 1.0,
+      "rho": 0.06,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 40.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 985.7
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 985.7
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 985.7
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 985.7
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 985.7
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 24.0,
+      "income": 1.0,
+      "rho": 0.24,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 40.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 944.36
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 944.36
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 944.36
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 944.36
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 944.36
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 48.0,
+      "income": 1.0,
+      "rho": 0.48,
+      "taken": 1.0,
+      "sustains": false,
+      "repair_every": 100,
+      "cadence_energy": 40.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 162,
+          "cause": "damage",
+          "energy_acc": 1024.72
+        },
+        "random": {
+          "lifetime": 162,
+          "cause": "damage",
+          "energy_acc": 1024.72
+        },
+        "remember": {
+          "lifetime": 162,
+          "cause": "damage",
+          "energy_acc": 1024.72
+        },
+        "memory": {
+          "lifetime": 162,
+          "cause": "damage",
+          "energy_acc": 1024.72
+        },
+        "sighted": {
+          "lifetime": 162,
+          "cause": "damage",
+          "energy_acc": 1024.72
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 1.5,
+      "income": 1.5,
+      "rho": 0.01,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 90.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1008.275
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1008.275
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1008.275
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1008.275
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1008.275
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 6.0,
+      "income": 1.5,
+      "rho": 0.04,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 90.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1007.6
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1007.6
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1007.6
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1007.6
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1007.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 24.0,
+      "income": 1.5,
+      "rho": 0.16,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 90.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1003.48
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1003.48
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1003.48
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1003.48
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 1003.48
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 48.0,
+      "income": 1.5,
+      "rho": 0.32,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 100,
+      "cadence_energy": 90.0,
+      "predicted_cadence": true,
+      "t": 102,
+      "t_predicted": 102,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 992.72
+        },
+        "random": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 992.72
+        },
+        "remember": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 992.72
+        },
+        "memory": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 992.72
+        },
+        "sighted": {
+          "lifetime": 102,
+          "cause": "alive",
+          "energy_acc": 992.72
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 1.5,
+      "income": 0.3,
+      "rho": 0.15,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": -10.2,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 33.775
+        },
+        "random": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 33.775
+        },
+        "remember": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 33.775
+        },
+        "memory": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 33.775
+        },
+        "sighted": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 33.775
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 6.0,
+      "income": 0.3,
+      "rho": 0.6,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": -10.2,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 11,
+          "cause": "energy",
+          "energy_acc": 23.6
+        },
+        "random": {
+          "lifetime": 11,
+          "cause": "energy",
+          "energy_acc": 23.6
+        },
+        "remember": {
+          "lifetime": 11,
+          "cause": "energy",
+          "energy_acc": 23.6
+        },
+        "memory": {
+          "lifetime": 11,
+          "cause": "energy",
+          "energy_acc": 23.6
+        },
+        "sighted": {
+          "lifetime": 11,
+          "cause": "energy",
+          "energy_acc": 23.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 24.0,
+      "income": 0.3,
+      "rho": 2.4,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": -10.2,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 10.76
+        },
+        "random": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 10.76
+        },
+        "remember": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 10.76
+        },
+        "memory": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 10.76
+        },
+        "sighted": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 10.76
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 48.0,
+      "income": 0.3,
+      "rho": 4.8,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": -10.2,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 7.88
+        },
+        "random": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 7.88
+        },
+        "remember": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 7.88
+        },
+        "memory": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 7.88
+        },
+        "sighted": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 7.88
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 1.5,
+      "income": 0.5,
+      "rho": 0.09,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": -3.4,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 35,
+          "cause": "energy",
+          "energy_acc": 83.725
+        },
+        "random": {
+          "lifetime": 35,
+          "cause": "energy",
+          "energy_acc": 83.725
+        },
+        "remember": {
+          "lifetime": 35,
+          "cause": "energy",
+          "energy_acc": 83.725
+        },
+        "memory": {
+          "lifetime": 35,
+          "cause": "energy",
+          "energy_acc": 83.725
+        },
+        "sighted": {
+          "lifetime": 35,
+          "cause": "energy",
+          "energy_acc": 83.725
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 6.0,
+      "income": 0.5,
+      "rho": 0.36,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": -3.4,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 20,
+          "cause": "energy",
+          "energy_acc": 42.34
+        },
+        "random": {
+          "lifetime": 20,
+          "cause": "energy",
+          "energy_acc": 42.34
+        },
+        "remember": {
+          "lifetime": 20,
+          "cause": "energy",
+          "energy_acc": 42.34
+        },
+        "memory": {
+          "lifetime": 20,
+          "cause": "energy",
+          "energy_acc": 42.34
+        },
+        "sighted": {
+          "lifetime": 20,
+          "cause": "energy",
+          "energy_acc": 42.34
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 24.0,
+      "income": 0.5,
+      "rho": 1.44,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": -3.4,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 12.78
+        },
+        "random": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 12.78
+        },
+        "remember": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 12.78
+        },
+        "memory": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 12.78
+        },
+        "sighted": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 12.78
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 48.0,
+      "income": 0.5,
+      "rho": 2.88,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": -3.4,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 6.3
+        },
+        "random": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 6.3
+        },
+        "remember": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 6.3
+        },
+        "memory": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 6.3
+        },
+        "sighted": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 6.3
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 1.5,
+      "income": 0.7,
+      "rho": 0.064285714,
+      "taken": 0.7,
+      "sustains": true,
+      "repair_every": 34,
+      "cadence_energy": 3.4,
+      "predicted_cadence": true,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 216.63
+        },
+        "random": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 216.63
+        },
+        "remember": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 216.63
+        },
+        "memory": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 216.63
+        },
+        "sighted": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 216.63
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 6.0,
+      "income": 0.7,
+      "rho": 0.257142857,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": 3.4,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 96,
+          "cause": "damage",
+          "energy_acc": 211.18
+        },
+        "random": {
+          "lifetime": 96,
+          "cause": "damage",
+          "energy_acc": 211.18
+        },
+        "remember": {
+          "lifetime": 96,
+          "cause": "damage",
+          "energy_acc": 211.18
+        },
+        "memory": {
+          "lifetime": 96,
+          "cause": "damage",
+          "energy_acc": 211.18
+        },
+        "sighted": {
+          "lifetime": 96,
+          "cause": "damage",
+          "energy_acc": 211.18
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 24.0,
+      "income": 0.7,
+      "rho": 1.028571429,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": 3.4,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 42,
+          "cause": "damage",
+          "energy_acc": 75.1
+        },
+        "random": {
+          "lifetime": 42,
+          "cause": "damage",
+          "energy_acc": 75.1
+        },
+        "remember": {
+          "lifetime": 42,
+          "cause": "damage",
+          "energy_acc": 75.1
+        },
+        "memory": {
+          "lifetime": 42,
+          "cause": "damage",
+          "energy_acc": 75.1
+        },
+        "sighted": {
+          "lifetime": 42,
+          "cause": "damage",
+          "energy_acc": 75.1
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 48.0,
+      "income": 0.7,
+      "rho": 2.057142857,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": 3.4,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 37,
+          "cause": "damage",
+          "energy_acc": 95.4
+        },
+        "random": {
+          "lifetime": 37,
+          "cause": "damage",
+          "energy_acc": 95.4
+        },
+        "remember": {
+          "lifetime": 37,
+          "cause": "damage",
+          "energy_acc": 95.4
+        },
+        "memory": {
+          "lifetime": 37,
+          "cause": "damage",
+          "energy_acc": 95.4
+        },
+        "sighted": {
+          "lifetime": 37,
+          "cause": "damage",
+          "energy_acc": 95.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 1.5,
+      "income": 0.9,
+      "rho": 0.05,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 34,
+      "cadence_energy": 10.2,
+      "predicted_cadence": true,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 313.45
+        },
+        "random": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 313.45
+        },
+        "remember": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 313.45
+        },
+        "memory": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 313.45
+        },
+        "sighted": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 313.45
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 6.0,
+      "income": 0.9,
+      "rho": 0.2,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 34,
+      "cadence_energy": 10.2,
+      "predicted_cadence": true,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 259.92
+        },
+        "random": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 259.92
+        },
+        "remember": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 259.92
+        },
+        "memory": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 259.92
+        },
+        "sighted": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 259.92
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 24.0,
+      "income": 0.9,
+      "rho": 0.8,
+      "taken": 0.9,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": 10.2,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 45,
+          "cause": "damage",
+          "energy_acc": 207.84
+        },
+        "random": {
+          "lifetime": 45,
+          "cause": "damage",
+          "energy_acc": 207.84
+        },
+        "remember": {
+          "lifetime": 45,
+          "cause": "damage",
+          "energy_acc": 207.84
+        },
+        "memory": {
+          "lifetime": 45,
+          "cause": "damage",
+          "energy_acc": 207.84
+        },
+        "sighted": {
+          "lifetime": 45,
+          "cause": "damage",
+          "energy_acc": 207.84
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 48.0,
+      "income": 0.9,
+      "rho": 1.6,
+      "taken": 0.9,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": 10.2,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 38,
+          "cause": "damage",
+          "energy_acc": 191.04
+        },
+        "random": {
+          "lifetime": 38,
+          "cause": "damage",
+          "energy_acc": 191.04
+        },
+        "remember": {
+          "lifetime": 38,
+          "cause": "damage",
+          "energy_acc": 191.04
+        },
+        "memory": {
+          "lifetime": 38,
+          "cause": "damage",
+          "energy_acc": 191.04
+        },
+        "sighted": {
+          "lifetime": 38,
+          "cause": "damage",
+          "energy_acc": 191.04
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 1.5,
+      "income": 1.0,
+      "rho": 0.045,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 34,
+      "cadence_energy": 13.6,
+      "predicted_cadence": true,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 327.275
+        },
+        "random": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 327.275
+        },
+        "remember": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 327.275
+        },
+        "memory": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 327.275
+        },
+        "sighted": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 327.275
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 6.0,
+      "income": 1.0,
+      "rho": 0.18,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 34,
+      "cadence_energy": 13.6,
+      "predicted_cadence": true,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 305.66
+        },
+        "random": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 305.66
+        },
+        "remember": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 305.66
+        },
+        "memory": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 305.66
+        },
+        "sighted": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 305.66
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 24.0,
+      "income": 1.0,
+      "rho": 0.72,
+      "taken": 1.0,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": 13.6,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 49,
+          "cause": "damage",
+          "energy_acc": 251.4
+        },
+        "random": {
+          "lifetime": 49,
+          "cause": "damage",
+          "energy_acc": 251.4
+        },
+        "remember": {
+          "lifetime": 49,
+          "cause": "damage",
+          "energy_acc": 251.4
+        },
+        "memory": {
+          "lifetime": 49,
+          "cause": "damage",
+          "energy_acc": 251.4
+        },
+        "sighted": {
+          "lifetime": 49,
+          "cause": "damage",
+          "energy_acc": 251.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 48.0,
+      "income": 1.0,
+      "rho": 1.44,
+      "taken": 1.0,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": 13.6,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 38,
+          "cause": "damage",
+          "energy_acc": 239.28
+        },
+        "random": {
+          "lifetime": 38,
+          "cause": "damage",
+          "energy_acc": 239.28
+        },
+        "remember": {
+          "lifetime": 38,
+          "cause": "damage",
+          "energy_acc": 239.28
+        },
+        "memory": {
+          "lifetime": 38,
+          "cause": "damage",
+          "energy_acc": 239.28
+        },
+        "sighted": {
+          "lifetime": 38,
+          "cause": "damage",
+          "energy_acc": 239.28
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 1.5,
+      "income": 1.5,
+      "rho": 0.03,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 34,
+      "cadence_energy": 30.6,
+      "predicted_cadence": true,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 347.825
+        },
+        "random": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 347.825
+        },
+        "remember": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 347.825
+        },
+        "memory": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 347.825
+        },
+        "sighted": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 347.825
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 6.0,
+      "income": 1.5,
+      "rho": 0.12,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 34,
+      "cadence_energy": 30.6,
+      "predicted_cadence": true,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 345.12
+        },
+        "random": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 345.12
+        },
+        "remember": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 345.12
+        },
+        "memory": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 345.12
+        },
+        "sighted": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 345.12
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 24.0,
+      "income": 1.5,
+      "rho": 0.48,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 34,
+      "cadence_energy": 30.6,
+      "predicted_cadence": true,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 293.04
+        },
+        "random": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 293.04
+        },
+        "remember": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 293.04
+        },
+        "memory": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 293.04
+        },
+        "sighted": {
+          "lifetime": 36,
+          "cause": "alive",
+          "energy_acc": 293.04
+        }
+      }
+    },
+    {
+      "damage_rate": 0.03,
+      "repair_cost": 48.0,
+      "income": 1.5,
+      "rho": 0.96,
+      "taken": 1.5,
+      "sustains": false,
+      "repair_every": 34,
+      "cadence_energy": 30.6,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 43,
+          "cause": "damage",
+          "energy_acc": 301.6
+        },
+        "random": {
+          "lifetime": 43,
+          "cause": "damage",
+          "energy_acc": 301.6
+        },
+        "remember": {
+          "lifetime": 43,
+          "cause": "damage",
+          "energy_acc": 301.6
+        },
+        "memory": {
+          "lifetime": 43,
+          "cause": "damage",
+          "energy_acc": 301.6
+        },
+        "sighted": {
+          "lifetime": 43,
+          "cause": "damage",
+          "energy_acc": 301.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 1.5,
+      "income": 0.3,
+      "rho": 0.5,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": -3.0,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 6.0,
+      "income": 0.3,
+      "rho": 2.0,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": -3.0,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 11.7
+        },
+        "random": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 11.7
+        },
+        "remember": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 11.7
+        },
+        "memory": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 11.7
+        },
+        "sighted": {
+          "lifetime": 7,
+          "cause": "energy",
+          "energy_acc": 11.7
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 24.0,
+      "income": 0.3,
+      "rho": 8.0,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": -3.0,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 9,
+          "cause": "energy",
+          "energy_acc": 10.0
+        },
+        "random": {
+          "lifetime": 9,
+          "cause": "energy",
+          "energy_acc": 10.0
+        },
+        "remember": {
+          "lifetime": 9,
+          "cause": "energy",
+          "energy_acc": 10.0
+        },
+        "memory": {
+          "lifetime": 9,
+          "cause": "energy",
+          "energy_acc": 10.0
+        },
+        "sighted": {
+          "lifetime": 9,
+          "cause": "energy",
+          "energy_acc": 10.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 48.0,
+      "income": 0.3,
+      "rho": 16.0,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": -3.0,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 33.5
+        },
+        "random": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 33.5
+        },
+        "remember": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 33.5
+        },
+        "memory": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 33.5
+        },
+        "sighted": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 33.5
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 1.5,
+      "income": 0.5,
+      "rho": 0.3,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": -1.0,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 22,
+          "cause": "energy",
+          "energy_acc": 47.7
+        },
+        "random": {
+          "lifetime": 22,
+          "cause": "energy",
+          "energy_acc": 47.7
+        },
+        "remember": {
+          "lifetime": 22,
+          "cause": "energy",
+          "energy_acc": 47.7
+        },
+        "memory": {
+          "lifetime": 22,
+          "cause": "energy",
+          "energy_acc": 47.7
+        },
+        "sighted": {
+          "lifetime": 22,
+          "cause": "energy",
+          "energy_acc": 47.7
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 6.0,
+      "income": 0.5,
+      "rho": 1.2,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": -1.0,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 9,
+          "cause": "energy",
+          "energy_acc": 15.4
+        },
+        "random": {
+          "lifetime": 9,
+          "cause": "energy",
+          "energy_acc": 15.4
+        },
+        "remember": {
+          "lifetime": 9,
+          "cause": "energy",
+          "energy_acc": 15.4
+        },
+        "memory": {
+          "lifetime": 9,
+          "cause": "energy",
+          "energy_acc": 15.4
+        },
+        "sighted": {
+          "lifetime": 9,
+          "cause": "energy",
+          "energy_acc": 15.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 24.0,
+      "income": 0.5,
+      "rho": 4.8,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": -1.0,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 22.0
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 22.0
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 22.0
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 22.0
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 22.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 48.0,
+      "income": 0.5,
+      "rho": 9.6,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": -1.0,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 2,
+          "cause": "energy",
+          "energy_acc": 0.1
+        },
+        "random": {
+          "lifetime": 2,
+          "cause": "energy",
+          "energy_acc": 0.1
+        },
+        "remember": {
+          "lifetime": 2,
+          "cause": "energy",
+          "energy_acc": 0.1
+        },
+        "memory": {
+          "lifetime": 2,
+          "cause": "energy",
+          "energy_acc": 0.1
+        },
+        "sighted": {
+          "lifetime": 2,
+          "cause": "energy",
+          "energy_acc": 0.1
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 1.5,
+      "income": 0.7,
+      "rho": 0.214285714,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 1.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 111,
+          "cause": "damage",
+          "energy_acc": 253.0
+        },
+        "random": {
+          "lifetime": 111,
+          "cause": "damage",
+          "energy_acc": 253.0
+        },
+        "remember": {
+          "lifetime": 111,
+          "cause": "damage",
+          "energy_acc": 253.0
+        },
+        "memory": {
+          "lifetime": 111,
+          "cause": "damage",
+          "energy_acc": 253.0
+        },
+        "sighted": {
+          "lifetime": 111,
+          "cause": "damage",
+          "energy_acc": 253.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 6.0,
+      "income": 0.7,
+      "rho": 0.857142857,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 1.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 20,
+          "cause": "damage",
+          "energy_acc": 33.0
+        },
+        "random": {
+          "lifetime": 20,
+          "cause": "damage",
+          "energy_acc": 33.0
+        },
+        "remember": {
+          "lifetime": 20,
+          "cause": "damage",
+          "energy_acc": 33.0
+        },
+        "memory": {
+          "lifetime": 20,
+          "cause": "damage",
+          "energy_acc": 33.0
+        },
+        "sighted": {
+          "lifetime": 20,
+          "cause": "damage",
+          "energy_acc": 33.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 24.0,
+      "income": 0.7,
+      "rho": 3.428571429,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 1.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 12.6
+        },
+        "random": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 12.6
+        },
+        "remember": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 12.6
+        },
+        "memory": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 12.6
+        },
+        "sighted": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 12.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 48.0,
+      "income": 0.7,
+      "rho": 6.857142857,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 1.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 8.8
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 8.8
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 8.8
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 8.8
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 8.8
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 1.5,
+      "income": 0.9,
+      "rho": 0.166666667,
+      "taken": 0.9,
+      "sustains": true,
+      "repair_every": 10,
+      "cadence_energy": 3.0,
+      "predicted_cadence": true,
+      "t": 12,
+      "t_predicted": 12,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 71.7
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 71.7
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 71.7
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 71.7
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 71.7
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 6.0,
+      "income": 0.9,
+      "rho": 0.666666667,
+      "taken": 0.9,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 3.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 27,
+          "cause": "damage",
+          "energy_acc": 57.7
+        },
+        "random": {
+          "lifetime": 27,
+          "cause": "damage",
+          "energy_acc": 57.7
+        },
+        "remember": {
+          "lifetime": 27,
+          "cause": "damage",
+          "energy_acc": 57.7
+        },
+        "memory": {
+          "lifetime": 27,
+          "cause": "damage",
+          "energy_acc": 57.7
+        },
+        "sighted": {
+          "lifetime": 27,
+          "cause": "damage",
+          "energy_acc": 57.7
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 24.0,
+      "income": 0.9,
+      "rho": 2.666666667,
+      "taken": 0.9,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 3.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 28.2
+        },
+        "random": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 28.2
+        },
+        "remember": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 28.2
+        },
+        "memory": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 28.2
+        },
+        "sighted": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 28.2
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 48.0,
+      "income": 0.9,
+      "rho": 5.333333333,
+      "taken": 0.9,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 3.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 22.0
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 22.0
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 22.0
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 22.0
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 22.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 1.5,
+      "income": 1.0,
+      "rho": 0.15,
+      "taken": 1.0,
+      "sustains": true,
+      "repair_every": 10,
+      "cadence_energy": 4.0,
+      "predicted_cadence": true,
+      "t": 12,
+      "t_predicted": 12,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 79.5
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 79.5
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 79.5
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 79.5
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 79.5
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 6.0,
+      "income": 1.0,
+      "rho": 0.6,
+      "taken": 1.0,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 4.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 36,
+          "cause": "damage",
+          "energy_acc": 82.0
+        },
+        "random": {
+          "lifetime": 36,
+          "cause": "damage",
+          "energy_acc": 82.0
+        },
+        "remember": {
+          "lifetime": 36,
+          "cause": "damage",
+          "energy_acc": 82.0
+        },
+        "memory": {
+          "lifetime": 36,
+          "cause": "damage",
+          "energy_acc": 82.0
+        },
+        "sighted": {
+          "lifetime": 36,
+          "cause": "damage",
+          "energy_acc": 82.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 24.0,
+      "income": 1.0,
+      "rho": 2.4,
+      "taken": 1.0,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 4.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 36.0
+        },
+        "random": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 36.0
+        },
+        "remember": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 36.0
+        },
+        "memory": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 36.0
+        },
+        "sighted": {
+          "lifetime": 13,
+          "cause": "damage",
+          "energy_acc": 36.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 48.0,
+      "income": 1.0,
+      "rho": 4.8,
+      "taken": 1.0,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 4.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 28.6
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 28.6
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 28.6
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 28.6
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 28.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 1.5,
+      "income": 1.5,
+      "rho": 0.1,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 10,
+      "cadence_energy": 9.0,
+      "predicted_cadence": true,
+      "t": 12,
+      "t_predicted": 12,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 105.75
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 105.75
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 105.75
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 105.75
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 105.75
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 6.0,
+      "income": 1.5,
+      "rho": 0.4,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 10,
+      "cadence_energy": 9.0,
+      "predicted_cadence": true,
+      "t": 12,
+      "t_predicted": 12,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 83.4
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 83.4
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 83.4
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 83.4
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "alive",
+          "energy_acc": 83.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 24.0,
+      "income": 1.5,
+      "rho": 1.6,
+      "taken": 1.5,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 9.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 14,
+          "cause": "damage",
+          "energy_acc": 60.5
+        },
+        "random": {
+          "lifetime": 14,
+          "cause": "damage",
+          "energy_acc": 60.5
+        },
+        "remember": {
+          "lifetime": 14,
+          "cause": "damage",
+          "energy_acc": 60.5
+        },
+        "memory": {
+          "lifetime": 14,
+          "cause": "damage",
+          "energy_acc": 60.5
+        },
+        "sighted": {
+          "lifetime": 14,
+          "cause": "damage",
+          "energy_acc": 60.5
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 48.0,
+      "income": 1.5,
+      "rho": 3.2,
+      "taken": 1.5,
+      "sustains": false,
+      "repair_every": 10,
+      "cadence_energy": 9.0,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 61.5
+        },
+        "random": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 61.5
+        },
+        "remember": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 61.5
+        },
+        "memory": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 61.5
+        },
+        "sighted": {
+          "lifetime": 12,
+          "cause": "damage",
+          "energy_acc": 61.5
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.5,
+      "income": 0.3,
+      "rho": 1.5,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": -1.2,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 14.45
+        },
+        "random": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 14.45
+        },
+        "remember": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 14.45
+        },
+        "memory": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 14.45
+        },
+        "sighted": {
+          "lifetime": 8,
+          "cause": "energy",
+          "energy_acc": 14.45
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 6.0,
+      "income": 0.3,
+      "rho": 6.0,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": -1.2,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 5,
+          "cause": "energy",
+          "energy_acc": 4.4
+        },
+        "random": {
+          "lifetime": 5,
+          "cause": "energy",
+          "energy_acc": 4.4
+        },
+        "remember": {
+          "lifetime": 5,
+          "cause": "energy",
+          "energy_acc": 4.4
+        },
+        "memory": {
+          "lifetime": 5,
+          "cause": "energy",
+          "energy_acc": 4.4
+        },
+        "sighted": {
+          "lifetime": 5,
+          "cause": "energy",
+          "energy_acc": 4.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 24.0,
+      "income": 0.3,
+      "rho": 24.0,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": -1.2,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 48.0,
+      "income": 0.3,
+      "rho": 48.0,
+      "taken": 0.3,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": -1.2,
+      "predicted_cadence": false,
+      "t": 36,
+      "t_predicted": 36,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.5,
+      "income": 0.5,
+      "rho": 0.9,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": -0.4,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 10,
+          "cause": "energy",
+          "energy_acc": 20.25
+        },
+        "random": {
+          "lifetime": 10,
+          "cause": "energy",
+          "energy_acc": 20.25
+        },
+        "remember": {
+          "lifetime": 10,
+          "cause": "energy",
+          "energy_acc": 20.25
+        },
+        "memory": {
+          "lifetime": 10,
+          "cause": "energy",
+          "energy_acc": 20.25
+        },
+        "sighted": {
+          "lifetime": 10,
+          "cause": "energy",
+          "energy_acc": 20.25
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 6.0,
+      "income": 0.5,
+      "rho": 3.6,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": -0.4,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 6,
+          "cause": "damage",
+          "energy_acc": 7.3
+        },
+        "random": {
+          "lifetime": 6,
+          "cause": "damage",
+          "energy_acc": 7.3
+        },
+        "remember": {
+          "lifetime": 6,
+          "cause": "damage",
+          "energy_acc": 7.3
+        },
+        "memory": {
+          "lifetime": 6,
+          "cause": "damage",
+          "energy_acc": 7.3
+        },
+        "sighted": {
+          "lifetime": 6,
+          "cause": "damage",
+          "energy_acc": 7.3
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 24.0,
+      "income": 0.5,
+      "rho": 14.4,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": -0.4,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 14.4
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 14.4
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 14.4
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 14.4
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 14.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 48.0,
+      "income": 0.5,
+      "rho": 28.8,
+      "taken": 0.5,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": -0.4,
+      "predicted_cadence": false,
+      "t": 103,
+      "t_predicted": 103,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 14.4
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 14.4
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 14.4
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 14.4
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 14.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.5,
+      "income": 0.7,
+      "rho": 0.642857143,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 0.4,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 18,
+          "cause": "damage",
+          "energy_acc": 34.15
+        },
+        "random": {
+          "lifetime": 18,
+          "cause": "damage",
+          "energy_acc": 34.15
+        },
+        "remember": {
+          "lifetime": 18,
+          "cause": "damage",
+          "energy_acc": 34.15
+        },
+        "memory": {
+          "lifetime": 18,
+          "cause": "damage",
+          "energy_acc": 34.15
+        },
+        "sighted": {
+          "lifetime": 18,
+          "cause": "damage",
+          "energy_acc": 34.15
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 6.0,
+      "income": 0.7,
+      "rho": 2.571428571,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 0.4,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 6,
+          "cause": "damage",
+          "energy_acc": 10.3
+        },
+        "random": {
+          "lifetime": 6,
+          "cause": "damage",
+          "energy_acc": 10.3
+        },
+        "remember": {
+          "lifetime": 6,
+          "cause": "damage",
+          "energy_acc": 10.3
+        },
+        "memory": {
+          "lifetime": 6,
+          "cause": "damage",
+          "energy_acc": 10.3
+        },
+        "sighted": {
+          "lifetime": 6,
+          "cause": "damage",
+          "energy_acc": 10.3
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 24.0,
+      "income": 0.7,
+      "rho": 10.285714286,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 0.4,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 15.6
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 15.6
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 15.6
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 15.6
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 15.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 48.0,
+      "income": 0.7,
+      "rho": 20.571428571,
+      "taken": 0.7,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 0.4,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 15.6
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 15.6
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 15.6
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 15.6
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 15.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.5,
+      "income": 0.9,
+      "rho": 0.5,
+      "taken": 0.9,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 1.2,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 37,
+          "cause": "damage",
+          "energy_acc": 82.8
+        },
+        "random": {
+          "lifetime": 37,
+          "cause": "damage",
+          "energy_acc": 82.8
+        },
+        "remember": {
+          "lifetime": 37,
+          "cause": "damage",
+          "energy_acc": 82.8
+        },
+        "memory": {
+          "lifetime": 37,
+          "cause": "damage",
+          "energy_acc": 82.8
+        },
+        "sighted": {
+          "lifetime": 37,
+          "cause": "damage",
+          "energy_acc": 82.8
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 6.0,
+      "income": 0.9,
+      "rho": 2.0,
+      "taken": 0.9,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 1.2,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 7,
+          "cause": "damage",
+          "energy_acc": 9.3
+        },
+        "random": {
+          "lifetime": 7,
+          "cause": "damage",
+          "energy_acc": 9.3
+        },
+        "remember": {
+          "lifetime": 7,
+          "cause": "damage",
+          "energy_acc": 9.3
+        },
+        "memory": {
+          "lifetime": 7,
+          "cause": "damage",
+          "energy_acc": 9.3
+        },
+        "sighted": {
+          "lifetime": 7,
+          "cause": "damage",
+          "energy_acc": 9.3
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 24.0,
+      "income": 0.9,
+      "rho": 8.0,
+      "taken": 0.9,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 1.2,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 16.8
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 16.8
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 16.8
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 16.8
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 16.8
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 48.0,
+      "income": 0.9,
+      "rho": 16.0,
+      "taken": 0.9,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 1.2,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 16.8
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 16.8
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 16.8
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 16.8
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 16.8
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.5,
+      "income": 1.0,
+      "rho": 0.45,
+      "taken": 1.0,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 1.6,
+      "predicted_cadence": true,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 8705.8
+        },
+        "random": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 8705.8
+        },
+        "remember": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 8705.8
+        },
+        "memory": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 8705.8
+        },
+        "sighted": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 8705.8
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 6.0,
+      "income": 1.0,
+      "rho": 1.8,
+      "taken": 1.0,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 1.6,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 7,
+          "cause": "damage",
+          "energy_acc": 11.4
+        },
+        "random": {
+          "lifetime": 7,
+          "cause": "damage",
+          "energy_acc": 11.4
+        },
+        "remember": {
+          "lifetime": 7,
+          "cause": "damage",
+          "energy_acc": 11.4
+        },
+        "memory": {
+          "lifetime": 7,
+          "cause": "damage",
+          "energy_acc": 11.4
+        },
+        "sighted": {
+          "lifetime": 7,
+          "cause": "damage",
+          "energy_acc": 11.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 24.0,
+      "income": 1.0,
+      "rho": 7.2,
+      "taken": 1.0,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 1.6,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 48.0,
+      "income": 1.0,
+      "rho": 14.4,
+      "taken": 1.0,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 1.6,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.5,
+      "income": 1.5,
+      "rho": 0.3,
+      "taken": 1.5,
+      "sustains": true,
+      "repair_every": 4,
+      "cadence_energy": 3.6,
+      "predicted_cadence": true,
+      "t": 6,
+      "t_predicted": 6,
+      "t_capped": false,
+      "alive": true,
+      "policies": {
+        "stay": {
+          "lifetime": 6,
+          "cause": "alive",
+          "energy_acc": 39.45
+        },
+        "random": {
+          "lifetime": 6,
+          "cause": "alive",
+          "energy_acc": 39.45
+        },
+        "remember": {
+          "lifetime": 6,
+          "cause": "alive",
+          "energy_acc": 39.45
+        },
+        "memory": {
+          "lifetime": 6,
+          "cause": "alive",
+          "energy_acc": 39.45
+        },
+        "sighted": {
+          "lifetime": 6,
+          "cause": "alive",
+          "energy_acc": 39.45
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 6.0,
+      "income": 1.5,
+      "rho": 1.2,
+      "taken": 1.5,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 3.6,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 9,
+          "cause": "damage",
+          "energy_acc": 18.4
+        },
+        "random": {
+          "lifetime": 9,
+          "cause": "damage",
+          "energy_acc": 18.4
+        },
+        "remember": {
+          "lifetime": 9,
+          "cause": "damage",
+          "energy_acc": 18.4
+        },
+        "memory": {
+          "lifetime": 9,
+          "cause": "damage",
+          "energy_acc": 18.4
+        },
+        "sighted": {
+          "lifetime": 9,
+          "cause": "damage",
+          "energy_acc": 18.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 24.0,
+      "income": 1.5,
+      "rho": 4.8,
+      "taken": 1.5,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 3.6,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 48.0,
+      "income": 1.5,
+      "rho": 9.6,
+      "taken": 1.5,
+      "sustains": false,
+      "repair_every": 4,
+      "cadence_energy": 3.6,
+      "predicted_cadence": false,
+      "t": 20000,
+      "t_predicted": 20000,
+      "t_capped": false,
+      "alive": false,
+      "policies": {
+        "stay": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "random": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "remember": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "memory": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "sighted": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        }
+      }
+    }
+  ],
+  "expected_coincident": [
+    [
+      "sighted",
+      "stay"
+    ],
+    [
+      "memory",
+      "remember"
+    ]
+  ]
+}

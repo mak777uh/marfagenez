@@ -127,5 +127,8 @@
     "The `specific` control cannot distinguish `E_max = capacity` from any other formula that does not contain the spend. It rules out the income/spend equilibrium, not every alternative."
   ],
   "command": "python3 checks/exp05_frozen.py",
-  "created_at": "2026-11-15T19:29:24.060284+00:00"
+  "created_at": "2026-11-15T19:29:24.060284+00:00",
+  "reproduced_at": [
+    "a0a5672"
+  ]
 }

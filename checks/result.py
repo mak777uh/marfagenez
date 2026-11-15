@@ -195,47 +195,81 @@ def add_limitation(result: dict[str, Any], text: str) -> None:
     result["limitations"].append(text)
 
 
-#: The fields that differ between two runs of the *same* measurement. They are
-#: stripped before comparing: a re-run that reproduces the same numbers is not a
-#: new record, and writing it as one turns `results/` into a log of gate runs.
-_VOLATILE = ("run_id", "created_at")
+#: The fields that differ between two runs of the *same* measurement, or that
+#: record re-runs of it. They are stripped before comparing, because none of
+#: them says anything about the numbers.
+_VOLATILE = ("run_id", "created_at", "model_commit", "reproduced_at")
 
 
 def _fingerprint(result: dict[str, Any]) -> str:
-    """The result minus what changed only because it was written again."""
+    """The result minus what changed only because it was written again.
+
+    `model_commit` is stripped along with `run_id` and `created_at`: a re-run at
+    a new commit that reproduces the same numbers is the same measurement, and
+    its commit belongs inside the record (`reproduced_at`), not in a new file
+    beside it.
+    """
     body = {k: v for k, v in result.items() if k not in _VOLATILE}
     return json.dumps(body, sort_keys=True, ensure_ascii=False)
 
 
-def _reproduced(path: Path, result: dict[str, Any]) -> bool:
-    """Whether `path` already holds this measurement."""
+def _load(path: Path) -> dict[str, Any] | None:
+    """The record in `path`, or `None` if it cannot be read as JSON."""
     try:
-        old = json.loads(path.read_text(encoding="utf-8"))
+        return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
-        return False
-    return _fingerprint(old) == _fingerprint(result)
+        return None
 
 
 def save(result: dict[str, Any]) -> Path:
     """Writes the result to `results/<experiment_id>/<run_id>.json`.
 
     A re-run that reproduces an existing record **byte for byte** (apart from
-    `run_id` and `created_at`) returns the existing path instead of writing a
-    second file. This is not deduplication for tidiness: `frozen-ceiling` had
-    122 records on disk and 122 in git, most of them the same measurement
-    written again by successive gate runs, so `git status` was never clean
-    after `run.sh all` and a real new record was invisible among the copies.
+    `run_id`, `created_at`, `model_commit` and `reproduced_at`) does not get a
+    file of its own:
 
-    `model_commit` is **not** stripped. The same numbers produced at a
-    different commit are a different fact — the model changed and the output did
-    not — and that deserves its own file.
+    * the same `model_commit` -- nothing to record, the file is not touched;
+    * a different `model_commit` -- the current commit is appended to the
+      record's `reproduced_at` list (no duplicates, in order of appearance) and
+      the record is rewritten. `model_commit` stays as it was: it names the
+      commit where the numbers were **first** obtained, not the last one that
+      saw them again.
+
+    This is not deduplication for tidiness. `frozen-ceiling` had 122 records on
+    disk and 122 in git, most of them the same measurement written again by
+    successive gate runs, so `git status` was never clean after `run.sh all` and
+    a real new record was invisible among the copies. Keeping a list of commits
+    inside one record is better than a file per commit: the files are identical,
+    and only the list differs -- a copy turns one measurement into N measurements
+    that have to be compared to see they are the same, while `reproduced_at`
+    says "the same numbers, re-checked at these commits" in the place where the
+    numbers already are. A re-run that changes anything else in the body is a
+    new measurement and does get a new file.
+
+    When several committed records hold the same measurement, the **newest** one
+    gets the commit, so the chain of rechecks does not attach to an old copy.
     """
     d = RESULTS_DIR / result["experiment_id"]
     d.mkdir(parents=True, exist_ok=True)
-    for old in sorted(d.glob("run-*.json")):
-        if old.name != f"{result['run_id']}.json" and _reproduced(old, result):
-            return old
-    path = d / f"{result['run_id']}.json"
+    commit = result.get("model_commit")
+    name = f"{result['run_id']}.json"
+    for old_path in sorted(d.glob("run-*.json"), reverse=True):
+        if old_path.name == name:
+            continue
+        old = _load(old_path)
+        if old is None or _fingerprint(old) != _fingerprint(result):
+            continue
+        if old.get("model_commit") == commit:
+            return old_path
+        seen = list(old.get("reproduced_at") or [])
+        if commit in seen:
+            return old_path
+        old["reproduced_at"] = seen + [commit]
+        old_path.write_text(
+            json.dumps(old, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+        return old_path
+    path = d / name
     path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
     return path
 
