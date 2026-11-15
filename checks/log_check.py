@@ -116,11 +116,17 @@ DERIVED_RE = re.compile(r"теорем-тавтолог|тавтологий и�
 #: bolded table cell, which is where the stale numbers actually live. The
 #: selftest caught it: two `fires` cases stayed silent.
 #:
+#: The negative lookbehind is there because `\W*` stepped over `§` and
+#: `.` too. `> Правка ... по разбору шестого круга §1.11).** Тест «тривиальное
+#: ядро» снят` was read as the claim "11 тестов" and reported as a drift: a
+#: false positive in the gate, not a stale number in the document. A number
+#: that is the tail of a section reference is not a claim about the tree.
+#:
 #: `\W*` also steps over `|`, which is why a table row is matched as a whole
 #: and not cell by cell: in `| Rust тестов | **192** |` the noun comes BEFORE
 #: the number, so a number-first pattern cannot see it. `TABLE_ROW_RE` handles
 #: that shape; `TEST_RE` handles prose.
-TEST_RE = re.compile(r"\b(\d{2,4})\W*(?:тест|test)", re.IGNORECASE)
+TEST_RE = re.compile(r"(?<![\d.§])\b(\d{2,4})\W*(?:тест|test)", re.IGNORECASE)
 
 #: A markdown table row whose header cell names the unit and whose value cell
 #: carries the number: `| Rust тестов | **210** |`. The unit may be in any
@@ -456,6 +462,14 @@ def selftest() -> int:
         ("fires: a stale test count in a table", "| Rust тестов | **192** |", [], True),
         ("silent: the measured test count", "| Rust тестов | **210** |", [], False),
         ("silent: a dated test count", "было 192 теста", [], False),
+        # The gate reported `docs/PROTOCOL-0.md:383` as "тестов 11": the 11 came
+        # from the section reference §1.11, not from a count. A section number
+        # before the word is not a claim.
+        ("silent: a section reference before the word",
+         "> **Правка (по разбору шестого круга §1.11).** Тест «тривиальное ядро» снят.",
+         [], False),
+        ("fires: a real count after a section reference",
+         "> **Правка (§1.11).** осталось 192 теста", [], True),
     ]
     bad = 0
     for name, line, above, should_flag in cases:
