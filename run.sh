@@ -119,6 +119,11 @@ do_exp() {
   # идёт раньше; в `run.sh exp` отдельно -- сначала cargo build.
   bash checks/cli_refuses_bad_numbers.sh || rc=$?
   echo
+  echo "--- cli_refuses_bad_numbers_occupancy.sh ---"
+  # Тот же дефект, что у `trace`, но в позиционных аргументах `occupancy`:
+  # `occupancy 50O` молча прогонял 160 организмов. Бинарник собирает do_test.
+  bash checks/cli_refuses_bad_numbers_occupancy.sh || rc=$?
+  echo
   echo "--- stub_covers_bridge.py ---"
   python3 checks/stub_covers_bridge.py || rc=$?
   echo

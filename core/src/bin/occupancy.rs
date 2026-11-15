@@ -56,24 +56,39 @@ fn occupancy(life: &Life) -> Vec<usize> {
     occ
 }
 
+/// Parses positional argument `i`, refusing to fall back to a default.
+///
+/// `args.get(i).and_then(|s| s.parse().ok()).unwrap_or(default)` turns a typo
+/// into a silently different experiment: `occupancy 50O` (letter O) ran the
+/// default 160 organisms and the output said nothing about it. The default is
+/// only for an argument that was not given at all; an argument that was given
+/// and cannot be parsed is an error, because the run would otherwise answer a
+/// question nobody asked.
+///
+/// The same defect and the same fix as `core/src/bin/trace.rs::number`, adapted
+/// to positional arguments.
+fn positional<T: std::str::FromStr>(args: &[String], i: usize, name: &str, default: T) -> T {
+    match args.get(i) {
+        None => default,
+        Some(raw) => match raw.parse::<T>() {
+            Ok(v) => v,
+            Err(_) => {
+                eprintln!(
+                    "refusing to run: {} is not a number: {:?} (argument {})",
+                    name, raw, i
+                );
+                std::process::exit(2);
+            }
+        },
+    }
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let n: usize = args
-        .get(1)
-        .and_then(|s| s.parse().ok())
-        .unwrap_or(160);
-    let cells: usize = args
-        .get(2)
-        .and_then(|s| s.parse().ok())
-        .unwrap_or(40);
-    let steps: usize = args
-        .get(3)
-        .and_then(|s| s.parse().ok())
-        .unwrap_or(1200);
-    let seed: u64 = args
-        .get(4)
-        .and_then(|s| s.parse().ok())
-        .unwrap_or(7);
+    let n: usize = positional(&args, 1, "n", 160);
+    let cells: usize = positional(&args, 2, "cells", 40);
+    let steps: usize = positional(&args, 3, "steps", 1200);
+    let seed: u64 = positional(&args, 4, "seed", 7);
 
     let capacity = 2.0;
     let regrow = 0.8;
