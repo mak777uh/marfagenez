@@ -39,6 +39,7 @@
 
 use crate::field::Field;
 use crate::life::Life;
+use crate::organism::LookOrder;
 
 /// One organism, at one step.
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -99,6 +100,14 @@ pub struct Trace {
     /// tie-break would look like one arm, and the left drift would look like a
     /// property of the environment instead of a property of the rule.
     pub tiebreak: &'static str,
+    /// Whether a `Memory` organism read its cell before or after eating.
+    ///
+    /// Same argument as `tiebreak`, one parameter further: the two orders can
+    /// produce identical frames for a while -- on a field where the organism
+    /// never returns to a cell it has eaten from, they never differ at all --
+    /// and then the arms would collide and the collision would be read as "the
+    /// parameter did not reach the simulation". See `LookOrder`.
+    pub look_order: &'static str,
 }
 
 impl Trace {
@@ -161,8 +170,21 @@ impl Trace {
         share: &str,
         tiebreak: &str,
     ) -> u64 {
+        Self::hash_with_world(frames, share, tiebreak, "")
+    }
+
+    /// The protocol, the tie-break **and** the look order, folded into the hash.
+    ///
+    /// The empty string is what the older wrapper passes, so a caller that has
+    /// no look order in hand gets exactly the hash it got before.
+    pub fn hash_with_world(
+        frames: &[Frame],
+        share: &str,
+        tiebreak: &str,
+        look_order: &str,
+    ) -> u64 {
         let mut h = Self::compute_hash(frames);
-        for b in share.bytes().chain(tiebreak.bytes()) {
+        for b in share.bytes().chain(tiebreak.bytes()).chain(look_order.bytes()) {
             h ^= b as u64;
             h = h.wrapping_mul(0x0000_0100_0000_01b3);
         }
@@ -178,6 +200,7 @@ impl Trace {
         out.push_str(&format!("  \"read_budget\": {},\n", self.read_budget));
         out.push_str(&format!("  \"share\": \"{}\",\n", self.share));
         out.push_str(&format!("  \"tiebreak\": \"{}\",\n", self.tiebreak));
+        out.push_str(&format!("  \"look_order\": \"{}\",\n", self.look_order));
         out.push_str(&format!("  \"hash\": \"{:016x}\",\n", self.hash));
         out.push_str(&format!("  \"steps\": {},\n", self.frames.len()));
         out.push_str("  \"frames\": [\n");
@@ -237,7 +260,8 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
     }
     let share = life.world().share.name();
     let tiebreak = life.world().tiebreak.name();
-    let hash = Trace::hash_with_protocol_and_tiebreak(&frames, share, tiebreak);
+    let look_order = life.world().look_order.name();
+    let hash = Trace::hash_with_world(&frames, share, tiebreak, look_order);
     Trace {
         frames,
         hash,
@@ -246,6 +270,7 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         read_budget,
         share,
         tiebreak,
+        look_order,
     }
 }
 
@@ -279,6 +304,7 @@ mod tests {
             read_budget: 0,
             tiebreak: TieBreak::Left,
             share: Default::default(),
+            look_order: LookOrder::LookThenEat,
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, seed, 300).unwrap()

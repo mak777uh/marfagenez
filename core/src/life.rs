@@ -40,7 +40,7 @@
 
 use crate::field::Field;
 use crate::memory::Remembering;
-use crate::organism::{Organism, ShareProtocol, World};
+use crate::organism::{LookOrder, Organism, ShareProtocol, World};
 
 /// How an organism decides where to go.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -349,7 +349,14 @@ impl Life {
                 Policy::Remember | Policy::Memory | Policy::Sighted
             );
             let mut reads_left = if looks { self.world.read_budget } else { 0 };
-            let here = if reads_left > 0 {
+            // `EatThenLook` defers the read of the standing cell until after
+            // the meal (step 4), so that the level remembered is what is left
+            // rather than what was there before the organism took its share.
+            // It still costs one read from the budget -- the budget is about
+            // how much the organism may look at, not about when.
+            let look_after_eating = self.policy == Policy::Memory
+                && self.world.look_order == LookOrder::EatThenLook;
+            let here = if reads_left > 0 && !look_after_eating {
                 reads_left -= 1;
                 self.field.observe(r.cell)
             } else {
@@ -611,6 +618,22 @@ impl Life {
             };
             r.last_taken = taken;
 
+            // 4b. `EatThenLook`: the read of the standing cell happens here, on
+            //     what the meal left behind, and the memory is updated with it.
+            //     The read is taken from the same budget as the one in step 1,
+            //     so the two orders cost the same and cannot be told apart by
+            //     the number of reads alone.
+            if look_after_eating && reads_left > 0 {
+                reads_left -= 1;
+                let after = self.field.observe(r.cell);
+                if r.memory.best_cell == r.cell {
+                    r.memory.best_level = after;
+                    r.memory.age = 0;
+                } else {
+                    r.memory.observe(r.cell, after);
+                }
+            }
+
             // 5. Live.
             r.organism.step(&self.world, taken);
 
@@ -739,6 +762,7 @@ mod tests {
             read_budget: 0,
             tiebreak: TieBreak::Left,
             share: Default::default(),
+            look_order: LookOrder::LookThenEat,
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, 7, 300).unwrap()
@@ -780,6 +804,7 @@ mod tests {
             read_budget: 3,
             tiebreak: TieBreak::Left,
             share: Default::default(),
+            look_order: LookOrder::LookThenEat,
         };
         // A field of four rich cells: `Field::new` makes every cell equal to
         // `max_resource`, so there is no need for a setter.
@@ -857,6 +882,7 @@ mod tests {
             read_budget: 3,
             tiebreak: TieBreak::Left,
             share: Default::default(),
+            look_order: LookOrder::LookThenEat,
         };
         let field = Field::alternating(4, 2.4, 1.6, 0.8).expect("alternating field");
         let mut life =
@@ -1014,6 +1040,7 @@ mod tests {
             read_budget: 0,
             tiebreak: TieBreak::Left,
             share: Default::default(),
+            look_order: LookOrder::LookThenEat,
         };
         // A field with the smallest legal resource, and income = 0: nothing can be
         // taken, so nothing can be earned. `Field::new` refuses a zero maximum, so
@@ -1047,6 +1074,7 @@ mod tests {
             read_budget: 3,
             tiebreak: TieBreak::Left,
             share: Default::default(),
+            look_order: LookOrder::LookThenEat,
         };
         let field = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
         let mut sighted = Life::new(
@@ -1137,6 +1165,7 @@ mod tests {
             read_budget: 3,
             tiebreak: TieBreak::Left,
             share: Default::default(),
+            look_order: LookOrder::LookThenEat,
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1173,6 +1202,7 @@ mod tests {
             read_budget: 3,
             tiebreak: TieBreak::Left,
             share: Default::default(),
+            look_order: LookOrder::LookThenEat,
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1211,6 +1241,7 @@ mod tests {
             read_budget: 0,
             tiebreak: TieBreak::Left,
             share: Default::default(),
+            look_order: LookOrder::LookThenEat,
         };
         // A flat field at 0.5: every cell holds far less than the income.
         let field = Field::new(8, 0.5, 1.0).unwrap();
@@ -1250,6 +1281,7 @@ mod tests {
             read_budget: 3,
             tiebreak: TieBreak::Left,
             share: Default::default(),
+            look_order: LookOrder::LookThenEat,
         };
         let field = Field::moving(40, 2.0, 0.2, 0.8, 1.0).unwrap();
         let mut memory =

@@ -115,7 +115,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 210 тестов
+### Rust — 214 тестов
 
 | группа | что проверяет |
 |---|---|
@@ -131,7 +131,7 @@ verus verus/integer_laws.rs
 ```bash
 export PATH=/root/.elan/bin:$PATH          # иначе build.rs не найдёт lean и соберёт заглушку
 cd core && cargo test --release --tests -- --test-threads=1
-# тестовых бинарей: 23; суммарно 210 passed, 0 failed
+# тестовых бинарей: 24; суммарно 214 passed, 0 failed
 # --test-threads=1 обязателен: рантайм Lean не потокобезопасен, иначе SIGABRT
 ```
 
@@ -227,7 +227,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
 | Lean файлов | **56** `Medium` + 8 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
 | Lean `sorry` как тактика | **0** | `grep -rnE '^\s*(·\s*)?sorry\s*$' laws/ \| wc -l` |
-| Rust тестов | **210** | `cd core && cargo test --release --tests -- --test-threads=1` |
+| Rust тестов | **214** | `cd core && cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
 | docs FINDING | **139** | `ls docs/FINDING-*.md \| wc -l` |
 | checks (эксперименты) | **110** | `ls checks/exp*.py \| wc -l` |

@@ -27,7 +27,7 @@
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::organism::{World, TieBreak};
+use medium_core::organism::{LookOrder, TieBreak, World};
 
 fn world() -> World {
     World {
@@ -39,6 +39,7 @@ fn world() -> World {
         read_budget: 3,
         tiebreak: TieBreak::Left,
         share: Default::default(),
+        look_order: LookOrder::LookThenEat,
     }
 }
 

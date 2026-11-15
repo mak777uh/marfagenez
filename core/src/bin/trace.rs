@@ -18,7 +18,7 @@ use std::path::PathBuf;
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::organism::{ShareProtocol, TieBreak, World};
+use medium_core::organism::{LookOrder, ShareProtocol, TieBreak, World};
 use medium_core::trace::record;
 
 /// Parses the value that follows `--flag`, refusing to fall back to a default.
@@ -80,6 +80,10 @@ fn main() {
     // way the population walks. Default `left` reproduces every run recorded
     // before the parameter existed.
     let mut tiebreak = "left".to_string();
+    // Whether a `Memory` organism reads its cell before or after it eats. Two
+    // different models of perception, and the default is the historical one so
+    // that no committed number moves. See `LookOrder` in `organism.rs`.
+    let mut look_order = "look-then-eat".to_string();
     // Even is the default. A random layout is a variable nobody wrote down:
     // EXP-87 read a random placement as an even one and spent three runs on
     // it (docs/FINDING-087). A question about cells needs to know which cell
@@ -176,6 +180,21 @@ fn main() {
                     other => {
                         eprintln!(
                             "refusing to run: --tiebreak {:?} is not a tie-break.\n             Use --tiebreak left (ties go left, the default),\n             --tiebreak right (the mirror, kept to check `left` against a drift\n             the other way) or --tiebreak random (drawn from the stream).",
+                            other.unwrap_or("")
+                        );
+                        std::process::exit(2);
+                    }
+                }
+            }
+            "--look-order" => {
+                i += 1;
+                match args.get(i).map(|s| s.as_str()) {
+                    Some("look-then-eat") | Some("eat-then-look") => {
+                        look_order = args[i].clone();
+                    }
+                    other => {
+                        eprintln!(
+                            "refusing to run: --look-order {:?} is not a look order.\n             Use --look-order look-then-eat (read the cell, then eat from it;\n             the default and the historical behaviour) or --look-order eat-then-look\n             (eat, then read what is left).",
                             other.unwrap_or("")
                         );
                         std::process::exit(2);
@@ -297,6 +316,10 @@ fn main() {
             "left" => TieBreak::Left,
             "right" => TieBreak::Right,
             _ => TieBreak::Random,
+        },
+        look_order: match look_order.as_str() {
+            "eat-then-look" => LookOrder::EatThenLook,
+            _ => LookOrder::LookThenEat,
         },
     };
     let field = match field_kind.as_str() {

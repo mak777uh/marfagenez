@@ -155,6 +155,55 @@ impl TieBreak {
     }
 }
 
+/// Whether a `Memory` organism reads its cell before or after it eats.
+///
+/// This is not a detail of the code, it is a different model of perception, and
+/// the two models disagree.
+///
+/// `LookThenEat` is what the code did before the parameter existed: the organism
+/// observes the cell, remembers the level it saw, and then eats from the same
+/// cell. The remembered level is therefore the level *before* this step's meal.
+/// Two consequences, both measured rather than argued:
+///
+///   - On the cell it stands on, the memory records a level the organism has
+///     already spent. A rich cell is remembered as richer than it now is.
+///   - At the start the memory is empty (`best_level = 0.0`), so the first step
+///     is always the random-explore branch, whatever the field looks like. The
+///     asymmetry is in the starting condition, not in the rule.
+///
+/// `EatThenLook` reads the cell after the meal. The remembered level is what is
+/// actually left, so "the remembered cell has gone poor" is detected a step
+/// earlier and the numbers move.
+///
+/// Which one is right is not a matter of taste: an organism that can only see
+/// what is left in front of it, and one that remembers what was there before it
+/// ate, are different claims about the world. The default is the historical
+/// behaviour so that no committed number moves, and the choice is recorded in
+/// the trace and its hash so two arms cannot hide behind one hash.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum LookOrder {
+    /// Observe the cell, then eat from it. The historical behaviour.
+    LookThenEat,
+    /// Eat from the cell, then observe what is left.
+    EatThenLook,
+}
+
+impl Default for LookOrder {
+    fn default() -> Self {
+        Self::LookThenEat
+    }
+}
+
+impl LookOrder {
+    /// The name that goes into a trace and its hash.
+    pub fn name(self) -> &'static str {
+        match self {
+            Self::LookThenEat => "look-then-eat",
+            Self::EatThenLook => "eat-then-look",
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy)]
 pub struct World {
     /// Energy gained per step when a resource is available.
@@ -175,6 +224,9 @@ pub struct World {
     pub read_budget: usize,
     /// What happens when both neighbours are equally rich. See [`TieBreak`].
     pub tiebreak: TieBreak,
+    /// Whether a `Memory` organism reads its cell before or after eating.
+    /// See [`LookOrder`].
+    pub look_order: LookOrder,
 }
 
 impl Default for World {
@@ -188,6 +240,7 @@ impl Default for World {
             read_budget: 0,
             share: ShareProtocol::Sequential,
             tiebreak: TieBreak::Left,
+            look_order: LookOrder::LookThenEat,
         }
     }
 }
@@ -507,6 +560,7 @@ mod tests {
             read_budget: 0,
             share: Default::default(),
             tiebreak: TieBreak::Left,
+            look_order: LookOrder::LookThenEat,
         };
         let mut o = Organism::healthy(1.0).unwrap();
         let alive = o.step(&world, 0.0);
@@ -534,6 +588,7 @@ mod tests {
             read_budget: 0,
             share: Default::default(),
             tiebreak: TieBreak::Left,
+            look_order: LookOrder::LookThenEat,
         };
         let mut o = Organism::healthy(2.0).unwrap();
         assert!(o.step(&world, 0.0));
@@ -552,6 +607,7 @@ mod tests {
             read_budget: 0,
             share: Default::default(),
             tiebreak: TieBreak::Left,
+            look_order: LookOrder::LookThenEat,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         assert!(!o.step(&world, 0.0));
@@ -593,6 +649,7 @@ mod tests {
             read_budget: 0,
             share: Default::default(),
             tiebreak: TieBreak::Left,
+            look_order: LookOrder::LookThenEat,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 100.0);
