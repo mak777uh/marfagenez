@@ -1,0 +1,2876 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "repair-policy",
+  "run_id": "run-2026-11-15T22-49-36",
+  "model_commit": "f595fce",
+  "seed": 1,
+  "parameters": {
+    "damage_rate": [
+      0.001,
+      0.01,
+      0.1,
+      0.3
+    ],
+    "income": [
+      0.3,
+      1.0,
+      1.5
+    ],
+    "rho_fractions": [
+      0.5,
+      0.8,
+      0.9,
+      1.0,
+      1.15
+    ],
+    "abs_rhos_empty_window": [
+      0.1,
+      0.3,
+      0.5
+    ],
+    "repair_cost": "computed as rho * income / damage_rate",
+    "repairs": [
+      "none",
+      "all-or-nothing",
+      "proportional"
+    ],
+    "movement_policy": "stay",
+    "maintenance_cost": 0.6,
+    "capacity": 10.0,
+    "energy0": 5.0,
+    "cells": 8,
+    "regrow": 0.8,
+    "m_field": 2.0,
+    "move_cost": 0.0,
+    "read_budget": 0,
+    "t_cap": 20000,
+    "tol": 1e-12
+  },
+  "arithmetic": {
+    "rho": "damage_rate * repair_cost / income",
+    "surplus": "taken - maintenance_cost, taken = min(income, M*regrow) = min(income, 1.6)",
+    "horizon": "fixed T = 20000 steps for every point; a point recorded alive is alive at T, and where the arithmetic says the repair cycle is self-balancing this is a horizon-limited confirmation, not proof",
+    "none": "never repairs, damage reaches the cap at ceil(1/dr), so dead in every point with dr > 0; cause is the earlier clock: damage at ceil(1/dr) or energy at ceil(E0/(maint - taken)) when surplus < 0",
+    "all_or_nothing": "cadence condition: alive <=> ceil(1/dr) * surplus >= repair_cost <=> rho <= (1 - maint/income) * dr * ceil(1/dr) = upper_edge; above it, death by damage when surplus >= 0 and by energy when surplus < 0",
+    "proportional": "per-step condition: alive <=> surplus >= dr*repair_cost <=> rho <= 1 - maint/income = lower_edge; above it the reserve drains, it buys only part of the damage, spends everything and dies of energy",
+    "P1_none": "none alive in 0 of the 40 main points with dr > 0 and rc > 0",
+    "P2_all_or_nothing": "all-or-nothing alive in 32 of 40 main points (rho <= upper_edge)",
+    "P3_proportional": "proportional alive in 28 of 40 main points (rho <= lower_edge)",
+    "P4_window_differs": "lower_edge < rho <= upper_edge only at dr = 0.3, where dr*ceil(1/dr) = 1.2; exactly one of all-or-nothing and proportional lives in those 4 points (income 1.0 and 1.5, frac 0.9 and 1.0); for dr in 0.001, 0.01, 0.1 the two edges coincide and the strip is empty",
+    "P5_coincidence": "all-or-nothing and proportional are the same run iff rho <= lower_edge (28 of 40 main points): there the all-or-nothing rule repairs every step, which is what proportional does, at the same price",
+    "P6_free_repair": "repair_cost = 0 with dr > 0 is not 'nothing to repair': repair is free, none refuses it and dies of damage, the two repairing strategies live when surplus >= 0",
+    "P7_silent": "damage_rate = 0 -> nothing accumulates, the repair branch is never entered, all three strategies are the same run",
+    "boundary": "equality counts as alive (>=); FINDING-145 measured the cadence equality alive; the code compares price < energy, so the boundary is a floating-point question (core/src/organism.rs); TOL = 1e-12 relative"
+  },
+  "conditions": {
+    "none": {
+      "label": "repair=none",
+      "metrics": {
+        "alive_points": 4,
+        "alive_main_points": 0,
+        "points": 60,
+        "main_points": 40,
+        "reference_rho": 0.552,
+        "reference_lifetime": 4,
+        "reference_cause": "damage",
+        "reference_energy_acc": 17.4,
+        "coincident_points_with_all_or_nothing": null
+      },
+      "hash": "558bfd179f6aedf0"
+    },
+    "all-or-nothing": {
+      "label": "repair=all-or-nothing",
+      "metrics": {
+        "alive_points": 38,
+        "alive_main_points": 32,
+        "points": 60,
+        "main_points": 40,
+        "reference_rho": 0.552,
+        "reference_lifetime": 36,
+        "reference_cause": "damage",
+        "reference_energy_acc": 82.552,
+        "coincident_points_with_all_or_nothing": 28
+      },
+      "hash": "382150d88ce9b8c5"
+    },
+    "proportional": {
+      "label": "repair=proportional",
+      "metrics": {
+        "alive_points": 34,
+        "alive_main_points": 28,
+        "points": 60,
+        "main_points": 40,
+        "reference_rho": 0.552,
+        "reference_lifetime": 33,
+        "reference_cause": "energy",
+        "reference_energy_acc": 79.744,
+        "coincident_points_with_all_or_nothing": 28
+      },
+      "hash": "2e344a0d0abc07e9"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "54 of 60 points have strategies with a different lifetime, cause or accumulated energy; 6 points are identical across all three strategies (6 of them because nothing accumulates at damage_rate = 0)"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "6 points with damage_rate = 0 (repair_cost 0 and 1.5, income 0.3/1.0/1.5): in all of them the three strategies have the same lifetime, cause and accumulated energy"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "movement is `stay` in every arm and only `--repair` changes; predicted alive/cause mismatches 0/180 and 0; the set of points where all-or-nothing and proportional are the same run is exactly `rho <= lower_edge` (28 measured, 28 predicted, agree=True); the set where exactly one of them lives is exactly the predicted strip (4 measured, 4 predicted, agree=True); the reference point reproduces its dynamics hash on a repeat run: True"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "Strategies differ: 54 of 60 points show a different lifetime, cause or accumulated energy, and the difference comes from the repair rule alone (movement `stay`, same world, seed, field and horizon; only `--repair` changes). Alive counts on the 40 main points (dr > 0, rc > 0, income > maint): none 0, all-or-nothing 32, proportional 28 — predicted 0/32/28 with 0 alive/cause mismatches. The living window is not the same for the two repairing rules: all-or-nothing reaches the cadence edge upper_edge = (1 - maint/income) * dr * ceil(1/dr), proportional stops at the per-step edge lower_edge = 1 - maint/income; the two edges separate only at dr = 0.3 (1.2x apart), and exactly the 4 predicted strip points show all-or-nothing alive while proportional is dead of energy (e.g. dr = 0.3, income = 1.0, rho = 0.432: alive at 20000 vs 157 steps; rho = 0.48: alive at 20000 vs 63). Where rho <= lower_edge the two are the same run, measured in 28 of 28 predicted points. Above both edges all repairing strategies die and `none` dies in every point with dr > 0."
+  },
+  "hashes": {
+    "none": "558bfd179f6aedf0",
+    "all-or-nothing": "382150d88ce9b8c5",
+    "proportional": "2e344a0d0abc07e9"
+  },
+  "limitations": [
+    "the horizon is fixed at 20000 steps: a point recorded alive is alive at 20000, not proved immortal. The FINDING-145 per-point bound is not used because it bounds a dying point, not a self-balancing cycle — at dr = 0.3, rc = 1.44 it says 204 steps and the organism is alive after 200000.",
+    "one organism on a uniform field, no competition, no sharing, no memory; movement is `stay` in every arm, so the movement axis is not measured at all here. The difference measured is the difference between the three repair rules under that one movement policy.",
+    "the grid is 4 damage rates x 3 incomes x 5 rho fractions of the cadence edge: the strip where the two edges separate is one `dr` wide (dr = 0.3), so the measured difference between all-or-nothing and proportional rests on 4 points out of 40. That is the arithmetic of the model, not a chosen grid: for dr = 0.001/0.01/0.1, dr*ceil(1/dr) = 1 and the edges coincide.",
+    "equality at both edges counts as alive with a 1e-12 tolerance; the code compares `price < energy`, and core/src/organism.rs records that this boundary is a floating-point question, so a neighbouring point is needed to tell `>=` from `>`.",
+    "per-point table only as far as `points`: the numbers are lifetime, cause and accumulated energy per strategy, not the trajectories. Two arms declared the same run are compared on those three fields, not on a full trace hash at each point.",
+    "`proportional` in `core` is the repaired-amount rule with the charge clamped; it is not the older `worst`/`round`/`cheapest` of the FINDING-143 mock, so nothing here transfers to those rules or to segment damage."
+  ],
+  "command": "python3 checks/exp_repair_policy.py",
+  "created_at": "2026-11-15T22:49:36.650871+00:00",
+  "points": [
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 30.0,
+      "income": 0.3,
+      "rho": 0.1,
+      "lower_edge": -1.0,
+      "upper_edge": -1.0,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        },
+        "all-or-nothing": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 35.4
+        },
+        "proportional": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 35.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 90.0,
+      "income": 0.3,
+      "rho": 0.3,
+      "lower_edge": -1.0,
+      "upper_edge": -1.0,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        },
+        "all-or-nothing": {
+          "lifetime": 14,
+          "cause": "energy",
+          "energy_acc": 29.6
+        },
+        "proportional": {
+          "lifetime": 13,
+          "cause": "energy",
+          "energy_acc": 29.58
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 150.0,
+      "income": 0.3,
+      "rho": 0.5,
+      "lower_edge": -1.0,
+      "upper_edge": -1.0,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        },
+        "all-or-nothing": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        },
+        "proportional": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 200.0,
+      "income": 1.0,
+      "rho": 0.2,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 1000,
+          "cause": "damage",
+          "energy_acc": 9961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199940.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199940.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 320.00000000000006,
+      "income": 1.0,
+      "rho": 0.32,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 1000,
+          "cause": "damage",
+          "energy_acc": 9961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199846.24
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199846.24
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 360.00000000000006,
+      "income": 1.0,
+      "rho": 0.36,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 1000,
+          "cause": "damage",
+          "energy_acc": 9961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199690.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199690.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 400.0,
+      "income": 1.0,
+      "rho": 0.4,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "on the edge (lower_edge = upper_edge)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 1000,
+          "cause": "damage",
+          "energy_acc": 9961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 459.99999999999994,
+      "income": 1.0,
+      "rho": 0.46,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "above the upper edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 1000,
+          "cause": "damage",
+          "energy_acc": 9961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 1083,
+          "cause": "damage",
+          "energy_acc": 10076.32
+        },
+        "proportional": {
+          "lifetime": 84,
+          "cause": "energy",
+          "energy_acc": 205.84
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 450.00000000000006,
+      "income": 1.5,
+      "rho": 0.3,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 1000,
+          "cause": "damage",
+          "energy_acc": 9978.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199974.7
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199974.7
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 720.0000000000002,
+      "income": 1.5,
+      "rho": 0.48,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 1000,
+          "cause": "damage",
+          "energy_acc": 9978.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199933.04
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199933.04
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 810.0000000000002,
+      "income": 1.5,
+      "rho": 0.54,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 1000,
+          "cause": "damage",
+          "energy_acc": 9978.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199863.6
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199863.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 900.0000000000001,
+      "income": 1.5,
+      "rho": 0.6,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "on the edge (lower_edge = upper_edge)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 1000,
+          "cause": "damage",
+          "energy_acc": 9978.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.001,
+      "repair_cost": 1035.0000000000002,
+      "income": 1.5,
+      "rho": 0.69,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "above the upper edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 1000,
+          "cause": "damage",
+          "energy_acc": 9978.5
+        },
+        "all-or-nothing": {
+          "lifetime": 1037,
+          "cause": "damage",
+          "energy_acc": 10029.55
+        },
+        "proportional": {
+          "lifetime": 38,
+          "cause": "energy",
+          "energy_acc": 90.095
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 3.0,
+      "income": 0.3,
+      "rho": 0.1,
+      "lower_edge": -1.0,
+      "upper_edge": -1.0,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        },
+        "all-or-nothing": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 35.4
+        },
+        "proportional": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 35.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 9.0,
+      "income": 0.3,
+      "rho": 0.3,
+      "lower_edge": -1.0,
+      "upper_edge": -1.0,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        },
+        "all-or-nothing": {
+          "lifetime": 14,
+          "cause": "energy",
+          "energy_acc": 29.6
+        },
+        "proportional": {
+          "lifetime": 13,
+          "cause": "energy",
+          "energy_acc": 29.58
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 15.0,
+      "income": 0.3,
+      "rho": 0.5,
+      "lower_edge": -1.0,
+      "upper_edge": -1.0,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        },
+        "all-or-nothing": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        },
+        "proportional": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 20.0,
+      "income": 1.0,
+      "rho": 0.2,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199940.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199940.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 32.00000000000001,
+      "income": 1.0,
+      "rho": 0.32,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199846.24
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199846.24
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 36.0,
+      "income": 1.0,
+      "rho": 0.36,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199690.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199690.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 40.0,
+      "income": 1.0,
+      "rho": 0.4,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "on the edge (lower_edge = upper_edge)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 45.99999999999999,
+      "income": 1.0,
+      "rho": 0.46,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "above the upper edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 183,
+          "cause": "damage",
+          "energy_acc": 1076.32
+        },
+        "proportional": {
+          "lifetime": 84,
+          "cause": "energy",
+          "energy_acc": 205.84
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 45.00000000000001,
+      "income": 1.5,
+      "rho": 0.3,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 978.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199974.7
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199974.7
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 72.00000000000001,
+      "income": 1.5,
+      "rho": 0.48,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 978.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199933.04
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199933.04
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 81.00000000000003,
+      "income": 1.5,
+      "rho": 0.54,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 978.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199863.6
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199863.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 90.00000000000001,
+      "income": 1.5,
+      "rho": 0.6,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "on the edge (lower_edge = upper_edge)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 978.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 103.50000000000001,
+      "income": 1.5,
+      "rho": 0.69,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "above the upper edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 978.5
+        },
+        "all-or-nothing": {
+          "lifetime": 137,
+          "cause": "damage",
+          "energy_acc": 1029.55
+        },
+        "proportional": {
+          "lifetime": 38,
+          "cause": "energy",
+          "energy_acc": 90.095
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 0.3,
+      "income": 0.3,
+      "rho": 0.1,
+      "lower_edge": -1.0,
+      "upper_edge": -1.0,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 33.5
+        },
+        "all-or-nothing": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 35.4
+        },
+        "proportional": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 35.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 0.8999999999999999,
+      "income": 0.3,
+      "rho": 0.3,
+      "lower_edge": -1.0,
+      "upper_edge": -1.0,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 33.5
+        },
+        "all-or-nothing": {
+          "lifetime": 14,
+          "cause": "energy",
+          "energy_acc": 29.6
+        },
+        "proportional": {
+          "lifetime": 13,
+          "cause": "energy",
+          "energy_acc": 29.58
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 1.4999999999999998,
+      "income": 0.3,
+      "rho": 0.5,
+      "lower_edge": -1.0,
+      "upper_edge": -1.0,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 33.5
+        },
+        "all-or-nothing": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        },
+        "proportional": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 2.0000000000000004,
+      "income": 1.0,
+      "rho": 0.2,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 72.0
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199940.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199940.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 3.2000000000000006,
+      "income": 1.0,
+      "rho": 0.32,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 72.0
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199846.24
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199846.24
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 3.600000000000001,
+      "income": 1.0,
+      "rho": 0.36,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 72.0
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199690.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199690.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 4.000000000000001,
+      "income": 1.0,
+      "rho": 0.4,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "on the edge (lower_edge = upper_edge)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 72.0
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 4.6000000000000005,
+      "income": 1.0,
+      "rho": 0.46,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "above the upper edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 72.0
+        },
+        "all-or-nothing": {
+          "lifetime": 94,
+          "cause": "damage",
+          "energy_acc": 228.04
+        },
+        "proportional": {
+          "lifetime": 84,
+          "cause": "energy",
+          "energy_acc": 205.84
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 4.5,
+      "income": 1.5,
+      "rho": 0.3,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 88.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199974.7
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199974.7
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 7.200000000000002,
+      "income": 1.5,
+      "rho": 0.48,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 88.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199933.04
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199933.04
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 8.100000000000001,
+      "income": 1.5,
+      "rho": 0.54,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 88.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199863.6
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199863.6
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 9.0,
+      "income": 1.5,
+      "rho": 0.6,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "on the edge (lower_edge = upper_edge)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 88.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 100000.0
+        }
+      }
+    },
+    {
+      "damage_rate": 0.1,
+      "repair_cost": 10.350000000000001,
+      "income": 1.5,
+      "rho": 0.69,
+      "lower_edge": 0.6,
+      "upper_edge": 0.6,
+      "position": "above the upper edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 11,
+          "cause": "damage",
+          "energy_acc": 88.5
+        },
+        "all-or-nothing": {
+          "lifetime": 48,
+          "cause": "damage",
+          "energy_acc": 139.645
+        },
+        "proportional": {
+          "lifetime": 38,
+          "cause": "energy",
+          "energy_acc": 90.095
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 0.1,
+      "income": 0.3,
+      "rho": 0.1,
+      "lower_edge": -1.0,
+      "upper_edge": -1.2,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "all-or-nothing": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 35.4
+        },
+        "proportional": {
+          "lifetime": 16,
+          "cause": "energy",
+          "energy_acc": 35.4
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 0.3,
+      "income": 0.3,
+      "rho": 0.3,
+      "lower_edge": -1.0,
+      "upper_edge": -1.2,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "all-or-nothing": {
+          "lifetime": 14,
+          "cause": "energy",
+          "energy_acc": 29.6
+        },
+        "proportional": {
+          "lifetime": 13,
+          "cause": "energy",
+          "energy_acc": 29.58
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 0.5,
+      "income": 0.3,
+      "rho": 0.5,
+      "lower_edge": -1.0,
+      "upper_edge": -1.2,
+      "position": "window empty (income <= maintenance_cost)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 13.2
+        },
+        "all-or-nothing": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        },
+        "proportional": {
+          "lifetime": 12,
+          "cause": "energy",
+          "energy_acc": 25.3
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 0.8,
+      "income": 1.0,
+      "rho": 0.24,
+      "lower_edge": 0.4,
+      "upper_edge": 0.48,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199924.36
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199924.36
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.28,
+      "income": 1.0,
+      "rho": 0.384,
+      "lower_edge": 0.4,
+      "upper_edge": 0.48,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199221.248
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199221.248
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.44,
+      "income": 1.0,
+      "rho": 0.432,
+      "lower_edge": 0.4,
+      "upper_edge": 0.48,
+      "position": "inside the window (lower_edge < rho <= upper_edge)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": true,
+      "one_of_two_alive": true,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 6897.27999999
+        },
+        "proportional": {
+          "lifetime": 157,
+          "cause": "energy",
+          "energy_acc": 388.128
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.6,
+      "income": 1.0,
+      "rho": 0.48,
+      "lower_edge": 0.4,
+      "upper_edge": 0.48,
+      "position": "on the upper edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": true,
+      "one_of_two_alive": true,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 12914.079999979
+        },
+        "proportional": {
+          "lifetime": 63,
+          "cause": "energy",
+          "energy_acc": 153.76
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.8399999999999999,
+      "income": 1.0,
+      "rho": 0.552,
+      "lower_edge": 0.4,
+      "upper_edge": 0.48,
+      "position": "above the upper edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "all-or-nothing": {
+          "lifetime": 36,
+          "cause": "damage",
+          "energy_acc": 82.552
+        },
+        "proportional": {
+          "lifetime": 33,
+          "cause": "energy",
+          "energy_acc": 79.744
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 1.8000000000000003,
+      "income": 1.5,
+      "rho": 0.36,
+      "lower_edge": 0.6,
+      "upper_edge": 0.72,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199967.76
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199967.76
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 2.8800000000000003,
+      "income": 1.5,
+      "rho": 0.576,
+      "lower_edge": 0.6,
+      "upper_edge": 0.72,
+      "position": "below the lower edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": true,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199655.276
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199655.276
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 3.2400000000000007,
+      "income": 1.5,
+      "rho": 0.648,
+      "lower_edge": 0.6,
+      "upper_edge": 0.72,
+      "position": "inside the window (lower_edge < rho <= upper_edge)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": true,
+      "one_of_two_alive": true,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 15161.679999961
+        },
+        "proportional": {
+          "lifetime": 71,
+          "cause": "energy",
+          "energy_acc": 171.12
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 3.6000000000000005,
+      "income": 1.5,
+      "rho": 0.72,
+      "lower_edge": 0.6,
+      "upper_edge": 0.72,
+      "position": "on the upper edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": true,
+      "one_of_two_alive": true,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 29826.279999955
+        },
+        "proportional": {
+          "lifetime": 28,
+          "cause": "energy",
+          "energy_acc": 66.96
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 4.140000000000001,
+      "income": 1.5,
+      "rho": 0.828,
+      "lower_edge": 0.6,
+      "upper_edge": 0.72,
+      "position": "above the upper edge",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": false,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 20.4
+        },
+        "all-or-nothing": {
+          "lifetime": 18,
+          "cause": "damage",
+          "energy_acc": 40.126
+        },
+        "proportional": {
+          "lifetime": 15,
+          "cause": "energy",
+          "energy_acc": 34.09
+        }
+      }
+    },
+    {
+      "damage_rate": 0.01,
+      "repair_cost": 0.0,
+      "income": 1.0,
+      "rho": 0.0,
+      "lower_edge": 0.4,
+      "upper_edge": 0.4,
+      "position": "free repair (repair_cost = 0)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 100,
+          "cause": "damage",
+          "energy_acc": 961.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199971.2
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199971.2
+        }
+      }
+    },
+    {
+      "damage_rate": 0.3,
+      "repair_cost": 0.0,
+      "income": 1.0,
+      "rho": 0.0,
+      "lower_edge": 0.4,
+      "upper_edge": 0.48,
+      "position": "free repair (repair_cost = 0)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "damage"
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 4,
+          "cause": "damage",
+          "energy_acc": 17.4
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199971.2
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199971.2
+        }
+      }
+    },
+    {
+      "damage_rate": 0.0,
+      "repair_cost": 0.0,
+      "income": 0.3,
+      "rho": 0.0,
+      "lower_edge": -1.0,
+      "upper_edge": 0.0,
+      "position": "nothing to repair (damage_rate = 0)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        },
+        "all-or-nothing": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        },
+        "proportional": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        }
+      }
+    },
+    {
+      "damage_rate": 0.0,
+      "repair_cost": 0.0,
+      "income": 1.0,
+      "rho": 0.0,
+      "lower_edge": 0.4,
+      "upper_edge": 0.0,
+      "position": "nothing to repair (damage_rate = 0)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": true,
+          "cause": null
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199971.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199971.2
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199971.2
+        }
+      }
+    },
+    {
+      "damage_rate": 0.0,
+      "repair_cost": 0.0,
+      "income": 1.5,
+      "rho": 0.0,
+      "lower_edge": 0.6,
+      "upper_edge": 0.0,
+      "position": "nothing to repair (damage_rate = 0)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": true,
+          "cause": null
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199988.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199988.5
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199988.5
+        }
+      }
+    },
+    {
+      "damage_rate": 0.0,
+      "repair_cost": 1.5,
+      "income": 0.3,
+      "rho": 0.0,
+      "lower_edge": -1.0,
+      "upper_edge": 0.0,
+      "position": "nothing to repair (damage_rate = 0)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "all-or-nothing": {
+          "alive": false,
+          "cause": "energy"
+        },
+        "proportional": {
+          "alive": false,
+          "cause": "energy"
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        },
+        "all-or-nothing": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        },
+        "proportional": {
+          "lifetime": 17,
+          "cause": "energy",
+          "energy_acc": 39.2
+        }
+      }
+    },
+    {
+      "damage_rate": 0.0,
+      "repair_cost": 1.5,
+      "income": 1.0,
+      "rho": 0.0,
+      "lower_edge": 0.4,
+      "upper_edge": 0.0,
+      "position": "nothing to repair (damage_rate = 0)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": true,
+          "cause": null
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199971.2
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199971.2
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199971.2
+        }
+      }
+    },
+    {
+      "damage_rate": 0.0,
+      "repair_cost": 1.5,
+      "income": 1.5,
+      "rho": 0.0,
+      "lower_edge": 0.6,
+      "upper_edge": 0.0,
+      "position": "nothing to repair (damage_rate = 0)",
+      "t": 20000,
+      "predicted": {
+        "none": {
+          "alive": true,
+          "cause": null
+        },
+        "all-or-nothing": {
+          "alive": true,
+          "cause": null
+        },
+        "proportional": {
+          "alive": true,
+          "cause": null
+        }
+      },
+      "predicted_coincident": false,
+      "predicted_one_of_two_alive": false,
+      "one_of_two_alive": false,
+      "measured_coincident": true,
+      "arms": {
+        "none": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199988.5
+        },
+        "all-or-nothing": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199988.5
+        },
+        "proportional": {
+          "lifetime": 20000,
+          "cause": "alive",
+          "energy_acc": 199988.5
+        }
+      }
+    }
+  ],
+  "measurement": {
+    "main_points": 40,
+    "silent_points": 6,
+    "free_repair_points": 2,
+    "alive_points_total": {
+      "none": 4,
+      "all-or-nothing": 38,
+      "proportional": 34
+    },
+    "alive_main_points": {
+      "none": 0,
+      "all-or-nothing": 32,
+      "proportional": 28
+    },
+    "predicted_main_alive": {
+      "none": 0,
+      "all-or-nothing": 32,
+      "proportional": 28
+    },
+    "strip_points_measured": 4,
+    "strip_points_predicted": 4,
+    "coincident_points_measured": 28,
+    "coincident_points_predicted": 28,
+    "alive_mismatches": 0,
+    "cause_mismatches": 0,
+    "deterministic_reference": true,
+    "max_finite_lifetime": 1083
+  }
+}

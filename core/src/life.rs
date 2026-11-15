@@ -40,7 +40,7 @@
 
 use crate::field::Field;
 use crate::memory::Remembering;
-use crate::organism::{LookOrder, Organism, ShareProtocol, World};
+use crate::organism::{LookOrder, Organism, RepairPolicy, ShareProtocol, World};
 
 /// How an organism decides where to go.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -298,7 +298,22 @@ impl Life {
     }
 
     /// Advances every living organism by one step.
+    ///
+    /// This is [`advance_with`](Self::advance_with) under
+    /// [`RepairPolicy::AllOrNothing`], which is what every recorded run used,
+    /// so the numbers and hashes of those runs do not move.
     pub fn advance(&mut self) -> Option<()> {
+        self.advance_with(RepairPolicy::AllOrNothing)
+    }
+
+    /// Advances every living organism by one step under an explicit repair
+    /// strategy.
+    ///
+    /// The strategy is a parameter rather than a field for the same reason it
+    /// is one in [`Organism::step_with`]: a run that does not ask the question
+    /// cannot change its answer by accident. Movement, eating, the field and
+    /// the step order are untouched -- only step 5 (`repair`) reads `repair`.
+    pub fn advance_with(&mut self, repair: RepairPolicy) -> Option<()> {
         let cells = self.field.cells();
         if self.feed {
             self.field.regrow_all();
@@ -634,8 +649,8 @@ impl Life {
                 }
             }
 
-            // 5. Live.
-            r.organism.step(&self.world, taken);
+            // 5. Live, under the strategy the caller named.
+            r.organism.step_with(&self.world, taken, repair);
 
             // 6. Death is handled inside `step`; nothing to do here.
         }

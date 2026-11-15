@@ -22,10 +22,11 @@
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::organism::{ShareProtocol, World};
+use medium_core::organism::{RepairPolicy, ShareProtocol, World};
 
 struct Args {
     policy: Policy,
+    repair: RepairPolicy,
     cells: usize,
     n: usize,
     start_cell: usize,
@@ -48,6 +49,7 @@ impl Default for Args {
     fn default() -> Self {
         Self {
             policy: Policy::Stay,
+            repair: RepairPolicy::AllOrNothing,
             cells: 8,
             n: 1,
             start_cell: 0,
@@ -103,6 +105,18 @@ fn main() {
                     Some("sighted") => Policy::Sighted,
                     other => {
                         eprintln!("unknown policy: {:?}", other);
+                        std::process::exit(2);
+                    }
+                };
+            }
+            "--repair" => {
+                i += 1;
+                a.repair = match argv.get(i).map(|s| s.as_str()) {
+                    Some("none") => RepairPolicy::None,
+                    Some("all-or-nothing") | Some("all") => RepairPolicy::AllOrNothing,
+                    Some("proportional") => RepairPolicy::Proportional,
+                    other => {
+                        eprintln!("unknown repair policy: {:?}", other);
                         std::process::exit(2);
                     }
                 };
@@ -179,7 +193,7 @@ fn main() {
                 };
             }
             "--help" | "-h" => {
-                println!("usage: rho_probe [--policy P] [--cells C] [--n N] [--start-cell K]");
+                println!("usage: rho_probe [--policy P] [--repair R] [--cells C] [--n N] [--start-cell K]");
                 println!("                 [--steps S] [--seed Z] [--m M] [--regrow R]");
                 println!("                 [--income I] [--maintenance T] [--repair-cost RC]");
                 println!("                 [--damage-rate DR] [--move-cost MC] [--energy E0]");
@@ -250,7 +264,7 @@ fn main() {
     let moves: u64;
 
     for _ in 0..a.steps {
-        if life.advance().is_none() {
+        if life.advance_with(a.repair).is_none() {
             break;
         }
         let s = life.samples();
@@ -295,11 +309,12 @@ fn main() {
     };
 
     println!(
-        "{{\"policy\":\"{}\",\"lifetime\":{},\"alive_steps\":{},\"cause\":\"{}\",\
+        "{{\"policy\":\"{}\",\"repair\":\"{}\",\"lifetime\":{},\"alive_steps\":{},\"cause\":\"{}\",\
          \"energy_acc\":{:.12},\"energy_end\":{:.12},\"damage_end\":{:.12},\
          \"taken_mean\":{:.12},\"moves\":{},\"steps_requested\":{},\
          \"alive_end\":{},\"total\":{},\"hash\":\"{:016x}\"}}",
         life.policy_name(),
+        a.repair.name(),
         lifetime,
         alive_steps,
         cause,
