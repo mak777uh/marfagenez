@@ -113,6 +113,12 @@ do_exp() {
   # отбрасывался целиком: провал второй проверки был невидим, и прогон с
   # вердиктом `failed` печатал «ВСЁ ЗЕЛЁНОЕ».
   local rc=0
+  echo "--- cli_refuses_bad_numbers.sh ---"
+  # Бинарник `trace` должен быть собран: скрипт гоняет
+  # core/target/release/trace. Его собирает do_test, который в `all`
+  # идёт раньше; в `run.sh exp` отдельно -- сначала cargo build.
+  bash checks/cli_refuses_bad_numbers.sh || rc=$?
+  echo
   echo "--- stub_covers_bridge.py ---"
   python3 checks/stub_covers_bridge.py || rc=$?
   echo

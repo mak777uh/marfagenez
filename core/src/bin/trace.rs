@@ -21,6 +21,32 @@ use medium_core::life::{Life, Policy};
 use medium_core::organism::{ShareProtocol, World};
 use medium_core::trace::record;
 
+/// Parses the value that follows `--flag`, refusing to fall back to a default.
+///
+/// `args.get(i).and_then(|s| s.parse().ok()).unwrap_or(default)` turns a typo
+/// into a silently different experiment: `--steps 50O` (letter O) runs the
+/// default 500 steps and the trace says nothing about it. The default is only
+/// for a flag that was not given at all; a flag that was given and cannot be
+/// parsed is an error.
+fn number<T: std::str::FromStr>(args: &[String], i: usize, flag: &str) -> T {
+    match args.get(i) {
+        None => {
+            eprintln!("refusing to run: {} needs a value", flag);
+            std::process::exit(2);
+        }
+        Some(raw) => match raw.parse::<T>() {
+            Ok(v) => v,
+            Err(_) => {
+                eprintln!(
+                    "refusing to run: {} {:?} is not a number.\n             Leave the flag out to get the default.",
+                    flag, raw
+                );
+                std::process::exit(2);
+            }
+        },
+    }
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
     let mut policy = Policy::Remember;
@@ -82,51 +108,51 @@ fn main() {
             }
             "--steps" => {
                 i += 1;
-                steps = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(steps);
+                steps = number::<usize>(&args, i, "--steps");
             }
             "--every" => {
                 i += 1;
-                every = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(every);
+                every = number::<usize>(&args, i, "--every");
             }
             "--seed" => {
                 i += 1;
-                seed = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(seed);
+                seed = number::<u64>(&args, i, "--seed");
             }
             "--n" => {
                 i += 1;
-                n = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(n);
+                n = number::<usize>(&args, i, "--n");
             }
             "--cells" => {
                 i += 1;
-                cells = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(cells);
+                cells = number::<usize>(&args, i, "--cells");
             }
             "--capacity" => {
                 i += 1;
-                capacity = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(capacity);
+                capacity = number::<f64>(&args, i, "--capacity");
             }
             "--damage-rate" => {
                 i += 1;
-                damage_rate = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(damage_rate);
+                damage_rate = number::<f64>(&args, i, "--damage-rate");
             }
             "--income" => {
                 i += 1;
-                income = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(income);
+                income = number::<f64>(&args, i, "--income");
             }
             "--maintenance" => {
                 i += 1;
-                maintenance = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(maintenance);
+                maintenance = number::<f64>(&args, i, "--maintenance");
             }
             "--repair-cost" => {
                 i += 1;
-                repair_cost = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(repair_cost);
+                repair_cost = number::<f64>(&args, i, "--repair-cost");
             }
             "--move-cost" => {
                 i += 1;
-                move_cost = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(move_cost);
+                move_cost = number::<f64>(&args, i, "--move-cost");
             }
             "--energy" => {
                 i += 1;
-                energy = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(energy);
+                energy = number::<f64>(&args, i, "--energy");
             }
             "--field" => {
                 i += 1;
@@ -134,20 +160,20 @@ fn main() {
             }
             "--memory-life" => {
                 i += 1;
-                memory_life = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(memory_life);
+                memory_life = number::<usize>(&args, i, "--memory-life");
             }
             "--shift" => {
                 i += 1;
-                shift = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(shift);
+                shift = number::<f64>(&args, i, "--shift");
             }
             "--rich" => {
                 i += 1;
-                rich = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(rich);
+                rich = number::<f64>(&args, i, "--rich");
                 rich_set = true;
             }
             "--poor" => {
                 i += 1;
-                poor = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(poor);
+                poor = number::<f64>(&args, i, "--poor");
                 poor_set = true;
             }
             "--feed" => {
@@ -208,11 +234,11 @@ fn main() {
             }
             "--read-budget" => {
                 i += 1;
-                read_budget = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(read_budget);
+                read_budget = number::<usize>(&args, i, "--read-budget");
             }
             "--regrow" => {
                 i += 1;
-                regrow = args.get(i).and_then(|s| s.parse().ok()).unwrap_or(regrow);
+                regrow = number::<f64>(&args, i, "--regrow");
             }
             "--help" | "-h" => {
                 println!("usage: trace [--policy stay|random|remember|memory|sighted] [--steps N] [--every K] [--seed S] [--n N] [--cells C]");
