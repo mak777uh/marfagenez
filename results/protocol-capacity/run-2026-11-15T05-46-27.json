@@ -1,0 +1,2417 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "protocol-capacity",
+  "run_id": "run-2026-11-15T05-46-27",
+  "model_commit": "8df3588",
+  "seed": 1,
+  "parameters": {
+    "cells": 20,
+    "steps": 1500,
+    "policy": "stay",
+    "field": "uniform",
+    "layout": "even",
+    "capacity": 1000
+  },
+  "arithmetic": {
+    "supply": "S = M * r — what a cell offers per step at the fixed point",
+    "sequential": "eaters in slot order take min(income, left); the supply pays floor(S/t) of them in full and the next gets the remainder, so the population saturates at cells*k_seq and does not grow with n",
+    "proportional": "eaters split ONE income: taken = income / k, so the crowd is limited by the demand side, k_prop = floor(income/m)",
+    "survival": "an organism survives iff income / k >= m — non-strict: measured `taken == m` keeps energy at its starting 10.0",
+    "why_different": "S/t is about the field, income/m is about the organism — they are different quantities and predict different capacities",
+    "cliff": "proportional falls off a cliff at n = cells*k_prop: everyone on a cell shares equally, so all live or all die together",
+    "boundary": "M*r >= income — below it the cell supplies less than one eater asks and k_seq = 0 by construction. Every row here is at or above the boundary; the boundary itself is stated, not crossed",
+    "sequential_reference": "the control compares the measured arm against cells*(floor(S/t) + [S - floor(S/t)*t >= m]) computed by `reference_k_seq`, written separately from `k_sequential` so the two can disagree; a disagreement turns `silent` red",
+    "probes": "probe_floor_div and probe_k_prop ran before the ladder and passed: floor_div(0.6, 0.1) == 6 and k_proportional(0.6, 0.1) == 6, not the 5 that `0.6 // 0.1` gives. A failure here refuses the run with exit 2 instead of writing a file",
+    "boundary_values": [
+      {
+        "M": 2.0,
+        "r": 0.8,
+        "income": 0.6,
+        "maintenance": 0.1,
+        "S": 1.6,
+        "above": true
+      },
+      {
+        "M": 2.0,
+        "r": 0.8,
+        "income": 1.0,
+        "maintenance": 0.1,
+        "S": 1.6,
+        "above": true
+      },
+      {
+        "M": 2.0,
+        "r": 0.8,
+        "income": 0.6,
+        "maintenance": 0.5,
+        "S": 1.6,
+        "above": true
+      },
+      {
+        "M": 2.0,
+        "r": 0.85,
+        "income": 0.6,
+        "maintenance": 0.5,
+        "S": 1.7,
+        "above": true
+      },
+      {
+        "M": 2.0,
+        "r": 0.875,
+        "income": 0.6,
+        "maintenance": 0.55,
+        "S": 1.75,
+        "above": true
+      },
+      {
+        "M": 2.0,
+        "r": 0.825,
+        "income": 0.6,
+        "maintenance": 0.5,
+        "S": 1.65,
+        "above": true
+      }
+    ],
+    "k_prop_is_not_income_over_m_floor": "floor(income/m) is the integer law, but the float floor gives 5 for 0.6/0.1 and the run gives 6: the sixth eater takes the 0.1 left on the cell. `floor_div` carries a relative epsilon"
+  },
+  "conditions": {
+    "seq0": {
+      "label": "seq M=2.0 t=0.6 m=0.1 n=30",
+      "metrics": {
+        "_case": 0,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 6,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 120,
+        "n": 30,
+        "k_per_cell": 1.5,
+        "share_per_organism": 0.4,
+        "seq_predicted": 30,
+        "prop_predicted": 30,
+        "seq_alive": 30,
+        "prop_alive": 30,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 2,
+        "seq_hash": "5b47b9f8df25ee9f",
+        "prop_hash": "1eadf3eb0201cd47",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.3,
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "5b47b9f8df25ee9f"
+    },
+    "prop0": {
+      "label": "prop M=2.0 t=0.6 m=0.1 n=30",
+      "metrics": {
+        "_case": 0,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 6,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 120,
+        "n": 30,
+        "k_per_cell": 1.5,
+        "share_per_organism": 0.4,
+        "seq_predicted": 30,
+        "prop_predicted": 30,
+        "seq_alive": 30,
+        "prop_alive": 30,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 2,
+        "seq_hash": "5b47b9f8df25ee9f",
+        "prop_hash": "1eadf3eb0201cd47",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.3,
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "1eadf3eb0201cd47"
+    },
+    "seq1": {
+      "label": "seq M=2.0 t=0.6 m=0.1 n=60",
+      "metrics": {
+        "_case": 0,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 6,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 120,
+        "n": 60,
+        "k_per_cell": 3.0,
+        "share_per_organism": 0.2,
+        "seq_predicted": 60,
+        "prop_predicted": 60,
+        "seq_alive": 60,
+        "prop_alive": 60,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 3,
+        "seq_hash": "26d3ec7e058be370",
+        "prop_hash": "58bdf167c0e8c2f8",
+        "seq_taken": [
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.2
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "26d3ec7e058be370"
+    },
+    "prop1": {
+      "label": "prop M=2.0 t=0.6 m=0.1 n=60",
+      "metrics": {
+        "_case": 0,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 6,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 120,
+        "n": 60,
+        "k_per_cell": 3.0,
+        "share_per_organism": 0.2,
+        "seq_predicted": 60,
+        "prop_predicted": 60,
+        "seq_alive": 60,
+        "prop_alive": 60,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 3,
+        "seq_hash": "26d3ec7e058be370",
+        "prop_hash": "58bdf167c0e8c2f8",
+        "seq_taken": [
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.2
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "58bdf167c0e8c2f8"
+    },
+    "seq2": {
+      "label": "seq M=2.0 t=0.6 m=0.1 n=120",
+      "metrics": {
+        "_case": 0,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 6,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 120,
+        "n": 120,
+        "k_per_cell": 6.0,
+        "share_per_organism": 0.1,
+        "seq_predicted": 60,
+        "prop_predicted": 120,
+        "seq_alive": 60,
+        "prop_alive": 120,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 6,
+        "seq_hash": "714dc1cf4b6dbb1c",
+        "prop_hash": "3339e9914c8e632c",
+        "seq_taken": [
+          0.0,
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.1
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "714dc1cf4b6dbb1c"
+    },
+    "prop2": {
+      "label": "prop M=2.0 t=0.6 m=0.1 n=120",
+      "metrics": {
+        "_case": 0,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 6,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 120,
+        "n": 120,
+        "k_per_cell": 6.0,
+        "share_per_organism": 0.1,
+        "seq_predicted": 60,
+        "prop_predicted": 120,
+        "seq_alive": 60,
+        "prop_alive": 120,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 6,
+        "seq_hash": "714dc1cf4b6dbb1c",
+        "prop_hash": "3339e9914c8e632c",
+        "seq_taken": [
+          0.0,
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.1
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "3339e9914c8e632c"
+    },
+    "seq3": {
+      "label": "seq M=2.0 t=0.6 m=0.1 n=140",
+      "metrics": {
+        "_case": 0,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 6,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 120,
+        "n": 140,
+        "k_per_cell": 7.0,
+        "share_per_organism": 0.085714,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "5ce2481611d0c940",
+        "prop_hash": "2fd98165418a5fd0",
+        "seq_taken": [
+          0.0,
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.085714
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "5ce2481611d0c940"
+    },
+    "prop3": {
+      "label": "prop M=2.0 t=0.6 m=0.1 n=140",
+      "metrics": {
+        "_case": 0,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 6,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 120,
+        "n": 140,
+        "k_per_cell": 7.0,
+        "share_per_organism": 0.085714,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "5ce2481611d0c940",
+        "prop_hash": "2fd98165418a5fd0",
+        "seq_taken": [
+          0.0,
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.085714
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "2fd98165418a5fd0"
+    },
+    "seq4": {
+      "label": "seq M=2.0 t=0.6 m=0.1 n=160",
+      "metrics": {
+        "_case": 0,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 6,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 120,
+        "n": 160,
+        "k_per_cell": 8.0,
+        "share_per_organism": 0.075,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "d5561efa6dc6d834",
+        "prop_hash": "e232f45553af2860",
+        "seq_taken": [
+          0.0,
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.075
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "d5561efa6dc6d834"
+    },
+    "prop4": {
+      "label": "prop M=2.0 t=0.6 m=0.1 n=160",
+      "metrics": {
+        "_case": 0,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 6,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 120,
+        "n": 160,
+        "k_per_cell": 8.0,
+        "share_per_organism": 0.075,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "d5561efa6dc6d834",
+        "prop_hash": "e232f45553af2860",
+        "seq_taken": [
+          0.0,
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.075
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "e232f45553af2860"
+    },
+    "seq5": {
+      "label": "seq M=2.0 t=1.0 m=0.1 n=20",
+      "metrics": {
+        "_case": 1,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 1.0,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 10,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 200,
+        "n": 20,
+        "k_per_cell": 1.0,
+        "share_per_organism": 1.0,
+        "seq_predicted": 20,
+        "prop_predicted": 20,
+        "seq_alive": 20,
+        "prop_alive": 20,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "31e6b1b8b4a77f18",
+        "prop_hash": "3c203be66536eabc",
+        "seq_taken": [
+          1.0
+        ],
+        "prop_taken": [
+          1.0
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "31e6b1b8b4a77f18"
+    },
+    "prop5": {
+      "label": "prop M=2.0 t=1.0 m=0.1 n=20",
+      "metrics": {
+        "_case": 1,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 1.0,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 10,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 200,
+        "n": 20,
+        "k_per_cell": 1.0,
+        "share_per_organism": 1.0,
+        "seq_predicted": 20,
+        "prop_predicted": 20,
+        "seq_alive": 20,
+        "prop_alive": 20,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "31e6b1b8b4a77f18",
+        "prop_hash": "3c203be66536eabc",
+        "seq_taken": [
+          1.0
+        ],
+        "prop_taken": [
+          1.0
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "3c203be66536eabc"
+    },
+    "seq6": {
+      "label": "seq M=2.0 t=1.0 m=0.1 n=40",
+      "metrics": {
+        "_case": 1,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 1.0,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 10,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 200,
+        "n": 40,
+        "k_per_cell": 2.0,
+        "share_per_organism": 0.5,
+        "seq_predicted": 40,
+        "prop_predicted": 40,
+        "seq_alive": 40,
+        "prop_alive": 40,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 2,
+        "seq_hash": "e5f9884094e63800",
+        "prop_hash": "8ad113d286185ea8",
+        "seq_taken": [
+          0.6,
+          1.0
+        ],
+        "prop_taken": [
+          0.5
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "e5f9884094e63800"
+    },
+    "prop6": {
+      "label": "prop M=2.0 t=1.0 m=0.1 n=40",
+      "metrics": {
+        "_case": 1,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 1.0,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 10,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 200,
+        "n": 40,
+        "k_per_cell": 2.0,
+        "share_per_organism": 0.5,
+        "seq_predicted": 40,
+        "prop_predicted": 40,
+        "seq_alive": 40,
+        "prop_alive": 40,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 2,
+        "seq_hash": "e5f9884094e63800",
+        "prop_hash": "8ad113d286185ea8",
+        "seq_taken": [
+          0.6,
+          1.0
+        ],
+        "prop_taken": [
+          0.5
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "8ad113d286185ea8"
+    },
+    "seq7": {
+      "label": "seq M=2.0 t=1.0 m=0.1 n=200",
+      "metrics": {
+        "_case": 1,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 1.0,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 10,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 200,
+        "n": 200,
+        "k_per_cell": 10.0,
+        "share_per_organism": 0.1,
+        "seq_predicted": 40,
+        "prop_predicted": 200,
+        "seq_alive": 40,
+        "prop_alive": 200,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 10,
+        "seq_hash": "ffab8d24955b66a0",
+        "prop_hash": "578cf3b899bc0160",
+        "seq_taken": [
+          0.0,
+          0.6,
+          1.0
+        ],
+        "prop_taken": [
+          0.1
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "ffab8d24955b66a0"
+    },
+    "prop7": {
+      "label": "prop M=2.0 t=1.0 m=0.1 n=200",
+      "metrics": {
+        "_case": 1,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 1.0,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 10,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 200,
+        "n": 200,
+        "k_per_cell": 10.0,
+        "share_per_organism": 0.1,
+        "seq_predicted": 40,
+        "prop_predicted": 200,
+        "seq_alive": 40,
+        "prop_alive": 200,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 10,
+        "seq_hash": "ffab8d24955b66a0",
+        "prop_hash": "578cf3b899bc0160",
+        "seq_taken": [
+          0.0,
+          0.6,
+          1.0
+        ],
+        "prop_taken": [
+          0.1
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "578cf3b899bc0160"
+    },
+    "seq8": {
+      "label": "seq M=2.0 t=1.0 m=0.1 n=220",
+      "metrics": {
+        "_case": 1,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 1.0,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 10,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 200,
+        "n": 220,
+        "k_per_cell": 11.0,
+        "share_per_organism": 0.090909,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "02ad79c357aead94",
+        "prop_hash": "3e5d36b029ed7ce4",
+        "seq_taken": [
+          0.0,
+          0.6,
+          1.0
+        ],
+        "prop_taken": [
+          0.090909
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "02ad79c357aead94"
+    },
+    "prop8": {
+      "label": "prop M=2.0 t=1.0 m=0.1 n=220",
+      "metrics": {
+        "_case": 1,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 1.0,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 10,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 200,
+        "n": 220,
+        "k_per_cell": 11.0,
+        "share_per_organism": 0.090909,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "02ad79c357aead94",
+        "prop_hash": "3e5d36b029ed7ce4",
+        "seq_taken": [
+          0.0,
+          0.6,
+          1.0
+        ],
+        "prop_taken": [
+          0.090909
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "3e5d36b029ed7ce4"
+    },
+    "seq9": {
+      "label": "seq M=2.0 t=1.0 m=0.1 n=240",
+      "metrics": {
+        "_case": 1,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 1.0,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 10,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 200,
+        "n": 240,
+        "k_per_cell": 12.0,
+        "share_per_organism": 0.083333,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "8abeaee25b5c8758",
+        "prop_hash": "67cb1806cc8a6bb8",
+        "seq_taken": [
+          0.0,
+          0.6,
+          1.0
+        ],
+        "prop_taken": [
+          0.083333
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "8abeaee25b5c8758"
+    },
+    "prop9": {
+      "label": "prop M=2.0 t=1.0 m=0.1 n=240",
+      "metrics": {
+        "_case": 1,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 1.0,
+        "m": 0.1,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 10,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 200,
+        "n": 240,
+        "k_per_cell": 12.0,
+        "share_per_organism": 0.083333,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "8abeaee25b5c8758",
+        "prop_hash": "67cb1806cc8a6bb8",
+        "seq_taken": [
+          0.0,
+          0.6,
+          1.0
+        ],
+        "prop_taken": [
+          0.083333
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "67cb1806cc8a6bb8"
+    },
+    "seq10": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=10",
+      "metrics": {
+        "_case": 2,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 10,
+        "k_per_cell": 0.5,
+        "share_per_organism": 1.2,
+        "seq_predicted": 10,
+        "prop_predicted": 10,
+        "seq_alive": 10,
+        "prop_alive": 10,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "2aad708133522c23",
+        "prop_hash": "a3eea25c7fe32d47",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "2aad708133522c23"
+    },
+    "prop10": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=10",
+      "metrics": {
+        "_case": 2,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 10,
+        "k_per_cell": 0.5,
+        "share_per_organism": 1.2,
+        "seq_predicted": 10,
+        "prop_predicted": 10,
+        "seq_alive": 10,
+        "prop_alive": 10,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "2aad708133522c23",
+        "prop_hash": "a3eea25c7fe32d47",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "a3eea25c7fe32d47"
+    },
+    "seq11": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=20",
+      "metrics": {
+        "_case": 2,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 20,
+        "k_per_cell": 1.0,
+        "share_per_organism": 0.6,
+        "seq_predicted": 20,
+        "prop_predicted": 20,
+        "seq_alive": 20,
+        "prop_alive": 20,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "53722cfadc696410",
+        "prop_hash": "7537aced8131b664",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "53722cfadc696410"
+    },
+    "prop11": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=20",
+      "metrics": {
+        "_case": 2,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 20,
+        "k_per_cell": 1.0,
+        "share_per_organism": 0.6,
+        "seq_predicted": 20,
+        "prop_predicted": 20,
+        "seq_alive": 20,
+        "prop_alive": 20,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "53722cfadc696410",
+        "prop_hash": "7537aced8131b664",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "7537aced8131b664"
+    },
+    "seq12": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=40",
+      "metrics": {
+        "_case": 2,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 40,
+        "k_per_cell": 2.0,
+        "share_per_organism": 0.3,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "ab781edda7c9d4f4",
+        "prop_hash": "03d4146cae0dac00",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.3
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "ab781edda7c9d4f4"
+    },
+    "prop12": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=40",
+      "metrics": {
+        "_case": 2,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 40,
+        "k_per_cell": 2.0,
+        "share_per_organism": 0.3,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "ab781edda7c9d4f4",
+        "prop_hash": "03d4146cae0dac00",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.3
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "03d4146cae0dac00"
+    },
+    "seq13": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=60",
+      "metrics": {
+        "_case": 2,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 60,
+        "k_per_cell": 3.0,
+        "share_per_organism": 0.2,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "2af1d0d5d0824a14",
+        "prop_hash": "1857f572e25d9834",
+        "seq_taken": [
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.2
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "2af1d0d5d0824a14"
+    },
+    "prop13": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=60",
+      "metrics": {
+        "_case": 2,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 60,
+        "k_per_cell": 3.0,
+        "share_per_organism": 0.2,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "2af1d0d5d0824a14",
+        "prop_hash": "1857f572e25d9834",
+        "seq_taken": [
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.2
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "1857f572e25d9834"
+    },
+    "seq14": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=80",
+      "metrics": {
+        "_case": 2,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 80,
+        "k_per_cell": 4.0,
+        "share_per_organism": 0.15,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "dbb5e9163dc68bd8",
+        "prop_hash": "385917778f310820",
+        "seq_taken": [
+          0.0,
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.15
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "dbb5e9163dc68bd8"
+    },
+    "prop14": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=80",
+      "metrics": {
+        "_case": 2,
+        "M": 2.0,
+        "r": 0.8,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.6,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 80,
+        "k_per_cell": 4.0,
+        "share_per_organism": 0.15,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "dbb5e9163dc68bd8",
+        "prop_hash": "385917778f310820",
+        "seq_taken": [
+          0.0,
+          0.4,
+          0.6
+        ],
+        "prop_taken": [
+          0.15
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "385917778f310820"
+    },
+    "seq15": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=10",
+      "metrics": {
+        "_case": 3,
+        "M": 2.0,
+        "r": 0.85,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.7,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 10,
+        "k_per_cell": 0.5,
+        "share_per_organism": 1.2,
+        "seq_predicted": 10,
+        "prop_predicted": 10,
+        "seq_alive": 10,
+        "prop_alive": 10,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "60e1a14e97c9adbb",
+        "prop_hash": "0a4bb2cf5e7102ef",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "60e1a14e97c9adbb"
+    },
+    "prop15": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=10",
+      "metrics": {
+        "_case": 3,
+        "M": 2.0,
+        "r": 0.85,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.7,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 10,
+        "k_per_cell": 0.5,
+        "share_per_organism": 1.2,
+        "seq_predicted": 10,
+        "prop_predicted": 10,
+        "seq_alive": 10,
+        "prop_alive": 10,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "60e1a14e97c9adbb",
+        "prop_hash": "0a4bb2cf5e7102ef",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "0a4bb2cf5e7102ef"
+    },
+    "seq16": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=20",
+      "metrics": {
+        "_case": 3,
+        "M": 2.0,
+        "r": 0.85,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.7,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 20,
+        "k_per_cell": 1.0,
+        "share_per_organism": 0.6,
+        "seq_predicted": 20,
+        "prop_predicted": 20,
+        "seq_alive": 20,
+        "prop_alive": 20,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "31c7093db4e62da0",
+        "prop_hash": "f23ad70000819714",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "31c7093db4e62da0"
+    },
+    "prop16": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=20",
+      "metrics": {
+        "_case": 3,
+        "M": 2.0,
+        "r": 0.85,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.7,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 20,
+        "k_per_cell": 1.0,
+        "share_per_organism": 0.6,
+        "seq_predicted": 20,
+        "prop_predicted": 20,
+        "seq_alive": 20,
+        "prop_alive": 20,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "31c7093db4e62da0",
+        "prop_hash": "f23ad70000819714",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "f23ad70000819714"
+    },
+    "seq17": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=60",
+      "metrics": {
+        "_case": 3,
+        "M": 2.0,
+        "r": 0.85,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.7,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 60,
+        "k_per_cell": 3.0,
+        "share_per_organism": 0.2,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "5ccad14579fc2658",
+        "prop_hash": "1857f572e25d9834",
+        "seq_taken": [
+          0.5,
+          0.6
+        ],
+        "prop_taken": [
+          0.2
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "5ccad14579fc2658"
+    },
+    "prop17": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=60",
+      "metrics": {
+        "_case": 3,
+        "M": 2.0,
+        "r": 0.85,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.7,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 60,
+        "k_per_cell": 3.0,
+        "share_per_organism": 0.2,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "5ccad14579fc2658",
+        "prop_hash": "1857f572e25d9834",
+        "seq_taken": [
+          0.5,
+          0.6
+        ],
+        "prop_taken": [
+          0.2
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "1857f572e25d9834"
+    },
+    "seq18": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=80",
+      "metrics": {
+        "_case": 3,
+        "M": 2.0,
+        "r": 0.85,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.7,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 80,
+        "k_per_cell": 4.0,
+        "share_per_organism": 0.15,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "59928ae16e297d1c",
+        "prop_hash": "385917778f310820",
+        "seq_taken": [
+          0.0,
+          0.5,
+          0.6
+        ],
+        "prop_taken": [
+          0.15
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "59928ae16e297d1c"
+    },
+    "prop18": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=80",
+      "metrics": {
+        "_case": 3,
+        "M": 2.0,
+        "r": 0.85,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.7,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 80,
+        "k_per_cell": 4.0,
+        "share_per_organism": 0.15,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "59928ae16e297d1c",
+        "prop_hash": "385917778f310820",
+        "seq_taken": [
+          0.0,
+          0.5,
+          0.6
+        ],
+        "prop_taken": [
+          0.15
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "385917778f310820"
+    },
+    "seq19": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=100",
+      "metrics": {
+        "_case": 3,
+        "M": 2.0,
+        "r": 0.85,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.7,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 100,
+        "k_per_cell": 5.0,
+        "share_per_organism": 0.12,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "22f8419938ff2b40",
+        "prop_hash": "21b5bde565d79084",
+        "seq_taken": [
+          0.0,
+          0.5,
+          0.6
+        ],
+        "prop_taken": [
+          0.12
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "22f8419938ff2b40"
+    },
+    "prop19": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=100",
+      "metrics": {
+        "_case": 3,
+        "M": 2.0,
+        "r": 0.85,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.7,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 100,
+        "k_per_cell": 5.0,
+        "share_per_organism": 0.12,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "22f8419938ff2b40",
+        "prop_hash": "21b5bde565d79084",
+        "seq_taken": [
+          0.0,
+          0.5,
+          0.6
+        ],
+        "prop_taken": [
+          0.12
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "21b5bde565d79084"
+    },
+    "seq20": {
+      "label": "seq M=2.0 t=0.6 m=0.55 n=10",
+      "metrics": {
+        "_case": 4,
+        "M": 2.0,
+        "r": 0.875,
+        "t": 0.6,
+        "m": 0.55,
+        "S": 1.75,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 10,
+        "k_per_cell": 0.5,
+        "share_per_organism": 1.2,
+        "seq_predicted": 10,
+        "prop_predicted": 10,
+        "seq_alive": 10,
+        "prop_alive": 10,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "8dd6b25829f1d18d",
+        "prop_hash": "a23ec75f5be9b749",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "8dd6b25829f1d18d"
+    },
+    "prop20": {
+      "label": "prop M=2.0 t=0.6 m=0.55 n=10",
+      "metrics": {
+        "_case": 4,
+        "M": 2.0,
+        "r": 0.875,
+        "t": 0.6,
+        "m": 0.55,
+        "S": 1.75,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 10,
+        "k_per_cell": 0.5,
+        "share_per_organism": 1.2,
+        "seq_predicted": 10,
+        "prop_predicted": 10,
+        "seq_alive": 10,
+        "prop_alive": 10,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "8dd6b25829f1d18d",
+        "prop_hash": "a23ec75f5be9b749",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "a23ec75f5be9b749"
+    },
+    "seq21": {
+      "label": "seq M=2.0 t=0.6 m=0.55 n=20",
+      "metrics": {
+        "_case": 4,
+        "M": 2.0,
+        "r": 0.875,
+        "t": 0.6,
+        "m": 0.55,
+        "S": 1.75,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 20,
+        "k_per_cell": 1.0,
+        "share_per_organism": 0.6,
+        "seq_predicted": 20,
+        "prop_predicted": 20,
+        "seq_alive": 20,
+        "prop_alive": 20,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "e014b234a72c7d18",
+        "prop_hash": "e4181cd625bd98bc",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "e014b234a72c7d18"
+    },
+    "prop21": {
+      "label": "prop M=2.0 t=0.6 m=0.55 n=20",
+      "metrics": {
+        "_case": 4,
+        "M": 2.0,
+        "r": 0.875,
+        "t": 0.6,
+        "m": 0.55,
+        "S": 1.75,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 20,
+        "k_per_cell": 1.0,
+        "share_per_organism": 0.6,
+        "seq_predicted": 20,
+        "prop_predicted": 20,
+        "seq_alive": 20,
+        "prop_alive": 20,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "e014b234a72c7d18",
+        "prop_hash": "e4181cd625bd98bc",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "e4181cd625bd98bc"
+    },
+    "seq22": {
+      "label": "seq M=2.0 t=0.6 m=0.55 n=60",
+      "metrics": {
+        "_case": 4,
+        "M": 2.0,
+        "r": 0.875,
+        "t": 0.6,
+        "m": 0.55,
+        "S": 1.75,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 60,
+        "k_per_cell": 3.0,
+        "share_per_organism": 0.2,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "c6d1417073f5c450",
+        "prop_hash": "1857f572e25d9834",
+        "seq_taken": [
+          0.55,
+          0.6
+        ],
+        "prop_taken": [
+          0.2
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "c6d1417073f5c450"
+    },
+    "prop22": {
+      "label": "prop M=2.0 t=0.6 m=0.55 n=60",
+      "metrics": {
+        "_case": 4,
+        "M": 2.0,
+        "r": 0.875,
+        "t": 0.6,
+        "m": 0.55,
+        "S": 1.75,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 60,
+        "k_per_cell": 3.0,
+        "share_per_organism": 0.2,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "c6d1417073f5c450",
+        "prop_hash": "1857f572e25d9834",
+        "seq_taken": [
+          0.55,
+          0.6
+        ],
+        "prop_taken": [
+          0.2
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "1857f572e25d9834"
+    },
+    "seq23": {
+      "label": "seq M=2.0 t=0.6 m=0.55 n=80",
+      "metrics": {
+        "_case": 4,
+        "M": 2.0,
+        "r": 0.875,
+        "t": 0.6,
+        "m": 0.55,
+        "S": 1.75,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 80,
+        "k_per_cell": 4.0,
+        "share_per_organism": 0.15,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "4753003daec45b94",
+        "prop_hash": "385917778f310820",
+        "seq_taken": [
+          0.0,
+          0.55,
+          0.6
+        ],
+        "prop_taken": [
+          0.15
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "4753003daec45b94"
+    },
+    "prop23": {
+      "label": "prop M=2.0 t=0.6 m=0.55 n=80",
+      "metrics": {
+        "_case": 4,
+        "M": 2.0,
+        "r": 0.875,
+        "t": 0.6,
+        "m": 0.55,
+        "S": 1.75,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 80,
+        "k_per_cell": 4.0,
+        "share_per_organism": 0.15,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "4753003daec45b94",
+        "prop_hash": "385917778f310820",
+        "seq_taken": [
+          0.0,
+          0.55,
+          0.6
+        ],
+        "prop_taken": [
+          0.15
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "385917778f310820"
+    },
+    "seq24": {
+      "label": "seq M=2.0 t=0.6 m=0.55 n=100",
+      "metrics": {
+        "_case": 4,
+        "M": 2.0,
+        "r": 0.875,
+        "t": 0.6,
+        "m": 0.55,
+        "S": 1.75,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 100,
+        "k_per_cell": 5.0,
+        "share_per_organism": 0.12,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "580d0359dfc29558",
+        "prop_hash": "21b5bde565d79084",
+        "seq_taken": [
+          0.0,
+          0.55,
+          0.6
+        ],
+        "prop_taken": [
+          0.12
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "580d0359dfc29558"
+    },
+    "prop24": {
+      "label": "prop M=2.0 t=0.6 m=0.55 n=100",
+      "metrics": {
+        "_case": 4,
+        "M": 2.0,
+        "r": 0.875,
+        "t": 0.6,
+        "m": 0.55,
+        "S": 1.75,
+        "cells": 20,
+        "k_seq": 3,
+        "k_prop": 1,
+        "threshold_seq_n": 60,
+        "threshold_prop_n": 20,
+        "n": 100,
+        "k_per_cell": 5.0,
+        "share_per_organism": 0.12,
+        "seq_predicted": 60,
+        "prop_predicted": 0,
+        "seq_alive": 60,
+        "prop_alive": 0,
+        "seq_per_cell_max": 3,
+        "prop_per_cell_max": 0,
+        "seq_hash": "580d0359dfc29558",
+        "prop_hash": "21b5bde565d79084",
+        "seq_taken": [
+          0.0,
+          0.55,
+          0.6
+        ],
+        "prop_taken": [
+          0.12
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "21b5bde565d79084"
+    },
+    "seq25": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=10",
+      "metrics": {
+        "_case": 5,
+        "M": 2.0,
+        "r": 0.825,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.65,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 10,
+        "k_per_cell": 0.5,
+        "share_per_organism": 1.2,
+        "seq_predicted": 10,
+        "prop_predicted": 10,
+        "seq_alive": 10,
+        "prop_alive": 10,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "dbdb74799269e79b",
+        "prop_hash": "bad8e9b031829dcf",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "dbdb74799269e79b"
+    },
+    "prop25": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=10",
+      "metrics": {
+        "_case": 5,
+        "M": 2.0,
+        "r": 0.825,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.65,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 10,
+        "k_per_cell": 0.5,
+        "share_per_organism": 1.2,
+        "seq_predicted": 10,
+        "prop_predicted": 10,
+        "seq_alive": 10,
+        "prop_alive": 10,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "dbdb74799269e79b",
+        "prop_hash": "bad8e9b031829dcf",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "bad8e9b031829dcf"
+    },
+    "seq26": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=20",
+      "metrics": {
+        "_case": 5,
+        "M": 2.0,
+        "r": 0.825,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.65,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 20,
+        "k_per_cell": 1.0,
+        "share_per_organism": 0.6,
+        "seq_predicted": 20,
+        "prop_predicted": 20,
+        "seq_alive": 20,
+        "prop_alive": 20,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "6aae6e898ee9c9e0",
+        "prop_hash": "332f38135c275d54",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "6aae6e898ee9c9e0"
+    },
+    "prop26": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=20",
+      "metrics": {
+        "_case": 5,
+        "M": 2.0,
+        "r": 0.825,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.65,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 20,
+        "k_per_cell": 1.0,
+        "share_per_organism": 0.6,
+        "seq_predicted": 20,
+        "prop_predicted": 20,
+        "seq_alive": 20,
+        "prop_alive": 20,
+        "seq_per_cell_max": 1,
+        "prop_per_cell_max": 1,
+        "seq_hash": "6aae6e898ee9c9e0",
+        "prop_hash": "332f38135c275d54",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.6
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "332f38135c275d54"
+    },
+    "seq27": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=40",
+      "metrics": {
+        "_case": 5,
+        "M": 2.0,
+        "r": 0.825,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.65,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 40,
+        "k_per_cell": 2.0,
+        "share_per_organism": 0.3,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "87103d85f5a27ec4",
+        "prop_hash": "03d4146cae0dac00",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.3
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "87103d85f5a27ec4"
+    },
+    "prop27": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=40",
+      "metrics": {
+        "_case": 5,
+        "M": 2.0,
+        "r": 0.825,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.65,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 40,
+        "k_per_cell": 2.0,
+        "share_per_organism": 0.3,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "87103d85f5a27ec4",
+        "prop_hash": "03d4146cae0dac00",
+        "seq_taken": [
+          0.6
+        ],
+        "prop_taken": [
+          0.3
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "03d4146cae0dac00"
+    },
+    "seq28": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=60",
+      "metrics": {
+        "_case": 5,
+        "M": 2.0,
+        "r": 0.825,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.65,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 60,
+        "k_per_cell": 3.0,
+        "share_per_organism": 0.2,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "bd340581e0268624",
+        "prop_hash": "1857f572e25d9834",
+        "seq_taken": [
+          0.45,
+          0.6
+        ],
+        "prop_taken": [
+          0.2
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "bd340581e0268624"
+    },
+    "prop28": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=60",
+      "metrics": {
+        "_case": 5,
+        "M": 2.0,
+        "r": 0.825,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.65,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 60,
+        "k_per_cell": 3.0,
+        "share_per_organism": 0.2,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "bd340581e0268624",
+        "prop_hash": "1857f572e25d9834",
+        "seq_taken": [
+          0.45,
+          0.6
+        ],
+        "prop_taken": [
+          0.2
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "1857f572e25d9834"
+    },
+    "seq29": {
+      "label": "seq M=2.0 t=0.6 m=0.5 n=80",
+      "metrics": {
+        "_case": 5,
+        "M": 2.0,
+        "r": 0.825,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.65,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 80,
+        "k_per_cell": 4.0,
+        "share_per_organism": 0.15,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "70cd9e89f4efe6e8",
+        "prop_hash": "385917778f310820",
+        "seq_taken": [
+          0.0,
+          0.45,
+          0.6
+        ],
+        "prop_taken": [
+          0.15
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "70cd9e89f4efe6e8"
+    },
+    "prop29": {
+      "label": "prop M=2.0 t=0.6 m=0.5 n=80",
+      "metrics": {
+        "_case": 5,
+        "M": 2.0,
+        "r": 0.825,
+        "t": 0.6,
+        "m": 0.5,
+        "S": 1.65,
+        "cells": 20,
+        "k_seq": 2,
+        "k_prop": 1,
+        "threshold_seq_n": 40,
+        "threshold_prop_n": 20,
+        "n": 80,
+        "k_per_cell": 4.0,
+        "share_per_organism": 0.15,
+        "seq_predicted": 40,
+        "prop_predicted": 0,
+        "seq_alive": 40,
+        "prop_alive": 0,
+        "seq_per_cell_max": 2,
+        "prop_per_cell_max": 0,
+        "seq_hash": "70cd9e89f4efe6e8",
+        "prop_hash": "385917778f310820",
+        "seq_taken": [
+          0.0,
+          0.45,
+          0.6
+        ],
+        "prop_taken": [
+          0.15
+        ],
+        "seq_ok": true,
+        "prop_ok": true
+      },
+      "hash": "385917778f310820"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "the sequential population saturates at the capacity the arithmetic predicted: on the 14 rungs above it, it holds exactly that capacity and does not grow with n. The reference is `reference_k_seq`, written separately from `k_sequential`. All three injected defects are caught: an arm that tracks n, a capacity off by one cell-load in either direction, and a capacity that ignores the field size. This shows the arm saturates where predicted; it does not prove the prediction, which `silent` checks against the same rows"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "30/30 rungs match their own formula exactly (seq: min(n, cells*k_seq) with k_seq = floor(S/t) + [rem >= m]; prop: n if income/k >= m else 0), and the ladder goes above both thresholds (14 rungs above the sequential capacity, 16 above the proportional one), so neither control is silent by having nothing to see"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "the protocols are limited by different things: sequential leaves 14 rungs with a partially-fed population (the field caps it), proportional leaves 0 -- it splits evenly, so it dies all at once (the organism caps it); the injected gradual death of the proportional arm is caught"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the two protocols are limited by different quantities: sequential by the cell's supply, cells*(floor(M*r/income) + [remainder >= maintenance]); proportional by the organism's demand, cells*floor(income/maintenance). The proportional protocol holds more organisms because it rations each one down to maintenance. The saturation control is checked against a reference that does not use k_seq, and it rejects k_seq off by one in either direction"
+  },
+  "hashes": {
+    "seq0": "5b47b9f8df25ee9f",
+    "prop0": "1eadf3eb0201cd47",
+    "seq1": "26d3ec7e058be370",
+    "prop1": "58bdf167c0e8c2f8",
+    "seq2": "714dc1cf4b6dbb1c",
+    "prop2": "3339e9914c8e632c",
+    "seq3": "5ce2481611d0c940",
+    "prop3": "2fd98165418a5fd0",
+    "seq4": "d5561efa6dc6d834",
+    "prop4": "e232f45553af2860",
+    "seq5": "31e6b1b8b4a77f18",
+    "prop5": "3c203be66536eabc",
+    "seq6": "e5f9884094e63800",
+    "prop6": "8ad113d286185ea8",
+    "seq7": "ffab8d24955b66a0",
+    "prop7": "578cf3b899bc0160",
+    "seq8": "02ad79c357aead94",
+    "prop8": "3e5d36b029ed7ce4",
+    "seq9": "8abeaee25b5c8758",
+    "prop9": "67cb1806cc8a6bb8",
+    "seq10": "2aad708133522c23",
+    "prop10": "a3eea25c7fe32d47",
+    "seq11": "53722cfadc696410",
+    "prop11": "7537aced8131b664",
+    "seq12": "ab781edda7c9d4f4",
+    "prop12": "03d4146cae0dac00",
+    "seq13": "2af1d0d5d0824a14",
+    "prop13": "1857f572e25d9834",
+    "seq14": "dbb5e9163dc68bd8",
+    "prop14": "385917778f310820",
+    "seq15": "60e1a14e97c9adbb",
+    "prop15": "0a4bb2cf5e7102ef",
+    "seq16": "31c7093db4e62da0",
+    "prop16": "f23ad70000819714",
+    "seq17": "5ccad14579fc2658",
+    "prop17": "1857f572e25d9834",
+    "seq18": "59928ae16e297d1c",
+    "prop18": "385917778f310820",
+    "seq19": "22f8419938ff2b40",
+    "prop19": "21b5bde565d79084",
+    "seq20": "8dd6b25829f1d18d",
+    "prop20": "a23ec75f5be9b749",
+    "seq21": "e014b234a72c7d18",
+    "prop21": "e4181cd625bd98bc",
+    "seq22": "c6d1417073f5c450",
+    "prop22": "1857f572e25d9834",
+    "seq23": "4753003daec45b94",
+    "prop23": "385917778f310820",
+    "seq24": "580d0359dfc29558",
+    "prop24": "21b5bde565d79084",
+    "seq25": "dbdb74799269e79b",
+    "prop25": "bad8e9b031829dcf",
+    "seq26": "6aae6e898ee9c9e0",
+    "prop26": "332f38135c275d54",
+    "seq27": "87103d85f5a27ec4",
+    "prop27": "03d4146cae0dac00",
+    "seq28": "bd340581e0268624",
+    "prop28": "1857f572e25d9834",
+    "seq29": "70cd9e89f4efe6e8",
+    "prop29": "385917778f310820"
+  },
+  "limitations": [
+    "One seed. Reproducibility across seeds is not checked here.",
+    "The capacity is a BOUND, not a measurement: nothing in the model reproduces, so the crowd is whatever n we impose. The ladder shows where survival stops, not where a population would settle.",
+    "One policy (`stay`) and a uniform field. Movement is what makes `proportional` interesting — the share depends on who has already eaten — and this run does not exercise it.",
+    "The boundary `M*r >= income` is stated, not crossed: every row has S >= t, and the script refuses any case below it rather than running it. Below the boundary the cell supplies less than one eater asks for and k_seq = 0 by construction, so a row there would measure the refusal, not the protocol. What happens below the boundary is NOT shown by this run.",
+    "The formulas are read off `Life::advance`. The first version of this experiment got them wrong three times — the budget is `income` not S, survival is non-strict, and the remainder eater counts. Each was caught by a run. The code is the authority, not the comment.",
+    "A difference in limiting quantity is a property of this update order, not a claim that one protocol is better. Nothing here says which sharing rule an organism SHOULD have.",
+    "`reference_k_seq` is a mutation gate, not a second opinion. Two spellings of the same arithmetic (closed form vs subtract-loop) agree on all 6600 rows tried, with a worst leftover gap of 1.1e-12 against `REL_EPS = 1e-9`, so a restatement cannot disagree with the law and stays green when the law is mutated (measured: M7 green). The gate catches the reference losing the remainder eater (M9 red) and the law and the reference losing it together (M10 red), because the arm is measured and disagrees with both. A second formula is not a second experiment.",
+    "The proportional arm's dynamics hash does not carry `n` above its cliff: all-dead is all-dead, so those arms are one run by construction and are declared in `expected_coincident` (4 groups, 8 of 60 arms). The declaration is by collision set, which is what the contract compares; `specific` is what still separates an all-dead arm from a partially-fed one.",
+    "`k_prop = floor(income/m)` is an integer law read off the code, and the float floor of `0.6/0.1` is 5 while the run gives 6. The epsilon in `floor_div` is a tolerance on float division, not a physical constant: a case whose `income/m` sits within `REL_EPS` of an integer is decided by the tolerance, not by the model."
+  ],
+  "command": "python3 checks/exp99_protocol_capacity.py",
+  "created_at": "2026-11-15T05:46:27.482788+00:00",
+  "expected_coincident": [
+    [
+      "prop12",
+      "prop27"
+    ],
+    [
+      "prop13",
+      "prop17",
+      "prop22",
+      "prop28"
+    ],
+    [
+      "prop14",
+      "prop18",
+      "prop23",
+      "prop29"
+    ],
+    [
+      "prop19",
+      "prop24"
+    ]
+  ]
+}
