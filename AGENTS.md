@@ -6,7 +6,8 @@
 
 Что исследуем — [`GOAL.md`](GOAL.md). Как работать — [`PROTOCOL.md`](PROTOCOL.md).
 Как работать одному — [`AUTONOMY.md`](AUTONOMY.md). Чего мы не утверждаем —
-[`NOT-CLAIMED.md`](NOT-CLAIMED.md).
+[`NOT-CLAIMED.md`](NOT-CLAIMED.md). Что спросить у владельца —
+[`docs/QUESTIONS.md`](docs/QUESTIONS.md).
 
 Кто проверяет:
 
@@ -18,6 +19,7 @@
 | §4 четыре исхода | `checks/result.py` — `verdict` из четырёх, не из двух |
 | §5 запись | `checks/result.py` — `save()` пишет `results/<id>/<run_id>.json` |
 | §6 ограничения | `checks/result.py` — отказывает без `limitations` |
+| §7 очередь вопросов | `docs/QUESTIONS.md` — вопрос не задаётся в пустоту, а копится (`AUTONOMY.md` §1.1c) |
 
 Запуск всего: `wsl -e bash /root/marfagenez/run.sh all`.
 
