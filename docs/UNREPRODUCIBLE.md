@@ -15,7 +15,7 @@
 | где | формула |
 |---|---|
 | `docs/LAW-capacity.md:92` | `k_max(t) = max(⌊M·r/t⌋, ⌊(M·r − m − bill)/t⌋ + 1)` |
-| `checks/capacity_law.py:15` | `jmax = ⌊(M·r − m)/t⌋ + 1` |
+| `checks/capacity_law.py:13` | `jmax_mean_field = ⌊(M·r − m)/t⌋ + 1` |
 
 **В чём расхождение.** `capacity_law.py` молча выбрасывает `bill` —
 энергию починки повреждений (`damage_rate · repair_cost`). Второй файл
@@ -75,7 +75,8 @@ mean-field-версии — что ёмкость **растёт** с число
 **Что делать.** Не «исправлять» один файл под другой: это два разных
 вопроса, и оба нужны. Нужно:
 
-1. переименовать `jmax` → `jmax_mean_field` и `capacity()` →
+1. ~~переименовать `jmax` → `jmax_mean_field`~~ **сделано 2026-11-15**;
+   осталось `capacity()` →
    `capacity_mean_field`, чтобы имя говорило, какое из двух это;
 2. в `LAW-capacity.md` назвать свою формулу `k_max_all_survive`;
 3. в `capacity_law.py` вывести рядом обе и печатать обе в свипе.

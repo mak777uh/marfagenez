@@ -6,7 +6,7 @@
 
 and `checks/capacity_law.py` computes a mean-field capacity
 
-    jmax = floor((M*r - m)/t) + 1
+    jmax_mean_field = floor((M*r - m)/t) + 1
 
 Two different numbers under the same name, in one repository, neither citing
 the other. `docs/UNREPRODUCIBLE.md` records which is which; this script
@@ -63,7 +63,7 @@ DOC = ROOT / "docs" / "UNREPRODUCIBLE.md"
 # `capacity_law.py` prints its sweep at import time. Importing it silently is
 # the difference between a check and a wall of output nobody reads twice.
 with contextlib.redirect_stdout(io.StringIO()):
-    from capacity_law import capacity, jmax  # noqa: E402
+    from capacity_law import capacity, jmax_mean_field  # noqa: E402
 
 #: `docs/LAW-capacity.md` uses damage_rate=0.02, repair_cost=1.5.
 BILL = 0.02 * 1.5
@@ -116,7 +116,7 @@ def find_disagreement() -> list[tuple[float, float, float, int, int]]:
         t = 1.0
         m = 0.6
         wc = k_max_worst(M, r, t, m)
-        jm = jmax(M, r, t, m)
+        jm = jmax_mean_field(M, r, t, m)
         if wc != jm:
             hits.append((M, r, t, wc, jm))
     return hits

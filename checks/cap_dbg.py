@@ -9,12 +9,12 @@ def pmf(n, cells, k):
     lc = math.lgamma(n + 1) - math.lgamma(k + 1) - math.lgamma(n - k + 1)
     return math.exp(lc + k * math.log(p) + (n - k) * math.log1p(-p))
 
-def jmax(M, r, t=1.0, maint=0.6):
+def jmax_mean_field(M, r, t=1.0, maint=0.6):
     y = r * M
     return 0 if y < maint else int(math.floor((y - maint) / t)) + 1
 
 def alive(n, cells, M, r):
-    j = jmax(M, r)
+    j = jmax_mean_field(M, r)
     s, cum = 0.0, 0.0
     for k in range(0, min(n, j) + 1):
         pk = pmf(n, cells, k)
