@@ -123,7 +123,6 @@ wsl -e bash /root/marfagenez/run.sh exp
 **Каждый отчёт содержит «что это не доказывает».**
 
 
-
 ```bash
 cd marfagenez
 git add -A
