@@ -161,6 +161,16 @@ $$\text{время ответа} \approx \left(\frac{B}{\sigma}\right)^2$$
 | 6 законов согласованы | `checks/consistency.py` | 6/6 |
 | наклон подтверждён | `checks/tilt.py` | 3/3 |
 
+26 — это сумма строк выше, и она же число проверок, которые видны
+глазами. Гейтов в `run.sh all` больше: `reach.py --strict`,
+`cli_refuses_bad_numbers.sh`, `stub_covers_bridge.py`, `stub_links.sh`,
+`contract.py`, `exp05_frozen.py`, `exp99_protocol_capacity.py`,
+`log_check.py`, `capacity_two_answers.py`, `budget_model.py`,
+`corrected_model.py`, `room_model.py`, `dispatcher.py`. Таблица
+перечисляет те, у которых есть счётчик «сколько из скольких», а не все
+запускаемые проверки — иначе число в подписи пришлось бы менять при
+каждом новом гейте.
+
 ## Не проверено
 
 - **На детях.** Модель математическая.
@@ -188,4 +198,14 @@ $$\text{время ответа} \approx \left(\frac{B}{\sigma}\right)^2$$
 
 ---
 
-*МАРФАГЕНЕЗ++ · 39 заметок · 317 теорем · 210 тестов · 19 проверок*
+*МАРФАГЕНЕЗ++ · 141 заметка · 317 теорем · 210 тестов · 26 проверок*
+
+Числа пересчитаны 2026-11-15, каждое — одной командой:
+`ls docs/FINDING-*.md docs/SYNTHESIS-*.md | wc -l`;
+`grep -rhc '^theorem\|^lemma' laws --include='*.lean' | paste -sd+ | bc`;
+`grep -rc '#\[test\]' --include='*.rs' . | awk -F: '{s+=$2} END {print s}'`;
+проверки — сумма строк таблицы «Проверено»: 10 + 7 + 6 + 3.
+
+317 теорем лежат в 63 `.lean`-файлах из 66: `laws/Medium.lean`,
+`laws/Legacy.lean` и `laws/Legacy/FFI.lean` — импорты, теорем в них нет.
+Считать надо файлы с теоремами, иначе число не сходится ни с чем.

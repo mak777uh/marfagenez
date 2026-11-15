@@ -5,14 +5,28 @@
 
   The organisms in this model do not sit on one cell and eat it down. With
   `sighted` and a non-zero read budget they move to a cell they have not eaten
-  and take a full `income` there. A mover's cycle is therefore:
+  and take a full `income` there. A mover's cycle is therefore — the real order,
+  `core/src/organism.rs:302-346`:
 
-    1. take:    energy <- min(energy + income, E_max)
-    2. maintain: energy <- energy - maintenance
-    3. repair:   energy <- energy - damage_rate * repair_cost
+    1. take:       energy <- energy + min(resource, income)
+    2. maintain:   energy <- energy - maintenance
+    3. damage:     damage <- min(damage + damage_rate, 1)
+    4. repair:     if price < energy then energy -= price; damage <- 0
+                   where price = damage * repair_cost  (all or nothing)
+    5. cap:        energy <- clamp(energy, 0, E_max)
+    6. death:      if energy <= 0 or damage >= 1 then dead
 
-  Step 1 is truncated at the cap, so an organism at the cap gains nothing from
-  the take and loses `maintenance + damage_rate * repair_cost` per step. The
+  **The cap is last, and that matters.** An earlier version of this header put
+  the cap on the take (`energy <- min(energy + income, E_max)`) and listed only
+  three steps. Under that order capacity decides survival; under the real order
+  it does not, because the cap only limits what is *held* after every payment
+  has already been made. This is exactly the error that produced the false
+  counterexample `capacity < maintenance_cost` — see `PLAN-NEXT.md` §3 B2. The
+  header now matches the code, so the next reader cannot re-derive the wrong
+  one from it.
+
+  An organism at the cap gains nothing from the take (the cap truncates what is
+  left over) and loses `maintenance + damage_rate * repair_cost` per step. The
   next take refills it to the cap again. The cycle nets
 
       income - maintenance - damage_rate * repair_cost

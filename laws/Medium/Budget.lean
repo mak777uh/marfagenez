@@ -2,7 +2,8 @@ import Mathlib
 import Medium.Shape
 
 /-!
-  The budget law: a fixed total, divided fairly, is also the most generous.
+  The budget law: a fixed total, divided fairly, is also the most generous —
+  but only while the child does not grow.
 
   `Medium/Shape.lean` showed that a per-trait budget beats an overall one. But a real
   room cannot give every trait its own wall — walls cost space. The total is fixed.
@@ -10,7 +11,25 @@ import Medium.Shape
   So the question becomes: given a fixed total `T`, how should it be divided among
   `d` traits?
 
-  ## The measurement
+  ## The static law: what is proved below
+
+  The spread of a trait is proportional to its half-width: `B_k/√3`. So the total
+  spread is proportional to `Σ B_k²`. For a fixed sum `Σ B_k = T`, the sum of squares
+  is **minimised** by equal division and **maximised** by concentration — this is the
+  Cauchy-Schwarz inequality.
+
+      Σ B_k² ≥ T² / d,   with equality iff all B_k = T/d
+
+  So a fair division is not merely just. It keeps the total spread as small as the
+  budget allows, and any concentration inflates it.
+
+  **Read the direction carefully.** `T = 12`, `d = 4`: equal `3,3,3,3` gives
+  `Σ B² = 36 = T²/d` — the *minimum*. `12,0,0,0` gives `144` — the *maximum*.
+  Equal division is the most *just* allocation; it is not the one with the largest
+  `Σ B²`. (An earlier version of this header said the opposite. The theorem was
+  right; the prose above it was not.)
+
+  ## The measurement: what happens when the child grows
 
   Total budget `T = 12`, growth `μ = 0.05`, noise `σ = 0.4`, four traits:
 
@@ -23,20 +42,16 @@ import Medium.Shape
   [VERIFIED: `python3 checks/budget_model.py`, `N = 20 000`, 25 000 steps, seed 5001;
   total spread is `sqrt(Σ_k var_k / d)`, the reading `OutsideReading::spread` takes]
 
-  Equal allocation gives the largest total spread. Concentrating the budget on one
-  trait wastes the rest.
+  Under growth the order **reverses**: equal allocation gives the largest total
+  spread, concentration the smallest. The static inequality still holds — `Σ B²` is
+  still minimised by equal division — but the measured spread is no longer
+  proportional to `Σ B²`. The exponential tilt breaks the proportionality: a wide
+  trait under growth presses against its wall and loses range, while a narrow trait
+  keeps proportionally more.
 
-  ## Why
-
-  The spread of a trait is proportional to its half-width: `B_k/√3`. So the total
-  spread is proportional to `Σ B_k²`. For a fixed sum `Σ B_k = T`, the sum of squares
-  is **minimised** by equal division and **maximised** by concentration — this is the
-  Cauchy-Schwarz inequality.
-
-      Σ B_k² ≥ T² / d,   with equality iff all B_k = T/d
-
-  So a fair division is not merely just. It keeps the total spread as small as the
-  budget allows, and any concentration inflates it.
+  So the budget law is **conditional**, and this file proves only the static half.
+  The growth half is measured, not proved; see `budget_law_holds_without_growth`
+  and `FINDING-budget.md`.
 
   ## The optimum number of traits
 
