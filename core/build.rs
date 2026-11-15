@@ -275,23 +275,36 @@ void lean_finalize_thread(void) {}
     let c_file = out_dir.join("stub.c");
     std::fs::write(&c_file, stub).expect("write stub");
 
+    // A build script that ignores the exit codes of `gcc` and `ar` writes no
+    // archive, prints the link directives anyway, and the failure surfaces later
+    // as `could not find native static library ffi` -- which names the symptom
+    // and not the cause. `checks/stub_links.sh` covers the linking itself; this
+    // covers the reason.
     let obj = out_dir.join("stub.o");
     let gcc_out = Command::new("gcc")
         .args(["-c", "-O2", "-fPIC"])
         .arg(&c_file)
         .arg("-o")
         .arg(&obj)
-        .output();
+        .output()
+        .expect("run gcc for the stub");
+    assert!(
+        gcc_out.status.success(),
+        "gcc failed to compile the stub:\n{}",
+        String::from_utf8_lossy(&gcc_out.stderr)
+    );
 
-    if let Ok(o) = gcc_out {
-        if o.status.success() {
-            let _ = Command::new("ar")
-                .arg("crs")
-                .arg(out_dir.join("libffi.a"))
-                .arg(&obj)
-                .output();
-        }
-    }
+    let ar_out = Command::new("ar")
+        .arg("crs")
+        .arg(out_dir.join("libffi.a"))
+        .arg(&obj)
+        .output()
+        .expect("run ar for the stub");
+    assert!(
+        ar_out.status.success(),
+        "ar failed to archive the stub:\n{}",
+        String::from_utf8_lossy(&ar_out.stderr)
+    );
 
     println!("cargo:rustc-link-search=native={}", out_dir.display());
     println!("cargo:rustc-link-lib=static=ffi");

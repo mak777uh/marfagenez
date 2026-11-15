@@ -105,21 +105,25 @@ echo "--- fires: a stub that does not link makes the build fail ---"
 # `ar` is what turns stub.o into libffi.a. Skipping it reproduces "the archive
 # is empty", which is what happens when gcc or ar fails and the status is
 # ignored — the exact defect this check exists for.
+#
+# Both call sites are injected, because there are two: the stub branch and the
+# "lean is present but the export failed" branch. Patching one leaves the other
+# to build a healthy archive, and the linker is never asked anything.
 inj="$work/inj"
 fresh_copy "$inj"
 python3 - "$inj/build.rs" <<'PY'
-import io, sys
+import io, re, sys
 p = sys.argv[1]
 s = io.open(p, encoding="utf-8").read()
-old = '''            let _ = Command::new("ar")
-                .arg("crs")
-                .arg(out_dir.join("libffi.a"))
-                .arg(&obj)
-                .output();'''
-new = '''            // INJECTED: the archive is never filled.
-            let _ = Command::new("ar").arg("--version").output();'''
-assert old in s, "injection point not found"
-io.open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+# The archive is written by `ar crs ... libffi.a ...`. Rename the target instead
+# of deleting the call: the call then still succeeds, and the link directive
+# still names `libffi.a`, so the failure lands exactly where a missing archive
+# lands -- at the linker, not at the build script's own assertions.
+pat = re.compile(r'out_dir\.join\("libffi\.a"\)')
+s2, n = pat.subn('out_dir.join("libffi-injected.a")', s)
+assert n >= 1, "injection point not found"
+io.open(p, "w", encoding="utf-8").write(s2)
+print("injected at %d site(s)" % n)
 PY
 out=$(build_without_lean "$inj")
 rc=$?
