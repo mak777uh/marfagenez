@@ -319,6 +319,101 @@ def dated_sections(lines: list[str]) -> list[bool]:
     return inside
 
 
+LOG = "docs/agent/AGENT_LOG.md"
+CYCLE_RE = re.compile(r"^###\s+Цикл\s+(\d+)\b", re.MULTILINE)
+
+
+def strip_fences(text: str) -> str:
+    """Drop fenced code blocks: an example is not a record.
+
+    The journal opens with a template that shows the six-field format inside a
+    ``` fence, and the template line reads exactly like a cycle heading. A gate
+    that counts it as cycle N reads its own instructions as data -- and then
+    reports a numbering gap that does not exist. Fenced blocks are examples,
+    quoted output and shell snippets; none of them are records.
+    """
+    out, inside = [], False
+    for line in text.splitlines():
+        if line.lstrip().startswith("```"):
+            inside = not inside
+            continue
+        if not inside:
+            out.append(line)
+    return "\n".join(out)
+
+
+def cycles_in_log(text: str) -> list[int]:
+    """Cycle numbers declared in the journal, in file order."""
+    return [int(m.group(1)) for m in CYCLE_RE.finditer(strip_fences(text))]
+
+
+def commits_named_in_log(text: str) -> set[str]:
+    """Short hashes the journal names, outside fenced examples."""
+    return set(re.findall(r"`([0-9a-f]{7,40})`", strip_fences(text)))
+
+
+def commits_since_log() -> list[tuple[str, str]]:
+    """Commits after the one the journal itself was last touched in.
+
+    The journal is written at the end of a cycle and committed with it, so the
+    last commit that touched AGENT_LOG.md is the last commit that had a record.
+    Everything after it is the backlog.
+    """
+    last = subprocess.run(
+        ["git", "log", "-1", "--format=%H", "--", LOG],
+        cwd=ROOT, capture_output=True, text=True, check=True,
+    ).stdout.strip()
+    rng = "HEAD" if not last else f"{last}..HEAD"
+    out = subprocess.run(
+        ["git", "log", "--format=%h %s", rng],
+        cwd=ROOT, capture_output=True, text=True, check=True,
+    ).stdout
+    return [tuple(line.split(" ", 1)) for line in out.splitlines() if line.strip()]
+
+
+def log_drift() -> list[str]:
+    """Two questions, both about the journal being a record or a decoration.
+
+    (a) Numbering: cycles are 1, 2, 3, ... A gap or a repeat means the journal
+        is not a sequence and cannot be read as one.
+    (b) Backlog: every commit after the last one that touched the journal must
+        have a cycle record. This is docs/PLAN-NEXT.md A1 -- without it the
+        journal silently stops being written and nothing notices. It did stop:
+        one cycle was written while commits kept coming.
+    """
+    out = []
+    path = ROOT / LOG
+    if not path.exists():
+        return [f"{LOG}: нет файла журнала"]
+    nums = cycles_in_log(path.read_text(encoding="utf-8"))
+    if nums != list(range(1, len(nums) + 1)):
+        out.append(
+            f"{LOG}: нумерация циклов {nums[:8]}{'...' if len(nums) > 8 else ''}, "
+            f"ожидалось 1..{len(nums)}"
+        )
+    backlog = commits_since_log()
+    if backlog:
+        # A cycle record names the commits it covers. If every commit after the
+        # journal's last touch is named by some record, the backlog is covered
+        # even though the file itself has not been committed since -- which is
+        # exactly the state you are in while writing the record for the current
+        # cycle, before the commit that carries it. Without this the gate is
+        # unsatisfiable: writing the record is what the gate demands, and the
+        # record cannot name its own commit.
+        covered = commits_named_in_log(path.read_text(encoding="utf-8"))
+        missing = [(h, subj) for h, subj in backlog if h not in covered]
+        if missing:
+            out.append(
+                f"{LOG}: {len(missing)} коммитов после последней записи цикла "
+                f"не названы ни одной записью -- журнал отстал"
+            )
+            for h, subj in missing[:8]:
+                out.append(f"    {h} {subj[:70]}")
+            if len(missing) > 8:
+                out.append(f"    ... и ещё {len(missing) - 8}")
+    return out
+
+
 def selftest() -> int:
     """fires / silent / specific, done in memory so no file is needed.
 
@@ -371,7 +466,59 @@ def selftest() -> int:
         print(f"  {'OK  ' if ok else 'FAIL'} {name}  (flagged={flagged}, "
               f"marked={marked}, want={should_flag})")
     print()
-    print(f"selftest: {len(cases) - bad}/{len(cases)}")
+        # The journal checker: numbering, in memory.
+    for name, nums, ok in [
+        ("1,2,3", [1, 2, 3], True),
+        ("1,3", [1, 3], False),
+        ("1,2,2", [1, 2, 2], False),
+        ("empty", [], True),
+    ]:
+        got = nums == list(range(1, len(nums) + 1))
+        if got != ok:
+            bad += 1
+            print(f"  FAIL seq {name}: {nums} -> {got}, ожидалось {ok}")
+
+    # The two ways the journal checker was wrong when it was first written.
+    # Both are about reading the file as data: the template inside a fence is
+    # an example, and a commit the journal names is covered even when the file
+    # itself has not been committed since.
+    journal = [
+        # (name, text, expected cycle numbers)
+        ("fires: the template fence is not a cycle",
+         "```\n### Цикл N — <дата> — <коммит>\n```\n\n"
+         "### Цикл 1 — 2026-11-14 — `aaaaaaa`\n", [1]),
+        ("silent: two real cycles after a template",
+         "```\n### Цикл N — <дата>\n```\n"
+         "### Цикл 1 — `aaaaaaa`\n### Цикл 2 — `bbbbbbb`\n", [1, 2]),
+        ("specific: a fenced cycle is not a real one",
+         "### Цикл 1 — `aaaaaaa`\n```\n### Цикл 2 — пример\n```\n", [1]),
+    ]
+    for name, text, want in journal:
+        got = cycles_in_log(text)
+        ok = got == want
+        if not ok:
+            bad += 1
+        print(f"  {'OK  ' if ok else 'FAIL'} {name}  (got={got}, want={want})")
+
+    coverage = [
+        # (name, journal text, backlog hashes, expected missing)
+        ("silent: a named commit is covered",
+         "### Цикл 1 — `aaaaaaa`", ["aaaaaaa"], []),
+        ("fires: an unnamed commit is a backlog",
+         "### Цикл 1 — `aaaaaaa`", ["aaaaaaa", "bbbbbbb"], ["bbbbbbb"]),
+        ("specific: a hash inside a fence does not cover",
+         "### Цикл 1 — `aaaaaaa`\n```\n`ccccccc`\n```", ["ccccccc"], ["ccccccc"]),
+    ]
+    for name, text, backlog, want in coverage:
+        named = commits_named_in_log(text)
+        got = [h for h in backlog if h not in named]
+        ok = got == want
+        if not ok:
+            bad += 1
+        print(f"  {'OK  ' if ok else 'FAIL'} {name}  (got={got}, want={want})")
+
+    total = len(cases) + 4 + len(journal) + len(coverage)
+    print(f"selftest: {total - bad}/{total}")
     return 1 if bad else 0
 
 
@@ -442,13 +589,27 @@ def main() -> int:
                     if v not in known_tests:
                         drift.append((rel, n, "тестов", v, line.strip()))
 
+    log_problems = log_drift()
+
     print(f"Заморожено файлов (датированные записи): {skipped}")
     if not drift:
         print("Живые числа в документации совпадают с деревом.")
+        if log_problems:
+            print(f"ЖУРНАЛ: {len(log_problems)} проблем")
+            for p in log_problems:
+                print(f"  {p}")
+            return 1
+        print("Журнал циклов: нумерация непрерывна, отставания нет.")
         if sorries:
             print("НО: есть живые sorry, а документация обещает 0.")
             return 1
         return 0
+
+    if log_problems:
+        print(f"ЖУРНАЛ: {len(log_problems)} проблем")
+        for p in log_problems:
+            print(f"  {p}")
+        return 1
 
     print(f"РАСХОЖДЕНИЙ: {len(drift)}")
     for rel, n, kind, value, text in drift:
