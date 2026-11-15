@@ -195,10 +195,46 @@ def add_limitation(result: dict[str, Any], text: str) -> None:
     result["limitations"].append(text)
 
 
+#: The fields that differ between two runs of the *same* measurement. They are
+#: stripped before comparing: a re-run that reproduces the same numbers is not a
+#: new record, and writing it as one turns `results/` into a log of gate runs.
+_VOLATILE = ("run_id", "created_at")
+
+
+def _fingerprint(result: dict[str, Any]) -> str:
+    """The result minus what changed only because it was written again."""
+    body = {k: v for k, v in result.items() if k not in _VOLATILE}
+    return json.dumps(body, sort_keys=True, ensure_ascii=False)
+
+
+def _reproduced(path: Path, result: dict[str, Any]) -> bool:
+    """Whether `path` already holds this measurement."""
+    try:
+        old = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return False
+    return _fingerprint(old) == _fingerprint(result)
+
+
 def save(result: dict[str, Any]) -> Path:
-    """Writes the result to `results/<experiment_id>/<run_id>.json`."""
+    """Writes the result to `results/<experiment_id>/<run_id>.json`.
+
+    A re-run that reproduces an existing record **byte for byte** (apart from
+    `run_id` and `created_at`) returns the existing path instead of writing a
+    second file. This is not deduplication for tidiness: `frozen-ceiling` had
+    122 records on disk and 122 in git, most of them the same measurement
+    written again by successive gate runs, so `git status` was never clean
+    after `run.sh all` and a real new record was invisible among the copies.
+
+    `model_commit` is **not** stripped. The same numbers produced at a
+    different commit are a different fact — the model changed and the output did
+    not — and that deserves its own file.
+    """
     d = RESULTS_DIR / result["experiment_id"]
     d.mkdir(parents=True, exist_ok=True)
+    for old in sorted(d.glob("run-*.json")):
+        if old.name != f"{result['run_id']}.json" and _reproduced(old, result):
+            return old
     path = d / f"{result['run_id']}.json"
     path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
     return path
