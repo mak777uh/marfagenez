@@ -223,21 +223,32 @@ cd core && cargo test --release --tests -- --test-threads=1
 
 | что | значение | команда |
 |---|---|---|
-| Lean теорем и лемм (`Medium`) | **281** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
+| Lean теорем и лемм (`Medium`) | **290** | `grep -h '^theorem \|^lemma ' laws/Medium/*.lean \| wc -l` |
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
-| Lean файлов с теоремами | **55** `Medium` + 9 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
-| Lean `sorry` | **0** везде | `grep -rn 'sorry' laws/*/*.lean \| wc -l` |
-| Rust тестов | **210** | `cargo test --release --tests -- --test-threads=1` |
+| Lean файлов | **56** `Medium` + 8 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
+| Lean `sorry` как тактика | **0** | `grep -rnE '^\s*(·\s*)?sorry\s*$' laws/ \| wc -l` |
+| Rust тестов | **210** | `cd core && cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
-| docs FINDING | **53** | `ls docs/FINDING-*.md \| wc -l` |
-| checks (эксперименты) | **98** | `ls checks/exp*.py \| wc -l` |
-| сохранённых прогонов | **136** | `find results -name 'run-*.json' \| wc -l` |
-| прогонов, прошедших контракт | **128** (0 нарушений) | `python3 checks/contract.py` |
+| docs FINDING | **139** | `ls docs/FINDING-*.md \| wc -l` |
+| checks (эксперименты) | **110** | `ls checks/exp*.py \| wc -l` |
+| сохранённых прогонов | **212** | `find results -name 'run-*.json' \| wc -l` |
+| прогонов, прошедших контракт | **204** (0 нарушений) | `python3 checks/contract.py` |
 
-Все числа в этой таблице пересчитаны 2026-11-13. Предыдущая версия
-(`237` теорем, `87` FINDING, `45` проверок, `38` прогонов) была снята с
-устаревшего состояния дерева: в ней не были учтены ни правка `cellStep`
-от 2026-11-12, ни 41 добавленная теорема, ни 53 новые FINDING-заметки.
+Все числа в этой таблице пересчитаны 2026-11-15 командами выше, а не
+взяты из предыдущей версии. Предыдущая версия (от 2026-11-13) утверждала:
+
+| строка | было | стало |
+|---|---|---|
+| Lean `Medium` | 281 | 290 |
+| Lean файлов `Medium` | 55 | 56 |
+| docs FINDING | 53 | 139 |
+| checks | 98 | 110 |
+| сохранённых прогонов | 136 | 212 |
+| прогонов, прошедших контракт | 128 | 204 |
+
+Расхождение не значит, что кто-то ошибся в цифрах: дерево росло, а таблица
+не пересчитывалась. Именно поэтому у каждой строки теперь стоит команда —
+таблица, которую нельзя пересчитать, устаревает молча.
 
 ---
 
