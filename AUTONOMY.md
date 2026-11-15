@@ -121,6 +121,7 @@ wsl -e bash /root/marfagenez/run.sh exp
 - `results/` — артефакт
 
 **Каждый отчёт содержит «что это не доказывает».**
+
 ### 1.6. Залей
 
 ```bash
