@@ -309,34 +309,42 @@ do_dispatcher() {
 #
 # `keep` не маскирует код: первый провал и есть причина, остальные --
 # следствия того же прогона.
+# Имя провалившегося раздела печатается сразу, а не теряется в выводе:
+# `all` кончался на «ЕСТЬ ПРОВАЛЫ (код 1)» без единой подсказки, какой из
+# девяти разделов дал код. `FAILED` копится, чтобы итог назвал все.
+FAILED=""
 keep() {
-  local rc=$1
-  if [ "$rc" -ne 0 ] && [ "$RC" -eq 0 ]; then RC=$rc; fi
+  local rc=$1 name=$2
+  if [ "$rc" -ne 0 ]; then
+    echo ">>> РАЗДЕЛ ПРОВАЛЕН: $name (код $rc)"
+    FAILED="$FAILED $name"
+    if [ "$RC" -eq 0 ]; then RC=$rc; fi
+  fi
   return 0
 }
 
 RC=0
 case "$WHAT" in
-  test)   do_test;   keep $? ;;
-  lean)   do_lean;   keep $? ;;
-  reach)  do_reach;  keep $? ;;
-  dispatcher) do_dispatcher; keep $? ;;
-  exp)    do_exp;    keep $? ;;
-  models) do_models; keep $? ;;
-  verus)  do_verus;  keep $? ;;
-  claims) do_claims; keep $? ;;
-  export) do_export; keep $? ;;
-  agents) do_agents; keep $? ;;
+  test)   do_test;   keep $? test ;;
+  lean)   do_lean;   keep $? lean ;;
+  reach)  do_reach;  keep $? reach ;;
+  dispatcher) do_dispatcher; keep $? dispatcher ;;
+  exp)    do_exp;    keep $? exp ;;
+  models) do_models; keep $? models ;;
+  verus)  do_verus;  keep $? verus ;;
+  claims) do_claims; keep $? claims ;;
+  export) do_export; keep $? export ;;
+  agents) do_agents; keep $? agents ;;
   all)
-    do_test;   keep $?
-    do_lean;   keep $?
-    do_reach;  keep $?
-    do_dispatcher; keep $?
-    do_verus;  keep $?
-    do_exp;    keep $?
-    do_claims; keep $?
-    do_export; keep $?
-    do_agents; keep $?
+    do_test;   keep $? test
+    do_lean;   keep $? lean
+    do_reach;  keep $? reach
+    do_dispatcher; keep $? dispatcher
+    do_verus;  keep $? verus
+    do_exp;    keep $? exp
+    do_claims; keep $? claims
+    do_export; keep $? export
+    do_agents; keep $? agents
     ;;
   *)
     echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|claims|export|agents]"
@@ -346,7 +354,7 @@ esac
 
 echo
 if [ "$RC" -ne 0 ]; then
-  echo "ЕСТЬ ПРОВАЛЫ (код $RC)"
+  echo "ЕСТЬ ПРОВАЛЫ (код $RC): провалились разделы:$FAILED"
   exit 1
 fi
 echo "ВСЁ ЗЕЛЁНОЕ"

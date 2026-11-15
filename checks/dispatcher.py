@@ -120,14 +120,26 @@ def main() -> int:
             problems = []
             if rc != want_rc:
                 problems.append(f"код {rc}, ожидался {want_rc}")
-            if want_banner not in out.splitlines():
+            lines = out.splitlines()
+            banner = [l for l in lines if l.startswith(want_banner)]
+            if not banner:
                 problems.append(f"нет строки «{want_banner}»")
+            elif want_rc != 0:
+                # Баннер обязан назвать раздел: без имени провал неотличим
+                # от «упало что-то». Проверка стоит ДО развилки, иначе она
+                # не может провалить тест -- это замер, который не может
+                # провалиться, ровно та болезнь, которую ловит `keep`.
+                tail = banner[0].split("провалились разделы:")
+                named = tail[-1].split() if len(tail) > 1 else []
+                if not named:
+                    problems.append(
+                        f"баннер не называет раздел: «{banner[0]}»")
             if problems:
                 failures += 1
                 print(f"  FAIL {name}: {'; '.join(problems)}")
                 print("       " + "\n       ".join(out.strip().splitlines()[-3:]))
             else:
-                print(f"  ok   {name} (код {rc}, «{want_banner}»)")
+                print(f"  ok   {name} (код {rc}, «{banner[0]}»)")
 
     if failures:
         print(f"    FAIL: диспетчер теряет провал в {failures} из {len(CASES)} случаев")
