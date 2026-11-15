@@ -288,11 +288,21 @@ def is_frozen(rel: str) -> bool:
 
 
 def markdown_files() -> list[Path]:
+    """Every tracked `.md`, with Git's quoting undone.
+
+    `git ls-files` quotes any path that holds non-ASCII bytes (Cyrillic file
+    names are the norm in `.dsh-switchman/`) and escapes each byte as `\\NNN`.
+    Splitting that stdout on whitespace yields a path that does not exist, and
+    the gate died with `FileNotFoundError` — a crash, not a verdict. `-z`
+    turns the quoting off and separates names with NUL, which cannot occur in
+    a path, so the split is exact.
+    """
     out = subprocess.run(
-        ["git", "ls-files", "*.md"],
-        cwd=ROOT, capture_output=True, text=True, check=True,
+        ["git", "ls-files", "-z", "*.md"],
+        cwd=ROOT, capture_output=True, check=True,
     )
-    return [ROOT / p for p in out.stdout.split()]
+    names = out.stdout.decode("utf-8").split("\0")
+    return [ROOT / p for p in names if p]
 
 
 #: A section is dated when its heading carries a date (`## 15. Из сессии

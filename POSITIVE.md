@@ -498,7 +498,7 @@ $$B(t) = B_0 e^{-k_{\text{deg}} t} \implies t_{\text{break}} = \frac{\ln(B_0/B_{
 ### 9.7. Площадка Agmon — что там реально есть
 
 Репозиторий `github.com/eagmon/co-construction_base`: MATLAB, **2 коммита,
-последний 21.12.2014**, 17 файлов, вся динамика в `autop.m` + `diffusion.m` +
+последний 21.12.2014**, 17 файлов (на эту дату), вся динамика в `autop.m` + `diffusion.m` +
 `perturbation.m`.
 
 | есть | нет |

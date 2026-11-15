@@ -383,7 +383,7 @@ marfagenez/
 │   │   ├── cycle.rs           Первоначальная модель
 │   │   ├── child.rs           Ребёнок: снос, шум, демпфирование
 │   │   └── bridge.rs          Связь с Lean
-│   ├── tests/                 Тесты ядра (22 файла)
+│   ├── tests/                 Тесты ядра (22 файла, на эту дату)
 │   └── bin/                   run, trace, ask, occupancy, empty_cell
 │
 ├── laws/                      Формализация на Lean 4
