@@ -193,7 +193,7 @@ wsl -e bash /root/marfagenez/run.sh all
 
 | проверка | что |
 |---|---|
-| `cargo test --release -- --test-threads=1` | 214 тестов Rust |
+| `cargo test --release -- --test-threads=1` | 223 тестов Rust |
 | `lake build` | 317 теорем, 63 файла |
 | `python3 checks/contract.py` | каждый результат по контракту |
 | `python3 checks/exp05_frozen.py` | эксперимент |

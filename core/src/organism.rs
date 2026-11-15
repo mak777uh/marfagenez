@@ -204,6 +204,45 @@ impl LookOrder {
     }
 }
 
+/// How an organism pays for repairing damage.
+///
+/// The rule lives here, not in [`World`], because it is a property of the
+/// organism, not of the environment: two organisms in the same world may repair
+/// differently, and the question "is one strategy better" only exists once this
+/// is a choice. [`AllOrNothing`](RepairPolicy::AllOrNothing) is the historical
+/// behaviour and the default, so every existing run and every recorded dynamics
+/// hash stays where it was.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
+pub enum RepairPolicy {
+    /// Never repair. Damage accumulates and the organism dies of it.
+    None,
+    /// Repair only when the reserve covers the whole damage. Below the
+    /// threshold the damage survives the step.
+    #[default]
+    AllOrNothing,
+    /// Repair as much as the reserve can buy, and spend the reserve on it.
+    ///
+    /// This is the strategy the all-or-nothing rule replaced. It was replaced
+    /// because of a defect, and the defect is not the idea but the arithmetic:
+    /// `repaired = energy / repair_cost` multiplied back can round above the
+    /// reserve, so an organism that asked for a sliver of repair was charged
+    /// everything, kept the damage and starved -- the worst of both. Here the
+    /// charge is computed from the repaired amount and clamped, so the reserve
+    /// never goes negative; the starvation is real and is the point, not a bug.
+    Proportional,
+}
+
+impl RepairPolicy {
+    /// The name that goes into a trace and its hash.
+    pub fn name(self) -> &'static str {
+        match self {
+            Self::None => "none",
+            Self::AllOrNothing => "all-or-nothing",
+            Self::Proportional => "proportional",
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy)]
 pub struct World {
     /// Energy gained per step when a resource is available.
@@ -416,6 +455,21 @@ impl Organism {
     ///
     /// Returns `true` if the organism is still alive after the step.
     pub fn step(&mut self, world: &World, resource: f64) -> bool {
+        self.step_with(world, resource, RepairPolicy::AllOrNothing)
+    }
+
+    /// One step of life under an explicit repair strategy.
+    ///
+    /// [`step`](Self::step) is this with [`RepairPolicy::AllOrNothing`], which
+    /// is what every recorded run used. The strategy is a parameter rather than
+    /// a field so that a run that does not ask the question cannot change its
+    /// answer by accident.
+    pub fn step_with(
+        &mut self,
+        world: &World,
+        resource: f64,
+        repair: RepairPolicy,
+    ) -> bool {
         if !self.alive {
             return false;
         }
@@ -430,7 +484,7 @@ impl Organism {
         // 3. Damage accumulates.
         self.damage = (self.damage + world.damage_rate).min(1.0);
 
-        // 4. Repair: all or nothing.
+        // 4. Repair, by the strategy the caller named.
         //
         // A repair happens only when the reserve covers the whole damage. The
         // earlier rule repaired as much as the reserve could buy, and that was
@@ -439,11 +493,37 @@ impl Organism {
         // for a sliver of repair was then charged everything, kept the damage
         // and died of starvation -- the worst of both outcomes. Below the
         // threshold the organism cannot pay, so the damage survives the step.
-        if self.damage > 0.0 {
-            let price = self.damage * world.repair_cost;
-            if price < self.energy {
-                self.energy -= price;
-                self.damage = 0.0;
+        match repair {
+            RepairPolicy::None => {}
+            RepairPolicy::AllOrNothing => {
+                if self.damage > 0.0 {
+                    let price = self.damage * world.repair_cost;
+                    if price < self.energy {
+                        self.energy -= price;
+                        self.damage = 0.0;
+                    }
+                }
+            }
+            RepairPolicy::Proportional => {
+                if self.damage > 0.0 {
+                    if world.repair_cost <= 0.0 {
+                        // Free repair: the division below would be infinite and
+                        // the charge zero. It does not need a reserve, which is
+                        // why the guard on `energy` is below and not around the
+                        // whole arm.
+                        self.damage = 0.0;
+                    } else if self.energy > 0.0 {
+                        let affordable = self.energy / world.repair_cost;
+                        let repaired = affordable.min(self.damage);
+                        let cost = repaired * world.repair_cost;
+                        // The product can land one ulp above the reserve. The
+                        // clamp is not cosmetic: the earlier proportional rule
+                        // died of exactly this rounding, and an invariant that
+                        // holds only up to floating point is not an invariant.
+                        self.energy = (self.energy - cost).max(0.0);
+                        self.damage = (self.damage - repaired).max(0.0);
+                    }
+                }
             }
         }
 
@@ -654,5 +734,135 @@ mod tests {
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 100.0);
         assert!((o.energy() - 5.0).abs() < 1e-12);
+    }
+}
+
+/// The repair strategies are a choice only if the choice is observable: each
+/// test here fixes the world so that only the repair rule differs.
+#[cfg(test)]
+mod repair_policy_tests {
+    use super::*;
+
+    /// A world where nothing else happens: no income, no maintenance, no new
+    /// damage, plenty of room. Only the repair rule can move a number.
+    fn quiet_world(repair_cost: f64) -> World {
+        World {
+            income: 0.0,
+            maintenance_cost: 0.0,
+            repair_cost,
+            damage_rate: 0.0,
+            capacity: 1e9,
+            ..World::default()
+        }
+    }
+
+    #[test]
+    fn none_never_repairs_and_never_charges() {
+        let world = quiet_world(1.0);
+        let mut o = Organism::new(10.0, 0.5).unwrap();
+        o.step_with(&world, 0.0, RepairPolicy::None);
+        assert_eq!(o.damage(), 0.5, "damage must survive an organism that does not repair");
+        assert_eq!(o.energy(), 10.0, "not repairing must cost nothing");
+    }
+
+    #[test]
+    fn all_or_nothing_below_the_reserve_leaves_the_damage() {
+        let world = quiet_world(100.0);
+        let mut o = Organism::new(1.0, 0.5).unwrap();
+        o.step_with(&world, 0.0, RepairPolicy::AllOrNothing);
+        assert_eq!(o.damage(), 0.5, "price 50 > reserve 1: the damage survives the step");
+        assert_eq!(o.energy(), 1.0, "an unaffordable repair is not paid for");
+    }
+
+    #[test]
+    fn all_or_nothing_above_the_reserve_clears_the_damage() {
+        let world = quiet_world(1.0);
+        let mut o = Organism::new(10.0, 0.5).unwrap();
+        o.step_with(&world, 0.0, RepairPolicy::AllOrNothing);
+        assert_eq!(o.damage(), 0.0);
+        assert!((o.energy() - 9.5).abs() < 1e-12, "price 0.5 was charged");
+    }
+
+    #[test]
+    fn proportional_clears_damage_when_the_reserve_covers_it() {
+        let world = quiet_world(1.0);
+        let mut o = Organism::new(10.0, 0.5).unwrap();
+        o.step_with(&world, 0.0, RepairPolicy::Proportional);
+        assert_eq!(o.damage(), 0.0);
+        assert!((o.energy() - 9.5).abs() < 1e-12);
+    }
+
+    #[test]
+    fn proportional_repairs_a_sliver_and_spends_the_reserve() {
+        // The case that makes the strategy a strategy: the reserve buys part of
+        // the damage, the organism spends it and keeps the rest of the damage.
+        let world = quiet_world(100.0);
+        let mut o = Organism::new(1.0, 0.5).unwrap();
+        o.step_with(&world, 0.0, RepairPolicy::Proportional);
+        assert!(o.damage() < 0.5, "a sliver of the damage is repaired");
+        assert_eq!(o.damage(), 0.49);
+        assert!(o.energy() < 1e-12, "the reserve pays for it");
+    }
+
+    #[test]
+    fn proportional_handles_free_repair() {
+        let world = quiet_world(0.0);
+        let mut o = Organism::new(0.0, 1.0).unwrap();
+        o.step_with(&world, 0.0, RepairPolicy::Proportional);
+        assert_eq!(o.damage(), 0.0, "free repair must not divide by zero");
+    }
+
+    #[test]
+    fn proportional_never_overdraws_the_reserve() {
+        // The invariant the earlier version of this rule broke: `repaired`
+        // came from `energy / repair_cost` and multiplying it back could
+        // round above the reserve, so the organism was charged more than it
+        // had and went into the red.
+        for &repair_cost in &[0.001, 0.1, 0.7, 1.5, 7.3, 1e6] {
+            for &energy in &[1e-9, 0.1, 0.5, 1.0, 3.3, 100.0] {
+                for &damage in &[1e-9, 0.001, 0.3, 0.5, 0.999, 1.0] {
+                    let world = quiet_world(repair_cost);
+                    let mut o = Organism::new(energy, damage).unwrap();
+                    o.step_with(&world, 0.0, RepairPolicy::Proportional);
+                    assert!(
+                        o.energy() >= 0.0,
+                        "energy went negative: cost {repair_cost} energy {energy} damage {damage} -> {}",
+                        o.energy()
+                    );
+                    assert!(o.damage() >= 0.0, "damage went negative");
+                    assert!(o.damage() <= 1.0, "damage above 1.0");
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn step_is_the_all_or_nothing_strategy() {
+        let world = World::default();
+        for &energy in &[0.5, 2.0, 7.0] {
+            for &damage in &[0.0, 0.25, 0.9] {
+                let mut a = Organism::new(energy, damage).unwrap();
+                let mut b = Organism::new(energy, damage).unwrap();
+                a.step(&world, 1.0);
+                b.step_with(&world, 1.0, RepairPolicy::AllOrNothing);
+                assert_eq!(a.energy(), b.energy(), "step drifted from all-or-nothing");
+                assert_eq!(a.damage(), b.damage());
+                assert_eq!(a.is_alive(), b.is_alive());
+            }
+        }
+    }
+
+    #[test]
+    fn names_are_distinct() {
+        let names = [
+            RepairPolicy::None.name(),
+            RepairPolicy::AllOrNothing.name(),
+            RepairPolicy::Proportional.name(),
+        ];
+        let mut sorted = names.to_vec();
+        sorted.sort_unstable();
+        sorted.dedup();
+        assert_eq!(sorted.len(), names.len(), "two strategies share a name");
+        assert_eq!(RepairPolicy::default(), RepairPolicy::AllOrNothing);
     }
 }
