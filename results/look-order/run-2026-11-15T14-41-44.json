@@ -1,0 +1,79 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "look-order",
+  "run_id": "run-2026-11-15T14-41-44",
+  "model_commit": "9cf7b13",
+  "seed": 1,
+  "parameters": {
+    "cells": 8,
+    "n": 40,
+    "steps": 200,
+    "read_budget": 1,
+    "field": "uniform",
+    "rich": 2.0,
+    "poor": 2.0,
+    "regrow": 0.8
+  },
+  "arithmetic": {
+    "income_alone": "min(regrow, income) = min(0.8, 2.0) = 0.8",
+    "net_alone": "0.8 - 0.6 = +0.2",
+    "break_even_crowd": "regrow / maintenance = 0.8 / 0.6 = 1.333",
+    "crowd_at_start": "40 / 8 = 5.0 (below break-even)",
+    "at_two_per_cell": "income = 0.4, net = -0.2 in both arms",
+    "why_not_insensitive": "поле однородное: у памяти нет содержания, различие плеч производится правилом движения, а не точностью памяти"
+  },
+  "conditions": {
+    "look": {
+      "label": "look_order=LookThenEat",
+      "metrics": {
+        "alive_at_end": 16,
+        "mem_err_all": 0.4,
+        "points_best_all": 1.0,
+        "moved_at_end": 0,
+        "trace_hash": "75b27b1b2b1bd490"
+      },
+      "hash": "75b27b1b2b1bd490"
+    },
+    "eat": {
+      "label": "look_order=EatThenLook",
+      "metrics": {
+        "alive_at_end": 4,
+        "mem_err_all": 0.4,
+        "points_best_all": 0.0,
+        "moved_at_end": 4,
+        "trace_hash": "728dd0bc9e19df6d"
+      },
+      "hash": "728dd0bc9e19df6d"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "выжившие различаются: 16 против 4"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "повтор того же плеча даёт то же число: 16"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "mem_err одинаков в обоих плечах (0.4000 против 0.4000), значит он не различает порядок"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "look-then-eat выживает больше (16 против 4) там, где памяти нечего запоминать; mem_err не различает плечи"
+  },
+  "hashes": {
+    "look": "75b27b1b2b1bd490",
+    "eat": "728dd0bc9e19df6d"
+  },
+  "limitations": [
+    "Однородное поле не даёт памяти содержания, поэтому эксперимент показывает, что различие НЕ про точность памяти, но не показывает, какой механизм внутри правила движения его производит.",
+    "Один сид. Прогоны на сидах 1..5 в probe-скриптах дали те же числа, но в запись это не вошло.",
+    "Число выживших — метрика популяции, а не организма: она не говорит, что look-then-eat лучше для отдельной особи."
+  ],
+  "command": "python3 checks/exp_look_order.py",
+  "created_at": "2026-11-15T14:41:44.547127+00:00"
+}
