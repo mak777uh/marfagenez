@@ -286,15 +286,43 @@ def main():
 
     # fires: the sequential population must SATURATE — it stops growing with n.
     # If the supply did not cap it, it would keep tracking n and this fails.
-    sat_rows = [r for r in rows if r["n"] > r["threshold_seq_n"]]
-    saturated = [r for r in sat_rows if r["seq_alive"] == r["threshold_seq_n"]]
+    #
+    # The control must be able to fail, so it is run twice: once on the measured
+    # rows and once on a deliberately broken copy. The old probe used
+    # `n = max(ks, kp) + 3`, which never reached the saturation rung, and the
+    # control could not fire by construction. `sat_rows` is empty exactly when
+    # the ladder does not bracket the threshold — that is a defect of the
+    # ladder, and it must be reported as a failed control, not as a pass.
+    def saturates(rs):
+        above = [r for r in rs if r["n"] > r["threshold_seq_n"]]
+        held = [r for r in above if r["seq_alive"] == r["threshold_seq_n"]]
+        return above, held
+
+    sat_rows, saturated = saturates(rows)
+    # The injected defect: an unbounded sequential arm, which tracks n instead
+    # of stopping at cells*k_seq. If the control cannot tell this apart from
+    # the measured rows, it is a slogan.
+    broken = [
+        {**r, "seq_alive": r["n"]} for r in rows
+    ]
+    _, broken_held = saturates(broken)
+    fires_ok = (
+        len(sat_rows) > 0
+        and len(saturated) == len(sat_rows)
+        and len(broken_held) == 0
+    )
     exp.control(
         "fires",
-        len(sat_rows) > 0 and len(saturated) == len(sat_rows),
+        fires_ok,
         f"the sequential population saturates: on the {len(sat_rows)} rungs "
         f"above its capacity, {len(saturated)} hold exactly cells*k_seq "
         f"(floor(S/t) paid in full plus the remainder eater) and do not grow "
-        f"with n",
+        f"with n; the injected unbounded arm holds {len(broken_held)} of them, "
+        f"so the control can fail"
+        if len(sat_rows) > 0 else
+        f"the ladder never goes above cells*k_seq = {min(r['threshold_seq_n'] for r in rows)}, "
+        f"so saturation was never reached and this control cannot fire — "
+        f"the ladder is broken, not the law",
     )
 
     # silent: on every rung both predictions hold exactly. A control that
