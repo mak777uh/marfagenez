@@ -187,7 +187,12 @@ def main() -> int:
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except Exception as e:
-            print(f"SKIP {path.name}: cannot parse ({e})")
+            # An unparseable result file is a contract violation, not a file to
+            # skip: a gate that passes on a corrupted artifact is the exact
+            # defect PROTOCOL.md 12.1 exists to prevent (round 6, item 1).
+            bad += 1
+            print(f"FAIL {path.relative_to(ROOT)}")
+            print(f"     cannot parse: {e}")
             continue
         checked += 1
         problems = check_one(path, data)
