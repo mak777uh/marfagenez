@@ -105,6 +105,29 @@ wsl -e bash /root/marfagenez/run.sh all      # всё, включая Verus и �
 `run.sh` возвращает ненулевой код, если хоть одна проверка провалилась.
 Вывод фильтруется для человека; код возврата берётся от проверки.
 
+## Как запускать прогоны (не ловушка)
+
+**Не передавай python-код или heredoc через `bash -lc "..."` из PowerShell.**
+Внешние кавычки съедают обратные кавычки, а `$` интерполируется PowerShell'ом
+раньше, чем доходит до bash. Наблюдалось трижды.
+
+**Работающий способ:** записать файл на диск, затем скопировать и запустить.
+
+```bash
+# 1. write файла в .dsh-switchman/<name>.py (или .sh)
+# 2. затем:
+cp /mnt/c/Users/Admin/Documents/Qoder/2026-10-18/82ab86cd/.dsh-switchman/<name>.py /tmp/ \
+  && bash /tmp/<name>.sh        # или python3 /tmp/<name>.py
+```
+
+**Сборка — из `core/`, не из корня.** `Cargo.toml` лежит в `core/`:
+
+```bash
+cd /root/marfagenez/core && cargo build --release --bin trace
+```
+
+---
+
 ## Чего здесь нет
 
 Здесь нет правил о том, **какие** эксперименты ставить — это `AUTONOMY.md` §1.
