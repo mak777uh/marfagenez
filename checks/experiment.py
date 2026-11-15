@@ -14,8 +14,8 @@
 
 3. **Хэш каждого плеча** (§5). Два плеча с одинаковым хэшем — одно плечо.
 
-4. **Вердикт из четырёх** (§4): `passed`, `failed`, `void`,
-   `insensitive by construction`.
+4. **Вердикт из пяти** (§4): `passed`, `failed`, `void`,
+   `insensitive by construction`, `not applicable`.
 
 5. **«Что это не доказывает»** (§6).
 

@@ -37,7 +37,7 @@
       "command": "python3 checks/exp05_frozen.py"
     }
 
-## Четыре вердикта, не два (§4)
+## Пять вердиктов, не два (§4)
 
 - `passed` — эффект есть, контроли прошли
 - `failed` — эффекта нет
@@ -45,6 +45,9 @@
   неразличимы (одинаковые хэши). **Ничего не узнали о механизме.**
 - `insensitive by construction` — арифметика говорит, что плечи не могут
   различаться. **Ничего не узнали о механизме, но узнали о дизайне.**
+- `not applicable` — носителя вопроса нет: событие недостижимо, окно не
+  стационарно, предикат не зависит от состояния. **Вопрос не был задан.**
+  Отличать от `void`: там инструмент сломался, здесь измерять нечего.
 
 ## Правило
 
@@ -64,12 +67,13 @@ from typing import Any
 SCHEMA = "marfagenez.experiment-result.v2"
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
 
-#: The four outcomes. Not two (AGENTS.md §4).
+#: The five outcomes. Not two (AGENTS.md §4).
 VERDICTS = (
     "passed",
     "failed",
     "void",
     "insensitive by construction",
+    "not applicable",
 )
 
 #: The three control tests every control must pass (AGENTS.md §2).
