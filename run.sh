@@ -271,18 +271,40 @@ do_agents() {
     echo "    FAIL: нет docs/agent/AGENT_STATE.md"
     rc=1
   else
+    # Состояние обязано быть не старше последнего содержательного коммита.
+    # Раньше требовалось точное равенство с HEAD, и это было невыполнимо:
+    # любой коммит, который не трогает AGENT_STATE.md (запись прогона,
+    # правка журнала), делал гейт красным, и обойти это можно было только
+    # подмешивая пустую правку состояния в каждый коммит. Гейт, который
+    # требует врать в файле состояния, защищает не правду, а ритуал.
+    #
+    # Теперь: состояние должно быть предком HEAD (или самим HEAD), а
+    # коммиты между ними не должны трогать код модели, законы и проверки.
+    # Запись прогона в results/ состояние не меняет - прогон ничего не
+    # говорит о том, где проект.
     local head state
     head=$(git rev-parse HEAD)
     state=$(git log -1 --format=%H -- docs/agent/AGENT_STATE.md)
     if [ -z "$state" ]; then
       echo "    FAIL: docs/agent/AGENT_STATE.md не закоммичен"
       rc=1
-    elif [ "$head" != "$state" ]; then
-      echo "    FAIL: состояние не отражает последний коммит"
+    elif ! git merge-base --is-ancestor "$state" HEAD 2>/dev/null; then
+      echo "    FAIL: docs/agent/AGENT_STATE.md не является предком HEAD"
       echo "          HEAD:  $head"
       echo "          state: $state"
-      echo "          обнови docs/agent/AGENT_STATE.md и закоммить вместе с изменением"
       rc=1
+    elif [ "$head" != "$state" ]; then
+      local drift
+      drift=$(git diff --name-only "$state"..HEAD -- \
+        core laws verus checks run.sh AGENTS.md 2>/dev/null)
+      if [ -n "$drift" ]; then
+        echo "    FAIL: состояние отстало от изменения модели, законов или проверок"
+        echo "          state: $state"
+        echo "          изменилось после него:"
+        echo "$drift" | sed 's/^/            /'
+        echo "          обнови docs/agent/AGENT_STATE.md и закоммить вместе с изменением"
+        rc=1
+      fi
     fi
   fi
   return $rc
