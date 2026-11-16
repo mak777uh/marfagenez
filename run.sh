@@ -153,6 +153,8 @@ do_exp() {
   python3 checks/damage_clock.py || rc=$?
   echo "--- exp_memory_question.py ---"
   python3 checks/exp_memory_question.py || rc=$?
+  echo "--- env_prior_tails.py ---"
+  python3 checks/env_prior_tails.py || rc=$?
   echo
   echo "--- exp_memory_cost.py ---"
   # Цена чтения и поле с пиками: 216 прогонов, 15 с, поэтому в `exp`.
