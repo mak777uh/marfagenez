@@ -181,6 +181,12 @@ struct Args {
     period: usize,
     /// Cells per step the lit patch of a moving field travels.
     shift: f64,
+
+    /// `true` is the ring the probe has always used; `false` is the line the
+    /// core uses. Defaults to the ring so that every recorded number stays
+    /// reproducible; `--boundary line` gives the same experiment on the geometry
+    /// the core actually has.
+    boundary_wraps: bool,
     /// The poor ceiling of a peaked field.
     poor: f64,
     memory_life: usize,
@@ -213,6 +219,7 @@ impl Default for Args {
             field: FieldKind::Uniform,
             period: 6,
             shift: 1.0,
+            boundary_wraps: true,
             poor: 0.2,
             memory_life: 1_000_000,
             steps: 2000,
@@ -257,6 +264,25 @@ fn cell_in_field(cell: i64, cells: usize) -> usize {
 fn ring(cell: usize, delta: i64, cells: usize) -> usize {
     let n = cells as i64;
     (((cell as i64 + delta) % n) + n) as usize % cells
+}
+
+/// The same neighbour, on a line: `None` past an edge.
+///
+/// All three reviews of `docs/RESEARCH-BRIEF-5.md` made the same point: the
+/// probe has been a ring while `Field` and `Life` are a line
+/// (`core/src/field.rs:297-303`), and that is a difference of topology, not of
+/// arithmetic. Substituting one for the other without a run is its own mistake.
+fn side(cell: usize, delta: i64, cells: usize, wrap: bool) -> Option<usize> {
+    if wrap {
+        Some(ring(cell, delta, cells))
+    } else {
+        let t = cell as i64 + delta;
+        if t < 0 || t >= cells as i64 {
+            None
+        } else {
+            Some(t as usize)
+        }
+    }
 }
 
 /// `P_need` from the review's formula, or `None` where it is undefined
@@ -383,6 +409,17 @@ fn main() {
                     }
                 };
             }
+            "--boundary" => {
+                i += 1;
+                a.boundary_wraps = match argv.get(i).map(|s| s.as_str()) {
+                    Some("ring") => true,
+                    Some("line") => false,
+                    other => {
+                        eprintln!("unknown boundary: {:?}", other);
+                        std::process::exit(2);
+                    }
+                };
+            }
             "--shift" => {
                 i += 1;
                 a.shift = number(&argv, i, "--shift");
@@ -422,7 +459,7 @@ fn main() {
                 println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
                 println!("       [--read-period N]  remembering arms look every N steps");
         println!("       [--look-on-shortfall]  remembering arms look out of turn when the cell is too poor");
-                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--period P] [--poor V]");
+                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--period P] [--poor V]");
                 println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
                 println!("       [--sham-mode visited|neighbour] [--tiebreak left|right|random]");
@@ -574,12 +611,12 @@ fn main() {
         // zero and cannot fail, so nothing moves.
         let left_level = if a.arm.looks() && reads > 0 && sample && r.organism.spend(a.read_cost) {
             reads -= 1;
-            field.level(ring(r.cell, -1, cells))
+            field.level(side(r.cell, -1, cells, a.boundary_wraps).unwrap_or(r.cell))
         } else {
             f64::NEG_INFINITY
         };
         let right_level = if a.arm.looks() && reads > 0 && sample && r.organism.spend(a.read_cost) {
-            field.level(ring(r.cell, 1, cells))
+            field.level(side(r.cell, 1, cells, a.boundary_wraps).unwrap_or(r.cell))
         } else {
             f64::NEG_INFINITY
         };
@@ -764,7 +801,7 @@ fn main() {
         // --- 3. Move. A blocked step at the edge cannot happen on a ring; the
         //        cost is paid only when the move happens, as in `Field::Walker`.
         if dir != 0 && r.organism.spend(a.move_cost) {
-            r.cell = ring(r.cell, dir as i64, cells);
+            r.cell = side(r.cell, dir as i64, cells, a.boundary_wraps).unwrap_or(r.cell);
             moves += 1;
             if !visited[r.cell] {
                 visited[r.cell] = true;
