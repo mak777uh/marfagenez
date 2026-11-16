@@ -18,6 +18,7 @@
       "parameters": {...},
 
       "arithmetic": {...},        // §1: арифметика ДО прогона
+      "mde": {...},               // §1: минимально детектируемый эффект
       "conditions": {             // плечи
         "A": {"label": "...", "metrics": {...}, "hash": "..."},
         "B": {...}
@@ -59,10 +60,12 @@
 from __future__ import annotations
 
 import json
+import math
 import re
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+from statistics import NormalDist
 from typing import Any
 
 SCHEMA = "marfagenez.experiment-result.v2"
@@ -162,6 +165,89 @@ def set_arithmetic(result: dict[str, Any], arithmetic: dict[str, Any]) -> None:
     and predicted dissolution where every arm survived.
     """
     result["arithmetic"] = arithmetic
+
+
+def _z(p: float) -> float:
+    """The standard-normal quantile at `p` (inverse CDF)."""
+    return NormalDist().inv_cdf(p)
+
+
+def arms_needed(
+    sigma: float,
+    effect: float,
+    power: float = 0.8,
+    alpha: float = 0.05,
+) -> int:
+    """How many arms (seeds) are needed to detect `effect` against `sigma`.
+
+    The two-sample size for a difference of means, in the form `PROTOCOL-0`
+    п. 3 records next to `arithmetic`:
+
+        n = 2·(z_{α/2} + z_β)²·σ² / Δ²
+
+    * `sigma` — the spread of the measured quantity **between seeds**, not
+      within one run. It is measured, not assumed.
+    * `effect` — `Δ`, the smallest difference worth calling a result, in the
+      same units as `sigma`.
+    * `alpha` — two-sided significance (0.05 -> z ≈ 1.96).
+    * `power` — 1 − β (0.8 -> z ≈ 0.84).
+
+    At `sigma = 0.2` this gives 6280 arms for `Δ = 1 %`, 252 for 5 % and 63 for
+    10 %: 30 seeds can only separate effects of about 10 % or larger. An effect
+    below that is `void` (the instrument could not see it), not `failed` (the
+    world said no) — see `docs/REVIEW-emergence-notes.md` §3.1.
+
+    Raises `ValueError` for a non-positive or non-finite `sigma` / `effect`,
+    or probabilities outside `(0, 1)`: those are not questions.
+    """
+    for name, value in (("sigma", sigma), ("effect", effect)):
+        if not math.isfinite(value) or value <= 0.0:
+            raise ValueError(f"{name} must be finite and positive, got {value!r}")
+    for name, value in (("alpha", alpha), ("power", power)):
+        if not 0.0 < value < 1.0:
+            raise ValueError(f"{name} must be in (0, 1), got {value!r}")
+    z_alpha = _z(1.0 - alpha / 2.0)
+    z_power = _z(power)
+    return math.ceil(2.0 * (z_alpha + z_power) ** 2 * sigma**2 / effect**2)
+
+
+def set_mde(
+    result: dict[str, Any],
+    sigma: float,
+    effect: float,
+    power: float = 0.8,
+    alpha: float = 0.05,
+) -> int:
+    """Records the minimum detectable effect (`mde`) in `result`.
+
+    `n = 2·(z_{α/2} + z_β)²·σ² / Δ²`; `sigma` is the between-seeds spread and
+    `effect` is `Δ` in the same units. See `arms_needed` for the names and
+    `docs/PROTOCOL-0.md` п. 3 for why the field is mandatory next to
+    `arithmetic`: an effect the arm count cannot resolve is `void`, not
+    `failed`.
+
+    The key appears **only when this is called**, so records written before the
+    rule existed keep their fingerprint and `save()` does not split them into a
+    second file. A record written with `mde` is a different measurement: the
+    field says how finely it could see.
+
+    Returns the number of arms, so a caller can print it without recomputing.
+    """
+    n = arms_needed(sigma, effect, power=power, alpha=alpha)
+    result["mde"] = {
+        "sigma_between_seeds": sigma,
+        "effect": effect,
+        "alpha": alpha,
+        "power": power,
+        "arms_needed": n,
+        "formula": "n = 2*(z_{alpha/2}+z_{power})^2*sigma^2/effect^2",
+        "rule": (
+            "an effect smaller than `effect` at `sigma_between_seeds` and "
+            "`arms_needed` is `void`, not `failed`: the instrument could not "
+            "see it, the world did not answer no"
+        ),
+    }
+    return n
 
 
 def add_condition(

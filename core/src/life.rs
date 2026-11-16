@@ -31,10 +31,17 @@
 //!
 //! Then the field regrows.
 //!
-//! ## What it does not do
+//! ## Reproduction and inheritance
 //!
-//! No reproduction, no inheritance, no interaction between organisms. The plan adds
-//! those one at a time.
+//! **Reproduction is implemented and off by default.** Three `World` fields drive
+//! it: `birth_threshold` (`INFINITY` = never), `birth_cost` (`0.0`) and
+//! `max_population` (`0` = no births). See `docs/FINDING-153.md`.
+//!
+//! **Inheritance is not implemented.** The child is an exact copy of the parent's
+//! policy, `move_cost` and `memory_life`; there is no variation, so a birth moves
+//! energy between slots and does not pass an organisation to the next generation.
+//!
+//! Beyond sharing a cell's income, organisms do not interact.
 
 #![forbid(unsafe_code)]
 

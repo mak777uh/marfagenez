@@ -32,8 +32,13 @@
 //!
 //! ## What this module deliberately does not have
 //!
-//! No memory, no learning, no action, no reproduction, no interaction. The plan says
-//! to add them one at a time, so that it is possible to tell what caused a result.
+//! No memory, no learning, no action, no interaction. Reproduction is not a
+//! property of one organism: it is a population step in `life.rs`, switched by the
+//! `World` birth fields (`birth_threshold`, `birth_cost`, `max_population`), and it
+//! is off by default. See `docs/FINDING-153.md`.
+//!
+//! The rest is added one step at a time, so that it is possible to tell what
+//! caused a result.
 //!
 //! ## The design rule
 //!
