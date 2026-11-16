@@ -16,6 +16,11 @@ fn survives(world: &World, steps: usize) -> bool {
 }
 
 /// The candidate condition: the step's surplus must cover one step's repair.
+///
+/// This is `World::sustains()`, and `docs/FINDING-148.md` measured that it is
+/// the per-step branch of the criterion, not the boundary of life: the grid
+/// below stays inside that branch or below the damage clock, so zero
+/// disagreements here says nothing about `rc >= capacity + surplus`.
 fn predicted(w: &World) -> bool {
     let surplus = w.income - w.maintenance_cost;
     let repair = w.damage_rate * w.repair_cost;

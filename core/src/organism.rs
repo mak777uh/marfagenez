@@ -289,8 +289,10 @@ impl World {
     ///
     /// **This is necessary, not sufficient, for survival.** It was the whole
     /// answer once, and it is wrong: an organism also has to pay for repair.
-    /// Use [`World::sustains`] for the question "can anything live here at all";
-    /// this one only says "the tank fills faster than it leaks".
+    /// Use [`World::sustains`] for whether one step's surplus can pay for one
+    /// step's repair; neither predicate is the boundary of life, and
+    /// `docs/FINDING-148.md` measured what the boundary is.
+    /// This one only says "the tank fills faster than it leaks".
     ///
     /// The name is kept because `docs/FINDING-094-settled-level-law.md` cites
     /// it as the settled-level condition, and that citation is about the tank,
@@ -303,36 +305,78 @@ impl World {
         self.income > self.maintenance_cost
     }
 
-    /// Whether an organism can live here indefinitely, not just for a while.
+    /// Whether one step's surplus can pay for one step's repair.
     ///
-    /// The step order in [`Organism::step`] decides this. Income arrives first
-    /// (step 1), maintenance is paid (step 2), damage grows (step 3), and repair
-    /// is paid (step 4) -- all before the capacity cap (step 5). So the cap does
-    /// not decide survival: it trims what is *held* after every payment is made.
-    /// A world with `capacity < maintenance_cost` is survivable, because the
-    /// income lands before the maintenance is deducted.
+    /// This is the **per-step price** test, not the boundary of life.
     ///
-    /// What does decide survival is whether one step's surplus can buy one
-    /// step's repair. Damage grows by `damage_rate` every step; repairing it
-    /// costs `damage_rate * repair_cost`. If the surplus is smaller, the damage
-    /// is never repaired, it reaches `1.0`, and the organism dies of damage --
-    /// while `is_viable()` keeps returning `true`.
+    /// Damage grows by `damage_rate` every step, and repairing one step's
+    /// damage costs `damage_rate * repair_cost`. If the step's surplus covers
+    /// that price, the repair is affordable on every step, the damage never
+    /// accumulates, and the damage cap is never reached. That is the whole of
+    /// what this predicate asks.
+    ///
+    /// The step order in [`Organism::step`] is why `capacity` is deliberately
+    /// not part of the condition: income arrives first (step 1), maintenance is
+    /// paid (step 2), damage grows (step 3), repair is paid (step 4), and only
+    /// then is the reserve capped (step 5). A world with
+    /// `capacity < maintenance_cost` is survivable, because the income lands
+    /// before the maintenance is deducted.
+    ///
+    /// **What it is not.** Measured in `docs/FINDING-148.md`:
+    ///
+    ///   - It is not the cadence condition of `docs/FINDING-145.md`
+    ///     (`ceil(1/dr) * surplus >= repair_cost`). That formula charges the
+    ///     whole `repair_cost` once per damage clock; 148 refuted it as a
+    ///     boundary. It is neither necessary (a per-step payment of
+    ///     `damage_rate * repair_cost` can be repeatable while
+    ///     `repair_cost > ceil(1/dr) * surplus`) nor sufficient (`repair_cost`
+    ///     above the largest reserve `capacity + surplus` can never be paid
+    ///     once the payment is deferred).
+    ///   - It is not the boundary of life. The criterion that survived 148 is
+    ///
+    ///     ```text
+    ///     alive  <=>  dr*rc <= surplus
+    ///              OR (rc <= K*surplus AND rc < capacity + surplus)
+    ///     ```
+    ///
+    ///     where `K` is the model's damage clock -- the number of accumulated
+    ///     `damage += dr` steps to the first `damage >= 1.0`, measured as the
+    ///     lifetime of the `none` policy. This predicate is the first disjunct
+    ///     of that criterion and nothing more.
+    ///   - Returning `true` is sufficient for its own branch but not for life:
+    ///     the branch's boundary is the equality `dr*rc == surplus`, where the
+    ///     strict repair test `price < energy` (step 4) disagrees with the `>=`
+    ///     used here. At `dr = 0.03`, `rc = 13.333333333333334`,
+    ///     `capacity = 10` an organism starting from 0 holds exactly
+    ///     `k*surplus` after `k` steps and is charged exactly that, so
+    ///     `price < energy` is false on every step, the damage reaches `1.0`,
+    ///     and it dies of damage while this predicate returns `true`.
+    ///     `tests/sustainability.rs` pins that point, and pins the one from
+    ///     148 (`dr = 0.03`, `rc = 13.466666666666669`, `energy0 = 5`), where
+    ///     the cadence condition says "alive" and this predicate already says
+    ///     "no".
+    ///   - Returning `false` does not mean death: the deferred branch lives by
+    ///     paying the whole `repair_cost` once per damage clock out of a
+    ///     reserve of at most `capacity + surplus`. That is why the cap is the
+    ///     second half of the measured criterion and not a constant -- the
+    ///     reserve was tried, and it is not a dead end, it is one of the two
+    ///     prices.
     ///
     /// Checked against the simulation on 768 parameter combinations
     /// (4 incomes x 4 maintenances x 4 repair costs x 4 damage rates x 3
-    /// capacities, 500 steps each, starting full): zero disagreements.
+    /// capacities, 500 steps each, starting full): zero disagreements. That
+    /// grid stays inside the per-step branch or below the clock edge, which is
+    /// why it could not see either limit above.
     ///
     /// The boundary itself is a floating-point question, not a mathematical
     /// one. The repair test in step 4 is `price < energy`, so at
-    /// `surplus == repair price` the comparison is decided by the rounding
-    /// accumulated over the previous steps, and the same parameters can survive
-    /// or die depending on the path. This predicate answers the mathematical
-    /// question and uses `>=`; the simulation answers the floating-point one.
-    /// They agree away from the boundary, and `tests/sustainability.rs` pins
-    /// the side where they do.
-    ///
-    /// `capacity` is deliberately not part of the condition: it sets how many
-    /// steps of deficit can be absorbed, not whether there is a deficit.
+    /// `dr*rc == surplus` the comparison is decided by the rounding accumulated
+    /// over the previous steps and by `energy0`, and the same parameters can
+    /// survive or die depending on the path. This predicate answers the
+    /// mathematical question and uses `>=`; the simulation answers the
+    /// floating-point one. They agree away from the three equalities
+    /// (`dr*rc == surplus`, `rc == K*surplus`, `rc == capacity + surplus`), and
+    /// `tests/sustainability.rs` pins the sides where they do.
     pub fn sustains(&self) -> bool {
         let surplus = self.income - self.maintenance_cost;
         let repair_price = self.damage_rate * self.repair_cost;

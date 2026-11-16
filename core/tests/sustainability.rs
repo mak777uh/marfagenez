@@ -10,7 +10,7 @@
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::organism::World;
+use medium_core::organism::{Organism, World};
 
 /// Run a single organism on a one-cell field for `steps` and report whether it
 /// is alive at the end.
@@ -131,7 +131,9 @@ fn surplus_just_above_repair_price_survives() {
     // of the previous 500 steps: it survives or dies depending on the path, not
     // on the parameters. `sustains` answers the mathematical question; the
     // simulation answers the floating-point one, and they agree only away from
-    // the boundary. This test pins the side where they do.
+    // every equality, not just this one (`docs/FINDING-148.md`: `dr*rc == s`,
+    // `rc == K*s` and `rc == capacity + s` are all decided by rounding). This
+    // test pins the side where they do.
     let world = World {
         income: 1.0,
         maintenance_cost: 0.8,
@@ -159,8 +161,9 @@ fn a_hair_below_the_boundary_kills() {
     //
     // A deficit of 0.0001 per step is still a deficit. The reserve is `capacity`
     // = 10.0, so it takes more than 100_000 steps to run out -- which is the
-    // point: `sustains` answers "indefinitely", and "not for 500 steps" is not
-    // the same claim. The horizon here is chosen to outlast the reserve.
+    // point: `sustains` answers "the per-step price is payable on every step",
+    // and "not for 500 steps" is not the same claim. The horizon here is
+    // chosen to outlast the reserve.
     let world = World {
         income: 1.0,
         maintenance_cost: 0.8001,
@@ -179,8 +182,13 @@ fn a_hair_below_the_boundary_kills() {
 }
 
 #[test]
-fn capacity_does_not_change_sustainability() {
-    // Same economics, different tank sizes: the verdict must not move.
+fn capacity_does_not_rescue_an_unpayable_per_step_repair() {
+    // Same economics, different tank sizes: the verdict of the *per-step*
+    // test must not move. This is not a claim that capacity is irrelevant --
+    // `docs/FINDING-148.md` and `tests/sustainability.rs`'s
+    // `the_cadence_condition_of_finding_145_is_not_the_boundary_of_life`
+    // show that the cap sets the largest deferred payment;
+    // `dr = 0.03` below is in the per-step branch, where the cap cannot help.
     let base = World {
         income: 1.0,
         maintenance_cost: 0.5,
@@ -204,8 +212,9 @@ fn capacity_does_not_change_sustainability() {
 }
 
 // ---------------------------------------------------------------------------
-// The limit of the predicate: `sustains` is a long-run statement, and a big
-// enough reserve postpones the failure past any short horizon.
+// The limit of the predicate: `sustains` is a per-step price test, and a big
+// enough reserve postpones the failure of the per-step arithmetic past any
+// short horizon -- and, when the payment is deferred, the reserve is what pays.
 // ---------------------------------------------------------------------------
 
 #[test]
@@ -234,5 +243,213 @@ fn a_full_tank_can_outlive_a_short_horizon_even_when_the_world_does_not_sustain(
     assert!(
         !survives(world, 5000),
         "but not forever: the reserve is finite"
+    );
+}
+
+// ---------------------------------------------------------------------------
+// The limit of `sustains` itself. `docs/FINDING-148.md` measured the criterion
+//
+//     alive <=> dr*rc <= s OR (rc <= K*s AND rc < capacity + s)
+//
+// so a predicate that asks only the first disjunct is a price test. The two
+// tests below are the points where that shows. They are the gate for the doc
+// comment on `sustains`: if it is ever rewritten back into "the boundary of
+// life", or if the predicate is swapped for the cadence condition of
+// `FINDING-145`, they fail.
+// ---------------------------------------------------------------------------
+
+#[test]
+fn sustains_is_not_sufficient_when_one_repair_costs_more_than_the_reserve() {
+    // `dr = 0.03` is a tooth of the damage clock (`K = 34`, so the cadence
+    // edge is 34*0.4 = 13.6), and `rc = 0.4/0.03` makes the per-step price
+    // exactly the step's surplus: `dr*rc == 0.4` in doubles, so `sustains()`
+    // returns `true` by `>=`.
+    //
+    // Starting from a zero reserve the organism holds exactly `k*0.4` after
+    // `k` steps and is charged exactly `k*0.4` for the damage it carries, so
+    // the strict test `price < energy` in step 4 is false on every step: no
+    // repair is ever paid. The damage reaches 1.0 at step 34 with the tank at
+    // the cap, because one deferred repair costs `rc = 13.33...` and the cap
+    // allows `capacity + surplus = 10.4`. The predicate says the price is
+    // payable; the organism dies of damage.
+    let world = World {
+        income: 1.0,
+        maintenance_cost: 0.6,
+        repair_cost: 13.333333333333334,
+        damage_rate: 0.03,
+        capacity: 10.0,
+        ..World::default()
+    };
+    let surplus = world.income - world.maintenance_cost;
+    assert_eq!(
+        world.damage_rate * world.repair_cost,
+        surplus,
+        "the point is the exact equality `dr*rc == surplus`, not a near miss"
+    );
+    assert!(
+        world.sustains(),
+        "`>=` says the per-step price is payable: {} >= {}",
+        surplus,
+        world.damage_rate * world.repair_cost
+    );
+
+    let mut organism = Organism::healthy(0.0).expect("a zero reserve is a legal state");
+    let mut steps = 0;
+    while organism.step(&world, world.income) {
+        steps += 1;
+        assert!(steps < 10_000, "it must die of damage, not live on");
+    }
+    assert!(
+        organism.damage() >= 1.0,
+        "the cause must be damage, got damage = {}",
+        organism.damage()
+    );
+    assert!(
+        organism.energy() >= world.capacity - 1e-12,
+        "and not starvation: the reserve at death is {} of {}",
+        organism.energy(),
+        world.capacity
+    );
+    assert!(
+        world.repair_cost > world.capacity + surplus,
+        "one deferred repair must cost more than the deepest reserve: {} > {}",
+        world.repair_cost,
+        world.capacity + surplus
+    );
+
+    // The same world, the same predicate, a full tank: it lives, because the
+    // per-step payment is now strictly cheaper than the reserve. What decides
+    // is the reserve the organism carries, which is exactly what `sustains`
+    // does not look at.
+    assert!(
+        survives(world, 500),
+        "from a full tank the same world lives -- the predicate is not the boundary"
+    );
+}
+
+#[test]
+fn the_cadence_condition_of_finding_145_is_not_the_boundary_of_life() {
+    // The counterexample of `docs/FINDING-148.md` O3, verbatim:
+    // `dr = 0.03`, `income = 1.0`, `maint = 0.6`, `rc = 13.466666666666669`,
+    // `capacity = 10`, `energy0 = 5`.
+    //
+    // FINDING-145's condition holds: `ceil(1/dr)*s = 34*0.4 = 13.6 >= 13.47`.
+    // The per-step price is 0.404 > s = 0.4, so the payment is deferred; the
+    // reserve at the repair test is at most `capacity + s = 10.4 < rc`, so the
+    // payment is never made. The organism dies of damage at step 1284 holding
+    // a full tank -- there is no starvation anywhere in this run.
+    let world = World {
+        income: 1.0,
+        maintenance_cost: 0.6,
+        repair_cost: 13.466666666666669,
+        damage_rate: 0.03,
+        capacity: 10.0,
+        ..World::default()
+    };
+    let surplus = world.income - world.maintenance_cost;
+    let cadence = 34.0 * surplus; // ceil(1/0.03) = 34 on this grid
+    assert!(
+        cadence >= world.repair_cost,
+        "FINDING-145 must call this point alive: {} >= {}",
+        cadence,
+        world.repair_cost
+    );
+    assert!(
+        !world.sustains(),
+        "and `sustains` must already refuse it -- the per-step price {} > {}",
+        world.damage_rate * world.repair_cost,
+        surplus
+    );
+    assert!(
+        world.repair_cost > world.capacity + surplus,
+        "the deferred payment must cost more than the deepest reserve"
+    );
+
+    let mut organism = Organism::healthy(5.0).expect("five units of reserve");
+    // `steps` counts successful steps, so the step that kills it is 1284 and
+    // the loop stops with 1283 behind it. `rho_probe` reports the death step.
+    let mut steps = 0;
+    while organism.step(&world, world.income) {
+        steps += 1;
+        assert!(steps < 100_000, "it must die of damage, not live on");
+    }
+    assert_eq!(steps, 1283, "the measured lifetime of this point");
+    assert!(organism.damage() >= 1.0, "the cause must be damage");
+    assert!(
+        organism.energy() >= world.capacity - 1e-12,
+        "it dies holding the cap, not starving: {} of {}",
+        organism.energy(),
+        world.capacity
+    );
+}
+
+// ---------------------------------------------------------------------------
+// The comment is a claim, so it gets a gate of its own.
+// ---------------------------------------------------------------------------
+
+/// The doc comment on `World::sustains` must name the limit it was measured to
+/// have, and must not drift back to the promise it was demoted from.
+///
+/// `cargo test` cannot read prose, so the source is included as text and the
+/// `///` block immediately above `pub fn sustains` is checked. This is the
+/// point of the gate: the two tests above pin the numbers the comment talks
+/// about, and this one pins the sentence itself, so restoring "whether an
+/// organism can live here indefinitely" -- or dropping the reference to the
+/// finding that refuted it -- fails a test instead of surviving as a comment
+/// nobody re-reads.
+#[test]
+fn the_doc_comment_on_sustains_names_the_limit_it_has() {
+    const SOURCE: &str = include_str!("../src/organism.rs");
+
+    let at = SOURCE
+        .find("pub fn sustains(&self) -> bool")
+        .expect("`sustains` must exist in organism.rs");
+    let head: Vec<&str> = SOURCE[..at].lines().collect();
+    // The contiguous `///` block immediately above the function, and nothing
+    // else: `is_viable`'s documentation also mentions `sustains`.
+    // The slice ends in the indentation of the `pub fn` line, so trailing
+    // blank lines go first, then the contiguous `///` block is taken.
+    let mut end = head.len();
+    while end > 0 && head[end - 1].trim().is_empty() {
+        end -= 1;
+    }
+    let mut start = end;
+    for i in (0..end).rev() {
+        if head[i].trim_start().starts_with("///") {
+            start = i;
+        } else {
+            break;
+        }
+    }
+    let doc = head[start..end].join("\n");
+    assert!(
+        doc.contains("per-step price"),
+        "the comment must say which price the predicate tests:\n{}",
+        doc
+    );
+    assert!(
+        doc.contains("not the boundary of life"),
+        "and that it is not the boundary:\n{}",
+        doc
+    );
+    assert!(
+        doc.contains("FINDING-148"),
+        "the finding that measured the limit must be cited:\n{}",
+        doc
+    );
+    assert!(
+        doc.contains("FINDING-145"),
+        "and so must the cadence condition it is not:\n{}",
+        doc
+    );
+    assert!(
+        doc.contains("capacity + surplus"),
+        "the second half of the measured criterion must be named:\n{}",
+        doc
+    );
+    assert!(
+        !doc.contains("can live here indefinitely"),
+        "the demoted promise is back; it was refuted by docs/FINDING-148.md:\n{}",
+        doc
     );
 }
