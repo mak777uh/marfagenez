@@ -1666,3 +1666,15 @@ verified; `contract.py` — 386 записей, 0 нарушений; `log_check
 - **Что осталось:** старые 386 записей не пересчитывались; первым кандидатом
   записан `checks/exp47_standing_is_a_uniform_third.py`, у него уже есть
   команда воспроизведения в `BASE`.
+
+### Цикл 48a — 2026-11-16 — `101d52f`: хеш версионирован, гейт зелёный
+
+- **Коммит:** `101d52f` — `HASH_VERSION`, золотой вектор, `hash_version` в
+  записях, `checks/hash_version.py` в `run.sh`, `docs/hash-unversioned.txt`
+  (386 путей), раздел в `UNREPRODUCIBLE.md`, `FINDING-154`.
+- **Гейт:** `bash run.sh all` — `ВСЁ ЗЕЛЁНОЕ`, 238 тестов, 0 провалов; Lean
+  317 теорем в 63 файлах, 0 `sorry`; Verus 41; `contract.py` без нарушений;
+  `hash_version.py` — 0 `stale`, 0 `ok`, 386 `unversioned` по списку;
+  `--selftest` 7/7.
+- **Проверено инъекцией:** лишний `mix(1)` в `compute_hash` краснит золотой
+  тест; после отката `sha256` файла совпадает с прежним.
