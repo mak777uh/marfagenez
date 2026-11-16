@@ -115,7 +115,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 226 тестов
+### Rust — 229 тестов
 
 | группа | что проверяет |
 |---|---|
@@ -227,15 +227,17 @@ cd core && cargo test --release --tests -- --test-threads=1
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
 | Lean файлов | **56** `Medium` + 8 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
 | Lean `sorry` как тактика | **0** | `grep -rnE '^\s*(·\s*)?sorry\s*$' laws/ \| wc -l` |
-| Rust тестов | **226** | `cd core && cargo test --release --tests -- --test-threads=1` |
+| Rust тестов | **229** | `cd core && cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
-| docs FINDING | **139** | `ls docs/FINDING-*.md \| wc -l` |
+| docs FINDING | **148** | `ls docs/FINDING-*.md \| wc -l` |
 | checks (эксперименты) | **110** | `ls checks/exp*.py \| wc -l` |
 | сохранённых прогонов | **212** | `find results -name 'run-*.json' \| wc -l` |
 | прогонов, прошедших контракт | **204** (0 нарушений) | `python3 checks/contract.py` |
 
 Все числа в этой таблице пересчитаны 2026-11-15 командами выше, а не
-взяты из предыдущей версии. Предыдущая версия (от 2026-11-13) утверждала:
+взяты из предыдущей версии. Строка `docs FINDING` пересчитана
+2026-11-16: в ней стояло 139, а дерево давало 147, — число не
+пересчитывали восемь находок подряд. Предыдущая версия (от 2026-11-13) утверждала:
 
 | строка | было | стало |
 |---|---|---|
