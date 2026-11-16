@@ -129,6 +129,10 @@ enum FieldKind {
     /// a peak seen two steps ago is two cells away now, and where it *is* can be
     /// inferred from where it *was* only if the organism knows the rule.
     Moving,
+    /// A lattice of `period`-spaced peaks that travels. The target is both out
+    /// of the local window and changing position: the last cell of the table in
+    /// FINDING-164, and the only one where memory could beat perception.
+    PeaksMoving,
 }
 
 impl FieldKind {
@@ -137,6 +141,7 @@ impl FieldKind {
             Self::Uniform => "uniform",
             Self::Peaks => "peaks",
             Self::Moving => "moving",
+            Self::PeaksMoving => "peaks-moving",
         }
     }
 }
@@ -371,6 +376,7 @@ fn main() {
                     Some("uniform") => FieldKind::Uniform,
                     Some("peaks") => FieldKind::Peaks,
                     Some("moving") => FieldKind::Moving,
+                    Some("peaks-moving") => FieldKind::PeaksMoving,
                     other => {
                         eprintln!("unknown field: {:?}", other);
                         std::process::exit(2);
@@ -416,7 +422,7 @@ fn main() {
                 println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
                 println!("       [--read-period N]  remembering arms look every N steps");
         println!("       [--look-on-shortfall]  remembering arms look out of turn when the cell is too poor");
-                println!("       [--field uniform|peaks|moving] [--shift S] [--period P] [--poor V]");
+                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--period P] [--poor V]");
                 println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
                 println!("       [--sham-mode visited|neighbour] [--tiebreak left|right|random]");
@@ -456,6 +462,9 @@ fn main() {
         FieldKind::Uniform => Field::new(cells, a.m, a.regrow),
         FieldKind::Peaks => Field::peaks(cells, a.m, a.poor, a.regrow, a.period),
         FieldKind::Moving => Field::moving(cells, a.m, a.poor, a.regrow, a.shift),
+        FieldKind::PeaksMoving => {
+            Field::peaks_moving(cells, a.m, a.poor, a.regrow, a.period, a.shift)
+        }
     };
     let field = match field {
         Some(f) => f,

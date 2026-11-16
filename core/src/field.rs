@@ -51,6 +51,11 @@ pub struct Field {
     poor: f64,
     max_resource: f64,
     regrow: f64,
+    /// Cells between lit cells when the pattern moves. `1` is a single moving
+    /// patch (`moving`); a larger value is a lattice of `period`-spaced peaks
+    /// that travels, which is the only field where a target is both out of the
+    /// local window and changing position.
+    period: usize,
     /// How far the resource pattern shifts per step. `0.0` for a static field.
     ///
     /// This is the one thing a static field cannot show: whether a memory that
@@ -78,6 +83,7 @@ impl Field {
             max_resource,
             regrow,
             shift: 0.0,
+            period: 1,
             t: 0,
         })
     }
@@ -149,6 +155,30 @@ impl Field {
         f.shift = shift;
         f.t = 0;
         f.apply_shift();
+
+        Some(f)
+    }
+
+    /// A lattice of peaks that travels: every `period`-th cell is rich, and the
+    /// whole lattice shifts `shift` cells per step.
+    ///
+    /// This is the one field where a target is both outside the local reading
+    /// window (`period >= 4`) and moving, which is the last place memory could
+    /// in principle beat perception. See `docs/FINDING-165.md`.
+    pub fn peaks_moving(
+        cells: usize,
+        rich: f64,
+        poor: f64,
+        regrow: f64,
+        period: usize,
+        shift: f64,
+    ) -> Option<Self> {
+        if period == 0 || !poor.is_finite() || poor < 0.0 {
+            return None;
+        }
+        let mut f = Self::moving(cells, rich, poor, regrow, shift)?;
+        f.period = period;
+        f.apply_shift();
         Some(f)
     }
 
@@ -171,8 +201,13 @@ impl Field {
             self.ceil[i] = self.poor;
             self.cells[i] = self.cells[i].min(self.poor);
         }
-        self.ceil[pos] = self.max_resource;
-        self.cells[pos] = self.max_resource;
+        let period = self.period.max(1);
+        let mut at = pos;
+        for _ in 0..(n / period) {
+            self.ceil[at] = self.max_resource;
+            self.cells[at] = self.max_resource;
+            at = (at + period) % n;
+        }
     }
 
     /// A field that rises linearly from `low` at the left edge to `high` at the
