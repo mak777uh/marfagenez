@@ -182,6 +182,26 @@ struct Args {
     /// Cells per step the lit patch of a moving field travels.
     shift: f64,
 
+    /// E4, the second channel (`docs/SYNTHESIS-readings.md` Part 6): how much
+    /// mark the form writes into the cell it stands on each step. Zero by
+    /// default, so every recorded number stays reproducible.
+    mark_write: f64,
+
+    /// How much of the mark survives each step. `1.0` never decays; `0.0`
+    /// leaves the mark as it was written this step only.
+    mark_decay: f64,
+
+    /// How much the form's own mark lowers the upkeep in that cell:
+    /// `upkeep_eff = maintenance * max(0, 1 - mark_income * mark)`. The region
+    /// carries part of the cost of existing, which is how "the form earns from
+    /// its region" is built without creating energy out of nothing.
+    mark_income: f64,
+
+    /// How strongly the decision rule is pulled toward a higher mark. This is
+    /// the **return path**: the form's own trace changes its own terms. The
+    /// E4 control is to cut exactly this, leaving the mark and the field alone.
+    mark_read_gain: f64,
+
     /// `true` is the ring the probe has always used; `false` is the line the
     /// core uses. Defaults to the ring so that every recorded number stays
     /// reproducible; `--boundary line` gives the same experiment on the geometry
@@ -220,6 +240,10 @@ impl Default for Args {
             period: 6,
             shift: 1.0,
             boundary_wraps: true,
+            mark_write: 0.0,
+            mark_decay: 1.0,
+            mark_income: 0.0,
+            mark_read_gain: 0.0,
             poor: 0.2,
             memory_life: 1_000_000,
             steps: 2000,
@@ -409,6 +433,22 @@ fn main() {
                     }
                 };
             }
+            "--mark-write" => {
+                i += 1;
+                a.mark_write = number(&argv, i, "--mark-write");
+            }
+            "--mark-decay" => {
+                i += 1;
+                a.mark_decay = number(&argv, i, "--mark-decay");
+            }
+            "--mark-income" => {
+                i += 1;
+                a.mark_income = number(&argv, i, "--mark-income");
+            }
+            "--mark-read-gain" => {
+                i += 1;
+                a.mark_read_gain = number(&argv, i, "--mark-read-gain");
+            }
             "--boundary" => {
                 i += 1;
                 a.boundary_wraps = match argv.get(i).map(|s| s.as_str()) {
@@ -459,7 +499,7 @@ fn main() {
                 println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
                 println!("       [--read-period N]  remembering arms look every N steps");
         println!("       [--look-on-shortfall]  remembering arms look out of turn when the cell is too poor");
-                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--period P] [--poor V]");
+                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--mark-write X --mark-decay D --mark-income B --mark-read-gain G] [--period P] [--poor V]");
                 println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
                 println!("       [--sham-mode visited|neighbour] [--tiebreak left|right|random]");
@@ -567,6 +607,10 @@ fn main() {
     let mut field_min = a.m;
     let mut field_max = a.m;
 
+    // E4's second channel. It is not the resource: it is never consumed, it
+    // decays unless maintained, and it is read only by the form's own rule.
+    let mut marks = vec![0.0f64; cells];
+
     for step in 0..a.steps {
         // --- 1. Reads. The budget is a cap, not a price: the whole probe has one
         //        price list (`move_cost`) and every arm pays it. The own cell
@@ -619,6 +663,21 @@ fn main() {
             field.level(side(r.cell, 1, cells, a.boundary_wraps).unwrap_or(r.cell))
         } else {
             f64::NEG_INFINITY
+        };
+
+        // The return path, and it must be **structural**, not a gate (the
+        // E2c lesson: a term multiplied by a factor that vanishes where the
+        // form is, is blind). At `mark_read_gain == 0.0` the two sums below are
+        // the levels themselves, bit for bit, so every recorded number stays
+        // reproducible -- that identity is what the `silent` control then
+        // proves empirically instead of assuming.
+        let (left_level, right_level) = {
+            let lc = side(r.cell, -1, cells, a.boundary_wraps).unwrap_or(r.cell);
+            let rc = side(r.cell, 1, cells, a.boundary_wraps).unwrap_or(r.cell);
+            (
+                left_level + a.mark_read_gain * marks[lc],
+                right_level + a.mark_read_gain * marks[rc],
+            )
         };
 
         // --- 2. Decide.
@@ -809,11 +868,29 @@ fn main() {
             }
         }
 
+        // --- 3a. E4: the form marks where it is, and the mark ages. It is not
+        //         a resource: `field.take` never touches it.
+        if a.mark_write > 0.0 {
+            marks[r.cell] += a.mark_write;
+        }
+        if a.mark_decay < 1.0 {
+            for m in marks.iter_mut() {
+                *m *= a.mark_decay;
+            }
+        }
+
         // --- 4. Eat and live. The order is `Remembering::step`'s and `Life`'s:
         //        move, take, live, regrow.
         let at = field.level(r.cell);
         let taken = field.take(r.cell, a.income);
-        let alive = r.organism.step_with(&world, taken, RepairPolicy::AllOrNothing);
+        let upkeep = if a.mark_income > 0.0 {
+            (world.maintenance_cost * (1.0 - a.mark_income * marks[r.cell]).max(0.0))
+        } else {
+            world.maintenance_cost
+        };
+        let mut owned = world;
+        owned.maintenance_cost = upkeep;
+        let alive = r.organism.step_with(&owned, taken, RepairPolicy::AllOrNothing);
         field.regrow_all();
 
         mix(&mut h, step as u64);
