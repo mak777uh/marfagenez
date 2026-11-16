@@ -161,6 +161,13 @@ do_exp() {
   # сосед не читается и цена инертна.
   python3 checks/exp_memory_cost.py || rc=$?
   echo
+  echo "--- exp_memory_sampling.py ---"
+  # Память, которая может не смотреть: read_period > 1 у Memory. 384 прогона,
+  # 26 с. Ось обязана трогать только память: `sighted` не меняет хеш при смене
+  # периода, а при read_cost = 0 контроль silent молчит. Вердикт записи —
+  # void: +33/+37 шагов ниже mde = 250, механизм измерен, размер не подтверждён.
+  python3 checks/exp_memory_sampling.py || rc=$?
+  echo
   echo "--- exp05_frozen.py ---"
   local out
   out=$(mktemp)

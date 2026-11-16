@@ -42,7 +42,8 @@ fn world() -> World {
         look_order: LookOrder::LookThenEat,
         birth_threshold: f64::INFINITY,
         birth_cost: 0.0,
-        max_population: 0, read_cost: 0.0
+        max_population: 0, read_cost: 0.0,
+        read_period: 1,
     }
 }
 

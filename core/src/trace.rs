@@ -124,6 +124,13 @@ pub struct Trace {
     /// Recorded because a priced run and a free run are different experiments
     /// that can share frames for a while. See `World::read_cost`.
     pub read_cost: f64,
+    /// Steps between two samples for a `Memory` organism; `1` is every step.
+    ///
+    /// Recorded for the same reason as `read_cost`: a run that looks every
+    /// fourth step and a run that looks every step are different experiments
+    /// that can agree for a while and then diverge, and without the number the
+    /// two records would look like one.
+    pub read_period: usize,
 }
 
 /// The version of the dynamics hash.
@@ -244,6 +251,12 @@ impl Trace {
     /// read, so `0.0` must append nothing and the old hash is the new hash.
     /// A priced run is a different experiment, so it must not collide with a
     /// free one that happens to share its frames.
+    ///
+    /// The sampling period follows the same rule, one step further: it is
+    /// appended **only when `read_period > 1`**. At `1` the organism looked on
+    /// every step, which is what every recorded run did, so the tag is absent
+    /// and the old hash is the new hash. At `> 1` the dynamics are different by
+    /// construction, so the period must not collide with a look-every-step run.
     pub fn hash_with_births(
         frames: &[Frame],
         share: &str,
@@ -253,6 +266,7 @@ impl Trace {
         birth_threshold: f64,
         birth_cost: f64,
         read_cost: f64,
+        read_period: usize,
     ) -> u64 {
         let mut h = Self::hash_with_world(frames, share, tiebreak, look_order);
         if max_population > 0 {
@@ -269,6 +283,13 @@ impl Trace {
         }
         if read_cost > 0.0 {
             let tag = format!("read:{}", read_cost.to_bits());
+            for b in tag.bytes() {
+                h ^= b as u64;
+                h = h.wrapping_mul(0x0000_0100_0000_01b3);
+            }
+        }
+        if read_period > 1 {
+            let tag = format!("period:{}", read_period);
             for b in tag.bytes() {
                 h ^= b as u64;
                 h = h.wrapping_mul(0x0000_0100_0000_01b3);
@@ -294,6 +315,10 @@ impl Trace {
         out.push_str(&format!("  \"birth_cost\": {},\n", json_number(self.birth_cost)));
         out.push_str(&format!("  \"max_population\": {},\n", self.max_population));
         out.push_str(&format!("  \"read_cost\": {},\n", json_number(self.read_cost)));
+        out.push_str(&format!(
+            "  \"read_period\": {},\n",
+            self.read_period
+        ));
         out.push_str(&format!("  \"hash\": \"{:016x}\",\n", self.hash));
         out.push_str(&format!("  \"steps\": {},\n", self.frames.len()));
         out.push_str("  \"frames\": [\n");
@@ -358,6 +383,7 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
     let birth_cost = life.world().birth_cost;
     let max_population = life.world().max_population;
     let read_cost = life.world().read_cost;
+    let read_period = life.world().read_period;
     let hash = Trace::hash_with_births(
         &frames,
         share,
@@ -367,6 +393,7 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         birth_threshold,
         birth_cost,
         read_cost,
+        read_period,
     );
     Trace {
         frames,
@@ -381,6 +408,7 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         birth_cost,
         max_population,
         read_cost,
+        read_period,
     }
 }
 
@@ -435,7 +463,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, seed, 300).unwrap()

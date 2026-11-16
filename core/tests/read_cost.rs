@@ -42,6 +42,7 @@ fn quiet(read_cost: f64, read_budget: usize) -> World {
         birth_threshold: f64::INFINITY,
         birth_cost: 0.0,
         max_population: 0,
+        read_period: 1,
     }
 }
 
@@ -141,6 +142,7 @@ fn a_zero_price_adds_nothing_to_the_dynamics_hash() {
         f64::INFINITY,
         0.0,
         0.0,
+        1,
     );
     let with_price = Trace::hash_with_births(
         &trace.frames,
@@ -151,6 +153,7 @@ fn a_zero_price_adds_nothing_to_the_dynamics_hash() {
         f64::INFINITY,
         0.0,
         0.05,
+        1,
     );
     assert_eq!(before, with_zero, "read_cost = 0.0 moved the hash");
     assert_ne!(before, with_price, "a price must not collide with free reading");

@@ -297,6 +297,22 @@ pub struct World {
     /// way `birth_threshold = INFINITY` means "never": it is the off position
     /// of a price that is always larger than any reachable reserve.
     pub read_cost: f64,
+    /// How many steps pass between two samples of the world for a `Memory`
+    /// organism. `1` means "look every step" and is the default, so a run
+    /// recorded before the period existed is unchanged bit for bit.
+    ///
+    /// On the steps in between, a `Memory` organism reads nothing -- no own
+    /// cell, no neighbours -- and pays neither a read nor `read_cost`; it acts
+    /// on what it remembers. That is what makes "memory against perception" a
+    /// trade-off with a price instead of two names for the same look.
+    ///
+    /// `Sighted` is deliberately NOT periodic: it has no memory to act on, so
+    /// a skipped look would be blindness for a step, not a cheaper policy.
+    /// `Remember` is not periodic either: it is a one-shot choice, not a slot.
+    ///
+    /// `0` is refused by `validate`: a period of zero is "never look", which is
+    /// `read_budget = 0`, a different switch with a different meaning.
+    pub read_period: usize,
     /// What happens when both neighbours are equally rich. See [`TieBreak`].
     pub tiebreak: TieBreak,
     /// Whether a `Memory` organism reads its cell before or after eating.
@@ -338,6 +354,9 @@ impl Default for World {
             // Free reading is the contract: a run recorded before the price
             // existed must keep its numbers and its dynamics hash.
             read_cost: 0.0,
+            // "Look every step" is the contract: a run recorded before the
+            // period existed saw the world on every step.
+            read_period: 1,
             share: ShareProtocol::Sequential,
             tiebreak: TieBreak::Left,
             look_order: LookOrder::LookThenEat,
@@ -352,6 +371,11 @@ impl Default for World {
 }
 
 impl World {
+    /// The longest accepted `read_period`. A period beyond this is not a
+    /// sampling policy, it is a stopped clock; asking for it is a mistake
+    /// worth failing on rather than simulating.
+    pub const MAX_READ_PERIOD: usize = 1024;
+
     /// Whether income exceeds the maintenance cost.
     ///
     /// **This is necessary, not sufficient, for survival.** It was the whole
@@ -513,6 +537,22 @@ impl World {
             return Err(format!(
                 "read_cost must not be NaN or negative (0.0 means free), got {}",
                 self.read_cost
+            ));
+        }
+        // `0` is not "never look": that switch is `read_budget = 0`, and it
+        // means something else (the organism still sees its own cell). A
+        // period of zero has no step to read on and would divide by zero.
+        if self.read_period == 0 {
+            return Err(
+                "read_period must be at least 1 (0 is not a period; use read_budget = 0 to read nothing)"
+                    .to_string(),
+            );
+        }
+        if self.read_period > Self::MAX_READ_PERIOD {
+            return Err(format!(
+                "read_period must not exceed {} (a longer period is a stopped clock), got {}",
+                Self::MAX_READ_PERIOD,
+                self.read_period
             ));
         }
         if !self.birth_cost.is_finite() || self.birth_cost < 0.0 {
@@ -781,7 +821,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let mut o = Organism::healthy(1.0).unwrap();
         let alive = o.step(&world, 0.0);
@@ -812,7 +853,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let mut o = Organism::healthy(2.0).unwrap();
         assert!(o.step(&world, 0.0));
@@ -834,7 +876,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         assert!(!o.step(&world, 0.0));
@@ -879,7 +922,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 100.0);

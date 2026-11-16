@@ -77,6 +77,9 @@ fn main() {
     // for the same reason the birth switch is: a recorded run was free, so a
     // zero has to reproduce it bit for bit. See `World::read_cost`.
     let mut read_cost = 0.0f64;
+    // Steps between two samples for `--policy memory`; `1` is every step and
+    // is the default, so every recorded run keeps its dynamics.
+    let mut read_period = 1usize;
     let mut feed = false;
     let mut share = "sequential".to_string();
     // The tie-break is a parameter of the world, not a detail of the code:
@@ -302,6 +305,10 @@ fn main() {
                 i += 1;
                 read_cost = number::<f64>(&args, i, "--read-cost");
             }
+            "--read-period" => {
+                i += 1;
+                read_period = number::<usize>(&args, i, "--read-period");
+            }
             "--regrow" => {
                 i += 1;
                 regrow = number::<f64>(&args, i, "--regrow");
@@ -314,6 +321,7 @@ fn main() {
                 println!("             [--rich X] [--poor X] [--regrow X] [--layout even] [--start-cell 0,2]");
                 println!("             [--read-budget N]  cells the organism may read per step without eating");
         println!("             [--read-cost X]    energy paid per neighbour read (default 0 = free)");
+        println!("             [--read-period N]  for --policy memory: look every N steps (default 1)");
                 println!("             [--birth-threshold X] [--birth-cost X] [--max-population N]  births (off unless --max-population > 0)");
                 println!("             [--out PATH]  write the trace here (- for stdout). Default: do not write.");
                 return;
@@ -334,6 +342,7 @@ fn main() {
         capacity,
         read_budget,
         read_cost,
+        read_period,
         share: match share.as_str() {
             "sequential" => ShareProtocol::Sequential,
             "proportional" => ShareProtocol::Proportional,
@@ -512,6 +521,9 @@ fn main() {
     // before the parameter existed paid; a priced run is a different world and
     // the header has to say so.
     println!("readcost: {}", read_cost);
+    // How often a `Memory` organism looks. One is every step, which is what
+    // every run recorded before the parameter existed did.
+    println!("readperiod: {}", read_period);
     println!("feed:     {}", feed);
     println!("share:    {}", share);
     println!("steps:    {}", steps);

@@ -371,6 +371,15 @@ impl Life {
                 Policy::Remember | Policy::Memory | Policy::Sighted
             );
             let mut reads_left = if looks { self.world.read_budget } else { 0 };
+            // A `Memory` organism samples the world only every
+            // `read_period`-th step; on the other steps it acts on what it
+            // remembers (`direction()`) and pays neither a read nor its price.
+            // `1` is "look every step" and is the default, so every run
+            // recorded before the period existed is unchanged bit for bit.
+            // `Sighted` is NOT gated: it has no memory to fall back on, so a
+            // skipped look would be blindness, not economy. See its branch.
+            let read_period = self.world.read_period.max(1);
+            let sample = self.policy != Policy::Memory || self.step % read_period == 0;
             // What one **neighbour** read costs. The own cell is free: the
             // organism already eats there, so knowing it is not perception.
             //
@@ -392,7 +401,7 @@ impl Life {
             // how much the organism may look at, not about when.
             let look_after_eating = self.policy == Policy::Memory
                 && self.world.look_order == LookOrder::EatThenLook;
-            let here = if reads_left > 0 && !look_after_eating {
+            let here = if sample && reads_left > 0 && !look_after_eating {
                 reads_left -= 1;
                 self.field.observe(r.cell)
             } else {
@@ -419,7 +428,7 @@ impl Life {
                 Policy::Memory => true,
                 _ => r.memory.best_cell != r.cell,
             };
-            if update_memory {
+            if sample && update_memory {
                 // `Memory` keeps the live level of the cell it stands on, so that
                 // `direction()` can notice the remembered cell has gone poor.
                 if self.policy == Policy::Memory && r.memory.best_cell == r.cell {
@@ -434,6 +443,7 @@ impl Life {
             // A memory of a cell that is no longer worth going to is dropped.
             // Otherwise `direction()` keeps walking toward a cell that has dried up.
             if self.policy == Policy::Memory
+                && sample
                 && r.memory.best_cell != r.cell
                 && r.memory.best_level <= here
             {
@@ -448,7 +458,7 @@ impl Life {
             // remembers the best cell it has SEEN anywhere -- the richer neighbour.
             // Measured before: 8 organisms, 40-cell moving field, 50 steps, memory
             // cells 3, 4, 12, 1, 37, 22, 10, 6 unchanged, direction 0 every step.
-            if self.policy == Policy::Memory {
+            if self.policy == Policy::Memory && sample {
                 // Each neighbour read costs one from the budget, exactly as in
                 // the `sighted` branch. It used to call `Field::level`, which
                 // is a plain array read and does not touch `read_budget`, so
@@ -560,6 +570,13 @@ impl Life {
                     }
                 }
                 Policy::Sighted => {
+                    // `read_period` deliberately does NOT gate this branch: a
+                    // sighted organism has no memory, so skipping a look would
+                    // not make it read less, it would make it blind for that
+                    // step. That is a different policy, not a cheaper one, and
+                    // pretending otherwise would put the period's effect in a
+                    // branch that cannot carry it.
+                    //
                     // Look at both neighbours and step toward the richer one.
                     // A tie goes to `0`: in a uniform field there is nothing to
                     // prefer, so a sighted organism stays put.
@@ -663,7 +680,7 @@ impl Life {
             //     The read is taken from the same budget as the one in step 1,
             //     so the two orders cost the same and cannot be told apart by
             //     the number of reads alone.
-            if look_after_eating && reads_left > 0 {
+            if sample && look_after_eating && reads_left > 0 {
                 reads_left -= 1;
                 let after = self.field.observe(r.cell);
                 if r.memory.best_cell == r.cell {
@@ -896,7 +913,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, 7, 300).unwrap()
@@ -941,7 +959,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         // A field of four rich cells: `Field::new` makes every cell equal to
         // `max_resource`, so there is no need for a setter.
@@ -1022,7 +1041,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let field = Field::alternating(4, 2.4, 1.6, 0.8).expect("alternating field");
         let mut life =
@@ -1183,7 +1203,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         // A field with the smallest legal resource, and income = 0: nothing can be
         // taken, so nothing can be earned. `Field::new` refuses a zero maximum, so
@@ -1220,7 +1241,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let field = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
         let mut sighted = Life::new(
@@ -1314,7 +1336,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1354,7 +1377,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1396,7 +1420,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         // A flat field at 0.5: every cell holds far less than the income.
         let field = Field::new(8, 0.5, 1.0).unwrap();
@@ -1439,7 +1464,8 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0, read_cost: 0.0
+            max_population: 0, read_cost: 0.0,
+            read_period: 1,
         };
         let field = Field::moving(40, 2.0, 0.2, 0.8, 1.0).unwrap();
         let mut memory =

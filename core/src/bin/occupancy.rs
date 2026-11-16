@@ -111,7 +111,8 @@ fn main() {
         look_order: LookOrder::LookThenEat,
         birth_threshold: f64::INFINITY,
         birth_cost: 0.0,
-        max_population: 0, read_cost: 0.0
+        max_population: 0, read_cost: 0.0,
+        read_period: 1,
     };
     let field = Field::new(cells, capacity, regrow).expect("field");
     let spawner = if args.iter().any(|a| a == "--random") {

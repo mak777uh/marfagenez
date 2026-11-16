@@ -24,7 +24,7 @@
 //!
 //! `World::validate()` returns `Err` naming the first bad field, and `Life`
 //! refuses to be built from an invalid world. The fields stay `pub` because 26
-//! call sites build `World { .. }` literals; the validation lives at the point
+//! call sites build `World { .. , read_period: 1, }` literals; the validation lives at the point
 //! where a world starts driving a simulation.
 //!
 //! NOTE: the Lean runtime aborts the process on `panic!`, so failures are

@@ -149,6 +149,10 @@ struct Args {
     read_budget: usize,
     /// Energy paid for one **neighbour** read. The own cell is free.
     read_cost: f64,
+    /// Steps between two samples for the remembering arms (`intact`, `sham`).
+    /// `1` is every step and reproduces the arms recorded before the period
+    /// existed; `sighted` is never gated, because it has no memory to act on.
+    read_period: usize,
     field: FieldKind,
     /// One rich cell every `period` cells, for `FieldKind::Peaks`.
     period: usize,
@@ -179,6 +183,7 @@ impl Default for Args {
             capacity: 10.0,
             read_budget: 3,
             read_cost: 0.0,
+            read_period: 1,
             field: FieldKind::Uniform,
             period: 6,
             poor: 0.2,
@@ -330,6 +335,10 @@ fn main() {
                 i += 1;
                 a.read_cost = number(&argv, i, "--read-cost");
             }
+            "--read-period" => {
+                i += 1;
+                a.read_period = number(&argv, i, "--read-period");
+            }
             "--field" => {
                 i += 1;
                 a.field = match argv.get(i).map(|s| s.as_str()) {
@@ -374,6 +383,7 @@ fn main() {
                 println!("       [--income I] [--maintenance T] [--repair-cost RC]");
                 println!("       [--damage-rate DR] [--move-cost MC] [--energy E0]");
                 println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
+                println!("       [--read-period N]  remembering arms look every N steps");
                 println!("       [--field uniform|peaks] [--period P] [--poor V]");
                 println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
@@ -398,6 +408,7 @@ fn main() {
         capacity: a.capacity,
         read_budget: a.read_budget,
         read_cost: a.read_cost,
+        read_period: a.read_period,
         tiebreak: a.tiebreak,
         ..World::default()
     };
@@ -480,8 +491,17 @@ fn main() {
         //        price list (`move_cost`) and every arm pays it. The own cell
         //        costs one read, exactly as in `Life::advance_with`, so a budget
         //        of 3 is the local window (own + two neighbours).
+        //
+        //        A remembering arm looks only every `read_period`-th step; on
+        //        the other steps it reads nothing, pays nothing and acts on the
+        //        memory. `sighted` is never gated: it has no memory to fall back
+        //        on, so a skipped look would be blindness, not economy.
+        let sample = match a.arm {
+            Arm::Intact | Arm::Sham => step % a.read_period.max(1) == 0,
+            _ => true,
+        };
         let mut reads = a.read_budget;
-        let here = if a.arm.looks() && reads > 0 {
+        let here = if a.arm.looks() && reads > 0 && sample {
             reads -= 1;
             field.level(r.cell)
         } else {
@@ -496,13 +516,13 @@ fn main() {
         // short-sighted instead of into debt, which is the rule
         // `Life::advance_with` states. At `read_cost == 0.0` `spend` subtracts
         // zero and cannot fail, so nothing moves.
-        let left_level = if a.arm.looks() && reads > 0 && r.organism.spend(a.read_cost) {
+        let left_level = if a.arm.looks() && reads > 0 && sample && r.organism.spend(a.read_cost) {
             reads -= 1;
             field.level(ring(r.cell, -1, cells))
         } else {
             f64::NEG_INFINITY
         };
-        let right_level = if a.arm.looks() && reads > 0 && r.organism.spend(a.read_cost) {
+        let right_level = if a.arm.looks() && reads > 0 && sample && r.organism.spend(a.read_cost) {
             field.level(ring(r.cell, 1, cells))
         } else {
             f64::NEG_INFINITY
@@ -604,60 +624,62 @@ fn main() {
                 // The `Life::Memory` rule, re-stated step for step so the probe
                 // can intervene between the update and the decision. `intact`
                 // stops here; `sham` replaces the address below.
-                if r.memory.best_cell == r.cell {
-                    r.memory.best_level = here;
-                    r.memory.age = 0;
-                } else {
-                    r.memory.observe(r.cell, here);
-                }
-                r.memory.decay(r.memory_life);
-                if r.memory.best_cell != r.cell && r.memory.best_level <= here {
-                    r.memory.best_cell = r.cell;
-                    r.memory.best_level = here;
-                    r.memory.age = 0;
-                }
-                let best = here.max(left_level).max(right_level);
-                let step_dir = if left_level > right_level {
-                    -1
-                } else if right_level > left_level {
-                    1
-                } else {
-                    world.tiebreak.pick(&mut r.rng) as i32
-                };
-                let target = ring(r.cell, step_dir as i64, cells);
-                let take = best > here || (best == here && best > r.memory.best_level);
-                if take && best > r.memory.best_level {
-                    r.memory.best_cell = target;
-                    r.memory.best_level = best;
-                    r.memory.age = 0;
-                }
-                if a.arm == Arm::Sham && !r.memory.is_empty() {
-                    // The intervention: the level, the age and the number of
-                    // records stay exactly where they are. Only the address is
-                    // redrawn, so the association "this level belongs to that
-                    // place" is destroyed while the volume of memory is not.
-                    let pool: &[usize] = match a.sham_mode {
-                        ShamMode::Visited => &visited_list,
-                        ShamMode::Neighbour => {
-                            // The two neighbours are the addresses `intact` uses
-                            // in the overwhelming majority of steps; drawing from
-                            // them keeps the address distance at 1 and removes
-                            // only the association.
-                            &[]
-                        }
-                    };
-                    let cell = if pool.is_empty() {
-                        let u = r.rng.uniform();
-                        if u < 0.5 {
-                            ring(r.cell, -1, cells)
-                        } else {
-                            ring(r.cell, 1, cells)
-                        }
+                if sample {
+                    if r.memory.best_cell == r.cell {
+                        r.memory.best_level = here;
+                        r.memory.age = 0;
                     } else {
-                        let k = (r.rng.uniform() * pool.len() as f64) as usize;
-                        pool[k.min(pool.len() - 1)]
+                        r.memory.observe(r.cell, here);
+                    }
+                    r.memory.decay(r.memory_life);
+                    if r.memory.best_cell != r.cell && r.memory.best_level <= here {
+                        r.memory.best_cell = r.cell;
+                        r.memory.best_level = here;
+                        r.memory.age = 0;
+                    }
+                    let best = here.max(left_level).max(right_level);
+                    let step_dir = if left_level > right_level {
+                        -1
+                    } else if right_level > left_level {
+                        1
+                    } else {
+                        world.tiebreak.pick(&mut r.rng) as i32
                     };
-                    r.memory.best_cell = cell;
+                    let target = ring(r.cell, step_dir as i64, cells);
+                    let take = best > here || (best == here && best > r.memory.best_level);
+                    if take && best > r.memory.best_level {
+                        r.memory.best_cell = target;
+                        r.memory.best_level = best;
+                        r.memory.age = 0;
+                    }
+                    if a.arm == Arm::Sham && !r.memory.is_empty() {
+                        // The intervention: the level, the age and the number of
+                        // records stay exactly where they are. Only the address is
+                        // redrawn, so the association "this level belongs to that
+                        // place" is destroyed while the volume of memory is not.
+                        let pool: &[usize] = match a.sham_mode {
+                            ShamMode::Visited => &visited_list,
+                            ShamMode::Neighbour => {
+                                // The two neighbours are the addresses `intact` uses
+                                // in the overwhelming majority of steps; drawing from
+                                // them keeps the address distance at 1 and removes
+                                // only the association.
+                                &[]
+                            }
+                        };
+                        let cell = if pool.is_empty() {
+                            let u = r.rng.uniform();
+                            if u < 0.5 {
+                                ring(r.cell, -1, cells)
+                            } else {
+                                ring(r.cell, 1, cells)
+                            }
+                        } else {
+                            let k = (r.rng.uniform() * pool.len() as f64) as usize;
+                            pool[k.min(pool.len() - 1)]
+                        };
+                        r.memory.best_cell = cell;
+                    }
                 }
                 if r.memory.best_level <= 0.0 {
                     if r.rng.uniform() < 0.5 {
@@ -763,7 +785,7 @@ fn main() {
          \"damage_end\":{:.12},\"taken_mean\":{:.12},\"frac_rich\":{:.12},\
          \"moves\":{},\"field_mean\":{:.12},\"field_min\":{:.12},\"field_max\":{:.12},\
          \"cells\":{},\"read_budget\":{},\"move_cost\":{:.12},\"memory_life\":{},\
-         \"read_cost\":{:.12},\"field\":\"{}\",\"period\":{},\"poor\":{:.12},\
+         \"read_cost\":{:.12},\"read_period\":{},\"field\":\"{}\",\"period\":{},\"poor\":{:.12},\
          \"hash\":\"{:016x}\"}}",
         a.arm.name(),
         match a.sham_mode {
@@ -792,6 +814,7 @@ fn main() {
         a.move_cost,
         a.memory_life,
         a.read_cost,
+        a.read_period,
         a.field.name(),
         a.period,
         a.poor,
