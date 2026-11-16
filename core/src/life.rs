@@ -655,6 +655,97 @@ impl Life {
             // 6. Death is handled inside `step`; nothing to do here.
         }
 
+        // 7. Births. This is the second arm of the feedback that
+        //    `docs/FINDING-152.md` measured only one direction of: a death
+        //    frees a share, and nothing used to add one back.
+        //
+        //    The branch is off twice over by default -- `max_population == 0`
+        //    (no births) and `birth_threshold == f64::INFINITY` (unreachable)
+        //    -- so a run recorded before these fields existed is bit-for-bit
+        //    unchanged. Those defaults are the contract, not a placeholder.
+        //
+        //    A parent pays `birth_cost` and the child receives exactly
+        //    `birth_cost`, so the birth itself moves energy and never creates
+        //    it. The child copies the parent's cell, the population's policy,
+        //    `move_cost` and `memory_life`; its damage is 0.0 and its memory is
+        //    empty. It is a copy of a slot, not a descendant with a gene --
+        //    there is no gene and no inheritance in this model. See
+        //    `docs/FINDING-153.md`.
+        //
+        //    The parents are collected BEFORE any child is placed, so a
+        //    newborn cannot give birth in the step it was born in: otherwise
+        //    one rich organism would fill `max_population` in a single step,
+        //    paying `birth_cost` through children that never lived a step.
+        if self.world.max_population > 0 {
+            let birth_cost = self.world.birth_cost;
+            let threshold = self.world.birth_threshold;
+            let mut alive = 0usize;
+            let mut parents: Vec<usize> = Vec::new();
+            for (i, slot) in self.organisms.iter().enumerate() {
+                if let Some(r) = slot.as_ref() {
+                    if r.organism.is_alive() {
+                        alive += 1;
+                        // `energy - birth_cost > 0.0` is the "the parent can
+                        // pay and stay alive" test; `energy >= threshold` is
+                        // the permission. Both are needed: a threshold below
+                        // `birth_cost` must not let an organism breed itself
+                        // to death.
+                        if r.organism.energy() >= threshold
+                            && r.organism.energy() - birth_cost > 0.0
+                        {
+                            parents.push(i);
+                        }
+                    }
+                }
+            }
+            // Only as many births as the cap still allows. `saturating_sub`
+            // because a world whose `max_population` is below the starting
+            // population is legal and must not underflow into a huge budget.
+            let budget = self.world.max_population.saturating_sub(alive);
+            for i in parents.into_iter().take(budget) {
+                let (cell, move_cost, memory_life) = match self.organisms.get(i).and_then(|s| s.as_ref()) {
+                    Some(r) => (r.cell, r.move_cost, r.memory_life),
+                    None => continue,
+                };
+                // The parent pays. The two tests above already guarantee that
+                // `spend` can cover the charge, so a `false` here means the
+                // slot changed underneath us and the birth is skipped.
+                let paid = match self.organisms.get_mut(i).and_then(|s| s.as_mut()) {
+                    Some(r) => r.organism.spend(birth_cost),
+                    None => false,
+                };
+                if !paid {
+                    continue;
+                }
+                let child = match Organism::healthy(birth_cost) {
+                    Some(o) => o,
+                    // Unreachable: `validate` keeps `birth_cost` finite and
+                    // non-negative, and `Organism::healthy` accepts that.
+                    None => continue,
+                };
+                let mut kid = match Remembering::new(child, cell, 0.0, move_cost, memory_life) {
+                    Some(k) => k,
+                    None => continue,
+                };
+                // An empty memory: the child knows nothing about the field.
+                kid.memory.best_level = 0.0;
+                // An EMPTY slot is reused first, then a slot whose organism is
+                // dead -- a dead slot is a free slot with a headstone in it,
+                // and filling it keeps the Vec from growing a graveyard beside
+                // the living. Only when neither exists does the Vec grow.
+                let empty = self.organisms.iter().position(|s| s.is_none());
+                let dead = empty.or_else(|| {
+                    self.organisms.iter().position(|s| {
+                        s.as_ref().map_or(false, |r| !r.organism.is_alive())
+                    })
+                });
+                match dead {
+                    Some(j) => self.organisms[j] = Some(kid),
+                    None => self.organisms.push(Some(kid)),
+                }
+            }
+        }
+
         // The field regrows once per step. In `feed` mode it already did.
         if !self.feed {
             self.field.regrow_all();
@@ -778,6 +869,9 @@ mod tests {
             tiebreak: TieBreak::Left,
             share: Default::default(),
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, 7, 300).unwrap()
@@ -820,6 +914,9 @@ mod tests {
             tiebreak: TieBreak::Left,
             share: Default::default(),
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         // A field of four rich cells: `Field::new` makes every cell equal to
         // `max_resource`, so there is no need for a setter.
@@ -898,6 +995,9 @@ mod tests {
             tiebreak: TieBreak::Left,
             share: Default::default(),
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let field = Field::alternating(4, 2.4, 1.6, 0.8).expect("alternating field");
         let mut life =
@@ -1056,6 +1156,9 @@ mod tests {
             tiebreak: TieBreak::Left,
             share: Default::default(),
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         // A field with the smallest legal resource, and income = 0: nothing can be
         // taken, so nothing can be earned. `Field::new` refuses a zero maximum, so
@@ -1090,6 +1193,9 @@ mod tests {
             tiebreak: TieBreak::Left,
             share: Default::default(),
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let field = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
         let mut sighted = Life::new(
@@ -1181,6 +1287,9 @@ mod tests {
             tiebreak: TieBreak::Left,
             share: Default::default(),
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1218,6 +1327,9 @@ mod tests {
             tiebreak: TieBreak::Left,
             share: Default::default(),
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1257,6 +1369,9 @@ mod tests {
             tiebreak: TieBreak::Left,
             share: Default::default(),
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         // A flat field at 0.5: every cell holds far less than the income.
         let field = Field::new(8, 0.5, 1.0).unwrap();
@@ -1297,6 +1412,9 @@ mod tests {
             tiebreak: TieBreak::Left,
             share: Default::default(),
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let field = Field::moving(40, 2.0, 0.2, 0.8, 1.0).unwrap();
         let mut memory =

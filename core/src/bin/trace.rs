@@ -84,6 +84,13 @@ fn main() {
     // different models of perception, and the default is the historical one so
     // that no committed number moves. See `LookOrder` in `organism.rs`.
     let mut look_order = "look-then-eat".to_string();
+    // Births, off by default. `max_population = 0` is the switch; the
+    // threshold is `INFINITY` as a second, independent "never". The pair keeps
+    // every recorded hash where it is, which is why the defaults are stated
+    // here and not left to a `..Default::default()`.
+    let mut birth_threshold = f64::INFINITY;
+    let mut birth_cost = 0.0f64;
+    let mut max_population = 0usize;
     // Even is the default. A random layout is a variable nobody wrote down:
     // EXP-87 read a random placement as an even one and spent three runs on
     // it (docs/FINDING-087). A question about cells needs to know which cell
@@ -201,6 +208,18 @@ fn main() {
                     }
                 }
             }
+            "--birth-threshold" => {
+                i += 1;
+                birth_threshold = number::<f64>(&args, i, "--birth-threshold");
+            }
+            "--birth-cost" => {
+                i += 1;
+                birth_cost = number::<f64>(&args, i, "--birth-cost");
+            }
+            "--max-population" => {
+                i += 1;
+                max_population = number::<usize>(&args, i, "--max-population");
+            }
             "--shift" => {
                 i += 1;
                 shift = number::<f64>(&args, i, "--shift");
@@ -286,6 +305,7 @@ fn main() {
                 println!("             [--field alternating|gradient|uniform|moving] [--memory-life N] [--shift X]");
                 println!("             [--rich X] [--poor X] [--regrow X] [--layout even] [--start-cell 0,2]");
                 println!("             [--read-budget N]  cells the organism may read per step without eating");
+                println!("             [--birth-threshold X] [--birth-cost X] [--max-population N]  births (off unless --max-population > 0)");
                 println!("             [--out PATH]  write the trace here (- for stdout). Default: do not write.");
                 return;
             }
@@ -321,6 +341,9 @@ fn main() {
             "eat-then-look" => LookOrder::EatThenLook,
             _ => LookOrder::LookThenEat,
         },
+        birth_threshold,
+        birth_cost,
+        max_population,
     };
     let field = match field_kind.as_str() {
         "alternating" => Field::alternating(cells, rich, poor, regrow),

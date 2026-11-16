@@ -108,6 +108,17 @@ pub struct Trace {
     /// and then the arms would collide and the collision would be read as "the
     /// parameter did not reach the simulation". See `LookOrder`.
     pub look_order: &'static str,
+    /// The energy a parent must hold to give birth; `INFINITY` means never.
+    ///
+    /// Recorded because a run with births and a run without them are different
+    /// experiments, and the parameters are what tells them apart: without them
+    /// two arms would be indistinguishable by their record until somebody
+    /// happened to die or be born. See `World::birth_threshold`.
+    pub birth_threshold: f64,
+    /// Energy moved from a parent to a child.
+    pub birth_cost: f64,
+    /// The population cap; `0` means births are off.
+    pub max_population: usize,
 }
 
 impl Trace {
@@ -191,6 +202,42 @@ impl Trace {
         h
     }
 
+    /// The world parameters **and** the birth switch, folded into the hash.
+    ///
+    /// The birth parameters are folded in **only when `max_population > 0`**,
+    /// and that is the one way to have both properties at once. Every hash
+    /// recorded in `results/` was produced by `hash_with_world`, so appending
+    /// the new parameters unconditionally would move all of them -- and a moved
+    /// hash is the one thing FINDING-153 promised not to do. With
+    /// `max_population == 0` the model has no births by construction and
+    /// nothing is appended, which is exactly the old hash. With a non-zero cap
+    /// the arm is new, so a new hash is correct, and two arms that differ only
+    /// in `birth_cost` cannot collide.
+    pub fn hash_with_births(
+        frames: &[Frame],
+        share: &str,
+        tiebreak: &str,
+        look_order: &str,
+        max_population: usize,
+        birth_threshold: f64,
+        birth_cost: f64,
+    ) -> u64 {
+        let mut h = Self::hash_with_world(frames, share, tiebreak, look_order);
+        if max_population > 0 {
+            let tag = format!(
+                "birth:{}:{}:{}",
+                max_population,
+                birth_threshold.to_bits(),
+                birth_cost.to_bits()
+            );
+            for b in tag.bytes() {
+                h ^= b as u64;
+                h = h.wrapping_mul(0x0000_0100_0000_01b3);
+            }
+        }
+        h
+    }
+
     /// The JSON form. Written by hand so the crate keeps zero dependencies.
     pub fn to_json(&self) -> String {
         let mut out = String::new();
@@ -201,6 +248,12 @@ impl Trace {
         out.push_str(&format!("  \"share\": \"{}\",\n", self.share));
         out.push_str(&format!("  \"tiebreak\": \"{}\",\n", self.tiebreak));
         out.push_str(&format!("  \"look_order\": \"{}\",\n", self.look_order));
+        out.push_str(&format!(
+            "  \"birth_threshold\": {},\n",
+            json_number(self.birth_threshold)
+        ));
+        out.push_str(&format!("  \"birth_cost\": {},\n", json_number(self.birth_cost)));
+        out.push_str(&format!("  \"max_population\": {},\n", self.max_population));
         out.push_str(&format!("  \"hash\": \"{:016x}\",\n", self.hash));
         out.push_str(&format!("  \"steps\": {},\n", self.frames.len()));
         out.push_str("  \"frames\": [\n");
@@ -261,7 +314,18 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
     let share = life.world().share.name();
     let tiebreak = life.world().tiebreak.name();
     let look_order = life.world().look_order.name();
-    let hash = Trace::hash_with_world(&frames, share, tiebreak, look_order);
+    let birth_threshold = life.world().birth_threshold;
+    let birth_cost = life.world().birth_cost;
+    let max_population = life.world().max_population;
+    let hash = Trace::hash_with_births(
+        &frames,
+        share,
+        tiebreak,
+        look_order,
+        max_population,
+        birth_threshold,
+        birth_cost,
+    );
     Trace {
         frames,
         hash,
@@ -271,6 +335,27 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         share,
         tiebreak,
         look_order,
+        birth_threshold,
+        birth_cost,
+        max_population,
+    }
+}
+
+/// A JSON-safe rendering of a float.
+///
+/// `format!("{}", f64::INFINITY)` gives `inf`, which is **not** JSON, and
+/// `INFINITY` is the default of `birth_threshold`. Writing it as the string
+/// `"infinity"` keeps the file valid and keeps "never" visible instead of
+/// silently turning it into `null`.
+fn json_number(v: f64) -> String {
+    if v.is_finite() {
+        format!("{}", v)
+    } else if v.is_nan() {
+        "\"nan\"".to_string()
+    } else if v > 0.0 {
+        "\"infinity\"".to_string()
+    } else {
+        "\"-infinity\"".to_string()
     }
 }
 
@@ -305,6 +390,9 @@ mod tests {
             tiebreak: TieBreak::Left,
             share: Default::default(),
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, seed, 300).unwrap()

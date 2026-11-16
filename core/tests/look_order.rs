@@ -32,6 +32,9 @@ fn world(order: LookOrder) -> World {
         share: ShareProtocol::Sequential,
         tiebreak: TieBreak::Left,
         look_order: order,
+        birth_threshold: f64::INFINITY,
+        birth_cost: 0.0,
+        max_population: 0,
     }
 }
 

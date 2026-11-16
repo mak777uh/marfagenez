@@ -109,6 +109,9 @@ fn main() {
         tiebreak: TieBreak::Left,
         share: Default::default(),
         look_order: LookOrder::LookThenEat,
+        birth_threshold: f64::INFINITY,
+        birth_cost: 0.0,
+        max_population: 0,
     };
     let field = Field::new(cells, capacity, regrow).expect("field");
     let spawner = if args.iter().any(|a| a == "--random") {

@@ -266,6 +266,28 @@ pub struct World {
     /// Whether a `Memory` organism reads its cell before or after eating.
     /// See [`LookOrder`].
     pub look_order: LookOrder,
+    /// The energy a parent must hold for a birth to be allowed.
+    ///
+    /// **The default is `f64::INFINITY`, and it means "never".** It is not a
+    /// large number: the cap keeps a reserve finite, so `energy >= INFINITY`
+    /// is false for every state the model can reach and the birth branch
+    /// cannot fire. A finite default would have been a silent change of the
+    /// model, not a new parameter. `validate` therefore rejects `NaN` and
+    /// negative values but accepts `INFINITY`: infinite is the "off" position.
+    pub birth_threshold: f64,
+    /// Energy the parent pays and the child receives.
+    ///
+    /// The transfer is exact -- the parent loses `birth_cost` and the child is
+    /// born with exactly that -- so a birth moves energy and never creates it.
+    pub birth_cost: f64,
+    /// The most living organisms the population may reach. **`0` means no
+    /// births at all**, and that is the default.
+    ///
+    /// The zero is a switch, not a cap of zero organisms: the model keeps its
+    /// one-way feedback (death frees a share, nothing is added) unless a
+    /// caller asks for the second arm explicitly. Being `usize`, it cannot be
+    /// negative or non-numeric; there is nothing for `validate` to reject.
+    pub max_population: usize,
 }
 
 impl Default for World {
@@ -280,6 +302,12 @@ impl Default for World {
             share: ShareProtocol::Sequential,
             tiebreak: TieBreak::Left,
             look_order: LookOrder::LookThenEat,
+            // The two defaults are the "off" positions, and they are the
+            // contract, not a placeholder: a run recorded before these fields
+            // existed must keep its numbers and its dynamics hash.
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         }
     }
 }
@@ -429,6 +457,23 @@ impl World {
                 self.capacity
             ));
         }
+        // `INFINITY` is the default and means "never", so the test here is
+        // `NaN` plus a negative value, not `is_finite`. A finite threshold is a
+        // real threshold; an infinite one is the switch in its off position.
+        if self.birth_threshold.is_nan() || self.birth_threshold < 0.0 {
+            return Err(format!(
+                "birth_threshold must not be NaN or negative (INFINITY means never), got {}",
+                self.birth_threshold
+            ));
+        }
+        if !self.birth_cost.is_finite() || self.birth_cost < 0.0 {
+            return Err(format!(
+                "birth_cost must be finite and non-negative, got {}",
+                self.birth_cost
+            ));
+        }
+        // `max_population` is a `usize`: it cannot be negative or NaN, so the
+        // "reject nonsense" duty is structural and there is nothing to check.
         Ok(())
     }
 }
@@ -685,6 +730,9 @@ mod tests {
             share: Default::default(),
             tiebreak: TieBreak::Left,
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let mut o = Organism::healthy(1.0).unwrap();
         let alive = o.step(&world, 0.0);
@@ -713,6 +761,9 @@ mod tests {
             share: Default::default(),
             tiebreak: TieBreak::Left,
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let mut o = Organism::healthy(2.0).unwrap();
         assert!(o.step(&world, 0.0));
@@ -732,6 +783,9 @@ mod tests {
             share: Default::default(),
             tiebreak: TieBreak::Left,
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         assert!(!o.step(&world, 0.0));
@@ -774,6 +828,9 @@ mod tests {
             share: Default::default(),
             tiebreak: TieBreak::Left,
             look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 100.0);
