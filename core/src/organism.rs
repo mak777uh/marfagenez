@@ -313,6 +313,22 @@ pub struct World {
     /// `0` is refused by `validate`: a period of zero is "never look", which is
     /// `read_budget = 0`, a different switch with a different meaning.
     pub read_period: usize,
+    /// Whether a `Memory` organism may look at the world **out of turn**
+    /// when the cell underfoot cannot pay the upkeep.
+    ///
+    /// The rule was declared in `docs/FINDING-161.md` before it existed:
+    /// "look out of turn when the current cell holds less than the upkeep".
+    /// The upkeep is `maintenance_cost + damage_rate * repair_cost` -- what
+    /// one step costs before any income -- so a cell below it cannot feed the
+    /// organism and a memory pointing there would stand until the next
+    /// scheduled look, or until death. See `docs/FINDING-162.md`.
+    ///
+    /// **`false` is the contract, not a placeholder.** Every run recorded
+    /// before the rule existed did not look out of turn, so the off position
+    /// must not move one bit; the parameter is folded into the dynamics hash
+    /// only when `true`, the same rule `read_cost > 0` and `read_period > 1`
+    /// follow.
+    pub look_on_shortfall: bool,
     /// What happens when both neighbours are equally rich. See [`TieBreak`].
     pub tiebreak: TieBreak,
     /// Whether a `Memory` organism reads its cell before or after eating.
@@ -357,6 +373,9 @@ impl Default for World {
             // "Look every step" is the contract: a run recorded before the
             // period existed saw the world on every step.
             read_period: 1,
+            // "Never look out of turn" is the contract for the same reason:
+            // the rule is a declared policy, not a default.
+            look_on_shortfall: false,
             share: ShareProtocol::Sequential,
             tiebreak: TieBreak::Left,
             look_order: LookOrder::LookThenEat,
@@ -823,6 +842,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let mut o = Organism::healthy(1.0).unwrap();
         let alive = o.step(&world, 0.0);
@@ -855,6 +875,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let mut o = Organism::healthy(2.0).unwrap();
         assert!(o.step(&world, 0.0));
@@ -878,6 +899,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         assert!(!o.step(&world, 0.0));
@@ -924,6 +946,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 100.0);

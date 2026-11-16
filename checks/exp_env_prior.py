@@ -100,7 +100,11 @@ def environments() -> list[dict]:
     return out
 
 
-def run(arm: str, env: dict, read_cost: float) -> dict:
+def run(
+    arm: str, env: dict, read_cost: float, look_on_shortfall: bool = False
+) -> dict:
+    """One probe run. `look_on_shortfall` is the declared exit rule of
+    `docs/FINDING-161.md`; `False` is every earlier run, bit for bit."""
     cmd = [
         PROBE,
         "--arm", arm,
@@ -124,6 +128,8 @@ def run(arm: str, env: dict, read_cost: float) -> dict:
         "--poor", str(env["poor"]),
         "--start-cell", str(env["start_cell"]),
     ]
+    if look_on_shortfall:
+        cmd.append("--look-on-shortfall")
     out = subprocess.run(cmd, capture_output=True, text=True, check=True)
     return json_load(out.stdout.strip().splitlines()[-1])
 

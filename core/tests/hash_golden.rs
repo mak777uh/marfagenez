@@ -55,6 +55,7 @@ fn golden_trace() -> Trace {
         birth_cost: 2.0,
         max_population: 60, read_cost: 0.0,
         read_period: 1,
+        look_on_shortfall: false,
     };
     let field = Field::alternating(12, 2.4, 1.6, 0.8).unwrap();
     let mut life =

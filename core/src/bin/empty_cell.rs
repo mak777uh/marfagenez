@@ -44,6 +44,7 @@ fn world() -> World {
         birth_cost: 0.0,
         max_population: 0, read_cost: 0.0,
         read_period: 1,
+        look_on_shortfall: false,
     }
 }
 

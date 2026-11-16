@@ -379,7 +379,26 @@ impl Life {
             // `Sighted` is NOT gated: it has no memory to fall back on, so a
             // skipped look would be blindness, not economy. See its branch.
             let read_period = self.world.read_period.max(1);
-            let sample = self.policy != Policy::Memory || self.step % read_period == 0;
+            let due = self.policy != Policy::Memory || self.step % read_period == 0;
+            // The exit rule declared in `docs/FINDING-161.md` **before** it
+            // was implemented: "look out of turn when the current cell holds
+            // less than the upkeep". The threshold is the upkeep and not a
+            // tuned number, because the upkeep is exactly what one step
+            // costs before any income:
+            // `maintenance_cost + damage_rate * repair_cost`. A cell below
+            // it cannot feed the organism; a memory pointing at such a cell
+            // would stand there until the next scheduled look, or die.
+            //
+            // The own cell is read with `Field::level`, which is free: the
+            // rule itself buys no look, it only allows one earlier than
+            // `read_period` would. Off by default, so every recorded run
+            // keeps its bits.
+            let upkeep = self.world.maintenance_cost
+                + self.world.damage_rate * self.world.repair_cost;
+            let needs_look = self.policy == Policy::Memory
+                && self.world.look_on_shortfall
+                && self.field.level(r.cell) < upkeep;
+            let sample = due || needs_look;
             // What one **neighbour** read costs. The own cell is free: the
             // organism already eats there, so knowing it is not perception.
             //
@@ -915,6 +934,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, 7, 300).unwrap()
@@ -961,6 +981,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         // A field of four rich cells: `Field::new` makes every cell equal to
         // `max_resource`, so there is no need for a setter.
@@ -1043,6 +1064,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let field = Field::alternating(4, 2.4, 1.6, 0.8).expect("alternating field");
         let mut life =
@@ -1205,6 +1227,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         // A field with the smallest legal resource, and income = 0: nothing can be
         // taken, so nothing can be earned. `Field::new` refuses a zero maximum, so
@@ -1243,6 +1266,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let field = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
         let mut sighted = Life::new(
@@ -1338,6 +1362,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1379,6 +1404,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1422,6 +1448,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         // A flat field at 0.5: every cell holds far less than the income.
         let field = Field::new(8, 0.5, 1.0).unwrap();
@@ -1466,6 +1493,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let field = Field::moving(40, 2.0, 0.2, 0.8, 1.0).unwrap();
         let mut memory =

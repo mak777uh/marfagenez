@@ -80,6 +80,9 @@ fn main() {
     // Steps between two samples for `--policy memory`; `1` is every step and
     // is the default, so every recorded run keeps its dynamics.
     let mut read_period = 1usize;
+    // The exit rule declared in `docs/FINDING-161.md`. Off by default: the
+    // historical schedule is what every recorded run used.
+    let mut look_on_shortfall = false;
     let mut feed = false;
     let mut share = "sequential".to_string();
     // The tie-break is a parameter of the world, not a detail of the code:
@@ -309,6 +312,9 @@ fn main() {
                 i += 1;
                 read_period = number::<usize>(&args, i, "--read-period");
             }
+            "--look-on-shortfall" => {
+                look_on_shortfall = true;
+            }
             "--regrow" => {
                 i += 1;
                 regrow = number::<f64>(&args, i, "--regrow");
@@ -322,6 +328,7 @@ fn main() {
                 println!("             [--read-budget N]  cells the organism may read per step without eating");
         println!("             [--read-cost X]    energy paid per neighbour read (default 0 = free)");
         println!("             [--read-period N]  for --policy memory: look every N steps (default 1)");
+        println!("             [--look-on-shortfall]  memory looks out of turn when the cell underfoot cannot pay");
                 println!("             [--birth-threshold X] [--birth-cost X] [--max-population N]  births (off unless --max-population > 0)");
                 println!("             [--out PATH]  write the trace here (- for stdout). Default: do not write.");
                 return;
@@ -343,6 +350,7 @@ fn main() {
         read_budget,
         read_cost,
         read_period,
+        look_on_shortfall,
         share: match share.as_str() {
             "sequential" => ShareProtocol::Sequential,
             "proportional" => ShareProtocol::Proportional,
@@ -524,6 +532,7 @@ fn main() {
     // How often a `Memory` organism looks. One is every step, which is what
     // every run recorded before the parameter existed did.
     println!("readperiod: {}", read_period);
+    println!("shortfall: {}", look_on_shortfall);
     println!("feed:     {}", feed);
     println!("share:    {}", share);
     println!("steps:    {}", steps);

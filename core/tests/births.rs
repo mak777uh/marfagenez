@@ -43,6 +43,7 @@ fn quiet_world(birth_threshold: f64, birth_cost: f64, max_population: usize) -> 
         // Reading is free (the default) in this arm.
         read_cost: 0.0,
         read_period: 1,
+        look_on_shortfall: false,
     }
 }
 
@@ -214,6 +215,7 @@ fn a_dead_slot_is_reused_before_the_vec_grows() {
         birth_cost: 0.5,
         max_population: 4, read_cost: 0.0,
         read_period: 1,
+        look_on_shortfall: false,
     };
     let field = Field::alternating(2, 1.0e9, 0.0, 0.0).unwrap();
     let mut life = Life::spawn_even(world, field, 2, 5.0, 0.0, Policy::Stay, 11, 300).unwrap();

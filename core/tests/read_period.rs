@@ -93,6 +93,7 @@ fn a_period_of_one_changes_nothing_in_the_hash() {
         0.0,
         0.0,
         1,
+        false,
     );
     let with_four = Trace::hash_with_births(
         &trace.frames,
@@ -104,6 +105,7 @@ fn a_period_of_one_changes_nothing_in_the_hash() {
         0.0,
         0.0,
         4,
+        false,
     );
     assert_eq!(before, with_one, "read_period = 1 moved the hash");
     assert_ne!(

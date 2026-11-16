@@ -131,6 +131,10 @@ pub struct Trace {
     /// that can agree for a while and then diverge, and without the number the
     /// two records would look like one.
     pub read_period: usize,
+    /// Whether a `Memory` organism looked out of turn when the cell
+    /// underfoot could not pay the upkeep. `false` is the historical
+    /// schedule; `true` is the rule declared in `docs/FINDING-161.md`.
+    pub look_on_shortfall: bool,
 }
 
 /// The version of the dynamics hash.
@@ -267,6 +271,7 @@ impl Trace {
         birth_cost: f64,
         read_cost: f64,
         read_period: usize,
+        look_on_shortfall: bool,
     ) -> u64 {
         let mut h = Self::hash_with_world(frames, share, tiebreak, look_order);
         if max_population > 0 {
@@ -295,6 +300,13 @@ impl Trace {
                 h = h.wrapping_mul(0x0000_0100_0000_01b3);
             }
         }
+        if look_on_shortfall {
+            let tag = "shortfall:1";
+            for b in tag.bytes() {
+                h ^= b as u64;
+                h = h.wrapping_mul(0x0000_0100_0000_01b3);
+            }
+        }
         h
     }
 
@@ -318,6 +330,10 @@ impl Trace {
         out.push_str(&format!(
             "  \"read_period\": {},\n",
             self.read_period
+        ));
+        out.push_str(&format!(
+            "  \"look_on_shortfall\": {},\n",
+            self.look_on_shortfall
         ));
         out.push_str(&format!("  \"hash\": \"{:016x}\",\n", self.hash));
         out.push_str(&format!("  \"steps\": {},\n", self.frames.len()));
@@ -384,6 +400,7 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
     let max_population = life.world().max_population;
     let read_cost = life.world().read_cost;
     let read_period = life.world().read_period;
+    let look_on_shortfall = life.world().look_on_shortfall;
     let hash = Trace::hash_with_births(
         &frames,
         share,
@@ -394,6 +411,7 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         birth_cost,
         read_cost,
         read_period,
+        look_on_shortfall,
     );
     Trace {
         frames,
@@ -409,6 +427,7 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         max_population,
         read_cost,
         read_period,
+        look_on_shortfall,
     }
 }
 
@@ -465,6 +484,7 @@ mod tests {
             birth_cost: 0.0,
             max_population: 0, read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, seed, 300).unwrap()

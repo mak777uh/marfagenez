@@ -153,6 +153,10 @@ struct Args {
     /// `1` is every step and reproduces the arms recorded before the period
     /// existed; `sighted` is never gated, because it has no memory to act on.
     read_period: usize,
+    /// Whether a remembering arm may look out of turn when the cell
+    /// underfoot cannot pay the upkeep. The rule declared in
+    /// `docs/FINDING-161.md`; off reproduces every earlier run.
+    look_on_shortfall: bool,
     field: FieldKind,
     /// One rich cell every `period` cells, for `FieldKind::Peaks`.
     period: usize,
@@ -184,6 +188,7 @@ impl Default for Args {
             read_budget: 3,
             read_cost: 0.0,
             read_period: 1,
+            look_on_shortfall: false,
             field: FieldKind::Uniform,
             period: 6,
             poor: 0.2,
@@ -339,6 +344,9 @@ fn main() {
                 i += 1;
                 a.read_period = number(&argv, i, "--read-period");
             }
+            "--look-on-shortfall" => {
+                a.look_on_shortfall = true;
+            }
             "--field" => {
                 i += 1;
                 a.field = match argv.get(i).map(|s| s.as_str()) {
@@ -384,6 +392,7 @@ fn main() {
                 println!("       [--damage-rate DR] [--move-cost MC] [--energy E0]");
                 println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
                 println!("       [--read-period N]  remembering arms look every N steps");
+        println!("       [--look-on-shortfall]  remembering arms look out of turn when the cell is too poor");
                 println!("       [--field uniform|peaks] [--period P] [--poor V]");
                 println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
@@ -409,6 +418,7 @@ fn main() {
         read_budget: a.read_budget,
         read_cost: a.read_cost,
         read_period: a.read_period,
+        look_on_shortfall: a.look_on_shortfall,
         tiebreak: a.tiebreak,
         ..World::default()
     };
@@ -482,6 +492,7 @@ fn main() {
     let mut rich_steps = 0usize;
     let mut alive_steps = 0usize;
     let mut moves = 0u64;
+    let mut shortfall_looks = 0u64;
     let mut field_mean = 0.0f64;
     let mut field_min = a.m;
     let mut field_max = a.m;
@@ -496,10 +507,22 @@ fn main() {
         //        the other steps it reads nothing, pays nothing and acts on the
         //        memory. `sighted` is never gated: it has no memory to fall back
         //        on, so a skipped look would be blindness, not economy.
-        let sample = match a.arm {
+        // The exit rule declared in `docs/FINDING-161.md`: a remembering arm
+        // looks out of turn when the cell underfoot cannot pay the upkeep.
+        // The own cell is `field.level` here -- free, outside the budget --
+        // so this only moves a look earlier. `sighted` is untouched: it has
+        // no memory to fall back on, and a skipped look would blind it.
+        let due = match a.arm {
             Arm::Intact | Arm::Sham => step % a.read_period.max(1) == 0,
             _ => true,
         };
+        let needy = matches!(a.arm, Arm::Intact | Arm::Sham)
+            && a.look_on_shortfall
+            && field.level(r.cell) < need;
+        let sample = due || needy;
+        if needy && !due {
+            shortfall_looks += 1;
+        }
         let mut reads = a.read_budget;
         let here = if a.arm.looks() && reads > 0 && sample {
             reads -= 1;
@@ -785,7 +808,7 @@ fn main() {
          \"damage_end\":{:.12},\"taken_mean\":{:.12},\"frac_rich\":{:.12},\
          \"moves\":{},\"field_mean\":{:.12},\"field_min\":{:.12},\"field_max\":{:.12},\
          \"cells\":{},\"read_budget\":{},\"move_cost\":{:.12},\"memory_life\":{},\
-         \"read_cost\":{:.12},\"read_period\":{},\"field\":\"{}\",\"period\":{},\"poor\":{:.12},\
+         \"read_cost\":{:.12},\"read_period\":{},\"look_on_shortfall\":{},\"shortfall_looks\":{},\"field\":\"{}\",\"period\":{},\"poor\":{:.12},\
          \"hash\":\"{:016x}\"}}",
         a.arm.name(),
         match a.sham_mode {
@@ -815,6 +838,8 @@ fn main() {
         a.memory_life,
         a.read_cost,
         a.read_period,
+        a.look_on_shortfall,
+        shortfall_looks,
         a.field.name(),
         a.period,
         a.poor,
