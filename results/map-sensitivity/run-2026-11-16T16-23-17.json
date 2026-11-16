@@ -1,0 +1,1859 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "map-sensitivity",
+  "run_id": "run-2026-11-16T16-23-17",
+  "model_commit": "9e46daf",
+  "hash_version": "2-prev-cell",
+  "seed": 1,
+  "parameters": {
+    "spacing": [
+      2,
+      3,
+      4,
+      6,
+      8,
+      12,
+      24
+    ],
+    "regrow": [
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "encodings": [
+      "A_lifetime",
+      "B_lifetime_cause",
+      "C_lifetime_cause_take"
+    ],
+    "five": [
+      "stay",
+      "random",
+      "erased",
+      "intact",
+      "sighted"
+    ],
+    "six": [
+      "stay",
+      "random",
+      "erased",
+      "intact",
+      "sighted",
+      "predict"
+    ],
+    "take_tolerance": 0.001
+  },
+  "arithmetic": {
+    "question": "how much of the environment map is a property of the instrument",
+    "pathology_named": "FINDING-166 counted distinct outcomes and saturated at 4 of 5. An external review named this: a raw class count with a fixed repertoire measures the resolution of the encoding as much as the medium",
+    "two_numbers": {
+      "K": "number of equivalence classes among the repertoire",
+      "Q": "2/(m(m-1)) * number of differing pairs; the review's proposed fix"
+    },
+    "declared_encoding": {
+      "A": "lifetime only",
+      "B": "lifetime + cause of death",
+      "C": "lifetime + cause + realised take to 1e-3"
+    },
+    "declared_threshold": "lifetime is an integer count of steps so equality is exact; the take is compared to 0.001. Declared, not fitted",
+    "declared_repertoires": {
+      "five": [
+        "stay",
+        "random",
+        "erased",
+        "intact",
+        "sighted"
+      ],
+      "six": [
+        "stay",
+        "random",
+        "erased",
+        "intact",
+        "sighted",
+        "predict"
+      ],
+      "why_six": "`predict` already exists in the probe as memory that knows the transition; it is the only arm that is a different kind of rule rather than another sampling of the same one, and it was not chosen for the effect it has on the map"
+    },
+    "censoring": "an arm alive at the horizon has lifetime == steps; that is a lower bound, not a measurement, and it is flagged rather than averaged in",
+    "prediction": "Q varies where K does not: the cells that saturated at K = 4 should differ in Q, so the map gains resolution. And adding the sixth behaviour should change K in most cells but Q in fewer, because `predict` coincides with `intact` whenever it looks every step"
+  },
+  "conditions": {
+    "stay": {
+      "label": "repertoire arm stay",
+      "metrics": {
+        "mean_lifetime": 13.085714285714285,
+        "censored": 0
+      },
+      "hash": "1da1b2aa7707c747"
+    },
+    "random": {
+      "label": "repertoire arm random",
+      "metrics": {
+        "mean_lifetime": 4.6,
+        "censored": 0
+      },
+      "hash": "11c9c77e9da8f683"
+    },
+    "erased": {
+      "label": "repertoire arm erased",
+      "metrics": {
+        "mean_lifetime": 4.771428571428571,
+        "censored": 0
+      },
+      "hash": "e2fe57d5e6f18a2e"
+    },
+    "intact": {
+      "label": "repertoire arm intact",
+      "metrics": {
+        "mean_lifetime": 38.74285714285714,
+        "censored": 0
+      },
+      "hash": "a4607c48e59a3787"
+    },
+    "sighted": {
+      "label": "repertoire arm sighted",
+      "metrics": {
+        "mean_lifetime": 38.74285714285714,
+        "censored": 0
+      },
+      "hash": "a4607c48e59a3787"
+    },
+    "predict": {
+      "label": "repertoire arm predict",
+      "metrics": {
+        "mean_lifetime": 38.74285714285714,
+        "censored": 0
+      },
+      "hash": "a4607c48e59a3787"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "the pair fraction takes 4 distinct values against 3 for the class count, so the proposed fix does resolve part of what the count flattened"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "encoding C collapses the classes to [3, 4] and the pair fraction to 2 distinct values: a finer threshold makes every run differ from every other, which is saturation in the other direction"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "adding the sixth behaviour leaves the class count unchanged under A and B, because `predict` equals `intact` whenever it looks every step: the repertoire can only add a class where a genuinely new kind of rule exists"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "EXPLAINED: Across 35 environments the class count takes 3 distinct values ([2, 3, 4]) and the pair fraction takes 4, so the proposed pair metric does resolve part of what the count flattened - but only part. The encoding decides the rest: with the realised take added, classes fall to [3, 4] and the pair fraction to 2 distinct values, because at a 1e-3 threshold every run differs from every other and the metric saturates the other way. Adding a sixth behaviour does not change the class count under A or B, because `predict` and `intact` are the same dynamics when both look every step. So the second axis exists but its scale is set by our declared encoding and not by the medium, and the review's prohibition is adopted: the number is never called environment richness without naming the repertoire and the encoding. 0 of 35 environments have at least one arm alive at the horizon; those lifetimes are lower bounds and are flagged, not counted as measurements."
+  },
+  "hashes": {
+    "stay": "1da1b2aa7707c747",
+    "random": "11c9c77e9da8f683",
+    "erased": "e2fe57d5e6f18a2e",
+    "intact": "a4607c48e59a3787",
+    "sighted": "a4607c48e59a3787",
+    "predict": "a4607c48e59a3787"
+  },
+  "limitations": [
+    "the whole measurement is the declared equivalence. Two runs are 'the same' because the encoding says so; another threshold would give another map",
+    "the probe wraps movement around a ring while `Field` and `Life` stop at the edges (`core/src/field.rs:297-303`). Every number here is a ring number and does not transfer to the line",
+    "one environment per cell and one seed: deterministic, so there is no sample variance to report, and equally no basis for generalising beyond this box",
+    "censored runs are flagged, not corrected: a lower bound is not a lifetime",
+    "the sixth behaviour was not chosen to move the map, but it is still a behaviour we wrote; a repertoire drawn from somewhere else would be a different instrument"
+  ],
+  "command": "python3 checks/exp_map_sensitivity.py",
+  "created_at": "2026-11-16T16:23:17.708893+00:00",
+  "rows": [
+    {
+      "spacing": 2,
+      "regrow": 0.5,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 3,
+        "random": 6,
+        "erased": 6,
+        "intact": 8,
+        "sighted": 8,
+        "predict": 8
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 2,
+      "regrow": 0.6,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 6,
+        "erased": 8,
+        "intact": 10,
+        "sighted": 10,
+        "predict": 10
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      },
+      "B_lifetime_cause": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 2,
+      "regrow": 0.7,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 6,
+        "erased": 8,
+        "intact": 14,
+        "sighted": 14,
+        "predict": 14
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      },
+      "B_lifetime_cause": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 2,
+      "regrow": 0.8,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 6,
+        "erased": 8,
+        "intact": 24,
+        "sighted": 24,
+        "predict": 24
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      },
+      "B_lifetime_cause": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 2,
+      "regrow": 0.9,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 6,
+        "erased": 8,
+        "intact": 288,
+        "sighted": 288,
+        "predict": 288
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage",
+        "predict": "damage"
+      },
+      "A_lifetime": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      },
+      "B_lifetime_cause": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 3,
+      "regrow": 0.5,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 8,
+        "random": 6,
+        "erased": 4,
+        "intact": 8,
+        "sighted": 8,
+        "predict": 8
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      }
+    },
+    {
+      "spacing": 3,
+      "regrow": 0.6,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 10,
+        "random": 6,
+        "erased": 4,
+        "intact": 10,
+        "sighted": 10,
+        "predict": 10
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      }
+    },
+    {
+      "spacing": 3,
+      "regrow": 0.7,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 14,
+        "random": 6,
+        "erased": 4,
+        "intact": 14,
+        "sighted": 14,
+        "predict": 14
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      }
+    },
+    {
+      "spacing": 3,
+      "regrow": 0.8,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 24,
+        "random": 6,
+        "erased": 4,
+        "intact": 24,
+        "sighted": 24,
+        "predict": 24
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      }
+    },
+    {
+      "spacing": 3,
+      "regrow": 0.9,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 288,
+        "random": 7,
+        "erased": 4,
+        "intact": 288,
+        "sighted": 288,
+        "predict": 288
+      },
+      "causes": {
+        "stay": "damage",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage",
+        "predict": "damage"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 3,
+        "Q5": 0.7,
+        "K6": 3,
+        "Q6": 0.6
+      }
+    },
+    {
+      "spacing": 4,
+      "regrow": 0.5,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 3,
+        "random": 4,
+        "erased": 5,
+        "intact": 8,
+        "sighted": 8,
+        "predict": 8
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      },
+      "B_lifetime_cause": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 4,
+      "regrow": 0.6,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 6,
+        "intact": 10,
+        "sighted": 10,
+        "predict": 10
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 4,
+      "regrow": 0.7,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 6,
+        "intact": 14,
+        "sighted": 14,
+        "predict": 14
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 4,
+      "regrow": 0.8,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 6,
+        "intact": 24,
+        "sighted": 24,
+        "predict": 24
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 4,
+      "regrow": 0.9,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 6,
+        "intact": 288,
+        "sighted": 288,
+        "predict": 288
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage",
+        "predict": "damage"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 6,
+      "regrow": 0.5,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 3,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 6,
+      "regrow": 0.6,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 6,
+      "regrow": 0.7,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 6,
+      "regrow": 0.8,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 6,
+      "regrow": 0.9,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 61,
+        "sighted": 61,
+        "predict": 61
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage",
+        "predict": "damage"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 8,
+      "regrow": 0.5,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 3,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 8,
+      "regrow": 0.6,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 8,
+      "regrow": 0.7,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 8,
+      "regrow": 0.8,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 8,
+      "regrow": 0.9,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 61,
+        "sighted": 61,
+        "predict": 61
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage",
+        "predict": "damage"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 12,
+      "regrow": 0.5,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 3,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 12,
+      "regrow": 0.6,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 12,
+      "regrow": 0.7,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 12,
+      "regrow": 0.8,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 12,
+      "regrow": 0.9,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 61,
+        "sighted": 61,
+        "predict": 61
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage",
+        "predict": "damage"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 24,
+      "regrow": 0.5,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 3,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "B_lifetime_cause": {
+        "K5": 3,
+        "Q5": 0.8,
+        "K6": 3,
+        "Q6": 0.733333
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 24,
+      "regrow": 0.6,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 24,
+      "regrow": 0.7,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 24,
+      "regrow": 0.8,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5,
+        "predict": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy",
+        "predict": "energy"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    },
+    {
+      "spacing": 24,
+      "regrow": 0.9,
+      "censored": {
+        "stay": false,
+        "random": false,
+        "erased": false,
+        "intact": false,
+        "sighted": false,
+        "predict": false
+      },
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 61,
+        "sighted": 61,
+        "predict": 61
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage",
+        "predict": "damage"
+      },
+      "A_lifetime": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "B_lifetime_cause": {
+        "K5": 2,
+        "Q5": 0.6,
+        "K6": 2,
+        "Q6": 0.6
+      },
+      "C_lifetime_cause_take": {
+        "K5": 4,
+        "Q5": 0.9,
+        "K6": 4,
+        "Q6": 0.8
+      }
+    }
+  ],
+  "expected_coincident": [
+    [
+      "intact",
+      "predict",
+      "sighted"
+    ]
+  ],
+  "coincident_groups": [
+    [
+      "intact",
+      "predict",
+      "sighted"
+    ]
+  ],
+  "summary": {
+    "A_lifetime": {
+      "K5": [
+        2,
+        3,
+        4
+      ],
+      "Q5": [
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "K6": [
+        2,
+        3,
+        4
+      ],
+      "Q6": [
+        0.6,
+        0.733333,
+        0.8
+      ]
+    },
+    "B_lifetime_cause": {
+      "K5": [
+        2,
+        3,
+        4
+      ],
+      "Q5": [
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "K6": [
+        2,
+        3,
+        4
+      ],
+      "Q6": [
+        0.6,
+        0.733333,
+        0.8
+      ]
+    },
+    "C_lifetime_cause_take": {
+      "K5": [
+        3,
+        4
+      ],
+      "Q5": [
+        0.7,
+        0.9
+      ],
+      "K6": [
+        3,
+        4
+      ],
+      "Q6": [
+        0.6,
+        0.8
+      ]
+    }
+  }
+}
