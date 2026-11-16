@@ -203,6 +203,20 @@ struct Args {
     /// is what can be lost.
     region_radius: usize,
 
+    /// Region health lost per step underfoot: use wears the place. `0.0`
+    /// leaves the old behaviour, so every recorded number stays reproducible.
+    region_wear: f64,
+
+    /// Region health restored per step while the form pays to keep it.
+    region_keep: f64,
+
+    /// What keeping costs per step. Standing still stops being free only when
+    /// this is above zero together with the wear.
+    region_keep_cost: f64,
+
+    /// How much of the cell's yield is lost when its region health is zero.
+    region_loss: f64,
+
     /// The pull acts only when the cell underfoot cannot pay the upkeep -- the
     /// consequence is the need itself, as Neill's saw in the rain, and
     /// `FINDING-170` showed that an unconditional pull turns standing into
@@ -258,6 +272,10 @@ impl Default for Args {
             mark_read_gain: 0.0,
             region_radius: 1,
             region_needed_only: true,
+            region_wear: 0.0,
+            region_keep: 0.0,
+            region_keep_cost: 0.0,
+            region_loss: 0.0,
             poor: 0.2,
             memory_life: 1_000_000,
             steps: 2000,
@@ -459,6 +477,22 @@ fn main() {
                 i += 1;
                 a.mark_income = number(&argv, i, "--mark-income");
             }
+            "--region-wear" => {
+                i += 1;
+                a.region_wear = number(&argv, i, "--region-wear");
+            }
+            "--region-keep" => {
+                i += 1;
+                a.region_keep = number(&argv, i, "--region-keep");
+            }
+            "--region-keep-cost" => {
+                i += 1;
+                a.region_keep_cost = number(&argv, i, "--region-keep-cost");
+            }
+            "--region-loss" => {
+                i += 1;
+                a.region_loss = number(&argv, i, "--region-loss");
+            }
             "--region-radius" => {
                 i += 1;
                 let radius: f64 = number(&argv, i, "--region-radius");
@@ -522,7 +556,7 @@ fn main() {
                 println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
                 println!("       [--read-period N]  remembering arms look every N steps");
         println!("       [--look-on-shortfall]  remembering arms look out of turn when the cell is too poor");
-                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--mark-write X --mark-decay D --mark-income B --mark-read-gain G --region-radius R --region-needed-only on|off] [--period P] [--poor V]");
+                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--mark-write X --mark-decay D --mark-income B --mark-read-gain G --region-radius R --region-needed-only on|off --region-wear W --region-keep K --region-keep-cost C --region-loss L] [--period P] [--poor V]");
                 println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
                 println!("       [--sham-mode visited|neighbour] [--tiebreak left|right|random]");
@@ -922,10 +956,35 @@ fn main() {
             }
         }
 
+        // --- 3b. The region wears where the form stands, and is kept only by
+        //         paying. This is the force `FINDING-169` and `FINDING-171`
+        //         found missing: standing still stops being free.
+        if a.region_wear > 0.0 {
+            marks[r.cell] = (marks[r.cell] - a.region_wear).max(0.0);
+        }
+        let mut kept = false;
+        if a.region_keep > 0.0 && a.region_keep_cost > 0.0 && r.organism.spend(a.region_keep_cost) {
+            let span = a.region_radius as i64;
+            for d in -span..=span {
+                let c = side(r.cell, d, cells, a.boundary_wraps).unwrap_or(r.cell);
+                marks[c] = (marks[c] + a.region_keep).min(1.0);
+            }
+            kept = true;
+        }
+        let _ = kept;
+
         // --- 4. Eat and live. The order is `Remembering::step`'s and `Life`'s:
         //        move, take, live, regrow.
         let at = field.level(r.cell);
-        let taken = field.take(r.cell, a.income);
+        // A worn region yields less: at zero health the cell gives
+        // `1 - region_loss` of what it holds. This is what makes movement
+        // forced rather than merely possible.
+        let yield_factor = if a.region_loss > 0.0 {
+            1.0 - a.region_loss * (1.0 - marks[r.cell]).max(0.0)
+        } else {
+            1.0
+        };
+        let taken = field.take(r.cell, a.income * yield_factor.max(0.0));
         let upkeep = if a.mark_income > 0.0 {
             (world.maintenance_cost * (1.0 - a.mark_income * marks[r.cell]).max(0.0))
         } else {
