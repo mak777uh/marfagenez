@@ -7823,5 +7823,8 @@
     "arms_needed": 252,
     "formula": "n = 2*(z_{alpha/2}+z_{power})^2*sigma^2/effect^2",
     "rule": "an effect smaller than `effect` at `sigma_between_seeds` and `arms_needed` is `void`, not `failed`: the instrument could not see it, the world did not answer no"
-  }
+  },
+  "reproduced_at": [
+    "00c860f"
+  ]
 }
