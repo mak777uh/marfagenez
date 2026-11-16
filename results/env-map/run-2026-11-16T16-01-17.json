@@ -1,0 +1,1144 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "env-map",
+  "run_id": "run-2026-11-16T16-01-17",
+  "model_commit": "6d17f89",
+  "hash_version": "2-prev-cell",
+  "seed": 1,
+  "parameters": {
+    "spacing": [
+      2,
+      3,
+      4,
+      6,
+      8,
+      12,
+      24
+    ],
+    "regrow": [
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "repertoire": [
+      "stay",
+      "random",
+      "erased",
+      "intact",
+      "sighted"
+    ],
+    "steps": 20000
+  },
+  "arithmetic": {
+    "question": "is comfort independent of how much the medium distinguishes",
+    "comfort": "mean taken by the best-repertoire arm minus the upkeep, in resource units",
+    "richness": "number of distinct (lifetime, cause, taken_mean) among the declared repertoire",
+    "repertoire": [
+      "stay",
+      "random",
+      "erased",
+      "intact",
+      "sighted"
+    ],
+    "repertoire_is_relative": "richness cannot be compared across repertoires and is not claimed to be; adding a sixth behaviour would change it. This is the Q1 concern of docs/REVIEW-emergence-notes-3.md and docs/RESEARCH-BRIEF-4.md, recorded rather than resolved",
+    "prediction": "richness is not monotone in the spacing: 1 at spacing 2 (nearly uniform) and 1 at spacing 24 (the single peak is unreachable), with a maximum between; comfort falls monotonically as the spacing grows",
+    "axes": {
+      "spacing": [
+        2,
+        3,
+        4,
+        6,
+        8,
+        12,
+        24
+      ],
+      "regrow": [
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ]
+    },
+    "fixed": {
+      "cells": 24,
+      "read_cost": 0.0,
+      "poor": 0.2,
+      "steps": 20000
+    }
+  },
+  "conditions": {
+    "stay": {
+      "label": "repertoire arm stay",
+      "metrics": {
+        "mean_lifetime": 13.085714285714285,
+        "environments": 35
+      },
+      "hash": "1da1b2aa7707c747"
+    },
+    "random": {
+      "label": "repertoire arm random",
+      "metrics": {
+        "mean_lifetime": 4.6,
+        "environments": 35
+      },
+      "hash": "11c9c77e9da8f683"
+    },
+    "erased": {
+      "label": "repertoire arm erased",
+      "metrics": {
+        "mean_lifetime": 4.771428571428571,
+        "environments": 35
+      },
+      "hash": "e2fe57d5e6f18a2e"
+    },
+    "intact": {
+      "label": "repertoire arm intact",
+      "metrics": {
+        "mean_lifetime": 38.74285714285714,
+        "environments": 35
+      },
+      "hash": "a4607c48e59a3787"
+    },
+    "sighted": {
+      "label": "repertoire arm sighted",
+      "metrics": {
+        "mean_lifetime": 38.74285714285714,
+        "environments": 35
+      },
+      "hash": "a4607c48e59a3787"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "comfort takes 7 distinct values across 35 environments, so the medium does change how easy it is to make a living"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "richness takes values [3, 4]: it does vary, so the axis is not constant"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "a repeat of one environment returns identical numbers, so the counts are a property of the medium and not of run order"
+    }
+  },
+  "verdict": {
+    "kind": "failed",
+    "reason": "EXPLAINED: Across 35 environments of a declared box, comfort ranges from -1.22 to -0.02 and separates the medium cleanly. Richness does not: it takes values [3, 4] and is 4 out of 5 in 30 of 35 environments. The prediction - that richness is not monotone in the spacing, with a peak in the middle - is refuted, and for a more interesting reason than monotonicity: the count saturates, so it cannot be used as an axis at all. The map therefore has one working axis (comfort) and one that measures nothing (richness as a raw count of distinct outcomes). The claim that comfort and richness are independent is not supported: richness has no variance to be independent of anything. This is the Q1 concern of RESEARCH-BRIEF-4 arriving before the answer did."
+  },
+  "hashes": {
+    "stay": "1da1b2aa7707c747",
+    "random": "11c9c77e9da8f683",
+    "erased": "e2fe57d5e6f18a2e",
+    "intact": "a4607c48e59a3787",
+    "sighted": "a4607c48e59a3787"
+  },
+  "limitations": [
+    "richness is relative to the declared repertoire and cannot be compared with another list of behaviours; the probe has no `Remember` arm, so this is not the core's five policies",
+    "one environment per cell, no repetition: FINDING-158 measured sigma = 0 across seeds, so a cell is a single deterministic run and carries no interval",
+    "comfort is the best realised take, so it is the comfort of the luckiest behaviour, not of a typical organism",
+    "`intact` and `sighted` share a digest across all 35 environments: with read_cost = 0 and read_period = 1 a memory that looks every step IS the neighbour-follower. Half the repertoire is therefore one arm, which is why the maximum richness observed is 4 and not 5, and it is another face of the saturation",
+    "the grid is a hand-drawn box: 7 spacings x 5 regrowth rates at one income, one poor level and one starting cell. A share of this box is not a share of nature, exactly as the note on Conway's Life warns",
+    "read_cost is zero, so the axes measure the medium alone; the price of perception was the subject of FINDING-156 and is held fixed here"
+  ],
+  "command": "python3 checks/exp_env_map.py",
+  "created_at": "2026-11-16T16:01:17.840312+00:00",
+  "cells": [
+    {
+      "spacing": 2,
+      "regrow": 0.5,
+      "hashes": {
+        "stay": "4df620bca6b619f7",
+        "random": "3c7a9722fa25085a",
+        "erased": "38d9e5d31301c8c8",
+        "intact": "e491005d4fe1bea6",
+        "sighted": "e491005d4fe1bea6"
+      },
+      "richness": 4,
+      "comfort": -0.6910214285709999,
+      "best_taken": 1.130078571429,
+      "lifetimes": {
+        "stay": 3,
+        "random": 6,
+        "erased": 6,
+        "intact": 8,
+        "sighted": 8
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 2,
+      "regrow": 0.6,
+      "hashes": {
+        "stay": "4139a92b72b25b1f",
+        "random": "98d7bd8c0b647ee6",
+        "erased": "fa0d889045bfe29a",
+        "intact": "5c40cea950e4ff8e",
+        "sighted": "5c40cea950e4ff8e"
+      },
+      "richness": 4,
+      "comfort": -0.5441377777779999,
+      "best_taken": 1.276962222222,
+      "lifetimes": {
+        "stay": 4,
+        "random": 6,
+        "erased": 8,
+        "intact": 10,
+        "sighted": 10
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 2,
+      "regrow": 0.7,
+      "hashes": {
+        "stay": "fa76ef578450c0f9",
+        "random": "5e636943c82d7884",
+        "erased": "50b5253a1eb5af58",
+        "intact": "5c8bdc3666652d94",
+        "sighted": "5c8bdc3666652d94"
+      },
+      "richness": 4,
+      "comfort": -0.3845792307689999,
+      "best_taken": 1.436520769231,
+      "lifetimes": {
+        "stay": 4,
+        "random": 6,
+        "erased": 8,
+        "intact": 14,
+        "sighted": 14
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 2,
+      "regrow": 0.8,
+      "hashes": {
+        "stay": "0c66170a87525c20",
+        "random": "570c007e20eb338d",
+        "erased": "eecfc91d0b2a77b6",
+        "intact": "bdc36bd7ca745a41",
+        "sighted": "bdc36bd7ca745a41"
+      },
+      "richness": 4,
+      "comfort": -0.209931304348,
+      "best_taken": 1.611168695652,
+      "lifetimes": {
+        "stay": 4,
+        "random": 6,
+        "erased": 8,
+        "intact": 24,
+        "sighted": 24
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 2,
+      "regrow": 0.9,
+      "hashes": {
+        "stay": "d5d7c7053ffa10c7",
+        "random": "7f3c55db90b7e8ac",
+        "erased": "ce83a13d22a50d26",
+        "intact": "3600c8c68434bdd1",
+        "sighted": "3600c8c68434bdd1"
+      },
+      "richness": 4,
+      "comfort": -0.020964146340999967,
+      "best_taken": 1.800135853659,
+      "lifetimes": {
+        "stay": 4,
+        "random": 6,
+        "erased": 8,
+        "intact": 288,
+        "sighted": 288
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage"
+      }
+    },
+    {
+      "spacing": 3,
+      "regrow": 0.5,
+      "hashes": {
+        "stay": "78c90aa3daa9ff61",
+        "random": "e7c61738edddad33",
+        "erased": "61cbae84f8d029f6",
+        "intact": "78c90aa3daa9ff61",
+        "sighted": "78c90aa3daa9ff61"
+      },
+      "richness": 3,
+      "comfort": -0.6910214285709999,
+      "best_taken": 1.130078571429,
+      "lifetimes": {
+        "stay": 8,
+        "random": 6,
+        "erased": 4,
+        "intact": 8,
+        "sighted": 8
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 3,
+      "regrow": 0.6,
+      "hashes": {
+        "stay": "a401b86c50791c5f",
+        "random": "cfaa8ac59c701bc3",
+        "erased": "05bb7a6fa8088d1c",
+        "intact": "a401b86c50791c5f",
+        "sighted": "a401b86c50791c5f"
+      },
+      "richness": 3,
+      "comfort": -0.5441377777779999,
+      "best_taken": 1.276962222222,
+      "lifetimes": {
+        "stay": 10,
+        "random": 6,
+        "erased": 4,
+        "intact": 10,
+        "sighted": 10
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 3,
+      "regrow": 0.7,
+      "hashes": {
+        "stay": "7ae325d7b1fe7bfd",
+        "random": "bc46226d67cf5629",
+        "erased": "501ae5cd6be9f976",
+        "intact": "7ae325d7b1fe7bfd",
+        "sighted": "7ae325d7b1fe7bfd"
+      },
+      "richness": 3,
+      "comfort": -0.3845792307689999,
+      "best_taken": 1.436520769231,
+      "lifetimes": {
+        "stay": 14,
+        "random": 6,
+        "erased": 4,
+        "intact": 14,
+        "sighted": 14
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 3,
+      "regrow": 0.8,
+      "hashes": {
+        "stay": "5cc1eb0817b11eb6",
+        "random": "dc76781eb17fc7ec",
+        "erased": "6abff7f9fc9cfc97",
+        "intact": "5cc1eb0817b11eb6",
+        "sighted": "5cc1eb0817b11eb6"
+      },
+      "richness": 3,
+      "comfort": -0.209931304348,
+      "best_taken": 1.611168695652,
+      "lifetimes": {
+        "stay": 24,
+        "random": 6,
+        "erased": 4,
+        "intact": 24,
+        "sighted": 24
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 3,
+      "regrow": 0.9,
+      "hashes": {
+        "stay": "15756f9756520f16",
+        "random": "48652ea80459a3de",
+        "erased": "a1a42c2cd674484f",
+        "intact": "15756f9756520f16",
+        "sighted": "15756f9756520f16"
+      },
+      "richness": 3,
+      "comfort": -0.020964146340999967,
+      "best_taken": 1.800135853659,
+      "lifetimes": {
+        "stay": 288,
+        "random": 7,
+        "erased": 4,
+        "intact": 288,
+        "sighted": 288
+      },
+      "causes": {
+        "stay": "damage",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage"
+      }
+    },
+    {
+      "spacing": 4,
+      "regrow": 0.5,
+      "hashes": {
+        "stay": "4df620bca6b619f7",
+        "random": "811fef47ee74a2f1",
+        "erased": "b806368685d8c2ba",
+        "intact": "2d83b037c76e4600",
+        "sighted": "2d83b037c76e4600"
+      },
+      "richness": 4,
+      "comfort": -0.6910214285709999,
+      "best_taken": 1.130078571429,
+      "lifetimes": {
+        "stay": 3,
+        "random": 4,
+        "erased": 5,
+        "intact": 8,
+        "sighted": 8
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 4,
+      "regrow": 0.6,
+      "hashes": {
+        "stay": "4139a92b72b25b1f",
+        "random": "cb8835cce0c0b430",
+        "erased": "1d77ae84a2d64204",
+        "intact": "9761e9d35541ae94",
+        "sighted": "9761e9d35541ae94"
+      },
+      "richness": 4,
+      "comfort": -0.5441377777779999,
+      "best_taken": 1.276962222222,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 6,
+        "intact": 10,
+        "sighted": 10
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 4,
+      "regrow": 0.7,
+      "hashes": {
+        "stay": "fa76ef578450c0f9",
+        "random": "8e8aa80f3a600b06",
+        "erased": "9eea047ac59962c6",
+        "intact": "6148b2c5d9510896",
+        "sighted": "6148b2c5d9510896"
+      },
+      "richness": 4,
+      "comfort": -0.3845792307689999,
+      "best_taken": 1.436520769231,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 6,
+        "intact": 14,
+        "sighted": 14
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 4,
+      "regrow": 0.8,
+      "hashes": {
+        "stay": "0c66170a87525c20",
+        "random": "7ebe5e5865505221",
+        "erased": "9a380b96798f02b9",
+        "intact": "d73499744fbb0bff",
+        "sighted": "d73499744fbb0bff"
+      },
+      "richness": 4,
+      "comfort": -0.209931304348,
+      "best_taken": 1.611168695652,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 6,
+        "intact": 24,
+        "sighted": 24
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 4,
+      "regrow": 0.9,
+      "hashes": {
+        "stay": "d5d7c7053ffa10c7",
+        "random": "bb8a2c5cdef72aba",
+        "erased": "4c76ed9dfeada5e3",
+        "intact": "1a3f7d38bc494e07",
+        "sighted": "1a3f7d38bc494e07"
+      },
+      "richness": 4,
+      "comfort": -0.020964146340999967,
+      "best_taken": 1.800135853659,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 6,
+        "intact": 288,
+        "sighted": 288
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage"
+      }
+    },
+    {
+      "spacing": 6,
+      "regrow": 0.5,
+      "hashes": {
+        "stay": "4df620bca6b619f7",
+        "random": "811fef47ee74a2f1",
+        "erased": "61cbae84f8d029f6",
+        "intact": "d793d42a5349142d",
+        "sighted": "d793d42a5349142d"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 3,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 6,
+      "regrow": 0.6,
+      "hashes": {
+        "stay": "4139a92b72b25b1f",
+        "random": "cb8835cce0c0b430",
+        "erased": "05bb7a6fa8088d1c",
+        "intact": "c3682d744d17b200",
+        "sighted": "c3682d744d17b200"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 6,
+      "regrow": 0.7,
+      "hashes": {
+        "stay": "fa76ef578450c0f9",
+        "random": "8e8aa80f3a600b06",
+        "erased": "501ae5cd6be9f976",
+        "intact": "88dff65d35a1fa2b",
+        "sighted": "88dff65d35a1fa2b"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 6,
+      "regrow": 0.8,
+      "hashes": {
+        "stay": "0c66170a87525c20",
+        "random": "7ebe5e5865505221",
+        "erased": "6abff7f9fc9cfc97",
+        "intact": "76cfc60017d71256",
+        "sighted": "76cfc60017d71256"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 6,
+      "regrow": 0.9,
+      "hashes": {
+        "stay": "d5d7c7053ffa10c7",
+        "random": "bb8a2c5cdef72aba",
+        "erased": "a1a42c2cd674484f",
+        "intact": "c87bfeb6ec8c7431",
+        "sighted": "c87bfeb6ec8c7431"
+      },
+      "richness": 4,
+      "comfort": -0.10045016666699991,
+      "best_taken": 1.720649833333,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 61,
+        "sighted": 61
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage"
+      }
+    },
+    {
+      "spacing": 8,
+      "regrow": 0.5,
+      "hashes": {
+        "stay": "4df620bca6b619f7",
+        "random": "811fef47ee74a2f1",
+        "erased": "61cbae84f8d029f6",
+        "intact": "d793d42a5349142d",
+        "sighted": "d793d42a5349142d"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 3,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 8,
+      "regrow": 0.6,
+      "hashes": {
+        "stay": "4139a92b72b25b1f",
+        "random": "cb8835cce0c0b430",
+        "erased": "05bb7a6fa8088d1c",
+        "intact": "c3682d744d17b200",
+        "sighted": "c3682d744d17b200"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 8,
+      "regrow": 0.7,
+      "hashes": {
+        "stay": "fa76ef578450c0f9",
+        "random": "8e8aa80f3a600b06",
+        "erased": "501ae5cd6be9f976",
+        "intact": "88dff65d35a1fa2b",
+        "sighted": "88dff65d35a1fa2b"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 8,
+      "regrow": 0.8,
+      "hashes": {
+        "stay": "0c66170a87525c20",
+        "random": "7ebe5e5865505221",
+        "erased": "6abff7f9fc9cfc97",
+        "intact": "76cfc60017d71256",
+        "sighted": "76cfc60017d71256"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 8,
+      "regrow": 0.9,
+      "hashes": {
+        "stay": "d5d7c7053ffa10c7",
+        "random": "bb8a2c5cdef72aba",
+        "erased": "a1a42c2cd674484f",
+        "intact": "c87bfeb6ec8c7431",
+        "sighted": "c87bfeb6ec8c7431"
+      },
+      "richness": 4,
+      "comfort": -0.10045016666699991,
+      "best_taken": 1.720649833333,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 61,
+        "sighted": 61
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage"
+      }
+    },
+    {
+      "spacing": 12,
+      "regrow": 0.5,
+      "hashes": {
+        "stay": "4df620bca6b619f7",
+        "random": "811fef47ee74a2f1",
+        "erased": "61cbae84f8d029f6",
+        "intact": "d793d42a5349142d",
+        "sighted": "d793d42a5349142d"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 3,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 12,
+      "regrow": 0.6,
+      "hashes": {
+        "stay": "4139a92b72b25b1f",
+        "random": "cb8835cce0c0b430",
+        "erased": "05bb7a6fa8088d1c",
+        "intact": "c3682d744d17b200",
+        "sighted": "c3682d744d17b200"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 12,
+      "regrow": 0.7,
+      "hashes": {
+        "stay": "fa76ef578450c0f9",
+        "random": "8e8aa80f3a600b06",
+        "erased": "501ae5cd6be9f976",
+        "intact": "88dff65d35a1fa2b",
+        "sighted": "88dff65d35a1fa2b"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 12,
+      "regrow": 0.8,
+      "hashes": {
+        "stay": "0c66170a87525c20",
+        "random": "7ebe5e5865505221",
+        "erased": "6abff7f9fc9cfc97",
+        "intact": "76cfc60017d71256",
+        "sighted": "76cfc60017d71256"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 12,
+      "regrow": 0.9,
+      "hashes": {
+        "stay": "d5d7c7053ffa10c7",
+        "random": "bb8a2c5cdef72aba",
+        "erased": "a1a42c2cd674484f",
+        "intact": "c87bfeb6ec8c7431",
+        "sighted": "c87bfeb6ec8c7431"
+      },
+      "richness": 4,
+      "comfort": -0.10045016666699991,
+      "best_taken": 1.720649833333,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 61,
+        "sighted": 61
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage"
+      }
+    },
+    {
+      "spacing": 24,
+      "regrow": 0.5,
+      "hashes": {
+        "stay": "4df620bca6b619f7",
+        "random": "811fef47ee74a2f1",
+        "erased": "61cbae84f8d029f6",
+        "intact": "d793d42a5349142d",
+        "sighted": "d793d42a5349142d"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 3,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 24,
+      "regrow": 0.6,
+      "hashes": {
+        "stay": "4139a92b72b25b1f",
+        "random": "cb8835cce0c0b430",
+        "erased": "05bb7a6fa8088d1c",
+        "intact": "c3682d744d17b200",
+        "sighted": "c3682d744d17b200"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 24,
+      "regrow": 0.7,
+      "hashes": {
+        "stay": "fa76ef578450c0f9",
+        "random": "8e8aa80f3a600b06",
+        "erased": "501ae5cd6be9f976",
+        "intact": "88dff65d35a1fa2b",
+        "sighted": "88dff65d35a1fa2b"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 24,
+      "regrow": 0.8,
+      "hashes": {
+        "stay": "0c66170a87525c20",
+        "random": "7ebe5e5865505221",
+        "erased": "6abff7f9fc9cfc97",
+        "intact": "76cfc60017d71256",
+        "sighted": "76cfc60017d71256"
+      },
+      "richness": 4,
+      "comfort": -1.215825,
+      "best_taken": 0.605275,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 5,
+        "sighted": 5
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "energy",
+        "sighted": "energy"
+      }
+    },
+    {
+      "spacing": 24,
+      "regrow": 0.9,
+      "hashes": {
+        "stay": "d5d7c7053ffa10c7",
+        "random": "bb8a2c5cdef72aba",
+        "erased": "a1a42c2cd674484f",
+        "intact": "c87bfeb6ec8c7431",
+        "sighted": "c87bfeb6ec8c7431"
+      },
+      "richness": 4,
+      "comfort": -0.10045016666699991,
+      "best_taken": 1.720649833333,
+      "lifetimes": {
+        "stay": 4,
+        "random": 4,
+        "erased": 4,
+        "intact": 61,
+        "sighted": 61
+      },
+      "causes": {
+        "stay": "energy",
+        "random": "energy",
+        "erased": "energy",
+        "intact": "damage",
+        "sighted": "damage"
+      }
+    }
+  ],
+  "expected_coincident": [
+    [
+      "intact",
+      "sighted"
+    ]
+  ],
+  "coincident_groups": [
+    [
+      "intact",
+      "sighted"
+    ]
+  ]
+}
