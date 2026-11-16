@@ -203,6 +203,17 @@ struct Args {
     /// is what can be lost.
     region_radius: usize,
 
+    /// How far from the form the paid keep restores health. `0` is only the
+    /// cell underfoot, so a region wider than one cell can be kept only by
+    /// **returning** to each part of it -- which is the last step the synthesis
+    /// needs: the form must leave and come back, not merely stand.
+    keep_radius: usize,
+
+    /// When on, the yield is scaled by the **mean** health of the region, not by
+    /// the health of the cell underfoot. Then a neglected far cell costs income
+    /// and the form has a reason to visit parts of its region it cannot see.
+    region_yield: bool,
+
     /// The policy the medium now demands (`docs/FINDING-172.md`): when the cell
     /// underfoot cannot pay the upkeep, a step is allowed toward a neighbour
     /// **even if that neighbour is poorer**. With this off, a form on a failing
@@ -279,6 +290,8 @@ impl Default for Args {
             region_radius: 1,
             region_needed_only: true,
             leave_when_worn: false,
+            keep_radius: 0,
+            region_yield: false,
             region_wear: 0.0,
             region_keep: 0.0,
             region_keep_cost: 0.0,
@@ -484,6 +497,15 @@ fn main() {
                 i += 1;
                 a.mark_income = number(&argv, i, "--mark-income");
             }
+            "--keep-radius" => {
+                i += 1;
+                let v: f64 = number(&argv, i, "--keep-radius");
+                a.keep_radius = v.max(0.0) as usize;
+            }
+            "--region-yield" => {
+                i += 1;
+                a.region_yield = !matches!(argv.get(i).map(|s| s.as_str()), Some("off"));
+            }
             "--leave-when-worn" => {
                 i += 1;
                 a.leave_when_worn = !matches!(argv.get(i).map(|s| s.as_str()), Some("off"));
@@ -567,7 +589,7 @@ fn main() {
                 println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
                 println!("       [--read-period N]  remembering arms look every N steps");
         println!("       [--look-on-shortfall]  remembering arms look out of turn when the cell is too poor");
-                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--mark-write X --mark-decay D --mark-income B --mark-read-gain G --region-radius R --region-needed-only on|off --region-wear W --region-keep K --region-keep-cost C --region-loss L --leave-when-worn on|off] [--period P] [--poor V]");
+                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--mark-write X --mark-decay D --mark-income B --mark-read-gain G --region-radius R --region-needed-only on|off --region-wear W --region-keep K --region-keep-cost C --region-loss L --leave-when-worn on|off --keep-radius R --region-yield on|off] [--period P] [--poor V]");
                 println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
                 println!("       [--sham-mode visited|neighbour] [--tiebreak left|right|random]");
@@ -981,7 +1003,7 @@ fn main() {
             let span = a.region_radius as i64;
             for d in -span..=span {
                 let c = side(r.cell, d, cells, a.boundary_wraps).unwrap_or(r.cell);
-                marks[c] += a.mark_write;
+                marks[c] = (marks[c] + a.mark_write).min(1.0);
             }
         }
         if a.mark_decay < 1.0 {
@@ -998,7 +1020,7 @@ fn main() {
         }
         let mut kept = false;
         if a.region_keep > 0.0 && a.region_keep_cost > 0.0 && r.organism.spend(a.region_keep_cost) {
-            let span = a.region_radius as i64;
+            let span = a.keep_radius as i64;
             for d in -span..=span {
                 let c = side(r.cell, d, cells, a.boundary_wraps).unwrap_or(r.cell);
                 marks[c] = (marks[c] + a.region_keep).min(1.0);
@@ -1013,8 +1035,21 @@ fn main() {
         // A worn region yields less: at zero health the cell gives
         // `1 - region_loss` of what it holds. This is what makes movement
         // forced rather than merely possible.
+        let health = if a.region_yield && a.region_radius > 0 {
+            // The region feeds the form: the mean over the whole owned block, so
+            // a neglected part of it costs income even when the form is not there.
+            let span = a.region_radius as i64;
+            let mut acc = 0.0;
+            for d in -span..=span {
+                let c = side(r.cell, d, cells, a.boundary_wraps).unwrap_or(r.cell);
+                acc += marks[c];
+            }
+            acc / (2 * span + 1) as f64
+        } else {
+            marks[r.cell]
+        };
         let yield_factor = if a.region_loss > 0.0 {
-            1.0 - a.region_loss * (1.0 - marks[r.cell]).max(0.0)
+            1.0 - a.region_loss * (1.0 - health).max(0.0)
         } else {
             1.0
         };
