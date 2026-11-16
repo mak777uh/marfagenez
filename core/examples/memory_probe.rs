@@ -91,6 +91,12 @@ enum Arm {
     /// "model of the transition" -- and is the test of whether the deficit of
     /// 163 is memory or memory *without a rule*.
     Predict,
+    /// The policy the medium demands (`docs/FINDING-174.md`): the region is
+    /// wider than the eyes, so which part of it is worn cannot be learned
+    /// locally. This arm remembers **one target** -- the worst place it has seen
+    /// -- and goes there, instead of pulling toward its own trail (which
+    /// `FINDING-170/171/173/174` all measured to be fatal).
+    Tend,
     Sham,
     Erased,
     Stay,
@@ -104,6 +110,7 @@ impl Arm {
             Self::Sighted => "sighted",
             Self::Intact => "intact",
             Self::Predict => "predict",
+            Self::Tend => "tend",
             Self::Sham => "sham",
             Self::Erased => "erased",
             Self::Stay => "stay",
@@ -113,7 +120,10 @@ impl Arm {
 
     /// Arms that read the local window and therefore pay the same reads.
     fn looks(self) -> bool {
-        matches!(self, Self::Sighted | Self::Intact | Self::Predict | Self::Sham)
+        matches!(
+            self,
+            Self::Sighted | Self::Intact | Self::Predict | Self::Tend | Self::Sham
+        )
     }
 }
 
@@ -384,6 +394,7 @@ fn main() {
                     Some("sighted") => Arm::Sighted,
                     Some("intact") => Arm::Intact,
                 Some("predict") => Arm::Predict,
+                    Some("tend") => Arm::Tend,
                     Some("sham") => Arm::Sham,
                     Some("erased") => Arm::Erased,
                     Some("stay") => Arm::Stay,
@@ -701,6 +712,9 @@ fn main() {
     // decays unless maintained, and it is read only by the form's own rule.
     let mut marks = vec![0.0f64; cells];
 
+    // The tending policy's one slot: which place needs attention.
+    let mut tend_target: Option<usize> = None;
+
     for step in 0..a.steps {
         // --- 1. Reads. The budget is a cap, not a price: the whole probe has one
         //        price list (`move_cost`) and every arm pays it. The own cell
@@ -889,6 +903,39 @@ fn main() {
                     }
                 } else {
                     0
+                }
+            }
+            Arm::Tend => {
+                // The worst place among the cells it can see, kept as a target
+                // until it is healthy again or a worse one appears. That single
+                // slot is the whole "memory" here.
+                let lc = side(r.cell, -1, cells, a.boundary_wraps).unwrap_or(r.cell);
+                let rc = side(r.cell, 1, cells, a.boundary_wraps).unwrap_or(r.cell);
+                let mut worst_c = r.cell;
+                let mut worst_v = marks[r.cell];
+                for c in [lc, rc] {
+                    if marks[c] < worst_v {
+                        worst_v = marks[c];
+                        worst_c = c;
+                    }
+                }
+                if tend_target.is_none()
+                    || worst_v < 0.5 * marks[tend_target.unwrap_or(r.cell)]
+                    || marks[tend_target.unwrap_or(r.cell)] >= 0.9
+                {
+                    tend_target = if worst_c == r.cell { None } else { Some(worst_c) };
+                }
+                match tend_target {
+                    Some(t) if t != r.cell => {
+                        let d = if t == lc { -1 } else { 1 };
+                        // A worn target is worth reaching even if it pays less.
+                        if marks[r.cell] >= 1.0 || worst_v < marks[r.cell] {
+                            d
+                        } else {
+                            0
+                        }
+                    }
+                    _ => 0,
                 }
             }
             Arm::Intact | Arm::Predict | Arm::Sham => {
