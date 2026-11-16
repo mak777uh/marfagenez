@@ -109,6 +109,24 @@ impl Arm {
     }
 }
 
+/// The field the probe runs on. `Uniform` is FINDING-155's world, where the
+/// richest cell is always adjacent; `Peaks` is FINDING-156's, where it may be
+/// outside the visible window.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum FieldKind {
+    Uniform,
+    Peaks,
+}
+
+impl FieldKind {
+    fn name(self) -> &'static str {
+        match self {
+            Self::Uniform => "uniform",
+            Self::Peaks => "peaks",
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum ShamMode {
     Visited,
@@ -129,6 +147,13 @@ struct Args {
     energy: f64,
     capacity: f64,
     read_budget: usize,
+    /// Energy paid for one **neighbour** read. The own cell is free.
+    read_cost: f64,
+    field: FieldKind,
+    /// One rich cell every `period` cells, for `FieldKind::Peaks`.
+    period: usize,
+    /// The poor ceiling of a peaked field.
+    poor: f64,
     memory_life: usize,
     steps: usize,
     seed: u64,
@@ -153,6 +178,10 @@ impl Default for Args {
             energy: 5.0,
             capacity: 10.0,
             read_budget: 3,
+            read_cost: 0.0,
+            field: FieldKind::Uniform,
+            period: 6,
+            poor: 0.2,
             memory_life: 1_000_000,
             steps: 2000,
             seed: 1,
@@ -297,6 +326,29 @@ fn main() {
                 i += 1;
                 a.read_budget = number(&argv, i, "--read-budget");
             }
+            "--read-cost" => {
+                i += 1;
+                a.read_cost = number(&argv, i, "--read-cost");
+            }
+            "--field" => {
+                i += 1;
+                a.field = match argv.get(i).map(|s| s.as_str()) {
+                    Some("uniform") => FieldKind::Uniform,
+                    Some("peaks") => FieldKind::Peaks,
+                    other => {
+                        eprintln!("unknown field: {:?}", other);
+                        std::process::exit(2);
+                    }
+                };
+            }
+            "--period" => {
+                i += 1;
+                a.period = number(&argv, i, "--period");
+            }
+            "--poor" => {
+                i += 1;
+                a.poor = number(&argv, i, "--poor");
+            }
             "--memory-life" => {
                 i += 1;
                 a.memory_life = number(&argv, i, "--memory-life");
@@ -321,7 +373,9 @@ fn main() {
                 println!("usage: memory_probe --arm A [--cells N] [--m M] [--regrow R]");
                 println!("       [--income I] [--maintenance T] [--repair-cost RC]");
                 println!("       [--damage-rate DR] [--move-cost MC] [--energy E0]");
-                println!("       [--capacity CAP] [--read-budget B] [--memory-life L]");
+                println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
+                println!("       [--field uniform|peaks] [--period P] [--poor V]");
+                println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
                 println!("       [--sham-mode visited|neighbour] [--tiebreak left|right|random]");
                 return;
@@ -343,6 +397,7 @@ fn main() {
         damage_rate: a.damage_rate,
         capacity: a.capacity,
         read_budget: a.read_budget,
+        read_cost: a.read_cost,
         tiebreak: a.tiebreak,
         ..World::default()
     };
@@ -350,7 +405,14 @@ fn main() {
         eprintln!("refusing to run: the world does not validate");
         std::process::exit(2);
     }
-    let field = match Field::new(cells, a.m, a.regrow) {
+    // `rich` is the field's ceiling `m`, the same `M` as FINDING-155, so the
+    // two experiments share a `P_need`; `poor` is a per-cell ceiling far below
+    // it. With `period >= 4` the next rich cell is outside the local window.
+    let field = match a.field {
+        FieldKind::Uniform => Field::new(cells, a.m, a.regrow),
+        FieldKind::Peaks => Field::peaks(cells, a.m, a.poor, a.regrow, a.period),
+    };
+    let field = match field {
         Some(f) => f,
         None => {
             eprintln!("refusing to run: cannot build the field");
@@ -425,13 +487,22 @@ fn main() {
         } else {
             0.0
         };
-        let left_level = if a.arm.looks() && reads > 0 {
+        // A neighbour costs one look from the budget AND `read_cost` energy.
+        // The own cell is free in energy (the organism already eats there) but
+        // still costs one look -- the probe's budget rule, unchanged since
+        // FINDING-155, so a budget of 3 is the local window.
+        //
+        // A look that cannot be paid for is **not taken**: the organism goes
+        // short-sighted instead of into debt, which is the rule
+        // `Life::advance_with` states. At `read_cost == 0.0` `spend` subtracts
+        // zero and cannot fail, so nothing moves.
+        let left_level = if a.arm.looks() && reads > 0 && r.organism.spend(a.read_cost) {
             reads -= 1;
             field.level(ring(r.cell, -1, cells))
         } else {
             f64::NEG_INFINITY
         };
-        let right_level = if a.arm.looks() && reads > 0 {
+        let right_level = if a.arm.looks() && reads > 0 && r.organism.spend(a.read_cost) {
             field.level(ring(r.cell, 1, cells))
         } else {
             f64::NEG_INFINITY
@@ -460,6 +531,17 @@ fn main() {
                 }
             }
             Arm::Oracle => {
+                // Omniscience is bought, not assumed: looking at the whole
+                // field costs one `read_cost` per cell it examines (the own
+                // cell is free). If that is unaffordable the organism does not
+                // get a partial oracle -- it knows only the cell it stands on
+                // and stays, which is what "cannot afford to look" means. At
+                // `read_cost == 0.0` the charge is zero and this branch is the
+                // arm FINDING-155 recorded, bit for bit.
+                let scan = a.read_cost * (cells.saturating_sub(1)) as f64;
+                if !r.organism.spend(scan) {
+                    0
+                } else {
                 // The whole field: more than any memory can know.
                 let here_now = field.level(r.cell);
                 let mut best = here_now;
@@ -501,6 +583,7 @@ fn main() {
                     } else {
                         world.tiebreak.pick(&mut r.rng) as i32
                     }
+                }
                 }
             }
             Arm::Sighted => {
@@ -680,6 +763,7 @@ fn main() {
          \"damage_end\":{:.12},\"taken_mean\":{:.12},\"frac_rich\":{:.12},\
          \"moves\":{},\"field_mean\":{:.12},\"field_min\":{:.12},\"field_max\":{:.12},\
          \"cells\":{},\"read_budget\":{},\"move_cost\":{:.12},\"memory_life\":{},\
+         \"read_cost\":{:.12},\"field\":\"{}\",\"period\":{},\"poor\":{:.12},\
          \"hash\":\"{:016x}\"}}",
         a.arm.name(),
         match a.sham_mode {
@@ -707,6 +791,10 @@ fn main() {
         a.read_budget,
         a.move_cost,
         a.memory_life,
+        a.read_cost,
+        a.field.name(),
+        a.period,
+        a.poor,
         h
     );
 }

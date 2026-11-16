@@ -371,6 +371,20 @@ impl Life {
                 Policy::Remember | Policy::Memory | Policy::Sighted
             );
             let mut reads_left = if looks { self.world.read_budget } else { 0 };
+            // What one **neighbour** read costs. The own cell is free: the
+            // organism already eats there, so knowing it is not perception.
+            //
+            // `read_cost == 0.0` is the default and the contract: every run
+            // recorded before the price existed was free, so a zero must not
+            // change one bit. `Organism::spend(0.0)` subtracts zero and cannot
+            // fail, and the branch below tests it exactly as it tests the
+            // budget -- no separate `if` that could reorder the reads.
+            //
+            // A look that cannot be paid for is **not taken**. Going short on
+            // energy is a stock, not a promise: the organism does not go into
+            // debt to see, it simply stops seeing the neighbour, exactly as if
+            // the budget had run out. See `docs/FINDING-156.md`.
+            let read_cost = self.world.read_cost;
             // `EatThenLook` defers the read of the standing cell until after
             // the meal (step 4), so that the level remembered is what is left
             // rather than what was there before the organism took its share.
@@ -443,11 +457,11 @@ impl Life {
                 // `docs/FINDING-memory-sees-for-free.md`.
                 let mut left = f64::NEG_INFINITY;
                 let mut right = f64::NEG_INFINITY;
-                if r.cell > 0 && reads_left > 0 {
+                if r.cell > 0 && reads_left > 0 && r.organism.spend(read_cost) {
                     left = self.field.observe(r.cell - 1);
                     reads_left -= 1;
                 }
-                if self.field.inside(r.cell + 1) && reads_left > 0 {
+                if self.field.inside(r.cell + 1) && reads_left > 0 && r.organism.spend(read_cost) {
                     right = self.field.observe(r.cell + 1);
                     reads_left -= 1;
                 }
@@ -563,11 +577,14 @@ impl Life {
                     // see"; the own cell was never a read.
                     let mut left = f64::NEG_INFINITY;
                     let mut right = f64::NEG_INFINITY;
-                    if r.cell > 0 && reads_left > 0 {
+                    if r.cell > 0 && reads_left > 0 && r.organism.spend(read_cost) {
                         left = self.field.observe(r.cell - 1);
                         reads_left -= 1;
                     }
-                    if self.field.inside(r.cell + 1) && reads_left > 0 {
+                    if self.field.inside(r.cell + 1)
+                        && reads_left > 0
+                        && r.organism.spend(read_cost)
+                    {
                         right = self.field.observe(r.cell + 1);
                         reads_left -= 1;
                     }
@@ -879,7 +896,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
         Life::spawn(world, field, 40, 5.0, 0.1, policy, 7, 300).unwrap()
@@ -924,7 +941,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         // A field of four rich cells: `Field::new` makes every cell equal to
         // `max_resource`, so there is no need for a setter.
@@ -1005,7 +1022,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         let field = Field::alternating(4, 2.4, 1.6, 0.8).expect("alternating field");
         let mut life =
@@ -1166,7 +1183,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         // A field with the smallest legal resource, and income = 0: nothing can be
         // taken, so nothing can be earned. `Field::new` refuses a zero maximum, so
@@ -1203,7 +1220,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         let field = Field::gradient(40, 0.2, 2.0, 0.8).unwrap();
         let mut sighted = Life::new(
@@ -1297,7 +1314,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1337,7 +1354,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         let field = Field::new(40, 2.0, 0.8).unwrap();
         let mut life = Life::new(
@@ -1379,7 +1396,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         // A flat field at 0.5: every cell holds far less than the income.
         let field = Field::new(8, 0.5, 1.0).unwrap();
@@ -1422,7 +1439,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         let field = Field::moving(40, 2.0, 0.2, 0.8, 1.0).unwrap();
         let mut memory =

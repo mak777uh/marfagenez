@@ -73,6 +73,10 @@ fn main() {
     let mut poor_set = false;
     let mut regrow = 0.8f64;
     let mut read_budget: usize = 0;
+    // What one neighbour read costs. `0.0` is free reading and is the default
+    // for the same reason the birth switch is: a recorded run was free, so a
+    // zero has to reproduce it bit for bit. See `World::read_cost`.
+    let mut read_cost = 0.0f64;
     let mut feed = false;
     let mut share = "sequential".to_string();
     // The tie-break is a parameter of the world, not a detail of the code:
@@ -294,6 +298,10 @@ fn main() {
                 i += 1;
                 read_budget = number::<usize>(&args, i, "--read-budget");
             }
+            "--read-cost" => {
+                i += 1;
+                read_cost = number::<f64>(&args, i, "--read-cost");
+            }
             "--regrow" => {
                 i += 1;
                 regrow = number::<f64>(&args, i, "--regrow");
@@ -305,6 +313,7 @@ fn main() {
                 println!("             [--field alternating|gradient|uniform|moving] [--memory-life N] [--shift X]");
                 println!("             [--rich X] [--poor X] [--regrow X] [--layout even] [--start-cell 0,2]");
                 println!("             [--read-budget N]  cells the organism may read per step without eating");
+        println!("             [--read-cost X]    energy paid per neighbour read (default 0 = free)");
                 println!("             [--birth-threshold X] [--birth-cost X] [--max-population N]  births (off unless --max-population > 0)");
                 println!("             [--out PATH]  write the trace here (- for stdout). Default: do not write.");
                 return;
@@ -324,6 +333,7 @@ fn main() {
         damage_rate,
         capacity,
         read_budget,
+        read_cost,
         share: match share.as_str() {
             "sequential" => ShareProtocol::Sequential,
             "proportional" => ShareProtocol::Proportional,
@@ -498,6 +508,10 @@ fn main() {
     // but different budgets are different experiments, and the header used
     // to say nothing about it.
     println!("reads:    {}", read_budget);
+    // The price of a read. Zero means free, which is what every run recorded
+    // before the parameter existed paid; a priced run is a different world and
+    // the header has to say so.
+    println!("readcost: {}", read_cost);
     println!("feed:     {}", feed);
     println!("share:    {}", share);
     println!("steps:    {}", steps);

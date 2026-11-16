@@ -274,6 +274,29 @@ pub struct World {
     /// never modelled, and any claim about memory replacing perception "by
     /// price" is stronger than the code - see `docs/REVIEW-emergence-notes-3.md`.
     pub read_budget: usize,
+    /// Energy paid for every **neighbour** read; the own cell is free.
+    ///
+    /// `read_budget` is how many neighbours may be looked at per step; this is
+    /// what each look costs. The cell the organism stands on is never charged:
+    /// it already eats there, so knowing it is not perception.
+    ///
+    /// **The default `0.0` is a contract, not a placeholder.** Every run
+    /// recorded before this field existed was produced with free reading, so a
+    /// zero must not change one bit of the dynamics: `Organism::spend(0.0)`
+    /// subtracts nothing and cannot fail, and the charge is skipped entirely at
+    /// zero elsewhere. See `docs/FINDING-156.md` and
+    /// `docs/REVIEW-emergence-notes-3.md` §1.3.
+    ///
+    /// A look the organism cannot afford is **not taken**: it does not borrow
+    /// against the future and go into debt to see, it goes short-sighted. That
+    /// is the modelling choice `Life::advance_with` makes explicit, and it is
+    /// the only one that keeps the reserve a stock: an unpayable price is not a
+    /// price, it is a forbidden action.
+    ///
+    /// `INFINITY` is accepted and means "no read is ever affordable", the same
+    /// way `birth_threshold = INFINITY` means "never": it is the off position
+    /// of a price that is always larger than any reachable reserve.
+    pub read_cost: f64,
     /// What happens when both neighbours are equally rich. See [`TieBreak`].
     pub tiebreak: TieBreak,
     /// Whether a `Memory` organism reads its cell before or after eating.
@@ -312,6 +335,9 @@ impl Default for World {
             damage_rate: 0.01,
             capacity: 10.0,
             read_budget: 0,
+            // Free reading is the contract: a run recorded before the price
+            // existed must keep its numbers and its dynamics hash.
+            read_cost: 0.0,
             share: ShareProtocol::Sequential,
             tiebreak: TieBreak::Left,
             look_order: LookOrder::LookThenEat,
@@ -477,6 +503,16 @@ impl World {
             return Err(format!(
                 "birth_threshold must not be NaN or negative (INFINITY means never), got {}",
                 self.birth_threshold
+            ));
+        }
+        // `0.0` is the allowed default and means "free"; only nonsense is
+        // rejected. `INFINITY` is let through on purpose, like
+        // `birth_threshold`: it is the switch in its off position, a price no
+        // reachable reserve can pay.
+        if self.read_cost.is_nan() || self.read_cost < 0.0 {
+            return Err(format!(
+                "read_cost must not be NaN or negative (0.0 means free), got {}",
+                self.read_cost
             ));
         }
         if !self.birth_cost.is_finite() || self.birth_cost < 0.0 {
@@ -745,7 +781,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         let mut o = Organism::healthy(1.0).unwrap();
         let alive = o.step(&world, 0.0);
@@ -776,7 +812,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         let mut o = Organism::healthy(2.0).unwrap();
         assert!(o.step(&world, 0.0));
@@ -798,7 +834,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         let mut o = Organism::healthy(0.0).unwrap();
         assert!(!o.step(&world, 0.0));
@@ -843,7 +879,7 @@ mod tests {
             look_order: LookOrder::LookThenEat,
             birth_threshold: f64::INFINITY,
             birth_cost: 0.0,
-            max_population: 0,
+            max_population: 0, read_cost: 0.0
         };
         let mut o = Organism::healthy(0.0).unwrap();
         o.step(&world, 100.0);

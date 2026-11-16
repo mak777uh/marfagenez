@@ -53,7 +53,7 @@ fn golden_trace() -> Trace {
         look_order: LookOrder::LookThenEat,
         birth_threshold: 4.0,
         birth_cost: 2.0,
-        max_population: 60,
+        max_population: 60, read_cost: 0.0
     };
     let field = Field::alternating(12, 2.4, 1.6, 0.8).unwrap();
     let mut life =

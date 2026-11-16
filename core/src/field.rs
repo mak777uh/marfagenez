@@ -83,10 +83,45 @@ impl Field {
     }
 
     /// A field where every second cell is rich and the others are poor.
+    ///
+    /// This is [`Field::peaks`] with `period = 2`, and it delegates: a copy of
+    /// the loop is a second place for the two to disagree.
     pub fn alternating(cells: usize, rich: f64, poor: f64, regrow: f64) -> Option<Self> {
+        Self::peaks(cells, rich, poor, regrow, 2)
+    }
+
+    /// A field with one rich cell every `period` cells and poor cells elsewhere.
+    ///
+    /// The point is the **distance** between rich cells. `period = 2` is an
+    /// alternating field; `period = 1` is a uniform field (every cell is rich,
+    /// so this coincides with [`Field::new`]); `period >= 4` puts the next rich
+    /// cell **outside the visible window** of an organism that sees only its
+    /// own cell and its two neighbours. Then "knowing where the rich cell is"
+    /// stops being something a glance can supply, which is exactly the medium
+    /// `docs/FINDING-155.md` said was missing. See `docs/FINDING-156.md`.
+    ///
+    /// The ceilings move with the levels (`ceil` is a property of the cell, and
+    /// `regrow_all` pulls each cell toward its own ceiling), so the pattern is
+    /// stable: a poor cell cannot creep up to the rich level and erase the
+    /// peaks. That was the bug recorded in
+    /// `docs/FINDING-alternating-field-collapses.md`.
+    ///
+    /// Returns `None` for `period == 0` (there is no "every zero-th cell") and
+    /// for a non-finite or negative `poor` level; anything [`Field::new`]
+    /// refuses is refused here too.
+    pub fn peaks(
+        cells: usize,
+        rich: f64,
+        poor: f64,
+        regrow: f64,
+        period: usize,
+    ) -> Option<Self> {
+        if period == 0 || !poor.is_finite() || poor < 0.0 {
+            return None;
+        }
         let mut f = Self::new(cells, rich, regrow)?;
         for i in 0..cells {
-            let level = if i % 2 == 0 { rich } else { poor };
+            let level = if i % period == 0 { rich } else { poor };
             f.cells[i] = level;
             f.ceil[i] = level;
         }

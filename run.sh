@@ -154,6 +154,13 @@ do_exp() {
   echo "--- exp_memory_question.py ---"
   python3 checks/exp_memory_question.py || rc=$?
   echo
+  echo "--- exp_memory_cost.py ---"
+  # Цена чтения и поле с пиками: 216 прогонов, 15 с, поэтому в `exp`.
+  # Проверяет не только числа, но и то, что цена действительно давит на
+  # читающего: контроль `specific` держится на том, что при `read_budget=1`
+  # сосед не читается и цена инертна.
+  python3 checks/exp_memory_cost.py || rc=$?
+  echo
   echo "--- exp05_frozen.py ---"
   local out
   out=$(mktemp)
