@@ -1890,6 +1890,7 @@ verified; `contract.py` — 386 записей, 0 нарушений; `log_check
 
 ### Цикл 53 — 2026-11-16 — память может не смотреть: trade-off есть в направлении, но его размер ниже `mde`
 
+- **Коммит:** `00c860f` — `World::read_period`, гейт ветки `Memory`, шесть тестов `core/tests/read_period.rs`, `--read-period` в зонде и трассе, `checks/exp_memory_sampling.py`, `docs/FINDING-157.md`, дополнение в `docs/FINDING-156.md`, счёт тестов в живых документах, `AGENT_STATE` §3, `run.sh exp`, запись `results/memory-sampling/`. `f764f4f` — шесть `reproduced_at`-записей отдельным коммитом.
 - **Вопрос:** `FINDING-156` показал, что слот памяти не экономит ни одного
   взгляда: `intact` и `sighted` дают одно число и один хеш. Дать памяти право
   **не смотреть** — читать соседей реже и опираться на запомненное — и
