@@ -130,8 +130,8 @@
     }
   },
   "verdict": {
-    "kind": "passed",
-    "reason": "The edge is not `capacity + surplus` alone: that reading of FINDING-148 is refuted. On the coarse sweep (5 capacities x 2 incomes x 3 damage rates = 30 bisected edges and 150 grid points) P1 'alive iff rc < capacity + s' is wrong in both directions -- 50 points live above capacity + s and 25 die below it -- while P2 (FINDING-148's conjunction) matches 0 of 30 extrapolated edges and 150 of 150 points. The mechanism is the one derived before the run (P0): the deferred payment needs dr*(capacity+s) > s, so the cap can only be the tight edge inside s/dr - s < capacity < K*s - s, a window at most one step of surplus wide. Inside that window (dr = 0.1, K = 11 vs ceil(1/dr) = 10) the capacity edge is real: all 8 rows match capacity + s, the measured edge moves one-for-one with capacity ({1.0: 0.9999999999999986, 1.5: 0.999999999999997}), and the death just above it comes within one damage clock. Outside it the binding condition is the per-step price s/dr or the clock K*s; the cap is a necessary half of the deferred condition, not the boundary. FINDING-148's own capacity row (dr = 0.039, capacity 10) had capacity + s = K*s = 10.4, so one capacity could not tell the two apart; this sweep does. Measured edges carry a finite-horizon offset of up to 0.00835 in rc at T; it shrinks with the horizon and is removed by the two-horizon extrapolation."
+    "kind": "void",
+    "reason": "VOID: this is the first run of checks/exp_capacity_edge.py, and its comparison of the extrapolated edge with FINDING-148's P2 used the bisection bracket as the tolerance. Every one of the 30 edges therefore 'missed' by 1e-6..7e-6, which is the second-order residual of the two-horizon extrapolation, not a property of the mechanism; and the verdict condition of this version did not consult the edge comparison, so the record was written as `passed` while its own measurement field says 0 of 30. The tolerance was then changed to 'bracket, 64 ulp or |offset at 2T|', and the superseding run results/capacity-edge/run-2026-11-16T01-21-26.json matches 30 of 30 edges and 150 of 150 points. The numbers here are kept because the run happened; the verdict is withdrawn because it was not evidence."
   },
   "hashes": {
     "all-or-nothing": "f442e474aea86045",
@@ -3836,5 +3836,7 @@
     "largest_offset_at_T": 0.008347106058337772,
     "p2_mismatches": [],
     "probe_runs": 3696
-  }
+  },
+  "superseded_by": "run-2026-11-16T01-21-26.json",
+  "superseded_reason": "the tolerance was the bisection bracket, not the extrapolation residual"
 }
