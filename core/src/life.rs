@@ -555,11 +555,12 @@ impl Life {
                     // `0.0` made an organism at the edge see its own cell as the
                     // richest and step out of the field.
                     // Reading a neighbour costs one read from the budget. With
-                    // `read_budget == 0` nothing is read and the organism cannot
-                    // see, which is exactly the old behaviour (`level` was a
-                    // read that did not subtract either -- the subtraction was in
-                    // `take`, and `take` only ever touched the cell the organism
-                    // ended up in).
+                    // `read_budget == 0` no neighbour is read, so the organism
+                    // knows only the cell it stands on -- it does not go blind,
+                    // it goes short-sighted, and "the richest cell I can see is
+                    // the one under me" is then true by construction. This used
+                    // to be phrased as "nothing is read and the organism cannot
+                    // see"; the own cell was never a read.
                     let mut left = f64::NEG_INFINITY;
                     let mut right = f64::NEG_INFINITY;
                     if r.cell > 0 && reads_left > 0 {

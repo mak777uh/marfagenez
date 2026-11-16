@@ -260,11 +260,19 @@ pub struct World {
     pub damage_rate: f64,
     /// The most energy the organism can hold.
     pub capacity: f64,
-    /// How many cells an organism may read per step. `0` means it sees only the
-    /// cell it stands on, which is the old behaviour; `3` lets it compare its
-    /// cell with its neighbours before deciding.
     /// Who gets what when several organisms stand on one cell.
     pub share: ShareProtocol,
+    /// How many **neighbour** cells an organism may read per step.
+    ///
+    /// `0` means no neighbour is read: the organism still knows the cell it
+    /// stands on, because that is where it eats, but it cannot compare with
+    /// either side. `1` buys one look, `3` buys both neighbours (reading a
+    /// neighbour costs one read; the own cell costs nothing).
+    ///
+    /// Reading is free in energy: `Field::observe` does not subtract anything,
+    /// so this is a *budget on perception*, not a price for it. A cost was
+    /// never modelled, and any claim about memory replacing perception "by
+    /// price" is stronger than the code - see `docs/REVIEW-emergence-notes-3.md`.
     pub read_budget: usize,
     /// What happens when both neighbours are equally rich. See [`TieBreak`].
     pub tiebreak: TieBreak,
