@@ -1,0 +1,4358 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "rescue",
+  "run_id": "run-2026-11-16T03-59-51",
+  "model_commit": "f3fba7a",
+  "seed": 1,
+  "parameters": {
+    "crowds": [
+      2,
+      3,
+      4
+    ],
+    "protocols": [
+      "proportional",
+      "sequential"
+    ],
+    "configs": [
+      "equal",
+      "weak0",
+      "weaklast"
+    ],
+    "income": 1.0,
+    "maintenance_cost": 0.2,
+    "capacity": 10.0,
+    "regrow": 0.8,
+    "move_cost": 0.0,
+    "damage_rate": 0.03,
+    "energy0": 5.0,
+    "energy0_weak": 0.5,
+    "t_cap": 10000,
+    "t_cap_second_horizon": 20000,
+    "bisection_steps": 26,
+    "seed": 1,
+    "probe": "core/examples/rescue_probe.rs"
+  },
+  "arithmetic": {
+    "step_order": "eat (share of the cell) -> income -> maintenance -> damage += dr (cap 1.0) -> repair all-or-nothing if damage*rc < energy -> capacity clamp -> death test (core/src/life.rs, core/src/organism.rs)",
+    "share_counts": "core/src/life.rs:334-345 builds share_counts from `r.organism.is_alive()` only, and :618-630 hands out `remaining / k` with k = the not-yet-eaten LIVE organisms. A dead organism is skipped by `continue`, so from the NEXT step it no longer occupies a share. The feedback 'one died -- the share of the survivors grew' exists in the model; what does not exist is refill (there is no birth).",
+    "share_rise_after_a_death": "Proportional, one cell, field M = n (S = 0.8n >= income for every n here, so the field does not bind the meal): while everyone is alive each gets t/n; after one death each survivor gets t/(n-1). rise = t/(n-1) - t/n = t/(n(n-1)) = +0.5 (n=2), +0.1666667 (n=3), +0.0833333 (n=4) at t = 1",
+    "edges": {
+      "formula": "edge(s) = max(s/dr, min(K*s, capacity + s)), s = taken - maintenance",
+      "E_low_edge(t/n - m)": {
+        "2": 10.2,
+        "3": 4.533333333333332,
+        "4": 1.6999999999999997
+      },
+      "E_high_edge(t/(n-1) - m)": {
+        "2": 26.666666666666668,
+        "3": 10.2,
+        "4": 4.533333333333332
+      },
+      "ratio_E_high_over_E_low": {
+        "2": 2.6143790849673207,
+        "3": 2.2500000000000004,
+        "4": 2.6666666666666665
+      },
+      "note": "the brief says the edge rises n/(n-1) times; that is exact only when one branch binds at both shares. Here the clock branch binds at t/n and the per-step branch at t/(n-1), so the formula's ratio is 2.614, 2.25, 2.667 for n = 2, 3, 4"
+    },
+    "P1_brief": "the survivor's edge goes E_low -> E_high, so the rc bands are: below E_low nobody dies in either configuration; between E_low and E_high the EQUAL configuration dies at one step (everybody has the same share, so the same edge: cascade, 0 survivors) while the ONE WEAK configuration loses the weak one first and keeps n-1 (the weak died -> the others lived); above E_high the share rises and it is still too little (cascade again)",
+    "P2_race": "the new share is not there from step 1: while the weak is alive the survivors are above their OLD edge and accumulate damage. Repair is all-or-nothing and needs damage*rc < energy (organism.rs:542-556) with energy <= capacity after the step (organism.rs:566), so the rescue is useful only while damage_at_rescue*rc < capacity. damage_at_rescue grows with the weak one's lifetime and with dr*rc - s_low, so the MEASURED edge of a rescued survivor is min(E_high, E_race) with E_race < E_high, and the shortfall grows with the absolute width of the band: dr*(E_high-E_low) = 0.49 (n=2), 0.17 (n=3), 0.085 (n=4). Prediction: a measurable shortfall for n=2, none beyond the tolerance for n=3 and n=4",
+    "sequential": "rank i takes clamp(S - i*t, 0, t): its share depends on the ranks AHEAD and not on how many are alive behind. Killing rank i does not change rank i+1's share, because the first i organisms take the same total min(S, i*t) either way. Killing rank 0 is the only death that could raise a successor's share, and rank 0 already eats min(t, S), so the successor gets exactly the same. Prediction: under Sequential the share of a survivor can rise (measured when rank 0 dies) but no death rescues anybody: the risen share is the edge that just failed to save the dead rank itself. Sequential rows must be identical to the equal row",
+    "grid": "n = 2,3,4 on one cell, M = n (S = 0.8n), income 1.0, maintenance 0.2, capacity 10, regrow 0.8, dr = 0.03, energy0 5.0 (equal) or 0.5 for one rank (weak0: rank 0, weaklast: rank n-1); bands below = 0.5*E_low, between = sqrt(E_low*E_high), above = 1.25*E_high; horizons T = 10000 and 2T = 20000",
+    "measured": "per row: survivors at T, step of the first death, and per organism its lifetime, cause, and the share change across the first death (from the constant-meal segments of rescue_probe); per distinct rank: the rc-edge by bisection at two horizons"
+  },
+  "conditions": {
+    "prop-equal": {
+      "label": "proportional n=2 equal rc=16.4924 income=1.0",
+      "metrics": {
+        "survivors": 0,
+        "total": 2,
+        "first_death": 59,
+        "lifetimes": [
+          59,
+          59
+        ],
+        "share_after_first_death": [
+          null,
+          null
+        ],
+        "segments": [
+          [
+            [
+              1,
+              59,
+              0.5
+            ]
+          ],
+          [
+            [
+              1,
+              59,
+              0.5
+            ]
+          ]
+        ]
+      },
+      "hash": "9f7969c91c84be7e"
+    },
+    "prop-weak0": {
+      "label": "proportional n=2 weak0 rc=16.4924 income=1.0",
+      "metrics": {
+        "survivors": 1,
+        "total": 2,
+        "first_death": 36,
+        "lifetimes": [
+          36,
+          null
+        ],
+        "share_after_first_death": [
+          null,
+          0.5
+        ],
+        "segments": [
+          [
+            [
+              1,
+              36,
+              0.5
+            ]
+          ],
+          [
+            [
+              1,
+              36,
+              0.5
+            ],
+            [
+              37,
+              10000,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "hash": "866a9a2609801336"
+    },
+    "prop-weaklast": {
+      "label": "proportional n=2 weaklast rc=16.4924 income=1.0",
+      "metrics": {
+        "survivors": 1,
+        "total": 2,
+        "first_death": 36,
+        "lifetimes": [
+          null,
+          36
+        ],
+        "share_after_first_death": [
+          0.5,
+          null
+        ],
+        "segments": [
+          [
+            [
+              1,
+              36,
+              0.5
+            ],
+            [
+              37,
+              10000,
+              1.0
+            ]
+          ],
+          [
+            [
+              1,
+              36,
+              0.5
+            ]
+          ]
+        ]
+      },
+      "hash": "13b3ce95804e6f00"
+    },
+    "sequ-equal": {
+      "label": "sequential n=2 equal rc=16.4924 income=1.0",
+      "metrics": {
+        "survivors": 1,
+        "total": 2,
+        "first_death": 90,
+        "lifetimes": [
+          null,
+          90
+        ],
+        "share_after_first_death": [
+          0.0,
+          null
+        ],
+        "segments": [
+          [
+            [
+              1,
+              10000,
+              1.0
+            ]
+          ],
+          [
+            [
+              1,
+              1,
+              1.0
+            ],
+            [
+              2,
+              90,
+              0.6
+            ]
+          ]
+        ]
+      },
+      "hash": "7a0c81579c8ac805"
+    },
+    "sequ-weak0": {
+      "label": "sequential n=2 weak0 rc=16.4924 income=1.0",
+      "metrics": {
+        "survivors": 1,
+        "total": 2,
+        "first_death": 90,
+        "lifetimes": [
+          null,
+          90
+        ],
+        "share_after_first_death": [
+          0.0,
+          null
+        ],
+        "segments": [
+          [
+            [
+              1,
+              10000,
+              1.0
+            ]
+          ],
+          [
+            [
+              1,
+              1,
+              1.0
+            ],
+            [
+              2,
+              90,
+              0.6
+            ]
+          ]
+        ]
+      },
+      "hash": "b340b674dea81bf7"
+    },
+    "sequ-weaklast": {
+      "label": "sequential n=2 weaklast rc=16.4924 income=1.0",
+      "metrics": {
+        "survivors": 1,
+        "total": 2,
+        "first_death": 43,
+        "lifetimes": [
+          null,
+          43
+        ],
+        "share_after_first_death": [
+          0.0,
+          null
+        ],
+        "segments": [
+          [
+            [
+              1,
+              10000,
+              1.0
+            ]
+          ],
+          [
+            [
+              1,
+              1,
+              1.0
+            ],
+            [
+              2,
+              43,
+              0.6
+            ]
+          ]
+        ]
+      },
+      "hash": "ed6cc26147f33e6d"
+    },
+    "prop-weak0-reduced-income": {
+      "label": "proportional n=2 weak0 rc=16.4924 income=0.5",
+      "metrics": {
+        "survivors": 0,
+        "total": 2,
+        "first_death": 35,
+        "lifetimes": [
+          35,
+          45
+        ],
+        "share_after_first_death": [
+          null,
+          0.25
+        ],
+        "segments": [
+          [
+            [
+              1,
+              35,
+              0.25
+            ]
+          ],
+          [
+            [
+              1,
+              35,
+              0.25
+            ],
+            [
+              36,
+              45,
+              0.5
+            ]
+          ]
+        ]
+      },
+      "hash": "4ebbb81417a26396"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "in the between band (E_low < rc < E_high) the equal configuration loses everybody and the one-weak configuration keeps n-1: n=2: equal 0 vs weak 1; n=3: equal 0 vs weak 2; n=4: equal 0 vs weak 3. The measured share rise after the first death is n=2: 0.500000 predicted, 0.5 measured; n=3: 0.166667 predicted, 0.16666666666699997 measured; n=4: 0.083333 predicted, 0.08333333333300003 measured. Survival in the equal configuration is nowhere higher than in the weak one (violations: []); the above band is a cascade in both configurations, which is P1's third band, not a control failure."
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "below E_low nothing is rescued: survival in the weak configurations is equal to the equal configuration on every row and higher on none (violations: []). Where the low band does not keep all n, the equal row is already short for arithmetic reasons, not for a rescue: [('sequential', 4, 'equal', 3), ('sequential', 4, 'weak0', 3), ('sequential', 4, 'weaklast', 3)] -- Sequential, n = 4, the tail's share is t/n = 0.25 and its settled share is 0.2 (S = 3.2), so its surplus is exactly 0 and its edge is 0: it dies at any rc > 0 in every configuration, and no death can bring it back."
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "the rescue is the grown share, not the number of organisms. (a) At the same n and the same rc, with income cut to t*(n-1)/n, the share after the death equals the share BEFORE it at the full income (t/(n-1)*(n-1)/n = t/n), so the edge does not move and the rescue must vanish: n=2: 1 -> 0 survivors at income 1.0 -> 0.5000; n=3: 2 -> 0 survivors at income 1.0 -> 0.6667; n=4: 3 -> 0 survivors at income 1.0 -> 0.7500 (problems: []). (b) Under Sequential no death rescues anybody -- the survivor count of every configuration equals the equal row in every band, including the rows where the share of a survivor DOES rise: rank 0's death raises rank 1's meal from 0.6 to 1.0 (measured +0.4 at n = 2, above band), and rank 1 still dies because the risen share is exactly the edge that failed to save rank 0 (violations: []). (c) Death of rank 0 against death of the last rank under Sequential: n=2 below: rank0-weak 2 vs last-weak 2 vs equal 2; n=2 between: rank0-weak 1 vs last-weak 1 vs equal 1; n=2 above: rank0-weak 0 vs last-weak 0 vs equal 0; n=3 below: rank0-weak 3 vs last-weak 3 vs equal 3; n=3 between: rank0-weak 3 vs last-weak 3 vs equal 3; n=3 above: rank0-weak 2 vs last-weak 2 vs equal 2; n=4 below: rank0-weak 3 vs last-weak 3 vs equal 3; n=4 between: rank0-weak 3 vs last-weak 3 vs equal 3; n=4 above: rank0-weak 3 vs last-weak 3 vs equal 3. The weak first eater keeps the head's edge and survives; the weak last eater dies earlier; neither death moves the survivor count."
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "FINDING-151's limitation is wrong in one half and right in the other. The feedback exists: `core/src/life.rs:334-345` counts only `r.organism.is_alive()` and :618-630 divides `remaining` by the live not-yet-eaten crowd, so from the step after a death the survivors divide one income among fewer mouths -- measured rise of the meal after the first death: n=2: 0.500000; n=3: 0.166667; n=4: 0.083333 (0.5 -> 1.0, 0.3333 -> 0.5, 0.25 -> 0.3333). What does not exist is refill: there is no birth, so the crowd can only shrink. Whether the death of one SAVES the others is decided by the protocol and by the rc band. Under Proportional the equal configuration is a cascade -- everybody eats t/n, so everybody has the SAME edge, and the row goes 1 -> 0 at one step in the whole band E_low..E_high (measured 0 survivors at n = 2, 3, 4) -- while the same row with one weak organism loses the weak one first and keeps n-1 (measured 1, 2, 3). A row whose rc lies between E_low = edge(t/n - m) and E_high = edge(t/(n-1) - m) is 'the weak died -> the others lived, although the equal row beside it died'. Above E_high the share also rises and it is too little: the cascade returns (0 survivors, with the share of the survivors rising at the same time -- measured). Under Sequential no death saves anybody: a rank's share is set by the ranks ahead, killing a rank does not change what the ones behind get, and killing rank 0 only hands its successor the same min(t, S). Measured: every Sequential configuration has exactly the equal row's survivor count in every band, while the share of a survivor still rises when rank 0 dies (+0.4 at n = 2, above band) and the survivor still dies -- the risen share is the edge that just failed to save rank 0 itself. The measured edge of a rescued Proportional survivor is NOT E_high but a number below it, by an amount that grows with the width of the band in rc (P2, the race): n=2: measured 16.9444 against E_high 26.6667, shortfall 9.7222, dr*(E_high-E_low) = 0.4940; n=3: measured 9.5068 against E_high 10.2000, shortfall 0.6932, dr*(E_high-E_low) = 0.1700; n=4: measured 4.5333 against E_high 4.5333, shortfall -0.0, dr*(E_high-E_low) = 0.0850. The survivor does not enter the rescue fresh: it carries the damage D it took while it was above its OLD edge, and the repair is all-or-nothing, so the damaged number has to be repaid in one step out of the reserve. After the rescue the reserve grows at the per-step margin `s_high - dr*rc` (repair skipped) while the price grows at `dr*rc`, so the gap closes in `D*rc/margin` steps and the damage is then `D + dr*D*rc/margin`; the rescue arrives in time only while that is below 1. Measured D and the end-of-repayment damage even from an EMPTY reserve: n=2 between rc=16.4924: D=0.3300, margin 0.3052, damage at the end 0.8649291149280554, survivors 1; above rc=33.3333: D=0.8100, margin -0.2000, survivors 0; n=3 between rc=6.8000: D=0.0000, margin 0.0960, damage at the end 0.0, survivors 2; above rc=12.7500: D=0.4800, margin -0.0825, survivors 0; n=4 between rc=2.7761: D=0.0000, margin 0.0501, damage at the end 0.0, survivors 3; above rc=5.6667: D=0.0000, margin -0.0367, survivors 0. Two ways to fail remain distinct: (i) the carried damage cannot be repaid before it reaches 1 -- the wide band, n = 2, where the measured edge is 16.9444 and not 26.6667 -- and (ii) the risen share is itself below rc, `rc > s_high/dr` = 2: 26.6667; 3: 10.0000; 4: 4.4444, so the survivors die of the per-step deficit after being rescued. Controls: fires=True, silent=True, specific=True."
+  },
+  "hashes": {
+    "prop-equal": "9f7969c91c84be7e",
+    "prop-weak0": "866a9a2609801336",
+    "prop-weaklast": "13b3ce95804e6f00",
+    "sequ-equal": "7a0c81579c8ac805",
+    "sequ-weak0": "b340b674dea81bf7",
+    "sequ-weaklast": "ed6cc26147f33e6d",
+    "prop-weak0-reduced-income": "4ebbb81417a26396"
+  },
+  "limitations": [
+    "the horizon is finite: 'alive' means alive at T = 10000 (and 2T for the edge). The edge is extrapolated from two horizons assuming a c/T offset; the residual is the tolerance, not a proof that the extrapolated edge is exact.",
+    "the crowd is still imposed, only the SHARE is not: nothing is born, so the row can show that a death frees a share and cannot show where the crowd would settle. Rescue by death is one half of the feedback the model has; refill is the half it does not have.",
+    "the rescue is measured on ONE cell with a uniform field, `stay`, no memory and no read budget. On a field with a gradient, or with a policy that can leave the crowded cell, the death of one organism is also an opportunity to move, and that is not measured here.",
+    "one damage rate (dr = 0.03, K = 34) and one pair (income, maintenance) = (1.0, 0.2). The width of the rescue band in `rc` is set by the formula and by the race; other pairs move both and are not swept.",
+    "the race of P2 is read off the repair rule (all-or-nothing, energy <= capacity) and confirmed by the bisection for n = 2, but it is a threshold in `rc`, not a formula with its own name: the measured shortfall is a number, not a law.",
+    "the weak organism is weak by RESERVE (energy0 = 0.5 against 5.0), not by share. Under Proportional the share is equal for everybody, so 'the weak one dies first' is a statement about the reserve; a crowd with unequal shares (Sequential) has a weak one for a second reason, and the two are separated by the protocol here.",
+    "Lean does not cover this: the numbers are a property of doubles and of the step order, and in exact arithmetic the equalities would move."
+  ],
+  "command": "python3 checks/exp_rescue.py",
+  "created_at": "2026-11-16T03:59:51.489953+00:00",
+  "rows": [
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "below",
+      "rc": 5.1,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": 0.5,
+      "survivors": 2,
+      "total": 2,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.5,
+        0.5
+      ],
+      "hash": "093ab6c3f60b2cc1"
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "between",
+      "rc": 16.492422502470642,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": 0.5,
+      "survivors": 0,
+      "total": 2,
+      "first_death": 59,
+      "share_after_first_death": [
+        null,
+        null
+      ],
+      "damage_at_first_death": [
+        1.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.5,
+        0.5
+      ],
+      "lifetimes": [
+        59,
+        59
+      ],
+      "causes": [
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.5,
+        0.5
+      ],
+      "hash": "9f7969c91c84be7e"
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "above",
+      "rc": 33.333333333333336,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": 0.5,
+      "survivors": 0,
+      "total": 2,
+      "first_death": 41,
+      "share_after_first_death": [
+        null,
+        null
+      ],
+      "damage_at_first_death": [
+        1.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.5,
+        0.5
+      ],
+      "lifetimes": [
+        41,
+        41
+      ],
+      "causes": [
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.5,
+        0.5
+      ],
+      "hash": "8bcd766ed8b54108"
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "below",
+      "rc": 5.1,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": 0.5,
+      "survivors": 2,
+      "total": 2,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.5,
+        0.5
+      ],
+      "hash": "f92b8f7e4cd8e5fb"
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "between",
+      "rc": 16.492422502470642,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": 0.5,
+      "survivors": 1,
+      "total": 2,
+      "first_death": 36,
+      "share_after_first_death": [
+        null,
+        0.5
+      ],
+      "damage_at_first_death": [
+        1.0,
+        0.33
+      ],
+      "taken_at_first_death": [
+        0.5,
+        0.5
+      ],
+      "lifetimes": [
+        36,
+        null
+      ],
+      "causes": [
+        "damage",
+        "alive"
+      ],
+      "taken_settled": [
+        0.5,
+        1.0
+      ],
+      "hash": "866a9a2609801336"
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "above",
+      "rc": 33.333333333333336,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": 0.5,
+      "survivors": 0,
+      "total": 2,
+      "first_death": 34,
+      "share_after_first_death": [
+        null,
+        0.5
+      ],
+      "damage_at_first_death": [
+        1.0,
+        0.81
+      ],
+      "taken_at_first_death": [
+        0.5,
+        0.5
+      ],
+      "lifetimes": [
+        34,
+        41
+      ],
+      "causes": [
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.5,
+        1.0
+      ],
+      "hash": "b5dd90cf98821881"
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "weak_rank": 1,
+      "band": "below",
+      "rc": 5.1,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": 0.5,
+      "survivors": 2,
+      "total": 2,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.5,
+        0.5
+      ],
+      "hash": "729941f14575dde7"
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "weak_rank": 1,
+      "band": "between",
+      "rc": 16.492422502470642,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": 0.5,
+      "survivors": 1,
+      "total": 2,
+      "first_death": 36,
+      "share_after_first_death": [
+        0.5,
+        null
+      ],
+      "damage_at_first_death": [
+        0.33,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.5,
+        0.5
+      ],
+      "lifetimes": [
+        null,
+        36
+      ],
+      "causes": [
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        0.5
+      ],
+      "hash": "13b3ce95804e6f00"
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "weak_rank": 1,
+      "band": "above",
+      "rc": 33.333333333333336,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": 0.5,
+      "survivors": 0,
+      "total": 2,
+      "first_death": 34,
+      "share_after_first_death": [
+        0.5,
+        null
+      ],
+      "damage_at_first_death": [
+        0.81,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.5,
+        0.5
+      ],
+      "lifetimes": [
+        41,
+        34
+      ],
+      "causes": [
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        0.5
+      ],
+      "hash": "dd2a57acf6b4dbe7"
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "below",
+      "rc": 5.1,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 2,
+      "total": 2,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        1.0,
+        0.6
+      ],
+      "hash": "bff53a14255be804"
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "between",
+      "rc": 16.492422502470642,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 1,
+      "total": 2,
+      "first_death": 90,
+      "share_after_first_death": [
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        0.6
+      ],
+      "lifetimes": [
+        null,
+        90
+      ],
+      "causes": [
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        0.6
+      ],
+      "hash": "7a0c81579c8ac805"
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "above",
+      "rc": 33.333333333333336,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 0,
+      "total": 2,
+      "first_death": 43,
+      "share_after_first_death": [
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.57,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        0.6
+      ],
+      "lifetimes": [
+        58,
+        43
+      ],
+      "causes": [
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        0.6
+      ],
+      "hash": "95cf10adeed982cf"
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "below",
+      "rc": 5.1,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 2,
+      "total": 2,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        1.0,
+        0.6
+      ],
+      "hash": "6c960ef05363a520"
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "between",
+      "rc": 16.492422502470642,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 1,
+      "total": 2,
+      "first_death": 90,
+      "share_after_first_death": [
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        0.6
+      ],
+      "lifetimes": [
+        null,
+        90
+      ],
+      "causes": [
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        0.6
+      ],
+      "hash": "b340b674dea81bf7"
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "above",
+      "rc": 33.333333333333336,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 0,
+      "total": 2,
+      "first_death": 36,
+      "share_after_first_death": [
+        null,
+        0.4
+      ],
+      "damage_at_first_death": [
+        1.0,
+        0.81
+      ],
+      "taken_at_first_death": [
+        1.0,
+        0.6
+      ],
+      "lifetimes": [
+        36,
+        43
+      ],
+      "causes": [
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0
+      ],
+      "hash": "b6d56888d9dd043d"
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "weak_rank": 1,
+      "band": "below",
+      "rc": 5.1,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 2,
+      "total": 2,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        1.0,
+        0.6
+      ],
+      "hash": "227d420b353d0336"
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "weak_rank": 1,
+      "band": "between",
+      "rc": 16.492422502470642,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 1,
+      "total": 2,
+      "first_death": 43,
+      "share_after_first_death": [
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        0.6
+      ],
+      "lifetimes": [
+        null,
+        43
+      ],
+      "causes": [
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        0.6
+      ],
+      "hash": "ed6cc26147f33e6d"
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "weak_rank": 1,
+      "band": "above",
+      "rc": 33.333333333333336,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 0,
+      "total": 2,
+      "first_death": 35,
+      "share_after_first_death": [
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.33,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        0.6
+      ],
+      "lifetimes": [
+        58,
+        35
+      ],
+      "causes": [
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        0.6
+      ],
+      "hash": "9395bffe8e22cba2"
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "below",
+      "rc": 2.266666666666666,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": 0.3333333333333333,
+      "survivors": 3,
+      "total": 3,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "hash": "d8eefc2fa3d655cc"
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "between",
+      "rc": 6.799999999999999,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": 0.3333333333333333,
+      "survivors": 0,
+      "total": 3,
+      "first_death": 104,
+      "share_after_first_death": [
+        null,
+        null,
+        null
+      ],
+      "damage_at_first_death": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "lifetimes": [
+        104,
+        104,
+        104
+      ],
+      "causes": [
+        "damage",
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "hash": "3937c6aa884fb49c"
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "above",
+      "rc": 12.75,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": 0.3333333333333333,
+      "survivors": 0,
+      "total": 3,
+      "first_death": 54,
+      "share_after_first_death": [
+        null,
+        null,
+        null
+      ],
+      "damage_at_first_death": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "lifetimes": [
+        54,
+        54,
+        54
+      ],
+      "causes": [
+        "damage",
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "hash": "765c3204c14913e7"
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "below",
+      "rc": 2.266666666666666,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": 0.3333333333333333,
+      "survivors": 3,
+      "total": 3,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "hash": "38cef34fdda2f5da"
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "between",
+      "rc": 6.799999999999999,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": 0.3333333333333333,
+      "survivors": 2,
+      "total": 3,
+      "first_death": 41,
+      "share_after_first_death": [
+        null,
+        0.16666666666699997,
+        0.16666666666699997
+      ],
+      "damage_at_first_death": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "taken_at_first_death": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "lifetimes": [
+        41,
+        null,
+        null
+      ],
+      "causes": [
+        "damage",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.333333333333,
+        0.5,
+        0.5
+      ],
+      "hash": "8f10ef8a7cab3c98"
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "above",
+      "rc": 12.75,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": 0.3333333333333333,
+      "survivors": 0,
+      "total": 3,
+      "first_death": 36,
+      "share_after_first_death": [
+        null,
+        0.16666666666699997,
+        0.16666666666699997
+      ],
+      "damage_at_first_death": [
+        1.0,
+        0.48,
+        0.48
+      ],
+      "taken_at_first_death": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "lifetimes": [
+        36,
+        54,
+        54
+      ],
+      "causes": [
+        "damage",
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.333333333333,
+        0.5,
+        0.5
+      ],
+      "hash": "d21004469c8b9d91"
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "weak_rank": 2,
+      "band": "below",
+      "rc": 2.266666666666666,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": 0.3333333333333333,
+      "survivors": 3,
+      "total": 3,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "hash": "43966ab39956743a"
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "weak_rank": 2,
+      "band": "between",
+      "rc": 6.799999999999999,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": 0.3333333333333333,
+      "survivors": 2,
+      "total": 3,
+      "first_death": 41,
+      "share_after_first_death": [
+        0.16666666666699997,
+        0.16666666666699997,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "lifetimes": [
+        null,
+        null,
+        41
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        0.5,
+        0.5,
+        0.333333333333
+      ],
+      "hash": "dadb055cbdacff17"
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "weak_rank": 2,
+      "band": "above",
+      "rc": 12.75,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": 0.3333333333333333,
+      "survivors": 0,
+      "total": 3,
+      "first_death": 36,
+      "share_after_first_death": [
+        0.16666666666699997,
+        0.16666666666699997,
+        null
+      ],
+      "damage_at_first_death": [
+        0.48,
+        0.48,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "lifetimes": [
+        54,
+        54,
+        36
+      ],
+      "causes": [
+        "damage",
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.5,
+        0.5,
+        0.333333333333
+      ],
+      "hash": "cc7bdb83d8cf6069"
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "below",
+      "rc": 2.266666666666666,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 3,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "hash": "9258532b9ea8b51f"
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "between",
+      "rc": 6.799999999999999,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 3,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "hash": "e00cdce6bdfa0903"
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "above",
+      "rc": 12.75,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 2,
+      "total": 3,
+      "first_death": 64,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "lifetimes": [
+        null,
+        null,
+        64
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "hash": "25c5d19cb3c14072"
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "below",
+      "rc": 2.266666666666666,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 3,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "hash": "d9b436ab9199d4e4"
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "between",
+      "rc": 6.799999999999999,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 3,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "hash": "4f990ccbbe9de87e"
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "above",
+      "rc": 12.75,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 2,
+      "total": 3,
+      "first_death": 64,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "lifetimes": [
+        null,
+        null,
+        64
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "hash": "0b3b1d532da440b6"
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "weak_rank": 2,
+      "band": "below",
+      "rc": 2.266666666666666,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 3,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "hash": "6efcaccee4c2f067"
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "weak_rank": 2,
+      "band": "between",
+      "rc": 6.799999999999999,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 3,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "hash": "a38ee433cfc7c6fa"
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "weak_rank": 2,
+      "band": "above",
+      "rc": 12.75,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 2,
+      "total": 3,
+      "first_death": 40,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "lifetimes": [
+        null,
+        null,
+        40
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        0.4
+      ],
+      "hash": "11bc4d96fbe5e2f3"
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "below",
+      "rc": 0.8499999999999999,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": 0.25,
+      "survivors": 4,
+      "total": 4,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "hash": "b05bb4310f8ff37d"
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "between",
+      "rc": 2.7760883751542678,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": 0.25,
+      "survivors": 0,
+      "total": 4,
+      "first_death": 184,
+      "share_after_first_death": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "damage_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "lifetimes": [
+        184,
+        184,
+        184,
+        184
+      ],
+      "causes": [
+        "damage",
+        "damage",
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "hash": "b54614cfbe9c8e99"
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "above",
+      "rc": 5.666666666666665,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": 0.25,
+      "survivors": 0,
+      "total": 4,
+      "first_death": 75,
+      "share_after_first_death": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "damage_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "lifetimes": [
+        75,
+        75,
+        75,
+        75
+      ],
+      "causes": [
+        "damage",
+        "damage",
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "hash": "e8f0c68ed0dc3129"
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "below",
+      "rc": 0.8499999999999999,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": 0.25,
+      "survivors": 4,
+      "total": 4,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "hash": "0e687626bcd13913"
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "between",
+      "rc": 2.7760883751542678,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": 0.25,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 49,
+      "share_after_first_death": [
+        null,
+        0.08333333333300003,
+        0.08333333333300003,
+        0.08333333333300003
+      ],
+      "damage_at_first_death": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "taken_at_first_death": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "lifetimes": [
+        49,
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "damage",
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.25,
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "hash": "1f9edd517a056b3a"
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "above",
+      "rc": 5.666666666666665,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": 0.25,
+      "survivors": 0,
+      "total": 4,
+      "first_death": 38,
+      "share_after_first_death": [
+        null,
+        0.08333333333300003,
+        0.08333333333300003,
+        0.08333333333300003
+      ],
+      "damage_at_first_death": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "taken_at_first_death": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "lifetimes": [
+        38,
+        83,
+        83,
+        83
+      ],
+      "causes": [
+        "damage",
+        "damage",
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.25,
+        0.333333333333,
+        0.333333333333,
+        0.333333333333
+      ],
+      "hash": "4bbafb1b1aa601e9"
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "weak_rank": 3,
+      "band": "below",
+      "rc": 0.8499999999999999,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": 0.25,
+      "survivors": 4,
+      "total": 4,
+      "first_death": null,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "damage_at_first_death": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "taken_at_first_death": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "alive"
+      ],
+      "taken_settled": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "hash": "84a925f8b9a1b507"
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "weak_rank": 3,
+      "band": "between",
+      "rc": 2.7760883751542678,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": 0.25,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 49,
+      "share_after_first_death": [
+        0.08333333333300003,
+        0.08333333333300003,
+        0.08333333333300003,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        49
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333,
+        0.25
+      ],
+      "hash": "5f94e7dff29167b4"
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "weak_rank": 3,
+      "band": "above",
+      "rc": 5.666666666666665,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": 0.25,
+      "survivors": 0,
+      "total": 4,
+      "first_death": 38,
+      "share_after_first_death": [
+        0.08333333333300003,
+        0.08333333333300003,
+        0.08333333333300003,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "lifetimes": [
+        83,
+        83,
+        83,
+        38
+      ],
+      "causes": [
+        "damage",
+        "damage",
+        "damage",
+        "damage"
+      ],
+      "taken_settled": [
+        0.333333333333,
+        0.333333333333,
+        0.333333333333,
+        0.25
+      ],
+      "hash": "bcf14a50475b65c1"
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "below",
+      "rc": 0.8499999999999999,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 261,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        261
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "hash": "158f174b1868d906"
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "between",
+      "rc": 2.7760883751542678,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 103,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        103
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "hash": "6d736253a5b4c2d9"
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "equal",
+      "weak_rank": null,
+      "band": "above",
+      "rc": 5.666666666666665,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 68,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        68
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "hash": "d71534daf694c128"
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "below",
+      "rc": 0.8499999999999999,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 261,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        261
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "hash": "74b07ea49dccd03d"
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "between",
+      "rc": 2.7760883751542678,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 103,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        103
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "hash": "a2d8b3a5227ed4bb"
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weak0",
+      "weak_rank": 0,
+      "band": "above",
+      "rc": 5.666666666666665,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 68,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        68
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "hash": "49d0d5bd4317a7bd"
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "weak_rank": 3,
+      "band": "below",
+      "rc": 0.8499999999999999,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 84,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        84
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "hash": "ba4f1d390c267437"
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "weak_rank": 3,
+      "band": "between",
+      "rc": 2.7760883751542678,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 49,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        49
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "hash": "d34462412b636df9"
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "weak_rank": 3,
+      "band": "above",
+      "rc": 5.666666666666665,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "predicted_taken_while_all_alive": null,
+      "survivors": 3,
+      "total": 4,
+      "first_death": 41,
+      "share_after_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        null
+      ],
+      "damage_at_first_death": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "taken_at_first_death": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "lifetimes": [
+        null,
+        null,
+        null,
+        41
+      ],
+      "causes": [
+        "alive",
+        "alive",
+        "alive",
+        "damage"
+      ],
+      "taken_settled": [
+        1.0,
+        1.0,
+        1.0,
+        0.2
+      ],
+      "hash": "a14e671c879cb212"
+    }
+  ],
+  "rank_rows": [
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "equal",
+      "rank": 0,
+      "taken_share": 0.5,
+      "surplus": 0.3,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 10.2,
+      "P1_binding": "clock",
+      "measured_edge_T": 10.20000687763095,
+      "measured_edge_2T": 10.200003457814455,
+      "measured_edge": 10.200000037997961,
+      "deviation": 3.799796211012563e-08,
+      "deviation_relative": 3.725290402953493e-09,
+      "tolerance": 0.00102,
+      "matches_P1": true
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "weak0",
+      "rank": 0,
+      "taken_share": 0.5,
+      "surplus": 0.3,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 10.2,
+      "P1_binding": "clock",
+      "measured_edge_T": 10.2000159971416,
+      "measured_edge_2T": 10.2000159971416,
+      "measured_edge": 10.2000159971416,
+      "deviation": 1.5997141600720965e-05,
+      "deviation_relative": 1.5683472157569575e-06,
+      "tolerance": 0.00102,
+      "matches_P1": true
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "weak0",
+      "rank": 1,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 16.944444676240288,
+      "measured_edge_2T": 16.944444676240288,
+      "measured_edge": 16.944444676240288,
+      "deviation": -9.72222199042638,
+      "deviation_relative": -0.36458332464098925,
+      "tolerance": 0.002666666666666667,
+      "matches_P1": false
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "rank": 1,
+      "taken_share": 0.5,
+      "surplus": 0.3,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 10.2,
+      "P1_binding": "clock",
+      "measured_edge_T": 10.2000159971416,
+      "measured_edge_2T": 10.2000159971416,
+      "measured_edge": 10.2000159971416,
+      "deviation": 1.5997141600720965e-05,
+      "deviation_relative": 1.5683472157569575e-06,
+      "tolerance": 0.00102,
+      "matches_P1": true
+    },
+    {
+      "n": 2,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "rank": 0,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 16.944444676240288,
+      "measured_edge_2T": 16.944444676240288,
+      "measured_edge": 16.944444676240288,
+      "deviation": -9.72222199042638,
+      "deviation_relative": -0.36458332464098925,
+      "tolerance": 0.002666666666666667,
+      "matches_P1": false
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "equal",
+      "rank": 0,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "equal",
+      "rank": 1,
+      "taken_share": 0.6000000000000001,
+      "surplus": 0.4000000000000001,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 13.333333333333336,
+      "P1_binding": "per-step",
+      "measured_edge_T": 13.351392994324371,
+      "measured_edge_2T": 13.34234828750293,
+      "measured_edge": 13.333303580681488,
+      "deviation": -2.975265184801401e-05,
+      "deviation_relative": -2.2314488886010506e-06,
+      "tolerance": 0.00904470682144165,
+      "matches_P1": true
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "weak0",
+      "rank": 0,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.668338676293693,
+      "measured_edge_2T": 26.6675012310346,
+      "measured_edge": 26.666663785775505,
+      "deviation": -2.8808911629596423e-06,
+      "deviation_relative": -1.0803341861098658e-07,
+      "tolerance": 0.002666666666666667,
+      "matches_P1": true
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "weak0",
+      "rank": 1,
+      "taken_share": 0.6000000000000001,
+      "surplus": 0.4000000000000001,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 13.333333333333336,
+      "P1_binding": "per-step",
+      "measured_edge_T": 13.351392994324371,
+      "measured_edge_2T": 13.34234828750293,
+      "measured_edge": 13.333303580681488,
+      "deviation": -2.975265184801401e-05,
+      "deviation_relative": -2.2314488886010506e-06,
+      "tolerance": 0.00904470682144165,
+      "matches_P1": true
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "rank": 0,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 2,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "rank": 1,
+      "taken_share": 0.6000000000000001,
+      "surplus": 0.4000000000000001,
+      "E_low": 10.2,
+      "E_high": 26.666666666666668,
+      "P1_predicted_edge": 13.333333333333336,
+      "P1_binding": "per-step",
+      "measured_edge_T": 13.336343119541809,
+      "measured_edge_2T": 13.334835718075439,
+      "measured_edge": 13.33332831660907,
+      "deviation": -5.016724266226902e-06,
+      "deviation_relative": -3.762543199670176e-07,
+      "tolerance": 0.001507401466369629,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "equal",
+      "rank": 0,
+      "taken_share": 0.3333333333333333,
+      "surplus": 0.1333333333333333,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 4.533333333333332,
+      "P1_binding": "clock",
+      "measured_edge_T": 4.533342368404069,
+      "measured_edge_2T": 4.533337808648746,
+      "measured_edge": 4.533333248893422,
+      "deviation": -8.443991017514918e-08,
+      "deviation_relative": -1.862645077392997e-08,
+      "tolerance": 0.00045333333333333326,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "weak0",
+      "rank": 0,
+      "taken_share": 0.3333333333333333,
+      "surplus": 0.1333333333333333,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 4.533333333333332,
+      "P1_binding": "clock",
+      "measured_edge_T": 4.533337909976641,
+      "measured_edge_2T": 4.533335579435031,
+      "measured_edge": 4.53333324889342,
+      "deviation": -8.443991195150602e-08,
+      "deviation_relative": -1.862645116577339e-08,
+      "tolerance": 0.00045333333333333326,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "weak0",
+      "rank": 1,
+      "taken_share": 0.5,
+      "surplus": 0.3,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 10.2,
+      "P1_binding": "clock",
+      "measured_edge_T": 9.506802778691055,
+      "measured_edge_2T": 9.506802778691055,
+      "measured_edge": 9.506802778691055,
+      "deviation": -0.6931972213089441,
+      "deviation_relative": -0.06796051189303375,
+      "tolerance": 0.00102,
+      "matches_P1": false
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "rank": 2,
+      "taken_share": 0.3333333333333333,
+      "surplus": 0.1333333333333333,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 4.533333333333332,
+      "P1_binding": "clock",
+      "measured_edge_T": 4.533337909976641,
+      "measured_edge_2T": 4.533335579435031,
+      "measured_edge": 4.53333324889342,
+      "deviation": -8.443991195150602e-08,
+      "deviation_relative": -1.862645116577339e-08,
+      "tolerance": 0.00045333333333333326,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "rank": 0,
+      "taken_share": 0.5,
+      "surplus": 0.3,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 10.2,
+      "P1_binding": "clock",
+      "measured_edge_T": 9.506802778691055,
+      "measured_edge_2T": 9.506802778691055,
+      "measured_edge": 9.506802778691055,
+      "deviation": -0.6931972213089441,
+      "deviation_relative": -0.06796051189303375,
+      "tolerance": 0.00102,
+      "matches_P1": false
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "equal",
+      "rank": 0,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "equal",
+      "rank": 1,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "equal",
+      "rank": 2,
+      "taken_share": 0.40000000000000036,
+      "surplus": 0.20000000000000034,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 6.800000000000011,
+      "P1_binding": "clock",
+      "measured_edge_T": 6.800013552606119,
+      "measured_edge_2T": 6.800006864964974,
+      "measured_edge": 6.800000177323829,
+      "deviation": 1.7732381785151574e-07,
+      "deviation_relative": 2.6077032036987566e-08,
+      "tolerance": 0.0006800000000000011,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weak0",
+      "rank": 0,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.668338676293693,
+      "measured_edge_2T": 26.6675012310346,
+      "measured_edge": 26.666663785775505,
+      "deviation": -2.8808911629596423e-06,
+      "deviation_relative": -1.0803341861098658e-07,
+      "tolerance": 0.002666666666666667,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weak0",
+      "rank": 1,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weak0",
+      "rank": 2,
+      "taken_share": 0.40000000000000036,
+      "surplus": 0.20000000000000034,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 6.800000000000011,
+      "P1_binding": "clock",
+      "measured_edge_T": 6.800013552606119,
+      "measured_edge_2T": 6.800006864964974,
+      "measured_edge": 6.800000177323829,
+      "deviation": 1.7732381785151574e-07,
+      "deviation_relative": 2.6077032036987566e-08,
+      "tolerance": 0.0006800000000000011,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "rank": 0,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "rank": 1,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 3,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "rank": 2,
+      "taken_share": 0.40000000000000036,
+      "surplus": 0.20000000000000034,
+      "E_low": 4.533333333333332,
+      "E_high": 10.2,
+      "P1_predicted_edge": 6.800000000000011,
+      "P1_binding": "clock",
+      "measured_edge_T": 6.800013552606119,
+      "measured_edge_2T": 6.800006864964974,
+      "measured_edge": 6.800000177323829,
+      "deviation": 1.7732381785151574e-07,
+      "deviation_relative": 2.6077032036987566e-08,
+      "tolerance": 0.0006800000000000011,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "equal",
+      "rank": 0,
+      "taken_share": 0.25,
+      "surplus": 0.04999999999999999,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 1.6999999999999997,
+      "P1_binding": "clock",
+      "measured_edge_T": 1.700003350153565,
+      "measured_edge_2T": 1.7000016782432787,
+      "measured_edge": 1.7000000063329925,
+      "deviation": 6.332992796842518e-09,
+      "deviation_relative": 3.7252898804955994e-09,
+      "tolerance": 0.00016999999999999999,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "weak0",
+      "rank": 0,
+      "taken_share": 0.25,
+      "surplus": 0.04999999999999999,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 1.6999999999999997,
+      "P1_binding": "clock",
+      "measured_edge_T": 1.7000066559761757,
+      "measured_edge_2T": 1.7000066559761757,
+      "measured_edge": 1.7000066559761757,
+      "deviation": 6.655976175995448e-06,
+      "deviation_relative": 3.915280103526735e-06,
+      "tolerance": 0.00016999999999999999,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "weak0",
+      "rank": 1,
+      "taken_share": 0.3333333333333333,
+      "surplus": 0.1333333333333333,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 4.533333333333332,
+      "P1_binding": "clock",
+      "measured_edge_T": 4.533335579435031,
+      "measured_edge_2T": 4.533334464828172,
+      "measured_edge": 4.533333350221314,
+      "deviation": 1.6887981679758468e-08,
+      "deviation_relative": 3.72529007641731e-09,
+      "tolerance": 0.00045333333333333326,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "rank": 3,
+      "taken_share": 0.25,
+      "surplus": 0.04999999999999999,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 1.6999999999999997,
+      "P1_binding": "clock",
+      "measured_edge_T": 1.7000066559761757,
+      "measured_edge_2T": 1.7000066559761757,
+      "measured_edge": 1.7000066559761757,
+      "deviation": 6.655976175995448e-06,
+      "deviation_relative": 3.915280103526735e-06,
+      "tolerance": 0.00016999999999999999,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "proportional",
+      "config": "weaklast",
+      "rank": 0,
+      "taken_share": 0.3333333333333333,
+      "surplus": 0.1333333333333333,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 4.533333333333332,
+      "P1_binding": "clock",
+      "measured_edge_T": 4.533335579435031,
+      "measured_edge_2T": 4.533334464828172,
+      "measured_edge": 4.533333350221314,
+      "deviation": 1.6887981679758468e-08,
+      "deviation_relative": 3.72529007641731e-09,
+      "tolerance": 0.00045333333333333326,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "equal",
+      "rank": 0,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "equal",
+      "rank": 1,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "equal",
+      "rank": 2,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "equal",
+      "rank": 3,
+      "taken_share": 0.20000000000000018,
+      "surplus": 0.0,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 0.0,
+      "P1_binding": "per-step",
+      "measured_edge_T": 0.01939734466024675,
+      "measured_edge_2T": 0.009682643015868964,
+      "measured_edge": -3.205862850882285e-05,
+      "deviation": -3.205862850882285e-05,
+      "deviation_relative": null,
+      "tolerance": 0.009714701644377786,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weak0",
+      "rank": 0,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.668338676293693,
+      "measured_edge_2T": 26.6675012310346,
+      "measured_edge": 26.666663785775505,
+      "deviation": -2.8808911629596423e-06,
+      "deviation_relative": -1.0803341861098658e-07,
+      "tolerance": 0.002666666666666667,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weak0",
+      "rank": 1,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weak0",
+      "rank": 2,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weak0",
+      "rank": 3,
+      "taken_share": 0.20000000000000018,
+      "surplus": 0.0,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 0.0,
+      "P1_binding": "per-step",
+      "measured_edge_T": 0.01939734466024675,
+      "measured_edge_2T": 0.009682643015868964,
+      "measured_edge": -3.205862850882285e-05,
+      "deviation": -3.205862850882285e-05,
+      "deviation_relative": null,
+      "tolerance": 0.009714701644377786,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "rank": 0,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "rank": 1,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "rank": 2,
+      "taken_share": 1.0,
+      "surplus": 0.8,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 26.666666666666668,
+      "P1_binding": "per-step",
+      "measured_edge_T": 26.68338825305303,
+      "measured_edge_2T": 26.67501380046209,
+      "measured_edge": 26.666639347871147,
+      "deviation": -2.73187955208698e-05,
+      "deviation_relative": -1.0244548320326175e-06,
+      "tolerance": 0.008374452590942383,
+      "matches_P1": true
+    },
+    {
+      "n": 4,
+      "protocol": "sequential",
+      "config": "weaklast",
+      "rank": 3,
+      "taken_share": 0.20000000000000018,
+      "surplus": 0.0,
+      "E_low": 1.6999999999999997,
+      "E_high": 4.533333333333332,
+      "P1_predicted_edge": 0.0,
+      "P1_binding": "per-step",
+      "measured_edge_T": 0.004347680658102036,
+      "measured_edge_2T": 0.002170247558504343,
+      "measured_edge": -7.185541093349644e-06,
+      "deviation": -7.185541093349644e-06,
+      "deviation_relative": null,
+      "tolerance": 0.002177433099597693,
+      "matches_P1": true
+    }
+  ],
+  "specific_rows": [
+    {
+      "n": 2,
+      "rc": 16.492422502470642,
+      "income": 1.0,
+      "income_reduced": 0.5,
+      "survivors_full_income": 1,
+      "survivors_reduced_income": 0,
+      "first_death_full": 36,
+      "first_death_reduced": 35,
+      "share_before_death_full": 0.5,
+      "share_after_death_full": 1.0,
+      "share_before_death_reduced": 0.25,
+      "share_after_death_reduced": 0.5,
+      "share_after_death_reduced_equals_share_before_death_full": true,
+      "measured_share_after_death_reduced": [
+        0.25,
+        0.5
+      ],
+      "changes_reduced": [
+        null,
+        0.25
+      ]
+    },
+    {
+      "n": 3,
+      "rc": 6.799999999999999,
+      "income": 1.0,
+      "income_reduced": 0.6666666666666666,
+      "survivors_full_income": 2,
+      "survivors_reduced_income": 0,
+      "first_death_full": 41,
+      "first_death_reduced": 36,
+      "share_before_death_full": 0.3333333333333333,
+      "share_after_death_full": 0.5,
+      "share_before_death_reduced": 0.2222222222222222,
+      "share_after_death_reduced": 0.3333333333333333,
+      "share_after_death_reduced_equals_share_before_death_full": true,
+      "measured_share_after_death_reduced": [
+        0.222222222222,
+        0.333333333333,
+        0.333333333333
+      ],
+      "changes_reduced": [
+        null,
+        0.11111111111100003,
+        0.11111111111100003
+      ]
+    },
+    {
+      "n": 4,
+      "rc": 2.7760883751542678,
+      "income": 1.0,
+      "income_reduced": 0.75,
+      "survivors_full_income": 3,
+      "survivors_reduced_income": 0,
+      "first_death_full": 49,
+      "first_death_reduced": 7,
+      "share_before_death_full": 0.25,
+      "share_after_death_full": 0.3333333333333333,
+      "share_before_death_reduced": 0.1875,
+      "share_after_death_reduced": 0.25,
+      "share_after_death_reduced_equals_share_before_death_full": true,
+      "measured_share_after_death_reduced": [
+        0.1875,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "changes_reduced": [
+        null,
+        0.0625,
+        0.0625,
+        0.0625
+      ]
+    }
+  ],
+  "sequential_rows": [
+    {
+      "n": 2,
+      "band": "below",
+      "rc": 5.1,
+      "equal": {
+        "survivors": 2,
+        "first_death": null,
+        "lifetimes": [
+          null,
+          null
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0
+        ],
+        "hash": "bff53a14255be804"
+      },
+      "weak0": {
+        "survivors": 2,
+        "first_death": null,
+        "lifetimes": [
+          null,
+          null
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0
+        ],
+        "hash": "6c960ef05363a520"
+      },
+      "weaklast": {
+        "survivors": 2,
+        "first_death": null,
+        "lifetimes": [
+          null,
+          null
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0
+        ],
+        "hash": "227d420b353d0336"
+      }
+    },
+    {
+      "n": 2,
+      "band": "between",
+      "rc": 16.492422502470642,
+      "equal": {
+        "survivors": 1,
+        "first_death": 90,
+        "lifetimes": [
+          null,
+          90
+        ],
+        "share_after_first_death": [
+          0.0,
+          null
+        ],
+        "hash": "7a0c81579c8ac805"
+      },
+      "weak0": {
+        "survivors": 1,
+        "first_death": 90,
+        "lifetimes": [
+          null,
+          90
+        ],
+        "share_after_first_death": [
+          0.0,
+          null
+        ],
+        "hash": "b340b674dea81bf7"
+      },
+      "weaklast": {
+        "survivors": 1,
+        "first_death": 43,
+        "lifetimes": [
+          null,
+          43
+        ],
+        "share_after_first_death": [
+          0.0,
+          null
+        ],
+        "hash": "ed6cc26147f33e6d"
+      }
+    },
+    {
+      "n": 2,
+      "band": "above",
+      "rc": 33.333333333333336,
+      "equal": {
+        "survivors": 0,
+        "first_death": 43,
+        "lifetimes": [
+          58,
+          43
+        ],
+        "share_after_first_death": [
+          0.0,
+          null
+        ],
+        "hash": "95cf10adeed982cf"
+      },
+      "weak0": {
+        "survivors": 0,
+        "first_death": 36,
+        "lifetimes": [
+          36,
+          43
+        ],
+        "share_after_first_death": [
+          null,
+          0.4
+        ],
+        "hash": "b6d56888d9dd043d"
+      },
+      "weaklast": {
+        "survivors": 0,
+        "first_death": 35,
+        "lifetimes": [
+          58,
+          35
+        ],
+        "share_after_first_death": [
+          0.0,
+          null
+        ],
+        "hash": "9395bffe8e22cba2"
+      }
+    },
+    {
+      "n": 3,
+      "band": "below",
+      "rc": 2.266666666666666,
+      "equal": {
+        "survivors": 3,
+        "first_death": null,
+        "lifetimes": [
+          null,
+          null,
+          null
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "hash": "9258532b9ea8b51f"
+      },
+      "weak0": {
+        "survivors": 3,
+        "first_death": null,
+        "lifetimes": [
+          null,
+          null,
+          null
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "hash": "d9b436ab9199d4e4"
+      },
+      "weaklast": {
+        "survivors": 3,
+        "first_death": null,
+        "lifetimes": [
+          null,
+          null,
+          null
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "hash": "6efcaccee4c2f067"
+      }
+    },
+    {
+      "n": 3,
+      "band": "between",
+      "rc": 6.799999999999999,
+      "equal": {
+        "survivors": 3,
+        "first_death": null,
+        "lifetimes": [
+          null,
+          null,
+          null
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "hash": "e00cdce6bdfa0903"
+      },
+      "weak0": {
+        "survivors": 3,
+        "first_death": null,
+        "lifetimes": [
+          null,
+          null,
+          null
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "hash": "4f990ccbbe9de87e"
+      },
+      "weaklast": {
+        "survivors": 3,
+        "first_death": null,
+        "lifetimes": [
+          null,
+          null,
+          null
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "hash": "a38ee433cfc7c6fa"
+      }
+    },
+    {
+      "n": 3,
+      "band": "above",
+      "rc": 12.75,
+      "equal": {
+        "survivors": 2,
+        "first_death": 64,
+        "lifetimes": [
+          null,
+          null,
+          64
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "25c5d19cb3c14072"
+      },
+      "weak0": {
+        "survivors": 2,
+        "first_death": 64,
+        "lifetimes": [
+          null,
+          null,
+          64
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "0b3b1d532da440b6"
+      },
+      "weaklast": {
+        "survivors": 2,
+        "first_death": 40,
+        "lifetimes": [
+          null,
+          null,
+          40
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "11bc4d96fbe5e2f3"
+      }
+    },
+    {
+      "n": 4,
+      "band": "below",
+      "rc": 0.8499999999999999,
+      "equal": {
+        "survivors": 3,
+        "first_death": 261,
+        "lifetimes": [
+          null,
+          null,
+          null,
+          261
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "158f174b1868d906"
+      },
+      "weak0": {
+        "survivors": 3,
+        "first_death": 261,
+        "lifetimes": [
+          null,
+          null,
+          null,
+          261
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "74b07ea49dccd03d"
+      },
+      "weaklast": {
+        "survivors": 3,
+        "first_death": 84,
+        "lifetimes": [
+          null,
+          null,
+          null,
+          84
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "ba4f1d390c267437"
+      }
+    },
+    {
+      "n": 4,
+      "band": "between",
+      "rc": 2.7760883751542678,
+      "equal": {
+        "survivors": 3,
+        "first_death": 103,
+        "lifetimes": [
+          null,
+          null,
+          null,
+          103
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "6d736253a5b4c2d9"
+      },
+      "weak0": {
+        "survivors": 3,
+        "first_death": 103,
+        "lifetimes": [
+          null,
+          null,
+          null,
+          103
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "a2d8b3a5227ed4bb"
+      },
+      "weaklast": {
+        "survivors": 3,
+        "first_death": 49,
+        "lifetimes": [
+          null,
+          null,
+          null,
+          49
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "d34462412b636df9"
+      }
+    },
+    {
+      "n": 4,
+      "band": "above",
+      "rc": 5.666666666666665,
+      "equal": {
+        "survivors": 3,
+        "first_death": 68,
+        "lifetimes": [
+          null,
+          null,
+          null,
+          68
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "d71534daf694c128"
+      },
+      "weak0": {
+        "survivors": 3,
+        "first_death": 68,
+        "lifetimes": [
+          null,
+          null,
+          null,
+          68
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "49d0d5bd4317a7bd"
+      },
+      "weaklast": {
+        "survivors": 3,
+        "first_death": 41,
+        "lifetimes": [
+          null,
+          null,
+          null,
+          41
+        ],
+        "share_after_first_death": [
+          0.0,
+          0.0,
+          0.0,
+          null
+        ],
+        "hash": "a14e671c879cb212"
+      }
+    }
+  ],
+  "bands": {
+    "2": {
+      "E_low": 10.2,
+      "E_low_binding": "clock",
+      "E_high": 26.666666666666668,
+      "E_high_binding": "per-step",
+      "ratio": 2.6143790849673207,
+      "below": 5.1,
+      "between": 16.492422502470642,
+      "above": 33.333333333333336
+    },
+    "3": {
+      "E_low": 4.533333333333332,
+      "E_low_binding": "clock",
+      "E_high": 10.2,
+      "E_high_binding": "clock",
+      "ratio": 2.2500000000000004,
+      "below": 2.266666666666666,
+      "between": 6.799999999999999,
+      "above": 12.75
+    },
+    "4": {
+      "E_low": 1.6999999999999997,
+      "E_low_binding": "clock",
+      "E_high": 4.533333333333332,
+      "E_high_binding": "clock",
+      "ratio": 2.6666666666666665,
+      "below": 0.8499999999999999,
+      "between": 2.7760883751542678,
+      "above": 5.666666666666665
+    }
+  },
+  "race": {
+    "2": {
+      "n": 2,
+      "E_high": 26.666666666666668,
+      "s_high": 0.8,
+      "per_step_edge_of_the_risen_share": 26.666666666666668,
+      "measured_rescued_edge": 16.944444676240288,
+      "bands": {
+        "below": {
+          "rc": 5.1,
+          "survivors": 2,
+          "damage_carried_into_rescue": 0.0,
+          "price_damage_times_rc": 0.0,
+          "per_step_margin": 0.647,
+          "per_step_ok": true,
+          "damage_at_end_of_repayment_from_empty_reserve": 0.0,
+          "rescue_would_arrive_in_time": true
+        },
+        "between": {
+          "rc": 16.492422502470642,
+          "survivors": 1,
+          "damage_carried_into_rescue": 0.33,
+          "price_damage_times_rc": 5.4424994258153125,
+          "per_step_margin": 0.3052273249258808,
+          "per_step_ok": true,
+          "damage_at_end_of_repayment_from_empty_reserve": 0.8649291149280554,
+          "rescue_would_arrive_in_time": true
+        },
+        "above": {
+          "rc": 33.333333333333336,
+          "survivors": 0,
+          "damage_carried_into_rescue": 0.81,
+          "price_damage_times_rc": 27.000000000000004,
+          "per_step_margin": -0.19999999999999996,
+          "per_step_ok": false,
+          "damage_at_end_of_repayment_from_empty_reserve": null,
+          "rescue_would_arrive_in_time": false
+        }
+      }
+    },
+    "3": {
+      "n": 3,
+      "E_high": 10.2,
+      "s_high": 0.3,
+      "per_step_edge_of_the_risen_share": 10.0,
+      "measured_rescued_edge": 9.506802778691055,
+      "bands": {
+        "below": {
+          "rc": 2.266666666666666,
+          "survivors": 3,
+          "damage_carried_into_rescue": 0.0,
+          "price_damage_times_rc": 0.0,
+          "per_step_margin": 0.232,
+          "per_step_ok": true,
+          "damage_at_end_of_repayment_from_empty_reserve": 0.0,
+          "rescue_would_arrive_in_time": true
+        },
+        "between": {
+          "rc": 6.799999999999999,
+          "survivors": 2,
+          "damage_carried_into_rescue": 0.0,
+          "price_damage_times_rc": 0.0,
+          "per_step_margin": 0.09600000000000003,
+          "per_step_ok": true,
+          "damage_at_end_of_repayment_from_empty_reserve": 0.0,
+          "rescue_would_arrive_in_time": true
+        },
+        "above": {
+          "rc": 12.75,
+          "survivors": 0,
+          "damage_carried_into_rescue": 0.48,
+          "price_damage_times_rc": 6.12,
+          "per_step_margin": -0.08250000000000002,
+          "per_step_ok": false,
+          "damage_at_end_of_repayment_from_empty_reserve": null,
+          "rescue_would_arrive_in_time": false
+        }
+      }
+    },
+    "4": {
+      "n": 4,
+      "E_high": 4.533333333333332,
+      "s_high": 0.1333333333333333,
+      "per_step_edge_of_the_risen_share": 4.444444444444444,
+      "measured_rescued_edge": 4.533333350221314,
+      "bands": {
+        "below": {
+          "rc": 0.8499999999999999,
+          "survivors": 4,
+          "damage_carried_into_rescue": 0.0,
+          "price_damage_times_rc": 0.0,
+          "per_step_margin": 0.10783333333333331,
+          "per_step_ok": true,
+          "damage_at_end_of_repayment_from_empty_reserve": 0.0,
+          "rescue_would_arrive_in_time": true
+        },
+        "between": {
+          "rc": 2.7760883751542678,
+          "survivors": 3,
+          "damage_carried_into_rescue": 0.0,
+          "price_damage_times_rc": 0.0,
+          "per_step_margin": 0.05005068207870528,
+          "per_step_ok": true,
+          "damage_at_end_of_repayment_from_empty_reserve": 0.0,
+          "rescue_would_arrive_in_time": true
+        },
+        "above": {
+          "rc": 5.666666666666665,
+          "survivors": 0,
+          "damage_carried_into_rescue": 0.0,
+          "price_damage_times_rc": 0.0,
+          "per_step_margin": -0.03666666666666665,
+          "per_step_ok": false,
+          "damage_at_end_of_repayment_from_empty_reserve": null,
+          "rescue_would_arrive_in_time": false
+        }
+      }
+    }
+  },
+  "rescued_edges": {
+    "2": 16.944444676240288,
+    "3": 9.506802778691055,
+    "4": 4.533333350221314
+  },
+  "rescued_edge_shortfall": {
+    "2": 9.72222199042638,
+    "3": 0.6931972213089441,
+    "4": -1.6887981679758468e-08
+  },
+  "damage_clock": {
+    "dr": 0.03,
+    "K": 34,
+    "measured_as": "the none arm's lifetime"
+  },
+  "measurement": {
+    "rows": 54,
+    "rank_edges": 42,
+    "rank_edges_matching_P1": 38,
+    "rank_edge_misses": [
+      {
+        "n": 2,
+        "protocol": "proportional",
+        "config": "weak0",
+        "rank": 1,
+        "predicted": 26.666666666666668,
+        "measured": 16.944444676240288,
+        "deviation": -9.72222199042638,
+        "tolerance": 0.002666666666666667
+      },
+      {
+        "n": 2,
+        "protocol": "proportional",
+        "config": "weaklast",
+        "rank": 0,
+        "predicted": 26.666666666666668,
+        "measured": 16.944444676240288,
+        "deviation": -9.72222199042638,
+        "tolerance": 0.002666666666666667
+      },
+      {
+        "n": 3,
+        "protocol": "proportional",
+        "config": "weak0",
+        "rank": 1,
+        "predicted": 10.2,
+        "measured": 9.506802778691055,
+        "deviation": -0.6931972213089441,
+        "tolerance": 0.00102
+      },
+      {
+        "n": 3,
+        "protocol": "proportional",
+        "config": "weaklast",
+        "rank": 0,
+        "predicted": 10.2,
+        "measured": 9.506802778691055,
+        "deviation": -0.6931972213089441,
+        "tolerance": 0.00102
+      }
+    ],
+    "probe_runs": 2553,
+    "bisections": 84,
+    "between_band_equal_survivors": {
+      "2": 0,
+      "3": 0,
+      "4": 0
+    },
+    "between_band_weak_survivors": {
+      "2": 1,
+      "3": 2,
+      "4": 3
+    },
+    "share_rise_measured": {
+      "2": 0.5,
+      "3": 0.16666666666699997,
+      "4": 0.08333333333300003
+    }
+  }
+}

@@ -28,7 +28,8 @@
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
-use medium_core::organism::{ShareProtocol, World};
+use medium_core::memory::Remembering;
+use medium_core::organism::{Organism, ShareProtocol, World};
 
 fn world_proportional() -> World {
     let mut world = World::default();
@@ -155,5 +156,146 @@ fn sequential_still_takes_k_times_income() -> Result<(), String> {
              k * income"
         ));
     }
+    Ok(())
+}
+
+/// `fires`: the share is counted over the LIVING, so a death frees it.
+///
+/// `Life::advance_with` fills `share_counts` from `r.organism.is_alive()` only
+/// (`core/src/life.rs:334-345`) and hands out `remaining / k`, where `k` is the
+/// number of not-yet-eaten LIVE organisms on the cell
+/// (`core/src/life.rs:618-630`). A dead organism is skipped by the `continue`
+/// at the top of the loop, so from the step after a death the survivors divide
+/// one `income` among fewer mouths. This test pins that number: it fails if
+/// `share_counts` is built over every slot instead of the live ones.
+///
+/// The world makes the death inevitable and the rescue visible with no repair
+/// and no damage: `income = 1.0`, `maintenance = 0.6`. Two organisms split the
+/// income, so each nets `0.5 - 0.6 = -0.1` per step; the weak one
+/// (`energy = 0.5`) dies within the first few steps, the strong one
+/// (`energy = 5.0`) would die around the fiftieth. After the weak one's death
+/// the survivor eats the whole `income` and nets `+0.4`, so it lives.
+///
+/// The injected defect (`share_counts` over all slots, dead included) keeps
+/// `k = 2` for ever: the survivor takes `0.5`, nets `-0.1`, and dies around
+/// the fiftieth step. The `taken > income / 2` assertion is what catches it.
+#[test]
+fn a_dead_organism_frees_its_share() -> Result<(), String> {
+    let mut world = world_proportional();
+    world.maintenance_cost = 0.6;
+    world.damage_rate = 0.0;
+    world.repair_cost = 0.0;
+    world.capacity = 1000.0;
+
+    let field = Field::new(1, 10.0, 1.0).ok_or("field is None")?;
+    let weak = Remembering::new(
+        Organism::healthy(0.5).ok_or("weak is None")?,
+        0,
+        0.0,
+        0.0,
+        0,
+    )
+    .ok_or("weak remembering is None")?;
+    let strong = Remembering::new(
+        Organism::healthy(5.0).ok_or("strong is None")?,
+        0,
+        0.0,
+        0.0,
+        0,
+    )
+    .ok_or("strong remembering is None")?;
+    let mut life = Life::new(world, field, vec![weak, strong], Policy::Stay, 1, 0)
+        .ok_or("life is None")?;
+
+    // One record per step: (step, taken per slot, alive per slot).
+    let mut steps: Vec<(usize, [f64; 2], [bool; 2])> = Vec::new();
+    for _ in 0..200 {
+        if life.advance().is_none() {
+            break;
+        }
+        let mut taken = [0.0f64; 2];
+        let mut alive = [false; 2];
+        for s in life.samples() {
+            if s.slot < 2 {
+                taken[s.slot] = s.taken;
+                alive[s.slot] = s.alive;
+            }
+        }
+        steps.push((life.step(), taken, alive));
+        if !alive[0] && !alive[1] {
+            break;
+        }
+    }
+
+    let weak_death = steps
+        .iter()
+        .position(|(_, _, a)| !a[0])
+        .ok_or("the weak organism never died: the scenario did not happen")?;
+    if let Some(sd) = steps.iter().position(|(_, _, a)| !a[1]) {
+        return Err(format!(
+            "the strong organism died at step {} (the weak died at step {}): \
+             the dead organism still occupies its share, so k never fell",
+            steps[sd].0, steps[weak_death].0
+        ));
+    }
+    if steps.len() < 100 {
+        return Err(format!(
+            "the run is only {} steps long: the strong organism used to die \
+             around step 50 in this world, so a short run cannot show the rescue",
+            steps.len()
+        ));
+    }
+    if steps[weak_death].0 > 20 {
+        return Err(format!(
+            "the weak organism died at step {}, expected within the first few \
+             steps: the world is not the one this test describes",
+            steps[weak_death].0
+        ));
+    }
+
+    // While both are alive the split is exact: 0.5 + 0.5 = income.
+    for (step, taken, _) in &steps[..=weak_death] {
+        let sum = taken[0] + taken[1];
+        if (taken[1] - 0.5).abs() > 1e-12 || (sum - 1.0).abs() > 1e-12 {
+            return Err(format!(
+                "step {}: while both are alive the split must be 0.5 + 0.5 = \
+                 1.0, got {} + {} = {}",
+                step, taken[0], taken[1], sum
+            ));
+        }
+    }
+    // After the death one income goes to one mouth: the share is freed.
+    let after: Vec<f64> = steps[weak_death + 1..]
+        .iter()
+        .map(|(_, taken, _)| taken[1])
+        .collect();
+    if after.is_empty() {
+        return Err("there is no step after the weak organism's death".to_string());
+    }
+    for got in &after {
+        if (got - 1.0).abs() > 1e-12 {
+            return Err(format!(
+                "after the death the survivor must take the whole income 1.0, \
+                 got {got}"
+            ));
+        }
+    }
+    let rise = after[0] - 0.5;
+    if after[0] <= 0.5 {
+        return Err(format!(
+            "the survivor takes {} after the death, not more than income/2 = \
+             0.5: the dead organism still counts in share_counts",
+            after[0]
+        ));
+    }
+    println!(
+        "weak died at step {}; survivor's share rose by {:.6} (0.5 -> {:.6}); \
+         the survivor is alive at step {} (it would have died around 50 without \
+         the freed share)",
+        steps[weak_death].0,
+        rise,
+        after[0],
+        steps[steps.len() - 1].0
+    );
     Ok(())
 }
