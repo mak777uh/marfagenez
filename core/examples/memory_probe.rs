@@ -116,6 +116,11 @@ impl Arm {
 enum FieldKind {
     Uniform,
     Peaks,
+    /// A single lit patch that moves `shift` cells per step. This is the only
+    /// field in the probe where the past says something the present does not:
+    /// a peak seen two steps ago is two cells away now, and where it *is* can be
+    /// inferred from where it *was* only if the organism knows the rule.
+    Moving,
 }
 
 impl FieldKind {
@@ -123,6 +128,7 @@ impl FieldKind {
         match self {
             Self::Uniform => "uniform",
             Self::Peaks => "peaks",
+            Self::Moving => "moving",
         }
     }
 }
@@ -160,6 +166,8 @@ struct Args {
     field: FieldKind,
     /// One rich cell every `period` cells, for `FieldKind::Peaks`.
     period: usize,
+    /// Cells per step the lit patch of a moving field travels.
+    shift: f64,
     /// The poor ceiling of a peaked field.
     poor: f64,
     memory_life: usize,
@@ -191,6 +199,7 @@ impl Default for Args {
             look_on_shortfall: false,
             field: FieldKind::Uniform,
             period: 6,
+            shift: 1.0,
             poor: 0.2,
             memory_life: 1_000_000,
             steps: 2000,
@@ -352,11 +361,16 @@ fn main() {
                 a.field = match argv.get(i).map(|s| s.as_str()) {
                     Some("uniform") => FieldKind::Uniform,
                     Some("peaks") => FieldKind::Peaks,
+                    Some("moving") => FieldKind::Moving,
                     other => {
                         eprintln!("unknown field: {:?}", other);
                         std::process::exit(2);
                     }
                 };
+            }
+            "--shift" => {
+                i += 1;
+                a.shift = number(&argv, i, "--shift");
             }
             "--period" => {
                 i += 1;
@@ -393,7 +407,7 @@ fn main() {
                 println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
                 println!("       [--read-period N]  remembering arms look every N steps");
         println!("       [--look-on-shortfall]  remembering arms look out of turn when the cell is too poor");
-                println!("       [--field uniform|peaks] [--period P] [--poor V]");
+                println!("       [--field uniform|peaks|moving] [--shift S] [--period P] [--poor V]");
                 println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
                 println!("       [--sham-mode visited|neighbour] [--tiebreak left|right|random]");
@@ -432,6 +446,7 @@ fn main() {
     let field = match a.field {
         FieldKind::Uniform => Field::new(cells, a.m, a.regrow),
         FieldKind::Peaks => Field::peaks(cells, a.m, a.poor, a.regrow, a.period),
+        FieldKind::Moving => Field::moving(cells, a.m, a.poor, a.regrow, a.shift),
     };
     let field = match field {
         Some(f) => f,
