@@ -59,6 +59,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
@@ -66,6 +67,36 @@ from typing import Any
 
 SCHEMA = "marfagenez.experiment-result.v2"
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
+
+#: The Rust source that owns the hash's version.
+TRACE_RS = Path(__file__).resolve().parents[1] / "core" / "src" / "trace.rs"
+
+#: The declaration of `HASH_VERSION` in `core/src/trace.rs`.
+_HASH_VERSION_RE = re.compile(r'pub const HASH_VERSION: &str = "([^"]+)";')
+
+
+def _read_hash_version() -> str:
+    """The hash version, read out of the Rust source instead of copied here.
+
+    A constant repeated in Python is a claim, and it drifts the moment
+    somebody bumps the Rust one. Reading it back makes a divergence a crash
+    here instead of a quiet lie in the record: an unversioned hash cannot be
+    compared to a versioned one, and a wrongly labelled one cannot either.
+    `checks/hash_version.py` performs the same read independently; it exists
+    because a second reader is what turns the agreement into a check.
+    """
+    text = TRACE_RS.read_text(encoding="utf-8")
+    m = _HASH_VERSION_RE.search(text)
+    if m is None:
+        raise RuntimeError(
+            f"{TRACE_RS}: no `pub const HASH_VERSION: &str = \"...\";` "
+            "found. The version is part of the record contract; a record "
+            "written without it cannot be compared to a newer one."
+        )
+    return m.group(1)
+
+
+HASH_VERSION_PY = _read_hash_version()
 
 #: The five outcomes. Not two (AGENTS.md §4).
 VERDICTS = (
@@ -105,6 +136,7 @@ def new_result(
         "experiment_id": experiment_id,
         "run_id": f"run-{now.strftime('%Y-%m-%dT%H-%M-%S')}",
         "model_commit": _git_commit(),
+        "hash_version": HASH_VERSION_PY,
         "seed": seed,
         "parameters": parameters,
         "arithmetic": {},
@@ -200,6 +232,17 @@ def add_limitation(result: dict[str, Any], text: str) -> None:
 #: them says anything about the numbers.
 _VOLATILE = ("run_id", "created_at", "model_commit", "reproduced_at")
 
+#: Record metadata that is **not part of the measurement**. `hash_version`
+#: says what computed the hashes, not what was measured: the same run
+#: written before and after versioning has the same body and the same
+#: hashes, and differs only in this field. Leaving it in the fingerprint
+#: would make `save()` read every old record as a different measurement and
+#: write a second file beside it instead of appending to `reproduced_at` --
+#: the defect that once left `frozen-ceiling` with 122 copies of one
+#: measurement. If the body matched, the hashes matched; the version is a
+#: label on the measuring instrument, not a reading.
+_NOT_PART_OF_THE_MEASUREMENT = ("hash_version",)
+
 
 def _fingerprint(result: dict[str, Any]) -> str:
     """The result minus what changed only because it was written again.
@@ -209,7 +252,11 @@ def _fingerprint(result: dict[str, Any]) -> str:
     its commit belongs inside the record (`reproduced_at`), not in a new file
     beside it.
     """
-    body = {k: v for k, v in result.items() if k not in _VOLATILE}
+    body = {
+        k: v
+        for k, v in result.items()
+        if k not in _VOLATILE and k not in _NOT_PART_OF_THE_MEASUREMENT
+    }
     return json.dumps(body, sort_keys=True, ensure_ascii=False)
 
 

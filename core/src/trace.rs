@@ -121,6 +121,26 @@ pub struct Trace {
     pub max_population: usize,
 }
 
+/// The version of the dynamics hash.
+///
+/// `Trace::compute_hash` is the definition of "the same dynamics": two arms
+/// with the same hash are one arm (AGENTS.md §5). That rule only holds if the
+/// hash means the same thing on both sides of the comparison, and it did not:
+/// the recorded hash `40bd71fa379e135a` in `results/standing-is-a-uniform-third/`
+/// cannot be reproduced on `HEAD` (`f94d3b830971a9e8`), because `prev_cell` was
+/// added to the mix after that record was written. A hash with no version is a
+/// comparison between two different functions wearing the same name.
+///
+/// **This constant changes only together with the hash function.** Bump it in
+/// the same edit that changes what `compute_hash` mixes -- never to make a
+/// mismatch go away, and never without re-pinning `core/tests/hash_golden.rs`.
+/// A record that carries no `hash_version` was written before versioning
+/// existed: its hash belongs to that time, and comparing it with a current one
+/// says nothing even when the two strings look alike. `checks/hash_version.py`
+/// reads this constant back with a regexp, so the Python side and the Rust side
+/// cannot drift apart silently.
+pub const HASH_VERSION: &str = "2-prev-cell";
+
 impl Trace {
     /// A stable hash of everything that moved. Two traces with the same hash had the
     /// same dynamics.
