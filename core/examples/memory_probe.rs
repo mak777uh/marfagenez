@@ -203,6 +203,12 @@ struct Args {
     /// is what can be lost.
     region_radius: usize,
 
+    /// The policy the medium now demands (`docs/FINDING-172.md`): when the cell
+    /// underfoot cannot pay the upkeep, a step is allowed toward a neighbour
+    /// **even if that neighbour is poorer**. With this off, a form on a failing
+    /// cell stands there and dies, which is what 172 measured.
+    leave_when_worn: bool,
+
     /// Region health lost per step underfoot: use wears the place. `0.0`
     /// leaves the old behaviour, so every recorded number stays reproducible.
     region_wear: f64,
@@ -272,6 +278,7 @@ impl Default for Args {
             mark_read_gain: 0.0,
             region_radius: 1,
             region_needed_only: true,
+            leave_when_worn: false,
             region_wear: 0.0,
             region_keep: 0.0,
             region_keep_cost: 0.0,
@@ -477,6 +484,10 @@ fn main() {
                 i += 1;
                 a.mark_income = number(&argv, i, "--mark-income");
             }
+            "--leave-when-worn" => {
+                i += 1;
+                a.leave_when_worn = !matches!(argv.get(i).map(|s| s.as_str()), Some("off"));
+            }
             "--region-wear" => {
                 i += 1;
                 a.region_wear = number(&argv, i, "--region-wear");
@@ -556,7 +567,7 @@ fn main() {
                 println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
                 println!("       [--read-period N]  remembering arms look every N steps");
         println!("       [--look-on-shortfall]  remembering arms look out of turn when the cell is too poor");
-                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--mark-write X --mark-decay D --mark-income B --mark-read-gain G --region-radius R --region-needed-only on|off --region-wear W --region-keep K --region-keep-cost C --region-loss L] [--period P] [--poor V]");
+                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--mark-write X --mark-decay D --mark-income B --mark-read-gain G --region-radius R --region-needed-only on|off --region-wear W --region-keep K --region-keep-cost C --region-loss L --leave-when-worn on|off] [--period P] [--poor V]");
                 println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
                 println!("       [--sham-mode visited|neighbour] [--tiebreak left|right|random]");
@@ -832,14 +843,27 @@ fn main() {
                 }
             }
             Arm::Sighted => {
+                // The leave rule: a failing cell is a reason to go, even to a
+                // poorer neighbour. With the flag off, `worn` is false and this
+                // is the rule it always was, bit for bit.
+                let yield_now = if a.region_loss > 0.0 {
+                    1.0 - a.region_loss * (1.0 - marks[r.cell]).max(0.0)
+                } else {
+                    1.0
+                };
+                // "The place can no longer pay": the effective yield, not the raw
+                // level. Using the level was wrong and made the rule silent.
+                let worn = a.leave_when_worn && here * yield_now.max(0.0) < need;
                 let best = here.max(left_level).max(right_level);
-                if best > here {
+                if best > here || worn {
                     if left_level > right_level {
                         -1
                     } else if right_level > left_level {
                         1
-                    } else {
+                    } else if worn {
                         world.tiebreak.pick(&mut r.rng) as i32
+                    } else {
+                        0
                     }
                 } else {
                     0
@@ -925,7 +949,17 @@ fn main() {
                         1
                     }
                 } else {
-                    r.direction()
+                    let d = r.direction();
+                    let yield_now = if a.region_loss > 0.0 {
+                        1.0 - a.region_loss * (1.0 - marks[r.cell]).max(0.0)
+                    } else {
+                        1.0
+                    };
+                    if d == 0 && a.leave_when_worn && here * yield_now.max(0.0) < need {
+                        world.tiebreak.pick(&mut r.rng) as i32
+                    } else {
+                        d
+                    }
                 }
             }
         };
