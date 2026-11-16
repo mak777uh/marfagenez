@@ -375,3 +375,63 @@ and let the form own it.**
 4. **Does the designer's admission change anything, or is it a ritual?** N's admissions were followed by changes
    in his practice (he stopped using the strap, N179). Ours must be followed by a change in the medium, or the
    admission is decoration.
+
+---
+
+## STATUS 2026-11-16 (cycle 65): E4 was never run, and the line rediscovered its gap
+
+**This section is an addendum, not a rewrite.** The body above is the record of
+2026-11-09 and stands.
+
+**1. E4 was not executed.** `Part 6` names **E4, a two-channel world**, as *the*
+next step: channel 1 is the field the form lives in, channel 2 is a mark `M` the
+form writes, does not consume, and reads itself; the control is to **cut the
+form's access to `M`** while leaving `M` in the world and the field untouched.
+
+A search of the tree finds no `E4`, no "two-channel", and no return-path results
+file. **The step was named and then the project changed model** — from the
+reaction–diffusion bench to the organism world (`FINDING-143` onwards), which is
+where the last twenty-two findings were made. The synthesis was left orphaned.
+
+**2. The new line reached the same gap from the other side.** `FINDING-169`
+measured that pricing movement changes nothing because **nobody moves**: a single
+organism sits on a recharging peak, and memory has no room to save anything. The
+diagnosis written there — "there is no force that makes anything move" — is the
+same missing thing this synthesis named from Neill's side: **a form owns nothing;
+there is no corner** (§4.2), and the loop is open at the return path (K, P103).
+
+Both sentences describe one absence: **a place a form can lose, that it must
+maintain, and that another form can take.** Without it there is no reason to
+stay, no reason to move, and nothing for memory to predict.
+
+**3. So the next step is E4 in the organism world.** Not a sixth world and not a
+new metric:
+
+- **channel 1** — the resource field `X`, as now: the organism lives in it.
+- **channel 2** — a mark `M`, written by the organism's own presence and
+  maintenance, **not consumed**, decaying unless maintained, read only by the
+  organism's own rule.
+- **ownership** — the cells of `M` an organism has maintained are its region. The
+  region raises its income while maintained; it decays when abandoned; another
+  organism takes it only by writing over it.
+- **the control, exactly as §4.3 specifies:** cut the organism's **access** to
+  `M` (read set to zero), leave `M` in the world, leave `X` untouched. If the
+  behaviour changes **in kind**, the loop is closed and nothing else could have
+  produced the change. If only the average changes, it is juggling (K, P51).
+- **the arithmetic before the run**, from E2d's lesson: check that the read term
+  is **non-zero where the organism actually is**. E2c was blind because the
+  support was gated by a factor that vanished exactly at the form's own position;
+  that error cost a full session and must not be repeated.
+
+**4. What this buys, which no recent experiment bought.** With an owned region,
+"where my region is" is information that **local perception cannot supply** — the
+region extends beyond the sensing window — and it **predicts future availability**,
+because the region regenerates *because it is maintained*. Those are precisely the
+two conditions the positive reference for memory requires
+(`docs/FINDING-169.md` §3, Riotte-Lambert et al. 2017) and the condition the
+external review set: memory must enable an action that pure perception cannot make
+or cannot make as cheaply.
+
+**So the memory question becomes answerable for the first time — but only inside
+E4.** Running it before E4 is what the last twenty-two findings did, and the
+result was negative by construction.
