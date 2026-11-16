@@ -84,6 +84,13 @@ enum Arm {
     Oracle,
     Sighted,
     Intact,
+    /// Memory plus the rule that the peak travels. `intact` remembers an address
+    /// and walks to it; on a moving field that address is already wrong by the
+    /// time the organism arrives (FINDING-163). This arm advances the remembered
+    /// address by the field's own shift every step -- the smallest possible
+    /// "model of the transition" -- and is the test of whether the deficit of
+    /// 163 is memory or memory *without a rule*.
+    Predict,
     Sham,
     Erased,
     Stay,
@@ -96,6 +103,7 @@ impl Arm {
             Self::Oracle => "oracle",
             Self::Sighted => "sighted",
             Self::Intact => "intact",
+            Self::Predict => "predict",
             Self::Sham => "sham",
             Self::Erased => "erased",
             Self::Stay => "stay",
@@ -105,7 +113,7 @@ impl Arm {
 
     /// Arms that read the local window and therefore pay the same reads.
     fn looks(self) -> bool {
-        matches!(self, Self::Sighted | Self::Intact | Self::Sham)
+        matches!(self, Self::Sighted | Self::Intact | Self::Predict | Self::Sham)
     }
 }
 
@@ -268,6 +276,7 @@ fn main() {
                     Some("oracle") => Arm::Oracle,
                     Some("sighted") => Arm::Sighted,
                     Some("intact") => Arm::Intact,
+                Some("predict") => Arm::Predict,
                     Some("sham") => Arm::Sham,
                     Some("erased") => Arm::Erased,
                     Some("stay") => Arm::Stay,
@@ -528,10 +537,10 @@ fn main() {
         // so this only moves a look earlier. `sighted` is untouched: it has
         // no memory to fall back on, and a skipped look would blind it.
         let due = match a.arm {
-            Arm::Intact | Arm::Sham => step % a.read_period.max(1) == 0,
+            Arm::Intact | Arm::Predict | Arm::Sham => step % a.read_period.max(1) == 0,
             _ => true,
         };
-        let needy = matches!(a.arm, Arm::Intact | Arm::Sham)
+        let needy = matches!(a.arm, Arm::Intact | Arm::Predict | Arm::Sham)
             && a.look_on_shortfall
             && field.level(r.cell) < need;
         let sample = due || needy;
@@ -658,7 +667,7 @@ fn main() {
                     0
                 }
             }
-            Arm::Intact | Arm::Sham => {
+            Arm::Intact | Arm::Predict | Arm::Sham => {
                 // The `Life::Memory` rule, re-stated step for step so the probe
                 // can intervene between the update and the decision. `intact`
                 // stops here; `sham` replaces the address below.
@@ -718,6 +727,18 @@ fn main() {
                         };
                         r.memory.best_cell = cell;
                     }
+                }
+                if a.arm == Arm::Predict && !sample && r.memory.best_level > 0.0 {
+                    // The remembered place moves the way the field moves, and the
+                    // address is only stale on the steps where nothing was looked
+                    // at. Advancing it on a step that *did* look would aim one cell
+                    // ahead of a peak that was just seen, which is how the first
+                    // version of this arm managed to be worse than `intact`
+                    // (`docs/FINDING-164.md`). Round rather than truncate: `shift`
+                    // may be fractional, and a policy that cannot represent half a
+                    // cell should still track a whole one.
+                    let step = a.shift.round() as i64;
+                    r.memory.best_cell = ring(r.memory.best_cell, step, cells);
                 }
                 if r.memory.best_level <= 0.0 {
                     if r.rng.uniform() < 0.5 {
