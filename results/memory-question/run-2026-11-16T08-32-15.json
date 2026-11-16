@@ -1,0 +1,1220 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "memory-question",
+  "run_id": "run-2026-11-16T08-32-15",
+  "model_commit": "9ac4904",
+  "hash_version": "2-prev-cell",
+  "seed": 3,
+  "parameters": {
+    "m_field": 2.0,
+    "regrow": 0.8,
+    "repair_cost": 1.5,
+    "damage_rate": 0.02,
+    "steps": 20000,
+    "cells": 24,
+    "capacity": 10.0,
+    "energy0": 5.0,
+    "read_budgets": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "points": {
+      "P_need=1": 1.0756,
+      "P_need=2": 1.7911
+    },
+    "arms": [
+      "oracle",
+      "sighted",
+      "intact",
+      "sham",
+      "erased",
+      "stay",
+      "random"
+    ]
+  },
+  "arithmetic": {
+    "question": "does the medium require anything the organism cannot see now",
+    "oracle_bound": "`oracle` moves toward the globally richest cell every step. It knows more than any memory can (memory knows only what it has seen), so its reward bounds from above what memory could be worth.",
+    "p_need": "ceil(ln(M/(M-m)) / -ln(1-r)), the return period that lets a cell regrow",
+    "why_income_is_m": "with income = m the organism takes exactly its upkeep, so the only remaining question is whether the cell has regrown on return",
+    "prediction": "if both neighbours are visible (read_budget = 3) the richest cell is always one step away and therefore already seen: oracle, sighted and intact should coincide exactly. With read_budget <= 1 the medium becomes partially observable and the oracle should beat every memoryless arm - the question is then whether our memory can exploit it",
+    "grid": "read_budget in {0,1,2,3} x P_need in {1,2}"
+  },
+  "conditions": {
+    "rb0/oracle@P_need=1": {
+      "label": "read_budget=0 arm=oracle P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 19999
+      },
+      "hash": "b26d65f662ac10e2"
+    },
+    "rb0/sighted@P_need=1": {
+      "label": "read_budget=0 arm=sighted P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 0
+      },
+      "hash": "62554c51633c3be5"
+    },
+    "rb0/intact@P_need=1": {
+      "label": "read_budget=0 arm=intact P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 20000
+      },
+      "hash": "483d42ef290156d9"
+    },
+    "rb0/sham@P_need=1": {
+      "label": "read_budget=0 arm=sham P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 20000
+      },
+      "hash": "483d42ef290156d9"
+    },
+    "rb0/erased@P_need=1": {
+      "label": "read_budget=0 arm=erased P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 20000
+      },
+      "hash": "483d42ef290156d9"
+    },
+    "rb0/stay@P_need=1": {
+      "label": "read_budget=0 arm=stay P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 0
+      },
+      "hash": "62554c51633c3be5"
+    },
+    "rb0/random@P_need=1": {
+      "label": "read_budget=0 arm=random P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 13265
+      },
+      "hash": "10996a37e60507c4"
+    },
+    "rb0/oracle@P_need=2": {
+      "label": "read_budget=0 arm=oracle P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 19999
+      },
+      "hash": "4679cd79dd120842"
+    },
+    "rb0/sighted@P_need=2": {
+      "label": "read_budget=0 arm=sighted P_need=2",
+      "metrics": {
+        "lifetime": 24,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.611168695652,
+        "energy_acc": 59.84886,
+        "moves": 0
+      },
+      "hash": "489f06ec67341116"
+    },
+    "rb0/intact@P_need=2": {
+      "label": "read_budget=0 arm=intact P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 20000
+      },
+      "hash": "245073399c018691"
+    },
+    "rb0/sham@P_need=2": {
+      "label": "read_budget=0 arm=sham P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 20000
+      },
+      "hash": "245073399c018691"
+    },
+    "rb0/erased@P_need=2": {
+      "label": "read_budget=0 arm=erased P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 20000
+      },
+      "hash": "245073399c018691"
+    },
+    "rb0/stay@P_need=2": {
+      "label": "read_budget=0 arm=stay P_need=2",
+      "metrics": {
+        "lifetime": 24,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.611168695652,
+        "energy_acc": 59.84886,
+        "moves": 0
+      },
+      "hash": "489f06ec67341116"
+    },
+    "rb0/random@P_need=2": {
+      "label": "read_budget=0 arm=random P_need=2",
+      "metrics": {
+        "lifetime": 60,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.737693167864,
+        "energy_acc": 141.290731047612,
+        "moves": 34
+      },
+      "hash": "5dae06e0ae1e6268"
+    },
+    "rb1/oracle@P_need=1": {
+      "label": "read_budget=1 arm=oracle P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 19999
+      },
+      "hash": "b26d65f662ac10e2"
+    },
+    "rb1/sighted@P_need=1": {
+      "label": "read_budget=1 arm=sighted P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 0
+      },
+      "hash": "62554c51633c3be5"
+    },
+    "rb1/intact@P_need=1": {
+      "label": "read_budget=1 arm=intact P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 0
+      },
+      "hash": "62554c51633c3be5"
+    },
+    "rb1/sham@P_need=1": {
+      "label": "read_budget=1 arm=sham P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 0
+      },
+      "hash": "62554c51633c3be5"
+    },
+    "rb1/erased@P_need=1": {
+      "label": "read_budget=1 arm=erased P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 20000
+      },
+      "hash": "483d42ef290156d9"
+    },
+    "rb1/stay@P_need=1": {
+      "label": "read_budget=1 arm=stay P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 0
+      },
+      "hash": "62554c51633c3be5"
+    },
+    "rb1/random@P_need=1": {
+      "label": "read_budget=1 arm=random P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 13265
+      },
+      "hash": "10996a37e60507c4"
+    },
+    "rb1/oracle@P_need=2": {
+      "label": "read_budget=1 arm=oracle P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 19999
+      },
+      "hash": "4679cd79dd120842"
+    },
+    "rb1/sighted@P_need=2": {
+      "label": "read_budget=1 arm=sighted P_need=2",
+      "metrics": {
+        "lifetime": 24,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.611168695652,
+        "energy_acc": 59.84886,
+        "moves": 0
+      },
+      "hash": "489f06ec67341116"
+    },
+    "rb1/intact@P_need=2": {
+      "label": "read_budget=1 arm=intact P_need=2",
+      "metrics": {
+        "lifetime": 24,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.611168695652,
+        "energy_acc": 59.84886,
+        "moves": 0
+      },
+      "hash": "489f06ec67341116"
+    },
+    "rb1/sham@P_need=2": {
+      "label": "read_budget=1 arm=sham P_need=2",
+      "metrics": {
+        "lifetime": 24,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.611168695652,
+        "energy_acc": 59.84886,
+        "moves": 0
+      },
+      "hash": "489f06ec67341116"
+    },
+    "rb1/erased@P_need=2": {
+      "label": "read_budget=1 arm=erased P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 20000
+      },
+      "hash": "245073399c018691"
+    },
+    "rb1/stay@P_need=2": {
+      "label": "read_budget=1 arm=stay P_need=2",
+      "metrics": {
+        "lifetime": 24,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.611168695652,
+        "energy_acc": 59.84886,
+        "moves": 0
+      },
+      "hash": "489f06ec67341116"
+    },
+    "rb1/random@P_need=2": {
+      "label": "read_budget=1 arm=random P_need=2",
+      "metrics": {
+        "lifetime": 60,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.737693167864,
+        "energy_acc": 141.290731047612,
+        "moves": 34
+      },
+      "hash": "5dae06e0ae1e6268"
+    },
+    "rb2/oracle@P_need=1": {
+      "label": "read_budget=2 arm=oracle P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 19999
+      },
+      "hash": "b26d65f662ac10e2"
+    },
+    "rb2/sighted@P_need=1": {
+      "label": "read_budget=2 arm=sighted P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 19999
+      },
+      "hash": "b26d65f662ac10e2"
+    },
+    "rb2/intact@P_need=1": {
+      "label": "read_budget=2 arm=intact P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 19999
+      },
+      "hash": "fde94f18c23780d8"
+    },
+    "rb2/sham@P_need=1": {
+      "label": "read_budget=2 arm=sham P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 0
+      },
+      "hash": "62554c51633c3be5"
+    },
+    "rb2/erased@P_need=1": {
+      "label": "read_budget=2 arm=erased P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 20000
+      },
+      "hash": "483d42ef290156d9"
+    },
+    "rb2/stay@P_need=1": {
+      "label": "read_budget=2 arm=stay P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 0
+      },
+      "hash": "62554c51633c3be5"
+    },
+    "rb2/random@P_need=1": {
+      "label": "read_budget=2 arm=random P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 13265
+      },
+      "hash": "10996a37e60507c4"
+    },
+    "rb2/oracle@P_need=2": {
+      "label": "read_budget=2 arm=oracle P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 19999
+      },
+      "hash": "4679cd79dd120842"
+    },
+    "rb2/sighted@P_need=2": {
+      "label": "read_budget=2 arm=sighted P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 19999
+      },
+      "hash": "4679cd79dd120842"
+    },
+    "rb2/intact@P_need=2": {
+      "label": "read_budget=2 arm=intact P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 19999
+      },
+      "hash": "3bab289e1f33fa88"
+    },
+    "rb2/sham@P_need=2": {
+      "label": "read_budget=2 arm=sham P_need=2",
+      "metrics": {
+        "lifetime": 24,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.611168695652,
+        "energy_acc": 59.84886,
+        "moves": 0
+      },
+      "hash": "489f06ec67341116"
+    },
+    "rb2/erased@P_need=2": {
+      "label": "read_budget=2 arm=erased P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 20000
+      },
+      "hash": "245073399c018691"
+    },
+    "rb2/stay@P_need=2": {
+      "label": "read_budget=2 arm=stay P_need=2",
+      "metrics": {
+        "lifetime": 24,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.611168695652,
+        "energy_acc": 59.84886,
+        "moves": 0
+      },
+      "hash": "489f06ec67341116"
+    },
+    "rb2/random@P_need=2": {
+      "label": "read_budget=2 arm=random P_need=2",
+      "metrics": {
+        "lifetime": 60,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.737693167864,
+        "energy_acc": 141.290731047612,
+        "moves": 34
+      },
+      "hash": "5dae06e0ae1e6268"
+    },
+    "rb3/oracle@P_need=1": {
+      "label": "read_budget=3 arm=oracle P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 19999
+      },
+      "hash": "b26d65f662ac10e2"
+    },
+    "rb3/sighted@P_need=1": {
+      "label": "read_budget=3 arm=sighted P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 19999
+      },
+      "hash": "b26d65f662ac10e2"
+    },
+    "rb3/intact@P_need=1": {
+      "label": "read_budget=3 arm=intact P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 19999
+      },
+      "hash": "fde94f18c23780d8"
+    },
+    "rb3/sham@P_need=1": {
+      "label": "read_budget=3 arm=sham P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 0
+      },
+      "hash": "62554c51633c3be5"
+    },
+    "rb3/erased@P_need=1": {
+      "label": "read_budget=3 arm=erased P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 20000
+      },
+      "hash": "483d42ef290156d9"
+    },
+    "rb3/stay@P_need=1": {
+      "label": "read_budget=3 arm=stay P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 0
+      },
+      "hash": "62554c51633c3be5"
+    },
+    "rb3/random@P_need=1": {
+      "label": "read_budget=3 arm=random P_need=1",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.1056,
+        "energy_acc": 100000.0,
+        "moves": 13265
+      },
+      "hash": "10996a37e60507c4"
+    },
+    "rb3/oracle@P_need=2": {
+      "label": "read_budget=3 arm=oracle P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 19999
+      },
+      "hash": "4679cd79dd120842"
+    },
+    "rb3/sighted@P_need=2": {
+      "label": "read_budget=3 arm=sighted P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 19999
+      },
+      "hash": "4679cd79dd120842"
+    },
+    "rb3/intact@P_need=2": {
+      "label": "read_budget=3 arm=intact P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 19999
+      },
+      "hash": "3bab289e1f33fa88"
+    },
+    "rb3/sham@P_need=2": {
+      "label": "read_budget=3 arm=sham P_need=2",
+      "metrics": {
+        "lifetime": 24,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.611168695652,
+        "energy_acc": 59.84886,
+        "moves": 0
+      },
+      "hash": "489f06ec67341116"
+    },
+    "rb3/erased@P_need=2": {
+      "label": "read_budget=3 arm=erased P_need=2",
+      "metrics": {
+        "lifetime": 20000,
+        "alive": true,
+        "cause": "alive",
+        "taken_mean": 1.8211,
+        "energy_acc": 99999.99999999999,
+        "moves": 20000
+      },
+      "hash": "245073399c018691"
+    },
+    "rb3/stay@P_need=2": {
+      "label": "read_budget=3 arm=stay P_need=2",
+      "metrics": {
+        "lifetime": 24,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.611168695652,
+        "energy_acc": 59.84886,
+        "moves": 0
+      },
+      "hash": "489f06ec67341116"
+    },
+    "rb3/random@P_need=2": {
+      "label": "read_budget=3 arm=random P_need=2",
+      "metrics": {
+        "lifetime": 60,
+        "alive": false,
+        "cause": "energy",
+        "taken_mean": 1.737693167864,
+        "energy_acc": 141.290731047612,
+        "moves": 34
+      },
+      "hash": "5dae06e0ae1e6268"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "P_need=2: the staying arm dies while the oracle lives, so the probe separates a dead arm from a living one"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "P_need=1: all 28 arm/read-budget combinations live to the horizon, so the medium gives no policy an advantage"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "P_need=2: the random walk (erased, knows nothing) lives exactly as long as the oracle (knows the globally richest cell) at every read budget, so the advantage is movement, not information"
+    }
+  },
+  "verdict": {
+    "kind": "not applicable",
+    "reason": "EXPLAINED: P_need=1: all 28 arm/read-budget combinations live to the horizon, so the medium gives no policy an advantage and the memory question is empty. P_need=2: the staying arm dies at step 24 while every arm that keeps moving lives 20000, so the question the medium does ask is 'move at all', not 'remember where'. The decisive number is that the oracle - which knows the globally richest cell at every step - lives exactly as long as the random walk (20000 against 20000 at read_budget=3, and the same at 0, 1 and 2), so perfect information about the field is worth zero over wandering. Memory cannot be worth more than information, so in this medium it is worth nothing. NOT APPLICABLE to 'does the medium pose a memory question': it does not, because on a uniform ring with income equal to upkeep any movement suffices and the richest cell is always adjacent. The partial-observability question only appears when the field is not uniform - which this grid does not contain."
+  },
+  "hashes": {
+    "rb0/oracle@P_need=1": "b26d65f662ac10e2",
+    "rb0/sighted@P_need=1": "62554c51633c3be5",
+    "rb0/intact@P_need=1": "483d42ef290156d9",
+    "rb0/sham@P_need=1": "483d42ef290156d9",
+    "rb0/erased@P_need=1": "483d42ef290156d9",
+    "rb0/stay@P_need=1": "62554c51633c3be5",
+    "rb0/random@P_need=1": "10996a37e60507c4",
+    "rb0/oracle@P_need=2": "4679cd79dd120842",
+    "rb0/sighted@P_need=2": "489f06ec67341116",
+    "rb0/intact@P_need=2": "245073399c018691",
+    "rb0/sham@P_need=2": "245073399c018691",
+    "rb0/erased@P_need=2": "245073399c018691",
+    "rb0/stay@P_need=2": "489f06ec67341116",
+    "rb0/random@P_need=2": "5dae06e0ae1e6268",
+    "rb1/oracle@P_need=1": "b26d65f662ac10e2",
+    "rb1/sighted@P_need=1": "62554c51633c3be5",
+    "rb1/intact@P_need=1": "62554c51633c3be5",
+    "rb1/sham@P_need=1": "62554c51633c3be5",
+    "rb1/erased@P_need=1": "483d42ef290156d9",
+    "rb1/stay@P_need=1": "62554c51633c3be5",
+    "rb1/random@P_need=1": "10996a37e60507c4",
+    "rb1/oracle@P_need=2": "4679cd79dd120842",
+    "rb1/sighted@P_need=2": "489f06ec67341116",
+    "rb1/intact@P_need=2": "489f06ec67341116",
+    "rb1/sham@P_need=2": "489f06ec67341116",
+    "rb1/erased@P_need=2": "245073399c018691",
+    "rb1/stay@P_need=2": "489f06ec67341116",
+    "rb1/random@P_need=2": "5dae06e0ae1e6268",
+    "rb2/oracle@P_need=1": "b26d65f662ac10e2",
+    "rb2/sighted@P_need=1": "b26d65f662ac10e2",
+    "rb2/intact@P_need=1": "fde94f18c23780d8",
+    "rb2/sham@P_need=1": "62554c51633c3be5",
+    "rb2/erased@P_need=1": "483d42ef290156d9",
+    "rb2/stay@P_need=1": "62554c51633c3be5",
+    "rb2/random@P_need=1": "10996a37e60507c4",
+    "rb2/oracle@P_need=2": "4679cd79dd120842",
+    "rb2/sighted@P_need=2": "4679cd79dd120842",
+    "rb2/intact@P_need=2": "3bab289e1f33fa88",
+    "rb2/sham@P_need=2": "489f06ec67341116",
+    "rb2/erased@P_need=2": "245073399c018691",
+    "rb2/stay@P_need=2": "489f06ec67341116",
+    "rb2/random@P_need=2": "5dae06e0ae1e6268",
+    "rb3/oracle@P_need=1": "b26d65f662ac10e2",
+    "rb3/sighted@P_need=1": "b26d65f662ac10e2",
+    "rb3/intact@P_need=1": "fde94f18c23780d8",
+    "rb3/sham@P_need=1": "62554c51633c3be5",
+    "rb3/erased@P_need=1": "483d42ef290156d9",
+    "rb3/stay@P_need=1": "62554c51633c3be5",
+    "rb3/random@P_need=1": "10996a37e60507c4",
+    "rb3/oracle@P_need=2": "4679cd79dd120842",
+    "rb3/sighted@P_need=2": "4679cd79dd120842",
+    "rb3/intact@P_need=2": "3bab289e1f33fa88",
+    "rb3/sham@P_need=2": "489f06ec67341116",
+    "rb3/erased@P_need=2": "245073399c018691",
+    "rb3/stay@P_need=2": "489f06ec67341116",
+    "rb3/random@P_need=2": "5dae06e0ae1e6268"
+  },
+  "limitations": [
+    "the oracle knows the globally richest cell. That is more than memory can know, so it bounds memory from above; it is not an achievable policy.",
+    "`income = m` and `move_cost = 0` by construction: with a non-zero move cost the return period shifts and `P_need` stops being a property of the medium alone.",
+    "the probe wraps movement around a ring. `Field` and `Life` do not wrap, and without wrapping a one-dimensional walk cannot have a return period longer than two, so `P_need >= 3` is unreachable by construction.",
+    "one organism, uniform ring, no competition and no sharing: this bounds the value of information, not a population's fate.",
+    "arms that share a dynamics hash are declared as one arm, and there are many: with a uniform ring almost every policy that keeps moving produces the same trajectory. That is the finding, not a bug in the declarations - but it also means this grid cannot separate policies that differ only in which rich cell they choose.",
+    "memory here stores the cell the organism stands on. If the medium becomes partially observable only for cells it has never stood on, this implementation cannot exploit it even when the oracle shows the information is worth having."
+  ],
+  "command": "python3 checks/exp_memory_question.py",
+  "created_at": "2026-11-16T08:32:15.692393+00:00",
+  "points": [
+    {
+      "read_budget": 0,
+      "point": "P_need=1",
+      "p_need": 1,
+      "lifetime": {
+        "oracle": 20000,
+        "sighted": 20000,
+        "intact": 20000,
+        "sham": 20000,
+        "erased": 20000,
+        "stay": 20000,
+        "random": 20000
+      },
+      "taken_mean": {
+        "oracle": 1.1056,
+        "sighted": 1.1056,
+        "intact": 1.1056,
+        "sham": 1.1056,
+        "erased": 1.1056,
+        "stay": 1.1056,
+        "random": 1.1056
+      },
+      "hash": {
+        "oracle": "b26d65f662ac10e2",
+        "sighted": "62554c51633c3be5",
+        "intact": "483d42ef290156d9",
+        "sham": "483d42ef290156d9",
+        "erased": "483d42ef290156d9",
+        "stay": "62554c51633c3be5",
+        "random": "10996a37e60507c4"
+      }
+    },
+    {
+      "read_budget": 0,
+      "point": "P_need=2",
+      "p_need": 2,
+      "lifetime": {
+        "oracle": 20000,
+        "sighted": 24,
+        "intact": 20000,
+        "sham": 20000,
+        "erased": 20000,
+        "stay": 24,
+        "random": 60
+      },
+      "taken_mean": {
+        "oracle": 1.8211,
+        "sighted": 1.611169,
+        "intact": 1.8211,
+        "sham": 1.8211,
+        "erased": 1.8211,
+        "stay": 1.611169,
+        "random": 1.737693
+      },
+      "hash": {
+        "oracle": "4679cd79dd120842",
+        "sighted": "489f06ec67341116",
+        "intact": "245073399c018691",
+        "sham": "245073399c018691",
+        "erased": "245073399c018691",
+        "stay": "489f06ec67341116",
+        "random": "5dae06e0ae1e6268"
+      }
+    },
+    {
+      "read_budget": 1,
+      "point": "P_need=1",
+      "p_need": 1,
+      "lifetime": {
+        "oracle": 20000,
+        "sighted": 20000,
+        "intact": 20000,
+        "sham": 20000,
+        "erased": 20000,
+        "stay": 20000,
+        "random": 20000
+      },
+      "taken_mean": {
+        "oracle": 1.1056,
+        "sighted": 1.1056,
+        "intact": 1.1056,
+        "sham": 1.1056,
+        "erased": 1.1056,
+        "stay": 1.1056,
+        "random": 1.1056
+      },
+      "hash": {
+        "oracle": "b26d65f662ac10e2",
+        "sighted": "62554c51633c3be5",
+        "intact": "62554c51633c3be5",
+        "sham": "62554c51633c3be5",
+        "erased": "483d42ef290156d9",
+        "stay": "62554c51633c3be5",
+        "random": "10996a37e60507c4"
+      }
+    },
+    {
+      "read_budget": 1,
+      "point": "P_need=2",
+      "p_need": 2,
+      "lifetime": {
+        "oracle": 20000,
+        "sighted": 24,
+        "intact": 24,
+        "sham": 24,
+        "erased": 20000,
+        "stay": 24,
+        "random": 60
+      },
+      "taken_mean": {
+        "oracle": 1.8211,
+        "sighted": 1.611169,
+        "intact": 1.611169,
+        "sham": 1.611169,
+        "erased": 1.8211,
+        "stay": 1.611169,
+        "random": 1.737693
+      },
+      "hash": {
+        "oracle": "4679cd79dd120842",
+        "sighted": "489f06ec67341116",
+        "intact": "489f06ec67341116",
+        "sham": "489f06ec67341116",
+        "erased": "245073399c018691",
+        "stay": "489f06ec67341116",
+        "random": "5dae06e0ae1e6268"
+      }
+    },
+    {
+      "read_budget": 2,
+      "point": "P_need=1",
+      "p_need": 1,
+      "lifetime": {
+        "oracle": 20000,
+        "sighted": 20000,
+        "intact": 20000,
+        "sham": 20000,
+        "erased": 20000,
+        "stay": 20000,
+        "random": 20000
+      },
+      "taken_mean": {
+        "oracle": 1.1056,
+        "sighted": 1.1056,
+        "intact": 1.1056,
+        "sham": 1.1056,
+        "erased": 1.1056,
+        "stay": 1.1056,
+        "random": 1.1056
+      },
+      "hash": {
+        "oracle": "b26d65f662ac10e2",
+        "sighted": "b26d65f662ac10e2",
+        "intact": "fde94f18c23780d8",
+        "sham": "62554c51633c3be5",
+        "erased": "483d42ef290156d9",
+        "stay": "62554c51633c3be5",
+        "random": "10996a37e60507c4"
+      }
+    },
+    {
+      "read_budget": 2,
+      "point": "P_need=2",
+      "p_need": 2,
+      "lifetime": {
+        "oracle": 20000,
+        "sighted": 20000,
+        "intact": 20000,
+        "sham": 24,
+        "erased": 20000,
+        "stay": 24,
+        "random": 60
+      },
+      "taken_mean": {
+        "oracle": 1.8211,
+        "sighted": 1.8211,
+        "intact": 1.8211,
+        "sham": 1.611169,
+        "erased": 1.8211,
+        "stay": 1.611169,
+        "random": 1.737693
+      },
+      "hash": {
+        "oracle": "4679cd79dd120842",
+        "sighted": "4679cd79dd120842",
+        "intact": "3bab289e1f33fa88",
+        "sham": "489f06ec67341116",
+        "erased": "245073399c018691",
+        "stay": "489f06ec67341116",
+        "random": "5dae06e0ae1e6268"
+      }
+    },
+    {
+      "read_budget": 3,
+      "point": "P_need=1",
+      "p_need": 1,
+      "lifetime": {
+        "oracle": 20000,
+        "sighted": 20000,
+        "intact": 20000,
+        "sham": 20000,
+        "erased": 20000,
+        "stay": 20000,
+        "random": 20000
+      },
+      "taken_mean": {
+        "oracle": 1.1056,
+        "sighted": 1.1056,
+        "intact": 1.1056,
+        "sham": 1.1056,
+        "erased": 1.1056,
+        "stay": 1.1056,
+        "random": 1.1056
+      },
+      "hash": {
+        "oracle": "b26d65f662ac10e2",
+        "sighted": "b26d65f662ac10e2",
+        "intact": "fde94f18c23780d8",
+        "sham": "62554c51633c3be5",
+        "erased": "483d42ef290156d9",
+        "stay": "62554c51633c3be5",
+        "random": "10996a37e60507c4"
+      }
+    },
+    {
+      "read_budget": 3,
+      "point": "P_need=2",
+      "p_need": 2,
+      "lifetime": {
+        "oracle": 20000,
+        "sighted": 20000,
+        "intact": 20000,
+        "sham": 24,
+        "erased": 20000,
+        "stay": 24,
+        "random": 60
+      },
+      "taken_mean": {
+        "oracle": 1.8211,
+        "sighted": 1.8211,
+        "intact": 1.8211,
+        "sham": 1.611169,
+        "erased": 1.8211,
+        "stay": 1.611169,
+        "random": 1.737693
+      },
+      "hash": {
+        "oracle": "4679cd79dd120842",
+        "sighted": "4679cd79dd120842",
+        "intact": "3bab289e1f33fa88",
+        "sham": "489f06ec67341116",
+        "erased": "245073399c018691",
+        "stay": "489f06ec67341116",
+        "random": "5dae06e0ae1e6268"
+      }
+    }
+  ],
+  "expected_coincident": [
+    [
+      "rb0/oracle@P_need=1",
+      "rb1/oracle@P_need=1",
+      "rb2/oracle@P_need=1",
+      "rb2/sighted@P_need=1",
+      "rb3/oracle@P_need=1",
+      "rb3/sighted@P_need=1"
+    ],
+    [
+      "rb0/sighted@P_need=1",
+      "rb0/stay@P_need=1",
+      "rb1/intact@P_need=1",
+      "rb1/sham@P_need=1",
+      "rb1/sighted@P_need=1",
+      "rb1/stay@P_need=1",
+      "rb2/sham@P_need=1",
+      "rb2/stay@P_need=1",
+      "rb3/sham@P_need=1",
+      "rb3/stay@P_need=1"
+    ],
+    [
+      "rb0/erased@P_need=1",
+      "rb0/intact@P_need=1",
+      "rb0/sham@P_need=1",
+      "rb1/erased@P_need=1",
+      "rb2/erased@P_need=1",
+      "rb3/erased@P_need=1"
+    ],
+    [
+      "rb0/random@P_need=1",
+      "rb1/random@P_need=1",
+      "rb2/random@P_need=1",
+      "rb3/random@P_need=1"
+    ],
+    [
+      "rb0/oracle@P_need=2",
+      "rb1/oracle@P_need=2",
+      "rb2/oracle@P_need=2",
+      "rb2/sighted@P_need=2",
+      "rb3/oracle@P_need=2",
+      "rb3/sighted@P_need=2"
+    ],
+    [
+      "rb0/sighted@P_need=2",
+      "rb0/stay@P_need=2",
+      "rb1/intact@P_need=2",
+      "rb1/sham@P_need=2",
+      "rb1/sighted@P_need=2",
+      "rb1/stay@P_need=2",
+      "rb2/sham@P_need=2",
+      "rb2/stay@P_need=2",
+      "rb3/sham@P_need=2",
+      "rb3/stay@P_need=2"
+    ],
+    [
+      "rb0/erased@P_need=2",
+      "rb0/intact@P_need=2",
+      "rb0/sham@P_need=2",
+      "rb1/erased@P_need=2",
+      "rb2/erased@P_need=2",
+      "rb3/erased@P_need=2"
+    ],
+    [
+      "rb0/random@P_need=2",
+      "rb1/random@P_need=2",
+      "rb2/random@P_need=2",
+      "rb3/random@P_need=2"
+    ],
+    [
+      "rb2/intact@P_need=1",
+      "rb3/intact@P_need=1"
+    ],
+    [
+      "rb2/intact@P_need=2",
+      "rb3/intact@P_need=2"
+    ]
+  ],
+  "coincident_groups": [
+    [
+      "rb0/oracle@P_need=1",
+      "rb1/oracle@P_need=1",
+      "rb2/oracle@P_need=1",
+      "rb2/sighted@P_need=1",
+      "rb3/oracle@P_need=1",
+      "rb3/sighted@P_need=1"
+    ],
+    [
+      "rb0/sighted@P_need=1",
+      "rb0/stay@P_need=1",
+      "rb1/intact@P_need=1",
+      "rb1/sham@P_need=1",
+      "rb1/sighted@P_need=1",
+      "rb1/stay@P_need=1",
+      "rb2/sham@P_need=1",
+      "rb2/stay@P_need=1",
+      "rb3/sham@P_need=1",
+      "rb3/stay@P_need=1"
+    ],
+    [
+      "rb0/erased@P_need=1",
+      "rb0/intact@P_need=1",
+      "rb0/sham@P_need=1",
+      "rb1/erased@P_need=1",
+      "rb2/erased@P_need=1",
+      "rb3/erased@P_need=1"
+    ],
+    [
+      "rb0/random@P_need=1",
+      "rb1/random@P_need=1",
+      "rb2/random@P_need=1",
+      "rb3/random@P_need=1"
+    ],
+    [
+      "rb0/oracle@P_need=2",
+      "rb1/oracle@P_need=2",
+      "rb2/oracle@P_need=2",
+      "rb2/sighted@P_need=2",
+      "rb3/oracle@P_need=2",
+      "rb3/sighted@P_need=2"
+    ],
+    [
+      "rb0/sighted@P_need=2",
+      "rb0/stay@P_need=2",
+      "rb1/intact@P_need=2",
+      "rb1/sham@P_need=2",
+      "rb1/sighted@P_need=2",
+      "rb1/stay@P_need=2",
+      "rb2/sham@P_need=2",
+      "rb2/stay@P_need=2",
+      "rb3/sham@P_need=2",
+      "rb3/stay@P_need=2"
+    ],
+    [
+      "rb0/erased@P_need=2",
+      "rb0/intact@P_need=2",
+      "rb0/sham@P_need=2",
+      "rb1/erased@P_need=2",
+      "rb2/erased@P_need=2",
+      "rb3/erased@P_need=2"
+    ],
+    [
+      "rb0/random@P_need=2",
+      "rb1/random@P_need=2",
+      "rb2/random@P_need=2",
+      "rb3/random@P_need=2"
+    ],
+    [
+      "rb2/intact@P_need=1",
+      "rb3/intact@P_need=1"
+    ],
+    [
+      "rb2/intact@P_need=2",
+      "rb3/intact@P_need=2"
+    ]
+  ]
+}

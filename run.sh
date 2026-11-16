@@ -151,6 +151,8 @@ do_exp() {
   # что причина -- последовательное сложение (fsum и другая ассоциация
   # расхождение снимают). Скрипт дешёвый, поэтому в `exp`.
   python3 checks/damage_clock.py || rc=$?
+  echo "--- exp_memory_question.py ---"
+  python3 checks/exp_memory_question.py || rc=$?
   echo
   echo "--- exp05_frozen.py ---"
   local out
