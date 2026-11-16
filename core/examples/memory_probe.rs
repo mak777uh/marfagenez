@@ -197,6 +197,18 @@ struct Args {
     /// its region" is built without creating energy out of nothing.
     mark_income: f64,
 
+    /// How many cells either side of itself the form maintains. `0` is the old
+    /// behaviour: one stamp where it stands, which `FINDING-170` showed is a
+    /// memory of a path and not a region. `1` or more makes a block, and a block
+    /// is what can be lost.
+    region_radius: usize,
+
+    /// The pull acts only when the cell underfoot cannot pay the upkeep -- the
+    /// consequence is the need itself, as Neill's saw in the rain, and
+    /// `FINDING-170` showed that an unconditional pull turns standing into
+    /// walking.
+    region_needed_only: bool,
+
     /// How strongly the decision rule is pulled toward a higher mark. This is
     /// the **return path**: the form's own trace changes its own terms. The
     /// E4 control is to cut exactly this, leaving the mark and the field alone.
@@ -244,6 +256,8 @@ impl Default for Args {
             mark_decay: 1.0,
             mark_income: 0.0,
             mark_read_gain: 0.0,
+            region_radius: 1,
+            region_needed_only: true,
             poor: 0.2,
             memory_life: 1_000_000,
             steps: 2000,
@@ -445,6 +459,15 @@ fn main() {
                 i += 1;
                 a.mark_income = number(&argv, i, "--mark-income");
             }
+            "--region-radius" => {
+                i += 1;
+                let radius: f64 = number(&argv, i, "--region-radius");
+                a.region_radius = radius.max(0.0) as usize;
+            }
+            "--region-needed-only" => {
+                i += 1;
+                a.region_needed_only = !matches!(argv.get(i).map(|s| s.as_str()), Some("off"));
+            }
             "--mark-read-gain" => {
                 i += 1;
                 a.mark_read_gain = number(&argv, i, "--mark-read-gain");
@@ -499,7 +522,7 @@ fn main() {
                 println!("       [--capacity CAP] [--read-budget B] [--read-cost X]");
                 println!("       [--read-period N]  remembering arms look every N steps");
         println!("       [--look-on-shortfall]  remembering arms look out of turn when the cell is too poor");
-                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--mark-write X --mark-decay D --mark-income B --mark-read-gain G] [--period P] [--poor V]");
+                println!("       [--field uniform|peaks|moving|peaks-moving] [--shift S] [--boundary ring|line] [--mark-write X --mark-decay D --mark-income B --mark-read-gain G --region-radius R --region-needed-only on|off] [--period P] [--poor V]");
                 println!("       [--memory-life L]");
                 println!("       [--steps S] [--seed Z] [--start-cell K] [--threshold X]");
                 println!("       [--sham-mode visited|neighbour] [--tiebreak left|right|random]");
@@ -671,13 +694,29 @@ fn main() {
         // the levels themselves, bit for bit, so every recorded number stays
         // reproducible -- that identity is what the `silent` control then
         // proves empirically instead of assuming.
-        let (left_level, right_level) = {
+        // The region is a **windowed mass**, not the highest single stamp: a
+        // fresh stamp behind the form must not outbid the block it maintains
+        // (`docs/FINDING-170.md` is that failure). And the pull acts only when
+        // the cell underfoot cannot pay the upkeep.
+        let span = a.region_radius as i64;
+        let window_mass = |c: usize| -> f64 {
+            let mut acc = 0.0;
+            for d in -span..=span {
+                acc += marks[side(c, d, cells, a.boundary_wraps).unwrap_or(c)];
+            }
+            acc
+        };
+        let pull_on = a.mark_read_gain > 0.0
+            && (!a.region_needed_only || here < need);
+        let (left_level, right_level) = if pull_on {
             let lc = side(r.cell, -1, cells, a.boundary_wraps).unwrap_or(r.cell);
             let rc = side(r.cell, 1, cells, a.boundary_wraps).unwrap_or(r.cell);
             (
-                left_level + a.mark_read_gain * marks[lc],
-                right_level + a.mark_read_gain * marks[rc],
+                left_level + a.mark_read_gain * window_mass(lc),
+                right_level + a.mark_read_gain * window_mass(rc),
             )
+        } else {
+            (left_level, right_level)
         };
 
         // --- 2. Decide.
@@ -871,7 +910,11 @@ fn main() {
         // --- 3a. E4: the form marks where it is, and the mark ages. It is not
         //         a resource: `field.take` never touches it.
         if a.mark_write > 0.0 {
-            marks[r.cell] += a.mark_write;
+            let span = a.region_radius as i64;
+            for d in -span..=span {
+                let c = side(r.cell, d, cells, a.boundary_wraps).unwrap_or(r.cell);
+                marks[c] += a.mark_write;
+            }
         }
         if a.mark_decay < 1.0 {
             for m in marks.iter_mut() {
