@@ -197,7 +197,8 @@ With the same field and the same organism, four consumers sharing a cell by
 `Proportional` instead of `Sequential` lower the marginal price of repair by a factor
 of **15.7**. No field variation we tried comes close. The rule by which consumers
 divide a resource is therefore not a detail of the implementation; in this model it
-dominates the ecological parameter that a modeller would normally vary first.
+exceeds any field variation we tried, within the ranges we varied; it is a strong
+statement about this model, not a ranking of mechanisms in general.
 
 ### 4.5 The consumer's policy matters far less than the arithmetic
 
@@ -328,7 +329,8 @@ not, so self-maintenance cannot even be asked there. The two are complements.
 Ownership of cells was implemented and measured: a form holds a cell by standing on it,
 another takes it only by overwriting, a claim decays without presence, and a stranger
 eats a fraction of what the holder eats until it overwrites. In an economy at the
-boundary this decides who lives: with a stranger's share of 0.50 the holder survives and
+boundary this changes who survives in this economy: with a stranger's share of 0.50 the
+holder survives and
 the walker falls from 165 to 49 steps; at 0.25 both die, because the walker overwrites the
 holder's cell and the holder then eats as a stranger on its own former place; at 0.00 the
 holder dies in 22 steps and the walker holds every cell.
@@ -364,7 +366,7 @@ it, so a medium can reward **returning** and cannot reward **searching**; every 
   a price, a spacing, a selection pressure. Where a boundary was found it is stated as a
   boundary, not as a result.
 - Not that a form can care for a place. Ownership has consequences without any policy,
-  but care is behaviour and behaviour in this model is always written by us (§6.4).
+  but care is behaviour and behaviour in this model is written by us, not selected (§6.4).
 
 ## 8. What the author could not do
 
@@ -432,7 +434,8 @@ without structure, and neither gives a form that maintains itself by moving.
 Ownership was implemented and works. A form holds a cell by standing on it, another takes
 it only by overwriting, a claim decays without presence, and a stranger eats a fraction of
 what the holder eats until it overwrites. In an economy at the maintenance boundary this
-decides who lives: a stranger's share of 0.50 lets the holder survive while the walker
+changes who survives in this economy: a stranger's share of 0.50 lets the holder survive
+while the walker
 falls from 165 to 49 steps; at 0.25 both die, because the walker overwrites the holder's
 cell and the holder then eats as a stranger on its own former place; at 0.00 the holder
 dies in 22 steps and the walker holds every cell.
@@ -467,7 +470,8 @@ exactly one neighbour.
 ### 9.5 What the four programmes have in common
 
 In every one, the effect that appeared was **smaller and narrower** than the effect that
-was sought, and the reason was always the same: this architecture has a price and no
+was sought, and the reason we found in each case was the same: this architecture has a
+price and no
 space, a repertoire and no variation of it, a neighbour and no region. The law in §4 holds
 precisely because it does not depend on any of those: it is arithmetic of a single cell.
 

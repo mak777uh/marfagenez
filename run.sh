@@ -159,6 +159,8 @@ do_exp() {
   python3 checks/paper_numbers.py || rc=$?
   echo "--- life_calibration.py ---"
   python3 checks/life_calibration.py || rc=$?
+  echo "--- paper_claims.py ---"
+  python3 checks/paper_claims.py || rc=$?
   echo
   echo "--- exp_memory_cost.py ---"
   # Цена чтения и поле с пиками: 216 прогонов, 15 с, поэтому в `exp`.
