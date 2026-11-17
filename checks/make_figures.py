@@ -259,6 +259,78 @@ def price_figure() -> list[str]:
     return out
 
 
+# ---------------------------------------------------------------------------
+# Figure 4: the extinction threshold of section 4.7, and its dependence on the start.
+# Numbers from FINDING-226, 227 and 229: 8 runs per point.
+THRESHOLD_FULL = {
+    "cell": ([(2, 8), (4, 8), (6, 8), (8, 0), (11, 0), (12, 0)], 6.975),
+    "2x2": ([(2, 8), (4, 8), (6, 8), (8, 8), (11, 0), (12, 0)], 11.8),
+    "3x3": ([(2, 8), (4, 8), (6, 8), (8, 8), (11, 8), (12, 0)], 14.3),
+}
+THRESHOLD_HALF = {
+    "cell": ([(2, 8), (4, 0), (8, 0)], 2.975),
+    "2x2": ([(2, 8), (4, 0), (8, 0)], 3.8),
+    "3x3": ([(2, 8), (4, 0), (8, 0)], 2.3),
+}
+
+
+def threshold_panel(series: dict, title: str, x0: int, runs: int) -> list[str]:
+    top, ph, pw = 66, 190, 250
+    out = []
+    out.append(f'<text x="{x0 + pw / 2}" y="52" font-size="11" text-anchor="middle" '
+               f'font-family="sans-serif">{title}</text>')
+    out.append(f'<rect x="{x0}" y="{top}" width="{pw}" height="{ph}" fill="none" stroke="#999"/>')
+    f0_lo, f0_hi = 0.0, 14.0
+
+    def px(f0: float) -> float:
+        return x0 + (f0 - f0_lo) / (f0_hi - f0_lo) * pw
+
+    def py(share: float) -> float:
+        return top + ph - share * ph
+
+    # half of the runs surviving is the line a reader looks for
+    out.append(f'<line x1="{x0}" y1="{py(0.5):.1f}" x2="{x0 + pw}" y2="{py(0.5):.1f}" '
+               f'stroke="#eee"/>')
+
+    for k, (name, (pts, cutoff)) in enumerate(series.items()):
+        colour = COLORS[k % len(COLORS)]
+        out.append(f'<line x1="{px(cutoff):.1f}" y1="{top}" x2="{px(cutoff):.1f}" '
+                   f'y2="{top + ph}" stroke="{colour}" stroke-dasharray="3 3" opacity="0.7"/>')
+        poly = " ".join(f"{px(f0):.1f},{py(k8 / runs):.1f}" for f0, k8 in pts)
+        out.append(f'<polyline points="{poly}" fill="none" stroke="{colour}" stroke-width="1.6"/>')
+        for f0, k8 in pts:
+            out.append(f'<circle cx="{px(f0):.1f}" cy="{py(k8 / runs):.1f}" r="3" '
+                       f'fill="{colour}"/>')
+        out.append(f'<text x="{x0 + 8}" y="{top + 14 + 14 * k}" font-size="9" fill="{colour}" '
+                   f'font-family="sans-serif">{name} (cutoff {cutoff:g})</text>')
+
+    for f0 in (2, 4, 6, 8, 11, 12):
+        out.append(f'<text x="{px(f0):.1f}" y="{top + ph + 14}" font-size="8" '
+                   f'text-anchor="middle" font-family="sans-serif">{f0}</text>')
+    out.append(f'<text x="{x0 + pw / 2}" y="{top + ph + 30}" font-size="9" '
+               f'text-anchor="middle" font-family="sans-serif">fixed cost per form</text>')
+    return out
+
+
+def threshold_figure() -> list[str]:
+    """Survivors against the fixed cost, for three starts and two stock levels."""
+    w, h = 660, 320
+    out = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" '
+        f'viewBox="0 0 {w} {h}">',
+        f'<rect width="{w}" height="{h}" fill="#fff"/>',
+        f'<text x="30" y="22" font-size="13" font-family="sans-serif">'
+        f'The extinction threshold, and what sets it</text>',
+        f'<text x="30" y="38" font-size="9" fill="#666" font-family="sans-serif">'
+        f'share of 8 runs alive after 400 steps; dashed lines are the thresholds predicted '
+        f'before the runs from f*sigma*p - (f0 + mu*n + kappa*n^2/p)</text>',
+    ]
+    out += threshold_panel(THRESHOLD_FULL, "stock at capacity", 30, 8)
+    out += threshold_panel(THRESHOLD_HALF, "half the starting stock", 380, 8)
+    out.append('</svg>')
+    return out
+
+
 def main(argv: list[str]) -> int:
     xs_a = [p[0] for p in A_POINTS]
     # all four world sizes gave identical lifetimes, which is the point of the panel
@@ -284,6 +356,10 @@ def main(argv: list[str]) -> int:
 
     out = pathlib.Path(__file__).resolve().parent.parent / "docs" / "figures"
     out.mkdir(exist_ok=True)
+    thr = out / "threshold.svg"
+    thr.write_text("\n".join(threshold_figure()) + "\n", encoding="utf-8")
+    print(f"wrote {thr}")
+
     price = out / "price.svg"
     price.write_text("\n".join(price_figure()) + "\n", encoding="utf-8")
     print(f"wrote {price}")

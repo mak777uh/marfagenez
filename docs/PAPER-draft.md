@@ -242,6 +242,14 @@ returns to the island when it has recovered. In a patchy medium it pays to retur
 than to search - and the model **cannot** test the alternative, because an organism
 compares exactly one neighbour and therefore cannot search at all.
 
+![Share of runs surviving against the fixed cost per form, for three starting forms with the
+stock at capacity (left) and at half capacity (right). Dashed lines are the thresholds predicted before
+the runs; they land between the last surviving price and the first lethal one in every case. At half
+stock every curve falls together, because every income is halved at the same time.](figures/threshold.svg)
+
+*Figure 3.* The threshold of §4.7. The prediction is not the shape of the curves - which is a step by
+construction - but the position of each step, from the arithmetic of the starting form.
+
 ### 4.7 A predicted extinction threshold on a shared medium
 
 The law of §4.1 is per cell. The shape world of §9.6 tests whether it still predicts when the
@@ -482,7 +490,7 @@ over eight environments per price. The difference crosses zero between 0.02 and 
 intervals separate from zero only at 0.04 and above. The note under the axis gives the
 crossings at five surpluses, which show no form.](figures/price.svg)
 
-*Figure 3.* The threshold of §9.5. Positive means looking pays; the dashed band is where the
+*Figure 4.* The threshold of §9.5. Positive means looking pays; the dashed band is where the
 difference changes sign. The point of the figure is what it does not show: the crossing exists
 in this economy, and across surpluses it moves without a pattern.
 
