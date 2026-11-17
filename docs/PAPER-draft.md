@@ -99,7 +99,7 @@ order) or `Proportional` (by need).
 
 ## 3. Methods of inference
 
-Every experiment is preregistered with four outcomes (`passed`, `failed`, `void`, `not
+Every experiment is preregistered (Nosek et al. 2018) with four outcomes (`passed`, `failed`, `void`, `not
 applicable`), three controls (`fires` — the effect appears where it must; `silent` —
 it is absent where it must be; `specific` — it comes from the stated mechanism and not
 from an incidental covariate), and a `mde` computed from a **measured** dispersion.
@@ -234,7 +234,7 @@ Second, what does the medium have to vary for selection to see it? A declared fa
 patchy media - rich islands of 3.0 in a poor sea of 1.65, spacing from 4 to 24 cells,
 two richness levels, four seeds each - gives the memory share:
 
-| spacing (cells between islands) | memory share | 90% bootstrap over environments |
+| spacing (cells between islands) | memory share | 90% bootstrap over environments (Efron and Tibshirani 1993) |
 |---|---|---|
 | 4 | 0.036 | [0.010, 0.068] |
 | 8 | 0.052 | [0.026, 0.078] |
@@ -252,7 +252,7 @@ statistically distinguishable from its neighbours. And patchiness as such does n
 uniform poor world (`0.064` against `0.073`), so what selection sees is **distance to a
 known place**, not patchiness.
 
-The mechanism is the one the literature predicts: a sighted organism steps toward one
+The mechanism is the one the literature predicts (Riotte-Lambert et al. 2017): a sighted organism steps toward one
 neighbour, so having eaten out an island it walks into the poor sea; a memory-holder
 returns to the island when it has recovered. In a patchy medium it pays to return rather
 than to search - and the model **cannot** test the alternative, because an organism
@@ -277,8 +277,8 @@ seeds gave zero.
 The same contrast that reported a mean of `−1665` steps is two humps: a median win of
 **+4** and a median loss of **−10 001**. The mean is negative because a loss is
 enormous, not because losses are frequent. A two-humped quantity reported as a mean is
-an artefact of the summary, and for publication we report two fractions with intervals
-and the median size of each tail.
+an artefact of the summary, and for publication we report two fractions with Wilson
+intervals (Wilson 1927) and the median size of each tail.
 
 ### 5.3 The measure of the medium is a measure of the instrument
 
@@ -319,7 +319,7 @@ builds something lasting; that is not this one.
 
 ### 6.3 The structure question was not answered
 
-A comparison with Conway's Life is in the repository and is not a result: Life shows
+A comparison with Conway's Life (Gardner 1970) is in the repository and is not a result: Life shows
 structural novelty from fixed rules without any player, which our model cannot produce
 because it has no space of configurations, and our model has a price which Life does
 not, so self-maintenance cannot even be asked there. The two are complements.
@@ -408,7 +408,7 @@ to build.
 
 ### 9.2 Structure in a field without a price, and price without structure
 
-A Gray-Scott field with no agent at all does grow a structure: a localised spot appears at
+A Gray-Scott field (Gray and Scott 1984) with no agent at all does grow a structure: a localised spot appears at
 `(F, k) = 0.045…0.050, 0.065`, reproducible, and it is the first object in this project
 that nobody wrote. Given a price, it dies almost immediately - at a consumption of 0.05
 against a regrowth of 0.2 - because it pays where it lives, out of the resource that keeps
@@ -418,7 +418,7 @@ A reservoir in the same cells does not help: the price edge does not move at all
 a store that sits where the structure eats is still a payment in place. What the organism
 has and the field lacks is a store it can **carry**.
 
-Two further results closed the programme. The recovery time of the Barkley medium is
+Two further results closed the programme. The recovery time of the Barkley medium (Barkley 1991) is
 `T = eps·a/b`, which is 750 time units at the parameters used, against runs of 120 - so
 what looked like a travelling front was sixteen percent of the way to rest, i.e. the decay
 of the initial condition. And excitability itself needs a large `eps`, which forces a long
@@ -474,6 +474,32 @@ was sought, and the reason we found in each case was the same: this architecture
 price and no
 space, a repertoire and no variation of it, a neighbour and no region. The law in §4 holds
 precisely because it does not depend on any of those: it is arithmetic of a single cell.
+
+## References
+
+Barkley, D. (1991). A model for fast computer simulation of waves in excitable media.
+*Physica D* 49(1-2), 61-70.
+
+Efron, B. and Tibshirani, R. J. (1993). *An Introduction to the Bootstrap*. Chapman and
+Hall, New York.
+
+Gardner, M. (1970). Mathematical games: the fantastic combinations of John Conway's new
+solitaire game "life". *Scientific American* 223(4), 120-123.
+
+Gray, P. and Scott, S. K. (1984). Autocatalytic reactions in the isothermal, continuous
+stirred tank reactor: oscillations and instabilities in the system A + 2B -> 3B; B -> C.
+*Chemical Engineering Science* 39(6), 1087-1097.
+
+Nosek, B. A., Ebersole, C. R., DeHaven, A. C. and Mellor, D. T. (2018). The
+preregistration revolution. *Proceedings of the National Academy of Sciences* 115(11),
+2600-2606.
+
+Riotte-Lambert, L., Benhamou, S., Bonenfant, C. and Chamaille-Jammes, S. (2017). Spatial
+memory shapes density dependence in population dynamics. *Proceedings of the Royal Society
+B* 284(1867), 20171411.
+
+Wilson, E. B. (1927). Probable inference, the law of succession, and statistical
+inference. *Journal of the American Statistical Association* 22(158), 209-212.
 
 ## Appendix A. Reproducibility
 
