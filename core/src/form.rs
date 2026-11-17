@@ -230,6 +230,13 @@ pub struct ShapeEconomy {
     pub mu: f64,
     /// Transport cost per cell per unit of mean depth.
     pub kappa: f64,
+    /// A cost every form pays once, whatever its size.
+    ///
+    /// Zero by default, and that is a contract: `FINDING-215` to `FINDING-218` were measured
+    /// without it, and their numbers must not move. With a positive value the survival
+    /// condition becomes an interval - too small a form cannot cover the fixed cost, too
+    /// large a one is eaten by transport. `docs/FINDING-219.md` computed that interval.
+    pub fixed_cost: f64,
 }
 
 impl ShapeEconomy {
@@ -240,12 +247,28 @@ impl ShapeEconomy {
         if sigma <= 0.0 || mu < 0.0 || kappa < 0.0 {
             return None;
         }
-        Some(Self { sigma, mu, kappa })
+        Some(Self {
+            sigma,
+            mu,
+            kappa,
+            fixed_cost: 0.0,
+        })
     }
 
-    /// The largest cells-per-boundary a form may have and still pay for itself.
+    /// Returns the same economy with a fixed cost per form.
+    pub fn with_fixed_cost(mut self, fixed_cost: f64) -> Option<Self> {
+        if !fixed_cost.is_finite() || fixed_cost < 0.0 {
+            return None;
+        }
+        self.fixed_cost = fixed_cost;
+        Some(self)
+    }
+
+    /// The largest cells-per-boundary a form may have, ignoring the fixed cost.
     ///
-    /// The positive root of `kappa*x^2 + mu*x - sigma = 0`.
+    /// The positive root of `kappa*x^2 + mu*x - sigma = 0`. With a fixed cost this bound is
+    /// no longer sufficient - the condition becomes `sigma*p - mu*n - kappa*n^2/p >= f0`,
+    /// which for squares has two roots. See `docs/FINDING-219.md`.
     pub fn x_limit(&self) -> f64 {
         if self.kappa == 0.0 {
             return self.sigma / self.mu.max(f64::MIN_POSITIVE);
@@ -266,7 +289,7 @@ impl ShapeEconomy {
     pub fn upkeep(&self, form: &Form) -> f64 {
         let n = form.cells() as f64;
         let p = form.perimeter().max(1) as f64;
-        self.mu * n + self.kappa * n * n / p
+        self.fixed_cost + self.mu * n + self.kappa * n * n / p
     }
 
     /// Whether the form pays for itself: `income >= upkeep`.
@@ -442,6 +465,36 @@ mod tests {
             "expected drift upwards from {start}, got {}",
             f.cells()
         );
+    }
+
+    #[test]
+    fn a_fixed_cost_of_zero_leaves_every_number_of_the_earlier_findings_alone() {
+        let plain = economy();
+        let same = plain.with_fixed_cost(0.0).expect("valid");
+        assert_eq!(plain, same);
+        assert!((same.margin(&Form::square(6)) - 6.6).abs() < 1e-9);
+    }
+
+    #[test]
+    fn a_fixed_cost_puts_a_floor_under_the_size() {
+        let e = economy().with_fixed_cost(10.0).expect("valid");
+        // one cell: income 8, upkeep 10 + 1 + 0.025 = 11.025 -> dead.
+        // two-by-two: income 16, upkeep 10 + 4 + 0.2 = 14.2 -> alive, and it should be:
+        // the interval of `docs/FINDING-219.md` starts at side 1.571, so side two is inside.
+        // The first version of this test asserted the opposite and the arithmetic refused
+        // it, which is the third time in this line that a test corrected my guess.
+        assert!(!e.survives(&Form::square(1)), "the atom must not pay a fixed cost of ten");
+        assert!(e.survives(&Form::square(2)), "a two-by-two is inside the interval");
+        // three cells a side: income 24, upkeep 10 + 9 + 0.675 -> alive
+        assert!(e.survives(&Form::square(3)));
+        // and a big one dies anyway, from transport
+        assert!(!e.survives(&Form::square(9)));
+    }
+
+    #[test]
+    fn an_impossible_fixed_cost_is_refused() {
+        assert!(economy().with_fixed_cost(-1.0).is_none());
+        assert!(economy().with_fixed_cost(f64::NAN).is_none());
     }
 
     #[test]
