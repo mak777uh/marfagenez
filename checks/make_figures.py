@@ -98,6 +98,86 @@ def panel(xs, life_series, xlabel, title, x0, edge=None, edges=None):
     return out
 
 
+# ---------------------------------------------------------------------------
+# Figure 2: does selection see the spacing of the medium?
+# Numbers from FINDING-206 and FINDING-207 (40 patchy environments + controls).
+SPACING = [
+    (4, 0.036, 0.010, 0.068),
+    (8, 0.052, 0.026, 0.078),
+    (12, 0.099, 0.052, 0.141),
+    (16, 0.073, 0.052, 0.099),
+    (20, 0.052, 0.010, 0.099),
+    (24, 0.073, 0.047, 0.099),
+]
+CONTROLS = [("uniform poor", 0.073, "#9467bd"), ("uniform rich", 0.000, "#8c564b")]
+
+
+def selection_figure() -> list[str]:
+    """Memory share against the spacing between rich islands, with intervals."""
+    w, h = 620, 340
+    left, top, pw, ph = 70, 60, 480, 220
+    ymax = 0.16
+
+    def px(period: int) -> float:
+        lo, hi = 0, 28
+        return left + (period - lo) / (hi - lo) * pw
+
+    def py(share: float) -> float:
+        return top + ph - share / ymax * ph
+
+    out = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" '
+        f'viewBox="0 0 {w} {h}">',
+        f'<rect width="{w}" height="{h}" fill="#fff"/>',
+        f'<text x="{left}" y="24" font-size="13" font-family="sans-serif">'
+        f'Selection sees the spacing of the medium, not its patchiness</text>',
+        f'<text x="{left}" y="40" font-size="9" fill="#666" font-family="sans-serif">'
+        f'memory share of a population of walkers after 2000 steps, 8 environments per '
+        f'point, bars are 90% bootstrap intervals over environments</text>',
+        f'<rect x="{left}" y="{top}" width="{pw}" height="{ph}" fill="none" stroke="#999"/>',
+    ]
+
+    # vertical axis ticks
+    for share in (0.0, 0.05, 0.10, 0.15):
+        yy = py(share)
+        out.append(f'<line x1="{left - 4}" y1="{yy:.1f}" x2="{left}" y2="{yy:.1f}" stroke="#999"/>')
+        out.append(f'<text x="{left - 8}" y="{yy + 3:.1f}" font-size="9" text-anchor="end" '
+                   f'font-family="sans-serif">{share:.2f}</text>')
+        out.append(f'<line x1="{left}" y1="{yy:.1f}" x2="{left + pw}" y2="{yy:.1f}" '
+                   f'stroke="#eee"/>')
+
+    # controls as horizontal references
+    for name, share, colour in CONTROLS:
+        yy = py(share)
+        out.append(f'<line x1="{left}" y1="{yy:.1f}" x2="{left + pw}" y2="{yy:.1f}" '
+                   f'stroke="{colour}" stroke-dasharray="5 4"/>')
+        out.append(f'<text x="{left + pw - 4}" y="{yy - 4:.1f}" font-size="9" fill="{colour}" '
+                   f'text-anchor="end" font-family="sans-serif">{name} ({share:.3f})</text>')
+
+    pts = " ".join(f"{px(p):.1f},{py(m):.1f}" for p, m, _, _ in SPACING)
+    out.append(f'<polyline points="{pts}" fill="none" stroke="#1f77b4" stroke-width="1.8"/>')
+    for period, mean, lo, hi in SPACING:
+        x = px(period)
+        out.append(f'<line x1="{x:.1f}" y1="{py(lo):.1f}" x2="{x:.1f}" y2="{py(hi):.1f}" '
+                   f'stroke="#1f77b4" stroke-width="1.2"/>')
+        out.append(f'<line x1="{x - 3:.1f}" y1="{py(lo):.1f}" x2="{x + 3:.1f}" y2="{py(lo):.1f}" '
+                   f'stroke="#1f77b4"/>')
+        out.append(f'<line x1="{x - 3:.1f}" y1="{py(hi):.1f}" x2="{x + 3:.1f}" y2="{py(hi):.1f}" '
+                   f'stroke="#1f77b4"/>')
+        out.append(f'<circle cx="{x:.1f}" cy="{py(mean):.1f}" r="3.5" fill="#1f77b4"/>')
+        out.append(f'<text x="{x:.1f}" y="{top + ph + 14}" font-size="9" text-anchor="middle" '
+                   f'font-family="sans-serif">{period}</text>')
+
+    out.append(f'<text x="{left + pw / 2}" y="{top + ph + 34}" font-size="10" '
+               f'text-anchor="middle" font-family="sans-serif">'
+               f'cells between rich islands (spacing)</text>')
+    out.append(f'<text x="{left - 46}" y="{top + ph / 2}" font-size="10" '
+               f'text-anchor="middle" transform="rotate(-90 {left - 46} {top + ph / 2})" '
+               f'font-family="sans-serif">memory share</text>')
+    out.append('</svg>')
+    return out
+
+
 def main(argv: list[str]) -> int:
     xs_a = [p[0] for p in A_POINTS]
     # all four world sizes gave identical lifetimes, which is the point of the panel
@@ -123,6 +203,10 @@ def main(argv: list[str]) -> int:
 
     out = pathlib.Path(__file__).resolve().parent.parent / "docs" / "figures"
     out.mkdir(exist_ok=True)
+    sel = out / "selection.svg"
+    sel.write_text("\n".join(selection_figure()) + "\n", encoding="utf-8")
+    print(f"wrote {sel}")
+
     path = out / "boundary.svg"
     text = "\n".join(parts) + "\n"
     path.write_text(text, encoding="utf-8")

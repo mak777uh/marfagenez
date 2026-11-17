@@ -207,6 +207,15 @@ between a memory-bearing and a memoryless policy produced a gain of **+4 steps**
 indistinguishable. This is reported here as a size, not as a result about memory
 (§6.2): it is a bound on how much behaviour can matter once the arithmetic is fixed.
 
+![Memory share against the spacing between rich islands, with 90% bootstrap intervals
+over environments, and the two uniform controls as horizontal references. The share rises
+by a factor of 2.7 from the densest to the sparsest spacing, peaks near twelve cells, and
+the peak does not separate from its neighbours.](figures/selection.svg)
+
+*Figure 2.* What selection sees in §4.6. The dashed lines are the uniform controls: a
+uniform rich world supports no memory at all, and a uniform poor world is not
+distinguishable from the patchy family as a whole.
+
 ### 4.6 Selection over a fixed repertoire sees distance, and only distance
 
 The model has no genome: five hand-written policies are the heritable unit, a child
