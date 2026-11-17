@@ -381,6 +381,96 @@ must state what it failed to do, or the admission is decoration:
 - I could not verify the boundary at regrowth rates other than 0.99, in the
   reserve/damage-clock branch on a peaked field, or with reproduction switched on.
 
+## 9. The negative programme
+
+A paper that reports only what worked leaves the reader unable to tell a narrow result
+from a shallow one. This section is the rest of the work: four programmes that were
+carried out, measured, and did not give what they were meant to give. Each ends with the
+reason, because the reasons are the useful part.
+
+### 9.1 Memory in a world that rewards standing still
+
+Across 216 declared environments, a policy that remembers one cell and returns to it
+gains a median of **+4 steps** in 13% of environments, loses a median of **−10 001** in
+17%, and is indistinguishable from a memoryless controller in the other 70%. The loss in
+the losing tail is the horizon: the organism dies.
+
+The reason is not that memory is bad. It is that in these worlds **movement is not worth
+anything**: the medium regrows on its own, so a form that stands on a rich cell does as
+well as any searcher, and a memory that saves search saves nothing. When the movement cost
+was made explicit, nothing changed, because nobody moved.
+
+What would be needed is a medium where a visit **builds** something that lasts and where
+absence loses it. That is a different world, and it is what the next two programmes tried
+to build.
+
+### 9.2 Structure in a field without a price, and price without structure
+
+A Gray-Scott field with no agent at all does grow a structure: a localised spot appears at
+`(F, k) = 0.045…0.050, 0.065`, reproducible, and it is the first object in this project
+that nobody wrote. Given a price, it dies almost immediately - at a consumption of 0.05
+against a regrowth of 0.2 - because it pays where it lives, out of the resource that keeps
+it open.
+
+A reservoir in the same cells does not help: the price edge does not move at all, because
+a store that sits where the structure eats is still a payment in place. What the organism
+has and the field lacks is a store it can **carry**.
+
+Two further results closed the programme. The recovery time of the Barkley medium is
+`T = eps·a/b`, which is 750 time units at the parameters used, against runs of 120 - so
+what looked like a travelling front was sixteen percent of the way to rest, i.e. the decay
+of the initial condition. And excitability itself needs a large `eps`, which forces a long
+`T`: at small `eps` the excitation dies before it can propagate. **One quantity controls
+both**, so no parameter choice gives a structure that both propagates and can be observed
+against rest.
+
+The measured complement stands: `Life` has structure without price, this field has price
+without structure, and neither gives a form that maintains itself by moving.
+
+### 9.3 Ownership that cannot become care
+
+Ownership was implemented and works. A form holds a cell by standing on it, another takes
+it only by overwriting, a claim decays without presence, and a stranger eats a fraction of
+what the holder eats until it overwrites. In an economy at the maintenance boundary this
+decides who lives: a stranger's share of 0.50 lets the holder survive while the walker
+falls from 165 to 49 steps; at 0.25 both die, because the walker overwrites the holder's
+cell and the holder then eats as a stranger on its own former place; at 0.00 the holder
+dies in 22 steps and the walker holds every cell.
+
+So losing a place is mortal rather than metaphorical. But the claim that ownership creates
+care could not be tested: the proposed comparison, a returning form against a wandering
+one, failed its own control - with ownership switched off, where the two should not
+differ, the returning form lived twenty-four times longer, because memory in this model
+keeps a form near rich cells and returning is confounded with being well fed.
+
+The confound cannot be removed without a policy that reads claims, and writing one means
+writing the behaviour. **Care is behaviour; behaviour here is written by us; a rule of
+access is not behaviour.**
+
+### 9.4 Selection that has nothing to choose between
+
+With births, deaths and a mutation rate on the policy, selection is real: a population of
+walkers at the maintenance boundary ends with a mixed repertoire and half the population
+dead, while in a comfortable economy it ends with twelve walkers and no deaths at any
+mutation rate. A comfortably fed world selects nothing.
+
+Designing a medium for selection to act on took three attempts. The first was a grave: a
+poor level of 0.8 against an upkeep of 1.79 is below the survival line, so three of four
+worlds died out entirely - a niche is a place where things are worse, not a place where
+they are impossible. The second was too comfortable: with every cell survivable and a
+population cap equal to the number of cells, nobody died and the composition did not move
+at all. **A margin keeps everyone alive; crowding is what makes anyone die.** The third
+worked weakly, and the finding is in §4.6: selection sees the **spacing** of rich patches
+and not their patchiness, and cannot see searching at all, because an organism compares
+exactly one neighbour.
+
+### 9.5 What the four programmes have in common
+
+In every one, the effect that appeared was **smaller and narrower** than the effect that
+was sought, and the reason was always the same: this architecture has a price and no
+space, a repertoire and no variation of it, a neighbour and no region. The law in §4 holds
+precisely because it does not depend on any of those: it is arithmetic of a single cell.
+
 ## Appendix A. Reproducibility
 
 Every result carries a record with the command, the commit, the dynamics hash, the
