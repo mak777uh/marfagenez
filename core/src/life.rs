@@ -759,6 +759,17 @@ impl Life {
                     got
                 }
             };
+            // 4a. A stranger eats less on another form's cell until it overwrites
+            //     it. This is the revenue side of ownership and the reason a place
+            //     is worth holding at all: without it the field fed holder and
+            //     stranger alike (`FINDING-199`).
+            let taken = match self.claims.as_ref() {
+                Some(claims) => match claims.owner_of(r.cell) {
+                    Some(owner) if owner != oi => taken * claims.trespass,
+                    _ => taken,
+                },
+                None => taken,
+            };
             r.last_taken = taken;
 
             // 4b. `EatThenLook`: the read of the standing cell happens here, on
@@ -1649,6 +1660,15 @@ pub struct Claims {
     health: Vec<f64>,
     cost: f64,
     decay: f64,
+    /// What share of a cell's income a **stranger** gets while standing on it.
+    ///
+    /// This is the revenue side of ownership, and without it holding a place was a
+    /// pure cost: `FINDING-199` measured a stayer living on one cell while a walker
+    /// holding five died sooner, because the field did not know who stood on it.
+    ///
+    /// `1.0` is the off position and the default for `Claims::new`, so a world with
+    /// ownership but no trespass behaves exactly like `FINDING-198`.
+    trespass: f64,
     takes: u64,
     losses: u64,
 }
@@ -1664,6 +1684,7 @@ impl Claims {
             health: vec![0.0; cells],
             cost,
             decay,
+            trespass: 1.0,
             takes: 0,
             losses: 0,
         })
@@ -1702,6 +1723,20 @@ impl Claims {
         self.owner.get(cell).copied().flatten()
     }
 
+    /// What share of a cell's income a stranger gets. `1.0` means "no trespass rule".
+    pub fn trespass(&self) -> f64 {
+        self.trespass
+    }
+
+    /// Sets the stranger's share; rejects anything outside `[0, 1]`.
+    pub fn set_trespass(&mut self, share: f64) -> bool {
+        if !share.is_finite() || !(0.0..=1.0).contains(&share) {
+            return false;
+        }
+        self.trespass = share;
+        true
+    }
+
     pub fn health_of(&self, cell: usize) -> f64 {
         self.health.get(cell).copied().unwrap_or(0.0)
     }
@@ -1734,5 +1769,10 @@ impl Life {
 
     pub fn claims(&self) -> Option<&Claims> {
         self.claims.as_ref()
+    }
+
+    /// The claims, mutably, so a caller can set the trespass share and the price.
+    pub fn claims_mut(&mut self) -> Option<&mut Claims> {
+        self.claims.as_mut()
     }
 }

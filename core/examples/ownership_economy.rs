@@ -53,7 +53,14 @@ struct Outcome {
     held1: usize,
 }
 
-fn run(income: f64, cost: f64, decay: f64, steps: usize, claims: bool) -> Outcome {
+fn run(
+    income: f64,
+    cost: f64,
+    decay: f64,
+    steps: usize,
+    claims: bool,
+    trespass: f64,
+) -> Outcome {
     let mut life = Life::new_mixed(
         world(income),
         Field::new(6, 3.0, 0.99).expect("valid field"),
@@ -65,6 +72,9 @@ fn run(income: f64, cost: f64, decay: f64, steps: usize, claims: bool) -> Outcom
     .expect("built");
     if claims {
         life.enable_claims(cost, decay);
+        if let Some(c) = life.claims_mut() {
+            c.set_trespass(trespass);
+        }
     }
     let mut lifetime0 = steps;
     let mut lifetime1 = steps;
@@ -101,20 +111,21 @@ fn run(income: f64, cost: f64, decay: f64, steps: usize, claims: bool) -> Outcom
 
 fn main() {
     println!(
-        "{:<34} {:>9} {:>9} {:>6} {:>7} {:>6} {:>6}",
+        "{:<38} {:>9} {:>9} {:>6} {:>7} {:>6} {:>6}",
         "case", "stay", "random", "takes", "losses", "held0", "held1"
     );
-    for (name, income, cost, decay, claims) in [
-        ("1.95 no claims", 1.95, 0.0, 0.0, false),
-        ("1.95 claims cost0.05", 1.95, 0.05, 0.0, true),
-        ("1.83 no claims", 1.83, 0.0, 0.0, false),
-        ("1.83 claims cost0.05", 1.83, 0.05, 0.0, true),
-        ("1.83 claims cost0.05 decay0.3", 1.83, 0.05, 0.3, true),
-        ("1.83 claims cost0.50", 1.83, 0.50, 0.0, true),
+    for (name, income, cost, decay, claims, trespass) in [
+        ("1.83 no claims", 1.83, 0.0, 0.0, false, 1.0),
+        ("1.83 claims, no trespass", 1.83, 0.05, 0.0, true, 1.0),
+        ("1.83 claims, stranger 0.50", 1.83, 0.05, 0.0, true, 0.50),
+        ("1.83 claims, stranger 0.25", 1.83, 0.05, 0.0, true, 0.25),
+        ("1.83 claims, stranger 0.00", 1.83, 0.05, 0.0, true, 0.00),
+        ("1.95 claims, stranger 0.25", 1.95, 0.05, 0.0, true, 0.25),
+        ("1.83 stranger 0.25, decay 0.3", 1.83, 0.05, 0.3, true, 0.25),
     ] {
-        let o = run(income, cost, decay, 20000, claims);
+        let o = run(income, cost, decay, 20000, claims, trespass);
         println!(
-            "{name:<34} {:>9} {:>9} {:>6} {:>7} {:>6} {:>6}",
+            "{name:<38} {:>9} {:>9} {:>6} {:>7} {:>6} {:>6}",
             o.lifetime0, o.lifetime1, o.takes, o.losses, o.held0, o.held1
         );
     }
