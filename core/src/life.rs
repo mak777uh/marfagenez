@@ -114,6 +114,12 @@ pub struct Life {
     moves: u64,
     memory_life: usize,
     seed: u64,
+    /// Ownership of cells, if the world has any.
+    ///
+    /// `None` is the off position and it is a contract, not a placeholder: no
+    /// recorded run had ownership, so a `None` here must not change one bit of the
+    /// dynamics. Claims are turned on explicitly with [`Life::enable_claims`].
+    claims: Option<Claims>,
     /// If true, the field is regrown **before** the organisms act, so that a
     /// cell eaten last step has recovered by the time anybody looks at it.
     ///
@@ -171,6 +177,7 @@ impl Life {
             memory_life,
             seed,
             feed: false,
+            claims: None,
         })
     }
 
@@ -865,6 +872,33 @@ impl Life {
                     None => self.organisms.push(Some(kid)),
                 }
             }
+        }
+
+        // Ownership ticks after everyone has acted, so a step is: what each form
+        // did, then what that did to who holds what. Off unless claims exist.
+        if let Some(claims) = self.claims.as_mut() {
+            let present: Vec<Option<usize>> = self
+                .organisms
+                .iter()
+                .map(|slot| slot.as_ref().filter(|r| r.organism.is_alive()).map(|r| r.cell))
+                .collect();
+            // A form takes a cell by standing on it and paying for it. Another form
+            // takes it away only by overwriting, which is the same act: there is no
+            // separate stealing, because presence is the only claim the model has.
+            for (i, slot) in present.iter().enumerate() {
+                let Some(cell) = *slot else { continue };
+                if claims.owner[cell] == Some(i) {
+                    claims.health[cell] = 1.0;
+                    continue;
+                }
+                let price = claims.cost;
+                let Some(r) = self.organisms[i].as_mut() else { continue };
+                if price > 0.0 && !r.organism.spend(price) {
+                    continue; // too poor to own: the cell keeps its holder
+                }
+                claims.take(cell, i);
+            }
+            claims.decay_all();
         }
 
         // The field regrows once per step. In `feed` mode it already did.
@@ -1590,5 +1624,115 @@ mod tests {
         assert_eq!(c.step, 0);
         assert_eq!(c.total, 40);
         assert_eq!(c.alive, 40);
+    }
+}
+
+/// Who holds which cell, and for how long.
+///
+/// The design in `docs/DESIGN-two-forms.md` asks for a place a form can **lose**.
+/// Two things are needed for that and only one existed: a second form (which
+/// `Life::new_mixed` provides) and a cell that remembers a holder (this).
+///
+/// The rule is deliberately the smallest one that makes loss possible:
+///
+/// * a form holds a cell by standing on it and paying `cost` for it;
+/// * another form takes the cell **by overwriting** - presence is the only claim
+///   the model has, so there is no separate act of stealing;
+/// * a claim decays every step and is restored only by the holder being present, so
+///   neglect loses the cell.
+///
+/// `cost = 0` and `decay = 0` make ownership costless and permanent, which is not a
+/// useful world but a useful control.
+#[derive(Debug, Clone)]
+pub struct Claims {
+    owner: Vec<Option<usize>>,
+    health: Vec<f64>,
+    cost: f64,
+    decay: f64,
+    takes: u64,
+    losses: u64,
+}
+
+impl Claims {
+    /// An empty ownership map: nobody holds anything.
+    pub fn new(cells: usize, cost: f64, decay: f64) -> Option<Self> {
+        if cells == 0 || !cost.is_finite() || cost < 0.0 || !decay.is_finite() || decay < 0.0 {
+            return None;
+        }
+        Some(Self {
+            owner: vec![None; cells],
+            health: vec![0.0; cells],
+            cost,
+            decay,
+            takes: 0,
+            losses: 0,
+        })
+    }
+
+    /// Puts `who` on `cell`, counting it as a take when the cell was held by
+    /// somebody else, and as a loss for that somebody.
+    fn take(&mut self, cell: usize, who: usize) {
+        if let Some(prev) = self.owner[cell] {
+            if prev != who {
+                self.losses += 1;
+            }
+        }
+        self.owner[cell] = Some(who);
+        self.health[cell] = 1.0;
+        self.takes += 1;
+    }
+
+    fn decay_all(&mut self) {
+        if self.decay <= 0.0 {
+            return;
+        }
+        for cell in 0..self.health.len() {
+            if self.owner[cell].is_some() {
+                self.health[cell] -= self.decay;
+                if self.health[cell] <= 0.0 {
+                    self.health[cell] = 0.0;
+                    self.owner[cell] = None;
+                    self.losses += 1;
+                }
+            }
+        }
+    }
+
+    pub fn owner_of(&self, cell: usize) -> Option<usize> {
+        self.owner.get(cell).copied().flatten()
+    }
+
+    pub fn health_of(&self, cell: usize) -> f64 {
+        self.health.get(cell).copied().unwrap_or(0.0)
+    }
+
+    /// How many times a cell changed hands, and how many times a holder lost one.
+    pub fn counts(&self) -> (u64, u64) {
+        (self.takes, self.losses)
+    }
+
+    /// Cells held by each form.
+    pub fn held_by(&self, who: usize) -> usize {
+        self.owner.iter().filter(|o| **o == Some(who)).count()
+    }
+}
+
+impl Life {
+    /// Turns ownership on with a price per take and a decay per step.
+    ///
+    /// Returns `false` for invalid numbers. Off by default and never turned on by
+    /// the single-policy constructor, so every recorded run keeps its bits.
+    pub fn enable_claims(&mut self, cost: f64, decay: f64) -> bool {
+        match Claims::new(self.field.cells(), cost, decay) {
+            Some(c) => {
+                self.claims = Some(c);
+                true
+            }
+            None => false,
+        }
+    }
+
+    pub fn claims(&self) -> Option<&Claims> {
+        self.claims.as_ref()
     }
 }
