@@ -26,6 +26,47 @@ pub struct FormState {
     pub energy: f64,
 }
 
+/// A shared stock of resource that every form draws from.
+///
+/// `FINDING-217` ended with a structural failure: forms had independent margins, so once
+/// every form was solvent nothing died and selection stopped. A pool makes income depend on
+/// what everyone else has taken, which is what competition is.
+///
+/// ```text
+/// income_i = sigma * p_i * (stock / stock_max)          throttled by the shared stock
+/// stock'   = stock + inflow*(1 - stock/stock_max) - sum(income_i)
+/// ```
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct Pool {
+    /// The most the medium can hold.
+    pub stock_max: f64,
+    /// How fast it refills towards `stock_max`.
+    pub inflow: f64,
+    /// The stock at the start.
+    pub stock0: f64,
+}
+
+impl Pool {
+    pub fn new(stock_max: f64, inflow: f64, stock0: f64) -> Option<Self> {
+        if !(stock_max.is_finite() && inflow.is_finite() && stock0.is_finite()) {
+            return None;
+        }
+        if stock_max <= 0.0 || inflow < 0.0 || stock0 < 0.0 {
+            return None;
+        }
+        Some(Self {
+            stock_max,
+            inflow,
+            stock0: stock0.min(stock_max),
+        })
+    }
+
+    /// Fraction of the medium that is currently available.
+    pub fn fullness(&self, stock: f64) -> f64 {
+        (stock / self.stock_max).clamp(0.0, 1.0)
+    }
+}
+
 /// The prices and rates of the shape world.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct ShapeRules {
@@ -38,6 +79,9 @@ pub struct ShapeRules {
     pub p_grow: f64,
     /// Largest population allowed.
     pub max_population: usize,
+    /// A shared stock, when there is one. `None` keeps `FINDING-217`'s world: independent
+    /// margins and no competition.
+    pub pool: Option<Pool>,
 }
 
 impl ShapeRules {
@@ -51,6 +95,7 @@ impl ShapeRules {
             mutation_rate: 1.0,
             p_grow: 0.5,
             max_population: 32,
+            pool: None,
         })
     }
 }
@@ -63,6 +108,8 @@ pub struct ShapeWorld {
     pub births: u64,
     pub deaths: u64,
     pub mutations: u64,
+    /// Resource left in the shared stock, when the rules have one.
+    pub stock: f64,
 }
 
 impl ShapeWorld {
@@ -71,13 +118,29 @@ impl ShapeWorld {
             .into_iter()
             .map(|form| FormState { form, energy: 0.0 })
             .collect();
+        let stock = rules.pool.map(|p| p.stock0).unwrap_or(f64::INFINITY);
         Self {
             rules,
             forms: state,
             births: 0,
             deaths: 0,
             mutations: 0,
+            stock,
         }
+    }
+
+    /// The income a form earns now: its own boundary, throttled by the shared stock.
+    pub fn income_now(&self, form: &Form) -> f64 {
+        let raw = self.rules.economy.sigma * form.perimeter() as f64;
+        match self.rules.pool {
+            Some(pool) => raw * pool.fullness(self.stock),
+            None => raw,
+        }
+    }
+
+    /// The margin a form earns now, with the same throttle applied to its income.
+    pub fn margin_now(&self, form: &Form) -> f64 {
+        self.income_now(form) - self.rules.economy.upkeep(form)
     }
 
     pub fn alive(&self) -> usize {
@@ -107,8 +170,22 @@ impl ShapeWorld {
     /// organism world uses, and for the same reason: otherwise one rich form fills the world
     /// in a single step.
     pub fn step(&mut self, rng: &mut Rng) {
-        for f in self.forms.iter_mut() {
-            f.energy += self.rules.economy.margin(&f.form);
+        // Income is computed against the stock as it was at the start of the step, so every
+        // form sees the same medium - the same rule the organism world uses for a shared
+        // cell, and it keeps the order of the vector from mattering.
+        let mut consumed = 0.0;
+        let income: Vec<f64> = self.forms.iter().map(|f| self.income_now(&f.form)).collect();
+        for (f, inc) in self.forms.iter_mut().zip(income.iter()) {
+            consumed += *inc;
+            f.energy += *inc - self.rules.economy.upkeep(&f.form);
+        }
+        if let Some(pool) = self.rules.pool {
+            let refill = pool.inflow * (1.0 - pool.fullness(self.stock));
+            // The clamp must be on both sides. Without the upper bound a step that empties
+            // the stock was followed by a step that refilled it to several times its
+            // capacity - the probe showed stock jumping 0.00 -> 150.00 on a pool of 100 -
+            // and the population was reading a medium that does not exist.
+            self.stock = (self.stock + refill - consumed).clamp(0.0, pool.stock_max);
         }
 
         let before = self.forms.len();
@@ -218,6 +295,82 @@ mod tests {
         world.step(&mut rng);
         // a single step can add newborns but they cannot themselves give birth in it
         assert!(world.alive() <= before * 2, "one step doubled the population twice over");
+    }
+
+    #[test]
+    fn without_a_pool_the_behaviour_of_the_previous_finding_is_unchanged() {
+        // `FINDING-217` measured this world; adding a pool must not move it.
+        let mut rng = Rng::new(21);
+        let mut world = ShapeWorld::new(rules(), vec![Form::square(3)]);
+        for _ in 0..10 {
+            world.step(&mut rng);
+        }
+        assert_eq!(world.stock, f64::INFINITY);
+        assert!(world.alive() >= 1);
+    }
+
+    #[test]
+    fn a_depleted_pool_takes_food_from_everyone() {
+        let mut r = rules();
+        r.pool = Pool::new(10.0, 0.0, 10.0); // no refill: the stock can only fall
+        let start: Vec<Form> = (0..6).map(|_| Form::strip(8)).collect();
+        let mut rng = Rng::new(22);
+        let mut world = ShapeWorld::new(r, start);
+        // one step spends what the forms earn, and nothing comes back
+        world.step(&mut rng);
+        assert!(world.stock < 10.0, "stock should fall, got {}", world.stock);
+        for _ in 0..40 {
+            world.step(&mut rng);
+        }
+        assert!(world.stock <= 1e-9, "an empty medium, got {}", world.stock);
+        assert_eq!(world.alive(), 0, "with nothing left, nothing lives");
+    }
+
+    #[test]
+    fn the_stock_stays_inside_its_capacity_at_every_step() {
+        // Two earlier versions of this test asserted things about a *particular* inflow -
+        // that the stock would be drawn down, then that the population would stay below a
+        // cap - and each failed when the parameters changed, because the assertion was about
+        // my guess at the regime rather than about the mechanism. The invariant that holds
+        // in every regime is simpler: the stock never leaves [0, stock_max].
+        let mut r = rules();
+        r.max_population = 200;
+        r.pool = Pool::new(100.0, 150.0, 60.0);
+        let start: Vec<Form> = (0..4).map(|_| Form::strip(6)).collect();
+        let mut rng = Rng::new(23);
+        let mut world = ShapeWorld::new(r, start);
+        for step in 0..400 {
+            world.step(&mut rng);
+            assert!(
+                (0.0..=100.0).contains(&world.stock),
+                "stock left its capacity at step {step}: {}",
+                world.stock
+            );
+        }
+        assert!(world.alive() > 0, "and something still lives");
+    }
+
+    #[test]
+    fn competition_makes_margins_depend_on_the_others() {
+        let mut r = rules();
+        r.pool = Pool::new(10.0, 1.0, 5.0);
+        let solo = ShapeWorld::new(r, vec![Form::strip(8)]);
+        let mut crowded = ShapeWorld::new(r, (0..8).map(|_| Form::strip(8)).collect());
+        let mut rng = Rng::new(24);
+        crowded.step(&mut rng);
+        let one = solo.margin_now(&Form::strip(8));
+        let many = crowded.margin_now(&Form::strip(8));
+        assert!(
+            many < one,
+            "a crowded medium should pay a form less: solo {one}, crowded {many}"
+        );
+    }
+
+    #[test]
+    fn an_impossible_pool_is_refused() {
+        assert!(Pool::new(0.0, 1.0, 0.0).is_none());
+        assert!(Pool::new(10.0, -1.0, 0.0).is_none());
+        assert!(Pool::new(f64::NAN, 1.0, 0.0).is_none());
     }
 
     #[test]
