@@ -104,7 +104,7 @@ def main(argv: list[str]) -> int:
          survives(*rect(6, 6)) and not survives(*rect(7, 7))),
         ("size, not shape alone, decides for squares: 12 is refused while 2 is kept",
          survives(*rect(2, 2)) and not survives(*rect(12, 12))),
-        ("a ring of side 8 loses to a solid square of side 8",
+        ("a ring of side 8 is cheaper per cell than a solid square of the same extent",
          (ring(8)[0] / ring(8)[1]) < (rect(8, 8)[0] / rect(8, 8)[1])),
     ]
     for label, ok in checks:
