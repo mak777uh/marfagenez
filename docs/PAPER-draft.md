@@ -242,6 +242,32 @@ returns to the island when it has recovered. In a patchy medium it pays to retur
 than to search - and the model **cannot** test the alternative, because an organism
 compares exactly one neighbour and therefore cannot search at all.
 
+### 4.7 A predicted extinction threshold on a shared medium
+
+The law of §4.1 is per cell. The shape world of §9.6 tests whether it still predicts when the
+medium is shared and the consumer has a shape.
+
+Income is throttled by a shared stock, `f = stock/stock_max`, so a form of `n` cells with `p`
+boundary edges survives while
+
+    f * sigma * p  >=  f0 + mu * n + kappa * n^2 / p
+
+with `f0` a fixed cost per form. The left side is maximised, as a function of size, at a surplus of
+`14.679`; a medium can therefore support any form at all only while `f >= f0 / 14.679`. With the stock
+starting at capacity, the first step of consumption leaves `f = 0.760`, so a fixed cost of 12 demands
+`0.817` and cannot be paid, while 11 demands `0.749` and can.
+
+**The prediction was declared before the runs**: 24 replicates per price. It held - 24 of 24 worlds
+alive at a fixed cost of 11, and 0 of 24 at 12. The same arithmetic then predicted the threshold for
+other starting forms: a single cell should fall by a fixed cost of 7, a two-by-two by 11.8, a
+three-by-three by 14.3. Measured: below 8, below 11, and at 12 respectively.
+
+The dependence is worth stating plainly, because it is not the medium's alone: **the medium pays as
+much as the most profitable form the world can reach**, and which forms are reachable depends on the
+starting configuration. At half the starting stock the threshold does not halve evenly - it falls to
+between 2 and 4 for every start, because the income of every form is halved at the same time as its
+first step.
+
 ## 5. Three methodological results
 
 These are results about the modelling, not the model, and each came from an error of
@@ -510,16 +536,10 @@ ten, the median side is 5.00, inside the computed interval 1.571...5.420; the me
 is 11 to 17, pulled up by a few large forms. The lesson is the one §5.2 already stated for a memory
 contrast: a heavy-tailed quantity must not be reported as a mean.
 
-Finally the programme produced a boundary that is predicted rather than described. Income is
-throttled by a shared stock, `f = stock/stock_max`, so a world can support any form only while
-`f >= f0/14.679`. With a starting stock at capacity the pool falls to `f = 0.760` after the first step
-of consumption, so a fixed cost of 12 requires 0.817 - more than exists - and the world dies on step
-one, while 11 requires 0.749 and lives. Twenty-four runs per price: 24/24 alive at 11, 0/24 at 12.
-
-And the limit of that mechanism is stated too: with half the starting stock the threshold does not
-halve, it vanishes, because the initial form cannot pay for itself on the first step. **A threshold
-is a property of the medium and the starting condition together**, and the formula describes the
-steady state that has to be reached first.
+The programme also produced the predicted threshold reported in §4.7, and the limit of that
+mechanism: at half the starting stock the threshold does not halve but falls to between 2 and 4,
+because the starting form has to survive its first step for any of the steady-state arithmetic to
+apply.
 
 Nothing in this programme shows structure emerging. What it shows is a threshold, the mechanism of
 that threshold, and the boundary of the mechanism.
