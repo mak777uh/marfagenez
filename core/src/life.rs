@@ -133,6 +133,20 @@ pub struct Life {
     /// `World` breaks every struct literal in the tree, and this is a switch on the
     /// cycle, not a property of the medium.
     policy_mutation: f64,
+    /// How far a `Sighted` organism looks.
+    ///
+    /// `0` and `1` mean the same thing and they are the contract: look at the two
+    /// neighbours, exactly as every recorded run did. Anything larger makes the
+    /// organism scan `[-k, k]` and step toward the best cell it can see.
+    ///
+    /// The calculation in `docs/DESIGN-perception.md` is what motivated this: with a
+    /// one-neighbour rule the flat sea between rich patches is **silent** in 71% of
+    /// cells - both neighbours are equal, so the rule cannot tell "toward the island"
+    /// from "away from it" and wanders instead of searching. A window of radius half
+    /// the spacing has a signal in every sea cell. No policy can search a medium that
+    /// offers it no signal, so the medium has to be paired with a perception that can
+    /// read it.
+    sight_radius: usize,
     /// If true, the field is regrown **before** the organisms act, so that a
     /// cell eaten last step has recovered by the time anybody looks at it.
     ///
@@ -192,6 +206,7 @@ impl Life {
             feed: false,
             claims: None,
             policy_mutation: 0.0,
+            sight_radius: 0,
         })
     }
 
@@ -692,6 +707,46 @@ impl Life {
                     // the one under me" is then true by construction. This used
                     // to be phrased as "nothing is read and the organism cannot
                     // see"; the own cell was never a read.
+                    // A window is used only when it is strictly wider than the
+                    // two neighbours, so `k = 0` and `k = 1` run the original code
+                    // and every recorded run keeps its bits. That is the control the
+                    // design asks for, and it is enforced by construction rather
+                    // than by testing.
+                    if self.sight_radius > 1 {
+                        let k = self.sight_radius;
+                        let mut best_at: i32 = 0;
+                        let mut best_level = here;
+                        for d in 1..=k {
+                            if reads_left == 0 {
+                                break;
+                            }
+                            let mut scanned = 0;
+                            for sign in [-1i32, 1i32] {
+                                let target = r.cell as i32 + sign * d as i32;
+                                if target < 0 || target as usize >= cells {
+                                    continue;
+                                }
+                                if reads_left == 0 || !r.organism.spend(read_cost) {
+                                    break;
+                                }
+                                let level = self.field.observe(target as usize);
+                                reads_left -= 1;
+                                scanned += 1;
+                                if level > best_level {
+                                    best_level = level;
+                                    best_at = sign * d as i32;
+                                }
+                            }
+                            if scanned == 0 {
+                                break;
+                            }
+                        }
+                        if best_at != 0 {
+                            best_at.signum()
+                        } else {
+                            0
+                        }
+                    } else {
                     let mut left = f64::NEG_INFINITY;
                     let mut right = f64::NEG_INFINITY;
                     if r.cell > 0 && reads_left > 0 && r.organism.spend(read_cost) {
@@ -716,6 +771,7 @@ impl Life {
                         }
                     } else {
                         0
+                    }
                     }
                 }
             };
@@ -1827,6 +1883,24 @@ impl Life {
 
     pub fn policy_mutation(&self) -> f64 {
         self.policy_mutation
+    }
+
+    /// Sets how far a `Sighted` organism looks. `0` and `1` are the original two
+    /// neighbours; larger values scan `[-k, k]`.
+    ///
+    /// The radius costs `2k` reads per step out of `read_budget`, so a window wider
+    /// than the budget is paid for by going short-sighted: the scan stops when the
+    /// budget runs out, which is the same rule as every other price in this code.
+    pub fn set_sight_radius(&mut self, radius: usize) -> bool {
+        if radius > 64 {
+            return false;
+        }
+        self.sight_radius = radius;
+        true
+    }
+
+    pub fn sight_radius(&self) -> usize {
+        self.sight_radius
     }
 
     /// How many organisms are alive right now.
