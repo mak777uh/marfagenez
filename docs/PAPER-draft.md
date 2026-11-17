@@ -40,6 +40,14 @@ bimodal outcome must be reported as a profile and not as a mean; and a measure o
 "how much a medium distinguishes" is a property of the instrument as much as of the
 medium. We state explicitly what the paper does not claim.
 
+We also report what selection can and cannot see when the repertoire is fixed: over a
+declared family of patchy media the share of a memory-bearing policy rises with the
+distance between rich patches by a factor of 2.7, peaks near twelve cells, and does not
+separate from a uniform poor world - so what selection sees is distance to a known place,
+not patchiness. And we state two limits of the architecture rather than hiding them: care
+cannot be posed because behaviour is written rather than selected, and searching cannot be
+tested because an organism compares exactly one neighbour.
+
 **Keywords:** maintenance boundary; resource-limited consumer; agent-based model;
 preregistration; effect size; methodological artefacts.
 
@@ -190,6 +198,47 @@ between a memory-bearing and a memoryless policy produced a gain of **+4 steps**
 indistinguishable. This is reported here as a size, not as a result about memory
 (§6.2): it is a bound on how much behaviour can matter once the arithmetic is fixed.
 
+### 4.6 Selection over a fixed repertoire sees distance, and only distance
+
+The model has no genome: five hand-written policies are the heritable unit, a child
+inherits its parent's with probability `1 - mutation`, and death is the only filter.
+That is selection over a fixed repertoire, not open-ended evolution, and it is called
+that.
+
+Two questions were asked of it. First, does the economy choose a behaviour at all? At the
+maintenance boundary (`income 1.83`), a population of twelve walkers ends with a mixed
+repertoire and six survivors; in a comfortable economy (`income 1.95`) it ends with
+twelve walkers and no deaths, and nothing changes at any mutation rate - **a comfortably
+fed world selects nothing**.
+
+Second, what does the medium have to vary for selection to see it? A declared family of
+patchy media - rich islands of 3.0 in a poor sea of 1.65, spacing from 4 to 24 cells,
+two richness levels, four seeds each - gives the memory share:
+
+| spacing (cells between islands) | memory share | 90% bootstrap over environments |
+|---|---|---|
+| 4 | 0.036 | [0.010, 0.068] |
+| 8 | 0.052 | [0.026, 0.078] |
+| 12 | **0.099** | [0.052, 0.141] |
+| 16 | 0.073 | [0.052, 0.099] |
+| 20 | 0.052 | [0.010, 0.099] |
+| 24 | 0.073 | [0.047, 0.099] |
+| uniform poor | 0.073 | [0.021, 0.135] |
+| uniform rich | 0.000 | [0.000, 0.000] |
+
+Three things are worth reporting carefully. The share rises from the dense to the
+sparse end by a factor of 2.7, and that is the only comparison whose intervals separate.
+The trend is **not monotone**: it peaks near twelve cells, and the peak is not
+statistically distinguishable from its neighbours. And patchiness as such does not beat a
+uniform poor world (`0.064` against `0.073`), so what selection sees is **distance to a
+known place**, not patchiness.
+
+The mechanism is the one the literature predicts: a sighted organism steps toward one
+neighbour, so having eaten out an island it walks into the poor sea; a memory-holder
+returns to the island when it has recovered. In a patchy medium it pays to return rather
+than to search - and the model **cannot** test the alternative, because an organism
+compares exactly one neighbour and therefore cannot search at all.
+
 ## 5. Three methodological results
 
 These are results about the modelling, not the model, and each came from an error of
@@ -256,6 +305,32 @@ structural novelty from fixed rules without any player, which our model cannot p
 because it has no space of configurations, and our model has a price which Life does
 not, so self-maintenance cannot even be asked there. The two are complements.
 
+### 6.4 Care cannot be posed, and neither can searching
+
+Ownership of cells was implemented and measured: a form holds a cell by standing on it,
+another takes it only by overwriting, a claim decays without presence, and a stranger
+eats a fraction of what the holder eats until it overwrites. In an economy at the
+boundary this decides who lives: with a stranger's share of 0.50 the holder survives and
+the walker falls from 165 to 49 steps; at 0.25 both die, because the walker overwrites the
+holder's cell and the holder then eats as a stranger on its own former place; at 0.00 the
+holder dies in 22 steps and the walker holds every cell.
+
+So losing a place is mortal. But the claim that ownership creates care could not be
+tested. The proposed comparison - a returning form against a wandering one - failed its
+own control: with ownership switched off, where the two should not differ, the returning
+form lived twenty-four times longer. Memory in this model keeps a form near rich cells, so
+returning is confounded with being well fed.
+
+Removing the confound needs two equally wandering forms that differ only in whether they
+return to **their own** cell, and no policy reads claims. Writing one would mean writing
+the behaviour, which is the thing this paper is trying to avoid. The honest statement is
+therefore a limit of the architecture: care is behaviour, behaviour here is written by us,
+and a rule of access is not behaviour.
+
+The same limit applies to searching. An organism compares one neighbour and steps toward
+it, so a medium can reward **returning** and cannot reward **searching**; every result in
+§4.6 is a statement about return.
+
 ## 7. What this paper does not claim
 
 - Not that the boundary is universal: it is derived for this rule set, verified on
@@ -267,6 +342,11 @@ not, so self-maintenance cannot even be asked there. The two are complements.
 - Not that any fraction is prevalence. Shares are shares of a declared box, and
   interesting objects in a large configuration space are rare rather than common.
 - Not that the probe's numbers are the core's numbers (§6.1).
+- Not that anything here is emergent. Every effect reported is named: a rule of access,
+  a price, a spacing, a selection pressure. Where a boundary was found it is stated as a
+  boundary, not as a result.
+- Not that a form can care for a place. Ownership has consequences without any policy,
+  but care is behaviour and behaviour in this model is always written by us (§6.4).
 
 ## 8. What the author could not do
 
