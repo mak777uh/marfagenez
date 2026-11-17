@@ -120,6 +120,19 @@ pub struct Life {
     /// recorded run had ownership, so a `None` here must not change one bit of the
     /// dynamics. Claims are turned on explicitly with [`Life::enable_claims`].
     claims: Option<Claims>,
+    /// The chance that a newborn's **policy** differs from its parent's.
+    ///
+    /// `0.0` is the off position and the contract: every run recorded before this
+    /// field existed had no variation, so a zero must not change one bit. With a
+    /// positive rate the population carries a repertoire that can change, which is
+    /// the one thing the forms line never had - five policies were fixed for the
+    /// whole run, so no decision could be selected for. See
+    /// `docs/FORMS-LINE-CLOSED.md`, requirement 2.
+    ///
+    /// It lives on `Life` rather than on `World` on purpose: adding a field to
+    /// `World` breaks every struct literal in the tree, and this is a switch on the
+    /// cycle, not a property of the medium.
+    policy_mutation: f64,
     /// If true, the field is regrown **before** the organisms act, so that a
     /// cell eaten last step has recovered by the time anybody looks at it.
     ///
@@ -178,6 +191,7 @@ impl Life {
             seed,
             feed: false,
             claims: None,
+            policy_mutation: 0.0,
         })
     }
 
@@ -878,10 +892,39 @@ impl Life {
                         s.as_ref().map_or(false, |r| !r.organism.is_alive())
                     })
                 });
-                match dead {
-                    Some(j) => self.organisms[j] = Some(kid),
-                    None => self.organisms.push(Some(kid)),
+                // The child inherits the parent's policy; `policy_mutation` is the
+                // chance that it does not. Without this the repertoire was fixed for
+                // the whole run and nothing about a decision could be selected for.
+                let mut child_policy = self.policies.get(i).copied().unwrap_or_else(|| self.policy());
+                if self.policy_mutation > 0.0 && self.rng.uniform() < self.policy_mutation {
+                    let u = self.rng.uniform();
+                    child_policy = if u < 0.2 {
+                        Policy::Stay
+                    } else if u < 0.4 {
+                        Policy::Random
+                    } else if u < 0.6 {
+                        Policy::Remember
+                    } else if u < 0.8 {
+                        Policy::Memory
+                    } else {
+                        Policy::Sighted
+                    };
                 }
+                let slot = match dead {
+                    Some(j) => {
+                        self.organisms[j] = Some(kid);
+                        j
+                    }
+                    None => {
+                        let j = self.organisms.len();
+                        self.organisms.push(Some(kid));
+                        j
+                    }
+                };
+                if self.policies.len() <= slot {
+                    self.policies.resize(slot + 1, child_policy);
+                }
+                self.policies[slot] = child_policy;
             }
         }
 
@@ -1769,6 +1812,48 @@ impl Life {
 
     pub fn claims(&self) -> Option<&Claims> {
         self.claims.as_ref()
+    }
+
+    /// Sets the chance that a newborn's policy differs from its parent's.
+    ///
+    /// Returns `false` for anything outside `[0, 1]`. Off by default.
+    pub fn set_policy_mutation(&mut self, rate: f64) -> bool {
+        if !rate.is_finite() || !(0.0..=1.0).contains(&rate) {
+            return false;
+        }
+        self.policy_mutation = rate;
+        true
+    }
+
+    pub fn policy_mutation(&self) -> f64 {
+        self.policy_mutation
+    }
+
+    /// How many organisms are alive right now.
+    pub fn organisms_alive(&self) -> usize {
+        self.organisms
+            .iter()
+            .filter(|s| matches!(s, Some(r) if r.organism.is_alive()))
+            .count()
+    }
+
+    /// How the living policies are distributed: stay, random, remember, memory, sighted.
+    pub fn policy_census(&self) -> [usize; 5] {
+        let mut out = [0usize; 5];
+        for (i, slot) in self.organisms.iter().enumerate() {
+            if matches!(slot, Some(r) if r.organism.is_alive()) {
+                let p = self.policies.get(i).copied().unwrap_or(Policy::Stay);
+                let k = match p {
+                    Policy::Stay => 0,
+                    Policy::Random => 1,
+                    Policy::Remember => 2,
+                    Policy::Memory => 3,
+                    Policy::Sighted => 4,
+                };
+                out[k] += 1;
+            }
+        }
+        out
     }
 
     /// The claims, mutably, so a caller can set the trespass share and the price.
