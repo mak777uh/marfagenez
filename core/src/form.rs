@@ -111,6 +111,104 @@ impl Form {
         }
     }
 
+    /// Whether a cell belongs to the form.
+    pub fn has(&self, x: i32, y: i32) -> bool {
+        self.cells.contains(&(x, y))
+    }
+
+    /// Whether the form is one connected piece. Required before any mutation: a form
+    /// that splits is not a structure that grew, it is two structures that were never.
+    pub fn is_connected(&self) -> bool {
+        if self.cells.is_empty() {
+            return false;
+        }
+        let mut seen: BTreeSet<(i32, i32)> = BTreeSet::new();
+        let mut stack: Vec<(i32, i32)> = vec![*self.cells.iter().next().expect("non-empty")];
+        while let Some((x, y)) = stack.pop() {
+            if !self.cells.contains(&(x, y)) || seen.contains(&(x, y)) {
+                continue;
+            }
+            seen.insert((x, y));
+            for (dx, dy) in [(1, 0), (-1, 0), (0, 1), (0, -1)] {
+                stack.push((x + dx, y + dy));
+            }
+        }
+        seen.len() == self.cells.len()
+    }
+
+    /// Whether a cell touches the form from outside.
+    pub fn is_adjacent(&self, x: i32, y: i32) -> bool {
+        if self.has(x, y) {
+            return false;
+        }
+        [(1, 0), (-1, 0), (0, 1), (0, -1)]
+            .iter()
+            .any(|(dx, dy)| self.has(x + dx, y + dy))
+    }
+
+    /// Adds one cell. Refused unless the cell touches the form and is not already in it,
+    /// so growth stays connected by construction.
+    pub fn grow(&self, x: i32, y: i32) -> Option<Self> {
+        if !self.is_adjacent(x, y) {
+            return None;
+        }
+        let mut out = self.clone();
+        out.cells.insert((x, y));
+        Some(out)
+    }
+
+    /// Removes one cell. Refused unless the cell is in the form, at least one cell stays,
+    /// and what stays is still one piece.
+    pub fn shrink(&self, x: i32, y: i32) -> Option<Self> {
+        if !self.has(x, y) || self.cells.len() < 2 {
+            return None;
+        }
+        let mut out = self.clone();
+        out.cells.remove(&(x, y));
+        if out.is_connected() {
+            Some(out)
+        } else {
+            None
+        }
+    }
+
+    /// All cells that could be grown into: empty and adjacent.
+    pub fn growth_sites(&self) -> Vec<(i32, i32)> {
+        let mut out = BTreeSet::new();
+        for &(x, y) in &self.cells {
+            for (dx, dy) in [(1, 0), (-1, 0), (0, 1), (0, -1)] {
+                if self.is_adjacent(x + dx, y + dy) {
+                    out.insert((x + dx, y + dy));
+                }
+            }
+        }
+        out.into_iter().collect()
+    }
+
+    /// One mutation: with probability `p_grow` add a random growth site, otherwise try to
+    /// remove a random cell. Both operations are refused rather than forced, so a
+    /// mutation can leave the form unchanged - which is honest, and is what a real
+    /// mutation rate does at the boundary of a legal shape.
+    pub fn mutate(&self, rng: &mut crate::Rng, p_grow: f64) -> Option<Self> {
+        if rng.uniform() < p_grow {
+            let sites = self.growth_sites();
+            if sites.is_empty() {
+                return None;
+            }
+            let i = (rng.next_u64() % sites.len() as u64) as usize;
+            let (x, y) = sites[i];
+            self.grow(x, y)
+        } else {
+            let cells: Vec<(i32, i32)> = self.cells.iter().copied().collect();
+            if cells.is_empty() {
+                return None;
+            }
+            let i = (rng.next_u64() % cells.len() as u64) as usize;
+            let (x, y) = cells[i];
+            self.shrink(x, y)
+        }
+    }
+
     /// Highest and lowest cell coordinates, for placement on a field.
     pub fn extent(&self) -> ((i32, i32), (i32, i32)) {
         let mut lo = (i32::MAX, i32::MAX);
@@ -253,6 +351,97 @@ mod tests {
         let strip = Form::strip(40);
         assert!((strip.x() - 40.0 / 82.0).abs() < 1e-12);
         assert!(strip.x() > 0.48);
+    }
+
+    #[test]
+    fn growth_is_refused_unless_the_cell_touches_the_form() {
+        let f = Form::square(2);
+        assert!(f.grow(2, 0).is_some(), "a cell beside the form should grow");
+        assert!(f.grow(5, 5).is_none(), "a distant cell must be refused");
+        assert!(f.grow(0, 0).is_none(), "a cell already in the form must be refused");
+        let grown = f.grow(2, 0).expect("grown");
+        assert_eq!(grown.cells(), 5);
+        assert!(grown.is_connected());
+    }
+
+    #[test]
+    fn a_removal_that_splits_the_form_is_refused() {
+        // A dumbbell: two squares joined by one cell. Removing the bridge would leave two
+        // pieces, and the mutation must be refused rather than produce a broken form.
+        let mut cells = Vec::new();
+        for x in 0..2 {
+            for y in 0..2 {
+                cells.push((x, y));
+            }
+        }
+        cells.push((2, 0));
+        for x in 3..5 {
+            for y in 0..2 {
+                cells.push((x, y));
+            }
+        }
+        let barbell = Form::from_cells(cells);
+        assert!(barbell.is_connected());
+        assert!(
+            barbell.shrink(2, 0).is_none(),
+            "removing the bridge must be refused"
+        );
+        assert!(barbell.shrink(0, 0).is_some(), "removing a leaf must be allowed");
+    }
+
+    #[test]
+    fn a_form_cannot_be_shrunk_out_of_existence() {
+        let one = Form::square(1);
+        assert!(one.shrink(0, 0).is_none());
+    }
+
+    #[test]
+    fn mutation_both_grows_and_shrinks_and_never_breaks_the_form() {
+        // The first version of this test asserted that the form's minimum size fell below
+        // its start. It failed, and the failure was informative: growth and shrinkage both
+        // happen every few steps, but growth wins on average, because a form has many more
+        // legal additions than legal removals. So the test counts events, which is the
+        // property under study, instead of watching a drift it cannot control.
+        let mut rng = crate::Rng::new(7);
+        let mut f = Form::square(3);
+        let mut grew = 0;
+        let mut shrank = 0;
+        for _ in 0..60 {
+            if let Some(next) = f.mutate(&mut rng, 0.55) {
+                assert!(next.is_connected(), "a mutation broke the form into pieces");
+                assert!(next.cells() >= 1);
+                if next.cells() > f.cells() {
+                    grew += 1;
+                } else if next.cells() < f.cells() {
+                    shrank += 1;
+                }
+                f = next;
+            }
+        }
+        assert!(grew > 5, "growth should happen often: {grew}");
+        assert!(shrank > 3, "shrinkage should happen too: {shrank}");
+        assert!(grew > shrank, "growth sites outnumber legal removals: {grew} vs {shrank}");
+    }
+
+    #[test]
+    fn neutral_mutation_is_not_neutral_it_ratchets_upwards() {
+        // A form at a fixed mutation rate grows on average, because the number of cells
+        // that can be added exceeds the number that can be removed without splitting it.
+        // This is why the size of a form cannot be regulated by mutation alone: the
+        // economy has to kill forms, not the mutation rate.
+        let mut rng = crate::Rng::new(11);
+        let mut f = Form::square(2);
+        let start = f.cells();
+        for _ in 0..200 {
+            if let Some(next) = f.mutate(&mut rng, 0.5) {
+                f = next;
+            }
+        }
+        assert!(
+            f.cells() > start,
+            "expected drift upwards from {start}, got {}",
+            f.cells()
+        );
     }
 
     #[test]
