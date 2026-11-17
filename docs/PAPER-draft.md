@@ -40,6 +40,12 @@ bimodal outcome must be reported as a profile and not as a mean; and a measure o
 "how much a medium distinguishes" is a property of the instrument as much as of the
 medium. We state explicitly what the paper does not claim.
 
+We also report a measured threshold for information: with a one-neighbour rule the medium is
+silent in 71% of the sea between rich patches, widening the look gives a signal, and once the
+look is priced the wide look loses - a threshold near 37% of the surplus in one economy, which
+however does not scale to a richer one, so it is reported as a number about worlds and not as
+a law of perception.
+
 We also report what selection can and cannot see when the repertoire is fixed: over a
 declared family of patchy media the share of a memory-bearing policy rises with the
 distance between rich patches by a factor of 2.7, peaks near twelve cells, and does not
@@ -467,7 +473,31 @@ worked weakly, and the finding is in §4.6: selection sees the **spacing** of ri
 and not their patchiness, and cannot see searching at all, because an organism compares
 exactly one neighbour.
 
-### 9.5 What the four programmes have in common
+### 9.5 Perception is necessary and does not pay
+
+If a medium is to reward searching rather than returning, it must offer a signal. On a line
+with a rich island every eight cells, a one-neighbour rule is **silent in 71% of the sea**:
+both neighbours are equal, so "toward the island" and "away from it" are indistinguishable,
+and the rule wanders. This is arithmetic on the field levels, not a simulation
+(`checks/perception_signal.py`).
+
+Widening the look to a window of radius three gives a signal in every sea cell, and the
+window is added so that radius one runs the original rule byte for byte. With free looks the
+window does not beat memory by a significant margin. With priced looks it does - until the
+price crosses a threshold: at a read cost of 0.05 the memory-holding share is 0.151 against
+0.021 for sighting, with non-overlapping intervals, and at 0.15 sighting is extinct.
+
+The threshold is between 0.02 and 0.03 per look, near 37% of the surplus at that economy.
+But it is **not a law**: at a surplus of 1.4 the same fraction falls to 0.01-0.06, so a richer
+world tolerates *less* expensive information rather than more, and across five surpluses the
+crossing jumps (`0.023, none, 0.003, 0.024, 0.055`) with no visible form.
+
+What is established: a threshold exists, it is not proportional to the surplus, and its order
+is hundredths per look. What is a limit of the instrument: the location of the crossing is
+unstable at eight environments per point, and a form would need thirty or more plus a smoothed
+estimate. That work is not done, and it is not claimed.
+
+### 9.6 What the five programmes have in common
 
 In every one, the effect that appeared was **smaller and narrower** than the effect that
 was sought, and the reason we found in each case was the same: this architecture has a
