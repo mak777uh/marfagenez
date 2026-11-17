@@ -7811,6 +7811,7 @@
     "rule": "an effect smaller than `effect` at `sigma_between_seeds` and `arms_needed` is `void`, not `failed`: the instrument could not see it, the world did not answer no"
   },
   "reproduced_at": [
-    "03e0075"
+    "03e0075",
+    "f47fd43"
   ]
 }
