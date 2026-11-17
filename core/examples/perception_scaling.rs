@@ -27,7 +27,7 @@ const REGROW: f64 = 0.99;
 const CELLS: usize = 24;
 const STEPS: usize = 2000;
 const MUTATION: f64 = 0.30;
-const BUDGET: usize = 12;
+const BUDGET: usize = 24;
 const PERIOD: usize = 12;
 const FRACTION: f64 = 0.375;
 
@@ -105,7 +105,7 @@ fn main() {
         "{:>7} {:>4} {:>8} {:>10} {:>10} {:>9}",
         "income", "k", "looks", "surplus", "crossing", "fraction"
     );
-    let worlds = [(1.0, 3usize), (1.2, 3), (1.0, 2), (1.0, 5)];
+    let worlds = [(1.0, 3usize), (1.0, 2), (2.0, 3), (2.0, 2)];
     let mut bad = 0;
     for (income, radius) in worlds {
         let surplus = income - UPKEEP;
