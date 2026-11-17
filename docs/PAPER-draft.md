@@ -27,8 +27,8 @@ And the measure of the medium is inseparable from the instrument that reads it.
 We then report six programmes that did not deliver, each with its reason: memory where standing
 still is rewarded; structure in a field without a price; ownership that cannot become care;
 selection over a fixed repertoire; perception, where a look that pays for itself loses; and a space
-of shapes, where a solvency interval is real but bounded by fitness rather than by solvency, and a
-predicted extinction threshold holds at 24 of 24 runs below it and 0 of 24 above.
+of shapes. In that last one a solvency interval is real but bounded by fitness rather than by
+solvency, and a predicted extinction threshold holds at 24 of 24 runs below it and 0 of 24 above.
 
 Nothing here is claimed emergent. Where a boundary was found, it is reported as a boundary.
 
@@ -451,18 +451,17 @@ without structure, and neither gives a form that maintains itself by moving.
 
 Ownership was implemented and works. A form holds a cell by standing on it, another takes
 it only by overwriting, a claim decays without presence, and a stranger eats a fraction of
-what the holder eats until it overwrites. In an economy at the maintenance boundary this
-changes who survives: a stranger's share of 0.50 lets the holder survive
-while the walker
-falls from 165 to 49 steps; at 0.25 both die, because the walker overwrites the holder's
-cell and the holder then eats as a stranger on its own former place; at 0.00 the holder
+what the holder eats until it overwrites. At the maintenance boundary this changes who survives.
+With a stranger's share of 0.50 the holder survives while the walker falls from 165 to 49 steps. At
+0.25 both die, because the walker overwrites the holder's cell and the holder then eats as a
+stranger on its own former place. At 0.00 the holder
 dies in 22 steps and the walker holds every cell.
 
 So losing a place is mortal rather than metaphorical. But the claim that ownership creates
-care could not be tested: the proposed comparison, a returning form against a wandering
-one, failed its own control - with ownership switched off, where the two should not
-differ, the returning form lived twenty-four times longer, because memory in this model
-keeps a form near rich cells and returning is confounded with being well fed.
+care could not be tested. The proposed comparison, a returning form against a wandering one,
+failed its own control: with ownership switched off, where the two should not differ, the returning
+form lived twenty-four times longer. Memory in this model keeps a form near rich cells, so
+returning is confounded with being well fed.
 
 The confound cannot be removed without a policy that reads claims, and writing one means
 writing the behaviour. **Care is behaviour; behaviour here is written by us; a rule of
