@@ -292,8 +292,8 @@ seeds gave zero.
 
 ### 5.2 A profile, not a mean
 
-The same contrast that reported a mean of `−1665` steps is two humps: a median win of
-**+4** and a median loss of **−10 001**. The mean is negative because a loss is
+The same contrast, reported as a mean, gives `−1665` steps. Reported as a profile, it is two
+humps: a median win of **+4** and a median loss of **−10 001**. The mean is negative because a loss is
 enormous, not because losses are frequent. A two-humped quantity reported as a mean is
 an artefact of the summary, and for publication we report two fractions with Wilson
 intervals (Wilson 1927) and the median size of each tail.
@@ -347,7 +347,7 @@ not, so self-maintenance cannot even be asked there. The two are complements.
 Ownership of cells was implemented and measured: a form holds a cell by standing on it,
 another takes it only by overwriting, a claim decays without presence, and a stranger
 eats a fraction of what the holder eats until it overwrites. In an economy at the
-boundary this changes who survives in this economy: with a stranger's share of 0.50 the
+boundary this changes who survives: with a stranger's share of 0.50 the
 holder survives and
 the walker falls from 165 to 49 steps; at 0.25 both die, because the walker overwrites the
 holder's cell and the holder then eats as a stranger on its own former place; at 0.00 the
@@ -452,7 +452,7 @@ without structure, and neither gives a form that maintains itself by moving.
 Ownership was implemented and works. A form holds a cell by standing on it, another takes
 it only by overwriting, a claim decays without presence, and a stranger eats a fraction of
 what the holder eats until it overwrites. In an economy at the maintenance boundary this
-changes who survives in this economy: a stranger's share of 0.50 lets the holder survive
+changes who survives: a stranger's share of 0.50 lets the holder survive
 while the walker
 falls from 165 to 49 steps; at 0.25 both die, because the walker overwrites the holder's
 cell and the holder then eats as a stranger on its own former place; at 0.00 the holder
