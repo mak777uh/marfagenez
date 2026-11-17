@@ -14,23 +14,21 @@
 
 ## Abstract
 
-Price, not behaviour, sets what a minimal consumer can do. We derive a boundary for a single
-cell from its own rules - a consumer survives a step exactly when
-`income - maintenance >= damage * repair` - preregister it, and test it out of sample: it holds
-to the step across four world sizes, and in two further experiments its two branches are
-predicted and confirmed.
+Price, not behaviour, sets what a minimal consumer can do. We derive a boundary from the rules of a
+single cell - a consumer survives a step exactly when `income - maintenance >= damage * repair` -
+preregister it, and test it out of sample: it holds to the step across four world sizes, and its two
+branches are predicted and confirmed.
 
 Three methodological results follow. Seeds are not replication: twelve seeds give a standard
-deviation of zero where thirty-six environments give about nine steps. A two-tailed effect must
-be reported as a profile, not a mean: one contrast has a mean of -1665 and two humps of +4 and
--10001. And the measure of the medium is inseparable from the instrument that reads it.
+deviation of zero where thirty-six environments give about nine steps. A two-tailed effect must be
+reported as a profile, not a mean: one contrast has a mean of -1665 and two humps of +4 and -10001.
+And the measure of the medium is inseparable from the instrument that reads it.
 
-We then report five programmes that did not deliver, with the reason in each case: memory in a
-medium that rewards standing still; structure in a field without a price; ownership that cannot
-become care; selection over a fixed repertoire; and perception, where a one-neighbour rule has
-no signal in 71% of the sea between rich patches, a widened look does, and once a look is
-priced the wide look loses - near 37% of the surplus in one economy, which does not scale to a
-richer one, so it is a number about worlds and not a law of perception.
+We then report six programmes that did not deliver, each with its reason: memory where standing
+still is rewarded; structure in a field without a price; ownership that cannot become care;
+selection over a fixed repertoire; perception, where a look that pays for itself loses; and a space
+of shapes, where a solvency interval is real but bounded by fitness rather than by solvency, and a
+predicted extinction threshold holds at 24 of 24 runs below it and 0 of 24 above.
 
 Nothing here is claimed emergent. Where a boundary was found, it is reported as a boundary.
 
@@ -486,7 +484,47 @@ is hundredths per look. What is a limit of the instrument: the location of the c
 unstable at eight environments per point, and a form would need thirty or more plus a smoothed
 estimate. That work is not done, and it is not claimed.
 
-### 9.6 What the five programmes have in common
+### 9.6 Structures: a threshold, and why the interval hid
+
+The last programme gave this model a space of configurations for the first time: a form is a
+connected set of cells, its income is proportional to its boundary, its upkeep to its cells plus a
+cost for depth and a fixed cost per form. That is enough for shape to matter, and enough to compute
+a solvency interval in closed form: a square of side `s` survives while
+`4*sigma*s >= f0 + mu*s^2 + kappa*s^3/4`, which gives **two** roots, a minimum and a maximum size.
+
+Three results came out of it, and two of them are corrections of our own reading.
+
+**The mutation process has no stable size.** With one cell added or removed per event, a form has
+far more legal additions than legal removals, so size ratchets upwards. The neutral rate is
+`p_grow = 0.27`; below 0.18 the form erodes to a single cell, above 0.28 it explodes, and one
+hundredth in the rate multiplies the mean size by 3.5. Measured with no economy at all, twenty-four
+replicates per rate.
+
+**Viability is not fitness.** The solvency interval says who can live; selection follows the number
+of offspring, which is proportional to the **absolute** margin, and absolute margin grows with size.
+So the interval never bounded the outcome: bigger forms were simply richer and bred faster. This is
+why four earlier attempts failed to see the interval at all.
+
+**The interval is visible in the median, not in the mean.** Over twenty-four runs at a fixed cost of
+ten, the median side is 5.00, inside the computed interval 1.571...5.420; the mean over the same runs
+is 11 to 17, pulled up by a few large forms. The lesson is the one §5.2 already stated for a memory
+contrast: a heavy-tailed quantity must not be reported as a mean.
+
+Finally the programme produced a boundary that is predicted rather than described. Income is
+throttled by a shared stock, `f = stock/stock_max`, so a world can support any form only while
+`f >= f0/14.679`. With a starting stock at capacity the pool falls to `f = 0.760` after the first step
+of consumption, so a fixed cost of 12 requires 0.817 - more than exists - and the world dies on step
+one, while 11 requires 0.749 and lives. Twenty-four runs per price: 24/24 alive at 11, 0/24 at 12.
+
+And the limit of that mechanism is stated too: with half the starting stock the threshold does not
+halve, it vanishes, because the initial form cannot pay for itself on the first step. **A threshold
+is a property of the medium and the starting condition together**, and the formula describes the
+steady state that has to be reached first.
+
+Nothing in this programme shows structure emerging. What it shows is a threshold, the mechanism of
+that threshold, and the boundary of the mechanism.
+
+### 9.7 What the six programmes have in common
 
 In every one, the effect that appeared was **smaller and narrower** than the effect that
 was sought, and the reason we found in each case was the same: this architecture has a
