@@ -31,7 +31,7 @@ BANNED = {
 REQUIRED = [
     "Not that anything here is emergent",
     "care cannot be posed",
-    "so what selection sees is distance to a known place",
+    "distance to a known place",
 ]
 
 

@@ -14,45 +14,25 @@
 
 ## Abstract
 
-Minimal models of resource-limited consumers usually specify the consumer and leave
-the medium implicit. We derive and test the condition under which a single consumer
-can maintain itself against a continuous cost in a one-dimensional medium whose
-cells deplete and regrow, and we show that the condition is arithmetic rather than
-ecological: the consumer persists exactly while its realised surplus covers the
-price of repair it must pay each step,
-`s_realised = r·available − maintenance ≥ damage_rate · repair_cost`. Two further
-terms bound the same condition from above — a damage clock `K·s` and the reserve
-`capacity + s` — giving the full edge `max(s/dr, min(K·s, capacity + s))`.
+Price, not behaviour, sets what a minimal consumer can do. We derive a boundary for a single
+cell from its own rules - a consumer survives a step exactly when
+`income - maintenance >= damage * repair` - preregister it, and test it out of sample: it holds
+to the step across four world sizes, and in two further experiments its two branches are
+predicted and confirmed.
 
-We preregistered all three predictions and tested them out of sample: the per-step
-edge across four world sizes (12, 24, 48, 96 cells), the full edge across two of its
-branches with different edges for two worlds that differ only in capacity, and the
-realised-surplus edge on a depleting lattice, where the effective income is the
-regrowth fraction of the cell rather than its level. All three held; the first and
-third to the step and to the third decimal respectively.
+Three methodological results follow. Seeds are not replication: twelve seeds give a standard
+deviation of zero where thirty-six environments give about nine steps. A two-tailed effect must
+be reported as a profile, not a mean: one contrast has a mean of -1665 and two humps of +4 and
+-10001. And the measure of the medium is inseparable from the instrument that reads it.
 
-We also report that the protocol by which co-located consumers share a cell moves
-the system's marginal cost of repair by a factor of 15.7 at four consumers, with the
-same field and the same organism — more than any field richness we could vary — and
-that three methodological decisions, not the model, determined the size of every
-effect we measured: the unit of replication is the environment and not the seed; a
-bimodal outcome must be reported as a profile and not as a mean; and a measure of
-"how much a medium distinguishes" is a property of the instrument as much as of the
-medium. We state explicitly what the paper does not claim.
+We then report five programmes that did not deliver, with the reason in each case: memory in a
+medium that rewards standing still; structure in a field without a price; ownership that cannot
+become care; selection over a fixed repertoire; and perception, where a one-neighbour rule has
+no signal in 71% of the sea between rich patches, a widened look does, and once a look is
+priced the wide look loses - near 37% of the surplus in one economy, which does not scale to a
+richer one, so it is a number about worlds and not a law of perception.
 
-We also report a measured threshold for information: with a one-neighbour rule the medium is
-silent in 71% of the sea between rich patches, widening the look gives a signal, and once the
-look is priced the wide look loses - a threshold near 37% of the surplus in one economy, which
-however does not scale to a richer one, so it is reported as a number about worlds and not as
-a law of perception.
-
-We also report what selection can and cannot see when the repertoire is fixed: over a
-declared family of patchy media the share of a memory-bearing policy rises with the
-distance between rich patches by a factor of 2.7, peaks near twelve cells, and does not
-separate from a uniform poor world - so what selection sees is distance to a known place,
-not patchiness. And we state two limits of the architecture rather than hiding them: care
-cannot be posed because behaviour is written rather than selected, and searching cannot be
-tested because an organism compares exactly one neighbour.
+Nothing here is claimed emergent. Where a boundary was found, it is reported as a boundary.
 
 **Keywords:** maintenance boundary; resource-limited consumer; agent-based model;
 preregistration; effect size; methodological artefacts.
