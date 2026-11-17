@@ -119,7 +119,7 @@ fn main() {
     let mut all_patchy: Vec<f64> = Vec::new();
     let mut by_period: Vec<(usize, Vec<f64>)> = Vec::new();
 
-    for period in [4usize, 6, 8, 12] {
+    for period in [4usize, 8, 12, 16, 20, 24] {
         let mut shares = Vec::new();
         let mut alive_sum = 0usize;
         for rich in [2.5, 3.0] {
@@ -130,9 +130,10 @@ fn main() {
                 alive_sum += alive;
             }
         }
+        let islands = CELLS / period;
         let (lo, hi) = bootstrap_ci(&shares, 2000);
         println!(
-            "period {period:<11} {:>6} {:>8.3} {:>18} {:>8}",
+            "period {period:<2} ({islands} isl) {:>6} {:>8.3} {:>18} {:>8}",
             shares.len(),
             mean(&shares),
             format!("[{lo:.3}, {hi:.3}]"),
@@ -170,7 +171,7 @@ fn main() {
     }
 
     println!();
-    println!("spacing ordering (12 > 8 > 6 > 4 predicted):");
+    println!("spacing trend (predicted: rise to a peak, then fall when the island is too rare to feed anyone):");
     for (period, shares) in &by_period {
         println!("  period {period:>2}: mean memory share {:.3}", mean(shares));
     }
