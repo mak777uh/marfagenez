@@ -108,7 +108,7 @@ pub struct Life {
     world: World,
     field: Field,
     organisms: Vec<Option<Remembering>>,
-    policy: Policy,
+    policies: Vec<Policy>,
     rng: crate::Rng,
     step: usize,
     moves: u64,
@@ -153,6 +153,7 @@ impl Life {
         seed: u64,
         memory_life: usize,
     ) -> Option<Self> {
+        let n_organisms = organisms.len();
         if organisms.is_empty() || field.cells() == 0 {
             return None;
         }
@@ -163,7 +164,7 @@ impl Life {
             world,
             field,
             organisms: organisms.into_iter().map(Some).collect(),
-            policy,
+            policies: vec![policy; n_organisms],
             rng: crate::Rng::new(seed),
             step: 0,
             moves: 0,
@@ -171,6 +172,34 @@ impl Life {
             seed,
             feed: false,
         })
+    }
+
+    /// Builds a cycle in which **each organism has its own policy**.
+    ///
+    /// `Life::new` gives every organism the same policy, which makes "two forms in
+    /// one world" inexpressible: two `Life`s are not one world, because they do not
+    /// share the field and so cannot compete for a cell. This is the constructor the
+    /// two-form design in `docs/DESIGN-two-forms.md` needs.
+    ///
+    /// Returns `None` when the number of policies does not match the population.
+    /// Silently padding or truncating the list would let a run that asks for two
+    /// forms silently get one policy repeated, which is the class of error this
+    /// project has paid for before.
+    pub fn new_mixed(
+        world: World,
+        field: Field,
+        organisms: Vec<Remembering>,
+        policies: Vec<Policy>,
+        seed: u64,
+        memory_life: usize,
+    ) -> Option<Self> {
+        if policies.len() != organisms.len() {
+            return None;
+        }
+        let first = policies.first().copied()?;
+        let mut life = Self::new(world, field, organisms, first, seed, memory_life)?;
+        life.policies = policies;
+        Some(life)
     }
 
     /// Builds a population of `n` healthy organisms placed round-robin over the
@@ -278,7 +307,15 @@ impl Life {
     }
 
     pub fn policy(&self) -> Policy {
-        self.policy
+        self.policies.first().copied().unwrap_or(Policy::Stay)
+    }
+
+    /// The policy of **each** organism, in population order.
+    ///
+    /// With `Life::new` every entry is the same policy; with `new_mixed` they can
+    /// differ, and this is how a caller checks which form it actually built.
+    pub fn policies(&self) -> &[Policy] {
+        &self.policies
     }
 
     /// Puts organism `i` on cell `cell`.
@@ -322,6 +359,15 @@ impl Life {
     /// the step order are untouched -- only step 5 (`repair`) reads `repair`.
     pub fn advance_with(&mut self, repair: RepairPolicy) -> Option<()> {
         let cells = self.field.cells();
+        // The population may have grown in the previous step (births reuse dead
+        // slots or push); keep one policy per organism so the loop below can
+        // read `policies[i]`. A newborn takes the last stored policy, which for
+        // the single-policy constructor is that same policy - so every run with
+        // one policy for everybody keeps its bits exactly.
+        if self.policies.len() < self.organisms.len() {
+            let inherited = self.policies.last().copied().unwrap_or(Policy::Stay);
+            self.policies.resize(self.organisms.len(), inherited);
+        }
         if self.feed {
             self.field.regrow_all();
         }
@@ -350,7 +396,21 @@ impl Life {
             }
         }
 
-        for slot in self.organisms.iter_mut() {
+        // Per-organism policies: `policies[i]` belongs to organism `i`. The clone
+        // is cheap (a `Copy` enum per organism) and it is what keeps the borrow
+        // checker out of the way, since the loop holds `self.organisms` mutably.
+        // A newborn takes the policy of the form it came from. The vector is
+        // padded to the current length of the population with the last policy
+        // stored, which for the single-policy constructor is that same policy -
+        // so a run with one policy for everybody keeps its bits exactly.
+        let mut policies = self.policies.clone();
+        if policies.len() < self.organisms.len() {
+            let inherited = policies.last().copied().unwrap_or(Policy::Stay);
+            policies.resize(self.organisms.len(), inherited);
+        }
+
+        for (oi, slot) in self.organisms.iter_mut().enumerate() {
+            let pol = policies.get(oi).copied().unwrap_or(Policy::Stay);
             let Some(r) = slot.as_mut() else { continue };
             if !r.organism.is_alive() {
                 continue;
@@ -367,7 +427,7 @@ impl Life {
             //    all: otherwise the read budget changes its trace, and a control
             //    that is supposed to be silent would fire. See EXP-30.
             let looks = matches!(
-                self.policy,
+                pol,
                 Policy::Remember | Policy::Memory | Policy::Sighted
             );
             let mut reads_left = if looks { self.world.read_budget } else { 0 };
@@ -379,7 +439,7 @@ impl Life {
             // `Sighted` is NOT gated: it has no memory to fall back on, so a
             // skipped look would be blindness, not economy. See its branch.
             let read_period = self.world.read_period.max(1);
-            let due = self.policy != Policy::Memory || self.step % read_period == 0;
+            let due = pol != Policy::Memory || self.step % read_period == 0;
             // The exit rule declared in `docs/FINDING-161.md` **before** it
             // was implemented: "look out of turn when the current cell holds
             // less than the upkeep". The threshold is the upkeep and not a
@@ -395,7 +455,7 @@ impl Life {
             // keeps its bits.
             let upkeep = self.world.maintenance_cost
                 + self.world.damage_rate * self.world.repair_cost;
-            let needs_look = self.policy == Policy::Memory
+            let needs_look = pol == Policy::Memory
                 && self.world.look_on_shortfall
                 && self.field.level(r.cell) < upkeep;
             let sample = due || needs_look;
@@ -418,7 +478,7 @@ impl Life {
             // rather than what was there before the organism took its share.
             // It still costs one read from the budget -- the budget is about
             // how much the organism may look at, not about when.
-            let look_after_eating = self.policy == Policy::Memory
+            let look_after_eating = pol == Policy::Memory
                 && self.world.look_order == LookOrder::EatThenLook;
             let here = if sample && reads_left > 0 && !look_after_eating {
                 reads_left -= 1;
@@ -443,14 +503,14 @@ impl Life {
             // Measured before the fix: 8 organisms on a 40-cell moving field kept
             // memory cells 3, 4, 12, 1, 37, 22, 10, 6 for 50 steps while the rich
             // cell travelled; the field they stood on was 0.2 everywhere.
-            let update_memory = match self.policy {
+            let update_memory = match pol {
                 Policy::Memory => true,
                 _ => r.memory.best_cell != r.cell,
             };
             if sample && update_memory {
                 // `Memory` keeps the live level of the cell it stands on, so that
                 // `direction()` can notice the remembered cell has gone poor.
-                if self.policy == Policy::Memory && r.memory.best_cell == r.cell {
+                if pol == Policy::Memory && r.memory.best_cell == r.cell {
                     r.memory.best_level = here;
                     r.memory.age = 0;
                 } else {
@@ -461,7 +521,7 @@ impl Life {
 
             // A memory of a cell that is no longer worth going to is dropped.
             // Otherwise `direction()` keeps walking toward a cell that has dried up.
-            if self.policy == Policy::Memory
+            if pol == Policy::Memory
                 && sample
                 && r.memory.best_cell != r.cell
                 && r.memory.best_level <= here
@@ -477,7 +537,7 @@ impl Life {
             // remembers the best cell it has SEEN anywhere -- the richer neighbour.
             // Measured before: 8 organisms, 40-cell moving field, 50 steps, memory
             // cells 3, 4, 12, 1, 37, 22, 10, 6 unchanged, direction 0 every step.
-            if self.policy == Policy::Memory && sample {
+            if pol == Policy::Memory && sample {
                 // Each neighbour read costs one from the budget, exactly as in
                 // the `sighted` branch. It used to call `Field::level`, which
                 // is a plain array read and does not touch `read_budget`, so
@@ -555,7 +615,7 @@ impl Life {
 
 
             // 3. Act.
-            let direction = match self.policy {
+            let direction = match pol {
                 Policy::Stay => 0,
                 Policy::Random => {
                     let u = self.rng.uniform();
@@ -857,7 +917,7 @@ impl Life {
 
     /// The policy's name, for the trace.
     pub fn policy_name(&self) -> &'static str {
-        match self.policy {
+        match self.policy() {
             Policy::Stay => "stay",
             Policy::Random => "random",
             Policy::Remember => "remember",
