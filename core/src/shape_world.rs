@@ -72,7 +72,15 @@ impl Pool {
 pub struct ShapeRules {
     pub economy: ShapeEconomy,
     /// Energy needed before a form may spawn a mutated copy.
+    ///
+    /// `FINDING-222` found why the interval of solvency never bounded the outcome: absolute
+    /// margin grows with size, so bigger forms breed faster, and the economy selected for
+    /// growth rather than for solvency. A cost that grows with the child's size is the
+    /// straightest way to stop that.
     pub birth_cost: f64,
+    /// Extra birth cost **per cell of the child**. Zero by default, which is the contract:
+    /// every world measured before this field existed must reproduce its numbers.
+    pub birth_cost_per_cell: f64,
     /// Chance that a newborn differs from its parent.
     pub mutation_rate: f64,
     /// Chance that a mutation adds rather than removes a cell.
@@ -92,6 +100,7 @@ impl ShapeRules {
         Some(Self {
             economy,
             birth_cost,
+            birth_cost_per_cell: 0.0,
             mutation_rate: 1.0,
             p_grow: 0.5,
             max_population: 32,
@@ -141,6 +150,11 @@ impl ShapeWorld {
     /// The margin a form earns now, with the same throttle applied to its income.
     pub fn margin_now(&self, form: &Form) -> f64 {
         self.income_now(form) - self.rules.economy.upkeep(form)
+    }
+
+    /// What it costs to make a copy of a form of `cells` cells.
+    pub fn birth_price(&self, cells: usize) -> f64 {
+        self.rules.birth_cost + self.rules.birth_cost_per_cell * cells as f64
     }
 
     pub fn alive(&self) -> usize {
@@ -194,7 +208,7 @@ impl ShapeWorld {
 
         let mut parents: Vec<usize> = Vec::new();
         for (i, f) in self.forms.iter().enumerate() {
-            if f.energy >= self.rules.birth_cost {
+            if f.energy >= self.birth_price(f.form.cells()) {
                 parents.push(i);
             }
         }
@@ -215,11 +229,12 @@ impl ShapeWorld {
             if child_form.cells() == 0 {
                 continue;
             }
+            let price = self.birth_price(child_form.cells());
             let child = FormState {
                 form: child_form,
-                energy: self.rules.birth_cost,
+                energy: price,
             };
-            self.forms[i].energy -= self.rules.birth_cost;
+            self.forms[i].energy -= price;
             self.forms.push(child);
             self.births += 1;
         }
@@ -371,6 +386,23 @@ mod tests {
         assert!(Pool::new(0.0, 1.0, 0.0).is_none());
         assert!(Pool::new(10.0, -1.0, 0.0).is_none());
         assert!(Pool::new(f64::NAN, 1.0, 0.0).is_none());
+    }
+
+    #[test]
+    fn a_per_cell_cost_of_zero_leaves_the_earlier_worlds_alone() {
+        let r = rules();
+        assert_eq!(r.birth_cost_per_cell, 0.0);
+        let world = ShapeWorld::new(r, vec![Form::square(3)]);
+        assert!((world.birth_price(9) - r.birth_cost).abs() < 1e-12);
+    }
+
+    #[test]
+    fn a_per_cell_birth_cost_makes_a_big_form_pay_more() {
+        let mut r = rules();
+        r.birth_cost_per_cell = 4.0;
+        let world = ShapeWorld::new(r, vec![Form::square(3)]);
+        assert!((world.birth_price(1) - (r.birth_cost + 4.0)).abs() < 1e-12);
+        assert!((world.birth_price(25) - (r.birth_cost + 100.0)).abs() < 1e-12);
     }
 
     #[test]
