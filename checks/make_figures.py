@@ -178,6 +178,87 @@ def selection_figure() -> list[str]:
     return out
 
 
+# ---------------------------------------------------------------------------
+# Figure 3: the price of a look against the difference it makes.
+# Numbers from FINDING-211 (surplus 0.4) and FINDING-214 (five surpluses, no form).
+PRICE = [
+    (0.000, 0.026, -0.073, 0.115),
+    (0.010, 0.026, -0.073, 0.115),
+    (0.020, 0.021, -0.078, 0.109),
+    (0.030, -0.042, -0.120, 0.042),
+    (0.040, -0.068, -0.130, -0.010),
+    (0.050, -0.130, -0.177, -0.078),
+]
+SURPLUS_CROSSINGS = [(0.4, 0.0233), (0.9, None), (1.4, 0.0030), (1.9, 0.0243), (2.4, 0.0550)]
+
+
+def price_figure() -> list[str]:
+    """Sighted minus memory against the price of one look, with intervals."""
+    w, h = 620, 330
+    left, top, pw, ph = 80, 56, 470, 200
+    ymax, ymin = 0.16, -0.20
+
+    def px(price: float) -> float:
+        return left + price / 0.055 * pw
+
+    def py(v: float) -> float:
+        return top + (ymax - v) / (ymax - ymin) * ph
+
+    out = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" '
+        f'viewBox="0 0 {w} {h}">',
+        f'<rect width="{w}" height="{h}" fill="#fff"/>',
+        f'<text x="{left}" y="22" font-size="13" font-family="sans-serif">'
+        f'The price of a look against the difference it makes</text>',
+        f'<text x="{left}" y="38" font-size="9" fill="#666" font-family="sans-serif">'
+        f'sighted minus memory share of the population, 8 environments per price, '
+        f'90% bootstrap intervals; positive means looking pays</text>',
+        f'<rect x="{left}" y="{top}" width="{pw}" height="{ph}" fill="none" stroke="#999"/>',
+    ]
+
+    # zero line: the boundary between paying and not paying
+    out.append(f'<line x1="{left}" y1="{py(0.0):.1f}" x2="{left + pw}" y2="{py(0.0):.1f}" '
+               f'stroke="#333" stroke-width="1"/>')
+    out.append(f'<text x="{left + pw + 4}" y="{py(0.0) + 3:.1f}" font-size="9" '
+               f'font-family="sans-serif">0</text>')
+
+    # the crossing band
+    for edge in (0.02, 0.03):
+        out.append(f'<line x1="{px(edge):.1f}" y1="{top}" x2="{px(edge):.1f}" '
+                   f'y2="{top + ph}" stroke="#bbb" stroke-dasharray="4 3"/>')
+    out.append(f'<text x="{px(0.025):.1f}" y="{top + 12}" font-size="9" text-anchor="middle" '
+               f'fill="#888" font-family="sans-serif">crossing</text>')
+
+    pts = " ".join(f"{px(p):.3f},{py(m):.1f}" for p, m, _, _ in PRICE)
+    out.append(f'<polyline points="{pts}" fill="none" stroke="#d62728" stroke-width="1.8"/>')
+    for price, mean, lo, hi in PRICE:
+        x = px(price)
+        out.append(f'<line x1="{x:.1f}" y1="{py(lo):.1f}" x2="{x:.1f}" y2="{py(hi):.1f}" '
+                   f'stroke="#d62728" stroke-width="1.2"/>')
+        for yy in (lo, hi):
+            out.append(f'<line x1="{x - 3:.1f}" y1="{py(yy):.1f}" x2="{x + 3:.1f}" '
+                       f'y2="{py(yy):.1f}" stroke="#d62728"/>')
+        out.append(f'<circle cx="{x:.1f}" cy="{py(mean):.1f}" r="3.5" fill="#d62728"/>')
+        out.append(f'<text x="{x:.1f}" y="{top + ph + 14}" font-size="9" text-anchor="middle" '
+                   f'font-family="sans-serif">{price:.3f}</text>')
+
+    out.append(f'<text x="{left + pw / 2}" y="{top + ph + 32}" font-size="10" '
+               f'text-anchor="middle" font-family="sans-serif">'
+               f'price of one look (read_cost)</text>')
+    out.append(f'<text x="{left - 54}" y="{top + ph / 2}" font-size="10" text-anchor="middle" '
+               f'transform="rotate(-90 {left - 54} {top + ph / 2})" font-family="sans-serif">'
+               f'sighted - memory</text>')
+
+    # and the honest note about the form
+    out.append(f'<text x="{left}" y="{h - 12}" font-size="9" fill="#666" '
+               f'font-family="sans-serif">'
+               f'crossings at surpluses 0.4 / 0.9 / 1.4 / 1.9 / 2.4: '
+               + " / ".join("none" if c is None else f"{c:.3f}" for _, c in SURPLUS_CROSSINGS)
+               + f' - no form with the surplus</text>')
+    out.append('</svg>')
+    return out
+
+
 def main(argv: list[str]) -> int:
     xs_a = [p[0] for p in A_POINTS]
     # all four world sizes gave identical lifetimes, which is the point of the panel
@@ -203,6 +284,10 @@ def main(argv: list[str]) -> int:
 
     out = pathlib.Path(__file__).resolve().parent.parent / "docs" / "figures"
     out.mkdir(exist_ok=True)
+    price = out / "price.svg"
+    price.write_text("\n".join(price_figure()) + "\n", encoding="utf-8")
+    print(f"wrote {price}")
+
     sel = out / "selection.svg"
     sel.write_text("\n".join(selection_figure()) + "\n", encoding="utf-8")
     print(f"wrote {sel}")

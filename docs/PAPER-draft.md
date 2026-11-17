@@ -473,6 +473,15 @@ worked weakly, and the finding is in §4.6: selection sees the **spacing** of ri
 and not their patchiness, and cannot see searching at all, because an organism compares
 exactly one neighbour.
 
+![Sighted minus memory share against the price of one look, with 90% bootstrap intervals
+over eight environments per price. The difference crosses zero between 0.02 and 0.03, and the
+intervals separate from zero only at 0.04 and above. The note under the axis gives the
+crossings at five surpluses, which show no form.](figures/price.svg)
+
+*Figure 3.* The threshold of §9.5. Positive means looking pays; the dashed band is where the
+difference changes sign. The point of the figure is what it does not show: the crossing exists
+in this economy, and across surpluses it moves without a pattern.
+
 ### 9.5 Perception is necessary and does not pay
 
 If a medium is to reward searching rather than returning, it must offer a signal. On a line
