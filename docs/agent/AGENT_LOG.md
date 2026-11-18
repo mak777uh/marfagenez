@@ -3822,3 +3822,9 @@ verified; `contract.py` — 386 записей, 0 нарушений; `log_check
 - **Написано:** `.github/workflows/gate.yml` (cargo test, lake build, run.sh all), проверено локально.
 - **Отвергнуто:** push без области `workflow`; файл не добавлен, содержимое — в `FINDING-236`.
 - **Сторож:** `checks/ci_workflow.py` печатает OPEN, а не FAIL.
+
+### Цикл 178 — 2026-11-18 — `8187934`: A1 — журнал в `run.sh agents`
+
+- **Найдено:** `do_agents` не проверял журнал; критерий A1 выполнялся наполовину.
+- **Сделано:** вызов `checks/log_check.py` в `do_agents`; контроль clean-зелёный и fires-красный.
+- **Инцидент:** контрольный коммит ушёл в origin через autopush и убран force-with-lease.
