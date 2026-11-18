@@ -185,6 +185,8 @@ do_exp() {
   python3 checks/exp_shape_regulator.py || rc=$?
   echo "--- goal_features.py ---"
   python3 checks/goal_features.py || rc=$?
+  echo "--- finding_elephant_line.py ---"
+  python3 checks/finding_elephant_line.py || rc=$?
   echo "--- guard_self_test.py ---"
   python3 checks/guard_self_test.py || rc=$?
   echo
