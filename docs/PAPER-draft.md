@@ -641,7 +641,16 @@ a form survives   sigma * p_i * f >= f0 + mu*n_i + kappa*n_i^2/p_i
 and the three things this section measured separately fall out of it: the `0.760` of a three-by-three is
 `1 - 24/100`, the cell boundary of 6.655 is `8 * 0.96 - 1.025`, and the 11/12 threshold of §4.7 is what
 happens when total demand is large enough that `f` no longer covers the upkeep. One mechanism, three
-numbers that were found one at a time. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
+numbers that were found one at a time.
+
+The same formula gives a threshold in the **number** of forms, and the threshold can be predicted before the
+run: a form lives while `sigma*p*(1 - D/(2S)) >= upkeep`, so with this economy's numbers (`upkeep = 5.025`,
+`sigma*p = 8`, `S = 100`) the total demand may not exceed `200*(1 - 5.025/8) = 74.4`, that is **nine**
+single cells. Measured: nine cells leave the fill at 0.280 and all nine are alive after eight steps; ten
+cells leave it at 0.200 and none are. Overloading behaves as the clamp says - thirteen and sixteen cells
+leave the stock at exactly zero - and the rows beyond ten show a fill of 1.000 on every later step, which is
+not a recovering world but an empty one: with no consumers the stock sits at capacity. That is the same
+signature §5.1 warns about, here in its purest form. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
 against 0.044 with it, so the price both keeps worlds alive and narrows the spread of what survives.
 
 The programme also produced the predicted threshold reported in §4.7, and the limit of that

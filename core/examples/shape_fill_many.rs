@@ -30,7 +30,7 @@ fn rules() -> ShapeRules {
     r
 }
 
-fn fills(starts: usize) -> Vec<f64> {
+fn fills(starts: usize) -> (Vec<f64>, usize) {
     let forms: Vec<Form> = (0..starts).map(|_| Form::square(1)).collect();
     let mut world = ShapeWorld::new(rules(), forms);
     let mut rng = Rng::new(1);
@@ -39,20 +39,21 @@ fn fills(starts: usize) -> Vec<f64> {
         world.step(&mut rng);
         out.push(world.stock / CELLS);
     }
-    out
+    (out, world.forms.len())
 }
 
 fn main() {
     println!("{:>3} {:>8} {:>10} {:>10} {:>10} {:>10}", "k", "demand", "step 1", "step 2", "step 3", "step 4");
     let mut bad = 0;
-    for k in [1usize, 2, 4, 8] {
-        let f = fills(k);
+    for k in [8usize, 9, 10, 12] {
+        let (f, alive) = fills(k);
         let demand = 8.0 * k as f64;
         let predicted = 1.0 - demand / CELLS;
         println!(
-            "{k:>3} {demand:>8.0} {:>10.3} {:>10.3} {:>10.3} {:>10.3}",
+            "{k:>3} {demand:>8.0} {:>10.3} {:>10.3} {:>10.3} {:>10.3}   alive end = {alive}",
             f[0], f[1], f[2], f[3]
         );
+        let predicted = predicted.max(0.0);
         let ok = (f[0] - predicted).abs() < 0.02;
         println!(
             "      {} predicted step 1 = {predicted:.3}",

@@ -155,3 +155,56 @@ fn demand_adds_up_across_forms() {
         );
     }
 }
+
+#[test]
+fn the_number_of_forms_has_a_derived_threshold() {
+    // FINDING-246: f1 = max(0, 1 - D/S) with D = 8k, mean fill (1 + f1)/2, and a form lives while
+    // sigma*p*mean >= upkeep. With f0 = 4, upkeep = 5.025, so D <= 200*(1 - 5.025/8) = 74.4,
+    // that is k <= 9.3: nine live, ten die.
+    fn survivors_with(k: usize, f0: f64) -> usize {
+        let economy = ShapeEconomy::new(2.0, 1.0, 0.1)
+            .and_then(|e| e.with_fixed_cost(f0))
+            .expect("valid economy");
+        let mut r = ShapeRules::new(economy, 40.0).expect("rules");
+        r.max_population = 64;
+        r.pool = Pool::new(CELLS, INFLOW_ALL, CELLS);
+        r.p_grow = 0.27;
+        r.birth_cost_per_cell = 4.0;
+        let forms: Vec<Form> = (0..k).map(|_| Form::square(1)).collect();
+        let mut world = ShapeWorld::new(r, forms);
+        let mut rng = Rng::new(1);
+        for _ in 0..8 {
+            world.step(&mut rng);
+        }
+        world.forms.len()
+    }
+
+    let upkeep = 4.0 + 1.0 + 0.1 / 4.0;
+    let demand_max = 2.0 * CELLS * (1.0 - upkeep / 8.0);
+    let k_max = (demand_max / 8.0).floor() as usize;
+    assert_eq!(k_max, 9, "the derivation should allow nine cells, got {k_max}");
+
+    assert!(survivors_with(k_max, 4.0) > 0, "k = {k_max} should live");
+    assert_eq!(
+        survivors_with(k_max + 1, 4.0),
+        0,
+        "k = {} should die",
+        k_max + 1
+    );
+}
+
+#[test]
+fn an_overloaded_world_leaves_the_stock_empty() {
+    // D > S: the fill is exactly zero, not negative
+    for k in [13usize, 16] {
+        let forms: Vec<Form> = (0..k).map(|_| Form::square(1)).collect();
+        let mut world = ShapeWorld::new(rules(4.0), forms);
+        let mut rng = Rng::new(1);
+        world.step(&mut rng);
+        assert!(
+            (world.stock / CELLS).abs() < 1e-9,
+            "k = {k}: an overloaded step should leave the stock empty, got {}",
+            world.stock / CELLS
+        );
+    }
+}
