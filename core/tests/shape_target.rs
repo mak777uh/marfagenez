@@ -276,3 +276,41 @@ fn the_fair_probability_for_the_count_is_the_same_for_every_size() {
         );
     }
 }
+
+#[test]
+fn the_size_regulator_holds_at_several_targets() {
+    // FINDING-256: at the fair value for the count (0.27) the band holds three different targets, with the
+    // mean within 0.15 of each. This is the first mechanism in this line that keeps the size, rather than
+    // the ratio, where it is put.
+    fn walk(n_star: usize) -> (f64, f64) {
+        let start = Form::square(2);
+        let mut h = Heredity::plain();
+        h.target_cells = Some(n_star);
+        h.band_cells = Some(0.2);
+        let mut forms: Vec<Form> = (0..LINEAGES).map(|_| start.clone()).collect();
+        let mut rng = Rng::new(20250101);
+        for _ in 0..GENERATIONS {
+            for f in forms.iter_mut() {
+                if let Some(next) = f.mutate_heredity(&mut rng, 0.27, &h) {
+                    *f = next;
+                }
+            }
+        }
+        let mut ns: Vec<usize> = forms.iter().map(|f| f.cells()).collect();
+        ns.sort_unstable();
+        let mean = ns.iter().map(|n| *n as f64).sum::<f64>() / ns.len() as f64;
+        (ns[ns.len() / 2] as f64, mean)
+    }
+
+    for target in [4usize, 10, 16] {
+        let (median, mean) = walk(target);
+        assert!(
+            (median - target as f64).abs() <= 1.0,
+            "target {target}: the median should sit at the target, got {median}"
+        );
+        assert!(
+            (mean - target as f64).abs() <= 0.5,
+            "target {target}: the mean should be within half a cell, got {mean}"
+        );
+    }
+}
