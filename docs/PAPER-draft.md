@@ -604,12 +604,14 @@ is three times further away: selection holds forms at the edge of poverty, not i
 interval. The position is selection's and not the starting form's: a three-by-three starts at `x = 0.75`
 and settles at 0.450, a four-cell strip starts at 0.400 and settles at 0.444, so the median converges
 instead of following the start. A world started from a **single cell** does not run at all at this price -
-it dies in twenty-four of twenty-four seeds. The reason is the **full-stock** arithmetic, not the first-step
-fill: with one form the shared stock does not drop (`stock_max = 100`, inflow 300), so `f` stays at one and
-the cell survives exactly while `8 >= f0 + 1.025`, that is `f0 <= 6.975`. Sweeping the fixed cost confirms
-it - three, four, five and six all survive, seven dies in every seed - and 6.975 is precisely the upper
-bound §4.7 states for a single cell. Which of the two arithmetics applies is set by consumption relative to
-the stock, and with one form it is the full-stock one. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
+it dies in twenty-four of twenty-four seeds. The sweep brackets the reason without settling it: three, four, five and six
+all survive and seven dies in every seed, so the edge lies between 6 and 7. Two arithmetics put it there -
+full stock gives `8 >= f0 + 1.025`, that is `f0 <= 6.975`, and charging the first step's consumption gives
+`f = 0.92` and `f0 <= 6.34` - and this probe cannot tell them apart. Measuring the fraction directly can:
+in the three-by-three case the first step does leave exactly `0.760`, because consumption is taken before
+the inflow is credited, and from the second step the stock is back at capacity; the same measurement in a
+one-form world is not done here, so the honest statement for a single cell is the corridor `[6.34, 6.975]`
+rather than a number. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
 against 0.044 with it, so the price both keeps worlds alive and narrows the spread of what survives.
 
 The programme also produced the predicted threshold reported in §4.7, and the limit of that
