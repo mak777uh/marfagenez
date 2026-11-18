@@ -57,6 +57,36 @@ def main(argv: list[str]) -> int:
     else:
         print(f"  ok    all {len(JUDGES)} judging checks are named")
 
+    # AGENTS.md states how many rules it has, and `run.sh agents` requires exactly that many
+    # sections. The count in the prose drifted once (five written, six present), so it is checked
+    # against both the file and the gate.
+    agents = root / "AGENTS.md"
+    if agents.exists():
+        text = agents.read_text(encoding="utf-8")
+        have = sorted(int(m) for m in re.findall(r"^## §(\d+)", text, re.MULTILINE))
+        required = sorted(
+            int(m) for m in re.findall(r"for s in ([\d\s]+); do", run)
+            for m in m.split()
+        )
+        stated = re.findall(r"\b([а-яё]+)\s+правил", text, re.IGNORECASE)
+        words = {
+            "пять": 5, "шесть": 6, "семь": 7, "восемь": 8, "девять": 9, "десять": 10,
+            "четыре": 4, "три": 3,
+        }
+        if have != required:
+            print(f"  WRONG AGENTS.md has sections {have} but the gate requires {required}")
+            bad += 1
+        else:
+            print(f"  ok    AGENTS.md sections match the gate: {have}")
+        if stated:
+            word = stated[0].lower()
+            n = words.get(word)
+            if n is not None and n != len(have):
+                print(f"  WRONG AGENTS.md says «{word} правил» but has {len(have)} sections")
+                bad += 1
+            elif n is not None:
+                print(f"  ok    the stated rule count matches: «{word}» = {len(have)}")
+
     print()
     if bad:
         print(f"РАСХОЖДЕНИЙ: {bad}")
