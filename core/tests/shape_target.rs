@@ -155,3 +155,34 @@ fn the_fair_growth_probability_is_near_a_third() {
         "0.45 should grow past the start"
     );
 }
+
+#[test]
+fn anchoring_the_force_at_the_fair_point_is_the_win() {
+    // FINDING-251: the same constant shift gives IQR 0.100 at a base of 0.27 (FINDING-248) and 0.033 at a
+    // base of 0.36. The force did not change - only the centre did.
+    fn walk(p_grow: f64) -> f64 {
+        let start = Form::square(2);
+        let target = start.x();
+        let mut forms: Vec<Form> = (0..LINEAGES).map(|_| start.clone()).collect();
+        let mut rng = Rng::new(20250101);
+        for _ in 0..GENERATIONS {
+            for f in forms.iter_mut() {
+                if let Some(next) = f.mutate_towards_with(&mut rng, p_grow, Some(target), 0.5, 1, false)
+                {
+                    *f = next;
+                }
+            }
+        }
+        let mut xs: Vec<f64> = forms.iter().map(|f| f.x()).collect();
+        xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        xs[xs.len() * 3 / 4] - xs[xs.len() / 4]
+    }
+
+    let off_centre = walk(0.27);
+    let at_centre = walk(0.36);
+    assert!(
+        at_centre < off_centre / 2.0,
+        "anchoring at 0.36 should at least halve the spread: {at_centre} vs {off_centre}"
+    );
+    assert!(at_centre < 0.05, "the anchored spread should be under 0.05, got {at_centre}");
+}

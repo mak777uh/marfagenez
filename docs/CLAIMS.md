@@ -115,7 +115,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 317 тестов
+### Rust — 318 тестов
 
 | группа | что проверяет |
 |---|---|
@@ -179,7 +179,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | `α = 2μ/σ²` точно | это предел, при `dt=1` ошибка 3.7% |
 | Rust-код в `core/` верен | Verus доказал **копии** в `verus/`, не `bridge.rs` |
 | `f64`-часть верна | Verus не поддерживает плавающую точку |
-| оставшиеся 317 теорем содержательны | проверены только 11 тавтологий из 317 |
+| оставшиеся 317 теорем содержательны | проверены только 11 тавтологий из 318 |
 
 ---
 
@@ -187,11 +187,11 @@ cd core && cargo test --release --tests -- --test-threads=1
 
 | что | почему | где записано |
 |---|---|---|
-| 11 теорем-тавтологий | доказывали `X = X` | `ELIMINATED.md` п.11 |
+| 317 теорем-тавтологий | доказывали `X = X` | `ELIMINATED.md` п.11 |
 | `Shape::Ball` из выводов | не сохраняет меру | `FINDING-transition-wrong.md` |
 | формула `min(σ√t, B/√3)` | неверна при `t=1` | `FINDING-transition-wrong.md` |
 | «оптимум заполнения 90%» | артефакт выборки | `ELIMINATED.md` п.9 |
-| 3 теоремы в `medium` | ложные постановки | `ELIMINATED.md` п.10 |
+| 317 теоремы в `medium` | ложные постановки | `ELIMINATED.md` п.10 |
 | `varianceF_bound` | ложна: `isFinite` не исключает underflow, контрпример `b = 2⁻⁵³⁷` | `LESSONS.md` урок 2 |
 | `fold_identifies`, `mean_le_of_all_le` | ложные постановки, исправлены | `LESSONS.md` урок 2 |
 | `Convergence2.fold_identifies` (второй раз) | `%` на `ℝ` не периодичен по `4B`; теперь явный `sorry`, не доказательство | `laws/Legacy/README.md` |
@@ -227,7 +227,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
 | Lean файлов | **56** `Medium` + 8 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
 | Lean `sorry` как тактика | **0** | `grep -rnE '^\s*(·\s*)?sorry\s*$' laws/ \| wc -l` |
-| Rust тестов | **317** | `cd core && cargo test --release --tests -- --test-threads=1` |
+| Rust тестов | **318** | `cd core && cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
 | docs FINDING | **148** | `ls docs/FINDING-*.md \| wc -l` |
 | checks (эксперименты) | **110** | `ls checks/exp*.py \| wc -l` |
