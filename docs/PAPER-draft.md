@@ -517,6 +517,24 @@ is hundredths per look. What is a limit of the instrument: the location of the c
 unstable at eight environments per point, and a form would need thirty or more plus a smoothed
 estimate. That work is not done, and it is not claimed.
 
+Two further results close this programme. First, **visibility of the medium does not select for
+perception**. A calculation gives the share of the line from which a rich cell lies inside a window of
+three: 0.75 at the dense spacing, 0.62 at the middle one, 0.38 at the sparse one. If a window were what
+selection rewarded, the share of the sighted policy should follow those numbers. Across sixteen
+environments per spacing it does not: the share is 0.06, 0.08 and 0.09 with a free look and 0.05, 0.07,
+0.07 with a look priced at 0.03, while the memory share rises with spacing as the earlier line
+measured. The reason is mechanical: a sighted organism steps toward what it sees and does not keep the
+reading, so it uses distant information once and loses it.
+
+Second, giving memory a window does not help either, and this was predicted to be the fix. With a look
+priced at 0.03 the memory share falls from 0.12 to 0.05 at the sparse spacing; with a narrow window at
+0.01 it falls from 0.12 to 0.08. A window of three costs six looks a step, which at 0.03 is 0.18 out of
+a surplus of 0.4. **The price of a look is proportional to its range and the benefit is not**, so
+looking further does not pay even when the information is retained.
+
+Together the two results give the one positive statement this programme leaves behind: **proximity beats
+range**. Memory wins because it sits next to a rich cell, not because it sees further.
+
 ### 9.6 Structures: a threshold, and why the interval hid
 
 The last programme gave this model a space of configurations for the first time: a form is a
