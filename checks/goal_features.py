@@ -25,16 +25,23 @@ SKIP = {
 REMOVAL = ("удалён", "удален", "нет", "removed", "не существует", "уже нет")
 
 
+PARTS = ("хобот", "ноги", "желудок", "кожа", "память", "стадо")
+
+
 def scan(root: pathlib.Path, rel: str, src: str) -> list[tuple[int, str, str]]:
     path = root / rel
     if not path.exists():
         return []
     missing = []
     for i, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-        low = line.lower()
-        if "удалён" in low or "удален" in low:
+        # outside GOAL and POSITIVE the same table sits among other prose; scanning the whole
+        # README flagged `awk` and `LICENSE`, which are not model fields
+        if rel == "README.md" and not (
+            line.startswith("| **") and any(part in line.lower() for part in PARTS)
+        ):
             continue
-        for name in re.findall(r"`([A-Za-z_][A-Za-z_0-9]{2,})`", line):
+        for m in re.finditer(r"`([A-Za-z_][A-Za-z_0-9]{2,})`", line):
+            name = m.group(1)
             if name in SKIP or name in src:
                 continue
             # a commit hash, or a short all-caps symbol from a chemical notation
@@ -42,7 +49,11 @@ def scan(root: pathlib.Path, rel: str, src: str) -> list[tuple[int, str, str]]:
                 continue
             if name.isupper() and len(name) <= 5:
                 continue
-            if any(marker in low for marker in REMOVAL):
+            # The removal marker must be CLOSE to the name. A line-wide test excused a bogus
+            # field on any row that happened to say "нет" somewhere - and the row about the
+            # skin says exactly that, so the guard was blind on its own main case.
+            near = line[max(0, m.start() - 60): m.end() + 60].lower()
+            if any(marker in near for marker in REMOVAL):
                 continue
             missing.append((i, name, line.strip()[:80]))
     return missing
@@ -57,7 +68,7 @@ def main(argv: list[str]) -> int:
     )
 
     # the same table lives in both documents, and it went stale in both
-    documents = ["GOAL.md", "POSITIVE.md"]
+    documents = ["GOAL.md", "POSITIVE.md", "README.md"]
     total = 0
     for rel in documents:
         missing = scan(root, rel, src)
