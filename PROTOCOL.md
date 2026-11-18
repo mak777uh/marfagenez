@@ -191,12 +191,35 @@ cargo run --release --bin trace -- --policy stay --steps 500 --every 10
 wsl -e bash /root/marfagenez/run.sh all
 ```
 
-| проверка | что |
+Гейт запускает **двадцать восемь** `checks/*.py` плюс Rust и Lean. Их два разных рода, и путать
+их нельзя: **судящие** проверки решают, зелёный ли прогон, а **экспериментальные** перепроверяют
+свои числа и падают, если модель сдвинулась.
+
+| судящая проверка | что решает |
 |---|---|
-| `cargo test --release -- --test-threads=1` | 298 тестов Rust |
+| `cargo test --release` | 298 тестов Rust |
 | `lake build` | 317 теорем, 63 файла |
-| `python3 checks/contract.py` | каждый результат по контракту |
-| `python3 checks/exp05_frozen.py` | эксперимент |
+| `checks/contract.py` | каждый результат по контракту: `fires`, `silent`, `specific`, `hashes` |
+| `checks/log_check.py` | журнал циклов непрерывен, живые числа в документации совпадают с деревом |
+| `checks/hash_version.py` | `results/*.json` не повреждены и не разошлись с версией |
+| `checks/paper_numbers.py` | числа в статье совпадают с моделью |
+| `checks/paper_claims.py` | слова в статье не заявляют больше чисел |
+| `checks/paper_format.py` | аннотация, рисунки, библиография — по формату журнала |
+| `checks/paper_prose.py` | двойные слова и смешанное написание |
+| `checks/readme_features.py` | README описывает **ту** модель, которая есть |
+| `checks/life_calibration.py` | калибровка на «Жизни»: что в этой модели вообще измеримо |
+| `checks/protocol_checks.py` | этот список совпадает с тем, что гейт запускает |
+
+| экспериментальные проверки | что |
+|---|---|
+| `checks/experiment.py`, `checks/result.py`, `checks/dispatcher.py`, `checks/export.py`, `checks/mde.py` | основание: запуск, запись, контракт, экспорт, минимальный различимый эффект |
+| `checks/budget_model.py`, `checks/room_model.py`, `checks/corrected_model.py` | аналитические модели бюджета, комнаты и поправок |
+| `checks/capacity_two_answers.py`, `checks/damage_clock.py`, `checks/reach.py`, `checks/env_prior_tails.py` | ёмкость, часы урона, достижимость, хвосты приоров |
+| `checks/exp05_frozen.py`, `checks/exp99_protocol_capacity.py`, `checks/exp_look_order.py`, `checks/exp_memory_cost.py`, `checks/exp_memory_question.py`, `checks/exp_memory_sampling.py` | замороженные эксперименты: их числа не должны меняться |
+| `checks/stub_covers_bridge.py` | заглушка покрывает мост Rust ↔ Lean |
+
+**Локально зелёное — не проверено.** Если проверка не запускалась в этом окружении — это «не
+проверено здесь», а не «прошло».
 
 **Локально зелёное — не проверено.** Если проверка не запускалась в этом
 окружении — это «не проверено здесь», а не «прошло».
