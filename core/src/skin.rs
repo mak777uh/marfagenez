@@ -139,6 +139,128 @@ pub fn run(rules: SkinRules, q0: f64, energy: f64, u: f64, horizon: usize) -> Sk
     s
 }
 
+/// A population of forms whose repair intensity is **inherited and mutated**.
+///
+/// `FINDING-258` gave one form a skin and a price for keeping it. The question that makes it a step towards
+/// the elephant is whether the intensity of self-maintenance is **chosen by the medium** rather than written
+/// by us: a form that repairs more lives longer but grows slower, and which of the two matters is decided by
+/// the price.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct SkinPopRules {
+    pub skin: SkinRules,
+    /// Relative spread of the child's repair intensity. Multiplicative, so a lineage that pays nothing can
+    /// never produce a descendant that pays something: zero is absorbing.
+    pub u_noise: f64,
+    /// Absolute spread of the child's repair intensity, added on top. This is what lets maintenance appear
+    /// from a population that has none.
+    pub u_shift: f64,
+    /// Energy needed before a form may divide.
+    pub birth_price: f64,
+    pub max_population: usize,
+}
+
+/// One form in the population.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct SkinForm {
+    pub q: f64,
+    pub energy: f64,
+    /// The inherited repair intensity: how much integrity this lineage tries to add each step.
+    pub u: f64,
+}
+
+/// The population and the record of what it did.
+#[derive(Debug, Clone, PartialEq)]
+pub struct SkinPop {
+    pub rules: SkinPopRules,
+    pub forms: Vec<SkinForm>,
+    pub births: u64,
+    pub deaths: u64,
+    pub steps: usize,
+}
+
+impl SkinPop {
+    pub fn new(rules: SkinPopRules, q0: f64, energy: f64, u0: f64) -> Option<Self> {
+        let f = SkinForm { q: q0, energy, u: u0 };
+        Some(Self {
+            rules,
+            forms: vec![f],
+            births: 0,
+            deaths: 0,
+            steps: 0,
+        })
+    }
+
+    /// Mean inherited repair intensity, or `NaN` when nothing is alive.
+    pub fn mean_u(&self) -> f64 {
+        if self.forms.is_empty() {
+            return f64::NAN;
+        }
+        self.forms.iter().map(|f| f.u).sum::<f64>() / self.forms.len() as f64
+    }
+
+    /// Share of forms that repair at least what the skin needs to hold.
+    pub fn maintainers(&self) -> f64 {
+        if self.forms.is_empty() {
+            return f64::NAN;
+        }
+        let u_min = self.rules.skin.u_min();
+        self.forms.iter().filter(|f| f.u >= u_min).count() as f64 / self.forms.len() as f64
+    }
+
+    pub fn step(&mut self, rng: &mut crate::Rng) {
+        self.steps += 1;
+        let skin = self.rules.skin;
+
+        for f in self.forms.iter_mut() {
+            f.energy += skin.income - skin.maintenance;
+            f.q *= 1.0 - skin.decay;
+            if f.u > 0.0 && f.energy > 0.0 && skin.repair_cost > 0.0 {
+                let missing = (1.0 - f.q).max(0.0);
+                let affordable = f.energy / skin.repair_cost;
+                let done = f.u.min(missing).min(affordable).max(0.0);
+                f.energy = (f.energy - done * skin.repair_cost).max(0.0);
+                f.q = (f.q + done).min(1.0);
+            }
+        }
+
+        let before = self.forms.len();
+        self.forms.retain(|f| f.q > skin.q_min && f.energy >= 0.0);
+        self.deaths += (before - self.forms.len()) as u64;
+
+        let mut parents: Vec<usize> = Vec::new();
+        for (i, f) in self.forms.iter().enumerate() {
+            if f.energy >= self.rules.birth_price {
+                parents.push(i);
+            }
+        }
+        let room = self.rules.max_population.saturating_sub(self.forms.len());
+        for i in parents.into_iter().take(room) {
+            let parent = self.forms[i];
+            // the inherited intensity is perturbed multiplicatively and stays non-negative
+            let noise = 1.0 + (rng.uniform() - 0.5) * 2.0 * self.rules.u_noise;
+            let shift = (rng.uniform() - 0.5) * 2.0 * self.rules.u_shift;
+            let child = SkinForm {
+                q: parent.q,
+                energy: self.rules.birth_price,
+                u: (parent.u * noise + shift).max(0.0),
+            };
+            self.forms[i].energy -= self.rules.birth_price;
+            self.forms.push(child);
+            self.births += 1;
+        }
+    }
+}
+
+/// Runs a population and returns it after `steps`.
+pub fn run_pop(rules: SkinPopRules, q0: f64, energy: f64, u0: f64, steps: usize, seed: u64) -> SkinPop {
+    let mut pop = SkinPop::new(rules, q0, energy, u0).expect("valid start");
+    let mut rng = crate::Rng::new(seed);
+    for _ in 0..steps {
+        pop.step(&mut rng);
+    }
+    pop
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -212,6 +334,55 @@ mod tests {
                 s.steps
             );
         }
+    }
+
+    fn pop_rules(surplus: f64, u_shift: f64) -> SkinPopRules {
+        SkinPopRules {
+            skin: SkinRules {
+                decay: 0.05,
+                q_min: 0.2,
+                repair_cost: 10.0,
+                income: 1.0,
+                maintenance: 1.0 - surplus,
+            },
+            u_noise: 0.3,
+            u_shift,
+            birth_price: 1.5,
+            max_population: 300,
+        }
+    }
+
+    #[test]
+    fn maintenance_cannot_appear_from_zero_without_an_additive_shift() {
+        // FINDING-259: `u' = u * noise` leaves zero at zero, so a population that pays nothing dies out even
+        // where the medium could afford to keep it.
+        let pop = run_pop(pop_rules(0.30, 0.0), 1.0, 10.0, 0.0, 3000, 7);
+        assert!(pop.forms.is_empty(), "multiplicative mutation must leave zero absorbing");
+    }
+
+    #[test]
+    fn with_an_additive_shift_the_medium_picks_maintenance_near_its_price() {
+        let rules = pop_rules(0.30, 0.003);
+        let u_min = rules.skin.u_min();
+        let pop = run_pop(rules, 1.0, 10.0, 0.0, 3000, 7);
+        assert!(!pop.forms.is_empty(), "the population should survive");
+        let mean = pop.mean_u();
+        assert!(
+            mean >= u_min * 0.9 && mean <= u_min * 3.0,
+            "the mean intensity {mean} should sit near the threshold {u_min}"
+        );
+        assert!(
+            pop.maintainers() > 0.9,
+            "almost every form should maintain, got {}",
+            pop.maintainers()
+        );
+    }
+
+    #[test]
+    fn a_medium_below_the_skin_price_kills_everyone() {
+        // surplus 0.05 against a skin cost of 0.10: no intensity both pays the skin and breeds
+        let pop = run_pop(pop_rules(0.05, 0.003), 1.0, 10.0, 0.0, 3000, 7);
+        assert!(pop.forms.is_empty(), "a medium that cannot pay the skin should have nobody left");
     }
 
     #[test]
