@@ -589,6 +589,14 @@ computed interval 1.571...5.420; the mean over the same runs is 11 to 17, pulled
 forms. The lesson is the one §5.2 already stated for a memory
 contrast: a heavy-tailed quantity must not be reported as a mean.
 
+Twenty-four seeds per point, as the structures line asked for at its close, sharpen that reading and take
+away the explanation that was offered for it. The median side sits inside the interval **whether or not**
+the birth price is proportional to the child's size: 4.00 without the price, 3.00 with it at 2.0, 4.00 at
+4.0, all inside `[1.571, 5.420]`, with an interquartile range of 2.00 in every case. The interval is
+visible in the median because the **distribution of sizes is skewed** - many small forms, a few large ones
+- not because birth was made expensive. What the per-cell price does change is survival: without it seven
+of twenty-four worlds go extinct, with it none do.
+
 The programme also produced the predicted threshold reported in §4.7, and the limit of that
 mechanism: at half the starting stock the threshold does not halve but falls to between 2 and 4,
 because the starting form has to survive its first step for any of the steady-state arithmetic to
