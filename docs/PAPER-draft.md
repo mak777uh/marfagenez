@@ -101,6 +101,14 @@ All numbers below are reproducible from the repository at the commit named in ea
 figure caption; every recorded result carries the hash of the dynamics that produced
 it.
 
+**Why some numbers have intervals and others do not.** The model is deterministic given its seed, so
+a single run is exact: a lifetime of 3440 steps is 3440 steps, and attaching an interval to it would
+suggest a sampling that did not happen. Intervals appear only where a quantity is **averaged over
+environments** - a share of a population across many runs, a median over twenty-four runs, a bootstrap
+over forty-eight media. Where a number is a single run, the defence is not an interval but a stated
+configuration and a stated seed, and the coverage map in `PROTOCOL.md` records which of the two each
+result uses.
+
 ## 4. Results
 
 ![The maintenance boundary, tested out of sample: survival across the income boundary at
