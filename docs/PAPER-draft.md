@@ -15,20 +15,22 @@
 ## Abstract
 
 Price, not behaviour, sets what a minimal consumer can do. We derive a boundary from the rules of a
-single cell - a consumer survives a step exactly when `income - maintenance >= damage * repair` -
-preregister it, and test it out of sample: it holds to the step across four world sizes, and its two
-branches are predicted and confirmed.
+single cell - a consumer survives a step exactly when `income - maintenance >= damage * repair` - and
+test it out of sample: it holds to the step across four world sizes, and its two branches are confirmed.
 
-Three methodological results follow. Seeds are not replication: twelve seeds give a standard
-deviation of zero where thirty-six environments give about nine steps. A two-tailed effect must be
-reported as a profile, not a mean: one contrast has a mean of -1665 and two humps of +4 and -10001.
-And the measure of the medium is inseparable from the instrument that reads it.
+Three methodological results follow: seeds are not replication; a two-tailed effect is a profile, not a
+mean; and the measure is inseparable from the instrument.
 
-We then report six programmes that did not deliver, each with its reason: memory where standing
-still is rewarded; structure in a field without a price; ownership that cannot become care;
-selection over a fixed repertoire; perception, where a look that pays for itself loses; and a space
-of shapes. In that last one a solvency interval is real but bounded by fitness rather than by
-solvency, and a predicted extinction threshold holds at 24 of 24 runs below it and 0 of 24 above.
+Six programmes then failed, each with its reason: memory where standing still pays; structure without a
+price; ownership that cannot become care; selection over a fixed repertoire; perception, where a paying
+look loses; and a space of shapes. There a solvency interval is real but bounded by fitness, and a
+predicted extinction threshold holds at 24 of 24 runs below it and 0 of 24 above.
+
+That programme left a law, found by logging, not deriving: consumption is taken before the inflow, so the
+fill consumers see **alternates**, and a form lives on the mean of two phases. It gives five numbers - a
+single cell's edge at 6.655, measured between 6.65 and 6.7; its shift with stock capacity; and a threshold
+in the number of forms, nine live and ten die. Morphology is inherited, but a lineage does not hold its
+shape, and that drift is why the programme closed.
 
 Nothing here is claimed emergent. Where a boundary was found, it is reported as a boundary.
 
