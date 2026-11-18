@@ -542,11 +542,13 @@ reading, so it uses distant information once and loses it.
 Second, giving memory a window does not help either, and this was predicted to be the fix. With a look
 priced at 0.03 the memory share falls from 0.12 to 0.05 at the sparse spacing; with a narrow window at
 0.01 it falls from 0.12 to 0.08. A window of three costs six looks a step, which at 0.03 is 0.18 out of
-a surplus of 0.4. But the price is not the reason: with the look nearly free - 0.002 a reading, three
-per cent of the surplus - the memory share is still no higher than without a window (0.09 against 0.12
-at the sparse spacing). **The gain was never there**: a distant cell is nearly always the one the
-organism already stands on or its neighbour, so extra range adds no decision that memory could use. The
-price only makes a useless reading dearer.
+a surplus of 0.4. But the price is not the reason. At one price and two windows - radius one against radius
+three, 0.002 a reading, sixteen environments per spacing - the difference in the memory share has a
+90% bootstrap interval containing zero at every spacing: `-0.000 [-0.010, +0.010]` where islands are
+dense, `+0.010 [-0.013, +0.039]` in the middle, `-0.016 [-0.042, +0.013]` where they are sparse.
+**The gain was never there**: a distant cell is nearly always the one the organism already stands on or
+its neighbour, so extra range adds no decision that memory could use. The price only makes a useless
+reading dearer.
 
 Together the two results give the one positive statement this programme leaves behind: **proximity beats
 range**. Memory wins because it sits next to a rich cell, not because it sees further.
