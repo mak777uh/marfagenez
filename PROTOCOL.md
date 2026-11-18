@@ -213,6 +213,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/rng_seed_noise.py` | первый шум не связан с сидом (критерий B4 плана) |
 | `checks/cli_refuses.py` | CLI отказывается угадывать при опечатке (пункт D-5 плана) |
 | `checks/no_unseeded_random.py` | в JS-проверках нет `Math.random` (пункт D-4 плана) |
+| `checks/ci_workflow.py` | CI-файл согласован с гейтом (пункт D-3 плана) |
 
 | экспериментальные проверки | что |
 |---|---|

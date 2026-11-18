@@ -3809,3 +3809,16 @@ verified; `contract.py` — 386 записей, 0 нарушений; `log_check
 
 - **Найдено:** `audit.js` уже с зерном (`seed 20250101`), два прогона идентичны.
 - **Сделано:** `checks/no_unseeded_random.py` в гейте (вырезает комментарии); D-4 помечен сделанным.
+
+### Цикл 176 — 2026-11-18 — `dfb532c`: D-3, CI с оговоркой
+
+- **Создано:** `.github/workflows/gate.yml` (cargo test, lake build, run.sh all), с явной пометкой
+  «NOT RUN ON A RUNNER».
+- **Проверка:** `checks/ci_workflow.py` в гейте (валидный YAML, три стадии, пути, оговорка).
+- **Честно:** на раннере не запускался.
+
+### Цикл 177 — 2026-11-18 — `dfb532c`: D-3 заблокирован правами токена
+
+- **Написано:** `.github/workflows/gate.yml` (cargo test, lake build, run.sh all), проверено локально.
+- **Отвергнуто:** push без области `workflow`; файл не добавлен, содержимое — в `FINDING-236`.
+- **Сторож:** `checks/ci_workflow.py` печатает OPEN, а не FAIL.
