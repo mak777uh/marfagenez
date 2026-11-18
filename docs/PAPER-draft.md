@@ -469,7 +469,7 @@ These numbers are from one economy at the maintenance boundary, and they are poi
 than intervals, so they are stated as a demonstration and not as a family. With a stranger's share of
 0.50 the holder survives while the walker falls from 165 to 49 steps. At 0.25 both die, because the
 walker overwrites the holder's cell and the holder then eats as a stranger on its own former place. At
-0.00 the holder dies in 22 steps and the walker holds every cell.
+0.00 the holder dies in 22 steps and the walker holds every cell - again in the same economy.
 
 So losing a place is mortal rather than metaphorical. But the claim that ownership creates
 care could not be tested. The proposed comparison, a returning form against a wandering one,
