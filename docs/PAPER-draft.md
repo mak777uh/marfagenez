@@ -297,6 +297,47 @@ starting configuration. At half the starting stock the threshold does not halve 
 between 2 and 4 for every start, because the income of every form is halved at the same time as its
 first step.
 
+### 4.8 The shared medium has a law of its own, and it gives five numbers
+
+The threshold of §4.7 was found by sweeping a price and watching a world die. It is a special case of
+something simpler, and the simpler thing was found by logging a world step by step instead of deriving a
+formula: **the fill fraction alternates**.
+
+Consumption is taken before the inflow is credited, so a step that eats leaves the stock at
+`1 - D/S` and the next step's inflow puts it back at capacity. With total demand `D` and capacity `S`:
+
+```
+D  = sum sigma * p_i                 total demand of the forms present
+f1 = max(0, 1 - D/S)                 fill after the eating step
+f  = (1 + f1) / 2                    mean of the two phases
+a form lives  <=>  sigma * p_i * f >= f0 + mu*n_i + kappa*n_i^2/p_i
+```
+
+The order of the two operations is part of the law: crediting the inflow first changes the mean fill from
+0.96 to 1.00 and moves every boundary below.
+
+Five numbers come out of it, and each was measured separately before the law was written:
+
+| number | how it follows | where measured |
+|---|---|---|
+| `f1 = 0.760` for one three-by-three | `1 - 24/100` | §9.6 |
+| the edge of a single cell at **6.655** | `8 * 0.96 - 1.025` | inside the measured `(6.65, 6.7)` |
+| the edge moves with capacity: **6.335 / 6.655 / 6.815** | `8 * (1 - 4/S) - 1.025` | three of three, at each edge plus and minus 0.05 |
+| a threshold in the **number** of forms: **nine live, ten die** | `D <= 2S(1 - u/(sigma*p)) = 74.4` | the 9 to 10 transition |
+| `f1 = 0` when demand exceeds capacity | the clamp | thirteen and sixteen cells |
+
+The law is checked by `core/tests/shape_alternation.rs` on every gate run, and it is the same law that
+fixes the threshold of §4.7: there the total demand is large enough that the mean fill no longer covers
+upkeep.
+
+Two boundaries. **The mean fill is not constant in time**: growth and mutation change `D` every step, so
+the law describes the first steps well and the steady state less well. And **a lineage does not hold its
+shape**: morphology is inherited - a child is a mutated copy of the parent - but over a hundred mutations
+with no selection at all the median `x` drifts from 0.500 to 0.375, the interquartile range widens from
+0.150 to 0.194, and lineages end between one cell and twenty-two. Heredity there is a drift, not a unit
+that selection could accumulate; that, and not the absence of inheritance, is why the structures line
+closed.
+
 ## 5. Three methodological results
 
 These are results about the modelling, not the model, and each came from an error of
@@ -563,6 +604,11 @@ Together the two results give the one positive statement this programme leaves b
 range**. Memory wins because it sits next to a rich cell, not because it sees further.
 
 ### 9.6 Structures: a threshold, and why the interval hid
+
+> **Read §4.8 first if you want the law.** The programme below is the record of how the numbers were
+> found - nine cycles of single runs and means, six wrong explanations, and a step-by-step log that ended
+> them. The law itself, its five numbers and its boundaries are in §4.8, and it is verified on every gate
+> run.
 
 The last programme gave this model a space of configurations for the first time: a form is a
 connected set of cells, its income is proportional to its boundary, its upkeep to its cells plus a
