@@ -465,10 +465,11 @@ without structure, and neither gives a form that maintains itself by moving.
 Ownership was implemented and works. A form holds a cell by standing on it, another takes
 it only by overwriting, a claim decays without presence, and a stranger eats a fraction of
 what the holder eats until it overwrites. At the maintenance boundary this changes who survives.
-With a stranger's share of 0.50 the holder survives while the walker falls from 165 to 49 steps. At
-0.25 both die, because the walker overwrites the holder's cell and the holder then eats as a
-stranger on its own former place. At 0.00 the holder
-dies in 22 steps and the walker holds every cell.
+These numbers are from one economy at the maintenance boundary, and they are point measurements rather
+than intervals, so they are stated as a demonstration and not as a family. With a stranger's share of
+0.50 the holder survives while the walker falls from 165 to 49 steps. At 0.25 both die, because the
+walker overwrites the holder's cell and the holder then eats as a stranger on its own former place. At
+0.00 the holder dies in 22 steps and the walker holds every cell.
 
 So losing a place is mortal rather than metaphorical. But the claim that ownership creates
 care could not be tested. The proposed comparison, a returning form against a wandering one,
@@ -575,8 +576,9 @@ So the interval never bounded the outcome: bigger forms were simply richer and b
 why four earlier attempts failed to see the interval at all.
 
 **The interval is visible in the median, not in the mean.** Over twenty-four runs at a fixed cost of
-ten, the median side is 5.00, inside the computed interval 1.571...5.420; the mean over the same runs
-is 11 to 17, pulled up by a few large forms. The lesson is the one §5.2 already stated for a memory
+ten, the median side is 5.00 with an interquartile range of the run medians of `[4.0, 6.0]`, inside the
+computed interval 1.571...5.420; the mean over the same runs is 11 to 17, pulled up by a few large
+forms. The lesson is the one §5.2 already stated for a memory
 contrast: a heavy-tailed quantity must not be reported as a mean.
 
 The programme also produced the predicted threshold reported in §4.7, and the limit of that
