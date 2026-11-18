@@ -61,10 +61,11 @@ def scan(root: pathlib.Path, rel: str, src: str) -> list[tuple[int, str, str]]:
 
 def main(argv: list[str]) -> int:
     root = pathlib.Path(__file__).resolve().parent.parent
+    contract_files = ["result.py", "contract.py", "experiment.py", "dispatcher.py"]
     src = "\n".join(
         p.read_text(encoding="utf-8")
         for p in list((root / "core" / "src").rglob("*.rs"))
-        + list((root / "checks").glob("*.py"))
+        + [root / "checks" / n for n in contract_files if (root / "checks" / n).exists()]
     )
 
     # the same table lives in both documents, and it went stale in both

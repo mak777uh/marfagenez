@@ -215,6 +215,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/no_unseeded_random.py` | в JS-проверках нет `Math.random` (пункт D-4 плана) |
 | `checks/ci_workflow.py` | CI-файл согласован с гейтом (пункт D-3 плана) |
 | `checks/goal_features.py` | поля, названные в GOAL.md, существуют в коде |
+| `checks/guard_self_test.py` | каждый сторож краснеет на подложенной ошибке |
 
 | экспериментальные проверки | что |
 |---|---|

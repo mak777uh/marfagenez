@@ -183,6 +183,8 @@ do_exp() {
   python3 checks/ci_workflow.py || rc=$?
   echo "--- goal_features.py ---"
   python3 checks/goal_features.py || rc=$?
+  echo "--- guard_self_test.py ---"
+  python3 checks/guard_self_test.py || rc=$?
   echo
   echo "--- exp_memory_cost.py ---"
   # Цена чтения и поле с пиками: 216 прогонов, 15 с, поэтому в `exp`.
