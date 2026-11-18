@@ -127,3 +127,52 @@ fn an_impossible_radius_is_refused() {
     assert!(!l.set_sight_radius(1000));
     assert_eq!(l.sight_radius(), 0);
 }
+
+#[test]
+fn a_window_lets_memory_hold_a_distant_cell() {
+    // `FINDING-230` found that a window helps only if the information is retained: sighting
+    // without memory uses a distant reading once and loses it. This checks the mechanism
+    // directly. The field is poor everywhere except cell 0, kept poor enough that eating does
+    // not disturb it (income and upkeep are zero, so nothing eats). The organism starts at
+    // cell 3, so the island is three steps away: invisible to one look, visible to a window
+    // of three.
+    fn final_cell(radius: usize) -> u64 {
+        let w = World {
+            income: 0.0,
+            maintenance_cost: 0.0,
+            damage_rate: 0.0,
+            read_budget: 8,
+            ..World::default()
+        };
+        let field = Field::peaks(9, 3.0, 1.0, 0.99, 9).expect("valid field");
+        let mut l = Life::new_mixed(
+            w,
+            field,
+            vec![Remembering::new(
+                Organism::new(9.0, 0.0).expect("valid organism"),
+                3,
+                0.0,
+                0.0,
+                32,
+            )
+            .expect("valid remembering")],
+            vec![Policy::Memory],
+            9,
+            32,
+        )
+        .expect("built");
+        assert!(l.set_sight_radius(radius));
+        for _ in 0..3 {
+            l.advance();
+        }
+        l.samples()[0].cell as u64
+    }
+
+    let one_look = final_cell(1);
+    let window = final_cell(3);
+    assert_eq!(one_look, 3, "an equal-neighbour sea gives one look nothing to remember");
+    assert!(
+        window <= 1,
+        "with a window the organism should walk toward the island at cell 0, ended at {window}"
+    );
+}

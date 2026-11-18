@@ -29,13 +29,13 @@ const REGROW: f64 = 0.99;
 const CELLS: usize = 24;
 const STEPS: usize = 2000;
 const MUTATION: f64 = 0.30;
-const RADIUS: usize = 3;
+const RADIUS: usize = 2;
 const BUDGET: usize = 8;
 
 fn world() -> World {
     World {
         income: INCOME,
-        read_cost: 0.03,
+        read_cost: 0.01,
         maintenance_cost: UPKEEP,
         repair_cost: 1.5,
         damage_rate: 0.02,

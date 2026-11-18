@@ -582,15 +582,48 @@ impl Life {
                 // `docs/FINDING-memory-sees-for-free.md`.
                 let mut left = f64::NEG_INFINITY;
                 let mut right = f64::NEG_INFINITY;
-                if r.cell > 0 && reads_left > 0 && r.organism.spend(read_cost) {
-                    left = self.field.observe(r.cell - 1);
-                    reads_left -= 1;
+                // The cell that turned out to be the best SEEN, not just the direction
+                // toward it. With the two-neighbour rule this is one of the neighbours and
+                // the old code derived it from `step_dir`; with a window it can be several
+                // cells away, and a memory that only stores a direction cannot walk to it.
+                let mut seen_cell: Option<usize> = None;
+                let mut seen_level = f64::NEG_INFINITY;
+                if self.sight_radius > 1 {
+                    // Window + memory: look at [-k, k], remember the best cell found. Without
+                    // the memory half the information is used once and lost (`FINDING-230`).
+                    for d in 1..=self.sight_radius {
+                        if reads_left == 0 {
+                            break;
+                        }
+                        for target in [
+                            (r.cell as i64 - d as i64),
+                            (r.cell as i64 + d as i64),
+                        ] {
+                            if target < 0 || target as usize >= cells {
+                                continue;
+                            }
+                            if reads_left == 0 || !r.organism.spend(read_cost) {
+                                break;
+                            }
+                            let level = self.field.observe(target as usize);
+                            reads_left -= 1;
+                            if level > seen_level && level > here {
+                                seen_level = level;
+                                seen_cell = Some(target as usize);
+                            }
+                        }
+                    }
+                } else {
+                    if r.cell > 0 && reads_left > 0 && r.organism.spend(read_cost) {
+                        left = self.field.observe(r.cell - 1);
+                        reads_left -= 1;
+                    }
+                    if self.field.inside(r.cell + 1) && reads_left > 0 && r.organism.spend(read_cost) {
+                        right = self.field.observe(r.cell + 1);
+                        reads_left -= 1;
+                    }
                 }
-                if self.field.inside(r.cell + 1) && reads_left > 0 && r.organism.spend(read_cost) {
-                    right = self.field.observe(r.cell + 1);
-                    reads_left -= 1;
-                }
-                let best = here.max(left).max(right);
+                let best = here.max(left).max(right).max(seen_level);
                 // A tie between the two neighbours used to go left always.
                 // The rule is now a `World` parameter and goes into the trace.
                 // See `TieBreak`.
@@ -630,7 +663,9 @@ impl Life {
                 // returns 0, and the parameter changes nothing but the hash.
                 let take = best > here || (best == here && best > r.memory.best_level);
                 if take && best > r.memory.best_level {
-                    r.memory.best_cell = target;
+                    // With a window the remembered cell is the one actually seen; without
+                    // one it is the neighbour the direction points at, exactly as before.
+                    r.memory.best_cell = seen_cell.unwrap_or(target);
                     r.memory.best_level = best;
                     r.memory.age = 0;
                 }
