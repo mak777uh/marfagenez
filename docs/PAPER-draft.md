@@ -597,6 +597,13 @@ visible in the median because the **distribution of sizes is skewed** - many sma
 - not because birth was made expensive. What the per-cell price does change is survival: without it seven
 of twenty-four worlds go extinct, with it none do.
 
+The same runs in the economy's own continuous measure, `x = cells / perimeter` (a square of side `s` has
+`x = s/4`, so the interval is `[0.393, 1.355]`), sharpen this twice. The median `x` is 0.429 without the
+price and 0.417 with it - **both within six per cent of the lower edge of solvency**, while the upper edge
+is three times further away: selection holds forms at the edge of poverty, not in the middle of the
+interval. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
+against 0.044 with it, so the price both keeps worlds alive and narrows the spread of what survives.
+
 The programme also produced the predicted threshold reported in §4.7, and the limit of that
 mechanism: at half the starting stock the threshold does not halve but falls to between 2 and 4,
 because the starting form has to survive its first step for any of the steady-state arithmetic to
