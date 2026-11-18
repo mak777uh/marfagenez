@@ -609,9 +609,12 @@ all survive and seven dies in every seed, so the edge lies between 6 and 7. Two 
 full stock gives `8 >= f0 + 1.025`, that is `f0 <= 6.975`, and charging the first step's consumption gives
 `f = 0.92` and `f0 <= 6.34` - and this probe cannot tell them apart. Measuring the fraction directly can:
 in the three-by-three case the first step does leave exactly `0.760`, because consumption is taken before
-the inflow is credited, and from the second step the stock is back at capacity; the same measurement in a
-one-form world is not done here, so the honest statement for a single cell is the corridor `[6.34, 6.975]`
-rather than a number. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
+the inflow is credited, and from the second step the stock is back at capacity. For a single cell the fill
+after the first step is measured at **0.920** (one cell of eight out of a hundred), which is where the
+arithmetic stops agreeing with the world: the measured edge lies between `f0 = 6.5`, where all twenty-four
+seeds live, and `f0 = 6.7`, where none do - **below** the full-stock bound of 6.975 and **above** the
+fill-adjusted 6.335, so neither arithmetic explains it. The honest statement is the measured bracket
+`(6.5, 6.7)`, and the explanation is written down as missing rather than supplied. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
 against 0.044 with it, so the price both keeps worlds alive and narrows the spread of what survives.
 
 The programme also produced the predicted threshold reported in §4.7, and the limit of that
