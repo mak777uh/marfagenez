@@ -314,3 +314,39 @@ fn the_size_regulator_holds_at_several_targets() {
         );
     }
 }
+
+#[test]
+fn the_band_holds_up_to_a_quarter_and_steps_down_after() {
+    // FINDING-257: with target 10 and the fair probability 0.27, the median sits at 10 for delta up to 0.25,
+    // falls to 9 at 0.30 and 0.35, to 8 at 0.40 and 0.45, and to 7 at 0.50. The steps come in pairs because
+    // the band's edges are integers: adjacent deltas land on the same two bounds.
+    fn median_at(delta: f64) -> f64 {
+        let start = Form::square(2);
+        let mut h = Heredity::plain();
+        h.target_cells = Some(10);
+        h.band_cells = Some(delta);
+        let mut forms: Vec<Form> = (0..LINEAGES).map(|_| start.clone()).collect();
+        let mut rng = Rng::new(20250101);
+        for _ in 0..GENERATIONS {
+            for f in forms.iter_mut() {
+                if let Some(next) = f.mutate_heredity(&mut rng, 0.27, &h) {
+                    *f = next;
+                }
+            }
+        }
+        let mut ns: Vec<usize> = forms.iter().map(|f| f.cells()).collect();
+        ns.sort_unstable();
+        ns[ns.len() / 2] as f64
+    }
+
+    assert_eq!(median_at(0.10), 10.0, "a narrow band should hold the target");
+    assert_eq!(median_at(0.25), 10.0, "a quarter band should still hold");
+    assert_eq!(median_at(0.30), 9.0, "past a quarter it steps down by one");
+    assert_eq!(median_at(0.40), 8.0, "and again");
+    assert_eq!(median_at(0.50), 7.0, "and again");
+    assert_eq!(
+        median_at(0.30),
+        median_at(0.35),
+        "adjacent deltas land on the same integer bounds"
+    );
+}
