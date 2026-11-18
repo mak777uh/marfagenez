@@ -26,6 +26,11 @@ BANNED = {
     "memory is useless": "the project's own prohibition (docs/NOT-CLAIMED.md)",
     "emergent structure": "transport is programmed; see the review prohibitions",
     "shows that emergence": "nothing here is emergent, and §7 says so",
+    # these were true of the organism world and false of the shape world, which has both a
+    # space of configurations and variation; §9.7 said them anyway until cycle 156
+    "a repertoire and no variation of it": "the shape world has variation (FINDING-221)",
+    "a neighbour and no region": "the shape world has cells and extents; what it lacks "
+    "is a region perceived from inside",
 }
 
 REQUIRED = [

@@ -553,11 +553,23 @@ that threshold, and the boundary of the mechanism.
 
 ### 9.7 What the six programmes have in common
 
-In every one, the effect that appeared was **smaller and narrower** than the effect that
-was sought, and the reason we found in each case was the same: this architecture has a
-price and no
-space, a repertoire and no variation of it, a neighbour and no region. The law in §4 holds
-precisely because it does not depend on any of those: it is arithmetic of a single cell.
+In every one, the effect that appeared was **smaller and narrower** than the effect that was
+sought. The programme of §9.6 then removed two of the three structural causes named in an earlier
+draft of this paragraph - the shape world does have a space of configurations and does have variation
+- and the effect stayed small, for reasons that are now measured rather than assumed:
+
+- **a shared medium cannot be regulated by its own consumers.** Income throttled by a common stock
+  makes the population overshoot and crash rather than settle (§9.6, `FINDING-220`);
+- **mutation has no stable size.** Between 0.18 and 0.28 in the growth rate a form either erodes to
+  a single cell or explodes, with a cliff rather than a plateau between (`FINDING-221`);
+- **what lives is not what breeds.** Solvency gives an interval of viable sizes; fitness follows the
+  absolute margin, which grows with size, so selection leaves the interval (`FINDING-222`);
+- **a threshold is a property of the pair (medium, reachable form)**, not of the medium alone
+  (`FINDING-229`).
+
+The law in §4 holds precisely because it does not depend on any of them: it is arithmetic of a single
+cell, and the threshold in §4.7 holds for the same reason - it is the same arithmetic, applied to a
+form that has to survive its first step.
 
 ## References
 
