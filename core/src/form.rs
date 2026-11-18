@@ -232,6 +232,41 @@ impl Form {
         self.mutate_towards_with(rng, p_grow, target, restore, 1, false)
     }
 
+    /// The operator with a bounded step: growth is refused when it would leave the band
+    /// `[target*(1 - band), target*(1 + band)]`, and shrinkage is refused below it.
+    ///
+    /// `FINDING-251` closed with a prediction: every mechanism that acts on the **probability** of a step
+    /// leaves the tails open, because the walk is a sequence of many steps and a probability is not a bound.
+    /// This acts on the **step**: inside the band the walk is free, outside it is pushed back, and growth is
+    /// simply not allowed past the upper edge.
+    ///
+    /// `Heredity::plain()` reproduces `mutate` exactly, which is the contract for every number measured
+    /// before this existed.
+    pub fn mutate_heredity(
+        &self,
+        rng: &mut crate::Rng,
+        p_grow: f64,
+        h: &super::form::Heredity,
+    ) -> Option<Self> {
+        let Some(t) = h.target else {
+            return self.mutate(rng, p_grow);
+        };
+        let x = self.x();
+        if let Some(band) = h.band {
+            let lo = t * (1.0 - band);
+            let hi = t * (1.0 + band);
+            if x > hi {
+                return self.shrink_one(rng, h.min_cells);
+            }
+            if x < lo {
+                return self.grow_one(rng);
+            }
+            // inside the band: the fair walk, with the restoring force if one is asked for
+            return self.mutate_towards_with(rng, p_grow, h.target, h.restore, h.min_cells, h.distance_scaled);
+        }
+        self.mutate_towards_with(rng, p_grow, h.target, h.restore, h.min_cells, h.distance_scaled)
+    }
+
     /// The same operator with the two refinements `FINDING-248` asked for.
     ///
     /// `min_cells` refuses shrinkage at or below that many cells, so a lineage cannot die of its own
@@ -288,6 +323,29 @@ impl Form {
         }
     }
 
+    fn grow_one(&self, rng: &mut crate::Rng) -> Option<Self> {
+        let sites = self.growth_sites();
+        if sites.is_empty() {
+            return None;
+        }
+        let i = (rng.next_u64() % sites.len() as u64) as usize;
+        let (gx, gy) = sites[i];
+        self.grow(gx, gy)
+    }
+
+    fn shrink_one(&self, rng: &mut crate::Rng, min_cells: usize) -> Option<Self> {
+        if self.cells() <= min_cells {
+            return Some(self.clone());
+        }
+        let cells: Vec<(i32, i32)> = self.cells.iter().copied().collect();
+        if cells.is_empty() {
+            return None;
+        }
+        let i = (rng.next_u64() % cells.len() as u64) as usize;
+        let (sx, sy) = cells[i];
+        self.shrink(sx, sy)
+    }
+
     /// Highest and lowest cell coordinates, for placement on a field.
     pub fn extent(&self) -> ((i32, i32), (i32, i32)) {
         let mut lo = (i32::MAX, i32::MAX);
@@ -297,6 +355,40 @@ impl Form {
             hi = (hi.0.max(x), hi.1.max(y));
         }
         (lo, hi)
+    }
+}
+
+/// Everything the heritable-target mechanism needs, in one place.
+///
+/// `plain()` is the identity: no target, no force, no floor, no band. Every caller that passes it gets
+/// exactly the behaviour of `Form::mutate`, which is what keeps the numbers measured before this struct
+/// existed unchanged.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct Heredity {
+    pub target: Option<f64>,
+    pub restore: f64,
+    pub min_cells: usize,
+    pub distance_scaled: bool,
+    /// Half-width of the band, as a fraction of the target. `None` means no band.
+    pub band: Option<f64>,
+}
+
+impl Heredity {
+    pub fn plain() -> Self {
+        Self {
+            target: None,
+            restore: 0.0,
+            min_cells: 1,
+            distance_scaled: false,
+            band: None,
+        }
+    }
+
+    pub fn with_target(target: f64) -> Self {
+        Self {
+            target: Some(target),
+            ..Self::plain()
+        }
     }
 }
 

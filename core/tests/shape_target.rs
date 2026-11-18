@@ -186,3 +186,22 @@ fn anchoring_the_force_at_the_fair_point_is_the_win() {
     );
     assert!(at_centre < 0.05, "the anchored spread should be under 0.05, got {at_centre}");
 }
+
+#[test]
+fn x_is_scale_free_which_is_why_bounding_it_does_not_bound_size() {
+    // FINDING-252: a single cell has x = 0.25 and a thirty-cell strip has x about 0.5, so two shapes with
+    // the same x differ by a factor of thirty in size. Any mechanism that regulates x alone leaves the
+    // absolute size free - which is exactly what the four mechanisms of this line did.
+    let small = Form::square(1);
+    let strip = Form::strip(30);
+    assert!(
+        (strip.x() - 0.484).abs() < 0.02,
+        "a thirty-cell strip should sit near x = 0.5, got {}",
+        strip.x()
+    );
+    assert_eq!(small.cells(), 1);
+    assert!(
+        strip.cells() >= 30 && (strip.x() - Form::square(2).x()).abs() < 0.02,
+        "the strip and the two-by-two should share about the same x while differing in size"
+    );
+}
