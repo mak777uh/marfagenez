@@ -175,14 +175,23 @@ gives `1.8395` at `rc = 1.5` and `1.8496` at `rc = 2.0`. Measured: 1.838 dies at
 steps while 1.8395 lives to the horizon; 1.846 dies at 1459 while 1.8496 lives. Both
 edges exactly as predicted and different from each other.
 
-### 4.4 The sharing protocol moves the answer more than the field
+### 4.4 The sharing protocol moves the answer more than the field, and the effect depends on how many share
 
-With the same field and the same organism, four consumers sharing a cell by
-`Proportional` instead of `Sequential` lower the marginal price of repair by a factor
-of **15.7**. No field variation we tried comes close. The rule by which consumers
-divide a resource is therefore not a detail of the implementation; in this model it
-exceeds any field variation we tried, within the ranges we varied; it is a strong
-statement about this model, not a ranking of mechanisms in general.
+With the same field and the same organism, four consumers sharing a cell by `Proportional`
+instead of `Sequential` move the survival edge by a factor of **15.7** (26.6666 to 1.7, in a
+rich field where `M * regrow = 8 >= 4 * income`). No field variation we tried comes close at
+that number of consumers.
+
+The dependence on the number of consumers is the more useful half of the result, and it is
+reported here rather than the single flattering point: at one consumer the edge does not move
+at all (26.6666 either way), at two it is 10.2, at four 1.7, and at eight the `Proportional`
+edge no longer exists. So the protocol is not a fixed multiplier - it decides **whose share**
+enters the law, the organism's `income` under `Proportional` or the cell's stock under
+`Sequential`, and how much that matters is set by how many consumers divide the same cell.
+
+Two limits, stated because the section is a claim about mechanisms: this is **one
+configuration** rather than a family (no interval is attached, unlike §4.6), and the statement
+is about this model, not a ranking of mechanisms in general.
 
 ### 4.5 The consumer's policy matters far less than the arithmetic
 
