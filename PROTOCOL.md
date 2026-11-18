@@ -214,6 +214,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/cli_refuses.py` | CLI отказывается угадывать при опечатке (пункт D-5 плана) |
 | `checks/no_unseeded_random.py` | в JS-проверках нет `Math.random` (пункт D-4 плана) |
 | `checks/ci_workflow.py` | CI-файл согласован с гейтом (пункт D-3 плана) |
+| `checks/exp_shape_regulator.py` | запись регулятора размера по контракту (`results/EXP-SHAPE-REG`) |
 | `checks/goal_features.py` | поля, названные в GOAL.md, существуют в коде |
 | `checks/guard_self_test.py` | каждый сторож краснеет на подложенной ошибке |
 

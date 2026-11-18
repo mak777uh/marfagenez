@@ -1,0 +1,100 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-SHAPE-REG",
+  "run_id": "run-2026-11-18T19-51-58",
+  "model_commit": "8c84e01",
+  "hash_version": "2-prev-cell",
+  "seed": 20250101,
+  "parameters": {
+    "lineages": 200,
+    "generations": 100,
+    "p_grow": 0.27
+  },
+  "arithmetic": {
+    "count_walk": "each mutation adds one cell or removes one, so the count has no size term",
+    "fair_probability_for_the_count": "0.27, measured for starts of 4, 9, 10 and 16 cells (FINDING-255)",
+    "fair_probability_for_the_ratio": "0.36 at a two-by-two; a different quantity (FINDING-250)",
+    "band": "growth refused above n*(1+delta), shrinkage refused below n*(1-delta)",
+    "prediction": "median n = n* within one cell for n* = 4, 10, 16 at delta = 0.2"
+  },
+  "conditions": {
+    "n4": {
+      "label": "target 4 cells, band 0.2",
+      "metrics": {
+        "median_cells": 4.0,
+        "mean_cells": 4.08,
+        "iqr_x": 0.017,
+        "min_cells": 3,
+        "max_cells": 5
+      },
+      "hash": "{\"band\": 0.2, \"p_grow\": 0.27, \"seed\": 20250101, \"target\": 4}"
+    },
+    "n10": {
+      "label": "target 10 cells, band 0.2",
+      "metrics": {
+        "median_cells": 10.0,
+        "mean_cells": 9.96,
+        "iqr_x": 0.05,
+        "min_cells": 7,
+        "max_cells": 13
+      },
+      "hash": "{\"band\": 0.2, \"p_grow\": 0.27, \"seed\": 20250101, \"target\": 10}"
+    },
+    "n16": {
+      "label": "target 16 cells, band 0.2",
+      "metrics": {
+        "median_cells": 16.0,
+        "mean_cells": 16.12,
+        "iqr_x": 0.059,
+        "min_cells": 12,
+        "max_cells": 20
+      },
+      "hash": "{\"band\": 0.2, \"p_grow\": 0.27, \"seed\": 20250101, \"target\": 16}"
+    },
+    "n10-wide": {
+      "label": "target 10 cells, band 0.5",
+      "metrics": {
+        "median_cells": 7.0,
+        "mean_cells": 8.09,
+        "iqr_x": 0.071,
+        "min_cells": 4,
+        "max_cells": 16
+      },
+      "hash": "{\"band\": 0.5, \"p_grow\": 0.27, \"seed\": 20250101, \"target\": 10}"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "with the band the median sits at the target: n10 10, n16 16"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "the band is what holds it, not the economy: the same target with a wider band falls to 7"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "the median follows the target rather than a constant: 4 / 10 / 16 for 4 / 10 / 16"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "medians 4 / 10 / 16 for targets 4 / 10 / 16; the wide band falls to 7"
+  },
+  "hashes": {
+    "n4": "{\"band\": 0.2, \"p_grow\": 0.27, \"seed\": 20250101, \"target\": 4}",
+    "n10": "{\"band\": 0.2, \"p_grow\": 0.27, \"seed\": 20250101, \"target\": 10}",
+    "n16": "{\"band\": 0.2, \"p_grow\": 0.27, \"seed\": 20250101, \"target\": 16}",
+    "n10-wide": "{\"band\": 0.5, \"p_grow\": 0.27, \"seed\": 20250101, \"target\": 10}"
+  },
+  "limitations": [
+    "The target is fixed per lineage and not inherited with noise: this measures the regulator, not the heredity of the target.",
+    "Two band widths only (0.2 and 0.5), so the threshold between holding and drifting is bracketed, not located.",
+    "Targets above 16 are not measured; the shape spread grows with size (0.017 at 4 cells, 0.059 at 16), so a single 'tight' threshold would be wrong for large forms.",
+    "The example's own prediction suite reported: РАСХОЖДЕНИЙ: 1 - the refuted part is the shape spread at 16 cells (0.059 against a 0.05 threshold written for a four-cell form).",
+    "No economy: no birth, no death, no pool. This is the mutation operator alone, so nothing here says whether a regulated size is favoured by selection."
+  ],
+  "command": "core/target/release/examples/shape_cell_target_fair",
+  "created_at": "2026-11-18T19:51:58.158531+00:00"
+}

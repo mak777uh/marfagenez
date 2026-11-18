@@ -181,6 +181,8 @@ do_exp() {
   python3 checks/no_unseeded_random.py || rc=$?
   echo "--- ci_workflow.py ---"
   python3 checks/ci_workflow.py || rc=$?
+  echo "--- exp_shape_regulator.py ---"
+  python3 checks/exp_shape_regulator.py || rc=$?
   echo "--- goal_features.py ---"
   python3 checks/goal_features.py || rc=$?
   echo "--- guard_self_test.py ---"
