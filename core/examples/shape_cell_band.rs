@@ -69,7 +69,7 @@ fn main() {
         "f0", "f after step 1", "survivors", "first death"
     );
     let mut rows: Vec<(f64, usize, f64, usize)> = Vec::new();
-    for f0 in [6.0, 6.5, 6.7, 6.9, 7.0] {
+    for f0 in [6.5, 6.6, 6.65, 6.7] {
         let (alive, fill, death) = run(f0);
         println!("{f0:>6.1} {fill:>13.3} {alive:>10} {death:>12}");
         rows.push((f0, alive, fill, death));

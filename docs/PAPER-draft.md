@@ -610,11 +610,15 @@ full stock gives `8 >= f0 + 1.025`, that is `f0 <= 6.975`, and charging the firs
 `f = 0.92` and `f0 <= 6.34` - and this probe cannot tell them apart. Measuring the fraction directly can:
 in the three-by-three case the first step does leave exactly `0.760`, because consumption is taken before
 the inflow is credited, and from the second step the stock is back at capacity. For a single cell the fill
-after the first step is measured at **0.920** (one cell of eight out of a hundred), which is where the
-arithmetic stops agreeing with the world: the measured edge lies between `f0 = 6.5`, where all twenty-four
-seeds live, and `f0 = 6.7`, where none do - **below** the full-stock bound of 6.975 and **above** the
-fill-adjusted 6.335, so neither arithmetic explains it. The honest statement is the measured bracket
-`(6.5, 6.7)`, and the explanation is written down as missing rather than supplied. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
+after the first step is measured at **0.920** (one cell of eight out of a hundred), and the measured edge
+lies between `f0 = 6.5`, where all twenty-four seeds live, and `f0 = 6.7`, where none do - **below** the
+full-stock bound of 6.975 and **above** the fill-adjusted 6.335, so neither arithmetic explains it on its
+own. A step-by-step log shows why, and the answer was in the alternation all along: consumption is taken
+before the inflow is credited, so the fill **alternates** between 0.920 and 1.000, and the cell lives or
+dies on the **average** `0.960`, not on either phase. That gives `f0 <= 8 * 0.96 - 1.025 = 6.655`, and a
+run at 6.65 leaves all twenty-four seeds alive while 6.7 leaves none - the derived boundary falls inside
+the measured bracket. Both earlier guesses took one phase for the whole, which is why both were off: one by
+0.32 too low and one by 0.32 too high. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
 against 0.044 with it, so the price both keeps worlds alive and narrows the spread of what survives.
 
 The programme also produced the predicted threshold reported in §4.7, and the limit of that
