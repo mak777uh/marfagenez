@@ -625,7 +625,23 @@ capacity `S`, so the edge should move with `S`: 6.335 at `S = 50`, 6.655 at 100 
 each of those the world should live just below and die just above. Measured, with sixteen seeds per point:
 the first-step fill is 0.840, 0.920 and 0.960 - exactly `1 - d/S` - and at each derived edge minus 0.05
 sixteen of sixteen survive while at plus 0.05 none do. The formula that came out of a step-by-step log
-holds across a parameter it was not fitted to. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
+holds across a parameter it was not fitted to.
+
+The demand also adds up across forms, which makes the mechanism complete rather than one case deep. With
+`k` single cells the first step should leave `1 - 8k/100`, and it does, exactly, for `k = 1, 2, 4, 8`:
+0.920, 0.840, 0.680 and 0.360, each followed by a full stock and the same phase again. So
+
+```
+total demand      D = sum sigma * p_i
+after a step      f1 = max(0, 1 - D/S)
+mean fill         f  = (1 + f1) / 2
+a form survives   sigma * p_i * f >= f0 + mu*n_i + kappa*n_i^2/p_i
+```
+
+and the three things this section measured separately fall out of it: the `0.760` of a three-by-three is
+`1 - 24/100`, the cell boundary of 6.655 is `8 * 0.96 - 1.025`, and the 11/12 threshold of §4.7 is what
+happens when total demand is large enough that `f` no longer covers the upkeep. One mechanism, three
+numbers that were found one at a time. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
 against 0.044 with it, so the price both keeps worlds alive and narrows the spread of what survives.
 
 The programme also produced the predicted threshold reported in §4.7, and the limit of that

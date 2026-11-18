@@ -123,3 +123,35 @@ fn the_edge_moves_with_the_stock_size_as_derived() {
         );
     }
 }
+
+#[test]
+fn demand_adds_up_across_forms() {
+    // FINDING-245: k single cells demand 8k, so the first step leaves 1 - 8k/S exactly, and the
+    // inflow puts the stock back at capacity on the next step whatever k is.
+    for k in [1usize, 2, 4, 8] {
+        let forms: Vec<Form> = (0..k).map(|_| Form::square(1)).collect();
+        let mut world = ShapeWorld::new(rules(4.0), forms);
+        let mut rng = Rng::new(1);
+        let mut fills = Vec::new();
+        for _ in 0..4 {
+            world.step(&mut rng);
+            fills.push(world.stock / CELLS);
+        }
+        let predicted = 1.0 - 8.0 * k as f64 / CELLS;
+        assert!(
+            (fills[0] - predicted).abs() < 1e-9,
+            "k = {k}: the first fill should be {predicted}, got {}",
+            fills[0]
+        );
+        assert!(
+            (fills[1] - 1.0).abs() < 1e-9,
+            "k = {k}: the inflow should refill to capacity, got {}",
+            fills[1]
+        );
+        assert!(
+            (fills[2] - predicted).abs() < 1e-9,
+            "k = {k}: the alternation should repeat, got {}",
+            fills[2]
+        );
+    }
+}
