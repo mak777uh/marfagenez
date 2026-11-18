@@ -604,9 +604,12 @@ is three times further away: selection holds forms at the edge of poverty, not i
 interval. The position is selection's and not the starting form's: a three-by-three starts at `x = 0.75`
 and settles at 0.450, a four-cell strip starts at 0.400 and settles at 0.444, so the median converges
 instead of following the start. A world started from a **single cell** does not run at all at this price -
-it dies in twenty-four of twenty-four seeds - because the first step of consumption leaves `f = 0.76` and
-`0.76 * 8 = 6.08` against an upkeep of 11.025; that is the same first-step arithmetic that fixes the
-threshold in §4.7, and it is a limit of the start rather than of the selection. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
+it dies in twenty-four of twenty-four seeds. The reason is the **full-stock** arithmetic, not the first-step
+fill: with one form the shared stock does not drop (`stock_max = 100`, inflow 300), so `f` stays at one and
+the cell survives exactly while `8 >= f0 + 1.025`, that is `f0 <= 6.975`. Sweeping the fixed cost confirms
+it - three, four, five and six all survive, seven dies in every seed - and 6.975 is precisely the upper
+bound §4.7 states for a single cell. Which of the two arithmetics applies is set by consumption relative to
+the stock, and with one form it is the full-stock one. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
 against 0.044 with it, so the price both keeps worlds alive and narrows the spread of what survives.
 
 The programme also produced the predicted threshold reported in §4.7, and the limit of that
