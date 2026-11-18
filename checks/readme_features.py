@@ -34,6 +34,9 @@ STALE = [
     "без затрат и без решения",
     "вариации и передачи организации",
     "цена и выбор при чтении среды",
+    # `structure` was removed on 2026-11-14 (decision D2). A sentence that still defines it
+    # describes a model that no longer exists.
+    "structure ≡ 1 − damage",
 ]
 
 
