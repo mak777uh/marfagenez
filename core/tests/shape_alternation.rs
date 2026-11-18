@@ -13,6 +13,7 @@ const CELLS: f64 = 100.0;
 const INFLOW: f64 = 300.0;
 const STEPS: usize = 400;
 const SEEDS: u64 = 8;
+const INFLOW_ALL: f64 = 300.0;
 
 fn rules(f0: f64) -> ShapeRules {
     let economy = ShapeEconomy::new(2.0, 1.0, 0.1)
@@ -78,4 +79,47 @@ fn the_derived_edge_falls_inside_the_measured_bracket() {
 fn sixty_five_hundredths_lives_and_seventy_dies() {
     assert_eq!(survivors(6.65), SEEDS as usize, "6.65 is below the edge");
     assert_eq!(survivors(6.7), 0, "6.7 is above the edge");
+}
+
+#[test]
+fn the_edge_moves_with_the_stock_size_as_derived() {
+    // FINDING-244: the mean fill is (1 + (1 - d/S)) / 2, so the edge is 8 * mean - 1.025.
+    // Three capacities, three derived edges, each checked just below and just above.
+    fn survivors_at(f0: f64, stock: f64) -> usize {
+        let economy = ShapeEconomy::new(2.0, 1.0, 0.1)
+            .and_then(|e| e.with_fixed_cost(f0))
+            .expect("valid economy");
+        let mut r = ShapeRules::new(economy, 40.0).expect("rules");
+        r.max_population = 64;
+        r.pool = Pool::new(stock, INFLOW_ALL, stock);
+        r.p_grow = 0.27;
+        r.birth_cost_per_cell = 4.0;
+        let mut alive = 0;
+        for seed in 1..=SEEDS {
+            let mut world = ShapeWorld::new(r, vec![Form::square(1)]);
+            let mut rng = Rng::new(seed);
+            for _ in 0..STEPS {
+                world.step(&mut rng);
+            }
+            if !world.forms.is_empty() {
+                alive += 1;
+            }
+        }
+        alive
+    }
+
+    for stock in [50.0f64, 100.0, 200.0] {
+        let mean_fill = (1.0 + (1.0 - 8.0 / stock)) / 2.0;
+        let edge = 8.0 * mean_fill - 1.025;
+        assert_eq!(
+            survivors_at(edge - 0.05, stock),
+            SEEDS as usize,
+            "S = {stock}: below the derived edge {edge:.3} everything should live"
+        );
+        assert_eq!(
+            survivors_at(edge + 0.05, stock),
+            0,
+            "S = {stock}: above the derived edge {edge:.3} nothing should live"
+        );
+    }
 }

@@ -618,7 +618,14 @@ before the inflow is credited, so the fill **alternates** between 0.920 and 1.00
 dies on the **average** `0.960`, not on either phase. That gives `f0 <= 8 * 0.96 - 1.025 = 6.655`, and a
 run at 6.65 leaves all twenty-four seeds alive while 6.7 leaves none - the derived boundary falls inside
 the measured bracket. Both earlier guesses took one phase for the whole, which is why both were off: one by
-0.32 too low and one by 0.32 too high. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
+0.32 too low and one by 0.32 too high.
+
+The derivation is not a one-point fit. It says the mean fill is `(1 + (1 - d/S)) / 2` for demand `d` and
+capacity `S`, so the edge should move with `S`: 6.335 at `S = 50`, 6.655 at 100 and 6.815 at 200, and at
+each of those the world should live just below and die just above. Measured, with sixteen seeds per point:
+the first-step fill is 0.840, 0.920 and 0.960 - exactly `1 - d/S` - and at each derived edge minus 0.05
+sixteen of sixteen survive while at plus 0.05 none do. The formula that came out of a step-by-step log
+holds across a parameter it was not fitted to. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
 against 0.044 with it, so the price both keeps worlds alive and narrows the spread of what survives.
 
 The programme also produced the predicted threshold reported in §4.7, and the limit of that
