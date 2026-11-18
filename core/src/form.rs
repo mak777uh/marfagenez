@@ -248,6 +248,20 @@ impl Form {
         p_grow: f64,
         h: &super::form::Heredity,
     ) -> Option<Self> {
+        // A cell-count target takes precedence: it regulates the size itself, which is what the tails
+        // are in (`FINDING-252`).
+        if let (Some(n_star), Some(delta)) = (h.target_cells, h.band_cells) {
+            let n = self.cells() as f64;
+            let lo = n_star as f64 * (1.0 - delta);
+            let hi = n_star as f64 * (1.0 + delta);
+            if n > hi {
+                return self.shrink_one(rng, h.min_cells);
+            }
+            if n < lo {
+                return self.grow_one(rng);
+            }
+            return self.mutate(rng, p_grow);
+        }
         let Some(t) = h.target else {
             return self.mutate(rng, p_grow);
         };
@@ -371,6 +385,11 @@ pub struct Heredity {
     pub distance_scaled: bool,
     /// Half-width of the band, as a fraction of the target. `None` means no band.
     pub band: Option<f64>,
+    /// Target **number of cells**. `FINDING-252` showed that `x = n/p` is scale-free, so regulating it
+    /// leaves the absolute size free; this regulates the size itself.
+    pub target_cells: Option<usize>,
+    /// Half-width of the band on the cell count, as a fraction of `target_cells`.
+    pub band_cells: Option<f64>,
 }
 
 impl Heredity {
@@ -381,6 +400,8 @@ impl Heredity {
             min_cells: 1,
             distance_scaled: false,
             band: None,
+            target_cells: None,
+            band_cells: None,
         }
     }
 

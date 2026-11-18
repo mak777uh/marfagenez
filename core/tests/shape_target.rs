@@ -5,7 +5,7 @@
 //! twenty-one-cell lineages survive, because a probabilistic shift in the growth direction is not a
 //! prohibition. Those two predictions are recorded as refuted rather than tested here.
 
-use medium_core::form::Form;
+use medium_core::form::{Form, Heredity};
 use medium_core::Rng;
 
 const LINEAGES: usize = 200;
@@ -204,4 +204,40 @@ fn x_is_scale_free_which_is_why_bounding_it_does_not_bound_size() {
         strip.cells() >= 30 && (strip.x() - Form::square(2).x()).abs() < 0.02,
         "the strip and the two-by-two should share about the same x while differing in size"
     );
+}
+
+#[test]
+fn regulating_the_cell_count_closes_the_tail() {
+    // FINDING-253: bounding x left the size free (1..30 cells). Bounding the count itself closes it:
+    // with target 4 and band 0.2 the lineages end between three and five cells. This is the first
+    // mechanism in this line that bounds the size rather than the ratio.
+    fn walk(target: Option<usize>, band: Option<f64>) -> (usize, usize, f64) {
+        let start = Form::square(2);
+        let mut h = Heredity::plain();
+        h.target_cells = target;
+        h.band_cells = band;
+        let mut forms: Vec<Form> = (0..LINEAGES).map(|_| start.clone()).collect();
+        let mut rng = Rng::new(20250101);
+        for _ in 0..GENERATIONS {
+            for f in forms.iter_mut() {
+                if let Some(next) = f.mutate_heredity(&mut rng, 0.36, &h) {
+                    *f = next;
+                }
+            }
+        }
+        let mut ns: Vec<usize> = forms.iter().map(|f| f.cells()).collect();
+        ns.sort_unstable();
+        let mut xs: Vec<f64> = forms.iter().map(|f| f.x()).collect();
+        xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        let iqr = xs[xs.len() * 3 / 4] - xs[xs.len() / 4];
+        (ns[0], ns[ns.len() - 1], iqr)
+    }
+
+    let (free_lo, free_hi, _) = walk(None, None);
+    assert!(free_hi >= 20, "without a target the size should range freely: {free_lo}..{free_hi}");
+
+    let (lo, hi, iqr) = walk(Some(4), Some(0.2));
+    assert!(hi <= 6, "with the count band the maximum should be six or less, got {hi}");
+    assert!(lo >= 3, "and the minimum three or more, got {lo}");
+    assert!(iqr < 0.05, "and the shape spread should be small, got {iqr}");
 }
