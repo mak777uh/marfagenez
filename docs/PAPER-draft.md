@@ -268,7 +268,11 @@ starting at capacity, the first step of consumption leaves `f = 0.760`, so a fix
 **The prediction was declared before the runs**: 24 replicates per price. It held - 24 of 24 worlds
 alive at a fixed cost of 11, and 0 of 24 at 12. The same arithmetic then predicted the threshold for
 other starting forms: a single cell should fall by a fixed cost of 7, a two-by-two by 11.8, a
-three-by-three by 14.3. Measured: below 8, below 11, and at 12 respectively.
+three-by-three by 14.3. Those are **upper bounds**, because they are computed at full stock while the
+first step leaves `f = 0.760`; the measured thresholds are 8, 11 and 12, so every world died at or
+before its predicted price, and for the single cell the prediction lands inside the measured bracket.
+The bound is what the arithmetic gives and it is what is claimed; a sharper prediction would need the
+fill fraction, which is measured rather than derived.
 
 The dependence is worth stating plainly, because it is not the medium's alone: **the medium pays as
 much as the most profitable form the world can reach**, and which forms are reachable depends on the
