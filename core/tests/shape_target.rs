@@ -119,3 +119,39 @@ fn the_floor_removes_the_lower_tail_without_touching_the_body() {
         "the floor should not widen the spread: {iqr1} vs {iqr2}"
     );
 }
+
+#[test]
+fn the_fair_growth_probability_is_near_a_third() {
+    // FINDING-250: with no restoring force the median stays at the starting size only around
+    // p_grow = 0.36, not at 0.6 as a count of growth sites versus cells suggested. At 0.27 the
+    // lineage erodes; at 0.45 it grows past the start.
+    fn median_at(p_grow: f64) -> f64 {
+        let start = Form::square(2);
+        let mut forms: Vec<Form> = (0..LINEAGES).map(|_| start.clone()).collect();
+        let mut rng = Rng::new(20250101);
+        for _ in 0..GENERATIONS {
+            for f in forms.iter_mut() {
+                if let Some(next) = f.mutate(&mut rng, p_grow) {
+                    *f = next;
+                }
+            }
+        }
+        let mut xs: Vec<f64> = forms.iter().map(|f| f.x()).collect();
+        xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        xs[xs.len() / 2]
+    }
+
+    let start = Form::square(2).x();
+    assert!(
+        (median_at(0.27) - start).abs() > 0.05,
+        "0.27 should erode below the start"
+    );
+    assert!(
+        (median_at(0.37) - start).abs() <= 0.02,
+        "0.37 should hold the median at the start"
+    );
+    assert!(
+        (median_at(0.45) - start).abs() > 0.02,
+        "0.45 should grow past the start"
+    );
+}

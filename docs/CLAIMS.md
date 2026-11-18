@@ -115,7 +115,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 316 тестов
+### Rust — 317 тестов
 
 | группа | что проверяет |
 |---|---|
@@ -179,7 +179,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | `α = 2μ/σ²` точно | это предел, при `dt=1` ошибка 3.7% |
 | Rust-код в `core/` верен | Verus доказал **копии** в `verus/`, не `bridge.rs` |
 | `f64`-часть верна | Verus не поддерживает плавающую точку |
-| оставшиеся 316 теорем содержательны | проверены только 11 тавтологий из 317 |
+| оставшиеся 317 теорем содержательны | проверены только 11 тавтологий из 317 |
 
 ---
 
@@ -227,7 +227,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
 | Lean файлов | **56** `Medium` + 8 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
 | Lean `sorry` как тактика | **0** | `grep -rnE '^\s*(·\s*)?sorry\s*$' laws/ \| wc -l` |
-| Rust тестов | **316** | `cd core && cargo test --release --tests -- --test-threads=1` |
+| Rust тестов | **317** | `cd core && cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
 | docs FINDING | **148** | `ls docs/FINDING-*.md \| wc -l` |
 | checks (эксперименты) | **110** | `ls checks/exp*.py \| wc -l` |
