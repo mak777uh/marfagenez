@@ -24,6 +24,11 @@ use crate::Rng;
 pub struct FormState {
     pub form: Form,
     pub energy: f64,
+    /// Heritable target size, `n/p`. `None` keeps the world exactly as it was before this field
+    /// existed: mutation is then the fair random walk of `FINDING-247`, and every recorded number
+    /// (215-247) reproduces. `Some(t)` pulls growth towards `t` with the strength in
+    /// `ShapeRules::target_restore`.
+    pub target: Option<f64>,
 }
 
 /// A shared stock of resource that every form draws from.
@@ -81,6 +86,11 @@ pub struct ShapeRules {
     /// Extra birth cost **per cell of the child**. Zero by default, which is the contract:
     /// every world measured before this field existed must reproduce its numbers.
     pub birth_cost_per_cell: f64,
+    /// Strength of the pull towards a form's heritable target. Zero by default, which is the
+    /// contract: with zero the mutation is the fair walk and no recorded number moves.
+    pub target_restore: f64,
+    /// Relative perturbation applied to a child's target at birth. Zero by default.
+    pub target_noise: f64,
     /// Chance that a newborn differs from its parent.
     pub mutation_rate: f64,
     /// Chance that a mutation adds rather than removes a cell.
@@ -101,6 +111,8 @@ impl ShapeRules {
             economy,
             birth_cost,
             birth_cost_per_cell: 0.0,
+            target_restore: 0.0,
+            target_noise: 0.0,
             mutation_rate: 1.0,
             p_grow: 0.5,
             max_population: 32,
@@ -125,7 +137,7 @@ impl ShapeWorld {
     pub fn new(rules: ShapeRules, forms: Vec<Form>) -> Self {
         let state = forms
             .into_iter()
-            .map(|form| FormState { form, energy: 0.0 })
+            .map(|form| FormState { form, energy: 0.0, target: None })
             .collect();
         let stock = rules.pool.map(|p| p.stock0).unwrap_or(f64::INFINITY);
         Self {
@@ -220,7 +232,12 @@ impl ShapeWorld {
                     self.mutations += 1;
                     parent
                         .form
-                        .mutate(rng, self.rules.p_grow)
+                        .mutate_towards(
+                            rng,
+                            self.rules.p_grow,
+                            parent.target,
+                            self.rules.target_restore,
+                        )
                         .unwrap_or_else(|| parent.form.clone())
                 } else {
                     parent.form.clone()
@@ -230,9 +247,16 @@ impl ShapeWorld {
                 continue;
             }
             let price = self.birth_price(child_form.cells());
+            // the target is inherited with a small multiplicative perturbation, so a lineage carries
+            // its own size instead of the population's average
+            let child_target = self.forms[i].target.map(|t| {
+                let noise = 1.0 + (rng.uniform() - 0.5) * 2.0 * self.rules.target_noise;
+                (t * noise).max(0.05)
+            });
             let child = FormState {
                 form: child_form,
                 energy: price,
+                target: child_target,
             };
             self.forms[i].energy -= price;
             self.forms.push(child);

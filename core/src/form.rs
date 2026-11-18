@@ -209,6 +209,58 @@ impl Form {
         }
     }
 
+    /// One mutation pulled towards a heritable target size.
+    ///
+    /// `mutate` is a fair random walk: growth and shrinkage are equally likely, and a lineage carries no
+    /// memory of what size its ancestor had (`FINDING-247`: over a hundred mutations the median `x`
+    /// drifts from 0.500 to 0.375 and lineages end between one cell and twenty-two). This is the same
+    /// operator with a **restoring force** towards `target = n/p`.
+    ///
+    /// `restore = 0` reproduces `mutate` bit for bit - the same probability, the same branches, the same
+    /// draws - so every number measured before this method existed keeps its value. That is a contract,
+    /// not a convenience.
+    ///
+    /// The force is endogenous: it comes from a heritable parameter, not from an observer's ranking, so
+    /// `GOAL.md` §3.2 is not violated.
+    pub fn mutate_towards(
+        &self,
+        rng: &mut crate::Rng,
+        p_grow: f64,
+        target: Option<f64>,
+        restore: f64,
+    ) -> Option<Self> {
+        let Some(t) = target else {
+            return self.mutate(rng, p_grow);
+        };
+        if restore <= 0.0 {
+            return self.mutate(rng, p_grow);
+        }
+        // Below the target the walk is pulled towards growth, above it towards shrinkage.
+        let x = self.x();
+        let p = if x < t {
+            (p_grow * (1.0 + restore)).min(1.0)
+        } else {
+            (p_grow * (1.0 - restore)).max(0.0)
+        };
+        if rng.uniform() < p {
+            let sites = self.growth_sites();
+            if sites.is_empty() {
+                return None;
+            }
+            let i = (rng.next_u64() % sites.len() as u64) as usize;
+            let (gx, gy) = sites[i];
+            self.grow(gx, gy)
+        } else {
+            let cells: Vec<(i32, i32)> = self.cells.iter().copied().collect();
+            if cells.is_empty() {
+                return None;
+            }
+            let i = (rng.next_u64() % cells.len() as u64) as usize;
+            let (sx, sy) = cells[i];
+            self.shrink(sx, sy)
+        }
+    }
+
     /// Highest and lowest cell coordinates, for placement on a field.
     pub fn extent(&self) -> ((i32, i32), (i32, i32)) {
         let mut lo = (i32::MAX, i32::MAX);
