@@ -75,7 +75,9 @@ do_lean() {
   grep -E 'Build completed|error' "$out" | tail -5
   rm -f "$out"
   echo
-  echo "файлов:  $(ls laws/Medium/*.lean | wc -l) Medium + $(ls laws/Legacy/*.lean | wc -l) Legacy"
+  _lean_files=$(ls laws/Medium/*.lean laws/Legacy/*.lean | wc -l)
+  _lean_with=$(grep -lE '^(theorem|lemma) ' laws/Medium/*.lean laws/Legacy/*.lean | wc -l)
+  echo "файлов:  $(ls laws/Medium/*.lean | wc -l) Medium + $(ls laws/Legacy/*.lean | wc -l) Legacy, из них с теоремами $_lean_with"
   echo "теорем:  $(grep -rhE '^(theorem|lemma) ' laws/Medium/*.lean | wc -l) Medium + $(grep -rhE '^(theorem|lemma) ' laws/Legacy/*.lean | wc -l) Legacy"
   # `sorry` в комментарии — не дыра в доказательстве. Считаем только код:
   # убираем строчные комментарии и блоки /- -/, затем ищем `sorry`.
