@@ -214,6 +214,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/cli_refuses.py` | CLI отказывается угадывать при опечатке (пункт D-5 плана) |
 | `checks/no_unseeded_random.py` | в JS-проверках нет `Math.random` (пункт D-4 плана) |
 | `checks/ci_workflow.py` | CI-файл согласован с гейтом (пункт D-3 плана) |
+| `checks/goal_features.py` | поля, названные в GOAL.md, существуют в коде |
 
 | экспериментальные проверки | что |
 |---|---|
