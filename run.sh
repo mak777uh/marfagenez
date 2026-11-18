@@ -173,6 +173,8 @@ do_exp() {
   python3 checks/protocol_checks.py || rc=$?
   echo "--- doc_numbers.py ---"
   python3 checks/doc_numbers.py || rc=$?
+  echo "--- rng_seed_noise.py ---"
+  python3 checks/rng_seed_noise.py || rc=$?
   echo
   echo "--- exp_memory_cost.py ---"
   # Цена чтения и поле с пиками: 216 прогонов, 15 с, поэтому в `exp`.
