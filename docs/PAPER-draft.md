@@ -601,7 +601,12 @@ The same runs in the economy's own continuous measure, `x = cells / perimeter` (
 `x = s/4`, so the interval is `[0.393, 1.355]`), sharpen this twice. The median `x` is 0.429 without the
 price and 0.417 with it - **both within six per cent of the lower edge of solvency**, while the upper edge
 is three times further away: selection holds forms at the edge of poverty, not in the middle of the
-interval. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
+interval. The position is selection's and not the starting form's: a three-by-three starts at `x = 0.75`
+and settles at 0.450, a four-cell strip starts at 0.400 and settles at 0.444, so the median converges
+instead of following the start. A world started from a **single cell** does not run at all at this price -
+it dies in twenty-four of twenty-four seeds - because the first step of consumption leaves `f = 0.76` and
+`0.76 * 8 = 6.08` against an upkeep of 11.025; that is the same first-step arithmetic that fixes the
+threshold in §4.7, and it is a limit of the start rather than of the selection. And the interquartile range stops being a coincidence of integer sides: 0.064 without the price
 against 0.044 with it, so the price both keeps worlds alive and narrows the spread of what survives.
 
 The programme also produced the predicted threshold reported in §4.7, and the limit of that
