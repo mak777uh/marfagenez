@@ -241,3 +241,38 @@ fn regulating_the_cell_count_closes_the_tail() {
     assert!(lo >= 3, "and the minimum three or more, got {lo}");
     assert!(iqr < 0.05, "and the shape spread should be small, got {iqr}");
 }
+
+#[test]
+fn the_fair_probability_for_the_count_is_the_same_for_every_size() {
+    // FINDING-255: the count walk is an up-down step with no size term, so 0.27 is fair for four, nine,
+    // ten and sixteen cells alike. The 0.36 of FINDING-250 is the fair value for the **ratio**, a
+    // different quantity - mixing the two produced a false "law" in 254.
+    fn median_count(start: &Form, p_grow: f64) -> f64 {
+        let mut forms: Vec<Form> = (0..LINEAGES).map(|_| start.clone()).collect();
+        let mut rng = Rng::new(20250101);
+        for _ in 0..GENERATIONS {
+            for f in forms.iter_mut() {
+                if let Some(next) = f.mutate(&mut rng, p_grow) {
+                    *f = next;
+                }
+            }
+        }
+        let mut ns: Vec<usize> = forms.iter().map(|f| f.cells()).collect();
+        ns.sort_unstable();
+        ns[ns.len() / 2] as f64
+    }
+
+    for start in [Form::square(2), Form::square(3), Form::rectangle(5, 2), Form::square(4)] {
+        let size = start.cells() as f64;
+        let at_fair = median_count(&start, 0.27);
+        let at_036 = median_count(&start, 0.36);
+        assert!(
+            (at_fair - size).abs() <= 2.0,
+            "0.27 should hold a {size}-cell start near its size, got {at_fair}"
+        );
+        assert!(
+            at_036 > size + 3.0,
+            "0.36 should grow a {size}-cell start well past its size, got {at_036}"
+        );
+    }
+}
