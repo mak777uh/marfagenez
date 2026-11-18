@@ -212,6 +212,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/doc_numbers.py` | числа в документах (тесты, находки, фигуры, проверки) совпадают с деревом |
 | `checks/rng_seed_noise.py` | первый шум не связан с сидом (критерий B4 плана) |
 | `checks/cli_refuses.py` | CLI отказывается угадывать при опечатке (пункт D-5 плана) |
+| `checks/no_unseeded_random.py` | в JS-проверках нет `Math.random` (пункт D-4 плана) |
 
 | экспериментальные проверки | что |
 |---|---|
