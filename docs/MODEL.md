@@ -104,7 +104,7 @@ $$r = \|x\|, \quad u = r \bmod 2B, \quad r' = \begin{cases} u & u \leq B \\ 2B -
 $$R_{\text{ball}}(x) = \frac{r'}{r} x$$
 
 **Проверено:** **НЕ** сохраняет равномерное распределение.
-`chi² = 31 429 309` при 9 dof (`checks/ball_measure2.py`).
+`chi² = 31 429 312` при 9 dof (`checks/ball_measure2.py`).
 
 **Причина:** объём сферической оболочки растёт как `r^(d-1)`. Складывание радиуса без учёта этого переносит массу неправильно.
 
@@ -260,7 +260,7 @@ python3 checks/transition3.py
 # alpha сходится к 2mu/sigma^2
 python3 checks/alpha_fit.py
 
-# 309 тестов
+# 312 тестов
 cd core && cargo test --release --tests -- --test-threads=1
 
 # 41 verified
