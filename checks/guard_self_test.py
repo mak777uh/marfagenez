@@ -8,6 +8,10 @@ For each guard the table below declares one mutation that must turn it red. The 
 file, applies the mutation, runs the guard, restores the file in a `finally`, and compares the exit
 codes. If a guard stops noticing its own fault, this fails.
 
+This covers the **fires** arm only. The **silent** arm is the gate itself: every guard also runs on the
+unmutated tree, where it must exit zero. Two arms in two places, which is the point - a guard that is
+red on a clean tree fails the gate before this file is reached.
+
     python3 checks/guard_self_test.py
 """
 
@@ -50,6 +54,30 @@ CASES = [
         "docs/PAPER-draft.md",
         "## 4. Results",
         "## 4. Results\n\nThe the experiment ran.",
+        True,
+    ),
+    (
+        "claims: the paper claims more than was measured",
+        "checks/paper_claims.py",
+        "docs/PAPER-draft.md",
+        "## 4. Results",
+        "## 4. Results\n\nThis shows that emergence is here.",
+        True,
+    ),
+    (
+        "format: a figure caption loses its number",
+        "checks/paper_format.py",
+        "docs/PAPER-draft.md",
+        "*Figure 2.*",
+        "*Figure 9.*",
+        True,
+    ),
+    (
+        "protocol: a check disappears from the protocol",
+        "checks/protocol_checks.py",
+        "PROTOCOL.md",
+        "| `checks/doc_numbers.py` |",
+        "| `checks/numbers_gone.py` |",
         True,
     ),
     (
