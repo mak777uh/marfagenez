@@ -229,15 +229,38 @@ impl Form {
         target: Option<f64>,
         restore: f64,
     ) -> Option<Self> {
+        self.mutate_towards_with(rng, p_grow, target, restore, 1, false)
+    }
+
+    /// The same operator with the two refinements `FINDING-248` asked for.
+    ///
+    /// `min_cells` refuses shrinkage at or below that many cells, so a lineage cannot die of its own
+    /// mutation - the edge of the walk gets a floor instead of a probability.
+    ///
+    /// `distance_scaled` makes the pull grow with the distance from the target,
+    /// `p = p_grow + restore * (t - x) / t`, instead of shifting it by a constant fraction. A constant
+    /// shift leaves the tails alone; a force proportional to the error cannot.
+    pub fn mutate_towards_with(
+        &self,
+        rng: &mut crate::Rng,
+        p_grow: f64,
+        target: Option<f64>,
+        restore: f64,
+        min_cells: usize,
+        distance_scaled: bool,
+    ) -> Option<Self> {
         let Some(t) = target else {
             return self.mutate(rng, p_grow);
         };
         if restore <= 0.0 {
             return self.mutate(rng, p_grow);
         }
-        // Below the target the walk is pulled towards growth, above it towards shrinkage.
         let x = self.x();
-        let p = if x < t {
+        let p = if distance_scaled {
+            let pull = restore * (t - x) / t;
+            (p_grow + pull).clamp(0.0, 1.0)
+        } else if x < t {
+            // Below the target the walk is pulled towards growth, above it towards shrinkage.
             (p_grow * (1.0 + restore)).min(1.0)
         } else {
             (p_grow * (1.0 - restore)).max(0.0)
@@ -251,6 +274,10 @@ impl Form {
             let (gx, gy) = sites[i];
             self.grow(gx, gy)
         } else {
+            if self.cells() <= min_cells {
+                // the floor: a form at the minimum neither shrinks nor dies of its own mutation
+                return Some(self.clone());
+            }
             let cells: Vec<(i32, i32)> = self.cells.iter().copied().collect();
             if cells.is_empty() {
                 return None;
