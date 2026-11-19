@@ -42,6 +42,7 @@ fn rules(local: bool) -> SkinPopRules {
         demand_growth: None,
         repair_from_pool: false,
         local_recycle: local,
+        local_share: 1.0,
     }
 }
 

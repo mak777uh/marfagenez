@@ -176,6 +176,10 @@ pub struct SkinPopRules {
     /// Repair is then self-funding while `q * decay >= u`, i.e. while `q >= q_min` - a form at the threshold can
     /// pay for its own maintenance out of what it lost.
     pub local_recycle: bool,
+    /// How much of the decay falls into the form's own pocket, when `local_recycle` is set. `1.0` is a fully local
+    /// cycle (`FINDING-271`), `0.0` is the communal one (`FINDING-270`). The mixture is what decides whether a form
+    /// still needs the medium it shares.
+    pub local_share: f64,
 }
 
 /// One form in the population.
@@ -616,8 +620,10 @@ impl SkinRecycle {
             let lost = f.q * skin.decay;
             f.q -= lost;
             if self.rules.local_recycle {
-                // what falls off this form is its own: it lands in its pocket, not in the common stock
-                f.pocket += lost;
+                // part of the loss is the form's own; the rest still goes back to the stock it shares
+                let local = (self.rules.local_share.clamp(0.0, 1.0) * lost).max(0.0);
+                f.pocket += local;
+                returned += lost - local;
             } else {
                 returned += lost;
             }
@@ -794,6 +800,7 @@ mod tests {
             demand_growth: None,
             repair_from_pool: false,
             local_recycle: false,
+            local_share: 1.0,
         }
     }
 
@@ -939,6 +946,56 @@ mod tests {
     }
 
     #[test]
+    fn there_is_no_tight_regime_between_plenty_and_death() {
+        // FINDING-273: a form takes `c*d*q_min` and returns `q*d`, so the surplus is `d*(q - c*q_min)`. At `c = 1`
+        // and any `q > q_min` it is a large surplus, and above the closure price the form cannot pay at all.
+        // Nothing lies between, which is why three cycles could not stage a competition for scarce matter.
+        //
+        // The test must run on the CLOSED cycle: with a fixed income every price is payable and the claim cannot
+        // be exercised at all - my first version of this test made exactly that mistake.
+        let surplus: f64 = 0.05 * (1.0 - 1.0 * 0.2);
+        assert!((surplus - 0.04).abs() < 1e-12, "surplus at c = 1, q = 1 is {surplus}");
+        assert!(surplus > 3.0 * 0.01, "which is four times the need");
+
+        let base = SkinPopRules {
+            skin: SkinRules {
+                decay: 0.05,
+                q_min: 0.2,
+                repair_cost: 1.0,
+                income: 1.0,
+                maintenance: 0.0,
+            },
+            u_noise: 0.0,
+            u_shift: 0.0,
+            birth_price: 1.5,
+            max_population: 1,
+            demand_growth: None,
+            repair_from_pool: false,
+            local_recycle: false,
+            local_share: 1.0,
+        };
+        let closed = |cost: f64| {
+            let mut r = base;
+            r.skin.repair_cost = cost;
+            let need = r.skin.u_min();
+            run_recycle(
+                r,
+                crate::skin::SkinCycle::new(100.0, 0.0, 1000.0, 100_000.0, 0.0, 1.0),
+                1.0,
+                10.0,
+                need,
+                200_000,
+                1,
+            )
+            .forms
+            .len()
+        };
+        assert_eq!(closed(1.0), 1, "at the closure price the form lives on its own decay");
+        assert_eq!(closed(1.5), 0, "above it the form cannot pay and dies");
+        assert_eq!(closed(0.5), 1, "and below it, of course");
+    }
+
+    #[test]
     fn a_pocket_makes_a_form_self_sufficient_and_empties_the_medium() {
         // FINDING-271: with the pocket the decay returns to the form itself, and since `q*d >= u` for any living
         // form (`q >= q_min`), maintenance becomes free. The medium is then untouched: `spent` stays at zero.
@@ -957,6 +1014,7 @@ mod tests {
             demand_growth: None,
             repair_from_pool: false,
             local_recycle: true,
+            local_share: 1.0,
         };
         let need = base.skin.u_min();
         let mut r = base;
@@ -1007,6 +1065,7 @@ mod tests {
             demand_growth: None,
             repair_from_pool: false,
             local_recycle: false,
+            local_share: 1.0,
         };
         let need = rules.skin.u_min();
         let cycle = crate::skin::SkinCycle::new(200.0, 0.0, 2000.0, 100_000.0, 0.0, 1.0);
@@ -1050,6 +1109,7 @@ mod tests {
             demand_growth: None,
             repair_from_pool: false,
             local_recycle: false,
+            local_share: 1.0,
         };
         let cycle = crate::skin::SkinCycle::new(100.0, 0.0, 1000.0, 100_000.0, 0.0, 1.0);
         let pop = run_recycle(rules, cycle, 1.0, 10.0, 0.01, 8000, 3);
@@ -1078,6 +1138,7 @@ mod tests {
             demand_growth: None,
             repair_from_pool: false,
             local_recycle: false,
+            local_share: 1.0,
         };
         let need = base.skin.u_min();
 

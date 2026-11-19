@@ -38,6 +38,7 @@ fn rules(u_noise: f64) -> SkinPopRules {
         demand_growth: None,
         repair_from_pool: false,
         local_recycle: false,
+        local_share: 1.0,
     }
 }
 

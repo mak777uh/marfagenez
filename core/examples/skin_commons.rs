@@ -36,6 +36,7 @@ fn rules(cost: f64, pool_pays: bool) -> SkinPopRules {
         demand_growth: Some(0.1),
         repair_from_pool: pool_pays,
         local_recycle: false,
+        local_share: 1.0,
     }
 }
 

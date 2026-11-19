@@ -33,6 +33,7 @@ fn rules(cost: f64, need_mode: bool) -> SkinPopRules {
         demand_growth: if need_mode { Some(0.1) } else { None },
         repair_from_pool: false,
         local_recycle: false,
+        local_share: 1.0,
     }
 }
 
