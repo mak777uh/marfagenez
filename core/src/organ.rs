@@ -292,6 +292,33 @@ mod tests {
         assert!(o.core.q > 0.7, "with no link the core should be near its own equilibrium, got {}", o.core.q);
     }
 
+    /// The chain's law: `q_i = (product of the gates in front) * u_i / d`, and a fully repaired part still sits just
+    /// below one, so the deficit compounds with depth.
+    ///
+    /// `FINDING-282` predicted the middle part would fall first; the trajectory of `FINDING-283` showed it is the
+    /// **last** one, the most gated. That test is replaced by the corrected one below.
+    #[test]
+    fn the_last_part_falls_first_and_depth_has_a_limit() {
+        let chain = |n: usize, u_front: f64| {
+            let parts: Vec<Part> = (0..n).map(|_| Part::new(1.0, 0.05, 1.0)).collect();
+            let mut u = vec![u_front; n];
+            u[n - 1] = 2.0 * 0.05 * Q_MIN;
+            run_chain(parts, Q_MIN, &u, 200_000)
+        };
+
+        // the last part is the one that goes
+        let three = chain(3, 0.020);
+        assert!(!three.alive);
+        assert_eq!(three.killed_at, Some(2), "the last part should be the one to fall");
+
+        // depth is nearly free but not free: eight parts live, sixteen do not
+        assert!(chain(8, 0.05).alive, "eight parts should hold with full front repair");
+        assert!(!chain(16, 0.05).alive, "sixteen should not");
+
+        // and with half the front repair, three already dies
+        assert!(!chain(3, 0.025).alive);
+    }
+
     #[test]
     fn the_chain_is_a_cascade_and_the_middle_part_is_the_one_that_fails() {
         // FINDING-282: the multiplication law for the LAST part was not confirmed, and the reason is visible here -
