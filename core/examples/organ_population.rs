@@ -1,10 +1,10 @@
 //! Сходится ли доля штамма при росте популяции? `FINDING-303` показал, что при 200 формах доля A 0.790, а при 2000 —
 //! 0.990. Значит вопрос не в конкретном числе, а в том, **есть ли предел**.
 //!
-//! PREDICTION, before the run (`FINDING-304` §конец, `q = 0.5`, 50 000 шагов, размеры 200 / 1000 / 5000):
-//!   (a) при `inherit = 0.5` и **5000** форм доля A вырастет до **0.85–0.97**: малое преимущество тоже вытесняет;
-//!   (b) доля растёт с размером и при малом `inherit`;
-//!   (c) при каждом размере большее `inherit` даёт **не меньшую** долю.
+//! PREDICTION, before the run (`FINDING-305` §конец, `q = 0.5`, 50 000 шагов, **N = 2000**):
+//!   (a) доля A **растёт** с `inherit` = 0.5 / 0.6 / 0.7 / 0.8 / 0.9 / 1.0;
+//!   (b) рост **не ровный**: где-то есть **крутой участок** (наибольший шаг больше среднего вдвое);
+//!   (c) концы далеки: разница между 0.5 и 1.0 больше 0.3.
 
 use medium_core::organ::aging_mortality;
 use medium_core::Rng;
@@ -67,40 +67,50 @@ fn run(inherit_b: f64, n: usize) -> f64 {
 }
 
 fn main() {
-    println!("{:>8} {:>12} {:>12}", "size", "share (0.5)", "share (1.0)");
+    // the threshold question: how strong must the advantage be before it evicts?
+    println!("{:>9} {:>10}", "inherit", "share A");
     let mut rows = Vec::new();
-    for n in [200usize, 1000, 5000] {
-        let half = run(0.5, n);
-        let full = run(1.0, n);
-        println!("{n:>8} {half:>12.3} {full:>12.3}");
-        rows.push((n, half, full));
+    for inherit in [0.5, 0.6, 0.7, 0.8, 0.9, 1.0] {
+        let share = run(inherit, 2000);
+        println!("{inherit:>9.1} {share:>10.3}");
+        rows.push((inherit, share));
     }
 
     println!();
     let mut bad = 0;
 
-    // (a) a small advantage also evicts once the population is large
-    let half_big = rows[rows.len() - 1].1;
-    let a = half_big > 0.85;
-    println!("  {} (a) at 5000 a mild advantage (0.5) already evicts: {half_big:.3}", if a { "ok   " } else { "WRONG" });
+    // (a) the share rises with the strength of the advantage
+    let a = rows.windows(2).all(|w| w[1].1 >= w[0].1 - 0.02);
+    println!(
+        "  {} (a) the share rises with the strength: {:?}",
+        if a { "ok   " } else { "WRONG" },
+        rows.iter().map(|r| (r.0, (r.1 * 1000.0).round() / 1000.0)).collect::<Vec<_>>()
+    );
     if !a {
         bad += 1;
     }
 
-    // (b) and it grows with the size, as at inherit 1.0
-    let b = rows.windows(2).all(|w| w[1].1 >= w[0].1 - 0.02);
+    // (b) there is a steep step somewhere in the middle, not a uniform rise
+    let steps: Vec<f64> = rows.windows(2).map(|w| w[1].1 - w[0].1).collect();
+    let biggest = steps.iter().cloned().fold(f64::MIN, f64::max);
+    let mean = steps.iter().sum::<f64>() / steps.len() as f64;
+    let b = biggest > 0.25 && biggest > 2.0 * mean.abs();
     println!(
-        "  {} (b) the mild advantage grows with the size: {:?}",
-        if b { "ok   " } else { "WRONG" },
-        rows.iter().map(|r| (r.0, (r.1 * 1000.0).round() / 1000.0)).collect::<Vec<_>>()
+        "  {} (b) the rise is steep at one point: biggest step {biggest:.3}, mean {mean:.3}",
+        if b { "ok   " } else { "WRONG" }
     );
     if !b {
         bad += 1;
     }
 
-    // (c) the bigger advantage still wins more at every size
-    let c = rows.iter().all(|r| r.2 >= r.1);
-    println!("  {} (c) the bigger advantage wins more at every size", if c { "ok   " } else { "WRONG" });
+    // (c) the ends differ a lot
+    let c = rows[rows.len() - 1].1 - rows[0].1 > 0.3;
+    println!(
+        "  {} (c) the ends are far apart: {:.3} against {:.3}",
+        if c { "ok   " } else { "WRONG" },
+        rows[rows.len() - 1].1,
+        rows[0].1
+    );
     if !c {
         bad += 1;
     }
