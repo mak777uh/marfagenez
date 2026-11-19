@@ -110,9 +110,13 @@ impl Skin {
         // the decay happens first: the step is a fall that may be caught, not a catch that may fall
         self.q *= 1.0 - rules.decay;
 
-        if u > 0.0 && self.energy > 0.0 && rules.repair_cost > 0.0 {
+        if u > 0.0 && (self.energy > 0.0 || rules.repair_cost <= 0.0) {
             let missing = (1.0 - self.q).max(0.0);
-            let affordable = self.energy / rules.repair_cost;
+            let affordable = if rules.repair_cost > 0.0 {
+                self.energy / rules.repair_cost
+            } else {
+                f64::INFINITY
+            };
             let done = u.min(missing).min(affordable).max(0.0);
             self.energy = (self.energy - done * rules.repair_cost).max(0.0);
             self.q = (self.q + done).min(1.0);
@@ -214,9 +218,14 @@ impl SkinPop {
         for f in self.forms.iter_mut() {
             f.energy += skin.income - skin.maintenance;
             f.q *= 1.0 - skin.decay;
-            if f.u > 0.0 && f.energy > 0.0 && skin.repair_cost > 0.0 {
+            if f.u > 0.0 && (f.energy > 0.0 || skin.repair_cost <= 0.0) {
                 let missing = (1.0 - f.q).max(0.0);
-                let affordable = f.energy / skin.repair_cost;
+                // a free skin is affordable without limit; only a paid one divides by its price
+                let affordable = if skin.repair_cost > 0.0 {
+                    f.energy / skin.repair_cost
+                } else {
+                    f64::INFINITY
+                };
                 let done = f.u.min(missing).min(affordable).max(0.0);
                 f.energy = (f.energy - done * skin.repair_cost).max(0.0);
                 f.q = (f.q + done).min(1.0);
@@ -376,6 +385,41 @@ mod tests {
             "almost every form should maintain, got {}",
             pop.maintainers()
         );
+    }
+
+    #[test]
+    fn a_free_skin_is_still_needed() {
+        // FINDING-260: the guard `repair_cost > 0.0` once made free repair impossible, so every form died at
+        // the arithmetic step. With that fixed, a free skin keeps everyone alive - and the intensity is still
+        // held at the need `d*q_min`, because a free price does not remove the need.
+        let rules = pop_rules(0.30, 0.003);
+        let free = SkinPopRules {
+            skin: SkinRules { repair_cost: 0.0, ..rules.skin },
+            ..rules
+        };
+        let u_min = free.skin.u_min();
+        let pop = run_pop(free, 1.0, 10.0, 0.0, 3000, 7);
+        assert!(!pop.forms.is_empty(), "a free skin should keep the population alive");
+        assert!(
+            pop.mean_u() >= u_min * 0.9,
+            "even for free, the intensity should stay at the need {u_min}, got {}",
+            pop.mean_u()
+        );
+    }
+
+    #[test]
+    fn the_world_freezes_once_maintainers_fill_it() {
+        // FINDING-260: maintainers do not die of their skin, and income does not depend on how many forms there
+        // are, so once they reach the ceiling nothing turns over and a longer horizon measures nothing.
+        let rules = SkinPopRules {
+            max_population: 5000,
+            birth_price: 1.2,
+            ..pop_rules(0.30, 0.003)
+        };
+        let short = run_pop(rules, 1.0, 10.0, 0.0, 3000, 7);
+        let long = run_pop(rules, 1.0, 10.0, 0.0, 30_000, 7);
+        assert_eq!(short.births, long.births, "the world should have stopped turning over");
+        assert_eq!(short.forms.len(), long.forms.len());
     }
 
     #[test]
