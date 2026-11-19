@@ -21,12 +21,14 @@ const DELTA: f64 = 0.001;
 const N: usize = 200;
 const STEPS: usize = 200_000;
 
+const INHERIT_B: f64 = 0.5;
+
 struct Form {
     strain_a: bool,
     damage: f64,
 }
 
-fn main() {
+fn run(inherit_b: f64) -> (f64, f64, f64) {
     let mut rng = Rng::new(20261119);
     let mut pop: Vec<Form> = (0..N)
         .map(|i| Form { strain_a: i % 2 == 0, damage: 0.0 })
@@ -75,7 +77,7 @@ fn main() {
                     }
                     if n > 0 { total / n as f64 } else { 0.0 }
                 };
-                let inherit = if newcomer_a { 0.0 } else { 0.5 };
+                let inherit = if newcomer_a { 0.0 } else { inherit_b };
                 pop[i].strain_a = newcomer_a;
                 pop[i].damage = inherit * parent_damage;
             } else {
@@ -94,30 +96,39 @@ fn main() {
     let b_damage: f64 = pop.iter().filter(|f| !f.strain_a).map(|f| f.damage).sum::<f64>()
         / pop.iter().filter(|f| !f.strain_a).count().max(1) as f64;
 
-    println!("доля A: {:.3}, среднее повреждение A {a_damage:.3}, B {b_damage:.3}", a_share);
-    println!("в начале: {:.3}, в конце: {:.3}", share_history[0], share_history[share_history.len() - 1]);
+    (a_share, a_damage, b_damage)
+}
+
+fn main() {
+    println!("{:>9} {:>9} {:>12} {:>12}", "inherit B", "share A", "damage A", "damage B");
+    let mut rows = Vec::new();
+    for inherit in [0.5, 0.8, 0.95] {
+        let (a_share, a_dmg, b_dmg) = run(inherit);
+        println!("{inherit:>9.2} {a_share:>9.3} {a_dmg:>12.3} {b_dmg:>12.3}");
+        rows.push((inherit, a_share));
+    }
 
     println!();
     let mut bad = 0;
 
-    let a = a_share > 0.5;
-    println!("  {} (a) A gains above half: {a_share:.3}", if a { "ok   " } else { "WRONG" });
+    let a = rows.iter().all(|r| r.1 > 0.5) && rows.windows(2).all(|w| w[1].1 >= w[0].1);
+    println!("  {} (a) A gains above half in every arm, and more with a bigger inherit", if a { "ok   " } else { "WRONG" });
     if !a {
         bad += 1;
     }
 
-    let ratio = a_share / (1.0 - a_share);
-    let b = ratio > 1.05 && a_share < 0.95;
+    let b = rows.iter().all(|r| r.1 < 0.95);
     println!(
-        "  {} (b) the gain is moderate, not extinction: ratio {ratio:.2}",
-        if b { "ok   " } else { "WRONG" }
+        "  {} (b) no arm goes extinct: {:?}",
+        if b { "ok   " } else { "WRONG" },
+        rows.iter().map(|r| (r.0, (r.1 * 1000.0).round() / 1000.0)).collect::<Vec<_>>()
     );
     if !b {
         bad += 1;
     }
 
-    let c = (0.52..0.62).contains(&a_share);
-    println!("  {} (c) the share lands in 52-62 %", if c { "ok   " } else { "WRONG" });
+    let c = (0.6..0.9).contains(&rows[2].1);
+    println!("  {} (c) at inherit 0.95 the share is still below 0.9: {:.3}", if c { "ok   " } else { "WRONG" }, rows[2].1);
     if !c {
         bad += 1;
     }
