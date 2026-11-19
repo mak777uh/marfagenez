@@ -957,6 +957,51 @@ mod tests {
     }
 
     #[test]
+    fn the_pocket_threshold_is_below_a_full_step() {
+        // FINDING-277: my "exactly one step" was wrong. At `q_min = 0.2` the crossing lies between 0.8 and 0.9 of
+        // the need: 0.8 of it still leaves a small population, 0.9 fills the ceiling. So "one step" is an upper
+        // bound, and the sharp jump is real - smooth growth up to 0.8, then a leap.
+        fn run(cap_fraction: f64) -> usize {
+            let rules = SkinPopRules {
+                skin: SkinRules {
+                    decay: 0.05,
+                    q_min: 0.2,
+                    repair_cost: 1.0,
+                    income: 1.0,
+                    maintenance: 0.0,
+                },
+                u_noise: 0.0,
+                u_shift: 0.0,
+                birth_price: 0.5,
+                max_population: 5000,
+                demand_growth: None,
+                repair_from_pool: false,
+                local_recycle: true,
+                local_share: 1.0,
+                pocket_max: Some(0.010 * cap_fraction),
+            };
+            let need = rules.skin.u_min();
+            let cycle = crate::skin::SkinCycle::new(5.0, 0.0, 5.0, 100_000.0, 0.0, 1.0);
+            let mut pop = run_recycle(rules, cycle, 1.0, 10.0, need, 0, 5);
+            pop.forms.clear();
+            for _ in 0..50 {
+                pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: need, age: 0, pocket: 0.0 });
+                pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: 0.0, age: 0, pocket: 0.0 });
+            }
+            let mut rng = crate::Rng::new(5);
+            for _ in 0..4000 {
+                pop.step(&mut rng);
+            }
+            pop.forms.len()
+        }
+
+        assert_eq!(run(0.5), 1000);
+        assert_eq!(run(0.8), 1950);
+        assert_eq!(run(0.9), 5000, "nine tenths of a step already fills the ceiling");
+        assert_eq!(run(1.0), 5000);
+    }
+
+    #[test]
     fn a_pocket_below_one_step_of_repair_is_worthless() {
         // FINDING-275: the real threshold is not the pocket's size in general but whether it can hold the NEXT
         // repair. Below `u_min` the population falls; at `u_min` and above it reaches the ceiling.
