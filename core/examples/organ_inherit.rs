@@ -50,8 +50,12 @@ fn run(inherit_b: f64) -> (f64, f64, f64) {
             // extinction absorbing, which is a defect of the code, not a result.
             if n > 0 { total / n as f64 } else { 0.0 }
         };
+        // Fitness is judged by what a NEWBORN of the strain would carry, not by the average member: a strain whose
+        // members are old and damaged still enters through a newborn. The first version judged by the mean, which tied
+        // the two strains together and produced a non-monotone row (FINDING-301).
+        let entry_damage = |a: bool| if a { 0.0 } else { inherit_b * mean_damage(false) };
         let life = |a: bool| {
-            let mu = aging_mortality(Q, RATE, P, FLOOR, LAMBDA, mean_damage(a));
+            let mu = aging_mortality(Q, RATE, P, FLOOR, LAMBDA, entry_damage(a));
             1.0 / mu
         };
         let (la, lb) = (life(true), life(false));
