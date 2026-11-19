@@ -19,6 +19,7 @@ const FLOOR: f64 = 0.0002;
 const LAMBDA: f64 = 0.001;
 const DELTA: f64 = 0.001;
 const N: usize = 200;
+const N_BIG: usize = 2000;
 const STEPS: usize = 200_000;
 
 const INHERIT_B: f64 = 0.5;
@@ -29,8 +30,12 @@ struct Form {
 }
 
 fn run(inherit_b: f64) -> (f64, f64, f64) {
+    run_with(inherit_b, N)
+}
+
+fn run_with(inherit_b: f64, n: usize) -> (f64, f64, f64) {
     let mut rng = Rng::new(20261119);
-    let mut pop: Vec<Form> = (0..N)
+    let mut pop: Vec<Form> = (0..n)
         .map(|i| Form { strain_a: i % 2 == 0, damage: 0.0 })
         .collect();
     let mut share_history = Vec::new();
@@ -106,23 +111,20 @@ fn run(inherit_b: f64) -> (f64, f64, f64) {
 }
 
 fn main() {
-    println!("{:>9} {:>9} {:>12} {:>12}", "inherit B", "share A", "damage A", "damage B");
+    println!("{:>9} {:>12} {:>12}", "inherit B", "share A (200)", "share A (2000)");
     let mut rows = Vec::new();
-    for inherit in [1.0, 1.2, 1.5, 2.0, 3.0] {
-        let (a_share, a_dmg, b_dmg) = run(inherit);
-        println!("{inherit:>9.2} {a_share:>9.3} {a_dmg:>12.3} {b_dmg:>12.3}");
-        rows.push((inherit, a_share));
+    for inherit in [1.0, 1.2, 1.5, 2.0] {
+        let (small, _, _) = run_with(inherit, N);
+        let (big, _, _) = run_with(inherit, N_BIG);
+        println!("{inherit:>9.2} {small:>12.3} {big:>12.3}");
+        rows.push((inherit, small, big));
     }
 
     println!();
     let mut bad = 0;
 
-    let a = rows.iter().all(|r| r.1 >= 0.5);
-    println!(
-        "  {} (a) A never loses to B: {:?}",
-        if a { "ok   " } else { "WRONG" },
-        rows.iter().map(|r| (r.0, (r.1 * 1000.0).round() / 1000.0)).collect::<Vec<_>>()
-    );
+    let a = rows.iter().all(|r| r.1 >= 0.5 && r.2 >= 0.5);
+    println!("  {} (a) A never loses to B at either size", if a { "ok   " } else { "WRONG" });
     if !a {
         bad += 1;
     }
@@ -137,9 +139,10 @@ fn main() {
 
     // (c) accumulation through generations: at 1.2 the advantage must grow past what 0.95 gave
     // (c) does a lethal entry end the strain - or does it merely waste places?
-    let lethal = rows[rows.len() - 1].1;
-    let c = lethal > 0.99;
-    println!("  {} (c) with a lethal entry (inherit 3.0) A takes essentially everything: {lethal:.3}", if c { "ok   " } else { "WRONG" });
+    // (c) the row is not stable across population sizes: the specific shares are not quantities
+    let differs = rows.iter().any(|r| (r.1 - r.2).abs() > 0.1);
+    let c = differs;
+    println!("  {} (c) the shares change with the population size, so they are not quantities", if c { "ok   " } else { "WRONG" });
     if !c {
         bad += 1;
     }
