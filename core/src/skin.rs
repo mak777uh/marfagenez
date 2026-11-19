@@ -170,6 +170,8 @@ pub struct SkinForm {
     pub energy: f64,
     /// The inherited repair intensity: how much integrity this lineage tries to add each step.
     pub u: f64,
+    /// Steps lived. A population that dies in two steps cannot be selected on anything.
+    pub age: usize,
 }
 
 /// The population and the record of what it did.
@@ -184,7 +186,7 @@ pub struct SkinPop {
 
 impl SkinPop {
     pub fn new(rules: SkinPopRules, q0: f64, energy: f64, u0: f64) -> Option<Self> {
-        let f = SkinForm { q: q0, energy, u: u0 };
+        let f = SkinForm { q: q0, energy, u: u0, age: 0 };
         Some(Self {
             rules,
             forms: vec![f],
@@ -252,12 +254,198 @@ impl SkinPop {
                 q: parent.q,
                 energy: self.rules.birth_price,
                 u: (parent.u * noise + shift).max(0.0),
+                age: 0,
             };
             self.forms[i].energy -= self.rules.birth_price;
             self.forms.push(child);
             self.births += 1;
         }
     }
+}
+
+/// A medium the forms **share**: matter is taken from one stock, and decay returns it.
+///
+/// `FINDING-260` found the limit of the previous world: income came from nowhere, so maintainers never died and
+/// the population froze. With a stock there are two differences that matter for the elephant:
+///
+/// * **death can come from scarcity** - a form that cannot draw its income starves, whatever its skin;
+/// * **the boundary has a second direction** - what decays off a form goes back into the stock, so the medium is
+///   no longer a pure sink. That is the exchange `GOAL.md` §1a asks about, in its smallest form.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct SkinPool {
+    pub stock: f64,
+    pub stock_max: f64,
+    /// What arrives each step before anyone eats.
+    pub inflow: f64,
+    /// Share of the lost integrity that returns to the medium.
+    pub recovery: f64,
+}
+
+impl SkinPool {
+    pub fn new(stock: f64, stock_max: f64, inflow: f64, recovery: f64) -> Self {
+        Self {
+            stock: stock.clamp(0.0, stock_max),
+            stock_max,
+            inflow,
+            recovery: recovery.clamp(0.0, 1.0),
+        }
+    }
+
+    /// What each form may draw when `n` forms compete for the current stock.
+    pub fn share(&self, n: usize, income: f64) -> f64 {
+        if n == 0 {
+            return income;
+        }
+        let want = income * n as f64;
+        if self.stock >= want {
+            income
+        } else {
+            self.stock / n as f64
+        }
+    }
+}
+
+/// A population drawing on a shared pool.
+#[derive(Debug, Clone, PartialEq)]
+pub struct SkinShared {
+    pub rules: SkinPopRules,
+    pub pool: SkinPool,
+    pub forms: Vec<SkinForm>,
+    pub births: u64,
+    pub deaths: u64,
+    pub steps: usize,
+    /// Total matter handed out, for the record.
+    pub drawn: f64,
+    /// Total matter returned by decay, for the record.
+    pub returned: f64,
+    /// Sum of the ages of everything that died, so the mean age of death can be read.
+    pub age_at_death: u64,
+}
+
+impl SkinShared {
+    pub fn new(rules: SkinPopRules, pool: SkinPool, q0: f64, energy: f64, u0: f64) -> Self {
+        Self {
+            rules,
+            pool,
+            forms: vec![SkinForm { q: q0, energy, u: u0, age: 0 }],
+            births: 0,
+            deaths: 0,
+            steps: 0,
+            drawn: 0.0,
+            returned: 0.0,
+            age_at_death: 0,
+        }
+    }
+
+    pub fn mean_u(&self) -> f64 {
+        if self.forms.is_empty() {
+            return f64::NAN;
+        }
+        self.forms.iter().map(|f| f.u).sum::<f64>() / self.forms.len() as f64
+    }
+
+    pub fn maintainers(&self) -> f64 {
+        if self.forms.is_empty() {
+            return f64::NAN;
+        }
+        let u_min = self.rules.skin.u_min();
+        self.forms.iter().filter(|f| f.u >= u_min).count() as f64 / self.forms.len() as f64
+    }
+
+    /// Mean steps lived by those that died.
+    pub fn mean_lifetime(&self) -> f64 {
+        if self.deaths == 0 {
+            return f64::NAN;
+        }
+        self.age_at_death as f64 / self.deaths as f64
+    }
+
+    pub fn step(&mut self, rng: &mut crate::Rng) {
+        self.steps += 1;
+        let skin = self.rules.skin;
+        self.pool.stock = (self.pool.stock + self.pool.inflow).clamp(0.0, self.pool.stock_max);
+
+        let share = self.pool.share(self.forms.len(), skin.income);
+        let n = self.forms.len() as f64;
+        let take = (share * n).min(self.pool.stock);
+        self.pool.stock = (self.pool.stock - take).max(0.0);
+        self.drawn += take;
+
+        let mut returned = 0.0;
+        for f in self.forms.iter_mut() {
+            f.age += 1;
+            f.energy += share - skin.maintenance;
+            // the decay is a loss to the form and, with recovery, a gain to the medium
+            let lost = f.q * skin.decay;
+            f.q -= lost;
+            returned += lost * self.pool.recovery;
+
+            let affordable = if skin.repair_cost > 0.0 {
+                f.energy / skin.repair_cost
+            } else {
+                f64::INFINITY
+            };
+            if f.u > 0.0 && (f.energy > 0.0 || skin.repair_cost <= 0.0) {
+                let missing = (1.0 - f.q).max(0.0);
+                let done = f.u.min(missing).min(affordable).max(0.0);
+                f.energy = (f.energy - done * skin.repair_cost).max(0.0);
+                f.q = (f.q + done).min(1.0);
+            }
+        }
+        self.pool.stock = (self.pool.stock + returned).clamp(0.0, self.pool.stock_max);
+        self.returned += returned;
+
+        let before = self.forms.len();
+        let dying: usize = self
+            .forms
+            .iter()
+            .filter(|f| !(f.q > skin.q_min && f.energy >= 0.0))
+            .map(|f| f.age)
+            .sum();
+        self.age_at_death += dying as u64;
+        self.forms.retain(|f| f.q > skin.q_min && f.energy >= 0.0);
+        self.deaths += (before - self.forms.len()) as u64;
+
+        let mut parents: Vec<usize> = Vec::new();
+        for (i, f) in self.forms.iter().enumerate() {
+            if f.energy >= self.rules.birth_price {
+                parents.push(i);
+            }
+        }
+        let room = self.rules.max_population.saturating_sub(self.forms.len());
+        for i in parents.into_iter().take(room) {
+            let parent = self.forms[i];
+            let noise = 1.0 + (rng.uniform() - 0.5) * 2.0 * self.rules.u_noise;
+            let shift = (rng.uniform() - 0.5) * 2.0 * self.rules.u_shift;
+            let child = SkinForm {
+                q: parent.q,
+                energy: self.rules.birth_price,
+                u: (parent.u * noise + shift).max(0.0),
+                age: 0,
+            };
+            self.forms[i].energy -= self.rules.birth_price;
+            self.forms.push(child);
+            self.births += 1;
+        }
+    }
+}
+
+/// Runs a shared-medium population for `steps`.
+pub fn run_shared(
+    rules: SkinPopRules,
+    pool: SkinPool,
+    q0: f64,
+    energy: f64,
+    u0: f64,
+    steps: usize,
+    seed: u64,
+) -> SkinShared {
+    let mut pop = SkinShared::new(rules, pool, q0, energy, u0);
+    let mut rng = crate::Rng::new(seed);
+    for _ in 0..steps {
+        pop.step(&mut rng);
+    }
+    pop
 }
 
 /// Runs a population and returns it after `steps`.
@@ -427,6 +615,36 @@ mod tests {
         // surplus 0.05 against a skin cost of 0.10: no intensity both pays the skin and breeds
         let pop = run_pop(pop_rules(0.05, 0.003), 1.0, 10.0, 0.0, 3000, 7);
         assert!(pop.forms.is_empty(), "a medium that cannot pay the skin should have nobody left");
+    }
+
+    fn shared_rules() -> SkinPopRules {
+        pop_rules(0.30, 0.003)
+    }
+
+    #[test]
+    fn a_shared_stock_limits_the_population_before_any_ceiling() {
+        // FINDING-261: with a tight inflow the population stops well below `max_population`, because the stock
+        // cannot feed more forms - something an unshared income could never show.
+        let pool = crate::skin::SkinPool::new(50.0, 500.0, 30.0, 1.0);
+        let mut rules = shared_rules();
+        rules.max_population = 300;
+        let pop = run_shared(rules, pool, 1.0, 10.0, 0.0, 6000, 11);
+        assert!(pop.forms.len() > 0 && pop.forms.len() < 300, "got {} forms", pop.forms.len());
+    }
+
+    #[test]
+    fn decay_returns_matter_to_the_stock() {
+        // the boundary is two-way: what falls off a form goes back into the medium
+        let pool = crate::skin::SkinPool::new(50.0, 500.0, 600.0, 1.0);
+        let pop = run_shared(shared_rules(), pool, 1.0, 10.0, 0.0, 500, 11);
+        assert!(pop.returned > 0.0, "decay should return something");
+        assert!(pop.drawn > 0.0, "forms should draw something");
+        assert!(
+            pop.returned < pop.drawn,
+            "the return is a fraction of what is taken: {} vs {}",
+            pop.returned,
+            pop.drawn
+        );
     }
 
     #[test]
