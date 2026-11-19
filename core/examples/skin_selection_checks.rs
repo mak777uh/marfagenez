@@ -34,6 +34,8 @@ fn rules(surplus: f64, repair_cost: f64, u_shift: f64) -> SkinPopRules {
         u_shift,
         birth_price: 1.5,
         max_population: 300,
+        demand_growth: None,
+        repair_from_pool: false,
     }
 }
 

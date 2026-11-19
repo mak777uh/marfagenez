@@ -161,6 +161,17 @@ pub struct SkinPopRules {
     /// Energy needed before a form may divide.
     pub birth_price: f64,
     pub max_population: usize,
+    /// When set, a form asks the medium for **what it needs** - maintenance, the price of its own repair, and
+    /// this much extra for breeding - instead of for the fixed `income`. `FINDING-265` found that the fixed
+    /// figure is a ceiling of my own making: a richer pool could never give a form more than that.
+    ///
+    /// **This mode rewards asking for more**: a form with a higher intensity asks for a bigger ration, so the
+    /// intensity inflates (`FINDING-266`). Use it only to show that effect.
+    pub demand_growth: Option<f64>,
+    /// The pool pays for repair **directly**: a form receives `maintenance + margin` as energy, and its repair is
+    /// drawn from the stock at `repair_cost * u`, in the same proportion. A form can no longer turn an inflated
+    /// need into extra energy - but it can still spend the commons for its own survival.
+    pub repair_from_pool: bool,
 }
 
 /// One form in the population.
@@ -365,16 +376,50 @@ impl SkinShared {
         let skin = self.rules.skin;
         self.pool.stock = (self.pool.stock + self.pool.inflow).clamp(0.0, self.pool.stock_max);
 
-        let share = self.pool.share(self.forms.len(), skin.income);
-        let n = self.forms.len() as f64;
-        let take = (share * n).min(self.pool.stock);
+        // What each form asks for, in three accountings (`FINDING-265`, `FINDING-266`):
+        //
+        //   fixed          every form asks for `income` - a ceiling of the modeller's making;
+        //   demand_growth  a form asks for maintenance + price of its own repair + margin, which *rewards asking
+        //                  for more*: the intensity inflates because a bigger ask buys a bigger ration;
+        //   repair_from_pool  a form asks only for maintenance + margin and the pool pays for repair directly,
+        //                  so an inflated intensity buys no extra energy - it only spends the commons.
+        let demands: Vec<f64> = self
+            .forms
+            .iter()
+            .map(|f| {
+                if self.rules.repair_from_pool {
+                    skin.maintenance + self.rules.demand_growth.unwrap_or(0.0)
+                        + skin.repair_cost * f.u
+                } else {
+                    match self.rules.demand_growth {
+                        Some(g) => skin.maintenance + skin.repair_cost * f.u + g,
+                        None => skin.income,
+                    }
+                }
+            })
+            .collect();
+        let total_demand: f64 = demands.iter().sum();
+        // ration proportionally when the stock cannot cover everyone
+        let ration = if total_demand > 0.0 {
+            (self.pool.stock / total_demand).min(1.0)
+        } else {
+            0.0
+        };
+        let take = (total_demand * ration).min(self.pool.stock);
         self.pool.stock = (self.pool.stock - take).max(0.0);
         self.drawn += take;
 
         let mut returned = 0.0;
-        for f in self.forms.iter_mut() {
+        for (f, demand) in self.forms.iter_mut().zip(demands.iter()) {
+            let share = demand * ration;
             f.age += 1;
-            f.energy += share - skin.maintenance;
+            let energy_in = if self.rules.repair_from_pool {
+                // the repair part of the ration is matter delivered to the repair, not income to hoard
+                share - skin.repair_cost * f.u * ration
+            } else {
+                share
+            };
+            f.energy += energy_in - skin.maintenance;
             // the decay is a loss to the form and, with recovery, a gain to the medium
             let lost = f.q * skin.decay;
             f.q -= lost;
@@ -546,6 +591,8 @@ mod tests {
             u_shift,
             birth_price: 1.5,
             max_population: 300,
+            demand_growth: None,
+            repair_from_pool: false,
         }
     }
 

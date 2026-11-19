@@ -31,6 +31,8 @@ fn rules(noise: f64) -> SkinPopRules {
         u_shift: 0.003,
         birth_price: 1.5,
         max_population: 300,
+        demand_growth: None,
+        repair_from_pool: false,
     }
 }
 
