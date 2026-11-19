@@ -7,8 +7,8 @@
 //! PREDICTION, before the run (`q_min` не участвует в смерти; `mu = floor + rate*(1-q)^p_exponent + lambda*damage`,
 //! доход 0.04, N = 400 сидов на точку, горизонт 5000 шагов):
 //!   (a) **без засух** (p = 0) выгоднее всего тратить всё на починку: `alpha = 1` даёт наибольшую долю выживших;
-//!   (b) максимум окажется **внутри** свипа (0.60…0.85), а не на краю, и кривая будет **плоской**: разброс меньше
-//!       10 % от максимума;
+//!   (b) полоса **исчезнет**, как только засуха станет **редкой и короткой** (`p = 0.001`, `k = 50`): оптимум уйдёт
+//!       на `alpha = 1`, а разброс вырастет выше 30 %;
 //!   (c) значит `alpha` оптимальное **зависит от режима** — то есть у формы есть **выбор**, а не один рецепт.
 //!
 //! Если оптимум не сдвинется, потолок «излишек» не снимается: запас не даёт выбора, а только страховку.
@@ -96,44 +96,56 @@ fn best(regime: &str, drought_p: f64, drought_len: usize) -> (f64, f64) {
 }
 
 fn main() {
-    // Is the optimum a PEAK or a PLATEAU? Sweep finely under the lethal drought.
-    println!("смертельная засуха (p = 0.02, k = 400), свип 0.05:");
-    let mut rows: Vec<(f64, f64)> = Vec::new();
-    for alpha in [0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90] {
-        let life = survival(alpha, 0.02, 400);
-        println!("  alpha {alpha:>4.2}: средняя жизнь {life:>7.1}");
-        rows.push((alpha, life));
+    // Does the band come from the drought being lethal, or is it a property of the metric?
+    // PREDICTION: with RARE and SHORT droughts the band must vanish and alpha = 1 must win by a lot.
+    let regimes = [
+        ("без засух", 0.0, 0),
+        ("смертельная (p = 0.02, k = 400)", 0.02, 400),
+        ("редкая и короткая (p = 0.001, k = 50)", 0.001, 50),
+    ];
+    let mut summary = Vec::new();
+    for (name, p_drought, len) in regimes {
+        let mut rows = Vec::new();
+        for alpha in [0.0, 0.25, 0.5, 0.75, 1.0] {
+            rows.push((alpha, survival(alpha, p_drought, len)));
+        }
+        let best = rows.iter().cloned().fold((0.0, f64::MIN), |a, b| if b.1 > a.1 { b } else { a });
+        let worst = rows.iter().cloned().fold((0.0, f64::MAX), |a, b| if b.1 < a.1 { b } else { a });
+        let spread = (best.1 - worst.1) / best.1;
+        println!("{name}:");
+        for (alpha, life) in &rows {
+            println!("  alpha {alpha:>4.2}: {life:>7.1}");
+        }
+        println!("  вершина {:.2}, разброс {:.0} %", best.0, spread * 100.0);
+        summary.push((name, best.0, spread));
     }
 
     println!();
     let mut bad = 0;
 
-    let best = rows.iter().cloned().fold((0.0, f64::MIN), |a, b| if b.1 > a.1 { b } else { a });
-    let worst = rows.iter().cloned().fold((0.0, f64::MAX), |a, b| if b.1 < a.1 { b } else { a });
-    let spread = (best.1 - worst.1) / best.1;
-
-    // (a) the best value is interior, not at either end of the sweep
-    let a = rows[0].0 < best.0 && best.0 < rows[rows.len() - 1].0;
-    println!("  {} (a) оптимум внутри: alpha = {:.2} при жизни {:.1}", if a { "ok   " } else { "WRONG" }, best.0, best.1);
+    // (a) the lethal regime is the flattest
+    let a = summary[1].2 < summary[0].2 && summary[1].2 < summary[2].2;
+    println!(
+        "  {} (a) полоса только у смертельной засухи: разбросы {:.0} % / {:.0} % / {:.0} %",
+        if a { "ok   " } else { "WRONG" },
+        summary[0].2 * 100.0,
+        summary[1].2 * 100.0,
+        summary[2].2 * 100.0
+    );
     if !a {
         bad += 1;
     }
 
-    // (b) the curve is flat: the spread across the whole sweep is under 10 %
-    let b = spread < 0.10;
-    println!("  {} (b) кривая плоская: разброс {:.1} % от максимума", if b { "ok   " } else { "WRONG" }, spread * 100.0);
+    // (b) with a rare short drought the optimum goes back to spending everything
+    let b = summary[2].1 > 0.9;
+    println!("  {} (b) при редкой засухе вершина снова на alpha = 1 ({:.2})", if b { "ok   " } else { "WRONG" }, summary[2].1);
     if !b {
         bad += 1;
     }
 
-    // (c) and it is flat near the top: every alpha from 0.6 to 0.85 is within 5 % of the best
-    let near: Vec<f64> = rows.iter().filter(|r| r.0 >= 0.6 - 1e-9 && r.0 <= 0.85 + 1e-9).map(|r| r.1).collect();
-    let c = near.iter().all(|v| (best.1 - v) / best.1 < 0.05);
-    println!(
-        "  {} (c) от 0.60 до 0.85 всё в пределах 5 %: {:?}",
-        if c { "ok   " } else { "WRONG" },
-        near.iter().map(|v| (v * 10.0).round() / 10.0).collect::<Vec<_>>()
-    );
+    // (c) and that regime is sharp, not flat
+    let c = summary[2].2 > 0.3;
+    println!("  {} (c) и выбор там острый: разброс {:.0} %", if c { "ok   " } else { "WRONG" }, summary[2].2 * 100.0);
     if !c {
         bad += 1;
     }
