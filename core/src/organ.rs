@@ -54,6 +54,12 @@ impl Part {
         let done = (u * gate).min(missing).min(affordable).max(0.0);
         *energy = (*energy - done * self.cost).max(0.0);
         self.q = (self.q + done).min(1.0);
+        // A repair that covers the whole deficit makes the part WHOLE, not merely close to whole. Without this clamp a
+        // rounding residue survives, and because the gate is a product along the chain the residue compounds: a
+        // sixteen-part chain then starves its last part although every part in front reads 1.0000 (FINDING-285).
+        if self.q >= 1.0 - 1e-12 {
+            self.q = 1.0;
+        }
         done
     }
 }
@@ -142,10 +148,14 @@ pub struct Chain {
     pub steps: usize,
     /// Index of the first part that fell below the threshold.
     pub killed_at: Option<usize>,
+    /// The gate actually applied to each part on the last step. FINDING-285 could not explain why a sixteen-part
+    /// chain starves its last part while the parts in front read exactly one, so the gate itself is recorded.
+    pub last_gates: Vec<f64>,
 }
 
 impl Chain {
     pub fn new(parts: Vec<Part>, q_min: f64, energy: f64) -> Self {
+        let n = parts.len();
         Self {
             parts,
             q_min,
@@ -156,6 +166,7 @@ impl Chain {
             alive: true,
             steps: 0,
             killed_at: None,
+            last_gates: vec![1.0; n],
         }
     }
 
@@ -172,6 +183,7 @@ impl Chain {
         // number and would collapse the product at the first link.
         let mut gate = 1.0_f64;
         for i in 0..self.parts.len() {
+            self.last_gates[i] = gate;
             self.parts[i].step(u[i], gate, &mut self.energy);
             gate *= self.parts[i].q.powf(self.link_power.max(0.0)).min(1.0);
         }
