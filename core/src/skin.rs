@@ -946,6 +946,51 @@ mod tests {
     }
 
     #[test]
+    fn capping_the_medium_makes_the_local_share_matter() {
+        // FINDING-274: with the ceiling on the POPULATION every share gives the same population; with the ceiling
+        // on the MATTER the share decides, because a pocket is matter the cap cannot hold. The relation is not
+        // monotone - 550 at 0.2, 450 at 0.4, 1200 at 0.6 - and it is deterministic, since mutation is off.
+        fn run(share: f64) -> usize {
+            let rules = SkinPopRules {
+                skin: SkinRules {
+                    decay: 0.05,
+                    q_min: 0.2,
+                    repair_cost: 1.0,
+                    income: 1.0,
+                    maintenance: 0.0,
+                },
+                u_noise: 0.0,
+                u_shift: 0.0,
+                birth_price: 0.5,
+                max_population: 5000,
+                demand_growth: None,
+                repair_from_pool: false,
+                local_recycle: true,
+                local_share: share,
+            };
+            let need = rules.skin.u_min();
+            let cycle = crate::skin::SkinCycle::new(5.0, 0.0, 5.0, 100_000.0, 0.0, 1.0);
+            let mut pop = run_recycle(rules, cycle, 1.0, 10.0, need, 0, 5);
+            pop.forms.clear();
+            for _ in 0..50 {
+                pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: need, age: 0, pocket: 0.0 });
+                pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: 0.0, age: 0, pocket: 0.0 });
+            }
+            let mut rng = crate::Rng::new(5);
+            for _ in 0..4000 {
+                pop.step(&mut rng);
+            }
+            pop.forms.len()
+        }
+
+        let a = run(0.2);
+        let b = run(0.4);
+        let c = run(0.6);
+        assert_eq!((a, b, c), (550, 450, 1200), "the deterministic values from FINDING-274");
+        assert!(c > a, "a large local share supports more forms than a small one");
+    }
+
+    #[test]
     fn there_is_no_tight_regime_between_plenty_and_death() {
         // FINDING-273: a form takes `c*d*q_min` and returns `q*d`, so the surplus is `d*(q - c*q_min)`. At `c = 1`
         // and any `q > q_min` it is a large surplus, and above the closure price the form cannot pay at all.
