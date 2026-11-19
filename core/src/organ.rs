@@ -64,6 +64,9 @@ pub struct Organism {
     pub skin: Part,
     pub core: Part,
     pub q_min: f64,
+    /// How sharply the skin's failure chokes the core: the gate is `min(1, (q_skin / q_min)^link_power)`.
+    /// `1.0` is the relation of `FINDING-279`; smaller is a softer link, larger a harsher one.
+    pub link_power: f64,
     pub energy: f64,
     pub alive: bool,
     pub steps: usize,
@@ -83,6 +86,7 @@ impl Organism {
             skin,
             core,
             q_min,
+            link_power: 1.0,
             energy,
             alive: true,
             steps: 0,
@@ -99,7 +103,10 @@ impl Organism {
         self.energy += income - maintenance;
 
         // the skin is what holds the inside: while it is below the threshold the core cannot be maintained
-        let gate = (self.skin.q / self.q_min).min(1.0);
+        // The gate must be able to bite while the form is ALIVE. `(q_skin/q_min)^k` is >= 1 for every living form, so
+        // that version was inert: min(1, ...) stayed 1 and the link never did anything. Using the skin's own value,
+        // `q_skin^k`, the gate falls as the skin sags - which is what a boundary holding its inside means.
+        let gate = self.skin.q.powf(self.link_power.max(0.0)).min(1.0);
         self.skin.step(u_skin, 1.0, &mut self.energy);
         self.core.step(u_core, gate, &mut self.energy);
 
@@ -142,90 +149,79 @@ mod tests {
     use super::*;
 
     fn parts() -> (Part, Part) {
-        (Part::new(1.0, 0.05, 1.0), Part::new(1.0, 0.02, 2.0))
+        (Part::new(1.0, 0.02, 1.0), Part::new(1.0, 0.05, 2.0))
+    }
+
+    const Q_MIN: f64 = 0.2;
+
+    fn u_core_of(need: f64) -> f64 {
+        4.0 * need
     }
 
     #[test]
-    fn repairing_both_survives_longest() {
+    fn repairing_both_at_the_need_still_dies() {
+        // FINDING-281: the boundary held at its own minimum is BEFORE its own death but below what the inside needs,
+        // so the gate chokes the core. "Merely not dead" is not enough for a boundary that has an inside to hold.
         let (skin, core) = parts();
-        let u_min_skin = 0.05 * 0.2;
-        let u_min_core = 0.02 * 0.2;
-        let both = run(skin, core, 0.2, 10.0, 1.0, 0.5, u_min_skin, u_min_core, 200_000);
-        assert!(both.alive, "repairing both should live");
+        let u_skin = skin.need(Q_MIN);
+        let u_core = u_core_of(core.need(Q_MIN));
+        let o = run(skin, core, Q_MIN, 10.0, 1.0, 0.5, u_skin, u_core, 200_000);
+        assert!(!o.alive, "a skin at its bare minimum cannot support the inside");
     }
 
     #[test]
-    fn repairing_only_the_core_dies_when_the_skin_goes() {
-        // the link: a skinless form cannot maintain its inside, however much it spends there
+    fn the_boundary_must_be_held_above_its_own_need() {
+        // the critical repair is the larger of two conditions: the skin must stay alive, and the core must be fed
+        // through the gate. Here the second binds: d_s * need_core / u_core.
         let (skin, core) = parts();
-        let only_core = run(skin, core, 0.2, 10.0, 1.0, 0.5, 0.0, 0.02 * 0.2, 200_000);
-        assert!(!only_core.alive);
-        assert_eq!(only_core.killed_by, Some(PartName::Skin), "the skin should be what fails first");
+        let u_core = u_core_of(core.need(Q_MIN));
+        let crit = skin.decay * core.need(Q_MIN) / u_core;
+        let floor = skin.need(Q_MIN);
+        assert!(crit > floor, "the core's demand {crit} should exceed the skin's own floor {floor}");
+        let below = run(skin, core, Q_MIN, 10.0, 1.0, 0.5, crit * 0.9, u_core, 200_000);
+        let above = run(skin, core, Q_MIN, 10.0, 1.0, 0.5, crit * 1.1, u_core, 200_000);
+        assert!(!below.alive, "below the critical repair it should die");
+        assert!(above.alive, "and above it live");
     }
 
     #[test]
-    fn repairing_only_the_skin_lives_longer_than_repairing_only_the_core() {
+    fn the_price_of_the_boundary_falls_with_the_inside_demand() {
+        // doubling what is spent on the inside halves what the boundary must be held at - until the boundary's own
+        // floor takes over, and then it stops falling
         let (skin, core) = parts();
-        let only_core = run(skin, core, 0.2, 10.0, 1.0, 0.5, 0.0, 0.02 * 0.2, 200_000);
-        let only_skin = run(skin, core, 0.2, 10.0, 1.0, 0.5, 0.05 * 0.2, 0.0, 200_000);
-        assert!(
-            only_skin.steps > only_core.steps,
-            "skin only {} vs core only {}",
-            only_skin.steps,
-            only_core.steps
-        );
+        let demand = |u_core: f64| skin.decay * core.need(Q_MIN) / u_core;
+        assert!((demand(2.0 * core.need(Q_MIN)) / demand(4.0 * core.need(Q_MIN)) - 2.0).abs() < 1e-12);
+        let floor = skin.need(Q_MIN);
+        assert!(floor > demand(8.0 * core.need(Q_MIN)), "at eight times the inside need the floor binds");
+        assert!(floor <= demand(2.0 * core.need(Q_MIN)), "and at twice it does not");
     }
 
     #[test]
-    fn swapping_the_decay_rates_swaps_the_order_but_not_the_link() {
-        // FINDING-280: the ORDER is set by the decay rates and reverses with them. The LINK is independent: at the
-        // moment the skin dies, the core has already sagged towards its own threshold, even though it was being
-        // repaired every step.
-        let skin = Part::new(1.0, 0.02, 1.0);
-        let core = Part::new(1.0, 0.05, 2.0);
-        let q_min = 0.2;
-        let only_core = run(skin, core, q_min, 10.0, 1.0, 0.5, 0.0, 0.05 * q_min, 200_000);
-        let only_skin = run(skin, core, q_min, 10.0, 1.0, 0.5, 0.02 * q_min, 0.0, 200_000);
-        assert_eq!(only_core.steps, 80, "the slow part sets the lifetime");
-        assert_eq!(only_skin.steps, 32, "and the fast part sets the other one");
-        assert!(only_core.steps > only_skin.steps, "the order reversed");
-
-        let mut o = Organism::new(skin, core, q_min, 10.0);
-        let mut core_at_skin_death = None;
+    fn a_broken_link_lets_the_inside_be_kept() {
+        // the control: with k = 0 the gate is 1 whatever the skin does, so a form that feeds only its core keeps
+        // the core whole while its skin falls - the contrast is the link and not the decay
+        let (skin, core) = parts();
+        let mut o = Organism::new(skin, core, Q_MIN, 10.0);
+        o.link_power = 0.0;
+        let u_core = u_core_of(core.need(Q_MIN));
         for _ in 0..200_000 {
-            if !o.step(0.0, 0.05 * q_min, 1.0, 0.5) {
-                core_at_skin_death = Some(o.core.q);
+            if !o.step(0.0, u_core, 1.0, 0.5) {
                 break;
             }
         }
-        let q = core_at_skin_death.expect("it should die");
-        assert!(q < 0.3 && q > q_min, "the core should be sagging towards its threshold, got {q}");
+        assert!(!o.alive);
+        assert_eq!(o.killed_by, Some(PartName::Skin));
+        assert!(o.core.q > 0.7, "with no link the core should be near its own equilibrium, got {}", o.core.q);
     }
 
     #[test]
-    fn without_the_link_the_core_outlives_the_skin() {
-        // the control: if the core is not gated, spending on it keeps it whole while the skin falls - so the
-        // contrast in the test above is caused by the link and not by the decay rates
-        let (skin, mut core) = parts();
-        core.decay = 0.02;
-        let mut o = Organism::new(skin, core, 0.2, 10.0);
-        for _ in 0..200_000 {
-            // gate forced to 1: no link
-            o.energy += 1.0 - 0.5;
-            o.skin.step(0.0, 1.0, &mut o.energy);
-            o.core.step(0.02 * 0.2, 1.0, &mut o.energy);
-            if o.skin.q <= 0.2 {
-                o.alive = false;
-                o.killed_by = Some(PartName::Skin);
-                break;
-            }
-            if o.core.q <= 0.2 {
-                o.alive = false;
-                o.killed_by = Some(PartName::Core);
-                break;
-            }
-        }
-        assert_eq!(o.killed_by, Some(PartName::Skin), "the skin still goes first here, by decay alone");
-        assert!(o.core.q > 0.2, "but the core stays whole: the gate is what kills it, not its own decay");
+    fn each_part_dies_by_its_own_law_when_it_is_the_one_neglected() {
+        // the law of FINDING-258 holds per part: ln(q_min)/ln(1-d) rounded up
+        let bare = |d: f64| ((Q_MIN as f64).ln() / (1.0 - d).ln()).floor() as usize + 1;
+        let (skin, core) = parts();
+        // skin left bare: it dies at its own law whatever is spent on the core... unless the core is already dead
+        let o = run(skin, core, Q_MIN, 10.0, 1.0, 0.5, 0.0, 0.0, 200_000);
+        assert!(!o.alive);
+        assert!(o.steps <= bare(skin.decay) + 1, "the skin should go near its own low bound");
     }
 }
