@@ -493,6 +493,183 @@ pub fn run_shared(
     pop
 }
 
+/// A medium with **two** kinds of matter: what a form can use, and what it has already used.
+///
+/// `GOAL.md` §1 asks for the third thing this project never had: a form that **takes part in shaping the
+/// conditions of its own further existence**. Here that is one mechanism, not a metaphor:
+///
+/// ```text
+/// ready            what a form can draw
+/// spent            what a form's decay returns - not usable as it stands
+/// conversion rate  how fast the medium turns spent back into ready
+/// ```
+///
+/// A form that keeps more integrity alive holds more matter in circulation, and therefore **loses more of it to
+/// decay** every step. So maintaining yourself loads the medium - and if the medium cannot recycle fast enough,
+/// the load is the form's own future supply.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct SkinCycle {
+    pub ready: f64,
+    pub spent: f64,
+    pub ready_max: f64,
+    pub spent_max: f64,
+    /// What arrives each step from outside.
+    pub inflow: f64,
+    /// Fraction of `spent` turned back into `ready` each step.
+    pub conversion: f64,
+}
+
+impl SkinCycle {
+    pub fn new(ready: f64, spent: f64, ready_max: f64, spent_max: f64, inflow: f64, conversion: f64) -> Self {
+        Self {
+            ready: ready.clamp(0.0, ready_max),
+            spent: spent.clamp(0.0, spent_max),
+            ready_max,
+            spent_max,
+            inflow,
+            conversion: conversion.clamp(0.0, 1.0),
+        }
+    }
+
+    pub fn ration(&self, demand: f64, n: usize) -> f64 {
+        let total = demand * n as f64;
+        if total <= 0.0 {
+            return 1.0;
+        }
+        (self.ready / total).min(1.0)
+    }
+}
+
+/// A population on a medium that recycles.
+#[derive(Debug, Clone, PartialEq)]
+pub struct SkinRecycle {
+    pub rules: SkinPopRules,
+    pub cycle: SkinCycle,
+    pub forms: Vec<SkinForm>,
+    pub births: u64,
+    pub deaths: u64,
+    pub steps: usize,
+    pub returned: f64,
+    pub drawn: f64,
+}
+
+impl SkinRecycle {
+    pub fn new(rules: SkinPopRules, cycle: SkinCycle, q0: f64, energy: f64, u0: f64) -> Self {
+        Self {
+            rules,
+            cycle,
+            forms: vec![SkinForm { q: q0, energy, u: u0, age: 0 }],
+            births: 0,
+            deaths: 0,
+            steps: 0,
+            returned: 0.0,
+            drawn: 0.0,
+        }
+    }
+
+    pub fn mean_u(&self) -> f64 {
+        if self.forms.is_empty() {
+            return f64::NAN;
+        }
+        self.forms.iter().map(|f| f.u).sum::<f64>() / self.forms.len() as f64
+    }
+
+    pub fn maintainers(&self) -> f64 {
+        if self.forms.is_empty() {
+            return f64::NAN;
+        }
+        let u_min = self.rules.skin.u_min();
+        self.forms.iter().filter(|f| f.u >= u_min).count() as f64 / self.forms.len() as f64
+    }
+
+    pub fn step(&mut self, rng: &mut crate::Rng) {
+        self.steps += 1;
+        let skin = self.rules.skin;
+
+        self.cycle.ready = (self.cycle.ready + self.cycle.inflow).clamp(0.0, self.cycle.ready_max);
+        let recycled = (self.cycle.spent * self.cycle.conversion).min(self.cycle.spent);
+        self.cycle.spent -= recycled;
+        self.cycle.ready = (self.cycle.ready + recycled).clamp(0.0, self.cycle.ready_max);
+
+        let n = self.forms.len();
+        let demand = skin.maintenance + 0.1;
+        let ration = self.cycle.ration(demand, n);
+        let share = demand * ration;
+
+        let mut returned = 0.0;
+        for f in self.forms.iter_mut() {
+            f.age += 1;
+            f.energy += share - skin.maintenance;
+
+            let lost = f.q * skin.decay;
+            f.q -= lost;
+            returned += lost;
+
+            let affordable = if skin.repair_cost > 0.0 {
+                f.energy / skin.repair_cost
+            } else {
+                f64::INFINITY
+            };
+            if f.u > 0.0 && (f.energy > 0.0 || skin.repair_cost <= 0.0) {
+                let missing = (1.0 - f.q).max(0.0);
+                let done = f.u.min(missing).min(affordable).max(0.0);
+                f.energy = (f.energy - done * skin.repair_cost).max(0.0);
+                f.q = (f.q + done).min(1.0);
+            }
+        }
+        let taken = (share * n as f64).min(self.cycle.ready);
+        self.cycle.ready = (self.cycle.ready - taken).max(0.0);
+        self.drawn += taken;
+
+        self.cycle.spent = (self.cycle.spent + returned).min(self.cycle.spent_max);
+        self.returned += returned;
+
+        let before = self.forms.len();
+        self.forms.retain(|f| f.q > skin.q_min && f.energy >= 0.0);
+        self.deaths += (before - self.forms.len()) as u64;
+
+        let mut parents: Vec<usize> = Vec::new();
+        for (i, f) in self.forms.iter().enumerate() {
+            if f.energy >= self.rules.birth_price {
+                parents.push(i);
+            }
+        }
+        let room = self.rules.max_population.saturating_sub(self.forms.len());
+        for i in parents.into_iter().take(room) {
+            let parent = self.forms[i];
+            let noise = 1.0 + (rng.uniform() - 0.5) * 2.0 * self.rules.u_noise;
+            let shift = (rng.uniform() - 0.5) * 2.0 * self.rules.u_shift;
+            let child = SkinForm {
+                q: parent.q,
+                energy: self.rules.birth_price,
+                u: (parent.u * noise + shift).max(0.0),
+                age: 0,
+            };
+            self.forms[i].energy -= self.rules.birth_price;
+            self.forms.push(child);
+            self.births += 1;
+        }
+    }
+}
+
+/// Runs a recycling population for `steps`.
+pub fn run_recycle(
+    rules: SkinPopRules,
+    cycle: SkinCycle,
+    q0: f64,
+    energy: f64,
+    u0: f64,
+    steps: usize,
+    seed: u64,
+) -> SkinRecycle {
+    let mut pop = SkinRecycle::new(rules, cycle, q0, energy, u0);
+    let mut rng = crate::Rng::new(seed);
+    for _ in 0..steps {
+        pop.step(&mut rng);
+    }
+    pop
+}
+
 /// Runs a population and returns it after `steps`.
 pub fn run_pop(rules: SkinPopRules, q0: f64, energy: f64, u0: f64, steps: usize, seed: u64) -> SkinPop {
     let mut pop = SkinPop::new(rules, q0, energy, u0).expect("valid start");
@@ -735,6 +912,74 @@ mod tests {
             pop.returned,
             pop.drawn
         );
+    }
+
+    #[test]
+    fn a_closed_cycle_is_possible_and_the_criterion_is_the_price() {
+        // FINDING-268: with perfect recycling and NO external inflow, a form lives only if what it takes does not
+        // exceed what its decay returns. At the need, `q` settles at `q_min`, so the criterion is
+        // `c*q_min <= q_min`, i.e. `c <= 1`. Speed of recycling does not matter; the price does.
+        let base = SkinPopRules {
+            skin: SkinRules {
+                decay: 0.05,
+                q_min: 0.2,
+                repair_cost: 1.0,
+                income: 1.0,
+                maintenance: 0.0,
+            },
+            u_noise: 0.0,
+            u_shift: 0.0,
+            birth_price: 1.5,
+            max_population: 1,
+            demand_growth: None,
+            repair_from_pool: false,
+        };
+        let need = base.skin.u_min();
+
+        let closed = run_recycle(
+            base,
+            crate::skin::SkinCycle::new(100.0, 0.0, 1000.0, 100_000.0, 0.0, 1.0),
+            1.0,
+            10.0,
+            need,
+            200_000,
+            1,
+        );
+        assert_eq!(closed.forms.len(), 1, "a cheap skin should close the cycle");
+
+        let mut dear = base;
+        dear.skin.repair_cost = 2.0;
+        let open = run_recycle(
+            dear,
+            crate::skin::SkinCycle::new(100.0, 0.0, 1000.0, 100_000.0, 0.0, 1.0),
+            1.0,
+            10.0,
+            dear.skin.u_min(),
+            200_000,
+            1,
+        );
+        assert!(open.forms.is_empty(), "a dear skin should not close it, whatever the recycling");
+
+        // and the recycling speed is not what decides
+        let slow = run_recycle(
+            base,
+            crate::skin::SkinCycle::new(100.0, 0.0, 1000.0, 100_000.0, 0.0, 0.05),
+            1.0,
+            10.0,
+            need,
+            200_000,
+            1,
+        );
+        let fast = run_recycle(
+            base,
+            crate::skin::SkinCycle::new(100.0, 0.0, 1000.0, 100_000.0, 0.0, 1.0),
+            1.0,
+            10.0,
+            need,
+            200_000,
+            1,
+        );
+        assert_eq!(slow.forms.len(), fast.forms.len(), "the conversion rate should not decide");
     }
 
     #[test]
