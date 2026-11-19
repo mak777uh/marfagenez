@@ -652,6 +652,19 @@ mod tests {
     }
 
     #[test]
+    fn the_share_is_capped_by_income_so_a_richer_pool_gives_nothing_more() {
+        // FINDING-265: `share = min(income, stock / n)`. With a large stock each form still draws only
+        // `income`, so making the medium richer cannot give a form more matter - it only lets more forms live.
+        // This is my decision, not a property of a medium, and the control that exposed it was silent.
+        let poor = crate::skin::SkinPool::new(50.0, 500.0, 30.0, 1.0);
+        let rich = crate::skin::SkinPool::new(500.0, 5000.0, 3000.0, 1.0);
+        assert_eq!(poor.share(10, 1.0), 1.0);
+        assert_eq!(rich.share(10, 1.0), 1.0);
+        // only when the stock is short does the pool bind
+        assert!(poor.share(100, 1.0) < 1.0 || poor.stock < 100.0);
+    }
+
+    #[test]
     fn a_shared_stock_limits_the_population_before_any_ceiling() {
         // FINDING-261: with a tight inflow the population stops well below `max_population`, because the stock
         // cannot feed more forms - something an unshared income could never show.
