@@ -200,6 +200,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `cargo test --release` | 357 тестов Rust |
 | `lake build` | 317 теорем в 63 файлах с теоремами (64 `.lean` всего: один — FFI без теорем) |
 | `checks/contract.py` | каждый результат по контракту: `fires`, `silent`, `specific`, `hashes` |
+| `checks/exp_division_threshold.py` | порог разделения через поток: пять плеч, три контроля, объявленные совпадения хэшей |
 | `checks/log_check.py` | журнал циклов непрерывен, живые числа в документации совпадают с деревом |
 | `checks/hash_version.py` | `results/*.json` не повреждены и не разошлись с версией |
 | `checks/paper_numbers.py` | числа в статье совпадают с моделью |

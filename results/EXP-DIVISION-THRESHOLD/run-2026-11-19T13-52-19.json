@@ -1,0 +1,114 @@
+{
+  "schema": "marfagenez.experiment-result.v2",
+  "experiment_id": "EXP-DIVISION-THRESHOLD",
+  "run_id": "run-2026-11-19T13-52-19",
+  "model_commit": "84569ef",
+  "hash_version": "2-prev-cell",
+  "seed": 20261119,
+  "parameters": {},
+  "arithmetic": {
+    "inflow": "yield * q_a * d_a",
+    "outflow": "1.5 * need_a + q_b * d_b",
+    "q_a_settled": 0.3,
+    "q_b_settled": 0.2,
+    "d": 0.05,
+    "predicted_threshold_yield": 1.6666666666666667,
+    "horizon": 200000
+  },
+  "conditions": {
+    "A": {
+      "label": "yield=1.0",
+      "metrics": {
+        "alive": false,
+        "steps": 722,
+        "q_a": 0.3,
+        "q_b": 0.192392
+      },
+      "hash": "cbf29ce484222325"
+    },
+    "B": {
+      "label": "yield=1.5",
+      "metrics": {
+        "alive": false,
+        "steps": 1495,
+        "q_a": 0.3,
+        "q_b": 0.199381
+      },
+      "hash": "9648a9c8230e714f"
+    },
+    "C": {
+      "label": "yield=2.0",
+      "metrics": {
+        "alive": true,
+        "steps": 200000,
+        "q_a": 0.3,
+        "q_b": 0.3
+      },
+      "hash": "d1a9b3c2e5d9a755"
+    },
+    "D": {
+      "label": "yield=3.0",
+      "metrics": {
+        "alive": true,
+        "steps": 200000,
+        "q_a": 0.3,
+        "q_b": 0.3
+      },
+      "hash": "d1a9b3c2e5d9a755"
+    },
+    "E": {
+      "label": "yield=1.5, stock_max=100000",
+      "metrics": {
+        "alive": false,
+        "steps": 1495,
+        "q_a": 0.3,
+        "q_b": 0.199381
+      },
+      "hash": "9648a9c8230e714f"
+    }
+  },
+  "series": {},
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "A (yield=1.0) dies at step 722 - below the balance"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "D (yield=3.0) lives the whole horizon of 200000"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "E (yield=1.5 with a 100x stock) still dies at step 1495 - the buffer is not the cause"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "ниже предсказанного порога 1.667 обе части гибнут, выше - обе живут; C и D совпали потому, что выше порога починка упирается в предел, а B и E - потому что потолок запаса не связывает: причина в балансе, не в буфере"
+  },
+  "hashes": {
+    "A": "cbf29ce484222325",
+    "B": "9648a9c8230e714f",
+    "C": "d1a9b3c2e5d9a755",
+    "D": "d1a9b3c2e5d9a755",
+    "E": "9648a9c8230e714f"
+  },
+  "limitations": [
+    "две части, один набор распадов (d = 0.05) и одна цена починки",
+    "yield задан извне, а не выработан формой",
+    "горизонт 200 000 шагов: смерть после него неотличима от бессмертия",
+    "порог измерен бисекцией в FINDING-292, здесь проверены только пять точек"
+  ],
+  "command": "python3 checks/exp_division_threshold.py",
+  "created_at": "2026-11-19T13:52:19.399251+00:00",
+  "expected_coincident": [
+    [
+      "C",
+      "D"
+    ],
+    [
+      "B",
+      "E"
+    ]
+  ]
+}

@@ -183,6 +183,11 @@ do_exp() {
   python3 checks/ci_workflow.py || rc=$?
   echo "--- exp_shape_regulator.py ---"
   python3 checks/exp_shape_regulator.py || rc=$?
+  echo "--- exp_division_threshold.py ---"
+  # Порог разделения через поток: пять плеч, три контроля, два объявленных совпадения хэшей
+  # (`FINDING-290`, `FINDING-292`). Совпадения — часть результата: выше порога починка упирается в предел,
+  # а потолок запаса не связывает.
+  python3 checks/exp_division_threshold.py || rc=$?
   echo "--- goal_features.py ---"
   python3 checks/goal_features.py || rc=$?
   echo "--- finding_elephant_line.py ---"
