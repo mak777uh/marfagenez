@@ -38,6 +38,7 @@ fn rules(noise: f64, shift: f64) -> SkinPopRules {
         max_population: 300,
         demand_growth: None,
         repair_from_pool: false,
+        local_recycle: false,
     }
 }
 

@@ -29,6 +29,7 @@ fn rules() -> SkinPopRules {
         max_population: 300,
         demand_growth: None,
         repair_from_pool: false,
+        local_recycle: false,
     }
 }
 

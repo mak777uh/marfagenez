@@ -36,6 +36,7 @@ fn rules(surplus: f64, repair_cost: f64, u_shift: f64) -> SkinPopRules {
         max_population: 300,
         demand_growth: None,
         repair_from_pool: false,
+        local_recycle: false,
     }
 }
 

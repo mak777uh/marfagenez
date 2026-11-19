@@ -37,6 +37,7 @@ fn rules(cap: usize) -> SkinPopRules {
         max_population: cap,
         demand_growth: None,
         repair_from_pool: false,
+        local_recycle: false,
     }
 }
 
@@ -57,10 +58,10 @@ fn run(cap: usize) {
     // the two classes, side by side
     pop.forms.clear();
     for _ in 0..PAYERS {
-        pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: need, age: 0 });
+        pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: need, age: 0, pocket: 0.0 });
     }
     for _ in 0..NON_PAYERS {
-        pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: 0.0, age: 0 });
+        pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: 0.0, age: 0, pocket: 0.0 });
     }
 
     println!("{:>6} {:>7} {:>8} {:>9} {:>8} {:>10}", "step", "alive", "payers", "share", "ready", "spent");

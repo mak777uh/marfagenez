@@ -172,6 +172,10 @@ pub struct SkinPopRules {
     /// drawn from the stock at `repair_cost * u`, in the same proportion. A form can no longer turn an inflated
     /// need into extra energy - but it can still spend the commons for its own survival.
     pub repair_from_pool: bool,
+    /// A form's own decay lands in its **own pocket** and repairs it for free, before any energy is spent.
+    /// Repair is then self-funding while `q * decay >= u`, i.e. while `q >= q_min` - a form at the threshold can
+    /// pay for its own maintenance out of what it lost.
+    pub local_recycle: bool,
 }
 
 /// One form in the population.
@@ -183,6 +187,12 @@ pub struct SkinForm {
     pub u: f64,
     /// Steps lived. A population that dies in two steps cannot be selected on anything.
     pub age: usize,
+    /// Matter this form's own decay has returned, and which only it can use for repair.
+    ///
+    /// With the pocket the cycle is **local** instead of communal: `FINDING-270` showed that on a communal cycle
+    /// dying donates your body to the competitors, so keeping yourself whole is the only way a line keeps its
+    /// matter. Here the question is the opposite one: what happens when the return goes to the line.
+    pub pocket: f64,
 }
 
 /// The population and the record of what it did.
@@ -197,7 +207,7 @@ pub struct SkinPop {
 
 impl SkinPop {
     pub fn new(rules: SkinPopRules, q0: f64, energy: f64, u0: f64) -> Option<Self> {
-        let f = SkinForm { q: q0, energy, u: u0, age: 0 };
+        let f = SkinForm { q: q0, energy, u: u0, age: 0, pocket: 0.0 };
         Some(Self {
             rules,
             forms: vec![f],
@@ -266,6 +276,7 @@ impl SkinPop {
                 energy: self.rules.birth_price,
                 u: (parent.u * noise + shift).max(0.0),
                 age: 0,
+                pocket: 0.0,
             };
             self.forms[i].energy -= self.rules.birth_price;
             self.forms.push(child);
@@ -338,7 +349,7 @@ impl SkinShared {
         Self {
             rules,
             pool,
-            forms: vec![SkinForm { q: q0, energy, u: u0, age: 0 }],
+            forms: vec![SkinForm { q: q0, energy, u: u0, age: 0, pocket: 0.0 }],
             births: 0,
             deaths: 0,
             steps: 0,
@@ -467,6 +478,7 @@ impl SkinShared {
                 energy: self.rules.birth_price,
                 u: (parent.u * noise + shift).max(0.0),
                 age: 0,
+                pocket: 0.0,
             };
             self.forms[i].energy -= self.rules.birth_price;
             self.forms.push(child);
@@ -558,7 +570,7 @@ impl SkinRecycle {
         Self {
             rules,
             cycle,
-            forms: vec![SkinForm { q: q0, energy, u: u0, age: 0 }],
+            forms: vec![SkinForm { q: q0, energy, u: u0, age: 0, pocket: 0.0 }],
             births: 0,
             deaths: 0,
             steps: 0,
@@ -603,18 +615,28 @@ impl SkinRecycle {
 
             let lost = f.q * skin.decay;
             f.q -= lost;
-            returned += lost;
-
-            let affordable = if skin.repair_cost > 0.0 {
-                f.energy / skin.repair_cost
+            if self.rules.local_recycle {
+                // what falls off this form is its own: it lands in its pocket, not in the common stock
+                f.pocket += lost;
             } else {
-                f64::INFINITY
-            };
-            if f.u > 0.0 && (f.energy > 0.0 || skin.repair_cost <= 0.0) {
+                returned += lost;
+            }
+
+            if f.u > 0.0 {
                 let missing = (1.0 - f.q).max(0.0);
-                let done = f.u.min(missing).min(affordable).max(0.0);
+                let want = f.u.min(missing).max(0.0);
+                // the pocket pays first and costs nothing; only what is left must be paid for
+                let from_pocket = if self.rules.local_recycle { want.min(f.pocket) } else { 0.0 };
+                f.pocket = (f.pocket - from_pocket).max(0.0);
+                let left = want - from_pocket;
+                let affordable = if skin.repair_cost > 0.0 {
+                    f.energy / skin.repair_cost
+                } else {
+                    f64::INFINITY
+                };
+                let done = left.min(affordable).max(0.0);
                 f.energy = (f.energy - done * skin.repair_cost).max(0.0);
-                f.q = (f.q + done).min(1.0);
+                f.q = (f.q + from_pocket + done).min(1.0);
             }
         }
         let taken = (share * n as f64).min(self.cycle.ready);
@@ -644,6 +666,7 @@ impl SkinRecycle {
                 energy: self.rules.birth_price,
                 u: (parent.u * noise + shift).max(0.0),
                 age: 0,
+                pocket: 0.0,
             };
             self.forms[i].energy -= self.rules.birth_price;
             self.forms.push(child);
@@ -770,6 +793,7 @@ mod tests {
             max_population: 300,
             demand_growth: None,
             repair_from_pool: false,
+            local_recycle: false,
         }
     }
 
@@ -915,6 +939,55 @@ mod tests {
     }
 
     #[test]
+    fn a_pocket_makes_a_form_self_sufficient_and_empties_the_medium() {
+        // FINDING-271: with the pocket the decay returns to the form itself, and since `q*d >= u` for any living
+        // form (`q >= q_min`), maintenance becomes free. The medium is then untouched: `spent` stays at zero.
+        let base = SkinPopRules {
+            skin: SkinRules {
+                decay: 0.05,
+                q_min: 0.2,
+                repair_cost: 1.0,
+                income: 1.0,
+                maintenance: 0.0,
+            },
+            u_noise: 0.0,
+            u_shift: 0.0,
+            birth_price: 0.5,
+            max_population: 200,
+            demand_growth: None,
+            repair_from_pool: false,
+            local_recycle: true,
+        };
+        let need = base.skin.u_min();
+        let mut r = base;
+        r.local_recycle = false;
+        let communal = run_recycle(
+            r,
+            crate::skin::SkinCycle::new(0.0, 0.0, 2000.0, 100_000.0, 0.0, 1.0),
+            1.0,
+            10.0,
+            need,
+            2000,
+            5,
+        );
+        let local = run_recycle(
+            base,
+            crate::skin::SkinCycle::new(0.0, 0.0, 2000.0, 100_000.0, 0.0, 1.0),
+            1.0,
+            10.0,
+            need,
+            2000,
+            5,
+        );
+        assert!(!local.forms.is_empty(), "a pocket should keep the population alive");
+        assert_eq!(local.cycle.spent, 0.0, "nothing should return to the medium any more");
+        assert!(
+            local.cycle.spent <= communal.cycle.spent,
+            "the pocket empties the medium that the communal cycle fills"
+        );
+    }
+
+    #[test]
     fn on_a_closed_cycle_the_payers_take_everything() {
         // FINDING-270: non-payers die in 32 steps and their bodies go back to the MEDIUM, not to their kin, so
         // dying subsidises the competitors - and a child inherits the parent's already-decayed `q`, so the
@@ -933,14 +1006,15 @@ mod tests {
             max_population: 5000,
             demand_growth: None,
             repair_from_pool: false,
+            local_recycle: false,
         };
         let need = rules.skin.u_min();
         let cycle = crate::skin::SkinCycle::new(200.0, 0.0, 2000.0, 100_000.0, 0.0, 1.0);
         let mut pop = run_recycle(rules, cycle, 1.0, 10.0, need, 0, 5);
         pop.forms.clear();
         for _ in 0..50 {
-            pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: need, age: 0 });
-            pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: 0.0, age: 0 });
+            pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: need, age: 0, pocket: 0.0 });
+            pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: 0.0, age: 0, pocket: 0.0 });
         }
         let mut rng = crate::Rng::new(5);
         for _ in 0..4000 {
@@ -975,6 +1049,7 @@ mod tests {
             max_population: 300,
             demand_growth: None,
             repair_from_pool: false,
+            local_recycle: false,
         };
         let cycle = crate::skin::SkinCycle::new(100.0, 0.0, 1000.0, 100_000.0, 0.0, 1.0);
         let pop = run_recycle(rules, cycle, 1.0, 10.0, 0.01, 8000, 3);
@@ -1002,6 +1077,7 @@ mod tests {
             max_population: 1,
             demand_growth: None,
             repair_from_pool: false,
+            local_recycle: false,
         };
         let need = base.skin.u_min();
 
