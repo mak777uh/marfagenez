@@ -104,7 +104,7 @@ fn run(inherit_b: f64) -> (f64, f64, f64) {
 fn main() {
     println!("{:>9} {:>9} {:>12} {:>12}", "inherit B", "share A", "damage A", "damage B");
     let mut rows = Vec::new();
-    for inherit in [0.95, 1.0, 1.05, 1.2] {
+    for inherit in [1.0, 1.2, 1.5, 2.0, 3.0] {
         let (a_share, a_dmg, b_dmg) = run(inherit);
         println!("{inherit:>9.2} {a_share:>9.3} {a_dmg:>12.3} {b_dmg:>12.3}");
         rows.push((inherit, a_share));
@@ -132,9 +132,10 @@ fn main() {
     }
 
     // (c) accumulation through generations: at 1.2 the advantage must grow past what 0.95 gave
-    let high = rows[rows.len() - 1].1;
-    let c = high > rows[0].1;
-    println!("  {} (c) at inherit 1.2 A gains past what 0.95 gave: {high:.3} against {:.3}", if c { "ok   " } else { "WRONG" }, rows[0].1);
+    // (c) does a lethal entry end the strain - or does it merely waste places?
+    let lethal = rows[rows.len() - 1].1;
+    let c = lethal > 0.99;
+    println!("  {} (c) with a lethal entry (inherit 3.0) A takes essentially everything: {lethal:.3}", if c { "ok   " } else { "WRONG" });
     if !c {
         bad += 1;
     }
