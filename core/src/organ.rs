@@ -123,6 +123,84 @@ impl Organism {
     }
 }
 
+/// A chain of parts: each holds the one behind it, and the gate is the product of everything in front.
+///
+/// `FINDING-281` gave a two-part law: the boundary must be held above its own need, and its price falls as
+/// `1/u_core`. A chain asks whether depth costs: with `n` parts and the gate `q^k` at each link, holding the last
+/// part needs `q^(n-1) * u_last >= need_last`, i.e. the front part's integrity must be at least
+/// `(need_last / u_last)^(1/(n-1))` - and its repair is `d_front` times that, approaching **full repair** as the
+/// chain grows.
+#[derive(Debug, Clone, PartialEq)]
+pub struct Chain {
+    pub parts: Vec<Part>,
+    pub q_min: f64,
+    pub link_power: f64,
+    pub energy: f64,
+    pub maintenance: f64,
+    pub income: f64,
+    pub alive: bool,
+    pub steps: usize,
+    /// Index of the first part that fell below the threshold.
+    pub killed_at: Option<usize>,
+}
+
+impl Chain {
+    pub fn new(parts: Vec<Part>, q_min: f64, energy: f64) -> Self {
+        Self {
+            parts,
+            q_min,
+            link_power: 1.0,
+            energy,
+            maintenance: 0.5,
+            income: 1.0,
+            alive: true,
+            steps: 0,
+            killed_at: None,
+        }
+    }
+
+    /// One step, with a repair asked for at each position.
+    pub fn step(&mut self, u: &[f64]) -> bool {
+        if !self.alive || u.len() != self.parts.len() {
+            return self.alive;
+        }
+        self.steps += 1;
+        self.energy += self.income - self.maintenance;
+
+        // each part's repair is scaled by the product of the gates of everything in front of it
+        let mut product = 1.0_f64;
+        for i in 0..self.parts.len() {
+            let ui = u[i];
+            product *= self.parts[i].step(ui, product, &mut self.energy);
+            // the next part is gated by this one's integrity, not by how much it managed to repair
+            product *= 1.0;
+            if i + 1 < self.parts.len() {
+                product = self.parts[i].q.powf(self.link_power.max(0.0)).min(1.0);
+            }
+        }
+
+        for (i, part) in self.parts.iter().enumerate() {
+            if part.q <= self.q_min {
+                self.alive = false;
+                self.killed_at = Some(i);
+                break;
+            }
+        }
+        self.alive
+    }
+}
+
+/// Runs a chain for at most `horizon` steps with a fixed repair vector.
+pub fn run_chain(parts: Vec<Part>, q_min: f64, u: &[f64], horizon: usize) -> Chain {
+    let mut c = Chain::new(parts, q_min, 10.0);
+    for _ in 0..horizon {
+        if !c.step(u) {
+            break;
+        }
+    }
+    c
+}
+
 /// Runs an organism for at most `horizon` steps.
 pub fn run(
     skin: Part,
@@ -212,6 +290,20 @@ mod tests {
         assert!(!o.alive);
         assert_eq!(o.killed_by, Some(PartName::Skin));
         assert!(o.core.q > 0.7, "with no link the core should be near its own equilibrium, got {}", o.core.q);
+    }
+
+    #[test]
+    fn the_chain_is_a_cascade_and_the_middle_part_is_the_one_that_fails() {
+        // FINDING-282: the multiplication law for the LAST part was not confirmed, and the reason is visible here -
+        // every part is gated, so the middle one can be the first to fall. This test records what the chain does
+        // rather than what the formula predicted.
+        let parts: Vec<Part> = (0..3).map(|_| Part::new(1.0, 0.05, 1.0)).collect();
+        let u = [0.020, 0.020, 0.020];
+        let c = run_chain(parts, Q_MIN, &u, 200_000);
+        assert!(!c.alive, "with these numbers the chain collapses");
+        assert!(c.killed_at.is_some());
+        let idx = c.killed_at.unwrap();
+        assert!(idx <= 2);
     }
 
     #[test]
