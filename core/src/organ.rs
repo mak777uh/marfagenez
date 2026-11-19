@@ -199,6 +199,101 @@ impl Chain {
     }
 }
 
+/// Two parts that cannot live alone: one cannot repair itself, the other cannot repair anything without the first.
+///
+/// `DESIGN-division.md` calls this the smallest form of **division**. `A` has no repair of its own and only decays;
+/// `B` repairs both, but only while `A` is whole enough to give it a clearance `q_a^k`. Neither survives alone, which is
+/// what separates this from the dependency of `FINDING-281`.
+#[derive(Debug, Clone, PartialEq)]
+pub struct Division {
+    pub a: Part,
+    pub b: Part,
+    pub q_min: f64,
+    pub energy: f64,
+    pub income: f64,
+    pub maintenance: f64,
+    pub alive: bool,
+    pub steps: usize,
+    /// Which part fell first, once it is over.
+    pub killed_first: Option<PartName>,
+}
+
+impl Division {
+    pub fn new(a: Part, b: Part, q_min: f64, energy: f64) -> Self {
+        Self {
+            a,
+            b,
+            q_min,
+            energy,
+            income: 1.0,
+            maintenance: 0.5,
+            alive: true,
+            steps: 0,
+            killed_first: None,
+        }
+    }
+
+    /// One step: `B` repairs itself and `A`, gated by `A`'s clearance.
+    pub fn step(&mut self, u_b: f64) -> bool {
+        if !self.alive {
+            return false;
+        }
+        self.steps += 1;
+        self.energy += self.income - self.maintenance;
+
+        // The two clearances are DIFFERENT, and that is the whole point of a division:
+        //   * A licenses B (`q_a`): without A's clearance B can repair nothing, not even itself;
+        //   * B repairs A (`q_b`): A has no repair of its own at all.
+        // Gating A's repair by A's own state is self-defeating - it cannot help a part that is already failing, and my
+        // first version of this did exactly that.
+        let clearance_for_b = self.a.q.powf(1.0).min(1.0);
+        let clearance_for_a = self.b.q.powf(1.0).min(1.0);
+
+        // both parts are held at 1.5 times their need: at the need itself a part settles exactly at `q_min`, and the
+        // death test is `q <= q_min` (FINDING-288)
+        let u_a = 1.5 * self.a.decay * self.q_min;
+        self.a.step(u_a, clearance_for_a, &mut self.energy);
+        self.b.step(u_b, clearance_for_b, &mut self.energy);
+
+        if self.a.q <= self.q_min {
+            self.alive = false;
+            self.killed_first = Some(PartName::Skin);
+        } else if self.b.q <= self.q_min {
+            self.alive = false;
+            self.killed_first = Some(PartName::Core);
+        }
+        self.alive
+    }
+}
+
+/// The cheapest income that keeps a division alive, found by bisection on a coarse grid.
+pub fn division_threshold(a: Part, b: Part, q_min: f64, hi: f64) -> Option<f64> {
+    let alive = |income: f64| {
+        let mut d = Division::new(a, b, q_min, 10.0);
+        d.income = income;
+        for _ in 0..200_000 {
+            if !d.step(b.decay * q_min) {
+                return false;
+            }
+        }
+        true
+    };
+    let mut lo = 0.0_f64;
+    let mut hi = hi;
+    if !alive(hi) {
+        return None;
+    }
+    for _ in 0..40 {
+        let mid = (lo + hi) / 2.0;
+        if alive(mid) {
+            hi = mid;
+        } else {
+            lo = mid;
+        }
+    }
+    Some(hi)
+}
+
 /// Runs a chain for at most `horizon` steps with a fixed repair vector.
 pub fn run_chain(parts: Vec<Part>, q_min: f64, u: &[f64], horizon: usize) -> Chain {
     let mut c = Chain::new(parts, q_min, 10.0);
@@ -306,6 +401,26 @@ mod tests {
     ///
     /// `FINDING-282` predicted the middle part would fall first; the trajectory of `FINDING-283` showed it is the
     /// **last** one, the most gated. That test is replaced by the corrected one below.
+    #[test]
+    fn a_division_by_mutual_licensing_collapses_jointly() {
+        // FINDING-289: when each part licenses the other, a deficit in one reduces the other's repair, which deepens
+        // its own deficit. The feedback always points down: there is no equilibrium, and money does not help - the
+        // pair dies at income 10 while its bill is 0.03.
+        let a = Part::new(1.0, 0.05, 1.0);
+        let b = Part::new(1.0, 0.05, 1.0);
+        let mut d = Division::new(a, b, Q_MIN, 10.0);
+        d.income = 10.0;
+        let mut at_ten = None;
+        for step in 1..=200_000 {
+            if !d.step(1.5 * 0.05 * Q_MIN) {
+                at_ten = Some(step);
+                break;
+            }
+        }
+        assert_eq!(at_ten, Some(46), "the pair should die at step 46 even with plenty of money");
+        assert!((d.a.q - d.b.q).abs() < 1e-9, "and both parts should be equal all along");
+    }
+
     #[test]
     fn the_last_part_falls_first_and_depth_has_a_limit() {
         let chain = |n: usize, u_front: f64| {
