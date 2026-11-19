@@ -266,6 +266,79 @@ impl Division {
     }
 }
 
+/// A division whose link is a **flow of matter**, not a product of states.
+///
+/// `Division` above licenses one part by another's integrity, and that feedback always points down
+/// (`FINDING-289`). Here the two parts bring what the other cannot make:
+///
+/// ```text
+/// A   has matter, no ability:   it sheds `q_a * d_a` into a shared stock every step, but cannot repair itself
+/// B   has ability, no matter:   it repairs both parts out of that stock, but sheds nothing
+/// ```
+///
+/// Neither lives alone: A has nothing to repair it, B has nothing to repair with. And because the link is matter and
+/// not integrity, a deficit in one does not directly shrink the other's repair - the arithmetic is a balance, not a
+/// product.
+#[derive(Debug, Clone, PartialEq)]
+pub struct Flow {
+    pub a: Part,
+    pub b: Part,
+    pub q_min: f64,
+    pub stock: f64,
+    pub stock_max: f64,
+    /// How much matter A sheds per unit of its own decay. `1.0` means it sheds exactly what falls off it, which is
+    /// exactly what its own repair costs - leaving nothing for the other part.
+    pub yield_rate: f64,
+    pub alive: bool,
+    pub steps: usize,
+    /// How much was taken from the stock on the last step.
+    pub last_draw: f64,
+}
+
+impl Flow {
+    pub fn new(a: Part, b: Part, q_min: f64, stock: f64) -> Self {
+        Self {
+            a,
+            b,
+            q_min,
+            stock,
+            stock_max: 1_000.0,
+            yield_rate: 1.0,
+            alive: true,
+            steps: 0,
+            last_draw: 0.0,
+        }
+    }
+
+    /// One step. A sheds into the stock; B spends from it to repair both.
+    pub fn step(&mut self) -> bool {
+        if !self.alive {
+            return false;
+        }
+        self.steps += 1;
+
+        // A sheds what falls off it, and nothing else puts matter in
+        let shed = self.yield_rate * self.a.q * self.a.decay;
+        self.stock = (self.stock + shed).min(self.stock_max);
+
+        // B repairs both parts out of the stock, and only while B itself is above its minimum
+        let mut energy = self.stock;
+        if self.b.q > self.q_min {
+            let need_a = 1.5 * self.a.decay * self.q_min;
+            let need_b = 1.5 * self.b.decay * self.q_min;
+            self.a.step(need_a, 1.0, &mut energy);
+            self.b.step(need_b, 1.0, &mut energy);
+        }
+        self.last_draw = self.stock - energy;
+        self.stock = energy.max(0.0);
+
+        if self.a.q <= self.q_min || self.b.q <= self.q_min {
+            self.alive = false;
+        }
+        self.alive
+    }
+}
+
 /// The cheapest income that keeps a division alive, found by bisection on a coarse grid.
 pub fn division_threshold(a: Part, b: Part, q_min: f64, hi: f64) -> Option<f64> {
     let alive = |income: f64| {
@@ -401,6 +474,26 @@ mod tests {
     ///
     /// `FINDING-282` predicted the middle part would fall first; the trajectory of `FINDING-283` showed it is the
     /// **last** one, the most gated. That test is replaced by the corrected one below.
+    #[test]
+    fn a_division_lives_only_when_one_part_produces_a_surplus() {
+        // FINDING-290: a part that sheds exactly what it loses leaves nothing for the other. The threshold is derived -
+        // `yield * q_a * d_a >= need_a + need_b` - and at q_a = 0.3, d = 0.05, need = 0.015 each that is `yield >= 2`.
+        let run = |yield_rate: f64| {
+            let mut f = Flow::new(Part::new(1.0, 0.05, 1.0), Part::new(1.0, 0.05, 1.0), Q_MIN, 10.0);
+            f.yield_rate = yield_rate;
+            for _ in 0..200_000 {
+                if !f.step() {
+                    return false;
+                }
+            }
+            true
+        };
+        assert!(!run(1.0), "a yield of exactly one leaves nothing over");
+        assert!(!run(1.5), "and one and a half is still short");
+        assert!(run(2.0), "two covers both parts");
+        assert!(run(3.0));
+    }
+
     #[test]
     fn a_division_by_mutual_licensing_collapses_jointly() {
         // FINDING-289: when each part licenses the other, a deficit in one reduces the other's repair, which deepens
