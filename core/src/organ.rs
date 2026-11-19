@@ -199,6 +199,41 @@ impl Chain {
     }
 }
 
+/// Mortality as a function of state: `mu(q) = rate * (1 - q)^p`.
+///
+/// `DESIGN-fading.md` proposes replacing the hard threshold `q <= q_min -> dead` with a graded mortality. The model
+/// above keeps the threshold; this function is the replacement and is checked on its own before anything is rebuilt on
+/// it.
+pub fn mortality(q: f64, rate: f64, p: f64) -> f64 {
+    rate * (1.0 - q).clamp(0.0, 1.0).powf(p)
+}
+
+/// Expected number of steps to death at a constant `q`, which is `1 / mu(q)`.
+pub fn expected_life(q: f64, rate: f64, p: f64) -> f64 {
+    let mu = mortality(q, rate, p);
+    if mu <= 0.0 {
+        f64::INFINITY
+    } else {
+        1.0 / mu
+    }
+}
+
+/// One sampled lifetime at a constant `q`, or `None` if it outlived the horizon.
+pub fn sample_life(rng: &mut crate::Rng, q: f64, rate: f64, p: f64, horizon: usize) -> Option<usize> {
+    let mu = mortality(q, rate, p);
+    if mu <= 0.0 {
+        return None;
+    }
+    let survive_one = (-mu).exp();
+    for step in 1..=horizon {
+        let u = (rng.next_u64() >> 11) as f64 / (1u64 << 53) as f64;
+        if u > survive_one {
+            return Some(step);
+        }
+    }
+    None
+}
+
 /// Two parts that cannot live alone: one cannot repair itself, the other cannot repair anything without the first.
 ///
 /// `DESIGN-division.md` calls this the smallest form of **division**. `A` has no repair of its own and only decays;
@@ -508,6 +543,28 @@ mod tests {
         let inflow = 1.667 * qa * 0.05;
         let outflow = 1.5 * 0.05 * Q_MIN + qb * 0.05;
         assert!((inflow - outflow).abs() < 0.002, "in {inflow} out {outflow}");
+    }
+
+    #[test]
+    fn the_fading_law_gives_life_one_over_mu() {
+        // FINDING-294: mortality `mu = rate*(1-q)^p` gives an expected life of `1/mu`, and a simulation reproduces it
+        // to within a few percent - with no threshold anywhere.
+        assert!((mortality(0.2, 0.01, 2.0) - 0.0064).abs() < 1e-12);
+        assert!((expected_life(0.9, 0.01, 2.0) - 10_000.0).abs() < 1e-6);
+        assert!((expected_life(0.2, 0.01, 2.0) - 156.25).abs() < 0.01);
+
+        let mut total = 0.0;
+        let mut counted = 0;
+        for seed in 0..2000u64 {
+            let mut rng = crate::Rng::new(seed + 1);
+            if let Some(steps) = sample_life(&mut rng, 0.2, 0.01, 2.0, 2_000_000) {
+                total += steps as f64;
+                counted += 1;
+            }
+        }
+        let sampled = total / counted as f64;
+        let err = (sampled - 156.25).abs() / 156.25;
+        assert!(err < 0.05, "sampled {sampled} should be near 156.25, error {err}");
     }
 
     #[test]
