@@ -3,8 +3,9 @@
 //! Один штамм без конкуренции: форма живёт, пока не умрёт от угасания; место занимает новорождённый с повреждением
 //! `h · (среднее повреждение)`.
 //!
-//! PREDICTION, before the run (`q = 0.5`, `rate = 0.01`, `p = 2`, `floor = 0.0002`, `λ = 0.001`, `δ = 0.001`,
-//! N = 2000, 200 000 шагов):
+//! PREDICTION, before the run (`FINDING-307` §конец, `q = 0.5`, N = 500, 300 000 шагов):
+//! плато следует `1/(1−h)`, поэтому от измеренных 2.05 при `h = 0.9`: 0.95 → **≈4.1**, 0.98 → **≈10.3**,
+//! 0.99 → **≈20.5**.
 //!   (a) при `h = 0.9` среднее повреждение **выходит на плато** — прирост к концу почти нулевой;
 //!   (b) при `h = 1.0` **растёт** и к концу больше, чем при 0.9;
 //!   (c) отношение среднего повреждения 1.0 к 0.9 к концу больше 2.
@@ -18,8 +19,8 @@ const P: f64 = 2.0;
 const FLOOR: f64 = 0.0002;
 const LAMBDA: f64 = 0.001;
 const DELTA: f64 = 0.001;
-const N: usize = 2000;
-const STEPS: usize = 200_000;
+const N: usize = 500;
+const STEPS: usize = 300_000;
 const SAMPLES: usize = 10;
 
 fn run(h: f64) -> Vec<f64> {
@@ -48,45 +49,49 @@ fn run(h: f64) -> Vec<f64> {
 }
 
 fn main() {
-    let slow = run(0.9);
-    let flat = run(1.0);
-
-    println!("{:>12} {:>14} {:>14}", "шаг", "h = 0.9", "h = 1.0");
-    for i in 0..SAMPLES {
-        println!("{:>12} {:>14.3} {:>14.3}", (i + 1) * (STEPS / SAMPLES), slow[i], flat[i]);
+    // The plateau should scale as 1/(1-h). Measured at h = 0.9 it is 2.05, so from that base:
+    //   0.95 -> 2.05 * 2 = 4.1,  0.98 -> 2.05 * 5 = 10.3,  0.99 -> 2.05 * 10 = 20.5
+    println!("{:>7} {:>12} {:>14} {:>12}", "h", "plateau", "predicted", "ratio to 0.9");
+    let mut rows = Vec::new();
+    let base = None::<f64>;
+    for h in [0.9, 0.95, 0.98, 0.99] {
+        let trace = run(h);
+        let level = trace[trace.len() - 1];
+        let predicted = 2.05 * (0.1 / (1.0 - h));
+        println!("{h:>7.2} {level:>12.3} {predicted:>14.2}");
+        rows.push((h, level, predicted));
     }
+    let _ = base;
 
     println!();
     let mut bad = 0;
 
-    // (a) at h = 0.9 the last increments are small
-    let last_gain_09 = slow[SAMPLES - 1] - slow[SAMPLES - 2];
-    let a = last_gain_09 < 0.15 * slow[SAMPLES - 1];
+    // (a) the plateau rises as h approaches one
+    let a = rows.windows(2).all(|w| w[1].1 > w[0].1);
     println!(
-        "  {} (a) h = 0.9 reaches a plateau: last gain {last_gain_09:.4} against level {:.3}",
+        "  {} (a) the plateau rises towards h = 1: {:?}",
         if a { "ok   " } else { "WRONG" },
-        slow[SAMPLES - 1]
+        rows.iter().map(|r| (r.0, (r.1 * 100.0).round() / 100.0)).collect::<Vec<_>>()
     );
     if !a {
         bad += 1;
     }
 
-    // (b) at h = 1.0 it keeps growing and ends higher
-    let last_gain_10 = flat[SAMPLES - 1] - flat[SAMPLES - 2];
-    let b = last_gain_10 > 0.0 && flat[SAMPLES - 1] > slow[SAMPLES - 1];
+    // (b) and follows 1/(1-h) within a factor of two at every point
+    let b = rows.iter().all(|r| (r.1 / r.2) > 0.5 && (r.1 / r.2) < 2.0);
     println!(
-        "  {} (b) h = 1.0 keeps growing: last gain {last_gain_10:.4}, ends at {:.3}",
+        "  {} (b) it follows 1/(1-h) within a factor of two: {:?}",
         if b { "ok   " } else { "WRONG" },
-        flat[SAMPLES - 1]
+        rows.iter().map(|r| (r.0, (r.1 / r.2 * 100.0).round() / 100.0)).collect::<Vec<_>>()
     );
     if !b {
         bad += 1;
     }
 
-    // (c) the ratio at the end is above two
-    let ratio = flat[SAMPLES - 1] / slow[SAMPLES - 1].max(1e-9);
-    let c = ratio > 2.0;
-    println!("  {} (c) the ratio at the end is {ratio:.2}", if c { "ok   " } else { "WRONG" });
+    // (c) the growth from 0.9 to 0.99 is at least fivefold
+    let ratio = rows[rows.len() - 1].1 / rows[0].1;
+    let c = ratio > 5.0;
+    println!("  {} (c) from 0.9 to 0.99 the plateau grows {ratio:.1} times", if c { "ok   " } else { "WRONG" });
     if !c {
         bad += 1;
     }
