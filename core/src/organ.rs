@@ -177,6 +177,32 @@ mod tests {
     }
 
     #[test]
+    fn swapping_the_decay_rates_swaps_the_order_but_not_the_link() {
+        // FINDING-280: the ORDER is set by the decay rates and reverses with them. The LINK is independent: at the
+        // moment the skin dies, the core has already sagged towards its own threshold, even though it was being
+        // repaired every step.
+        let skin = Part::new(1.0, 0.02, 1.0);
+        let core = Part::new(1.0, 0.05, 2.0);
+        let q_min = 0.2;
+        let only_core = run(skin, core, q_min, 10.0, 1.0, 0.5, 0.0, 0.05 * q_min, 200_000);
+        let only_skin = run(skin, core, q_min, 10.0, 1.0, 0.5, 0.02 * q_min, 0.0, 200_000);
+        assert_eq!(only_core.steps, 80, "the slow part sets the lifetime");
+        assert_eq!(only_skin.steps, 32, "and the fast part sets the other one");
+        assert!(only_core.steps > only_skin.steps, "the order reversed");
+
+        let mut o = Organism::new(skin, core, q_min, 10.0);
+        let mut core_at_skin_death = None;
+        for _ in 0..200_000 {
+            if !o.step(0.0, 0.05 * q_min, 1.0, 0.5) {
+                core_at_skin_death = Some(o.core.q);
+                break;
+            }
+        }
+        let q = core_at_skin_death.expect("it should die");
+        assert!(q < 0.3 && q > q_min, "the core should be sagging towards its threshold, got {q}");
+    }
+
+    #[test]
     fn without_the_link_the_core_outlives_the_skin() {
         // the control: if the core is not gated, spending on it keeps it whole while the skin falls - so the
         // contrast in the test above is caused by the link and not by the decay rates
