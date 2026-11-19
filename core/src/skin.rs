@@ -915,6 +915,33 @@ mod tests {
     }
 
     #[test]
+    fn a_population_survives_on_a_closed_cycle_and_its_bodies_are_the_food() {
+        // FINDING-269: with no external inflow at all, a population on a recycling medium reaches its ceiling and
+        // keeps turning over, because the dead return their matter. `ready` sits at zero - in a closed world all
+        // the matter is locked in bodies.
+        let rules = SkinPopRules {
+            skin: SkinRules {
+                decay: 0.05,
+                q_min: 0.2,
+                repair_cost: 1.0,
+                income: 1.0,
+                maintenance: 0.0,
+            },
+            u_noise: 0.3,
+            u_shift: 0.003,
+            birth_price: 0.5,
+            max_population: 300,
+            demand_growth: None,
+            repair_from_pool: false,
+        };
+        let cycle = crate::skin::SkinCycle::new(100.0, 0.0, 1000.0, 100_000.0, 0.0, 1.0);
+        let pop = run_recycle(rules, cycle, 1.0, 10.0, 0.01, 8000, 3);
+        assert_eq!(pop.forms.len(), 300, "the population should reach its ceiling");
+        assert!(pop.births > 100, "and keep turning over, got {} births", pop.births);
+        assert!(pop.cycle.ready < 1.0, "in a closed world the free matter is near zero");
+    }
+
+    #[test]
     fn a_closed_cycle_is_possible_and_the_criterion_is_the_price() {
         // FINDING-268: with perfect recycling and NO external inflow, a form lives only if what it takes does not
         // exceed what its decay returns. At the need, `q` settles at `q_min`, so the criterion is
