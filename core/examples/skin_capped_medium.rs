@@ -34,6 +34,7 @@ fn rules(share: f64) -> SkinPopRules {
         repair_from_pool: false,
         local_recycle: true,
         local_share: share,
+        pocket_max: None,
     }
 }
 

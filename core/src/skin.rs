@@ -180,6 +180,10 @@ pub struct SkinPopRules {
     /// cycle (`FINDING-271`), `0.0` is the communal one (`FINDING-270`). The mixture is what decides whether a form
     /// still needs the medium it shares.
     pub local_share: f64,
+    /// Ceiling on the pocket. `None` means the pocket is bottomless, which `FINDING-274` named as the possible
+    /// source of its whole advantage: a pocket is matter the common ceiling cannot hold, so an endless pocket would
+    /// beat a capped medium for reasons that have nothing to do with locality.
+    pub pocket_max: Option<f64>,
 }
 
 /// One form in the population.
@@ -622,7 +626,13 @@ impl SkinRecycle {
             if self.rules.local_recycle {
                 // part of the loss is the form's own; the rest still goes back to the stock it shares
                 let local = (self.rules.local_share.clamp(0.0, 1.0) * lost).max(0.0);
-                f.pocket += local;
+                let room = match self.rules.pocket_max {
+                    Some(cap) => (cap - f.pocket).max(0.0),
+                    None => f64::INFINITY,
+                };
+                let stored = local.min(room);
+                f.pocket += stored;
+                returned += local - stored;
                 returned += lost - local;
             } else {
                 returned += lost;
@@ -801,6 +811,7 @@ mod tests {
             repair_from_pool: false,
             local_recycle: false,
             local_share: 1.0,
+            pocket_max: None,
         }
     }
 
@@ -946,6 +957,51 @@ mod tests {
     }
 
     #[test]
+    fn a_pocket_below_one_step_of_repair_is_worthless() {
+        // FINDING-275: the real threshold is not the pocket's size in general but whether it can hold the NEXT
+        // repair. Below `u_min` the population falls; at `u_min` and above it reaches the ceiling.
+        fn run(cap: Option<f64>) -> usize {
+            let rules = SkinPopRules {
+                skin: SkinRules {
+                    decay: 0.05,
+                    q_min: 0.2,
+                    repair_cost: 1.0,
+                    income: 1.0,
+                    maintenance: 0.0,
+                },
+                u_noise: 0.0,
+                u_shift: 0.0,
+                birth_price: 0.5,
+                max_population: 5000,
+                demand_growth: None,
+                repair_from_pool: false,
+                local_recycle: true,
+                local_share: 1.0,
+                pocket_max: cap,
+            };
+            let need = rules.skin.u_min();
+            let cycle = crate::skin::SkinCycle::new(5.0, 0.0, 5.0, 100_000.0, 0.0, 1.0);
+            let mut pop = run_recycle(rules, cycle, 1.0, 10.0, need, 0, 5);
+            pop.forms.clear();
+            for _ in 0..50 {
+                pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: need, age: 0, pocket: 0.0 });
+                pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: 0.0, age: 0, pocket: 0.0 });
+            }
+            let mut rng = crate::Rng::new(5);
+            for _ in 0..4000 {
+                pop.step(&mut rng);
+            }
+            pop.forms.len()
+        }
+
+        let need = 0.01; // d * q_min
+        assert_eq!(run(Some(0.001)), 550);
+        assert_eq!(run(Some(0.005)), 1000);
+        assert_eq!(run(Some(need)), 5000, "at one step of repair the pocket stops binding");
+        assert_eq!(run(Some(1.0)), run(None), "a large cap changes nothing");
+    }
+
+    #[test]
     fn capping_the_medium_makes_the_local_share_matter() {
         // FINDING-274: with the ceiling on the POPULATION every share gives the same population; with the ceiling
         // on the MATTER the share decides, because a pocket is matter the cap cannot hold. The relation is not
@@ -967,6 +1023,7 @@ mod tests {
                 repair_from_pool: false,
                 local_recycle: true,
                 local_share: share,
+                pocket_max: None,
             };
             let need = rules.skin.u_min();
             let cycle = crate::skin::SkinCycle::new(5.0, 0.0, 5.0, 100_000.0, 0.0, 1.0);
@@ -1018,6 +1075,7 @@ mod tests {
             repair_from_pool: false,
             local_recycle: false,
             local_share: 1.0,
+            pocket_max: None,
         };
         let closed = |cost: f64| {
             let mut r = base;
@@ -1060,6 +1118,7 @@ mod tests {
             repair_from_pool: false,
             local_recycle: true,
             local_share: 1.0,
+            pocket_max: None,
         };
         let need = base.skin.u_min();
         let mut r = base;
@@ -1111,6 +1170,7 @@ mod tests {
             repair_from_pool: false,
             local_recycle: false,
             local_share: 1.0,
+            pocket_max: None,
         };
         let need = rules.skin.u_min();
         let cycle = crate::skin::SkinCycle::new(200.0, 0.0, 2000.0, 100_000.0, 0.0, 1.0);
@@ -1155,6 +1215,7 @@ mod tests {
             repair_from_pool: false,
             local_recycle: false,
             local_share: 1.0,
+            pocket_max: None,
         };
         let cycle = crate::skin::SkinCycle::new(100.0, 0.0, 1000.0, 100_000.0, 0.0, 1.0);
         let pop = run_recycle(rules, cycle, 1.0, 10.0, 0.01, 8000, 3);
@@ -1184,6 +1245,7 @@ mod tests {
             repair_from_pool: false,
             local_recycle: false,
             local_share: 1.0,
+            pocket_max: None,
         };
         let need = base.skin.u_min();
 
