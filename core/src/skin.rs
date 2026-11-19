@@ -915,6 +915,48 @@ mod tests {
     }
 
     #[test]
+    fn on_a_closed_cycle_the_payers_take_everything() {
+        // FINDING-270: non-payers die in 32 steps and their bodies go back to the MEDIUM, not to their kin, so
+        // dying subsidises the competitors - and a child inherits the parent's already-decayed `q`, so the
+        // non-paying line erodes as well. Payers take the whole population at any ceiling.
+        let rules = SkinPopRules {
+            skin: SkinRules {
+                decay: 0.05,
+                q_min: 0.2,
+                repair_cost: 1.0,
+                income: 1.0,
+                maintenance: 0.0,
+            },
+            u_noise: 0.0,
+            u_shift: 0.0,
+            birth_price: 0.5,
+            max_population: 5000,
+            demand_growth: None,
+            repair_from_pool: false,
+        };
+        let need = rules.skin.u_min();
+        let cycle = crate::skin::SkinCycle::new(200.0, 0.0, 2000.0, 100_000.0, 0.0, 1.0);
+        let mut pop = run_recycle(rules, cycle, 1.0, 10.0, need, 0, 5);
+        pop.forms.clear();
+        for _ in 0..50 {
+            pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: need, age: 0 });
+            pop.forms.push(SkinForm { q: 1.0, energy: 10.0, u: 0.0, age: 0 });
+        }
+        let mut rng = crate::Rng::new(5);
+        for _ in 0..4000 {
+            pop.step(&mut rng);
+        }
+        let payers = pop.forms.iter().filter(|f| f.u >= need).count();
+        assert!(!pop.forms.is_empty());
+        assert_eq!(
+            payers,
+            pop.forms.len(),
+            "every survivor should be a payer, got {payers} of {}",
+            pop.forms.len()
+        );
+    }
+
+    #[test]
     fn a_population_survives_on_a_closed_cycle_and_its_bodies_are_the_food() {
         // FINDING-269: with no external inflow at all, a population on a recycling medium reaches its ceiling and
         // keeps turning over, because the dead return their matter. `ready` sits at zero - in a closed world all
