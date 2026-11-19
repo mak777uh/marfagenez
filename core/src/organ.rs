@@ -208,6 +208,25 @@ pub fn mortality(q: f64, rate: f64, p: f64) -> f64 {
     rate * (1.0 - q).clamp(0.0, 1.0).powf(p)
 }
 
+/// Mortality with an **aging floor**: `mu = floor + rate*(1-q)^p`.
+///
+/// Without the floor a perfectly whole part never dies, so any arrangement that can be repaired to `q = 1` becomes
+/// immortal - which is what the first run of `organ_surplus_life` showed at `yield >= 2`. The floor is what makes a
+/// whole part still mortal, and it is a separate assumption, not a consequence of the gradient.
+pub fn mortality_with_floor(q: f64, rate: f64, p: f64, floor: f64) -> f64 {
+    floor + mortality(q, rate, p)
+}
+
+/// Expected life with the aging floor.
+pub fn expected_life_with_floor(q: f64, rate: f64, p: f64, floor: f64) -> f64 {
+    let mu = mortality_with_floor(q, rate, p, floor);
+    if mu <= 0.0 {
+        f64::INFINITY
+    } else {
+        1.0 / mu
+    }
+}
+
 /// Expected number of steps to death at a constant `q`, which is `1 / mu(q)`.
 pub fn expected_life(q: f64, rate: f64, p: f64) -> f64 {
     let mu = mortality(q, rate, p);
@@ -314,6 +333,16 @@ impl Division {
 /// Neither lives alone: A has nothing to repair it, B has nothing to repair with. And because the link is matter and
 /// not integrity, a deficit in one does not directly shrink the other's repair - the arithmetic is a balance, not a
 /// product.
+/// How a part decides how much to repair.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum RepairMode {
+    /// A set amount each - the rule of `FINDING-290`, where any surplus above the threshold was wasted.
+    Fixed,
+    /// Fill towards whole as far as the shared stock allows - here a surplus raises the integrity, and through
+    /// `mortality` it buys life.
+    Fill,
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct Flow {
     pub a: Part,
@@ -324,6 +353,9 @@ pub struct Flow {
     /// How much matter A sheds per unit of its own decay. `1.0` means it sheds exactly what falls off it, which is
     /// exactly what its own repair costs - leaving nothing for the other part.
     pub yield_rate: f64,
+    /// How far the parts fill themselves: `Fixed` is the rule of `FINDING-290` (a set amount each), `Fill` means
+    /// "repair as far as the stock allows", which is what makes surplus matter at all.
+    pub repair_mode: RepairMode,
     /// How much B's health supports A's productivity: the effective yield is
     /// `yield_rate * (1 + support * (q_b - q_min)/(1 - q_min))`, so a whole B multiplies it by `1 + support` and a B at
     /// the minimum does not help at all.
@@ -343,6 +375,7 @@ impl Flow {
             stock,
             stock_max: 1_000.0,
             yield_rate: 1.0,
+            repair_mode: RepairMode::Fixed,
             support: 0.0,
             alive: true,
             steps: 0,
@@ -366,10 +399,17 @@ impl Flow {
         // B repairs both parts out of the stock, and only while B itself is above its minimum
         let mut energy = self.stock;
         if self.b.q > self.q_min {
-            let need_a = 1.5 * self.a.decay * self.q_min;
-            let need_b = 1.5 * self.b.decay * self.q_min;
-            self.a.step(need_a, 1.0, &mut energy);
-            self.b.step(need_b, 1.0, &mut energy);
+            let (demand_a, demand_b) = match self.repair_mode {
+                RepairMode::Fixed => (
+                    1.5 * self.a.decay * self.q_min,
+                    1.5 * self.b.decay * self.q_min,
+                ),
+                // ask for everything: `Part::step` caps the repair by the missing amount and by the stock, so the
+                // demand only says "as far as you can"
+                RepairMode::Fill => (1.0, 1.0),
+            };
+            self.a.step(demand_a, 1.0, &mut energy);
+            self.b.step(demand_b, 1.0, &mut energy);
         }
         self.last_draw = self.stock - energy;
         self.stock = energy.max(0.0);
@@ -543,6 +583,21 @@ mod tests {
         let inflow = 1.667 * qa * 0.05;
         let outflow = 1.5 * 0.05 * Q_MIN + qb * 0.05;
         assert!((inflow - outflow).abs() < 0.002, "in {inflow} out {outflow}");
+    }
+
+    #[test]
+    fn fading_has_an_absorbing_state_unless_a_floor_is_given() {
+        // FINDING-296: `mu(1) = 0`, so a perfectly whole part never dies - which is a defect of the law, not of an
+        // implementation. The floor is a separate assumption that makes a whole part mortal.
+        assert_eq!(mortality(1.0, 0.01, 2.0), 0.0);
+        assert!(expected_life(1.0, 0.01, 2.0).is_infinite());
+        assert!((expected_life_with_floor(1.0, 0.01, 2.0, 0.0002) - 5000.0).abs() < 1e-6);
+        // and below the ceiling the surplus still buys life, smoothly
+        let l125 = expected_life_with_floor(0.25, 0.01, 2.0, 0.0002);
+        let l150 = expected_life_with_floor(0.50, 0.01, 2.0, 0.0002);
+        let l175 = expected_life_with_floor(0.75, 0.01, 2.0, 0.0002);
+        assert!(l125 < l150 && l150 < l175 && l175 < 5000.0);
+        assert!((l125 - 171.7).abs() < 2.0, "life at q = 0.25: {l125}");
     }
 
     #[test]
