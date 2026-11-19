@@ -167,16 +167,13 @@ impl Chain {
         self.steps += 1;
         self.energy += self.income - self.maintenance;
 
-        // each part's repair is scaled by the product of the gates of everything in front of it
-        let mut product = 1.0_f64;
+        // each part's repair is scaled by the product of the gates of everything in front of it. The gate is the
+        // front part's INTEGRITY raised to the link power - not how much that part managed to repair, which is a small
+        // number and would collapse the product at the first link.
+        let mut gate = 1.0_f64;
         for i in 0..self.parts.len() {
-            let ui = u[i];
-            product *= self.parts[i].step(ui, product, &mut self.energy);
-            // the next part is gated by this one's integrity, not by how much it managed to repair
-            product *= 1.0;
-            if i + 1 < self.parts.len() {
-                product = self.parts[i].q.powf(self.link_power.max(0.0)).min(1.0);
-            }
+            self.parts[i].step(u[i], gate, &mut self.energy);
+            gate *= self.parts[i].q.powf(self.link_power.max(0.0)).min(1.0);
         }
 
         for (i, part) in self.parts.iter().enumerate() {
