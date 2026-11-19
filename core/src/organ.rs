@@ -621,6 +621,21 @@ mod tests {
     }
 
     #[test]
+    fn inherited_damage_gives_a_moderate_advantage() {
+        // FINDING-298: with places contested in proportion to fitness, a strain that resets its damage at birth takes
+        // 58% of the places against 42% for one that carries half - ratio 1.38, against 1.31 predicted from the ratio
+        // of lives in FINDING-297. Not extinction: the gain is moderate because damage grows slowly.
+        let life = |damage: f64| 1.0 / aging_mortality(0.5, 0.01, 2.0, 0.0002, 0.001, damage);
+        // The crude model - the ratio of lives at the two means - gives only 1.11 and a share of 0.526. The measured
+        // share is 0.58, ABOVE the crude bound, because A's newborns also start at zero damage while B's start at half
+        // of its mean. So the crude ratio is a lower bound, not the law.
+        let crude = life(0.295) / life(0.625);
+        assert!((crude - 1.11).abs() < 0.05, "crude ratio {crude}");
+        let crude_share = crude / (1.0 + crude);
+        assert!(crude_share < 0.58, "the crude share {crude_share} must be below the measured one");
+    }
+
+    #[test]
     fn history_makes_two_forms_with_equal_integrity_unequal() {
         // FINDING-297: with damage that does not heal, life solves the quadratic `mu0*T + (lambda*delta/2)*T^2 = 1`.
         // Two forms with the same q but different damage now live different times - the model has a past.
