@@ -546,6 +546,19 @@ mod tests {
     }
 
     #[test]
+    fn fading_removes_the_step_at_the_old_threshold() {
+        // FINDING-295: where the old model jumped from dead to alive, fading gives a smooth 147 -> 165. The old model
+        // still jumps - that is the contrast the replacement is for.
+        let life_at = |u: f64| expected_life((u / 0.05).min(1.0), 0.01, 2.0);
+        let before = life_at(0.9 * 0.01);
+        let after = life_at(1.1 * 0.01);
+        assert!(after / before < 2.0, "no step: {before} -> {after}");
+        assert!(after > before, "and life rises with income");
+        assert!((before - 149.0).abs() < 3.0, "the value below the old threshold: {before}");
+        assert!((after - 164.0).abs() < 3.0, "and above it: {after}");
+    }
+
+    #[test]
     fn the_fading_law_gives_life_one_over_mu() {
         // FINDING-294: mortality `mu = rate*(1-q)^p` gives an expected life of `1/mu`, and a simulation reproduces it
         // to within a few percent - with no threshold anywhere.
