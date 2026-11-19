@@ -24,7 +24,7 @@ const DELTA: f64 = 0.001;
 const INCOME: f64 = 0.04;
 const COST: f64 = 1.0;
 const HORIZON: usize = 5000;
-const SEEDS: usize = 400;
+const SEEDS: usize = 1600;
 
 /// One life. Returns the number of steps survived (HORIZON if it never died).
 fn one(alpha: f64, drought_p: f64, drought_len: usize, seed: u64) -> usize {
