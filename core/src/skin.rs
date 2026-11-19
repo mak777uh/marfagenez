@@ -622,6 +622,36 @@ mod tests {
     }
 
     #[test]
+    fn the_intensity_converges_towards_the_need_from_above_and_below() {
+        // FINDING-262: started twice above the need (0.02), the mean intensity in a scarce medium **falls**
+        // towards it; started at zero (FINDING-259) it rose. Drift does not converge on one point from both
+        // sides; selection does.
+        let pool = || crate::skin::SkinPool::new(50.0, 500.0, 30.0, 1.0);
+        let above = run_shared(shared_rules(), pool(), 1.0, 10.0, 0.02, 4000, 11);
+        let below = run_shared(shared_rules(), pool(), 1.0, 10.0, 0.0, 4000, 11);
+        let u_min = shared_rules().skin.u_min();
+
+        assert!(above.forms.len() > 0 && below.forms.len() > 0);
+        assert!(
+            above.mean_u() < 0.02,
+            "from above the intensity should fall towards the need, got {}",
+            above.mean_u()
+        );
+        assert!(
+            below.mean_u() > u_min,
+            "from below it should settle above the need, got {}",
+            below.mean_u()
+        );
+        // and both should end within a factor of two of the need
+        for (label, mean) in [("above", above.mean_u()), ("below", below.mean_u())] {
+            assert!(
+                mean >= u_min && mean <= u_min * 2.5,
+                "{label}: {mean} should sit within a factor of the need {u_min}"
+            );
+        }
+    }
+
+    #[test]
     fn a_shared_stock_limits_the_population_before_any_ceiling() {
         // FINDING-261: with a tight inflow the population stops well below `max_population`, because the stock
         // cannot feed more forms - something an unshared income could never show.
