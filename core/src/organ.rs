@@ -289,6 +289,10 @@ pub struct Flow {
     /// How much matter A sheds per unit of its own decay. `1.0` means it sheds exactly what falls off it, which is
     /// exactly what its own repair costs - leaving nothing for the other part.
     pub yield_rate: f64,
+    /// How much B's health supports A's productivity: the effective yield is
+    /// `yield_rate * (1 + support * (q_b - q_min)/(1 - q_min))`, so a whole B multiplies it by `1 + support` and a B at
+    /// the minimum does not help at all.
+    pub support: f64,
     pub alive: bool,
     pub steps: usize,
     /// How much was taken from the stock on the last step.
@@ -304,6 +308,7 @@ impl Flow {
             stock,
             stock_max: 1_000.0,
             yield_rate: 1.0,
+            support: 0.0,
             alive: true,
             steps: 0,
             last_draw: 0.0,
@@ -318,7 +323,9 @@ impl Flow {
         self.steps += 1;
 
         // A sheds what falls off it, and nothing else puts matter in
-        let shed = self.yield_rate * self.a.q * self.a.decay;
+        // B supports A's productivity: a whole B lifts the yield, a B at its minimum does not help at all
+        let lift = 1.0 + self.support * ((self.b.q - self.q_min) / (1.0 - self.q_min)).clamp(0.0, 1.0);
+        let shed = self.yield_rate * lift * self.a.q * self.a.decay;
         self.stock = (self.stock + shed).min(self.stock_max);
 
         // B repairs both parts out of the stock, and only while B itself is above its minimum
@@ -474,6 +481,35 @@ mod tests {
     ///
     /// `FINDING-282` predicted the middle part would fall first; the trajectory of `FINDING-283` showed it is the
     /// **last** one, the most gated. That test is replaced by the corrected one below.
+    #[test]
+    fn the_price_of_a_division_is_an_equilibrium_not_a_constant() {
+        // FINDING-292: at the threshold the starved part spends `q*d`, not `d*q_min`, so the balance is
+        // `yield*q_a*d_a >= 1.5*need_a + q_b*d_b` with `q_b` itself set by that balance. The measured crossing is 1.667,
+        // not the 2 that `need_b` as a constant would give.
+        let settle = |y: f64| {
+            let mut f = Flow::new(Part::new(1.0, 0.05, 1.0), Part::new(1.0, 0.05, 1.0), Q_MIN, 10.0);
+            f.yield_rate = y;
+            for _ in 0..200_000 {
+                if !f.step() {
+                    return (f.a.q, f.b.q, false);
+                }
+            }
+            (f.a.q, f.b.q, true)
+        };
+
+        let (_, _, dead) = settle(1.60);
+        let (qa, qb, alive) = settle(1.667);
+        assert!(!dead, "below the threshold it dies");
+        assert!(alive, "at the threshold it lives");
+        assert!((qa - 0.30).abs() < 0.01, "the producer settles at 0.30, not the 0.36 I predicted: {qa}");
+        assert!((qb - Q_MIN).abs() < 0.01, "and the supported part sits on its minimum: {qb}");
+
+        // the balance closes with `q_b*d`, not with `need_b`
+        let inflow = 1.667 * qa * 0.05;
+        let outflow = 1.5 * 0.05 * Q_MIN + qb * 0.05;
+        assert!((inflow - outflow).abs() < 0.002, "in {inflow} out {outflow}");
+    }
+
     #[test]
     fn a_division_lives_only_when_one_part_produces_a_surplus() {
         // FINDING-290: a part that sheds exactly what it loses leaves nothing for the other. The threshold is derived -

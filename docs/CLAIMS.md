@@ -115,7 +115,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 356 тестов
+### Rust — 357 тестов
 
 | группа | что проверяет |
 |---|---|
@@ -227,7 +227,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
 | Lean файлов | **56** `Medium` + 8 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
 | Lean `sorry` как тактика | **0** | `grep -rnE '^\s*(·\s*)?sorry\s*$' laws/ \| wc -l` |
-| Rust тестов | **356** | `cd core && cargo test --release --tests -- --test-threads=1` |
+| Rust тестов | **357** | `cd core && cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
 | docs FINDING | **148** | `ls docs/FINDING-*.md \| wc -l` |
 | checks (эксперименты) | **110** | `ls checks/exp*.py \| wc -l` |
