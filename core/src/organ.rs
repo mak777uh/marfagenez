@@ -237,6 +237,41 @@ pub fn expected_life(q: f64, rate: f64, p: f64) -> f64 {
     }
 }
 
+/// Mortality with **accumulated damage**: `mu = floor + rate*(1-q)^p + lambda*damage`.
+///
+/// `MODEL-CEILINGS.md` names the first ceiling to lift: a form has no **history**. Damage does not heal, so two forms
+/// with the same integrity but different ages are no longer equivalent - which is exactly the property the model
+/// lacked.
+pub fn aging_mortality(q: f64, rate: f64, p: f64, floor: f64, lambda: f64, damage: f64) -> f64 {
+    floor + mortality(q, rate, p) + lambda * damage.max(0.0)
+}
+
+/// One sampled lifetime when damage grows by `delta` every step. `damage0` is the damage already carried, so the
+/// same form at two ages gives two different lives.
+pub fn sample_life_with_damage(
+    rng: &mut crate::Rng,
+    q: f64,
+    rate: f64,
+    p: f64,
+    floor: f64,
+    lambda: f64,
+    delta: f64,
+    damage0: f64,
+    horizon: usize,
+) -> Option<usize> {
+    let mut damage = damage0.max(0.0);
+    for step in 1..=horizon {
+        let mu = aging_mortality(q, rate, p, floor, lambda, damage);
+        let survive_one = (-mu).exp();
+        let u = (rng.next_u64() >> 11) as f64 / (1u64 << 53) as f64;
+        if u > survive_one {
+            return Some(step);
+        }
+        damage += delta;
+    }
+    None
+}
+
 /// One sampled lifetime at a constant `q`, or `None` if it outlived the horizon.
 pub fn sample_life(rng: &mut crate::Rng, q: f64, rate: f64, p: f64, horizon: usize) -> Option<usize> {
     let mu = mortality(q, rate, p);
@@ -583,6 +618,31 @@ mod tests {
         let inflow = 1.667 * qa * 0.05;
         let outflow = 1.5 * 0.05 * Q_MIN + qb * 0.05;
         assert!((inflow - outflow).abs() < 0.002, "in {inflow} out {outflow}");
+    }
+
+    #[test]
+    fn history_makes_two_forms_with_equal_integrity_unequal() {
+        // FINDING-297: with damage that does not heal, life solves the quadratic `mu0*T + (lambda*delta/2)*T^2 = 1`.
+        // Two forms with the same q but different damage now live different times - the model has a past.
+        let solve = |mu0: f64, lambda_delta: f64| {
+            // T = (-mu0 + sqrt(mu0^2 + 2*lambda_delta)) / lambda_delta
+            let a = lambda_delta / 2.0;
+            if a <= 0.0 {
+                return 1.0 / mu0;
+            }
+            let disc = (mu0 * mu0 + 4.0 * a).sqrt();
+            (disc - mu0) / (2.0 * a)
+        };
+        let lambda_delta = 0.001 * 0.001; // lambda * delta
+        let young = solve(aging_mortality(0.5, 0.01, 2.0, 0.0002, 0.001, 0.0), lambda_delta);
+        let aged = solve(aging_mortality(0.5, 0.01, 2.0, 0.0002, 0.001, 1.0), lambda_delta);
+        let ancient = solve(aging_mortality(0.5, 0.01, 2.0, 0.0002, 0.001, 5.0), lambda_delta);
+        // the closed form gives 348 / 261 / 129; the sampled means are 339 / 258 / 128 - within a few percent,
+        // because damage grows in discrete steps rather than continuously
+        assert!((young - 348.0).abs() < 4.0, "young {young}");
+        assert!((aged - 261.0).abs() < 4.0, "aged {aged}");
+        assert!((ancient - 129.0).abs() < 4.0, "ancient {ancient}");
+        assert!(young > aged && aged > ancient);
     }
 
     #[test]
