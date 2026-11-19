@@ -738,6 +738,45 @@ mod tests {
     }
 
     #[test]
+    fn maintenance_depends_on_throughput_and_persistence_does_not() {
+        // FINDING-267: a passive form lives `ln(q_min)/ln(1-d)` steps at ANY income, because nothing in it
+        // depends on the medium. A maintained form's life tracks the income and becomes unbounded exactly at
+        // `c*u_min`. That difference is the operational mark of maintenance rather than persistence.
+        let base = SkinRules {
+            decay: 0.05,
+            q_min: 0.2,
+            repair_cost: 10.0,
+            income: 1.0,
+            maintenance: 0.0,
+        };
+        let threshold = base.skin_cost();
+        let mut passive_lives = Vec::new();
+        let mut repaired_lives = Vec::new();
+        for income in [0.02, 0.05, 0.09, 0.10, 0.20] {
+            let r = SkinRules { income, ..base };
+            passive_lives.push(run(r, 1.0, 10.0, 0.0, 200_000).steps);
+            repaired_lives.push(run(r, 1.0, 10.0, r.u_min(), 200_000).steps);
+        }
+        assert!(
+            passive_lives.iter().all(|s| *s == passive_lives[0]),
+            "the passive life must not depend on the medium: {passive_lives:?}"
+        );
+        assert!(
+            repaired_lives.windows(2).all(|w| w[1] >= w[0]),
+            "the repaired life must order with the income: {repaired_lives:?}"
+        );
+        assert_eq!(
+            repaired_lives[3], 200_000,
+            "at exactly the skin cost the form should live forever"
+        );
+        assert!(
+            repaired_lives[2] < 200_000,
+            "just below the skin cost it should not"
+        );
+        assert!((threshold - 0.1).abs() < 1e-12);
+    }
+
+    #[test]
     fn the_skin_moves_the_maintenance_boundary() {
         let mut r = rules();
         // free surplus 0.37 against a skin cost of 0.1: affordable
