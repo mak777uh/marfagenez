@@ -40,3 +40,7 @@ Thumbs.db
 
 .tmp_*
 results/_verify_default.log
+
+# gate output, never a deliverable
+.gate.log
+.exp.log
