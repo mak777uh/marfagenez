@@ -1,0 +1,163 @@
+{
+  "schema": "kg/2",
+  "built_at": "2026-11-20",
+  "counts": {
+    "total": 446,
+    "by_kind": {
+      "claim": 8,
+      "formula": 31,
+      "experiment": 407
+    },
+    "by_epistemic": {
+      "established": 321,
+      "hypothesis": 57,
+      "refuted": 67,
+      "bounded": 1
+    },
+    "by_provenance": {
+      "verified_agent": 417,
+      "extracted": 29
+    },
+    "edges": 5
+  },
+  "invariants": [
+    "every node has non-empty context",
+    "established implies at least one evidence item",
+    "established cannot have provenance=extracted",
+    "a checked formula declares units for its symbols",
+    "no dangling C-/F- references",
+    "ids are unique",
+    "claims do not repeat another claim's text",
+    "a refuted node is never the target of supports"
+  ],
+  "communities": [
+    {
+      "id": "K1",
+      "label": "цена и бюджет",
+      "hubs": [
+        "C-001",
+        "C-002"
+      ]
+    },
+    {
+      "id": "K2",
+      "label": "замыкание и выживание",
+      "hubs": [
+        "C-003",
+        "C-006",
+        "F-022",
+        "F-024"
+      ]
+    },
+    {
+      "id": "K3",
+      "label": "порог и его форма",
+      "hubs": [
+        "C-005",
+        "C-007",
+        "F-003",
+        "F-029"
+      ]
+    },
+    {
+      "id": "K4",
+      "label": "формулы",
+      "hubs": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "K5",
+      "label": "прогоны",
+      "hubs": [
+        "X-EXP-22-run-2026-11-12T12-46-12",
+        "X-EXP-22-run-2026-11-13T12-51-39",
+        "X-EXP-23-run-2026-11-12T12-55-33",
+        "X-EXP-24-run-2026-11-12T13-01-44",
+        "X-EXP-24-run-2026-11-12T13-03-34"
+      ]
+    }
+  ],
+  "frontier": {
+    "without_evidence": [
+      "F-002",
+      "F-004",
+      "F-005",
+      "F-006",
+      "F-007",
+      "F-008",
+      "F-009",
+      "F-010",
+      "F-011",
+      "F-012",
+      "F-013",
+      "F-014",
+      "F-015",
+      "F-016",
+      "F-017",
+      "F-018",
+      "F-019",
+      "F-020",
+      "F-021",
+      "F-024",
+      "F-025",
+      "F-026",
+      "F-027",
+      "F-028",
+      "F-029",
+      "F-030",
+      "F-031"
+    ],
+    "extracted_only": [
+      "C-006",
+      "C-008",
+      "F-002",
+      "F-004",
+      "F-005",
+      "F-006",
+      "F-007",
+      "F-008",
+      "F-009",
+      "F-010",
+      "F-011",
+      "F-012",
+      "F-013",
+      "F-014",
+      "F-015",
+      "F-016",
+      "F-017",
+      "F-018",
+      "F-019",
+      "F-020",
+      "F-021",
+      "F-024",
+      "F-025",
+      "F-026",
+      "F-027",
+      "F-028",
+      "F-029",
+      "F-030",
+      "F-031"
+    ],
+    "refuted_still_referenced": [],
+    "contested": []
+  },
+  "verbs": [
+    "map",
+    "find",
+    "show",
+    "expand",
+    "trace",
+    "chain",
+    "formula",
+    "contradictions",
+    "check"
+  ],
+  "hashes": {
+    "graph": "4becad90f7882ef6"
+  }
+}

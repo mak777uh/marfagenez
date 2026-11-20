@@ -1,212 +1,293 @@
 #!/usr/bin/env python3
-"""kg.py — claim-centric knowledge graph for this repository.
+"""kg.py — agent-friendly knowledge graph for this repository.
 
-Source of truth: kg/claims.jsonl (append-only, one claim per line).
-Generated: kg/INDEX.md (human), kg/graph.json (machine).
+Canonical store: kg/nodes.jsonl (one node per line; rebuild with kg/migrate.py).
+Generated:       kg/meta.json (the map), kg/graph.json, kg/INDEX.md.
 
-Commands:
-  build                 rebuild INDEX.md and graph.json
-  map                   status counts and the busiest claims
-  find <text>           full-text search over claims
-  show C-00N            one claim with its evidence and relations
-  expand C-00N [N]      neighbourhood of a claim (default 1 hop)
-  contradictions        refutes-pairs and same-text-different-status pairs
-  trace C-00N           evidence path from a claim
-  check                 validate the file
+Node kinds: claim | formula | experiment | dataset | definition | question
+Edges:      supports | refutes | qualifies | extends | replicates | supersedes | same_as | predicted_by
 
-Usage: python3 kg/kg.py <command> [args]
+Commands
+  build                 validate, then rebuild meta.json, graph.json, INDEX.md
+  map                   the map: counts, communities, frontier, verbs
+  check                 validate against the invariants (code, not opinion)
+  find <text>           search nodes
+  show <id>             one node
+  expand <id> [k]       neighbourhood
+  trace <id>            evidence of a node
+  chain <id>            claim -> formula -> experiment -> data
+  formula <id>          signature: latex, units, what checks it
+  contradictions        explicit refutes, plus refuted nodes
 """
+import hashlib
 import json
 import sys
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
-CLAIMS = ROOT / "claims.jsonl"
-INDEX = ROOT / "INDEX.md"
-GRAPH = ROOT / "graph.json"
+KG = Path(__file__).resolve().parent
+NODES = KG / "nodes.jsonl"
+META = KG / "meta.json"
+GRAPH = KG / "graph.json"
+INDEX = KG / "INDEX.md"
 
+KINDS = {"claim", "formula", "experiment", "dataset", "definition", "question"}
 EPISTEMIC = {"hypothesis", "established", "contested", "replicated", "refuted", "bounded"}
 PROVENANCE = {"extracted", "verified_agent", "human_confirmed"}
-RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as", "shared_evidence"}
-EVIDENCE_KINDS = {"experiment", "literature", "formula", "result", "prediction"}
+RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as", "predicted_by"}
 
 
 def load():
-    claims = []
-    with CLAIMS.open(encoding="utf-8") as fh:
-        for n, line in enumerate(fh, 1):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                claims.append(json.loads(line))
-            except json.JSONDecodeError as exc:
-                raise SystemExit(f"claims.jsonl line {n}: {exc}")
-    return claims
+    if not NODES.exists():
+        raise SystemExit("kg/nodes.jsonl missing: run python3 kg/migrate.py")
+    out = []
+    for i, line in enumerate(NODES.read_text(encoding="utf-8").splitlines(), 1):
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            out.append(json.loads(line))
+        except json.JSONDecodeError as exc:
+            raise SystemExit(f"nodes.jsonl line {i}: {exc}")
+    return out
 
 
-def validate(claims):
+def invariants(nodes):
     problems = []
-    seen = set()
-    for c in claims:
-        cid = c.get("id", "?")
-        if cid in seen:
-            problems.append(f"{cid}: duplicate id")
-        seen.add(cid)
-        if not c.get("text"):
-            problems.append(f"{cid}: empty text")
-        if c.get("epistemic") not in EPISTEMIC:
-            problems.append(f"{cid}: bad epistemic {c.get('epistemic')!r}")
-        if c.get("provenance") not in PROVENANCE:
-            problems.append(f"{cid}: bad provenance {c.get('provenance')!r}")
-        if not isinstance(c.get("context"), dict) or not c["context"]:
-            problems.append(f"{cid}: empty context")
-        for e in c.get("evidence", []):
-            if e.get("kind") not in EVIDENCE_KINDS:
-                problems.append(f"{cid}: bad evidence kind {e.get('kind')!r}")
-        for r in c.get("relations", []):
+    ids = {n["id"] for n in nodes}
+    if len(ids) != len(nodes):
+        problems.append("duplicate ids")
+    text_seen = {}
+    for n in nodes:
+        nid = n.get("id", "?")
+        if n.get("kind") not in KINDS:
+            problems.append(f"{nid}: kind {n.get('kind')!r}")
+        if n.get("epistemic") not in EPISTEMIC:
+            problems.append(f"{nid}: bad epistemic")
+        if n.get("provenance") not in PROVENANCE:
+            problems.append(f"{nid}: bad provenance")
+        if not n.get("context"):
+            problems.append(f"{nid}: empty context")
+        if n.get("epistemic") == "established" and not n.get("evidence"):
+            problems.append(f"{nid}: established without evidence")
+        if n.get("epistemic") == "established" and n.get("provenance") == "extracted":
+            problems.append(f"{nid}: established but only extracted")
+        if n.get("kind") == "formula":
+            math = n.get("math") or {}
+            checked = (math.get("checked") or {}).get("kind", "none")
+            if checked != "none" and not math.get("units"):
+                problems.append(f"{nid}: checked formula without units")
+        for r in n.get("relations", []):
             if r.get("type") not in RELATIONS:
-                problems.append(f"{cid}: bad relation type {r.get('type')!r}")
+                problems.append(f"{nid}: relation {r.get('type')!r}")
+            if str(r.get("target", "")).startswith(("C-", "F-")) and r["target"] not in ids:
+                problems.append(f"{nid}: dangling relation -> {r['target']}")
+        key = n.get("text", "")[:80]
+        if key:
+            if key in text_seen and n.get("kind") == "claim":
+                problems.append(f"{nid}: duplicate text with {text_seen[key]}")
+            text_seen.setdefault(key, nid)
+    refuted = {n["id"] for n in nodes if n.get("epistemic") == "refuted"}
+    for n in nodes:
+        for r in n.get("relations", []):
+            if r.get("type") == "supports" and r.get("target") in refuted:
+                problems.append(f"{n['id']}: supports a refuted node {r['target']}")
     return problems
 
 
-def build(claims):
-    by_id = {c["id"]: c for c in claims}
-    edges = []
-    for c in claims:
-        for r in c.get("relations", []):
-            edges.append({"from": c["id"], "to": r["target"], "type": r["type"], "note": r.get("note", "")})
-    GRAPH.write_text(json.dumps({"claims": claims, "edges": edges}, ensure_ascii=False, indent=2) + "\n",
-                     encoding="utf-8")
-
-    lines = ["# kg/INDEX.md — граф утверждений (генерируется из claims.jsonl)", "",
-             "**Не править руками.** Источник: `kg/claims.jsonl`. Пересборка: `python3 kg/kg.py build`.", "",
-             f"утверждений: **{len(claims)}**, связей: **{len(edges)}**", "",
-             "| id | утверждение | статус | происхождение | доказательств |", "|---|---|---|---|---|"]
-    for c in claims:
-        text = c["text"] if len(c["text"]) <= 110 else c["text"][:107] + "…"
-        lines.append(f"| {c['id']} | {text} | {c['epistemic']} | {c['provenance']} | {len(c.get('evidence', []))} |")
-    lines += ["", "## Связи", ""]
-    for e in edges:
-        lines.append(f"- {e['from']} —{e['type']}→ {e['to']}" + (f"  ({e['note']})" if e["note"] else ""))
-    INDEX.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"built: {len(claims)} claims, {len(edges)} edges -> {INDEX.name}, {GRAPH.name}")
-
-
-def cmd_map(claims):
-    print(f"claims: {len(claims)}")
-    print("by epistemic:", dict(Counter(c["epistemic"] for c in claims)))
-    print("by provenance:", dict(Counter(c["provenance"] for c in claims)))
-    deg = Counter()
-    for c in claims:
-        deg[c["id"]] += len(c.get("relations", []))
-    print("busiest:", deg.most_common(5))
-    no_ev = [c["id"] for c in claims if not c.get("evidence")]
-    print("without evidence:", no_ev)
-
-
-def cmd_find(claims, needle):
-    n = needle.lower()
-    hits = [c for c in claims if n in c["text"].lower() or n in json.dumps(c.get("context", {}), ensure_ascii=False).lower()]
-    for c in hits:
-        print(f"{c['id']} [{c['epistemic']}/{c['provenance']}] {c['text']}")
-    if not hits:
-        print("nothing found")
-
-
-def cmd_show(claims, cid):
-    for c in claims:
-        if c["id"] == cid:
-            print(json.dumps(c, ensure_ascii=False, indent=2))
-            return
-    print(f"{cid}: not found")
-
-
-def cmd_expand(claims, cid, hops=1):
-    by_id = {c["id"]: c for c in claims}
-    seen = {cid}
-    frontier = {cid}
-    for _ in range(hops):
-        nxt = set()
-        for c in claims:
-            for r in c.get("relations", []):
-                if c["id"] in frontier or r["target"] in frontier:
-                    nxt.add(c["id"])
-                    nxt.add(r["target"])
-        frontier = nxt - seen
-        seen |= nxt
-    for i in sorted(seen):
-        if i in by_id:
-            print(f"{i} [{by_id[i]['epistemic']}] {by_id[i]['text']}")
-
-
-def cmd_contradictions(claims):
-    by_id = {c["id"]: c for c in claims}
-    found = False
-    for c in claims:
-        for r in c.get("relations", []):
-            if r["type"] == "refutes":
-                found = True
-                tgt = by_id.get(r["target"], {})
-                print(f"REFUTES: {c['id']} -> {r['target']}")
-                print(f"   claim : {c['text']}")
-                print(f"   target: {tgt.get('text', '(missing)')}")
-                print(f"   note  : {r.get('note', '')}")
-    for c in claims:
-        if c["epistemic"] == "refuted":
-            found = True
-            print(f"REFUTED: {c['id']} {c['text']}")
-    if not found:
-        print("no contradictions recorded")
-
-
-def cmd_trace(claims, cid):
-    for c in claims:
-        if c["id"] == cid:
-            print(f"{cid}: {c['text']}")
-            for e in c.get("evidence", []):
-                print(f"  evidence [{e['kind']}] {e['ref']}: {e.get('strength', '')}")
-            if not c.get("evidence"):
-                print("  (no evidence)")
-            return
-    print(f"{cid}: not found")
+def build(nodes):
+    problems = invariants(nodes)
+    if problems:
+        print("INVARIANT VIOLATIONS:")
+        for p in problems:
+            print("  ", p)
+        return 1
+    kinds = Counter(n["kind"] for n in nodes)
+    epistemic = Counter(n["epistemic"] for n in nodes)
+    provenance = Counter(n["provenance"] for n in nodes)
+    edges = [{"from": n["id"], "to": r["target"], "type": r["type"]}
+             for n in nodes for r in n.get("relations", [])]
+    refuted = {m["id"] for m in nodes if m["epistemic"] == "refuted"}
+    refuted_referenced = sorted({r["target"] for n in nodes for r in n.get("relations", [])
+                                 if r["type"] in ("supports", "extends", "qualifies")
+                                 and r["target"] in refuted})
+    frontier = {
+        "without_evidence": sorted(n["id"] for n in nodes if not n.get("evidence")),
+        "extracted_only": sorted(n["id"] for n in nodes if n.get("provenance") == "extracted"),
+        "refuted_still_referenced": refuted_referenced,
+        "contested": sorted(n["id"] for n in nodes if n.get("epistemic") == "contested"),
+    }
+    communities = [
+        {"id": "K1", "label": "цена и бюджет", "hubs": ["C-001", "C-002"]},
+        {"id": "K2", "label": "замыкание и выживание", "hubs": ["C-003", "C-006", "F-022", "F-024"]},
+        {"id": "K3", "label": "порог и его форма", "hubs": ["C-005", "C-007", "F-003", "F-029"]},
+        {"id": "K4", "label": "формулы", "hubs": sorted(n["id"] for n in nodes if n["kind"] == "formula")[:5]},
+        {"id": "K5", "label": "прогоны", "hubs": sorted(n["id"] for n in nodes if n["kind"] == "experiment")[:5]},
+    ]
+    meta = {
+        "schema": "kg/2",
+        "built_at": "2026-11-20",
+        "counts": {"total": len(nodes), "by_kind": dict(kinds), "by_epistemic": dict(epistemic),
+                   "by_provenance": dict(provenance), "edges": len(edges)},
+        "invariants": [
+            "every node has non-empty context",
+            "established implies at least one evidence item",
+            "established cannot have provenance=extracted",
+            "a checked formula declares units for its symbols",
+            "no dangling C-/F- references",
+            "ids are unique",
+            "claims do not repeat another claim's text",
+            "a refuted node is never the target of supports",
+        ],
+        "communities": communities,
+        "frontier": frontier,
+        "verbs": ["map", "find", "show", "expand", "trace", "chain", "formula", "contradictions", "check"],
+        "hashes": {"graph": hashlib.sha256(json.dumps(nodes, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]},
+    }
+    META.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    GRAPH.write_text(json.dumps({"nodes": nodes, "edges": edges}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    lines = ["# kg/INDEX.md — карта графа (генерируется)", "",
+             f"узлов: **{len(nodes)}**, рёбер: **{len(edges)}**", "",
+             "| kind | сколько |", "|---|---|"]
+    for k, v in sorted(kinds.items()):
+        lines.append(f"| {k} | {v} |")
+    lines += ["", "## Фронтир", "",
+              f"- без свидетельств: **{len(frontier['without_evidence'])}**",
+              f"- только извлечено: **{len(frontier['extracted_only'])}**",
+              f"- опровергнуто, но цитируется: **{len(refuted_referenced)}**",
+              "", "## Глаголы", "",
+              ", ".join(meta["verbs"]), ""]
+    INDEX.write_text("\n".join(lines), encoding="utf-8")
+    print(f"built: {len(nodes)} nodes, {len(edges)} edges")
+    print("by kind:", dict(kinds))
+    print("frontier:", {k: len(v) for k, v in frontier.items()})
+    return 0
 
 
 def main(argv):
     if len(argv) < 2:
         print(__doc__)
         return 1
-    claims = load()
+    nodes = load()
+    by_id = {n["id"]: n for n in nodes}
     cmd = argv[1]
+
     if cmd == "build":
-        problems = validate(claims)
-        if problems:
-            print("validation problems:")
-            for p in problems:
-                print("  ", p)
-            return 1
-        build(claims)
-    elif cmd == "check":
-        problems = validate(claims)
+        return build(nodes)
+
+    if cmd == "check":
+        problems = invariants(nodes)
         print("OK" if not problems else "\n".join(problems))
         return 0 if not problems else 1
-    elif cmd == "map":
-        cmd_map(claims)
-    elif cmd == "find":
-        cmd_find(claims, " ".join(argv[2:]))
-    elif cmd == "show":
-        cmd_show(claims, argv[2])
-    elif cmd == "expand":
-        cmd_expand(claims, argv[2], int(argv[3]) if len(argv) > 3 else 1)
-    elif cmd == "contradictions":
-        cmd_contradictions(claims)
-    elif cmd == "trace":
-        cmd_trace(claims, argv[2])
-    else:
-        print(__doc__)
-        return 1
-    return 0
+
+    if cmd == "map":
+        if not META.exists():
+            print("no meta.json: run build")
+            return 1
+        meta = json.loads(META.read_text(encoding="utf-8"))
+        print(f"nodes: {meta['counts']['total']}  edges: {meta['counts']['edges']}")
+        print("by kind:", meta["counts"]["by_kind"])
+        print("by epistemic:", meta["counts"]["by_epistemic"])
+        print("frontier:", {k: len(v) for k, v in meta["frontier"].items()})
+        print("communities:", [c["label"] for c in meta["communities"]])
+        return 0
+
+    if cmd == "find":
+        needle = " ".join(argv[2:]).lower()
+        hits = [n for n in nodes if needle in n.get("text", "").lower()]
+        for n in hits[:20]:
+            print(f"{n['id']} [{n['kind']}/{n['epistemic']}] {n['text'][:110]}")
+        print(f"({len(hits)} hits)")
+        return 0
+
+    if cmd == "show":
+        n = by_id.get(argv[2])
+        if not n:
+            print(f"{argv[2]}: not found")
+            return 1
+        print(json.dumps(n, ensure_ascii=False, indent=2))
+        return 0
+
+    if cmd == "expand":
+        start = argv[2]
+        hops = int(argv[3]) if len(argv) > 3 else 1
+        seen = {start}
+        frontier = {start}
+        for _ in range(hops):
+            nxt = set()
+            for n in nodes:
+                for r in n.get("relations", []):
+                    if n["id"] in frontier:
+                        nxt.add(r["target"])
+                    if r["target"] in frontier:
+                        nxt.add(n["id"])
+                for e in n.get("evidence", []):
+                    ref = str(e.get("ref", ""))
+                    if ref in frontier:
+                        nxt.add(n["id"])
+                    if n["id"] in frontier and ref.startswith(("C-", "F-", "X-")):
+                        nxt.add(ref)
+            frontier = nxt - seen
+            seen |= nxt
+        for i in sorted(seen):
+            n = by_id.get(i)
+            if n:
+                print(f"{i} [{n['kind']}/{n['epistemic']}] {n['text'][:100]}")
+        return 0
+
+    if cmd == "trace":
+        n = by_id.get(argv[2])
+        if not n:
+            print(f"{argv[2]}: not found")
+            return 1
+        print(f"{n['id']}: {n['text']}")
+        for e in n.get("evidence", []):
+            print(f"  evidence [{e['kind']}] {e['ref']} ({e.get('strength', '?')})")
+        return 0
+
+    if cmd == "chain":
+        n = by_id.get(argv[2])
+        if not n:
+            print(f"{argv[2]}: not found")
+            return 1
+        print(f"claim  {n['id']}: {n['text']}")
+        for e in n.get("evidence", []):
+            print(f"-> {e['kind']:12} {e['ref']}")
+            m = by_id.get(str(e["ref"]))
+            if m:
+                for e2 in m.get("evidence", []):
+                    print(f"   -> {e2['kind']:10} {e2['ref']}")
+        return 0
+
+    if cmd == "formula":
+        n = by_id.get(argv[2])
+        if not n or n.get("kind") != "formula":
+            print(f"{argv[2]}: not a formula node")
+            return 1
+        math = n.get("math", {})
+        print(f"{n['id']}: {n['text']}")
+        print("latex:", (math.get("latex") or "").splitlines()[:3])
+        print("units:", math.get("units"))
+        print("checked:", math.get("checked"))
+        return 0
+
+    if cmd == "contradictions":
+        found = False
+        for n in nodes:
+            for r in n.get("relations", []):
+                if r["type"] == "refutes":
+                    found = True
+                    print(f"REFUTES {n['id']} -> {r['target']}: {n['text'][:90]}")
+        for n in nodes:
+            if n["epistemic"] == "refuted":
+                found = True
+                print(f"REFUTED {n['id']}: {n['text'][:100]}")
+        if not found:
+            print("no contradictions recorded")
+        return 0
+
+    print(__doc__)
+    return 1
 
 
 if __name__ == "__main__":
