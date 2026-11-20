@@ -1,0 +1,171 @@
+{
+  "schema": "experiment/1",
+  "experiment_id": "EXP-PRICE-KINKS",
+  "run_id": "2026-11-20T11-04-10",
+  "model_commit": "438f256edbbaa04459e3e306f4becb13d494b3a8",
+  "seed": 0,
+  "hash_version": "2-prev-cell",
+  "parameters": {
+    "income": 1.0,
+    "weights": [
+      2.0,
+      5.0,
+      1.0
+    ],
+    "store_floor": 0.1,
+    "a_sweep": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9
+    ]
+  },
+  "arithmetic": {
+    "budget": "u_upkeep + u_repair + u_store <= 1.0",
+    "floors": "u_upkeep >= a, u_store >= 0.1; cap: u_repair <= 0.5",
+    "weights": "upkeep 2, repair 5, store 1",
+    "kink": "at a = 1.0 - 0.1 - 0.5 = 0.4 the repair cap stops binding and the displaced use switches",
+    "prices": "before the kink: 2 - 1 = 1; after: 5 - 2 = 3"
+  },
+  "conditions": {
+    "solver": "closed form",
+    "a_range": "0.00 ... 0.90 step 0.05"
+  },
+  "series": [
+    {
+      "a": 0.0,
+      "shadow_price": 1.0,
+      "displaced": "store (repair cap binds)"
+    },
+    {
+      "a": 0.05,
+      "shadow_price": 1.0,
+      "displaced": "store (repair cap binds)"
+    },
+    {
+      "a": 0.1,
+      "shadow_price": 1.0,
+      "displaced": "store (repair cap binds)"
+    },
+    {
+      "a": 0.15,
+      "shadow_price": 1.0,
+      "displaced": "store (repair cap binds)"
+    },
+    {
+      "a": 0.2,
+      "shadow_price": 1.0,
+      "displaced": "store (repair cap binds)"
+    },
+    {
+      "a": 0.25,
+      "shadow_price": 1.0,
+      "displaced": "store (repair cap binds)"
+    },
+    {
+      "a": 0.3,
+      "shadow_price": 1.0,
+      "displaced": "store (repair cap binds)"
+    },
+    {
+      "a": 0.35,
+      "shadow_price": 1.0,
+      "displaced": "store (repair cap binds)"
+    },
+    {
+      "a": 0.4,
+      "shadow_price": 1.0,
+      "displaced": "store (repair cap binds)"
+    },
+    {
+      "a": 0.45,
+      "shadow_price": 3.0,
+      "displaced": "repair"
+    },
+    {
+      "a": 0.5,
+      "shadow_price": 3.0,
+      "displaced": "repair"
+    },
+    {
+      "a": 0.55,
+      "shadow_price": 3.0,
+      "displaced": "repair"
+    },
+    {
+      "a": 0.6,
+      "shadow_price": 3.0,
+      "displaced": "repair"
+    },
+    {
+      "a": 0.65,
+      "shadow_price": 3.0,
+      "displaced": "repair"
+    },
+    {
+      "a": 0.7,
+      "shadow_price": 3.0,
+      "displaced": "repair"
+    },
+    {
+      "a": 0.75,
+      "shadow_price": 3.0,
+      "displaced": "repair"
+    },
+    {
+      "a": 0.8,
+      "shadow_price": 3.0,
+      "displaced": "repair"
+    },
+    {
+      "a": 0.85,
+      "shadow_price": 3.0,
+      "displaced": "repair"
+    },
+    {
+      "a": 0.9,
+      "shadow_price": 3.0,
+      "displaced": "repair"
+    }
+  ],
+  "controls": {
+    "fires": {
+      "passed": true,
+      "evidence": "the price changes across the kink"
+    },
+    "silent": {
+      "passed": true,
+      "evidence": "below the kink every row shows price 1"
+    },
+    "specific": {
+      "passed": true,
+      "evidence": "above the kink every row shows price 3"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the shadow price of the upkeep floor is piecewise constant and jumps at the point where the displaced use changes from store to repair"
+  },
+  "hashes": {
+    "below_kink": "price 1 (store displaced)",
+    "above_kink": "price 3 (repair displaced)"
+  },
+  "limitations": "closed-form three-use budget; two floors; weights are parameters, not measurements. The model has no dynamics, so this is the price of the constraint, not of the organ.",
+  "command": "python3 checks/exp_price_kinks.py",
+  "created_at": "2026-11-20T11:04:10Z"
+}
