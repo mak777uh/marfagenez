@@ -307,6 +307,13 @@ do_kg() {
   rc=$?
   tail -20 "$out"
   rm -f "$out"
+  # Second gate: the corpus, not the generated file, is the source of truth,
+  # and import must not move a status by itself (D-07).
+  python3 kg/regress.py
+  local rrc=$?
+  if [ "$rrc" -ne 0 ] && [ "$rc" -eq 0 ]; then
+    rc=$rrc
+  fi
   return $rc
 }
 
