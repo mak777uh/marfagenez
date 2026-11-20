@@ -112,8 +112,49 @@ def experiments():
     return out
 
 
+
+
+def literature():
+    """Literature records `### L-NNN · title` from the registry become claim nodes.
+
+    Provenance: `verified_agent` only when the record says the FULL TEXT was read, otherwise `extracted`.
+    Epistemic: always `hypothesis` -- a literature statement is not established for us until we reproduce it.
+    """
+    path = ROOT / "docs" / "ELEPHANT-LITERATURE.md"
+    text = path.read_text(encoding="utf-8")
+    out = []
+    pattern = re.compile(r"^### (L-\d{3}) · (.+?)$", re.M)
+    marks = list(pattern.finditer(text))
+    for i, m in enumerate(marks):
+        lid, title = m.group(1), m.group(2).strip()
+        end = marks[i + 1].start() if i + 1 < len(marks) else len(text)
+        body = text[m.end():end]
+        level = "вторые руки"
+        lm = re.search(r"\*\*Проверено\.\*\*\s*(.+)", body)
+        if lm:
+            level = lm.group(1).strip().splitlines()[0][:80]
+        statement = ""
+        sm = re.search(r"\*\*Утверждение[^*]*\.\*\*\s*(.+)", body)
+        if sm:
+            statement = sm.group(1).strip()
+        chosen = "verified_agent" if "полный текст" in level.lower() else "extracted"
+        out.append({
+            "id": lid,
+            "kind": "claim",
+            "text": (title + (" — " + statement if statement else ""))[:400],
+            "context": {"scope": "literature record from ELEPHANT-LITERATURE", "parameters": "see registry", "conditions": level},
+            "epistemic": "hypothesis",
+            "provenance": chosen,
+            "evidence": [{"kind": "literature", "ref": "docs/ELEPHANT-LITERATURE.md", "strength": "strong" if chosen == "verified_agent" else "weak"}],
+            "relations": [],
+            "data": {"source": "docs/ELEPHANT-LITERATURE.md", "license": "see source", "accessed_at": "2026-11-20"},
+            "created_at": "2026-11-20",
+            "updated_at": "2026-11-20",
+        })
+    return out
+
 def main():
-    nodes = claims() + formulas() + experiments()
+    nodes = claims() + formulas() + experiments() + literature()
     seen = set()
     unique = []
     for n in nodes:
