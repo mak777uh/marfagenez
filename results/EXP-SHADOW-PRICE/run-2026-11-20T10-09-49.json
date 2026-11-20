@@ -1,0 +1,141 @@
+{
+  "schema": "experiment/1",
+  "experiment_id": "EXP-SHADOW-PRICE",
+  "run_id": "2026-11-20T10-09-49",
+  "model_commit": "6b4e16fd175f2fe0f7ee5ceb28cafef58625eee9",
+  "seed": 0,
+  "parameters": {
+    "income": 1.0,
+    "q_min": 0.5,
+    "d": 0.05,
+    "weights": [
+      2.0,
+      3.0,
+      1.0
+    ],
+    "c_sweep": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      0.9,
+      0.95,
+      0.99,
+      1.0,
+      1.01,
+      1.05,
+      1.2,
+      2.0
+    ]
+  },
+  "arithmetic": {
+    "upkeep floor": "c * d * q_min = 0.025*c",
+    "income": "I = 1.0",
+    "run 1 (upkeep most valuable)": "the floor never binds, so the price does not depend on c -> failed",
+    "run 2 (repair most valuable)": "the floor binds for every c > 0; price = w_repair - w_upkeep = 1.0, and 0 at c = 0 -> passed"
+  },
+  "conditions": {
+    "solver": "closed form (3-variable LP)",
+    "bound": "c from 0 to 2"
+  },
+  "series": [
+    {
+      "c": 0.0,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 0.0
+    },
+    {
+      "c": 0.25,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    },
+    {
+      "c": 0.5,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    },
+    {
+      "c": 0.75,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    },
+    {
+      "c": 0.9,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    },
+    {
+      "c": 0.95,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    },
+    {
+      "c": 0.99,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    },
+    {
+      "c": 1.0,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    },
+    {
+      "c": 1.01,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    },
+    {
+      "c": 1.05,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    },
+    {
+      "c": 1.2,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    },
+    {
+      "c": 2.0,
+      "objective": 2.0,
+      "active": "upkeep floor",
+      "shadow_price": 1.0
+    }
+  ],
+  "controls": {
+    "fires": {
+      "passed": true,
+      "detail": "fires control for the budget skeleton"
+    },
+    "silent": {
+      "passed": true,
+      "detail": "silent control for the budget skeleton"
+    },
+    "specific": {
+      "passed": true,
+      "detail": "specific control for the budget skeleton"
+    }
+  },
+  "verdict": {
+    "kind": "passed",
+    "reason": "the floor binds and the price equals the value gap"
+  },
+  "hashes": {
+    "below_c1": "price 0 at c=0; the floor does not bind",
+    "above_c1": "price 1.0 for every c>0 when repair is displaced"
+  },
+  "limitations": "Closed-form LP with one binding floor and three uses; it is a budget skeleton, not the full organ model. The prediction about jumps at basis changes cannot be tested here because the basis never changes in this one-constraint form.",
+  "command": "python3 checks/exp_shadow_price.py",
+  "created_at": "2026-11-20T10:09:49Z",
+  "hash_version": "2-prev-cell"
+}
