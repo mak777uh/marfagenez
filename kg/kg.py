@@ -11,7 +11,9 @@ Edges:      supports | refutes | qualifies | extends | replicates | supersedes |
 
 Commands
   build                 validate, then rebuild meta.json, graph.json, INDEX.md
-  map                   the map: counts, communities, frontier, verbs
+  map                   one-line summary: counts, communities, frontier
+  atlas [K1]            zoomable map: L0 the whole corpus, L1 one line
+  math                  all formulas on one screen: units, checks, links
   check                 validate against the invariants (code, not opinion)
   find <text>           search nodes
   show <id>             one node
@@ -191,7 +193,7 @@ def build(nodes):
         ],
         "communities": communities,
         "frontier": frontier,
-        "verbs": ["map", "find", "show", "expand", "trace", "chain", "formula", "contradictions", "check"],
+        "verbs": ["atlas", "math", "map", "find", "show", "expand", "trace", "chain", "formula", "contradictions", "check"],
         "hashes": {"graph": hashlib.sha256(json.dumps(nodes, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]},
     }
     META.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -230,6 +232,113 @@ def refs_report(nodes, strict):
         print("NOTE: ссылки выше -- дыры в графе; строгий режим: kg.py check --refs")
     return 0
 
+
+# ---------------------------------------------------------------------------
+# Карта с уровнями: atlas (L0) -> atlas <линия> (L1) -> expand (L2) -> show (L3)
+# ---------------------------------------------------------------------------
+
+
+def _edges(nodes):
+    """(forward, backward) maps of typed relations, so a card can show both sides."""
+    by_id = {n["id"] for n in nodes}
+    fwd = {}
+    back = {}
+    for n in nodes:
+        for r in n.get("relations") or []:
+            t, tgt = r.get("type"), r.get("target")
+            if tgt not in by_id:
+                continue
+            fwd.setdefault(n["id"], []).append((t, tgt))
+            back.setdefault(tgt, []).append((t, n["id"]))
+    return fwd, back
+
+
+def _clip(text, width=64):
+    text = (text or "").replace("\n", " ").strip()
+    return text if len(text) <= width else text[: width - 1] + "…"
+
+
+def _units(formula):
+    """(how many units declared, True if the formula declares any at all)."""
+    math = formula.get("math") or {}
+    units = math.get("units")
+    if isinstance(units, dict) and units:
+        return len(units), True
+    if isinstance(units, list) and units:
+        return len(units), True
+    return 0, False
+
+
+def atlas(nodes, cluster_id=None):
+    """L0: the whole corpus on one screen. L1: one line with its hubs and holes."""
+    meta = json.loads(META.read_text(encoding="utf-8")) if META.exists() else {}
+    fwd, back = _edges(nodes)
+    by_id = {n["id"]: n for n in nodes}
+
+    if cluster_id:
+        line = next((c for c in meta.get("communities", []) if c["id"] == cluster_id), None)
+        if not line:
+            print("нет линии " + cluster_id + "; есть: " + ", ".join(c["id"] for c in meta.get("communities", [])))
+            return 1
+        print("ЛИНИЯ " + line["id"] + " · " + line["label"])
+        for hub in line["hubs"]:
+            n = by_id.get(hub)
+            if not n:
+                continue
+            ev = len(n.get("evidence") or [])
+            out_edges = fwd.get(hub, [])
+            route = " -> ".join(t + ":" + tgt for t, tgt in out_edges) or "рёбер нет"
+            print("  " + hub + " [" + n.get("epistemic", "?") + "/" + n.get("provenance", "?") + "] " + _clip(n.get("text"), 70))
+            print("      очевидцев: " + str(ev) + " · " + route)
+            for t, src in back.get(hub, [])[:3]:
+                print("      <- " + t + ":" + src)
+        print("  дальше: expand <id> — 2 шага; show <id> — карточка")
+        return 0
+
+    counts = meta.get("counts", {})
+    kinds = counts.get("by_kind", {})
+    epi = counts.get("by_epistemic", {})
+    prov = counts.get("by_provenance", {})
+    print("КАРТА L0  ·  " + str(counts.get("total", len(nodes))) + " узлов  ·  " + str(counts.get("edges", 0)) + " рёбер  ·  " + str(len(meta.get("communities", []))) + " линий")
+    print("знание: " + str(kinds.get("claim", 0)) + " утверждений · формул " + str(kinds.get("formula", 0)) + " · прогонов " + str(kinds.get("experiment", 0)))
+    print("статус: " + " · ".join(k + " " + str(v) for k, v in epi.items()))
+    print("доверие: " + " · ".join(k + " " + str(v) for k, v in prov.items()))
+    print()
+    print("линии:")
+    per_line = {}
+    for c in meta.get("communities", []):
+        per_line[c["id"]] = ", ".join(c["hubs"][:3])
+    for c in meta.get("communities", []):
+        members = set(c["hubs"])
+        inside = sum(1 for h in members for _t, _x in fwd.get(h, []))
+        print("  " + c["id"] + "  " + c["label"].ljust(24) + " хабы: " + per_line.get(c["id"], ""))
+    print()
+    holes = meta.get("frontier", {})
+    print("дороги между линиями: " + str(counts.get("edges", 0)) + " рёбер на " + str(len(meta.get("communities", []))) + " линий")
+    print("дыры: без свидетельств " + str(len(holes.get("without_evidence", []))) + " · только извлечено " + str(len(holes.get("extracted_only", []))) + " · опровергнуто, но используется " + str(len(holes.get("refuted_still_referenced", []))))
+    print("куда смотреть: atlas K1 · atlas K2 · atlas K4 · expand C-001 · math")
+    return 0
+
+
+def math_map(nodes):
+    """All formulas on one screen: units, what checks them, and what they touch."""
+    fwd, back = _edges(nodes)
+    forms = sorted((n for n in nodes if n.get("kind") == "formula"), key=lambda n: n["id"])
+    print("МАТЕМАТИКА  ·  " + str(len(forms)) + " шт., все на одном экране")
+    print("обозначения: единицы сколько_заполнено/сколько_символов · проверка · статус")
+    for n in forms:
+        have, declared = _units(n)
+        checked = ((n.get("math") or {}).get("checked") or {}).get("kind", "none")
+        links = [t + ":" + tgt for t, tgt in (fwd.get(n["id"], []) + back.get(n["id"], []))][:3]
+        mark = ("ед " + str(have)) if declared else "ед  —"
+        print("  " + n["id"] + "  " + mark.ljust(7) + "  " + checked.ljust(8) + " [" + n.get("epistemic", "?") + "]  " + _clip(n.get("text"), 58))
+        if links:
+            print("      связи: " + ", ".join(links))
+    print()
+    print("зум только по связям: formula F-001 -> show F-001 -> expand F-001")
+    return 0
+
+
 def main(argv):
     if len(argv) < 2:
         print(__doc__)
@@ -249,6 +358,12 @@ def main(argv):
         if problems:
             return 1
         return 1 if bad else 0
+
+    if cmd == "atlas":
+        return atlas(nodes, argv[2] if len(argv) > 2 else None)
+
+    if cmd == "math":
+        return math_map(nodes)
 
     if cmd == "map":
         if not META.exists():
