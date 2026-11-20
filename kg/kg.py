@@ -15,6 +15,8 @@ Commands
   atlas [K1]            zoomable map: L0 the whole corpus, L1 one line
   math                  all formulas on one screen: units, checks, links
   frontier              what is missing: holes by kind, with ids
+  connectivity          are our own claims one island or several (Q-05)
+  preflight <тема>      the three questions before an experiment, as a stamp
   check                 validate against the invariants (code, not opinion)
   find <text>           search nodes
   show <id>             one node
@@ -196,7 +198,7 @@ def build(nodes):
         ],
         "communities": communities,
         "frontier": frontier,
-        "verbs": ["atlas", "math", "map", "frontier", "find", "show", "expand", "trace", "chain", "formula", "contradictions", "check"],
+        "verbs": ["atlas", "math", "map", "frontier", "connectivity", "preflight", "find", "show", "expand", "trace", "chain", "formula", "contradictions", "check"],
         "hashes": {"graph": hashlib.sha256(json.dumps(nodes, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]},
     }
     META.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -217,6 +219,21 @@ def build(nodes):
     print("by kind:", dict(kinds))
     print("frontier:", {k: len(v) for k, v in frontier.items()})
     return 0
+
+
+def warnings(nodes):
+    """Known-open inconsistencies, reported instead of silently tolerated."""
+    out = []
+    for n in nodes:
+        if n.get("epistemic") == "refuted":
+            for r in n.get("relations") or []:
+                if r.get("type") == "refutes":
+                    out.append(n["id"] + ": refuted node still propagates refutes -> " + str(r.get("target")))
+        for r in n.get("relations") or []:
+            if r.get("type") == "same_as" and str(r.get("target", "")).startswith("L-"):
+                out.append(n["id"] + ": same_as to literature " + r["target"] +
+                           " -- bridge candidate, not identity (Q1/Q7/P1)")
+    return out
 
 
 def refs_report(nodes, strict):
@@ -357,6 +374,90 @@ def frontier_view(nodes):
     return 0
 
 
+def adjacency(nodes):
+    """The graph `expand` actually walks: relations plus evidence that names a node."""
+    ids = {n["id"] for n in nodes}
+    adj = {i: set() for i in ids}
+    for n in nodes:
+        for r in n.get("relations") or []:
+            t = r.get("target")
+            if t in ids:
+                adj[n["id"]].add(t)
+                adj[t].add(n["id"])
+        for e in n.get("evidence") or []:
+            ref = str(e.get("ref", ""))
+            if ref in ids:
+                adj[n["id"]].add(ref)
+                adj[ref].add(n["id"])
+    return adj
+
+
+def connectivity(nodes):
+    """Are our own claims one island or several? This is the Q-05 criterion, measured.
+
+    Counts components among claim nodes (`C-`), because that is the layer where a question is
+    answered; a component split means `expand` cannot walk from one result to another.
+    """
+    adj = adjacency(nodes)
+    claims = sorted(n["id"] for n in nodes if n["id"].startswith("C-"))
+    seen, comps = set(), []
+    for start in claims:
+        if start in seen:
+            continue
+        stack, comp = [start], []
+        seen.add(start)
+        while stack:
+            cur = stack.pop()
+            comp.append(cur)
+            for nxt in adj.get(cur, ()):
+                if nxt not in seen:
+                    seen.add(nxt)
+                    stack.append(nxt)
+        comps.append(sorted(c for c in comp if c.startswith("C-")))
+    print("СВЯЗНОСТЬ СВОИХ УТВЕРЖДЕНИЙ: " + str(len(comps)) + " компонент(ы)")
+    for i, comp in enumerate(comps, 1):
+        print("  " + str(i) + ": " + ", ".join(comp))
+    if len(comps) == 1:
+        print("  цель Q-05 достигнута: любое утверждение достижимо из любого")
+    else:
+        print("  цель Q-05: одна компонента; сейчас не хватает " + str(len(comps) - 1) + " мост(ов)")
+    return 0
+
+
+def preflight(nodes, topic):
+    """The three questions before an experiment, printed as a stamp.
+
+    A miss is a result too: "not found" is printed, so a failed search cannot disappear.
+    """
+    words = [w for w in topic.lower().split() if len(w) > 2]
+    hits = []
+    for n in nodes:
+        text = (n.get("text") or "").lower()
+        if words and all(w in text for w in words):
+            hits.append(n["id"])
+    print("ПРЕДПОЛЁТ: " + topic)
+    print("  1) что уже знаем: " + (", ".join(sorted(hits)[:12]) if hits else "не найдено"))
+    meta = json.loads(META.read_text(encoding="utf-8")) if META.exists() else {}
+    holes = meta.get("frontier", {})
+    print("  2) где дыра: без свидетельств " + str(len(holes.get("without_evidence", []))) +
+          " · только извлечено " + str(len(holes.get("extracted_only", []))) +
+          " · contested " + str(len(holes.get("contested", []))))
+    eliminated = ROOT / "docs" / "ELIMINATED.md"
+    tried = []
+    if eliminated.exists():
+        for line in eliminated.read_text(encoding="utf-8", errors="ignore").splitlines():
+            low = line.lower()
+            # all words, not any: "цена" alone matches every cost line in ELIMINATED and drowns the search
+            if words and all(w in low for w in words):
+                tried.append(line.strip()[:90])
+    print("  3) что уже пробовали: " + (str(len(tried)) + " строк в ELIMINATED" if tried else "не найдено"))
+    for line in tried[:3]:
+        print("     " + line)
+    print("  штамп: topic=" + topic.replace(" ", "_") + " hits=" + str(len(hits)) +
+          " tried=" + str(len(tried)))
+    return 0
+
+
 def main(argv):
     if len(argv) < 2:
         print(__doc__)
@@ -372,10 +473,21 @@ def main(argv):
         strict_refs = "--refs" in argv
         problems = invariants(nodes)
         print("OK" if not problems else "\n".join(problems))
+        for w in warnings(nodes):
+            print("NOTE: " + w)
         bad = refs_report(nodes, "--refs" in argv)
         if problems:
             return 1
         return 1 if bad else 0
+
+    if cmd == "connectivity":
+        return connectivity(nodes)
+
+    if cmd == "preflight":
+        if len(argv) < 3:
+            print("usage: kg.py preflight <тема>")
+            return 2
+        return preflight(nodes, " ".join(argv[2:]))
 
     if cmd == "frontier":
         return frontier_view(nodes)
