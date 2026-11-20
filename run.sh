@@ -297,6 +297,11 @@ do_verus() {
   return $rc
 }
 
+do_kg() {
+  section "Граф знаний (инварианты и ссылки)"
+  do_py "$REPO/kg/kg.py" check; keep $? kg
+}
+
 do_claims() {
   section "Проверки утверждений (verify_all.js)"
   # Без seed проверка была разным экспериментом при каждом запуске:
@@ -508,13 +513,14 @@ case "$WHAT" in
     do_dispatcher; keep $? dispatcher
     do_verus;  keep $? verus
     do_exp;    keep $? exp
+    do_kg;     keep $? kg
     do_claims; keep $? claims
     do_audit;  keep $? audit
     do_export; keep $? export
     do_agents; keep $? agents
     ;;
   *)
-    echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|claims|audit|export|agents]"
+    echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|kg|claims|audit|export|agents]"
     exit 2
     ;;
 esac

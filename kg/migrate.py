@@ -89,8 +89,8 @@ def experiments():
     for path in sorted(glob.glob(str(ROOT / "results" / "*" / "run-*.json"))):
         try:
             d = json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
-        except Exception:
-            continue
+        except Exception as exc:
+            raise SystemExit(f"битый файл прогона {run}: {exc}")
         exp = d.get("experiment_id") or pathlib.Path(path).parent.name
         run = d.get("run_id") or pathlib.Path(path).stem
         verdict = d.get("verdict") or {}
@@ -159,7 +159,7 @@ def main():
     unique = []
     for n in nodes:
         if n["id"] in seen:
-            continue
+            raise SystemExit(f"повтор ID {n['id']} при сборке графа")
         seen.add(n["id"])
         unique.append(n)
     out = KG / "nodes.jsonl"

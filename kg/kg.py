@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """kg.py — agent-friendly knowledge graph for this repository.
 
-Canonical store: kg/nodes.jsonl (one node per line; rebuild with kg/migrate.py).
+Generated store: kg/nodes.jsonl (one node per line; REBUILT from the corpora by kg/migrate.py).
+Source of truth: kg/claims.jsonl + docs/ELEPHANT-LITERATURE.md + results/*/run-*.json. Never hand-edit
+nodes.jsonl: the next migrate overwrites it.
 Generated:       kg/meta.json (the map), kg/graph.json, kg/INDEX.md.
 
 Node kinds: claim | formula | experiment | dataset | definition | question
@@ -26,6 +28,7 @@ from collections import Counter
 from pathlib import Path
 
 KG = Path(__file__).resolve().parent
+ROOT = KG.parent
 NODES = KG / "nodes.jsonl"
 META = KG / "meta.json"
 GRAPH = KG / "graph.json"
@@ -51,6 +54,53 @@ def load():
             raise SystemExit(f"nodes.jsonl line {i}: {exc}")
     return out
 
+
+
+def resolve_refs(nodes):
+    """Resolve every `evidence` reference to something real.
+
+    Three acceptance routes, in order:
+      1. a node id in the graph (`C-`, `F-`, `L-`, `X-`);
+      2. a path that exists on disk (`docs/...`, `results/...`);
+      3. an alias: `EXP-22` matches the run nodes whose text names it, `FINDING-317` matches the finding file.
+
+    Returns (resolved_by_kind, unresolved) where unresolved is a list of (node_id, kind, ref).
+    A reference that resolves to nothing is a hole in the graph, not a formatting detail -- it is reported,
+    and `check --refs` turns the report into a failure.
+    """
+    by_id = {n["id"] for n in nodes}
+    exp_aliases = {}
+    for n in nodes:
+        if n.get("kind") != "experiment":
+            continue
+        text = n.get("text") or ""
+        head = text.split(" run ")[0].strip()
+        if head:
+            exp_aliases.setdefault(head, []).append(n["id"])
+        src = (n.get("data") or {}).get("source") or ""
+        stem = src.rsplit("/", 1)[-1].replace(".json", "")
+        if stem:
+            exp_aliases.setdefault(stem, []).append(n["id"])
+    import glob as _glob
+    resolved = {}
+    unresolved = []
+    for n in nodes:
+        for ev in n.get("evidence") or []:
+            ref = ev.get("ref") or ""
+            kind = ev.get("kind") or "?"
+            ok = False
+            if ref in by_id or ref in exp_aliases:
+                ok = True
+            elif "/" in ref and (ROOT / ref).exists():
+                ok = True
+            elif ref.startswith("FINDING-"):
+                num = ref.split("-")[1] if "-" in ref else ""
+                ok = bool(_glob.glob(str(ROOT / "docs" / ("FINDING-" + num + "*.md"))))
+            if ok:
+                resolved[kind] = resolved.get(kind, 0) + 1
+            else:
+                unresolved.append((n["id"], kind, ref))
+    return resolved, unresolved
 
 def invariants(nodes):
     problems = []
@@ -164,6 +214,22 @@ def build(nodes):
     return 0
 
 
+def refs_report(nodes, strict):
+    resolved, unresolved = resolve_refs(nodes)
+    print("ссылки свидетельств: разрешено " + str(sum(resolved.values())) + ", не разрешено " + str(len(unresolved)))
+    for kind, count in sorted(resolved.items()):
+        print("  ok        " + kind + ": " + str(count))
+    for nid, kind, ref in unresolved[:15]:
+        print("  висит     " + nid + " -> " + kind + ":" + ref)
+    if len(unresolved) > 15:
+        print("  ... ещё " + str(len(unresolved) - 15))
+    if strict and unresolved:
+        print("FAIL: " + str(len(unresolved)) + " ссылок не разрешаются")
+        return 1
+    if unresolved:
+        print("NOTE: ссылки выше -- дыры в графе; строгий режим: kg.py check --refs")
+    return 0
+
 def main(argv):
     if len(argv) < 2:
         print(__doc__)
@@ -176,9 +242,13 @@ def main(argv):
         return build(nodes)
 
     if cmd == "check":
+        strict_refs = "--refs" in argv
         problems = invariants(nodes)
         print("OK" if not problems else "\n".join(problems))
-        return 0 if not problems else 1
+        bad = refs_report(nodes, "--refs" in argv)
+        if problems:
+            return 1
+        return 1 if bad else 0
 
     if cmd == "map":
         if not META.exists():
