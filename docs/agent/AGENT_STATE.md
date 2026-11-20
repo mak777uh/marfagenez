@@ -193,6 +193,8 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 - **Перед кругом:** `python3 kg/kg.py atlas` — карта, затем `python3 kg/kg.py find <тема>` — чтобы не повторять.
 - **После круга:** `bash run.sh all`, запись в `docs/agent/AGENT_LOG.md`, обновление этого файла при правке `run.sh`/`checks/`/`core/`/`laws/`/`verus/`.
 - **Экзамен базы:** `python3 kg/eval/score.py runs-<дата>.json`; спека заморожена, hash в `kg/eval/questions.json`.
+- **Регресс импорта:** `python3 kg/regress.py` — сверяет корпус (`claims.jsonl`, литература, `results/`) с `nodes.jsonl` и запрещает смену статуса при импорте; входит в раздел `kg` гейта.
+- **Три вида исследования:** `formal` (формулы в законы), `literature` (источники), `experiment` (своё железо) — `docs/KG-RESEARCH-MODES.md`; `atlas` печатает все три счётчика.
 
 ---
 
