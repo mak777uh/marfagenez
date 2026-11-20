@@ -30,11 +30,6 @@
       "relations": [
         {
           "type": "qualifies",
-          "target": "C-004",
-          "note": "цена кожи не всегда положительна"
-        },
-        {
-          "type": "qualifies",
           "target": "L-062",
           "note": "теневая цена = аналог химического потенциала"
         }
@@ -66,6 +61,12 @@
           "kind": "result",
           "ref": "FINDING-318",
           "strength": "полный"
+        },
+        {
+          "kind": "result",
+          "ref": "FINDING-320",
+          "strength": "weak",
+          "note": "левое значение цены исправлено: 0, а не 1; излом и точка не изменились"
         }
       ],
       "relations": [
@@ -158,9 +159,9 @@
       ],
       "relations": [
         {
-          "type": "analogous_to",
+          "type": "normalizes_to",
           "target": "L-051",
-          "note": "порог Πλ = 1/6"
+          "note": "C-004 нормализует теорему L-051, это свидетельство, а не мост (V-01)"
         }
       ],
       "created_at": "2026-11-20",
@@ -172,7 +173,7 @@
     },
     {
       "id": "C-005",
-      "text": "Корневая расходимость D* ~ (1-h)^(-1/2) у нашего порога — универсальный масштаб складки, а не собственный результат.",
+      "text": "Корневая расходимость D* ~ (1-h)^(-1/2) у нашего порога — универсальный масштаб у полюса параметра, а не собственный результат; это не обязательно складка (см. F-029).",
       "context": {
         "scope": "наш закон плато и модель Chao",
         "parameters": "λ, μ0, δ",
@@ -276,9 +277,9 @@
       ],
       "relations": [
         {
-          "type": "refutes",
+          "type": "refuted_by",
           "target": "L-081",
-          "note": "показатель привязан к типу, не к числу каналов"
+          "note": "направление восстановлено 2026-11-21"
         }
       ],
       "created_at": "2026-11-20",
@@ -365,7 +366,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-002",
@@ -390,7 +391,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-003",
@@ -427,7 +428,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-004",
@@ -452,7 +453,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-005",
@@ -477,7 +478,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-006",
@@ -502,7 +503,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-007",
@@ -527,7 +528,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-008",
@@ -552,7 +553,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-009",
@@ -577,7 +578,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-010",
@@ -602,7 +603,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-011",
@@ -627,7 +628,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-012",
@@ -652,7 +653,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-013",
@@ -677,7 +678,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-014",
@@ -702,7 +703,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-015",
@@ -727,7 +728,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-016",
@@ -752,7 +753,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-017",
@@ -777,7 +778,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-018",
@@ -802,7 +803,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-019",
@@ -827,7 +828,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-020",
@@ -852,7 +853,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-021",
@@ -877,7 +878,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-022",
@@ -912,7 +913,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-023",
@@ -949,7 +950,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-024",
@@ -979,7 +980,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-025",
@@ -1009,7 +1010,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-026",
@@ -1034,7 +1035,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-027",
@@ -1059,7 +1060,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-028",
@@ -1084,7 +1085,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-029",
@@ -1114,7 +1115,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-030",
@@ -1139,7 +1140,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "F-031",
@@ -1164,7 +1165,7 @@
         }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "X-EXP-22-run-2026-11-12T12-46-12",
@@ -12177,10 +12178,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "smert"
+      ]
     },
     {
       "id": "L-002",
@@ -12207,7 +12217,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-003",
@@ -12231,10 +12241,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "vybor"
+      ]
     },
     {
       "id": "L-004",
@@ -12258,10 +12277,20 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "smert",
+        "vybor"
+      ]
     },
     {
       "id": "L-005",
@@ -12285,10 +12314,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "porog"
+      ]
     },
     {
       "id": "L-006",
@@ -12315,7 +12353,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-007",
@@ -12339,10 +12377,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "vybor"
+      ]
     },
     {
       "id": "L-008",
@@ -12366,10 +12413,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "vybor"
+      ]
     },
     {
       "id": "L-009",
@@ -12396,7 +12452,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-010",
@@ -12420,10 +12476,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "proshloe"
+      ]
     },
     {
       "id": "L-011",
@@ -12447,10 +12512,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "proshloe"
+      ]
     },
     {
       "id": "L-012",
@@ -12474,10 +12548,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "obmen"
+      ]
     },
     {
       "id": "L-013",
@@ -12501,10 +12584,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "obmen"
+      ]
     },
     {
       "id": "L-014",
@@ -12528,10 +12620,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "vybor"
+      ]
     },
     {
       "id": "L-015",
@@ -12555,10 +12656,20 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "agentnost",
+        "granica"
+      ]
     },
     {
       "id": "L-016",
@@ -12582,10 +12693,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "organizaciya"
+      ]
     },
     {
       "id": "L-017",
@@ -12609,10 +12729,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "individualnost"
+      ]
     },
     {
       "id": "L-018",
@@ -12636,10 +12765,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "individualnost"
+      ]
     },
     {
       "id": "L-019",
@@ -12663,10 +12801,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "granica"
+      ]
     },
     {
       "id": "L-020",
@@ -12693,7 +12840,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-021",
@@ -12720,7 +12867,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-022",
@@ -12744,10 +12891,15 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "access": "secondary",
+        "checked_by": null,
+        "internal_review": true,
+        "override_note": "обзор, не статья",
+        "not_an_external_source": true
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-023",
@@ -12771,10 +12923,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "porog"
+      ]
     },
     {
       "id": "L-024",
@@ -12798,10 +12959,16 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "access": "secondary",
+        "checked_by": null,
+        "internal_review": true,
+        "pointer_to": "review",
+        "override_note": "утверждение о нашем результате, не цитата из статьи",
+        "not_an_external_source": true
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-025",
@@ -12825,10 +12992,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "svoi-usloviya"
+      ]
     },
     {
       "id": "L-026",
@@ -12852,10 +13028,20 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "organizaciya",
+        "svoi-usloviya"
+      ]
     },
     {
       "id": "L-027",
@@ -12879,10 +13065,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "organizaciya"
+      ]
     },
     {
       "id": "L-028",
@@ -12909,7 +13104,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-029",
@@ -12933,10 +13128,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "porog"
+      ]
     },
     {
       "id": "L-030",
@@ -12963,7 +13167,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-031",
@@ -12987,10 +13191,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "individualnost"
+      ]
     },
     {
       "id": "L-032",
@@ -13017,7 +13230,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-033",
@@ -13041,10 +13254,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "granica"
+      ]
     },
     {
       "id": "L-034",
@@ -13068,10 +13290,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "svoi-usloviya"
+      ]
     },
     {
       "id": "L-035",
@@ -13095,10 +13326,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "vybor"
+      ]
     },
     {
       "id": "L-036",
@@ -13122,10 +13362,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "proshloe"
+      ]
     },
     {
       "id": "L-037",
@@ -13152,7 +13401,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-038",
@@ -13179,7 +13428,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-039",
@@ -13206,7 +13455,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-040",
@@ -13233,7 +13482,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-041",
@@ -13260,7 +13509,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-042",
@@ -13287,7 +13536,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-043",
@@ -13314,7 +13563,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-044",
@@ -13341,7 +13590,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-045",
@@ -13368,7 +13617,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-046",
@@ -13395,7 +13644,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-047",
@@ -13422,7 +13671,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-048",
@@ -13449,7 +13698,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-049",
@@ -13476,7 +13725,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-050",
@@ -13503,7 +13752,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-051",
@@ -13530,7 +13779,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-052",
@@ -13557,7 +13806,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-053",
@@ -13584,7 +13833,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-054",
@@ -13611,7 +13860,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-055",
@@ -13635,10 +13884,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "smert"
+      ]
     },
     {
       "id": "L-056",
@@ -13662,10 +13920,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "smert"
+      ]
     },
     {
       "id": "L-057",
@@ -13689,10 +13956,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "vybor"
+      ]
     },
     {
       "id": "L-058",
@@ -13719,7 +13995,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-059",
@@ -13743,10 +14019,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "vybor"
+      ]
     },
     {
       "id": "L-060",
@@ -13770,10 +14055,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "svoi-usloviya"
+      ]
     },
     {
       "id": "L-061",
@@ -13797,10 +14091,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "svoi-usloviya"
+      ]
     },
     {
       "id": "L-062",
@@ -13824,10 +14127,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "granica"
+      ]
     },
     {
       "id": "L-063",
@@ -13854,7 +14166,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-064",
@@ -13881,7 +14193,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-065",
@@ -13908,7 +14220,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-066",
@@ -13935,7 +14247,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-067",
@@ -13959,10 +14271,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "individualnost"
+      ]
     },
     {
       "id": "L-068",
@@ -13986,10 +14307,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "individualnost"
+      ]
     },
     {
       "id": "L-069",
@@ -14013,10 +14343,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "individualnost"
+      ]
     },
     {
       "id": "L-070",
@@ -14040,10 +14379,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "vybor"
+      ]
     },
     {
       "id": "L-071",
@@ -14070,7 +14418,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-072",
@@ -14094,10 +14442,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "vybor"
+      ]
     },
     {
       "id": "L-073",
@@ -14121,10 +14478,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "granica"
+      ]
     },
     {
       "id": "L-074",
@@ -14148,10 +14514,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "granica"
+      ]
     },
     {
       "id": "L-075",
@@ -14178,7 +14553,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-076",
@@ -14205,7 +14580,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-077",
@@ -14232,7 +14607,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-078",
@@ -14259,7 +14634,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-079",
@@ -14286,7 +14661,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-080",
@@ -14310,10 +14685,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "porog"
+      ]
     },
     {
       "id": "L-081",
@@ -14337,10 +14721,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "porog"
+      ]
     },
     {
       "id": "L-082",
@@ -14364,10 +14757,19 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "lines_provenance": {
+          "method": "parsed",
+          "parser_version": "1",
+          "source": "docs/ELEPHANT-MAP.md §1",
+          "checked_by": null
+        }
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21",
+      "lines": [
+        "porog"
+      ]
     },
     {
       "id": "L-083",
@@ -14394,7 +14796,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-084",
@@ -14421,7 +14823,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-085",
@@ -14448,7 +14850,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-086",
@@ -14475,7 +14877,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-087",
@@ -14502,7 +14904,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "L-088",
@@ -14529,7 +14931,7 @@
         "accessed_at": "2026-11-20"
       },
       "created_at": "2026-11-20",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-21"
     },
     {
       "id": "DEF-01",
@@ -14826,14 +15228,229 @@
       },
       "created_at": "2026-11-21",
       "updated_at": "2026-11-21"
+    },
+    {
+      "id": "GAP-01",
+      "kind": "gap",
+      "text": "Разрыв: наша доля в наибольшей SCC и замыкание ограничений литературы — не одно и то же.",
+      "context": {
+        "scope": "сопоставление мер замыкания"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "experiment",
+          "ref": "C-003",
+          "strength": "weak",
+          "side": "left"
+        },
+        {
+          "kind": "literature",
+          "ref": "L-060",
+          "strength": "weak",
+          "side": "right"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "left": "C-003",
+        "right": "L-060",
+        "missing_relation": "SCC-доля ↔ замыкание ограничений (process enablement)",
+        "required_test": "два непересекающихся 2-цикла: замкнуто по indeg/outdeg, но мера 0.5 — показать, что мера не эквивалентна замыканию; затем проверить, сохраняет ли отображение циклы",
+        "existing_evidence": [
+          "F-022",
+          "FINDING-319"
+        ],
+        "status": "open"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "GAP-02",
+      "kind": "gap",
+      "text": "Разрыв: наш порог h=1 — полюс параметра, у Chao — складка; перевод переменных не построен.",
+      "context": {
+        "scope": "классификация перехода"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "experiment",
+          "ref": "C-005",
+          "strength": "weak",
+          "side": "left"
+        },
+        {
+          "kind": "literature",
+          "ref": "L-023",
+          "strength": "weak",
+          "side": "right"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "left": "C-005",
+        "right": "L-023",
+        "missing_relation": "нормальная форма нашего порога ↔ складка Chao; перевод h ↔ a ↔ Πλ",
+        "required_test": "проверить невырожденность складки (f=0, f'=0, f''≠0) против полюса; построить h↔a (L-054, Q-024)",
+        "existing_evidence": [
+          "F-003",
+          "F-018",
+          "F-029"
+        ],
+        "status": "open"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "GAP-03",
+      "kind": "gap",
+      "text": "Разрыв: цена удержания как механизм устойчивости — статическая LP и динамическое ядро не связаны.",
+      "context": {
+        "scope": "B×C: бюджет и ядро выживания"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "experiment",
+          "ref": "C-001",
+          "strength": "weak",
+          "side": "left"
+        },
+        {
+          "kind": "experiment",
+          "ref": "C-006",
+          "strength": "weak",
+          "side": "left"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "left": "C-001",
+        "right": "C-006",
+        "missing_relation": "цена ограничения ↔ граница ядра выживания",
+        "required_test": "сделать LP пошаговой задачей достижимости: цена шага должна совпасть с расстоянием до границы ядра",
+        "existing_evidence": [
+          "F-024",
+          "FINDING-317"
+        ],
+        "status": "open"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "CORR-01",
+      "kind": "correspondence",
+      "status": "draft",
+      "text": "Соответствие: полоса допуска = проекция ядра выживания (Aubin).",
+      "context": {
+        "scope": "viability kernel"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "experiment",
+          "ref": "F-024",
+          "strength": "weak",
+          "side": "left"
+        },
+        {
+          "kind": "literature",
+          "ref": "L-065",
+          "strength": "weak",
+          "side": "right",
+          "locator": "SIAM survey 1990, определение V(K)"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "status": "draft",
+        "left": "C-006",
+        "right": "L-065",
+        "map": {
+          "from": "полоса допуска (q, w) с катастрофой",
+          "to": "Viab(K) = {x0 in K: существует траектория, x(t) in K при всех t>=0}",
+          "map": "полоса = проекция ядра на ось доли дохода; ширина = расстояние между границами",
+          "kind": "definitional",
+          "domain": "дискретная динамика, K = {q >= q_min, w >= 0}, конечная сетка"
+        },
+        "shared_structure": "инвариантное множество дискретной динамики",
+        "kept_assumptions": "замкнутость области, детерминированная динамика",
+        "lost_assumptions": "управление (ядро для «существует управление» превращается в единственную траекторию); горизонт t→∞ против измеренного конечного исхода; робастность против катастрофы; viability ≠ survival (L-088)",
+        "evidence_left": [
+          "F-024",
+          "FINDING-319"
+        ],
+        "evidence_right": [
+          "L-065"
+        ],
+        "falsification": "итерировать K_{i+1} = K_i ∩ F⁻¹(K_i) до сходимости и спроецировать; если ширина проекции расходится с измеренной полосой 3–10 % вне допуска — мост провален"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "CORR-02",
+      "kind": "correspondence",
+      "status": "draft",
+      "text": "Соответствие: наша теневая цена = производная функции значения по ресурсу (аналог химического потенциала).",
+      "context": {
+        "scope": "envelope theorem, LP duality"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "experiment",
+          "ref": "EXP-SHADOW-PRICE",
+          "strength": "weak",
+          "side": "left"
+        },
+        {
+          "kind": "literature",
+          "ref": "L-062",
+          "strength": "weak",
+          "side": "right",
+          "locator": "PRL 99:108101, аннотация: shadow prices are chemical potential analogues"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "status": "draft",
+        "left": "C-001",
+        "right": "L-062",
+        "map": {
+          "from": "V(b) = max {w·u : Σu ≤ I, u_repair ≥ c·d·q_min, u_repair ≤ r_max, u ≥ 0}",
+          "to": "μ_i = ∂Φ/∂N_i у равновесного потенциала",
+          "map": "p_j = ∂V/∂b_j ↔ μ_i = ∂Φ/∂N_i; p = 0 тогда и только тогда, когда ограничение не связывает",
+          "kind": "definitional",
+          "domain": "статическая оптимизационная структура; НЕ переносит стационарность FBA и термодинамический смысл"
+        },
+        "shared_structure": "теорема об огибающей: производная оптимизированного потенциала по экстенсивной величине",
+        "kept_assumptions": "выпуклость, сильная двойственность, активное ограничение для ненулевой цены",
+        "lost_assumptions": "единицы (энергия на частицу против цели на единицу ресурса); стационарность (наша модель нестационарна, L-064); знак: равенство даёт μ любого знака, наш p ≥ 0; физический смысл (энтропия, ансамбль); сохранение вещества; неединственность интерпретируется как фаза",
+        "evidence_left": [
+          "EXP-SHADOW-PRICE",
+          "EXP-PRICE-KINKS",
+          "F-023"
+        ],
+        "evidence_right": [
+          "L-062"
+        ],
+        "falsification": "F1: полный текст L-062 не поддерживает чтение цены как производной функции значения. F2: в нашей LP конечная разность dV/dq_min не равна двойственной переменной. F3: равновесие со свободным переносом не выравнивает цены. Мост рушится любым из F1/F2"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
     }
   ],
   "edges": [
-    {
-      "from": "C-001",
-      "to": "C-004",
-      "type": "qualifies"
-    },
     {
       "from": "C-001",
       "to": "L-062",
@@ -14862,7 +15479,7 @@
     {
       "from": "C-004",
       "to": "L-051",
-      "type": "analogous_to"
+      "type": "normalizes_to"
     },
     {
       "from": "C-005",
@@ -14882,7 +15499,7 @@
     {
       "from": "C-007",
       "to": "L-081",
-      "type": "refutes"
+      "type": "refuted_by"
     },
     {
       "from": "C-008",

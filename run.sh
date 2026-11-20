@@ -311,6 +311,8 @@ do_kg() {
   # and import must not move a status by itself (D-07).
   python3 kg/regress.py
   local rrc=$?
+  # F2: цена обязана быть производной функции значения, а не правилом по флагу.
+  python3 checks/bridge_price_derivative.py || rrc=1
   if [ "$rrc" -ne 0 ] && [ "$rc" -eq 0 ]; then
     rc=$rrc
   fi

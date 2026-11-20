@@ -39,14 +39,14 @@ META = KG / "meta.json"
 GRAPH = KG / "graph.json"
 INDEX = KG / "INDEX.md"
 
-KINDS = {"claim", "formula", "experiment", "dataset", "definition", "question", "correspondence"}
+KINDS = {"claim", "formula", "experiment", "dataset", "definition", "question", "correspondence", "gap"}
 EPISTEMIC = {"hypothesis", "established", "contested", "replicated", "refuted", "bounded"}
 PROVENANCE = {"extracted", "verified_agent", "human_confirmed"}
 MODES = {"formal", "literature", "experiment"}   # three kinds of research, not node kinds
 EXPAND_THRESHOLD = 8   # degree at which one hop is already a full screen
 EXPAND_CAP = 60        # nodes printed before the "+K ещё" marker
 RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as",
-             "predicted_by", "analogous_to", "candidate_supports", "tested_in", "stated_in"}
+             "predicted_by", "analogous_to", "candidate_supports", "tested_in", "stated_in", "normalizes_to", "refuted_by"}
 # relations that carry epistemic weight; mechanical ones do not, by construction (D-07)
 EPISTEMIC_RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as"}
 
@@ -521,6 +521,12 @@ def extra_invariants(nodes):
                 if not (n["id"].startswith("C-") and tgt.startswith("C-")):
                     problems.append(n["id"] + ": same_as is claim-to-claim only; got " + tgt +
                                     " (use analogous_to or correspondence)")
+        if n.get("kind") == "gap":
+            data = n.get("data") or {}
+            if data.get("left") not in ids or data.get("right") not in ids:
+                problems.append(n["id"] + ": gap needs two existing ends (left, right)")
+            if not data.get("required_test"):
+                problems.append(n["id"] + ": gap without required_test is a wish, not a gap")
         if n.get("kind") == "correspondence":
             data = n.get("data") or {}
             if data.get("status") in ("complete", "exam_ready"):

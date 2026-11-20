@@ -1,0 +1,19 @@
+{
+ "version": 1,
+ "note": "внешние ревью о нас — не внешние источники (V-06)",
+ "overrides": {
+  "L-022": {
+   "access": "secondary",
+   "checked_by": null,
+   "internal_review": true,
+   "note": "обзор, не статья"
+  },
+  "L-024": {
+   "access": "secondary",
+   "checked_by": null,
+   "internal_review": true,
+   "pointer_to": "review",
+   "note": "утверждение о нашем результате, не цитата из статьи"
+  }
+ }
+}

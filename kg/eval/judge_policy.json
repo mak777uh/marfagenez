@@ -34,7 +34,28 @@
    "judge model change",
    "prompt change",
    "rubric change"
-  ]
+  ],
+  "from_questions": "12-15 новых вопросов x 3-4 пункта; пункты внутри вопроса зависимы",
+  "bootstrap_by_groups": true,
+  "group_note": "ресемплировать вопросы, не отдельные пункты: иначе точность κ завышена"
  },
- "reproduce": "python3 kg/eval/kappa_sim.py 300  # table in docs/KG-BRIEF-4-VERDICTS-2026-11-21.md"
+ "reproduce": "python3 kg/eval/kappa_sim.py 300  # table in docs/KG-BRIEF-4-VERDICTS-2026-11-21.md",
+ "judge": {
+  "family": "не то же семейство, что у агента",
+  "anonymised_answers": true,
+  "frozen": [
+   "model",
+   "prompt",
+   "temperature=0",
+   "date",
+   "family"
+  ],
+  "human": "все спорные + 20% выборки; арбитраж не возвращается в κ",
+  "report": [
+   "family",
+   "kappa",
+   "marginal shift",
+   "confusion matrix"
+  ]
+ }
 }

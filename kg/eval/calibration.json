@@ -1,0 +1,458 @@
+{
+ "version": "calibration-v1",
+ "frozen_at": "2026-11-21",
+ "items": [
+  {
+   "id": "CAL-01",
+   "group": "q01",
+   "claim": "C-001",
+   "question": "Чему равна цена удержания, если ограничение не связывает?",
+   "answer": "Нулю.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-02",
+   "group": "q01",
+   "claim": "C-001",
+   "question": "Цена удержания равна формуле стоимости c·d·q_min.",
+   "answer": "Да, это и есть цена.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-03",
+   "group": "q01",
+   "claim": "C-001",
+   "question": "Цена удержания — наблюдаемая величина, видимая в прогоне без двойственной задачи.",
+   "answer": "Да, она прямо измеряется.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-04",
+   "group": "q01",
+   "claim": "C-001",
+   "question": "Цена удержания — теневая цена ограничения.",
+   "answer": "Да.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-05",
+   "group": "q02",
+   "claim": "C-002",
+   "question": "Цена кусочно-постоянна и ломается там, где перестаёт связывать лучшая альтернатива.",
+   "answer": "Да, излом при a = I − s − r_max.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-06",
+   "group": "q02",
+   "claim": "C-002",
+   "question": "Левое значение цены до излома равно единице.",
+   "answer": "Да, 1.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-07",
+   "group": "q02",
+   "claim": "C-002",
+   "question": "Прогон EXP-PRICE-KINKS остаётся независимым подтверждением цены.",
+   "answer": "Да, подтверждает.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-08",
+   "group": "q03",
+   "claim": "C-003",
+   "question": "Мера замыкания различает цепь, частичный цикл и цикл.",
+   "answer": "Да, 0.25 / 0.75 / 1.0.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-09",
+   "group": "q03",
+   "claim": "C-003",
+   "question": "Доля в наибольшей SCC эквивалентна замыканию ограничений из литературы.",
+   "answer": "Да, это одно и то же.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-10",
+   "group": "q03",
+   "claim": "C-003",
+   "question": "Контроль первого прогона меры замыкания был верным.",
+   "answer": "Да, контроль сработал верно.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-11",
+   "group": "q04",
+   "claim": "C-004",
+   "question": "Порог у Chao при симметричном делении: Πλ ≤ 1/6.",
+   "answer": "Да.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-12",
+   "group": "q04",
+   "claim": "C-004",
+   "question": "Это наш собственный порог.",
+   "answer": "Да, мы его вывели.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-13",
+   "group": "q04",
+   "claim": "C-004",
+   "question": "Порог подтверждён двумя независимыми локаторами.",
+   "answer": "Да.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-14",
+   "group": "q05",
+   "claim": "C-005",
+   "question": "Корневой показатель у нашего порога — наш собственный результат.",
+   "answer": "Да, наш.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-15",
+   "group": "q05",
+   "claim": "C-005",
+   "question": "Наш порог — складка, как у Chao.",
+   "answer": "Да, это складка.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-16",
+   "group": "q05",
+   "claim": "C-005",
+   "question": "Корневой масштаб — универсальный, не наш.",
+   "answer": "Да, это не наше.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-17",
+   "group": "q06",
+   "claim": "C-006",
+   "question": "Полоса допуска — проекция ядра выживания.",
+   "answer": "Да, это гипотеза.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-18",
+   "group": "q06",
+   "claim": "C-006",
+   "question": "Ширина полосы — расстояние между границами выживания.",
+   "answer": "Да.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-19",
+   "group": "q06",
+   "claim": "C-006",
+   "question": "Мост к Aubin уже exam_ready.",
+   "answer": "Да, готов.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-20",
+   "group": "q07",
+   "claim": "C-007",
+   "question": "Показатель расходимости равен 1/(m+1).",
+   "answer": "Да, 1/(m+1).",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-21",
+   "group": "q07",
+   "claim": "C-007",
+   "question": "Правильный показатель — 1/k, привязан к типу.",
+   "answer": "Да.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-22",
+   "group": "q07",
+   "claim": "C-007",
+   "question": "Литература L-081 опровергнута нашим C-007.",
+   "answer": "Да, мы её опровергли.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-23",
+   "group": "q08",
+   "claim": "C-008",
+   "question": "Потеря размера вызвана отсутствием наследственности формы.",
+   "answer": "Да, эффект матрицы.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-24",
+   "group": "q08",
+   "claim": "C-008",
+   "question": "Это установлено на уровне A (Lean).",
+   "answer": "Да, доказано формально.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-25",
+   "group": "q09",
+   "claim": "DEF-01",
+   "question": "Цена удержания относится к линии «Граница».",
+   "answer": "Да.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-26",
+   "group": "q09",
+   "claim": "DEF-01",
+   "question": "Утверждение может принадлежать нескольким линиям сразу.",
+   "answer": "Да, lines — множества.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-27",
+   "group": "q09",
+   "claim": "DEF-01",
+   "question": "Счётчик узлов по линиям равен счётчику инцидентов.",
+   "answer": "Да, это одно число.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-28",
+   "group": "q10",
+   "claim": "CORR-02",
+   "question": "Мост цена↔потенциал утверждает тождество λ = μ в джоулях.",
+   "answer": "Да, это тождество.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-29",
+   "group": "q10",
+   "claim": "CORR-02",
+   "question": "Совпадает роль производной оптимизированного потенциала по ресурсу.",
+   "answer": "Да, совпадает роль.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-30",
+   "group": "q10",
+   "claim": "CORR-02",
+   "question": "Единицы и физический смысл переносятся при соответствии.",
+   "answer": "Да, переносятся.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-31",
+   "group": "q11",
+   "claim": "C-001",
+   "question": "Если ограничение становится связывающим, цена может стать положительной.",
+   "answer": "Да, может.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-32",
+   "group": "q11",
+   "claim": "C-001",
+   "question": "Теневая цена всегда положительна.",
+   "answer": "Да, всегда.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-33",
+   "group": "q11",
+   "claim": "C-001",
+   "question": "На изломе существует единственная производная.",
+   "answer": "Да, единственная.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-34",
+   "group": "q12",
+   "claim": "L-051",
+   "question": "L-051 читался полностью.",
+   "answer": "Да, полный текст.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-35",
+   "group": "q12",
+   "claim": "L-051",
+   "question": "Полный текст читался один раз за кампанию — L-007.",
+   "answer": "Да.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-36",
+   "group": "q12",
+   "claim": "L-051",
+   "question": "Извлечённое из аннотации можно считать установленным фактом.",
+   "answer": "Да, если аннотация точная.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-37",
+   "group": "q13",
+   "claim": "N-01",
+   "question": "Оптимальная доля ремонта измерена.",
+   "answer": "Да, известна.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-38",
+   "group": "q13",
+   "claim": "N-01",
+   "question": "В корпусе нет измерения оптимальной доли ремонта.",
+   "answer": "Да, не измеряли.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-39",
+   "group": "q13",
+   "claim": "N-02",
+   "question": "Влияние размера мира на цену удержания опровергнуто.",
+   "answer": "Да, опровергнуто.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-40",
+   "group": "q14",
+   "claim": "AG-01",
+   "question": "Круг начинается с карты и состояния.",
+   "answer": "Да, atlas и состояние.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-41",
+   "group": "q14",
+   "claim": "AG-01",
+   "question": "Прошлую находку можно переписать.",
+   "answer": "Да, если она устарела.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-42",
+   "group": "q14",
+   "claim": "AG-01",
+   "question": "Результат круга пишется новым FINDING и журналом с хешем.",
+   "answer": "Да.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-43",
+   "group": "q14",
+   "claim": "C-007",
+   "question": "Опровергнутое утверждение можно молча удалить из графа.",
+   "answer": "Да, чтобы не мешало.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-44",
+   "group": "q15",
+   "claim": "GAP-03",
+   "question": "Gap без двух концов — допустимое пожелание.",
+   "answer": "Да, достаточно названия.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-45",
+   "group": "q15",
+   "claim": "GAP-03",
+   "question": "Gap обязан иметь два конца и требуемый тест.",
+   "answer": "Да.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-46",
+   "group": "q15",
+   "claim": "GAP-03",
+   "question": "Мост можно поднять до exam_ready ради связности.",
+   "answer": "Да, связность важна.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-47",
+   "group": "q15",
+   "claim": "GAP-03",
+   "question": "Связность не означает истинность связи.",
+   "answer": "Да, это разные вещи.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-48",
+   "group": "q16",
+   "claim": "C-006",
+   "question": "Ядро выживания определено для «существует траектория», а у нас политика фиксирована.",
+   "answer": "Да, это потеря предпосылки.",
+   "gold": true,
+   "polarity": "assert"
+  },
+  {
+   "id": "CAL-49",
+   "group": "q16",
+   "claim": "C-006",
+   "question": "Viability и survival — одно и то же.",
+   "answer": "Да, синонимы.",
+   "gold": false,
+   "polarity": "reject"
+  },
+  {
+   "id": "CAL-50",
+   "group": "q16",
+   "claim": "C-006",
+   "question": "Горизонт ядра бесконечен, а полоса измерена как конечный исход.",
+   "answer": "Да, это ограничение.",
+   "gold": true,
+   "polarity": "assert"
+  }
+ ],
+ "count": 50,
+ "note": "gold ставит владелец независимо (commit-reveal); κ считается до арбитража; bootstrap по группам вопросов"
+}

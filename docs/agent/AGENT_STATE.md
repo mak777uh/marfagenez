@@ -194,6 +194,8 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 - **После круга:** `bash run.sh all`, запись в `docs/agent/AGENT_LOG.md`, обновление этого файла при правке `run.sh`/`checks/`/`core/`/`laws/`/`verus/`.
 - **Экзамен базы:** `python3 kg/eval/score.py runs-<дата>.json`; спека заморожена, hash в `kg/eval/questions.json`.
 - **Регресс импорта:** `python3 kg/regress.py` — сверяет корпус (`claims.jsonl`, литература, `results/`) с `nodes.jsonl` и запрещает смену статуса при импорте; входит в раздел `kg` гейта.
+- **Мосты и разрывы:** `kg/bridges.jsonl` — `Gap` и `correspondence`; `check` требует у gap два конца и `required_test`, у correspondence — восемь полей при `complete`/`exam_ready`.
+- **F2 в гейте:** `checks/bridge_price_derivative.py` — цена обязана быть производной функции значения; находка в `docs/FINDING-320-price-rule-vs-derivative.md`.
 - **Ссылки в документации:** `checks/doc_links.py` в разделе `agents`; битые относительные ссылки — провал гейта, известные мёртвые — в `checks/doc_links_allow.txt`.
 - **Три вида исследования:** `formal` (формулы в законы), `literature` (источники), `experiment` (своё железо) — `docs/KG-RESEARCH-MODES.md`; `atlas` печатает все три счётчика.
 

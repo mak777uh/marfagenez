@@ -1,0 +1,376 @@
+{
+ "version": 1,
+ "generated_at": "2026-11-21",
+ "source": "docs/ELEPHANT-MAP.md §1",
+ "method": "parsed",
+ "parser_version": "1",
+ "rows": 10,
+ "map": {
+  "L-001": [
+   "smert"
+  ],
+  "L-003": [
+   "vybor"
+  ],
+  "L-004": [
+   "smert",
+   "vybor"
+  ],
+  "L-005": [
+   "porog"
+  ],
+  "L-007": [
+   "vybor"
+  ],
+  "L-008": [
+   "vybor"
+  ],
+  "L-010": [
+   "proshloe"
+  ],
+  "L-011": [
+   "proshloe"
+  ],
+  "L-012": [
+   "obmen"
+  ],
+  "L-013": [
+   "obmen"
+  ],
+  "L-014": [
+   "vybor"
+  ],
+  "L-015": [
+   "agentnost",
+   "granica"
+  ],
+  "L-016": [
+   "organizaciya"
+  ],
+  "L-017": [
+   "individualnost"
+  ],
+  "L-018": [
+   "individualnost"
+  ],
+  "L-019": [
+   "granica"
+  ],
+  "L-023": [
+   "porog"
+  ],
+  "L-025": [
+   "svoi-usloviya"
+  ],
+  "L-026": [
+   "organizaciya",
+   "svoi-usloviya"
+  ],
+  "L-027": [
+   "organizaciya"
+  ],
+  "L-029": [
+   "porog"
+  ],
+  "L-031": [
+   "individualnost"
+  ],
+  "L-033": [
+   "granica"
+  ],
+  "L-034": [
+   "svoi-usloviya"
+  ],
+  "L-035": [
+   "vybor"
+  ],
+  "L-036": [
+   "proshloe"
+  ],
+  "L-055": [
+   "smert"
+  ],
+  "L-056": [
+   "smert"
+  ],
+  "L-057": [
+   "vybor"
+  ],
+  "L-059": [
+   "vybor"
+  ],
+  "L-060": [
+   "svoi-usloviya"
+  ],
+  "L-061": [
+   "svoi-usloviya"
+  ],
+  "L-062": [
+   "granica"
+  ],
+  "L-067": [
+   "individualnost"
+  ],
+  "L-068": [
+   "individualnost"
+  ],
+  "L-069": [
+   "individualnost"
+  ],
+  "L-070": [
+   "vybor"
+  ],
+  "L-072": [
+   "vybor"
+  ],
+  "L-073": [
+   "granica"
+  ],
+  "L-074": [
+   "granica"
+  ],
+  "L-080": [
+   "porog"
+  ],
+  "L-081": [
+   "porog"
+  ],
+  "L-082": [
+   "porog"
+  ]
+ },
+ "unparsed": [
+  {
+   "id": "L-002",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-006",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-009",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-020",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-021",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-022",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-024",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-028",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-030",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-032",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-037",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-038",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-039",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-040",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-041",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-042",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-043",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-044",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-045",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-046",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-047",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-048",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-049",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-050",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-051",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-052",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-053",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-054",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-058",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-063",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-064",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-065",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-066",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-071",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-075",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-076",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-077",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-078",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-079",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-083",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-084",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-085",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-086",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-087",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  },
+  {
+   "id": "L-088",
+   "why": "not mentioned in ELEPHANT-MAP §1"
+  }
+ ],
+ "stats": {
+  "literature_nodes": 88,
+  "parsed": 43,
+  "missing": [
+   "L-002",
+   "L-006",
+   "L-009",
+   "L-020",
+   "L-021",
+   "L-022",
+   "L-024",
+   "L-028",
+   "L-030",
+   "L-032",
+   "L-037",
+   "L-038",
+   "L-039",
+   "L-040",
+   "L-041",
+   "L-042",
+   "L-043",
+   "L-044",
+   "L-045",
+   "L-046",
+   "L-047",
+   "L-048",
+   "L-049",
+   "L-050",
+   "L-051",
+   "L-052",
+   "L-053",
+   "L-054",
+   "L-058",
+   "L-063",
+   "L-064",
+   "L-065",
+   "L-066",
+   "L-071",
+   "L-075",
+   "L-076",
+   "L-077",
+   "L-078",
+   "L-079",
+   "L-083",
+   "L-084",
+   "L-085",
+   "L-086",
+   "L-087",
+   "L-088"
+  ],
+  "in_map_not_in_graph": []
+ }
+}

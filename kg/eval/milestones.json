@@ -1,0 +1,28 @@
+{
+ "version": "milestones-v1",
+ "frozen_at": "2026-11-21",
+ "baseline": {
+  "components": 3,
+  "graph_hash_at_baseline": "6a58000-era",
+  "node": "8 own claims + their poles"
+ },
+ "structural": {
+  "metric": "components of own claims over the traversal graph",
+  "rule": "3 -> 2 -> 1, только через exam_ready-мосты между компонентами",
+  "counts_as": [
+   "exam_ready correspondence between clusters"
+  ],
+  "does_not_count": [
+   "analogous_to",
+   "draft",
+   "extra evidence links",
+   "lines_version bump"
+  ],
+  "acceptance_test": "python3 kg/kg.py connectivity"
+ },
+ "quantitative": {
+  "metric": "unique exam_ready bridges",
+  "dashboard_only": true,
+  "note": "счётчик — дашборд, не триггер; первый валидный межкластерный мост уже веха 3->2"
+ }
+}

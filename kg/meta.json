@@ -2,24 +2,26 @@
   "schema": "kg/2",
   "built_at": "2026-11-20",
   "counts": {
-    "total": 544,
+    "total": 549,
     "by_kind": {
       "claim": 96,
       "formula": 31,
       "experiment": 407,
-      "definition": 10
+      "definition": 10,
+      "gap": 3,
+      "correspondence": 2
     },
     "by_epistemic": {
       "established": 321,
-      "hypothesis": 155,
+      "hypothesis": 160,
       "refuted": 67,
       "bounded": 1
     },
     "by_provenance": {
-      "verified_agent": 431,
+      "verified_agent": 436,
       "extracted": 113
     },
-    "edges": 13
+    "edges": 12
   },
   "invariants": [
     "every node has non-empty context",
@@ -248,6 +250,6 @@
     "check"
   ],
   "hashes": {
-    "graph": "78d1c15fa06caedc"
+    "graph": "e584699d0ba2e80e"
   }
 }

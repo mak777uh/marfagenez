@@ -30,5 +30,14 @@
   "search, extraction, ranking or check behaviour changed"
  ],
  "cooldown_rounds": 3,
- "override": "owner decision is an event in kg/admissions.jsonl, not a silent edit"
+ "override": "owner decision is an event in kg/admissions.jsonl, not a silent edit",
+ "sealed": {
+  "file": "holdout-2026-11-21.md",
+  "location": "outside the repository (owner's machine)",
+  "sha256": "cf1498b25fd115e8fe2e3f03fe2b6e77136587ddb02f519ccec00bd4b0809a4f",
+  "questions": 25,
+  "created_at": "2026-11-21",
+  "present_after": "первая партия exam_ready-мостов",
+  "presentations_per_question": 1
+ }
 }

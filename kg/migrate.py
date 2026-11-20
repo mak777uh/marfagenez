@@ -79,7 +79,7 @@ def formulas():
             "math": {"latex": latex, "structure": "", "units": UNITS.get(fid, {}),
                      "checked": CHECKED.get(fid, {"kind": "none", "ref": ""})},
             "created_at": "2026-11-20",
-            "updated_at": "2026-11-20",
+            "updated_at": "2026-11-21",
         })
     return out
 
@@ -114,6 +114,15 @@ def experiments():
 
 
 
+def lines_map():
+    """Parsed classification: L-NNN -> parts of the elephant (docs/ELEPHANT-MAP.md §1)."""
+    path = ROOT / "kg" / "lines-map.json"
+    if not path.exists():
+        return {}, {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return data.get("map") or {}, data
+
+
 def literature():
     """Literature records `### L-NNN · title` from the registry become claim nodes.
 
@@ -138,7 +147,11 @@ def literature():
         if sm:
             statement = sm.group(1).strip()
         chosen = "verified_agent" if "полный текст" in level.lower() else "extracted"
-        out.append({
+        lmap, meta = lines_map()
+        lines = lmap.get(lid, [])
+        prov = {"method": meta.get("method", "parsed"), "parser_version": meta.get("parser_version", "1"),
+                "source": meta.get("source", ""), "checked_by": None} if lines else None
+        node = {
             "id": lid,
             "kind": "claim",
             "text": (title + (" — " + statement if statement else ""))[:400],
@@ -149,9 +162,26 @@ def literature():
             "relations": [],
             "data": {"source": "docs/ELEPHANT-LITERATURE.md", "license": "see source", "accessed_at": "2026-11-20"},
             "created_at": "2026-11-20",
-            "updated_at": "2026-11-20",
-        })
+            "updated_at": "2026-11-21",
+        }
+        ov = literature_overrides().get(lid)
+        if ov:
+            node["data"].update({k: v for k, v in ov.items() if k != "note"})
+            node["data"]["override_note"] = ov.get("note", "")
+            if ov.get("internal_review"):
+                node["data"]["not_an_external_source"] = True
+        if lines:
+            node["lines"] = sorted(set(lines))
+            node["data"]["lines_provenance"] = prov
+        out.append(node)
     return out
+
+
+def literature_overrides():
+    path = ROOT / "kg" / "literature-overrides.json"
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8")).get("overrides") or {}
 
 
 def definitions():
@@ -162,8 +192,17 @@ def definitions():
     return [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
+
+def bridges():
+    """Gaps and correspondences: separate objects, not claims."""
+    path = ROOT / "kg" / "bridges.jsonl"
+    if not path.exists():
+        return []
+    return [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
+
+
 def main():
-    nodes = claims() + formulas() + experiments() + literature() + definitions()
+    nodes = claims() + formulas() + experiments() + literature() + definitions() + bridges()
     seen = set()
     unique = []
     for n in nodes:
