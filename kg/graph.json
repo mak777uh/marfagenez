@@ -115,7 +115,7 @@
           "note": "мера считает структуру, а не устойчивость"
         },
         {
-          "type": "same_as",
+          "type": "analogous_to",
           "target": "L-060",
           "note": "мера замыкания как свойство графа"
         }
@@ -148,7 +148,7 @@
       ],
       "relations": [
         {
-          "type": "same_as",
+          "type": "analogous_to",
           "target": "L-051",
           "note": "порог Πλ = 1/6"
         }
@@ -186,7 +186,7 @@
           "note": "складка — универсальный масштаб, не наша находка"
         },
         {
-          "type": "same_as",
+          "type": "analogous_to",
           "target": "L-023",
           "note": "складка и её универсальный масштаб"
         }
@@ -224,7 +224,7 @@
       ],
       "relations": [
         {
-          "type": "same_as",
+          "type": "analogous_to",
           "target": "L-065",
           "note": "ядро выживания"
         }
@@ -14536,12 +14536,12 @@
     {
       "from": "C-003",
       "to": "L-060",
-      "type": "same_as"
+      "type": "analogous_to"
     },
     {
       "from": "C-004",
       "to": "L-051",
-      "type": "same_as"
+      "type": "analogous_to"
     },
     {
       "from": "C-005",
@@ -14551,12 +14551,12 @@
     {
       "from": "C-005",
       "to": "L-023",
-      "type": "same_as"
+      "type": "analogous_to"
     },
     {
       "from": "C-006",
       "to": "L-065",
-      "type": "same_as"
+      "type": "analogous_to"
     },
     {
       "from": "C-007",

@@ -42,6 +42,7 @@ INDEX = KG / "INDEX.md"
 KINDS = {"claim", "formula", "experiment", "dataset", "definition", "question", "correspondence"}
 EPISTEMIC = {"hypothesis", "established", "contested", "replicated", "refuted", "bounded"}
 PROVENANCE = {"extracted", "verified_agent", "human_confirmed"}
+MODES = {"formal", "literature", "experiment"}   # three kinds of research, not node kinds
 EXPAND_THRESHOLD = 8   # degree at which one hop is already a full screen
 EXPAND_CAP = 60        # nodes printed before the "+K ещё" marker
 RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as",
@@ -328,6 +329,13 @@ def atlas(nodes, cluster_id=None):
     print("своих утверждений " + str(own) + " · литературных " + str(lit) + " · формул " + str(kinds.get("formula", 0)) + " · прогонов " + str(kinds.get("experiment", 0)))
     print("статус: " + " · ".join(k + " " + str(v) for k, v in epi.items()))
     print("доверие: " + " · ".join(k + " " + str(v) for k, v in prov.items()))
+    modes = {}
+    for n in nodes:
+        m = mode_of(n)
+        if m:
+            modes[m] = modes.get(m, 0) + 1
+    print("виды исследования: " + " · ".join(m + " " + str(modes.get(m, 0))
+                                             for m in ("formal", "literature", "experiment")))
     print()
     print("линии:")
     per_line = {}
@@ -489,16 +497,16 @@ def hidden(node):
 
 
 def extra_invariants(nodes):
-    """The rules that were prose until the second round of review (D-04, D-06, D-07)."""
+    """Rules that were prose until the second round of review (D-04, D-06, D-07) plus research modes."""
     problems = []
     ids = {n["id"] for n in nodes}
     for n in nodes:
-        has_same_as = [(r.get("type"), r.get("target")) for r in (n.get("relations") or [])
-                       if r.get("type") == "same_as"]
-        for _t, tgt in has_same_as:
-            if not (n["id"].startswith("C-") and str(tgt).startswith("C-")):
-                problems.append(n["id"] + ": same_as is claim-to-claim only; got " + str(tgt) +
-                                " (use analogous_to or correspondence)")
+        for r in n.get("relations") or []:
+            if r.get("type") == "same_as":
+                tgt = str(r.get("target"))
+                if not (n["id"].startswith("C-") and tgt.startswith("C-")):
+                    problems.append(n["id"] + ": same_as is claim-to-claim only; got " + tgt +
+                                    " (use analogous_to or correspondence)")
         if n.get("kind") == "correspondence":
             left = (n.get("data") or {}).get("left")
             right = (n.get("data") or {}).get("right")
@@ -507,7 +515,25 @@ def extra_invariants(nodes):
             for r in n.get("relations") or []:
                 if r.get("type") in ("supports", "refutes"):
                     problems.append(n["id"] + ": correspondence must not " + str(r.get("type")) + " a claim")
+        if n.get("mode") and n.get("mode") not in MODES:
+            problems.append(n["id"] + ": mode not in " + str(sorted(MODES)))
+        if n.get("kind") == "experiment" and n.get("domain") == "world" and n.get("epistemic") == "established":
+            problems.append(n["id"] + ": a run cannot establish a world-claim (use a correspondence)")
     return problems
+
+
+def mode_of(node):
+    """Which kind of research produced this node. Derived, not stored twice."""
+    if node.get("mode") in MODES:
+        return node["mode"]
+    kind, nid = node.get("kind"), node["id"]
+    if kind == "experiment":
+        return "experiment"
+    if kind == "formula":
+        return "formal"
+    if nid.startswith("L-"):
+        return "literature"
+    return ""
 
 
 def main(argv):

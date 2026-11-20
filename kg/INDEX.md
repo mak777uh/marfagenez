@@ -16,4 +16,4 @@
 
 ## Глаголы
 
-atlas, math, map, frontier, find, show, expand, trace, chain, formula, contradictions, check
+atlas, math, map, frontier, connectivity, preflight, find, show, expand, trace, chain, formula, contradictions, check

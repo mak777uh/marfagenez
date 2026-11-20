@@ -235,6 +235,8 @@
     "math",
     "map",
     "frontier",
+    "connectivity",
+    "preflight",
     "find",
     "show",
     "expand",
@@ -245,6 +247,6 @@
     "check"
   ],
   "hashes": {
-    "graph": "d2e21d6ecc7bdaf3"
+    "graph": "c79c0a983c4714d4"
   }
 }
