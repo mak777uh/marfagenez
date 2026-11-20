@@ -39,12 +39,15 @@ META = KG / "meta.json"
 GRAPH = KG / "graph.json"
 INDEX = KG / "INDEX.md"
 
-KINDS = {"claim", "formula", "experiment", "dataset", "definition", "question"}
+KINDS = {"claim", "formula", "experiment", "dataset", "definition", "question", "correspondence"}
 EPISTEMIC = {"hypothesis", "established", "contested", "replicated", "refuted", "bounded"}
 PROVENANCE = {"extracted", "verified_agent", "human_confirmed"}
 EXPAND_THRESHOLD = 8   # degree at which one hop is already a full screen
 EXPAND_CAP = 60        # nodes printed before the "+K ещё" marker
-RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as", "predicted_by"}
+RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as",
+             "predicted_by", "analogous_to", "candidate_supports", "tested_in", "stated_in"}
+# relations that carry epistemic weight; mechanical ones do not, by construction (D-07)
+EPISTEMIC_RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as"}
 
 
 def load():
@@ -432,6 +435,8 @@ def preflight(nodes, topic):
     words = [w for w in topic.lower().split() if len(w) > 2]
     hits = []
     for n in nodes:
+        if hidden(n):
+            continue
         text = (n.get("text") or "").lower()
         if words and all(w in text for w in words):
             hits.append(n["id"])
@@ -453,9 +458,56 @@ def preflight(nodes, topic):
     print("  3) что уже пробовали: " + (str(len(tried)) + " строк в ELIMINATED" if tried else "не найдено"))
     for line in tried[:3]:
         print("     " + line)
-    print("  штамп: topic=" + topic.replace(" ", "_") + " hits=" + str(len(hits)) +
-          " tried=" + str(len(tried)))
+    try:
+        commit = __import__("subprocess").check_output(
+            ["git", "-C", str(ROOT), "rev-parse", "--short", "HEAD"], text=True).strip()
+    except Exception:
+        commit = "unknown"
+    status = "MATCHES" if hits else "NO_MATCHES"
+    stamp = {"topic": topic, "queries": words, "status": status, "hits": sorted(hits)[:12],
+             "tried_lines": len(tried), "scope": "graph minus quarantined",
+             "graph_hash": graph_hash(nodes)[:16], "commit": commit}
+    print("  штамп: " + json.dumps(stamp, ensure_ascii=False))
     return 0
+
+
+def graph_hash(nodes):
+    """Canonical hash over node content, not over file bytes: stamps must be comparable across rounds."""
+    body = []
+    for n in sorted(nodes, key=lambda x: x["id"]):
+        body.append("|".join([
+            n["id"], n.get("kind", ""), n.get("epistemic", ""), n.get("provenance", ""),
+            hashlib.sha256((n.get("text") or "").strip().encode("utf-8")).hexdigest()[:16],
+        ]))
+    return hashlib.sha256("\n".join(body).encode("utf-8")).hexdigest()
+
+
+def hidden(node):
+    """Quarantine and acceptance are different axes (D-09): provenance says where it came from,
+    triage says whether it may be seen. Only the second one hides a node."""
+    return (node.get("data") or {}).get("triage_status") == "quarantined"
+
+
+def extra_invariants(nodes):
+    """The rules that were prose until the second round of review (D-04, D-06, D-07)."""
+    problems = []
+    ids = {n["id"] for n in nodes}
+    for n in nodes:
+        has_same_as = [(r.get("type"), r.get("target")) for r in (n.get("relations") or [])
+                       if r.get("type") == "same_as"]
+        for _t, tgt in has_same_as:
+            if not (n["id"].startswith("C-") and str(tgt).startswith("C-")):
+                problems.append(n["id"] + ": same_as is claim-to-claim only; got " + str(tgt) +
+                                " (use analogous_to or correspondence)")
+        if n.get("kind") == "correspondence":
+            left = (n.get("data") or {}).get("left")
+            right = (n.get("data") or {}).get("right")
+            if left not in ids or right not in ids:
+                problems.append(n["id"] + ": correspondence needs both poles as existing nodes")
+            for r in n.get("relations") or []:
+                if r.get("type") in ("supports", "refutes"):
+                    problems.append(n["id"] + ": correspondence must not " + str(r.get("type")) + " a claim")
+    return problems
 
 
 def main(argv):
@@ -471,7 +523,7 @@ def main(argv):
 
     if cmd == "check":
         strict_refs = "--refs" in argv
-        problems = invariants(nodes)
+        problems = invariants(nodes) + extra_invariants(nodes)
         print("OK" if not problems else "\n".join(problems))
         for w in warnings(nodes):
             print("NOTE: " + w)
@@ -535,17 +587,19 @@ def main(argv):
         else:
             deg = 0
             for n in nodes:
+                if hidden(n):
+                    continue
                 for r in n.get("relations", []):
-                    if n["id"] == start or r["target"] == start:
+                    if r.get("type") in EPISTEMIC_RELATIONS and (n["id"] == start or r["target"] == start):
                         deg += 1
-                if n["id"] == start:
-                    deg += len(n.get("evidence", []))
             hops = 1 if deg >= EXPAND_THRESHOLD else 2
         seen = {start}
         frontier = {start}
         for _ in range(hops):
             nxt = set()
             for n in nodes:
+                if hidden(n) and n["id"] not in (start,):
+                    continue
                 for r in n.get("relations", []):
                     if n["id"] in frontier:
                         nxt.add(r["target"])
