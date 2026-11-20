@@ -1,0 +1,14 @@
+[
+ {"id": "E-01", "seed": 1, "cited": ["C-001", "C-002", "F-023", "EXP-SHADOW-PRICE", "EXP-PRICE-KINKS", "L-062"],
+  "answer": "Цена равна нулю ровно тогда, когда ограничение не связывает. Излом там, где перестаёт связывать лучшая альтернатива: a = I - s - r_max. Это теневая цена.",
+  "map_tokens": 300, "expand_tokens": 800, "answer_tokens": 400, "files_opened": 0, "tools": ["kg.py atlas"]},
+ {"id": "E-06", "seed": 1, "cited": ["F-001"],
+  "answer": "Потолок c* = M - t/r, ремонт стоит дороже при большем r, потолок 9.37.",
+  "map_tokens": 300, "expand_tokens": 500, "answer_tokens": 200, "files_opened": 0, "tools": ["kg.py atlas"]},
+ {"id": "N-01", "seed": 1, "cited": [],
+  "answer": "Не знаем: оптимальная доля ремонта в корпусе не измерялась.",
+  "map_tokens": 300, "expand_tokens": 0, "answer_tokens": 60, "files_opened": 0, "tools": []},
+ {"id": "AG-01", "seed": 1, "cited": [],
+  "answer": "Сначала карта и состояние, потом действия.",
+  "map_tokens": 300, "expand_tokens": 0, "answer_tokens": 60, "files_opened": 0, "tools": ["kg.py atlas", "run.sh kg"]}
+]

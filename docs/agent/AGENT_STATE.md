@@ -189,6 +189,10 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 - Раздел `kg` в `run.sh all` проверяет инварианты и **разрешение ссылок свидетельств**.
 - `kg/nodes.jsonl` — **производное**; канон: `kg/claims.jsonl`, `docs/ELEPHANT-LITERATURE.md`, `results/*/run-*.json`.
 - Правила схемы, осей и инвариантов: `docs/KG-DECISIONS.md`; экзамен базы: `docs/KG-EVAL-QUESTIONS.md`.
+- **
+- **Перед кругом:** `python3 kg/kg.py atlas` — карта, затем `python3 kg/kg.py find <тема>` — чтобы не повторять.
+- **После круга:** `bash run.sh all`, запись в `docs/agent/AGENT_LOG.md`, обновление этого файла при правке `run.sh`/`checks/`/`core/`/`laws/`/`verus/`.
+- **Экзамен базы:** `python3 kg/eval/score.py runs-<дата>.json`; спека заморожена, hash в `kg/eval/questions.json`.
 
 ---
 

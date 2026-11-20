@@ -1,0 +1,1153 @@
+{
+ "version": "KG-EVAL-2026-11-20",
+ "targets": {
+  "recall_retrieval": 0.8,
+  "precision": 0.8,
+  "files_opened": 0,
+  "tokens_per_question": 15000,
+  "negative_pass": 5,
+  "delta": 0.03,
+  "seeds": 3
+ },
+ "questions": [
+  {
+   "id": "E-01",
+   "group": "A",
+   "budget": 1200,
+   "question": "Что известно о цене удержания целости?",
+   "context": "Главный критерий постановки: один ответ без чтения файлов.",
+   "gold": [
+    "C-001",
+    "C-002",
+    "F-023",
+    "L-062",
+    "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+    "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+    "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+    "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49"
+   ],
+   "expected_absent": [
+    "FINDING-317",
+    "FINDING-318"
+   ],
+   "rubric": [
+    {
+     "text": "цена равна нулю ровно тогда, когда ограничение не связывает",
+     "polarity": "assert"
+    },
+    {
+     "text": "излом в точке, где перестаёт связывать лучшая альтернатива",
+     "polarity": "assert"
+    },
+    {
+     "text": "цена наблюдаемая, а не теневая",
+     "polarity": "reject"
+    }
+   ]
+  },
+  {
+   "id": "E-02",
+   "group": "A",
+   "budget": 800,
+   "question": "Порог складки — наше открытие?",
+   "context": "Проверка полярности: √ у порога — чужой универсальный масштаб, claim отозван.",
+   "gold": [
+    "F-025",
+    "L-007",
+    "L-023"
+   ],
+   "expected_absent": [
+    "BRIDGE-AB",
+    "FINDING-316"
+   ],
+   "rubric": [
+    {
+     "text": "√ — универсальный масштаб складки, не наш результат",
+     "polarity": "assert"
+    },
+    {
+     "text": "мы открыли универсальный масштаб складки",
+     "polarity": "reject"
+    }
+   ]
+  },
+  {
+   "id": "E-03",
+   "group": "A",
+   "budget": 900,
+   "question": "Какая мера замыкания и что показал контроль?",
+   "context": "Различение цепь/частичное/цикл; контроль первого прогона был неверным.",
+   "gold": [
+    "C-003",
+    "L-060",
+    "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+    "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14"
+   ],
+   "expected_absent": [
+    "FINDING-319"
+   ],
+   "rubric": [
+    {
+     "text": "значения 0.25, 0.75, 1.0 для трёх топологий",
+     "polarity": "assert"
+    },
+    {
+     "text": "контроль первого прогона был неверным: ожидалось 0.75, верно 1/N",
+     "polarity": "assert"
+    }
+   ]
+  },
+  {
+   "id": "E-04",
+   "group": "A",
+   "budget": 700,
+   "question": "Что стоит за порогом Πλ ≤ 1/6?",
+   "context": "Провенанс: два независимых локатора, статус поднят проверкой.",
+   "gold": [
+    "C-004",
+    "F-019",
+    "L-051"
+   ],
+   "rubric": [
+    {
+     "text": "два независимых локатора",
+     "polarity": "assert"
+    },
+    {
+     "text": "статус поднят по уверенности модели",
+     "polarity": "reject"
+    }
+   ]
+  },
+  {
+   "id": "E-05",
+   "group": "A",
+   "budget": 700,
+   "question": "Какая формула показателя опровергнута и чем заменена?",
+   "context": "Отрицательное знание должно сохраняться.",
+   "gold": [
+    "C-007",
+    "L-081"
+   ],
+   "rubric": [
+    {
+     "text": "1/(m+1)",
+     "polarity": "reject"
+    },
+    {
+     "text": "правильный показатель 1/k",
+     "polarity": "assert"
+    }
+   ]
+  },
+  {
+   "id": "E-06",
+   "group": "A",
+   "budget": 900,
+   "question": "Как связаны потолок ёмкости и цена ремонта?",
+   "context": "Порядок операций был ошибкой; разница ровно t.",
+   "gold": [
+    "F-001"
+   ],
+   "expected_absent": [
+    "FINDING-140"
+   ],
+   "rubric": [
+    {
+     "text": "M − t/r",
+     "polarity": "reject"
+    },
+    {
+     "text": "c* = M − t(1−r)/r",
+     "polarity": "assert"
+    },
+    {
+     "text": "разница двух порядков равна t",
+     "polarity": "assert"
+    }
+   ]
+  },
+  {
+   "id": "E-07",
+   "group": "A",
+   "budget": 1000,
+   "question": "Даёт ли память преимущество над зрением?",
+   "context": "A-уровень и C-уровень об одном; склеивать нельзя.",
+   "gold": [
+    "C-006",
+    "X-EXP-30-run-2026-11-12T15-49-47",
+    "X-memory-cost-run-2026-11-16T10-29-32",
+    "X-memory-cost-run-2026-11-16T19-46-11",
+    "X-memory-cost-run-2026-11-17T05-55-41",
+    "X-memory-vs-remember-run-2026-11-11T21-05-35"
+   ],
+   "rubric": [
+    {
+     "text": "память не экономит ни одного чтения",
+     "polarity": "assert"
+    },
+    {
+     "text": "выигрыш даёт обратная связь из мира",
+     "polarity": "assert"
+    }
+   ]
+  },
+  {
+   "id": "E-08",
+   "group": "A",
+   "budget": 800,
+   "rubric_only": true,
+   "question": "Что мы не утверждаем?",
+   "context": "Негативные границы — часть знания.",
+   "gold": [],
+   "expected_absent": [
+    "NOT-CLAIMED-NODE"
+   ],
+   "rubric": [
+    {
+     "text": "ребёнок — причина дизайна, не предмет",
+     "polarity": "assert"
+    },
+    {
+     "text": "f64-часть не доказана",
+     "polarity": "assert"
+    },
+    {
+     "text": "Verus доказывает копии, не bridge.rs",
+     "polarity": "assert"
+    }
+   ]
+  },
+  {
+   "id": "E-09",
+   "group": "A",
+   "budget": 700,
+   "question": "Где кончается применимость формулы скорости?",
+   "context": "Область применимости должна быть машинной.",
+   "gold": [
+    "F-001",
+    "F-003"
+   ],
+   "rubric": [
+    {
+     "text": "D_X = 0.01",
+     "polarity": "assert"
+    }
+   ]
+  },
+  {
+   "id": "E-10",
+   "group": "A",
+   "budget": 900,
+   "question": "Что наука знает про теневое ценообразование?",
+   "context": "Мост к литературе, а не список ссылок.",
+   "gold": [
+    "C-001",
+    "C-002",
+    "L-062"
+   ],
+   "rubric": [
+    {
+     "text": "двойственные переменные LP как химические потенциалы — утверждение авторов",
+     "polarity": "assert"
+    },
+    {
+     "text": "наша цена тождественна их потенциалу",
+     "polarity": "reject"
+    }
+   ]
+  },
+  {
+   "id": "E-11",
+   "group": "A",
+   "budget": 700,
+   "question": "Что у нас считается репликацией?",
+   "context": "Терминология расходится со стандартами; нужна своя фиксация.",
+   "gold": [
+    "X-memory-vs-remember-run-2026-11-11T21-05-35"
+   ],
+   "expected_absent": [
+    "TERM-T2"
+   ],
+   "rubric": [
+    {
+     "text": "тот же сид — целостность, а не репликация",
+     "polarity": "assert"
+    },
+    {
+     "text": "репликация — другая реализация или согласие Lean и прогона",
+     "polarity": "assert"
+    }
+   ]
+  },
+  {
+   "id": "E-12",
+   "group": "A",
+   "budget": 1000,
+   "question": "Что сломалось от изменения порядка шага клетки?",
+   "context": "Зависимостное устаревание: правка кода помечает зависимые результаты.",
+   "gold": [
+    "F-001",
+    "X-frozen-ceiling-run-2026-11-11T18-38-50",
+    "X-frozen-ceiling-run-2026-11-11T18-40-10",
+    "X-frozen-ceiling-run-2026-11-11T19-03-11",
+    "X-frozen-ceiling-run-2026-11-11T20-00-10",
+    "X-frozen-ceiling-run-2026-11-11T20-19-35",
+    "X-frozen-ceiling-run-2026-11-13T02-41-54",
+    "X-frozen-ceiling-run-2026-11-13T02-46-00",
+    "X-frozen-ceiling-run-2026-11-13T02-47-00",
+    "X-frozen-ceiling-run-2026-11-13T02-48-10",
+    "X-frozen-ceiling-run-2026-11-13T02-51-46",
+    "X-frozen-ceiling-run-2026-11-13T03-01-58",
+    "X-frozen-ceiling-run-2026-11-13T03-27-02",
+    "X-frozen-ceiling-run-2026-11-13T03-31-07",
+    "X-frozen-ceiling-run-2026-11-13T06-14-53",
+    "X-frozen-ceiling-run-2026-11-14T07-16-56",
+    "X-frozen-ceiling-run-2026-11-14T07-20-19",
+    "X-frozen-ceiling-run-2026-11-14T07-29-04",
+    "X-frozen-ceiling-run-2026-11-14T08-13-36",
+    "X-frozen-ceiling-run-2026-11-14T15-48-26",
+    "X-frozen-ceiling-run-2026-11-14T16-09-38",
+    "X-frozen-ceiling-run-2026-11-14T16-12-56",
+    "X-frozen-ceiling-run-2026-11-14T16-27-28",
+    "X-frozen-ceiling-run-2026-11-14T17-11-31",
+    "X-frozen-ceiling-run-2026-11-14T17-25-13",
+    "X-frozen-ceiling-run-2026-11-14T17-29-34",
+    "X-frozen-ceiling-run-2026-11-14T19-47-08",
+    "X-frozen-ceiling-run-2026-11-14T19-59-15",
+    "X-frozen-ceiling-run-2026-11-14T20-08-35",
+    "X-frozen-ceiling-run-2026-11-14T20-19-32",
+    "X-frozen-ceiling-run-2026-11-14T20-29-59",
+    "X-frozen-ceiling-run-2026-11-14T20-40-21",
+    "X-frozen-ceiling-run-2026-11-14T20-49-49",
+    "X-frozen-ceiling-run-2026-11-14T20-55-49",
+    "X-frozen-ceiling-run-2026-11-14T20-55-59",
+    "X-frozen-ceiling-run-2026-11-14T20-59-12",
+    "X-frozen-ceiling-run-2026-11-14T21-12-52",
+    "X-frozen-ceiling-run-2026-11-14T21-30-13",
+    "X-frozen-ceiling-run-2026-11-14T21-39-21",
+    "X-frozen-ceiling-run-2026-11-14T21-48-54",
+    "X-frozen-ceiling-run-2026-11-14T21-58-02",
+    "X-frozen-ceiling-run-2026-11-14T22-07-25",
+    "X-frozen-ceiling-run-2026-11-14T22-16-29",
+    "X-frozen-ceiling-run-2026-11-14T22-25-33",
+    "X-frozen-ceiling-run-2026-11-14T22-37-42",
+    "X-frozen-ceiling-run-2026-11-14T22-46-49",
+    "X-frozen-ceiling-run-2026-11-14T22-56-12",
+    "X-frozen-ceiling-run-2026-11-14T23-02-04",
+    "X-frozen-ceiling-run-2026-11-14T23-11-12",
+    "X-frozen-ceiling-run-2026-11-14T23-17-08",
+    "X-frozen-ceiling-run-2026-11-14T23-20-32",
+    "X-frozen-ceiling-run-2026-11-14T23-29-48",
+    "X-frozen-ceiling-run-2026-11-15T05-13-18",
+    "X-frozen-ceiling-run-2026-11-15T05-28-31",
+    "X-frozen-ceiling-run-2026-11-15T05-37-50",
+    "X-frozen-ceiling-run-2026-11-15T05-44-29",
+    "X-frozen-ceiling-run-2026-11-15T05-44-44",
+    "X-frozen-ceiling-run-2026-11-15T05-44-57",
+    "X-frozen-ceiling-run-2026-11-15T05-45-28",
+    "X-frozen-ceiling-run-2026-11-15T05-45-39",
+    "X-frozen-ceiling-run-2026-11-15T05-46-16",
+    "X-frozen-ceiling-run-2026-11-15T05-46-27",
+    "X-frozen-ceiling-run-2026-11-15T05-46-40",
+    "X-frozen-ceiling-run-2026-11-15T05-46-53",
+    "X-frozen-ceiling-run-2026-11-15T05-47-06",
+    "X-frozen-ceiling-run-2026-11-15T05-51-08",
+    "X-frozen-ceiling-run-2026-11-15T06-00-16",
+    "X-frozen-ceiling-run-2026-11-15T06-11-41",
+    "X-frozen-ceiling-run-2026-11-15T07-56-19",
+    "X-frozen-ceiling-run-2026-11-15T08-29-22",
+    "X-frozen-ceiling-run-2026-11-15T08-40-11",
+    "X-frozen-ceiling-run-2026-11-15T08-50-16",
+    "X-frozen-ceiling-run-2026-11-15T09-00-35",
+    "X-frozen-ceiling-run-2026-11-15T09-10-41",
+    "X-frozen-ceiling-run-2026-11-15T09-21-44",
+    "X-frozen-ceiling-run-2026-11-15T09-34-44",
+    "X-frozen-ceiling-run-2026-11-15T09-45-25",
+    "X-frozen-ceiling-run-2026-11-15T10-47-45",
+    "X-frozen-ceiling-run-2026-11-15T10-58-19",
+    "X-frozen-ceiling-run-2026-11-15T11-02-29",
+    "X-frozen-ceiling-run-2026-11-15T11-02-43",
+    "X-frozen-ceiling-run-2026-11-15T11-03-29",
+    "X-frozen-ceiling-run-2026-11-15T11-03-48",
+    "X-frozen-ceiling-run-2026-11-15T11-10-01",
+    "X-frozen-ceiling-run-2026-11-15T11-17-13",
+    "X-frozen-ceiling-run-2026-11-15T11-19-55",
+    "X-frozen-ceiling-run-2026-11-15T11-26-47",
+    "X-frozen-ceiling-run-2026-11-15T11-27-04",
+    "X-frozen-ceiling-run-2026-11-15T11-27-21",
+    "X-frozen-ceiling-run-2026-11-15T11-32-02",
+    "X-frozen-ceiling-run-2026-11-15T11-41-57",
+    "X-frozen-ceiling-run-2026-11-15T11-48-00",
+    "X-frozen-ceiling-run-2026-11-15T11-51-56",
+    "X-frozen-ceiling-run-2026-11-15T12-32-32",
+    "X-frozen-ceiling-run-2026-11-15T12-47-33",
+    "X-frozen-ceiling-run-2026-11-15T13-33-22",
+    "X-frozen-ceiling-run-2026-11-15T13-44-20",
+    "X-frozen-ceiling-run-2026-11-15T13-55-15",
+    "X-frozen-ceiling-run-2026-11-15T13-55-28",
+    "X-frozen-ceiling-run-2026-11-15T13-55-40",
+    "X-frozen-ceiling-run-2026-11-15T13-55-53",
+    "X-frozen-ceiling-run-2026-11-15T13-56-06",
+    "X-frozen-ceiling-run-2026-11-15T13-56-25",
+    "X-frozen-ceiling-run-2026-11-15T13-56-42",
+    "X-frozen-ceiling-run-2026-11-15T13-57-18",
+    "X-frozen-ceiling-run-2026-11-15T13-57-29",
+    "X-frozen-ceiling-run-2026-11-15T13-57-41",
+    "X-frozen-ceiling-run-2026-11-15T13-58-13",
+    "X-frozen-ceiling-run-2026-11-15T14-14-23",
+    "X-frozen-ceiling-run-2026-11-15T14-32-35",
+    "X-frozen-ceiling-run-2026-11-15T14-41-31",
+    "X-frozen-ceiling-run-2026-11-15T14-41-41",
+    "X-frozen-ceiling-run-2026-11-15T18-17-37",
+    "X-frozen-ceiling-run-2026-11-15T18-30-10",
+    "X-frozen-ceiling-run-2026-11-15T18-39-27",
+    "X-frozen-ceiling-run-2026-11-15T18-39-42",
+    "X-frozen-ceiling-run-2026-11-15T18-44-20",
+    "X-frozen-ceiling-run-2026-11-15T18-54-04",
+    "X-frozen-ceiling-run-2026-11-15T18-58-51",
+    "X-frozen-ceiling-run-2026-11-15T19-14-25",
+    "X-frozen-ceiling-run-2026-11-15T19-23-49",
+    "X-frozen-ceiling-run-2026-11-15T19-24-06",
+    "X-frozen-ceiling-run-2026-11-15T19-29-24"
+   ],
+   "expected_absent": [
+    "FINDING-140"
+   ],
+   "rubric": [
+    {
+     "text": "c* = M − t/r",
+     "polarity": "reject"
+    },
+    {
+     "text": "c* = 1.8 отозвана",
+     "polarity": "reject"
+    },
+    {
+     "text": "c* = M − t(1−r)/r",
+     "polarity": "assert"
+    }
+   ]
+  },
+  {
+   "id": "E-13",
+   "group": "A",
+   "budget": 900,
+   "question": "Откуда взялась мера замыкания и где её данные?",
+   "context": "Цепочка claim → formula → experiment → data.",
+   "gold": [
+    "C-003",
+    "L-060",
+    "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+    "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14"
+   ],
+   "expected_absent": [
+    "FINDING-319"
+   ],
+   "rubric": [
+    {
+     "text": "мера — свойство графа, не динамики",
+     "polarity": "assert"
+    }
+   ]
+  },
+  {
+   "id": "E-14",
+   "group": "A",
+   "budget": 1000,
+   "rubric_only": true,
+   "question": "Согласованы ли наши законы между собой?",
+   "context": "Ответ — вердикт проверки, а не перечень всех узлов.",
+   "gold": [],
+   "expected_absent": [
+    "CHECK-CONSISTENCY"
+   ],
+   "rubric": [
+    {
+     "text": "вердикт проверки согласованности",
+     "polarity": "assert"
+    },
+    {
+     "text": "размерностная проверка не выполнялась, но названа выполненной",
+     "polarity": "reject"
+    }
+   ]
+  },
+  {
+   "id": "E-15",
+   "group": "A",
+   "budget": 700,
+   "rubric_only": true,
+   "question": "Где корпус тонок?",
+   "context": "База должна уметь называть свои дыры.",
+   "gold": [],
+   "expected_absent": [],
+   "rubric": [
+    {
+     "text": "узлы без свидетельств",
+     "polarity": "assert",
+     "type": "registry_consistent",
+     "path": "frontier.without_evidence",
+     "value": 27
+    },
+    {
+     "text": "только извлечено",
+     "polarity": "assert",
+     "type": "registry_consistent",
+     "path": "frontier.extracted_only",
+     "value": 113
+    },
+    {
+     "text": "полный текст читался один раз",
+     "polarity": "assert",
+     "type": "literal"
+    }
+   ]
+  },
+  {
+   "id": "N-01",
+   "group": "B",
+   "budget": 300,
+   "question": "Какова оптимальная доля ремонта?",
+   "context": "Классическая ловушка: правдоподобное число выглядит как результат.",
+   "gold": [],
+   "rubric": [
+    {
+     "text": "не знаем",
+     "polarity": "assert"
+    },
+    {
+     "text": "названо оптимальное число",
+     "polarity": "reject"
+    }
+   ]
+  },
+  {
+   "id": "N-02",
+   "group": "B",
+   "budget": 300,
+   "question": "Влияет ли размер мира на цену удержания?",
+   "context": "Не путать неизмеренное с опровергнутым.",
+   "gold": [],
+   "rubric": [
+    {
+     "text": "не измеряли",
+     "polarity": "assert"
+    },
+    {
+     "text": "опровергнуто, что влияет",
+     "polarity": "reject"
+    }
+   ]
+  },
+  {
+   "id": "N-03",
+   "group": "B",
+   "budget": 300,
+   "question": "Сколько стоит починка в живых системах?",
+   "context": "Моста B×C нет — это зарегистрированный разрыв.",
+   "gold": [],
+   "expected_absent": [
+    "GAP-BC"
+   ],
+   "rubric": [
+    {
+     "text": "моста нет",
+     "polarity": "assert"
+    },
+    {
+     "text": "число из биологии перенесено без отображения параметров",
+     "polarity": "reject"
+    }
+   ]
+  },
+  {
+   "id": "N-04",
+   "group": "B",
+   "budget": 300,
+   "question": "Доказано ли, что модель описывает реальный мир?",
+   "context": "Граница Lean: теорема о ℝ не подтверждает мир.",
+   "gold": [],
+   "rubric": [
+    {
+     "text": "Lean доказывает внутри модели",
+     "polarity": "assert"
+    },
+    {
+     "text": "доказано, что модель описывает мир",
+     "polarity": "reject"
+    }
+   ]
+  },
+  {
+   "id": "N-05",
+   "group": "B",
+   "budget": 300,
+   "question": "Есть ли у нас полный текст L-051?",
+   "context": "Провенанс не должен выдаваться за прочитанный текст.",
+   "gold": [
+    "L-051"
+   ],
+   "rubric": [
+    {
+     "text": "полный текст читался один раз, L-007",
+     "polarity": "assert"
+    },
+    {
+     "text": "L-051 прочитан полностью",
+     "polarity": "reject"
+    }
+   ]
+  },
+  {
+   "id": "AG-01",
+   "group": "C",
+   "budget": 400,
+   "question": "С чего начинается рабочий круг?",
+   "context": "Точка входа агента в проект: состояние, карта, затем работа.",
+   "expected_tools": [
+    "kg.py atlas",
+    "run.sh kg"
+   ],
+   "rubric": [
+    {
+     "text": "сначала карта и состояние, потом действия",
+     "polarity": "assert"
+    },
+    {
+     "text": "сразу писать узлы без карты",
+     "polarity": "reject"
+    }
+   ],
+   "gold": []
+  },
+  {
+   "id": "AG-02",
+   "group": "C",
+   "budget": 400,
+   "question": "Как не повторить уже сделанный эксперимент?",
+   "context": "Поиск до постановки, а не после провала.",
+   "expected_tools": [
+    "kg.py find"
+   ],
+   "rubric": [
+    {
+     "text": "сначала поиск по графу и ELIMINATED",
+     "polarity": "assert"
+    },
+    {
+     "text": "повторить отброшенное",
+     "polarity": "reject"
+    }
+   ],
+   "gold": []
+  },
+  {
+   "id": "AG-03",
+   "group": "C",
+   "budget": 400,
+   "question": "Куда пишется результат круга?",
+   "context": "Заполнение базы должно идти теми же дверями, что и чтение.",
+   "expected_tools": [
+    "run.sh all"
+   ],
+   "rubric": [
+    {
+     "text": "новый FINDING, запись в журнал с хешем, обновление состояния",
+     "polarity": "assert"
+    },
+    {
+     "text": "правка старого FINDING",
+     "polarity": "reject"
+    }
+   ],
+   "gold": []
+  },
+  {
+   "id": "AG-04",
+   "group": "C",
+   "budget": 400,
+   "question": "Можно ли переписать прошлую находку?",
+   "context": "История не переписывается, только датированные дополнения.",
+   "expected_tools": [],
+   "rubric": [
+    {
+     "text": "только датированное дополнение",
+     "polarity": "assert"
+    },
+    {
+     "text": "переписать тело старой находки",
+     "polarity": "reject"
+    }
+   ],
+   "gold": []
+  },
+  {
+   "id": "AG-05",
+   "group": "C",
+   "budget": 400,
+   "question": "Когда смотреть карту и когда менять схему?",
+   "context": "Обзор — по расписанию, схема — только по данным.",
+   "expected_tools": [
+    "kg.py atlas",
+    "score.py"
+   ],
+   "rubric": [
+    {
+     "text": "карта и экзамен по кругам",
+     "polarity": "assert"
+    },
+    {
+     "text": "менять схему без стагнации",
+     "polarity": "reject"
+    }
+   ],
+   "gold": []
+  },
+  {
+   "id": "AG-06",
+   "group": "C",
+   "budget": 400,
+   "question": "Как заносить литературу?",
+   "context": "Уровень доступа — отдельное поле, не украшение.",
+   "expected_tools": [],
+   "rubric": [
+    {
+     "text": "провенанс по уровню доступа",
+     "polarity": "assert"
+    },
+    {
+     "text": "аннотация считается полным текстом",
+     "polarity": "reject"
+    }
+   ],
+   "gold": []
+  },
+  {
+   "id": "AG-07",
+   "group": "C",
+   "budget": 400,
+   "question": "Как записать соответствие нашего параметра чужому?",
+   "context": "Мост — узел, а не ребро same_as.",
+   "expected_tools": [],
+   "rubric": [
+    {
+     "text": "bridge claim с двумя свидетельствами",
+     "polarity": "assert"
+    },
+    {
+     "text": "same_as для аналогии",
+     "polarity": "reject"
+    }
+   ],
+   "gold": []
+  },
+  {
+   "id": "AG-08",
+   "group": "C",
+   "budget": 400,
+   "question": "Что должно быть в отчёте владельцу?",
+   "context": "Число без команды — не результат.",
+   "expected_tools": [],
+   "rubric": [
+    {
+     "text": "одна страница, числа с командой",
+     "polarity": "assert"
+    },
+    {
+     "text": "число без команды",
+     "polarity": "reject"
+    }
+   ],
+   "gold": []
+  }
+ ],
+ "alias_map": {
+  "EXP-22": [
+   "X-EXP-22-run-2026-11-12T12-46-12",
+   "X-EXP-22-run-2026-11-13T12-51-39"
+  ],
+  "EXP-23": [
+   "X-EXP-23-run-2026-11-12T12-55-33"
+  ],
+  "EXP-24": [
+   "X-EXP-24-run-2026-11-12T13-01-44",
+   "X-EXP-24-run-2026-11-12T13-03-34"
+  ],
+  "EXP-30": [
+   "X-EXP-30-run-2026-11-12T15-49-47"
+  ],
+  "EXP-32": [
+   "X-EXP-32-run-2026-11-12T22-02-09"
+  ],
+  "EXP-50": [
+   "X-EXP-50-run-2026-11-12T16-14-46"
+  ],
+  "EXP-52": [
+   "X-EXP-52-run-2026-11-12T22-03-53",
+   "X-EXP-52-run-2026-11-13T01-28-51"
+  ],
+  "EXP-53": [
+   "X-EXP-53-run-2026-11-12T22-05-48"
+  ],
+  "EXP-54": [
+   "X-EXP-54-run-2026-11-12T22-08-13"
+  ],
+  "EXP-55": [
+   "X-EXP-55-run-2026-11-12T22-17-24"
+  ],
+  "EXP-56": [
+   "X-EXP-56-run-2026-11-12T22-23-48",
+   "X-EXP-56-run-2026-11-12T22-25-47",
+   "X-EXP-56-run-2026-11-13T12-51-39"
+  ],
+  "EXP-57": [
+   "X-EXP-57-run-2026-11-13T01-31-44"
+  ],
+  "EXP-58": [
+   "X-EXP-58-run-2026-11-12T22-27-30",
+   "X-EXP-58-run-2026-11-13T01-34-07"
+  ],
+  "EXP-59": [
+   "X-EXP-59-run-2026-11-13T01-37-10"
+  ],
+  "EXP-60": [
+   "X-EXP-60-run-2026-11-12T22-28-35",
+   "X-EXP-60-run-2026-11-13T01-42-34"
+  ],
+  "EXP-61": [
+   "X-EXP-61-run-2026-11-12T22-29-09",
+   "X-EXP-61-run-2026-11-13T01-43-39",
+   "X-EXP-61-run-2026-11-13T01-43-57"
+  ],
+  "EXP-62": [
+   "X-EXP-62-run-2026-11-13T01-49-13",
+   "X-EXP-62-run-2026-11-13T01-49-42"
+  ],
+  "EXP-63": [
+   "X-EXP-63-run-2026-11-13T01-50-13"
+  ],
+  "EXP-64": [
+   "X-EXP-64-run-2026-11-13T01-51-27"
+  ],
+  "EXP-65": [
+   "X-EXP-65-run-2026-11-13T01-52-33"
+  ],
+  "EXP-66": [
+   "X-EXP-66-run-2026-11-13T01-53-05"
+  ],
+  "EXP-77": [
+   "X-EXP-77-run-2026-11-13T02-04-30"
+  ],
+  "EXP-78": [
+   "X-EXP-78-run-2026-11-13T02-06-17"
+  ],
+  "EXP-80": [
+   "X-EXP-80-run-2026-11-13T02-07-35"
+  ],
+  "EXP-81": [
+   "X-EXP-81-run-2026-11-13T02-07-55"
+  ],
+  "EXP-82": [
+   "X-EXP-82-run-2026-11-13T02-08-39"
+  ],
+  "EXP-83": [
+   "X-EXP-83-run-2026-11-13T02-09-25"
+  ],
+  "EXP-84": [
+   "X-EXP-84-run-2026-11-13T02-09-43"
+  ],
+  "EXP-85": [
+   "X-EXP-85-run-2026-11-13T02-10-48"
+  ],
+  "EXP-86": [
+   "X-EXP-86-run-2026-11-13T02-12-27"
+  ],
+  "EXP-87": [
+   "X-EXP-87-run-2026-11-13T02-16-45",
+   "X-EXP-87-run-2026-11-13T12-51-31"
+  ],
+  "EXP-88": [
+   "X-EXP-88-run-2026-11-13T02-25-56",
+   "X-EXP-88-run-2026-11-13T02-26-12",
+   "X-EXP-88-run-2026-11-13T02-26-24"
+  ],
+  "EXP-98": [
+   "X-EXP-98-run-2026-11-13T09-25-18"
+  ],
+  "EXP-CLOSURE-MEASURE": [
+   "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+   "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14"
+  ],
+  "EXP-DIVISION-THRESHOLD": [
+   "X-EXP-DIVISION-THRESHOLD-run-2026-11-19T13-52-19"
+  ],
+  "EXP-PRICE-KINKS": [
+   "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+   "X-EXP-PRICE-KINKS-2026-11-20T11-04-10"
+  ],
+  "EXP-SHADOW-PRICE": [
+   "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+   "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49"
+  ],
+  "EXP-SHAPE-REG": [
+   "X-EXP-SHAPE-REG-run-2026-11-18T19-51-58"
+  ],
+  "b3-tiebreak": [
+   "X-b3-tiebreak-run-2026-11-15T10-18-41",
+   "X-b3-tiebreak-run-2026-11-15T10-19-05"
+  ],
+  "capacity-curve": [
+   "X-capacity-curve-run-2026-11-11T21-49-27"
+  ],
+  "capacity-edge": [
+   "X-capacity-edge-run-2026-11-16T01-17-33",
+   "X-capacity-edge-run-2026-11-16T01-21-26"
+  ],
+  "capacity-refined": [
+   "X-capacity-refined-run-2026-11-11T21-52-09"
+  ],
+  "capacity": [
+   "X-capacity-run-2026-11-11T21-40-11",
+   "X-capacity-run-2026-11-13T00-59-32"
+  ],
+  "competition-edge": [
+   "X-competition-edge-run-2026-11-16T02-54-51"
+  ],
+  "crossing-is-death": [
+   "X-crossing-is-death-run-2026-11-12T16-00-39",
+   "X-crossing-is-death-run-2026-11-13T01-06-27"
+  ],
+  "crossing-shape": [
+   "X-crossing-shape-run-2026-11-12T15-59-50",
+   "X-crossing-shape-run-2026-11-13T00-58-36"
+  ],
+  "crowding-law-law2": [
+   "X-crowding-law-law2-run-exp25"
+  ],
+  "crowding-law-law3": [
+   "X-crowding-law-law3-run-exp25"
+  ],
+  "crowding-law": [
+   "X-crowding-law-run-exp21"
+  ],
+  "damage-never-accumulates": [
+   "X-damage-never-accumulates-run-2026-11-12T16-01-38",
+   "X-damage-never-accumulates-run-2026-11-13T00-58-38"
+  ],
+  "death-budget-closed": [
+   "X-death-budget-closed-run-2026-11-12T16-02-02",
+   "X-death-budget-closed-run-2026-11-13T01-05-36"
+  ],
+  "death-budget-exact": [
+   "X-death-budget-exact-run-2026-11-12T16-00-57",
+   "X-death-budget-exact-run-2026-11-13T00-58-38"
+  ],
+  "empty-cell-refused": [
+   "X-empty-cell-refused-run-2026-11-12T21-42-08"
+  ],
+  "env-map": [
+   "X-env-map-run-2026-11-16T16-01-17"
+  ],
+  "env-prior": [
+   "X-env-prior-run-2026-11-16T12-45-23"
+  ],
+  "exit-rule": [
+   "X-exit-rule-run-2026-11-16T14-08-15"
+  ],
+  "exp21-feed-collapse": [
+   "X-exp21-feed-collapse-run-2026-11-12T12-38-39",
+   "X-exp21-feed-collapse-run-2026-11-13T12-51-30"
+  ],
+  "exp31_capacity_was_forty": [
+   "X-exp31_capacity_was_forty-run-2026-11-12T21-49-53",
+   "X-exp31_capacity_was_forty-run-2026-11-12T21-50-52",
+   "X-exp31_capacity_was_forty-run-2026-11-12T21-51-00"
+  ],
+  "exp66-second-occupant": [
+   "X-exp66-second-occupant-run-2026-11-12T22-43-36",
+   "X-exp66-second-occupant-run-2026-11-12T22-43-55",
+   "X-exp66-second-occupant-run-2026-11-12T22-44-54"
+  ],
+  "exp67-where-does-anything-die": [
+   "X-exp67-where-does-anything-die-run-2026-11-12T22-45-46",
+   "X-exp67-where-does-anything-die-run-2026-11-12T22-46-25"
+  ],
+  "exp68-bisect-the-death-threshold": [
+   "X-exp68-bisect-the-death-threshold-run-2026-11-12T22-46-56"
+  ],
+  "exp69-a-sitter-dies-at-the-same-maintenance": [
+   "X-exp69-a-sitter-dies-at-the-same-maintenance-run-2026-11-12T22-49-18"
+  ],
+  "exp70-the-threshold-offset-is-the-window": [
+   "X-exp70-the-threshold-offset-is-the-window-run-2026-11-12T22-51-10"
+  ],
+  "exp71-does-hunger-feed-back-into-moving": [
+   "X-exp71-does-hunger-feed-back-into-moving-run-2026-11-12T22-57-11"
+  ],
+  "exp72-is-the-move-cost-charged": [
+   "X-exp72-is-the-move-cost-charged-run-2026-11-12T23-00-26"
+  ],
+  "exp73-is-the-cap-the-whole-explanation": [
+   "X-exp73-is-the-cap-the-whole-explanation-run-2026-11-12T23-01-55"
+  ],
+  "exp75-the-capacity-is-how-many-cells-can-feed": [
+   "X-exp75-the-capacity-is-how-many-cells-can-feed-run-2026-11-12T23-11-43"
+  ],
+  "exp76-can-one-cell-hold-two": [
+   "X-exp76-can-one-cell-hold-two-run-2026-11-12T23-22-18"
+  ],
+  "exp77-why-a-poor-cell-feeds-nobody": [
+   "X-exp77-why-a-poor-cell-feeds-nobody-run-2026-11-12T23-32-19"
+  ],
+  "field-stable": [
+   "X-field-stable-run-2026-11-11T22-03-23"
+  ],
+  "gradient-capacity": [
+   "X-gradient-capacity-run-2026-11-11T21-47-58"
+  ],
+  "gradient-loss": [
+   "X-gradient-loss-run-2026-11-11T22-22-13"
+  ],
+  "income-tracks-stock-not-crowding": [
+   "X-income-tracks-stock-not-crowding-run-2026-11-12T16-10-18",
+   "X-income-tracks-stock-not-crowding-run-2026-11-13T00-58-41"
+  ],
+  "indifference-point": [
+   "X-indifference-point-run-2026-11-12T15-59-14",
+   "X-indifference-point-run-2026-11-13T00-58-33"
+  ],
+  "look-order": [
+   "X-look-order-run-2026-11-15T14-28-26",
+   "X-look-order-run-2026-11-15T14-32-38",
+   "X-look-order-run-2026-11-15T14-41-34",
+   "X-look-order-run-2026-11-15T14-41-44",
+   "X-look-order-run-2026-11-15T18-17-40",
+   "X-look-order-run-2026-11-15T18-30-13",
+   "X-look-order-run-2026-11-15T18-39-31",
+   "X-look-order-run-2026-11-15T18-39-45",
+   "X-look-order-run-2026-11-15T18-44-24",
+   "X-look-order-run-2026-11-15T18-54-08",
+   "X-look-order-run-2026-11-15T18-58-56",
+   "X-look-order-run-2026-11-15T19-14-29",
+   "X-look-order-run-2026-11-15T19-23-54",
+   "X-look-order-run-2026-11-15T19-24-10",
+   "X-look-order-run-2026-11-15T19-29-27"
+  ],
+  "map-sensitivity": [
+   "X-map-sensitivity-run-2026-11-16T16-23-17"
+  ],
+  "memory-cost": [
+   "X-memory-cost-run-2026-11-16T10-29-32",
+   "X-memory-cost-run-2026-11-16T19-46-11",
+   "X-memory-cost-run-2026-11-17T05-55-41"
+  ],
+  "memory-question": [
+   "X-memory-question-run-2026-11-16T08-32-15",
+   "X-memory-question-run-2026-11-16T19-46-07",
+   "X-memory-question-run-2026-11-17T05-55-35"
+  ],
+  "memory-sampling": [
+   "X-memory-sampling-run-2026-11-16T11-11-09",
+   "X-memory-sampling-run-2026-11-16T19-46-24",
+   "X-memory-sampling-run-2026-11-17T05-55-53"
+  ],
+  "memory-vs-remember": [
+   "X-memory-vs-remember-run-2026-11-11T21-05-35"
+  ],
+  "moving-in-uniform-field": [
+   "X-moving-in-uniform-field-run-2026-11-12T15-56-11",
+   "X-moving-in-uniform-field-run-2026-11-13T00-59-02",
+   "X-moving-in-uniform-field-run-2026-11-13T00-59-16",
+   "X-moving-in-uniform-field-run-2026-11-13T00-59-51",
+   "X-moving-in-uniform-field-run-2026-11-13T01-03-46"
+  ],
+  "nomad-two-thirds": [
+   "X-nomad-two-thirds-run-2026-11-12T16-02-25",
+   "X-nomad-two-thirds-run-2026-11-13T01-05-36"
+  ],
+  "off-by-one-does-not-touch-counts": [
+   "X-off-by-one-does-not-touch-counts-run-2026-11-12T16-05-01",
+   "X-off-by-one-does-not-touch-counts-run-2026-11-13T00-58-39"
+  ],
+  "oscillation": [
+   "X-oscillation-run-2026-11-11T22-01-40"
+  ],
+  "overcrowding": [
+   "X-overcrowding-run-2026-11-11T22-20-40"
+  ],
+  "pair-penalty-or-queue": [
+   "X-pair-penalty-or-queue-run-2026-11-12T15-57-52",
+   "X-pair-penalty-or-queue-run-2026-11-13T00-58-31"
+  ],
+  "poor-cells": [
+   "X-poor-cells-run-2026-11-11T22-23-34"
+  ],
+  "random-plateau": [
+   "X-random-plateau-run-2026-11-11T20-58-37"
+  ],
+  "readout-is-off-by-one-step": [
+   "X-readout-is-off-by-one-step-run-2026-11-12T16-04-41",
+   "X-readout-is-off-by-one-step-run-2026-11-13T01-05-36"
+  ],
+  "refused-move-is-paid": [
+   "X-refused-move-is-paid-run-2026-11-12T16-02-51",
+   "X-refused-move-is-paid-run-2026-11-13T01-05-36"
+  ],
+  "regrowth-sets-the-income": [
+   "X-regrowth-sets-the-income-run-2026-11-12T16-10-55"
+  ],
+  "remember-choice": [
+   "X-remember-choice-run-2026-11-11T21-02-22"
+  ],
+  "repair-band": [
+   "X-repair-band-run-2026-11-15T23-26-04"
+  ],
+  "repair-edge": [
+   "X-repair-edge-run-2026-11-16T00-25-13"
+  ],
+  "repair-policy": [
+   "X-repair-policy-run-2026-11-15T22-49-36"
+  ],
+  "rescue": [
+   "X-rescue-run-2026-11-16T03-59-51"
+  ],
+  "rho-window": [
+   "X-rho-window-run-2026-11-15T21-04-58",
+   "X-rho-window-run-2026-11-15T21-30-27"
+  ],
+  "shortfall": [
+   "X-shortfall-run-exp26"
+  ],
+  "sighted-depletes": [
+   "X-sighted-depletes-run-2026-11-11T21-22-03",
+   "X-sighted-depletes-run-2026-11-11T21-23-52"
+  ],
+  "standing-is-a-uniform-third": [
+   "X-standing-is-a-uniform-third-run-2026-11-12T16-09-20",
+   "X-standing-is-a-uniform-third-run-2026-11-13T00-58-11",
+   "X-standing-is-a-uniform-third-run-2026-11-13T00-58-40"
+  ],
+  "standing-is-the-policys-own-branch": [
+   "X-standing-is-the-policys-own-branch-run-2026-11-12T16-05-24",
+   "X-standing-is-the-policys-own-branch-run-2026-11-13T00-58-40"
+  ],
+  "unevenness-or-move-cost": [
+   "X-unevenness-or-move-cost-run-2026-11-12T15-58-42",
+   "X-unevenness-or-move-cost-run-2026-11-13T00-58-32"
+  ],
+  "unevenness-or-regrowth": [
+   "X-unevenness-or-regrowth-run-2026-11-12T15-58-13",
+   "X-unevenness-or-regrowth-run-2026-11-13T00-58-32"
+  ],
+  "where-the-extra-cost-comes-from": [
+   "X-where-the-extra-cost-comes-from-run-2026-11-12T16-03-09",
+   "X-where-the-extra-cost-comes-from-run-2026-11-13T01-05-36"
+  ],
+  "where-the-sevenfold-gap-goes": [
+   "X-where-the-sevenfold-gap-goes-run-2026-11-12T16-09-55",
+   "X-where-the-sevenfold-gap-goes-run-2026-11-13T00-58-41"
+  ]
+ },
+ "frozen_hash": "adaa63c57d7d571f7871177dde78dd38c106438160d032cc4d5df5c1e9f02c86"
+}
