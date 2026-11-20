@@ -390,6 +390,11 @@ do_export() {
   python3 checks/export.py
 }
 
+check_doc_links() {
+  echo "    проверка ссылок в документации"
+  python3 checks/doc_links.py || return 1
+}
+
 do_agents() {
   section "Контракт агента"
   # Состояние агента -- часть контракта, а не дневник. AGENT_STATE.md обязан
@@ -452,6 +457,8 @@ do_agents() {
       fi
     fi
   fi
+  # Ссылки в документации -- часть контракта: битая ссылка стоит круга догадок.
+  check_doc_links || rc=1
   return $rc
 }
 

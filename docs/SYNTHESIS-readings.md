@@ -86,7 +86,7 @@ The old line says the field is written but does not write back.
 ## Part 2. What the old line proved does not work
 
 **This is the part that must not be repeated.** Fifty-eight mechanisms were tested and eliminated with numbers.
-The register is in [`docs/eliminations.md`](../docs/eliminations.md). The ones that matter for the design:
+The register is in [`docs/eliminations.md`](ELIMINATED.md). The ones that matter for the design:
 
 | what we tried | what happened | why it matters |
 |---|---|---|

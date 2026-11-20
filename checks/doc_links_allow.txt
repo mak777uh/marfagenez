@@ -1,0 +1,4 @@
+# Ссылки, чьи цели никогда не существовали. Не «починены», чтобы не переписывать историю;
+# список виден в отчёте проверки и должен только сокращаться.
+docs/SYNTHESIS-readings.md -> 2026-11-09-return-path-results.md
+laws/README.md -> ../docs/FINDING-floatlib-compat.md
