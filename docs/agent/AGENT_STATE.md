@@ -185,6 +185,11 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
   новый файл; старая остаётся как была, даже если неверна.
 - **Windows-клон** — не править (см. §1).
 
+### §5a Граф знаний в гейте
+- Раздел `kg` в `run.sh all` проверяет инварианты и **разрешение ссылок свидетельств**.
+- `kg/nodes.jsonl` — **производное**; канон: `kg/claims.jsonl`, `docs/ELEPHANT-LITERATURE.md`, `results/*/run-*.json`.
+- Правила схемы, осей и инвариантов: `docs/KG-DECISIONS.md`; экзамен базы: `docs/KG-EVAL-QUESTIONS.md`.
+
 ---
 
 ## §6 Термины

@@ -42,7 +42,7 @@ STUBS = """do_test(){{ :; }}; do_lean(){{ :; }}; do_reach(){{ :; }}
 do_dispatcher(){{ :; }}; do_verus(){{ :; }}
 do_audit(){{ :; }}
 do_exp(){{ return {exp_rc}; }}
-do_claims(){{ return {claims_rc}; }}; do_export(){{ :; }}; do_models(){{ :; }}
+do_claims(){{ return {claims_rc}; }}; do_export(){{ :; }}; do_models(){{ :; }}; do_kg(){{ :; }}
 do_agents(){{ return {agents_rc}; }}
 """
 

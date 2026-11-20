@@ -299,7 +299,15 @@ do_verus() {
 
 do_kg() {
   section "Граф знаний (инварианты и ссылки)"
-  do_py "$REPO/kg/kg.py" check; keep $? kg
+  # Своя обёртка: у run.sh нет общего do_py, а терять код возврата нельзя --
+  # иначе раздел печатает отчёт и «проходит» при любой ошибке.
+  local out rc
+  out=$(mktemp)
+  python3 kg/kg.py check >"$out" 2>&1
+  rc=$?
+  tail -20 "$out"
+  rm -f "$out"
+  return $rc
 }
 
 do_claims() {
@@ -483,6 +491,12 @@ last_failed_step() {
   # Строка трассы перед присваиванием `rc=` и есть провалившийся шаг.
   grep -B1 '^+ rc=' "$TRACE" 2>/dev/null | grep -v '^+ rc=' | grep -v '^--$' | tail -1
 }
+keep_q() {
+  # exit code of the previous command, captured in a function body
+  local rc
+  rc=$?
+  keep "$rc" kg
+}
 keep() {
   local rc=$1 name=$2
   if [ "$rc" -ne 0 ]; then
@@ -500,6 +514,7 @@ case "$WHAT" in
   reach)  do_reach;  keep $? reach ;;
   dispatcher) do_dispatcher; keep $? dispatcher ;;
   exp)    do_exp;    keep $? exp ;;
+  kg)     do_kg;     keep_q kg ;;
   models) do_models; keep $? models ;;
   verus)  do_verus;  keep $? verus ;;
   claims) do_claims; keep $? claims ;;
