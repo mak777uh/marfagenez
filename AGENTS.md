@@ -4,6 +4,11 @@
 одному на раздел, каждое с полем в `results/` и проверкой в коде. Если правило
 нельзя проверить скриптом — оно здесь не живёт.
 
+**Навигация:** [`docs/INDEX.md`](docs/INDEX.md) — с чего начать, куда что писать, соглашения об именах.
+Справочное: [`docs/ELEPHANT-LITERATURE.md`](docs/ELEPHANT-LITERATURE.md) (что наука уже нашла),
+[`docs/SEARCH-PLAN.md`](docs/SEARCH-PLAN.md) (что искать), [`docs/BRIEF-for-models.md`](docs/BRIEF-for-models.md)
+(бриф для внешней модели).
+
 Что исследуем — [`GOAL.md`](GOAL.md). Как работать — [`PROTOCOL.md`](PROTOCOL.md).
 Как работать одному — [`AUTONOMY.md`](AUTONOMY.md). Чего мы не утверждаем —
 [`NOT-CLAIMED.md`](NOT-CLAIMED.md). Что спросить у владельца —

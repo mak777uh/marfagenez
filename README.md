@@ -481,6 +481,12 @@ marfagenez/
 
 ## Документы
 
+**Навигация для агента:** [`docs/INDEX.md`](docs/INDEX.md) — пять шагов входа, карта справочных материалов,
+таблица «куда что писать». Литература о том же: [`docs/ELEPHANT-LITERATURE.md`](docs/ELEPHANT-LITERATURE.md);
+что искать: [`docs/SEARCH-PLAN.md`](docs/SEARCH-PLAN.md); бриф для внешней модели:
+[`docs/BRIEF-for-models.md`](docs/BRIEF-for-models.md).
+
+
 | документ | что в нём |
 |---|---|
 | [`GOAL.md`](GOAL.md) | исследовательский вопрос, «слон» по частям, что не считается результатом |
