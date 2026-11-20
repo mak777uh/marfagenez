@@ -5,6 +5,9 @@
 нельзя проверить скриптом — оно здесь не живёт.
 
 **Навигация:** [`docs/INDEX.md`](docs/INDEX.md) — с чего начать, куда что писать, соглашения об именах.
+**Как работать:** [`docs/WORK-LOOPS.md`](docs/WORK-LOOPS.md) — четыре круга (литература → эксперимент →
+репозиторий, и аварийный круг «тупик»); [`docs/ELEPHANT-MAP.md`](docs/ELEPHANT-MAP.md) — карта частей слона
+с литературой и пробелами.
 Справочное: [`docs/ELEPHANT-LITERATURE.md`](docs/ELEPHANT-LITERATURE.md) (что наука уже нашла),
 [`docs/SEARCH-PLAN.md`](docs/SEARCH-PLAN.md) (что искать), [`docs/BRIEF-for-models.md`](docs/BRIEF-for-models.md)
 (бриф для внешней модели).
