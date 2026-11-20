@@ -1,0 +1,40 @@
+{
+ "version": "judge-v1",
+ "frozen_at": "2026-11-21",
+ "rule": {
+  "pass": {
+   "kappa_min": 0.7,
+   "bootstrap_lower_min": 0.55,
+   "bootstrap_percentile": 5,
+   "bootstrap_resamples": 399
+  },
+  "boundary_zone": {
+   "kappa_min": 0.6,
+   "kappa_max": 0.75
+  },
+  "top_up": {
+   "items": 40,
+   "new_items_only": true,
+   "max_attempts": 2,
+   "second_top_up": false
+  },
+  "no_reroll": true,
+  "bias_diagnosis": {
+   "marginal_shift_max": 0.15,
+   "action": "fix the rubric, not the sample: a judge shifted by >=0.15 can never pass"
+  }
+ },
+ "calibration": {
+  "items": 50,
+  "source": "new questions, not dev-28 and not holdout",
+  "independent": "commit-reveal: judge labels hashed before owner's labels are shown",
+  "kappa_computed_before_arbitration": true,
+  "arbitration_returns_to_kappa": false,
+  "new_50_on": [
+   "judge model change",
+   "prompt change",
+   "rubric change"
+  ]
+ },
+ "reproduce": "python3 kg/eval/kappa_sim.py 300  # table in docs/KG-BRIEF-4-VERDICTS-2026-11-21.md"
+}

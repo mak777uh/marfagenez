@@ -153,8 +153,17 @@ def literature():
         })
     return out
 
+
+def definitions():
+    """Ten line definitions (kind: definition) -- their own file, not a claim."""
+    path = ROOT / "kg" / "definitions.jsonl"
+    if not path.exists():
+        return []
+    return [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
+
+
 def main():
-    nodes = claims() + formulas() + experiments() + literature()
+    nodes = claims() + formulas() + experiments() + literature() + definitions()
     seen = set()
     unique = []
     for n in nodes:

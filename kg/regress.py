@@ -27,7 +27,8 @@ def committed():
 
 
 def rebuilt():
-    nodes = migrate.claims() + migrate.formulas() + migrate.experiments() + migrate.literature()
+    nodes = (migrate.claims() + migrate.formulas() + migrate.experiments()
+            + migrate.literature() + migrate.definitions())
     return {n["id"]: n for n in nodes}
 
 

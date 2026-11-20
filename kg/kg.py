@@ -496,15 +496,24 @@ def graph_hash(nodes):
 
 
 def hidden(node):
-    """Quarantine and acceptance are different axes (D-09): provenance says where it came from,
-    triage says whether it may be seen. Only the second one hides a node."""
-    return (node.get("data") or {}).get("triage_status") == "quarantined"
+    """Three different reasons not to show a node, none of them a knowledge status:
+    quarantine (triage), tombstone (lifecycle), and nothing else (D-09, U-08)."""
+    data = node.get("data") or {}
+    if data.get("triage_status") == "quarantined":
+        return True
+    return data.get("lifecycle") == "tombstone"
 
 
 def extra_invariants(nodes):
     """Rules that were prose until the second round of review (D-04, D-06, D-07) plus research modes."""
     problems = []
     ids = {n["id"] for n in nodes}
+    vocab = line_vocab()
+    if vocab:
+        defined = {((n.get("data") or {}).get("defines")) for n in nodes if n.get("kind") == "definition"}
+        missing = [l for l in vocab if l not in defined]
+        if missing:
+            problems.append("vocabulary v1 without definition nodes: " + ", ".join(missing))
     for n in nodes:
         for r in n.get("relations") or []:
             if r.get("type") == "same_as":
@@ -513,6 +522,14 @@ def extra_invariants(nodes):
                     problems.append(n["id"] + ": same_as is claim-to-claim only; got " + tgt +
                                     " (use analogous_to or correspondence)")
         if n.get("kind") == "correspondence":
+            data = n.get("data") or {}
+            if data.get("status") in ("complete", "exam_ready"):
+                need = ["left", "right", "map", "kind", "shared_structure",
+                        "kept_assumptions", "lost_assumptions", "evidence_left", "evidence_right", "falsification"]
+                empty = [f for f in need if not data.get(f)]
+                if empty:
+                    problems.append(n["id"] + ": correspondence " + str(data.get("status")) +
+                                    " without " + ", ".join(empty))
             left = (n.get("data") or {}).get("left")
             right = (n.get("data") or {}).get("right")
             if left not in ids or right not in ids:
@@ -520,12 +537,12 @@ def extra_invariants(nodes):
             for r in n.get("relations") or []:
                 if r.get("type") in ("supports", "refutes"):
                     problems.append(n["id"] + ": correspondence must not " + str(r.get("type")) + " a claim")
-        if "lines" in n:
+        if n.get("lines"):
             lines = n.get("lines")
             vocab = line_vocab()
             if n.get("kind") != "claim":
                 problems.append(n["id"] + ": lines belong to claims only (got " + str(n.get("kind")) + ")")
-            if not isinstance(lines, list) or not lines or any(not isinstance(x, str) or not x.strip() for x in lines):
+            if not isinstance(lines, list) or any(not isinstance(x, str) or not x.strip() for x in lines):
                 problems.append(n["id"] + ": lines must be a non-empty list of non-empty strings")
             elif len(set(lines)) != len(lines):
                 problems.append(n["id"] + ": duplicate line ids")
@@ -533,6 +550,12 @@ def extra_invariants(nodes):
                 unknown = [x for x in lines if x not in vocab]
                 if unknown:
                     problems.append(n["id"] + ": lines not in vocabulary v1: " + ", ".join(unknown))
+        data = n.get("data") or {}
+        if data.get("lifecycle") == "tombstone":
+            if not data.get("tombstone_reason"):
+                problems.append(n["id"] + ": tombstone without a reason")
+            if n.get("kind") == "claim" and data.get("superseded_by") and data["superseded_by"] not in ids:
+                problems.append(n["id"] + ": superseded_by points to a missing node")
         if n.get("mode") and n.get("mode") not in MODES:
             problems.append(n["id"] + ": mode not in " + str(sorted(MODES)))
         if n.get("kind") == "experiment" and n.get("domain") == "world" and n.get("epistemic") == "established":
@@ -562,7 +585,57 @@ def line_vocab():
     if not LINES.exists():
         return None
     data = json.loads(LINES.read_text(encoding="utf-8"))
-    return data.get("lines") or []
+    lines = data.get("lines") or []
+    # vocabulary stores objects; the check compares ids
+    return [l["id"] if isinstance(l, dict) else l for l in lines]
+
+def admissions_path():
+    return KG / "admissions.jsonl"
+
+
+def admit(nodes, node_id, action, rationale, evidence, actor):
+    """Append one admission event. The log is the history; the node keeps only the current state."""
+    by_id = {n["id"]: n for n in nodes}
+    if node_id not in by_id:
+        print("нет узла " + node_id)
+        return 1
+    if not rationale or len(rationale) < 10:
+        print("отказ: нужен rationale (не короче 10 символов)")
+        return 1
+    if not evidence:
+        print("отказ: нужны evidence ids")
+        return 1
+    missing = [e for e in evidence if e not in by_id]
+    if missing:
+        print("отказ: свидетельства не найдены: " + ", ".join(missing))
+        return 1
+    path = admissions_path()
+    prev = ""
+    if path.exists():
+        lines = [l for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
+        if lines:
+            prev = json.loads(lines[-1]).get("event_hash", "")
+        seq = len(lines) + 1
+    else:
+        seq = 1
+    event = {
+        "event_id": "ADM-" + f"{seq:04d}",
+        "node_id": node_id,
+        "action": action,
+        "rationale": rationale,
+        "evidence_ids": evidence,
+        "actor": actor,
+        "rules_version": "admit-v1",
+        "graph_hash": graph_hash(nodes)[:16],
+        "prev_hash": prev,
+        "at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(timespec="seconds"),
+    }
+    event["event_hash"] = hashlib.sha256(
+        json.dumps(event, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()[:16]
+    with path.open("a", encoding="utf-8") as fh:
+        fh.write(json.dumps(event, ensure_ascii=False) + "\n")
+    print("записано: " + event["event_id"] + " " + node_id + " " + action)
+    return 0
 
 
 def main(argv):
@@ -586,6 +659,23 @@ def main(argv):
         if problems:
             return 1
         return 1 if bad else 0
+
+    if cmd == "admit":
+        if len(argv) < 6:
+            print('usage: kg.py admit <id> <action> "<rationale>" <evidence,comma> [actor]')
+            return 2
+        return admit(nodes, argv[2], argv[3], argv[4], argv[5].split(","), argv[6] if len(argv) > 6 else "owner")
+
+    if cmd == "admissions":
+        path = admissions_path()
+        if not path.exists():
+            print("журнал допуска пуст")
+            return 0
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                e = json.loads(line)
+                print(e["event_id"] + " " + e["at"] + " " + e["node_id"] + " " + e["action"] + " by " + e["actor"])
+        return 0
 
     if cmd == "connectivity":
         return connectivity(nodes)

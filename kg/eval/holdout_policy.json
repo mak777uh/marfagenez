@@ -1,0 +1,34 @@
+{
+ "version": "holdout-v1",
+ "frozen_at": "2026-11-21",
+ "where": "offline file held by the owner, outside the repository and its history",
+ "issue": {
+  "one_question_at_a_time": true,
+  "response": "cited ids + answer",
+  "returned_to_agent": "aggregate only"
+ },
+ "commitment": {
+  "publish_sha256_at_creation": true,
+  "created_before_any_result": true
+ },
+ "ledger": [
+  "question_id",
+  "round_id",
+  "graph_hash",
+  "judge_version",
+  "date"
+ ],
+ "limits": {
+  "per_question_presentations": 1,
+  "detailed_feedback_to_agent": false
+ },
+ "triggers": [
+  "schema_version changed",
+  "lines_version changed",
+  "a bridge changed (map, limits or falsification)",
+  "gold nodes or their typed dependencies changed",
+  "search, extraction, ranking or check behaviour changed"
+ ],
+ "cooldown_rounds": 3,
+ "override": "owner decision is an event in kg/admissions.jsonl, not a silent edit"
+}

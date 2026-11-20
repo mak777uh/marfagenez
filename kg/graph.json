@@ -41,6 +41,9 @@
       ],
       "created_at": "2026-11-20",
       "updated_at": "2026-11-20",
+      "lines": [
+        "granica"
+      ],
       "kind": "claim"
     },
     {
@@ -79,6 +82,10 @@
       ],
       "created_at": "2026-11-20",
       "updated_at": "2026-11-20",
+      "lines": [
+        "granica",
+        "porog"
+      ],
       "kind": "claim"
     },
     {
@@ -122,6 +129,9 @@
       ],
       "created_at": "2026-11-20",
       "updated_at": "2026-11-20",
+      "lines": [
+        "svoi-usloviya"
+      ],
       "kind": "claim"
     },
     {
@@ -155,6 +165,9 @@
       ],
       "created_at": "2026-11-20",
       "updated_at": "2026-11-20",
+      "lines": [
+        "porog"
+      ],
       "kind": "claim"
     },
     {
@@ -193,6 +206,9 @@
       ],
       "created_at": "2026-11-20",
       "updated_at": "2026-11-20",
+      "lines": [
+        "porog"
+      ],
       "kind": "claim"
     },
     {
@@ -231,6 +247,9 @@
       ],
       "created_at": "2026-11-20",
       "updated_at": "2026-11-20",
+      "lines": [
+        "vybor"
+      ],
       "kind": "claim"
     },
     {
@@ -264,6 +283,9 @@
       ],
       "created_at": "2026-11-20",
       "updated_at": "2026-11-20",
+      "lines": [
+        "porog"
+      ],
       "kind": "claim"
     },
     {
@@ -302,6 +324,9 @@
       ],
       "created_at": "2026-11-20",
       "updated_at": "2026-11-20",
+      "lines": [
+        "proshloe"
+      ],
       "kind": "claim"
     },
     {
@@ -14505,6 +14530,302 @@
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-20"
+    },
+    {
+      "id": "DEF-01",
+      "kind": "definition",
+      "text": "Граница — Поверхность, которую надо поддерживать, ценой вещества.",
+      "mode": "formal",
+      "context": {
+        "scope": "line definition, vocabulary v1"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/ELEPHANT-MAP.md",
+          "strength": "strong"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "defines": "granica",
+        "version": 1,
+        "boundary_rules": [
+          {
+            "a": "granica",
+            "b": "porog",
+            "rule": "предмет, который удерживают -> granica; смена режима по параметру -> porog"
+          }
+        ]
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "DEF-02",
+      "kind": "definition",
+      "text": "Обмен — Поток вещества внутрь и наружу, с потерей.",
+      "mode": "formal",
+      "context": {
+        "scope": "line definition, vocabulary v1"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/ELEPHANT-MAP.md",
+          "strength": "strong"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "defines": "obmen",
+        "version": 1,
+        "boundary_rules": []
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "DEF-03",
+      "kind": "definition",
+      "text": "Свои условия — Система меняет то, от чего зависит.",
+      "mode": "formal",
+      "context": {
+        "scope": "line definition, vocabulary v1"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/ELEPHANT-MAP.md",
+          "strength": "strong"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "defines": "svoi-usloviya",
+        "version": 1,
+        "boundary_rules": [
+          {
+            "a": "individualnost",
+            "b": "svoi-usloviya",
+            "rule": "различимость единицы -> individualnost; влияние на среду -> svoi-usloviya"
+          }
+        ]
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "DEF-04",
+      "kind": "definition",
+      "text": "Организация с разделением — Части делают то, чего целое не может само.",
+      "mode": "formal",
+      "context": {
+        "scope": "line definition, vocabulary v1"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/ELEPHANT-MAP.md",
+          "strength": "strong"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "defines": "organizaciya",
+        "version": 1,
+        "boundary_rules": []
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "DEF-05",
+      "kind": "definition",
+      "text": "Прошлое — Две системы с равным состоянием не равны.",
+      "mode": "formal",
+      "context": {
+        "scope": "line definition, vocabulary v1"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/ELEPHANT-MAP.md",
+          "strength": "strong"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "defines": "proshloe",
+        "version": 1,
+        "boundary_rules": []
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "DEF-06",
+      "kind": "definition",
+      "text": "Смерть — Отказ как скорость, а не как бит.",
+      "mode": "formal",
+      "context": {
+        "scope": "line definition, vocabulary v1"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/ELEPHANT-MAP.md",
+          "strength": "strong"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "defines": "smert",
+        "version": 1,
+        "boundary_rules": []
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "DEF-07",
+      "kind": "definition",
+      "text": "Порог и критичность — Переход между режимами по параметру.",
+      "mode": "formal",
+      "context": {
+        "scope": "line definition, vocabulary v1"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/ELEPHANT-MAP.md",
+          "strength": "strong"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "defines": "porog",
+        "version": 1,
+        "boundary_rules": [
+          {
+            "a": "granica",
+            "b": "porog",
+            "rule": "предмет, который удерживают -> granica; смена режима по параметру -> porog"
+          }
+        ]
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "DEF-08",
+      "kind": "definition",
+      "text": "Выбор — Деление ресурса между назначениями.",
+      "mode": "formal",
+      "context": {
+        "scope": "line definition, vocabulary v1"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/ELEPHANT-MAP.md",
+          "strength": "strong"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "defines": "vybor",
+        "version": 1,
+        "boundary_rules": [
+          {
+            "a": "vybor",
+            "b": "agentnost",
+            "rule": "механизм распределения -> vybor; норма/критерий действия -> agentnost"
+          }
+        ]
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "DEF-09",
+      "kind": "definition",
+      "text": "Индивидуальность — Граница «я» как измерение, а не статус.",
+      "mode": "formal",
+      "context": {
+        "scope": "line definition, vocabulary v1"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/ELEPHANT-MAP.md",
+          "strength": "strong"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "defines": "individualnost",
+        "version": 1,
+        "boundary_rules": [
+          {
+            "a": "individualnost",
+            "b": "svoi-usloviya",
+            "rule": "различимость единицы -> individualnost; влияние на среду -> svoi-usloviya"
+          }
+        ]
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "DEF-10",
+      "kind": "definition",
+      "text": "Агентность — «Что форма делает», а не «чем является».",
+      "mode": "formal",
+      "context": {
+        "scope": "line definition, vocabulary v1"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/ELEPHANT-MAP.md",
+          "strength": "strong"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "defines": "agentnost",
+        "version": 1,
+        "boundary_rules": [
+          {
+            "a": "vybor",
+            "b": "agentnost",
+            "rule": "механизм распределения -> vybor; норма/критерий действия -> agentnost"
+          }
+        ]
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
     }
   ],
   "edges": [

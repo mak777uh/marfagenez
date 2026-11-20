@@ -30,7 +30,8 @@ def joint(p, kappa):
     pe = p * p + (1 - p) * (1 - p)
     po = kappa * (1 - pe) + pe
     a = (po + 2 * p - 1) / 2
-    if not (0 <= a <= min(p, 1 - p) + 1e-12):
+    lo, hi = max(0.0, 2 * p - 1), min(p, 1.0)
+    if not (lo - 1e-12 <= a <= hi + 1e-12):
         return None
     return a, p - a, p - a, 1 - 2 * p + a
 
