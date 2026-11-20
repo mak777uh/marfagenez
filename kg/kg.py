@@ -14,6 +14,7 @@ Commands
   map                   one-line summary: counts, communities, frontier
   atlas [K1]            zoomable map: L0 the whole corpus, L1 one line
   math                  all formulas on one screen: units, checks, links
+  frontier              what is missing: holes by kind, with ids
   check                 validate against the invariants (code, not opinion)
   find <text>           search nodes
   show <id>             one node
@@ -39,6 +40,8 @@ INDEX = KG / "INDEX.md"
 KINDS = {"claim", "formula", "experiment", "dataset", "definition", "question"}
 EPISTEMIC = {"hypothesis", "established", "contested", "replicated", "refuted", "bounded"}
 PROVENANCE = {"extracted", "verified_agent", "human_confirmed"}
+EXPAND_THRESHOLD = 8   # degree at which one hop is already a full screen
+EXPAND_CAP = 60        # nodes printed before the "+K ещё" marker
 RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as", "predicted_by"}
 
 
@@ -193,7 +196,7 @@ def build(nodes):
         ],
         "communities": communities,
         "frontier": frontier,
-        "verbs": ["atlas", "math", "map", "find", "show", "expand", "trace", "chain", "formula", "contradictions", "check"],
+        "verbs": ["atlas", "math", "map", "frontier", "find", "show", "expand", "trace", "chain", "formula", "contradictions", "check"],
         "hashes": {"graph": hashlib.sha256(json.dumps(nodes, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]},
     }
     META.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -292,7 +295,7 @@ def atlas(nodes, cluster_id=None):
             print("      очевидцев: " + str(ev) + " · " + route)
             for t, src in back.get(hub, [])[:3]:
                 print("      <- " + t + ":" + src)
-        print("  дальше: expand <id> — 2 шага; show <id> — карточка")
+        print("  дальше: expand <id> — 1 шаг для хаба, 2 для листа; show <id> — карточка")
         return 0
 
     counts = meta.get("counts", {})
@@ -300,7 +303,9 @@ def atlas(nodes, cluster_id=None):
     epi = counts.get("by_epistemic", {})
     prov = counts.get("by_provenance", {})
     print("КАРТА L0  ·  " + str(counts.get("total", len(nodes))) + " узлов  ·  " + str(counts.get("edges", 0)) + " рёбер  ·  " + str(len(meta.get("communities", []))) + " линий")
-    print("знание: " + str(kinds.get("claim", 0)) + " утверждений · формул " + str(kinds.get("formula", 0)) + " · прогонов " + str(kinds.get("experiment", 0)))
+    own = sum(1 for n in nodes if n.get("kind") == "claim" and n["id"].startswith("C-"))
+    lit = sum(1 for n in nodes if n.get("kind") == "claim" and n["id"].startswith("L-"))
+    print("своих утверждений " + str(own) + " · литературных " + str(lit) + " · формул " + str(kinds.get("formula", 0)) + " · прогонов " + str(kinds.get("experiment", 0)))
     print("статус: " + " · ".join(k + " " + str(v) for k, v in epi.items()))
     print("доверие: " + " · ".join(k + " " + str(v) for k, v in prov.items()))
     print()
@@ -339,6 +344,19 @@ def math_map(nodes):
     return 0
 
 
+def frontier_view(nodes):
+    """What is missing, with counts -- the question a research round actually asks."""
+    meta = json.loads(META.read_text(encoding="utf-8")) if META.exists() else {}
+    holes = meta.get("frontier", {})
+    print("ФРОНТИР")
+    for name, ids in holes.items():
+        print("  " + name.ljust(24) + str(len(ids)))
+        if ids:
+            print("    " + ", ".join(ids[:8]) + (" ..." if len(ids) > 8 else ""))
+    print("  без свидетельств: expand <id> -- свидетельство, show <id> -- что не доказано")
+    return 0
+
+
 def main(argv):
     if len(argv) < 2:
         print(__doc__)
@@ -358,6 +376,9 @@ def main(argv):
         if problems:
             return 1
         return 1 if bad else 0
+
+    if cmd == "frontier":
+        return frontier_view(nodes)
 
     if cmd == "atlas":
         return atlas(nodes, argv[2] if len(argv) > 2 else None)
@@ -395,7 +416,19 @@ def main(argv):
 
     if cmd == "expand":
         start = argv[2]
-        hops = int(argv[3]) if len(argv) > 3 else 1
+        # Adaptive depth: a hub with many neighbours already floods the view at one hop,
+        # a leaf needs two hops to show anything. The rule is code, not habit.
+        if len(argv) > 3:
+            hops = int(argv[3])
+        else:
+            deg = 0
+            for n in nodes:
+                for r in n.get("relations", []):
+                    if n["id"] == start or r["target"] == start:
+                        deg += 1
+                if n["id"] == start:
+                    deg += len(n.get("evidence", []))
+            hops = 1 if deg >= EXPAND_THRESHOLD else 2
         seen = {start}
         frontier = {start}
         for _ in range(hops):
@@ -414,10 +447,13 @@ def main(argv):
                         nxt.add(ref)
             frontier = nxt - seen
             seen |= nxt
-        for i in sorted(seen):
+        ids = sorted(seen)
+        for i in ids[:EXPAND_CAP]:
             n = by_id.get(i)
             if n:
                 print(f"{i} [{n['kind']}/{n['epistemic']}] {n['text'][:100]}")
+        if len(ids) > EXPAND_CAP:
+            print(f"... ещё {len(ids) - EXPAND_CAP}; сузить: expand {start} 1, либо show <id>")
         return 0
 
     if cmd == "trace":
