@@ -186,13 +186,19 @@ $$\chi^2 = 3\times10^{7}\ \text{при } 36\ \text{dof}$$
 `docs/FINDING-capacity-is-the-number-of-feeding-cells.md`.
 **Измерено:** `alive=80, distinct_cells=40, crowding=2.00, mean_energy=9.37`.
 
+**Команда (добавлено 2026-11-20):** `cd core && cargo run --release --bin occupancy` — печатает `alive 80`, `crowding alive/cells 2.0000`, `mean energy 10.0000`. **Внимание:** прежнее число `mean_energy 9.37` **отозвано** (см. §8.2); текущий код даёт `10.0`.
+
 ### 4.2. Чередующееся поле схлопывается
 
 **Уровень:** C. `docs/FINDING-alternating-field-collapses.md`.
 
+**Команда (добавлено 2026-11-20):** `cd core && cargo test --release --test look_order look_then_eat_keeps_more_alive_on_an_alternating_field` и `cargo test --release --test read_cost peaks_with_period_two_is_alternating_and_with_one_is_new`.
+
 ### 4.3. Богатая клетка кормит одного
 
 **Уровень:** C. `docs/FINDING-a-rich-cell-feeds-one.md`.
+
+**Команда (добавлено 2026-11-20):** `cd core && cargo test --release --test read_cost peaks_puts_one_rich_cell_per_period`.
 
 ### 4.4. Закон общей среды: доля запаса **чередуется**, и из неё выходит число
 
