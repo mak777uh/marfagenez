@@ -334,6 +334,11 @@ def atlas(nodes, cluster_id=None):
         m = mode_of(n)
         if m:
             modes[m] = modes.get(m, 0) + 1
+    with_lines = [n for n in nodes if isinstance(n.get("lines"), list) and n.get("lines")]
+    if with_lines:
+        incidences = sum(len(n["lines"]) for n in with_lines)
+        print("линии: узлов " + str(len(with_lines)) + " · инцидентов " + str(incidences) +
+              " (один узел может быть в нескольких)")
     print("виды исследования: " + " · ".join(m + " " + str(modes.get(m, 0))
                                              for m in ("formal", "literature", "experiment")))
     print()
@@ -515,6 +520,19 @@ def extra_invariants(nodes):
             for r in n.get("relations") or []:
                 if r.get("type") in ("supports", "refutes"):
                     problems.append(n["id"] + ": correspondence must not " + str(r.get("type")) + " a claim")
+        if "lines" in n:
+            lines = n.get("lines")
+            vocab = line_vocab()
+            if n.get("kind") != "claim":
+                problems.append(n["id"] + ": lines belong to claims only (got " + str(n.get("kind")) + ")")
+            if not isinstance(lines, list) or not lines or any(not isinstance(x, str) or not x.strip() for x in lines):
+                problems.append(n["id"] + ": lines must be a non-empty list of non-empty strings")
+            elif len(set(lines)) != len(lines):
+                problems.append(n["id"] + ": duplicate line ids")
+            elif vocab is not None:
+                unknown = [x for x in lines if x not in vocab]
+                if unknown:
+                    problems.append(n["id"] + ": lines not in vocabulary v1: " + ", ".join(unknown))
         if n.get("mode") and n.get("mode") not in MODES:
             problems.append(n["id"] + ": mode not in " + str(sorted(MODES)))
         if n.get("kind") == "experiment" and n.get("domain") == "world" and n.get("epistemic") == "established":
@@ -534,6 +552,17 @@ def mode_of(node):
     if nid.startswith("L-"):
         return "literature"
     return ""
+
+
+LINES = ROOT / "kg" / "lines.json"
+
+
+def line_vocab():
+    """Closed vocabulary of the ten parts (owner decision, T-01). None while it is not frozen."""
+    if not LINES.exists():
+        return None
+    data = json.loads(LINES.read_text(encoding="utf-8"))
+    return data.get("lines") or []
 
 
 def main(argv):

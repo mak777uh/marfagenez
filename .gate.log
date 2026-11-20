@@ -1022,9 +1022,7 @@ Rust тестов: 362 passed, 0 failed (cache)
 
 Заморожено файлов (датированные записи): 328
 Живые числа в документации совпадают с деревом.
-ЖУРНАЛ: 2 проблем
-  docs/agent/AGENT_LOG.md: 1 коммитов после последней записи цикла не названы ни одной записью -- журнал отстал
-      49dcf7c state: records the import regression and the three research modes
+Журнал циклов: нумерация непрерывна, отставания нет.
 
 --- hash_version.py ---
 hash version: core/src/trace.rs = '2-prev-cell', checks/result.py = '2-prev-cell'
@@ -1063,7 +1061,6 @@ OK: документ совпадает с прогоном (12 строк),
     Расхождение на свипе -- не ошибка, а два разных вопроса;
     какой из них когда применяется, записано в
     `docs/UNREPRODUCIBLE.md` §1.
->>> РАЗДЕЛ ПРОВАЛЕН: exp (код 1)
 
 ================================================================
   Граф знаний (инварианты и ссылки)
@@ -1082,137 +1079,3 @@ NOTE: C-007: refuted node still propagates refutes -> L-081
 ================================================================
   Проверки утверждений (verify_all.js)
 ================================================================
-
-10/10 verified
-
-ALL CLAIMS VERIFIED — safe to port.
-
-================================================================
-  Аудит численных утверждений (audit.js)
-================================================================
-PASS  ball squeezes as d grows
-      d=1: 1.731, d=4: 1.219, d=8: 0.935
-
-7/7 claims verified
-
-================================================================
-  Экспорт в визуализатор
-================================================================
-Экспортировано 104 экспериментов из 407 прогонов
-Экспортировано 4 трассировок
-Записано: /root/medium-viz/data.js
-  EXP-CLOSURE-MEASURE: 1 условий
-  EXP-PRICE-KINKS: 2 условий
-  EXP-SHADOW-PRICE: 2 условий
-  EXP-DIVISION-THRESHOLD: 5 условий
-  EXP-SHAPE-REG: 4 условий
-  memory-sampling: 384 условий
-  memory-cost: 216 условий
-  memory-question: 56 условий
-  map-sensitivity: 6 условий
-  env-map: 5 условий
-  exit-rule: 6 условий
-  env-prior: 6 условий
-  rescue: 7 условий
-  competition-edge: 3 условий
-  capacity-edge: 2 условий
-  repair-edge: 2 условий
-  repair-band: 3 условий
-  repair-policy: 3 условий
-  rho-window: 5 условий
-  look-order: 2 условий
-  protocol-capacity: 60 условий
-  frozen-ceiling: 3 условий
-  b3-tiebreak: 3 условий
-  EXP-56: 3 условий
-  EXP-22: 4 условий
-  EXP-87: 3 условий
-  exp21-feed-collapse: 3 условий
-  EXP-98: 1 условий
-  EXP-88: 4 условий
-  EXP-86: 2 условий
-  EXP-85: 4 условий
-  EXP-84: 4 условий
-  EXP-83: 4 условий
-  EXP-82: 4 условий
-  EXP-81: 4 условий
-  EXP-80: 4 условий
-  EXP-78: 4 условий
-  EXP-77: 3 условий
-  EXP-66: 7 условий
-  EXP-65: 7 условий
-  EXP-64: 7 условий
-  EXP-63: 4 условий
-  EXP-62: 4 условий
-  EXP-61: 2 условий
-  EXP-60: 4 условий
-  EXP-59: 10 условий
-  EXP-58: 1 условий
-  EXP-57: 1 условий
-  EXP-52: 7 условий
-  crossing-is-death: 8 условий
-  readout-is-off-by-one-step: 2 условий
-  where-the-extra-cost-comes-from: 2 условий
-  refused-move-is-paid: 3 условий
-  nomad-two-thirds: 2 условий
-  death-budget-closed: 4 условий
-  moving-in-uniform-field: 9 условий
-  capacity: 3 условий
-  income-tracks-stock-not-crowding: 3 условий
-  where-the-sevenfold-gap-goes: 3 условий
-  standing-is-a-uniform-third: 5 условий
-  standing-is-the-policys-own-branch: 4 условий
-  off-by-one-does-not-touch-counts: 2 условий
-  damage-never-accumulates: 2 условий
-  death-budget-exact: 2 условий
-  crossing-shape: 4 условий
-  indifference-point: 2 условий
-  unevenness-or-move-cost: 4 условий
-  unevenness-or-regrowth: 6 условий
-  pair-penalty-or-queue: 6 условий
-  exp77-why-a-poor-cell-feeds-nobody: 20 условий
-  exp76-can-one-cell-hold-two: 3 условий
-  exp75-the-capacity-is-how-many-cells-can-feed: 8 условий
-  exp73-is-the-cap-the-whole-explanation: 2 условий
-  exp72-is-the-move-cost-charged: 1 условий
-  exp71-does-hunger-feed-back-into-moving: 2 условий
-  exp70-the-threshold-offset-is-the-window: 2 условий
-  exp69-a-sitter-dies-at-the-same-maintenance: 2 условий
-  exp68-bisect-the-death-threshold: 1 условий
-  exp67-where-does-anything-die: 1 условий
-  exp66-second-occupant: 3 условий
-  EXP-55: 5 условий
-  EXP-54: 7 условий
-  EXP-53: 2 условий
-  EXP-32: 6 условий
-  exp31_capacity_was_forty: 24 условий
-  empty-cell-refused: 3 условий
-  EXP-50: 5 условий
-  regrowth-sets-the-income: 5 условий
-  EXP-30: 8 условий
-  EXP-24: 5 условий
-  EXP-23: 4 условий
-  poor-cells: 3 условий
-  gradient-loss: 3 условий
-  overcrowding: 3 условий
-  field-stable: 3 условий
-  oscillation: 4 условий
-  capacity-refined: 3 условий
-  capacity-curve: 10 условий
-  gradient-capacity: 3 условий
-  sighted-depletes: 3 условий
-  memory-vs-remember: 3 условий
-  remember-choice: 3 условий
-  random-plateau: 3 условий
-  unknown: 1 условий
-  trace stay: 100 кадров, hash 3ba2423a2ce67885
-  trace sighted: 200 кадров, hash 131091f9f8fb2bca
-  trace random: 100 кадров, hash 9fce4f83b3562500
-  trace remember: 100 кадров, hash bff0e1992affcdb2
-
-================================================================
-  Контракт агента
-================================================================
-
-ЕСТЬ ПРОВАЛЫ (код 1): провалились разделы: exp
->>> трассировка: /tmp/marfagenez-run-trace.log
