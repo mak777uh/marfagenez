@@ -343,7 +343,7 @@ with process-enablement graphs», *BioSystems* (2025), DOI `10.1016/j.biosystems
 | **ERIC** (`api.ies.ed.gov/eric/`) | **200**, `numFound 7033` | **новый рабочий источник**: педагогика/образование |
 | **Unpaywall** (`api.unpaywall.org/v2/<doi>?email=…`) | **200**, 3,7 КБ | работает; вернул OA-локацию с `license: cc-by`. Документация навыка говорит, что заглушки вроде `probe@example.org` дают 422 — **на деле 200**, но на заглушку полагаться нельзя |
 | OpenAlex (+ключ), Crossref, arXiv, PubMed, Europe PMC, DOAJ, dblp, DataCite, Zenodo, Figshare, OpenCitations, OpenAIRE, SemOpenAlex SPARQL, BioStudies, ROR, HF Hub | 200 | уже в работе |
-| CORE API | TLS-обрыв + нужен ключ | не берём |
+| CORE API | **жив, но капризен**: простой `q` даёт 500 (`abstract is not a searchable field`) — нужен правильный синтаксис и, для полного текста, ключ | позже |
 | BASE API | `Access denied for IP` | не берём без регистрации |
 | Semantic Scholar API | **403** | ждёт бесплатного ключа |
 | NASA ADS API | таймаут (и нужен токен) | не берём |
@@ -379,6 +379,67 @@ with process-enablement graphs», *BioSystems* (2025), DOI `10.1016/j.biosystems
 использовали: **OpenReview, ERIC, Unpaywall**. Остальное — либо интерфейсы над теми же индексами (OpenAlex,
 Crossref, S2), либо GUI. Это подтверждает тезис присланного обзора: важен не инструмент, а **независимость
 каналов** — а независимые здесь ровно те, что мы уже подключили, плюс эти три.
+
+---
+
+## 12. Третья партия: MCP/CLI, индексы, проверка цитирования (2026-11-21)
+
+### 12.1 Репозитории — все 4 отвечают
+
+`ScienceOne-AI/DeepLiterature` · `LinXueyuanStdio/academic-mcp` · `InternScience/Awesome-Scientific-Skills` ·
+`ai4s-research/awesome-ai-for-science` — 200 за 0,9–2,9 с.
+
+### 12.2 Новые сайты
+
+| сайт | код | вывод |
+|---|---|---|
+| INSPIRE-HEP | 200 | открыт, есть API |
+| ACL Anthology | 200 (13 с, 758 КБ) | открыт, есть поиск и `.bib` на каждую статью |
+| **ACM Digital Library** | **403** | Cloudflare, автоматизации нет |
+| Retraction Watch | 200 (HTML) | сайт читается; **WP-API — 403** |
+| Scilit | 403 | закрыт для curl |
+
+### 12.3 Новые рабочие API
+
+| API | код | что даёт |
+|---|---|---|
+| **INSPIRE-HEP** (`/api/literature?q=…`) | **200** | физика/HEP: результаты с `bibtex`-ссылками; на не-HEP запрос честно `total 0` |
+| **ACL Anthology** | **200** | `/<paper-id>.bib` — BibTeX одной строкой; `/search/?q=` — HTML-поиск по корпусу CS/CL |
+| **Crossref retraction-фильтр** | **200**, `total-results 81816` | `filter=update-type:retraction` — программная проверка отзывов |
+| **OpenCitations citations** | **200**, 18 КБ | `…/v1/citations/<doi>` — реальные цитирующие DOI (`citing`), то есть обход цитат работает |
+| Crossref work по DOI | 200, 11 КБ | карточка статьи, `update-to` |
+| CORE API | **500 на простой `q`** | отвечает, но `abstract is not a searchable field` — нужен корректный синтаксис; полный текст — с ключом |
+| Retraction Watch WP-API | **403** | закрыт; заменяется Crossref-фильтром выше |
+
+**Поправка к §11.3:** CORE API — не «TLS-обрыв», как показал первый прогон; он жив, но капризен к запросу.
+OpenCitations — не «301/timeout», как в первом прогоне, а рабочий: первый отказ был временным.
+
+### 12.4 Слои стека — что реально закрыто (по присланной схеме из 6 слоёв)
+
+| слой | чем закрыт | статус |
+|---|---|---|
+| 1. мульти-источник | OpenAlex(+ключ), Crossref, arXiv, PubMed, Europe PMC, DOAJ, dblp, OpenAIRE, OpenReview, ERIC, INSPIRE, ACL | ✅ |
+| 2. агентный поиск | OpenAlex `search`/`fulltext.search` + `keenable` как веб-слой | ⚠️ без эмбеддингов |
+| 3. обход цитат | OpenCitations `citations`, OpenAlex `cited_by`, Crossref `references`, S2 (403) | ✅ кроме S2 |
+| 4. полный текст | PMC/Europe PMC, arXiv (ar5iv/HTML), Unpaywall → OA-копия, `jats_to_text.py` | ✅ |
+| 5. независимый поиск | INSPIRE, ACL, ERIC, DOAJ, OpenAIRE, BASE (IP-регистрация), CORE (капризен) | ✅ частично |
+| 6. аудит доказательств | `verify_citations.py` (Crossref), Crossref retraction-фильтр, Unpaywall | ✅ |
+
+### 12.5 Что осталось непроверенным из присланного
+
+Инструменты, которые надо **ставить и запускать**, а не пинговать: `PaperSeek`, `Litkit Search`, `paper-search-mcp`,
+`SciX Agent` (нужен токен ADS — без него не взлетит), `ScholarMCP`, `find-research-papers-mcp`, `scholar-mcp`,
+`Lixplore_cli`, `paper-search-cli`, `DeepLiterature`, `academic-mcp`, `openalex-mcp-server`, `bytedance/pasa`,
+`mosaic-search`, `scimesh`, `LitStudy`.
+Порядок — §11.6, по одному, начиная с `paperseek`.
+
+### 12.6 Итог трёх партий
+
+Из **45+ присланных** инструментов агентную ценность дали **шесть API**, которых у нас не было:
+**OpenReview, ERIC, Unpaywall, INSPIRE-HEP, ACL Anthology, Crossref-retraction** — плюс подтверждённые
+**OpenCitations** и **OpenAlex full-text**. Остальное — интерфейсы над теми же индексами, GUI или закрытые
+сервисы. Число инструментов не заменяет независимость каналов: у нас теперь независимы **12 источников**,
+и это больше, чем даёт любая из присланных обёрток.
 
 ## 7. Риски, записанные заранее
 

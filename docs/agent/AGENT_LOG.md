@@ -4912,3 +4912,15 @@ verified; `contract.py` — 386 записей, 0 нарушений; `log_check
 - **PyPI:** scimesh, mosaic-search, litstudy, paperseek есть; lixplore — только репозиторий.
 - **Вывод:** ни один из 26 не даёт нового покрытия, кроме трёх API; важна независимость каналов, а не число
   интерфейсов. Очередь установки — в `docs/SCIENCE-SKILLS-SHORTLIST.md` §11.6.
+
+### Цикл 371 — 2026-11-21 — `ab9c0ad`: третья партия — INSPIRE, ACL, Crossref-retraction
+
+- **Репозитории:** DeepLiterature, academic-mcp, Awesome-Scientific-Skills, awesome-ai-for-science — 200.
+- **Новые рабочие API:** INSPIRE-HEP (200, HEP-корпус, bibtex-ссылки), ACL Anthology (200, `.bib` на статью и
+  HTML-поиск), Crossref retraction-фильтр (200, `total-results 81816`), OpenCitations `citations` (200, реальные
+  цитирующие DOI).
+- **Поправки к прошлому прогону:** CORE API не «TLS-обрыв», а 500 на простой `q` (`abstract is not a searchable
+  field`); OpenCitations не «timeout», а рабочий — первый отказ был временным.
+- **Закрыто:** ACM DL (403 Cloudflare), Scilit (403), RetractionWatch WP-API (403 — заменяем Crossref-фильтром).
+- **Слои стека:** 1,3,4 закрыты полностью; 2 — без эмбеддингов; 5 — частично; 6 — через `verify_citations.py` и
+  retraction-фильтр. Осталось поставить CLI/MCP-кандидатов (PaperSeek, Litkit, paper-search-mcp и др.).
