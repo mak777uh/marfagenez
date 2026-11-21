@@ -303,7 +303,7 @@ do_kg() {
   # иначе раздел печатает отчёт и «проходит» при любой ошибке.
   local out rc
   out=$(mktemp)
-  python3 kg/kg.py check >"$out" 2>&1
+  python3 kg/kg.py check --refs >"$out" 2>&1
   rc=$?
   tail -20 "$out"
   rm -f "$out"

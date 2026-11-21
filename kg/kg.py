@@ -106,7 +106,9 @@ def resolve_refs(nodes):
                 ok = True
             elif ref.startswith("FINDING-"):
                 num = ref.split("-")[1] if "-" in ref else ""
-                ok = bool(_glob.glob(str(ROOT / "docs" / ("FINDING-" + num + "*.md"))))
+                # exact file or a dashed suffix; a bare prefix would make FINDING-14 resolve to FINDING-140
+                ok = bool(_glob.glob(str(ROOT / "docs" / ("FINDING-" + num + ".md"))) or
+                          _glob.glob(str(ROOT / "docs" / ("FINDING-" + num + "-*.md"))))
             if ok:
                 resolved[kind] = resolved.get(kind, 0) + 1
             else:
@@ -178,8 +180,26 @@ def build(nodes):
         "refuted_still_referenced": refuted_referenced,
         "contested": sorted(n["id"] for n in nodes if n.get("epistemic") == "contested"),
     }
+    vocab = line_vocab() or []
+    line_labels = {}
+    if LINES.exists():
+        for item in json.loads(LINES.read_text(encoding="utf-8")).get("lines", []):
+            if isinstance(item, dict):
+                line_labels[item.get("id")] = item.get("label", item.get("id"))
+    line_counts = {}
+    line_incidents = {}
+    line_hubs = {}
+    for n in nodes:
+        for ln_id in n.get("lines") or []:
+            line_counts[ln_id] = line_counts.get(ln_id, 0) + 1
+            line_incidents[ln_id] = line_incidents.get(ln_id, 0) + 1
+            if n["id"].startswith(("C-", "DEF-")):
+                line_hubs.setdefault(ln_id, []).append(n["id"])
+    lines_block = [{"id": lid, "label": line_labels.get(lid, lid),
+                    "nodes": line_counts.get(lid, 0),
+                    "hubs": sorted(line_hubs.get(lid, []))[:4]} for lid in vocab]
     communities = [
-        {"id": "K1", "label": "цена и бюджет", "hubs": ["C-001", "C-002"]},
+        {"id": "K1", "label": "цена и бюджет (legacy alias)", "hubs": ["C-001", "C-002"]},
         {"id": "K2", "label": "замыкание и выживание", "hubs": ["C-003", "C-006", "F-022", "F-024"]},
         {"id": "K3", "label": "порог и его форма", "hubs": ["C-005", "C-007", "F-003", "F-029"]},
         {"id": "K4", "label": "формулы", "hubs": sorted(n["id"] for n in nodes if n["kind"] == "formula")[:5]},
@@ -187,7 +207,8 @@ def build(nodes):
     ]
     meta = {
         "schema": "kg/2",
-        "built_at": "2026-11-20",
+        "built_at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc)
+                    .isoformat(timespec="seconds"),
         "counts": {"total": len(nodes), "by_kind": dict(kinds), "by_epistemic": dict(epistemic),
                    "by_provenance": dict(provenance), "edges": len(edges)},
         "invariants": [
@@ -201,6 +222,8 @@ def build(nodes):
             "a refuted node is never the target of supports",
         ],
         "communities": communities,
+        "lines": lines_block,
+        "lines_version": (json.loads(LINES.read_text(encoding="utf-8")).get("version") if LINES.exists() else None),
         "frontier": frontier,
         "verbs": ["atlas", "math", "map", "frontier", "connectivity", "preflight", "find", "show", "expand", "trace", "chain", "formula", "contradictions", "check"],
         "hashes": {"graph": hashlib.sha256(json.dumps(nodes, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]},
@@ -300,11 +323,18 @@ def atlas(nodes, cluster_id=None):
     by_id = {n["id"]: n for n in nodes}
 
     if cluster_id:
-        line = next((c for c in meta.get("communities", []) if c["id"] == cluster_id), None)
+        line = next((c for c in meta.get("lines", []) if c["id"] == cluster_id), None)
+        legacy = False
+        if line is None:
+            line = next((c for c in meta.get("communities", []) if c["id"] == cluster_id), None)
+            legacy = line is not None
         if not line:
-            print("нет линии " + cluster_id + "; есть: " + ", ".join(c["id"] for c in meta.get("communities", [])))
+            print("нет линии " + cluster_id + "; есть: " +
+                  ", ".join(c["id"] for c in meta.get("lines", []) or meta.get("communities", [])))
             return 1
-        print("ЛИНИЯ " + line["id"] + " · " + line["label"])
+        print("ЛИНИЯ " + line["id"] + " · " + line["label"] + ("  (legacy alias)" if legacy else ""))
+        if line.get("nodes") is not None:
+            print("  узлов: " + str(line["nodes"]))
         for hub in line["hubs"]:
             n = by_id.get(hub)
             if not n:
@@ -323,7 +353,7 @@ def atlas(nodes, cluster_id=None):
     kinds = counts.get("by_kind", {})
     epi = counts.get("by_epistemic", {})
     prov = counts.get("by_provenance", {})
-    print("КАРТА L0  ·  " + str(counts.get("total", len(nodes))) + " узлов  ·  " + str(counts.get("edges", 0)) + " рёбер  ·  " + str(len(meta.get("communities", []))) + " линий")
+    print("КАРТА L0  ·  " + str(counts.get("total", len(nodes))) + " узлов  ·  " + str(counts.get("edges", 0)) + " рёбер  ·  " + str(len(meta.get("lines", []))) + " линий")
     own = sum(1 for n in nodes if n.get("kind") == "claim" and n["id"].startswith("C-"))
     lit = sum(1 for n in nodes if n.get("kind") == "claim" and n["id"].startswith("L-"))
     print("своих утверждений " + str(own) + " · литературных " + str(lit) + " · формул " + str(kinds.get("formula", 0)) + " · прогонов " + str(kinds.get("experiment", 0)))
@@ -342,19 +372,14 @@ def atlas(nodes, cluster_id=None):
     print("виды исследования: " + " · ".join(m + " " + str(modes.get(m, 0))
                                              for m in ("formal", "literature", "experiment")))
     print()
-    print("линии:")
-    per_line = {}
-    for c in meta.get("communities", []):
-        per_line[c["id"]] = ", ".join(c["hubs"][:3])
-    for c in meta.get("communities", []):
-        members = set(c["hubs"])
-        inside = sum(1 for h in members for _t, _x in fwd.get(h, []))
-        print("  " + c["id"] + "  " + c["label"].ljust(24) + " хабы: " + per_line.get(c["id"], ""))
-    print()
     holes = meta.get("frontier", {})
-    print("дороги между линиями: " + str(counts.get("edges", 0)) + " рёбер на " + str(len(meta.get("communities", []))) + " линий")
+    for ln in meta.get("lines", []):
+        print("  " + ln["id"].ljust(15) + " " + ln["label"].ljust(26) + " узлов " + str(ln["nodes"]))
+    print()
+    print("дороги между линиями: " + str(counts.get("edges", 0)) + " рёбер на " + str(len(meta.get("lines", []))) + " линий")
     print("дыры: без свидетельств " + str(len(holes.get("without_evidence", []))) + " · только извлечено " + str(len(holes.get("extracted_only", []))) + " · опровергнуто, но используется " + str(len(holes.get("refuted_still_referenced", []))))
-    print("куда смотреть: atlas K1 · atlas K2 · atlas K4 · expand C-001 · math")
+    print("куда смотреть: atlas <линия> · expand C-001 · math")
+    print("legacy: K1–K5 — старые сообщества, доступны как алиасы")
     return 0
 
 
@@ -710,7 +735,8 @@ def main(argv):
         print("by kind:", meta["counts"]["by_kind"])
         print("by epistemic:", meta["counts"]["by_epistemic"])
         print("frontier:", {k: len(v) for k, v in meta["frontier"].items()})
-        print("communities:", [c["label"] for c in meta["communities"]])
+        print("communities (legacy):", [c["label"] for c in meta["communities"]])
+        print("lines:", [(l["id"], l["nodes"]) for l in meta.get("lines", [])])
         return 0
 
     if cmd == "find":

@@ -1,6 +1,6 @@
 {
   "schema": "kg/2",
-  "built_at": "2026-11-20",
+  "built_at": "2026-11-21T01:05:02+00:00",
   "counts": {
     "total": 549,
     "by_kind": {
@@ -36,7 +36,7 @@
   "communities": [
     {
       "id": "K1",
-      "label": "цена и бюджет",
+      "label": "цена и бюджет (legacy alias)",
       "hubs": [
         "C-001",
         "C-002"
@@ -85,6 +85,83 @@
       ]
     }
   ],
+  "lines": [
+    {
+      "id": "granica",
+      "label": "Граница",
+      "nodes": 8,
+      "hubs": [
+        "C-001",
+        "C-002"
+      ]
+    },
+    {
+      "id": "obmen",
+      "label": "Обмен",
+      "nodes": 2,
+      "hubs": []
+    },
+    {
+      "id": "svoi-usloviya",
+      "label": "Свои условия",
+      "nodes": 6,
+      "hubs": [
+        "C-003"
+      ]
+    },
+    {
+      "id": "organizaciya",
+      "label": "Организация с разделением",
+      "nodes": 3,
+      "hubs": []
+    },
+    {
+      "id": "proshloe",
+      "label": "Прошлое",
+      "nodes": 4,
+      "hubs": [
+        "C-008"
+      ]
+    },
+    {
+      "id": "smert",
+      "label": "Смерть",
+      "nodes": 4,
+      "hubs": []
+    },
+    {
+      "id": "porog",
+      "label": "Порог и критичность",
+      "nodes": 10,
+      "hubs": [
+        "C-002",
+        "C-004",
+        "C-005",
+        "C-007"
+      ]
+    },
+    {
+      "id": "vybor",
+      "label": "Выбор",
+      "nodes": 11,
+      "hubs": [
+        "C-006"
+      ]
+    },
+    {
+      "id": "individualnost",
+      "label": "Индивидуальность",
+      "nodes": 6,
+      "hubs": []
+    },
+    {
+      "id": "agentnost",
+      "label": "Агентность",
+      "nodes": 1,
+      "hubs": []
+    }
+  ],
+  "lines_version": 1,
   "frontier": {
     "without_evidence": [
       "F-002",

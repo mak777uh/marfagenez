@@ -6,7 +6,10 @@ Two things are checked, both from the second round of review:
 1. **Corpus is the source of truth.** Rebuild the graph from `claims.jsonl`, the literature and
    `results/*/run-*.json`; the committed `nodes.jsonl` must match it. A hand edit to the generated
    file, or a forgotten rebuild, fails here instead of drifting silently.
-2. **Import never raises status by itself** (D-07). Compare every id's `epistemic` before and after:
+2. **The whole node is compared, not just its id.** Any change to text, context, relations, evidence or
+   `math` is drift too: a field silently rewritten in the generated file is exactly the failure this
+   check exists to catch (review 2026-11-21, §4.4).
+3. **Import never raises status by itself** (D-07). Compare every id's `epistemic` before and after:
    a mechanical edge may add a connection, it may not upgrade a claim. Any change must be a separate,
    deliberate commit.
 
@@ -32,6 +35,10 @@ def rebuilt():
     return {n["id"]: n for n in nodes}
 
 
+def canonical(node):
+    return json.dumps(node, sort_keys=True, ensure_ascii=False)
+
+
 def main():
     old, new = committed(), rebuilt()
     problems = []
@@ -50,6 +57,14 @@ def main():
             moved.append(nid + ": " + str(a) + " -> " + str(b))
     if moved:
         problems.append("импорт меняет статус знания: " + "; ".join(moved[:8]))
+
+    changed = []
+    for nid in sorted(set(old) & set(new)):
+        if canonical(old[nid]) != canonical(new[nid]):
+            diff = [k for k in set(old[nid]) | set(new[nid]) if old[nid].get(k) != new[nid].get(k)]
+            changed.append(nid + " (" + ", ".join(sorted(diff)[:4]) + ")")
+    if changed:
+        problems.append("nodes.jsonl расходится с корпусом по содержимому: " + "; ".join(changed[:8]))
 
     print("сверка корпус -> nodes.jsonl: " + str(len(new)) + " узлов")
     if problems:
