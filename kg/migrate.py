@@ -201,8 +201,48 @@ def bridges():
     return [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
+def evidence_nodes(base):
+    """Evidence stops being a string: a finding or an experiment alias becomes an addressable object.
+
+    Only refs that are not node ids and belong to the two families the graph must be able to walk
+    (`FINDING-*`, `EXP-*`) become nodes. Bulk document paths stay references: 420 distinct paths
+    would bury the graph in duplicates of one registry file (review 2026-11-21, §4.1).
+    """
+    ids = {n["id"] for n in base}
+    owners = {}
+    for n in base:
+        for e in n.get("evidence") or []:
+            ref = str(e.get("ref", ""))
+            if ref in ids or not (ref.startswith("FINDING-") or ref.startswith("EXP-")):
+                continue
+            owners.setdefault(ref, []).append(n["id"])
+    out = []
+    for ref, who in sorted(owners.items()):
+        is_finding = ref.startswith("FINDING-")
+        out.append({
+            "id": "EV-" + ref,
+            "kind": "evidence",
+            "text": ("находка " + ref) if is_finding else ("серия прогонов " + ref),
+            "context": {"scope": "evidence object", "parameters": ref, "conditions": "см. источник"},
+            "epistemic": "hypothesis",
+            "provenance": "verified_agent",
+            "evidence": [],
+            "relations": [],
+            "data": {
+                "ref": ref,
+                "form": "finding" if is_finding else "experiment_alias",
+                "used_by": sorted(set(who)),
+                "locator": ("docs/" + ref + ".md") if is_finding else "results/*",
+            },
+            "created_at": "2026-11-21",
+            "updated_at": "2026-11-21",
+        })
+    return out
+
+
 def main():
-    nodes = claims() + formulas() + experiments() + literature() + definitions() + bridges()
+    base = claims() + formulas() + experiments() + literature() + definitions() + bridges()
+    nodes = base + evidence_nodes(base)
     seen = set()
     unique = []
     for n in nodes:

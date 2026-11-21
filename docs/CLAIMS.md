@@ -36,7 +36,7 @@
 > см. `docs/FINDING-140-the-step-order-was-wrong.md`. Проверка:
 > `cd laws && lake build` → 18328 jobs, 0 errors.
 
-### Lean — две библиотеки, 317 теорем и лемм, 0 живых sorry
+### Lean — две библиотеки, 318 теорем и лемм, 0 живых sorry
 
 | библиотека | файлов | теорем | sorry | команда |
 |---|---|---|---|---|
@@ -185,7 +185,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | `α = 2μ/σ²` точно | это предел, при `dt=1` ошибка 3.7% |
 | Rust-код в `core/` верен | Verus доказал **копии** в `verus/`, не `bridge.rs` |
 | `f64`-часть верна | Verus не поддерживает плавающую точку |
-| оставшиеся 317 теорем содержательны | проверены только 11 тавтологий из 318 |
+| оставшиеся 318 теорем содержательны | проверены только 11 тавтологий из 318 |
 
 ---
 
@@ -193,11 +193,11 @@ cd core && cargo test --release --tests -- --test-threads=1
 
 | что | почему | где записано |
 |---|---|---|
-| 317 теорем-тавтологий | доказывали `X = X` | `ELIMINATED.md` п.11 |
+| 318 теорем-тавтологий | доказывали `X = X` | `ELIMINATED.md` п.11 |
 | `Shape::Ball` из выводов | не сохраняет меру | `FINDING-transition-wrong.md` |
 | формула `min(σ√t, B/√3)` | неверна при `t=1` | `FINDING-transition-wrong.md` |
 | «оптимум заполнения 90%» | артефакт выборки | `ELIMINATED.md` п.9 |
-| 317 теоремы в `medium` | ложные постановки | `ELIMINATED.md` п.10 |
+| 318 теоремы в `medium` | ложные постановки | `ELIMINATED.md` п.10 |
 | `varianceF_bound` | ложна: `isFinite` не исключает underflow, контрпример `b = 2⁻⁵³⁷` | `LESSONS.md` урок 2 |
 | `fold_identifies`, `mean_le_of_all_le` | ложные постановки, исправлены | `LESSONS.md` урок 2 |
 | `Convergence2.fold_identifies` (второй раз) | `%` на `ℝ` не периодичен по `4B`; теперь явный `sorry`, не доказательство | `laws/Legacy/README.md` |

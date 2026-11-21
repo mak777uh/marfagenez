@@ -78,6 +78,10 @@ FROZEN = (
     "docs/PLAN-EXPERIMENTS.md",
     "docs/PLAN-NEXT.md",
     "docs/VISION.md",
+    # The journal of past states: its numbers describe the tree as it was on a date, exactly like a
+    # finding. Rewriting them would be falsifying the record, and the live numbers are checked in the
+    # documents that state them as current.
+    "docs/agent/AGENT-HISTORY.md",
 )
 FROZEN_PREFIX = ("docs/FINDING-", "docs/SYNTHESIS-", "docs/LAW-")
 

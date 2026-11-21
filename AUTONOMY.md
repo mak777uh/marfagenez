@@ -272,7 +272,11 @@ git push
 
 **Пример хорошей формулы:**
 
-$$E_{\max} = \text{capacity} - \text{maintenance} - \text{damage\_rate} \cdot \text{repair\_cost}$$
+$$E_{\max} = \text{capacity} \quad\text{(при cap-last)}$$
+
+> **Отозвано (2026-11-21).** Прежняя формула `capacity − maintenance − dr·rc` была примером «хорошей формулы»,
+> но результат отозван (`GOAL §8`, `ELIMINATED §18`): цены на потолке исчезают из состояния. Не использовать как
+> образец. Живая запись: `laws/Medium/DeathLaw.lean`, `steadyEnergyAtCap`.
 
 **Условия:** `energy + taken ≥ capacity`
 **Проверка:** `10.0 − 0.6 − 0.03 = 9.370000000000001` ✅

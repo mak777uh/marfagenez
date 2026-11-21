@@ -103,13 +103,26 @@ theorem net_neg_of_threshold_lt_maintenance
   unfold netPerStep deathThreshold at *
   linarith
 
-/-- The steady energy of an organism held at the cap.
+/-- The energy an organism at the cap shows **between the payments and the cap**.
 
-    At the cap the take is truncated, so the organism loses
-    `maintenance + damage_rate * repair_cost` per step and the next take refills
-    it. The energy it is seen at is therefore `E_max` minus that loss. -/
+    Measurement point matters and was previously left implicit (review 2026-11-21, §D2).
+    The real order is take → maintain → damage → repair → cap. If the value is read after the
+    payments but *before* the cap and the next take, it is `E_max` minus that step's loss — that is
+    what EXP-67 measured (9.27, 9.17, 9.07, 8.97 at maintenance 0.7…1.0 with `E_max = 10`).
+
+    At the **step boundary**, after the cap, the same organism is seen at exactly `E_max`; see
+    `cap_is_last_measurement` below. Both statements are true of different instants, and the name
+    of this function says `AtCap`, so the docstring must say which instant it means. -/
 def steadyEnergyAtCap (eMax maintenance damageRate repairCost : ℝ) : ℝ :=
   eMax - (maintenance + damageRate * repairCost)
+
+/-- **At the step boundary the value is the cap itself.** After `clamp(energy, 0, E_max)` an organism
+    that held at least the cap is seen at exactly `E_max`. This is the other half of the picture: the
+    measurement above describes the instant after payments, this one the instant after the cap. -/
+theorem cap_is_last_measurement
+    (energy eMax : ℝ) (h0 : 0 ≤ eMax) (h : eMax ≤ energy) :
+    max 0 (min energy eMax) = eMax := by
+  rw [min_eq_right h, max_eq_right h0]
 
 /-- **The measured energy is the cap minus the cost.** EXP-67 measured
     9.2700, 9.1700, 9.0700, 8.9700 at maintenance 0.7, 0.8, 0.9, 1.0 with

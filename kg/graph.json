@@ -15448,6 +15448,273 @@
       },
       "created_at": "2026-11-21",
       "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-EXP-CLOSURE-MEASURE",
+      "kind": "evidence",
+      "text": "серия прогонов EXP-CLOSURE-MEASURE",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "EXP-CLOSURE-MEASURE",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "EXP-CLOSURE-MEASURE",
+        "form": "experiment_alias",
+        "used_by": [
+          "C-003",
+          "F-022"
+        ],
+        "locator": "results/*"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-EXP-PRICE-KINKS",
+      "kind": "evidence",
+      "text": "серия прогонов EXP-PRICE-KINKS",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "EXP-PRICE-KINKS",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "EXP-PRICE-KINKS",
+        "form": "experiment_alias",
+        "used_by": [
+          "C-002",
+          "F-023"
+        ],
+        "locator": "results/*"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-EXP-SHADOW-PRICE",
+      "kind": "evidence",
+      "text": "серия прогонов EXP-SHADOW-PRICE",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "EXP-SHADOW-PRICE",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "EXP-SHADOW-PRICE",
+        "form": "experiment_alias",
+        "used_by": [
+          "C-001",
+          "CORR-02"
+        ],
+        "locator": "results/*"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-FINDING-247",
+      "kind": "evidence",
+      "text": "находка FINDING-247",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "FINDING-247",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "FINDING-247",
+        "form": "finding",
+        "used_by": [
+          "C-008"
+        ],
+        "locator": "docs/FINDING-247.md"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-FINDING-297",
+      "kind": "evidence",
+      "text": "находка FINDING-297",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "FINDING-297",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "FINDING-297",
+        "form": "finding",
+        "used_by": [
+          "F-001"
+        ],
+        "locator": "docs/FINDING-297.md"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-FINDING-309",
+      "kind": "evidence",
+      "text": "находка FINDING-309",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "FINDING-309",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "FINDING-309",
+        "form": "finding",
+        "used_by": [
+          "F-003"
+        ],
+        "locator": "docs/FINDING-309.md"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-FINDING-316",
+      "kind": "evidence",
+      "text": "находка FINDING-316",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "FINDING-316",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "FINDING-316",
+        "form": "finding",
+        "used_by": [
+          "C-005"
+        ],
+        "locator": "docs/FINDING-316.md"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-FINDING-317",
+      "kind": "evidence",
+      "text": "находка FINDING-317",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "FINDING-317",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "FINDING-317",
+        "form": "finding",
+        "used_by": [
+          "C-001"
+        ],
+        "locator": "docs/FINDING-317.md"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-FINDING-318",
+      "kind": "evidence",
+      "text": "находка FINDING-318",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "FINDING-318",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "FINDING-318",
+        "form": "finding",
+        "used_by": [
+          "C-002"
+        ],
+        "locator": "docs/FINDING-318.md"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-FINDING-319",
+      "kind": "evidence",
+      "text": "находка FINDING-319",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "FINDING-319",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "FINDING-319",
+        "form": "finding",
+        "used_by": [
+          "C-003"
+        ],
+        "locator": "docs/FINDING-319.md"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "EV-FINDING-320",
+      "kind": "evidence",
+      "text": "находка FINDING-320",
+      "context": {
+        "scope": "evidence object",
+        "parameters": "FINDING-320",
+        "conditions": "см. источник"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "ref": "FINDING-320",
+        "form": "finding",
+        "used_by": [
+          "C-002"
+        ],
+        "locator": "docs/FINDING-320.md"
+      },
+      "created_at": "2026-11-21",
+      "updated_at": "2026-11-21"
     }
   ],
   "edges": [

@@ -39,7 +39,7 @@ META = KG / "meta.json"
 GRAPH = KG / "graph.json"
 INDEX = KG / "INDEX.md"
 
-KINDS = {"claim", "formula", "experiment", "dataset", "definition", "question", "correspondence", "gap"}
+KINDS = {"claim", "formula", "experiment", "dataset", "definition", "question", "correspondence", "gap", "evidence"}
 EPISTEMIC = {"hypothesis", "established", "contested", "replicated", "refuted", "bounded"}
 PROVENANCE = {"extracted", "verified_agent", "human_confirmed"}
 MODES = {"formal", "literature", "experiment"}   # three kinds of research, not node kinds
@@ -418,6 +418,33 @@ def frontier_view(nodes):
     return 0
 
 
+def ref_targets(nodes, ref):
+    """Where a reference actually lands in the graph. Same answer for `check` and for `expand`.
+
+    A finding is its own evidence object (`EV-FINDING-NNN`); an experiment alias lands on the run
+    nodes that name it; a file path lands on the node that owns that path in its own evidence.
+    """
+    ids = {n["id"] for n in nodes}
+    out = set()
+    if ref in ids:
+        return {ref}
+    if ref.startswith("FINDING-") and ("EV-" + ref) in ids:
+        return {"EV-" + ref}
+    if ref.startswith("EXP-"):
+        for n in nodes:
+            if n.get("kind") == "experiment" and ref in (n.get("text") or ""):
+                out.add(n["id"])
+        if ("EV-" + ref) in ids:
+            out.add("EV-" + ref)
+        return out
+    if "/" in ref:
+        for n in nodes:
+            if n.get("kind") == "experiment" and any(str(e.get("ref", "")) == ref for e in (n.get("evidence") or [])):
+                out.add(n["id"])
+        return out
+    return out
+
+
 def adjacency(nodes):
     """The graph `expand` actually walks: relations plus evidence that names a node."""
     ids = {n["id"] for n in nodes}
@@ -430,9 +457,11 @@ def adjacency(nodes):
                 adj[t].add(n["id"])
         for e in n.get("evidence") or []:
             ref = str(e.get("ref", ""))
-            if ref in ids:
-                adj[n["id"]].add(ref)
-                adj[ref].add(n["id"])
+            for target in ref_targets(nodes, ref):
+                if target == n["id"]:
+                    continue
+                adj[n["id"]].add(target)
+                adj[target].add(n["id"])
     return adj
 
 
@@ -552,6 +581,16 @@ def extra_invariants(nodes):
                 if not (n["id"].startswith("C-") and tgt.startswith("C-")):
                     problems.append(n["id"] + ": same_as is claim-to-claim only; got " + tgt +
                                     " (use analogous_to or correspondence)")
+        if n.get("kind") == "evidence":
+            ref = (n.get("data") or {}).get("ref")
+            if not ref:
+                problems.append(n["id"] + ": evidence without a ref")
+            elif str(ref).startswith("FINDING-"):
+                num = str(ref).split("-")[1]
+                found = (ROOT / "docs" / ("FINDING-" + num + ".md")).exists() or bool(
+                    list((ROOT / "docs").glob("FINDING-" + num + "-*.md")))
+                if not found:
+                    problems.append(n["id"] + ": finding file is missing")
         if n.get("kind") == "gap":
             data = n.get("data") or {}
             if data.get("left") not in ids or data.get("right") not in ids:
@@ -847,11 +886,13 @@ def main(argv):
                     if r["target"] in frontier:
                         nxt.add(n["id"])
                 for e in n.get("evidence", []):
-                    ref = str(e.get("ref", ""))
-                    if ref in frontier:
-                        nxt.add(n["id"])
-                    if n["id"] in frontier and ref.startswith(("C-", "F-", "X-")):
-                        nxt.add(ref)
+                    # the same resolver `check` uses: a finding is an object, an alias is a run,
+                    # a path is the run that owns it. Otherwise validation and navigation disagree.
+                    for target in ref_targets(nodes, str(e.get("ref", ""))):
+                        if n["id"] in frontier:
+                            nxt.add(target)
+                        if target in frontier:
+                            nxt.add(n["id"])
             frontier = nxt - seen
             seen |= nxt
         ids = sorted(seen)
