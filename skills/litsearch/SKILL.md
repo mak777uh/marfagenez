@@ -88,3 +88,21 @@ python3 tools/lit_migrate.py                   # показать, что миг
 - не класть кандидатов в `kg/nodes.jsonl`;
 - не поднимать уровень записи правкой прозы без файла в `papers/`;
 - не запускать два гейта одновременно и не править `run.sh` во время прогона.
+
+## 7. Соседи узла по смыслу
+
+```bash
+python3 kg/kg.py similar L-060 10
+```
+
+Индекс: `kg/embeddings.bin` + `kg/embeddings.meta.json`, модель мультиязычная (русские узлы против
+английских абстрактов). Если граф изменился, `similar` откажется отвечать — сначала пересборка на
+Windows-стороне:
+
+```bash
+FASTEMBED_CACHE_PATH=/mnt/c/Users/Admin/.dsh/tools/models \
+  /mnt/c/Users/Admin/.dsh/tools/sci-venv/Scripts/python.exe tools/build_embeddings.py --out C:/Users/Admin/AppData/Local/Temp/kgemb
+cp /mnt/c/Users/Admin/AppData/Local/Temp/kgemb/embeddings.* kg/
+```
+
+Проверка свежести: `python3 checks/embeddings_fresh.py`.

@@ -211,6 +211,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/life_calibration.py` | калибровка на «Жизни»: что в этой модели вообще измеримо |
 | `checks/protocol_checks.py` | этот список совпадает с тем, что гейт запускает |
 | `checks/results_allowlist.py` | в `results/` только артефакты прогонов модели; поисковые снимки и леджер бюджета живут в `literature/` |
+| `checks/embeddings_fresh.py` | индекс эмбеддингов собран из текущего графа: sha, число и порядок узлов, размер матрицы |
 | `checks/tree_contract.py` | `checks/` не растёт без вызова, импорта или записи в `LEGACY.txt`; `probes/` не запускается гейтом и перечислен в `probes/INDEX.md` |
 | `checks/candidates_quarantine.py` | кандидаты литературы живут в карантине: уникальные ключи, нет дублей реестра, допуск ссылается на claim + `L-NNN` + событие журнала, кандидаты не в графе |
 | `checks/budget_ledger.py` | леджер бюджета OpenAlex: формат, монотонность остатка, отсутствие секретов в коммитимом файле |

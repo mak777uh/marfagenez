@@ -192,6 +192,9 @@ do_exp() {
   python3 checks/goal_features.py || rc=$?
   echo "--- finding_elephant_line.py ---"
   python3 checks/finding_elephant_line.py || rc=$?
+  echo "--- embeddings_fresh.py ---"
+  # Индекс эмбеддингов обязан быть собран из текущего графа, иначе similar врёт уверенно.
+  python3 checks/embeddings_fresh.py || rc=$?
   echo "--- tree_contract.py ---"
   # checks/ не растёт без вызова или записи в LEGACY.txt; probes/ — не гейт.
   python3 checks/tree_contract.py || rc=$?

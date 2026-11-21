@@ -99,7 +99,7 @@ metadata/secondary ⇒ extracted/weak + `secondary_of`.
 **Зачем:** «нужная статья на 3-м месте» не доказывает улучшения поиска — только переранжирование пула.
 **Готово:** отчёт без страт ⇒ FAIL; подмена пула после qrels ⇒ FAIL; решение о модели записано с CI.
 
-### U10. `kg.py similar` и мультиязычные эмбеддинги — 1 круг
+### U10. `kg.py similar` и мультиязычные эмбеддинги — ✅ сделано (цикл 395): мультиязычный MiniLM, `kg.py similar`, `checks/embeddings_fresh.py` 4/4; e5-small в fastembed 0.9.1 недоступен — записано
 **Что:** `tools/build_embeddings.py` (узлы → векторы, `multilingual-e5-small`, префиксы), `kg/embeddings.npy`
 + meta со `sha256(nodes.jsonl)`; `checks/embeddings_fresh.py`; глагол `similar`.
 **Готово:** правка узла без пересборки ⇒ FAIL; `similar` на известной паре ставит её в топ-3.

@@ -714,6 +714,64 @@ def admit(nodes, node_id, action, rationale, evidence, actor):
     return 0
 
 
+
+def similar(nodes, node_id, limit=10):
+    """Nearest neighbours of a node in the local embedding index.
+
+    The index is built on the Windows side (the model lives there) and committed as a matrix plus metadata;
+    this verb only reads it. If the index is stale the answer would be about a previous graph, so staleness
+    is refused instead of served.
+    """
+    import hashlib
+    from array import array
+
+    meta_path = KG / "embeddings.meta.json"
+    bin_path = KG / "embeddings.bin"
+    nodes_path = KG / "nodes.jsonl"
+    if not meta_path.exists() or not bin_path.exists():
+        print("индекса эмбеддингов нет: tools/build_embeddings.py (Windows-сторона)")
+        return 1
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    current = hashlib.sha256(nodes_path.read_bytes()).hexdigest()
+    if meta.get("nodes_sha256") != current:
+        print("индекс устарел: граф изменился, пересоберите tools/build_embeddings.py")
+        return 1
+    ids = meta.get("ids") or []
+    dim = int(meta.get("dim") or 0)
+    if node_id not in ids:
+        print("нет узла " + node_id + " в индексе")
+        return 1
+    vectors = array("f")
+    vectors.frombytes(bin_path.read_bytes())
+    if len(vectors) != len(ids) * dim:
+        print("размер матрицы не сходится с meta")
+        return 1
+
+    def row(index):
+        return vectors[index * dim:(index + 1) * dim]
+
+    def norm(vec):
+        return sum(x * x for x in vec) ** 0.5 or 1.0
+
+    target = row(ids.index(node_id))
+    target_norm = norm(target)
+    by_id = {n["id"]: n for n in nodes}
+    scores = []
+    for i, other in enumerate(ids):
+        if other == node_id:
+            continue
+        vec = row(i)
+        cosine = sum(a * b for a, b in zip(target, vec)) / (target_norm * norm(vec))
+        scores.append((cosine, other))
+    scores.sort(reverse=True)
+
+    for score, other in scores[:limit]:
+        node = by_id.get(other) or {}
+        kind = node.get("kind") or ""
+        text = (node.get("text") or "")[:88]
+        print(f"{score: .3f}  {other:<10} {kind:<12} {text}")
+    return 0
+
 def confirmed_path():
     return KG / "confirmed.jsonl"
 
@@ -799,6 +857,12 @@ def main(argv):
 
     if cmd == "unconfirmed":
         return unconfirmed(nodes, int(argv[2]) if len(argv) > 2 else 20)
+
+    if cmd == "similar":
+        if len(argv) < 3:
+            print('usage: kg.py similar <node_id> [limit]')
+            return 2
+        return similar(nodes, argv[2], int(argv[3]) if len(argv) > 3 else 10)
 
     if cmd == "admissions":
         path = admissions_path()
