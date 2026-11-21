@@ -5094,3 +5094,12 @@ verified; `contract.py` — 386 записей, 0 нарушений; `log_check
   держалась бы на честном слове инструмента.
 - **Дальше:** `tools/litsearch.py` (три канала, RRF, `raw/`, `--offline --from-run`), затем кэш и леджер
   бюджета в `literature/budget/`.
+
+### Цикл 388 — 2026-11-21 — `918cd13`: раннер поиска — три канала, дедуп, RRF, снимок
+
+- **Сделано:** `tools/litsearch.py` — `paper-search`, `lixplore`, `openalex` (через Windows-сторону), дедуп
+  по `doi>arxiv>pmid>title_norm+year`, RRF `k=60`, снимок + сырые ответы в `literature/runs/<run_id>/raw/`.
+- **Прогон 2026-11-21T19-36-27Z_4e8193:** каналы 8/8/8 (2,6 / 17,8 / 1,2 с), после дедупа 15 работ;
+  топ-1 (`doi:10.1016/j.biosystems.2025.105567`) найден **всеми тремя** каналами, RRF 0,04918.
+- **Проверка:** `checks/litsearch_contract.py` — 0 нарушений; `--offline --from-run` воспроизводит ту же
+  выдачу без сети.
