@@ -245,6 +245,27 @@ def fuse(channels: list[dict]) -> tuple[list[dict], list[list[str]], list[dict],
     return ranking, clusters, list(works.values()), degraded
 
 
+def saturation(cur_ranking: list[dict], prev_snap: dict) -> dict:
+    """Marginal novelty of this run against a previous one: the only honest answer to "are we done?".
+
+    `new_frac_top20` and `jaccard_top20` are set-level measures, not "relevance" judgements, so they can be
+    recomputed by the contract checker and cannot be gamed by editing prose.
+    """
+    prev_ranking = (prev_snap.get("fusion") or {}).get("ranking") or []
+    cur_top = [row["key"] for row in cur_ranking[:20]]
+    prev_top = [row["key"] for row in prev_ranking[:20]]
+    prev_all = {row["key"] for row in prev_ranking}
+    new_unique = sum(1 for key in cur_top if key not in prev_all)
+    inter = len(set(cur_top) & set(prev_top))
+    union = len(set(cur_top) | set(prev_top))
+    return {
+        "prev_run_id": prev_snap.get("run_id"),
+        "new_unique": new_unique,
+        "new_frac_top20": round(new_unique / max(1, len(cur_top)), 4),
+        "jaccard_top20": round(inter / union, 4) if union else None,
+    }
+
+
 def fingerprint(query: str, seeds: list[str], n: int) -> str:
     payload = json.dumps({"q": query, "seeds": seeds, "n": n}, ensure_ascii=False, sort_keys=True)
     return sha_bytes(payload.encode("utf-8"))[:16]
@@ -279,6 +300,14 @@ def main(argv: list[str]) -> int:
     n = 15
     if "--per-channel" in argv:
         n = int(argv[argv.index("--per-channel") + 1])
+    prev_snap = None
+    if "--compare" in argv:
+        prev_id = argv[argv.index("--compare") + 1]
+        prev_path = RUNS / f"{prev_id}.json"
+        if not prev_path.exists():
+            print(f"нет предыдущего снимка {prev_path}", file=sys.stderr)
+            return 2
+        prev_snap = json.loads(prev_path.read_text(encoding="utf-8"))
 
     channels: list[dict] = []
     raws: dict[str, str] = {}
@@ -314,7 +343,7 @@ def main(argv: list[str]) -> int:
         "fusion": {"method": "rrf", "k": K, "weights": {}, "tie_break": "score_desc_key_asc",
                    "ranking": ranking},
         "degraded": degraded,
-        "saturation": None,
+        "saturation": saturation(ranking, prev_snap) if prev_snap else None,
         "works": works,
     }
 
