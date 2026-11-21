@@ -192,6 +192,9 @@ do_exp() {
   python3 checks/goal_features.py || rc=$?
   echo "--- finding_elephant_line.py ---"
   python3 checks/finding_elephant_line.py || rc=$?
+  echo "--- candidates_quarantine.py ---"
+  # Карантин кандидатов: граф не растёт случайно, допуск идёт через журнал.
+  python3 checks/candidates_quarantine.py || rc=$?
   echo "--- budget_ledger.py ---"
   # Леджер бюджета: офлайн, без сети; ключ не должен попасть в коммит.
   python3 checks/budget_ledger.py || rc=$?

@@ -76,7 +76,7 @@ metadata/secondary ⇒ extracted/weak + `secondary_of`.
 **Готово:** при остатке $0.05 прогон идёт без OpenAlex и помечен `degraded`; `--offline` не пишет в леджер;
 запись с полем `key` ⇒ FAIL.
 
-### U7. Inbox и карантин кандидатов — 1 круг
+### U7. Inbox и карантин кандидатов — ✅ сделано (цикл 391): `tools/lit_ingest.py`, `checks/candidates_quarantine.py` 4/4; допуск — через `admissions.jsonl`, граф не трогается
 **Что:** `literature/inbox/<run>.json` (пишет добыча) → `kg/candidates.jsonl` (мержит оркестратор);
 `kg.py ingest-lit` (дедуп против графа, карантина и **tombstones**); литературный `admit` пишет L-блок,
 событие в существующий `kg/admissions.jsonl` и ребро; без ребра к существующему узлу или `gap` — отказ.

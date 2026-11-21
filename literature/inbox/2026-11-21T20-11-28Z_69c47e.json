@@ -1,0 +1,168 @@
+{
+ "run_id": "2026-11-21T20-11-28Z_69c47e",
+ "added": 9,
+ "candidates": [
+  {
+   "candidate_id": "CAND-6df4043f1d",
+   "key": "arxiv:2611.26625",
+   "title": "AnyVIO: Feed-Forward Streaming Visual-Inertial Odometry Across Platforms",
+   "year": 2026,
+   "doi": null,
+   "arxiv": "2611.26625",
+   "run_id": "2026-11-21T20-11-28Z_69c47e",
+   "rrf": 0.016393443,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-21T20:44:11Z",
+   "last_seen": "2026-11-21T20:44:11Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-104dee4057",
+   "key": "arxiv:2611.26614",
+   "title": "Additive Fréchet Regression for Random Objects",
+   "year": 2026,
+   "doi": null,
+   "arxiv": "2611.26614",
+   "run_id": "2026-11-21T20-11-28Z_69c47e",
+   "rrf": 0.016129032,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-21T20:44:11Z",
+   "last_seen": "2026-11-21T20:44:11Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-e247afae27",
+   "key": "doi:10.70675/0096008bz1c35z43c9zadcaz615cee683533",
+   "title": "Semantically-enabled stream processing and complex event processing over RDF graph streams",
+   "year": 2016,
+   "doi": "10.70675/0096008bz1c35z43c9zadcaz615cee683533",
+   "arxiv": null,
+   "run_id": "2026-11-21T20-11-28Z_69c47e",
+   "rrf": 0.016129032,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-21T20:44:11Z",
+   "last_seen": "2026-11-21T20:44:11Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-46462ce330",
+   "key": "arxiv:2611.26609",
+   "title": "Variants of Beam Search for DiskANN",
+   "year": 2026,
+   "doi": null,
+   "arxiv": "2611.26609",
+   "run_id": "2026-11-21T20-11-28Z_69c47e",
+   "rrf": 0.015873016,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-21T20:44:11Z",
+   "last_seen": "2026-11-21T20:44:11Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-4e678e7a26",
+   "key": "doi:10.1017/nws.2015.11",
+   "title": "Distance closures on complex networks",
+   "year": 2015,
+   "doi": "10.1017/nws.2015.11",
+   "arxiv": null,
+   "run_id": "2026-11-21T20-11-28Z_69c47e",
+   "rrf": 0.015873016,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-21T20:44:11Z",
+   "last_seen": "2026-11-21T20:44:11Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-cac7c564a5",
+   "key": "doi:10.2307/j.ctt9qf068.17",
+   "title": "Comparing the four inter-organisational processes",
+   "year": 2013,
+   "doi": "10.2307/j.ctt9qf068.17",
+   "arxiv": null,
+   "run_id": "2026-11-21T20-11-28Z_69c47e",
+   "rrf": 0.015873016,
+   "channels": [
+    "lixplore"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-21T20:44:11Z",
+   "last_seen": "2026-11-21T20:44:11Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-cd7cd441b7",
+   "key": "arxiv:2611.26590",
+   "title": "Probing the \"Conscious\" Mind: Selective Access and Global Workspace in Vision-Language Models",
+   "year": 2026,
+   "doi": null,
+   "arxiv": "2611.26590",
+   "run_id": "2026-11-21T20-11-28Z_69c47e",
+   "rrf": 0.015625,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-21T20:44:11Z",
+   "last_seen": "2026-11-21T20:44:11Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-60db96e88f",
+   "key": "doi:10.1117/12.2584515.6228768664001",
+   "title": "",
+   "year": null,
+   "doi": "10.1117/12.2584515.6228768664001",
+   "arxiv": null,
+   "run_id": "2026-11-21T20-11-28Z_69c47e",
+   "rrf": 0.015625,
+   "channels": [
+    "lixplore"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-21T20:44:11Z",
+   "last_seen": "2026-11-21T20:44:11Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-e5583cb2bd",
+   "key": "doi:10.1145/3447772",
+   "title": "Knowledge Graphs",
+   "year": 2021,
+   "doi": "10.1145/3447772",
+   "arxiv": null,
+   "run_id": "2026-11-21T20-11-28Z_69c47e",
+   "rrf": 0.015625,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-21T20:44:11Z",
+   "last_seen": "2026-11-21T20:44:11Z",
+   "admitted_as": null,
+   "note": ""
+  }
+ ]
+}
