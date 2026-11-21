@@ -68,7 +68,7 @@ metadata/secondary ⇒ extracted/weak + `secondary_of`.
 **Готово:** правка `rrf` без правки рангов ⇒ FAIL; два replay побайтово равны; `status: error` при
 `degraded:false` ⇒ FAIL.
 
-### U6. Кэш и бюджет — 0,5 круга
+### U6. Кэш и бюджет — ✅ сделано (цикл 389): `tools/budget.py`, леджер, кэш, `checks/budget_ledger.py` 3/3
 **Что:** кэш `sha256(endpoint + канонические параметры + версия парсера)`; `--offline` (ноль сети и ноль
 списаний); леджер **`literature/budget/openalex.jsonl`** (не `results/`); политика: предупреждение при
 остатке <20 %, пропуск OpenAlex при проекции перерасхода, остальные каналы продолжают; проверка

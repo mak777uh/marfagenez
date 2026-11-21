@@ -28,6 +28,9 @@ import re
 import subprocess
 import sys
 import tempfile
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import budget as budget_mod  # noqa: E402
 from datetime import datetime, timezone
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -148,16 +151,59 @@ def channel_openalex(query: str, n: int) -> tuple[dict, dict]:
     key = openalex_key()
     if key:
         params += "&api_key=" + key
-    cmd = [CURL, "-sS", "-L", "--compressed", "-m", "60", "-A", "litsearch/1.0", url + params]
     started = datetime.now(timezone.utc)
+
+    # A cached answer costs nothing, so it is checked before the budget: a spent day must not block a
+    # replay of a query we already ran.
+    cache_name = hashlib.sha256((url + params.replace(key or "", "")).encode("utf-8")).hexdigest()[:32]
+    cached = budget_mod.cache_get(cache_name)
+    if cached:
+        try:
+            payload = json.loads(cached["body"])
+            results = _openalex_rows(payload, n)
+            elapsed = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+            meta = {"name": "openalex", "sources": ["openalex"], "status": "ok" if results else "empty",
+                    "elapsed_ms": elapsed, "params": {"n": n, "cache_hit": True,
+                                                      "cached_at": cached.get("fetched_at")},
+                    "raw_snapshot": None, "raw_sha256": None, "results": results}
+            return meta, {"text": cached["body"]}
+        except Exception:  # noqa: BLE001
+            pass
+
+    before = budget_mod.live_budget()
+    allow, why = budget_mod.decide(before)
+    if not allow:
+        return {"name": "openalex", "status": "skipped_budget", "elapsed_ms": 0,
+                "params": {"n": n, "reason": why}, "results": []}, {}
+
+    cmd = [CURL, "-sS", "-L", "--compressed", "-m", "60", "-A", "litsearch/1.0", url + params]
     try:
         out = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
         payload = json.loads(out.stdout)
     except Exception as exc:  # noqa: BLE001
         return {"name": "openalex", "status": "error", "elapsed_ms": 0,
                 "params": {"error": str(exc)}, "results": []}, {}
+    results = _openalex_rows(payload, n)
+    status = "ok" if results else "empty"
+    elapsed = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+    budget_mod.cache_put(cache_name, out.stdout)
+    after = budget_mod.live_budget()
+    if after.get("known") and before.get("known"):
+        budget_mod.append_ledger({
+            "ts": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "endpoint": "/works", "run_id": "inline", "channel": "openalex",
+            "budget_before": before.get("daily_remaining_usd"),
+            "budget_after": after.get("daily_remaining_usd"),
+        })
+    meta = {"name": "openalex", "sources": ["openalex"], "status": status, "elapsed_ms": elapsed,
+            "params": {"n": n, "key": bool(key), "cache_hit": False}, "raw_snapshot": None,
+            "raw_sha256": None, "results": results}
+    return meta, {"text": out.stdout}
+
+
+def _openalex_rows(payload: dict, n: int) -> list[dict]:
     results = []
-    for i, work in enumerate(payload.get("results", [])[:n], start=1):
+    for i, work in enumerate((payload.get("results") or [])[:n], start=1):
         doi = (work.get("doi") or "").replace("https://doi.org/", "") or None
         results.append({"rank": i,
                         "ids": {"doi": doi, "arxiv": None,
@@ -165,12 +211,7 @@ def channel_openalex(query: str, n: int) -> tuple[dict, dict]:
                         "title": work.get("title") or "",
                         "year": work.get("publication_year"),
                         "score_raw": work.get("cited_by_count"), "score_kind": "api"})
-    status = "ok" if results else "empty"
-    elapsed = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
-    meta = {"name": "openalex", "sources": ["openalex"], "status": status, "elapsed_ms": elapsed,
-            "params": {"n": n, "key": bool(key)}, "raw_snapshot": None, "raw_sha256": None,
-            "results": results}
-    return meta, {"text": out.stdout}
+    return results
 
 
 # ---------- fusion ----------

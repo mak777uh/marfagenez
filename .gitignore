@@ -44,3 +44,6 @@ results/_verify_default.log
 # gate output, never a deliverable
 .gate.log
 .exp.log
+
+# shared HTTP cache of the search runner: derived, rebuilt on demand
+literature/cache/

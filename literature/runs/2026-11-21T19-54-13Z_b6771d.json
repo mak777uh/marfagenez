@@ -1,0 +1,724 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-21T19-54-13Z_b6771d",
+ "created_at": "2026-11-21T19:54:13Z",
+ "environment": {
+  "repo_commit": "3352ee2",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "process-enablement graphs organisational closure",
+  "lang": "en",
+  "seeds": [
+   "organisational closure",
+   "autopoiesis"
+  ],
+  "fingerprint": "99af3ad2086e4ea2"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2510,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-21T19-54-13Z_b6771d/raw/paper-search.json",
+   "raw_sha256": "3db2989af66b8ba411dcfb67ba8b9aa6c602067ab016e1c00ce0ce278401671d",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2025.105567",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Studying organisational closure in biological systems with process-enablement graphs",
+     "year": 2025,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.2307/j.ctt9qf068.17",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Comparing the four inter-organisational processes",
+     "year": 2013,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1117/12.2584515.6228768664001",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1007/978-3-319-51259-4_4",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "People Enablement for Process Execution",
+     "year": 2017,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.4324/9780203081327-31",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Enablement phase",
+     "year": 2014,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1117/12.3054365.a1e91202-a585-ef11-a9a2-005056914f1c",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1007/978-3-540-37694-1_1",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The Rehabilitation Process, ICIDH vs ICF",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.4324/9781315184760-16",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Enablement Phase",
+     "year": 2018,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 13764,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-21T19-54-13Z_b6771d/raw/lixplore.json",
+   "raw_sha256": "1197285a4cc6dd74adbbef953e8dacfebd8070c757768e2810ee61365de24e32",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2025.105567",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Studying organisational closure in biological systems with process-enablement graphs.",
+     "year": 2025,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2025.105567",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Studying organisational closure in biological systems with process-enablement graphs",
+     "year": 2025,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.2307/j.ctt9qf068.17",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Comparing the four inter-organisational processes",
+     "year": 2013,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1117/12.2584515.6228768664001",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1007/978-3-319-51259-4_4",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "People Enablement for Process Execution",
+     "year": 2017,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.4324/9780203081327-31",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Enablement phase",
+     "year": 2014,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1117/12.3054365.a1e91202-a585-ef11-a9a2-005056914f1c",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1007/978-3-540-37694-1_1",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The Rehabilitation Process, ICIDH vs ICF",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1452,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-21T19-54-13Z_b6771d/raw/openalex.json",
+   "raw_sha256": "9df2f85c57040774ebab6e3257e8ef52a9632dd3a467c2964e68977b4055874f",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2025.105567",
+      "arxiv": null,
+      "openalex": "W4414104083",
+      "pmid": null
+     },
+     "title": "Studying organisational closure in biological systems with process-enablement graphs",
+     "year": 2025,
+     "score_raw": 5,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.70675/0096008bz1c35z43c9zadcaz615cee683533",
+      "arxiv": null,
+      "openalex": "W7147338759",
+      "pmid": null
+     },
+     "title": "Semantically-enabled stream processing and complex event processing over RDF graph streams",
+     "year": 2016,
+     "score_raw": 2,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1017/nws.2015.11",
+      "arxiv": null,
+      "openalex": "W2158827914",
+      "pmid": null
+     },
+     "title": "Distance closures on complex networks",
+     "year": 2015,
+     "score_raw": 58,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1145/3447772",
+      "arxiv": null,
+      "openalex": "W3010336026",
+      "pmid": null
+     },
+     "title": "Knowledge Graphs",
+     "year": 2021,
+     "score_raw": 3810,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/j.technovation.2021.102256",
+      "arxiv": null,
+      "openalex": "W3142039076",
+      "pmid": null
+     },
+     "title": "Building digitally-enabled process innovation in the process industries: A dynamic capabilities approach",
+     "year": 2021,
+     "score_raw": 408,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1098/rsif.2025.0784",
+      "arxiv": null,
+      "openalex": "W4417422291",
+      "pmid": null
+     },
+     "title": "Closing the loop: how semantic closure enables open-ended evolution?",
+     "year": 2025,
+     "score_raw": 11,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.5282/ubm/epub.4826",
+      "arxiv": null,
+      "openalex": "W2113267093",
+      "pmid": null
+     },
+     "title": "Process Organisation and Scheduling",
+     "year": 1990,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W2132705543",
+      "pmid": null
+     },
+     "title": "Autocatalytic closure and the evolution of cellular information processing networks",
+     "year": 2009,
+     "score_raw": 0,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year",
+  "clusters": [
+   [
+    "doi:10.1007/978-3-319-51259-4_4",
+    "doi:10.1007/978-3-540-37694-1_1",
+    "doi:10.1016/j.biosystems.2025.105567",
+    "doi:10.1117/12.2584515.6228768664001",
+    "doi:10.1117/12.3054365.a1e91202-a585-ef11-a9a2-005056914f1c",
+    "doi:10.2307/j.ctt9qf068.17",
+    "doi:10.4324/9780203081327-31",
+    "doi:10.4324/9781315184760-16"
+   ],
+   [
+    "doi:10.1007/978-3-319-51259-4_4",
+    "doi:10.1007/978-3-540-37694-1_1",
+    "doi:10.1016/j.biosystems.2025.105567",
+    "doi:10.1117/12.2584515.6228768664001",
+    "doi:10.1117/12.3054365.a1e91202-a585-ef11-a9a2-005056914f1c",
+    "doi:10.2307/j.ctt9qf068.17",
+    "doi:10.4324/9780203081327-31"
+   ],
+   [
+    "doi:10.1016/j.biosystems.2025.105567",
+    "doi:10.1016/j.technovation.2021.102256",
+    "doi:10.1017/nws.2015.11",
+    "doi:10.1098/rsif.2025.0784",
+    "doi:10.1145/3447772",
+    "doi:10.5282/ubm/epub.4826",
+    "doi:10.70675/0096008bz1c35z43c9zadcaz615cee683533",
+    "title:autocatalytic closure and the evolution of cellular information processing networks#2009"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.1016/j.biosystems.2025.105567",
+    "rrf": 0.049180328,
+    "ranks": {
+     "paper-search": 1,
+     "lixplore": 1,
+     "openalex": 1
+    },
+    "channels": [
+     "lixplore",
+     "openalex",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.2307/j.ctt9qf068.17",
+    "rrf": 0.032002048,
+    "ranks": {
+     "paper-search": 2,
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1117/12.2584515.6228768664001",
+    "rrf": 0.031498016,
+    "ranks": {
+     "paper-search": 3,
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-3-319-51259-4_4",
+    "rrf": 0.031009615,
+    "ranks": {
+     "paper-search": 4,
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.4324/9780203081327-31",
+    "rrf": 0.030536131,
+    "ranks": {
+     "paper-search": 5,
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1117/12.3054365.a1e91202-a585-ef11-a9a2-005056914f1c",
+    "rrf": 0.030076888,
+    "ranks": {
+     "paper-search": 6,
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-3-540-37694-1_1",
+    "rrf": 0.029631255,
+    "ranks": {
+     "paper-search": 7,
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.70675/0096008bz1c35z43c9zadcaz615cee683533",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1017/nws.2015.11",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1145/3447772",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.technovation.2021.102256",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1098/rsif.2025.0784",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.5282/ubm/epub.4826",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.4324/9781315184760-16",
+    "rrf": 0.014705882,
+    "ranks": {
+     "paper-search": 8
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "title:autocatalytic closure and the evolution of cellular information processing networks#2009",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.1016/j.biosystems.2025.105567",
+   "doi": "10.1016/j.biosystems.2025.105567",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Studying organisational closure in biological systems with process-enablement graphs",
+   "year": 2025
+  },
+  {
+   "key": "doi:10.2307/j.ctt9qf068.17",
+   "doi": "10.2307/j.ctt9qf068.17",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Comparing the four inter-organisational processes",
+   "year": 2013
+  },
+  {
+   "key": "doi:10.1117/12.2584515.6228768664001",
+   "doi": "10.1117/12.2584515.6228768664001",
+   "arxiv": null,
+   "openalex": null,
+   "title": "",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1007/978-3-319-51259-4_4",
+   "doi": "10.1007/978-3-319-51259-4_4",
+   "arxiv": null,
+   "openalex": null,
+   "title": "People Enablement for Process Execution",
+   "year": 2017
+  },
+  {
+   "key": "doi:10.4324/9780203081327-31",
+   "doi": "10.4324/9780203081327-31",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Enablement phase",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.1117/12.3054365.a1e91202-a585-ef11-a9a2-005056914f1c",
+   "doi": "10.1117/12.3054365.a1e91202-a585-ef11-a9a2-005056914f1c",
+   "arxiv": null,
+   "openalex": null,
+   "title": "",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1007/978-3-540-37694-1_1",
+   "doi": "10.1007/978-3-540-37694-1_1",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The Rehabilitation Process, ICIDH vs ICF",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.4324/9781315184760-16",
+   "doi": "10.4324/9781315184760-16",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Enablement Phase",
+   "year": 2018
+  },
+  {
+   "key": "doi:10.70675/0096008bz1c35z43c9zadcaz615cee683533",
+   "doi": "10.70675/0096008bz1c35z43c9zadcaz615cee683533",
+   "arxiv": null,
+   "openalex": "W7147338759",
+   "title": "Semantically-enabled stream processing and complex event processing over RDF graph streams",
+   "year": 2016
+  },
+  {
+   "key": "doi:10.1017/nws.2015.11",
+   "doi": "10.1017/nws.2015.11",
+   "arxiv": null,
+   "openalex": "W2158827914",
+   "title": "Distance closures on complex networks",
+   "year": 2015
+  },
+  {
+   "key": "doi:10.1145/3447772",
+   "doi": "10.1145/3447772",
+   "arxiv": null,
+   "openalex": "W3010336026",
+   "title": "Knowledge Graphs",
+   "year": 2021
+  },
+  {
+   "key": "doi:10.1016/j.technovation.2021.102256",
+   "doi": "10.1016/j.technovation.2021.102256",
+   "arxiv": null,
+   "openalex": "W3142039076",
+   "title": "Building digitally-enabled process innovation in the process industries: A dynamic capabilities approach",
+   "year": 2021
+  },
+  {
+   "key": "doi:10.1098/rsif.2025.0784",
+   "doi": "10.1098/rsif.2025.0784",
+   "arxiv": null,
+   "openalex": "W4417422291",
+   "title": "Closing the loop: how semantic closure enables open-ended evolution?",
+   "year": 2025
+  },
+  {
+   "key": "doi:10.5282/ubm/epub.4826",
+   "doi": "10.5282/ubm/epub.4826",
+   "arxiv": null,
+   "openalex": "W2113267093",
+   "title": "Process Organisation and Scheduling",
+   "year": 1990
+  },
+  {
+   "key": "title:autocatalytic closure and the evolution of cellular information processing networks#2009",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W2132705543",
+   "title": "Autocatalytic closure and the evolution of cellular information processing networks",
+   "year": 2009
+  }
+ ]
+}

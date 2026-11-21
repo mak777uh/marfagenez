@@ -192,6 +192,9 @@ do_exp() {
   python3 checks/goal_features.py || rc=$?
   echo "--- finding_elephant_line.py ---"
   python3 checks/finding_elephant_line.py || rc=$?
+  echo "--- budget_ledger.py ---"
+  # Леджер бюджета: офлайн, без сети; ключ не должен попасть в коммит.
+  python3 checks/budget_ledger.py || rc=$?
   echo "--- litsearch_contract.py ---"
   # Снимок поиска: ранги — истина, дедуп и RRF пересчитываются офлайн.
   python3 checks/litsearch_contract.py || rc=$?
