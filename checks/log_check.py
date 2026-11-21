@@ -405,10 +405,24 @@ def log_drift() -> list[str]:
     path = ROOT / LOG
     if not path.exists():
         return [f"{LOG}: нет файла журнала"]
-    nums = cycles_in_log(path.read_text(encoding="utf-8"))
-    if nums != list(range(1, len(nums) + 1)):
+    raw = path.read_text(encoding="utf-8")
+    nums = cycles_in_log(raw)
+    # A fence that never closes turns the whole journal into one code block, and an empty list of
+    # cycles passes every numbering rule: that is a check that cannot fail. Name it instead.
+    if not nums and raw.count("```") % 2 == 1:
+        out.append(f"{LOG}: незакрытый блок ``` — заголовки циклов не разобраны")
+    # A duplicate number is the failure mode this check missed once: 367 headings on 359 cycles passed
+    # as long as the length still happened to line up. Name it separately from a gap, and name the
+    # out-of-order case too, so the repair is obvious from the message.
+    unique = sorted(set(nums))
+    dupes = sorted({n for n in nums if nums.count(n) > 1})
+    if dupes:
+        out.append(f"{LOG}: повторяющиеся номера циклов: {dupes[:8]}{'...' if len(dupes) > 8 else ''}")
+    if nums != unique:
+        out.append(f"{LOG}: циклы идут не по порядку: {nums[:8]}{'...' if len(nums) > 8 else ''}")
+    if unique != list(range(1, len(unique) + 1)):
         out.append(
-            f"{LOG}: нумерация циклов {nums[:8]}{'...' if len(nums) > 8 else ''}, "
+            f"{LOG}: нумерация циклов {unique[:8]}{'...' if len(unique) > 8 else ''}, "
             f"ожидалось 1..{len(nums)}"
         )
     backlog = commits_since_log()
