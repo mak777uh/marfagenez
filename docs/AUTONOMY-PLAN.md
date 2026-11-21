@@ -259,7 +259,7 @@ VGG/CLIP, spectral), градиентах, `torchdiffeq`, `jax.jit/vmap`, `cudnn
       `FINDING-325`; «стирание цены на потолке» закрыто тестом `core/tests/cap_erasure.rs`, `FINDING-329`.
 - **4e (готово в двух частях):** (1) контракты «off position» — `core/tests/off_positions.rs`, `FINDING-326`;
       (2) стоячий список утверждений об отсутствии — `checks/doc_absences.py`, 33 пункта, `FINDING-330`.
-      Осталось: пройти 33 пункта с тремя исходами (тест / тип / править), начав с `field.rs`, `organism.rs`.
+      Пройдены: `docs/DOC-ABSENCES-AUDIT.md` — 5 о коде (все верны), 28 об измерении; `FINDING-332`. Осталось: перечитать 28 обоснований на неполноту.
 - **4d (17a готово):** изотропия комнаты — `core/tests/room_isotropy.rs` (4 теста), `FINDING-328`;
       осталось 17b (повреждение формы) и 17c (фазовая диаграмма).
 

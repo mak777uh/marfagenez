@@ -34,6 +34,20 @@ PATTERNS = [
 ]
 ABSENCE = re.compile("|".join(PATTERNS), re.IGNORECASE)
 
+# Two different kinds of sentence, and only the first one needs a test against the code.
+# A **feature** claim says the code does not do a thing; a **design** claim says why a measurement or a
+# comparison is impossible (the trace must record X, otherwise arms cannot be compared). Auditing them
+# with one rule is how "cannot be compared" ends up treated as a missing feature.
+FEATURE = re.compile(
+    r"not implemented|no (?:gene|inheritance|variation|support|effect)|never (?:used|stored|read|cleared|reset)|"
+    r"is ignored|has no effect|does not (?:exist|happen|store|read)",
+    re.IGNORECASE,
+)
+
+
+def kind(text):
+    return "feature" if FEATURE.search(text) else "design"
+
 # A claim is "pinned" when a test file mentions the feature keyword. Deliberately coarse: the script is a
 # watchlist, not a proof.
 PIN_HINTS = {
@@ -61,15 +75,17 @@ def main(argv):
         print(len(found))
         return 0
     by_file = {}
+    kinds = {"feature": 0, "design": 0}
     for f, i, text in found:
-        by_file.setdefault(f, []).append((i, text))
+        by_file.setdefault(f, []).append((i, text, kind(text)))
+        kinds[kind(text)] += 1
     print("утверждений об отсутствии в докбуках core/: " + str(len(found)))
     unpinned = 0
     hinted = 0
     for f, rows in sorted(by_file.items()):
         print()
         print(f)
-        for i, text in rows:
+        for i, text, k in rows:
             hint = ""
             low = text.lower()
             for key, tests in PIN_HINTS.items():
@@ -83,8 +99,10 @@ def main(argv):
                     else:
                         hinted += 1
                     break
-            print("  %4d  %s%s" % (i, text[:120], hint))
+            print("  %4d  [%s] %s%s" % (i, k, text[:110], hint))
     print()
+    print("по смыслу: заявление о возможности — " + str(kinds["feature"]) +
+          " · про измерение/сравнение — " + str(kinds["design"]))
     print("подсказка есть у " + str(hinted) + " из " + str(len(found)) +
           " · утверждений без подсказки: " + str(len(found) - hinted - unpinned))
     print("«Рядом тест» значит только, что в тестах есть ключевое слово: проверять всё равно человеку.")
