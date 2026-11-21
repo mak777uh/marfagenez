@@ -197,7 +197,7 @@ wsl -e bash /root/marfagenez/run.sh all
 
 | судящая проверка | что решает |
 |---|---|
-| `cargo test --release` | 378 тестов Rust |
+| `cargo test --release` | 381 тест Rust |
 | `lake build` | 318 теорем в 63 файлах с теоремами (64 `.lean` всего: один — FFI без теорем) |
 | `checks/contract.py` | каждый результат по контракту: `fires`, `silent`, `specific`, `hashes` |
 | `checks/exp_division_threshold.py` | порог разделения через поток: пять плеч, три контроля, объявленные совпадения хэшей |
