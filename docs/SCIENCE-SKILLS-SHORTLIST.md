@@ -198,7 +198,7 @@ L-060, 81 691 байт в `papers/`), PMC (полный текст Chao 2010), C
 | `database-lookup` | `...\skills\database-lookup` | 83 (80 `references/`) | есть |
 | `literature-review` | `...\skills\literature-review` | 12 | есть |
 
-Ставились **не клоном**, а по списку файлов из GitHub API (`trees/main?recursive=1`, 3 497 записей), 119 файлов,
+Ставились **не клоном**, а по списку файлов из GitHub API (`trees/main?recursive=1`, 3 497 записей), скачано 119 объектов,
 `ok=119 fail=0`. Причина: tarball репозитория — **244,7 МБ** (картинки в `docs/`), и `curl` оборвал загрузку на
 180-й секунде (52,8 МБ). Клон через git в этом окружении тоже ненадёжен (TLS-рукопожатие). После установки
 каталог навыков в сессии обновился сам — `paper-lookup`, `database-lookup`, `literature-review` видны.
@@ -255,7 +255,7 @@ with process-enablement graphs», *BioSystems* (2025), DOI `10.1016/j.biosystems
 
 ### 10.1 `database-lookup` — это **каталог**, а не код
 
-Внутри 82 файла `references/`, скриптов нет. Проверено содержимое: **82 предметных базы**, среди них `geo`, `ena`,
+Внутри только `references/`, скриптов нет: восемьдесят два справочника. Проверено содержимое: **82 предметных базы**, среди них `geo`, `ena`,
 `pride`, `sra`, `pdb`, `uniprot`, `chembl`, `pubchem`, `clinicaltrials`, `gwas-catalog`, `gnomad`, `reactome`,
 `string`, `ncbi-gene`, `ncbi-protein`, `ncbi-taxonomy`, `metabolomics-workbench`, `hca`, `monarch`, `opentargets`,
 `alphafold`, `fred`, `sec-edgar`, `worldbank`, `who`, `nasa`, `noaa`, `usgs`, `census`, `eurostat`, `bea`, `bls`.
