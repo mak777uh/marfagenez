@@ -293,6 +293,93 @@ with process-enablement graphs», *BioSystems* (2025), DOI `10.1016/j.biosystems
 | Semantic Scholar | ❌ 403 без ключа | ждёт ключа |
 | ORKG | ❌ DNS | недоступен |
 
+---
+
+## 11. Вторая партия: 26+ инструментов, проверка 2026-11-21
+
+Прогон: `curl` из Windows, `-m 25…30`, `-L --compressed`. Для репозиториев — GitHub API, для сайтов — главная
+страница, для API — живой запрос.
+
+### 11.1 Репозитории — отвечают все 20 (200 за 0,5–1,1 с)
+
+`ekjaisal/LitSift` · `JabRef/jabref` · `Future-Scholars/paperlib` · `docxology/literature` · `paperseek/paperseek` ·
+`NLeSC/litstudy` · `bpc-oss/litkit-search` · `pryndor/Lixplore_cli` · `sjarmak/scix-agent` · `lstudlo/ScholarMCP` ·
+`surendranb/find-research-papers-mcp` · `Liyux3/scholar-mcp` · `dr-dumpling/paper-search-cli` ·
+`DavidEncrypted/openalex-mcp-server` · `bytedance/pasa` · `O0000-code/awesome-academic-skills` ·
+`chrisliu298/awesome-research-agents` · `brycewang-stanford/lit-review-agent-tools` · `TnTo/awesome-research` ·
+`0x11c11e/awesome-ai-research-tools`.
+
+Наличие репозитория — не работоспособность: ниже проверены API, от которых они зависят.
+
+### 11.2 Сайты
+
+| сайт | код | что это значит |
+|---|---|---|
+| ResearchRabbit | 200 | SPA, работает в браузере; API для агента нет |
+| Connected Papers | 200 | граф сходства, только веб |
+| Litmaps | 200 | только веб |
+| Inciteful | 200 | только веб |
+| Open Knowledge Maps | 200 | только веб (кластеры по запросу) |
+| Undermind | 200 | только веб (платный по сути) |
+| Elicit | 200 | только веб, аккаунт |
+| Consensus | 200 | только веб, аккаунт |
+| scite | **403** | блокирует curl (Cloudflare) |
+| SciSpace | **403** | блокирует curl |
+| Semantic Scholar | 200 | сайт открыт, **API — 403** без ключа |
+| The Lens | 200 (20,8 с) | медленно, только веб |
+| Dimensions | 200 | только веб |
+| Google Scholar | 200 (9,1 с) | HTML отдаётся, но это скрейпинг и нарушение ToS — не строим |
+| CORE | 200 | сайт открыт; **API — TLS-обрыв** и нужен ключ |
+| BASE | 200 | **API: `Access denied for IP`** — нужна регистрация IP |
+| PubMed / Europe PMC / dblp / arXiv / OpenReview / bioRxiv / medRxiv / HAL / ERIC / Scilit | 200 (HAL и Scilit — 403 на curl) | источники, не инструменты |
+| Internet Archive Scholar | 200 | открыт; API `api.fatcat.wiki` **не отвечает** |
+| arXivLens, Keenious, VOSviewer | 200 | только веб/GUI |
+
+### 11.3 API — что агент действительно может звать
+
+| API | код | вердикт |
+|---|---|---|
+| **OpenReview v2** (`api2.openreview.net/notes/search`) | **200**, 9 КБ | **новый рабочий источник**: препринты + рецензии, ссылки на PDF |
+| **ERIC** (`api.ies.ed.gov/eric/`) | **200**, `numFound 7033` | **новый рабочий источник**: педагогика/образование |
+| **Unpaywall** (`api.unpaywall.org/v2/<doi>?email=…`) | **200**, 3,7 КБ | работает; вернул OA-локацию с `license: cc-by`. Документация навыка говорит, что заглушки вроде `probe@example.org` дают 422 — **на деле 200**, но на заглушку полагаться нельзя |
+| OpenAlex (+ключ), Crossref, arXiv, PubMed, Europe PMC, DOAJ, dblp, DataCite, Zenodo, Figshare, OpenCitations, OpenAIRE, SemOpenAlex SPARQL, BioStudies, ROR, HF Hub | 200 | уже в работе |
+| CORE API | TLS-обрыв + нужен ключ | не берём |
+| BASE API | `Access denied for IP` | не берём без регистрации |
+| Semantic Scholar API | **403** | ждёт бесплатного ключа |
+| NASA ADS API | таймаут (и нужен токен) | не берём |
+| Dimensions | 202, пусто | только веб |
+| Inciteful «API» | отдаёт HTML | API нет |
+| fatcat | не соединяется | недоступен |
+
+### 11.4 PyPI — что вообще существует
+
+`scimesh` ✅, `mosaic-search` ✅, `litstudy` ✅, `paperseek` ✅ — пакеты есть; `lixplore` ❌ (только репозиторий).
+
+### 11.5 Классификация по пригодности для агента
+
+| класс | инструменты | что делаем |
+|---|---|---|
+| **API/CLI/MCP — можно ставить** | `paperseek` (CLI/MCP, мультибаза), `litkit-search` (CLI, 25+ источников), `Lixplore_cli` (PubMed/arXiv/Crossref/DOAJ/Europe PMC), `mosaic-search` (20 источников), `scimesh` (библиотека), `docxology/literature` (Python), `scix-agent` (MCP над ADS — без токена не взлетит), `ScholarMCP`, `find-research-papers-mcp`, `scholar-mcp`, `paper-search-cli`, `openalex-mcp-server`, `bytedance/pasa` | ставить по одному, начиная с тех, что не требуют ключей |
+| **Веб-интерфейс — только фетч страницы** | ResearchRabbit, Connected Papers, Litmaps, Inciteful, Open Knowledge Maps, Undermind, Elicit, Consensus, Lens, Dimensions | не автоматизируем, берём идею (citation traversal) и делаем через OpenAlex/OpenCitations |
+| **GUI для человека** | JabRef, Paperlib, VOSviewer, LitSift (desktop к S2) | не ставим в агент; LitSift бесполезен без ключа S2 |
+| **Заблокировано** | scite, SciSpace, CORE API, BASE API, ADS, fatcat | отложить |
+| **Каталоги** | `awesome-academic-skills`, `awesome-research-agents`, `lit-review-agent-tools`, `awesome-research`, `awesome-ai-research-tools` | читать как список, не устанавливать целиком |
+
+### 11.6 Очередь установки (следующий круг)
+
+1. `paperseek` — заявлены мультибаза, citation expansion и MCP; проверить, что живёт без ключей.
+2. `litkit-search` — CLI на 25+ источников; проверить дедуп и экспорт.
+3. `Lixplore_cli` — самый узкий и предсказуемый набор (5 баз).
+4. `mosaic-search`, `scimesh` — библиотеки; смотреть только если CLI-варианты не дадут покрытия.
+5. `ScholarMCP` / `find-research-papers-mcp` — если MCP-путь в DSH окажется проще, чем CLI.
+
+### 11.7 Главный вывод по второй партии
+
+**Ни один из 26 инструментов не даёт того, чего нет у нас сейчас** — кроме трёх API, которые мы ещё не
+использовали: **OpenReview, ERIC, Unpaywall**. Остальное — либо интерфейсы над теми же индексами (OpenAlex,
+Crossref, S2), либо GUI. Это подтверждает тезис присланного обзора: важен не инструмент, а **независимость
+каналов** — а независимые здесь ровно те, что мы уже подключили, плюс эти три.
+
 ## 7. Риски, записанные заранее
 
 - **Skill = исполняемый код.** Читать `scripts/` перед запуском; пинить коммиты; не давать сетевые ключи.

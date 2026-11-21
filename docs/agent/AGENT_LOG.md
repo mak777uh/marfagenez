@@ -4898,3 +4898,17 @@ verified; `contract.py` — 386 записей, 0 нарушений; `log_check
   Пересобрано: `python3 kg/migrate.py && python3 kg/kg.py build` — 560 узлов, `regress` подтвердил совпадение.
 - **Урок про гейт:** «раздел exp провален» не значит «эксперимент провален». Смотреть, какой скрипт вернул
   ненулевой код, а не последний напечатанный вердикт.
+
+### Цикл 370 — 2026-11-21 — `8a32072`: вторая партия из 26 инструментов проверена
+
+- **Репозитории:** все 20 отвечают 200 (LitSift, JabRef, Paperlib, docxology/literature, paperseek, litstudy,
+  litkit-search, Lixplore_cli, scix-agent, ScholarMCP, paper-search-cli, awesome-каталоги и др.).
+- **Сайты:** ResearchRabbit, Connected Papers, Litmaps, Inciteful, OKMaps, Undermind, Elicit, Consensus, Lens,
+  Dimensions — 200, но только веб; scite и SciSpace — 403; Google Scholar отдаёт HTML, но это скрейпинг.
+- **Новые рабочие API:** OpenReview v2 (200, 9 КБ, препринты+рецензии), ERIC (200, `numFound 7033`),
+  Unpaywall (200, OA-локация с лицензией; заглушка email на деле проходит, вопреки документации навыка).
+- **Заблокировано:** CORE API (TLS+ключ), BASE API (`Access denied for IP`), Semantic Scholar (403),
+  NASA ADS (таймаут+токен), fatcat (не соединяется), Inciteful API (отдаёт HTML).
+- **PyPI:** scimesh, mosaic-search, litstudy, paperseek есть; lixplore — только репозиторий.
+- **Вывод:** ни один из 26 не даёт нового покрытия, кроме трёх API; важна независимость каналов, а не число
+  интерфейсов. Очередь установки — в `docs/SCIENCE-SKILLS-SHORTLIST.md` §11.6.
