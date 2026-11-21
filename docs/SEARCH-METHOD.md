@@ -94,3 +94,31 @@
 
 Если хоть один канал деградировал — это «неполно», а не «насыщено». Решение об остановке принимает
 агент/владелец датированной записью; метрика — только триггер проверки, не автостоп.
+
+## Очередь поисковых линий (2026-11-21, из внешней научной сверки)
+
+Порядок — от самой вероятной пустоты к самой проверяемой:
+
+1. membrane damage repair energy budget protocell model — цена и восстановление границы;
+2. protocell membrane damage inheritance division model — передача повреждения оболочки;
+3. coupled membrane integrity metabolism viability mathematical model — связь целостности и метаболизма;
+4. repair capacity degradation damage feedback mathematical model — ремонт второго порядка;
+5. organizational closure constraint production repair quantitative model — формальный критерий замыкания;
+6. protocell boundary maintenance resource exchange failure threshold — порог отказа оболочки;
+7. minimal cell viability boundary maintenance inherited damage;
+8. repair closure perturbation test artificial life model — операциональный критерий самоподдержания.
+
+## Что искать не надо (найдено и учтено)
+
+Записи `L-089`–`L-092` закрывают четыре направления из этого списка как **занятые**:
+
+| запись | работа | уровень |
+|---|---|---|
+| `L-089` | Minimal Conditions for Protocell Stationary Growth (2015, `10.1162/artl_a_00165`) | аннотация |
+| `L-090` | The «protocell»: A mathematical model of self-maintenance (1986, `10.1016/0303-2647(86)90008-0`) | метаданные |
+| `L-091` | Synergistic effects of repair, resilience and retention of damage… (2020, `10.1038/s41598-020-58444-2`) | аннотация |
+| `L-092` | Balance between asymmetric allocation and repair of somatic damage… (2024, `10.1073/pnas.2400008121`) | аннотация |
+
+**Незанятым остаётся узкое пересечение:** модель, где организация оплачивает сохранение собственной границы,
+повреждение влияет на её способность поддерживать себя, и это передаётся через воспроизводство. Это и есть
+формулировка разрыва, которую надо проверять, а не заявлять.

@@ -5085,3 +5085,183 @@ MODES:                   набор из нескольких метрик ди�
 | 2026-11-20 | **круг кампании 001**: `L-051`…`L-054`, `F-019`; порог `Πλ = 1/6` подтверждён локатором; найдены протоклетки с асимметричным делением (2024) и стохастическая модель старения (2019) |
 | 2026-11-20 | **третий обзор (сетевой разбор очереди)**: добавлены `L-038`…`L-050`, `F-013`…`F-018`; опровергнут закон `1/(m+1)`, порог переклассифицирован в **полюс**; см. `docs/SYNTHESIS-2026-11-20.md` |
 | 2026-11-20 | **второй обзор**: добавлены `L-023`…`L-037`, формулы `F-006`…`F-012`; снят кандидат на новизну `√`; §D переписан — главный пробел теперь **сшивка повреждения и границы** |
+
+### L-089 · Minimal Conditions for Protocell Stationary Growth
+
+```json
+{
+ "L": "L-089",
+ "locator": {
+  "doi": "10.1162/artl_a_00165",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W1941562954",
+  "pmid": null,
+  "url": "https://doi.org/10.1162/artl_a_00165",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-21T21:55:49Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1162/artl_a_00165"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": "b73cd7168aa7f06fdaeaf53b2c2ca5a1fca6ef64294ca7a3e8a7a58f2077c29c",
+ "bibliographic": {
+  "title": "Minimal Conditions for Protocell Stationary Growth",
+  "year": 2015,
+  "first_author": "Erwan Bigan"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Minimal Conditions for Protocell Stationary Growth (2015). Erwan Bigan; Jean‐Marc Steyaert; Stéphane Douady
+**Ссылка.** https://doi.org/10.1162/artl_a_00165
+**Проверено.** **аннотация** OpenAlex, 2026-11-21T21:55:49Z, отпечаток есть; фрагмент не читался.
+**Утверждение.** минимальные условия стационарного роста протоклетки: топологическое условие на химическую сеть, а не баланс энергии
+**Что даёт нам.** — (суждение не сделано).
+
+### L-090 · The “protocell”: A mathematical model of self-maintenance
+
+```json
+{
+ "L": "L-090",
+ "locator": {
+  "doi": "10.1016/0303-2647(86)90008-0",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2004037730",
+  "pmid": null,
+  "url": "https://doi.org/10.1016/0303-2647(86)90008-0",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-21T21:55:49Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/0303-2647(86)90008-0"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "The “protocell”: A mathematical model of self-maintenance",
+  "year": 1986,
+  "first_author": "Helmut Schwegler"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** The “protocell”: A mathematical model of self-maintenance (1986). Helmut Schwegler; Kazuaki Tarumi
+**Ссылка.** https://doi.org/10.1016/0303-2647(86)90008-0
+**Проверено.** **метаданные** OpenAlex, 2026-11-21T21:55:49Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** самоподдержание протоклетки как динамика с подвижной границей и обратной связью, а не арифметическое условие
+**Что даёт нам.** — (суждение не сделано).
+
+### L-091 · Synergistic effects of repair, resilience and retention of damage determine the conditions for replicative ageing
+
+```json
+{
+ "L": "L-091",
+ "locator": {
+  "doi": "10.1038/s41598-020-58444-2",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W3003628019",
+  "pmid": null,
+  "url": "https://doi.org/10.1038/s41598-020-58444-2",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-21T21:55:50Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1038/s41598-020-58444-2"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": "c9aa631adffeebb8170948f9230784453c1b168f2a4e5d088b30febf3044ee1d",
+ "bibliographic": {
+  "title": "Synergistic effects of repair, resilience and retention of damage determine the conditions for replicative ageing",
+  "year": 2020,
+  "first_author": "Johannes Borgqvist"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Synergistic effects of repair, resilience and retention of damage determine the conditions for replicative ageing (2020). Johannes Borgqvist; Niek Welkenhuysen; Marija Cvijović
+**Ссылка.** https://doi.org/10.1038/s41598-020-58444-2
+**Проверено.** **аннотация** OpenAlex, 2026-11-21T21:55:50Z, отпечаток есть; фрагмент не читался.
+**Утверждение.** ремонт, устойчивость и удержание повреждения одновременно определяют условия репликативного старения
+**Что даёт нам.** — (суждение не сделано).
+
+### L-092 · Balance between asymmetric allocation and repair of somatic damage in unicellular life forms as an ancient form of r/K selection
+
+```json
+{
+ "L": "L-092",
+ "locator": {
+  "doi": "10.1073/pnas.2400008121",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W4398794048",
+  "pmid": null,
+  "url": "https://doi.org/10.1073/pnas.2400008121",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-21T21:55:51Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1073/pnas.2400008121"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": "ebabcff3082d5b89ad953d89a0f66a54e364de056ba8b01e029cb7a08ff6c842",
+ "bibliographic": {
+  "title": "Balance between asymmetric allocation and repair of somatic damage in unicellular life forms as an ancient form of r/K selection",
+  "year": 2024,
+  "first_author": "Dmitry Biba"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Balance between asymmetric allocation and repair of somatic damage in unicellular life forms as an ancient form of r/K selection (2024). Dmitry Biba; Yuri I. Wolf; Eugene V. Koonin; Nash D. Rochman
+**Ссылка.** https://doi.org/10.1073/pnas.2400008121
+**Проверено.** **аннотация** OpenAlex, 2026-11-21T21:55:51Z, отпечаток есть; фрагмент не читался.
+**Утверждение.** компромисс между асимметричным распределением повреждения и его ремонтом как стратегия популяции
+**Что даёт нам.** — (суждение не сделано).

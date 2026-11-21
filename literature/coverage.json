@@ -1,12 +1,13 @@
 {
- "records": 88,
- "sections": 88,
+ "records": 92,
+ "sections": 92,
  "by_level": {
-  "abstract_read": 43,
+  "abstract_read": 46,
   "full_text_examined": 1,
+  "metadata_only": 1,
   "secondary_only": 44
  },
- "with_locator": 50,
+ "with_locator": 54,
  "without_locator": 38,
  "without_locator_ids": [
   "L-002",
@@ -49,7 +50,7 @@
   "L-050"
  ],
  "with_artifact": 1,
- "with_abstract_sha256": 0,
+ "with_abstract_sha256": 3,
  "legacy": 88,
  "downgraded": [
   "L-007",
