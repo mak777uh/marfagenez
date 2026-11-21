@@ -4924,3 +4924,14 @@ verified; `contract.py` — 386 записей, 0 нарушений; `log_check
 - **Закрыто:** ACM DL (403 Cloudflare), Scilit (403), RetractionWatch WP-API (403 — заменяем Crossref-фильтром).
 - **Слои стека:** 1,3,4 закрыты полностью; 2 — без эмбеддингов; 5 — частично; 6 — через `verify_citations.py` и
   retraction-фильтр. Осталось поставить CLI/MCP-кандидатов (PaperSeek, Litkit, paper-search-mcp и др.).
+
+### Цикл 372 — 2026-11-21 — `a223e1e`: стек отобран и внедрён в процесс литературы
+
+- **Установлено 10 CLI** в `~/.dsh/tools/sci-venv` (pip, ~20 мин).
+- **Работают:** `paper-search` (4,0 с; 4 источника; дедуп 5→4; топ-1 верный), `lixplore` (4,6 с; 5 баз; 7
+  результатов), `mosaic` (5,8 с; таблица с OA/PDF, но шумная выдача), `scholar-mcp` (YAML+цитаты, слабая
+  релевантность), `paper-search-mcp`, `academic-mcp`, `scimesh`.
+- **Не работают:** `litstudy` (ImportError `bibtexparser.latexenc`), `litkit` (нет точки входа),
+  `paperseek` (агентный режим требует LLM-ключа).
+- **Отобрано в процесс:** `docs/SCIENCE-STACK.md` — шесть каналов, порядок из девяти шагов, список
+  отвергнутого с причинами, где лежат ключи. `docs/SEARCH-METHOD.md` теперь ссылается на стек.

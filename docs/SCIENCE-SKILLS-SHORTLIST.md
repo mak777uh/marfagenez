@@ -441,6 +441,46 @@ OpenCitations — не «301/timeout», как в первом прогоне, �
 сервисы. Число инструментов не заменяет независимость каналов: у нас теперь независимы **12 источников**,
 и это больше, чем даёт любая из присланных обёрток.
 
+---
+
+## 13. Установка всех CLI — что реально работает (2026-11-21)
+
+Окружение: `C:\Users\Admin\.dsh\tools\sci-venv` (Python 3.13). Ставились через `pip` по одному,
+установка суммарно ~20 минут (самые тяжёлые — `scimesh` и `litstudy`, ~5 мин каждый).
+
+### 13.1 Живой поиск, один и тот же запрос
+
+запрос: `process-enablement graphs organisational closure`
+
+| инструмент | команда | время | результат |
+|---|---|---|---|
+| **paper-search** | `paper-search search "<q>" -s arxiv,openalex,crossref,pubmed -n 2` | **4,0 с** | 4 источника, дедуп 5→4, **топ-1 = нужная статья** (BioSystems 2025, DOI); OpenAlex отдал 503 — обработано без падения |
+| **lixplore** | `lixplore -A -q "<q>" -m 2` | **4,6 с** | 5 источников (PubMed, Crossref, DOAJ, EuropePMC, arXiv), 7 результатов, **топ-1 = нужная статья**, дубли помечены |
+| **mosaic** | `mosaic search "<q>" -n 2` | **5,8 с** | таблица с колонками OA/PDF; нужная статья есть (#3, #5), но релевантность смешана (Zenodo-мусор выше) |
+| **scholar-mcp** | `scholar-mcp search "<q>"` | ~10 с | YAML: заголовок, авторы, год, venue, цитаты, абстракт; **релевантность плохая** (первым «thematic analysis») |
+| **paperseek** | `paperseek sources` | 0,8 с | список источников и параметров работает; **агентный поиск требует LLM-ключа** (`--llm-provider/--llm-key`) — без него не запускается |
+| **academic-mcp** | `academic-mcp --help` | 4,7 с | 18 источников, но при старте честно пишет, какие ключи не заданы (ScienceDirect, Springer, IEEE, Scopus, WoS, CORE) |
+| **paper-search-mcp** | `paper-search-mcp --help` | 2,4 с | MCP-сервер, предупреждает про CORE/DOAJ/Unpaywall |
+| **scimesh** | `import scimesh` | 0,6 с | библиотека импортируется |
+| **litstudy** | `import litstudy` | **1,1 с, падает** | `ImportError`: `bibtexparser.latexenc` — несовместимость зависимостей |
+| **litkit** | `import litkit` | 0,1 с | импортируется; точки входа CLI нет (`python -m litkit` не отвечает на `--help`) |
+
+### 13.2 Итог по 10 установленным
+
+| статус | инструменты |
+|---|---|
+| **годны в работу** | `paper-search` (быстрый, точный, дедуп), `lixplore` (5 баз, экспорт, дедуп), `mosaic` (OA/PDF-колонка, но шумно) |
+| **годны как MCP/библиотека** | `scholar-mcp` (YAML+цитаты; релевантность слабая), `paper-search-mcp`, `academic-mcp`, `scimesh` |
+| **нужен ключ** | `paperseek` (LLM) |
+| **сломаны** | `litstudy` (зависимости) |
+| **без точки входа** | `litkit` |
+
+### 13.3 Что выбрано для процесса (см. `docs/SCIENCE-STACK.md`)
+
+Основной канал — `paper-search`; широкий охват — `lixplore`; таблица с OA/PDF — `mosaic` как разовый;
+полный текст — `paper-lookup`-скрипты (`jats_to_text.py`, `arxiv_atom.py`, `openalex_abstract.py`);
+проверка — `verify_citations.py`; семантика — OpenAlex `search`/`fulltext.search` (эмбеддинги ждут ключа S2).
+
 ## 7. Риски, записанные заранее
 
 - **Skill = исполняемый код.** Читать `scripts/` перед запуском; пинить коммиты; не давать сетевые ключи.
