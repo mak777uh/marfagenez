@@ -37,9 +37,16 @@
 //! it: `birth_threshold` (`INFINITY` = never), `birth_cost` (`0.0`) and
 //! `max_population` (`0` = no births). See `docs/FINDING-153.md`.
 //!
-//! **Inheritance is not implemented.** The child is an exact copy of the parent's
-//! policy, `move_cost` and `memory_life`; there is no variation, so a birth moves
-//! energy between slots and does not pass an organisation to the next generation.
+//! **What is inherited: the policy.** The child takes the parent's policy (not the
+//! population's first one), `move_cost` and `memory_life`, with `damage = 0` and an empty
+//! memory; it starts with exactly `birth_cost` energy. `policy_mutation` (default `0.0`)
+//! is the chance that the policy differs from the parent's; see `docs/FORMS-LINE-CLOSED.md`.
+//!
+//! **What is not inherited: the organisation.** There is no gene, no heritable variation of
+//! structure, and the child starts on the parent's cell as a slot copy. A birth moves energy
+//! between slots and does not pass an organisation to the next generation — that is the claim
+//! `docs/FINDING-153.md` makes, and it is narrower than "no inheritance at all", which this
+//! header used to say while the code copied the parent's policy (review 2026-11-21, §D3).
 //!
 //! Beyond sharing a cell's income, organisms do not interact.
 
@@ -910,10 +917,11 @@ impl Life {
         //
         //    A parent pays `birth_cost` and the child receives exactly
         //    `birth_cost`, so the birth itself moves energy and never creates
-        //    it. The child copies the parent's cell, the population's policy,
+        //    it. The child copies the parent's cell, the **parent's** policy
+        //    (`self.policies[i]`, optionally mutated by `policy_mutation`),
         //    `move_cost` and `memory_life`; its damage is 0.0 and its memory is
-        //    empty. It is a copy of a slot, not a descendant with a gene --
-        //    there is no gene and no inheritance in this model. See
+        //    empty. It is a copy of a slot, not a descendant with a gene: the
+        //    policy is inherited, the organisation is not. See
         //    `docs/FINDING-153.md`.
         //
         //    The parents are collected BEFORE any child is placed, so a

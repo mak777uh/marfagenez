@@ -196,6 +196,7 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 - **Регресс импорта:** `python3 kg/regress.py` — сверяет корпус (`claims.jsonl`, литература, `results/`) с `nodes.jsonl` и запрещает смену статуса при импорте; входит в раздел `kg` гейта.
 - **Свидетельство — объект:** 11 узлов `EV-*` для находок и алиасов; `ref_targets()` — единый резолвер для `check` и `expand`; `expand C-001 1` доходит до прогонов и находок.
 - **Точка измерения в DeathLaw названа:** `steadyEnergyAtCap` — энергия между платежами и зажимом; `cap_is_last_measurement` — значение после зажима (Medium 291, всего 318 теорем).
+- **Наследование политики:** ребёнок берёт `policies[parent]`, не `policies[0]`; заголовок `life.rs` больше не отрицает наследование; тест на две позиции родителя в `core/tests/births.rs`.
 - **Очередь подтверждения владельцем:** `kg.py unconfirmed` (сначала хабы), `kg.py confirm <id> "<заметка>"`; файл `kg/confirmed.jsonl`, счётчик в `atlas`; подтверждение несуществующего узла — ошибка `check`.
 - **Судья:** `kg/eval/kappa_sim.py --shift` даёт измеренную границу смещения маргиналов; политика — 0.20.
 - **Экзамен выдаёт вердикт:** `kg/eval/score.py` — `PASS/FAIL/INVALID` и код 0 только для `PASS`; подложенные случаи в `checks/eval_verdict.py`; подложенные дефекты графа — `checks/planted_defects.py` (оба диагностические, не в гейте).

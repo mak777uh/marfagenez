@@ -8,17 +8,19 @@
 //! 1. a birth moves energy and never creates it;
 //! 2. the default is "no births", so the population never grows;
 //! 3. with births on, the population reaches `max_population` and stops there;
-//! 4. a child takes the parent's cell and the population's policy;
+//! 4. a child takes the parent's cell and the **parent's** policy (not the first one);
 //! 5. a dead slot is reused before the `Vec` grows;
 //! 6. `World::validate` refuses a nonsense birth parameter.
 //!
-//! What this file does **not** claim: that a child is a descendant. There is no
-//! gene and no inheritance -- the child is the parent's policy on the parent's
-//! cell with `birth_cost` energy. It is slot reproduction, not evolution. See
-//! `docs/FINDING-153.md`.
+//! What this file does **not** claim: that a child is a descendant. The policy is
+//! inherited, the organisation is not: there is no gene, no heritable structure, and the
+//! child starts as a slot copy on the parent's cell with `birth_cost` energy. It is slot
+//! reproduction, not evolution. See `docs/FINDING-153.md`.
 
 use medium_core::field::Field;
 use medium_core::life::{Life, Policy};
+use medium_core::memory::Remembering;
+use medium_core::organism::Organism;
 use medium_core::organism::{LookOrder, ShareProtocol, TieBreak, World};
 
 /// A world where the only event in a step is a birth.
@@ -162,7 +164,7 @@ fn the_population_grows_to_max_population_and_not_above() {
 }
 
 #[test]
-fn a_child_gets_the_parents_cell_and_the_populations_policy() {
+fn a_child_gets_the_parents_cell_and_the_parents_policy() {
     let world = quiet_world(1.0, 1.0, 4);
     let field = Field::new(4, 1.0, 0.0).unwrap();
     let mut life = Life::spawn_even(world, field, 1, 5.0, 0.0, Policy::Stay, 5, 300).unwrap();
@@ -179,9 +181,8 @@ fn a_child_gets_the_parents_cell_and_the_populations_policy() {
             "the child is born on the parent's cell, not on a random one"
         );
     }
-    // The policy belongs to the population, not to the organism, so every
-    // organism runs it -- a child included. `Stay` is the readable case: if
-    // anything moved, the policy did not reach the newborn.
+    // The single-policy constructor gives one policy to everybody, so this run
+    // cannot tell "parent's policy" from "population's first". The test below does.
     assert_eq!(life.policy(), Policy::Stay);
     for _ in 0..10 {
         life.advance().unwrap();
@@ -239,6 +240,50 @@ fn a_dead_slot_is_reused_before_the_vec_grows() {
         census.total
     );
     assert_eq!(census.alive, 4, "four organisms should be alive");
+}
+
+#[test]
+fn a_child_takes_the_parents_policy_not_the_populations_first() {
+    // The rich organism (the only one that can afford a birth) sits at `rich_index`.
+    // If the child copied `policies[0]`, the second case would fail: there the parent is
+    // second in the vector and `policies[0]` belongs to the poor organism.
+    fn child_policy(policies: Vec<Policy>, rich_index: usize) -> Policy {
+        let world = quiet_world(1.0, 1.0, 4);
+        let field = Field::new(4, 1.0, 0.0).unwrap();
+        let energies = [5.0, 0.5];
+        let cells = [0usize, 1usize];
+        let mut organisms = Vec::new();
+        for k in 0..2 {
+            let o = Organism::new(energies[k], 0.0).unwrap();
+            organisms.push(Remembering::new(o, cells[k], 0.0, 0.0, 300).unwrap());
+        }
+        if rich_index == 1 {
+            // swap the energies so the second slot is the rich one
+            let mut swapped = Vec::new();
+            for k in 0..2 {
+                let o = Organism::new(energies[1 - k], 0.0).unwrap();
+                swapped.push(Remembering::new(o, cells[k], 0.0, 0.0, 300).unwrap());
+            }
+            organisms = swapped;
+        }
+        let mut life = Life::new_mixed(world, field, organisms, policies, 7, 300)
+            .expect("two policies for two organisms");
+        life.advance().unwrap();
+        let got = life.policies();
+        assert_eq!(got.len(), 3, "one birth, one new slot");
+        got[2]
+    }
+
+    assert_eq!(
+        child_policy(vec![Policy::Sighted, Policy::Memory], 0),
+        Policy::Sighted,
+        "the child inherits the parent's policy (parent first in the vector)"
+    );
+    assert_eq!(
+        child_policy(vec![Policy::Memory, Policy::Sighted], 1),
+        Policy::Sighted,
+        "the child copies `policies[parent]`, not `policies[0]` (parent second)"
+    );
 }
 
 #[test]
