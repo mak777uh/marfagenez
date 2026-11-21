@@ -127,6 +127,12 @@ pub struct Life {
     /// recorded run had ownership, so a `None` here must not change one bit of the
     /// dynamics. Claims are turned on explicitly with [`Life::enable_claims`].
     claims: Option<Claims>,
+    /// In what order the organisms of a step are visited.
+    ///
+    /// `Historical` is the off position and the contract: every recorded run visited the slots in
+    /// index order, so the default must not change one bit. The other two exist to measure how much
+    /// of an observed advantage is the order rather than the organism (review 2026-11-21, §7).
+    order: crate::organism::OrderProtocol,
     /// The chance that a newborn's **policy** differs from its parent's.
     ///
     /// `0.0` is the off position and the contract: every run recorded before this
@@ -212,6 +218,7 @@ impl Life {
             seed,
             feed: false,
             claims: None,
+            order: crate::organism::OrderProtocol::Historical,
             policy_mutation: 0.0,
             sight_radius: 0,
         })
@@ -452,9 +459,10 @@ impl Life {
             policies.resize(self.organisms.len(), inherited);
         }
 
-        for (oi, slot) in self.organisms.iter_mut().enumerate() {
+        let order = self.visit_order();
+        for oi in order {
             let pol = policies.get(oi).copied().unwrap_or(Policy::Stay);
-            let Some(r) = slot.as_mut() else { continue };
+            let Some(r) = self.organisms.get_mut(oi).and_then(|slot| slot.as_mut()) else { continue };
             if !r.organism.is_alive() {
                 continue;
             }
@@ -1916,6 +1924,43 @@ impl Life {
     /// Sets the chance that a newborn's policy differs from its parent's.
     ///
     /// Returns `false` for anything outside `[0, 1]`. Off by default.
+    /// The order in which this step will visit the organisms.
+    ///
+    /// `Historical` returns `0..n`, which is what the loop did before the protocol existed. `Rotate`
+    /// shifts by `step % n`; `Random` is one Fisher-Yates shuffle of `0..n` from the run's own rng.
+    fn visit_order(&mut self) -> Vec<usize> {
+        let n = self.organisms.len();
+        match self.order {
+            crate::organism::OrderProtocol::Historical => (0..n).collect(),
+            crate::organism::OrderProtocol::Rotate => {
+                if n == 0 {
+                    return Vec::new();
+                }
+                let shift = self.step % n;
+                (0..n).map(|i| (i + shift) % n).collect()
+            }
+            crate::organism::OrderProtocol::Random => {
+                let mut order: Vec<usize> = (0..n).collect();
+                for i in (1..n).rev() {
+                    let j = (self.rng.uniform() * (i + 1) as f64) as usize % (i + 1);
+                    order.swap(i, j);
+                }
+                order
+            }
+        }
+    }
+
+    /// Chooses the visit order. `Historical` is the off position and reproduces recorded runs.
+    pub fn set_order_protocol(&mut self, protocol: crate::organism::OrderProtocol) -> bool {
+        self.order = protocol;
+        true
+    }
+
+    /// The current visit order protocol.
+    pub fn order_protocol(&self) -> crate::organism::OrderProtocol {
+        self.order
+    }
+
     pub fn set_policy_mutation(&mut self, rate: f64) -> bool {
         if !rate.is_finite() || !(0.0..=1.0).contains(&rate) {
             return false;

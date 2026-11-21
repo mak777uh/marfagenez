@@ -68,6 +68,19 @@ fn the_off_positions_do_not_move_the_trace() {
     assert!(blind.set_sight_radius(1), "1 is a legal radius");
     assert_eq!(trace_hash(&mut blind, 40), h_base, "sight radius 1 must change nothing");
 
+    // `order = Historical` is the off position of the visit-order switch.
+    let mut historical = build(world(), 3);
+    assert!(historical.set_order_protocol(medium_core::organism::OrderProtocol::Historical));
+    assert_eq!(
+        trace_hash(&mut historical, 40),
+        h_base,
+        "the historical order must change nothing"
+    );
+    // The "switch is not dead" control for this one lives in `order_protocol.rs`, where the cell is
+    // deliberately scarce. In this world the cell is rich enough that every organism eats a full
+    // income whatever the order, so a rotation is silent *here* -- which is itself worth knowing: an
+    // order effect exists only under contention.
+
     // `claims = None` is the default; enabling and disabling again must come back.
     let mut owned = build(world(), 3);
     assert!(owned.enable_claims(0.5, 0.1), "claims with a positive cost are legal");

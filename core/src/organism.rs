@@ -80,6 +80,30 @@ pub enum ShareProtocol {
     Proportional,
 }
 
+/// In what order the organisms of a step are visited.
+///
+/// The review of 2026-11-21 (§7) named this a hidden experimental variable: with `Historical` the
+/// organism's index decides who eats first, so an advantage of rank can look like a property of the
+/// organism. `Random` reshuffles every step, `Rotate` gives each index the first turn in turn.
+///
+/// It lives on `Life`, not on `World`, for the same reason `policy_mutation` does: a new `World` field
+/// breaks every struct literal in the tree, and this is a switch on the cycle.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum OrderProtocol {
+    /// Index order, exactly as every recorded run did it. The off position.
+    Historical,
+    /// A fresh uniform shuffle every step.
+    Random,
+    /// The order is rotated by one position each step, so over `n` steps every index goes first.
+    Rotate,
+}
+
+impl Default for OrderProtocol {
+    fn default() -> Self {
+        Self::Historical
+    }
+}
+
 impl Default for ShareProtocol {
     fn default() -> Self {
         Self::Sequential
