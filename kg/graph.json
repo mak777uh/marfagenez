@@ -12166,12 +12166,12 @@
         "conditions": "аннотация (полный текст не читал)."
       },
       "epistemic": "hypothesis",
-      "provenance": "verified_agent",
+      "provenance": "extracted",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "strong"
+          "strength": "weak"
         }
       ],
       "relations": [],
@@ -12179,6 +12179,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "аннотация (полный текст не читал).",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12214,7 +12216,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12242,6 +12246,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "аннотация/обзорная страница.",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12278,6 +12284,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки** (аннотация в поиске).",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12315,6 +12323,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "аннотация.",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12350,7 +12360,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12365,12 +12377,12 @@
         "conditions": "**полный текст** (читал страницу)."
       },
       "epistemic": "hypothesis",
-      "provenance": "verified_agent",
+      "provenance": "extracted",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "strong"
+          "strength": "weak"
         }
       ],
       "relations": [],
@@ -12378,6 +12390,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**полный текст** (читал страницу).",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12414,6 +12428,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12449,7 +12465,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12477,6 +12495,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12513,6 +12533,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12549,6 +12571,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12585,6 +12609,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12621,6 +12647,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12657,6 +12685,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12694,6 +12724,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12730,6 +12762,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12766,6 +12800,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12802,6 +12838,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12837,7 +12875,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12864,7 +12904,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "аннотация (обе).",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12892,6 +12934,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки** (и это **не** источник, а гипотеза).",
+        "artifact": null,
         "access": "secondary",
         "checked_by": null,
         "internal_review": true,
@@ -12924,6 +12968,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки** (реконструкция обзора, сам статью не открывал).",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12960,6 +13006,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "access": "secondary",
         "checked_by": null,
         "internal_review": true,
@@ -12993,6 +13041,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13029,6 +13079,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13066,6 +13118,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13101,7 +13155,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13129,6 +13185,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13164,7 +13222,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13192,6 +13252,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13227,7 +13289,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13255,6 +13319,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13291,6 +13357,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13327,6 +13395,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13363,6 +13433,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13398,7 +13470,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки** — и это **гипотеза о пробеле**, не факт.",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13425,7 +13499,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки** (внешний разбор 2026-11-20; локаторы не открывались).",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13452,7 +13528,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13479,7 +13557,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13506,7 +13586,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13533,7 +13615,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13560,7 +13644,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13587,7 +13673,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13614,7 +13702,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13641,7 +13731,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13668,7 +13760,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13695,7 +13789,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13722,7 +13818,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13749,7 +13847,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**вторые руки** (синтез обзора, не цитата).",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13776,7 +13876,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент**: на странице рисунков PLOS — «equilibrium is possible… be",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13803,7 +13905,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13830,7 +13934,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13857,7 +13963,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13885,6 +13993,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент** (текст не открылся).",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13921,6 +14031,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13957,6 +14069,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент** (в фрагменте — нормировки `y ≡ 1`, `r ≡ R/E`).",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13992,7 +14106,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14020,6 +14136,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14056,6 +14174,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**полный текст** arXiv-версии (`arXiv:2411.17012v2`, 81 691 байт, локальная копи",
+        "artifact": "papers/arXiv-2411.17012-brown-vittadello.txt",
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14092,6 +14212,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14128,6 +14250,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14163,7 +14287,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14190,7 +14316,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14217,7 +14345,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14232,19 +14362,21 @@
         "conditions": "**аннотация** (полный текст не открылся — SSRF, см. `LITERATURE-GAPS.md` G-002)."
       },
       "epistemic": "hypothesis",
-      "provenance": "verified_agent",
+      "provenance": "extracted",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "strong"
+          "strength": "weak"
         }
       ],
       "relations": [],
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация** (полный текст не открылся — SSRF, см. `LITERATURE-GAPS.md` G-002).",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14272,6 +14404,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация** (PMC-версия не открылась: SSRF).",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14308,6 +14442,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14344,6 +14480,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14380,6 +14518,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14415,7 +14555,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14443,6 +14585,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14479,6 +14623,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14515,6 +14661,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14550,7 +14698,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14577,7 +14727,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14604,7 +14756,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14631,7 +14785,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14658,7 +14814,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14686,6 +14844,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент** (лекция — полный конспект в фрагменте).",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14722,6 +14882,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14758,6 +14920,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14793,7 +14957,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14820,7 +14986,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14847,7 +15015,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14874,7 +15044,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14901,7 +15073,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14928,7 +15102,9 @@
       "data": {
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
-        "accessed_at": "2026-11-20"
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация/фрагмент.**",
+        "artifact": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"

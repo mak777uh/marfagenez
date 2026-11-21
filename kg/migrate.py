@@ -123,6 +123,30 @@ def lines_map():
     return data.get("map") or {}, data
 
 
+PAPERS = ROOT / "papers"
+
+
+def literature_artifact(body: str) -> str | None:
+    """The local copy is what turns `verified_agent` into a fact instead of a self-report.
+
+    `docs/ELEPHANT-LITERATURE.md` says how deeply a record was read; `papers/` says whether the
+    text is actually here. Before this guard the label alone promoted a node to `verified_agent`
+    with `strength: strong`, and four records did it while two of them said the opposite in the
+    same line ("полный текст не читал", "не открылся") -- FINDING-336.
+    """
+    ids = re.findall(r"arXiv:(\d{4}\.\d{4,5})", body)
+    ids += re.findall(r"(10\.\d{4,9}/[^\s)\];,]+)", body)
+    if not ids or not PAPERS.exists():
+        return None
+    for path in sorted(PAPERS.iterdir()):
+        if not path.is_file():
+            continue
+        for ident in ids:
+            if ident in path.name:
+                return path.relative_to(ROOT).as_posix()
+    return None
+
+
 def literature():
     """Literature records `### L-NNN · title` from the registry become claim nodes.
 
@@ -146,7 +170,8 @@ def literature():
         sm = re.search(r"\*\*Утверждение[^*]*\.\*\*\s*(.+)", body)
         if sm:
             statement = sm.group(1).strip()
-        chosen = "verified_agent" if "полный текст" in level.lower() else "extracted"
+        artifact = literature_artifact(body)
+        chosen = "verified_agent" if artifact else "extracted"
         lmap, meta = lines_map()
         lines = lmap.get(lid, [])
         prov = {"method": meta.get("method", "parsed"), "parser_version": meta.get("parser_version", "1"),
@@ -160,7 +185,9 @@ def literature():
             "provenance": chosen,
             "evidence": [{"kind": "literature", "ref": "docs/ELEPHANT-LITERATURE.md", "strength": "strong" if chosen == "verified_agent" else "weak"}],
             "relations": [],
-            "data": {"source": "docs/ELEPHANT-LITERATURE.md", "license": "see source", "accessed_at": "2026-11-20"},
+            "data": {"source": "docs/ELEPHANT-LITERATURE.md", "license": "see source",
+                     "accessed_at": "2026-11-20", "registry_level": level[:80],
+                     "artifact": artifact},
             "created_at": "2026-11-20",
             "updated_at": "2026-11-21",
         }
