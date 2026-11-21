@@ -409,8 +409,11 @@ def log_drift() -> list[str]:
     nums = cycles_in_log(raw)
     # A fence that never closes turns the whole journal into one code block, and an empty list of
     # cycles passes every numbering rule: that is a check that cannot fail. Name it instead.
-    if not nums and raw.count("```") % 2 == 1:
-        out.append(f"{LOG}: незакрытый блок ``` — заголовки циклов не разобраны")
+    # An odd number of fences means some part of the journal is inside a code block. It may be the tail
+    # only: then the numbering still looks continuous and the last cycles silently disappear. The count
+    # is checked on its own, not only when nothing parsed.
+    if raw.count("```") % 2 == 1:
+        out.append(f"{LOG}: незакрытый блок ``` — часть журнала не разбирается")
     # A duplicate number is the failure mode this check missed once: 367 headings on 359 cycles passed
     # as long as the length still happened to line up. Name it separately from a gap, and name the
     # out-of-order case too, so the repair is obvious from the message.
