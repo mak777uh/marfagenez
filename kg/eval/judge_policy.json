@@ -20,8 +20,34 @@
   },
   "no_reroll": true,
   "bias_diagnosis": {
-   "marginal_shift_max": 0.15,
-   "action": "fix the rubric, not the sample: a judge shifted by >=0.15 can never pass"
+   "marginal_shift_max": 0.2,
+   "measured": {
+    "model": "две оценки с разными маргиналами (p_owner=0.50, p_judge=0.50+delta), цель kappa=0.80",
+    "command": "python3 kg/eval/kappa_sim.py --shift 300",
+    "table": {
+     "0.00": {
+      "ceiling": 1.0,
+      "pass_rate": 0.827
+     },
+     "0.05": {
+      "ceiling": 0.9,
+      "pass_rate": 0.8
+     },
+     "0.10": {
+      "ceiling": 0.8,
+      "pass_rate": 0.853
+     },
+     "0.15": {
+      "ceiling": 0.7,
+      "pass_rate": 0.43
+     },
+     "0.20": {
+      "ceiling": 0.6,
+      "pass_rate": 0.1
+     }
+    }
+   },
+   "action": "при delta >= 0.20 правило практически недостижимо (10 %), при 0.15 — монетка (43 %): потолок kappa равен 1 - delta, и добор пунктов не лечит смещение — чинится только рубрика"
   }
  },
  "calibration": {
@@ -37,7 +63,8 @@
   ],
   "from_questions": "12-15 новых вопросов x 3-4 пункта; пункты внутри вопроса зависимы",
   "bootstrap_by_groups": true,
-  "group_note": "ресемплировать вопросы, не отдельные пункты: иначе точность κ завышена"
+  "group_note": "ресемплировать вопросы, не отдельные пункты: иначе точность κ завышена",
+  "grouped_bootstrap_measured": "python3 kg/eval/kappa_sim.py 300 --groups 4"
  },
  "reproduce": "python3 kg/eval/kappa_sim.py 300  # table in docs/KG-BRIEF-4-VERDICTS-2026-11-21.md",
  "judge": {

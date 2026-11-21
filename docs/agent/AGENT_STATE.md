@@ -194,6 +194,8 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 - **После круга:** `bash run.sh all`, запись в `docs/agent/AGENT_LOG.md`, обновление этого файла при правке `run.sh`/`checks/`/`core/`/`laws/`/`verus/`.
 - **Экзамен базы:** `python3 kg/eval/score.py runs-<дата>.json`; спека заморожена, hash в `kg/eval/questions.json`.
 - **Регресс импорта:** `python3 kg/regress.py` — сверяет корпус (`claims.jsonl`, литература, `results/`) с `nodes.jsonl` и запрещает смену статуса при импорте; входит в раздел `kg` гейта.
+- **Очередь подтверждения владельцем:** `kg.py unconfirmed` (сначала хабы), `kg.py confirm <id> "<заметка>"`; файл `kg/confirmed.jsonl`, счётчик в `atlas`; подтверждение несуществующего узла — ошибка `check`.
+- **Судья:** `kg/eval/kappa_sim.py --shift` даёт измеренную границу смещения маргиналов; политика — 0.20.
 - **Экзамен выдаёт вердикт:** `kg/eval/score.py` — `PASS/FAIL/INVALID` и код 0 только для `PASS`; подложенные случаи в `checks/eval_verdict.py`; подложенные дефекты графа — `checks/planted_defects.py` (оба диагностические, не в гейте).
 - **Резолв находок точный:** `FINDING-<num>.md` или `FINDING-<num>-*.md`; префиксный glob снят.
 - **Мосты и разрывы:** `kg/bridges.jsonl` — `Gap` и `correspondence`; `check` требует у gap два конца и `required_test`, у correspondence — восемь полей при `complete`/`exam_ready`.

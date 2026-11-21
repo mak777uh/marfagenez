@@ -205,8 +205,10 @@ def build(nodes):
         {"id": "K4", "label": "формулы", "hubs": sorted(n["id"] for n in nodes if n["kind"] == "formula")[:5]},
         {"id": "K5", "label": "прогоны", "hubs": sorted(n["id"] for n in nodes if n["kind"] == "experiment")[:5]},
     ]
+    confirmed = load_confirmed()
     meta = {
         "schema": "kg/2",
+        "human_confirmed": sorted(confirmed),
         "built_at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc)
                     .isoformat(timespec="seconds"),
         "counts": {"total": len(nodes), "by_kind": dict(kinds), "by_epistemic": dict(epistemic),
@@ -358,7 +360,8 @@ def atlas(nodes, cluster_id=None):
     lit = sum(1 for n in nodes if n.get("kind") == "claim" and n["id"].startswith("L-"))
     print("своих утверждений " + str(own) + " · литературных " + str(lit) + " · формул " + str(kinds.get("formula", 0)) + " · прогонов " + str(kinds.get("experiment", 0)))
     print("статус: " + " · ".join(k + " " + str(v) for k, v in epi.items()))
-    print("доверие: " + " · ".join(k + " " + str(v) for k, v in prov.items()))
+    print("доверие: " + " · ".join(k + " " + str(v) for k, v in prov.items()) +
+          " · подтверждено владельцем " + str(len(meta.get("human_confirmed") or [])))
     modes = {}
     for n in nodes:
         m = mode_of(n)
@@ -533,6 +536,9 @@ def extra_invariants(nodes):
     """Rules that were prose until the second round of review (D-04, D-06, D-07) plus research modes."""
     problems = []
     ids = {n["id"] for n in nodes}
+    for cid in load_confirmed():
+        if cid not in ids:
+            problems.append("confirmed.jsonl: подтверждён несуществующий узел " + cid)
     vocab = line_vocab()
     if vocab:
         defined = {((n.get("data") or {}).get("defines")) for n in nodes if n.get("kind") == "definition"}
@@ -669,6 +675,55 @@ def admit(nodes, node_id, action, rationale, evidence, actor):
     return 0
 
 
+def confirmed_path():
+    return KG / "confirmed.jsonl"
+
+
+def load_confirmed():
+    path = confirmed_path()
+    if not path.exists():
+        return {}
+    return {json.loads(l)["id"]: json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()}
+
+
+def confirm(nodes, node_id, note, actor):
+    """Owner confirmation is the only way to human_confirmed. It is a queue, not a status rewrite."""
+    by_id = {n["id"]: n for n in nodes}
+    if node_id not in by_id:
+        print("нет узла " + node_id)
+        return 1
+    done = load_confirmed()
+    if node_id in done:
+        print("уже подтверждён: " + node_id + " (" + done[node_id]["at"] + ")")
+        return 0
+    event = {"id": node_id, "by": actor, "at": __import__("datetime").datetime.now(
+        __import__("datetime").timezone.utc).isoformat(timespec="seconds"), "note": note or ""}
+    with confirmed_path().open("a", encoding="utf-8") as fh:
+        fh.write(json.dumps(event, ensure_ascii=False) + "\n")
+    print("подтверждено: " + node_id + " (" + str(len(done) + 1) + " всего)")
+    return 0
+
+
+def unconfirmed(nodes, limit=20):
+    """Hubs first: a claim with the most edges is the cheapest thing to check by hand."""
+    done = load_confirmed()
+    fwd, back = _edges(nodes)
+    degree = {nid: len(fwd.get(nid, [])) + len(back.get(nid, [])) for nid in fwd}
+    cand = [n for n in nodes
+            if n["id"] not in done and n.get("provenance") == "verified_agent"
+            and n.get("kind") in ("claim", "formula", "definition", "correspondence")]
+    cand.sort(key=lambda n: (-degree.get(n["id"], 0), n["id"]))
+    if not cand:
+        print("очередь пуста: все агентские узлы подтверждены")
+        return 0
+    print("очередь подтверждения: " + str(len(cand)) + " узлов, показаны " + str(min(limit, len(cand))))
+    for n in cand[:limit]:
+        print("  " + n["id"] + "  степень " + str(degree.get(n["id"], 0)) + "  " +
+              _clip(n.get("text"), 70))
+    print("  подтвердить: kg.py confirm <id> \"<заметка>\" [actor]")
+    return 0
+
+
 def main(argv):
     if len(argv) < 2:
         print(__doc__)
@@ -696,6 +751,15 @@ def main(argv):
             print('usage: kg.py admit <id> <action> "<rationale>" <evidence,comma> [actor]')
             return 2
         return admit(nodes, argv[2], argv[3], argv[4], argv[5].split(","), argv[6] if len(argv) > 6 else "owner")
+
+    if cmd == "confirm":
+        if len(argv) < 3:
+            print('usage: kg.py confirm <id> "<note>" [actor]')
+            return 2
+        return confirm(nodes, argv[2], argv[3] if len(argv) > 3 else "", argv[4] if len(argv) > 4 else "owner")
+
+    if cmd == "unconfirmed":
+        return unconfirmed(nodes, int(argv[2]) if len(argv) > 2 else 20)
 
     if cmd == "admissions":
         path = admissions_path()
