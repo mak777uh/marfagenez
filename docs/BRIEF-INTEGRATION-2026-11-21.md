@@ -176,23 +176,23 @@ Semantic Scholar без ключа отдаёт 403. LLM-ключей нет.
 
 | путь | что внутри | зачем агенту |
 |---|---|---|
-| [`run.sh`](run.sh) | гейт, 12 разделов (`test` 42, `lean` 65, `reach` 104, `exp` 112, `models` 263, `verus` 279, `kg` 300, `claims` 322, `audit` 358, `export` 390, `agents` 400, `dispatcher` 473) | понять, куда встраивается новая проверка |
-| [`PROTOCOL.md`](PROTOCOL.md) | таблица «проверка → что ловит» (28 строк) | правило «новая проверка = строка здесь» |
-| [`checks/`](checks) | 28 проверок гейта + архив разовых пробников | сюда встраиваются B, C, F |
-| [`kg/kg.py`](kg/kg.py) | граф: `map/find/show/expand/contradictions/trace/admit/confirm/check` | сюда встраиваются D, E |
-| [`kg/nodes.jsonl`](kg/nodes.jsonl) | 560 узлов (claim 96, formula 31, experiment 407, definition 10, gap 3, correspondence 2, evidence 11) | схема узла для Q3, Q4, Q9, Q10 |
-| [`kg/regress.py`](kg/regress.py) | сверка «корпус → nodes.jsonl» | почему после правки `L-060` пришлось пересобирать граф |
-| [`kg/eval/`](kg/eval) | исполняемый экзамен: 28 вопросов, протокол судьи | образец для Q11 (как мерить) |
-| [`docs/INTEGRATION-OPTIONS.md`](docs/INTEGRATION-OPTIONS.md) | варианты A–K с ценой и риском | предмет разбора |
-| [`docs/SCIENCE-STACK.md`](docs/SCIENCE-STACK.md) | шесть каналов, команды, что отвергнуто | фактическая база |
-| [`docs/SCIENCE-SKILLS-SHORTLIST.md`](docs/SCIENCE-SKILLS-SHORTLIST.md) | реестр 45+ инструментов, §8–§14 — протоколы проверок | чтобы не предлагать уже проверенное и отвергнутое |
-| [`docs/ELEPHANT-LITERATURE.md`](docs/ELEPHANT-LITERATURE.md) | 88 записей `L-NNN`, 31 формула `F-NNN` | предмет Q1, Q9 |
-| [`docs/SEARCH-METHOD.md`](docs/SEARCH-METHOD.md) | принципы поиска | предмет Q7 |
-| [`docs/AUTONOMY-PLAN.md`](docs/AUTONOMY-PLAN.md) | план автономных кругов, §6 — рабочий цикл из 9 шагов | куда встраивается литературный круг |
-| [`docs/agent/AGENT_LOG.md`](docs/agent/AGENT_LOG.md) | журнал циклов (375 записей) | формат отчётности, который соблюдается |
-| [`tools/semantic_search.py`](tools/semantic_search.py) | локальные эмбеддинги над пулом OpenAlex | предмет Q2, Q4, Q11 |
-| [`papers/`](papers) | скачанные полные тексты | куда пишутся источники |
-| [`docs/SCIENCE-TOOLING.md`](docs/SCIENCE-TOOLING.md) | как качать источники (fake-IP, SSRF, ar5iv, PMC) | среда |
+| [`run.sh`](../run.sh) | гейт, 12 разделов (`test` 42, `lean` 65, `reach` 104, `exp` 112, `models` 263, `verus` 279, `kg` 300, `claims` 322, `audit` 358, `export` 390, `agents` 400, `dispatcher` 473) | понять, куда встраивается новая проверка |
+| [`PROTOCOL.md`](../PROTOCOL.md) | таблица «проверка → что ловит» (28 строк) | правило «новая проверка = строка здесь» |
+| [`checks/`](../checks) | 28 проверок гейта + архив разовых пробников | сюда встраиваются B, C, F |
+| [`kg/kg.py`](../kg/kg.py) | граф: `map/find/show/expand/contradictions/trace/admit/confirm/check` | сюда встраиваются D, E |
+| [`kg/nodes.jsonl`](../kg/nodes.jsonl) | 560 узлов (claim 96, formula 31, experiment 407, definition 10, gap 3, correspondence 2, evidence 11) | схема узла для Q3, Q4, Q9, Q10 |
+| [`kg/regress.py`](../kg/regress.py) | сверка «корпус → nodes.jsonl» | почему после правки `L-060` пришлось пересобирать граф |
+| [`kg/eval/`](../kg/eval) | исполняемый экзамен: 28 вопросов, протокол судьи | образец для Q11 (как мерить) |
+| [`docs/INTEGRATION-OPTIONS.md`](INTEGRATION-OPTIONS.md) | варианты A–K с ценой и риском | предмет разбора |
+| [`docs/SCIENCE-STACK.md`](SCIENCE-STACK.md) | шесть каналов, команды, что отвергнуто | фактическая база |
+| [`docs/SCIENCE-SKILLS-SHORTLIST.md`](SCIENCE-SKILLS-SHORTLIST.md) | реестр 45+ инструментов, §8–§14 — протоколы проверок | чтобы не предлагать уже проверенное и отвергнутое |
+| [`docs/ELEPHANT-LITERATURE.md`](ELEPHANT-LITERATURE.md) | 88 записей `L-NNN`, 31 формула `F-NNN` | предмет Q1, Q9 |
+| [`docs/SEARCH-METHOD.md`](SEARCH-METHOD.md) | принципы поиска | предмет Q7 |
+| [`docs/AUTONOMY-PLAN.md`](AUTONOMY-PLAN.md) | план автономных кругов, §6 — рабочий цикл из 9 шагов | куда встраивается литературный круг |
+| [`docs/agent/AGENT_LOG.md`](agent/AGENT_LOG.md) | журнал циклов (375 записей) | формат отчётности, который соблюдается |
+| [`tools/semantic_search.py`](../tools/semantic_search.py) | локальные эмбеддинги над пулом OpenAlex | предмет Q2, Q4, Q11 |
+| [`papers/`](../papers) | скачанные полные тексты | куда пишутся источники |
+| [`docs/SCIENCE-TOOLING.md`](SCIENCE-TOOLING.md) | как качать источники (fake-IP, SSRF, ar5iv, PMC) | среда |
 
 **Проверить наши утверждения можно так:**
 
