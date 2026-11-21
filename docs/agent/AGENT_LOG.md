@@ -4862,3 +4862,16 @@ verified; `contract.py` — 386 записей, 0 нарушений; `log_check
   ранжирование, но на концептуальный запрос вернул нужное) и `fulltext.search`; настоящая семантика — только
   Semantic Scholar с бесплатным ключом.
 - **Документ:** `docs/SCIENCE-SKILLS-SHORTLIST.md` §8 — таблицы «что 200 / что нет / что с семантикой».
+
+### Цикл 368 — 2026-11-21 — `5bc082f`: научный стек установлен, T1 пройден
+
+- **Установлено:** `paper-lookup` (24 файла), `database-lookup` (83), `literature-review` (12) в
+  `~/.dsh/skills`; ставились по списку файлов GitHub API, потому что tarball репозитория — 244,7 МБ и рвётся.
+- **Ключ OpenAlex** в `~/.dsh/secrets/openalex.key` (ACL только владельцу): `rate-limit` подтвердил бюджет
+  **$1/день** (без ключа было $0.10 на IP — присланное подтвердилось).
+- **T1 живой:** OpenAlex+ключ дал 17 366 записей, топ-1 — журнальная версия L-060 (BioSystems 2025,
+  `10.1016/j.biosystems.2025.105567`); `openalex_abstract.py` — 2 035 символов абстракта; `arxiv_atom.py` —
+  JSON с версией; `jats_to_text.py` — 4 461 символ секции `Model` из PMC2928801; `paginate.py` скрывает ключ
+  в провенансе (`api_key=REDACTED`).
+- **Тонкость:** `paginate.py --query` ждёт `search=…`, а не фразу.
+- **Не проверено:** `database-lookup`, `literature-review`, `ai-skill-arxiv`; Semantic Scholar без ключа — 403.

@@ -186,6 +186,69 @@ L-060, 81 691 байт в `papers/`), PMC (полный текст Chao 2010), C
 5. **T4:** `database-lookup` на Zenodo/DataCite — оба отвечают.
 6. **Вне списка:** ORKG и exa вычеркнуть из рабочих кандидатов (DNS / ключ).
 
+---
+
+## 9. Установка и первый живой тест (T1), 2026-11-21
+
+### 9.1 Что установлено
+
+| навык | путь | файлов | SKILL.md |
+|---|---|---|---|
+| `paper-lookup` | `C:\Users\Admin\.dsh\skills\paper-lookup` | 24 (5 скриптов + 18 `references/`) | есть |
+| `database-lookup` | `...\skills\database-lookup` | 83 (80 `references/`) | есть |
+| `literature-review` | `...\skills\literature-review` | 12 | есть |
+
+Ставились **не клоном**, а по списку файлов из GitHub API (`trees/main?recursive=1`, 3 497 записей), 119 файлов,
+`ok=119 fail=0`. Причина: tarball репозитория — **244,7 МБ** (картинки в `docs/`), и `curl` оборвал загрузку на
+180-й секунде (52,8 МБ). Клон через git в этом окружении тоже ненадёжен (TLS-рукопожатие). После установки
+каталог навыков в сессии обновился сам — `paper-lookup`, `database-lookup`, `literature-review` видны.
+
+**Ключ OpenAlex** положен в `C:\Users\Admin\.dsh\secrets\openalex.key` (22 байта, ACL только владельцу),
+в вывод не печатается; в скриптах читается в `OPENALEX_API_KEY`.
+
+### 9.2 Проверка ключа (то, что было под вопросом)
+
+```
+GET https://api.openalex.org/rate-limit?api_key=…
+{"is_grandfathered":false,
+ "rate_limit":{"daily_budget_usd":1,"daily_used_usd":0,"daily_remaining_usd":1,
+               "resets_at":"2026-…"}}
+```
+
+Ключ работает: бюджет **$1/день** вместо общих **$0.10** на IP. То есть присланное про $0.10 было верно для
+бесключевого режима, а ключ поднимает потолок в десять раз.
+
+### 9.3 Скрипты навыка — живые результаты
+
+| тест | что сделано | результат | время |
+|---|---|---|---|
+| `openalex` + ключ | поиск «process enablement graphs organisational closure» | **count 17 366**; топ-1 — **«Studying organisational closure in biological systems with process-enablement graphs»**, BioSystems 2025, `10.1016/j.biosystems.2025.105567` | 1,3 с |
+| `openalex_abstract.py` | абстракт топ-хита из `abstract_inverted_index` | JSON: `count 1`, `with_abstract 1`, абстракт **2 035 символов** (без бага с дублями позиций) | 0,2 с |
+| `arxiv_atom.py` | `id_list=2411.17012` | JSON: `arxiv_id_versioned 2411.17012v2`, версия, заголовок, абстракт, `query_as_executed` | 1,1 с |
+| `jats_to_text.py` | `efetch db=pmc id=2928801` → секция `Model` | XML 102 371 Б → **4 461 символ** текста + метаданные (PMID, PMCID, DOI, авторы) | 1,6 с |
+| `jats_to_text.py`, ошибка | запрос секции `ABSTRACT` | честная ошибка: `no section matched 'ABSTRACT'; available: Introduction, Model, Results, Discussion` — **правильное поведение**, а не пустой текст | — |
+| `paginate.py --dry-run` | обход OpenAlex | URL с `api_key=REDACTED`, `delay_seconds 0.2` — ключ **не утекает** в провенанс | 0,4 с |
+
+### 9.4 Найденная тонкость
+
+`paginate.py` ждёт **сырую строку параметров**, а не фразу: `--query 'search=crispr'`, а не `--query 'crispr'`.
+При фразе он собирает `…works?organisational+closure=&per_page=100` — URL формально валиден, но запрос пустой.
+Записать в правила: для `paginate.py` всегда `--query 'search=…'`.
+
+### 9.5 Побочная научная находка
+
+У `L-060` есть **журнальная версия**: Brown & Vittadello, «Studying organisational closure in biological systems
+with process-enablement graphs», *BioSystems* (2025), DOI `10.1016/j.biosystems.2025.105567`. То есть у записи
+`L-060` (arXiv) появился рецензируемый двойник — это повышает вес моста `C-003 ↔ L-060`.
+Записать в `ELEPHANT-LITERATURE.md` как `L-067` (или обновить `L-060` до `full_text` с журнальным DOI) — задача
+следующего круга, в этот коммит не входит.
+
+### 9.6 Что ещё не проверено
+
+- `database-lookup` и `literature-review` установлены, но **не запускались** (T4, T7).
+- `ai-skill-arxiv` (S5) не установлен: `arxiv_atom.py` из `paper-lookup` уже закрывает разбор Atom.
+- Semantic Scholar по-прежнему 403 без ключа — семантика ждёт своего ключа.
+
 ## 7. Риски, записанные заранее
 
 - **Skill = исполняемый код.** Читать `scripts/` перед запуском; пинить коммиты; не давать сетевые ключи.
