@@ -104,13 +104,13 @@ metadata/secondary ⇒ extracted/weak + `secondary_of`.
 + meta со `sha256(nodes.jsonl)`; `checks/embeddings_fresh.py`; глагол `similar`.
 **Готово:** правка узла без пересборки ⇒ FAIL; `similar` на известной паре ставит её в топ-3.
 
-### U11. Разделение `checks/` и `probes/` — 1 круг
+### U11. Разделение `checks/` и `probes/` — ✅ сделано иначе и лучше (цикл 392): исторические зонды не переносились (их называют находки), вместо этого `checks/tree_contract.py` + `LEGACY.txt` (181) + `probes/` для нового
 **Что:** `checks/` — только гейт; `probes/` — архив с `README.md`; `checks/tree_contract.py` (файл в
 `checks/` назван в PROTOCOL и вызван из `run.sh`; файл в `probes/` не вызван; ссылки в живых файлах
 существуют); замороженные документы освобождены; `probes/INDEX.md` генерируется.
 **Готово:** новый `.py` в `checks/` без строки в PROTOCOL ⇒ FAIL; гейт зелёный после переноса.
 
-### U12. `doctor.py` и skill — 0,5 круга
+### U12. `doctor.py` и skill — ✅ сделано (цикл 392): `tools/doctor.py`, `skills/litsearch/SKILL.md`
 **Что:** `tools/doctor.py` (venv, модели, 12 API, бюджет, sha установленного skill против репозиторного);
 `skills/litsearch/SKILL.md` в репозитории + install-скрипт.
 **Готово:** изменённый SKILL.md без переустановки ⇒ предупреждение; отсутствие модели ⇒ внятная ошибка.

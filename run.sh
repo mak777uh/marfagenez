@@ -192,6 +192,9 @@ do_exp() {
   python3 checks/goal_features.py || rc=$?
   echo "--- finding_elephant_line.py ---"
   python3 checks/finding_elephant_line.py || rc=$?
+  echo "--- tree_contract.py ---"
+  # checks/ не растёт без вызова или записи в LEGACY.txt; probes/ — не гейт.
+  python3 checks/tree_contract.py || rc=$?
   echo "--- candidates_quarantine.py ---"
   # Карантин кандидатов: граф не растёт случайно, допуск идёт через журнал.
   python3 checks/candidates_quarantine.py || rc=$?
