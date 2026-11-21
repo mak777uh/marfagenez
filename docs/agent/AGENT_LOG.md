@@ -4875,3 +4875,16 @@ verified; `contract.py` — 386 записей, 0 нарушений; `log_check
   в провенансе (`api_key=REDACTED`).
 - **Тонкость:** `paginate.py --query` ждёт `search=…`, а не фразу.
 - **Не проверено:** `database-lookup`, `literature-review`, `ai-skill-arxiv`; Semantic Scholar без ключа — 403.
+
+### Цикл 369 — 2026-11-21 — `5908e6f`: T4/T7 — каталог, форматтер, проверка ссылок
+
+- **`database-lookup`:** не код, а каталог из 82 справочников по предметным базам (geo, ena, pride, pdb, uniprot,
+  chembl, gwas-catalog, fred, worldbank…); Zenodo/DataCite в нём нет — они в `paper-lookup`.
+- **`literature-review/search_databases.py`:** локальный обработчик (дедуп, ранг, markdown/BibTeX), сети не требует;
+  3 записи → 2, дубль схлопнут, ранжирование по цитатам работает.
+- **`literature-review/verify_citations.py`:** проверил 3 DOI через Crossref — `Registered: 2; unresolved: 1`,
+  выдуманная ссылка `10.9999/does.not.exist` поймана. Кандидат в `checks/` как проверка внешних ссылок в docs.
+- **`L-060` поднят до полного текста:** замыкание (Def. 3.2) — у каждого процесса вход и выход; строго замкнутый
+  граф равносилен циклу (Thm 3.4); это слабее сильной связности, `GAP-01` переформулирован по теореме.
+- **Zenodo:** документированный запрос 200, `hits 382727`, но `sort=mostrecent` даёт нерелевантное — сортировку
+  по релевантности задавать явно.

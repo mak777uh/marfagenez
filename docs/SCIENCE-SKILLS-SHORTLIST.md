@@ -249,6 +249,50 @@ with process-enablement graphs», *BioSystems* (2025), DOI `10.1016/j.biosystems
 - `ai-skill-arxiv` (S5) не установлен: `arxiv_atom.py` из `paper-lookup` уже закрывает разбор Atom.
 - Semantic Scholar по-прежнему 403 без ключа — семантика ждёт своего ключа.
 
+---
+
+## 10. T4 и T7 — что ещё работает (2026-11-21)
+
+### 10.1 `database-lookup` — это **каталог**, а не код
+
+Внутри 82 файла `references/`, скриптов нет. Проверено содержимое: **82 предметных базы**, среди них `geo`, `ena`,
+`pride`, `sra`, `pdb`, `uniprot`, `chembl`, `pubchem`, `clinicaltrials`, `gwas-catalog`, `gnomad`, `reactome`,
+`string`, `ncbi-gene`, `ncbi-protein`, `ncbi-taxonomy`, `metabolomics-workbench`, `hca`, `monarch`, `opentargets`,
+`alphafold`, `fred`, `sec-edgar`, `worldbank`, `who`, `nasa`, `noaa`, `usgs`, `census`, `eurostat`, `bea`, `bls`.
+Плюс `database_selection_guide.md` и `retrieval-contract.md`.
+
+**Вывод:** это не «ещё один поиск», а справочник «какой базой отвечать на какой вопрос». Для нас полезен только тогда,
+когда нужны **исходные данные**, а не статьи. Zenodo/DataCite/Figshare в нём **нет** — они закрыты `paper-lookup`.
+
+Живая проверка документированного запроса к Zenodo (`/api/records?q=…`): 200, `hits 382727`, 1,7 с — но при
+`sort=mostrecent` выдача нерелевантна, сортировку по релевантности надо задавать явно.
+
+### 10.2 `literature-review` — два разных скрипта, оба полезны
+
+| скрипт | что делает | тест | итог |
+|---|---|---|---|
+| `search_databases.py` | **не ищет**: обрабатывает уже собранные записи — дедуп, ранжирование, markdown/BibTeX | 3 записи (2 дубля) → `total_results 2`, дубль схлопнут, Chao (400 цит.) выше Brown (12), вывод markdown | ✅ работает **локально**, сети не требует |
+| `verify_citations.py` | проверяет DOI в markdown через Crossref и пишет отчёт JSON | 3 ссылки, из них одна выдуманная (`10.9999/does.not.exist`) | ✅ `Registered: 2; unresolved: 1` — **фальшивая ссылка поймана**, 3,9 с |
+
+**Это уже можно ставить в наш гейт:** `verify_citations.py` по `docs/*.md` ловит DOI, которых не существует.
+Кандидат в проверку `checks/` (не в текущий `run.sh`, а как отдельный шаг для документов с внешними ссылками).
+
+### 10.3 Сводка «что удачно работает»
+
+| инструмент | статус | чем пользуемся |
+|---|---|---|
+| OpenAlex + ключ | ✅ $1/день, 17 366 записей, полнотекстовое ранжирование | основной поиск |
+| `paper-lookup` → `openalex_abstract.py` | ✅ 2 035 символов из inverted index | абстракты без потерь |
+| `paper-lookup` → `arxiv_atom.py` | ✅ версия, id, abstract, `query_as_executed` | arXiv |
+| `paper-lookup` → `jats_to_text.py` | ✅ 4 461 символ секции + метаданные | полный текст PMC |
+| `paper-lookup` → `paginate.py` | ✅ `api_key=REDACTED`, `--query 'search=…'` | обход с провенансом |
+| `literature-review` → `verify_citations.py` | ✅ ловит несуществующий DOI | проверка ссылок |
+| `literature-review` → `search_databases.py` | ✅ дедуп/ранг/формат локально | оформление обзора |
+| `database-lookup` | ⚠️ каталог без кода | источник «где искать данные» |
+| Europe PMC / DataCite / Zenodo / Crossref / arXiv / OpenAIRE / OpenCitations / SemOpenAlex SPARQL | ✅ 200 | точечные запросы |
+| Semantic Scholar | ❌ 403 без ключа | ждёт ключа |
+| ORKG | ❌ DNS | недоступен |
+
 ## 7. Риски, записанные заранее
 
 - **Skill = исполняемый код.** Читать `scripts/` перед запуском; пинить коммиты; не давать сетевые ключи.
