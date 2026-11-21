@@ -30,8 +30,10 @@ def committed():
 
 
 def rebuilt():
-    nodes = (migrate.claims() + migrate.formulas() + migrate.experiments()
+    base = (migrate.claims() + migrate.formulas() + migrate.experiments()
             + migrate.literature() + migrate.definitions() + migrate.bridges())
+    # the same second pass `migrate.main` does: evidence objects are derived from the corpus too
+    nodes = base + migrate.evidence_nodes(base)
     return {n["id"]: n for n in nodes}
 
 
