@@ -1,3 +1,4 @@
+import hashlib
 #!/usr/bin/env python3
 """migrate.py — collect nodes for the knowledge graph.
 
@@ -126,6 +127,42 @@ def lines_map():
 PAPERS = ROOT / "papers"
 
 
+LEVEL_FULL = "full_text_examined"
+LEVEL_FRAGMENT = "fragment_read"
+LEVEL_ABSTRACT = "abstract_read"
+LEVEL_SECONDARY = "secondary_only"
+
+# A record that says "полный текст не читал" contains the words "полный текст" too. Negation wins,
+# otherwise the two PoC cases from the second review (L-001, L-066) upgrade themselves.
+NEGATIVE_MARKERS = ("не читал", "не открыл", "не дост", "не удалось", "не проверял", "не видел")
+
+
+def literature_level(level_line: str) -> str:
+    """Turn the human line «Проверено: …» into one of the five levels, negation first."""
+    s = (level_line or "").lower()
+    negative = any(marker in s for marker in NEGATIVE_MARKERS)
+    if negative:
+        return LEVEL_ABSTRACT if "аннотац" in s else LEVEL_SECONDARY
+    if "фрагмент" in s:
+        return LEVEL_FRAGMENT
+    if "полный текст" in s:
+        return LEVEL_FULL
+    if "аннотац" in s:
+        return LEVEL_ABSTRACT
+    return LEVEL_SECONDARY
+
+
+def artifact_integrity(rel: str) -> dict | None:
+    """Size and sha256 of the local copy: the declaration now costs a file, not only its name."""
+    path = ROOT / rel
+    try:
+        data = path.read_bytes()
+    except OSError:
+        return None
+    if not data:
+        return None
+    return {"artifact": rel, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+
 def literature_artifact(body: str) -> str | None:
     """The local copy is what turns `verified_agent` into a fact instead of a self-report.
 
@@ -135,7 +172,7 @@ def literature_artifact(body: str) -> str | None:
     same line ("полный текст не читал", "не открылся") -- FINDING-336.
     """
     ids = re.findall(r"arXiv:(\d{4}\.\d{4,5})", body)
-    ids += re.findall(r"(10\.\d{4,9}/[^\s)\];,]+)", body)
+    ids += [d.replace("/", "_") for d in re.findall(r"(10\.\d{4,9}/[^\s)\];,]+)", body)]
     if not ids or not PAPERS.exists():
         return None
     for path in sorted(PAPERS.iterdir()):
@@ -170,8 +207,15 @@ def literature():
         sm = re.search(r"\*\*Утверждение[^*]*\.\*\*\s*(.+)", body)
         if sm:
             statement = sm.group(1).strip()
-        artifact = literature_artifact(body)
-        chosen = "verified_agent" if artifact else "extracted"
+        level_kind = literature_level(level)
+        artifact = literature_artifact(body) if level_kind in (LEVEL_FULL, LEVEL_FRAGMENT) else None
+        integrity = artifact_integrity(artifact) if artifact else None
+        if level_kind == LEVEL_FULL and integrity:
+            chosen, strength = "verified_agent", "strong"
+        elif level_kind == LEVEL_FRAGMENT and integrity:
+            chosen, strength = "extracted", "moderate"
+        else:
+            chosen, strength = "extracted", "weak"
         lmap, meta = lines_map()
         lines = lmap.get(lid, [])
         prov = {"method": meta.get("method", "parsed"), "parser_version": meta.get("parser_version", "1"),
@@ -183,11 +227,13 @@ def literature():
             "context": {"scope": "literature record from ELEPHANT-LITERATURE", "parameters": "see registry", "conditions": level},
             "epistemic": "hypothesis",
             "provenance": chosen,
-            "evidence": [{"kind": "literature", "ref": "docs/ELEPHANT-LITERATURE.md", "strength": "strong" if chosen == "verified_agent" else "weak"}],
+            "evidence": [{"kind": "literature", "ref": "docs/ELEPHANT-LITERATURE.md", "strength": strength}],
             "relations": [],
             "data": {"source": "docs/ELEPHANT-LITERATURE.md", "license": "see source",
                      "accessed_at": "2026-11-20", "registry_level": level[:80],
-                     "artifact": artifact},
+                     "level_kind": level_kind, "artifact": (integrity or {}).get("artifact"),
+                     "artifact_bytes": (integrity or {}).get("bytes"),
+                     "artifact_sha256": (integrity or {}).get("sha256")},
             "created_at": "2026-11-20",
             "updated_at": "2026-11-21",
         }

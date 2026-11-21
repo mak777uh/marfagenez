@@ -230,6 +230,14 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/exp05_frozen.py`, `checks/exp99_protocol_capacity.py`, `checks/exp_look_order.py`, `checks/exp_memory_cost.py`, `checks/exp_memory_question.py`, `checks/exp_memory_sampling.py` | замороженные эксперименты: их числа не должны меняться |
 | `checks/stub_covers_bridge.py` | заглушка покрывает мост Rust ↔ Lean |
 
+| проверка на другом языке | что решает |
+|---|---|
+| `checks/audit.js` | аудит утверждений книги (seed-симулятор, офлайн) |
+| `checks/verify_all.js` | утверждения документации сходятся с деревом |
+| `checks/stub_links.sh` | заглушка Rust ↔ Lean действительно линкуется |
+| `checks/cli_refuses_bad_numbers.sh` | CLI отказывается угадывать число с опечаткой |
+| `checks/cli_refuses_bad_numbers_occupancy.sh` | то же для позиционного аргумента `occupancy` |
+
 **Локально зелёное — не проверено.** Если проверка не запускалась в этом окружении — это «не
 проверено здесь», а не «прошло».
 

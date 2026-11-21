@@ -12180,7 +12180,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "аннотация (полный текст не читал).",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12218,7 +12221,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12247,7 +12253,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "аннотация/обзорная страница.",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12285,7 +12294,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки** (аннотация в поиске).",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12324,7 +12336,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "аннотация.",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12362,7 +12377,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12391,7 +12409,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**полный текст** (читал страницу).",
+        "level_kind": "full_text_examined",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12429,7 +12450,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12467,7 +12491,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12496,7 +12523,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12534,7 +12564,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12572,7 +12605,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12610,7 +12646,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12648,7 +12687,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12686,7 +12728,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12725,7 +12770,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12763,7 +12811,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12801,7 +12852,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12839,7 +12893,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12877,7 +12934,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12906,7 +12966,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "аннотация (обе).",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12935,7 +12998,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки** (и это **не** источник, а гипотеза).",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "access": "secondary",
         "checked_by": null,
         "internal_review": true,
@@ -12969,7 +13035,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки** (реконструкция обзора, сам статью не открывал).",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13007,7 +13076,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "access": "secondary",
         "checked_by": null,
         "internal_review": true,
@@ -13042,7 +13114,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13080,7 +13155,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13119,7 +13197,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13157,7 +13238,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13186,7 +13270,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13224,7 +13311,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13253,7 +13343,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13291,7 +13384,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13320,7 +13416,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13358,7 +13457,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13396,7 +13498,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13434,7 +13539,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
+        "level_kind": "secondary_only",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13472,7 +13580,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки** — и это **гипотеза о пробеле**, не факт.",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13501,7 +13612,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки** (внешний разбор 2026-11-20; локаторы не открывались).",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13530,7 +13644,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13559,7 +13676,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13588,7 +13708,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13617,7 +13740,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13646,7 +13772,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13675,7 +13804,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13704,7 +13836,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13733,7 +13868,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13762,7 +13900,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13791,7 +13932,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13820,7 +13964,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки.**",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13849,7 +13996,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**вторые руки** (синтез обзора, не цитата).",
-        "artifact": null
+        "level_kind": "secondary_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13878,7 +14028,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент**: на странице рисунков PLOS — «equilibrium is possible… be",
-        "artifact": null
+        "level_kind": "fragment_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13907,7 +14060,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13936,7 +14092,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13965,7 +14124,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "artifact": null
+        "level_kind": "fragment_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13994,7 +14156,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент** (текст не открылся).",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14032,7 +14197,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
+        "level_kind": "fragment_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14070,7 +14238,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент** (в фрагменте — нормировки `y ≡ 1`, `r ≡ R/E`).",
+        "level_kind": "fragment_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14108,7 +14279,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14137,7 +14311,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14175,7 +14352,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**полный текст** arXiv-версии (`arXiv:2411.17012v2`, 81 691 байт, локальная копи",
+        "level_kind": "full_text_examined",
         "artifact": "papers/arXiv-2411.17012-brown-vittadello.txt",
+        "artifact_bytes": 81691,
+        "artifact_sha256": "f4d973f548b22cf86d579f368aab3d0e379098193b6431e77a5a90110b12b708",
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14213,7 +14393,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
+        "level_kind": "fragment_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14251,7 +14434,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14289,7 +14475,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14318,7 +14507,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14347,7 +14539,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "artifact": null
+        "level_kind": "fragment_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14376,7 +14571,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация** (полный текст не открылся — SSRF, см. `LITERATURE-GAPS.md` G-002).",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14405,7 +14603,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация** (PMC-версия не открылась: SSRF).",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14443,7 +14644,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14481,7 +14685,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14519,7 +14726,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
+        "level_kind": "fragment_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14557,7 +14767,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14586,7 +14799,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14624,7 +14840,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14662,7 +14881,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14700,7 +14922,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14729,7 +14954,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14758,7 +14986,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "artifact": null
+        "level_kind": "fragment_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14787,7 +15018,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "artifact": null
+        "level_kind": "fragment_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14816,7 +15050,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "artifact": null
+        "level_kind": "fragment_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14845,7 +15082,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент** (лекция — полный конспект в фрагменте).",
+        "level_kind": "fragment_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14883,7 +15123,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14921,7 +15164,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
+        "level_kind": "abstract_read",
         "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14959,7 +15205,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "artifact": null
+        "level_kind": "fragment_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14988,7 +15237,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15017,7 +15269,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15046,7 +15301,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "artifact": null
+        "level_kind": "fragment_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15075,7 +15333,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация.**",
-        "artifact": null
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15104,7 +15365,10 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "artifact": null
+        "level_kind": "fragment_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"

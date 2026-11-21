@@ -37,8 +37,8 @@ def main(argv: list[str]) -> int:
     run = (root / "run.sh").read_text(encoding="utf-8")
     proto = (root / "PROTOCOL.md").read_text(encoding="utf-8")
 
-    invoked = sorted(set(re.findall(r"checks/([a-z_0-9]+\.py)", run)))
-    named = set(re.findall(r"checks/([a-z_0-9]+\.py)", proto))
+    invoked = sorted(set(re.findall(r"checks/([a-z_0-9]+\.(?:py|sh|js))", run)))
+    named = set(re.findall(r"checks/([a-z_0-9]+\.(?:py|sh|js))", proto))
 
     bad = 0
     missing = [c for c in invoked if c not in named]

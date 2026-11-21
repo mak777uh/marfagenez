@@ -36,7 +36,11 @@ import requests
 
 OPENALEX = "https://api.openalex.org/works"
 UA = "dsh-semantic-search/1.0 (local research tool)"
+MAILTO = os.environ.get("OPENALEX_EMAIL", "")
 MODEL = "BAAI/bge-small-en-v1.5"
+# bge-en-v1.5 expects an instruction on the *query* side; encoding the question as a
+# passage (what we did before) is the documented way to lose accuracy silently.
+BGE_QUERY_INSTRUCTION = "Represent this sentence for searching relevant passages: "
 
 
 def rebuild_abstract(inv: dict | None) -> str:
@@ -61,6 +65,8 @@ def fetch_openalex(seeds: list[str], per_page: int, key: str | None) -> list[dic
         }
         if key:
             params["api_key"] = key
+        if MAILTO:
+            params["mailto"] = MAILTO
         try:
             r = requests.get(OPENALEX, params=params, headers={"User-Agent": UA}, timeout=40)
             r.raise_for_status()
@@ -130,7 +136,8 @@ def main(argv: list[str]) -> int:
     print(f"pool: {len(rows)} records with abstracts", file=sys.stderr)
 
     try:
-        vectors = embed([args.query] + [f"{r.get('title','')}. {r['abstract']}" for r in rows])
+        query_text = BGE_QUERY_INSTRUCTION + args.query
+        vectors = embed([query_text] + [f"{r.get('title','')}. {r['abstract']}" for r in rows])
     except Exception as exc:  # noqa: BLE001
         print(f"embedding unavailable: {type(exc).__name__}: {exc}", file=sys.stderr)
         return 3
@@ -141,7 +148,7 @@ def main(argv: list[str]) -> int:
     m = m / (np.linalg.norm(m, axis=1, keepdims=True) + 1e-9)
     scores = m @ q
 
-    order = np.argsort(-scores)[: args.top]
+    order = np.argsort(-scores, kind="stable")[: args.top]
     print(f"\nsemantic ranking ({MODEL})")
     for rank, i in enumerate(order, 1):
         r = rows[int(i)]
