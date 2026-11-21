@@ -16172,6 +16172,170 @@
       "updated_at": "2026-11-21"
     },
     {
+      "id": "L-089",
+      "kind": "claim",
+      "text": "Minimal Conditions for Protocell Stationary Growth — минимальные условия стационарного роста протоклетки: топологическое условие на химическую сеть, а не баланс энергии",
+      "context": {
+        "scope": "literature record from ELEPHANT-LITERATURE",
+        "parameters": "see registry",
+        "conditions": "**аннотация** OpenAlex, 2026-11-21T21:55:49Z, отпечаток есть; фрагмент не читалс"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "extracted",
+      "evidence": [
+        {
+          "kind": "literature",
+          "ref": "docs/ELEPHANT-LITERATURE.md",
+          "strength": "weak"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "source": "docs/ELEPHANT-LITERATURE.md",
+        "license": "see source",
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация** OpenAlex, 2026-11-21T21:55:49Z, отпечаток есть; фрагмент не читалс",
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1162/artl_a_00165",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": "W1941562954",
+          "pmid": null,
+          "url": "https://doi.org/10.1162/artl_a_00165",
+          "none": false
+        }
+      },
+      "created_at": "2026-11-20",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "L-090",
+      "kind": "claim",
+      "text": "The “protocell”: A mathematical model of self-maintenance — самоподдержание протоклетки как динамика с подвижной границей и обратной связью, а не арифметическое условие",
+      "context": {
+        "scope": "literature record from ELEPHANT-LITERATURE",
+        "parameters": "see registry",
+        "conditions": "**метаданные** OpenAlex, 2026-11-21T21:55:49Z, отпечаток нет; фрагмент не читалс"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "extracted",
+      "evidence": [
+        {
+          "kind": "literature",
+          "ref": "docs/ELEPHANT-LITERATURE.md",
+          "strength": "weak"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "source": "docs/ELEPHANT-LITERATURE.md",
+        "license": "see source",
+        "accessed_at": "2026-11-20",
+        "registry_level": "**метаданные** OpenAlex, 2026-11-21T21:55:49Z, отпечаток нет; фрагмент не читалс",
+        "level_kind": "metadata_only",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1016/0303-2647(86)90008-0",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": "W2004037730",
+          "pmid": null,
+          "url": "https://doi.org/10.1016/0303-2647(86)90008-0",
+          "none": false
+        }
+      },
+      "created_at": "2026-11-20",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "L-091",
+      "kind": "claim",
+      "text": "Synergistic effects of repair, resilience and retention of damage determine the conditions for replicative ageing — ремонт, устойчивость и удержание повреждения одновременно определяют условия репликативного старения",
+      "context": {
+        "scope": "literature record from ELEPHANT-LITERATURE",
+        "parameters": "see registry",
+        "conditions": "**аннотация** OpenAlex, 2026-11-21T21:55:50Z, отпечаток есть; фрагмент не читалс"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "extracted",
+      "evidence": [
+        {
+          "kind": "literature",
+          "ref": "docs/ELEPHANT-LITERATURE.md",
+          "strength": "weak"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "source": "docs/ELEPHANT-LITERATURE.md",
+        "license": "see source",
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация** OpenAlex, 2026-11-21T21:55:50Z, отпечаток есть; фрагмент не читалс",
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1038/s41598-020-58444-2",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": "W3003628019",
+          "pmid": null,
+          "url": "https://doi.org/10.1038/s41598-020-58444-2",
+          "none": false
+        }
+      },
+      "created_at": "2026-11-20",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "L-092",
+      "kind": "claim",
+      "text": "Balance between asymmetric allocation and repair of somatic damage in unicellular life forms as an ancient form of r/K selection — компромисс между асимметричным распределением повреждения и его ремонтом как стратегия популяции",
+      "context": {
+        "scope": "literature record from ELEPHANT-LITERATURE",
+        "parameters": "see registry",
+        "conditions": "**аннотация** OpenAlex, 2026-11-21T21:55:51Z, отпечаток есть; фрагмент не читалс"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "extracted",
+      "evidence": [
+        {
+          "kind": "literature",
+          "ref": "docs/ELEPHANT-LITERATURE.md",
+          "strength": "weak"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "source": "docs/ELEPHANT-LITERATURE.md",
+        "license": "see source",
+        "accessed_at": "2026-11-20",
+        "registry_level": "**аннотация** OpenAlex, 2026-11-21T21:55:51Z, отпечаток есть; фрагмент не читалс",
+        "level_kind": "abstract_read",
+        "artifact": null,
+        "artifact_bytes": null,
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1073/pnas.2400008121",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": "W4398794048",
+          "pmid": null,
+          "url": "https://doi.org/10.1073/pnas.2400008121",
+          "none": false
+        }
+      },
+      "created_at": "2026-11-20",
+      "updated_at": "2026-11-21"
+    },
+    {
       "id": "DEF-01",
       "kind": "definition",
       "text": "Граница — Поверхность, которую надо поддерживать, ценой вещества.",
