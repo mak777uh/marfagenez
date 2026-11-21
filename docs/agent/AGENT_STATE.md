@@ -196,6 +196,7 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 - **Регресс импорта:** `python3 kg/regress.py` — сверяет корпус (`claims.jsonl`, литература, `results/`) с `nodes.jsonl` и запрещает смену статуса при импорте; входит в раздел `kg` гейта.
 - **Свидетельство — объект:** 11 узлов `EV-*` для находок и алиасов; `ref_targets()` — единый резолвер для `check` и `expand`; `expand C-001 1` доходит до прогонов и находок.
 - **Точка измерения в DeathLaw названа:** `steadyEnergyAtCap` — энергия между платежами и зажимом; `cap_is_last_measurement` — значение после зажима (Medium 291, всего 318 теорем).
+- **Выключенные положения проверены трассами:** `core/tests/off_positions.rs` (FNV-1a по состоянию после шага) плюс контроль на различие; `policy_mutation=0`, `sight_radius=1` не меняют трассу, `claims` и `read_cost` меняют.
 - **Окно жизни — против избытка:** `ρ_s = dr·rc/(income − maintenance)`, критерий; `ρ` по доходу только для совместимости; диагностика `checks/rho_surplus.py`.
 - **Наследование политики:** ребёнок берёт `policies[parent]`, не `policies[0]`; заголовок `life.rs` больше не отрицает наследование; тест на две позиции родителя в `core/tests/births.rs`.
 - **Очередь подтверждения владельцем:** `kg.py unconfirmed` (сначала хабы), `kg.py confirm <id> "<заметка>"`; файл `kg/confirmed.jsonl`, счётчик в `atlas`; подтверждение несуществующего узла — ошибка `check`.
