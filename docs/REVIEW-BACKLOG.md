@@ -16,6 +16,7 @@
 | ✅ P0.1 | уровень парсится с приоритетом отрицания; артефакт обязан быть непустым; считается `sha256` и размер | PoC рецензента: пустой файл → `extracted/weak`; L-060 → `verified_agent/strong`, 81 691 Б, sha `f4d973f5…` |
 | ✅ Q7 | правило PROTOCOL видит `.sh` и `.js`; пять строк добавлены | `protocol_checks.py` зелёный |
 | ✅ Q4-фикс | bge-en получает query-инструкцию, стабильная сортировка, `mailto` | синтаксис ok, прогон — U11 |
+| ✅ U1 | контракт литературы: блоки, независимый чекер, обратный индекс, baseline | `checks/literature_contract.py` 0 нарушений, `--selftest` 7/7 |
 
 ---
 
@@ -35,7 +36,7 @@ retrieved_at, via, via_detail}`, `inspection{scope, reviewed_ranges[{type: secti
 — **данными в коде**: full ⇒ verified/strong, fragment ⇒ verified/moderate, abstract ⇒ extracted/weak,
 metadata/secondary ⇒ extracted/weak + `secondary_of`.
 
-### U2. Абстракты: отпечаток вместо текста — частично: правило R7 включено, отпечатки для 24 записей — следующий шаг
+### U2. Абстракты: отпечаток вместо текста — правило R7 включено; покрытие считается (`tools/lit_coverage.py`), отпечатки для 24 записей требуют прогона добычи
 **Что:** `abstract_sha256` обязателен для `abstract_read`; `via` — перечисление каналов; кэш текста только
 для CC0-каналов (OpenAlex, arXiv-metadata); правило нормализации записано (NFC, схлопывание пробелов,
 реконструкция из inverted index).
