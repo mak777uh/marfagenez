@@ -1,0 +1,1098 @@
+
+================================================================
+  Rust: тесты
+================================================================
+библиотек: 48, passed: 382, failed: 0
+
+================================================================
+  Lean: сборка
+================================================================
+Build completed successfully (18330 jobs).
+Build completed successfully (18330 jobs).
+Build completed successfully (18238 jobs).
+
+файлов:  56 Medium + 8 Legacy, из них с теоремами 63
+теорем:  291 Medium + 27 Legacy
+sorry:   0
+
+================================================================
+  Lean: достижимость файлов
+================================================================
+entry points      : Medium, Legacy, Medium
+reached modules   : 68
+modules on disk   : 66
+NOT reached       : 0
+
+OK: every .lean file is reachable from an entry point.
+=== диспетчер: провал не теряется ===
+  ok   exp падает, agents проходит (код 1, «ЕСТЬ ПРОВАЛЫ (код 1): провалились разделы: exp»)
+  ok   agents падает последним (код 1, «ЕСТЬ ПРОВАЛЫ (код 1): провалились разделы: agents»)
+  ok   оба падают (код 1, «ЕСТЬ ПРОВАЛЫ (код 1): провалились разделы: exp agents»)
+  ok   всё проходит (код 0, «ВСЁ ЗЕЛЁНОЕ»)
+  ok   одиночная цель падает (код 1, «ЕСТЬ ПРОВАЛЫ (код 1): провалились разделы: exp»)
+  ok   одиночная цель проходит (код 0, «ВСЁ ЗЕЛЁНОЕ»)
+  ok   первый провал не затирается вторым (код 1, «ЕСТЬ ПРОВАЛЫ (код 1): провалились разделы: exp claims»)
+    диспетчер сохраняет провал: 7/7
+
+================================================================
+  Verus: целочисленные законы
+================================================================
+verification results:: 41 verified, 0 errors
+
+================================================================
+  Эксперименты
+================================================================
+--- cli_refuses_bad_numbers.sh ---
+OK   fires: --steps 50O -> 2
+OK   fires: --n abc -> 2
+OK   fires: --capacity 1,5 -> 2
+OK   fires: --maintenance 0.6.1 -> 2
+OK   fires: --steps -> 2
+OK   fires: --seed -> 2
+OK   silent: --steps 20 -> 0
+OK   silent:  -> 0
+OK   fires: --bogus -> 2
+Вердикт: passed
+
+--- cli_refuses_bad_numbers_occupancy.sh ---
+OK   fires: 50O 3 2 1 -> 2
+OK   fires: 4 4O 2 1 -> 2
+OK   fires: 4 3 2O 1 -> 2
+OK   fires: 4 3 2 x -> 2
+OK   fires: -1 3 2 1 -> 2
+OK   silent: 4 3 2 1 -> 0
+OK   silent:  -> 0
+OK   silent: 4 3 2 1 extra -> 0
+Вердикт: passed
+
+--- stub_covers_bridge.py ---
+declared in bridge.rs : 20
+defined in stub       : 20
+
+OK: the stub covers every symbol the bridge declares.
+
+--- stub_links.sh ---
+=== stub_links.sh ===
+--- silent: the healthy stub builds, and the bridge reports itself absent ---
+  ok   the crate builds with the stub
+  ok   build.rs took the stub branch
+  ok   bridge::available() is false on the stub
+
+--- fires: a stub that does not link makes the build fail ---
+injected at 1 site(s)
+  ok   an empty stub archive fails the link, as it must
+
+--- specific: the neighbouring defect (a missing symbol) is not this check's ---
+  ok   stub_covers_bridge.py is green on the healthy tree (it owns the list)
+
+Вердикт: passed
+
+--- contract.py ---
+OK   results/EXP-22/run-2026-11-12T12-46-12.json
+OK   results/EXP-22/run-2026-11-13T12-51-39.json
+OK   results/EXP-23/run-2026-11-12T12-55-33.json
+OK   results/EXP-24/run-2026-11-12T13-01-44.json
+OK   results/EXP-24/run-2026-11-12T13-03-34.json
+OK   results/EXP-30/run-2026-11-12T15-49-47.json
+OK   results/EXP-32/run-2026-11-12T22-02-09.json
+OK   results/EXP-50/run-2026-11-12T16-14-46.json
+OK   results/EXP-52/run-2026-11-12T22-03-53.json
+OK   results/EXP-52/run-2026-11-13T01-28-51.json
+OK   results/EXP-53/run-2026-11-12T22-05-48.json
+OK   results/EXP-54/run-2026-11-12T22-08-13.json
+OK   results/EXP-55/run-2026-11-12T22-17-24.json
+OK   results/EXP-56/run-2026-11-12T22-23-48.json
+OK   results/EXP-56/run-2026-11-12T22-25-47.json
+OK   results/EXP-56/run-2026-11-13T12-51-39.json
+OK   results/EXP-57/run-2026-11-13T01-31-44.json
+OK   results/EXP-58/run-2026-11-12T22-27-30.json
+OK   results/EXP-58/run-2026-11-13T01-34-07.json
+OK   results/EXP-59/run-2026-11-13T01-37-10.json
+OK   results/EXP-60/run-2026-11-12T22-28-35.json
+OK   results/EXP-60/run-2026-11-13T01-42-34.json
+OK   results/EXP-61/run-2026-11-12T22-29-09.json
+OK   results/EXP-61/run-2026-11-13T01-43-39.json
+OK   results/EXP-61/run-2026-11-13T01-43-57.json
+OK   results/EXP-62/run-2026-11-13T01-49-13.json
+OK   results/EXP-62/run-2026-11-13T01-49-42.json
+OK   results/EXP-63/run-2026-11-13T01-50-13.json
+OK   results/EXP-64/run-2026-11-13T01-51-27.json
+OK   results/EXP-65/run-2026-11-13T01-52-33.json
+OK   results/EXP-66/run-2026-11-13T01-53-05.json
+OK   results/EXP-77/run-2026-11-13T02-04-30.json
+OK   results/EXP-78/run-2026-11-13T02-06-17.json
+OK   results/EXP-80/run-2026-11-13T02-07-35.json
+OK   results/EXP-81/run-2026-11-13T02-07-55.json
+OK   results/EXP-82/run-2026-11-13T02-08-39.json
+OK   results/EXP-83/run-2026-11-13T02-09-25.json
+OK   results/EXP-84/run-2026-11-13T02-09-43.json
+OK   results/EXP-85/run-2026-11-13T02-10-48.json
+OK   results/EXP-86/run-2026-11-13T02-12-27.json
+OK   results/EXP-87/run-2026-11-13T02-16-45.json
+OK   results/EXP-87/run-2026-11-13T12-51-31.json
+OK   results/EXP-88/run-2026-11-13T02-25-56.json
+OK   results/EXP-88/run-2026-11-13T02-26-12.json
+OK   results/EXP-88/run-2026-11-13T02-26-24.json
+OK   results/EXP-98/run-2026-11-13T09-25-18.json
+OK   results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-00-27.json
+OK   results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-01-14.json
+OK   results/EXP-DIVISION-THRESHOLD/run-2026-11-19T13-52-19.json
+OK   results/EXP-PRICE-KINKS/run-2026-11-20T11-02-03.json
+OK   results/EXP-PRICE-KINKS/run-2026-11-20T11-04-10.json
+OK   results/EXP-SHADOW-PRICE/run-2026-11-20T10-06-53.json
+OK   results/EXP-SHADOW-PRICE/run-2026-11-20T10-09-49.json
+OK   results/EXP-SHAPE-REG/run-2026-11-18T19-51-58.json
+OK   results/b3-tiebreak/run-2026-11-15T10-18-41.json
+OK   results/b3-tiebreak/run-2026-11-15T10-19-05.json
+OK   results/capacity/run-2026-11-11T21-40-11.json
+OK   results/capacity/run-2026-11-13T00-59-32.json
+OK   results/capacity-curve/run-2026-11-11T21-49-27.json
+OK   results/capacity-edge/run-2026-11-16T01-17-33.json
+OK   results/capacity-edge/run-2026-11-16T01-21-26.json
+OK   results/capacity-refined/run-2026-11-11T21-52-09.json
+OK   results/competition-edge/run-2026-11-16T02-54-51.json
+OK   results/crossing-is-death/run-2026-11-12T16-00-39.json
+OK   results/crossing-is-death/run-2026-11-13T01-06-27.json
+OK   results/crossing-shape/run-2026-11-12T15-59-50.json
+OK   results/crossing-shape/run-2026-11-13T00-58-36.json
+OK   results/crowding-law/run-exp21.json
+OK   results/crowding-law-law2/run-exp25.json
+OK   results/crowding-law-law3/run-exp25.json
+OK   results/damage-never-accumulates/run-2026-11-12T16-01-38.json
+OK   results/damage-never-accumulates/run-2026-11-13T00-58-38.json
+OK   results/death-budget-closed/run-2026-11-12T16-02-02.json
+OK   results/death-budget-closed/run-2026-11-13T01-05-36.json
+OK   results/death-budget-exact/run-2026-11-12T16-00-57.json
+OK   results/death-budget-exact/run-2026-11-13T00-58-38.json
+OK   results/empty-cell-refused/run-2026-11-12T21-42-08.json
+OK   results/env-map/run-2026-11-16T16-01-17.json
+OK   results/env-prior/run-2026-11-16T12-45-23.json
+OK   results/exit-rule/run-2026-11-16T14-08-15.json
+OK   results/exp21-feed-collapse/run-2026-11-12T12-38-39.json
+OK   results/exp21-feed-collapse/run-2026-11-13T12-51-30.json
+OK   results/exp31_capacity_was_forty/run-2026-11-12T21-49-53.json
+OK   results/exp31_capacity_was_forty/run-2026-11-12T21-50-52.json
+OK   results/exp31_capacity_was_forty/run-2026-11-12T21-51-00.json
+OK   results/exp66-second-occupant/run-2026-11-12T22-43-36.json
+OK   results/exp66-second-occupant/run-2026-11-12T22-43-55.json
+OK   results/exp66-second-occupant/run-2026-11-12T22-44-54.json
+OK   results/exp67-where-does-anything-die/run-2026-11-12T22-45-46.json
+OK   results/exp67-where-does-anything-die/run-2026-11-12T22-46-25.json
+OK   results/exp68-bisect-the-death-threshold/run-2026-11-12T22-46-56.json
+OK   results/exp69-a-sitter-dies-at-the-same-maintenance/run-2026-11-12T22-49-18.json
+OK   results/exp70-the-threshold-offset-is-the-window/run-2026-11-12T22-51-10.json
+OK   results/exp71-does-hunger-feed-back-into-moving/run-2026-11-12T22-57-11.json
+OK   results/exp72-is-the-move-cost-charged/run-2026-11-12T23-00-26.json
+OK   results/exp73-is-the-cap-the-whole-explanation/run-2026-11-12T23-01-55.json
+OK   results/exp75-the-capacity-is-how-many-cells-can-feed/run-2026-11-12T23-11-43.json
+OK   results/exp76-can-one-cell-hold-two/run-2026-11-12T23-22-18.json
+OK   results/exp77-why-a-poor-cell-feeds-nobody/run-2026-11-12T23-32-19.json
+OK   results/field-stable/run-2026-11-11T22-03-23.json
+OK   results/frozen-ceiling/run-2026-11-11T18-38-50.json
+OK   results/frozen-ceiling/run-2026-11-11T18-40-10.json
+OK   results/frozen-ceiling/run-2026-11-11T19-03-11.json
+OK   results/frozen-ceiling/run-2026-11-11T20-00-10.json
+OK   results/frozen-ceiling/run-2026-11-11T20-19-35.json
+OK   results/frozen-ceiling/run-2026-11-13T02-41-54.json
+OK   results/frozen-ceiling/run-2026-11-13T02-46-00.json
+OK   results/frozen-ceiling/run-2026-11-13T02-47-00.json
+OK   results/frozen-ceiling/run-2026-11-13T02-48-10.json
+OK   results/frozen-ceiling/run-2026-11-13T02-51-46.json
+OK   results/frozen-ceiling/run-2026-11-13T03-01-58.json
+OK   results/frozen-ceiling/run-2026-11-13T03-27-02.json
+OK   results/frozen-ceiling/run-2026-11-13T03-31-07.json
+OK   results/frozen-ceiling/run-2026-11-13T06-14-53.json
+OK   results/frozen-ceiling/run-2026-11-14T07-16-56.json
+OK   results/frozen-ceiling/run-2026-11-14T07-20-19.json
+OK   results/frozen-ceiling/run-2026-11-14T07-29-04.json
+OK   results/frozen-ceiling/run-2026-11-14T08-13-36.json
+OK   results/frozen-ceiling/run-2026-11-14T15-48-26.json
+OK   results/frozen-ceiling/run-2026-11-14T16-09-38.json
+OK   results/frozen-ceiling/run-2026-11-14T16-12-56.json
+OK   results/frozen-ceiling/run-2026-11-14T16-27-28.json
+OK   results/frozen-ceiling/run-2026-11-14T17-11-31.json
+OK   results/frozen-ceiling/run-2026-11-14T17-25-13.json
+OK   results/frozen-ceiling/run-2026-11-14T17-29-34.json
+OK   results/frozen-ceiling/run-2026-11-14T19-47-08.json
+OK   results/frozen-ceiling/run-2026-11-14T19-59-15.json
+OK   results/frozen-ceiling/run-2026-11-14T20-08-35.json
+OK   results/frozen-ceiling/run-2026-11-14T20-19-32.json
+OK   results/frozen-ceiling/run-2026-11-14T20-29-59.json
+OK   results/frozen-ceiling/run-2026-11-14T20-40-21.json
+OK   results/frozen-ceiling/run-2026-11-14T20-49-49.json
+OK   results/frozen-ceiling/run-2026-11-14T20-55-49.json
+OK   results/frozen-ceiling/run-2026-11-14T20-55-59.json
+OK   results/frozen-ceiling/run-2026-11-14T20-59-12.json
+OK   results/frozen-ceiling/run-2026-11-14T21-12-52.json
+OK   results/frozen-ceiling/run-2026-11-14T21-30-13.json
+OK   results/frozen-ceiling/run-2026-11-14T21-39-21.json
+OK   results/frozen-ceiling/run-2026-11-14T21-48-54.json
+OK   results/frozen-ceiling/run-2026-11-14T21-58-02.json
+OK   results/frozen-ceiling/run-2026-11-14T22-07-25.json
+OK   results/frozen-ceiling/run-2026-11-14T22-16-29.json
+OK   results/frozen-ceiling/run-2026-11-14T22-25-33.json
+OK   results/frozen-ceiling/run-2026-11-14T22-37-42.json
+OK   results/frozen-ceiling/run-2026-11-14T22-46-49.json
+OK   results/frozen-ceiling/run-2026-11-14T22-56-12.json
+OK   results/frozen-ceiling/run-2026-11-14T23-02-04.json
+OK   results/frozen-ceiling/run-2026-11-14T23-11-12.json
+OK   results/frozen-ceiling/run-2026-11-14T23-17-08.json
+OK   results/frozen-ceiling/run-2026-11-14T23-20-32.json
+OK   results/frozen-ceiling/run-2026-11-14T23-29-48.json
+OK   results/frozen-ceiling/run-2026-11-15T05-13-18.json
+OK   results/frozen-ceiling/run-2026-11-15T05-28-31.json
+OK   results/frozen-ceiling/run-2026-11-15T05-37-50.json
+OK   results/frozen-ceiling/run-2026-11-15T05-44-29.json
+OK   results/frozen-ceiling/run-2026-11-15T05-44-44.json
+OK   results/frozen-ceiling/run-2026-11-15T05-44-57.json
+OK   results/frozen-ceiling/run-2026-11-15T05-45-28.json
+OK   results/frozen-ceiling/run-2026-11-15T05-45-39.json
+OK   results/frozen-ceiling/run-2026-11-15T05-46-16.json
+OK   results/frozen-ceiling/run-2026-11-15T05-46-27.json
+OK   results/frozen-ceiling/run-2026-11-15T05-46-40.json
+OK   results/frozen-ceiling/run-2026-11-15T05-46-53.json
+OK   results/frozen-ceiling/run-2026-11-15T05-47-06.json
+OK   results/frozen-ceiling/run-2026-11-15T05-51-08.json
+OK   results/frozen-ceiling/run-2026-11-15T06-00-16.json
+OK   results/frozen-ceiling/run-2026-11-15T06-11-41.json
+OK   results/frozen-ceiling/run-2026-11-15T07-56-19.json
+OK   results/frozen-ceiling/run-2026-11-15T08-29-22.json
+OK   results/frozen-ceiling/run-2026-11-15T08-40-11.json
+OK   results/frozen-ceiling/run-2026-11-15T08-50-16.json
+OK   results/frozen-ceiling/run-2026-11-15T09-00-35.json
+OK   results/frozen-ceiling/run-2026-11-15T09-10-41.json
+OK   results/frozen-ceiling/run-2026-11-15T09-21-44.json
+OK   results/frozen-ceiling/run-2026-11-15T09-34-44.json
+OK   results/frozen-ceiling/run-2026-11-15T09-45-25.json
+OK   results/frozen-ceiling/run-2026-11-15T10-47-45.json
+OK   results/frozen-ceiling/run-2026-11-15T10-58-19.json
+OK   results/frozen-ceiling/run-2026-11-15T11-02-29.json
+OK   results/frozen-ceiling/run-2026-11-15T11-02-43.json
+OK   results/frozen-ceiling/run-2026-11-15T11-03-29.json
+OK   results/frozen-ceiling/run-2026-11-15T11-03-48.json
+OK   results/frozen-ceiling/run-2026-11-15T11-10-01.json
+OK   results/frozen-ceiling/run-2026-11-15T11-17-13.json
+OK   results/frozen-ceiling/run-2026-11-15T11-19-55.json
+OK   results/frozen-ceiling/run-2026-11-15T11-26-47.json
+OK   results/frozen-ceiling/run-2026-11-15T11-27-04.json
+OK   results/frozen-ceiling/run-2026-11-15T11-27-21.json
+OK   results/frozen-ceiling/run-2026-11-15T11-32-02.json
+OK   results/frozen-ceiling/run-2026-11-15T11-41-57.json
+OK   results/frozen-ceiling/run-2026-11-15T11-48-00.json
+OK   results/frozen-ceiling/run-2026-11-15T11-51-56.json
+OK   results/frozen-ceiling/run-2026-11-15T12-32-32.json
+OK   results/frozen-ceiling/run-2026-11-15T12-47-33.json
+OK   results/frozen-ceiling/run-2026-11-15T13-33-22.json
+OK   results/frozen-ceiling/run-2026-11-15T13-44-20.json
+OK   results/frozen-ceiling/run-2026-11-15T13-55-15.json
+OK   results/frozen-ceiling/run-2026-11-15T13-55-28.json
+OK   results/frozen-ceiling/run-2026-11-15T13-55-40.json
+OK   results/frozen-ceiling/run-2026-11-15T13-55-53.json
+OK   results/frozen-ceiling/run-2026-11-15T13-56-06.json
+OK   results/frozen-ceiling/run-2026-11-15T13-56-25.json
+OK   results/frozen-ceiling/run-2026-11-15T13-56-42.json
+OK   results/frozen-ceiling/run-2026-11-15T13-57-18.json
+OK   results/frozen-ceiling/run-2026-11-15T13-57-29.json
+OK   results/frozen-ceiling/run-2026-11-15T13-57-41.json
+OK   results/frozen-ceiling/run-2026-11-15T13-58-13.json
+OK   results/frozen-ceiling/run-2026-11-15T14-14-23.json
+OK   results/frozen-ceiling/run-2026-11-15T14-32-35.json
+OK   results/frozen-ceiling/run-2026-11-15T14-41-31.json
+OK   results/frozen-ceiling/run-2026-11-15T14-41-41.json
+OK   results/frozen-ceiling/run-2026-11-15T18-17-37.json
+OK   results/frozen-ceiling/run-2026-11-15T18-30-10.json
+OK   results/frozen-ceiling/run-2026-11-15T18-39-27.json
+OK   results/frozen-ceiling/run-2026-11-15T18-39-42.json
+OK   results/frozen-ceiling/run-2026-11-15T18-44-20.json
+OK   results/frozen-ceiling/run-2026-11-15T18-54-04.json
+OK   results/frozen-ceiling/run-2026-11-15T18-58-51.json
+OK   results/frozen-ceiling/run-2026-11-15T19-14-25.json
+OK   results/frozen-ceiling/run-2026-11-15T19-23-49.json
+OK   results/frozen-ceiling/run-2026-11-15T19-24-06.json
+OK   results/frozen-ceiling/run-2026-11-15T19-29-24.json
+OK   results/gradient-capacity/run-2026-11-11T21-47-58.json
+OK   results/gradient-loss/run-2026-11-11T22-22-13.json
+OK   results/income-tracks-stock-not-crowding/run-2026-11-12T16-10-18.json
+OK   results/income-tracks-stock-not-crowding/run-2026-11-13T00-58-41.json
+OK   results/indifference-point/run-2026-11-12T15-59-14.json
+OK   results/indifference-point/run-2026-11-13T00-58-33.json
+OK   results/look-order/run-2026-11-15T14-28-26.json
+OK   results/look-order/run-2026-11-15T14-32-38.json
+OK   results/look-order/run-2026-11-15T14-41-34.json
+OK   results/look-order/run-2026-11-15T14-41-44.json
+OK   results/look-order/run-2026-11-15T18-17-40.json
+OK   results/look-order/run-2026-11-15T18-30-13.json
+OK   results/look-order/run-2026-11-15T18-39-31.json
+OK   results/look-order/run-2026-11-15T18-39-45.json
+OK   results/look-order/run-2026-11-15T18-44-24.json
+OK   results/look-order/run-2026-11-15T18-54-08.json
+OK   results/look-order/run-2026-11-15T18-58-56.json
+OK   results/look-order/run-2026-11-15T19-14-29.json
+OK   results/look-order/run-2026-11-15T19-23-54.json
+OK   results/look-order/run-2026-11-15T19-24-10.json
+OK   results/look-order/run-2026-11-15T19-29-27.json
+OK   results/map-sensitivity/run-2026-11-16T16-23-17.json
+OK   results/memory-cost/run-2026-11-16T10-29-32.json
+OK   results/memory-cost/run-2026-11-16T19-46-11.json
+OK   results/memory-cost/run-2026-11-17T05-55-41.json
+OK   results/memory-question/run-2026-11-16T08-32-15.json
+OK   results/memory-question/run-2026-11-16T19-46-07.json
+OK   results/memory-question/run-2026-11-17T05-55-35.json
+OK   results/memory-sampling/run-2026-11-16T11-11-09.json
+OK   results/memory-sampling/run-2026-11-16T19-46-24.json
+OK   results/memory-sampling/run-2026-11-17T05-55-53.json
+OK   results/memory-vs-remember/run-2026-11-11T21-05-35.json
+OK   results/moving-in-uniform-field/run-2026-11-12T15-56-11.json
+OK   results/moving-in-uniform-field/run-2026-11-13T00-59-02.json
+OK   results/moving-in-uniform-field/run-2026-11-13T00-59-16.json
+OK   results/moving-in-uniform-field/run-2026-11-13T00-59-51.json
+OK   results/moving-in-uniform-field/run-2026-11-13T01-03-46.json
+OK   results/nomad-two-thirds/run-2026-11-12T16-02-25.json
+OK   results/nomad-two-thirds/run-2026-11-13T01-05-36.json
+OK   results/off-by-one-does-not-touch-counts/run-2026-11-12T16-05-01.json
+OK   results/off-by-one-does-not-touch-counts/run-2026-11-13T00-58-39.json
+OK   results/oscillation/run-2026-11-11T22-01-40.json
+OK   results/overcrowding/run-2026-11-11T22-20-40.json
+OK   results/pair-penalty-or-queue/run-2026-11-12T15-57-52.json
+OK   results/pair-penalty-or-queue/run-2026-11-13T00-58-31.json
+OK   results/poor-cells/run-2026-11-11T22-23-34.json
+OK   results/protocol-capacity/run-2026-11-14T19-59-15.json
+OK   results/protocol-capacity/run-2026-11-14T20-08-35.json
+OK   results/protocol-capacity/run-2026-11-14T20-19-32.json
+OK   results/protocol-capacity/run-2026-11-14T20-29-59.json
+OK   results/protocol-capacity/run-2026-11-14T20-40-21.json
+OK   results/protocol-capacity/run-2026-11-14T20-49-49.json
+OK   results/protocol-capacity/run-2026-11-14T20-55-49.json
+OK   results/protocol-capacity/run-2026-11-14T20-55-59.json
+OK   results/protocol-capacity/run-2026-11-14T20-59-12.json
+OK   results/protocol-capacity/run-2026-11-14T21-12-53.json
+OK   results/protocol-capacity/run-2026-11-14T21-30-13.json
+OK   results/protocol-capacity/run-2026-11-14T21-39-21.json
+OK   results/protocol-capacity/run-2026-11-14T21-48-54.json
+OK   results/protocol-capacity/run-2026-11-14T21-58-03.json
+OK   results/protocol-capacity/run-2026-11-14T22-07-25.json
+OK   results/protocol-capacity/run-2026-11-14T22-16-29.json
+OK   results/protocol-capacity/run-2026-11-14T22-25-34.json
+OK   results/protocol-capacity/run-2026-11-14T22-37-42.json
+OK   results/protocol-capacity/run-2026-11-14T22-46-49.json
+OK   results/protocol-capacity/run-2026-11-14T22-56-12.json
+OK   results/protocol-capacity/run-2026-11-14T23-02-04.json
+OK   results/protocol-capacity/run-2026-11-14T23-11-12.json
+OK   results/protocol-capacity/run-2026-11-14T23-17-08.json
+OK   results/protocol-capacity/run-2026-11-14T23-20-32.json
+OK   results/protocol-capacity/run-2026-11-14T23-29-48.json
+OK   results/protocol-capacity/run-2026-11-15T01-05-00.json
+OK   results/protocol-capacity/run-2026-11-15T05-13-18.json
+OK   results/protocol-capacity/run-2026-11-15T05-20-33.json
+OK   results/protocol-capacity/run-2026-11-15T05-20-42.json
+OK   results/protocol-capacity/run-2026-11-15T05-20-51.json
+OK   results/protocol-capacity/run-2026-11-15T05-22-38.json
+OK   results/protocol-capacity/run-2026-11-15T05-22-47.json
+OK   results/protocol-capacity/run-2026-11-15T05-23-10.json
+OK   results/protocol-capacity/run-2026-11-15T05-23-26.json
+OK   results/protocol-capacity/run-2026-11-15T05-23-29.json
+OK   results/protocol-capacity/run-2026-11-15T05-24-28.json
+OK   results/protocol-capacity/run-2026-11-15T05-24-54.json
+OK   results/protocol-capacity/run-2026-11-15T05-28-32.json
+OK   results/protocol-capacity/run-2026-11-15T05-37-50.json
+OK   results/protocol-capacity/run-2026-11-15T05-44-30.json
+OK   results/protocol-capacity/run-2026-11-15T05-44-44.json
+OK   results/protocol-capacity/run-2026-11-15T05-44-58.json
+OK   results/protocol-capacity/run-2026-11-15T05-45-28.json
+OK   results/protocol-capacity/run-2026-11-15T05-45-40.json
+OK   results/protocol-capacity/run-2026-11-15T05-46-16.json
+OK   results/protocol-capacity/run-2026-11-15T05-46-27.json
+OK   results/protocol-capacity/run-2026-11-15T05-46-41.json
+OK   results/protocol-capacity/run-2026-11-15T05-46-53.json
+OK   results/protocol-capacity/run-2026-11-15T05-47-07.json
+OK   results/protocol-capacity/run-2026-11-15T05-51-08.json
+OK   results/protocol-capacity/run-2026-11-15T06-00-16.json
+OK   results/protocol-capacity/run-2026-11-15T06-11-41.json
+OK   results/protocol-capacity/run-2026-11-15T07-56-19.json
+OK   results/protocol-capacity/run-2026-11-15T08-29-22.json
+OK   results/protocol-capacity/run-2026-11-15T08-40-11.json
+OK   results/protocol-capacity/run-2026-11-15T08-50-16.json
+OK   results/protocol-capacity/run-2026-11-15T09-00-35.json
+OK   results/protocol-capacity/run-2026-11-15T09-10-42.json
+OK   results/protocol-capacity/run-2026-11-15T09-21-44.json
+OK   results/protocol-capacity/run-2026-11-15T09-34-44.json
+OK   results/protocol-capacity/run-2026-11-15T09-45-25.json
+OK   results/protocol-capacity/run-2026-11-15T10-47-45.json
+OK   results/protocol-capacity/run-2026-11-15T10-58-19.json
+OK   results/protocol-capacity/run-2026-11-15T11-02-29.json
+OK   results/protocol-capacity/run-2026-11-15T11-03-13.json
+OK   results/protocol-capacity/run-2026-11-15T11-03-30.json
+OK   results/protocol-capacity/run-2026-11-15T11-03-48.json
+OK   results/protocol-capacity/run-2026-11-15T11-04-55.json
+OK   results/protocol-capacity/run-2026-11-15T11-10-02.json
+OK   results/protocol-capacity/run-2026-11-15T11-17-14.json
+OK   results/protocol-capacity/run-2026-11-15T11-19-55.json
+OK   results/protocol-capacity/run-2026-11-15T11-26-47.json
+OK   results/protocol-capacity/run-2026-11-15T11-27-04.json
+OK   results/protocol-capacity/run-2026-11-15T11-27-21.json
+OK   results/protocol-capacity/run-2026-11-15T11-32-02.json
+OK   results/protocol-capacity/run-2026-11-15T11-41-57.json
+OK   results/protocol-capacity/run-2026-11-15T11-48-01.json
+OK   results/protocol-capacity/run-2026-11-15T11-51-56.json
+OK   results/protocol-capacity/run-2026-11-15T12-32-32.json
+OK   results/protocol-capacity/run-2026-11-15T12-47-34.json
+OK   results/protocol-capacity/run-2026-11-15T13-33-23.json
+OK   results/protocol-capacity/run-2026-11-15T13-44-20.json
+OK   results/protocol-capacity/run-2026-11-15T13-55-15.json
+OK   results/protocol-capacity/run-2026-11-15T13-55-28.json
+OK   results/protocol-capacity/run-2026-11-15T13-55-41.json
+OK   results/protocol-capacity/run-2026-11-15T13-55-53.json
+OK   results/protocol-capacity/run-2026-11-15T13-56-07.json
+OK   results/protocol-capacity/run-2026-11-15T13-56-26.json
+OK   results/protocol-capacity/run-2026-11-15T13-56-43.json
+OK   results/protocol-capacity/run-2026-11-15T13-57-00.json
+OK   results/protocol-capacity/run-2026-11-15T13-57-06.json
+OK   results/protocol-capacity/run-2026-11-15T13-57-18.json
+OK   results/protocol-capacity/run-2026-11-15T13-57-29.json
+OK   results/protocol-capacity/run-2026-11-15T13-57-41.json
+OK   results/protocol-capacity/run-2026-11-15T13-58-13.json
+OK   results/protocol-capacity/run-2026-11-15T14-14-23.json
+OK   results/protocol-capacity/run-2026-11-15T14-32-35.json
+OK   results/protocol-capacity/run-2026-11-15T14-41-31.json
+OK   results/protocol-capacity/run-2026-11-15T14-41-41.json
+OK   results/protocol-capacity/run-2026-11-15T18-17-37.json
+OK   results/protocol-capacity/run-2026-11-15T18-30-10.json
+OK   results/protocol-capacity/run-2026-11-15T18-39-28.json
+OK   results/protocol-capacity/run-2026-11-15T18-39-42.json
+OK   results/protocol-capacity/run-2026-11-15T18-44-20.json
+OK   results/protocol-capacity/run-2026-11-15T18-54-04.json
+OK   results/protocol-capacity/run-2026-11-15T18-58-52.json
+OK   results/protocol-capacity/run-2026-11-15T19-14-25.json
+OK   results/protocol-capacity/run-2026-11-15T19-23-49.json
+OK   results/protocol-capacity/run-2026-11-15T19-24-06.json
+OK   results/protocol-capacity/run-2026-11-15T19-29-24.json
+OK   results/random-plateau/run-2026-11-11T20-58-37.json
+OK   results/readout-is-off-by-one-step/run-2026-11-12T16-04-41.json
+OK   results/readout-is-off-by-one-step/run-2026-11-13T01-05-36.json
+OK   results/refused-move-is-paid/run-2026-11-12T16-02-51.json
+OK   results/refused-move-is-paid/run-2026-11-13T01-05-36.json
+OK   results/regrowth-sets-the-income/run-2026-11-12T16-10-55.json
+OK   results/remember-choice/run-2026-11-11T21-02-22.json
+OK   results/repair-band/run-2026-11-15T23-26-04.json
+OK   results/repair-edge/run-2026-11-16T00-25-13.json
+OK   results/repair-policy/run-2026-11-15T22-49-36.json
+OK   results/rescue/run-2026-11-16T03-59-51.json
+OK   results/rho-window/run-2026-11-15T21-04-58.json
+OK   results/rho-window/run-2026-11-15T21-30-27.json
+OK   results/shortfall/run-exp26.json
+OK   results/sighted-depletes/run-2026-11-11T21-22-03.json
+OK   results/sighted-depletes/run-2026-11-11T21-23-52.json
+OK   results/standing-is-a-uniform-third/run-2026-11-12T16-09-20.json
+OK   results/standing-is-a-uniform-third/run-2026-11-13T00-58-11.json
+OK   results/standing-is-a-uniform-third/run-2026-11-13T00-58-40.json
+OK   results/standing-is-the-policys-own-branch/run-2026-11-12T16-05-24.json
+OK   results/standing-is-the-policys-own-branch/run-2026-11-13T00-58-40.json
+OK   results/unevenness-or-move-cost/run-2026-11-12T15-58-42.json
+OK   results/unevenness-or-move-cost/run-2026-11-13T00-58-32.json
+OK   results/unevenness-or-regrowth/run-2026-11-12T15-58-13.json
+OK   results/unevenness-or-regrowth/run-2026-11-13T00-58-32.json
+OK   results/where-the-extra-cost-comes-from/run-2026-11-12T16-03-09.json
+OK   results/where-the-extra-cost-comes-from/run-2026-11-13T01-05-36.json
+OK   results/where-the-sevenfold-gap-goes/run-2026-11-12T16-09-55.json
+OK   results/where-the-sevenfold-gap-goes/run-2026-11-13T00-58-41.json
+
+Проверено: 407, нарушений: 0
+Пропущено (results/_archive/, до контракта): 17
+
+--- mde.py ---
+таблица (σ × Δ):
+  OK   σ=0.05 Δ=0.01 -> 393 (ожидалось 393)
+  OK   σ=0.05 Δ=0.05 -> 16 (ожидалось 16)
+  OK   σ=0.05 Δ=0.10 -> 4 (ожидалось 4)
+  OK   σ=0.20 Δ=0.01 -> 6280 (ожидалось 6280)
+  OK   σ=0.20 Δ=0.05 -> 252 (ожидалось 252)
+  OK   σ=0.20 Δ=0.10 -> 63 (ожидалось 63)
+  OK   σ=0.50 Δ=0.01 -> 39245 (ожидалось 39245)
+  OK   σ=0.50 Δ=0.05 -> 1570 (ожидалось 1570)
+  OK   σ=0.50 Δ=0.10 -> 393 (ожидалось 393)
+  OK   set_mde(σ=0.20, Δ=0.05) -> 252 (ожидалось 252)
+  OK   4·σ ⇒ 4·n (Δ = 10 %)
+  OK   Δ = 0 отвергается, а не делится на ноль
+
+selftest: 12/12
+
+--- damage_clock.py ---
+damage clock: K = min{k : fl_sum_k(dr) >= 1.0} vs ceil(1.0/dr)
+
+  fires    ok    0.0001: K=10001, 0.0002: K=5001, 0.0004: K=2501, 0.0005: K=2001, 0.0025: K=401, 0.0125: K=81, 0.1: K=11
+  silent   ok    2000 draws
+  specific ok    7/7 reciprocals: running K=ceil+1, exact and regrouped K=ceil
+  case     ok    dr=0.1: K=11, ceil=10 (the point FINDING-148 saw)
+
+ВСЁ СОГЛАСОВАНО: расхождения есть, и они -- последовательное сложение
+--- exp_memory_question.py ---
+saved results/memory-question/run-2026-11-17T05-55-35.json
+P_need=1: all 28 arm/read-budget combinations live to the horizon, so the medium gives no policy an advantage and the memory question is empty. P_need=2: the staying arm dies at step 24 while every arm that keeps moving lives 20000, so the question the medium does ask is 'move at all', not 'remember where'. The decisive number is that the oracle - which knows the globally richest cell at every step - lives exactly as long as the random walk (20000 against 20000 at read_budget=3, and the same at 0, 1 and 2), so perfect information about the field is worth zero over wandering. Memory cannot be worth more than information, so in this medium it is worth nothing. NOT APPLICABLE to 'does the medium pose a memory question': it does not, because on a uniform ring with income equal to upkeep any movement suffices and the richest cell is always adjacent. The partial-observability question only appears when the field is not uniform - which this grid does not contain.
+--- env_prior_tails.py ---
+record: results/env-prior/run-2026-11-16T12-45-23.json  (648 cases)
+
+subset          n  wins losses neutral      mean  win med  loss med
+all           648    86    108     454   -1665.7       +4    -10001
+cost=0.0      216     0      0     216      +0.0        —         —
+cost=0.02     216    21     42     153   -1388.5       +3        -6
+cost=0.05     216    65     66      85   -3608.7       +5    -19992
+
+wins    86/648 = 0.133  Wilson 95% [0.109, 0.161]
+losses 108/648 = 0.167  Wilson 95% [0.140, 0.197]
+a win is worth +4 steps; a loss costs -10001 — the tails are not the same size
+--- paper_numbers.py ---
+4.1 per-step boundary, four world sizes
+  ok    N=12 income=1.7: 42
+  ok    N=12 income=1.78: 124
+  ok    N=12 income=1.8211: 20000
+  ok    N=12 income=1.94: 20000
+  ok    N=24 income=1.7: 42
+  ok    N=24 income=1.78: 124
+  ok    N=24 income=1.8211: 20000
+  ok    N=24 income=1.94: 20000
+  ok    N=48 income=1.7: 42
+  ok    N=48 income=1.78: 124
+  ok    N=48 income=1.8211: 20000
+  ok    N=48 income=1.94: 20000
+  ok    N=96 income=1.7: 42
+  ok    N=96 income=1.78: 124
+  ok    N=96 income=1.8211: 20000
+  ok    N=96 income=1.94: 20000
+4.2 full boundary, two branches (dr = 0.3, s = 0.1, income 1.8911)
+  ok    capacity=1.0 rc=0.45 dead at 33
+  ok    capacity=0.2 rc=0.35 dead at 45
+  ok    capacity=0.2 rc=0.4 dead at 14
+  ok    capacity=0.2 rc=0.45 dead at 10
+  ok    capacity=1.0 rc=0.3 alive: 20000
+  ok    capacity=1.0 rc=0.33 alive: 20000
+  ok    capacity=1.0 rc=0.35 alive: 20000
+  ok    capacity=1.0 rc=0.4 alive: 20000
+  ok    capacity=0.2 rc=0.3 alive: 20000
+  ok    capacity=0.2 rc=0.33 alive: 20000
+4.3 realised surplus on a peaked lattice (nominal income 3.0)
+  ok    rc=1.5 poor=1.838: 3440
+  ok    rc=1.5 poor=1.8395: 20000
+  ok    rc=2.0 poor=1.846: 1459
+  ok    rc=2.0 poor=1.8496: 20000
+
+Все числа статьи сверены с моделью, расхождений 0.
+--- life_calibration.py ---
+Conway's Game of Life, B3/S23 on a 40x40 torus
+detector: P(t+tau) == shift(P(t), delta) for three consecutive cycles
+
+  ok    glider is found moving  [[(4, (1, 1)), (8, (2, 2))]]
+  ok    glider moves at (1,1) with period 4  [[(4, (1, 1)), (8, (2, 2))]]
+  ok    blinker is found periodic  [2]
+  ok    blinker is NOT reported as moving  [[]]
+  ok    block is found static  [True]
+  ok    block is NOT reported as moving  [[]]
+  ok    random soups: at most 5 of 60 reported as moving structures  [0]
+
+our own metrics, pointed at Life:
+  lifetime     - undefined: nothing in Life dies of starvation
+  taken        - undefined: no cell holds a resource
+  energy       - undefined: no organism, no budget, no upkeep
+  => our instrument is silent here, and that is the finding:
+     it measures function, and Life has none because nothing costs.
+
+Калибровка пройдена: детектор находит глайдер и отвергает мигалку и блок.
+--- paper_claims.py ---
+  ok: no 'decides who lives'
+  ok: no 'dominates the ecological parameter'
+  ok: no 'is always written by us'
+  ok: no 'the reason was always the same'
+  ok: no 'proves that memory'
+  ok: no 'memory is useless'
+  ok: no 'emergent structure'
+  ok: no 'shows that emergence'
+  ok: no 'a repertoire and no variation of it'
+  ok: no 'a neighbour and no region'
+
+  ok: the draft still says 'Not that anything here is emergent'
+  ok: the draft still says 'care cannot be posed'
+  ok: the draft still says 'distance to a known place'
+
+Текст не заявляет больше, чем измерено (по объявленному списку).
+--- paper_format.py ---
+  ok    abstract length: 250 words (limit 250)
+  ok    figure files: 4 referenced, 0 missing 
+  ok    figure captions in order: ['1', '2', '3', '4']
+  ok    bibliography entries appear in the text: 7 entries, uncited none
+  ok    citations have entries: 7 cited, missing none
+
+Формат в порядке (по объявленным правилам).
+--- paper_prose.py ---
+  ok    no doubled words in the prose
+  ok    spelling is consistent within each pair
+
+Проза в порядке (по объявленным механическим правилам).
+--- readme_features.py ---
+  ok    the README mentions read_cost (the price of a look)
+  ok    the README mentions sight_radius (a window of perception)
+  ok    the README mentions set_policy_mutation (variation between parent and child)
+  ok    the README mentions birth_cost_per_cell (birth priced by size)
+  ok    the README mentions ShapeEconomy (the economy of a shape)
+  ok    the README mentions Pool (a shared stock)
+  ok    the README mentions fixed_cost (a cost every form pays once)
+
+  ok    stale claim gone: 'без затрат и без решения'
+  ok    stale claim gone: 'вариации и передачи организации'
+  ok    stale claim gone: 'цена и выбор при чтении среды'
+  ok    stale claim gone: 'structure ≡ 1 − damage'
+
+README описывает ту модель, которая есть.
+--- protocol_checks.py ---
+  ok    invoked=45, named=47; оба направления согласованы
+  ok    all 11 judging checks are named
+  ok    AGENTS.md sections match the gate: [1, 2, 3, 4, 5, 6]
+  ok    the stated rule count matches: «шесть» = 6
+
+PROTOCOL описывает тот гейт, который есть.
+--- doc_numbers.py ---
+tree: tests 382, findings 334, figures 4, theorems 318, checks 42
+
+      lean: 64 files in Medium+Legacy (56+8), 63 with theorems
+
+Числа в документах совпадают с деревом.
+--- rng_seed_noise.py ---
+seeds 0..19999
+  mean of the first uniform      0.500031   (ideal 0.500000)
+  Pearson r(seed, first uniform) -0.000029   (noise level ±0.007071)
+  bins of uniformity             [1999, 1999, 2002, 2000, 1999, 2000, 2000, 2000, 1999, 2002]
+  chi-square (9 dof)             0.01   (95% critical 16.92)
+  ok    the correlation is within noise of zero
+  ok    the first uniform is uniform across seeds
+  ok    the mean is 0.5 within noise
+
+criterion B4 is about correlation only; splitting the streams is a separate change
+Проверка пройдена: первый шум не связан с начальным состоянием.
+--- cli_refuses.py ---
+  ok    trace --steps 50O: exit 2, refusing to run: --steps "50O" is not a number.
+  ok    occupancy 50O: exit 2, refusing to run: n is not a number: "50O" (argument 1)
+
+CLI отказывается угадывать: опечатка — это ошибка, а не умолчание.
+--- no_unseeded_random.py ---
+  ok    no Math.random in 4 JS checks
+
+Проверка пройдена: JS-проверки детерминированы.
+--- ci_workflow.py ---
+  OPEN  no .github/workflows/gate.yml - item D-3 waits on a credential
+        with the `workflow` scope; see docs/FINDING-236.md
+
+Пункт D-3 открыт по внешней причине, гейт не красный.
+--- exp_shape_regulator.py ---
+/root/marfagenez/results/EXP-SHAPE-REG/run-2026-11-18T19-51-58.json
+n4       target= 4 band=0.2 median=   4 mean=  4.08 iqr_x=0.017 cells=3..5
+n10      target=10 band=0.2 median=  10 mean=  9.96 iqr_x=0.050 cells=7..13
+n16      target=16 band=0.2 median=  16 mean= 16.12 iqr_x=0.059 cells=12..20
+n10-wide target=10 band=0.5 median=   7 mean=  8.09 iqr_x=0.071 cells=4..16
+--- exp_division_threshold.py ---
+записано: /root/marfagenez/results/EXP-DIVISION-THRESHOLD/run-2026-11-19T13-52-19.json
+АРИФМЕТИКА: порог yield = 1.6667
+  A: yield=1.0                    живой=False шагов=722     hash=cbf29ce4
+  B: yield=1.5                    живой=False шагов=1495    hash=9648a9c8
+  C: yield=2.0                    живой=True  шагов=200000  hash=d1a9b3c2
+  D: yield=3.0                    живой=True  шагов=200000  hash=d1a9b3c2
+  E: yield=1.5, stock_max=100000  живой=False шагов=1495    hash=9648a9c8
+--- goal_features.py ---
+  ok    every field named in GOAL.md exists in core/src
+  ok    every field named in POSITIVE.md exists in core/src
+  ok    every field named in README.md exists in core/src
+
+Документы о слоне описывают ту модель, которая есть.
+--- finding_elephant_line.py ---
+  ok    all 79 findings dated 2026-11-19+ say what they give the elephant
+
+Проверка пройдена.
+--- literature_contract.py ---
+legacy: 88 (baseline 88)
+записей: 88 из 88 секций
+контракт литературы: нарушений нет
+--- guard_self_test.py ---
+  ok    readme: a stale claim returns: guard exit 1
+  ok    goal: a field the code does not have: guard exit 1
+  SKIP  doc numbers: a count that is not the tree's: the anchor '| 234 FINDING' is not in NOT-CLAIMED.md
+  ok    prose: a word written twice: guard exit 1
+  ok    claims: the paper claims more than was measured: guard exit 1
+  ok    format: a figure caption loses its number: guard exit 1
+  ok    protocol: a check disappears from the protocol: guard exit 1
+  ok    unseeded random: a JS check loses its seed: guard exit 1
+
+Сторожа срабатывают на подложенную ошибку и молчат без неё.
+
+--- exp_memory_cost.py ---
+
+== P_need=1 (m = 1.0756, P_need by formula = 1) ==
+field    rb cost    oracle  sighted   intact     stay   random   erased
+uniform   1 0.00     20000    20000    20000    20000    20000    20000
+uniform   1 0.02     20000    20000    20000    20000    20000    20000
+uniform   1 0.05     20000    20000    20000    20000    20000    20000
+uniform   3 0.00     20000    20000    20000    20000    20000    20000
+uniform   3 0.02     20000    20000    20000    20000    20000    20000
+uniform   3 0.05     20000    20000    20000    20000    20000    20000
+peaks-2   1 0.00        12        6        6        6       13       12
+peaks-2   1 0.02         6        6        6        6       13       12
+peaks-2   1 0.05     20000        6        6        6       13       12
+peaks-2   3 0.00        12        6    20000        6       13       12
+peaks-2   3 0.02         6        6    20000        6       13       12
+peaks-2   3 0.05     20000        5    20000        6       13       12
+peaks-6   1 0.00         7        6        6        6        6        7
+peaks-6   1 0.02         5        6        6        6        6        7
+peaks-6   1 0.05         3        6        6        6        6        7
+peaks-6   3 0.00         7        6    20000        6        6        7
+peaks-6   3 0.02         5        6    20000        6        6        7
+peaks-6   3 0.05         3        5    20000        6        6        7
+
+== P_need=2 (m = 1.7911, P_need by formula = 2) ==
+field    rb cost    oracle  sighted   intact     stay   random   erased
+uniform   1 0.00     20000       24       24       24       60    20000
+uniform   1 0.02        13       24       24       24       60    20000
+uniform   1 0.05         7       24       24       24       60    20000
+uniform   3 0.00     20000       24    20000       24       60    20000
+uniform   3 0.02        13       22      143       24       60    20000
+uniform   3 0.05         7       17       51       24       60    20000
+peaks-2   1 0.00         8        4        4        4        6        8
+peaks-2   1 0.02         4        4        4        4        6        8
+peaks-2   1 0.05         3        4        4        4        6        8
+peaks-2   3 0.00         8        4       24        4        6        8
+peaks-2   3 0.02         4        3       21        4        6        8
+peaks-2   3 0.05         3        3       17        4        6        8
+peaks-6   1 0.00         5        4        4        4        4        4
+peaks-6   1 0.02         6        4        4        4        4        4
+peaks-6   1 0.05         2        4        4        4        4        4
+peaks-6   3 0.00         5        4        5        4        4        4
+peaks-6   3 0.02         6        3        4        4        4        4
+peaks-6   3 0.05         2        3        3        4        4        4
+
+saved results/memory-cost/run-2026-11-17T05-55-41.json
+The peaked field does separate policies (peaks-6, P_need=1: sighted and intact live 6, stay 6, oracle 7, random 6), so the medium is no longer silent. But the question it asks is not the memory question. (1) More information is WORSE: the oracle, which knows the globally richest cell, dies at 7 while the local rule lives 6, because it leaves a cell that pays the upkeep and spends the crossing on poor cells. (2) Memory adds nothing: `intact` and `sighted` produce the same lifetime and a difference that is only the tie-break, because a memory slot does not save a single read - a look at the two neighbours costs the same whether or not something is remembered. (3) The price does bite (uniform, P_need=2, sighted: 24 at read_cost=0 against 17 at 0.05, while at read_budget=1, where no neighbour is read, it is 24 against 24), so the mechanism is real - it just presses on every reader equally. On `uniform` 155's equality is between oracle and erased (20000 against 20000); the brief's oracle-vs-random claim does not reproduce and never did: the stay-capable walker dies at 60. So the answer to 'does the priced, peaked field pose the memory question' is NO, and `not applicable` is wrong for it: an effect exists, it is just not about memory. The verdict is `failed`.
+coincident hash groups: 38
+mde: sigma=1000 steps, effect=250 steps -> 252 arms per cell
+
+--- exp_memory_sampling.py ---
+
+== P_need=1 (m = 1.0756, P_need by formula = 1) ==
+field    rb cost  p   sighted   intact     stay   random
+uniform   1 0.00  1     20000    20000    20000    20000
+uniform   1 0.00  2     20000    20000    20000    20000
+uniform   1 0.00  4     20000    20000    20000    20000
+uniform   1 0.00  8     20000    20000    20000    20000
+uniform   1 0.02  1     20000    20000    20000    20000
+uniform   1 0.02  2     20000    20000    20000    20000
+uniform   1 0.02  4     20000    20000    20000    20000
+uniform   1 0.02  8     20000    20000    20000    20000
+uniform   1 0.05  1     20000    20000    20000    20000
+uniform   1 0.05  2     20000    20000    20000    20000
+uniform   1 0.05  4     20000    20000    20000    20000
+uniform   1 0.05  8     20000    20000    20000    20000
+uniform   3 0.00  1     20000    20000    20000    20000
+uniform   3 0.00  2     20000    20000    20000    20000
+uniform   3 0.00  4     20000    20000    20000    20000
+uniform   3 0.00  8     20000    20000    20000    20000
+uniform   3 0.02  1     20000    20000    20000    20000
+uniform   3 0.02  2     20000    20000    20000    20000
+uniform   3 0.02  4     20000    20000    20000    20000
+uniform   3 0.02  8     20000    20000    20000    20000
+uniform   3 0.05  1     20000    20000    20000    20000
+uniform   3 0.05  2     20000    20000    20000    20000
+uniform   3 0.05  4     20000    20000    20000    20000
+uniform   3 0.05  8     20000    20000    20000    20000
+peaks-6   1 0.00  1         6        6        6        6
+peaks-6   1 0.00  2         6        6        6        6
+peaks-6   1 0.00  4         6        6        6        6
+peaks-6   1 0.00  8         6        6        6        6
+peaks-6   1 0.02  1         6        6        6        6
+peaks-6   1 0.02  2         6        6        6        6
+peaks-6   1 0.02  4         6        6        6        6
+peaks-6   1 0.02  8         6        6        6        6
+peaks-6   1 0.05  1         6        6        6        6
+peaks-6   1 0.05  2         6        6        6        6
+peaks-6   1 0.05  4         6        6        6        6
+peaks-6   1 0.05  8         6        6        6        6
+peaks-6   3 0.00  1         6    20000        6        6
+peaks-6   3 0.00  2         6        6        6        6
+peaks-6   3 0.00  4         6        6        6        6
+peaks-6   3 0.00  8         6        6        6        6
+peaks-6   3 0.02  1         6    20000        6        6
+peaks-6   3 0.02  2         6        6        6        6
+peaks-6   3 0.02  4         6        6        6        6
+peaks-6   3 0.02  8         6        6        6        6
+peaks-6   3 0.05  1         5    20000        6        6
+peaks-6   3 0.05  2         5        6        6        6
+peaks-6   3 0.05  4         5        6        6        6
+peaks-6   3 0.05  8         5        6        6        6
+
+== P_need=2 (m = 1.7911, P_need by formula = 2) ==
+field    rb cost  p   sighted   intact     stay   random
+uniform   1 0.00  1        24       24       24       60
+uniform   1 0.00  2        24       24       24       60
+uniform   1 0.00  4        24       24       24       60
+uniform   1 0.00  8        24       24       24       60
+uniform   1 0.02  1        24       24       24       60
+uniform   1 0.02  2        24       24       24       60
+uniform   1 0.02  4        24       24       24       60
+uniform   1 0.02  8        24       24       24       60
+uniform   1 0.05  1        24       24       24       60
+uniform   1 0.05  2        24       24       24       60
+uniform   1 0.05  4        24       24       24       60
+uniform   1 0.05  8        24       24       24       60
+uniform   3 0.00  1        24    20000       24       60
+uniform   3 0.00  2        24      609       24       60
+uniform   3 0.00  4        24      352       24       60
+uniform   3 0.00  8        24       28       24       60
+uniform   3 0.02  1        22      143       24       60
+uniform   3 0.02  2        22      176       24       60
+uniform   3 0.02  4        22      160       24       60
+uniform   3 0.02  8        22       27       24       60
+uniform   3 0.05  1        17       51       24       60
+uniform   3 0.05  2        17       80       24       60
+uniform   3 0.05  4        17       88       24       60
+uniform   3 0.05  8        17       26       24       60
+peaks-6   1 0.00  1         4        4        4        4
+peaks-6   1 0.00  2         4        4        4        4
+peaks-6   1 0.00  4         4        4        4        4
+peaks-6   1 0.00  8         4        4        4        4
+peaks-6   1 0.02  1         4        4        4        4
+peaks-6   1 0.02  2         4        4        4        4
+peaks-6   1 0.02  4         4        4        4        4
+peaks-6   1 0.02  8         4        4        4        4
+peaks-6   1 0.05  1         4        4        4        4
+peaks-6   1 0.05  2         4        4        4        4
+peaks-6   1 0.05  4         4        4        4        4
+peaks-6   1 0.05  8         4        4        4        4
+peaks-6   3 0.00  1         4        5        4        4
+peaks-6   3 0.00  2         4        4        4        4
+peaks-6   3 0.00  4         4        4        4        4
+peaks-6   3 0.00  8         4        4        4        4
+peaks-6   3 0.02  1         3        4        4        4
+peaks-6   3 0.02  2         3        4        4        4
+peaks-6   3 0.02  4         3        4        4        4
+peaks-6   3 0.02  8         3        4        4        4
+peaks-6   3 0.05  1         3        3        4        4
+peaks-6   3 0.05  2         3        3        4        4
+peaks-6   3 0.05  4         3        3        4        4
+peaks-6   3 0.05  8         3        3        4        4
+
+== gains over read_period = 1 (intact, steps) ==
+cell                             best_p       gain    opt_p
+P_need=1/uniform/rb1/c0.00            1          0        1
+P_need=1/uniform/rb1/c0.02            1          0        1
+P_need=1/uniform/rb1/c0.05            1          0        1
+P_need=1/uniform/rb3/c0.00            1          0        1
+P_need=1/uniform/rb3/c0.02            1          0        1
+P_need=1/uniform/rb3/c0.05            1          0        1
+P_need=1/peaks-6/rb1/c0.00            1          0        1
+P_need=1/peaks-6/rb1/c0.02            1          0        1
+P_need=1/peaks-6/rb1/c0.05            1          0        1
+P_need=1/peaks-6/rb3/c0.00            1          0        1
+P_need=1/peaks-6/rb3/c0.02            1          0        1
+P_need=1/peaks-6/rb3/c0.05            1          0        1
+P_need=2/uniform/rb1/c0.00            1          0        1
+P_need=2/uniform/rb1/c0.02            1          0        1
+P_need=2/uniform/rb1/c0.05            1          0        1
+P_need=2/uniform/rb3/c0.00            1          0        1
+P_need=2/uniform/rb3/c0.02            2         33        2
+P_need=2/uniform/rb3/c0.05            4         37        4
+P_need=2/peaks-6/rb1/c0.00            1          0        1
+P_need=2/peaks-6/rb1/c0.02            1          0        1
+P_need=2/peaks-6/rb1/c0.05            1          0        1
+P_need=2/peaks-6/rb3/c0.00            1          0        1
+P_need=2/peaks-6/rb3/c0.02            1          0        1
+P_need=2/peaks-6/rb3/c0.05            1          0        1
+
+== predictions ==
+(a) no gain at a zero price:      HOLDS
+(b) a gain at a positive price:   FAILS (best P_need=2/uniform/rb3/c0.05: +37 steps, mde 250)
+(c) optimum grows with the price: HOLDS
+    P_need=1/uniform/rb1     [1, 1, 1]
+    P_need=1/uniform/rb3     [1, 1, 1]
+    P_need=1/peaks-6/rb1     [1, 1, 1]
+    P_need=1/peaks-6/rb3     [1, 1, 1]
+    P_need=2/uniform/rb1     [1, 1, 1]
+    P_need=2/uniform/rb3     [1, 2, 4]
+    P_need=2/peaks-6/rb1     [1, 1, 1]
+    P_need=2/peaks-6/rb3     [1, 1, 1]
+(d) peaks gain < uniform gain:    FAILS
+    P_need=1/rb1/c0.00   uniform     +0  peaks-6     +0
+    P_need=1/rb1/c0.02   uniform     +0  peaks-6     +0
+    P_need=1/rb1/c0.05   uniform     +0  peaks-6     +0
+    P_need=1/rb3/c0.00   uniform     +0  peaks-6     +0
+    P_need=1/rb3/c0.02   uniform     +0  peaks-6     +0
+    P_need=1/rb3/c0.05   uniform     +0  peaks-6     +0
+    P_need=2/rb1/c0.00   uniform     +0  peaks-6     +0
+    P_need=2/rb1/c0.02   uniform     +0  peaks-6     +0
+    P_need=2/rb1/c0.05   uniform     +0  peaks-6     +0
+    P_need=2/rb3/c0.00   uniform     +0  peaks-6     +0
+    P_need=2/rb3/c0.02   uniform    +33  peaks-6     +0
+    P_need=2/rb3/c0.05   uniform    +37  peaks-6     +0
+
+saved results/memory-sampling/run-2026-11-17T05-55-53.json
+mde: sigma=1000 steps, effect=250 steps -> 252 arms per cell
+coincident groups declared: 18
+
+--- exp05_frozen.py ---
+  B        10.0    0.02      10.0000   10.0000   20/40   469e6d0b826b3553
+  C        10.0    0.10      10.0000   10.0000   20/40   99834da355074a6b
+
+Контроль:
+  OK   fires     A: max energy 100.0000 vs its own predicted ceiling 100.0000 — must have REACHED the ceiling, not merely grown past B's
+  OK   silent    B: max energy 10.0000 vs predicted 10.0000 — must match
+  OK   specific  C: ceiling moved by 0.000000 when damage_rate went 0.02 -> 0.10; the formula says 0.000000 because the clamp is last. An income/spend equilibrium would have moved it by 0.120000.
+
+Вердикт: passed
+  all three arms sit on their capacity; the ceiling is capacity, not an income/spend equilibrium and not capacity minus the spend
+
+Сохранено: /root/marfagenez/results/frozen-ceiling/run-2026-11-15T19-29-24.json
+
+--- exp99_protocol_capacity.py ---
+M=2.0 r=0.8 t=0.6 m=0.1 n=  30 (k= 1.5, inc/k=0.4000, k_seq=3, k_prop=6): seq   30/30   prop   30/30   OK
+M=2.0 r=0.8 t=0.6 m=0.1 n=  60 (k= 3.0, inc/k=0.2000, k_seq=3, k_prop=6): seq   60/60   prop   60/60   OK
+M=2.0 r=0.8 t=0.6 m=0.1 n= 120 (k= 6.0, inc/k=0.1000, k_seq=3, k_prop=6): seq   60/60   prop  120/120  OK
+M=2.0 r=0.8 t=0.6 m=0.1 n= 140 (k= 7.0, inc/k=0.0857, k_seq=3, k_prop=6): seq   60/60   prop    0/0    OK
+M=2.0 r=0.8 t=0.6 m=0.1 n= 160 (k= 8.0, inc/k=0.0750, k_seq=3, k_prop=6): seq   60/60   prop    0/0    OK
+M=2.0 r=0.8 t=1.0 m=0.1 n=  20 (k= 1.0, inc/k=1.0000, k_seq=2, k_prop=10): seq   20/20   prop   20/20   OK
+M=2.0 r=0.8 t=1.0 m=0.1 n=  40 (k= 2.0, inc/k=0.5000, k_seq=2, k_prop=10): seq   40/40   prop   40/40   OK
+M=2.0 r=0.8 t=1.0 m=0.1 n= 200 (k=10.0, inc/k=0.1000, k_seq=2, k_prop=10): seq   40/40   prop  200/200  OK
+M=2.0 r=0.8 t=1.0 m=0.1 n= 220 (k=11.0, inc/k=0.0909, k_seq=2, k_prop=10): seq   40/40   prop    0/0    OK
+M=2.0 r=0.8 t=1.0 m=0.1 n= 240 (k=12.0, inc/k=0.0833, k_seq=2, k_prop=10): seq   40/40   prop    0/0    OK
+M=2.0 r=0.8 t=0.6 m=0.5 n=  10 (k= 0.5, inc/k=1.2000, k_seq=2, k_prop=1): seq   10/10   prop   10/10   OK
+M=2.0 r=0.8 t=0.6 m=0.5 n=  20 (k= 1.0, inc/k=0.6000, k_seq=2, k_prop=1): seq   20/20   prop   20/20   OK
+M=2.0 r=0.8 t=0.6 m=0.5 n=  40 (k= 2.0, inc/k=0.3000, k_seq=2, k_prop=1): seq   40/40   prop    0/0    OK
+M=2.0 r=0.8 t=0.6 m=0.5 n=  60 (k= 3.0, inc/k=0.2000, k_seq=2, k_prop=1): seq   40/40   prop    0/0    OK
+M=2.0 r=0.8 t=0.6 m=0.5 n=  80 (k= 4.0, inc/k=0.1500, k_seq=2, k_prop=1): seq   40/40   prop    0/0    OK
+M=2.0 r=0.85 t=0.6 m=0.5 n=  10 (k= 0.5, inc/k=1.2000, k_seq=3, k_prop=1): seq   10/10   prop   10/10   OK
+M=2.0 r=0.85 t=0.6 m=0.5 n=  20 (k= 1.0, inc/k=0.6000, k_seq=3, k_prop=1): seq   20/20   prop   20/20   OK
+M=2.0 r=0.85 t=0.6 m=0.5 n=  60 (k= 3.0, inc/k=0.2000, k_seq=3, k_prop=1): seq   60/60   prop    0/0    OK
+M=2.0 r=0.85 t=0.6 m=0.5 n=  80 (k= 4.0, inc/k=0.1500, k_seq=3, k_prop=1): seq   60/60   prop    0/0    OK
+M=2.0 r=0.85 t=0.6 m=0.5 n= 100 (k= 5.0, inc/k=0.1200, k_seq=3, k_prop=1): seq   60/60   prop    0/0    OK
+M=2.0 r=0.875 t=0.6 m=0.55 n=  10 (k= 0.5, inc/k=1.2000, k_seq=3, k_prop=1): seq   10/10   prop   10/10   OK
+M=2.0 r=0.875 t=0.6 m=0.55 n=  20 (k= 1.0, inc/k=0.6000, k_seq=3, k_prop=1): seq   20/20   prop   20/20   OK
+M=2.0 r=0.875 t=0.6 m=0.55 n=  60 (k= 3.0, inc/k=0.2000, k_seq=3, k_prop=1): seq   60/60   prop    0/0    OK
+M=2.0 r=0.875 t=0.6 m=0.55 n=  80 (k= 4.0, inc/k=0.1500, k_seq=3, k_prop=1): seq   60/60   prop    0/0    OK
+M=2.0 r=0.875 t=0.6 m=0.55 n= 100 (k= 5.0, inc/k=0.1200, k_seq=3, k_prop=1): seq   60/60   prop    0/0    OK
+M=2.0 r=0.825 t=0.6 m=0.5 n=  10 (k= 0.5, inc/k=1.2000, k_seq=2, k_prop=1): seq   10/10   prop   10/10   OK
+M=2.0 r=0.825 t=0.6 m=0.5 n=  20 (k= 1.0, inc/k=0.6000, k_seq=2, k_prop=1): seq   20/20   prop   20/20   OK
+M=2.0 r=0.825 t=0.6 m=0.5 n=  40 (k= 2.0, inc/k=0.3000, k_seq=2, k_prop=1): seq   40/40   prop    0/0    OK
+M=2.0 r=0.825 t=0.6 m=0.5 n=  60 (k= 3.0, inc/k=0.2000, k_seq=2, k_prop=1): seq   40/40   prop    0/0    OK
+M=2.0 r=0.825 t=0.6 m=0.5 n=  80 (k= 4.0, inc/k=0.1500, k_seq=2, k_prop=1): seq   40/40   prop    0/0    OK
+
+# EXP-99: протокол дележа и ёмкость клетки
+
+ёмкость — граница, а не измерение: размножения нет, толпу задаёт n.
+последовательный ограничен полем: cells*(floor(S/t) + [остаток >= m])
+пропорциональный — организмом: cells*floor(income/m)
+
+граница: M*r >= income. Ниже неё клетка даёт меньше, чем просит один
+  едок, и k_seq = 0 по построению. Все строки выше границы; сама
+  граница заявлена, а не пересечена — случай ниже неё скрипт
+  отказывается запускать, а не измеряет.
+  M=2.0 r=0.8 income=0.6 m=0.1: S=1.6000 >= income (above)
+  M=2.0 r=0.8 income=1.0 m=0.1: S=1.6000 >= income (above)
+  M=2.0 r=0.8 income=0.6 m=0.5: S=1.6000 >= income (above)
+  M=2.0 r=0.85 income=0.6 m=0.5: S=1.7000 >= income (above)
+  M=2.0 r=0.875 income=0.6 m=0.55: S=1.7500 >= income (above)
+  M=2.0 r=0.825 income=0.6 m=0.5: S=1.6500 >= income (above)
+
+floor(income/m) — целочисленный закон, но float-floor даёт 5 для
+  0.6/0.1, а прогон даёт 6: шестой едок забирает оставшиеся 0.1.
+
+  OK   fires     the sequential population saturates at the capacity the arithmetic predicted: on the 14 rungs above it, it holds exactly that capacity and does not grow with n. The reference is `reference_k_seq`, written separately from `k_sequential`. All three injected defects are caught: an arm that tracks n, a capacity off by one cell-load in either direction, and a capacity that ignores the field size. This shows the arm saturates where predicted; it does not prove the prediction, which `silent` checks against the same rows
+  OK   silent    30/30 rungs match their own formula exactly (seq: min(n, cells*k_seq) with k_seq = floor(S/t) + [rem >= m]; prop: n if income/k >= m else 0), and the ladder goes above both thresholds (14 rungs above the sequential capacity, 16 above the proportional one), so neither control is silent by having nothing to see
+  OK   specific  the protocols are limited by different things: sequential leaves 14 rungs with a partially-fed population (the field caps it), proportional leaves 0 -- it splits evenly, so it dies all at once (the organism caps it); the injected gradual death of the proportional arm is caught
+
+хэшей плеч: 60, различных: 52
+  prop0    34198d01c260e6bc
+  prop1    092e684c0106ec31
+  prop10   54462533d8df06bc
+  prop11   b23ff7a59d7852c5
+
+Вердикт: passed
+  the two protocols are limited by different quantities: sequential by the cell's supply, cells*(floor(M*r/income) + [remainder >= maintenance]); proportional by the organism's demand, cells*floor(income/maintenance). The proportional protocol holds more organisms because it rations each one down to maintenance. The saturation control is checked against a reference that does not use k_seq, and it rejects k_seq off by one in either direction
+
+Сохранено: /root/marfagenez/results/protocol-capacity/run-2026-11-15T19-29-24.json
+
+--- exp_look_order.py ---
+look_order=LookThenEat     alive= 16 mem_err=0.4000 points_best=1.000 moved=0
+look_order=EatThenLook     alive=  4 mem_err=0.4000 points_best=0.000 moved=4
+
+saved: /root/marfagenez/results/look-order/run-2026-11-15T19-29-27.json
+
+--- log_check.py ---
+Medium: 291 теорем в 56 файлах
+Legacy: 27 теорем в 7 файлах
+Всего:  318 теорем в 63 файлах
+Rust тестов: 382 passed, 0 failed (cache)
+Живых sorry: 0
+
+Заморожено файлов (датированные записи): 346
+Живые числа в документации совпадают с деревом.
+Журнал циклов: нумерация непрерывна, отставания нет.
+
+--- hash_version.py ---
+hash version: core/src/trace.rs = '2-prev-cell', checks/result.py = '2-prev-cell'
+records outside results/_archive/: 407
+  ok          21
+  stale       0
+  unversioned 386  (frozen list: 386)
+
+OK: every record is either versioned at the current version or listed
+as written before versioning existed; the list matches the tree.
+
+--- capacity_two_answers.py ---
+cells   M    r    t    | capacity_law.py | LAW-capacity.md | gap
+--------------------------------------------------------------------------
+   10  1.0 0.80  1.0 |               1 |               1 |    +0
+   10  2.0 0.80  1.0 |               2 |               1 |    +1
+   10  3.0 0.60  1.0 |               2 |               2 |    +0
+   10  4.0 0.80  1.0 |               3 |               3 |    +0
+   40  1.0 0.80  1.0 |               1 |               1 |    +0
+   40  2.0 0.80  1.0 |               2 |               1 |    +1
+   40  3.0 0.60  1.0 |               2 |               2 |    +0
+   40  4.0 0.80  1.0 |               3 |               3 |    +0
+  120  1.0 0.80  1.0 |               1 |               1 |    +0
+  120  2.0 0.80  1.0 |               2 |               1 |    +1
+  120  3.0 0.60  1.0 |               2 |               2 |    +0
+  120  4.0 0.80  1.0 |               3 |               3 |    +0
+
+  fires    3/12 sweep rows where the two answers differ
+  silent   12/12 sweep rows where capacity_law.py >= LAW-capacity.md
+  specific 121 parameter points where `bill` moves the floor (the regime the extra term exists for)
+           first: M=0.7500 r=0.8 t=1.0 -> doc 0, capacity_law.py 1
+
+OK: документ совпадает с прогоном (12 строк),
+    порядок держится (12/12), член `bill`
+    двигает пол в 121 точках.
+    Расхождение на свипе -- не ошибка, а два разных вопроса;
+    какой из них когда применяется, записано в
+    `docs/UNREPRODUCIBLE.md` §1.
+
+================================================================
+  Граф знаний (инварианты и ссылки)
+================================================================
+OK
+ссылки свидетельств: разрешено 540, не разрешено 0
+  ok        artifact: 1
+  ok        document: 10
+  ok        experiment: 416
+  ok        formula: 5
+  ok        literature: 98
+  ok        result: 6
+  ok        run: 4
+сверка корпус -> nodes.jsonl: 560 узлов
+  ok: nodes.jsonl совпадает с корпусом, статусы не двигались
+F2: цена как производная функции значения
+  a      V(a)     dV/da     |dV/da|   правило   совпадает
+  0.20   3.4000    0.0000    0.0000      1.0   нет
+  0.30   3.4000    0.0000    0.0000      1.0   нет
+  0.35   3.4000    0.0000    0.0000      1.0   нет
+  0.42   3.3400   -3.0000    3.0000      3.0   да
+  0.46   3.2200   -3.0000    3.0000      3.0   да
+
+  ДИАГНОЗ: до излома цена по правилу = 1, а производная функции значения = 0.
+  Прогон назначал цену условием, а не брал из двойственной задачи (дефект постановки, Q16).
+  C-001 при этом согласуется: при несязывающем ограничении цена равна нулю.
+  Подробности: docs/FINDING-320-price-rule-vs-derivative.md
+
+================================================================
+  Проверки утверждений (verify_all.js)
+================================================================

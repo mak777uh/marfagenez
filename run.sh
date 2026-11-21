@@ -192,6 +192,9 @@ do_exp() {
   python3 checks/goal_features.py || rc=$?
   echo "--- finding_elephant_line.py ---"
   python3 checks/finding_elephant_line.py || rc=$?
+  echo "--- results_allowlist.py ---"
+  # results/ восстанавливается `git checkout`, поэтому только артефакты прогонов модели.
+  python3 checks/results_allowlist.py || rc=$?
   echo "--- literature_contract.py ---"
   # Литературный контракт: машинный уровень записи не может превышать артефакт. Офлайн, секунды.
   python3 checks/literature_contract.py || rc=$?
