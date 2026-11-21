@@ -59,7 +59,7 @@ metadata/secondary ⇒ extracted/weak + `secondary_of`.
 не работает (в каталоге живут легаси-артефакты).
 **Готово:** `results/litsearch/x.json` ⇒ FAIL; текущее дерево зелёное; перепись печатается.
 
-### U5. `litsearch`: три канала, RRF, снимок — 1,5 круга
+### U5. `litsearch`: три канала, RRF, снимок — частично: схема и `litsearch_contract.py` (5/5) готовы, раннер — следующий шаг
 **Что:** `tools/litsearch.py`; дедуп до fusion (`doi → arxiv → pmid → title_norm+year`); RRF `k=60`, равные
 веса; снимок `literature/runs/<run_id>.json` + `raw/<channel>.json.gz` со sha; **истина — ранги, RRF —
 производное**; тай-брейк и `k` — константы схемы; `checks/litsearch_contract.py` пересчитывает дедуп, RRF,

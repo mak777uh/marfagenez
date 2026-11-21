@@ -211,6 +211,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/life_calibration.py` | калибровка на «Жизни»: что в этой модели вообще измеримо |
 | `checks/protocol_checks.py` | этот список совпадает с тем, что гейт запускает |
 | `checks/results_allowlist.py` | в `results/` только артефакты прогонов модели; поисковые снимки и леджер бюджета живут в `literature/` |
+| `checks/litsearch_contract.py` | снимок поиска воспроизводим: дедуп и RRF пересчитываются из рангов; `degraded` и sha сырых ответов согласованы |
 | `checks/doc_links.py` | относительные ссылки в документации разрешаются (известные мёртвые — в allowlist) |
 | `checks/bridge_price_derivative.py` | цена = производная функции значения: конечная разность против двойственной переменной |
 | `checks/doc_numbers.py` | числа в документах (тесты, находки, фигуры, проверки) совпадают с деревом |
