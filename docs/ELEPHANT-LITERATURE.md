@@ -42,6 +42,45 @@
 
 ### L-001 · Накопление повреждения даёт экспоненциальный рост смертности
 
+```json
+{
+ "L": "L-001",
+ "locator": {
+  "doi": "10.1371/journal.pone.0233384",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0233384",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0233384"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Накопление повреждения даёт экспоненциальный рост смертности",
+  "year": 2020,
+  "first_author": "Ledberg"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Ledberg, A. (2020). *Exponential increase in mortality with age is a generic property of a simple model
 system of damage accumulation and death.* PLOS ONE 15(6): e0233384.
 **Ссылка.** https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0233384 (DOI 10.1371/journal.pone.0233384)
@@ -58,6 +97,45 @@ system of damage accumulation and death.* PLOS ONE 15(6): e0233384.
 
 ### L-002 · Мёртвое плато — то, что модели накопления воспроизводят плохо
 
+```json
+{
+ "L": "L-002",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Мёртвое плато — то, что модели накопления воспроизводят плохо",
+  "year": 2026,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** критика модели Ledberg в контексте позднего плато смертности (по отзывам 2026-11-20 ссылается на Raz et al.,
 *Nature Aging*).
 **Ссылка.** нет прямой; **вторые руки** — из отзыва, не проверено.
@@ -73,6 +151,45 @@ mortality», то есть **плато смертности** остаётся 
 
 ### L-003 · Disposable soma: ресурс делится между починкой и потомством, оптимум явно моделируется
 
+```json
+{
+ "L": "L-003",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://en.wikipedia.org/wiki/Disposable_soma_theory_of_aging",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://en.wikipedia.org/wiki/Disposable_soma_theory_of_aging"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Disposable soma theory of aging",
+  "year": null,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Kirkwood; формальные модели — см. L-004; обзор — Wikipedia «Disposable soma theory of aging».
 **Ссылка.** https://en.wikipedia.org/wiki/Disposable_soma_theory_of_aging
 **Проверено.** аннотация/обзорная страница.
@@ -85,6 +202,45 @@ and DNA repair maintenance**».
 ---
 
 ### L-004 · Оптимальная доля и закон Гомпертца выводятся вместе
+
+```json
+{
+ "L": "L-004",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://academic.oup.com/evolut/article/49/6/1055/6870614",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://academic.oup.com/evolut/article/49/6/1055/6870614"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Оптимальная доля и закон Гомпертца выводятся вместе",
+  "year": 1995,
+  "first_author": "Abrams & Ludwig"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Abrams & Ludwig (1995). *Optimality theory, Gompertz' law, and the disposable soma theory of senescence.*
 Evolution 49(6): 1055.
@@ -100,6 +256,45 @@ Evolution 49(6): 1055.
 ---
 
 ### L-005 · Порог доли удержания повреждения известен
+
+```json
+{
+ "L": "L-005",
+ "locator": {
+  "doi": "10.1371/journal.pgen.1001076",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1001076",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1001076"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Порог доли удержания повреждения известен",
+  "year": 2010,
+  "first_author": "Chao"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Chao, L. (2010). *A model for damage load and its implications for the evolution of bacterial aging.*
 PLOS Genetics 6(8): e1001076.
@@ -117,6 +312,45 @@ threshold**… the lineage becomes mortal above the threshold».
 
 ### L-006 · Все кривые выживания — растяжения одной
 
+```json
+{
+ "L": "L-006",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Все кривые выживания — растяжения одной",
+  "year": 2016,
+  "first_author": "Stroustrup et al."
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Stroustrup et al. (2016). *The temporal scaling of Caenorhabditis elegans ageing.* Nature 530, 103–107.
 **Ссылка.** **вторые руки** — из отзыва 2026-11-20; ссылку не открывал.
 **Проверено.** **вторые руки.**
@@ -129,6 +363,45 @@ threshold**… the lineage becomes mortal above the threshold».
 ---
 
 ### L-007 · Страховка сдвигает оптимум с пика на пологий склон
+
+```json
+{
+ "L": "L-007",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6590291/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "pmc",
+  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6590291/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Страховка сдвигает оптимум с пика на пологий склон",
+  "year": 2019,
+  "first_author": "Haaland"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
 
 **Кто.** Haaland, Wright, Tufto, Ratikainen (2019). *Short-term insurance versus long-term bet-hedging strategies as
 adaptations to variable environments.* Evolution 73(2): 145–157.
@@ -144,6 +417,45 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 ### L-008 · Bet-hedging и банк семян
 
+```json
+{
+ "L": "L-008",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Bet-hedging и банк семян",
+  "year": 1966,
+  "first_author": "Cohen"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Cohen (1966); Seger & Brockmann (1987); Philippi & Seger (1989); Starrfelt & Kokko (2012); Evans & Dennehy
 (2005) — «germ banking».
 **Ссылка.** **вторые руки** — из отзывов 2026-11-20.
@@ -158,6 +470,45 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 ### L-009 · Насыщаемое удаление и порог: прямой аналог
 
+```json
+{
+ "L": "L-009",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Насыщаемое удаление и порог: прямой аналог",
+  "year": 2019,
+  "first_author": "Karin"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Karin, Agrawal, Alon (2019), Nature Communications — о насыщаемом удалении сенесцентных клеток.
 **Ссылка.** **вторые руки** — из отзыва 2026-11-20; **высший приоритет проверки**.
 **Проверено.** **вторые руки.**
@@ -169,6 +520,45 @@ decreasing side** of the fitness function». Пример там же: птиц�
 ---
 
 ### L-010 · Теория надёжности: отказ как выброс нагрузки
+
+```json
+{
+ "L": "L-010",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Теория надёжности: отказ как выброс нагрузки",
+  "year": 1991,
+  "first_author": "Gavrilov & Gavrilova"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Gavrilov & Gavrilova (1991, 2001) — надёжностная (reliability) теория старения.
 **Ссылка.** **вторые руки** — из отзывов.
@@ -182,6 +572,45 @@ decreasing side** of the fitness function». Пример там же: птиц�
 ---
 
 ### L-011 · Frailty и vitality: две системы с равным состоянием не равны
+
+```json
+{
+ "L": "L-011",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Frailty и vitality: две системы с равным состоянием не равны",
+  "year": 1979,
+  "first_author": "Vaupel"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Vaupel, Manton, Stallard (1979) — frailty; Li & Anderson — vitality.
 **Ссылка.** **вторые руки.**
@@ -197,6 +626,45 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 ### L-012 · DEB: правило κ и приоритет поддержания
 
+```json
+{
+ "L": "L-012",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "DEB: правило κ и приоритет поддержания",
+  "year": null,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Kooijman — Dynamic Energy Budget theory.
 **Ссылка.** **вторые руки.**
 **Проверено.** **вторые руки.**
@@ -209,6 +677,45 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 ### L-013 · Pirt и поддержание у микробов
 
+```json
+{
+ "L": "L-013",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Pirt и поддержание у микробов",
+  "year": 1965,
+  "first_author": "Pirt"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Pirt (1965) — maintenance energy.
 **Ссылка.** **вторые руки.**
 **Проверено.** **вторые руки.**
@@ -219,6 +726,45 @@ decreasing side** of the fitness function». Пример там же: птиц�
 ---
 
 ### L-014 · Две независимые опасности и оптимальный ремонт
+
+```json
+{
+ "L": "L-014",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Две независимые опасности и оптимальный ремонт",
+  "year": 2024,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Gavrilov? нет — **Tomasik et al. (2024), JTB** — «Agelessness is possible under the disposable soma theory but
 system complexity makes it unlikely».
@@ -235,6 +781,45 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 ### L-015 · Замкнутость ограничений — возможно, **их** определение нашего критерия
 
+```json
+{
+ "L": "L-015",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Замкнутость ограничений — возможно, **их** определение нашего критерия",
+  "year": 2015,
+  "first_author": "Moreno & Mossio"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Moreno & Mossio (2015) *Biological Autonomy*; Mossio, Saborido & Moreno (2009); Montévil & Mossio (2015).
 **Ссылка.** **вторые руки** — из отзыва 2026-11-20.
 **Проверено.** **вторые руки.**
@@ -248,6 +833,45 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 ---
 
 ### L-016 · Химотон: три подсистемы и требование замкнутости
+
+```json
+{
+ "L": "L-016",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Химотон: три подсистемы и требование замкнутости",
+  "year": 1975,
+  "first_author": "Gánti"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Gánti (1975, 2003).
 **Ссылка.** **вторые руки.**
@@ -263,6 +887,45 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 ### L-017 · Индивидуальность как передача информации
 
+```json
+{
+ "L": "L-017",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Индивидуальность как передача информации",
+  "year": 2020,
+  "first_author": "Krakauer et al."
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Krakauer et al. (2020) — information theory of individuality (ITI).
 **Ссылка.** **вторые руки.**
 **Проверено.** **вторые руки.**
@@ -275,6 +938,45 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 ---
 
 ### L-018 · Кожа как Markov blanket — и критика этой аналогии
+
+```json
+{
+ "L": "L-018",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Кожа как Markov blanket — и критика этой аналогии",
+  "year": 2013,
+  "first_author": "Friston"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Friston (2013) — Markov blankets; критика — Bruineberg et al. (2022).
 **Ссылка.** **вторые руки.**
@@ -289,6 +991,45 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 ### L-019 · Автономия как базовая организация
 
+```json
+{
+ "L": "L-019",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Автономия как базовая организация",
+  "year": 2004,
+  "first_author": "Ruiz-Mirazo & Moreno"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Ruiz-Mirazo & Moreno (2004, 2012).
 **Ссылка.** **вторые руки.**
 **Проверено.** **вторые руки.**
@@ -301,6 +1042,45 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 ### L-020 · Катастрофа ошибок и порог точности
 
+```json
+{
+ "L": "L-020",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Катастрофа ошибок и порог точности",
+  "year": 1971,
+  "first_author": "Eigen"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Eigen (1971) — quasispecies и `Q_crit`; Orgel (1963); Kowald & Kirkwood (1994).
 **Ссылка.** **вторые руки.**
 **Проверено.** **вторые руки.**
@@ -312,6 +1092,45 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 ---
 
 ### L-021 · Минимальная клетка: ограничение кинетическое, а не энергетическое
+
+```json
+{
+ "L": "L-021",
+ "locator": {
+  "doi": "10.1371/journal.pcbi.1000872",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000872",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000872"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Минимальная клетка: ограничение кинетическое, а не энергетическое",
+  "year": 2010,
+  "first_author": "Piedrafita et al."
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Piedrafita et al. (2010), PLOS Comput Biol; Piedrafita et al. (2012); Agmon (2020) — WCM syn3A.
 **Ссылка.** https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000872 ;
@@ -327,6 +1146,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 ### L-022 · Несовместимость с disposable soma — сигнал, а не баг
 
+```json
+{
+ "L": "L-022",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Несовместимость с disposable soma — сигнал, а не баг",
+  "year": 2026,
+  "first_author": "обзор"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** обзор 2026-11-20 (не статья).
 **Ссылка.** нет.
 **Проверено.** **вторые руки** (и это **не** источник, а гипотеза).
@@ -339,6 +1197,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 ### L-023 · Модель Chao, восстановленная по тексту: порог `Πλ = 1/6`, и это **складка**
+
+```json
+{
+ "L": "L-023",
+ "locator": {
+  "doi": "10.1371/journal.pgen.1001076",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.1371/journal.pgen.1001076",
+  "none": false
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.1371/journal.pgen.1001076"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Модель Chao, восстановленная по тексту: порог `Πλ = 1/6`, и это **складка**",
+  "year": 2010,
+  "first_author": "Chao"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Chao, L. (2010). PLOS Genetics 6(8): e1001076. Реконструкция — внешнее ревью 2026-11-20 (второй документ),
 с сверкой по двум опубликованным числам.
@@ -357,6 +1254,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 ### L-024 · Смертность как канал удаления превращает складку в непрерывную расходимость
 
+```json
+{
+ "L": "L-024",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Смертность как канал удаления превращает складку в непрерывную расходимость",
+  "year": 2026,
+  "first_author": "внешнее ревью"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** внешнее ревью 2026-11-20 (утверждение о нашем результате, не цитата из статьи).
 **Проверено.** **вторые руки.**
 **Утверждение (цитата ревью).** «смертность как канал удаления повреждения превращает складку в непрерывную
@@ -370,6 +1306,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 ### L-025 · Замыкание ограничений: структура, а не баланс
 
+```json
+{
+ "L": "L-025",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Замыкание ограничений: структура, а не баланс",
+  "year": 2015,
+  "first_author": "Montévil & Mossio"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Montévil & Mossio (2015), JTB 372:179–191; Mossio, Saborido & Moreno (2009).
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Замыкание — **причинная сеть взаимно поддерживающих ограничений**; формальное условие:
@@ -382,6 +1357,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 ### L-026 · Химические организации: формальное замыкание множеств
 
+```json
+{
+ "L": "L-026",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Химические организации: формальное замыкание множеств",
+  "year": 2007,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Dittrich & Speroni di Fenizio (2007), Bull Math Biol; Kaleta et al. (2008).
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Формальное определение **самоподдерживающегося множества** видов в реакционной сети
@@ -393,6 +1407,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 ### L-027 · RAF-множества: замыкание есть, универсальной доли нет
 
+```json
+{
+ "L": "L-027",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "RAF-множества: замыкание есть, универсальной доли нет",
+  "year": 2011,
+  "first_author": "Hordijk"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Hordijk, Kauffman & Steel (2011), IJMS 12:3085; Mossel & Steel (2005), JTB 233:327–336.
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** RAF определимо формально (каждая реакция катализируется членом множества; все реагенты
@@ -402,6 +1455,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 ---
 
 ### L-028 · Viability: выживание — множество траекторий, а не мгновенный порог
+
+```json
+{
+ "L": "L-028",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Viability: выживание — множество траекторий, а не мгновенный порог",
+  "year": 1991,
+  "first_author": "Aubin"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Aubin (1991); Saint-Pierre (1994); Maidens et al. (2013), Automatica.
 **Проверено.** **вторые руки.**
@@ -415,6 +1507,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 ### L-029 · Порог ошибок Эйгена: точность против длины
 
+```json
+{
+ "L": "L-029",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Порог ошибок Эйгена: точность против длины",
+  "year": 1971,
+  "first_author": "Eigen"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Eigen (1971); Eigen & Schuster (1977).
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Максимальная длина, удерживаемая отбором, ограничена точностью копирования; порог
@@ -424,6 +1555,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 ---
 
 ### L-030 · Термодинамика замыкания: цены есть, универсальной формулы нет
+
+```json
+{
+ "L": "L-030",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Термодинамика замыкания: цены есть, универсальной формулы нет",
+  "year": 2013,
+  "first_author": "England"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** England (2013); Kolchinsky (2024); Fodor et al. (2016), PRL; Aguilera et al. (2022), Phys Life Rev.
 **Проверено.** **вторые руки.**
@@ -435,6 +1605,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 ### L-031 · Индивидуальность: единого теста нет
 
+```json
+{
+ "L": "L-031",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Индивидуальность: единого теста нет",
+  "year": 2009,
+  "first_author": "Queller & Strassmann"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Queller & Strassmann (2009); Schenkel, Patten & Ågren (2025), Biol Philos 40:29; Clarke (2010); Krakauer 2020.
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Списки критериев есть, единого операционального теста нет; тесты зависят от вопроса.
@@ -444,6 +1653,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 ### L-032 · Assembly theory: сложность сборки, но не организация
 
+```json
+{
+ "L": "L-032",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Assembly theory: сложность сборки, но не организация",
+  "year": 2023,
+  "first_author": "Sharma et al."
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Sharma et al. (2023), Nature; ответ на критику — Kempes et al. (2025).
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Индекс сборки измеряет **сложность**, не **организацию**; цены поддержания в нём нет.
@@ -452,6 +1700,45 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 ---
 
 ### L-033 · Протоклетки: числа по проницаемости и делению
+
+```json
+{
+ "L": "L-033",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Протоклетки: числа по проницаемости и делению",
+  "year": 2009,
+  "first_author": "Zhu & Szostak"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Zhu & Szostak (2009) JACS 131:5705; Budin & Szostak (2011) PNAS 108:5249; Budin, Debnath & Szostak (2012)
 JACS 134:20812; Breuer et al. (2019) eLife; Pelletier et al. (2021) Cell 184:2430; Thornburg et al. (2022) Cell.
@@ -464,6 +1751,45 @@ JACS 134:20812; Breuer et al. (2019) eLife; Pelletier et al. (2021) Cell 184:243
 
 ### L-034 · Niche construction: обратная связь есть, скалярной меры нет
 
+```json
+{
+ "L": "L-034",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Niche construction: обратная связь есть, скалярной меры нет",
+  "year": 1994,
+  "first_author": "Jones"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Jones, Lawton & Shachak (1994) Oikos 69:373; Laland, Odling-Smee & Feldman (1999) PNAS 96:10242;
 Odling-Smee et al. (2013) Am Nat; Mitteroecker et al. (2016) PNAS.
 **Проверено.** **вторые руки.**
@@ -474,6 +1800,45 @@ Odling-Smee et al. (2013) Am Nat; Mitteroecker et al. (2016) PNAS.
 ---
 
 ### L-035 · Cliff-edge, риск и оптимальность
+
+```json
+{
+ "L": "L-035",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Cliff-edge, риск и оптимальность",
+  "year": 2012,
+  "first_author": "Vercken et al."
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Vercken et al. (2012) PLoS ONE 7:e34889; Stephens & Charnov (1982); Kussell & Leibler (2005) Science 309:2075;
 Haaland et al. (2019) Proc R Soc B 286:20192070.
@@ -486,6 +1851,45 @@ bet-hedging оптимален, когда критерий **геометрич
 
 ### L-036 · Надёжность: `μ` как интенсивность отказов
 
+```json
+{
+ "L": "L-036",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Надёжность: `μ` как интенсивность отказов",
+  "year": 2001,
+  "first_author": "Gavrilov & Gavrilova"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Gavrilov & Gavrilova (2001), JTB; обзор 2024.
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Смертность — интенсивность отказов системы с запасом прочности; даёт Гомпертца и плато.
@@ -494,6 +1898,45 @@ bet-hedging оптимален, когда критерий **геометрич
 ---
 
 ### L-037 · **Пустое пересечение**: у моделей повреждения нет цены границы
+
+```json
+{
+ "L": "L-037",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "**Пустое пересечение**: у моделей повреждения нет цены границы",
+  "year": 2026,
+  "first_author": "вывод ревью"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** вывод ревью 2026-11-20 (и его собственный поиск).
 **Проверено.** **вторые руки** — и это **гипотеза о пробеле**, не факт.
@@ -505,6 +1948,45 @@ bet-hedging оптимален, когда критерий **геометрич
 **Что меняет.** Возглавить следующий поиск; от «мы нашли закон» перейти к «мы сшили два незамкнутых поля».
 
 ### L-038 · Bet-hedging: критерий и три ловушки
+
+```json
+{
+ "L": "L-038",
+ "locator": {
+  "doi": "10.1111/j.1469-185X.2012.00225.x",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": false
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Bet-hedging: критерий и три ловушки",
+  "year": 1966,
+  "first_author": "Cohen"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Cohen (1966); Lewontin & Cohen (1969); Seger & Brockmann (1987); Frank & Slatkin (1990); Starrfelt & Kokko
 (2012), Biol. Rev., doi:10.1111/j.1469-185X.2012.00225.x.
@@ -518,6 +2000,45 @@ bet-hedging оптимален, когда критерий **геометрич
 
 ### L-039 · Скалярная память: максимум смещён (winner's curse), стандарт — UCB
 
+```json
+{
+ "L": "L-039",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Скалярная память: максимум смещён (winner's curse), стандарт — UCB",
+  "year": 1993,
+  "first_author": "Thrun & Schwartz"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Thrun & Schwartz (1993); van Hasselt (2010); Auer, Cesa-Bianchi & Fischer (2002).
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** `E[max]` из `n` шумных чтений строго выше истинного среднего, смещение ≈ `σ·√(2 ln n)` и
@@ -527,6 +2048,45 @@ bet-hedging оптимален, когда критерий **геометрич
 ---
 
 ### L-040 · Калибровка и sharpness — стандартные метрики
+
+```json
+{
+ "L": "L-040",
+ "locator": {
+  "doi": "10.1198/016214506000001437",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": false
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Калибровка и sharpness — стандартные метрики",
+  "year": 2007,
+  "first_author": "Gneiting & Raftery"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Gneiting & Raftery (2007), JASA, doi:10.1198/016214506000001437; Gneiting, Balabdaoui & Raftery (2007),
 JRSS-B, doi:10.1111/j.1467-9868.2007.00587.x.
@@ -539,6 +2099,45 @@ proper scoring rules — единственные, где честно гово�
 
 ### L-041 · Sizer / adder / timer: канон регуляции размера
 
+```json
+{
+ "L": "L-041",
+ "locator": {
+  "doi": "10.1146/annurev-biophys-070317-032955",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": false
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Sizer / adder / timer: канон регуляции размера",
+  "year": 1968,
+  "first_author": "Donachie"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Donachie (1968); Campos et al. (2014); Taheri-Araghi et al. (2015); Ho, Lin & Amir (2018),
 doi:10.1146/annurev-biophys-070317-032955.
 **Проверено.** **вторые руки.**
@@ -549,6 +2148,45 @@ doi:10.1146/annurev-biophys-070317-032955.
 ---
 
 ### L-042 · Chemical organization theory: формальное замыкание
+
+```json
+{
+ "L": "L-042",
+ "locator": {
+  "doi": "10.1007/s11538-006-9130-8",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": false
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Chemical organization theory: формальное замыкание",
+  "year": 2007,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Dittrich & Speroni di Fenizio (2007), Bull. Math. Biol., doi:10.1007/s11538-006-9130-8; обзор 2024,
 doi:10.3390/systems12040111.
@@ -561,6 +2199,45 @@ doi:10.3390/systems12040111.
 
 ### L-043 · RAF: три разные задачи, и только две полиномиальны
 
+```json
+{
+ "L": "L-043",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "RAF: три разные задачи, и только две полиномиальны",
+  "year": 2004,
+  "first_author": "Hordijk & Steel"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Hordijk & Steel (2004); Hordijk, Kauffman & Steel (2011), IJMS 12:3085; PMC4428007.
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Максимальная RAF — **полиномиально**; любая irrRAF — полиномиально; **минимальная по
@@ -570,6 +2247,45 @@ doi:10.3390/systems12040111.
 ---
 
 ### L-044 · Экологическая стехиометрия: возврат вещества в среду
+
+```json
+{
+ "L": "L-044",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Экологическая стехиометрия: возврат вещества в среду",
+  "year": 1999,
+  "first_author": "Elser & Urabe"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Elser & Urabe (1999), Ecology; Daufresne & Hedin (2005); Tilman (1982); Nicholson (1954).
 **Проверено.** **вторые руки.**
@@ -582,6 +2298,45 @@ doi:10.3390/systems12040111.
 
 ### L-045 · Надёжность и Гомпертц без постулата `μ`
 
+```json
+{
+ "L": "L-045",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Надёжность и Гомпертц без постулата `μ`",
+  "year": 1991,
+  "first_author": "Гаврилов и Гаврилова"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Гаврилов и Гаврилова (1991, 2001); Strehler & Mildvan (1960).
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Избыточность с начальным грузом дефектов и её исчерпание дают гомперцеву смертность
@@ -593,6 +2348,45 @@ doi:10.3390/systems12040111.
 
 ### L-046 · Error catastrophe: известный отрицательный результат
 
+```json
+{
+ "L": "L-046",
+ "locator": {
+  "doi": "10.1006/jtbi.1994.1089",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": false
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Error catastrophe: известный отрицательный результат",
+  "year": 1963,
+  "first_author": "Orgel"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Orgel (1963); Kowald & Kirkwood (1994), JTB, doi:10.1006/jtbi.1994.1089.
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Наивная самоссылка (ошибки повреждают аппарат синтеза) обычно **не даёт разгона** —
@@ -602,6 +2396,45 @@ doi:10.3390/systems12040111.
 ---
 
 ### L-047 · Интегральная обратная связь: среднее держится, дисперсия растёт
+
+```json
+{
+ "L": "L-047",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Интегральная обратная связь: среднее держится, дисперсия растёт",
+  "year": 2016,
+  "first_author": "Briat"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Briat, Gupta & Khammash (2016) antithetic integral feedback; Lindner et al. (2008).
 **Проверено.** **вторые руки.**
@@ -614,6 +2447,45 @@ doi:10.3390/systems12040111.
 
 ### L-048 · Порог ошибок Эйгена как безразмерная группа
 
+```json
+{
+ "L": "L-048",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Порог ошибок Эйгена как безразмерная группа",
+  "year": 1971,
+  "first_author": "Eigen"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Eigen (1971); Eigen & Schuster (1977); обзоры quasispecies (PMC7105236, PMC3466355).
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** `σ·q^ν > 1`; граница `μ_c = ln σ / ν`.
@@ -623,6 +2495,45 @@ doi:10.3390/systems12040111.
 ---
 
 ### L-049 · Один прибор: калибровка исследователя = калибровка организма
+
+```json
+{
+ "L": "L-049",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Один прибор: калибровка исследователя = калибровка организма",
+  "year": null,
+  "first_author": "те же"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** те же, что `L-039` и `L-040`.
 **Проверено.** **вторые руки.**
@@ -635,6 +2546,45 @@ doi:10.3390/systems12040111.
 
 ### L-050 · COT + потоки = LP, и «цена» как двойственная переменная
 
+```json
+{
+ "L": "L-050",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": null,
+  "none": true
+ },
+ "access": {
+  "level": "secondary_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "none",
+  "via_detail": null
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "COT + потоки = LP, и «цена» как двойственная переменная",
+  "year": 2007,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Dittrich & Speroni di Fenizio (2007) + традиция FBA.
 **Проверено.** **вторые руки** (синтез обзора, не цитата).
 **Утверждение (пересказ).** К организации добавляются ограничения потоков — задача становится **LP**; цена
@@ -644,6 +2594,45 @@ doi:10.3390/systems12040111.
 ---
 
 ### L-051 · Порог `Πλ = 1/6` **подтверждён локатором**
+
+```json
+{
+ "L": "L-051",
+ "locator": {
+  "doi": "10.1371/journal.pgen.1001076",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://journals.plos.org/plosgenetics/article/figures?id=10.1371/journal.pgen.1001076",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://journals.plos.org/plosgenetics/article/figures?id=10.1371/journal.pgen.1001076"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Порог `Πλ = 1/6` **подтверждён локатором**",
+  "year": 2010,
+  "first_author": "Chao"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
 
 **Кто.** Chao, L. (2010), PLOS Genetics 6(8): e1001076 — страница рисунков и уравнения;
 учебная глава «Cellular senescence» (ASU, PDF).
@@ -661,6 +2650,45 @@ damage rate of **Πλ = 0.10 is less than the threshold of 1/6** (Equation 11)»
 
 ### L-052 · Асимметричное деление **протоклеток** — ближайший сосед нашего пересечения
 
+```json
+{
+ "L": "L-052",
+ "locator": {
+  "doi": "10.1162/isal_a_00722",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.1162/isal_a_00722",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.1162/isal_a_00722"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Asymmetrical division in protocells",
+  "year": 2024,
+  "first_author": "ALIFE"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «Asymmetrical division in protocells» (ALIFE 2024), doi:10.1162/isal_a_00722; «Models of Protocells
 Undergoing Asymmetrical Division» (2024), PMC11049191.
 **Ссылка.** https://doi.org/10.1162/isal_a_00722 ; https://pmc.ncbi.nlm.nih.gov/articles/PMC11049191/
@@ -675,6 +2703,45 @@ Undergoing Asymmetrical Division» (2024), PMC11049191.
 ---
 
 ### L-053 · Стохастическая модель старения: повреждение, починка, асимметрия деления
+
+```json
+{
+ "L": "L-053",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6631810/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "pmc",
+  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6631810/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Стохастическая модель старения: повреждение, починка, асимметрия деления",
+  "year": 2019,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Stochastic modeling of aging cells reveals how damage accumulation, repair, and cell-division asymmetry affect
 clonal senescence and population fitness (2019), PMC6631810.
@@ -691,6 +2758,45 @@ clonal senescence and population fitness (2019), PMC6631810.
 
 ### L-054 · Наследование повреждения: модель «происхождения старения»
 
+```json
+{
+ "L": "L-054",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2049046/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "pmc",
+  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2049046/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "On the evolutionary origin of aging",
+  "year": 2007,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
+
 **Кто.** «On the evolutionary origin of aging» (2007), PMC2049046 (Erjavec и соавт.).
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC2049046/
 **Проверено.** **аннотация/фрагмент.**
@@ -703,6 +2809,45 @@ damage d, which was conferred to it by its parent…»; параметр `a` —
 ---
 
 ### L-055 · Надёжность: Гомпертц **и плато** из исчерпания избыточности
+
+```json
+{
+ "L": "L-055",
+ "locator": {
+  "doi": "10.1196/annals.1297.094",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "http://longevity-science.org/JTB-01.pdf",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "http://longevity-science.org/JTB-01.pdf"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "The Reliability Theory of Aging and Longevity",
+  "year": 2001,
+  "first_author": "Гаврилов и Гаврилова"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Gavrilov & Gavrilova (2001), JTB — «The Reliability Theory of Aging and Longevity»; Гаврилов и Гаврилова
 (2004), Ann. NY Acad. Sci., doi:10.1196/annals.1297.094; обзор 2024, PMC11090256.
@@ -722,6 +2867,45 @@ systems, which are redundant in numbers of irreplaceable elements, do deteriorat
 
 ### L-056 · Плато смертности как установленный феномен, а не артефакт
 
+```json
+{
+ "L": "L-056",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6703938/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "pmc",
+  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6703938/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "New trend in old-age mortality: Gompertzialization of mortality trajectory",
+  "year": 2024,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
+
 **Кто.** обзор 2024 (PMC11090256); «New trend in old-age mortality: Gompertzialization of mortality trajectory»
 (2019), PMC6703938; Laird & Sherratt (2009), JEB — «decelerating selection for system reliability».
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC6703938/ ;
@@ -738,6 +2922,45 @@ https://people.uleth.ca/~robert.laird/Laird%20and%20Sherratt%202009%20JEB.pdf
 
 ### L-057 · Одноклеточные делят ресурс между **асимметричным распределением** и **починкой**
 
+```json
+{
+ "L": "L-057",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10705550/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "pmc",
+  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10705550/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Одноклеточные делят ресурс между **асимметричным распределением** и **починкой**",
+  "year": 2023,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
+
 **Кто.** «Unicellular life balances asymmetric allocation and repair of somatic damage representing the origin of r/K
 selection» (2023), PNAS, PMC10705550.
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC10705550/
@@ -753,6 +2976,45 @@ selection» (2023), PNAS, PMC10705550.
 
 ### L-058 · Кривые выживания выводятся из **оптимального распределения ресурса**
 
+```json
+{
+ "L": "L-058",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://ruj.uj.edu.pl/xmlui/handle/item/263279",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://ruj.uj.edu.pl/xmlui/handle/item/263279"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Ageing and typical survivorship curves result from optimal resource allocation",
+  "year": 2000,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «Ageing and typical survivorship curves result from optimal resource allocation» (2000); «A life history model
 of somatic damage associated with resource acquisition: damage protection or prevention?» (JCU).
 **Ссылка.** https://ruj.uj.edu.pl/xmlui/handle/item/263279 ; https://researchonline.jcu.edu.au/42556/
@@ -767,6 +3029,45 @@ of somatic damage associated with resource acquisition: damage protection or pre
 ---
 
 ### L-059 · DEB: правило κ, приоритет поддержания и голодание
+
+```json
+{
+ "L": "L-059",
+ "locator": {
+  "doi": "10.30707/lib1.2ledder",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://www.sciencedirect.com/science/article/abs/pii/S1385110106000311",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://www.sciencedirect.com/science/article/abs/pii/S1385110106000311"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "An introduction to DEB models…",
+  "year": 1986,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Kooijman (1986, 2000) — DEB; «An introduction to DEB models…» (2006); «The Basic DEB Model and Some
 Implications» (2014), doi:10.30707/lib1.2ledder.
@@ -784,6 +3085,45 @@ https://doi.org/10.30707/lib1.2ledder
 ---
 
 ### L-060 · Графы «процесс–обеспечение»: замыкание становится вычислимым
+
+```json
+{
+ "L": "L-060",
+ "locator": {
+  "doi": "10.1016/j.biosystems.2025.105567",
+  "arxiv": "2411.17012",
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.1016/j.biosystems.2025.105567",
+  "none": false
+ },
+ "access": {
+  "level": "full_text_examined",
+  "artifact": "papers/arXiv-2411.17012-brown-vittadello.txt",
+  "bytes": 81691,
+  "sha256": "f4d973f548b22cf86d579f368aab3d0e379098193b6431e77a5a90110b12b708",
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.1016/j.biosystems.2025.105567"
+ },
+ "inspection": {
+  "scope": "full",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Studying organisational closure in biological systems with process-enablement graphs",
+  "year": 2025,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** «Studying organisational closure in biological systems with process-enablement graphs» (2025), BioSystems,
 doi:10.1016/j.biosystems.2025.105567; препринт arXiv:2411.17012.
@@ -808,6 +3148,45 @@ doi:10.1016/j.biosystems.2025.105567; препринт arXiv:2411.17012.
 
 ### L-061 · Формальное условие замыкания ограничений (цитата)
 
+```json
+{
+ "L": "L-061",
+ "locator": {
+  "doi": "10.4324/9781003528937-24",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://pubmed.ncbi.nlm.nih.gov/25752259/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://pubmed.ncbi.nlm.nih.gov/25752259/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Biological Autonomy",
+  "year": 2015,
+  "first_author": "глава Routledge"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
+
 **Кто.** Montévil & Mossio (2015), JTB 372:179–191; Moreno & Mossio (2015) «Biological Autonomy»; глава Routledge
 (2024), doi:10.4324/9781003528937-24; CASP concept view.
 **Ссылка.** https://pubmed.ncbi.nlm.nih.gov/25752259/ ; https://doi.org/10.4324/9781003528937-24 ;
@@ -826,6 +3205,45 @@ at least one other**…».
 
 ### L-062 · Двойственные переменные LP — это **химические потенциалы**
 
+```json
+{
+ "L": "L-062",
+ "locator": {
+  "doi": "10.1103/PhysRevLett.99.108101",
+  "arxiv": "q-bio/0702021",
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.1103/PhysRevLett.99.108101",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.1103/PhysRevLett.99.108101"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Duality, Thermodynamics, and the Linear Programming Problem in Constraint-Based Models of Metabolism",
+  "year": 2007,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «Duality, Thermodynamics, and the Linear Programming Problem in Constraint-Based Models of Metabolism» (2007),
 Phys. Rev. Lett. 99:108101, doi:10.1103/PhysRevLett.99.108101; препринт arXiv:q-bio/0702021.
 **Ссылка.** https://doi.org/10.1103/PhysRevLett.99.108101
@@ -842,6 +3260,45 @@ analogues**, and the objective is to minimise free energy consumption given a fr
 
 ### L-063 · COT как **структурная** рамка, независимая от кинетики
 
+```json
+{
+ "L": "L-063",
+ "locator": {
+  "doi": "10.46793/match.96-3.03426",
+  "arxiv": "q-bio/0501016",
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://arxiv.org/pdf/q-bio/0501016",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "arxiv",
+  "via_detail": "https://arxiv.org/pdf/q-bio/0501016"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "COT как **структурная** рамка, независимая от кинетики",
+  "year": 2005,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** Dittrich & Speroni di Fenizio (2005), arXiv:q-bio/0501016; «Chemical Organization Theory: A Structural
 Framework for Analyzing Reaction Networks» (2026), doi:10.46793/match.96-3.03426.
 **Ссылка.** https://arxiv.org/pdf/q-bio/0501016 ; https://doi.org/10.46793/match.96-3.03426
@@ -855,6 +3312,45 @@ Framework for Analyzing Reaction Networks» (2026), doi:10.46793/match.96-3.0342
 ---
 
 ### L-064 · Инвариант из стехиометрии и цена предположения о стационарности
+
+```json
+{
+ "L": "L-064",
+ "locator": {
+  "doi": "10.1371/journal.pcbi.1003195",
+  "arxiv": "0808.0321",
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://arxiv.org/abs/0808.0321",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "arxiv",
+  "via_detail": "https://arxiv.org/abs/0808.0321"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Flux networks in metabolic graphs",
+  "year": 2008,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** «Flux networks in metabolic graphs» (2008), arXiv:0808.0321; «Flux Imbalance Analysis and the Sensitivity of
 Cellular Growth to Changes in Metabolite Pools» (2013), PLOS Comput Biol, doi:10.1371/journal.pcbi.1003195.
@@ -873,6 +3369,45 @@ Cellular Growth to Changes in Metabolite Pools» (2013), PLOS Comput Biol, doi:1
 
 ### L-065 · Ядро выживания: определение и **алгоритм**
 
+```json
+{
+ "L": "L-065",
+ "locator": {
+  "doi": "10.1137/0328044",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.1137/0328044",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.1137/0328044"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Viability Theory",
+  "year": 1991,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
+
 **Кто.** Aubin (1991) «Viability Theory»; «A Survey of Viability Theory» (1990), SIAM J. Control, doi:10.1137/0328044;
 «Viability kernel computation based on interval methods» (2015); «Interval Based Parallel Computing of the Viability
 Kernel» (2016).
@@ -890,6 +3425,45 @@ x(t) ∈ K}`»; `x₀` **viable** in `K` если возможно **остав�
 
 ### L-066 · Пространство выживания: граница как **геометрическая** величина
 
+```json
+{
+ "L": "L-066",
+ "locator": {
+  "doi": null,
+  "arxiv": "2605.16753",
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://arxiv.org/html/2605.16753",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "arxiv",
+  "via_detail": "https://arxiv.org/html/2605.16753"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Viability Space Decomposition: A geometric partition of survival outcomes in single- and multi-agent systems",
+  "year": null,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «Viability Space Decomposition: A geometric partition of survival outcomes in single- and multi-agent systems»
 (arXiv:2605.16753).
 **Ссылка.** https://arxiv.org/html/2605.16753
@@ -905,6 +3479,45 @@ x(t) ∈ K}`»; `x₀` **viable** in `K` если возможно **остав�
 ---
 
 ### L-067 · ITI: индивидуальность как **сохраняемая временная целостность**
+
+```json
+{
+ "L": "L-067",
+ "locator": {
+  "doi": "10.1007/s12064-020-00313-7",
+  "arxiv": "1412.2447",
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://link.springer.com/article/10.1007/s12064-020-00313-7",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://link.springer.com/article/10.1007/s12064-020-00313-7"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "The information theory of individuality",
+  "year": 2020,
+  "first_author": "Theory in Biosciences"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Krakauer, Flack & Bertschinger (2020), «The information theory of individuality», Theory in Biosciences,
 doi:10.1007/s12064-020-00313-7; препринт arXiv:1412.2447; обзор SFI (2020).
@@ -923,6 +3536,45 @@ temporal integrity**, i.e., “propagate” in time». И: индивидуал�
 
 ### L-068 · Информационная индивидуальность **требует причинности**, а не корреляции
 
+```json
+{
+ "L": "L-068",
+ "locator": {
+  "doi": "10.1007/s13194-023-00566-1",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://link.springer.com/article/10.1007/s13194-023-00566-1",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://link.springer.com/article/10.1007/s13194-023-00566-1"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Adding causality to the information-theoretic perspective on individuality",
+  "year": 2024,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «Adding causality to the information-theoretic perspective on individuality» (2024), European Journal for
 Philosophy of Science, doi:10.1007/s13194-023-00566-1.
 **Ссылка.** https://link.springer.com/article/10.1007/s13194-023-00566-1
@@ -937,6 +3589,45 @@ Philosophy of Science, doi:10.1007/s13194-023-00566-1.
 
 ### L-069 · ΦID: разложение информационной динамики на шесть режимов
 
+```json
+{
+ "L": "L-069",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12501198/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "pmc",
+  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12501198/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Toward a unified taxonomy of information dynamics via Integrated Information Decomposition",
+  "year": 2025,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «Toward a unified taxonomy of information dynamics via Integrated Information Decomposition» (2025),
 PMC12501198.
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC12501198/
@@ -950,6 +3641,45 @@ PMC12501198.
 ---
 
 ### L-070 · Приближение Тулджапурака: цена дисперсии — **число**
+
+```json
+{
+ "L": "L-070",
+ "locator": {
+  "doi": "10.1016/j.tree.2020.02.004",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://www.sciencedirect.com/science/article/pii/S0169534720300501",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://www.sciencedirect.com/science/article/pii/S0169534720300501"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "The Demographic Buffering Hypothesis: Evidence and Challenges",
+  "year": 1990,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
 
 **Кто.** Tuljapurkar (1990, 2010); «The Demographic Buffering Hypothesis: Evidence and Challenges» (2020), TREE,
 doi:10.1016/j.tree.2020.02.004; «Environmental variance, population growth and evolution» (2010), J. Anim. Ecol.,
@@ -967,6 +3697,45 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
 
 ### L-071 · Диверсификация стоит дорого, и её темп — не универсален
 
+```json
+{
+ "L": "L-071",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4312886/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "pmc",
+  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4312886/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Courting disaster: How diversification rate affects fitness under risk",
+  "year": 2014,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «Courting disaster: How diversification rate affects fitness under risk» (2014), PMC4312886.
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC4312886/
 **Проверено.** **аннотация.**
@@ -979,6 +3748,45 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
 ---
 
 ### L-072 · Зерно среды и число решений решают, **какой** bet-hedging работает
+
+```json
+{
+ "L": "L-072",
+ "locator": {
+  "doi": "10.1098/rspb.2019.2070",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://royalsocietypublishing.org/doi/abs/10.1098/rspb.2019.2070",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://royalsocietypublishing.org/doi/abs/10.1098/rspb.2019.2070"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Bet-hedging across generations can affect the evolution of variance-sensitive strategies within generations",
+  "year": 2019,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** «Bet-hedging across generations can affect the evolution of variance-sensitive strategies within generations»
 (2019), Proc. R. Soc. B 286:20192070, doi:10.1098/rspb.2019.2070.
@@ -995,6 +3803,45 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
 ---
 
 ### L-073 · Рост мембраны протоклетки: **скорость зависит от внешнего липида**
+
+```json
+{
+ "L": "L-073",
+ "locator": {
+  "doi": "10.3390/life15050724",
+  "arxiv": "1901.04406",
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://www.mdpi.com/2075-1729/15/5/724",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://www.mdpi.com/2075-1729/15/5/724"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Protocell Dynamics: Modelling Growth and Division of Lipid Vesicles Driven by an Autocatalytic Reaction",
+  "year": 2025,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** «Protocell Dynamics: Modelling Growth and Division of Lipid Vesicles Driven by an Autocatalytic Reaction»
 (2025), Life 15(5):724, doi:10.3390/life15050724; «Dynamics of growth and form in prebiotic vesicles» (2019),
@@ -1013,6 +3860,45 @@ addition of lipids from the environment. **The membrane growth rate depends on t
 
 ### L-074 · Проницаемость как **движущая сила отбора**
 
+```json
+{
+ "L": "L-074",
+ "locator": {
+  "doi": "10.1038/s41598-017-02799-6",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://www.nature.com/articles/s41598-017-02799-6",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://www.nature.com/articles/s41598-017-02799-6"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Permeability-driven selection in a semi-empirical protocell model: the roots of prebiotic systems evolution",
+  "year": 2017,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «Permeability-driven selection in a semi-empirical protocell model: the roots of prebiotic systems evolution»
 (2017), Scientific Reports, doi:10.1038/s41598-017-02799-6.
 **Ссылка.** https://www.nature.com/articles/s41598-017-02799-6
@@ -1028,6 +3914,45 @@ addition of lipids from the environment. **The membrane growth rate depends on t
 
 ### L-075 · Критерий «когда реакционная сеть — метаболизм», поддерживающий рост и деление
 
+```json
+{
+ "L": "L-075",
+ "locator": {
+  "doi": "10.3390/life11090966",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.3390/life11090966",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.3390/life11090966"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Критерий «когда реакционная сеть — метаболизм», поддерживающий рост и деление",
+  "year": 2021,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «When Is a Reaction Network a Metabolism? Criteria for Simple Metabolisms That Support Growth and Division of
 Protocells» (2021), Life 11(9):966, doi:10.3390/life11090966.
 **Ссылка.** https://doi.org/10.3390/life11090966
@@ -1041,6 +3966,45 @@ Protocells» (2021), Life 11(9):966, doi:10.3390/life11090966.
 ---
 
 ### L-076 · Эффект матрицы: размер потомков **наследуется** без генов
+
+```json
+{
+ "L": "L-076",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://ncbi.nlm.nih.gov/pmc/articles/PMC2931742/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://ncbi.nlm.nih.gov/pmc/articles/PMC2931742/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Self-Reproduction of Fatty Acid Vesicles: A Combined Experimental and Simulation Study",
+  "year": 2010,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** «Self-Reproduction of Fatty Acid Vesicles: A Combined Experimental and Simulation Study» (2010),
 PMC2931742.
@@ -1057,6 +4021,45 @@ seed vesicles**» — эффект **матрицы**.
 
 ### L-077 · Прямая и обратная линия родства дают **разные средние**
 
+```json
+{
+ "L": "L-077",
+ "locator": {
+  "doi": "10.3389/fphy.2018.00064",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2018.00064/full",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2018.00064/full"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Analysis of Cell Size Homeostasis at the Single-Cell and Population Level",
+  "year": 2018,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
+
 **Кто.** «Analysis of Cell Size Homeostasis at the Single-Cell and Population Level» (2018), Frontiers in Physics,
 doi:10.3389/fphy.2018.00064.
 **Ссылка.** https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2018.00064/full
@@ -1071,6 +4074,45 @@ doi:10.3389/fphy.2018.00064.
 ---
 
 ### L-078 · Adder: клетка добавляет **постоянную** величину, а не тянется к размеру
+
+```json
+{
+ "L": "L-078",
+ "locator": {
+  "doi": "10.1038/s41540-024-00383-z",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5660915/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "pmc",
+  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5660915/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "A mechanistic stochastic framework for regulating bacterial cell division",
+  "year": 2016,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
 
 **Кто.** «A mechanistic stochastic framework for regulating bacterial cell division» (2016), PMC4960620; «Adder and a
 coarse-grained approach to cell size homeostasis in bacteria» (2016), PMC5660915; «Mechanisms of cell size regulation in
@@ -1088,6 +4130,45 @@ sizer накапливает ошибку.
 
 ### L-079 · Предсказание adder в числах: `CV² = ln 4 − 1`
 
+```json
+{
+ "L": "L-079",
+ "locator": {
+  "doi": "10.31219/osf.io/ea6yx",
+  "arxiv": "2411.08327",
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.31219/osf.io/ea6yx",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.31219/osf.io/ea6yx"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Statistical properties of dynamical models underlying cell size homeostasis",
+  "year": 2023,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
+
 **Кто.** «Statistical properties of dynamical models underlying cell size homeostasis» (2023),
 doi:10.31219/osf.io/ea6yx; «Cell size distributions in lineages» (2024), arXiv:2411.08327.
 **Ссылка.** https://doi.org/10.31219/osf.io/ea6yx ; https://arxiv.org/abs/2411.08327
@@ -1101,6 +4182,45 @@ doi:10.31219/osf.io/ea6yx; «Cell size distributions in lineages» (2024), arXiv
 ---
 
 ### L-080 · Нормальные формы трёх локальных бифуркаций
+
+```json
+{
+ "L": "L-080",
+ "locator": {
+  "doi": "10.1142/S0218127417501450",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://ocw.mit.edu/courses/12-006j-nonlinear-dynamics-chaos-fall-2022/mit12_006jf22_lec2-3.pdf",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://ocw.mit.edu/courses/12-006j-nonlinear-dynamics-chaos-fall-2022/mit12_006jf22_lec2-3.pdf"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Нормальные формы трёх локальных бифуркаций",
+  "year": 2017,
+  "first_author": "MIT OCW"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
 
 **Кто.** MIT OCW 12.006J, лекции 2–3; «KCC Analysis of the Normal Form of Typical Bifurcations in One-Dimensional
 Dynamical Systems» (2017), Int. J. Bifurcation and Chaos, doi:10.1142/S0218127417501450.
@@ -1118,6 +4238,45 @@ https://doi.org/10.1142/S0218127417501450
 
 ### L-081 · Классы универсальности и показатели для трёх бифуркаций
 
+```json
+{
+ "L": "L-081",
+ "locator": {
+  "doi": "10.1016/j.cnsns.2016.04.008",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.1016/j.cnsns.2016.04.008",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.1016/j.cnsns.2016.04.008"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Defining universality classes for three different local bifurcations",
+  "year": 2016,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «Defining universality classes for three different local bifurcations» (2016), CNSNS,
 doi:10.1016/j.cnsns.2016.04.008.
 **Ссылка.** https://doi.org/10.1016/j.cnsns.2016.04.008
@@ -1131,6 +4290,45 @@ doi:10.1016/j.cnsns.2016.04.008.
 ---
 
 ### L-082 · Несовершенная бифуркация: **шум сглаживает переход**
+
+```json
+{
+ "L": "L-082",
+ "locator": {
+  "doi": "10.1002/cpa.3160320103",
+  "arxiv": "2405.19947",
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.1002/cpa.3160320103",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.1002/cpa.3160320103"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "A theory for imperfect bifurcation via singularity theory",
+  "year": 1979,
+  "first_author": "CPAM"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Golubitsky & Schaeffer (1979), «A theory for imperfect bifurcation via singularity theory», CPAM,
 doi:10.1002/cpa.3160320103; «A Statistical Theory for Imperfect Bifurcation» (1982), SIAM J. Appl. Math.,
@@ -1149,6 +4347,45 @@ continuous bifurcations» (2024), arXiv:2405.19947.
 
 ### L-083 · Симуляция против реализации: что мы вправе утверждать
 
+```json
+{
+ "L": "L-083",
+ "locator": {
+  "doi": "10.1162/106454600568375",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.13140/2.1.1871.8723",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.13140/2.1.1871.8723"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Simulations, Realizations, and Theories of Life",
+  "year": 1987,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
+
 **Кто.** Bedau (1987), «Simulations, Realizations, and Theories of Life»; «Artificial life: Discipline or method?»
 (2000), doi:10.1162/106454600568375; «Simulation and Artificial Life» (2017), Springer.
 **Ссылка.** https://doi.org/10.13140/2.1.1871.8723 ; https://doi.org/10.1162/106454600568375
@@ -1163,6 +4400,45 @@ continuous bifurcations» (2024), arXiv:2405.19947.
 ---
 
 ### L-084 · Как **мерить** открытость: набор метрик и его критика
+
+```json
+{
+ "L": "L-084",
+ "locator": {
+  "doi": null,
+  "arxiv": "2006.03079",
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "http://workshops.alife.org/oee4/papers/stepney-oee4-camera-ready.pdf",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "http://workshops.alife.org/oee4/papers/stepney-oee4-camera-ready.pdf"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Modelling and measuring open-endedness",
+  "year": 2019,
+  "first_author": "OEE"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
 
 **Кто.** Stepney, «Modelling and measuring open-endedness» (OEE4); «The MODES Toolbox: Measurements of Open-Ended
 Dynamics in Evolving Systems» (2019), Artificial Life 25(1):50;
@@ -1182,6 +4458,45 @@ https://arxiv.org/abs/2006.03079
 
 ### L-085 · Оценка открытости **субъективна**, и это признано
 
+```json
+{
+ "L": "L-085",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "http://workshops.alife.org/oee2/abstracts/stanley-soros-oee2-submission.pdf",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "http://workshops.alife.org/oee2/abstracts/stanley-soros-oee2-submission.pdf"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "The Role of Subjectivity in the Evaluation of Open-Endedness",
+  "year": null,
+  "first_author": "OEE"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «The Role of Subjectivity in the Evaluation of Open-Endedness» (OEE2).
 **Ссылка.** http://workshops.alife.org/oee2/abstracts/stanley-soros-oee2-submission.pdf
 **Проверено.** **аннотация.**
@@ -1194,6 +4509,45 @@ https://arxiv.org/abs/2006.03079
 ---
 
 ### L-086 · Ограничение выживания **выводится** из графа процессов — и это уже сделано
+
+```json
+{
+ "L": "L-086",
+ "locator": {
+  "doi": "10.1162/isal_a_00739",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.1162/isal_a_00739",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://doi.org/10.1162/isal_a_00739"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Deriving The Intrinsic Viability Constraint of an Emergent Individual from First Principles",
+  "year": 2024,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
 
 **Кто.** «Deriving The Intrinsic Viability Constraint of an Emergent Individual from First Principles» (2024),
 ALIFE, doi:10.1162/isal_a_00739.
@@ -1211,6 +4565,45 @@ appear multiple times but still have distinct identities because their dependenc
 
 ### L-087 · Теория выживания на границе жизнь–смерть: заявка на недостающее
 
+```json
+{
+ "L": "L-087",
+ "locator": {
+  "doi": "10.1038/s41540-026-00718-y",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://www.nature.com/articles/s41540-026-00718-y",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://www.nature.com/articles/s41540-026-00718-y"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Matters of life and death in computational cell biology",
+  "year": 2026,
+  "first_author": null
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": null
+}
+```
+
+
+
 **Кто.** «Matters of life and death in computational cell biology» (2026), npj Systems Biology and Applications,
 doi:10.1038/s41540-026-00718-y.
 **Ссылка.** https://www.nature.com/articles/s41540-026-00718-y
@@ -1225,6 +4618,45 @@ boundary».
 ---
 
 ### L-088 · Viability ≠ survival: различение, которого нам не хватало
+
+```json
+{
+ "L": "L-088",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://apsframework.org/articles/viability-the-organising-principle-of-biological-persistence/",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": null,
+  "via": "publisher",
+  "via_detail": "https://apsframework.org/articles/viability-the-organising-principle-of-biological-persistence/"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Viability — The Organising Principle of Biological Persistence",
+  "year": 2010,
+  "first_author": "Constraint — How"
+ },
+ "legacy": true,
+ "legacy_reason": "запись написана до контракта 2026-11-21",
+ "downgrade_reason": "копии текста нет в papers/"
+}
+```
+
+
 
 **Кто.** APS Publishing Platform: «Viability — The Organising Principle of Biological Persistence»; «Constraint — How
 Organisation Becomes Persistence»; «Constraint Closure — What It Does and What It Does Not Do».

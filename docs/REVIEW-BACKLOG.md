@@ -21,7 +21,7 @@
 
 ## Порядок работ
 
-### U1. B-min: контракт литературы и независимая проверка — 1 круг
+### U1. B-min: контракт литературы и независимая проверка — ✅ сделано (цикл 384)
 **Что:** в каждую `### L-NNN` — JSON-блок (схема ниже); `kg/migrate.py` читает блоки, а не прозу; новый
 `checks/literature_contract.py` **не импортирует** `migrate` — парсит реестр сам; обратный индекс
 `papers/ ↔ L-NNN`; проза «Проверено» генерируется из блока; `kg/literature-overrides.json` поглощается
@@ -35,7 +35,7 @@ retrieved_at, via, via_detail}`, `inspection{scope, reviewed_ranges[{type: secti
 — **данными в коде**: full ⇒ verified/strong, fragment ⇒ verified/moderate, abstract ⇒ extracted/weak,
 metadata/secondary ⇒ extracted/weak + `secondary_of`.
 
-### U2. Абстракты: отпечаток вместо текста — 0,25 круга (внутри U1)
+### U2. Абстракты: отпечаток вместо текста — частично: правило R7 включено, отпечатки для 24 записей — следующий шаг
 **Что:** `abstract_sha256` обязателен для `abstract_read`; `via` — перечисление каналов; кэш текста только
 для CC0-каналов (OpenAlex, arXiv-metadata); правило нормализации записано (NFC, схлопывание пробелов,
 реконструкция из inverted index).

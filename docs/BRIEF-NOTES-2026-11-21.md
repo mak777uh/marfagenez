@@ -335,3 +335,18 @@ repair closure perturbation test.
 | bge-en получает **query-инструкцию**, стабильная сортировка, `mailto` в OpenAlex | `tools/semantic_search.py` | синтаксис ok; прогон — следующим кругом |
 | правило PROTOCOL ловит `.sh` и `.js` | `checks/protocol_checks.py` | «PROTOCOL описывает тот гейт, который есть» |
 | пять строк для не-python проверок | `PROTOCOL.md` §12 | `protocol_checks.py` зелёный |
+
+## 15. Пакет целостности: контракт литературы внедрён (цикл 384)
+
+| шаг | что сделано | проверка |
+|---|---|---|
+| схема | `kg/literature-schema.json` v1: локатор, доступ, инспекция, абстракт, библиография, legacy | `additionalProperties: false` |
+| миграция | `tools/lit_migrate.py`: 88 блоков, проза не тронута, идемпотентно | повторный прогон не меняет файл |
+| уровни | `abstract_read=43`, `secondary_only=44`, `full_text_examined=1`; **15 записей опущены** (нет копии текста) | `downgrade_reason` у каждой |
+| проверка | `checks/literature_contract.py`: 10 правил, независимый парсер | `--selftest` 7/7; на дереве 0 нарушений |
+| обратный индекс | каждый файл `papers/` обязан быть привязан к записи `≥ fragment_read` | сирота — FAIL |
+| baseline | `kg/lit/baseline.json` = 88 legacy | рост числа — FAIL |
+| мигратор | читает блоки, пересчитывает `bytes`/`sha256`, кладёт артефакт вторым свидетельством | L-060: 2 элемента |
+
+**PoC внешнего рецензента закрыт:** пустой файл `papers/arXiv-…txt` больше не повышает запись; удаление
+файла у L-060 опускает её до `extracted/weak`; L-007 («полный текст» без копии) стала `abstract_read`.

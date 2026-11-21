@@ -12184,6 +12184,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1371/journal.pone.0233384",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0233384",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12224,7 +12233,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12257,6 +12275,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://en.wikipedia.org/wiki/Disposable_soma_theory_of_aging",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12298,6 +12325,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://academic.oup.com/evolut/article/49/6/1055/6870614",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12340,6 +12376,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1371/journal.pgen.1001076",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1001076",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12380,7 +12425,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12409,10 +12463,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**полный текст** (читал страницу).",
-        "level_kind": "full_text_examined",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6590291/",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12454,6 +12517,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12494,7 +12566,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12527,6 +12608,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12568,6 +12658,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12609,6 +12708,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12650,6 +12758,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12691,6 +12808,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12732,6 +12858,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12774,6 +12909,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12815,6 +12959,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12856,6 +13009,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12897,6 +13059,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -12937,7 +13108,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12969,7 +13149,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1371/journal.pcbi.1000872",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000872",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13002,6 +13191,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "access": "secondary",
         "checked_by": null,
         "internal_review": true,
@@ -13039,6 +13237,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1371/journal.pgen.1001076",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.1371/journal.pgen.1001076",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13080,6 +13287,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "access": "secondary",
         "checked_by": null,
         "internal_review": true,
@@ -13118,6 +13334,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13159,6 +13384,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13201,6 +13435,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13241,7 +13484,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13274,6 +13526,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13314,7 +13575,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13347,6 +13617,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13387,7 +13666,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13420,6 +13708,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13461,6 +13758,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13502,6 +13808,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13543,6 +13858,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -13583,7 +13907,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13615,7 +13948,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1111/j.1469-185X.2012.00225.x",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13647,7 +13989,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13679,7 +14030,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1198/016214506000001437",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13711,7 +14071,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1146/annurev-biophys-070317-032955",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13743,7 +14112,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1007/s11538-006-9130-8",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13775,7 +14153,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13807,7 +14194,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13839,7 +14235,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13871,7 +14276,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1006/jtbi.1994.1089",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13903,7 +14317,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13935,7 +14358,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13967,7 +14399,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13999,7 +14440,16 @@
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": null,
+          "none": true
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14028,10 +14478,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент**: на странице рисунков PLOS — «equilibrium is possible… be",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1371/journal.pgen.1001076",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://journals.plos.org/plosgenetics/article/figures?id=10.1371/journal.pgen.1001076",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14063,7 +14522,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1162/isal_a_00722",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.1162/isal_a_00722",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14095,7 +14563,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6631810/",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14124,10 +14601,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2049046/",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14160,6 +14646,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1196/annals.1297.094",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "http://longevity-science.org/JTB-01.pdf",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14197,10 +14692,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6703938/",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14238,10 +14742,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент** (в фрагменте — нормировки `y ≡ 1`, `r ≡ R/E`).",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10705550/",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14282,7 +14795,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://ruj.uj.edu.pl/xmlui/handle/item/263279",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14315,6 +14837,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.30707/lib1.2ledder",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S1385110106000311",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14344,6 +14875,12 @@
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
           "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/arXiv-2411.17012-brown-vittadello.txt",
+          "strength": "strong",
+          "sha256": "f4d973f548b22cf86d579f368aab3d0e379098193b6431e77a5a90110b12b708"
         }
       ],
       "relations": [],
@@ -14356,6 +14893,15 @@
         "artifact": "papers/arXiv-2411.17012-brown-vittadello.txt",
         "artifact_bytes": 81691,
         "artifact_sha256": "f4d973f548b22cf86d579f368aab3d0e379098193b6431e77a5a90110b12b708",
+        "locator": {
+          "doi": "10.1016/j.biosystems.2025.105567",
+          "arxiv": "2411.17012",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.1016/j.biosystems.2025.105567",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14393,10 +14939,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.4324/9781003528937-24",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25752259/",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14438,6 +14993,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1103/PhysRevLett.99.108101",
+          "arxiv": "q-bio/0702021",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.1103/PhysRevLett.99.108101",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14478,7 +15042,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.46793/match.96-3.03426",
+          "arxiv": "q-bio/0501016",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://arxiv.org/pdf/q-bio/0501016",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14510,7 +15083,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1371/journal.pcbi.1003195",
+          "arxiv": "0808.0321",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://arxiv.org/abs/0808.0321",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14539,10 +15121,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1137/0328044",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.1137/0328044",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14574,7 +15165,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": "2605.16753",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://arxiv.org/html/2605.16753",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14607,6 +15207,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1007/s12064-020-00313-7",
+          "arxiv": "1412.2447",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://link.springer.com/article/10.1007/s12064-020-00313-7",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14648,6 +15257,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1007/s13194-023-00566-1",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://link.springer.com/article/10.1007/s13194-023-00566-1",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14689,6 +15307,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12501198/",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14726,10 +15353,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1016/j.tree.2020.02.004",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://www.sciencedirect.com/science/article/pii/S0169534720300501",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14770,7 +15406,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4312886/",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14803,6 +15448,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1098/rspb.2019.2070",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://royalsocietypublishing.org/doi/abs/10.1098/rspb.2019.2070",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14844,6 +15498,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.3390/life15050724",
+          "arxiv": "1901.04406",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://www.mdpi.com/2075-1729/15/5/724",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14885,6 +15548,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1038/s41598-017-02799-6",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://www.nature.com/articles/s41598-017-02799-6",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -14925,7 +15597,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.3390/life11090966",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.3390/life11090966",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14957,7 +15638,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://ncbi.nlm.nih.gov/pmc/articles/PMC2931742/",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14986,10 +15676,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.3389/fphy.2018.00064",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2018.00064/full",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15018,10 +15717,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1038/s41540-024-00383-z",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5660915/",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15050,10 +15758,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.31219/osf.io/ea6yx",
+          "arxiv": "2411.08327",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.31219/osf.io/ea6yx",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15082,10 +15799,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент** (лекция — полный конспект в фрагменте).",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1142/S0218127417501450",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://ocw.mit.edu/courses/12-006j-nonlinear-dynamics-chaos-fall-2022/mit12_006jf22_lec2-3.pdf",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -15127,6 +15853,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1016/j.cnsns.2016.04.008",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.1016/j.cnsns.2016.04.008",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -15168,6 +15903,15 @@
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1002/cpa.3160320103",
+          "arxiv": "2405.19947",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.1002/cpa.3160320103",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -15205,10 +15949,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1162/106454600568375",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.13140/2.1.1871.8723",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15240,7 +15993,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": "2006.03079",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "http://workshops.alife.org/oee4/papers/stepney-oee4-camera-ready.pdf",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15272,7 +16034,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "http://workshops.alife.org/oee2/abstracts/stanley-soros-oee2-submission.pdf",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15301,10 +16072,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1162/isal_a_00739",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.1162/isal_a_00739",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15336,7 +16116,16 @@
         "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": "10.1038/s41540-026-00718-y",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://www.nature.com/articles/s41540-026-00718-y",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15365,10 +16154,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "fragment_read",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
-        "artifact_sha256": null
+        "artifact_sha256": null,
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://apsframework.org/articles/viability-the-organising-principle-of-biological-persistence/",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"

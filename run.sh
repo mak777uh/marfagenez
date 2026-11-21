@@ -192,6 +192,9 @@ do_exp() {
   python3 checks/goal_features.py || rc=$?
   echo "--- finding_elephant_line.py ---"
   python3 checks/finding_elephant_line.py || rc=$?
+  echo "--- literature_contract.py ---"
+  # Литературный контракт: машинный уровень записи не может превышать артефакт. Офлайн, секунды.
+  python3 checks/literature_contract.py || rc=$?
   echo "--- guard_self_test.py ---"
   python3 checks/guard_self_test.py || rc=$?
   echo

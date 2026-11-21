@@ -184,6 +184,47 @@ def literature_artifact(body: str) -> str | None:
     return None
 
 
+LIT_BLOCK_RE = re.compile(r"```json\s*\n(.*?)\n```", re.S)
+
+
+def literature_block(body: str) -> dict | None:
+    """The machine record of a section: one fenced json block, written by tools/lit_migrate.py.
+
+    The prose stays the human record; the block is what the machine is allowed to trust, and
+    `checks/literature_contract.py` recounts it independently.
+    """
+    found = LIT_BLOCK_RE.findall(body)
+    if len(found) != 1:
+        return None
+    try:
+        return json.loads(found[0])
+    except json.JSONDecodeError:
+        return None
+
+
+def literature_integrity(block: dict | None) -> dict | None:
+    """Recount bytes and sha256 from the file; a block that lies about them is not evidence."""
+    if not block:
+        return None
+    acc = block.get("access") or {}
+    rel = acc.get("artifact")
+    if not rel:
+        return None
+    path = ROOT / rel
+    try:
+        data = path.read_bytes()
+    except OSError:
+        return None
+    if not data:
+        return None
+    digest = hashlib.sha256(data).hexdigest()
+    if acc.get("sha256") and acc.get("sha256") != digest:
+        return None
+    if acc.get("bytes") and acc.get("bytes") != len(data):
+        return None
+    return {"artifact": rel, "bytes": len(data), "sha256": digest}
+
+
 def literature():
     """Literature records `### L-NNN · title` from the registry become claim nodes.
 
@@ -207,9 +248,15 @@ def literature():
         sm = re.search(r"\*\*Утверждение[^*]*\.\*\*\s*(.+)", body)
         if sm:
             statement = sm.group(1).strip()
-        level_kind = literature_level(level)
-        artifact = literature_artifact(body) if level_kind in (LEVEL_FULL, LEVEL_FRAGMENT) else None
-        integrity = artifact_integrity(artifact) if artifact else None
+        block = literature_block(body)
+        if block:
+            level_kind = (block.get("access") or {}).get("level") or literature_level(level)
+            integrity = literature_integrity(block)
+        else:
+            # no machine block yet: fall back to the prose, but never above `extracted`
+            level_kind = literature_level(level)
+            artifact = literature_artifact(body) if level_kind in (LEVEL_FULL, LEVEL_FRAGMENT) else None
+            integrity = artifact_integrity(artifact) if artifact else None
         if level_kind == LEVEL_FULL and integrity:
             chosen, strength = "verified_agent", "strong"
         elif level_kind == LEVEL_FRAGMENT and integrity:
@@ -227,13 +274,17 @@ def literature():
             "context": {"scope": "literature record from ELEPHANT-LITERATURE", "parameters": "see registry", "conditions": level},
             "epistemic": "hypothesis",
             "provenance": chosen,
-            "evidence": [{"kind": "literature", "ref": "docs/ELEPHANT-LITERATURE.md", "strength": strength}],
+            "evidence": [{"kind": "literature", "ref": "docs/ELEPHANT-LITERATURE.md", "strength": strength}]
+            + ([{"kind": "artifact", "ref": (integrity or {}).get("artifact"),
+                "strength": strength,
+                "sha256": (integrity or {}).get("sha256")}] if integrity else []),
             "relations": [],
             "data": {"source": "docs/ELEPHANT-LITERATURE.md", "license": "see source",
                      "accessed_at": "2026-11-20", "registry_level": level[:80],
                      "level_kind": level_kind, "artifact": (integrity or {}).get("artifact"),
                      "artifact_bytes": (integrity or {}).get("bytes"),
-                     "artifact_sha256": (integrity or {}).get("sha256")},
+                     "artifact_sha256": (integrity or {}).get("sha256"),
+                     "locator": (block or {}).get("locator")},
             "created_at": "2026-11-20",
             "updated_at": "2026-11-21",
         }

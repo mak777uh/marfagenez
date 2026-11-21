@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://marfagenez/literature-schema-v1.json",
+  "title": "Literature record v1 (inside docs/ELEPHANT-LITERATURE.md, one fenced json block per ### L-NNN section)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["L", "locator", "access", "inspection", "bibliographic", "legacy"],
+  "properties": {
+    "L": { "type": "string", "pattern": "^L-[0-9]{3}$" },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["doi", "arxiv", "arxiv_version", "openalex", "pmid", "url", "none"],
+      "properties": {
+        "doi": { "type": ["string", "null"], "pattern": "^10\\.[0-9]{4,9}/\\S+$" },
+        "arxiv": { "type": ["string", "null"], "pattern": "^[0-9]{4}\\.[0-9]{4,5}$|^[a-z-]+/[0-9]{7}$" },
+        "arxiv_version": { "type": ["string", "null"], "pattern": "^v[0-9]+$" },
+        "openalex": { "type": ["string", "null"], "pattern": "^W[0-9]+$" },
+        "pmid": { "type": ["string", "null"], "pattern": "^[0-9]+$" },
+        "url": { "type": ["string", "null"], "pattern": "^https?://\\S+$" },
+        "none": { "type": "boolean" }
+      }
+    },
+    "access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "artifact", "bytes", "sha256", "retrieved_at", "via", "via_detail"],
+      "properties": {
+        "level": {
+          "enum": ["metadata_only", "abstract_read", "fragment_read", "full_text_examined", "secondary_only"]
+        },
+        "artifact": { "type": ["string", "null"] },
+        "bytes": { "type": ["integer", "null"], "minimum": 1 },
+        "sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+        "retrieved_at": { "type": ["string", "null"] },
+        "via": {
+          "enum": ["ar5iv", "arxiv", "pmc", "europepmc", "openalex", "crossref", "publisher", "repository", "none"]
+        },
+        "via_detail": { "type": ["string", "null"] }
+      }
+    },
+    "inspection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "reviewed_ranges"],
+      "properties": {
+        "scope": { "enum": ["full", "partial"] },
+        "reviewed_ranges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "from", "to"],
+            "properties": {
+              "type": { "enum": ["lines", "page", "section"] },
+              "from": { "type": ["integer", "string", "null"] },
+              "to": { "type": ["integer", "string", "null"] }
+            }
+          }
+        }
+      }
+    },
+    "abstract_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "bibliographic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "year", "first_author"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "year": { "type": ["integer", "null"], "minimum": 1500, "maximum": 2100 },
+        "first_author": { "type": ["string", "null"] }
+      }
+    },
+    "legacy": { "type": "boolean" },
+    "legacy_reason": { "type": ["string", "null"] },
+    "downgrade_reason": { "type": ["string", "null"] }
+  }
+}

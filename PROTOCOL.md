@@ -221,6 +221,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/finding_elephant_line.py` | новые находки начинаются строкой «Слону:» (правило §11a) |
 | `checks/goal_features.py` | поля, названные в GOAL.md, существуют в коде |
 | `checks/guard_self_test.py` | каждый сторож краснеет на подложенной ошибке |
+| `checks/literature_contract.py` | литература: уровень не превышает артефакт; сироты `papers/` запрещены; локаторы валидны; legacy не растёт; абстракты с отпечатком |
 
 | экспериментальные проверки | что |
 |---|---|
