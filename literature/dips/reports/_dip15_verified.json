@@ -1,0 +1,162 @@
+{
+ "10.1108/jqme-05-2021-0035": {
+  "status": "ok",
+  "title": "Multi-objective maintenance planning under preventive maintenance",
+  "year": 2021,
+  "type": "article",
+  "cited": 24,
+  "abstract": "Purpose This research developed and examined a mathematical model for concurrent corrective and preventive maintenance policy of a system of series configuration. Design/methodology/approach A mathematical model was developed to maximize availability, and maximal net revenues, and minimal cost. Different probability distributions for time to failure and time to repair were considered. The model was then implemented on a real case study, which was studied under corrective maintenance policy and concurrent corrective and preventive policy. Findings A comparison between results at current policy (90 days) and optimal period of corrective and preventive policy was conducted. It was found that availability, profit was increased from 94.4% and $20.091 – 96.5% and $24.803, respectively. Further, the cost was reduced from $1104.8 to $797.22. Research limitations/implications The proposed optimization model can be adopted in planning maintenance activities for a single machine as well as for a system of series configuration machines under various probability distributions. Practical implications The proposed model can significantly enhance performance of the production as well as maintenance systems. In addition, the developed model may support maintenance engineering in effective management of maintenance resources and the performance of its activities. Originality/value This research considers a mathematical model with multi-objective functions and distinct probability distributions for time-to-failure for a system of series machines. Moreover, appropriate approximation solution was deployed to find integral of some functions. Finally, it provides maintenance planning for a single machine or a series of machines."
+ },
+ "10.18280/jesa.570617": {
+  "status": "ok",
+  "title": "Crawler Crane Maintenance Optimization with Increased Reliability Through Preventive and Corrective Maintenance Strategies",
+  "year": 2024,
+  "type": "article",
+  "cited": 1,
+  "abstract": "This research focuses on optimizing the maintenance strategy of a crawler crane to increase reliability through a combination of preventive and corrective maintenance.Operational and failure data were collected and analyzed to identify relevant probability distribution parameters.The results showed that applying optimal preventive maintenance intervals increased the crawler crane's reliability from 36.79% to 90.04%.In addition, the total maintenance cost per incident was successfully reduced from IDR 11,478,182 to IDR 1,870,657.Cumulatively, with the simulations and iterations carried out, the cost reduction carried out can save IDR 86,312,745 crawler crane maintenance costs if carried out with the same total duration of 6,738 hours.Simulations and iterations showed that the optimized maintenance strategy could reduce the risk of failure due to increased reliability and significantly improve the efficiency of maintenance operational costs.This research concluded that maintenance optimization using a probability distribution approach effectively increased reliability and reduced crawler crane maintenance costs.The use of appropriate preventive maintenance intervals has been shown to have a significant impact on reducing component failures and cost efficiency so that crawler crane operations can run more reliably and as planned."
+ },
+ "10.1109/ptc.2009.5281868": {
+  "status": "ok",
+  "title": "An optimization framework for opportunistic maintenance of offshore wind power system",
+  "year": 2009,
+  "type": "conference-paper",
+  "cited": 145,
+  "abstract": "A sound maintenance planning is of crucial importance for wind power farms, and especially for offshore locations. There is a large potential in cost savings by maintenance optimization to make the projects more cost-efficient. This paper presents an opportunistic maintenance optimization model for offshore wind power system. The model takes advantage of wind forecasts and corrective maintenance activities in order to perform preventive maintenance tasks at low costs. The approach is illustrated with an example to demonstrate the value of the optimization. In this example 43% of the cost to perform preventive maintenance could be saved using the proposed method."
+ },
+ "10.20431/2349-4859.0604003": {
+  "status": "ok",
+  "title": "Combinatorial Optimization in Condition Based Maintenance System",
+  "year": 2019,
+  "type": "article",
+  "cited": 2,
+  "abstract": "This study investigates a problem of machine inspection and condition monitoring (CM) for condition based maintenance (CBM) management in an oil flow station.A proposed combinatorial optimization cost model is presented.The total expected condition based maintenance cost model for the system include the condition monitoring instrument cost, inspection cost and the failure cost.The optimum inspection interval that minimizes the total expected CBM cost (TEC) for the system is three months for the three machines.The results show the efficacy of combinatorial optimization in CBM management system.This approach is highly recommended for CBM management of this flow station and similar systems."
+ },
+ "10.1109/tste.2010.2049452": {
+  "status": "ok",
+  "title": "An Approach for Condition-Based Maintenance Optimization Applied to Wind Turbine Blades",
+  "year": 2010,
+  "type": "article",
+  "cited": 272,
+  "abstract": "A sound maintenance planning is of crucial importance for wind power systems. There is a large potential in cost savings by optimizing maintenance decisions to make the projects more cost-efficient. This paper presents an approach to optimize condition-based maintenance strategies for components which degradation can be classified according to the severity of the damage. The approach is applicable to inspection-based maintenance as well as maintenance based on online condition-monitoring systems. This enables us to compare the maintenance strategies within a unified framework. First decisions associated with the different maintenance strategies are optimized, then the expected life cycle maintenance costs of the strategies are compared. The model is applied to blades of wind turbine in order to compare three maintenance strategies: visual inspection, inspection with a condition-monitoring technique (e.g., ultrasonic or thermography), and online condition monitoring (e.g., fiber optic). It is shown that online condition monitoring is the optimal maintenance strategy for high failure rate and low crack time to failure. In other cases, inspection with condition-based maintenance is slightly more beneficial."
+ },
+ "10.1109/tr.2010.2103596": {
+  "status": "ok",
+  "title": "Periodic Inspection Optimization Models for a Repairable System Subject to Hidden Failures",
+  "year": 2011,
+  "type": "article",
+  "cited": 134,
+  "abstract": "This paper proposes a model to find an optimal periodic inspection interval over finite and infinite time horizons for a multi-component repairable system subject to hidden failures. The components' failures can only be rectified at periodic inspections, when a failed component is either minimally repaired, or replaced with some age dependent probabilities. We calculate the excepted cost with delayed replacement or minimal repair of a component. Recursive procedures are developed to calculate probabilities of failures in every interval, expected number of minimal repairs, and expected downtimes for optimization over finite and infinite time horizons. Numerical examples of the calculation of the optimal inspection frequencies are given. The data used in the examples is adapted from a hospital's maintenance data for a general infusion pump."
+ },
+ "10.1109/tr.2011.2104530": {
+  "status": "ok",
+  "title": "Cost Based Risk Analysis to Identify Inspection and Restoration Intervals of Hidden Failures Subject to Aging",
+  "year": 2011,
+  "type": "article",
+  "cited": 45,
+  "abstract": "This paper develops a cost rate function (CRF) to identify the optimum interval and frequency of inspection and restoration of aircraft's repairable components which are undergoing aging, and whose failures are hidden, i.e. are detectable by inspection or upon demand. The paper considers two prevalent strategies, namely Failure Finding Inspection (FFI), and a combination of FFI with restoration actions (FFI+Res), for both the “non-safety effect,” and the “safety effect” categories of hidden failures. As-bad-as-old (ABAO) inspection effectiveness, and as-good-as-new (AGAN) restoration effectiveness are considered. In case of repair due to findings by inspection, as-bad-as-old repair effectiveness is considered. The proposed method considers inspection and repair times, and takes into account the costs associated with inspection, repair, and restoration; and the potential losses due to the inability to use the aircraft (maintenance downtime). It also considers the cost associated with accidents caused by the occurrence of multiple failure. The approach used in this study for risk constraint optimization is based on the mean fraction of time during which the unit is not functioning within inspection intervals (MFDT), and the average interval unavailability behavior within the restoration period. In the case of an operational limit, when it is not possible to remove the unit for restoration, or one needs to use the unit longer than the expected operating time, the paper introduces an approach to analyzing the possibility of and conditions for providing an extension to the restoration interval that satisfies the risk constraints and the business requirements at the same time."
+ },
+ "10.1109/24.488920": {
+  "status": "ok",
+  "title": "Modified block-replacement for multiple-component systems",
+  "year": 1996,
+  "type": "article",
+  "cited": 53,
+  "abstract": "This paper extends the modified block-replacement policy (MBRP) of Berg and Epstein (1976) in two ways; we consider: a discrete time framework which allows the use of any discrete lifetime distribution, and multi-component systems. Both of these extensions increase the practical value of the MBRP. In MBRP, components are replaced immediately on failure, and preventive maintenance (PM) is performed at regular intervals. During PM every component whose age is greater than a fixed threshold age is replaced. Unlike many models for multicomponent systems, this policy is structured. In both the standard block-replacement policy (SBRP) and MBRP, PM is performed at regular intervals and so can be planned in advance. However MBRP results in a lower average cost-rate by replacing components selectively during PM. Our results show how successful the MBRP is in this respect by comparing its cost with the costs of good, but difficult to compute and implement, age-based PM policies. This paper shows that MBRP is appreciably better than SBRP and only slightly poorer than the age replacement policy (ARP) for multi-component systems with a variety of lifetime distributions and a range of cost parameters. In most of our examples the MBRP bridges more than 2/3 of the gap between the minimum average cost of the ARP and SBRP. Compared to the ARP, the MBRP is more convenient because PM can be planned in advance, tracking the ages of components is unnecessary and, for multi-component systems, the optimal MBRP is easier to compute and characterize."
+ },
+ "10.1109/tr.1982.5221391": {
+  "status": "ok",
+  "title": "A Modified Block Replacement with Two Variables",
+  "year": 1982,
+  "type": "article",
+  "cited": 43,
+  "abstract": "This paper considers a modified block replacement policy in which a unit is replaced at failure during (0, T0) and at scheduled replacement time T. If a failure occurs in an interval (T0, T), then the unit remains as it is until T. The mean cost rate is obtained, using the results of renewal theory. The model with two variables is transformed into one variable and the optimum policy is discussed. An example shows how to compute the optimum T0* and T* when the failure time of the unit has a gamma distribution."
+ },
+ "10.1002/nav.21490": {
+  "status": "ok",
+  "title": "Inventory pooling games for expensive, low‐demand spare parts",
+  "year": 2012,
+  "type": "article",
+  "cited": 48,
+  "abstract": "We consider several independent decision makers who stock expensive, low‐demand spare parts for their high‐tech machines. They can collaborate by full pooling of their inventories via free transshipments. We examine the stability of such pooling arrangements, and we address the issue of fairly distributing the collective holding and downtime costs over the participants, by applying concepts from cooperative game theory. We consider two settings: one where each party maintains a predetermined stocking level and one where base stock levels are optimized. For the setting with fixed stocking levels, we unravel the possibly conflicting effects of implementing a full pooling arrangement and study these effects separately to establish intuitive conditions for existence of a stable cost allocation. For the setting with optimized stocking levels, we provide a simple proportional rule that accomplishes a population monotonic allocation scheme if downtime costs are symmetric among participants. Although our whole analysis is motivated by spare parts applications, all results are also applicable to other pooled resource systems of which the steady‐state behavior is equivalent to that of an Erlang loss system. © 2012 Wiley Periodicals, Inc. Naval Research Logistics, 2012"
+ },
+ "10.1007/s12063-020-00148-x": {
+  "status": "ok",
+  "title": "Enterprise IT service downtime cost and risk transfer in a supply chain",
+  "year": 2020,
+  "type": "article",
+  "cited": 37,
+  "abstract": "In this paper we present an economic model for analyzing enterprise IT service downtime cost, first on a standalone basis and then in a supply chain setting. With a baseline probability model of Poisson arrival frequency with random downtime duration, we analyze optimal production of a firm’s investments in reducing frequency and duration of downtime, and corresponding premiums for insuring against downtime cost. We also present a model for the spillover effect of downtime for interconnected firms in a supply chain, and discuss how third-party insurance coverage can help enterprises to internalize the externalities of spillover effects on the supply chain."
+ },
+ "10.19124/ima.2025.01.69": {
+  "status": "ok",
+  "title": "Innovative Modeling of Age Replacement Policy for Infrastructure Renewal Decisions",
+  "year": 2025,
+  "type": "conference-paper",
+  "cited": 0,
+  "abstract": "Transmission system operators (TSOs) must balance the renewal of aging infrastructure with integrating renewable energy sources.Traditional age replacement models assume identical replacements and often overlook financial factors like discounting.This work introduces a model based on the delayed renewal reward process, showing that the optimal replacement age of the first asset depends on both existing and replacement asset characteristics.It also highlights that such an optimal age exists only if discounting is considered.Moving beyond traditional assumptions provides TSOs with more realistic, cost-effective asset management strategies in a changing energy landscape."
+ },
+ "10.13140/rg.2.2.23434.63687": {
+  "status": "ok",
+  "title": "Data Driven Block Replacement Scheduling",
+  "year": 2026,
+  "type": "preprint",
+  "cited": 0,
+  "abstract": "We develop data-driven algorithms for maintaining $N$ independent identical machines under a \\textit{block replacement policy}, in which each machine is replaced upon failure and all machines are jointly replaced at regular intervals of length $k$. The goal is to learn the cost-minimizing interval $k^*$ from operational data when the lifetime distribution is unknown. At each decision epoch, the operator selects $k \\in \\{1, 2, \\ldots, K\\}$, observes the resulting failure history (a mixture of complete and right-censored lifetimes) and incurs a per-unit-time cost governed by the renewal function. We formulate this as a stochastic multi-armed bandit and propose Hoeffding- and Bernstein-based lower-confidence-bound algorithms achieving $O(K \\log T)$ regret, matching the Lai--Robbins lower bound. Exploiting a nested observation property unique to block replacement, correlated variants attain $O((K-k^*)\\log T)$ regret and require only $O(1)$ direct pulls of suboptimal arms $k < k^*$. A complementary Kaplan--Meier renewal algorithm estimates the lifetime distribution nonparametrically from censored data, achieving almost-sure policy consistency and empirically near-zero incremental regret at long horizons. We additionally analyze two average-cost MDPs: a time-elapsed formulation establishing that block replacement is optimal within its policy class for any lifetime distribution, and an age-vector formulation proving a monotone threshold structure under increasing failure rate distributions and providing a gold-standard cost benchmark. Numerical experiments confirm the theoretical ordering and reveal structural cost gaps between optimal block and age-dependent replacement."
+ },
+ "10.1017/s0021900200099976": {
+  "status": "ok",
+  "title": "A modified block replacement policy with two variables and general random minimal repair cost",
+  "year": 1996,
+  "type": "article",
+  "cited": 31,
+  "abstract": "This paper considers a modified block replacement with two variables and general random minimal repair cost. Under such a policy, an operating system is preventively replaced by new ones at timeskT(k=1, 2, ···) independently of its failure history. If the system fails in [(k − 1)T,(k− 1)T+T0) it is either replaced by a new one or minimally repaired, and if in [(k− 1)T+T0, kT) it is either minimally repaired or remains inactive until the next planned replacement. The choice of these two possible actions is based on some random mechanism which is age-dependent. The cost of theith minimal repair of the system at ageydepends on the random partC(y) and the deterministic partci(y). The expected cost rate is obtained, using the results of renewal reward theory. The model with two variables is transformed into a model with one variable and the optimum policy is discussed."
+ },
+ "10.36001/phmconf.2019.v11i1.776": {
+  "status": "ok",
+  "title": "Deployment of Prognostics to Optimize Aircraft Maintenance - A Literature Review",
+  "year": 2019,
+  "type": "conference-paper",
+  "cited": 22,
+  "abstract": "Historic records show that the cost of operating and supporting an aircraft may exceed the initial purchase price as much as ten times. Maintenance, repair and overhaul activities represent around 10-15% of an airlines’ operational costs. Therefore, optimization of maintenance operations is extremely important for airlines in order to stay competitive. Prognostics, a process to predict remaining useful life of systems and/ or components suffering from aging or degradation, has been recognized as a revolutionary discipline that can improve efficiency of aircraft operations and optimize the aircraft maintenance. In this paper, the origin and development of prognostics is firstly introduced. Thereafter, the state of art of aircraft maintenance is reviewed. Next, the applicability of prognostics to optimize aircraft maintenance is explained, reviewed, and potential challenges and opportunities are explored. Finally, some recommendations for further research are discussed in perspective of deployment of prognostics to optimize aircraft maintenance."
+ },
+ "10.3311/pp.ar.2010-2.03": {
+  "status": "ok",
+  "title": "The cost effectiveness of continuous maintenance for monuments and historic buildings",
+  "year": 2011,
+  "type": "article",
+  "cited": 15,
+  "abstract": "For cultural and aesthetic reasons, it seems obvious, that sustaining the high quality of historic buildings is a necessity. There are a number of organizations maintaining historic buildings by a monitoring system all over Europe, although there is no published data on the economic advantages of the practice. The aim of our research is to show that besides the cultural and aesthetic arguments, there are sound economic reasons for continuous maintenance. Our study focuses on the costs by comparing the case of regular maintenance, to that of isolated renovation that takes place every 15 or 20 years after a long period of negligence. In our pilot we have monitored six typical historic buildings to identify the economic facts alongside the aesthetic and cultural arguments, in order to clarify the importance of keeping our built heritage in good condition."
+ },
+ "10.1177/1748006x16641767": {
+  "status": "ok",
+  "title": "Higher moments and probability distribution of maintenance cost in the delay time model",
+  "year": 2016,
+  "type": "article",
+  "cited": 9,
+  "abstract": "The delay time model is a practical way to model random occurrences of failures and the effect of inspection and maintenance actions on the reliability of a repairable system. The delay time model involves two random variables describing the time of initiation of defects and time to failure after the defect initiation. This article presents a clear and structured approach to the evaluation of maintenance cost using the theory of stochastic renewal processes. This article derives the mean, variance, skewness and kurtosis of the maintenance cost in a finite time horizon. Furthermore, the probability distribution of cost is accurately estimated using the Hermite polynomial model. Using the cost distribution, the value at risk is estimated and proposed as a measure to optimize the maintenance program."
+ },
+ "10.1002/qre.1395": {
+  "status": "ok",
+  "title": "Optimizing the Periodic Inspection Interval for a 1‐out‐of‐2 Cold Standby System Using the Delay‐Time Concept",
+  "year": 2012,
+  "type": "article",
+  "cited": 21,
+  "abstract": "In this article, we deal with a 1‐out‐of‐2 system with a cold‐standby component. The failure process of these two components is statistically identical and characterized by the delay‐time concept, which divides the component's life into a two‐stage process with a normal stage from new to a defect initiation point and a following failure delay stage from this point to failure. A fixed interval periodic inspection is carried out to check whether the working component is defective or not. If a defect is identified, the working component is shut down and sent to be repaired. The repair shop capacity is limited for repairing one component only. If the repair shop is occupied by the standby component (under repair) when the working one is failed, the system is shut down. There are five scenarios of the state of the system at an inspection epoch, which are derived analytically. The expected total cost per unit time of the system consists of the expected cost caused by preventive repair, unplanned failure repair, and system downtime. In this article, these three costs are determined and the optimal inspection interval with respect to the minimum of the expected total cost per unit time is found. To incorporate a nonexponential distribution for the normal time, delay stages, and repair time of the components, the elapsed time in the normal time, delay stages, and repair time at inspection is taken into consideration. A stationary distribution of the elapsed time exists, and it is calculated by an iteration method. Copyright © 2012 John Wiley & Sons, Ltd."
+ },
+ "10.1016/j.ress.2020.107359": {
+  "status": "ok",
+  "title": "Optimization of maintenance strategies for railway track-bed considering probabilistic degradation models and different reliability levels",
+  "year": 2020,
+  "type": "article",
+  "cited": 110,
+  "abstract": "An optimization-based maintenance scheduling framework is an essential tool to plan the necessary investment to maintain the required performance of a railway line. In the present study, a methodology is proposed to minimize the present value of the life cycle maintenance costs and maximize the life cycle quality level of the track-bed considering different levels of reliability. Probabilistic degradation models are developed for predicting the evolution of the railway track condition over time. Afterwards, a Genetic Algorithm based optimization procedure is applied for obtaining a set of optimal solutions taking into account several constrains. The proposed methodology is applied to an Italian railway track-line case study. The results show that it is possible to develop a decision support system to help railway managers to schedule railway track maintenance operations based on the optimal trade-off between maintenance costs and railway track geometry condition for different levels of reliability."
+ },
+ "10.1002/er.7425": {
+  "status": "ok",
+  "title": "Maintenance cost minimization models for offshore wind farms: A systematic and critical review",
+  "year": 2021,
+  "type": "article",
+  "cited": 65,
+  "abstract": "Feasible and sustainable source of power is a burning question nowadays. The offshore wind farms can be a solution to power generation problem, but it is relatively more expensive. Its installation cost is more than twice of its similar size onshore counterpart. The cost that matters most is the operations and maintenance (O&M) cost. Expensive and sophisticated transfer vehicles as well as highly skilled technicians are needed to conduct O&M activities, which results in a remarkably higher O&M cost for an offshore wind farm project. Few researchers proposed some strategies that could resolve the problem nicely, although there is no universal maintenance strategy, which will fit all the conditions. Optimal maintenance strategy depends on a lot of factors such as cost of energy, level of reliability needed, weather conditions, availability of skilled technicians, availability of crew transfer vehicles, and to mention a few. Total 190 research articles related to offshore maintenance have been reviewed, and some prominent models have been discussed in detail. Some risk and reliability-based models reduced annual maintenance cost by 23%, whereas some other opportunistic maintenance strategy was able to minimize 32% of production loss and transportation cost. Compatibility and usability of different models and results are highlighted. This critical review is aimed at identifying the relevant research outcomes and comparing their critical aspects to provide a good guideline about optimal maintenance strategy to the maintenance managers."
+ }
+}
