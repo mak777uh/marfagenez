@@ -25,6 +25,7 @@ import glob
 import json
 import os
 import pathlib
+import re
 import subprocess
 import sys
 
@@ -64,7 +65,7 @@ def key() -> str | None:
 
 def resolve(doi: str, api_key: str | None) -> dict | None:
     url = "https://api.openalex.org/works/https://doi.org/" + doi
-    params = "?select=id,doi,title,publication_year"
+    params = "?select=id,doi,title,publication_year,abstract_inverted_index"
     if api_key:
         params += "&api_key=" + api_key
     try:
@@ -76,7 +77,8 @@ def resolve(doi: str, api_key: str | None) -> dict | None:
     if not data.get("id"):
         return None
     return {"openalex": str(data["id"]).rsplit("/", 1)[-1], "title": data.get("title") or "",
-            "year": data.get("publication_year")}
+            "year": data.get("publication_year"),
+            "abstract": reconstruct(data.get("abstract_inverted_index"))}
 
 
 def validate(atom: dict) -> list[str]:
@@ -98,6 +100,35 @@ def validate(atom: dict) -> list[str]:
     if atom.get("kind") == "contradiction" and len(atom.get("works") or []) < 2:
         errs.append("contradiction с одной работой")
     return errs
+
+
+
+def reconstruct(inverted: dict | None) -> str | None:
+    """Собрать аннотацию из abstract_inverted_index: токены по позициям, через пробел."""
+    if not inverted:
+        return None
+    places = []
+    for token, positions in inverted.items():
+        for pos in positions:
+            places.append((int(pos), token))
+    return " ".join(token for _, token in sorted(places))
+
+
+def norm(text: str | None) -> str:
+    if not text:
+        return ""
+    text = text.casefold()
+    text = re.sub(r"[^0-9a-zа-яё\s]+", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def quote_found(quote: str | None, abstract: str | None) -> bool | None:
+    """True/False — проверено по аннотации; None — проверять нечем (нет аннотации)."""
+    if not quote:
+        return None
+    if not abstract:
+        return None
+    return norm(quote) in norm(abstract)
 
 
 def main(argv: list[str]) -> int:
@@ -126,6 +157,11 @@ def main(argv: list[str]) -> int:
 
     accepted, rejected = [], []
     for atom in incoming:
+        if atom.get("kind") == "gap" and not (atom.get("searched") and atom.get("scope")):
+            note = (atom.get("notes") or "")
+            match = re.search(r"searched[:\s]+(.{3,120}?)(?:;|$)", note, re.I)
+            atom["searched"] = {"note": match.group(1).strip() if match else "внешняя партия", "source": "notes"}
+            atom["scope"] = atom.get("scope") or (" ".join(atom.get("conditions") or [])[:160] or "не указано")
         errs = validate(atom)
         if errs:
             rejected.append((atom.get("atom"), "; ".join(errs)))
@@ -134,6 +170,7 @@ def main(argv: list[str]) -> int:
             rejected.append((atom["atom"], "дубль id"))
             continue
         verified = True
+        quote_broken = False
         for work in atom.get("works") or []:
             doi = (work.get("doi") or "").lower()
             if not doi:
@@ -144,9 +181,18 @@ def main(argv: list[str]) -> int:
                 work["resolved_title"] = meta["title"]
                 work["resolved_year"] = meta["year"]
                 work.setdefault("locator", "doi:" + doi)
+                if work.get("access") == "abstract":
+                    found = quote_found(work.get("quote"), meta.get("abstract"))
+                    work["quote_found"] = found
+                    if found is False:
+                        quote_broken = True
             else:
                 verified = False
         atom["locator_status"] = "verified" if verified else "unverified"
+        if quote_broken:
+            # Цитата не нашлась в аннотации: это сигнал, а не смерть ячейки — но уверенность падает.
+            atom["confidence"] = "low"
+            atom["notes"] = (atom.get("notes") or "") + " [цитата не найдена в аннотации: проверить текст]"
         if atom.get("confidence") == "high" and not atom.get("formula") and not any(
                 w.get("quote") for w in atom.get("works") or []):
             atom["confidence"] = "medium"
