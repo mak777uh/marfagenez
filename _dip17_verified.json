@@ -1,0 +1,107 @@
+{
+ "10.3390/e22111305": {
+  "doi": "10.3390/e22111305",
+  "title": "Dissipative Structures, Organisms and Evolution",
+  "year": 2020,
+  "abstract": "Self-organization in nonequilibrium systems has been known for over 50 years. Under nonequilibrium conditions, the state of a system can become unstable and a transition to an organized structure can occur. Such structures include oscillating chemical reactions and spatiotemporal patterns in chemical and other systems. Because entropy and free-energy dissipating irreversible processes generate and maintain these structures, these have been called dissipative structures. Our recent research revealed that some of these structures exhibit organism-like behavior, reinforcing the earlier expectation that the study of dissipative structures will provide insights into the nature of organisms and their origin. In this article, we summarize our study of organism-like behavior in electrically and chemically driven systems. The highly complex behavior of these systems shows the time evolution to states of higher entropy production. Using these systems as an example, we present some concepts that give us an understanding of biological organisms and their evolution.",
+  "cites": 99
+ },
+ "10.1103/physrevx.6.041064": {
+  "doi": "10.1103/physrevx.6.041064",
+  "title": "Nonequilibrium Thermodynamics of Chemical Reaction Networks: Wisdom from Stochastic Thermodynamics",
+  "year": 2016,
+  "abstract": "We build a rigorous nonequilibrium thermodynamic description for open chemical reaction networks of elementary reactions. Their dynamics is described by deterministic rate equations with mass action kinetics. Our most general framework considers open networks driven by time-dependent chemostats. The energy and entropy balances are established and a nonequilibrium Gibbs free energy is introduced. The difference between this latter and its equilibrium form represents the minimal work done by the chemostats to bring the network to its nonequilibrium state. It is minimized in nondriven detailed-balanced networks (i.e., networks that relax to equilibrium states) and has an interesting information-theoretic interpretation. We further show that the entropy production of complex-balanced networks (i.e., networks that relax to special kinds of nonequilibrium steady states) splits into two non-negative contributions: one characterizing the dissipation of the nonequilibrium steady state and the other the transients due to relaxation and driving. Our theory lays the path to study time-dependent energy and information transduction in biochemical networks.",
+  "cites": 340
+ },
+ "10.1093/bulcsj/uoaf048": {
+  "doi": "10.1093/bulcsj/uoaf048",
+  "title": "Structural selection rules in self-assembly and self-organization: role of entropy production rate",
+  "year": 2025,
+  "abstract": "Self-assembly and self-organization are mechanisms by which ordered structures are formed spontaneously in nature. Traditionally, these phenomena have been distinguished thermodynamically: self-assembly occurs via free energy minimization toward equilibrium, whereas self-organization occurs in open systems maintained far from equilibrium via continuous energy dissipation. Despite this contrast, both processes involve dynamic pathways governed by entropy production during structure formation. Recent findings have shown that the entropy production rate is important in determining the selection rule for the resultant structure. Herein, we first summarize the differences and similarities between self-assembly and self-organization, along with representative examples, from micelles and crystals to convective flows and chemical oscillations. Then, we focus on the entropy production rate as a principle governing structure selection during non-equilibrium processes in both self-assembly and self-organization regimes. Our recent experimental findings reveal how flux conditions influence structure selection in reaction–diffusion systems (Liesegang phenomenon) and protein self-assembly. This perspective suggests that nature, including biological systems, may selectively harness self-assembly or self-organization depending on the interplay between energy flux and the kinetics of the involved reactions. These insights highlight the potential of an entropy-based analysis to enhance our understanding of complex pattern formation and guide the rational design of self-assembly and self-organization.",
+  "cites": 16
+ },
+ "10.1063/1.454563": {
+  "doi": "10.1063/1.454563",
+  "title": "Heat production in steady states and oscillations",
+  "year": 1988,
+  "abstract": "Measurements were made of the rate of heat production in three oscillatory systems: benzaldehyde oxidation, the Briggs–Rauscher reaction, and the Belousov–Zhabotinsky reaction. In cases where a stable steady state coexists with a limit cycle oscillation or where the steady state undergoes a hard loss of stability to oscillations, the heat production in the oscillatory state was quite different from that of the steady state, varying from 50% less to 210% greater. Bifurcations to oscillations involving a soft loss of stability showed no discontinuity in the heat production, as expected. Consideration of the thermodynamics of these reactions indicates that the contribution to the rate of entropy production due to enthalpy changes dominates that due to differences in the entropies of the products and reactants. In the benzaldehyde oxidation, the changes in heat production are due to a change in the average rate of the reaction, and not due to a change in the distribution of products.",
+  "cites": 10
+ },
+ "10.1039/c7cs00121e": {
+  "doi": "10.1039/c7cs00121e",
+  "title": "Non-equilibrium supramolecular polymerization",
+  "year": 2017,
+  "abstract": "Supramolecular polymerization has been traditionally focused on the thermodynamic equilibrium state, where one-dimensional assemblies reside at the global minimum of the Gibbs free energy. The pathway and rate to reach the equilibrium state are irrelevant, and the resulting assemblies remain unchanged over time. In the past decade, the focus has shifted to kinetically trapped (non-dissipative non-equilibrium) structures that heavily depend on the method of preparation (i.e., pathway complexity), and where the assembly rates are of key importance. Kinetic models have greatly improved our understanding of competing pathways, and shown how to steer supramolecular polymerization in the desired direction (i.e., pathway selection). The most recent innovation in the field relies on energy or mass input that is dissipated to keep the system away from the thermodynamic equilibrium (or from other non-dissipative states). This tutorial review aims to provide the reader with a set of tools to identify different types of self-assembled states that have been explored so far. In particular, we aim to clarify the often unclear use of the term \"non-equilibrium self-assembly\" by subdividing systems into dissipative, and non-dissipative non-equilibrium states. Examples are given for each of the states, with a focus on non-dissipative non-equilibrium states found in one-dimensional supramolecular polymerization.",
+  "cites": 622
+ },
+ "10.1007/s11538-023-01250-4": {
+  "doi": "10.1007/s11538-023-01250-4",
+  "title": "Turing Instabilities are Not Enough to Ensure Pattern Formation",
+  "year": 2024,
+  "abstract": "Symmetry-breaking instabilities play an important role in understanding the mechanisms underlying the diversity of patterns observed in nature, such as in Turing's reaction-diffusion theory, which connects cellular signalling and transport with the development of growth and form. Extensive literature focuses on the linear stability analysis of homogeneous equilibria in these systems, culminating in a set of conditions for transport-driven instabilities that are commonly presumed to initiate self-organisation. We demonstrate that a selection of simple, canonical transport models with only mild multistable non-linearities can satisfy the Turing instability conditions while also robustly exhibiting only transient patterns. Hence, a Turing-like instability is insufficient for the existence of a patterned state. While it is known that linear theory can fail to predict the formation of patterns, we demonstrate that such failures can appear robustly in systems with multiple stable homogeneous equilibria. Given that biological systems such as gene regulatory networks and spatially distributed ecosystems often exhibit a high degree of multistability and nonlinearity, this raises important questions of how to analyse prospective mechanisms for self-organisation.",
+  "cites": 45
+ },
+ "10.1103/physrevlett.126.238101": {
+  "doi": "10.1103/physrevlett.126.238101",
+  "title": "Turing’s Diffusive Threshold in Random Reaction-Diffusion Systems",
+  "year": 2021,
+  "abstract": "Turing instabilities of reaction-diffusion systems can only arise if the diffusivities of the chemical species are sufficiently different. This threshold is unphysical in most systems with N=2 diffusing species, forcing experimental realizations of the instability to rely on fluctuations or additional nondiffusing species. Here, we ask whether this diffusive threshold lowers for N>2 to allow \"true\" Turing instabilities. Inspired by May's analysis of the stability of random ecological communities, we analyze the probability distribution of the diffusive threshold in reaction-diffusion systems defined by random matrices describing linearized dynamics near a homogeneous fixed point. In the numerically tractable cases N⩽6, we find that the diffusive threshold becomes more likely to be smaller and physical as N increases, and that most of these many-species instabilities cannot be described by reduced models with fewer diffusing species.",
+  "cites": 44
+ },
+ "10.1063/5.0025350": {
+  "doi": "10.1063/5.0025350",
+  "title": "Stochastic approach to entropy production in chemical chaos",
+  "year": 2020,
+  "abstract": "Methods are presented to evaluate the entropy production rate in stochastic reactive systems. These methods are shown to be consistent with known results from nonequilibrium chemical thermodynamics. Moreover, it is proved that the time average of the entropy production rate can be decomposed into the contributions of the cycles obtained from the stoichiometric matrix in both stochastic processes and deterministic systems. These methods are applied to a complex reaction network constructed on the basis of Rössler's reinjection principle and featuring chemical chaos.",
+  "cites": 24
+ },
+ "10.3390/e10030380": {
+  "doi": "10.3390/e10030380",
+  "title": "The Second Entropy: A Variational Principle for Time-dependent Systems",
+  "year": 2008,
+  "abstract": "The fundamental optimization principle for non-equilibrium thermodynamics is given. The second entropy is introduced as the quantity that is maximised to determine the optimum state of a non-equilibrium system. In contrast, the principles of maximum or minimum dissipation, which have previously been proposed by Onsager, Prigogine, and others as the variational principle for such systems, are shown to be incapable of fulfilling that rôle.",
+  "cites": 17
+ },
+ "10.1002/anie.202100274": {
+  "doi": "10.1002/anie.202100274",
+  "title": "Chemically Fueled Self‐Assembly in Biology and Chemistry",
+  "year": 2021,
+  "abstract": "Life is a non-equilibrium state of matter maintained at the expense of energy. Nature uses predominantly chemical energy stored in thermodynamically activated, but kinetically stable, molecules. These high-energy molecules are exploited for the synthesis of other biomolecules, for the activation of biological machinery such as pumps and motors, and for the maintenance of structural order. Knowledge of how chemical energy is transferred to biochemical processes is essential for the development of artificial systems with life-like processes. Here, we discuss how chemical energy can be used to control the structural organization of organic molecules. Four different strategies have been identified according to a distinguishable physical-organic basis. For each class, one example from biology and one from chemistry are discussed in detail to illustrate the practical implementation of each concept and the distinct opportunities they offer. Specific attention is paid to the discussion of chemically fueled non-equilibrium self-assembly. We discuss the meaning of non-equilibrium self-assembly, its kinetic origin, and strategies to develop synthetic non-equilibrium systems.",
+  "cites": 355
+ },
+ "10.1103/physrevx.6.021036": {
+  "doi": "10.1103/physrevx.6.021036",
+  "title": "Statistical Physics of Adaptation",
+  "year": 2016,
+  "abstract": "Evolutionary adaptation is commonly thought of as arising from reproduction. A new thermodynamic perspective on self-organization far from thermal equilibrium links the biological world and other systems governed by the same general physical principles.",
+  "cites": 157
+ },
+ "10.1016/j.chphma.2023.06.002": {
+  "doi": "10.1016/j.chphma.2023.06.002",
+  "title": "Transient self-assembly driven by chemical fuels",
+  "year": 2023,
+  "abstract": "Self-assembly has been extensively studied in chemistry, physics, biology, and materials engineering and has become an important “bottom-up” approach in creating intriguing structures for different applications. Using dissipative self-assembly to construct fuel-dependent, energy-consuming, and dynamic nonequilibrium systems is important for developing intelligent life-like materials. Furthermore, dissipative self-assembly has become a research hotspot in materials chemistry, biomedical science, environmental chemistry, and physical chemistry. An in-depth understanding of the process and mechanism provides useful insights to the researchers for developing materials using dissipative self-assembly and also helps guide future innovation in material fabrication. This critical review comprehensively analyzes various chemical fuel input and energy consumption mechanisms, supported by numerous illustrative examples. Versatile transient assemblies, including gels, vesicles, micelles, and nanoparticle aggregates, have been systematically studied in our and other laboratories. The relationship between the molecular structure of precursors and temporal assemblies in dissipative self-assemblies is discussed from the perspective of physical chemistry. Using dissipative self-assembly methods to construct functional assemblies provides important implications for constructing high-energy, nonequilibrium, and intelligent functional materials.",
+  "cites": 11
+ },
+ "10.3390/e17117786": {
+  "doi": "10.3390/e17117786",
+  "title": "The Second Law Today: Using Maximum-Minimum Entropy Generation",
+  "year": 2015,
+  "abstract": "There are a great number of thermodynamic schools, independent of each other, and without a powerful general approach, but with a split on non-equilibrium thermodynamics. In 1912, in relation to the stationary non-equilibrium states, Ehrenfest introduced the fundamental question on the existence of a functional that achieves its extreme value for stable states, as entropy does for the stationary states in equilibrium thermodynamics. Today, the new branch frontiers of science and engineering, from power engineering to environmental sciences, from chaos to complex systems, from life sciences to nanosciences, etc. require a unified approach in order to optimize results and obtain a powerful approach to non-equilibrium thermodynamics and open systems. In this paper, a generalization of the Gouy–Stodola approach is suggested as a possible answer to the Ehrenfest question.",
+  "cites": 17
+ },
+ "10.1039/c7cp02189e": {
+  "doi": "10.1039/c7cp02189e",
+  "title": "Linear nonequilibrium thermodynamics of reversible periodic processes and chemical oscillations",
+  "year": 2017,
+  "abstract": "Onsager's phenomenological equations successfully describe irreversible thermodynamic processes. They assume a symmetric coupling matrix between thermodynamic fluxes and forces. It is easily shown that the antisymmetric part of a coupling matrix does not contribute to dissipation. Therefore, entropy production is exclusively governed by the symmetric matrix even in the presence of antisymmetric terms. In this paper we focus on the antisymmetric contributions which describe isentropic oscillations with well-defined equations of motion. The formalism contains variables that are equivalent to momenta and coefficients that are analogous to inertial mass. We apply this formalism to simple problems with known answers such as an oscillating piston containing an ideal gas, and oscillations in an LC-circuit. One can extend this formalism to other pairs of variables, including chemical systems with oscillations. In isentropic thermodynamic systems all extensive and intensive variables including temperature can display oscillations reminiscent of adiabatic waves.",
+  "cites": 27
+ },
+ "10.1007/s11229-026-05793-6": {
+  "doi": "10.1007/s11229-026-05793-6",
+  "title": "Patterns of life: how to differentiate between self-assembly and self-organization",
+  "year": 2026,
+  "abstract": "Self-assembly and self-organization are central concepts in theories of how patterns form in natural systems. However, literature on the topic has for long been riddled with inconsistent uses of these concepts, which often conflate their meaning or define them idiosyncratically. This is problematic as it struggles to make sense of the ubiquitous interaction between self-assembly and self-organization in chemistry and biology. The thermodynamic account is an attempt to draw up clear definitions of the concepts using thermodynamics as the appropriate framework for distinguishing the two concepts from each other. In this paper, I challenge this account and argue that self-assembly shouldn’t primarily be understood in terms of thermodynamics. I offer a philosophical analysis of core conceptual challenges for self-assembly and self-organization and argue that the thermodynamic approach follows a misguided conceptualization strategy. Drawing on recent philosophical work on scientific definitions, I propose an alternative account that treats the concept as a conceptual tool that directs our attention towards the kinds of features that are explanatorily relevant for the pattern-formation process and towards the features the resulting pattern itself will possess.",
+  "cites": 0
+ }
+}
