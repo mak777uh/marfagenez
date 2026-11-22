@@ -5265,3 +5265,408 @@ MODES:                   набор из нескольких метрик ди�
 **Проверено.** **аннотация** OpenAlex, 2026-11-21T21:55:51Z, отпечаток есть; фрагмент не читался.
 **Утверждение.** компромисс между асимметричным распределением повреждения и его ремонтом как стратегия популяции
 **Что даёт нам.** — (суждение не сделано).
+
+### L-093 · Autopoiesis: The organization of living systems, its characterization and a model
+
+```json
+{
+ "L": "L-093",
+ "locator": {
+  "doi": "10.1016/0303-2647(74)90031-8",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2093020640",
+  "pmid": null,
+  "url": "https://doi.org/10.1016/0303-2647(74)90031-8",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T00:51:02Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/0303-2647(74)90031-8"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Autopoiesis: The organization of living systems, its characterization and a model",
+  "year": 1974,
+  "first_author": "Francisco J. Varela"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Autopoiesis: The organization of living systems, its characterization and a model (1974). Francisco J. Varela; Humberto R. Maturana; R. Uribe
+**Ссылка.** https://doi.org/10.1016/0303-2647(74)90031-8
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Varela et al. 1974 — организация производит собственные компоненты; граница распадается и восстанавливается сетью
+**Что даёт нам.** — (суждение не сделано).
+
+### L-094 · Biological organisation as closure of constraints
+
+```json
+{
+ "L": "L-094",
+ "locator": {
+  "doi": "10.1016/j.jtbi.2015.02.029",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2107475155",
+  "pmid": null,
+  "url": "https://doi.org/10.1016/j.jtbi.2015.02.029",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T00:51:02Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/j.jtbi.2015.02.029"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Biological organisation as closure of constraints",
+  "year": 2015,
+  "first_author": "Maël Montévil"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Biological organisation as closure of constraints (2015). Maël Montévil; Matteo Mossio
+**Ссылка.** https://doi.org/10.1016/j.jtbi.2015.02.029
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Montévil & Mossio 2015 — организация как замыкание ограничений; словесная рамка «организация оплачивает свои ограничения»
+**Что даёт нам.** — (суждение не сделано).
+
+### L-095 · Detecting autocatalytic, self-sustaining sets in chemical reaction systems
+
+```json
+{
+ "L": "L-095",
+ "locator": {
+  "doi": "10.1016/j.jtbi.2003.11.020",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W1995205814",
+  "pmid": null,
+  "url": "https://doi.org/10.1016/j.jtbi.2003.11.020",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T00:51:02Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/j.jtbi.2003.11.020"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Detecting autocatalytic, self-sustaining sets in chemical reaction systems",
+  "year": 2003,
+  "first_author": "Wim Hordijk"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Detecting autocatalytic, self-sustaining sets in chemical reaction systems (2003). Wim Hordijk; Mike Steel
+**Ссылка.** https://doi.org/10.1016/j.jtbi.2003.11.020
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Hordijk & Steel 2004 — детекция автокаталитических самоподдерживающихся множеств (RAF)
+**Что даёт нам.** — (суждение не сделано).
+
+### L-096 · Asymmetric segregation of protein aggregates is associated with cellular aging and rejuvenation
+
+```json
+{
+ "L": "L-096",
+ "locator": {
+  "doi": "10.1073/pnas.0708931105",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W1984571004",
+  "pmid": null,
+  "url": "https://doi.org/10.1073/pnas.0708931105",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T00:51:02Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1073/pnas.0708931105"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": "f40390e03121bbb204842d6b5c8b44d7bdea2c9aac77224eae0f362f2b24213f",
+ "bibliographic": {
+  "title": "Asymmetric segregation of protein aggregates is associated with cellular aging and rejuvenation",
+  "year": 2008,
+  "first_author": "Ariel B. Lindner"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Asymmetric segregation of protein aggregates is associated with cellular aging and rejuvenation (2008). Ariel B. Lindner; Richard Madden; Alice Démarez; Eric J. Stewart; François Taddéi
+**Ссылка.** https://doi.org/10.1073/pnas.0708931105
+**Проверено.** **аннотация** OpenAlex, 2026-11-22T00:51:02Z, отпечаток есть; фрагмент не читался.
+**Утверждение.** Lindner et al. 2008 — асимметричная сегрегация агрегатов связана со старением и омоложением
+**Что даёт нам.** — (суждение не сделано).
+
+### L-097 · THE MAINTENANCE OF THE ACCURACY OF PROTEIN SYNTHESIS AND ITS RELEVANCE TO AGEING
+
+```json
+{
+ "L": "L-097",
+ "locator": {
+  "doi": "10.1073/pnas.49.4.517",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2062776142",
+  "pmid": null,
+  "url": "https://doi.org/10.1073/pnas.49.4.517",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T00:51:02Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1073/pnas.49.4.517"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "THE MAINTENANCE OF THE ACCURACY OF PROTEIN SYNTHESIS AND ITS RELEVANCE TO AGEING",
+  "year": 1963,
+  "first_author": "Leslie Eleazer Orgel"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** THE MAINTENANCE OF THE ACCURACY OF PROTEIN SYNTHESIS AND ITS RELEVANCE TO AGEING (1963). Leslie Eleazer Orgel
+**Ссылка.** https://doi.org/10.1073/pnas.49.4.517
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Orgel 1963 — катастрофа ошибок: аппарат точности повреждает сам себя
+**Что даёт нам.** — (суждение не сделано).
+
+### L-098 · Stochastic modeling of aging cells reveals how damage accumulation, repair, and cell-division asymmetry affect clonal senescence and population fitness
+
+```json
+{
+ "L": "L-098",
+ "locator": {
+  "doi": "10.1186/s12859-019-2921-3",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2961272871",
+  "pmid": null,
+  "url": "https://doi.org/10.1186/s12859-019-2921-3",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T00:51:02Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1186/s12859-019-2921-3"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": "5475aab1b456e5b6e17e3579f1cdff8bbecb56f89341888972428da424c6aa59",
+ "bibliographic": {
+  "title": "Stochastic modeling of aging cells reveals how damage accumulation, repair, and cell-division asymmetry affect clonal senescence and population fitness",
+  "year": 2019,
+  "first_author": "Ruijie Song"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Stochastic modeling of aging cells reveals how damage accumulation, repair, and cell-division asymmetry affect clonal senescence and population fitness (2019). Ruijie Song; Murat Açar
+**Ссылка.** https://doi.org/10.1186/s12859-019-2921-3
+**Проверено.** **аннотация** OpenAlex, 2026-11-22T00:51:02Z, отпечаток есть; фрагмент не читался.
+**Утверждение.** Song & Acar 2019 — стохастическая модель старения: повреждение, ремонт, асимметрия деления
+**Что даёт нам.** — (суждение не сделано).
+
+### L-099 · Evolution of ageing
+
+```json
+{
+ "L": "L-099",
+ "locator": {
+  "doi": "10.1038/270301a0",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W1993091967",
+  "pmid": null,
+  "url": "https://doi.org/10.1038/270301a0",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T00:51:02Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1038/270301a0"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Evolution of ageing",
+  "year": 1977,
+  "first_author": "Thomas B. L. Kirkwood"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Evolution of ageing (1977). Thomas B. L. Kirkwood
+**Ссылка.** https://doi.org/10.1038/270301a0
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Kirkwood 1977 — эволюция старения: компромисс ремонта и размножения
+**Что даёт нам.** — (суждение не сделано).
+
+### L-100 · Selforganization of matter and the evolution of biological macromolecules
+
+```json
+{
+ "L": "L-100",
+ "locator": {
+  "doi": "10.1007/bf00623322",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2087895317",
+  "pmid": null,
+  "url": "https://doi.org/10.1007/BF00623322",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T00:51:02Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1007/BF00623322"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Selforganization of matter and the evolution of biological macromolecules",
+  "year": 1971,
+  "first_author": "Manfred Eigen"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Selforganization of matter and the evolution of biological macromolecules (1971). Manfred Eigen
+**Ссылка.** https://doi.org/10.1007/BF00623322
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Eigen 1971 — самоорганизация материи и порог ошибок
+**Что даёт нам.** — (суждение не сделано).
+
+### L-101 · Statistical theory of asymmetric damage segregation in clonal cell populations
+
+```json
+{
+ "L": "L-101",
+ "locator": {
+  "doi": "10.1016/j.mbs.2023.108980",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W4321202971",
+  "pmid": null,
+  "url": "https://doi.org/10.1016/j.mbs.2023.108980",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T00:51:02Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/j.mbs.2023.108980"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Statistical theory of asymmetric damage segregation in clonal cell populations",
+  "year": 2023,
+  "first_author": "ARKADY S. PIKOVSKY"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Statistical theory of asymmetric damage segregation in clonal cell populations (2023). ARKADY S. PIKOVSKY; Lev S. Tsimring
+**Ссылка.** https://doi.org/10.1016/j.mbs.2023.108980
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Найдено при починке чужого DOI (внешний ответ приписал работе Chao 2010 неверный DOI): статистическая теория асимметричной сегрегации повреждения в клональных популяциях, 2023. Сама работа Chao 2010 по-прежнему не подтверждена — её DOI в ответе был ложным.
+**Что даёт нам.** — (суждение не сделано).
