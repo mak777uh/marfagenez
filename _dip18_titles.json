@@ -1,0 +1,52 @@
+{
+ "DIP18-0001": {
+  "doi": "10.1145/1970386.1970387",
+  "title": "Hybrid checkpointing using emerging nonvolatile memories for future exascale systems",
+  "year": 2011
+ },
+ "DIP18-0002": {
+  "doi": "10.1109/sc41405.2020.00081",
+  "title": "CRAC: Checkpoint-Restart Architecture for CUDA with Streams and UVM",
+  "year": 2020
+ },
+ "DIP18-0003": {
+  "doi": "10.1587/transinf.2017pap0002",
+  "title": "Energy-Performance Modeling of Speculative Checkpointing for Exascale Systems",
+  "year": 2017
+ },
+ "DIP18-0004": {
+  "doi": "10.1109/wicsa.2014.49",
+  "title": "Scapegoat: An Adaptive Monitoring Framework for Component-Based Systems",
+  "year": 2014
+ },
+ "DIP18-0005": {
+  "doi": "10.48550/arxiv.2103.08191",
+  "title": "PACEMAKER: Avoiding HeART attacks in storage clusters with disk-adaptive redundancy",
+  "year": 2021
+ },
+ "DIP18-0006": {
+  "doi": "10.1109/sp.2015.59",
+  "title": "Caelus: Verifying the Consistency of Cloud Services with Battery-Powered Devices",
+  "year": 2015
+ },
+ "DIP18-0007": {
+  "doi": "10.63125/g9c9cp41",
+  "title": "Real-Time Edge Computing for Cyber-Physical Systems: A Meta-Analysis of Energy Efficiency and Fault Tolerance",
+  "year": 2023
+ },
+ "DIP18-0008": {
+  "doi": "10.1145/2901318.2901339",
+  "title": "HAFT: hardware-assisted fault tolerance",
+  "year": 2016
+ },
+ "DIP18-0009": {
+  "doi": "10.1109/reconfig.2011.37",
+  "title": "Fault Tolerance Analysis and Self-Healing Strategy of Autonomous, Evolvable Hardware Systems",
+  "year": 2011
+ },
+ "DIP18-0010": {
+  "doi": "10.1007/s00446-015-0258-3",
+  "title": "DEX: self-healing expanders",
+  "year": 2015
+ }
+}
