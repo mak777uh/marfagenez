@@ -1,0 +1,830 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-20-24Z_1c4103",
+ "created_at": "2026-11-22T00:20:24Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "damage inheritance asymmetric division",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "6d5eb11aafb640ff"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 3170,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-20-24Z_1c4103/raw/paper-search.json",
+   "raw_sha256": "00b3a0d26ff66a88158c01b4cb717e404125d70a47771dbc02c3fe6ada647349",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1101/2023.07.21.550069",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "SYS-1/beta-catenin inheritance and regulation by Wnt-signaling during asymmetric cell division",
+     "year": 2023,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1242/jcs.128744",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Biased inheritance of mitochondria during asymmetric cell division in the mouse oocyte",
+     "year": 2013,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1016/j.exphem.2017.06.179",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Asymmetric cell division of hematopoietic stem cells: asymmetric inheritance of cell fate determinants and its role in cell fate decisions",
+     "year": 2017,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.3410/f.1054693.541905",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Faculty Opinions recommendation of Polarised asymmetric inheritance of accumulated protein damage in higher eukaryotes.",
+     "year": 2007,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1007/s12039-026-02560-5",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Asymmetric division in liquid-crystalline protocells: From molecular onions to primitive inheritance",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1242/dev.100685",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Biased inheritance of mitochondria during asymmetric cell division in the mouse oocyte",
+     "year": 2013,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.3410/f.1064786.517707",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Faculty Opinions recommendation of Asymmetric inheritance of mother versus daughter centrosome in stem cell division.",
+     "year": 2007,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.3410/f.1064786.516780",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Faculty Opinions recommendation of Asymmetric inheritance of mother versus daughter centrosome in stem cell division.",
+     "year": 2007,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 7101,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-20-24Z_1c4103/raw/lixplore.json",
+   "raw_sha256": "bd265e90219351408d96f9d4b6c1ee71662f42900d9798ef9f80d264cd26e839",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1038/s44319-025-00536-z",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Dysfunctional mitochondria in ageing T cells: a perspective on mitochondrial quality control mechanisms.",
+     "year": 2025,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1101/2025.04.15.648906",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Oncogene Silencing via ecDNA Micronucleation.",
+     "year": 2025,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1128/aac.01313-24",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A link between aging and persistence.",
+     "year": 2025,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1371/journal.pbio.3002310",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Selective retention of dysfunctional mitochondria during asymmetric cell division in yeast.",
+     "year": 2023,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.4081/ejtm.2022.10064",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Involvement of muscle satellite cell dysfunction in neuromuscular disorders: Expanding the portfolio of satellite cell-opathies.",
+     "year": 2022,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1134/S0006297920120020",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Mitoptosis, Twenty Years After.",
+     "year": 2020,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1007/s00294-020-01133-4",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Forever young: the key to rejuvenation during gametogenesis.",
+     "year": 2021,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1371/journal.pcbi.1008314",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The synergy of damage repair and retention promotes rejuvenation and prolongs healthy lifespans in cell lineages.",
+     "year": 2020,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1611,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-20-24Z_1c4103/raw/openalex.json",
+   "raw_sha256": "664161bb9600a9e87fa7d8cb7278cfc2529310c528f82bed7225ff1a1f9993ef",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1038/s41586-019-1531-6",
+      "arxiv": null,
+      "openalex": "W2971867169",
+      "pmid": null
+     },
+     "title": "Asymmetric lysosome inheritance predicts activation of haematopoietic stem cells",
+     "year": 2019,
+     "score_raw": 204,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1371/journal.pbio.0040417",
+      "arxiv": null,
+      "openalex": "W2101027541",
+      "pmid": null
+     },
+     "title": "Polarised Asymmetric Inheritance of Accumulated Protein Damage in Higher Eukaryotes",
+     "year": 2006,
+     "score_raw": 264,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1111/1567-1364.12216",
+      "arxiv": null,
+      "openalex": "W2114123456",
+      "pmid": null
+     },
+     "title": "Role of asymmetric cell division in lifespan control in Saccharomyces cerevisiae",
+     "year": 2014,
+     "score_raw": 97,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1016/j.cell.2008.02.007",
+      "arxiv": null,
+      "openalex": "W2097125495",
+      "pmid": null
+     },
+     "title": "Mechanisms of Asymmetric Stem Cell Division",
+     "year": 2008,
+     "score_raw": 1205,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/j.celrep.2012.08.024",
+      "arxiv": null,
+      "openalex": "W2054791517",
+      "pmid": null
+     },
+     "title": "Confinement to Organelle-Associated Inclusion Structures Mediates Asymmetric Inheritance of Aggregated Protein in Budding Yeast",
+     "year": 2012,
+     "score_raw": 220,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W2770256160",
+      "pmid": null
+     },
+     "title": "Asymmetric Division of Damaged Proteins in Proliferating Cells",
+     "year": 2014,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1242/dev.167650",
+      "arxiv": null,
+      "openalex": "W3039821577",
+      "pmid": null
+     },
+     "title": "Principles and mechanisms of asymmetric cell division",
+     "year": 2020,
+     "score_raw": 181,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1038/s41556-019-0364-8",
+      "arxiv": null,
+      "openalex": "W2966259261",
+      "pmid": null
+     },
+     "title": "Asymmetric inheritance of spindle microtubule-organizing centres preserves replicative lifespan",
+     "year": 2019,
+     "score_raw": 39,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year; same title+year merged",
+  "clusters": [
+   [
+    "doi:10.1007/s12039-026-02560-5",
+    "doi:10.1016/j.exphem.2017.06.179",
+    "doi:10.1101/2023.07.21.550069",
+    "doi:10.1242/jcs.128744",
+    "doi:10.3410/f.1054693.541905",
+    "doi:10.3410/f.1064786.517707"
+   ],
+   [
+    "doi:10.1007/s00294-020-01133-4",
+    "doi:10.1038/s44319-025-00536-z",
+    "doi:10.1101/2025.04.15.648906",
+    "doi:10.1128/aac.01313-24",
+    "doi:10.1134/s0006297920120020",
+    "doi:10.1371/journal.pbio.3002310",
+    "doi:10.1371/journal.pcbi.1008314",
+    "doi:10.4081/ejtm.2022.10064"
+   ],
+   [
+    "doi:10.1016/j.cell.2008.02.007",
+    "doi:10.1016/j.celrep.2012.08.024",
+    "doi:10.1038/s41556-019-0364-8",
+    "doi:10.1038/s41586-019-1531-6",
+    "doi:10.1111/1567-1364.12216",
+    "doi:10.1242/dev.167650",
+    "doi:10.1371/journal.pbio.0040417",
+    "title:asymmetric division of damaged proteins in proliferating cells#2014"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.1038/s41586-019-1531-6",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1038/s44319-025-00536-z",
+    "rrf": 0.016393443,
+    "ranks": {
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1101/2023.07.21.550069",
+    "rrf": 0.016393443,
+    "ranks": {
+     "paper-search": 1
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1101/2025.04.15.648906",
+    "rrf": 0.016129032,
+    "ranks": {
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1242/jcs.128744",
+    "rrf": 0.016129032,
+    "ranks": {
+     "paper-search": 2
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1371/journal.pbio.0040417",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.exphem.2017.06.179",
+    "rrf": 0.015873016,
+    "ranks": {
+     "paper-search": 3
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1111/1567-1364.12216",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1128/aac.01313-24",
+    "rrf": 0.015873016,
+    "ranks": {
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.cell.2008.02.007",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1371/journal.pbio.3002310",
+    "rrf": 0.015625,
+    "ranks": {
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.3410/f.1054693.541905",
+    "rrf": 0.015625,
+    "ranks": {
+     "paper-search": 4
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s12039-026-02560-5",
+    "rrf": 0.015384615,
+    "ranks": {
+     "paper-search": 5
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.celrep.2012.08.024",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.4081/ejtm.2022.10064",
+    "rrf": 0.015384615,
+    "ranks": {
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1134/s0006297920120020",
+    "rrf": 0.015151515,
+    "ranks": {
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "title:asymmetric division of damaged proteins in proliferating cells#2014",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s00294-020-01133-4",
+    "rrf": 0.014925373,
+    "ranks": {
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1242/dev.167650",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3410/f.1064786.517707",
+    "rrf": 0.014925373,
+    "ranks": {
+     "paper-search": 7
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1038/s41556-019-0364-8",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1371/journal.pcbi.1008314",
+    "rrf": 0.014705882,
+    "ranks": {
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.1101/2023.07.21.550069",
+   "doi": "10.1101/2023.07.21.550069",
+   "arxiv": null,
+   "openalex": null,
+   "title": "SYS-1/beta-catenin inheritance and regulation by Wnt-signaling during asymmetric cell division",
+   "year": 2023
+  },
+  {
+   "key": "doi:10.1242/jcs.128744",
+   "doi": "10.1242/jcs.128744",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Biased inheritance of mitochondria during asymmetric cell division in the mouse oocyte",
+   "year": 2013
+  },
+  {
+   "key": "doi:10.1016/j.exphem.2017.06.179",
+   "doi": "10.1016/j.exphem.2017.06.179",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Asymmetric cell division of hematopoietic stem cells: asymmetric inheritance of cell fate determinants and its role in cell fate decisions",
+   "year": 2017
+  },
+  {
+   "key": "doi:10.3410/f.1054693.541905",
+   "doi": "10.3410/f.1054693.541905",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Faculty Opinions recommendation of Polarised asymmetric inheritance of accumulated protein damage in higher eukaryotes.",
+   "year": 2007
+  },
+  {
+   "key": "doi:10.1007/s12039-026-02560-5",
+   "doi": "10.1007/s12039-026-02560-5",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Asymmetric division in liquid-crystalline protocells: From molecular onions to primitive inheritance",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.3410/f.1064786.517707",
+   "doi": "10.3410/f.1064786.517707",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Faculty Opinions recommendation of Asymmetric inheritance of mother versus daughter centrosome in stem cell division.",
+   "year": 2007
+  },
+  {
+   "key": "doi:10.1038/s44319-025-00536-z",
+   "doi": "10.1038/s44319-025-00536-z",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Dysfunctional mitochondria in ageing T cells: a perspective on mitochondrial quality control mechanisms.",
+   "year": 2025
+  },
+  {
+   "key": "doi:10.1101/2025.04.15.648906",
+   "doi": "10.1101/2025.04.15.648906",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Oncogene Silencing via ecDNA Micronucleation.",
+   "year": 2025
+  },
+  {
+   "key": "doi:10.1128/aac.01313-24",
+   "doi": "10.1128/aac.01313-24",
+   "arxiv": null,
+   "openalex": null,
+   "title": "A link between aging and persistence.",
+   "year": 2025
+  },
+  {
+   "key": "doi:10.1371/journal.pbio.3002310",
+   "doi": "10.1371/journal.pbio.3002310",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Selective retention of dysfunctional mitochondria during asymmetric cell division in yeast.",
+   "year": 2023
+  },
+  {
+   "key": "doi:10.4081/ejtm.2022.10064",
+   "doi": "10.4081/ejtm.2022.10064",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Involvement of muscle satellite cell dysfunction in neuromuscular disorders: Expanding the portfolio of satellite cell-opathies.",
+   "year": 2022
+  },
+  {
+   "key": "doi:10.1134/s0006297920120020",
+   "doi": "10.1134/S0006297920120020",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Mitoptosis, Twenty Years After.",
+   "year": 2020
+  },
+  {
+   "key": "doi:10.1007/s00294-020-01133-4",
+   "doi": "10.1007/s00294-020-01133-4",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Forever young: the key to rejuvenation during gametogenesis.",
+   "year": 2021
+  },
+  {
+   "key": "doi:10.1371/journal.pcbi.1008314",
+   "doi": "10.1371/journal.pcbi.1008314",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The synergy of damage repair and retention promotes rejuvenation and prolongs healthy lifespans in cell lineages.",
+   "year": 2020
+  },
+  {
+   "key": "doi:10.1038/s41586-019-1531-6",
+   "doi": "10.1038/s41586-019-1531-6",
+   "arxiv": null,
+   "openalex": "W2971867169",
+   "title": "Asymmetric lysosome inheritance predicts activation of haematopoietic stem cells",
+   "year": 2019
+  },
+  {
+   "key": "doi:10.1371/journal.pbio.0040417",
+   "doi": "10.1371/journal.pbio.0040417",
+   "arxiv": null,
+   "openalex": "W2101027541",
+   "title": "Polarised Asymmetric Inheritance of Accumulated Protein Damage in Higher Eukaryotes",
+   "year": 2006
+  },
+  {
+   "key": "doi:10.1111/1567-1364.12216",
+   "doi": "10.1111/1567-1364.12216",
+   "arxiv": null,
+   "openalex": "W2114123456",
+   "title": "Role of asymmetric cell division in lifespan control in Saccharomyces cerevisiae",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.1016/j.cell.2008.02.007",
+   "doi": "10.1016/j.cell.2008.02.007",
+   "arxiv": null,
+   "openalex": "W2097125495",
+   "title": "Mechanisms of Asymmetric Stem Cell Division",
+   "year": 2008
+  },
+  {
+   "key": "doi:10.1016/j.celrep.2012.08.024",
+   "doi": "10.1016/j.celrep.2012.08.024",
+   "arxiv": null,
+   "openalex": "W2054791517",
+   "title": "Confinement to Organelle-Associated Inclusion Structures Mediates Asymmetric Inheritance of Aggregated Protein in Budding Yeast",
+   "year": 2012
+  },
+  {
+   "key": "title:asymmetric division of damaged proteins in proliferating cells#2014",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W2770256160",
+   "title": "Asymmetric Division of Damaged Proteins in Proliferating Cells",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.1242/dev.167650",
+   "doi": "10.1242/dev.167650",
+   "arxiv": null,
+   "openalex": "W3039821577",
+   "title": "Principles and mechanisms of asymmetric cell division",
+   "year": 2020
+  },
+  {
+   "key": "doi:10.1038/s41556-019-0364-8",
+   "doi": "10.1038/s41556-019-0364-8",
+   "arxiv": null,
+   "openalex": "W2966259261",
+   "title": "Asymmetric inheritance of spindle microtubule-organizing centres preserves replicative lifespan",
+   "year": 2019
+  }
+ ]
+}

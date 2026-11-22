@@ -1,0 +1,868 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-20-37Z_0df188",
+ "created_at": "2026-11-22T00:20:37Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "membrane integrity metabolism coupling",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "a5d71027a6d1c71c"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2784,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-20-37Z_0df188/raw/paper-search.json",
+   "raw_sha256": "37b35111a1232c73c5a6790a6d8dcac82c5b864b1de262ec3c256a3ba3544b6e",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1021/acs.jafc.5c16831.s001",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Gentisaldehyde Suppresses Phytophthora sojae by Combined Damage to Membrane Integrity and Energy Metabolism",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1016/b978-0-08-029224-3.50019-8",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "MODE OF ACTION OF NITRODIPHENYLETHERS AFFECTING PIGMENTS AND MEMBRANE INTEGRITY",
+     "year": 1983,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.26226/morressier.5d5e517d5324a95facc2968e",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "P1-16-05 - NUTRIOSE® fibre is fermented in the colon inducing a modulation of genes expression involved in glucose metabolism and membrane integrity.",
+     "year": 2019,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1016/s0958-2118(00)80079-8",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Membrane integrity testing",
+     "year": 1999,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/j.cmet.2006.03.007",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The ratio of phosphatidylcholine to phosphatidylethanolamine influences membrane integrity and steatohepatitis",
+     "year": 2006,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1093/oxfordjournals.humrep.a137022",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Propanediol-induced alterations in membrane integrity, metabolism and developmental potential of mouse zygotes",
+     "year": 1989,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1124/dmd.117.078949",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Importance of the Unstirred Water Layer and Hepatocyte Membrane Integrity In Vitro for Quantification of Intrinsic Metabolic Clearance",
+     "year": 2018,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1016/0958-2118(92)80032-r",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Lasers test membrane integrity",
+     "year": 1992,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 7966,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-20-37Z_0df188/raw/lixplore.json",
+   "raw_sha256": "311f0e6d8bb890b30b7e3e068715b307605c0828ae99551a4ebc0746db81c997",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1016/j.mcpro.2026.101709",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Multi-Omics Analysis to Decipher the Anti-Biofilm Mechanism of Anthraquinone-2- Carboxylic Acid against Methicillin-resistant Staphylococcus aureus.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1016/j.jhazmat.2026.144247",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Freeze-thaw aging enhances microplastic phytotoxicity in rice via root metabolism and DNA methylation.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1002/adma.75732",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Biomimetic Subcellular Chemomechanical Nano-Regulator for Allergic Rhinitis Treatment.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1083/jcb.202602118",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "RAB11-RAB30 partnership drives stress-induced endosomal remodeling via a phosphoinositide switch.",
+     "year": 2027,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1021/acs.chemrestox.6c00319",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Gadolinium-Based Contrast Agents Stimulate Adaptive Immune Response through Release of DAMP Signals in Neuronal SH-SY5Y Cells.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1002/adhm.71960",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Coupling Autophagic Flux Blockade With Cuproptosis in a Self-Assembled Nanodrug for Osteosarcoma Immunotherapy.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1186/s12964-026-03144-z",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Prohibitin 1 orchestrates mitochondrial-ER crosstalk via the VDAC1-GRP75-IP3R axis to drive malignancy in gastric cancer.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1158/2326-6066.CIR-26-0559",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "MicroRNA core machinery maintains mitochondrial integrity to empower cancer escape from natural killer cell cytotoxicity.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1651,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-20-37Z_0df188/raw/openalex.json",
+   "raw_sha256": "a7f1810274209f637583676a0a741650910d3aa6358537464fb83634660ed591",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1074/jbc.m201777200",
+      "arxiv": null,
+      "openalex": "W2125595015",
+      "pmid": null
+     },
+     "title": "Coupling of Cell Energetics with Membrane Metabolic Sensing",
+     "year": 2002,
+     "score_raw": 159,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1529/biophysj.105.078683",
+      "arxiv": null,
+      "openalex": "W2023899556",
+      "pmid": null
+     },
+     "title": "Coupling between Lipid Shape and Membrane Curvature",
+     "year": 2006,
+     "score_raw": 238,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1172/jci104768",
+      "arxiv": null,
+      "openalex": "W2072170326",
+      "pmid": null
+     },
+     "title": "STUDIES OF THE METABOLISM OF HUMAN ERYTHROCYTE MEMBRANES*",
+     "year": 1963,
+     "score_raw": 104,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1016/j.cub.2012.03.004",
+      "arxiv": null,
+      "openalex": "W2094093650",
+      "pmid": null
+     },
+     "title": "Golgi Membrane Dynamics and Lipid Metabolism",
+     "year": 2012,
+     "score_raw": 96,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1007/s00424-026-03189-6",
+      "arxiv": null,
+      "openalex": "W7165059184",
+      "pmid": null
+     },
+     "title": "Cholesterol-depleting dextrin depolarizes sarcolemma: the contribution of sodium / calcium channels and membrane integrity",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1016/j.bbabio.2005.11.007",
+      "arxiv": null,
+      "openalex": "W2006785560",
+      "pmid": null
+     },
+     "title": "Acute effect of fatty acids on metabolism and mitochondrial coupling in skeletal muscle",
+     "year": 2005,
+     "score_raw": 97,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.3389/fphar.2014.00061",
+      "arxiv": null,
+      "openalex": "W2094190961",
+      "pmid": null
+     },
+     "title": "Heme in pathophysiology: a matter of scavenging, metabolism and trafficking across cell membranes",
+     "year": 2014,
+     "score_raw": 498,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.3325/cmj.2016.57.223",
+      "arxiv": null,
+      "openalex": "W2465944627",
+      "pmid": null
+     },
+     "title": "New insights into coupling and uncoupling of cerebral blood flow and metabolism in the brain",
+     "year": 2016,
+     "score_raw": 151,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year; same title+year merged",
+  "clusters": [
+   [
+    "doi:10.1016/0958-2118(92)80032-r",
+    "doi:10.1016/b978-0-08-029224-3.50019-8",
+    "doi:10.1016/j.cmet.2006.03.007",
+    "doi:10.1016/s0958-2118(00)80079-8",
+    "doi:10.1021/acs.jafc.5c16831.s001",
+    "doi:10.1093/oxfordjournals.humrep.a137022",
+    "doi:10.1124/dmd.117.078949",
+    "doi:10.26226/morressier.5d5e517d5324a95facc2968e"
+   ],
+   [
+    "doi:10.1002/adhm.71960",
+    "doi:10.1002/adma.75732",
+    "doi:10.1016/j.jhazmat.2026.144247",
+    "doi:10.1016/j.mcpro.2026.101709",
+    "doi:10.1021/acs.chemrestox.6c00319",
+    "doi:10.1083/jcb.202602118",
+    "doi:10.1158/2326-6066.cir-26-0559",
+    "doi:10.1186/s12964-026-03144-z"
+   ],
+   [
+    "doi:10.1007/s00424-026-03189-6",
+    "doi:10.1016/j.bbabio.2005.11.007",
+    "doi:10.1016/j.cub.2012.03.004",
+    "doi:10.1074/jbc.m201777200",
+    "doi:10.1172/jci104768",
+    "doi:10.1529/biophysj.105.078683",
+    "doi:10.3325/cmj.2016.57.223",
+    "doi:10.3389/fphar.2014.00061"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.1016/j.mcpro.2026.101709",
+    "rrf": 0.016393443,
+    "ranks": {
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1021/acs.jafc.5c16831.s001",
+    "rrf": 0.016393443,
+    "ranks": {
+     "paper-search": 1
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1074/jbc.m201777200",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/b978-0-08-029224-3.50019-8",
+    "rrf": 0.016129032,
+    "ranks": {
+     "paper-search": 2
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.jhazmat.2026.144247",
+    "rrf": 0.016129032,
+    "ranks": {
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1529/biophysj.105.078683",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1002/adma.75732",
+    "rrf": 0.015873016,
+    "ranks": {
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1172/jci104768",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.26226/morressier.5d5e517d5324a95facc2968e",
+    "rrf": 0.015873016,
+    "ranks": {
+     "paper-search": 3
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.cub.2012.03.004",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/s0958-2118(00)80079-8",
+    "rrf": 0.015625,
+    "ranks": {
+     "paper-search": 4
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1083/jcb.202602118",
+    "rrf": 0.015625,
+    "ranks": {
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s00424-026-03189-6",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.cmet.2006.03.007",
+    "rrf": 0.015384615,
+    "ranks": {
+     "paper-search": 5
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1021/acs.chemrestox.6c00319",
+    "rrf": 0.015384615,
+    "ranks": {
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1002/adhm.71960",
+    "rrf": 0.015151515,
+    "ranks": {
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.bbabio.2005.11.007",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1093/oxfordjournals.humrep.a137022",
+    "rrf": 0.015151515,
+    "ranks": {
+     "paper-search": 6
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1124/dmd.117.078949",
+    "rrf": 0.014925373,
+    "ranks": {
+     "paper-search": 7
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1186/s12964-026-03144-z",
+    "rrf": 0.014925373,
+    "ranks": {
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fphar.2014.00061",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/0958-2118(92)80032-r",
+    "rrf": 0.014705882,
+    "ranks": {
+     "paper-search": 8
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1158/2326-6066.cir-26-0559",
+    "rrf": 0.014705882,
+    "ranks": {
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.3325/cmj.2016.57.223",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.1021/acs.jafc.5c16831.s001",
+   "doi": "10.1021/acs.jafc.5c16831.s001",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Gentisaldehyde Suppresses Phytophthora sojae by Combined Damage to Membrane Integrity and Energy Metabolism",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1016/b978-0-08-029224-3.50019-8",
+   "doi": "10.1016/b978-0-08-029224-3.50019-8",
+   "arxiv": null,
+   "openalex": null,
+   "title": "MODE OF ACTION OF NITRODIPHENYLETHERS AFFECTING PIGMENTS AND MEMBRANE INTEGRITY",
+   "year": 1983
+  },
+  {
+   "key": "doi:10.26226/morressier.5d5e517d5324a95facc2968e",
+   "doi": "10.26226/morressier.5d5e517d5324a95facc2968e",
+   "arxiv": null,
+   "openalex": null,
+   "title": "P1-16-05 - NUTRIOSE® fibre is fermented in the colon inducing a modulation of genes expression involved in glucose metabolism and membrane integrity.",
+   "year": 2019
+  },
+  {
+   "key": "doi:10.1016/s0958-2118(00)80079-8",
+   "doi": "10.1016/s0958-2118(00)80079-8",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Membrane integrity testing",
+   "year": 1999
+  },
+  {
+   "key": "doi:10.1016/j.cmet.2006.03.007",
+   "doi": "10.1016/j.cmet.2006.03.007",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The ratio of phosphatidylcholine to phosphatidylethanolamine influences membrane integrity and steatohepatitis",
+   "year": 2006
+  },
+  {
+   "key": "doi:10.1093/oxfordjournals.humrep.a137022",
+   "doi": "10.1093/oxfordjournals.humrep.a137022",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Propanediol-induced alterations in membrane integrity, metabolism and developmental potential of mouse zygotes",
+   "year": 1989
+  },
+  {
+   "key": "doi:10.1124/dmd.117.078949",
+   "doi": "10.1124/dmd.117.078949",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Importance of the Unstirred Water Layer and Hepatocyte Membrane Integrity In Vitro for Quantification of Intrinsic Metabolic Clearance",
+   "year": 2018
+  },
+  {
+   "key": "doi:10.1016/0958-2118(92)80032-r",
+   "doi": "10.1016/0958-2118(92)80032-r",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Lasers test membrane integrity",
+   "year": 1992
+  },
+  {
+   "key": "doi:10.1016/j.mcpro.2026.101709",
+   "doi": "10.1016/j.mcpro.2026.101709",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Multi-Omics Analysis to Decipher the Anti-Biofilm Mechanism of Anthraquinone-2- Carboxylic Acid against Methicillin-resistant Staphylococcus aureus.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.jhazmat.2026.144247",
+   "doi": "10.1016/j.jhazmat.2026.144247",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Freeze-thaw aging enhances microplastic phytotoxicity in rice via root metabolism and DNA methylation.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1002/adma.75732",
+   "doi": "10.1002/adma.75732",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Biomimetic Subcellular Chemomechanical Nano-Regulator for Allergic Rhinitis Treatment.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1083/jcb.202602118",
+   "doi": "10.1083/jcb.202602118",
+   "arxiv": null,
+   "openalex": null,
+   "title": "RAB11-RAB30 partnership drives stress-induced endosomal remodeling via a phosphoinositide switch.",
+   "year": 2027
+  },
+  {
+   "key": "doi:10.1021/acs.chemrestox.6c00319",
+   "doi": "10.1021/acs.chemrestox.6c00319",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Gadolinium-Based Contrast Agents Stimulate Adaptive Immune Response through Release of DAMP Signals in Neuronal SH-SY5Y Cells.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1002/adhm.71960",
+   "doi": "10.1002/adhm.71960",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Coupling Autophagic Flux Blockade With Cuproptosis in a Self-Assembled Nanodrug for Osteosarcoma Immunotherapy.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1186/s12964-026-03144-z",
+   "doi": "10.1186/s12964-026-03144-z",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Prohibitin 1 orchestrates mitochondrial-ER crosstalk via the VDAC1-GRP75-IP3R axis to drive malignancy in gastric cancer.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1158/2326-6066.cir-26-0559",
+   "doi": "10.1158/2326-6066.CIR-26-0559",
+   "arxiv": null,
+   "openalex": null,
+   "title": "MicroRNA core machinery maintains mitochondrial integrity to empower cancer escape from natural killer cell cytotoxicity.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1074/jbc.m201777200",
+   "doi": "10.1074/jbc.m201777200",
+   "arxiv": null,
+   "openalex": "W2125595015",
+   "title": "Coupling of Cell Energetics with Membrane Metabolic Sensing",
+   "year": 2002
+  },
+  {
+   "key": "doi:10.1529/biophysj.105.078683",
+   "doi": "10.1529/biophysj.105.078683",
+   "arxiv": null,
+   "openalex": "W2023899556",
+   "title": "Coupling between Lipid Shape and Membrane Curvature",
+   "year": 2006
+  },
+  {
+   "key": "doi:10.1172/jci104768",
+   "doi": "10.1172/jci104768",
+   "arxiv": null,
+   "openalex": "W2072170326",
+   "title": "STUDIES OF THE METABOLISM OF HUMAN ERYTHROCYTE MEMBRANES*",
+   "year": 1963
+  },
+  {
+   "key": "doi:10.1016/j.cub.2012.03.004",
+   "doi": "10.1016/j.cub.2012.03.004",
+   "arxiv": null,
+   "openalex": "W2094093650",
+   "title": "Golgi Membrane Dynamics and Lipid Metabolism",
+   "year": 2012
+  },
+  {
+   "key": "doi:10.1007/s00424-026-03189-6",
+   "doi": "10.1007/s00424-026-03189-6",
+   "arxiv": null,
+   "openalex": "W7165059184",
+   "title": "Cholesterol-depleting dextrin depolarizes sarcolemma: the contribution of sodium / calcium channels and membrane integrity",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.bbabio.2005.11.007",
+   "doi": "10.1016/j.bbabio.2005.11.007",
+   "arxiv": null,
+   "openalex": "W2006785560",
+   "title": "Acute effect of fatty acids on metabolism and mitochondrial coupling in skeletal muscle",
+   "year": 2005
+  },
+  {
+   "key": "doi:10.3389/fphar.2014.00061",
+   "doi": "10.3389/fphar.2014.00061",
+   "arxiv": null,
+   "openalex": "W2094190961",
+   "title": "Heme in pathophysiology: a matter of scavenging, metabolism and trafficking across cell membranes",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.3325/cmj.2016.57.223",
+   "doi": "10.3325/cmj.2016.57.223",
+   "arxiv": null,
+   "openalex": "W2465944627",
+   "title": "New insights into coupling and uncoupling of cerebral blood flow and metabolism in the brain",
+   "year": 2016
+  }
+ ]
+}

@@ -1,0 +1,868 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-20-52Z_226e3a",
+ "created_at": "2026-11-22T00:20:52Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "repair capacity damage feedback",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "089bda58c8126766"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2962,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-20-52Z_226e3a/raw/paper-search.json",
+   "raw_sha256": "dc4d18a24f875970be3a480cbbae184bff93599307fabc687cf5226ac75aff79",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.5339/qproc.2012.mutagens.3.15",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Chromosome Damage and the Damage Repair Capacity in Chinese Vinyl Chloride Monomer-exposed workers",
+     "year": 2012,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1016/j.dnarep.2007.08.006",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Modulation of DNA damage/DNA repair capacity by XPC polymorphisms",
+     "year": 2008,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.7750/biodiscovery.2014.11.2",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Individual capacity for detoxification of genotoxic compounds and repair of DNA damage. Commonly used methods for assessment of capacity for DNA repair",
+     "year": 2014,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.2172/7156180",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "DNA damage and repair mechanism. [DNA damage and repair mechanisms]",
+     "year": 1976,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/s1566-3124(01)04026-3",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Relationship of DNA repair capacity to species lifespan",
+     "year": 2001,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1016/b978-0-08-041749-3.50066-8",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "PROTEIN DAMAGE AND REPAIR",
+     "year": 1991,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1016/b978-0-08-041749-3.50100-5",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "LIPID DAMAGE AND REPAIR",
+     "year": 1991,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1016/b978-1-4832-8369-2.50154-8",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "ARE WE AT RISK FROM LOW LEVEL RADIATION. DNA REPAIR CAPACITY AS A PROBE OF POTENTIAL DAMAGE AND RECOVERY",
+     "year": 1980,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 9439,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-20-52Z_226e3a/raw/lixplore.json",
+   "raw_sha256": "330d0020c5901d08ba9aaec0517a57719afa6bda5cac1752bbb8fd2bf14bf451",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1002/advs.78082",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The Potential of Self-Maintainable Living Materials.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1016/j.reth.2026.101175",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Stem cell senescence as a regenerative bottleneck in age-related skeletal degeneration: Mechanistic crosstalk and translational strategies.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.7150/thno.134232",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Feedback-regulated 3D-printed hydrogel micropatch for integrated therapy of fungal keratitis.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1093/rb/rbag153",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Glucose/ROS dual-responsive mitochondria-targeting nanozyme microneedles remodel mitochondrial homeostasis to orchestrate immune metabolic reprogramming for diabetic foot ulcer healing.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1007/s40279-026-02498-1",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Understanding Anterior Cruciate Ligament Adaptation: Structural, Mechanical, and Healing Considerations.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.3390/ijms27052451",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Systemic Integrative Mechanisms and Intervention Strategies in Exercise-Induced Skeletal Muscle Damage: Evidence from Animal, Clinical, and Multi-Omics Studies.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1080/20565623.2026.2641016",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Isolation of plant-derived exosome-like nanovesicles (PDENs) from <i>Aloe vera</i> and their effect on RAW 264.7 and 1BR3 cells as a potential anti-inflammatory and anti-photoaging agent.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1186/s12943-025-02449-w",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "BRD9-p53-E2F1 circuit orchestrates cell growth and DNA damage repair in gastric cancer.",
+     "year": 2025,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1706,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-20-52Z_226e3a/raw/openalex.json",
+   "raw_sha256": "a0541285569e7728571cb9554e1448b5d615e3f2096e78ddbdb0180e13f33691",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1038/sj.bjc.6601729",
+      "arxiv": null,
+      "openalex": "W2013942657",
+      "pmid": null
+     },
+     "title": "Repair of radiation damage to DNA",
+     "year": 2004,
+     "score_raw": 187,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1101/cshperspect.a025130",
+      "arxiv": null,
+      "openalex": "W2173698021",
+      "pmid": null
+     },
+     "title": "DNA Damage, DNA Repair, Aging, and Neurodegeneration",
+     "year": 2015,
+     "score_raw": 496,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.3389/fimmu.2023.1133355",
+      "arxiv": null,
+      "openalex": "W4318065221",
+      "pmid": null
+     },
+     "title": "Inflammation balance in skeletal muscle damage and repair",
+     "year": 2023,
+     "score_raw": 259,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.5772/53919",
+      "arxiv": null,
+      "openalex": "W1525054294",
+      "pmid": null
+     },
+     "title": "DNA Damage, DNA Repair and Cancer",
+     "year": 2013,
+     "score_raw": 143,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1038/sj.cdd.4402132",
+      "arxiv": null,
+      "openalex": "W2041292257",
+      "pmid": null
+     },
+     "title": "Adenosine, an endogenous distress signal, modulates tissue damage and repair",
+     "year": 2007,
+     "score_raw": 781,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1093/genetics/iyab178",
+      "arxiv": null,
+      "openalex": "W4211216823",
+      "pmid": null
+     },
+     "title": "DNA repair, recombination, and damage signaling",
+     "year": 2021,
+     "score_raw": 77,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1146/annurev-physiol-021115-105127",
+      "arxiv": null,
+      "openalex": "W2132063891",
+      "pmid": null
+     },
+     "title": "DNA Damage and Repair in Vascular Disease",
+     "year": 2015,
+     "score_raw": 89,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1016/j.dnarep.2015.02.002",
+      "arxiv": null,
+      "openalex": "W2089012805",
+      "pmid": null
+     },
+     "title": "Day and night variations in the repair of ionizing-radiation-induced DNA damage in mouse splenocytes",
+     "year": 2015,
+     "score_raw": 39,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year; same title+year merged",
+  "clusters": [
+   [
+    "doi:10.1016/b978-0-08-041749-3.50066-8",
+    "doi:10.1016/b978-0-08-041749-3.50100-5",
+    "doi:10.1016/b978-1-4832-8369-2.50154-8",
+    "doi:10.1016/j.dnarep.2007.08.006",
+    "doi:10.1016/s1566-3124(01)04026-3",
+    "doi:10.2172/7156180",
+    "doi:10.5339/qproc.2012.mutagens.3.15",
+    "doi:10.7750/biodiscovery.2014.11.2"
+   ],
+   [
+    "doi:10.1002/advs.78082",
+    "doi:10.1007/s40279-026-02498-1",
+    "doi:10.1016/j.reth.2026.101175",
+    "doi:10.1080/20565623.2026.2641016",
+    "doi:10.1093/rb/rbag153",
+    "doi:10.1186/s12943-025-02449-w",
+    "doi:10.3390/ijms27052451",
+    "doi:10.7150/thno.134232"
+   ],
+   [
+    "doi:10.1016/j.dnarep.2015.02.002",
+    "doi:10.1038/sj.bjc.6601729",
+    "doi:10.1038/sj.cdd.4402132",
+    "doi:10.1093/genetics/iyab178",
+    "doi:10.1101/cshperspect.a025130",
+    "doi:10.1146/annurev-physiol-021115-105127",
+    "doi:10.3389/fimmu.2023.1133355",
+    "doi:10.5772/53919"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.1002/advs.78082",
+    "rrf": 0.016393443,
+    "ranks": {
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1038/sj.bjc.6601729",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.5339/qproc.2012.mutagens.3.15",
+    "rrf": 0.016393443,
+    "ranks": {
+     "paper-search": 1
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.dnarep.2007.08.006",
+    "rrf": 0.016129032,
+    "ranks": {
+     "paper-search": 2
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.reth.2026.101175",
+    "rrf": 0.016129032,
+    "ranks": {
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1101/cshperspect.a025130",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fimmu.2023.1133355",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.7150/thno.134232",
+    "rrf": 0.015873016,
+    "ranks": {
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.7750/biodiscovery.2014.11.2",
+    "rrf": 0.015873016,
+    "ranks": {
+     "paper-search": 3
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1093/rb/rbag153",
+    "rrf": 0.015625,
+    "ranks": {
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.2172/7156180",
+    "rrf": 0.015625,
+    "ranks": {
+     "paper-search": 4
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.5772/53919",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s40279-026-02498-1",
+    "rrf": 0.015384615,
+    "ranks": {
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/s1566-3124(01)04026-3",
+    "rrf": 0.015384615,
+    "ranks": {
+     "paper-search": 5
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1038/sj.cdd.4402132",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/b978-0-08-041749-3.50066-8",
+    "rrf": 0.015151515,
+    "ranks": {
+     "paper-search": 6
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1093/genetics/iyab178",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3390/ijms27052451",
+    "rrf": 0.015151515,
+    "ranks": {
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/b978-0-08-041749-3.50100-5",
+    "rrf": 0.014925373,
+    "ranks": {
+     "paper-search": 7
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1080/20565623.2026.2641016",
+    "rrf": 0.014925373,
+    "ranks": {
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1146/annurev-physiol-021115-105127",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/b978-1-4832-8369-2.50154-8",
+    "rrf": 0.014705882,
+    "ranks": {
+     "paper-search": 8
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.dnarep.2015.02.002",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1186/s12943-025-02449-w",
+    "rrf": 0.014705882,
+    "ranks": {
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.5339/qproc.2012.mutagens.3.15",
+   "doi": "10.5339/qproc.2012.mutagens.3.15",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Chromosome Damage and the Damage Repair Capacity in Chinese Vinyl Chloride Monomer-exposed workers",
+   "year": 2012
+  },
+  {
+   "key": "doi:10.1016/j.dnarep.2007.08.006",
+   "doi": "10.1016/j.dnarep.2007.08.006",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Modulation of DNA damage/DNA repair capacity by XPC polymorphisms",
+   "year": 2008
+  },
+  {
+   "key": "doi:10.7750/biodiscovery.2014.11.2",
+   "doi": "10.7750/biodiscovery.2014.11.2",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Individual capacity for detoxification of genotoxic compounds and repair of DNA damage. Commonly used methods for assessment of capacity for DNA repair",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.2172/7156180",
+   "doi": "10.2172/7156180",
+   "arxiv": null,
+   "openalex": null,
+   "title": "DNA damage and repair mechanism. [DNA damage and repair mechanisms]",
+   "year": 1976
+  },
+  {
+   "key": "doi:10.1016/s1566-3124(01)04026-3",
+   "doi": "10.1016/s1566-3124(01)04026-3",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Relationship of DNA repair capacity to species lifespan",
+   "year": 2001
+  },
+  {
+   "key": "doi:10.1016/b978-0-08-041749-3.50066-8",
+   "doi": "10.1016/b978-0-08-041749-3.50066-8",
+   "arxiv": null,
+   "openalex": null,
+   "title": "PROTEIN DAMAGE AND REPAIR",
+   "year": 1991
+  },
+  {
+   "key": "doi:10.1016/b978-0-08-041749-3.50100-5",
+   "doi": "10.1016/b978-0-08-041749-3.50100-5",
+   "arxiv": null,
+   "openalex": null,
+   "title": "LIPID DAMAGE AND REPAIR",
+   "year": 1991
+  },
+  {
+   "key": "doi:10.1016/b978-1-4832-8369-2.50154-8",
+   "doi": "10.1016/b978-1-4832-8369-2.50154-8",
+   "arxiv": null,
+   "openalex": null,
+   "title": "ARE WE AT RISK FROM LOW LEVEL RADIATION. DNA REPAIR CAPACITY AS A PROBE OF POTENTIAL DAMAGE AND RECOVERY",
+   "year": 1980
+  },
+  {
+   "key": "doi:10.1002/advs.78082",
+   "doi": "10.1002/advs.78082",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The Potential of Self-Maintainable Living Materials.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.reth.2026.101175",
+   "doi": "10.1016/j.reth.2026.101175",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Stem cell senescence as a regenerative bottleneck in age-related skeletal degeneration: Mechanistic crosstalk and translational strategies.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.7150/thno.134232",
+   "doi": "10.7150/thno.134232",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Feedback-regulated 3D-printed hydrogel micropatch for integrated therapy of fungal keratitis.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1093/rb/rbag153",
+   "doi": "10.1093/rb/rbag153",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Glucose/ROS dual-responsive mitochondria-targeting nanozyme microneedles remodel mitochondrial homeostasis to orchestrate immune metabolic reprogramming for diabetic foot ulcer healing.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1007/s40279-026-02498-1",
+   "doi": "10.1007/s40279-026-02498-1",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Understanding Anterior Cruciate Ligament Adaptation: Structural, Mechanical, and Healing Considerations.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.3390/ijms27052451",
+   "doi": "10.3390/ijms27052451",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Systemic Integrative Mechanisms and Intervention Strategies in Exercise-Induced Skeletal Muscle Damage: Evidence from Animal, Clinical, and Multi-Omics Studies.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1080/20565623.2026.2641016",
+   "doi": "10.1080/20565623.2026.2641016",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Isolation of plant-derived exosome-like nanovesicles (PDENs) from <i>Aloe vera</i> and their effect on RAW 264.7 and 1BR3 cells as a potential anti-inflammatory and anti-photoaging agent.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1186/s12943-025-02449-w",
+   "doi": "10.1186/s12943-025-02449-w",
+   "arxiv": null,
+   "openalex": null,
+   "title": "BRD9-p53-E2F1 circuit orchestrates cell growth and DNA damage repair in gastric cancer.",
+   "year": 2025
+  },
+  {
+   "key": "doi:10.1038/sj.bjc.6601729",
+   "doi": "10.1038/sj.bjc.6601729",
+   "arxiv": null,
+   "openalex": "W2013942657",
+   "title": "Repair of radiation damage to DNA",
+   "year": 2004
+  },
+  {
+   "key": "doi:10.1101/cshperspect.a025130",
+   "doi": "10.1101/cshperspect.a025130",
+   "arxiv": null,
+   "openalex": "W2173698021",
+   "title": "DNA Damage, DNA Repair, Aging, and Neurodegeneration",
+   "year": 2015
+  },
+  {
+   "key": "doi:10.3389/fimmu.2023.1133355",
+   "doi": "10.3389/fimmu.2023.1133355",
+   "arxiv": null,
+   "openalex": "W4318065221",
+   "title": "Inflammation balance in skeletal muscle damage and repair",
+   "year": 2023
+  },
+  {
+   "key": "doi:10.5772/53919",
+   "doi": "10.5772/53919",
+   "arxiv": null,
+   "openalex": "W1525054294",
+   "title": "DNA Damage, DNA Repair and Cancer",
+   "year": 2013
+  },
+  {
+   "key": "doi:10.1038/sj.cdd.4402132",
+   "doi": "10.1038/sj.cdd.4402132",
+   "arxiv": null,
+   "openalex": "W2041292257",
+   "title": "Adenosine, an endogenous distress signal, modulates tissue damage and repair",
+   "year": 2007
+  },
+  {
+   "key": "doi:10.1093/genetics/iyab178",
+   "doi": "10.1093/genetics/iyab178",
+   "arxiv": null,
+   "openalex": "W4211216823",
+   "title": "DNA repair, recombination, and damage signaling",
+   "year": 2021
+  },
+  {
+   "key": "doi:10.1146/annurev-physiol-021115-105127",
+   "doi": "10.1146/annurev-physiol-021115-105127",
+   "arxiv": null,
+   "openalex": "W2132063891",
+   "title": "DNA Damage and Repair in Vascular Disease",
+   "year": 2015
+  },
+  {
+   "key": "doi:10.1016/j.dnarep.2015.02.002",
+   "doi": "10.1016/j.dnarep.2015.02.002",
+   "arxiv": null,
+   "openalex": "W2089012805",
+   "title": "Day and night variations in the repair of ionizing-radiation-induced DNA damage in mouse splenocytes",
+   "year": 2015
+  }
+ ]
+}

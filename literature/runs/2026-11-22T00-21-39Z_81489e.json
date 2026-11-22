@@ -1,0 +1,852 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-21-39Z_81489e",
+ "created_at": "2026-11-22T00:21:39Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "minimal cell inherited damage",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "88bfc10b0bf3b0af"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 3608,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-21-39Z_81489e/raw/paper-search.json",
+   "raw_sha256": "77dfdf16329ccf44f0d074c803f51b635d313d90bf38d50fc8b40ef229828075",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1002/jcb.24599",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Imaging UVC-induced DNA damage response in models of minimal cancer",
+     "year": 2013,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1007/978-3-540-68706-1_3399",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Minimal Brain Damage",
+     "year": 2010,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1242/jcs.01488",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "In vivo contribution of murine mesenchymal stem cells into multiple cell-types under minimal damage conditions",
+     "year": 2004,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1211/pj.2014.20066720",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Viagra could damage vision in people with an inherited eye disease",
+     "year": 2014,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1007/978-90-481-9944-0_13",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Giant Unilamellar Vesicles: From Minimal Membrane Systems to Minimal Cells?",
+     "year": 2010,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1007/springerreference_221539",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Minimal Cell",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1101/042119",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "An ATM/Wip1-dependent timer controls the minimal duration of a DNA-damage mediated cell cycle arrest",
+     "year": 2016,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1007/978-3-319-91280-6_301022",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Minimal Brain Damage",
+     "year": 2021,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 8939,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-21-39Z_81489e/raw/lixplore.json",
+   "raw_sha256": "4bdc93715f3bb0a14e256ea2addd4e9f76634d9109f27b348c9162ef80277797",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1007/s12288-026-02462-z",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Innovative Treatment in Aplastic Anemia and Other Inherited Bone Marrow Failure Syndromes.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.2174/0115665232514985261011110951",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Cell-Based Therapeutic Strategies for Correcting Mitochondrial DNA Mutations and Mitigating Oxidative Stress.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1002/pdi3.70036",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Exploring the Reproductive Toxicity of Bisphenol S Through a Network Toxicology and Molecular Docking Analysis.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1159/000552518",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Lipocalin-2 Emerges as a Core Pathogenic Mediator and Biomarker in Autosomal Dominant Tubulointerstitial Kidney Disease-UMOD via Transcriptomic Profiling.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1093/gbe/evag161",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Optimal Organelle Inheritance Strategies Under Different Changing Environments and Mutational Pressures.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1007/s00432-026-06444-6",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Allogeneic CD56<sup>+</sup> cell-based immunotherapy in a patient with Fanconi anemia developing acute myeloid leukemia.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1177/20406207261417140",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Endothelial dysfunction and cardiac damage indicators in patients with β-thalassemia major under iron-chelation therapy.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1002/jcb.24599",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Imaging UVC-induced DNA damage response in models of minimal cancer",
+     "year": 2013,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2081,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-21-39Z_81489e/raw/openalex.json",
+   "raw_sha256": "316d52abbc4aaf763b5880ff5e4adf93fb0b0dea9ce5e3d05edc5387eb7fec1e",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1002/glia.20766",
+      "arxiv": null,
+      "openalex": "W2055343760",
+      "pmid": null
+     },
+     "title": "Interactions between Schwann cells and macrophages in injury and inherited demyelinating disease",
+     "year": 2008,
+     "score_raw": 360,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1016/j.ajpath.2012.06.026",
+      "arxiv": null,
+      "openalex": "W2067426763",
+      "pmid": null
+     },
+     "title": "MutT Homolog-1 Attenuates Oxidative DNA Damage and Delays Photoreceptor Cell Death in Inherited Retinal Degeneration",
+     "year": 2012,
+     "score_raw": 42,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1128/mbio.01630-22",
+      "arxiv": null,
+      "openalex": "W4285005438",
+      "pmid": null
+     },
+     "title": "Metabolite Damage and Damage Control in a Minimal Genome",
+     "year": 2022,
+     "score_raw": 25,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.3390/cells12091342",
+      "arxiv": null,
+      "openalex": "W4375862400",
+      "pmid": null
+     },
+     "title": "Retinal Cell Damage in Diabetic Retinopathy",
+     "year": 2023,
+     "score_raw": 184,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1080/15384101.2017.1383578",
+      "arxiv": null,
+      "openalex": "W2761826691",
+      "pmid": null
+     },
+     "title": "Inherited DNA lesions determine G1 duration in the next cell cycle",
+     "year": 2017,
+     "score_raw": 90,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.3389/fcell.2024.1332944",
+      "arxiv": null,
+      "openalex": "W4392362513",
+      "pmid": null
+     },
+     "title": "Cell-cell interaction in the pathogenesis of inherited retinal diseases",
+     "year": 2024,
+     "score_raw": 12,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1158/0008-5472.can-09-3138",
+      "arxiv": null,
+      "openalex": "W1977790106",
+      "pmid": null
+     },
+     "title": "NKX3.1 Activates Cellular Response to DNA Damage",
+     "year": 2010,
+     "score_raw": 100,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1253/circj.cj-14-0893",
+      "arxiv": null,
+      "openalex": "W4245028961",
+      "pmid": null
+     },
+     "title": "Inherited Cardiomyopathies",
+     "year": 2014,
+     "score_raw": 204,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year; same title+year merged",
+  "clusters": [
+   [
+    "doi:10.1002/jcb.24599",
+    "doi:10.1007/978-3-319-91280-6_301022",
+    "doi:10.1007/978-3-540-68706-1_3399",
+    "doi:10.1007/978-90-481-9944-0_13",
+    "doi:10.1007/springerreference_221539",
+    "doi:10.1101/042119",
+    "doi:10.1211/pj.2014.20066720",
+    "doi:10.1242/jcs.01488"
+   ],
+   [
+    "doi:10.1002/jcb.24599",
+    "doi:10.1002/pdi3.70036",
+    "doi:10.1007/s00432-026-06444-6",
+    "doi:10.1007/s12288-026-02462-z",
+    "doi:10.1093/gbe/evag161",
+    "doi:10.1159/000552518",
+    "doi:10.1177/20406207261417140",
+    "doi:10.2174/0115665232514985261011110951"
+   ],
+   [
+    "doi:10.1002/glia.20766",
+    "doi:10.1016/j.ajpath.2012.06.026",
+    "doi:10.1080/15384101.2017.1383578",
+    "doi:10.1128/mbio.01630-22",
+    "doi:10.1158/0008-5472.can-09-3138",
+    "doi:10.1253/circj.cj-14-0893",
+    "doi:10.3389/fcell.2024.1332944",
+    "doi:10.3390/cells12091342"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.1002/jcb.24599",
+    "rrf": 0.031099325,
+    "ranks": {
+     "paper-search": 1,
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1002/glia.20766",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s12288-026-02462-z",
+    "rrf": 0.016393443,
+    "ranks": {
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-3-540-68706-1_3399",
+    "rrf": 0.016129032,
+    "ranks": {
+     "paper-search": 2
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.ajpath.2012.06.026",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.2174/0115665232514985261011110951",
+    "rrf": 0.016129032,
+    "ranks": {
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1002/pdi3.70036",
+    "rrf": 0.015873016,
+    "ranks": {
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1128/mbio.01630-22",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1242/jcs.01488",
+    "rrf": 0.015873016,
+    "ranks": {
+     "paper-search": 3
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1159/000552518",
+    "rrf": 0.015625,
+    "ranks": {
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1211/pj.2014.20066720",
+    "rrf": 0.015625,
+    "ranks": {
+     "paper-search": 4
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.3390/cells12091342",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-90-481-9944-0_13",
+    "rrf": 0.015384615,
+    "ranks": {
+     "paper-search": 5
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1080/15384101.2017.1383578",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1093/gbe/evag161",
+    "rrf": 0.015384615,
+    "ranks": {
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s00432-026-06444-6",
+    "rrf": 0.015151515,
+    "ranks": {
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1007/springerreference_221539",
+    "rrf": 0.015151515,
+    "ranks": {
+     "paper-search": 6
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fcell.2024.1332944",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1101/042119",
+    "rrf": 0.014925373,
+    "ranks": {
+     "paper-search": 7
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1158/0008-5472.can-09-3138",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1177/20406207261417140",
+    "rrf": 0.014925373,
+    "ranks": {
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-3-319-91280-6_301022",
+    "rrf": 0.014705882,
+    "ranks": {
+     "paper-search": 8
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1253/circj.cj-14-0893",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.1002/jcb.24599",
+   "doi": "10.1002/jcb.24599",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Imaging UVC-induced DNA damage response in models of minimal cancer",
+   "year": 2013
+  },
+  {
+   "key": "doi:10.1007/978-3-540-68706-1_3399",
+   "doi": "10.1007/978-3-540-68706-1_3399",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Minimal Brain Damage",
+   "year": 2010
+  },
+  {
+   "key": "doi:10.1242/jcs.01488",
+   "doi": "10.1242/jcs.01488",
+   "arxiv": null,
+   "openalex": null,
+   "title": "In vivo contribution of murine mesenchymal stem cells into multiple cell-types under minimal damage conditions",
+   "year": 2004
+  },
+  {
+   "key": "doi:10.1211/pj.2014.20066720",
+   "doi": "10.1211/pj.2014.20066720",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Viagra could damage vision in people with an inherited eye disease",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.1007/978-90-481-9944-0_13",
+   "doi": "10.1007/978-90-481-9944-0_13",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Giant Unilamellar Vesicles: From Minimal Membrane Systems to Minimal Cells?",
+   "year": 2010
+  },
+  {
+   "key": "doi:10.1007/springerreference_221539",
+   "doi": "10.1007/springerreference_221539",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Minimal Cell",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1101/042119",
+   "doi": "10.1101/042119",
+   "arxiv": null,
+   "openalex": null,
+   "title": "An ATM/Wip1-dependent timer controls the minimal duration of a DNA-damage mediated cell cycle arrest",
+   "year": 2016
+  },
+  {
+   "key": "doi:10.1007/978-3-319-91280-6_301022",
+   "doi": "10.1007/978-3-319-91280-6_301022",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Minimal Brain Damage",
+   "year": 2021
+  },
+  {
+   "key": "doi:10.1007/s12288-026-02462-z",
+   "doi": "10.1007/s12288-026-02462-z",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Innovative Treatment in Aplastic Anemia and Other Inherited Bone Marrow Failure Syndromes.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.2174/0115665232514985261011110951",
+   "doi": "10.2174/0115665232514985261011110951",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Cell-Based Therapeutic Strategies for Correcting Mitochondrial DNA Mutations and Mitigating Oxidative Stress.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1002/pdi3.70036",
+   "doi": "10.1002/pdi3.70036",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Exploring the Reproductive Toxicity of Bisphenol S Through a Network Toxicology and Molecular Docking Analysis.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1159/000552518",
+   "doi": "10.1159/000552518",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Lipocalin-2 Emerges as a Core Pathogenic Mediator and Biomarker in Autosomal Dominant Tubulointerstitial Kidney Disease-UMOD via Transcriptomic Profiling.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1093/gbe/evag161",
+   "doi": "10.1093/gbe/evag161",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Optimal Organelle Inheritance Strategies Under Different Changing Environments and Mutational Pressures.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1007/s00432-026-06444-6",
+   "doi": "10.1007/s00432-026-06444-6",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Allogeneic CD56<sup>+</sup> cell-based immunotherapy in a patient with Fanconi anemia developing acute myeloid leukemia.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1177/20406207261417140",
+   "doi": "10.1177/20406207261417140",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Endothelial dysfunction and cardiac damage indicators in patients with β-thalassemia major under iron-chelation therapy.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1002/glia.20766",
+   "doi": "10.1002/glia.20766",
+   "arxiv": null,
+   "openalex": "W2055343760",
+   "title": "Interactions between Schwann cells and macrophages in injury and inherited demyelinating disease",
+   "year": 2008
+  },
+  {
+   "key": "doi:10.1016/j.ajpath.2012.06.026",
+   "doi": "10.1016/j.ajpath.2012.06.026",
+   "arxiv": null,
+   "openalex": "W2067426763",
+   "title": "MutT Homolog-1 Attenuates Oxidative DNA Damage and Delays Photoreceptor Cell Death in Inherited Retinal Degeneration",
+   "year": 2012
+  },
+  {
+   "key": "doi:10.1128/mbio.01630-22",
+   "doi": "10.1128/mbio.01630-22",
+   "arxiv": null,
+   "openalex": "W4285005438",
+   "title": "Metabolite Damage and Damage Control in a Minimal Genome",
+   "year": 2022
+  },
+  {
+   "key": "doi:10.3390/cells12091342",
+   "doi": "10.3390/cells12091342",
+   "arxiv": null,
+   "openalex": "W4375862400",
+   "title": "Retinal Cell Damage in Diabetic Retinopathy",
+   "year": 2023
+  },
+  {
+   "key": "doi:10.1080/15384101.2017.1383578",
+   "doi": "10.1080/15384101.2017.1383578",
+   "arxiv": null,
+   "openalex": "W2761826691",
+   "title": "Inherited DNA lesions determine G1 duration in the next cell cycle",
+   "year": 2017
+  },
+  {
+   "key": "doi:10.3389/fcell.2024.1332944",
+   "doi": "10.3389/fcell.2024.1332944",
+   "arxiv": null,
+   "openalex": "W4392362513",
+   "title": "Cell-cell interaction in the pathogenesis of inherited retinal diseases",
+   "year": 2024
+  },
+  {
+   "key": "doi:10.1158/0008-5472.can-09-3138",
+   "doi": "10.1158/0008-5472.can-09-3138",
+   "arxiv": null,
+   "openalex": "W1977790106",
+   "title": "NKX3.1 Activates Cellular Response to DNA Damage",
+   "year": 2010
+  },
+  {
+   "key": "doi:10.1253/circj.cj-14-0893",
+   "doi": "10.1253/circj.cj-14-0893",
+   "arxiv": null,
+   "openalex": "W4245028961",
+   "title": "Inherited Cardiomyopathies",
+   "year": 2014
+  }
+ ]
+}

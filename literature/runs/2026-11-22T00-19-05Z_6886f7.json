@@ -1,0 +1,740 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-19-05Z_6886f7",
+ "created_at": "2026-11-22T00:19:05Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "repair closure perturbation test artificial life model",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "bb07d5489780d245"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2674,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-19-05Z_6886f7/raw/paper-search.json",
+   "raw_sha256": "88ed0f8386054fab877ab7de24425d719f80492a9ae3dbe9185a19b483bfe033",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1007/s10015-007-0496-y",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Effect of facility closure in the SEIR epidemic model",
+     "year": 2008,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.7551/978-0-262-29714-1-ch030",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A Loop conjecture for metabolic closure",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.5954/icarob.2022.os1-4",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Mapping the Motion of Highly-inclined Triple System into a Secular Perturbation Model",
+     "year": 2022,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1007/3-540-59496-5_290",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Semantic Closure: A guiding notion to ground artificial life",
+     "year": 1995,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1007/978-3-642-60211-5_21",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Explanation Closure, Action Closure, and the Sandewall Test Suite for Reasoning about Change",
+     "year": 1999,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.2139/ssrn.6864484",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Aging as Cross-Hallmark Obstruction Amplification:A Sheaf-Theoretic Model of Repair Closure, Senescence, Inflammation, and Regenerative Failure",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1162/isal_a_00712",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A Saucerful of Secrets: Open-Ended Organizational Closure in the Game of Life",
+     "year": 2024,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.4028/www.scientific.net/kem.145-149.705",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fatigue Damage Repair by Artificial Introduction of Crack Closure",
+     "year": 1997,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 8210,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-19-05Z_6886f7/raw/lixplore.json",
+   "raw_sha256": "121daa05080ab552421d5ccd0ef28f98029a99c26b34deb7fd0d63a5b2bf6af7",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1007/s10015-007-0496-y",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Effect of facility closure in the SEIR epidemic model",
+     "year": 2008,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.7551/978-0-262-29714-1-ch030",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A Loop conjecture for metabolic closure",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.5954/icarob.2022.os1-4",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Mapping the Motion of Highly-inclined Triple System into a Secular Perturbation Model",
+     "year": 2022,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1007/3-540-59496-5_290",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Semantic Closure: A guiding notion to ground artificial life",
+     "year": 1995,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1007/978-3-642-60211-5_21",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Explanation Closure, Action Closure, and the Sandewall Test Suite for Reasoning about Change",
+     "year": 1999,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.2139/ssrn.6864484",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Aging as Cross-Hallmark Obstruction Amplification:A Sheaf-Theoretic Model of Repair Closure, Senescence, Inflammation, and Regenerative Failure",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1162/isal_a_00712",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A Saucerful of Secrets: Open-Ended Organizational Closure in the Game of Life",
+     "year": 2024,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.4028/www.scientific.net/kem.145-149.705",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fatigue Damage Repair by Artificial Introduction of Crack Closure",
+     "year": 1997,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1771,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-19-05Z_6886f7/raw/openalex.json",
+   "raw_sha256": "160b2bd84e3511c367f925a2f274113ae2dc7b2853131c89a7943656599d03a3",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1016/j.artint.2008.12.001",
+      "arxiv": null,
+      "openalex": "W1989974095",
+      "pmid": null
+     },
+     "title": "Enactive artificial intelligence: Investigating the systemic organization of life and mind",
+     "year": 2008,
+     "score_raw": 392,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.3389/fsysb.2026.1904510",
+      "arxiv": null,
+      "openalex": "W7214370365",
+      "pmid": null
+     },
+     "title": "Generative models of living development: an interaction-centered proposal and its implications for artificial life research",
+     "year": 2026,
+     "score_raw": 1,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1098/rstb.2024.0298",
+      "arxiv": null,
+      "openalex": "W4414744353",
+      "pmid": null
+     },
+     "title": "Towards origins of virtual artificial life: an overview",
+     "year": 2025,
+     "score_raw": 10,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.3389/frai.2026.1806435",
+      "arxiv": null,
+      "openalex": "W7204483697",
+      "pmid": null
+     },
+     "title": "Genealogies of organizational closure: from logical paradox to mind in life",
+     "year": 2026,
+     "score_raw": 1,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.33774/coe-2026-6317n-v2",
+      "arxiv": null,
+      "openalex": "W7163027481",
+      "pmid": null
+     },
+     "title": "Substrate-Coupled Artificial Life: From Virtual Origins to Physical Silicon",
+     "year": 2026,
+     "score_raw": 1,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.33774/coe-2026-6317n",
+      "arxiv": null,
+      "openalex": "W7162092034",
+      "pmid": null
+     },
+     "title": "Substrate-Coupled Artificial Life: From Virtual Origins to Physical Silicon",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1186/s13395-025-00408-z",
+      "arxiv": null,
+      "openalex": "W4417264140",
+      "pmid": null
+     },
+     "title": "Repairing the defective folding of alpha-sarcoglycan is needed to promote myogenic cell engraftment in 3D artificial muscle models of LGMDR3",
+     "year": 2025,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1162/isal.a.1036",
+      "arxiv": null,
+      "openalex": "W7166811347",
+      "pmid": null
+     },
+     "title": "OpenLife: Toward Open-World Artificial Life with Autonomous LLM Agents",
+     "year": 2026,
+     "score_raw": 1,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year",
+  "clusters": [
+   [
+    "doi:10.1007/3-540-59496-5_290",
+    "doi:10.1007/978-3-642-60211-5_21",
+    "doi:10.1007/s10015-007-0496-y",
+    "doi:10.1162/isal_a_00712",
+    "doi:10.2139/ssrn.6864484",
+    "doi:10.4028/www.scientific.net/kem.145-149.705",
+    "doi:10.5954/icarob.2022.os1-4",
+    "doi:10.7551/978-0-262-29714-1-ch030"
+   ],
+   [
+    "doi:10.1007/3-540-59496-5_290",
+    "doi:10.1007/978-3-642-60211-5_21",
+    "doi:10.1007/s10015-007-0496-y",
+    "doi:10.1162/isal_a_00712",
+    "doi:10.2139/ssrn.6864484",
+    "doi:10.4028/www.scientific.net/kem.145-149.705",
+    "doi:10.5954/icarob.2022.os1-4",
+    "doi:10.7551/978-0-262-29714-1-ch030"
+   ],
+   [
+    "doi:10.1016/j.artint.2008.12.001",
+    "doi:10.1098/rstb.2024.0298",
+    "doi:10.1162/isal.a.1036",
+    "doi:10.1186/s13395-025-00408-z",
+    "doi:10.33774/coe-2026-6317n",
+    "doi:10.33774/coe-2026-6317n-v2",
+    "doi:10.3389/frai.2026.1806435",
+    "doi:10.3389/fsysb.2026.1904510"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.1007/s10015-007-0496-y",
+    "rrf": 0.032786885,
+    "ranks": {
+     "paper-search": 1,
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.7551/978-0-262-29714-1-ch030",
+    "rrf": 0.032258065,
+    "ranks": {
+     "paper-search": 2,
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.5954/icarob.2022.os1-4",
+    "rrf": 0.031746032,
+    "ranks": {
+     "paper-search": 3,
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/3-540-59496-5_290",
+    "rrf": 0.03125,
+    "ranks": {
+     "paper-search": 4,
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-3-642-60211-5_21",
+    "rrf": 0.030769231,
+    "ranks": {
+     "paper-search": 5,
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.2139/ssrn.6864484",
+    "rrf": 0.03030303,
+    "ranks": {
+     "paper-search": 6,
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1162/isal_a_00712",
+    "rrf": 0.029850746,
+    "ranks": {
+     "paper-search": 7,
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.4028/www.scientific.net/kem.145-149.705",
+    "rrf": 0.029411765,
+    "ranks": {
+     "paper-search": 8,
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.artint.2008.12.001",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fsysb.2026.1904510",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1098/rstb.2024.0298",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3389/frai.2026.1806435",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.33774/coe-2026-6317n-v2",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.33774/coe-2026-6317n",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1186/s13395-025-00408-z",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1162/isal.a.1036",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.1007/s10015-007-0496-y",
+   "doi": "10.1007/s10015-007-0496-y",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Effect of facility closure in the SEIR epidemic model",
+   "year": 2008
+  },
+  {
+   "key": "doi:10.7551/978-0-262-29714-1-ch030",
+   "doi": "10.7551/978-0-262-29714-1-ch030",
+   "arxiv": null,
+   "openalex": null,
+   "title": "A Loop conjecture for metabolic closure",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.5954/icarob.2022.os1-4",
+   "doi": "10.5954/icarob.2022.os1-4",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Mapping the Motion of Highly-inclined Triple System into a Secular Perturbation Model",
+   "year": 2022
+  },
+  {
+   "key": "doi:10.1007/3-540-59496-5_290",
+   "doi": "10.1007/3-540-59496-5_290",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Semantic Closure: A guiding notion to ground artificial life",
+   "year": 1995
+  },
+  {
+   "key": "doi:10.1007/978-3-642-60211-5_21",
+   "doi": "10.1007/978-3-642-60211-5_21",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Explanation Closure, Action Closure, and the Sandewall Test Suite for Reasoning about Change",
+   "year": 1999
+  },
+  {
+   "key": "doi:10.2139/ssrn.6864484",
+   "doi": "10.2139/ssrn.6864484",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Aging as Cross-Hallmark Obstruction Amplification:A Sheaf-Theoretic Model of Repair Closure, Senescence, Inflammation, and Regenerative Failure",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1162/isal_a_00712",
+   "doi": "10.1162/isal_a_00712",
+   "arxiv": null,
+   "openalex": null,
+   "title": "A Saucerful of Secrets: Open-Ended Organizational Closure in the Game of Life",
+   "year": 2024
+  },
+  {
+   "key": "doi:10.4028/www.scientific.net/kem.145-149.705",
+   "doi": "10.4028/www.scientific.net/kem.145-149.705",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Fatigue Damage Repair by Artificial Introduction of Crack Closure",
+   "year": 1997
+  },
+  {
+   "key": "doi:10.1016/j.artint.2008.12.001",
+   "doi": "10.1016/j.artint.2008.12.001",
+   "arxiv": null,
+   "openalex": "W1989974095",
+   "title": "Enactive artificial intelligence: Investigating the systemic organization of life and mind",
+   "year": 2008
+  },
+  {
+   "key": "doi:10.3389/fsysb.2026.1904510",
+   "doi": "10.3389/fsysb.2026.1904510",
+   "arxiv": null,
+   "openalex": "W7214370365",
+   "title": "Generative models of living development: an interaction-centered proposal and its implications for artificial life research",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1098/rstb.2024.0298",
+   "doi": "10.1098/rstb.2024.0298",
+   "arxiv": null,
+   "openalex": "W4414744353",
+   "title": "Towards origins of virtual artificial life: an overview",
+   "year": 2025
+  },
+  {
+   "key": "doi:10.3389/frai.2026.1806435",
+   "doi": "10.3389/frai.2026.1806435",
+   "arxiv": null,
+   "openalex": "W7204483697",
+   "title": "Genealogies of organizational closure: from logical paradox to mind in life",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.33774/coe-2026-6317n-v2",
+   "doi": "10.33774/coe-2026-6317n-v2",
+   "arxiv": null,
+   "openalex": "W7163027481",
+   "title": "Substrate-Coupled Artificial Life: From Virtual Origins to Physical Silicon",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.33774/coe-2026-6317n",
+   "doi": "10.33774/coe-2026-6317n",
+   "arxiv": null,
+   "openalex": "W7162092034",
+   "title": "Substrate-Coupled Artificial Life: From Virtual Origins to Physical Silicon",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1186/s13395-025-00408-z",
+   "doi": "10.1186/s13395-025-00408-z",
+   "arxiv": null,
+   "openalex": "W4417264140",
+   "title": "Repairing the defective folding of alpha-sarcoglycan is needed to promote myogenic cell engraftment in 3D artificial muscle models of LGMDR3",
+   "year": 2025
+  },
+  {
+   "key": "doi:10.1162/isal.a.1036",
+   "doi": "10.1162/isal.a.1036",
+   "arxiv": null,
+   "openalex": "W7166811347",
+   "title": "OpenLife: Toward Open-World Artificial Life with Autonomous LLM Agents",
+   "year": 2026
+  }
+ ]
+}

@@ -59,12 +59,30 @@ def recompute(snap: dict) -> tuple[list[str], dict[str, float], dict[str, list[s
     scores: dict[str, float] = {}
     channels: dict[str, set] = {}
     key_by_raw: dict[str, str] = {}
+    alias: dict[str, str] = {}
+    by_title: dict[str, str] = {}
+    method = (snap.get("dedup") or {}).get("method") or ""
+    merge_titles = "merged" in method
+
+    def canonical(key: str, title: str, year) -> str:
+        if not merge_titles:
+            return key
+        if key in alias:
+            return alias[key]
+        tkey = title_norm(title) + "#" + str(year or "")
+        if tkey in by_title:
+            alias[key] = by_title[tkey]
+            return by_title[tkey]
+        by_title[tkey] = key
+        return key
+
     for ch in snap.get("channels", []):
         name = ch.get("name")
         w = float(weights.get(name, 1.0))
         seen: set[str] = set()
         for item in sorted(ch.get("results", []), key=lambda r: r.get("rank", 0)):
-            key = key_of(item.get("ids") or {}, item.get("title", ""), item.get("year"))
+            key = canonical(key_of(item.get("ids") or {}, item.get("title", ""), item.get("year")),
+                            item.get("title", ""), item.get("year"))
             key_by_raw[str(item.get("rank")) + "|" + item.get("title", "")] = key
             if key in seen:
                 continue

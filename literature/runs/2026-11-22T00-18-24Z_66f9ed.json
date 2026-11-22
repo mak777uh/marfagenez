@@ -1,0 +1,740 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-18-24Z_66f9ed",
+ "created_at": "2026-11-22T00:18:24Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "organizational closure constraint production repair quantitative model",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "d833c5f9fb352a12"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2690,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-18-24Z_66f9ed/raw/paper-search.json",
+   "raw_sha256": "e71d1d263fb5cb1c9fedee7be7458a2446d824370092f26a4d992800a270f193",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.2139/ssrn.7327778",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Closure-guided Optimization: Minimum Structural Repair as a General Constraint-handling Principle",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.21203/rs.3.rs-10784695/v1",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Closure-Guided Optimization: Minimum Structural Repair as a General Constraint-Handling Principle",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.2139/ssrn.6446445",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Why AI Adoption Fails: A Constraint-Based Diagnostic Model for Organizational Readiness",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1609/aaaiss.v8i1.42568",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Autocatalytic Constraint Closure as an Organizational Principle for Machine Consciousness",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1007/springerreference_63698",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Constraint-Driven Database Repair",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.2139/ssrn.6864484",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Aging as Cross-Hallmark Obstruction Amplification:A Sheaf-Theoretic Model of Repair Closure, Senescence, Inflammation, and Regenerative Failure",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1080/00207541003801283",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Theory of constraint methodology where the constraint is the business model",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1016/j.ijpe.2004.02.005",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Constraint-based schedule repair for product development projects with time-limited constraints",
+     "year": 2005,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 6186,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-18-24Z_66f9ed/raw/lixplore.json",
+   "raw_sha256": "db71eea446c2c097f3b514b2f4216703f7d005bf19d3a80ec6259518b06c2a70",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.2139/ssrn.7327778",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Closure-guided Optimization: Minimum Structural Repair as a General Constraint-handling Principle",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.21203/rs.3.rs-10784695/v1",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Closure-Guided Optimization: Minimum Structural Repair as a General Constraint-Handling Principle",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.2139/ssrn.6446445",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Why AI Adoption Fails: A Constraint-Based Diagnostic Model for Organizational Readiness",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1609/aaaiss.v8i1.42568",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Autocatalytic Constraint Closure as an Organizational Principle for Machine Consciousness",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1007/springerreference_63698",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Constraint-Driven Database Repair",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.2139/ssrn.6864484",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Aging as Cross-Hallmark Obstruction Amplification:A Sheaf-Theoretic Model of Repair Closure, Senescence, Inflammation, and Regenerative Failure",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1080/00207541003801283",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Theory of constraint methodology where the constraint is the business model",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1016/j.ijpe.2004.02.005",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Constraint-based schedule repair for product development projects with time-limited constraints",
+     "year": 2005,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2147,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-18-24Z_66f9ed/raw/openalex.json",
+   "raw_sha256": "9e9c5b41a6e5000d7fdc647ddb39751fbb885ea69950992b775a60e5ee9a221e",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.3389/fphys.2020.00069",
+      "arxiv": null,
+      "openalex": "W3006700840",
+      "pmid": null
+     },
+     "title": "Glycemia Regulation: From Feedback Loops to Organizational Closure",
+     "year": 2020,
+     "score_raw": 76,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.3389/fncom.2026.1806695",
+      "arxiv": null,
+      "openalex": "W7170317893",
+      "pmid": null
+     },
+     "title": "Organizational closure through regenerative signaling as a possible basis for conscious awareness",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.2976/1.3266062",
+      "arxiv": null,
+      "openalex": "W1968749296",
+      "pmid": null
+     },
+     "title": "Drosophilamorphogenesis: Tissue force laws and the modeling of dorsal closure",
+     "year": 2009,
+     "score_raw": 41,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W1555899344",
+      "pmid": null
+     },
+     "title": "VIRTUAL ENVIRONMENTS AS CONSTRAINTS ON DECISION MAKING IN AGENT MODELS OF HUMAN ORGANIZATIONS",
+     "year": 2000,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/j.addr.2014.11.015",
+      "arxiv": null,
+      "openalex": "W1972930867",
+      "pmid": null
+     },
+     "title": "Biologics for tendon repair",
+     "year": 2014,
+     "score_raw": 766,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.3389/fpls.2022.879366",
+      "arxiv": null,
+      "openalex": "W4280517038",
+      "pmid": null
+     },
+     "title": "Heat Stress-Mediated Constraints in Maize (Zea mays) Production: Challenges and Solutions",
+     "year": 2022,
+     "score_raw": 126,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W2302671390",
+      "pmid": null
+     },
+     "title": "Economic model of mine closure and its potential for economic transformation",
+     "year": 2014,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1002/path.4104",
+      "arxiv": null,
+      "openalex": "W1878807841",
+      "pmid": null
+     },
+     "title": "The myofibroblast matrix: implications for tissue repair and fibrosis",
+     "year": 2012,
+     "score_raw": 874,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year",
+  "clusters": [
+   [
+    "doi:10.1007/springerreference_63698",
+    "doi:10.1016/j.ijpe.2004.02.005",
+    "doi:10.1080/00207541003801283",
+    "doi:10.1609/aaaiss.v8i1.42568",
+    "doi:10.21203/rs.3.rs-10784695/v1",
+    "doi:10.2139/ssrn.6446445",
+    "doi:10.2139/ssrn.6864484",
+    "doi:10.2139/ssrn.7327778"
+   ],
+   [
+    "doi:10.1007/springerreference_63698",
+    "doi:10.1016/j.ijpe.2004.02.005",
+    "doi:10.1080/00207541003801283",
+    "doi:10.1609/aaaiss.v8i1.42568",
+    "doi:10.21203/rs.3.rs-10784695/v1",
+    "doi:10.2139/ssrn.6446445",
+    "doi:10.2139/ssrn.6864484",
+    "doi:10.2139/ssrn.7327778"
+   ],
+   [
+    "doi:10.1002/path.4104",
+    "doi:10.1016/j.addr.2014.11.015",
+    "doi:10.2976/1.3266062",
+    "doi:10.3389/fncom.2026.1806695",
+    "doi:10.3389/fphys.2020.00069",
+    "doi:10.3389/fpls.2022.879366",
+    "title:economic model of mine closure and its potential for economic transformation#2014",
+    "title:virtual environments as constraints on decision making in agent models of human organizations#2000"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.2139/ssrn.7327778",
+    "rrf": 0.032786885,
+    "ranks": {
+     "paper-search": 1,
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.21203/rs.3.rs-10784695/v1",
+    "rrf": 0.032258065,
+    "ranks": {
+     "paper-search": 2,
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.2139/ssrn.6446445",
+    "rrf": 0.031746032,
+    "ranks": {
+     "paper-search": 3,
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1609/aaaiss.v8i1.42568",
+    "rrf": 0.03125,
+    "ranks": {
+     "paper-search": 4,
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/springerreference_63698",
+    "rrf": 0.030769231,
+    "ranks": {
+     "paper-search": 5,
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.2139/ssrn.6864484",
+    "rrf": 0.03030303,
+    "ranks": {
+     "paper-search": 6,
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1080/00207541003801283",
+    "rrf": 0.029850746,
+    "ranks": {
+     "paper-search": 7,
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.ijpe.2004.02.005",
+    "rrf": 0.029411765,
+    "ranks": {
+     "paper-search": 8,
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fphys.2020.00069",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fncom.2026.1806695",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.2976/1.3266062",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "title:virtual environments as constraints on decision making in agent models of human organizations#2000",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.addr.2014.11.015",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fpls.2022.879366",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "title:economic model of mine closure and its potential for economic transformation#2014",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1002/path.4104",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.2139/ssrn.7327778",
+   "doi": "10.2139/ssrn.7327778",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Closure-guided Optimization: Minimum Structural Repair as a General Constraint-handling Principle",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.21203/rs.3.rs-10784695/v1",
+   "doi": "10.21203/rs.3.rs-10784695/v1",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Closure-Guided Optimization: Minimum Structural Repair as a General Constraint-Handling Principle",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.2139/ssrn.6446445",
+   "doi": "10.2139/ssrn.6446445",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Why AI Adoption Fails: A Constraint-Based Diagnostic Model for Organizational Readiness",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1609/aaaiss.v8i1.42568",
+   "doi": "10.1609/aaaiss.v8i1.42568",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Autocatalytic Constraint Closure as an Organizational Principle for Machine Consciousness",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1007/springerreference_63698",
+   "doi": "10.1007/springerreference_63698",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Constraint-Driven Database Repair",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.2139/ssrn.6864484",
+   "doi": "10.2139/ssrn.6864484",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Aging as Cross-Hallmark Obstruction Amplification:A Sheaf-Theoretic Model of Repair Closure, Senescence, Inflammation, and Regenerative Failure",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1080/00207541003801283",
+   "doi": "10.1080/00207541003801283",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Theory of constraint methodology where the constraint is the business model",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.1016/j.ijpe.2004.02.005",
+   "doi": "10.1016/j.ijpe.2004.02.005",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Constraint-based schedule repair for product development projects with time-limited constraints",
+   "year": 2005
+  },
+  {
+   "key": "doi:10.3389/fphys.2020.00069",
+   "doi": "10.3389/fphys.2020.00069",
+   "arxiv": null,
+   "openalex": "W3006700840",
+   "title": "Glycemia Regulation: From Feedback Loops to Organizational Closure",
+   "year": 2020
+  },
+  {
+   "key": "doi:10.3389/fncom.2026.1806695",
+   "doi": "10.3389/fncom.2026.1806695",
+   "arxiv": null,
+   "openalex": "W7170317893",
+   "title": "Organizational closure through regenerative signaling as a possible basis for conscious awareness",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.2976/1.3266062",
+   "doi": "10.2976/1.3266062",
+   "arxiv": null,
+   "openalex": "W1968749296",
+   "title": "Drosophilamorphogenesis: Tissue force laws and the modeling of dorsal closure",
+   "year": 2009
+  },
+  {
+   "key": "title:virtual environments as constraints on decision making in agent models of human organizations#2000",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W1555899344",
+   "title": "VIRTUAL ENVIRONMENTS AS CONSTRAINTS ON DECISION MAKING IN AGENT MODELS OF HUMAN ORGANIZATIONS",
+   "year": 2000
+  },
+  {
+   "key": "doi:10.1016/j.addr.2014.11.015",
+   "doi": "10.1016/j.addr.2014.11.015",
+   "arxiv": null,
+   "openalex": "W1972930867",
+   "title": "Biologics for tendon repair",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.3389/fpls.2022.879366",
+   "doi": "10.3389/fpls.2022.879366",
+   "arxiv": null,
+   "openalex": "W4280517038",
+   "title": "Heat Stress-Mediated Constraints in Maize (Zea mays) Production: Challenges and Solutions",
+   "year": 2022
+  },
+  {
+   "key": "title:economic model of mine closure and its potential for economic transformation#2014",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W2302671390",
+   "title": "Economic model of mine closure and its potential for economic transformation",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.1002/path.4104",
+   "doi": "10.1002/path.4104",
+   "arxiv": null,
+   "openalex": "W1878807841",
+   "title": "The myofibroblast matrix: implications for tissue repair and fibrosis",
+   "year": 2012
+  }
+ ]
+}

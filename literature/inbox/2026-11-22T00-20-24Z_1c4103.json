@@ -1,0 +1,222 @@
+{
+ "run_id": "2026-11-22T00-20-24Z_1c4103",
+ "added": 12,
+ "candidates": [
+  {
+   "candidate_id": "CAND-5af9d54a29",
+   "key": "doi:10.1038/s41586-019-1531-6",
+   "title": "Asymmetric lysosome inheritance predicts activation of haematopoietic stem cells",
+   "year": 2019,
+   "doi": "10.1038/s41586-019-1531-6",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.016393443,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-0767498440",
+   "key": "doi:10.1038/s44319-025-00536-z",
+   "title": "Dysfunctional mitochondria in ageing T cells: a perspective on mitochondrial quality control mechanisms.",
+   "year": 2025,
+   "doi": "10.1038/s44319-025-00536-z",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.016393443,
+   "channels": [
+    "lixplore"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-b43bd4e345",
+   "key": "doi:10.1101/2023.07.21.550069",
+   "title": "SYS-1/beta-catenin inheritance and regulation by Wnt-signaling during asymmetric cell division",
+   "year": 2023,
+   "doi": "10.1101/2023.07.21.550069",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.016393443,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-d78d2dc8f1",
+   "key": "doi:10.1101/2025.04.15.648906",
+   "title": "Oncogene Silencing via ecDNA Micronucleation.",
+   "year": 2025,
+   "doi": "10.1101/2025.04.15.648906",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.016129032,
+   "channels": [
+    "lixplore"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-b0fbf627b5",
+   "key": "doi:10.1242/jcs.128744",
+   "title": "Biased inheritance of mitochondria during asymmetric cell division in the mouse oocyte",
+   "year": 2013,
+   "doi": "10.1242/jcs.128744",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.016129032,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-d01c3d1480",
+   "key": "doi:10.1371/journal.pbio.0040417",
+   "title": "Polarised Asymmetric Inheritance of Accumulated Protein Damage in Higher Eukaryotes",
+   "year": 2006,
+   "doi": "10.1371/journal.pbio.0040417",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.016129032,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-bc1d09ac6a",
+   "key": "doi:10.1016/j.exphem.2017.06.179",
+   "title": "Asymmetric cell division of hematopoietic stem cells: asymmetric inheritance of cell fate determinants and its role in cell fate decisions",
+   "year": 2017,
+   "doi": "10.1016/j.exphem.2017.06.179",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.015873016,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-4d2f8bfb10",
+   "key": "doi:10.1111/1567-1364.12216",
+   "title": "Role of asymmetric cell division in lifespan control in Saccharomyces cerevisiae",
+   "year": 2014,
+   "doi": "10.1111/1567-1364.12216",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.015873016,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-cde669b536",
+   "key": "doi:10.1128/aac.01313-24",
+   "title": "A link between aging and persistence.",
+   "year": 2025,
+   "doi": "10.1128/aac.01313-24",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.015873016,
+   "channels": [
+    "lixplore"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-1edf704a2c",
+   "key": "doi:10.1016/j.cell.2008.02.007",
+   "title": "Mechanisms of Asymmetric Stem Cell Division",
+   "year": 2008,
+   "doi": "10.1016/j.cell.2008.02.007",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.015625,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-2d9ea8d4e1",
+   "key": "doi:10.1371/journal.pbio.3002310",
+   "title": "Selective retention of dysfunctional mitochondria during asymmetric cell division in yeast.",
+   "year": 2023,
+   "doi": "10.1371/journal.pbio.3002310",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.015625,
+   "channels": [
+    "lixplore"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-f99f881088",
+   "key": "doi:10.3410/f.1054693.541905",
+   "title": "Faculty Opinions recommendation of Polarised asymmetric inheritance of accumulated protein damage in higher eukaryotes.",
+   "year": 2007,
+   "doi": "10.3410/f.1054693.541905",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-20-24Z_1c4103",
+   "rrf": 0.015625,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  }
+ ]
+}

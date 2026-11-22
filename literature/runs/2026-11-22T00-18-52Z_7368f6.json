@@ -1,0 +1,756 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-18-52Z_7368f6",
+ "created_at": "2026-11-22T00:18:52Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "minimal cell viability boundary maintenance inherited damage",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "247ff38d5d8d6ce4"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 4867,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-18-52Z_7368f6/raw/paper-search.json",
+   "raw_sha256": "e3a98dcf1dedf326d27845ef55711acc472768e153acc0d0f99a387bd2220783",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.7717/peerj.16214/fig-6",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Figure 6: (A–C) Cell viability, cell pyroptosis staining in the LPS-induced H9C2 cell damage model.",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.7717/peerj.16214/fig-8",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Figure 8: (A–F) Cell viability and pyroptosis detection in the LPS-induced cell damage model of SOD2-knockdown AC16 cell.",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1161/01.cir.40.5s4.iv-202",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Maintenance of Cell Viability",
+     "year": 1969,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1007/springerreference_65304",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Minimal-change Integrity Maintenance",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/0309-1651(88)90092-6",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Viability maintenance of mammary epithelial cells in vitro",
+     "year": 1988,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.70675/7b50b45aza5fdz4173zbde8z060025a53e43",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Rod-derived cone viability factor 2 for the treatment of inherited retinal blindness",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1097/00007632-199008010-00017",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Maintenance of Cell Viability in Stored Bone",
+     "year": 1990,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1016/j.molcel.2008.12.022",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Maintenance of the DNA-Damage Checkpoint Requires DNA-Damage-Induced Mediator Protein Oligomerization",
+     "year": 2009,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 5922,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-18-52Z_7368f6/raw/lixplore.json",
+   "raw_sha256": "560c7f9d36230a386868b245b93932e00865e0ff647fbe280aa0bee2cfda79c2",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.7717/peerj.16214/fig-6",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Figure 6: (A–C) Cell viability, cell pyroptosis staining in the LPS-induced H9C2 cell damage model.",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.7717/peerj.16214/fig-8",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Figure 8: (A–F) Cell viability and pyroptosis detection in the LPS-induced cell damage model of SOD2-knockdown AC16 cell.",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1161/01.cir.40.5s4.iv-202",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Maintenance of Cell Viability",
+     "year": 1969,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1007/springerreference_65304",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Minimal-change Integrity Maintenance",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/0309-1651(88)90092-6",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Viability maintenance of mammary epithelial cells in vitro",
+     "year": 1988,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.70675/7b50b45aza5fdz4173zbde8z060025a53e43",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Rod-derived cone viability factor 2 for the treatment of inherited retinal blindness",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.3410/f.1014048.192546",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Faculty Opinions recommendation of Delineating the requirements for spontaneous DNA damage resistance pathways in genome maintenance and viability in Saccharomyces cerevisiae.",
+     "year": 2003,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1097/00007632-199008010-00017",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Maintenance of Cell Viability in Stored Bone",
+     "year": 1990,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1865,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-18-52Z_7368f6/raw/openalex.json",
+   "raw_sha256": "0569cc1ceb1663be9a8a7154a49d9dcaa088deac01642e0463de5f21f940c85a",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1101/gad.325050.119",
+      "arxiv": null,
+      "openalex": "W2945156762",
+      "pmid": null
+     },
+     "title": "PRC2 is high maintenance",
+     "year": 2019,
+     "score_raw": 278,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.4233/uuid:25cfdc64-409c-4a5f-a571-8c643d87820d",
+      "arxiv": null,
+      "openalex": "W2770395751",
+      "pmid": null
+     },
+     "title": "In vitro phospholipid biosynthesis for growing and dividing minimal cells",
+     "year": 2016,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W2770256160",
+      "pmid": null
+     },
+     "title": "Asymmetric Division of Damaged Proteins in Proliferating Cells",
+     "year": 2014,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1111/j.1582-4934.2009.00837.x",
+      "arxiv": null,
+      "openalex": "W2064811308",
+      "pmid": null
+     },
+     "title": "The immune boundaries for stem cell based therapies: problems and prospective solutions",
+     "year": 2009,
+     "score_raw": 58,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W7162165508",
+      "pmid": null
+     },
+     "title": "Navigating Epigenetic Mountains: Maintenance and Boundaries of Heterochromatin in Malaria Parasites",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1091/mbc.e20-08-0547",
+      "arxiv": null,
+      "openalex": "W3095401296",
+      "pmid": null
+     },
+     "title": "Asymmetric chromosome segregation and cell division in DNA damage-induced bacterial filaments",
+     "year": 2020,
+     "score_raw": 29,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.13025/17503",
+      "arxiv": null,
+      "openalex": "W2147073739",
+      "pmid": null
+     },
+     "title": "Cell Cycle-dependence of cisplatin-and carboplatin-induced dna damage",
+     "year": 2011,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.20381/ruor-868",
+      "arxiv": null,
+      "openalex": "W2338345521",
+      "pmid": null
+     },
+     "title": "The Role of Atypical E2fs in the Maintenance and Development of the Ependymal Cell Barrier",
+     "year": 2016,
+     "score_raw": 0,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year",
+  "clusters": [
+   [
+    "doi:10.1007/springerreference_65304",
+    "doi:10.1016/0309-1651(88)90092-6",
+    "doi:10.1016/j.molcel.2008.12.022",
+    "doi:10.1097/00007632-199008010-00017",
+    "doi:10.1161/01.cir.40.5s4.iv-202",
+    "doi:10.70675/7b50b45aza5fdz4173zbde8z060025a53e43",
+    "doi:10.7717/peerj.16214/fig-6",
+    "doi:10.7717/peerj.16214/fig-8"
+   ],
+   [
+    "doi:10.1007/springerreference_65304",
+    "doi:10.1016/0309-1651(88)90092-6",
+    "doi:10.1097/00007632-199008010-00017",
+    "doi:10.1161/01.cir.40.5s4.iv-202",
+    "doi:10.3410/f.1014048.192546",
+    "doi:10.70675/7b50b45aza5fdz4173zbde8z060025a53e43",
+    "doi:10.7717/peerj.16214/fig-6",
+    "doi:10.7717/peerj.16214/fig-8"
+   ],
+   [
+    "doi:10.1091/mbc.e20-08-0547",
+    "doi:10.1101/gad.325050.119",
+    "doi:10.1111/j.1582-4934.2009.00837.x",
+    "doi:10.13025/17503",
+    "doi:10.20381/ruor-868",
+    "doi:10.4233/uuid:25cfdc64-409c-4a5f-a571-8c643d87820d",
+    "title:asymmetric division of damaged proteins in proliferating cells#2014",
+    "title:navigating epigenetic mountains maintenance and boundaries of heterochromatin in malaria parasites#2026"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.7717/peerj.16214/fig-6",
+    "rrf": 0.032786885,
+    "ranks": {
+     "paper-search": 1,
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.7717/peerj.16214/fig-8",
+    "rrf": 0.032258065,
+    "ranks": {
+     "paper-search": 2,
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1161/01.cir.40.5s4.iv-202",
+    "rrf": 0.031746032,
+    "ranks": {
+     "paper-search": 3,
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/springerreference_65304",
+    "rrf": 0.03125,
+    "ranks": {
+     "paper-search": 4,
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/0309-1651(88)90092-6",
+    "rrf": 0.030769231,
+    "ranks": {
+     "paper-search": 5,
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.70675/7b50b45aza5fdz4173zbde8z060025a53e43",
+    "rrf": 0.03030303,
+    "ranks": {
+     "paper-search": 6,
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1097/00007632-199008010-00017",
+    "rrf": 0.029631255,
+    "ranks": {
+     "paper-search": 7,
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1101/gad.325050.119",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.4233/uuid:25cfdc64-409c-4a5f-a571-8c643d87820d",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "title:asymmetric division of damaged proteins in proliferating cells#2014",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1111/j.1582-4934.2009.00837.x",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "title:navigating epigenetic mountains maintenance and boundaries of heterochromatin in malaria parasites#2026",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1091/mbc.e20-08-0547",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.13025/17503",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3410/f.1014048.192546",
+    "rrf": 0.014925373,
+    "ranks": {
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.molcel.2008.12.022",
+    "rrf": 0.014705882,
+    "ranks": {
+     "paper-search": 8
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.20381/ruor-868",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.7717/peerj.16214/fig-6",
+   "doi": "10.7717/peerj.16214/fig-6",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Figure 6: (A–C) Cell viability, cell pyroptosis staining in the LPS-induced H9C2 cell damage model.",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.7717/peerj.16214/fig-8",
+   "doi": "10.7717/peerj.16214/fig-8",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Figure 8: (A–F) Cell viability and pyroptosis detection in the LPS-induced cell damage model of SOD2-knockdown AC16 cell.",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1161/01.cir.40.5s4.iv-202",
+   "doi": "10.1161/01.cir.40.5s4.iv-202",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Maintenance of Cell Viability",
+   "year": 1969
+  },
+  {
+   "key": "doi:10.1007/springerreference_65304",
+   "doi": "10.1007/springerreference_65304",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Minimal-change Integrity Maintenance",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1016/0309-1651(88)90092-6",
+   "doi": "10.1016/0309-1651(88)90092-6",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Viability maintenance of mammary epithelial cells in vitro",
+   "year": 1988
+  },
+  {
+   "key": "doi:10.70675/7b50b45aza5fdz4173zbde8z060025a53e43",
+   "doi": "10.70675/7b50b45aza5fdz4173zbde8z060025a53e43",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Rod-derived cone viability factor 2 for the treatment of inherited retinal blindness",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1097/00007632-199008010-00017",
+   "doi": "10.1097/00007632-199008010-00017",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Maintenance of Cell Viability in Stored Bone",
+   "year": 1990
+  },
+  {
+   "key": "doi:10.1016/j.molcel.2008.12.022",
+   "doi": "10.1016/j.molcel.2008.12.022",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Maintenance of the DNA-Damage Checkpoint Requires DNA-Damage-Induced Mediator Protein Oligomerization",
+   "year": 2009
+  },
+  {
+   "key": "doi:10.3410/f.1014048.192546",
+   "doi": "10.3410/f.1014048.192546",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Faculty Opinions recommendation of Delineating the requirements for spontaneous DNA damage resistance pathways in genome maintenance and viability in Saccharomyces cerevisiae.",
+   "year": 2003
+  },
+  {
+   "key": "doi:10.1101/gad.325050.119",
+   "doi": "10.1101/gad.325050.119",
+   "arxiv": null,
+   "openalex": "W2945156762",
+   "title": "PRC2 is high maintenance",
+   "year": 2019
+  },
+  {
+   "key": "doi:10.4233/uuid:25cfdc64-409c-4a5f-a571-8c643d87820d",
+   "doi": "10.4233/uuid:25cfdc64-409c-4a5f-a571-8c643d87820d",
+   "arxiv": null,
+   "openalex": "W2770395751",
+   "title": "In vitro phospholipid biosynthesis for growing and dividing minimal cells",
+   "year": 2016
+  },
+  {
+   "key": "title:asymmetric division of damaged proteins in proliferating cells#2014",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W2770256160",
+   "title": "Asymmetric Division of Damaged Proteins in Proliferating Cells",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.1111/j.1582-4934.2009.00837.x",
+   "doi": "10.1111/j.1582-4934.2009.00837.x",
+   "arxiv": null,
+   "openalex": "W2064811308",
+   "title": "The immune boundaries for stem cell based therapies: problems and prospective solutions",
+   "year": 2009
+  },
+  {
+   "key": "title:navigating epigenetic mountains maintenance and boundaries of heterochromatin in malaria parasites#2026",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W7162165508",
+   "title": "Navigating Epigenetic Mountains: Maintenance and Boundaries of Heterochromatin in Malaria Parasites",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1091/mbc.e20-08-0547",
+   "doi": "10.1091/mbc.e20-08-0547",
+   "arxiv": null,
+   "openalex": "W3095401296",
+   "title": "Asymmetric chromosome segregation and cell division in DNA damage-induced bacterial filaments",
+   "year": 2020
+  },
+  {
+   "key": "doi:10.13025/17503",
+   "doi": "10.13025/17503",
+   "arxiv": null,
+   "openalex": "W2147073739",
+   "title": "Cell Cycle-dependence of cisplatin-and carboplatin-induced dna damage",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.20381/ruor-868",
+   "doi": "10.20381/ruor-868",
+   "arxiv": null,
+   "openalex": "W2338345521",
+   "title": "The Role of Atypical E2fs in the Maintenance and Development of the Ependymal Cell Barrier",
+   "year": 2016
+  }
+ ]
+}

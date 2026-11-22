@@ -1,0 +1,804 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-21-07Z_46681c",
+ "created_at": "2026-11-22T00:21:07Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "organizational closure autopoiesis",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "a1b5f930fbf8f760"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 3363,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-21-07Z_46681c/raw/paper-search.json",
+   "raw_sha256": "ab09e45effa8b91ee56056bab7e8af7932ed8d06230085b4b81ea1909a8ccf71",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1002/sres.3850050107",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Autopoiesis: The organizational closure of social systems",
+     "year": 1988,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1162/isal.a.936",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "What Simulation Discloses: Emergence, Organizational Closure, and Autopoiesis in Self-Modifying Systems",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.2139/ssrn.6179541",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Operationalizing autopoiesis beyond organisms via repair-closure",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.2139/ssrn.7411321",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Closure Without Enclosure: Fungal Mycelia and the Distributed Form of Autopoiesis",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.4018/978-1-7998-6713-5.ch011",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Business Autopoiesis Through Process Referencing",
+     "year": 2021,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.20944/preprints202609.1445.v1",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Viruses as Living Systems? Borrowed Closure and the Limits of Autopoiesis",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.2139/ssrn.6961119",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Viability-Localized Autopoiesis II: An Operator Calculus for Probes, Contexts, Scale Translation, and Empirical Closure Tests",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2026.105918",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Formalizing autopoiesis: Toward a Categorical-Thermodynamic Calculus of Closure",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 9376,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-21-07Z_46681c/raw/lixplore.json",
+   "raw_sha256": "5ace1032fbe0add7d13d27f3b43d6b568a2004397714a6d9b651afe0ca7dfc98",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1007/s40656-026-00775-w",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "F.W.J. Schelling and autopoiesis.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.3390/e28101103",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A Tale of Two Principles-Towards a Relational Perspective on the Free Energy Principle.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2026.105990",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The computational genesis of a self: Representational time and self-modeling in living systems.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.3389/frai.2026.1806435",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Genealogies of organizational closure: from logical paradox to mind in life.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2026.105928",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Experimental probes of autopoietic self-maintenance.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2026.105924",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Aging as cross-hallmark obstruction amplification: A sheaf-theoretic model of repair closure, senescence, inflammation, and regenerative failure.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2026.105918",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Formalizing autopoiesis: Toward a Categorical-Thermodynamic Calculus of Closure.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.3389/fncom.2026.1806695",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Organizational closure through regenerative signaling as a possible basis for conscious awareness.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1715,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-21-07Z_46681c/raw/openalex.json",
+   "raw_sha256": "af63aad4669dfc6c2aac5d19f86a381799b7a647c2be18184532373f05de9c1e",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1002/sres.3850050107",
+      "arxiv": null,
+      "openalex": "W1983204771",
+      "pmid": null
+     },
+     "title": "Autopoiesis: The organizational closure of social systems",
+     "year": 1988,
+     "score_raw": 55,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1162/isal.a.936",
+      "arxiv": null,
+      "openalex": "W7213241368",
+      "pmid": null
+     },
+     "title": "What Simulation Discloses: Emergence, Organizational Closure, and Autopoiesis in Self-Modifying Systems",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1177/009539979602800302",
+      "arxiv": null,
+      "openalex": "W1989549380",
+      "pmid": null
+     },
+     "title": "Tipping the Balance: Autopoiesis and Governance",
+     "year": 1996,
+     "score_raw": 184,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2026.105918",
+      "arxiv": null,
+      "openalex": "W7202149822",
+      "pmid": null
+     },
+     "title": "Formalizing autopoiesis: Toward a Categorical-Thermodynamic Calculus of Closure",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2023.104872",
+      "arxiv": null,
+      "openalex": "W4324044794",
+      "pmid": null
+     },
+     "title": "Formal autopoiesis: Solutions of the classical and extended functional closure equations",
+     "year": 2023,
+     "score_raw": 10,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1007/s13347-014-0154-y",
+      "arxiv": null,
+      "openalex": "W2059434641",
+      "pmid": null
+     },
+     "title": "Living Systems: Autonomy, Autopoiesis and Enaction",
+     "year": 2014,
+     "score_raw": 75,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1002/sres.2116",
+      "arxiv": null,
+      "openalex": "W2106697318",
+      "pmid": null
+     },
+     "title": "Rewriting Theory: From Autopoiesis to Communication",
+     "year": 2012,
+     "score_raw": 16,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W1482473282",
+      "pmid": null
+     },
+     "title": "Autopoiesis, Autonomy, and Organizational Biology: Critical Remarks on “Life After Ashby”",
+     "year": 2012,
+     "score_raw": 29,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year; same title+year merged",
+  "clusters": [
+   [
+    "doi:10.1002/sres.3850050107",
+    "doi:10.1016/j.biosystems.2026.105918",
+    "doi:10.1162/isal.a.936",
+    "doi:10.20944/preprints202609.1445.v1",
+    "doi:10.2139/ssrn.6179541",
+    "doi:10.2139/ssrn.6961119",
+    "doi:10.2139/ssrn.7411321",
+    "doi:10.4018/978-1-7998-6713-5.ch011"
+   ],
+   [
+    "doi:10.1007/s40656-026-00775-w",
+    "doi:10.1016/j.biosystems.2026.105918",
+    "doi:10.1016/j.biosystems.2026.105924",
+    "doi:10.1016/j.biosystems.2026.105928",
+    "doi:10.1016/j.biosystems.2026.105990",
+    "doi:10.3389/fncom.2026.1806695",
+    "doi:10.3389/frai.2026.1806435",
+    "doi:10.3390/e28101103"
+   ],
+   [
+    "doi:10.1002/sres.2116",
+    "doi:10.1002/sres.3850050107",
+    "doi:10.1007/s13347-014-0154-y",
+    "doi:10.1016/j.biosystems.2023.104872",
+    "doi:10.1016/j.biosystems.2026.105918",
+    "doi:10.1162/isal.a.936",
+    "doi:10.1177/009539979602800302",
+    "title:autopoiesis autonomy and organizational biology critical remarks on life after ashby#2012"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.1016/j.biosystems.2026.105918",
+    "rrf": 0.045256255,
+    "ranks": {
+     "paper-search": 8,
+     "lixplore": 7,
+     "openalex": 4
+    },
+    "channels": [
+     "lixplore",
+     "openalex",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1002/sres.3850050107",
+    "rrf": 0.032786885,
+    "ranks": {
+     "paper-search": 1,
+     "openalex": 1
+    },
+    "channels": [
+     "openalex",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1162/isal.a.936",
+    "rrf": 0.032258065,
+    "ranks": {
+     "paper-search": 2,
+     "openalex": 2
+    },
+    "channels": [
+     "openalex",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s40656-026-00775-w",
+    "rrf": 0.016393443,
+    "ranks": {
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.3390/e28101103",
+    "rrf": 0.016129032,
+    "ranks": {
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.biosystems.2026.105990",
+    "rrf": 0.015873016,
+    "ranks": {
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1177/009539979602800302",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.2139/ssrn.6179541",
+    "rrf": 0.015873016,
+    "ranks": {
+     "paper-search": 3
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.2139/ssrn.7411321",
+    "rrf": 0.015625,
+    "ranks": {
+     "paper-search": 4
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.3389/frai.2026.1806435",
+    "rrf": 0.015625,
+    "ranks": {
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.biosystems.2023.104872",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.biosystems.2026.105928",
+    "rrf": 0.015384615,
+    "ranks": {
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.4018/978-1-7998-6713-5.ch011",
+    "rrf": 0.015384615,
+    "ranks": {
+     "paper-search": 5
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s13347-014-0154-y",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.biosystems.2026.105924",
+    "rrf": 0.015151515,
+    "ranks": {
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.20944/preprints202609.1445.v1",
+    "rrf": 0.015151515,
+    "ranks": {
+     "paper-search": 6
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1002/sres.2116",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.2139/ssrn.6961119",
+    "rrf": 0.014925373,
+    "ranks": {
+     "paper-search": 7
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fncom.2026.1806695",
+    "rrf": 0.014705882,
+    "ranks": {
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "title:autopoiesis autonomy and organizational biology critical remarks on life after ashby#2012",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.1002/sres.3850050107",
+   "doi": "10.1002/sres.3850050107",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Autopoiesis: The organizational closure of social systems",
+   "year": 1988
+  },
+  {
+   "key": "doi:10.1162/isal.a.936",
+   "doi": "10.1162/isal.a.936",
+   "arxiv": null,
+   "openalex": null,
+   "title": "What Simulation Discloses: Emergence, Organizational Closure, and Autopoiesis in Self-Modifying Systems",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.2139/ssrn.6179541",
+   "doi": "10.2139/ssrn.6179541",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Operationalizing autopoiesis beyond organisms via repair-closure",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.2139/ssrn.7411321",
+   "doi": "10.2139/ssrn.7411321",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Closure Without Enclosure: Fungal Mycelia and the Distributed Form of Autopoiesis",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.4018/978-1-7998-6713-5.ch011",
+   "doi": "10.4018/978-1-7998-6713-5.ch011",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Business Autopoiesis Through Process Referencing",
+   "year": 2021
+  },
+  {
+   "key": "doi:10.20944/preprints202609.1445.v1",
+   "doi": "10.20944/preprints202609.1445.v1",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Viruses as Living Systems? Borrowed Closure and the Limits of Autopoiesis",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.2139/ssrn.6961119",
+   "doi": "10.2139/ssrn.6961119",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Viability-Localized Autopoiesis II: An Operator Calculus for Probes, Contexts, Scale Translation, and Empirical Closure Tests",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.biosystems.2026.105918",
+   "doi": "10.1016/j.biosystems.2026.105918",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Formalizing autopoiesis: Toward a Categorical-Thermodynamic Calculus of Closure",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1007/s40656-026-00775-w",
+   "doi": "10.1007/s40656-026-00775-w",
+   "arxiv": null,
+   "openalex": null,
+   "title": "F.W.J. Schelling and autopoiesis.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.3390/e28101103",
+   "doi": "10.3390/e28101103",
+   "arxiv": null,
+   "openalex": null,
+   "title": "A Tale of Two Principles-Towards a Relational Perspective on the Free Energy Principle.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.biosystems.2026.105990",
+   "doi": "10.1016/j.biosystems.2026.105990",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The computational genesis of a self: Representational time and self-modeling in living systems.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.3389/frai.2026.1806435",
+   "doi": "10.3389/frai.2026.1806435",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Genealogies of organizational closure: from logical paradox to mind in life.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.biosystems.2026.105928",
+   "doi": "10.1016/j.biosystems.2026.105928",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Experimental probes of autopoietic self-maintenance.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.biosystems.2026.105924",
+   "doi": "10.1016/j.biosystems.2026.105924",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Aging as cross-hallmark obstruction amplification: A sheaf-theoretic model of repair closure, senescence, inflammation, and regenerative failure.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.3389/fncom.2026.1806695",
+   "doi": "10.3389/fncom.2026.1806695",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Organizational closure through regenerative signaling as a possible basis for conscious awareness.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1177/009539979602800302",
+   "doi": "10.1177/009539979602800302",
+   "arxiv": null,
+   "openalex": "W1989549380",
+   "title": "Tipping the Balance: Autopoiesis and Governance",
+   "year": 1996
+  },
+  {
+   "key": "doi:10.1016/j.biosystems.2023.104872",
+   "doi": "10.1016/j.biosystems.2023.104872",
+   "arxiv": null,
+   "openalex": "W4324044794",
+   "title": "Formal autopoiesis: Solutions of the classical and extended functional closure equations",
+   "year": 2023
+  },
+  {
+   "key": "doi:10.1007/s13347-014-0154-y",
+   "doi": "10.1007/s13347-014-0154-y",
+   "arxiv": null,
+   "openalex": "W2059434641",
+   "title": "Living Systems: Autonomy, Autopoiesis and Enaction",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.1002/sres.2116",
+   "doi": "10.1002/sres.2116",
+   "arxiv": null,
+   "openalex": "W2106697318",
+   "title": "Rewriting Theory: From Autopoiesis to Communication",
+   "year": 2012
+  },
+  {
+   "key": "title:autopoiesis autonomy and organizational biology critical remarks on life after ashby#2012",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W1482473282",
+   "title": "Autopoiesis, Autonomy, and Organizational Biology: Critical Remarks on “Life After Ashby”",
+   "year": 2012
+  }
+ ]
+}

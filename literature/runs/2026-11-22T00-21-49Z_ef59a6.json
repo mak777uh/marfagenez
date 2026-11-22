@@ -1,0 +1,699 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-21-49Z_ef59a6",
+ "created_at": "2026-11-22T00:21:49Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "closure perturbation artificial life",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "6a5256144c3cf18e"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2481,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-21-49Z_ef59a6/raw/paper-search.json",
+   "raw_sha256": "6f25ff6c5dff4ac2aa6694738a8f8b5ebd9b4a63e87cfe71a39439d895d7ff9f",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.7551/978-0-262-29714-1-ch030",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A Loop conjecture for metabolic closure",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1007/3-540-59496-5_290",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Semantic Closure: A guiding notion to ground artificial life",
+     "year": 1995,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1162/isal_a_00712",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A Saucerful of Secrets: Open-Ended Organizational Closure in the Game of Life",
+     "year": 2024,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.7551/978-0-262-29714-1-ch115",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Ouroboros avatars: A mathematical exploration of self- reference and\n                        metabolic closure",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1142/9789812701497_0006",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Chapter 6 Perturbation Analysis: A Complex Systems Pattern",
+     "year": 2005,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1007/s10015-008-0618-1",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Parts closure in a kinematic self-replicating programmable constructor",
+     "year": 2009,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.37473//10.1101/2020.02.06.936856",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fluctuation, correlation and perturbation-response behavior of nature-made and artificial nanobodies",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.37473/dac/10.1101/2020.02.06.936856",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fluctuation, correlation and perturbation-response behavior of nature-made and artificial nanobodies",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 5402,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-21-49Z_ef59a6/raw/lixplore.json",
+   "raw_sha256": "347c3fee45ff170f89ed54d2d55703a9c44eda78c447ba97cf925ba06cbfaaef",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.7551/978-0-262-29714-1-ch030",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A Loop conjecture for metabolic closure",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1007/3-540-59496-5_290",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Semantic Closure: A guiding notion to ground artificial life",
+     "year": 1995,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1162/isal_a_00712",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A Saucerful of Secrets: Open-Ended Organizational Closure in the Game of Life",
+     "year": 2024,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.7551/978-0-262-29714-1-ch115",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Ouroboros avatars: A mathematical exploration of self- reference and\n                        metabolic closure",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1142/9789812701497_0006",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Chapter 6 Perturbation Analysis: A Complex Systems Pattern",
+     "year": 2005,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1007/s10015-008-0618-1",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Parts closure in a kinematic self-replicating programmable constructor",
+     "year": 2009,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.37473//10.1101/2020.02.06.936856",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fluctuation, correlation and perturbation-response behavior of nature-made and artificial nanobodies",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.37473/dac/10.1101/2020.02.06.936856",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fluctuation, correlation and perturbation-response behavior of nature-made and artificial nanobodies",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1667,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-21-49Z_ef59a6/raw/openalex.json",
+   "raw_sha256": "255695048f94d03d826aabd01145d9221a1cfcd8ea3d8167b7f2b3bdd395a9a9",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W7204373985",
+      "pmid": null
+     },
+     "title": "Artificial life as controlled disequilibrium",
+     "year": 2023,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.4018/9781591403128.ch012",
+      "arxiv": null,
+      "openalex": "W4236314395",
+      "pmid": null
+     },
+     "title": "Perspectives for Strong Artificial Life",
+     "year": 2011,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1016/j.artint.2008.12.001",
+      "arxiv": null,
+      "openalex": "W1989974095",
+      "pmid": null
+     },
+     "title": "Enactive artificial intelligence: Investigating the systemic organization of life and mind",
+     "year": 2008,
+     "score_raw": 392,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1098/rstb.2024.0298",
+      "arxiv": null,
+      "openalex": "W4414744353",
+      "pmid": null
+     },
+     "title": "Towards origins of virtual artificial life: an overview",
+     "year": 2025,
+     "score_raw": 10,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.33774/coe-2026-6317n-v2",
+      "arxiv": null,
+      "openalex": "W7163027481",
+      "pmid": null
+     },
+     "title": "Substrate-Coupled Artificial Life: From Virtual Origins to Physical Silicon",
+     "year": 2026,
+     "score_raw": 1,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.7551/mitpress/14630.003.0010",
+      "arxiv": null,
+      "openalex": "W4381327935",
+      "pmid": null
+     },
+     "title": "Catalysts, Loops, and Closure",
+     "year": 2023,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.21203/rs.3.rs-10846633/v1",
+      "arxiv": null,
+      "openalex": "W7204900578",
+      "pmid": null
+     },
+     "title": "An Auditable Complexity Ladder for Mechanism-Level Experiments in Artificial Life",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.33774/coe-2026-6317n",
+      "arxiv": null,
+      "openalex": "W7162092034",
+      "pmid": null
+     },
+     "title": "Substrate-Coupled Artificial Life: From Virtual Origins to Physical Silicon",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year; same title+year merged",
+  "clusters": [
+   [
+    "doi:10.1007/3-540-59496-5_290",
+    "doi:10.1007/s10015-008-0618-1",
+    "doi:10.1142/9789812701497_0006",
+    "doi:10.1162/isal_a_00712",
+    "doi:10.37473//10.1101/2020.02.06.936856",
+    "doi:10.7551/978-0-262-29714-1-ch030",
+    "doi:10.7551/978-0-262-29714-1-ch115"
+   ],
+   [
+    "doi:10.1007/3-540-59496-5_290",
+    "doi:10.1007/s10015-008-0618-1",
+    "doi:10.1142/9789812701497_0006",
+    "doi:10.1162/isal_a_00712",
+    "doi:10.37473//10.1101/2020.02.06.936856",
+    "doi:10.7551/978-0-262-29714-1-ch030",
+    "doi:10.7551/978-0-262-29714-1-ch115"
+   ],
+   [
+    "doi:10.1016/j.artint.2008.12.001",
+    "doi:10.1098/rstb.2024.0298",
+    "doi:10.21203/rs.3.rs-10846633/v1",
+    "doi:10.33774/coe-2026-6317n-v2",
+    "doi:10.4018/9781591403128.ch012",
+    "doi:10.7551/mitpress/14630.003.0010",
+    "title:artificial life as controlled disequilibrium#2023"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.7551/978-0-262-29714-1-ch030",
+    "rrf": 0.032786885,
+    "ranks": {
+     "paper-search": 1,
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/3-540-59496-5_290",
+    "rrf": 0.032258065,
+    "ranks": {
+     "paper-search": 2,
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1162/isal_a_00712",
+    "rrf": 0.031746032,
+    "ranks": {
+     "paper-search": 3,
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.7551/978-0-262-29714-1-ch115",
+    "rrf": 0.03125,
+    "ranks": {
+     "paper-search": 4,
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1142/9789812701497_0006",
+    "rrf": 0.030769231,
+    "ranks": {
+     "paper-search": 5,
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s10015-008-0618-1",
+    "rrf": 0.03030303,
+    "ranks": {
+     "paper-search": 6,
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.37473//10.1101/2020.02.06.936856",
+    "rrf": 0.029850746,
+    "ranks": {
+     "paper-search": 7,
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "title:artificial life as controlled disequilibrium#2023",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.4018/9781591403128.ch012",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.artint.2008.12.001",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1098/rstb.2024.0298",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.33774/coe-2026-6317n-v2",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.7551/mitpress/14630.003.0010",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.21203/rs.3.rs-10846633/v1",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.7551/978-0-262-29714-1-ch030",
+   "doi": "10.7551/978-0-262-29714-1-ch030",
+   "arxiv": null,
+   "openalex": null,
+   "title": "A Loop conjecture for metabolic closure",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.1007/3-540-59496-5_290",
+   "doi": "10.1007/3-540-59496-5_290",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Semantic Closure: A guiding notion to ground artificial life",
+   "year": 1995
+  },
+  {
+   "key": "doi:10.1162/isal_a_00712",
+   "doi": "10.1162/isal_a_00712",
+   "arxiv": null,
+   "openalex": null,
+   "title": "A Saucerful of Secrets: Open-Ended Organizational Closure in the Game of Life",
+   "year": 2024
+  },
+  {
+   "key": "doi:10.7551/978-0-262-29714-1-ch115",
+   "doi": "10.7551/978-0-262-29714-1-ch115",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Ouroboros avatars: A mathematical exploration of self- reference and\n                        metabolic closure",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.1142/9789812701497_0006",
+   "doi": "10.1142/9789812701497_0006",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Chapter 6 Perturbation Analysis: A Complex Systems Pattern",
+   "year": 2005
+  },
+  {
+   "key": "doi:10.1007/s10015-008-0618-1",
+   "doi": "10.1007/s10015-008-0618-1",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Parts closure in a kinematic self-replicating programmable constructor",
+   "year": 2009
+  },
+  {
+   "key": "doi:10.37473//10.1101/2020.02.06.936856",
+   "doi": "10.37473//10.1101/2020.02.06.936856",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Fluctuation, correlation and perturbation-response behavior of nature-made and artificial nanobodies",
+   "year": 1970
+  },
+  {
+   "key": "title:artificial life as controlled disequilibrium#2023",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W7204373985",
+   "title": "Artificial life as controlled disequilibrium",
+   "year": 2023
+  },
+  {
+   "key": "doi:10.4018/9781591403128.ch012",
+   "doi": "10.4018/9781591403128.ch012",
+   "arxiv": null,
+   "openalex": "W4236314395",
+   "title": "Perspectives for Strong Artificial Life",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.1016/j.artint.2008.12.001",
+   "doi": "10.1016/j.artint.2008.12.001",
+   "arxiv": null,
+   "openalex": "W1989974095",
+   "title": "Enactive artificial intelligence: Investigating the systemic organization of life and mind",
+   "year": 2008
+  },
+  {
+   "key": "doi:10.1098/rstb.2024.0298",
+   "doi": "10.1098/rstb.2024.0298",
+   "arxiv": null,
+   "openalex": "W4414744353",
+   "title": "Towards origins of virtual artificial life: an overview",
+   "year": 2025
+  },
+  {
+   "key": "doi:10.33774/coe-2026-6317n-v2",
+   "doi": "10.33774/coe-2026-6317n-v2",
+   "arxiv": null,
+   "openalex": "W7163027481",
+   "title": "Substrate-Coupled Artificial Life: From Virtual Origins to Physical Silicon",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.7551/mitpress/14630.003.0010",
+   "doi": "10.7551/mitpress/14630.003.0010",
+   "arxiv": null,
+   "openalex": "W4381327935",
+   "title": "Catalysts, Loops, and Closure",
+   "year": 2023
+  },
+  {
+   "key": "doi:10.21203/rs.3.rs-10846633/v1",
+   "doi": "10.21203/rs.3.rs-10846633/v1",
+   "arxiv": null,
+   "openalex": "W7204900578",
+   "title": "An Auditable Complexity Ladder for Mechanism-Level Experiments in Artificial Life",
+   "year": 2026
+  }
+ ]
+}

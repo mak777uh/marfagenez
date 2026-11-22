@@ -1,0 +1,868 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-18-12Z_330fd0",
+ "created_at": "2026-11-22T00:18:12Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "repair capacity degradation damage feedback mathematical model",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "61a79c4fc2afc5e4"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2884,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-18-12Z_330fd0/raw/paper-search.json",
+   "raw_sha256": "08be595c9d07ba8c32ef8254c9ff807e4219291427edaa083e6fe60aee7c08b9",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.5772/24361",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Mitochondrial DNA Damage, Repair, Degradation and Experimental Approaches to Studying These Phenomena",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.5339/qproc.2012.mutagens.3.15",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Chromosome Damage and the Damage Repair Capacity in Chinese Vinyl Chloride Monomer-exposed workers",
+     "year": 2012,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1007/978-3-030-76571-2_5",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The Role of Ribonucleases in RNA Damage, Inactivation and Degradation",
+     "year": 2021,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1016/b978-0-12-168561-4.50918-5",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "A MODEL FOR ASSESSING THE REPAIR CAPACITY OF ACUTE LARGE BOWEL DAMAGE IN THE RAT FOLLOWING X-IRRADIATION",
+     "year": 1991,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/j.apm.2012.06.006",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Economic production quantity model with repair failure and limited capacity",
+     "year": 2013,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1016/0025-5564(91)90079-x",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The application of a multistage model that incorporates DNA damage and repair to the analysis of initiation/promotion experiments",
+     "year": 1991,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1016/j.dnarep.2009.12.003",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "PCNA-coupled p21 degradation after DNA damage: The exception that confirms the rule?",
+     "year": 2010,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1155/2015/375054",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Investigating Distribution of Capacity Based on Degradation Model",
+     "year": 2015,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 7062,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-18-12Z_330fd0/raw/lixplore.json",
+   "raw_sha256": "b30a2a34cf841090f67ddfee815c0ddb3f177c36a4a6ffe29d9990b2ca973255",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.7150/thno.134232",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Feedback-regulated 3D-printed hydrogel micropatch for integrated therapy of fungal keratitis.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1039/d4fo00610k",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Astaxanthin targets IL-6 and alleviates the LPS-induced adverse inflammatory response of macrophages.",
+     "year": 2024,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1016/j.jtbi.2018.11.001",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Mathematical modeling of the cGAS pathway reveals robustness of DNA sensing to TREX1 feedback.",
+     "year": 2019,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1080/15384101.2016.1259039",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "RAC2-P38 MAPK-dependent NADPH oxidase activity is associated with the resistance of quiescent cells to ionizing radiation.",
+     "year": 2017,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2013.03.014",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Robustness and aging--a systems-level perspective.",
+     "year": 2013,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1016/s0531-5565(02)00012-8",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The reserve-capacity hypothesis: evolutionary origins and modern implications of the trade-off between tumor-suppression and tissue-repair.",
+     "year": 2002,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1007/BF02460696",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Growth factors and growth control of heterogeneous cell populations.",
+     "year": 1993,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1159/000212285",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Bidder's hypothesis revisited. Solution to some key problems associated with general molecular theory of ageing.",
+     "year": 1978,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1709,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-18-12Z_330fd0/raw/openalex.json",
+   "raw_sha256": "76d24d5fe1f12d36d28a683dad6c057e2d001931d204dbfa9ef43991458802a7",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1128/msystems.00018-20",
+      "arxiv": null,
+      "openalex": "W3092591238",
+      "pmid": null
+     },
+     "title": "Damage Repair versus Aging in an Individual-Based Model of Biofilms",
+     "year": 2020,
+     "score_raw": 7,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.14288/1.0065580",
+      "arxiv": null,
+      "openalex": "W2289833717",
+      "pmid": null
+     },
+     "title": "Power systems modeling for multiple infrastructure damage and repair simulations",
+     "year": 2008,
+     "score_raw": 2,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1016/j.jtbi.2013.04.037",
+      "arxiv": null,
+      "openalex": "W2068072750",
+      "pmid": null
+     },
+     "title": "A review of mathematical models for the formation of vascular networks",
+     "year": 2013,
+     "score_raw": 186,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W2786023073",
+      "pmid": null
+     },
+     "title": "Mathematical models of budding yeast colony formation and damage segregation in stem cells",
+     "year": 2017,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.17169/refubium-8992",
+      "arxiv": null,
+      "openalex": "W1954132003",
+      "pmid": null
+     },
+     "title": "Mathematical model of accumulation of damaged proteins and its impact on ageing",
+     "year": 2009,
+     "score_raw": 1,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1073/pnas.1715345115",
+      "arxiv": null,
+      "openalex": "W2792170819",
+      "pmid": null
+     },
+     "title": "A comprehensive model for the proliferation–quiescence decision in response to endogenous DNA damage in human cells",
+     "year": 2018,
+     "score_raw": 90,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1371/journal.pcbi.1004246",
+      "arxiv": null,
+      "openalex": "W1576948335",
+      "pmid": null
+     },
+     "title": "Integrated Stochastic Model of DNA Damage Repair by Non-homologous End Joining and p53/p21- Mediated Early Senescence Signalling",
+     "year": 2015,
+     "score_raw": 64,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.3390/metabo5020232",
+      "arxiv": null,
+      "openalex": "W2090715342",
+      "pmid": null
+     },
+     "title": "Mathematical Modelling of Metabolic Regulation in Aging",
+     "year": 2015,
+     "score_raw": 31,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year",
+  "clusters": [
+   [
+    "doi:10.1007/978-3-030-76571-2_5",
+    "doi:10.1016/0025-5564(91)90079-x",
+    "doi:10.1016/b978-0-12-168561-4.50918-5",
+    "doi:10.1016/j.apm.2012.06.006",
+    "doi:10.1016/j.dnarep.2009.12.003",
+    "doi:10.1155/2015/375054",
+    "doi:10.5339/qproc.2012.mutagens.3.15",
+    "doi:10.5772/24361"
+   ],
+   [
+    "doi:10.1007/bf02460696",
+    "doi:10.1016/j.biosystems.2013.03.014",
+    "doi:10.1016/j.jtbi.2018.11.001",
+    "doi:10.1016/s0531-5565(02)00012-8",
+    "doi:10.1039/d4fo00610k",
+    "doi:10.1080/15384101.2016.1259039",
+    "doi:10.1159/000212285",
+    "doi:10.7150/thno.134232"
+   ],
+   [
+    "doi:10.1016/j.jtbi.2013.04.037",
+    "doi:10.1073/pnas.1715345115",
+    "doi:10.1128/msystems.00018-20",
+    "doi:10.1371/journal.pcbi.1004246",
+    "doi:10.14288/1.0065580",
+    "doi:10.17169/refubium-8992",
+    "doi:10.3390/metabo5020232",
+    "title:mathematical models of budding yeast colony formation and damage segregation in stem cells#2017"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.1128/msystems.00018-20",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.5772/24361",
+    "rrf": 0.016393443,
+    "ranks": {
+     "paper-search": 1
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.7150/thno.134232",
+    "rrf": 0.016393443,
+    "ranks": {
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1039/d4fo00610k",
+    "rrf": 0.016129032,
+    "ranks": {
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.14288/1.0065580",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.5339/qproc.2012.mutagens.3.15",
+    "rrf": 0.016129032,
+    "ranks": {
+     "paper-search": 2
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-3-030-76571-2_5",
+    "rrf": 0.015873016,
+    "ranks": {
+     "paper-search": 3
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.jtbi.2013.04.037",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.jtbi.2018.11.001",
+    "rrf": 0.015873016,
+    "ranks": {
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/b978-0-12-168561-4.50918-5",
+    "rrf": 0.015625,
+    "ranks": {
+     "paper-search": 4
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1080/15384101.2016.1259039",
+    "rrf": 0.015625,
+    "ranks": {
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "title:mathematical models of budding yeast colony formation and damage segregation in stem cells#2017",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.apm.2012.06.006",
+    "rrf": 0.015384615,
+    "ranks": {
+     "paper-search": 5
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.biosystems.2013.03.014",
+    "rrf": 0.015384615,
+    "ranks": {
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.17169/refubium-8992",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/0025-5564(91)90079-x",
+    "rrf": 0.015151515,
+    "ranks": {
+     "paper-search": 6
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/s0531-5565(02)00012-8",
+    "rrf": 0.015151515,
+    "ranks": {
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1073/pnas.1715345115",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/bf02460696",
+    "rrf": 0.014925373,
+    "ranks": {
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.dnarep.2009.12.003",
+    "rrf": 0.014925373,
+    "ranks": {
+     "paper-search": 7
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1371/journal.pcbi.1004246",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1155/2015/375054",
+    "rrf": 0.014705882,
+    "ranks": {
+     "paper-search": 8
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1159/000212285",
+    "rrf": 0.014705882,
+    "ranks": {
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.3390/metabo5020232",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.5772/24361",
+   "doi": "10.5772/24361",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Mitochondrial DNA Damage, Repair, Degradation and Experimental Approaches to Studying These Phenomena",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.5339/qproc.2012.mutagens.3.15",
+   "doi": "10.5339/qproc.2012.mutagens.3.15",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Chromosome Damage and the Damage Repair Capacity in Chinese Vinyl Chloride Monomer-exposed workers",
+   "year": 2012
+  },
+  {
+   "key": "doi:10.1007/978-3-030-76571-2_5",
+   "doi": "10.1007/978-3-030-76571-2_5",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The Role of Ribonucleases in RNA Damage, Inactivation and Degradation",
+   "year": 2021
+  },
+  {
+   "key": "doi:10.1016/b978-0-12-168561-4.50918-5",
+   "doi": "10.1016/b978-0-12-168561-4.50918-5",
+   "arxiv": null,
+   "openalex": null,
+   "title": "A MODEL FOR ASSESSING THE REPAIR CAPACITY OF ACUTE LARGE BOWEL DAMAGE IN THE RAT FOLLOWING X-IRRADIATION",
+   "year": 1991
+  },
+  {
+   "key": "doi:10.1016/j.apm.2012.06.006",
+   "doi": "10.1016/j.apm.2012.06.006",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Economic production quantity model with repair failure and limited capacity",
+   "year": 2013
+  },
+  {
+   "key": "doi:10.1016/0025-5564(91)90079-x",
+   "doi": "10.1016/0025-5564(91)90079-x",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The application of a multistage model that incorporates DNA damage and repair to the analysis of initiation/promotion experiments",
+   "year": 1991
+  },
+  {
+   "key": "doi:10.1016/j.dnarep.2009.12.003",
+   "doi": "10.1016/j.dnarep.2009.12.003",
+   "arxiv": null,
+   "openalex": null,
+   "title": "PCNA-coupled p21 degradation after DNA damage: The exception that confirms the rule?",
+   "year": 2010
+  },
+  {
+   "key": "doi:10.1155/2015/375054",
+   "doi": "10.1155/2015/375054",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Investigating Distribution of Capacity Based on Degradation Model",
+   "year": 2015
+  },
+  {
+   "key": "doi:10.7150/thno.134232",
+   "doi": "10.7150/thno.134232",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Feedback-regulated 3D-printed hydrogel micropatch for integrated therapy of fungal keratitis.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1039/d4fo00610k",
+   "doi": "10.1039/d4fo00610k",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Astaxanthin targets IL-6 and alleviates the LPS-induced adverse inflammatory response of macrophages.",
+   "year": 2024
+  },
+  {
+   "key": "doi:10.1016/j.jtbi.2018.11.001",
+   "doi": "10.1016/j.jtbi.2018.11.001",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Mathematical modeling of the cGAS pathway reveals robustness of DNA sensing to TREX1 feedback.",
+   "year": 2019
+  },
+  {
+   "key": "doi:10.1080/15384101.2016.1259039",
+   "doi": "10.1080/15384101.2016.1259039",
+   "arxiv": null,
+   "openalex": null,
+   "title": "RAC2-P38 MAPK-dependent NADPH oxidase activity is associated with the resistance of quiescent cells to ionizing radiation.",
+   "year": 2017
+  },
+  {
+   "key": "doi:10.1016/j.biosystems.2013.03.014",
+   "doi": "10.1016/j.biosystems.2013.03.014",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Robustness and aging--a systems-level perspective.",
+   "year": 2013
+  },
+  {
+   "key": "doi:10.1016/s0531-5565(02)00012-8",
+   "doi": "10.1016/s0531-5565(02)00012-8",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The reserve-capacity hypothesis: evolutionary origins and modern implications of the trade-off between tumor-suppression and tissue-repair.",
+   "year": 2002
+  },
+  {
+   "key": "doi:10.1007/bf02460696",
+   "doi": "10.1007/BF02460696",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Growth factors and growth control of heterogeneous cell populations.",
+   "year": 1993
+  },
+  {
+   "key": "doi:10.1159/000212285",
+   "doi": "10.1159/000212285",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Bidder's hypothesis revisited. Solution to some key problems associated with general molecular theory of ageing.",
+   "year": 1978
+  },
+  {
+   "key": "doi:10.1128/msystems.00018-20",
+   "doi": "10.1128/msystems.00018-20",
+   "arxiv": null,
+   "openalex": "W3092591238",
+   "title": "Damage Repair versus Aging in an Individual-Based Model of Biofilms",
+   "year": 2020
+  },
+  {
+   "key": "doi:10.14288/1.0065580",
+   "doi": "10.14288/1.0065580",
+   "arxiv": null,
+   "openalex": "W2289833717",
+   "title": "Power systems modeling for multiple infrastructure damage and repair simulations",
+   "year": 2008
+  },
+  {
+   "key": "doi:10.1016/j.jtbi.2013.04.037",
+   "doi": "10.1016/j.jtbi.2013.04.037",
+   "arxiv": null,
+   "openalex": "W2068072750",
+   "title": "A review of mathematical models for the formation of vascular networks",
+   "year": 2013
+  },
+  {
+   "key": "title:mathematical models of budding yeast colony formation and damage segregation in stem cells#2017",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W2786023073",
+   "title": "Mathematical models of budding yeast colony formation and damage segregation in stem cells",
+   "year": 2017
+  },
+  {
+   "key": "doi:10.17169/refubium-8992",
+   "doi": "10.17169/refubium-8992",
+   "arxiv": null,
+   "openalex": "W1954132003",
+   "title": "Mathematical model of accumulation of damaged proteins and its impact on ageing",
+   "year": 2009
+  },
+  {
+   "key": "doi:10.1073/pnas.1715345115",
+   "doi": "10.1073/pnas.1715345115",
+   "arxiv": null,
+   "openalex": "W2792170819",
+   "title": "A comprehensive model for the proliferation–quiescence decision in response to endogenous DNA damage in human cells",
+   "year": 2018
+  },
+  {
+   "key": "doi:10.1371/journal.pcbi.1004246",
+   "doi": "10.1371/journal.pcbi.1004246",
+   "arxiv": null,
+   "openalex": "W1576948335",
+   "title": "Integrated Stochastic Model of DNA Damage Repair by Non-homologous End Joining and p53/p21- Mediated Early Senescence Signalling",
+   "year": 2015
+  },
+  {
+   "key": "doi:10.3390/metabo5020232",
+   "doi": "10.3390/metabo5020232",
+   "arxiv": null,
+   "openalex": "W2090715342",
+   "title": "Mathematical Modelling of Metabolic Regulation in Aging",
+   "year": 2015
+  }
+ ]
+}

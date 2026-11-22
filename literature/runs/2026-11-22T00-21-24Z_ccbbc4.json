@@ -1,0 +1,820 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-21-24Z_ccbbc4",
+ "created_at": "2026-11-22T00:21:24Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "boundary maintenance failure threshold",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "7eccd8a6337f211c"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2846,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-21-24Z_ccbbc4/raw/paper-search.json",
+   "raw_sha256": "ecf47b5d567cc135bd21f30d43647f080646c41dd3c954e7706dba97ae03cffb",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.17531/ein/174248",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Reliability modeling based on multiple wiener degradation-shock competing failure process and dynamic failure threshold",
+     "year": 2023,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1109/icqr2mse.2011.5976563",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Reliability analysis for dependent failure processes and dependent failure threshold",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.2139/ssrn.7162185",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Connectivity Maintenance Cost: A Thermodynamic Threshold Model for the Failure Sequence of Sustained Biological Networks, with Application to Neurodegeneration",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1109/phm-yantai55411.2022.9942070",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "RUL-centered postponed maintenance planning under random failure threshold",
+     "year": 2022,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1142/9789812773760_0038",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "OPTIMAL PREVENTIVE-MAINTENANCE POLICY FOR LEASE PRODUCTS UNDER A THRESHOLD VALUE ON FAILURE RATE",
+     "year": 2006,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1109/ieem.2012.6838085",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Optimal replacement threshold and inspection interval for condition-based maintenance with variable failure cost",
+     "year": 2012,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1115/1.3123340",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Reliability-Based Dynamic Maintenance Threshold for Failure Prevention of Continuously Monitored Degrading Systems",
+     "year": 2009,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1002/qre.2109",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Reliability Analysis and Condition‐based Maintenance for Failure Processes with Degradation‐dependent Hard Failure Threshold",
+     "year": 2016,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 10322,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-21-24Z_ccbbc4/raw/lixplore.json",
+   "raw_sha256": "86f9bfe3b7a4184a11c2759cfdaf59166632cdc3464e03cba7726e4377acf509",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1016/j.mex.2026.104171",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Spatio-temporal physics-informed digital twins for early fault prognostics of wind turbine generators and gearboxes.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1016/j.envres.2026.125298",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Functional instability and community-level compensatory mechanisms in the anammox system under long-term acetamiprid stress.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.3389/fddev.2026.1776167",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Oral delivery of peptides and proteins: pharmacokinetic boundaries, negative selection, and route triage.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1073/pnas.1720427115",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Diagnostic utility of telomere length testing in a hospital-based setting.",
+     "year": 2018,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1242/dev.014043",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Deafness in mice lacking the T-box transcription factor Tbx18 in otic fibrocytes.",
+     "year": 2008,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.17531/ein/174248",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Reliability modeling based on multiple wiener degradation-shock competing failure process and dynamic failure threshold",
+     "year": 2023,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1109/icqr2mse.2011.5976563",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Reliability analysis for dependent failure processes and dependent failure threshold",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.2139/ssrn.7162185",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Connectivity Maintenance Cost: A Thermodynamic Threshold Model for the Failure Sequence of Sustained Biological Networks, with Application to Neurodegeneration",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2002,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-21-24Z_ccbbc4/raw/openalex.json",
+   "raw_sha256": "3f0c5e16327385473bfdb875fef4524b10b5c7ef16058103b8d7a91cfaab6400",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.5281/zenodo.20158922",
+      "arxiv": null,
+      "openalex": "W7161040057",
+      "pmid": null
+     },
+     "title": "Active Finite Distinction Systems: A Formal Core for Boundary Maintenance under Finite Capacity",
+     "year": 2026,
+     "score_raw": 32,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W291394099",
+      "pmid": null
+     },
+     "title": "Study of LATERAL ORGAN BOUNDARIES (LOB) Genetic Pathways in Boundary Maintenance of Arabidopsis",
+     "year": 2012,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.3390/app16031452",
+      "arxiv": null,
+      "openalex": "W7126432749",
+      "pmid": null
+     },
+     "title": "A Unified Approach for Ensemble Function and Threshold Optimization in Anomaly-Based Failure Forecasting",
+     "year": 2026,
+     "score_raw": 1,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.36001/phme.2012.v1i1.1442",
+      "arxiv": null,
+      "openalex": "W3180499896",
+      "pmid": null
+     },
+     "title": "Lifetime models for remaining useful life estimation with randomly distributed failure thresholds",
+     "year": 2012,
+     "score_raw": 31,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1007/978-3-319-20463-5_19",
+      "arxiv": null,
+      "openalex": "W1445885361",
+      "pmid": null
+     },
+     "title": "Diagnostic Features Modeling for Decision Boundaries Calculation for Maintenance of Gearboxes Used in Belt Conveyor System",
+     "year": 2015,
+     "score_raw": 12,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1109/icsrs56243.2022.10067686",
+      "arxiv": null,
+      "openalex": "W4352981313",
+      "pmid": null
+     },
+     "title": "Experimental Investigation of Failure Thresholds of Rolling Element Bearings",
+     "year": 2022,
+     "score_raw": 1,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1007/s10546-009-9463-6",
+      "arxiv": null,
+      "openalex": "W2097124513",
+      "pmid": null
+     },
+     "title": "Variability and Maintenance of Turbulence in the Very Stable Boundary Layer",
+     "year": 2009,
+     "score_raw": 121,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W7167762589",
+      "pmid": null
+     },
+     "title": "Cost-Aware Learning for Failure Prediction in Industrial Predictive Maintenance",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year; same title+year merged",
+  "clusters": [
+   [
+    "doi:10.1002/qre.2109",
+    "doi:10.1109/icqr2mse.2011.5976563",
+    "doi:10.1109/ieem.2012.6838085",
+    "doi:10.1109/phm-yantai55411.2022.9942070",
+    "doi:10.1115/1.3123340",
+    "doi:10.1142/9789812773760_0038",
+    "doi:10.17531/ein/174248",
+    "doi:10.2139/ssrn.7162185"
+   ],
+   [
+    "doi:10.1016/j.envres.2026.125298",
+    "doi:10.1016/j.mex.2026.104171",
+    "doi:10.1073/pnas.1720427115",
+    "doi:10.1109/icqr2mse.2011.5976563",
+    "doi:10.1242/dev.014043",
+    "doi:10.17531/ein/174248",
+    "doi:10.2139/ssrn.7162185",
+    "doi:10.3389/fddev.2026.1776167"
+   ],
+   [
+    "doi:10.1007/978-3-319-20463-5_19",
+    "doi:10.1007/s10546-009-9463-6",
+    "doi:10.1109/icsrs56243.2022.10067686",
+    "doi:10.3390/app16031452",
+    "doi:10.36001/phme.2012.v1i1.1442",
+    "doi:10.5281/zenodo.20158922",
+    "title:cost aware learning for failure prediction in industrial predictive maintenance#2026",
+    "title:study of lateral organ boundaries lob genetic pathways in boundary maintenance of arabidopsis#2012"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.17531/ein/174248",
+    "rrf": 0.031544958,
+    "ranks": {
+     "paper-search": 1,
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1109/icqr2mse.2011.5976563",
+    "rrf": 0.031054405,
+    "ranks": {
+     "paper-search": 2,
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.2139/ssrn.7162185",
+    "rrf": 0.030578898,
+    "ranks": {
+     "paper-search": 3,
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.mex.2026.104171",
+    "rrf": 0.016393443,
+    "ranks": {
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.5281/zenodo.20158922",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.envres.2026.125298",
+    "rrf": 0.016129032,
+    "ranks": {
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "title:study of lateral organ boundaries lob genetic pathways in boundary maintenance of arabidopsis#2012",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fddev.2026.1776167",
+    "rrf": 0.015873016,
+    "ranks": {
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.3390/app16031452",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1073/pnas.1720427115",
+    "rrf": 0.015625,
+    "ranks": {
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1109/phm-yantai55411.2022.9942070",
+    "rrf": 0.015625,
+    "ranks": {
+     "paper-search": 4
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.36001/phme.2012.v1i1.1442",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-3-319-20463-5_19",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1142/9789812773760_0038",
+    "rrf": 0.015384615,
+    "ranks": {
+     "paper-search": 5
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1242/dev.014043",
+    "rrf": 0.015384615,
+    "ranks": {
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1109/icsrs56243.2022.10067686",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1109/ieem.2012.6838085",
+    "rrf": 0.015151515,
+    "ranks": {
+     "paper-search": 6
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s10546-009-9463-6",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1115/1.3123340",
+    "rrf": 0.014925373,
+    "ranks": {
+     "paper-search": 7
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1002/qre.2109",
+    "rrf": 0.014705882,
+    "ranks": {
+     "paper-search": 8
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "title:cost aware learning for failure prediction in industrial predictive maintenance#2026",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.17531/ein/174248",
+   "doi": "10.17531/ein/174248",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Reliability modeling based on multiple wiener degradation-shock competing failure process and dynamic failure threshold",
+   "year": 2023
+  },
+  {
+   "key": "doi:10.1109/icqr2mse.2011.5976563",
+   "doi": "10.1109/icqr2mse.2011.5976563",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Reliability analysis for dependent failure processes and dependent failure threshold",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.2139/ssrn.7162185",
+   "doi": "10.2139/ssrn.7162185",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Connectivity Maintenance Cost: A Thermodynamic Threshold Model for the Failure Sequence of Sustained Biological Networks, with Application to Neurodegeneration",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1109/phm-yantai55411.2022.9942070",
+   "doi": "10.1109/phm-yantai55411.2022.9942070",
+   "arxiv": null,
+   "openalex": null,
+   "title": "RUL-centered postponed maintenance planning under random failure threshold",
+   "year": 2022
+  },
+  {
+   "key": "doi:10.1142/9789812773760_0038",
+   "doi": "10.1142/9789812773760_0038",
+   "arxiv": null,
+   "openalex": null,
+   "title": "OPTIMAL PREVENTIVE-MAINTENANCE POLICY FOR LEASE PRODUCTS UNDER A THRESHOLD VALUE ON FAILURE RATE",
+   "year": 2006
+  },
+  {
+   "key": "doi:10.1109/ieem.2012.6838085",
+   "doi": "10.1109/ieem.2012.6838085",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Optimal replacement threshold and inspection interval for condition-based maintenance with variable failure cost",
+   "year": 2012
+  },
+  {
+   "key": "doi:10.1115/1.3123340",
+   "doi": "10.1115/1.3123340",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Reliability-Based Dynamic Maintenance Threshold for Failure Prevention of Continuously Monitored Degrading Systems",
+   "year": 2009
+  },
+  {
+   "key": "doi:10.1002/qre.2109",
+   "doi": "10.1002/qre.2109",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Reliability Analysis and Condition‐based Maintenance for Failure Processes with Degradation‐dependent Hard Failure Threshold",
+   "year": 2016
+  },
+  {
+   "key": "doi:10.1016/j.mex.2026.104171",
+   "doi": "10.1016/j.mex.2026.104171",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Spatio-temporal physics-informed digital twins for early fault prognostics of wind turbine generators and gearboxes.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.envres.2026.125298",
+   "doi": "10.1016/j.envres.2026.125298",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Functional instability and community-level compensatory mechanisms in the anammox system under long-term acetamiprid stress.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.3389/fddev.2026.1776167",
+   "doi": "10.3389/fddev.2026.1776167",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Oral delivery of peptides and proteins: pharmacokinetic boundaries, negative selection, and route triage.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1073/pnas.1720427115",
+   "doi": "10.1073/pnas.1720427115",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Diagnostic utility of telomere length testing in a hospital-based setting.",
+   "year": 2018
+  },
+  {
+   "key": "doi:10.1242/dev.014043",
+   "doi": "10.1242/dev.014043",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Deafness in mice lacking the T-box transcription factor Tbx18 in otic fibrocytes.",
+   "year": 2008
+  },
+  {
+   "key": "doi:10.5281/zenodo.20158922",
+   "doi": "10.5281/zenodo.20158922",
+   "arxiv": null,
+   "openalex": "W7161040057",
+   "title": "Active Finite Distinction Systems: A Formal Core for Boundary Maintenance under Finite Capacity",
+   "year": 2026
+  },
+  {
+   "key": "title:study of lateral organ boundaries lob genetic pathways in boundary maintenance of arabidopsis#2012",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W291394099",
+   "title": "Study of LATERAL ORGAN BOUNDARIES (LOB) Genetic Pathways in Boundary Maintenance of Arabidopsis",
+   "year": 2012
+  },
+  {
+   "key": "doi:10.3390/app16031452",
+   "doi": "10.3390/app16031452",
+   "arxiv": null,
+   "openalex": "W7126432749",
+   "title": "A Unified Approach for Ensemble Function and Threshold Optimization in Anomaly-Based Failure Forecasting",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.36001/phme.2012.v1i1.1442",
+   "doi": "10.36001/phme.2012.v1i1.1442",
+   "arxiv": null,
+   "openalex": "W3180499896",
+   "title": "Lifetime models for remaining useful life estimation with randomly distributed failure thresholds",
+   "year": 2012
+  },
+  {
+   "key": "doi:10.1007/978-3-319-20463-5_19",
+   "doi": "10.1007/978-3-319-20463-5_19",
+   "arxiv": null,
+   "openalex": "W1445885361",
+   "title": "Diagnostic Features Modeling for Decision Boundaries Calculation for Maintenance of Gearboxes Used in Belt Conveyor System",
+   "year": 2015
+  },
+  {
+   "key": "doi:10.1109/icsrs56243.2022.10067686",
+   "doi": "10.1109/icsrs56243.2022.10067686",
+   "arxiv": null,
+   "openalex": "W4352981313",
+   "title": "Experimental Investigation of Failure Thresholds of Rolling Element Bearings",
+   "year": 2022
+  },
+  {
+   "key": "doi:10.1007/s10546-009-9463-6",
+   "doi": "10.1007/s10546-009-9463-6",
+   "arxiv": null,
+   "openalex": "W2097124513",
+   "title": "Variability and Maintenance of Turbulence in the Very Stable Boundary Layer",
+   "year": 2009
+  },
+  {
+   "key": "title:cost aware learning for failure prediction in industrial predictive maintenance#2026",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W7167762589",
+   "title": "Cost-Aware Learning for Failure Prediction in Industrial Predictive Maintenance",
+   "year": 2026
+  }
+ ]
+}

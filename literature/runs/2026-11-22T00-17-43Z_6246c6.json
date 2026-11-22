@@ -1,0 +1,740 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-17-43Z_6246c6",
+ "created_at": "2026-11-22T00:17:43Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "protocell membrane damage inheritance division model",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "aef3dfb794385b6f"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 3093,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-17-43Z_6246c6/raw/paper-search.json",
+   "raw_sha256": "93fb859252b8adbb23911f88cceb8f56adad3fff26a603d4d719b4e4b2e0fbcb",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.2139/ssrn.6249639",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Variance-dependent inheritance drives symmetry breaking in a protocell model",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1021/acs.bioconjchem.1c00559.s001",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fatty Acid-Based Coacervates as a Membrane-free Protocell Model",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1021/acs.bioconjchem.1c00559.s003",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fatty Acid-Based Coacervates as a Membrane-free Protocell Model",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1021/acs.bioconjchem.1c00559.s002",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fatty Acid-Based Coacervates as a Membrane-free Protocell Model",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2026.105788",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Variance-dependent inheritance fidelity drives residence-time symmetry breaking in a protocell model",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.3410/f.717548136.793003153",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Faculty Opinions recommendation of Photochemically driven redox chemistry induces protocell membrane pearling and division.",
+     "year": 2012,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1007/978-3-662-65093-6_301100",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Protocell Division",
+     "year": 2023,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1007/978-3-642-70332-4_51",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The Onset of Division in a Protocell Model",
+     "year": 1985,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 9145,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-17-43Z_6246c6/raw/lixplore.json",
+   "raw_sha256": "f5689816230c64dfe85e0754321dda46636b712884b82a37fbad1a64eab1b9bb",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.2139/ssrn.6249639",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Variance-dependent inheritance drives symmetry breaking in a protocell model",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1021/acs.bioconjchem.1c00559.s001",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fatty Acid-Based Coacervates as a Membrane-free Protocell Model",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1021/acs.bioconjchem.1c00559.s003",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fatty Acid-Based Coacervates as a Membrane-free Protocell Model",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1021/acs.bioconjchem.1c00559.s002",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Fatty Acid-Based Coacervates as a Membrane-free Protocell Model",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1016/j.biosystems.2026.105788",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Variance-dependent inheritance fidelity drives residence-time symmetry breaking in a protocell model",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.3410/f.717548136.793003153",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Faculty Opinions recommendation of Photochemically driven redox chemistry induces protocell membrane pearling and division.",
+     "year": 2012,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1007/978-3-662-65093-6_301100",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Protocell Division",
+     "year": 2023,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1007/978-3-642-70332-4_51",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The Onset of Division in a Protocell Model",
+     "year": 1985,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2326,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-17-43Z_6246c6/raw/openalex.json",
+   "raw_sha256": "f2c0f4ec596c8b8e870175a6311a38cd4791d5c8f2e8695f19a9a255feb80a24",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.48550/arxiv.2405.04654",
+      "arxiv": null,
+      "openalex": "W4396815998",
+      "pmid": null
+     },
+     "title": "Metabolism, information, and viability in a simulated physically-plausible protocell",
+     "year": 2024,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1016/j.jtbi.2018.11.020",
+      "arxiv": null,
+      "openalex": "W2901651872",
+      "pmid": null
+     },
+     "title": "Moderate sex between protocells can balance between a decrease in assortment load and an increase in parasite spread",
+     "year": 2018,
+     "score_raw": 8,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1007/s11084-026-09730-y",
+      "arxiv": null,
+      "openalex": "W7163589352",
+      "pmid": null
+     },
+     "title": "Membranes as the earliest entropy resisting structures in the origin of life",
+     "year": 2026,
+     "score_raw": 2,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1089/ast.2019.2045",
+      "arxiv": null,
+      "openalex": "W2996553307",
+      "pmid": null
+     },
+     "title": "The Hot Spring Hypothesis for an Origin of Life",
+     "year": 2020,
+     "score_raw": 543,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1186/s13062-014-0028-3",
+      "arxiv": null,
+      "openalex": "W2127890530",
+      "pmid": null
+     },
+     "title": "Molecular complementarity between simple, universal molecules and ions limited phenotype space in the precursors of cells",
+     "year": 2014,
+     "score_raw": 28,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.2139/ssrn.7276142",
+      "arxiv": null,
+      "openalex": "W7202359770",
+      "pmid": null
+     },
+     "title": "Membrane–chemical temporal closure provides a minimal label-free precursor of cellular self/nonself discrimination",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.64898/2026.05.06.723269",
+      "arxiv": null,
+      "openalex": "W7160764503",
+      "pmid": null
+     },
+     "title": "De-Darwinizing the proteome: the genome as the original germ line",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.3389/fphys.2019.01222",
+      "arxiv": null,
+      "openalex": "W2977020532",
+      "pmid": null
+     },
+     "title": "The Origin of a Trans-Generational Organization in the Phenomenon of Biogenesis",
+     "year": 2019,
+     "score_raw": 8,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year",
+  "clusters": [
+   [
+    "doi:10.1007/978-3-642-70332-4_51",
+    "doi:10.1007/978-3-662-65093-6_301100",
+    "doi:10.1016/j.biosystems.2026.105788",
+    "doi:10.1021/acs.bioconjchem.1c00559.s001",
+    "doi:10.1021/acs.bioconjchem.1c00559.s002",
+    "doi:10.1021/acs.bioconjchem.1c00559.s003",
+    "doi:10.2139/ssrn.6249639",
+    "doi:10.3410/f.717548136.793003153"
+   ],
+   [
+    "doi:10.1007/978-3-642-70332-4_51",
+    "doi:10.1007/978-3-662-65093-6_301100",
+    "doi:10.1016/j.biosystems.2026.105788",
+    "doi:10.1021/acs.bioconjchem.1c00559.s001",
+    "doi:10.1021/acs.bioconjchem.1c00559.s002",
+    "doi:10.1021/acs.bioconjchem.1c00559.s003",
+    "doi:10.2139/ssrn.6249639",
+    "doi:10.3410/f.717548136.793003153"
+   ],
+   [
+    "doi:10.1007/s11084-026-09730-y",
+    "doi:10.1016/j.jtbi.2018.11.020",
+    "doi:10.1089/ast.2019.2045",
+    "doi:10.1186/s13062-014-0028-3",
+    "doi:10.2139/ssrn.7276142",
+    "doi:10.3389/fphys.2019.01222",
+    "doi:10.48550/arxiv.2405.04654",
+    "doi:10.64898/2026.05.06.723269"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.2139/ssrn.6249639",
+    "rrf": 0.032786885,
+    "ranks": {
+     "paper-search": 1,
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1021/acs.bioconjchem.1c00559.s001",
+    "rrf": 0.032258065,
+    "ranks": {
+     "paper-search": 2,
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1021/acs.bioconjchem.1c00559.s003",
+    "rrf": 0.031746032,
+    "ranks": {
+     "paper-search": 3,
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1021/acs.bioconjchem.1c00559.s002",
+    "rrf": 0.03125,
+    "ranks": {
+     "paper-search": 4,
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.biosystems.2026.105788",
+    "rrf": 0.030769231,
+    "ranks": {
+     "paper-search": 5,
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.3410/f.717548136.793003153",
+    "rrf": 0.03030303,
+    "ranks": {
+     "paper-search": 6,
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-3-662-65093-6_301100",
+    "rrf": 0.029850746,
+    "ranks": {
+     "paper-search": 7,
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-3-642-70332-4_51",
+    "rrf": 0.029411765,
+    "ranks": {
+     "paper-search": 8,
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.48550/arxiv.2405.04654",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.jtbi.2018.11.020",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s11084-026-09730-y",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1089/ast.2019.2045",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1186/s13062-014-0028-3",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.2139/ssrn.7276142",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.64898/2026.05.06.723269",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fphys.2019.01222",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.2139/ssrn.6249639",
+   "doi": "10.2139/ssrn.6249639",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Variance-dependent inheritance drives symmetry breaking in a protocell model",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1021/acs.bioconjchem.1c00559.s001",
+   "doi": "10.1021/acs.bioconjchem.1c00559.s001",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Fatty Acid-Based Coacervates as a Membrane-free Protocell Model",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1021/acs.bioconjchem.1c00559.s003",
+   "doi": "10.1021/acs.bioconjchem.1c00559.s003",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Fatty Acid-Based Coacervates as a Membrane-free Protocell Model",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1021/acs.bioconjchem.1c00559.s002",
+   "doi": "10.1021/acs.bioconjchem.1c00559.s002",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Fatty Acid-Based Coacervates as a Membrane-free Protocell Model",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1016/j.biosystems.2026.105788",
+   "doi": "10.1016/j.biosystems.2026.105788",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Variance-dependent inheritance fidelity drives residence-time symmetry breaking in a protocell model",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.3410/f.717548136.793003153",
+   "doi": "10.3410/f.717548136.793003153",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Faculty Opinions recommendation of Photochemically driven redox chemistry induces protocell membrane pearling and division.",
+   "year": 2012
+  },
+  {
+   "key": "doi:10.1007/978-3-662-65093-6_301100",
+   "doi": "10.1007/978-3-662-65093-6_301100",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Protocell Division",
+   "year": 2023
+  },
+  {
+   "key": "doi:10.1007/978-3-642-70332-4_51",
+   "doi": "10.1007/978-3-642-70332-4_51",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The Onset of Division in a Protocell Model",
+   "year": 1985
+  },
+  {
+   "key": "doi:10.48550/arxiv.2405.04654",
+   "doi": "10.48550/arxiv.2405.04654",
+   "arxiv": null,
+   "openalex": "W4396815998",
+   "title": "Metabolism, information, and viability in a simulated physically-plausible protocell",
+   "year": 2024
+  },
+  {
+   "key": "doi:10.1016/j.jtbi.2018.11.020",
+   "doi": "10.1016/j.jtbi.2018.11.020",
+   "arxiv": null,
+   "openalex": "W2901651872",
+   "title": "Moderate sex between protocells can balance between a decrease in assortment load and an increase in parasite spread",
+   "year": 2018
+  },
+  {
+   "key": "doi:10.1007/s11084-026-09730-y",
+   "doi": "10.1007/s11084-026-09730-y",
+   "arxiv": null,
+   "openalex": "W7163589352",
+   "title": "Membranes as the earliest entropy resisting structures in the origin of life",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1089/ast.2019.2045",
+   "doi": "10.1089/ast.2019.2045",
+   "arxiv": null,
+   "openalex": "W2996553307",
+   "title": "The Hot Spring Hypothesis for an Origin of Life",
+   "year": 2020
+  },
+  {
+   "key": "doi:10.1186/s13062-014-0028-3",
+   "doi": "10.1186/s13062-014-0028-3",
+   "arxiv": null,
+   "openalex": "W2127890530",
+   "title": "Molecular complementarity between simple, universal molecules and ions limited phenotype space in the precursors of cells",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.2139/ssrn.7276142",
+   "doi": "10.2139/ssrn.7276142",
+   "arxiv": null,
+   "openalex": "W7202359770",
+   "title": "Membrane–chemical temporal closure provides a minimal label-free precursor of cellular self/nonself discrimination",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.64898/2026.05.06.723269",
+   "doi": "10.64898/2026.05.06.723269",
+   "arxiv": null,
+   "openalex": "W7160764503",
+   "title": "De-Darwinizing the proteome: the genome as the original germ line",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.3389/fphys.2019.01222",
+   "doi": "10.3389/fphys.2019.01222",
+   "arxiv": null,
+   "openalex": "W2977020532",
+   "title": "The Origin of a Trans-Generational Organization in the Phenomenon of Biogenesis",
+   "year": 2019
+  }
+ ]
+}

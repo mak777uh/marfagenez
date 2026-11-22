@@ -1,0 +1,852 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-18-00Z_9d9538",
+ "created_at": "2026-11-22T00:18:00Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "coupled membrane integrity metabolism viability mathematical model",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "dd84bea84b59094c"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2776,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-18-00Z_9d9538/raw/paper-search.json",
+   "raw_sha256": "96ded8c10a8187d670facaf873820c6d108553d17054510c059eccbbc6dc304a",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.7717/peerj.10330/fig-3",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Figure 3:  HEK 293-A cell viability and membrane integrity are maintained following cotreatment of ML141 with rifampin.",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1016/0025-5564(95)00084-4",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Coupled Markov chain model: Characterization of membrane channel currents with multiple conductance sublevels as partially coupled elementary pores",
+     "year": 1996,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1016/s0025-326x(97)00134-3",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Assessment of bacterioplankton viability by membrane integrity",
+     "year": 1998,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.18178/ijpmbs.11.2.36-42",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The Effect of Anti-VDAC3 Recombinant Antibody on the Motility, Viability, and Membrane Integrity of Ejaculated Human Sperm",
+     "year": 2022,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1002/9781118904398.ch145",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Assessment of Sperm Plasma Membrane Integrity and Viability: Propidium Iodide/SYBR‐14",
+     "year": 2014,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1021/acs.jafc.5c16831.s001",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Gentisaldehyde Suppresses Phytophthora sojae by Combined Damage to Membrane Integrity and Energy Metabolism",
+     "year": 1970,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1002/9781119556015.ch169",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Assessment of Sperm Plasma Membrane Integrity and Viability",
+     "year": 2021,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1007/978-981-10-5200-2_6",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Evaluating Sperm Cell Viability and Membrane Integrity",
+     "year": 2017,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 10858,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-18-00Z_9d9538/raw/lixplore.json",
+   "raw_sha256": "a54f9385e5ec5ea5fc8e2fef9057286353ef1f8eda4cd4fcff8beb76ef0547a5",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.3389/fcimb.2025.1736171",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Phosphatidylcholine biosynthesis pathways in <i>Cryptococcus neoformans</i>: functional interplay and impact on virulence.",
+     "year": 2025,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.3390/nu18020339",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Optimizing INFOGEST Digest Conditioning for Reliable In Vitro Assessment of Nutrient Bioavailability Using Caco-2 Cell Models.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1016/j.carbpol.2025.124610",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Demonstration of the effective intestinal immunity activity of a high branched rhamnogalacturonan-I type pectin from wolfberry via exploration its interaction with colon biological and mechanical barrier.",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1016/j.jep.2021.114533",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Stepwise tracking strategy to screen ingredient from Galla Chinensis based on the \"mass spectrometry guided preparative chromatography coupled with systems pharmacology\".",
+     "year": 2022,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1111/and.13560",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Casein- and pea-enriched high-protein diet can take care of the reprotoxic effects of arsenic in male rats.",
+     "year": 2020,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1016/j.ydbio.2011.02.028",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Assembly of RNP granules in stressed and aging oocytes requires nucleoporins and is coordinated with nuclear membrane blebbing.",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1016/j.marenvres.2005.10.005",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Environmental prognostics: an integrated model supporting lysosomal stress responses as predictive biomarkers of animal health status.",
+     "year": 2006,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.7717/peerj.10330/fig-3",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Figure 3:  HEK 293-A cell viability and membrane integrity are maintained following cotreatment of ML141 with rifampin.",
+     "year": null,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1708,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-18-00Z_9d9538/raw/openalex.json",
+   "raw_sha256": "28077915f08571c156cbb9e1653986da2e7c6fcd414bb79f1ce20c30339342ee",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.5772/intechopen.82195",
+      "arxiv": null,
+      "openalex": "W2908180317",
+      "pmid": null
+     },
+     "title": "Fermentation: Metabolism, Kinetic Models, and Bioprocessing",
+     "year": 2019,
+     "score_raw": 47,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.1137/s0036144504446291",
+      "arxiv": null,
+      "openalex": "W2147212734",
+      "pmid": null
+     },
+     "title": "Mathematical Models of Avascular Tumor Growth",
+     "year": 2007,
+     "score_raw": 639,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1104/pp.122.2.597",
+      "arxiv": null,
+      "openalex": "W2118375017",
+      "pmid": null
+     },
+     "title": "Metabolic Dysfunction and Unabated Respiration Precede the Loss of Membrane Integrity during Dehydration of Germinating Radicles",
+     "year": 2000,
+     "score_raw": 167,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1146/annurev-biophys-052118-115451",
+      "arxiv": null,
+      "openalex": "W2917550741",
+      "pmid": null
+     },
+     "title": "Membrane Electroporation and Electropermeabilization: Mechanisms and Models",
+     "year": 2019,
+     "score_raw": 917,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1098/rsif.2017.0490",
+      "arxiv": null,
+      "openalex": "W2767326874",
+      "pmid": null
+     },
+     "title": "The biology and mathematical modelling of glioma invasion: a review",
+     "year": 2017,
+     "score_raw": 238,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1016/j.jtbi.2013.04.037",
+      "arxiv": null,
+      "openalex": "W2068072750",
+      "pmid": null
+     },
+     "title": "A review of mathematical models for the formation of vascular networks",
+     "year": 2013,
+     "score_raw": 186,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1128/jb.05424-11",
+      "arxiv": null,
+      "openalex": "W2112744072",
+      "pmid": null
+     },
+     "title": "The Biofilm Inhibitor Carolacton Disturbs Membrane Integrity and Cell Division of Streptococcus mutans through the Serine/Threonine Protein Kinase PknB",
+     "year": 2011,
+     "score_raw": 79,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1042/bsr20212457",
+      "arxiv": null,
+      "openalex": "W4212952359",
+      "pmid": null
+     },
+     "title": "Insights into pathological mechanisms and interventions revealed by analyzing a mathematical model for cone metabolism",
+     "year": 2022,
+     "score_raw": 5,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year",
+  "clusters": [
+   [
+    "doi:10.1002/9781118904398.ch145",
+    "doi:10.1002/9781119556015.ch169",
+    "doi:10.1007/978-981-10-5200-2_6",
+    "doi:10.1016/0025-5564(95)00084-4",
+    "doi:10.1016/s0025-326x(97)00134-3",
+    "doi:10.1021/acs.jafc.5c16831.s001",
+    "doi:10.18178/ijpmbs.11.2.36-42",
+    "doi:10.7717/peerj.10330/fig-3"
+   ],
+   [
+    "doi:10.1016/j.carbpol.2025.124610",
+    "doi:10.1016/j.jep.2021.114533",
+    "doi:10.1016/j.marenvres.2005.10.005",
+    "doi:10.1016/j.ydbio.2011.02.028",
+    "doi:10.1111/and.13560",
+    "doi:10.3389/fcimb.2025.1736171",
+    "doi:10.3390/nu18020339",
+    "doi:10.7717/peerj.10330/fig-3"
+   ],
+   [
+    "doi:10.1016/j.jtbi.2013.04.037",
+    "doi:10.1042/bsr20212457",
+    "doi:10.1098/rsif.2017.0490",
+    "doi:10.1104/pp.122.2.597",
+    "doi:10.1128/jb.05424-11",
+    "doi:10.1137/s0036144504446291",
+    "doi:10.1146/annurev-biophys-052118-115451",
+    "doi:10.5772/intechopen.82195"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.7717/peerj.10330/fig-3",
+    "rrf": 0.031099325,
+    "ranks": {
+     "paper-search": 1,
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.3389/fcimb.2025.1736171",
+    "rrf": 0.016393443,
+    "ranks": {
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.5772/intechopen.82195",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/0025-5564(95)00084-4",
+    "rrf": 0.016129032,
+    "ranks": {
+     "paper-search": 2
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1137/s0036144504446291",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.3390/nu18020339",
+    "rrf": 0.016129032,
+    "ranks": {
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.carbpol.2025.124610",
+    "rrf": 0.015873016,
+    "ranks": {
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/s0025-326x(97)00134-3",
+    "rrf": 0.015873016,
+    "ranks": {
+     "paper-search": 3
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1104/pp.122.2.597",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.jep.2021.114533",
+    "rrf": 0.015625,
+    "ranks": {
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1146/annurev-biophys-052118-115451",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.18178/ijpmbs.11.2.36-42",
+    "rrf": 0.015625,
+    "ranks": {
+     "paper-search": 4
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1002/9781118904398.ch145",
+    "rrf": 0.015384615,
+    "ranks": {
+     "paper-search": 5
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1098/rsif.2017.0490",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1111/and.13560",
+    "rrf": 0.015384615,
+    "ranks": {
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.jtbi.2013.04.037",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.ydbio.2011.02.028",
+    "rrf": 0.015151515,
+    "ranks": {
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1021/acs.jafc.5c16831.s001",
+    "rrf": 0.015151515,
+    "ranks": {
+     "paper-search": 6
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1002/9781119556015.ch169",
+    "rrf": 0.014925373,
+    "ranks": {
+     "paper-search": 7
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.marenvres.2005.10.005",
+    "rrf": 0.014925373,
+    "ranks": {
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore"
+    ]
+   },
+   {
+    "key": "doi:10.1128/jb.05424-11",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/978-981-10-5200-2_6",
+    "rrf": 0.014705882,
+    "ranks": {
+     "paper-search": 8
+    },
+    "channels": [
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1042/bsr20212457",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.7717/peerj.10330/fig-3",
+   "doi": "10.7717/peerj.10330/fig-3",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Figure 3:  HEK 293-A cell viability and membrane integrity are maintained following cotreatment of ML141 with rifampin.",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1016/0025-5564(95)00084-4",
+   "doi": "10.1016/0025-5564(95)00084-4",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Coupled Markov chain model: Characterization of membrane channel currents with multiple conductance sublevels as partially coupled elementary pores",
+   "year": 1996
+  },
+  {
+   "key": "doi:10.1016/s0025-326x(97)00134-3",
+   "doi": "10.1016/s0025-326x(97)00134-3",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Assessment of bacterioplankton viability by membrane integrity",
+   "year": 1998
+  },
+  {
+   "key": "doi:10.18178/ijpmbs.11.2.36-42",
+   "doi": "10.18178/ijpmbs.11.2.36-42",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The Effect of Anti-VDAC3 Recombinant Antibody on the Motility, Viability, and Membrane Integrity of Ejaculated Human Sperm",
+   "year": 2022
+  },
+  {
+   "key": "doi:10.1002/9781118904398.ch145",
+   "doi": "10.1002/9781118904398.ch145",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Assessment of Sperm Plasma Membrane Integrity and Viability: Propidium Iodide/SYBR‐14",
+   "year": 2014
+  },
+  {
+   "key": "doi:10.1021/acs.jafc.5c16831.s001",
+   "doi": "10.1021/acs.jafc.5c16831.s001",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Gentisaldehyde Suppresses Phytophthora sojae by Combined Damage to Membrane Integrity and Energy Metabolism",
+   "year": 1970
+  },
+  {
+   "key": "doi:10.1002/9781119556015.ch169",
+   "doi": "10.1002/9781119556015.ch169",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Assessment of Sperm Plasma Membrane Integrity and Viability",
+   "year": 2021
+  },
+  {
+   "key": "doi:10.1007/978-981-10-5200-2_6",
+   "doi": "10.1007/978-981-10-5200-2_6",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Evaluating Sperm Cell Viability and Membrane Integrity",
+   "year": 2017
+  },
+  {
+   "key": "doi:10.3389/fcimb.2025.1736171",
+   "doi": "10.3389/fcimb.2025.1736171",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Phosphatidylcholine biosynthesis pathways in <i>Cryptococcus neoformans</i>: functional interplay and impact on virulence.",
+   "year": 2025
+  },
+  {
+   "key": "doi:10.3390/nu18020339",
+   "doi": "10.3390/nu18020339",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Optimizing INFOGEST Digest Conditioning for Reliable In Vitro Assessment of Nutrient Bioavailability Using Caco-2 Cell Models.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.carbpol.2025.124610",
+   "doi": "10.1016/j.carbpol.2025.124610",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Demonstration of the effective intestinal immunity activity of a high branched rhamnogalacturonan-I type pectin from wolfberry via exploration its interaction with colon biological and mechanical barrier.",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.jep.2021.114533",
+   "doi": "10.1016/j.jep.2021.114533",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Stepwise tracking strategy to screen ingredient from Galla Chinensis based on the \"mass spectrometry guided preparative chromatography coupled with systems pharmacology\".",
+   "year": 2022
+  },
+  {
+   "key": "doi:10.1111/and.13560",
+   "doi": "10.1111/and.13560",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Casein- and pea-enriched high-protein diet can take care of the reprotoxic effects of arsenic in male rats.",
+   "year": 2020
+  },
+  {
+   "key": "doi:10.1016/j.ydbio.2011.02.028",
+   "doi": "10.1016/j.ydbio.2011.02.028",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Assembly of RNP granules in stressed and aging oocytes requires nucleoporins and is coordinated with nuclear membrane blebbing.",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.1016/j.marenvres.2005.10.005",
+   "doi": "10.1016/j.marenvres.2005.10.005",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Environmental prognostics: an integrated model supporting lysosomal stress responses as predictive biomarkers of animal health status.",
+   "year": 2006
+  },
+  {
+   "key": "doi:10.5772/intechopen.82195",
+   "doi": "10.5772/intechopen.82195",
+   "arxiv": null,
+   "openalex": "W2908180317",
+   "title": "Fermentation: Metabolism, Kinetic Models, and Bioprocessing",
+   "year": 2019
+  },
+  {
+   "key": "doi:10.1137/s0036144504446291",
+   "doi": "10.1137/s0036144504446291",
+   "arxiv": null,
+   "openalex": "W2147212734",
+   "title": "Mathematical Models of Avascular Tumor Growth",
+   "year": 2007
+  },
+  {
+   "key": "doi:10.1104/pp.122.2.597",
+   "doi": "10.1104/pp.122.2.597",
+   "arxiv": null,
+   "openalex": "W2118375017",
+   "title": "Metabolic Dysfunction and Unabated Respiration Precede the Loss of Membrane Integrity during Dehydration of Germinating Radicles",
+   "year": 2000
+  },
+  {
+   "key": "doi:10.1146/annurev-biophys-052118-115451",
+   "doi": "10.1146/annurev-biophys-052118-115451",
+   "arxiv": null,
+   "openalex": "W2917550741",
+   "title": "Membrane Electroporation and Electropermeabilization: Mechanisms and Models",
+   "year": 2019
+  },
+  {
+   "key": "doi:10.1098/rsif.2017.0490",
+   "doi": "10.1098/rsif.2017.0490",
+   "arxiv": null,
+   "openalex": "W2767326874",
+   "title": "The biology and mathematical modelling of glioma invasion: a review",
+   "year": 2017
+  },
+  {
+   "key": "doi:10.1016/j.jtbi.2013.04.037",
+   "doi": "10.1016/j.jtbi.2013.04.037",
+   "arxiv": null,
+   "openalex": "W2068072750",
+   "title": "A review of mathematical models for the formation of vascular networks",
+   "year": 2013
+  },
+  {
+   "key": "doi:10.1128/jb.05424-11",
+   "doi": "10.1128/jb.05424-11",
+   "arxiv": null,
+   "openalex": "W2112744072",
+   "title": "The Biofilm Inhibitor Carolacton Disturbs Membrane Integrity and Cell Division of Streptococcus mutans through the Serine/Threonine Protein Kinase PknB",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.1042/bsr20212457",
+   "doi": "10.1042/bsr20212457",
+   "arxiv": null,
+   "openalex": "W4212952359",
+   "title": "Insights into pathological mechanisms and interventions revealed by analyzing a mathematical model for cone metabolism",
+   "year": 2022
+  }
+ ]
+}

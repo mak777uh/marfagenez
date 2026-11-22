@@ -1,0 +1,740 @@
+{
+ "schema": "litsearch/v1",
+ "run_id": "2026-11-22T00-18-38Z_2853fc",
+ "created_at": "2026-11-22T00:18:38Z",
+ "environment": {
+  "repo_commit": "e2e8cef",
+  "side": "wsl",
+  "tool_versions": {
+   "paper-search": "installed",
+   "lixplore": "installed",
+   "curl": "windows"
+  },
+  "semantic_model": null
+ },
+ "query": {
+  "text": "protocell boundary maintenance resource exchange failure threshold",
+  "lang": "en",
+  "seeds": [],
+  "fingerprint": "e9f315c97010b0cd"
+ },
+ "channels": [
+  {
+   "name": "paper-search",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 2890,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-18-38Z_2853fc/raw/paper-search.json",
+   "raw_sha256": "a66a4033b820ca6e0b4a8c80ecaa8c8dca22746efdcde1180997403a8f04e4ea",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1016/0303-2647(86)90008-0",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The “protocell”: A mathematical model of self-maintenance",
+     "year": 1986,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.17531/ein/174248",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Reliability modeling based on multiple wiener degradation-shock competing failure process and dynamic failure threshold",
+     "year": 2023,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1109/icqr2mse.2011.5976563",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Reliability analysis for dependent failure processes and dependent failure threshold",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.2139/ssrn.7162185",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Connectivity Maintenance Cost: A Thermodynamic Threshold Model for the Failure Sequence of Sustained Biological Networks, with Application to Neurodegeneration",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1093/oso/9780198822226.003.0004",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Threshold Effects of Fiscal-Monetary Interdependence and Exchange Rate Regimes in Oil-Dependent Arab Economies",
+     "year": 2019,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1017/cbo9780511598326.006",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The social system: boundary maintenance and hierarchical control",
+     "year": 1984,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1109/phm-yantai55411.2022.9942070",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "RUL-centered postponed maintenance planning under random failure threshold",
+     "year": 2022,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1142/9789812773760_0038",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "OPTIMAL PREVENTIVE-MAINTENANCE POLICY FOR LEASE PRODUCTS UNDER A THRESHOLD VALUE ON FAILURE RATE",
+     "year": 2006,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "lixplore",
+   "sources": [
+    "crossref",
+    "arxiv",
+    "pubmed",
+    "europepmc",
+    "doaj"
+   ],
+   "status": "ok",
+   "elapsed_ms": 9095,
+   "params": {
+    "n": 8
+   },
+   "raw_snapshot": "2026-11-22T00-18-38Z_2853fc/raw/lixplore.json",
+   "raw_sha256": "b701320beb35205c13c075f99c105c1fc6cbe750567331d4828ea7949068bf07",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.1016/0303-2647(86)90008-0",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The “protocell”: A mathematical model of self-maintenance",
+     "year": 1986,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.17531/ein/174248",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Reliability modeling based on multiple wiener degradation-shock competing failure process and dynamic failure threshold",
+     "year": 2023,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": "10.1109/icqr2mse.2011.5976563",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Reliability analysis for dependent failure processes and dependent failure threshold",
+     "year": 2011,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.2139/ssrn.7162185",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Connectivity Maintenance Cost: A Thermodynamic Threshold Model for the Failure Sequence of Sustained Biological Networks, with Application to Neurodegeneration",
+     "year": 2026,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.1093/oso/9780198822226.003.0004",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "Threshold Effects of Fiscal-Monetary Interdependence and Exchange Rate Regimes in Oil-Dependent Arab Economies",
+     "year": 2019,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1017/cbo9780511598326.006",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "The social system: boundary maintenance and hierarchical control",
+     "year": 1984,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1109/phm-yantai55411.2022.9942070",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "RUL-centered postponed maintenance planning under random failure threshold",
+     "year": 2022,
+     "score_raw": null,
+     "score_kind": null
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1142/9789812773760_0038",
+      "arxiv": null,
+      "openalex": null,
+      "pmid": null
+     },
+     "title": "OPTIMAL PREVENTIVE-MAINTENANCE POLICY FOR LEASE PRODUCTS UNDER A THRESHOLD VALUE ON FAILURE RATE",
+     "year": 2006,
+     "score_raw": null,
+     "score_kind": null
+    }
+   ]
+  },
+  {
+   "name": "openalex",
+   "sources": [
+    "openalex"
+   ],
+   "status": "ok",
+   "elapsed_ms": 1732,
+   "params": {
+    "n": 8,
+    "key": true,
+    "cache_hit": false
+   },
+   "raw_snapshot": "2026-11-22T00-18-38Z_2853fc/raw/openalex.json",
+   "raw_sha256": "d8096bb8246739bd990947bc26e5ad65b8d96ea27aea6d18f4aa00cec649e910",
+   "results": [
+    {
+     "rank": 1,
+     "ids": {
+      "doi": "10.48550/arxiv.1606.03620",
+      "arxiv": null,
+      "openalex": "W2442378510",
+      "pmid": null
+     },
+     "title": "Modelling Early Transitions Toward Autonomous Protocells",
+     "year": 2016,
+     "score_raw": 5,
+     "score_kind": "api"
+    },
+    {
+     "rank": 2,
+     "ids": {
+      "doi": "10.68366/2pyt7f91",
+      "arxiv": null,
+      "openalex": "W7225225562",
+      "pmid": null
+     },
+     "title": "A Finite Axiomatic Framework for the Interior Chrysene Lattice and Protocell Organization",
+     "year": 2026,
+     "score_raw": 4,
+     "score_kind": "api"
+    },
+    {
+     "rank": 3,
+     "ids": {
+      "doi": null,
+      "arxiv": null,
+      "openalex": "W183237547",
+      "pmid": null
+     },
+     "title": "Adaptation from interactions between metabolism and behaviour:self-sensitive behaviour in protocells",
+     "year": 2012,
+     "score_raw": 1,
+     "score_kind": "api"
+    },
+    {
+     "rank": 4,
+     "ids": {
+      "doi": "10.1007/s40844-019-00152-2",
+      "arxiv": null,
+      "openalex": "W2991069664",
+      "pmid": null
+     },
+     "title": "Globalization and the erosion of geo-ethnic checkpoints: evolving signal-boundary systems at the edge of chaos",
+     "year": 2019,
+     "score_raw": 6,
+     "score_kind": "api"
+    },
+    {
+     "rank": 5,
+     "ids": {
+      "doi": "10.36922/mi026330099",
+      "arxiv": null,
+      "openalex": "W7221186204",
+      "pmid": null
+     },
+     "title": "Synthetic cells: Potential benefits and risks of interactions with commensal and pathogenic microorganisms",
+     "year": 2026,
+     "score_raw": 0,
+     "score_kind": "api"
+    },
+    {
+     "rank": 6,
+     "ids": {
+      "doi": "10.1007/s11084-026-09730-y",
+      "arxiv": null,
+      "openalex": "W7163589352",
+      "pmid": null
+     },
+     "title": "Membranes as the earliest entropy resisting structures in the origin of life",
+     "year": 2026,
+     "score_raw": 2,
+     "score_kind": "api"
+    },
+    {
+     "rank": 7,
+     "ids": {
+      "doi": "10.1007/s11084-026-09727-7",
+      "arxiv": null,
+      "openalex": "W7160623415",
+      "pmid": null
+     },
+     "title": "Quantitative nonequilibrium pathway from fundamental physics to the emergence and persistence of exoplanetary biospheres",
+     "year": 2026,
+     "score_raw": 5,
+     "score_kind": "api"
+    },
+    {
+     "rank": 8,
+     "ids": {
+      "doi": "10.1016/j.ceca.2014.12.011",
+      "arxiv": null,
+      "openalex": "W2111809322",
+      "pmid": null
+     },
+     "title": "The evolution of bacterial mechanosensitive channels",
+     "year": 2014,
+     "score_raw": 53,
+     "score_kind": "api"
+    }
+   ]
+  }
+ ],
+ "dedup": {
+  "method": "doi>arxiv>pmid>title_norm+year",
+  "clusters": [
+   [
+    "doi:10.1016/0303-2647(86)90008-0",
+    "doi:10.1017/cbo9780511598326.006",
+    "doi:10.1093/oso/9780198822226.003.0004",
+    "doi:10.1109/icqr2mse.2011.5976563",
+    "doi:10.1109/phm-yantai55411.2022.9942070",
+    "doi:10.1142/9789812773760_0038",
+    "doi:10.17531/ein/174248",
+    "doi:10.2139/ssrn.7162185"
+   ],
+   [
+    "doi:10.1016/0303-2647(86)90008-0",
+    "doi:10.1017/cbo9780511598326.006",
+    "doi:10.1093/oso/9780198822226.003.0004",
+    "doi:10.1109/icqr2mse.2011.5976563",
+    "doi:10.1109/phm-yantai55411.2022.9942070",
+    "doi:10.1142/9789812773760_0038",
+    "doi:10.17531/ein/174248",
+    "doi:10.2139/ssrn.7162185"
+   ],
+   [
+    "doi:10.1007/s11084-026-09727-7",
+    "doi:10.1007/s11084-026-09730-y",
+    "doi:10.1007/s40844-019-00152-2",
+    "doi:10.1016/j.ceca.2014.12.011",
+    "doi:10.36922/mi026330099",
+    "doi:10.48550/arxiv.1606.03620",
+    "doi:10.68366/2pyt7f91",
+    "title:adaptation from interactions between metabolism and behaviour self sensitive behaviour in protocells#2012"
+   ]
+  ]
+ },
+ "fusion": {
+  "method": "rrf",
+  "k": 60,
+  "weights": {},
+  "tie_break": "score_desc_key_asc",
+  "ranking": [
+   {
+    "key": "doi:10.1016/0303-2647(86)90008-0",
+    "rrf": 0.032786885,
+    "ranks": {
+     "paper-search": 1,
+     "lixplore": 1
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.17531/ein/174248",
+    "rrf": 0.032258065,
+    "ranks": {
+     "paper-search": 2,
+     "lixplore": 2
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1109/icqr2mse.2011.5976563",
+    "rrf": 0.031746032,
+    "ranks": {
+     "paper-search": 3,
+     "lixplore": 3
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.2139/ssrn.7162185",
+    "rrf": 0.03125,
+    "ranks": {
+     "paper-search": 4,
+     "lixplore": 4
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1093/oso/9780198822226.003.0004",
+    "rrf": 0.030769231,
+    "ranks": {
+     "paper-search": 5,
+     "lixplore": 5
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1017/cbo9780511598326.006",
+    "rrf": 0.03030303,
+    "ranks": {
+     "paper-search": 6,
+     "lixplore": 6
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1109/phm-yantai55411.2022.9942070",
+    "rrf": 0.029850746,
+    "ranks": {
+     "paper-search": 7,
+     "lixplore": 7
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.1142/9789812773760_0038",
+    "rrf": 0.029411765,
+    "ranks": {
+     "paper-search": 8,
+     "lixplore": 8
+    },
+    "channels": [
+     "lixplore",
+     "paper-search"
+    ]
+   },
+   {
+    "key": "doi:10.48550/arxiv.1606.03620",
+    "rrf": 0.016393443,
+    "ranks": {
+     "openalex": 1
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.68366/2pyt7f91",
+    "rrf": 0.016129032,
+    "ranks": {
+     "openalex": 2
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "title:adaptation from interactions between metabolism and behaviour self sensitive behaviour in protocells#2012",
+    "rrf": 0.015873016,
+    "ranks": {
+     "openalex": 3
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s40844-019-00152-2",
+    "rrf": 0.015625,
+    "ranks": {
+     "openalex": 4
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.36922/mi026330099",
+    "rrf": 0.015384615,
+    "ranks": {
+     "openalex": 5
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s11084-026-09730-y",
+    "rrf": 0.015151515,
+    "ranks": {
+     "openalex": 6
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1007/s11084-026-09727-7",
+    "rrf": 0.014925373,
+    "ranks": {
+     "openalex": 7
+    },
+    "channels": [
+     "openalex"
+    ]
+   },
+   {
+    "key": "doi:10.1016/j.ceca.2014.12.011",
+    "rrf": 0.014705882,
+    "ranks": {
+     "openalex": 8
+    },
+    "channels": [
+     "openalex"
+    ]
+   }
+  ]
+ },
+ "degraded": false,
+ "saturation": null,
+ "works": [
+  {
+   "key": "doi:10.1016/0303-2647(86)90008-0",
+   "doi": "10.1016/0303-2647(86)90008-0",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The “protocell”: A mathematical model of self-maintenance",
+   "year": 1986
+  },
+  {
+   "key": "doi:10.17531/ein/174248",
+   "doi": "10.17531/ein/174248",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Reliability modeling based on multiple wiener degradation-shock competing failure process and dynamic failure threshold",
+   "year": 2023
+  },
+  {
+   "key": "doi:10.1109/icqr2mse.2011.5976563",
+   "doi": "10.1109/icqr2mse.2011.5976563",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Reliability analysis for dependent failure processes and dependent failure threshold",
+   "year": 2011
+  },
+  {
+   "key": "doi:10.2139/ssrn.7162185",
+   "doi": "10.2139/ssrn.7162185",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Connectivity Maintenance Cost: A Thermodynamic Threshold Model for the Failure Sequence of Sustained Biological Networks, with Application to Neurodegeneration",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1093/oso/9780198822226.003.0004",
+   "doi": "10.1093/oso/9780198822226.003.0004",
+   "arxiv": null,
+   "openalex": null,
+   "title": "Threshold Effects of Fiscal-Monetary Interdependence and Exchange Rate Regimes in Oil-Dependent Arab Economies",
+   "year": 2019
+  },
+  {
+   "key": "doi:10.1017/cbo9780511598326.006",
+   "doi": "10.1017/cbo9780511598326.006",
+   "arxiv": null,
+   "openalex": null,
+   "title": "The social system: boundary maintenance and hierarchical control",
+   "year": 1984
+  },
+  {
+   "key": "doi:10.1109/phm-yantai55411.2022.9942070",
+   "doi": "10.1109/phm-yantai55411.2022.9942070",
+   "arxiv": null,
+   "openalex": null,
+   "title": "RUL-centered postponed maintenance planning under random failure threshold",
+   "year": 2022
+  },
+  {
+   "key": "doi:10.1142/9789812773760_0038",
+   "doi": "10.1142/9789812773760_0038",
+   "arxiv": null,
+   "openalex": null,
+   "title": "OPTIMAL PREVENTIVE-MAINTENANCE POLICY FOR LEASE PRODUCTS UNDER A THRESHOLD VALUE ON FAILURE RATE",
+   "year": 2006
+  },
+  {
+   "key": "doi:10.48550/arxiv.1606.03620",
+   "doi": "10.48550/arxiv.1606.03620",
+   "arxiv": null,
+   "openalex": "W2442378510",
+   "title": "Modelling Early Transitions Toward Autonomous Protocells",
+   "year": 2016
+  },
+  {
+   "key": "doi:10.68366/2pyt7f91",
+   "doi": "10.68366/2pyt7f91",
+   "arxiv": null,
+   "openalex": "W7225225562",
+   "title": "A Finite Axiomatic Framework for the Interior Chrysene Lattice and Protocell Organization",
+   "year": 2026
+  },
+  {
+   "key": "title:adaptation from interactions between metabolism and behaviour self sensitive behaviour in protocells#2012",
+   "doi": null,
+   "arxiv": null,
+   "openalex": "W183237547",
+   "title": "Adaptation from interactions between metabolism and behaviour:self-sensitive behaviour in protocells",
+   "year": 2012
+  },
+  {
+   "key": "doi:10.1007/s40844-019-00152-2",
+   "doi": "10.1007/s40844-019-00152-2",
+   "arxiv": null,
+   "openalex": "W2991069664",
+   "title": "Globalization and the erosion of geo-ethnic checkpoints: evolving signal-boundary systems at the edge of chaos",
+   "year": 2019
+  },
+  {
+   "key": "doi:10.36922/mi026330099",
+   "doi": "10.36922/mi026330099",
+   "arxiv": null,
+   "openalex": "W7221186204",
+   "title": "Synthetic cells: Potential benefits and risks of interactions with commensal and pathogenic microorganisms",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1007/s11084-026-09730-y",
+   "doi": "10.1007/s11084-026-09730-y",
+   "arxiv": null,
+   "openalex": "W7163589352",
+   "title": "Membranes as the earliest entropy resisting structures in the origin of life",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1007/s11084-026-09727-7",
+   "doi": "10.1007/s11084-026-09727-7",
+   "arxiv": null,
+   "openalex": "W7160623415",
+   "title": "Quantitative nonequilibrium pathway from fundamental physics to the emergence and persistence of exoplanetary biospheres",
+   "year": 2026
+  },
+  {
+   "key": "doi:10.1016/j.ceca.2014.12.011",
+   "doi": "10.1016/j.ceca.2014.12.011",
+   "arxiv": null,
+   "openalex": "W2111809322",
+   "title": "The evolution of bacterial mechanosensitive channels",
+   "year": 2014
+  }
+ ]
+}

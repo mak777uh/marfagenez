@@ -222,11 +222,27 @@ def fuse(channels: list[dict]) -> tuple[list[dict], list[list[str]], list[dict],
     channels_of: dict[str, list[str]] = {}
     works: dict[str, dict] = {}
     clusters: list[list[str]] = []
+    # Same paper under two DOIs (preprint vs journal version) is the same work. The key order
+    # doi > arxiv > pmid > title cannot see that, so keys that share title+year are aliased to one.
+    alias: dict[str, str] = {}
+    by_title: dict[str, str] = {}
+
+    def canonical(key: str, title: str, year) -> str:
+        if key in alias:
+            return alias[key]
+        tkey = title_norm(title) + "#" + str(year or "")
+        if tkey in by_title:
+            alias[key] = by_title[tkey]
+            return by_title[tkey]
+        by_title[tkey] = key
+        return key
+
     for ch in channels:
         name = ch["name"]
         seen: dict[str, int] = {}
         for item in ch["results"]:
-            key = key_of(item["ids"], item["title"], item.get("year"))
+            key = canonical(key_of(item["ids"], item["title"], item.get("year")),
+                            item["title"], item.get("year"))
             seen.setdefault(key, item["rank"])
             works.setdefault(key, {"key": key, "doi": item["ids"].get("doi"),
                                    "arxiv": item["ids"].get("arxiv"),
@@ -339,7 +355,7 @@ def main(argv: list[str]) -> int:
                                           "curl": "windows"}, "semantic_model": None},
         "query": {"text": query, "lang": "en", "seeds": seeds, "fingerprint": fingerprint(query, seeds, n)},
         "channels": channels,
-        "dedup": {"method": "doi>arxiv>pmid>title_norm+year", "clusters": clusters},
+        "dedup": {"method": "doi>arxiv>pmid>title_norm+year; same title+year merged", "clusters": clusters},
         "fusion": {"method": "rrf", "k": K, "weights": {}, "tie_break": "score_desc_key_asc",
                    "ranking": ranking},
         "degraded": degraded,

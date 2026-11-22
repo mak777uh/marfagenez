@@ -1,0 +1,222 @@
+{
+ "run_id": "2026-11-22T00-18-12Z_330fd0",
+ "added": 12,
+ "candidates": [
+  {
+   "candidate_id": "CAND-32bf73551b",
+   "key": "doi:10.1128/msystems.00018-20",
+   "title": "Damage Repair versus Aging in an Individual-Based Model of Biofilms",
+   "year": 2020,
+   "doi": "10.1128/msystems.00018-20",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.016393443,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-853de74a3c",
+   "key": "doi:10.5772/24361",
+   "title": "Mitochondrial DNA Damage, Repair, Degradation and Experimental Approaches to Studying These Phenomena",
+   "year": 2011,
+   "doi": "10.5772/24361",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.016393443,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-2e48f9fb63",
+   "key": "doi:10.7150/thno.134232",
+   "title": "Feedback-regulated 3D-printed hydrogel micropatch for integrated therapy of fungal keratitis.",
+   "year": 2026,
+   "doi": "10.7150/thno.134232",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.016393443,
+   "channels": [
+    "lixplore"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-3aff6ea70d",
+   "key": "doi:10.1039/d4fo00610k",
+   "title": "Astaxanthin targets IL-6 and alleviates the LPS-induced adverse inflammatory response of macrophages.",
+   "year": 2024,
+   "doi": "10.1039/d4fo00610k",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.016129032,
+   "channels": [
+    "lixplore"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-49874e3617",
+   "key": "doi:10.14288/1.0065580",
+   "title": "Power systems modeling for multiple infrastructure damage and repair simulations",
+   "year": 2008,
+   "doi": "10.14288/1.0065580",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.016129032,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-d8f50c741c",
+   "key": "doi:10.5339/qproc.2012.mutagens.3.15",
+   "title": "Chromosome Damage and the Damage Repair Capacity in Chinese Vinyl Chloride Monomer-exposed workers",
+   "year": 2012,
+   "doi": "10.5339/qproc.2012.mutagens.3.15",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.016129032,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-4577ea865c",
+   "key": "doi:10.1007/978-3-030-76571-2_5",
+   "title": "The Role of Ribonucleases in RNA Damage, Inactivation and Degradation",
+   "year": 2021,
+   "doi": "10.1007/978-3-030-76571-2_5",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.015873016,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-5f8915f422",
+   "key": "doi:10.1016/j.jtbi.2013.04.037",
+   "title": "A review of mathematical models for the formation of vascular networks",
+   "year": 2013,
+   "doi": "10.1016/j.jtbi.2013.04.037",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.015873016,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-211e4864e3",
+   "key": "doi:10.1016/j.jtbi.2018.11.001",
+   "title": "Mathematical modeling of the cGAS pathway reveals robustness of DNA sensing to TREX1 feedback.",
+   "year": 2019,
+   "doi": "10.1016/j.jtbi.2018.11.001",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.015873016,
+   "channels": [
+    "lixplore"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-42920f4bbf",
+   "key": "doi:10.1016/b978-0-12-168561-4.50918-5",
+   "title": "A MODEL FOR ASSESSING THE REPAIR CAPACITY OF ACUTE LARGE BOWEL DAMAGE IN THE RAT FOLLOWING X-IRRADIATION",
+   "year": 1991,
+   "doi": "10.1016/b978-0-12-168561-4.50918-5",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.015625,
+   "channels": [
+    "paper-search"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-ce608f3892",
+   "key": "doi:10.1080/15384101.2016.1259039",
+   "title": "RAC2-P38 MAPK-dependent NADPH oxidase activity is associated with the resistance of quiescent cells to ionizing radiation.",
+   "year": 2017,
+   "doi": "10.1080/15384101.2016.1259039",
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.015625,
+   "channels": [
+    "lixplore"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  },
+  {
+   "candidate_id": "CAND-78a1a33a7d",
+   "key": "title:mathematical models of budding yeast colony formation and damage segregation in stem cells#2017",
+   "title": "Mathematical models of budding yeast colony formation and damage segregation in stem cells",
+   "year": 2017,
+   "doi": null,
+   "arxiv": null,
+   "run_id": "2026-11-22T00-18-12Z_330fd0",
+   "rrf": 0.015625,
+   "channels": [
+    "openalex"
+   ],
+   "status": "new",
+   "first_seen": "2026-11-22T00:22:08Z",
+   "last_seen": "2026-11-22T00:22:08Z",
+   "admitted_as": null,
+   "note": ""
+  }
+ ]
+}
