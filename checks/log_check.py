@@ -312,7 +312,12 @@ def markdown_files() -> list[Path]:
         cwd=ROOT, capture_output=True, check=True,
     )
     names = out.stdout.decode("utf-8").split("\0")
-    return [ROOT / p for p in names if p]
+    # `literature/` is data, not documentation: external research reports carry years and counts
+    # ("... (2014, Testing Turing's theory ...)") that are not claims about the tree. Scanning them
+    # produced false drift twice, and silencing the report instead would mean editing someone else's
+    # record. The same goes for `probes/`, which is scratch work by definition.
+    skip = ("literature/", "probes/")
+    return [ROOT / p for p in names if p and not p.startswith(skip)]
 
 
 #: A section is dated when its heading carries a date (`## 15. Из сессии
