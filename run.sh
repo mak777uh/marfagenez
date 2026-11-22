@@ -198,6 +198,9 @@ do_exp() {
   echo "--- tree_contract.py ---"
   # checks/ не растёт без вызова или записи в LEGACY.txt; probes/ — не гейт.
   python3 checks/tree_contract.py || rc=$?
+  echo "--- dip_reports.py ---"
+  # Отчёты дипа: партия без отчёта о покрытии — не работа.
+  python3 checks/dip_reports.py || rc=$?
   echo "--- map_contract.py ---"
   # Карта: ячейка без доказательства — не ячейка.
   python3 checks/map_contract.py || rc=$?

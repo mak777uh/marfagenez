@@ -1,0 +1,35 @@
+{"from":"A-0001","to":"A-0002","type":"measures","note":"Измерение снижения активности протеасомы количественно характеризует ингибирование липофусцином/цероидом в том же экспериментальном контексте."}
+{"from":"A-0005","to":"A-0004","type":"refines","note":"Репродуктивный эффект уточняет функциональные последствия асимметричной сегрегации агрегатов."}
+{"from":"A-0008","to":"A-0006","type":"refines","note":"Каверза авторов модели ограничивает интерпретацию реакции связывания агрегата с протеасомой: модельная гипотеза не равна установленной универсальной причинности."}
+{"from":"R-0003","to":"R-0002","type":"refines","note":"Сдвиг плотности дефекта — частное следствие виртуального возраста в конкретной модели."}
+{"from":"V-0003","to":"V-0002","type":"refines","note":"Условие инвариантности требует включения всех допустимых скоростей и сильнее условия существования хотя бы одной жизнеспособной скорости."}
+{"from":"D-0002","to":"D-0001","type":"measures","note":"Эксперимент с искусственными повреждениями является способом измерения заявленной способности к саморемонту."}
+{"from":"P-0009","to":"C-0001","type":"analogous","note":"Ограничение аналогии: RAF описывает каталитическую/food-generation closure реакционной сети; organizational closure — взаимное поддержание биологических constraints. Это не эквивалентные определения и не свидетельство тождества."}
+{"from":"W2-0002","to":"W2-0003","type":"refines","note":"Hopfield gives the energy-driven proofreading mechanism; Murugan et al. analyse its speed–dissipation–error trade-off."}
+{"from":"W2-0001","to":"W2-0004","type":"refines","note":"The critique narrows the scope of the classical error-threshold conclusion by making its model assumptions explicit."}
+{"from":"W2-0006","to":"W2-0007","type":"refines","note":"Single-network error/attack tolerance and multilayer cascading failure are distinct network-robustness mechanisms."}
+{"from":"W2-0008","to":"W2-0009","type":"refines","note":"The distinction between mere and adaptive active inference limits what can be inferred from a statistical boundary alone."}
+{"from":"W2-0011","to":"W2-0012","type":"analogous","note":"Both report age-associated reductions in DNA repair capacity, but they concern different organisms, cell types and repair pathways."}
+{"from":"W2-0014","to":"W2-0015","type":"analogous","note":"Both concern fatty-acid vesicle membrane growth; the first links osmotic loading to membrane uptake, while the second measures two-phase growth kinetics."}
+{"from":"W2-0014","to":"W2-0025","type":"analogous","note":"Both use semipermeable boundaries and osmotic/pressure-driven growth; fatty-acid bilayers and inorganic precipitate membranes are physically different systems."}
+{"from":"W2-0017","to":"W2-0030","type":"derives","note":"The mathematical-dynamics atom restates the reaction–diffusion PDE structure for spectral/stability analysis; both refer to Turing’s same primary model."}
+{"from":"W2-0020","to":"W2-0021","type":"refines","note":"The 2024 multi-damage model makes explicit how repair investment and reproductive cost can constrain the disposable-soma trade-off."}
+{"from":"W2-0033","to":"W2-0034","type":"measures","note":"ATP depletion is the experimental perturbation used to measure changes in the same ATP-powered active nematic system."}
+{"from":"W2-0023","to":"W2-0024","type":"analogous","note":"Both are chemical pattern-forming systems involving diffusion; travelling reaction waves and precipitation bands are distinct mechanisms."}
+{"from":"W2-0025","to":"W2-0026","type":"refines","note":"Both treat chemical-garden growth; the 2025 study specifically models diffusion-controlled wall growth up to osmotic fracture."}
+{"from":"W2-0027","to":"W2-0046","type":"analogous","note":"The same review distinguishes hallmarks of aging from hallmarks of health; the latter emphasize compartmentalization, homeostasis and stress response rather than simply listing damage processes."}
+{"from":"W3-0001","to":"W3-0002","type":"requires","note":"Одноэтапная доля ошибки сопоставляется с равновесной нижней границей селективности f₀."}
+{"from":"W3-0006","to":"W3-0007","type":"requires","note":"Порог сохранения мастер-последовательности использует определение селективного превосходства σ_m."}
+{"from":"W3-0007","to":"W3-0008","type":"derives","note":"В той же quasispecies-модели доля мастер-типа записывается через Q_m и σ_m."}
+{"from":"W3-0013","to":"W3-0015","type":"requires","note":"Стационарная нагрузка lesions участвует в rate ошибки от их repair-induced mismatches."}
+{"from":"W3-0014","to":"W3-0015","type":"derives","note":"Число mismatch и вероятность их неправильного разрешения задают скорость мутаций от ошибочной репарации."}
+{"from":"W3-0015","to":"W3-0019","type":"analogous","note":"Обе модели связывают repair error с последствиями для генома/ремонтной системы, но Spisak моделирует ошибочно исправленный сайт, а Bendtsen — мутацию, снижающую будущую repair capacity."}
+{"from":"W3-0025","to":"W3-0026","type":"requires","note":"Осмотическое давление создаёт перепад давления, который в сферической геометрии связан с натяжением законом Лапласа."}
+{"from":"W3-0026","to":"W3-0033","type":"measures","note":"Лапласова связь между перепадом давления и мембранным натяжением даёт физический слой для осмотически вызванного роста липосом."}
+{"from":"W3-0027","to":"W3-0030","type":"requires","note":"Геометрический порог деления достигается при осмотическом выходе воды и увеличении surface-to-volume ratio."}
+{"from":"W3-0028","to":"W3-0027","type":"refines","note":"Контрольные эксперименты уточняют, что порог √2 относится к сочетанию фазового разделения и осмоса."}
+{"from":"W3-0032","to":"W3-0027","type":"refines","note":"Направленное слияние восстанавливает фазово-разделённую везикулу для повторного цикла деления."}
+{"from":"W3-0037","to":"W3-0038","type":"requires","note":"Режимы устойчивости пространственных мод выводятся из дисперсионного соотношения."}
+{"from":"W3-0038","to":"W3-0039","type":"requires","note":"Критерий конечноволновой неустойчивости рассматривается при устойчивости однородной моды."}
+{"from":"W3-0041","to":"W3-0041","type":"refines","note":"Апоптотическое ремоделирование уточняет, каким образом биоэлектрическое воздействие изменяет органный размер при сохранённом объёме blastema."}
+{"from":"W3-0043","to":"W3-0044","type":"refines","note":"Требование V-ATPase для регенерации дополняется rescue-экспериментом по индуцированному H+ flux в нерегенеративных условиях."}

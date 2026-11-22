@@ -1,0 +1,13 @@
+{"from":"W2-0002","to":"W2-0003","type":"refines","note":"Hopfield gives the energy-driven proofreading mechanism; Murugan et al. analyse its speed–dissipation–error trade-off."}
+{"from":"W2-0001","to":"W2-0004","type":"refines","note":"The critique narrows the scope of the classical error-threshold conclusion by making its model assumptions explicit."}
+{"from":"W2-0006","to":"W2-0007","type":"refines","note":"Single-network error/attack tolerance and multilayer cascading failure are distinct network-robustness mechanisms."}
+{"from":"W2-0008","to":"W2-0009","type":"refines","note":"The distinction between mere and adaptive active inference limits what can be inferred from a statistical boundary alone."}
+{"from":"W2-0011","to":"W2-0012","type":"analogous","note":"Both report age-associated reductions in DNA repair capacity, but they concern different organisms, cell types and repair pathways."}
+{"from":"W2-0014","to":"W2-0015","type":"analogous","note":"Both concern fatty-acid vesicle membrane growth; the first links osmotic loading to membrane uptake, while the second measures two-phase growth kinetics."}
+{"from":"W2-0014","to":"W2-0025","type":"analogous","note":"Both use semipermeable boundaries and osmotic/pressure-driven growth; fatty-acid bilayers and inorganic precipitate membranes are physically different systems."}
+{"from":"W2-0017","to":"W2-0030","type":"derives","note":"The mathematical-dynamics atom restates the reaction–diffusion PDE structure for spectral/stability analysis; both refer to Turing’s same primary model."}
+{"from":"W2-0020","to":"W2-0021","type":"refines","note":"The 2024 multi-damage model makes explicit how repair investment and reproductive cost can constrain the disposable-soma trade-off."}
+{"from":"W2-0033","to":"W2-0034","type":"measures","note":"ATP depletion is the experimental perturbation used to measure changes in the same ATP-powered active nematic system."}
+{"from":"W2-0023","to":"W2-0024","type":"analogous","note":"Both are chemical pattern-forming systems involving diffusion; travelling reaction waves and precipitation bands are distinct mechanisms."}
+{"from":"W2-0025","to":"W2-0026","type":"refines","note":"Both treat chemical-garden growth; the 2025 study specifically models diffusion-controlled wall growth up to osmotic fracture."}
+{"from":"W2-0027","to":"W2-0046","type":"analogous","note":"The same review distinguishes hallmarks of aging from hallmarks of health; the latter emphasize compartmentalization, homeostasis and stress response rather than simply listing damage processes."}
