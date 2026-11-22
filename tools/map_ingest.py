@@ -10,7 +10,9 @@
   * `locator_status=verified` ставится только по результату проверки в этом прогоне;
   * если у работы нет названия в OpenAlex — она остаётся `unverified`;
   * дубли id и дубли рёбер отбрасываются;
-  * отчёт всегда пишется, даже если всё отклонено.
+  * отчёт всегда пишется, даже если всё отклонено;
+  * `--dry-run` действительно ничего не пишет (проверено на инциденте: дип вызвал несуществующий флаг,
+    флаг был молча проигнорирован, и ячейки попали в карту; теперь неизвестные флаги — ошибка).
 
 Usage:
     python3 tools/map_ingest.py literature/map/inbox/2026-11-22/*.jsonl \
@@ -134,10 +136,20 @@ def quote_found(quote: str | None, abstract: str | None) -> bool | None:
     return norm(quote) in norm(abstract)
 
 
+KNOWN_FLAGS = ("--report", "--edges", "--dry-run")
+
+
 def main(argv: list[str]) -> int:
     if not argv:
         print(__doc__.strip().splitlines()[0])
         return 2
+    # Молчаливое игнорирование флага — это ложное подтверждение. Именно так `--dry-run`, которого не было,
+    # записал партию в карту. Неизвестный флаг теперь ошибка.
+    for arg in argv:
+        if arg.startswith("--") and arg not in KNOWN_FLAGS:
+            print(f"неизвестный флаг {arg}; известные: {', '.join(KNOWN_FLAGS)}", file=sys.stderr)
+            return 2
+    dry = "--dry-run" in argv
     patterns = [a for a in argv if not a.startswith("--")]
     report_path = pathlib.Path(argv[argv.index("--report") + 1]) if "--report" in argv else None
     edge_patterns: list[str] = []
@@ -218,11 +230,15 @@ def main(argv: list[str]) -> int:
             have.append(edge)
             seen.add(point)
             edges_new.append(edge)
-        EDGES.parent.mkdir(parents=True, exist_ok=True)
-        EDGES.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in have), encoding="utf-8")
+        if not dry:
+            EDGES.parent.mkdir(parents=True, exist_ok=True)
+        if not dry:
+            EDGES.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in have), encoding="utf-8")
 
-    MAP.mkdir(parents=True, exist_ok=True)
-    ATOMS.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in existing), encoding="utf-8")
+    if not dry:
+        MAP.mkdir(parents=True, exist_ok=True)
+    if not dry:
+        ATOMS.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in existing), encoding="utf-8")
 
     by_domain = collections.Counter(a["domain"] for a in accepted)
     by_kind = collections.Counter(a["kind"] for a in accepted)
@@ -232,6 +248,9 @@ def main(argv: list[str]) -> int:
     if rejected:
         print(f"отклонено {len(rejected)} — см. отчёт")
 
+    if dry:
+        print("dry-run: файлы не записаны")
+        return 0
     if report_path:
         lines = [
             "# Приём партий в карту",
