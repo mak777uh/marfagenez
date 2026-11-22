@@ -1231,7 +1231,8 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": null
+ "downgrade_reason": null,
+ "duplicate_of": "L-005"
 }
 ```
 
@@ -2628,7 +2629,8 @@ doi:10.3390/systems12040111.
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
+ "downgrade_reason": "копии текста нет в papers/",
+ "duplicate_of": "L-005"
 }
 ```
 
@@ -5669,4 +5671,319 @@ MODES:                   набор из нескольких метрик ди�
 **Ссылка.** https://doi.org/10.1016/j.mbs.2023.108980
 **Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
 **Утверждение.** Найдено при починке чужого DOI (внешний ответ приписал работе Chao 2010 неверный DOI): статистическая теория асимметричной сегрегации повреждения в клональных популяциях, 2023. Сама работа Chao 2010 по-прежнему не подтверждена — её DOI в ответе был ложным.
+**Что даёт нам.** — (суждение не сделано).
+
+### L-102 · A network theory of ageing: the interactions of defective mitochondria, aberrant proteins, free radicals and scavengers in the ageing process
+
+```json
+{
+ "L": "L-102",
+ "locator": {
+  "doi": "10.1016/s0921-8734(96)90005-3",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2041793728",
+  "pmid": null,
+  "url": "https://doi.org/10.1016/S0921-8734(96)90005-3",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T02:22:34Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/S0921-8734(96)90005-3"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "A network theory of ageing: the interactions of defective mitochondria, aberrant proteins, free radicals and scavengers in the ageing process",
+  "year": 1996,
+  "first_author": "Axel Kowald"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** A network theory of ageing: the interactions of defective mitochondria, aberrant proteins, free radicals and scavengers in the ageing process (1996). Axel Kowald; Thomas B. L. Kirkwood
+**Ссылка.** https://doi.org/10.1016/S0921-8734(96)90005-3
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Kowald & Kirkwood 1996 — сетевая теория старения: повреждение бьёт по системе удаления (scavengers), ремонт ремонтирует сам себя
+**Что даёт нам.** — (суждение не сделано).
+
+### L-103 · Self-maintenance and Self-reproduction in an Abstract Cell Model
+
+```json
+{
+ "L": "L-103",
+ "locator": {
+  "doi": "10.1006/jtbi.2000.2121",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2010069344",
+  "pmid": null,
+  "url": "https://doi.org/10.1006/jtbi.2000.2121",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T02:22:34Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1006/jtbi.2000.2121"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Self-maintenance and Self-reproduction in an Abstract Cell Model",
+  "year": 2000,
+  "first_author": "Naoaki Ono"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Self-maintenance and Self-reproduction in an Abstract Cell Model (2000). Naoaki Ono; Takashi Ikegami
+**Ссылка.** https://doi.org/10.1006/jtbi.2000.2121
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Ono & Ikegami 2000 — самоподдержание и граница в минимальной модели (проверить, что именно содержит)
+**Что даёт нам.** — (суждение не сделано).
+
+### L-104 · Thirty Years of Computational Autopoiesis: A Review
+
+```json
+{
+ "L": "L-104",
+ "locator": {
+  "doi": "10.1162/1064546041255548",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2129280699",
+  "pmid": null,
+  "url": "https://doi.org/10.1162/1064546041255548",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T02:22:34Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1162/1064546041255548"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": "298331aea217142570d50bfa39ae9f251e936c8ef818f07561665d6aec97646e",
+ "bibliographic": {
+  "title": "Thirty Years of Computational Autopoiesis: A Review",
+  "year": 2004,
+  "first_author": "Barry McMullin"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Thirty Years of Computational Autopoiesis: A Review (2004). Barry McMullin
+**Ссылка.** https://doi.org/10.1162/1064546041255548
+**Проверено.** **аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читался.
+**Утверждение.** McMullin & Varela 2004 — реимплементация автопоэзиса: вторичный источник уравнений Varela 1974
+**Что даёт нам.** — (суждение не сделано).
+
+### L-105 · Closure to efficient causation, computability and artificial life
+
+```json
+{
+ "L": "L-105",
+ "locator": {
+  "doi": "10.1016/j.jtbi.2009.11.010",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2158631600",
+  "pmid": null,
+  "url": "https://doi.org/10.1016/j.jtbi.2009.11.010",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T02:22:34Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/j.jtbi.2009.11.010"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Closure to efficient causation, computability and artificial life",
+  "year": 2009,
+  "first_author": "María Luz Cárdenas"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Closure to efficient causation, computability and artificial life (2009). María Luz Cárdenas; Juan‐Carlos Letelier; Claudio Gutiérrez; Athel J. Cornish-Bowden; Jorge Antonio Soto-Andrade
+**Ссылка.** https://doi.org/10.1016/j.jtbi.2009.11.010
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Cárdenas et al. 2010 — замыкание организации в формальной модели (есть corrigendum 2011)
+**Что даёт нам.** — (суждение не сделано).
+
+### L-106 · Proteasome inhibition by lipofuscin/ceroid during postmitotic aging of fibroblasts
+
+```json
+{
+ "L": "L-106",
+ "locator": {
+  "doi": "10.1096/fj.99-0843com",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W2012221118",
+  "pmid": null,
+  "url": "https://doi.org/10.1096/fj.99-0843com",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T02:22:34Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1096/fj.99-0843com"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": "b5d9d6929ccee2e69aeb3b9ead1f97780de595b122f44a7094620cd765e1c090",
+ "bibliographic": {
+  "title": "Proteasome inhibition by lipofuscin/ceroid during postmitotic aging of fibroblasts",
+  "year": 2000,
+  "first_author": "Nicolle Sitte"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Proteasome inhibition by lipofuscin/ceroid during postmitotic aging of fibroblasts (2000). Nicolle Sitte; Michael Huber; Tilman Grune; Axel Ladhoff; Wolf‐Dietrich Doecke; Thomas Von Zglinicki
+**Ссылка.** https://doi.org/10.1096/fj.99-0843com
+**Проверено.** **аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читался.
+**Утверждение.** Sitte et al. 2000 — липофусцин ингибирует протеасому: измеряемая связь груза повреждения и способности к удалению
+**Что даёт нам.** — (суждение не сделано).
+
+### L-107 · Lipofuscin inhibits the proteasome by binding to surface motifs
+
+```json
+{
+ "L": "L-107",
+ "locator": {
+  "doi": "10.1016/j.freeradbiomed.2010.12.011",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W1980062352",
+  "pmid": null,
+  "url": "https://doi.org/10.1016/j.freeradbiomed.2010.12.011",
+  "none": false
+ },
+ "access": {
+  "level": "metadata_only",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T02:22:34Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/j.freeradbiomed.2010.12.011"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Lipofuscin inhibits the proteasome by binding to surface motifs",
+  "year": 2010,
+  "first_author": "Annika Höhn"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Lipofuscin inhibits the proteasome by binding to surface motifs (2010). Annika Höhn; Tobias Jung; Stefanie Grimm; Betül Catalgol; Daniela Weber; Tilman Grune
+**Ссылка.** https://doi.org/10.1016/j.freeradbiomed.2010.12.011
+**Проверено.** **метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читался.
+**Утверждение.** Höhn et al. 2011 — титрование протеасомы липофусцином: константа ингибирования как кандидат на ι
+**Что даёт нам.** — (суждение не сделано).
+
+### L-108 · Damage dynamics and the role of chance in the timing of E. coli cell death
+
+```json
+{
+ "L": "L-108",
+ "locator": {
+  "doi": "10.1038/s41467-023-37930-x",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": "W4366278330",
+  "pmid": null,
+  "url": "https://doi.org/10.1038/s41467-023-37930-x",
+  "none": false
+ },
+ "access": {
+  "level": "abstract_read",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
+  "retrieved_at": "2026-11-22T02:22:34Z",
+  "via": "openalex",
+  "via_detail": "api.openalex.org/works/https://doi.org/10.1038/s41467-023-37930-x"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": []
+ },
+ "abstract_sha256": "4b5d86ce670c0d988861f731158c4d24d22408beb290dc52471c0ebea5e4bb6c",
+ "bibliographic": {
+  "title": "Damage dynamics and the role of chance in the timing of E. coli cell death",
+  "year": 2023,
+  "first_author": "Yifan Yang"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Damage dynamics and the role of chance in the timing of E. coli cell death (2023). Yifan Yang; Omer Karin; Avi Mayo; Alon Bar; Xiaohu Song; Peipei Chen
+**Ссылка.** https://doi.org/10.1038/s41467-023-37930-x
+**Проверено.** **аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читался.
+**Утверждение.** Damage dynamics and the role of chance in the timing of E. coli cell death (2023) — измеряемая динамика повреждения и насыщаемый ремонт
 **Что даёт нам.** — (суждение не сделано).

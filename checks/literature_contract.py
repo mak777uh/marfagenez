@@ -159,6 +159,22 @@ def check_prose(block: dict, body: str, lid: str, errs: list[str]) -> None:
     if machine in LEVEL_ORDER and LEVEL_ORDER[machine] > LEVEL_ORDER[prose]:
         errs.append(f"{lid}: R8 уровень `{machine}` выше того, что поддерживает проза (`{prose}`)")
 
+def check_duplicate_doi(records: dict, errs: list[str]) -> None:
+    """One paper, one canonical record. Duplicates are allowed only as pointers (`duplicate_of`)."""
+    by_doi: dict[str, list[tuple[str, str | None]]] = {}
+    for lid, block in records.items():
+        doi = ((block.get("locator") or {}).get("doi") or "").strip().lower()
+        if doi:
+            by_doi.setdefault(doi, []).append((lid, block.get("duplicate_of")))
+    for doi, entries in by_doi.items():
+        canon = [lid for lid, dup in entries if not dup]
+        if len(canon) == 1:
+            continue
+        if not canon:
+            errs.append(f"R12 DOI `{doi}`: нет канонической записи, все помечены `duplicate_of`")
+            continue
+        errs.append(f"R12 DOI `{doi}` зарегистрирован несколько раз без `duplicate_of`: {', '.join(canon)}")
+
 
 def check_reverse(records: dict, errs: list[str]) -> None:
     if not PAPERS.exists():
@@ -217,6 +233,7 @@ def run(registry: pathlib.Path, papers: pathlib.Path, baseline: pathlib.Path) ->
         check_abstract(block, lid, errs)
         check_prose(block, body, lid, errs)
 
+    check_duplicate_doi(records, errs)
     check_reverse(records, errs)
     check_legacy(records, errs)
     print(f"записей: {len(records)} из {len(sections)} секций")
