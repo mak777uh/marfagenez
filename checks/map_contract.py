@@ -55,6 +55,8 @@ def check(atoms_path: pathlib.Path, edges_path: pathlib.Path) -> list[str]:
     for atom in atoms:
         atom_id = atom.get("atom", "?")
         for field in REQUIRED:
+            if field == "works":
+                continue  # пустота списка проверяется в M5: у gap её заменяет протокол поиска
             if not atom.get(field):
                 errs.append(f"M1 {atom_id}: нет поля `{field}`")
         if atom.get("kind") not in KINDS:
@@ -62,7 +64,10 @@ def check(atoms_path: pathlib.Path, edges_path: pathlib.Path) -> list[str]:
         if atom.get("confidence") not in CONFIDENCE:
             errs.append(f"M1 {atom_id}: уверенность `{atom.get('confidence')}` вне перечисления")
         works = atom.get("works") or []
-        if not works:
+        # Пустота о том, что модели нет, не может ссылаться на работу, которой нет. Для gap
+        # доказательство — протокол поиска, а не локатор; для всех остальных видов работа обязательна.
+        gap_protocol = atom.get("kind") == "gap" and atom.get("searched") and atom.get("scope")
+        if not works and not gap_protocol:
             errs.append(f"M5 {atom_id}: нет работ")
         for work in works:
             if not (work.get("doi") or work.get("arxiv") or work.get("pmid")
@@ -128,6 +133,8 @@ def selftest() -> int:
         ("contradiction с одной работой", write([atom(kind="contradiction")]), ["M7"]),
         ("ребро в пустоту", write([atom()], [{"from": "A-1", "to": "A-9", "type": "requires"}]), ["M8"]),
         ("высокая без доказательства", write([atom(confidence="high")]), ["M4", "M10"]),
+        ("gap без работ, но с протоколом", write([atom(kind="gap", works=[], searched={"q": "x"}, scope="s")]), []),
+        ("gap без работ и без протокола", write([atom(kind="gap", works=[])]), ["M5", "M6"]),
     ]
     total, bad = 0, 0
     for name, got, want in cases:

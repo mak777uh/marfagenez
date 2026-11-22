@@ -83,13 +83,16 @@ def resolve(doi: str, api_key: str | None) -> dict | None:
 
 def validate(atom: dict) -> list[str]:
     errs = []
-    for field in ("atom", "statement", "domain", "kind", "works", "confidence"):
+    for field in ("atom", "statement", "domain", "kind", "confidence"):
         if not atom.get(field):
             errs.append(f"нет `{field}`")
     if atom.get("kind") not in {"mechanism", "formula", "condition", "contradiction", "gap", "definition", "measurement"}:
         errs.append(f"вид `{atom.get('kind')}`")
     if atom.get("confidence") not in {"high", "medium", "low"}:
         errs.append(f"уверенность `{atom.get('confidence')}`")
+    gap_protocol = atom.get("kind") == "gap" and atom.get("searched") and atom.get("scope")
+    if not (atom.get("works") or []) and not gap_protocol:
+        errs.append("нет работ")
     for work in atom.get("works") or []:
         if not (work.get("doi") or work.get("arxiv") or work.get("pmid") or work.get("isbn") or work.get("url")):
             errs.append("работа без локатора")
