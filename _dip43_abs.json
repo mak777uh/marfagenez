@@ -1,0 +1,34 @@
+{
+ "10.1016/j.cell.2012.06.018": {
+  "doi": "10.1016/j.cell.2012.06.018",
+  "title": "piRNAs Can Trigger a Multigenerational Epigenetic Memory in the Germline of C. elegans",
+  "year": 2012,
+  "type": "article",
+  "venue": "Cell",
+  "abs": "Transgenerational effects have wide-ranging implications for human health, biological adaptation, and evolution; however, their mechanisms and biology remain poorly understood. Here, we demonstrate that a germline nuclear small RNA/chromatin pathway can maintain stable inheritance for many generations when triggered by a piRNA-dependent foreign RNA response in C. elegans. Using forward genetic screens and candidate approaches, we find that a core set of nuclear RNAi and chromatin factors is required for multigenerational inheritance of environmental RNAi and piRNA silencing. These include a germline-specific nuclear Argonaute HRDE1/WAGO-9, a HP1 ortholog HPL-2, and two putative histone methyltransferases, SET-25 and SET-32. piRNAs can trigger highly stable long-term silencing lasting at least 20 generations. Once established, this long-term memory becomes independent of the piRNA trigger but remains dependent on the nuclear RNAi/chromatin pathway. Our data present a multigenerational epigenetic inheritance mechanism induced by piRNAs."
+ },
+ "10.1126/science.1212959": {
+  "doi": "10.1126/science.1212959",
+  "title": "Transgenerational Epigenetic Instability Is a Source of Novel Methylation Variants",
+  "year": 2011,
+  "type": "article",
+  "venue": "Science",
+  "abs": "Epigenetic information, which may affect an organism's phenotype, can be stored and stably inherited in the form of cytosine DNA methylation. Changes in DNA methylation can produce meiotically stable epialleles that affect transcription and morphology, but the rates of spontaneous gain or loss of DNA methylation are unknown. We examined spontaneously occurring variation in DNA methylation in Arabidopsis thaliana plants propagated by single-seed descent for 30 generations. We identified 114,287 CG single methylation polymorphisms and 2485 CG differentially methylated regions (DMRs), both of which show patterns of divergence compared with the ancestral state. Thus, transgenerational epigenetic variation in DNA methylation may generate new allelic states that alter transcription, providing a mechanism for phenotypic diversity in the absence of genetic mutation."
+ },
+ "10.1016/j.cell.2020.07.022": {
+  "doi": "10.1016/j.cell.2020.07.022",
+  "title": "Three Rules Explain Transgenerational Small RNA Inheritance in C. elegans",
+  "year": 2020,
+  "type": "article",
+  "venue": "Cell",
+  "abs": "Experiences trigger transgenerational small RNA-based responses in C. elegans nematodes. Dedicated machinery ensures that heritable effects are reset, but how the responses segregate in the population is unknown. We show that isogenic individuals differ dramatically in the persistence of transgenerational responses. By examining lineages of more than 20,000 worms, three principles emerge: (1) The silencing each mother initiates is distributed evenly among her descendants; heritable RNAi dissipates but is uniform in every generation. (2) Differences between lineages arise because the mothers that initiate heritable responses stochastically assume different \"inheritance states\" that determine the progeny's fate. (3) The likelihood that an RNAi response would continue to be inherited increases the more generations it lasts. The inheritance states are determined by HSF-1, which regulates silencing factors and, accordingly, small RNA levels. We found that, based on the parents' inheritance state, the descendants' developmental rate in response to stress can be predicted."
+ },
+ "10.1038/nature10555": {
+  "doi": "10.1038/nature10555",
+  "title": "Spontaneous epigenetic variation in the Arabidopsis thaliana methylome",
+  "year": 2011,
+  "type": "article",
+  "venue": "Nature",
+  "abs": ""
+ }
+}
