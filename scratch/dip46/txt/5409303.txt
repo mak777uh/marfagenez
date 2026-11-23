@@ -1,0 +1,125 @@
+ J Vis Exp J Vis Exp 637 jove 101313252 JoVE Journal of Visualized Experiments : JoVE 1940-087X MyJoVE Corporation PMC5409303 PMC5409303.1 5409303 5409303 28287565 10.3791/55262 55262 1 Biochemistry Differential Scanning Calorimetry — A Method for Assessing the Thermal Stability and Conformation of Protein Antigen Durowoju Ibrahim B. 
+ 1 
+ Bhandal Kamaljit S. 
+ 1 
+ Hu Jian 
+ 1 
+ Carpick Bruce 
+ 1 
+ Kirkitadze Marina 
+ 1 
+ 1 Analytical Research & Development, Sanofi Pasteur Limited 
+ Marina.Kirkitadze@sanofi.com 2017 4 3 2017 121 291553 55262 04 03 2017 12 05 2017 24 03 2024 Copyright © 2017, Journal of Visualized Experiments 2017 https://creativecommons.org/licenses/by-nc-nd/3.0/ This is an open-access article distributed under the terms of the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ 
+ m ) and the energy required to disrupt the interactions stabilizing the tertiary structure (enthalpy; ∆H) of proteins. Comparisons are made between formulations as well as production lots, and differences in derived values indicate differences in thermal stability and structural conformation. Data illustrating the use of DSC in an industrial setting for stability studies as well as monitoring key manufacturing steps are provided as proof of the effectiveness of this protocol. In comparison to other methods for assessing the thermal stability of protein conformations, DSC is cost-effective, requires few sample preparation steps, and also provides a complete thermodynamic profile of the protein unfolding process. Biochemistry Issue 121 Differential Scanning Calorimetry Thermal Stability Tertiary Structure Protein Unfolding Thermal Transition Temperature Enthalpy Protein Stability pmc-status-qastatus 0 pmc-status-live yes pmc-status-embargo no pmc-status-released yes pmc-prop-open-access yes pmc-prop-olf no pmc-prop-manuscript no pmc-prop-legally-suppressed no pmc-prop-has-pdf yes pmc-prop-has-supplement no pmc-prop-pdf-only no pmc-prop-suppress-copyright no pmc-prop-is-real-version no pmc-prop-is-scanned-article no pmc-prop-preprint no pmc-prop-in-epmc yes pmc-license-ref CC BY-NC-ND 
+## Introduction 
+ 1 
+ 2 
+ 3 
+ 4 
+ 5 
+ 6 
+ 7 
+ 8 
+ 9 
+ 10 
+ 11 
+ 12 . Carried out in a differential scanning calorimeter, the method involves introducing heat energy into a sample cell and a reference cell simultaneously while identically increasing the temperature of both cells over time 2 
+ 13 
+ 14 . Due to difference in the composition of the sample and the reference, different amount of energy will be required to raise the temperature of the cells 2 
+ 12 
+ 13 . Thus, the excess amount of energy required to compensate for the temperature difference between the cells is measured and directly correlated to specific thermodynamic properties of the sample 1 
+ 3 . 
+ 2 
+ 3 
+ 4 . In parallel, P.L. Privalov and D.R. Monaseldze E.L. of the Institute of Physics, Republic of Georgia (former USSR) created a unique differential adiabatic calorimeter that can be used for biochemical research 5 
+ 6 . Subsequently, Andronikashvili's team at the Institute of Physics, Republic of Georgia, reported the heat capacity of biomolecules such as fibrous and globular proteins, DNA, and RNA using DSC 7 
+ 8 
+ 9 . Several teams led by Sturtevant 10 
+ 11 
+ 12 , Brandts 13 , and Privalov 14 
+ 15 
+ 16 focused on the development of the theory and practical applications of DSC to investigate the thermodynamic details of protein unfolding. The value of DSC in studying large supramolecular structures such as phages, chloroplast, phospholipid liquid crystals, and meat proteins have also been reported 17 
+ 18 
+ 19 
+ 20 . 
+ 1 
+ 21 
+ 22 . This is mostly due to advancements in terms of sensitivity and automation of the instrumentation used to carry out the experiment 23 
+ 24 . Here, the final result of the DSC experiment, namely, molar heat capacity as a function of temperature, is used to estimate  the following thermodynamic parameters (change in heat capacity (∆Cp), enthalpy (∆H), entropy (∆S), and Gibbs free energy (∆G)) using the equation below: 
+   (1) 
+    (2) 
+    (3) 
+   (4) 
+    (5) 
+ 0 and T are the initial and final temperatures of the transition respectively 22 
+ 25 . It is also worth noting that the equations above apply to single-domain proteins that can undergo two-state transition and reversible thermal unfolding 22 . Analysis of more complex proteins ( e.g. , non-two-state proteins, and oligomers) have been reported by Friere et al. 
+ 26 ; Johnson et al. 
+ 27 ; and Kasimova et al . 28 . 
+ Cal ) is compared to the enthalpy derived using the van't Hoff equation given below (also referred to as van't Hoff enthalpy; ΔH VH ): 
+   (6) 
+ m is the midpoint temperature of the transition, R is the ideal gas constant (1.987 cal mol -1 K -1 ) and Y is the fraction of the protein population in the unfolded state 16 
+ 29 . If ΔH VH is equal to ΔH Cal ; or ΔH VH /ΔH Cal is equal to 1, then the protein undergoes an "all-or-none" transition ( i.e. two-state transition) 16 
+ 25 
+ 29 . However, if ΔH VH is less than ΔH Cal ; or ΔH VH /ΔH Cal is less than 1, the protein undergoes a non-two-state transition 16 
+ 25 
+ 29 . The ratio of ΔH VH /ΔH Cal also corresponds to the proportion of the protein structure that melts as a thermodynamic cooperative unit or domain 26 . 
+ 30 . However, emphasis will be laid on T m and ΔH in this publication, as they are the reported values for this protocol. T m is the mid-point temperature of the transition, where the folded and the unfolded states of the protein are at equilibrium ( i.e. , ΔG = 0) 25 
+ 31 . The higher the T m of a protein, the higher its thermal stability 31 . ΔH corresponds to the area under the peak(s) of the Heat Capacity versus Temperature graph (also known as thermogram) generated at the end of the DSC experiment 16 
+ 25 . It is the energy required to denature proteins and can be used to estimate the active fraction ( F a ) in a protein formulation ( i.e., the proportion of proteins with active conformation in a sample) using the following equation: 
+   (7) 
+ 22 . The estimation of F a is significant for monitoring the real-time stability of products as well as conducting stability studies under stress conditions as required by ICH guidelines 32 . Comparison of ΔH also provides information about the compactness of the tertiary structure conformation of a protein 31 . 
+## Protocol 
+## 1. Instrument Start-up 
+ e.g. , tantalum, gold, platinum, etc. ), adjust the pressure of the nitrogen gas supply according to the manufacturer's recommended pressure to avoid damaging the cell. For example, set the pressure of the nitrogen gas supply to 45 psi for the instrument used to develop this procedure, and pressure above 80 psi may damage the cell. 
+## 2. Sample Preparation 
+ i.e. column elution) can be used. 
+ 33 or Lowry method 34 . For objective comparison of results, use the same method consistently within the same study. The required concentration range may vary depending on the model of the instrument. For the instrument used in this protocol, the preferable working range is 0.5 – 1 mg/mL. 
+ i.e. assessment of instrumentation error) as well as establish a baseline; while water scans are run to clean the cells. 
+## 3. Experimental Parameter Setup 
+ i.e. an industrial setting), an autosampler is used to save time. 
+ e.g. 100 °C. The final temperature may vary depending on prior knowledge of the sample. 
+ e.g. 60 °C/h, which is the typical scan rate. However, scan rate may vary depending on prior knowledge of the sample, e.g. 90 °C/h, or 120 °C/h. It is advisable to scan unknown samples at different scan rates to assess the kinetics of unfolding. 
+## 4. Data Analysis 
+ i.e. buffer, from the sample scan. NOTE: Reference subtraction is carried out automatically by newer models of DSC instruments. 
+ e.g. real-time stability study. This step is required to process the curve for peak integration to obtain enthalpy of transition. 
+ Chi-square value remains constant. 
+ VH ) of the sample. 
+## Representative Results 
+ 35 . Therefore, if both cells ( i.e. sample and reference cells) contain identical solutions during an experiment, the raw data from the scan should be a flat line with no observable peaks. Any peak observed can be attributed to instrumentation error ( e.g. damaged or contaminated cells), which is why running buffer scans prior to sample analysis is an adequate system suitability test. Figure 1 illustrates the result of a typical buffer scan indicating that the calorimeter was in good working condition prior to sample analysis. 
+ Figure 2 shows the raw data for a DSC experiment carried out on different lots of two protein samples. As implied earlier, the observed peaks are the differences in the heat flux of the samples and their respective buffers. Differences in sample concentration can cause variations in heat capacity recorded by the calorimeter; however, these variations are normalized during sample analysis as per section 4.2 of the procedure. Higher concentrations can also reveal additional thermodynamic domains not contributing to the transition at lower concentrations. In addition, each transition represents a thermodynamic domain that may include one or more structural domains of the protein 36 . In this case, the Protein 1 has three structural domains that melt cooperatively. 
+ Figure 3 shows the results generated from the analysis of the raw data for protein 1 and 2 presented in Figure 2 , i.e. , after baseline subtraction and iterative curve fitting. The resulting thermograms have been normalized for scanning rate (automatically carried out by a pre-set algorithm in the analysis software) and concentration; thus, presenting the results of the experiment in comparable heat capacity versus temperature graphs. The analysis software uses data from the Heat Capacity versus Temperature graphs, such as T m and ΔCp, to derive other thermodynamic parameters using variations of the equations given above depending on the cooperativity of protein unfolding. 
+ Figure 4 . Although T m from such profiles can be derived, ΔH cannot be accurately determined. Therefore, the sample must be retested with a larger temperature range to completely capture the thermal transition. Some proteins also readily form aggregates after complete denaturation, resulting in an increasing post-transition heat capacity: this often appears as an incomplete thermogram as illustrated in Figure 2B . However, retesting with a higher final temperature can help confirm whether there is an occurrence of a conformational transition at that region of the thermogram or it is merely the heat absorbing effect of protein aggregates. 
+ 37 . In pharmaceuticals, it is used to determine the stability of biologics under different conditions, including formulation buffers and environmental factors such as humidity and temperature. It is also used to monitor key manufacturing step ( e.g., purification and detoxification) to ensure conformational consistency between production lots. Figures 5 and 6 illustrate the use of DSC to examine the effects of chemical detoxification and storage conditions respectively on the stability and structural conformation of two different proteins. The significant differences in Tm and ∆H indicate conformational changes and protein degradation respectively. In addition, the loss of the third transition in Figure 6 further illustrates the degradation of a domain which was confirmed by a decrease in molecular weight when the samples were analyzed using Size-Exclusion Chromatography with multi-angle light scattering (SEC-MALS) (data not shown). 
+ Figure 1: Buffer Scans. The similarity in gradient of each scan with no observable peaks indicates that the instrument is in good working condition and generated reproducible results. Please click here to view a larger version of this figure. 
+ Figure 2: Raw Data Collected from DSC Experiments. These graphs are good representations of the unanalyzed (raw) data acquired after experimental runs ( i.e. prior to baseline subtraction and curve fitting). Each line represents a production lot. Protein 2 tends to aggregate more readily upon heating, resulting in an increase in heat capacity above 100 °C in the post-transition region of the thermogram. Please click here to view a larger version of this figure. 
+ Figure 3: Analyzed DSC Data. These graphs are good representations of analyzed DSC data ( i.e. after baseline subtraction and curve fitting). The blue line represents the thermogram after baseline subtraction, while the red line represents the curve with the best fit to the thermogram. (A) The T m and ΔH for Protein 1 Sample # 12 are 80.16 °C and 1.69 x 10 6 cal/mol respectively. (B) The T m and ΔH for Protein 1 Sample# 13 are 80.15 °C and 1.71 x 10 6 cal/mol respectively. (C) The T m and ΔH for Protein 2 Sample # 21 are 75.01 °C and 4.08 x 10 6 cal/mol respectively. (D) The T m and ΔH for Protein 2 Sample # 22 are 75.67 °C and 4.22 x 10 6 cal/mol respectively. Please click here to view a larger version of this figure. 
+ Figure 4: An Incomplete Thermogram. Raw data collect for Protein 1 analyzed at an inadequate temperature range. The final temperature of experiment was set to 90 °C which did not accommodate the entire transition profile of the protein as compared to the experiment for Figure 2A which was set to 120 °C. Please click here to view a larger version of this figure. 
+ Figure 5: Analyzed Data Showing the Effect of Chemical Detoxification on the Tertiary Structure of Protein 1. (A) Protein 1 is a toxin in its native conformation and has its T m at 56.84 °C and ΔH at 2.57 x 10 5 cal/mol. (B) The detoxified form of Protein 1 ( i.e. toxoid) has T m and ΔH values of 81.01 °C and 1.89 x 10 6 cal/mol respectively. Thus, it can be concluded that the detoxification step introduced some form of variation to the structural conformation of Protein 1 which confers greater stability (higher T m ) to its detoxified form. Please click here to view a larger version of this figure. 
+ Figure 6: Analyzed Data Showing the Effect of Storage Conditions on the Conformation of Protein 3. These graphs illustrate the effect of storage temperature (2 - 8 °C) on the stability and tertiary structure of Protein 3 over 30 weeks. The T m and ΔH values for Protein 3 at the 8 th 
+ (A) and 38 th week (B) of storage are given in Table 1 below. Please click here to view a larger version of this figure. | rowspan="1" colspan="1">
+ Sample 
+ | rowspan="1" colspan="1">
+ Tm 1 (°C) 
+ | rowspan="1" colspan="1">
+ ∆H 1 (cal/mol) 
+ | rowspan="1" colspan="1">
+ Tm 2 (°C) 
+ | rowspan="1" colspan="1">
+ ∆H 2 (cal/mol) 
+ | rowspan="1" colspan="1">
+ Tm 3 (°C) 
+ | rowspan="1" colspan="1">
+ ∆H 3 (cal/mol) 
+ | rowspan="1" colspan="1">Protein 3 stored at 2-8 °C for 8 weeks | rowspan="1" colspan="1">61.91 | rowspan="1" colspan="1">1.71 x 10 5 | rowspan="1" colspan="1">75.54 | rowspan="1" colspan="1">2.17 x 10 5 | rowspan="1" colspan="1">90.29 | rowspan="1" colspan="1">4.17 x 10 5 | rowspan="1" colspan="1">Protein 3 stored at 2-8 °C for 38 weeks | rowspan="1" colspan="1">61.87 | rowspan="1" colspan="1">1.66 x 10 5 | rowspan="1" colspan="1">75.18 | rowspan="1" colspan="1">1.46 x 10 5 | rowspan="1" colspan="1">90.22 | rowspan="1" colspan="1">5.76 x 10 5 
+ Table 1: Tm and ΔH Values for Protein 3 at the 8 th and 38 th Week of storage at 2 - 8 °C. Although the T m values at both time points are similar, the difference in the ΔH values indicates that the tertiary structure of Protein 3 has degraded over 30 weeks under the specified storage condition. 
+## Discussion 
+ 21 . In real-time stability studies, DSC is used to monitor the T m , as well as estimate the F a of biologics over time to determine their shelf-life. With regards to product comparability, it is used to assess the impact of process and facility change as well as the effect of key manufacturing steps on the structural conformation of produced lots. This typically involves the direct comparison of the ΔH of produced lot to a reference product that has been designated as the ideal product. In addition, DSC has proven to be a useful analytical tool for product formulation studies 37 . The T m of a protein in different buffers and at different concentrations can be used to determine the formulation that proffers the most stability to the protein. 
+ e.g. , vaccine formulation study). However, the procedure can be modified to accommodate differences in the physical properties of various proteins. An example of a modification that can be made is altering the scanning rate of the experiment 38 
+ 39 . Proteins that were prone to forming aggregates when heated were examined at a faster scanning rate ( e.g., 120 °C/h) to avoid the contribution of aggregates to the thermal transition profile as well as clogging the capillaries of the calorimeter. It is worth noting that scanning rate can influence the outcome of a DSC experiment 38 . Broadening of the thermal transition peak has been observed with increasing scanning rates in some proteins; however, T m remained fairly constant 38 . Furthermore, the dialysis and degassing steps for sample preparation are also very crucial for accurate results 31 . Dialysis ensures that the only difference in the composition of the sample and the buffer is the protein; thus, all the excess heat absorbed by the sample can be attributed to the heat capacity of the protein. Degassing ensures precise volume analysis, as the extrapolation of the thermodynamic parameter assumes that the unfolding event is occurring under constant volume and pressure 31 . The constant pressure portion of the assumption is accounted for by nitrogen pressurization of the system as per section 1.1 of the procedure. 
+ 6 . Secondly, unlike CD, the accuracy of DSC data is not dependent on the helicity of the protein 39 
+ 40 ; however, CD provides additional information about the unfolding of the secondary structure, which would be complimentary to the DSC 41 . Additionally, the pressurization of the DSC system allows for testing with a wide temperature range without boiling the sample; thus, a wide range of proteins can be tested by DSC. 
+ m if there is an interaction with the protein under investigation, or appearance of new thermal transitions if there is no interaction. In any case these extra features on the thermograms can be wrongly attributed to samples, thus impacting the interpretation of results. Despite these limitations, DSC remains a reliable method that can provide detailed thermodynamic information about the protein unfolding process if implemented properly 42 . 
+ m and ΔH, collected for an array of lots of the same product can become an empirical baseline that can be used to examine the impact of process changes, formulation, and storage conditions on the tertiary structure and stability of protein and viral antigens 21 
+ 43 . 
+## Disclosures 
+ 

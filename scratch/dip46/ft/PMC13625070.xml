@@ -1,0 +1,1237 @@
+<?xml version="1.0" encoding="UTF-8"?><article xml:lang="en" article-type="research-article"><front><journal-meta><journal-id journal-id-type="pmc-domain-id">3686</journal-id><journal-id journal-id-type="pmc-domain">acsomega</journal-id><journal-title-group><journal-title>ACS Omega</journal-title><abbrev-journal-title>ACS Omega</abbrev-journal-title></journal-title-group><publisher><publisher-name>American Chemical Society</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type="pmcid">PMC13625070</article-id><article-id pub-id-type="pmcaid">13625070</article-id><article-id pub-id-type="pmcaiid">13625070</article-id><article-id pub-id-type="pmid">42819137</article-id><article-id pub-id-type="doi">10.1021/acsomega.6c06288</article-id><title-group><article-title>Feedstock-Dependent
+Thermogravimetric Kinetic Screening
+across Six Representative Biomass Types and Apparent Kinetics of a
+Volcanic-Derived Iron-Rich Mineral for Biomass Chemical Looping Applications</article-title></title-group><contrib-group content-type="author"><contrib><name name-style="western"><surname>Ahmad</surname><given-names initials="AH">Azaria Haykal</given-names></name><xref ref-type="aff" rid="aff1">†</xref><xref ref-type="aff" rid="aff2">‡</xref><xref ref-type="aff" rid="aff3">§</xref></contrib><contrib><name name-style="western"><surname>Waluyo</surname><given-names initials="R">Rahmat</given-names></name><xref ref-type="aff" rid="aff1">†</xref><xref ref-type="aff" rid="aff2">‡</xref><xref ref-type="aff" rid="aff3">§</xref></contrib><contrib><name name-style="western"><surname>Mochida</surname><given-names initials="K">Keiichi</given-names></name><xref ref-type="aff" rid="aff4">∥</xref><xref ref-type="aff" rid="aff5">⊥</xref><xref ref-type="aff" rid="aff6">#</xref></contrib><contrib><name name-style="western"><surname>Aziz</surname><given-names initials="M">Muhammad</given-names></name><xref ref-type="aff" rid="aff1">†</xref><xref ref-type="aff" rid="aff2">‡</xref><xref ref-type="aff" rid="aff3">§</xref><xref ref-type="aff" rid="aff4">∥</xref><xref rid="cor1" ref-type="author-notes">*</xref></contrib></contrib-group><aff id="aff1">
+<label>†</label>
+Department
+of Mechanical Engineering, The University
+of Tokyo, 7-3-1 Hongo, Bunkyo-ku, Tokyo
+113-8656, Japan
+</aff><aff id="aff2">
+<label>‡</label>
+Institute
+of Industrial Science, The University of
+Tokyo, 4-6-1 Komaba, Meguro-ku, Tokyo
+153-8505, Japan
+</aff><aff id="aff3">
+<label>§</label>
+Graduate
+School of Environmental Studies, Tohoku
+University, 6-6-20 Aramaki
+Aoba, Aoba-ku, Sendai
+980-8579, Japan
+</aff><aff id="aff4">
+<label>∥</label>
+RIKEN
+Center for Sustainable Resource Science, 1-7-22 Suehiro-cho, Tsurumi-ku, Yokohama, Kanagawa
+230-0045, Japan
+</aff><aff id="aff5">
+<label>⊥</label>
+Microalgae
+Production Control Technology Laboratory, RIKEN Baton Zone Program, Yokohama
+230-0045, Japan
+</aff><aff id="aff6">
+<label>#</label>
+Kihara Institute
+for Biological Research, Yokohama City University, Yokohama
+244-0813, Japan
+</aff><author-notes><fn id="cor1"><label>*</label><p>
+Email: <email>maziz@tohoku.ac.jp</email>.</p></fn></author-notes><pub-date><day>21</day><month>8</month><year>2026</year></pub-date><volume>11</volume><issue>34</issue><fpage>51833</fpage><page-range>51833–51850</page-range><pub-history><event event-type="pmc-release"><date><day>1</day><month>10</month><year>2026</year></date></event></pub-history><permissions><copyright-statement>© 2026 The Authors. Published by American Chemical Society</copyright-statement><license><license-p>This article is licensed under CC-BY-NC-ND 4.0</license-p></license></permissions><self-uri xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ao6c06288.pdf" content-type="pmc-pdf"><?cloudpmc-path 6ea3/13625070/8520ffc99da1/ao6c06288.pdf?><?cloudpmc-bucket app?><?size 9990742?></self-uri><abstract id="abstract1"><title>Abstract</title><p>Natural iron-rich
+minerals are potential low-cost alternatives
+for biomass direct chemical looping (BDCL) systems, but their interactions
+with different biomass feedstocks remain poorly understood. This study
+evaluated Badar stone, a volcanic iron-rich natural mineral from Indonesia,
+against synthetic Fe<sub>2</sub>O<sub>3</sub> using six representative
+biomass feedstocks, consisting of three lignocellulosic biomasses,
+namely rice husk, sawdust, and sago waste, and three microalgal biomasses,
+namely <italic>Aurantiochytrium, Euglena,</italic> and <italic>Spirulina</italic>. Thermogravimetric analysis (TGA) under N<sub>2</sub> was employed
+to examine devolatilization behavior and interactions between char
+and OC. A mass balance-based multistep kinetic model was used to assess
+thermal decomposition and apparent kinetic behavior across 400–800,
+800–1000, and 1000–1300 K. Biomass devolatilization
+dominated the TG response at low and intermediate temperatures, while
+clearer biomass–oxygen carrier differences appeared at higher
+temperatures. Rice husk showed limited sensitivity to Badar stone
+loading, with sums of fitted apparent activation energies of 367.1–369.5
+kJ/mol. Sawdust showed stronger oxygen carrier dependence, with the
+corresponding value decreasing from 371.1 kJ/mol with Badar stone
+to 307.2 kJ/mol with Fe<sub>2</sub>O<sub>3</sub>. <italic>Spirulina</italic> exhibited the highest values among the microalgal biomasses, reaching
+416.2 kJ/mol with Badar stone and 429.3 kJ/mol with Fe<sub>2</sub>O<sub>3</sub>. Badar stone produced broader and more gradual high-temperature
+TG responses, whereas Fe<sub>2</sub>O<sub>3</sub> produced sharper
+responses. These results demonstrate that the apparent thermochemical
+behavior depends strongly on both biomass type and oxygen carrier
+composition, providing a basis for selecting biomass–mineral
+combinations for subsequent cyclic and reactor-scale evaluation.</p></abstract><abstract id="abstract2" abstract-type="graphical"><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="abs1" xlink:href="ao6c06288_0013.webp"><?cloudpmc-path blobs/6ea3/13625070/b6425cc89a66/ao6c06288_0013.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 554?><?original-width 812?><?scaled-height 554?><?scaled-width 812?></graphic></abstract><abstract id="abstract3" abstract-type="toc-graphic"><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="tgr1" xlink:href="ao6c06288_0011.webp"><?cloudpmc-path blobs/6ea3/13625070/b6425cc89a66/ao6c06288_0011.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 554?><?original-width 812?><?scaled-height 554?><?scaled-width 812?></graphic></abstract><custom-meta-group><custom-meta><meta-name>status</meta-name><meta-value>released</meta-value></custom-meta><custom-meta><meta-name>display-pdf</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>is-olf</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>is-manuscript</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>is-preprint</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>is-journal-matter</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>is-scanned</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>is-retracted</meta-name><meta-value>no</meta-value></custom-meta></custom-meta-group></article-meta><notes notes-type="article-notes"><sec id="historyarticle-meta1" sec-type="history" disp-level="2"><p>Received 2026 Jun 1; Accepted 2026 Aug 11; Revised 2026 Aug 7; Collection date 2026 Sep 1.</p></sec></notes></front><body><sec id="sec1" disp-level="1"><label>1.</label><title>Introduction</title><p>Biomass direct chemical
+looping (BDCL) is a promising thermochemical
+approach for converting renewable biomass using lattice oxygen supplied
+by a solid oxygen carrier (OC). Biomass
+is relatively affordable to produce, readily available for feedstocks,
+and can be processed using simple technologies. Depending on the oxygen availability, OC loading, and operating
+conditions, direct contact between biomass and the OC may be applied
+to biomass chemical looping combustion (BCLC), which targets extensive
+fuel conversion into CO<sub>2</sub> and H<sub>2</sub>O, or biomass
+chemical looping gasification (BCLG), which employs substoichiometric
+lattice oxygen to promote syngas production. In both configurations,
+the OC transfers lattice oxygen and heat while avoiding direct contact
+between the biomass and air.</p><p>The development of a suitable OC
+remains one of the principal technical
+challenges in BCLG. An effective OC should have sufficient oxygen
+transport capacity, appropriate lattice oxygen reactivity for partial
+oxidation, catalytic activity toward biomass-derived intermediates,
+good mechanical strength, and resistance to sintering, agglomeration,
+attrition, and deactivation by biomass ash. Synthetic OCs can be designed to provide high reactivity and structural
+stability, but their preparation commonly requires additional raw
+materials, support phases, and energy-intensive synthesis procedures.
+Natural ores offer lower material and preparation costs and are generally
+more readily available, although their redox performance may be affected
+by variations in Fe content, mineral phases, inert constituents, particle
+strength, and interactions with biomass ash.</p><p>Previous studies
+have demonstrated the potential of natural ores
+for biomass direct chemical looping, particularly for BCLG. Ge et
+al. used natural hematite for rice husk
+gasification in a 25 kWth reactor and demonstrated the feasibility
+of using an inexpensive Fe-based mineral as the OC. Condori et al. subsequently reported 55 h of continuous pine
+wood gasification using ilmenite in a 1.5 kWth unit, showing that
+the transported lattice oxygen could be controlled to regulate syngas
+production. Using Fe and Mn ores at the same reactor scale, Condori
+et al. obtained biomass and carbon conversions
+above 94% and 95%, respectively, although attrition and the migration
+of active metals toward the particle surface reduced the estimated
+carrier lifetime. Natural manganese ore has also been examined for
+rice husk gasification, revealing that OC performance is affected
+by interactions between the mineral and Si-rich biomass ash. Modification of iron ore with NiO was reported
+to improve biomass char conversion and syngas formation, although this approach introduces an additional
+preparation step and a more expensive active component. Collectively,
+these studies demonstrate the potential of natural OCs for biomass
+direct chemical looping while highlighting unresolved challenges related
+to oxygen availability, feedstock-dependent behavior, structural stability,
+ash interactions, and the balance between material cost and redox
+performance</p><p>The reaction kinetics of biomass and the OC in the
+fuel reactor
+are particularly important because they determine how well the chemical
+looping system operates, which products it produces, and how it is
+designed. Thermogravimetric analysis (TGA) is a commonly used method
+for investigating kinetic behavior, owing to its exceptional accuracy
+and sensitivity in detecting mass changes under controlled thermal
+conditions. Isoconversional or model-free methods have been widely
+used to determine how apparent activation energies change with conversion. This method provides a preliminary understanding
+of biomass decomposition; however, it frequently inadequately captures
+the intricate, multistage reactions that transpire within heterogeneous
+feedstocks. Biomass is composed of various components, including cellulose,
+hemicellulose, lignin, proteins, and lipids. Each of these parts breaks
+down differently when heated. Consequently,
+multistep or multipseudo-component kinetic models have been suggested
+to represent these overlapping decomposition phases more precisely.
+</p><p>Pseudocomponent models are limited in
+their ability to describe
+how intermediates and gaseous products change over time, even though
+they fit thermogravimetric data well. On the other hand, multistep
+kinetic schemes provide clearer mechanistic insights into how solid
+and volatile species are formed and broken down. The two-step first-order
+kinetic model, first proposed by Di Blasi and Lanzetta (1997), has been widely used to predict how biomass
+loses weight in both isothermal and nonisothermal conditions, such
+as isothermal conditions for cellulose, hemicellulose, and lignin and isothermal conditions of poplar wood by
+Silveira et al. Nonetheless, the application
+of these models to nonisothermal processes, such as temperature-programmed
+reactions, is problematic because the temperature dependence of rate
+constants varies. Thus, sophisticated numerical algorithms are essential
+for the efficient determination of reliable kinetic parameters.<italic>
+,
+</italic>
+</p><p>Previous studies have primarily examined synthetic Fe<sub>2</sub>O<sub>3</sub>, conventional iron ores, sludge-derived carriers,
+or
+other established oxygen carrier (OC) systems, as shown in <xref rid="tbl1" ref-type="table">Table 
+</xref>, frequently using
+a limited number of biomass feedstocks. Systematic comparisons across
+both lignocellulosic and microalgal biomasses under a common kinetic
+framework remain limited. In addition, geological provenance has received
+relatively little attention as a material selection perspective for
+identifying unexplored natural Fe-rich minerals, although geological
+origin itself should not be interpreted as evidence of superior redox
+behavior. For instance, Fe<sub>2</sub>O<sub>3</sub>-rich sludge ash
+reduced the activation energy in the high-temperature zone (HTZ) during
+pine sawdust pyrolysis, while Fe<sub>2</sub>O<sub>3</sub> addition significantly increased CO<sub>2</sub> yield and gas conversion in low-ash coal gasification systems. Similar findings were reported for corn straw
+and lignin, where isoconversional and Malek analyses revealed transitions
+from chemical reaction to diffusion-controlled regimes. In nonisothermal studies, Fe<sub>2</sub>O<sub>3</sub>-based OCs consistently followed multistage reduction sequences
+(Fe<sub>2</sub>O<sub>3</sub>→Fe<sub>3</sub>O<sub>4</sub>→FeO→Fe),
+with activation energies typically ranging between 90 and 200 kJ·mol<sup>–1</sup> depending on feedstock composition and C/O ratio.<italic>
+,
+</italic> Notably, kinetic modeling using multistep schemes (e.g., D1 or C1.5
+models) has shown that OCs not only modify activation energy but also
+alter product distributions and intermediate yields. These findings collectively demonstrate that natural or
+synthetic Fe-based carriers strongly influence biomass conversion
+pathways and can be rationally selected to balance reactivity, selectivity,
+and stability.</p><table-wrap id="tbl1" position="float"><?disp-level 2?><label>1</label><caption><title>Summary of Kinetic Studies in Chemical
+Looping Using Natural and Synthetic OC</title></caption><table frame="hsides" rules="groups"><colgroup span="1"><col align="left" span="1"/><col align="left" span="1"/><col align="left" span="1"/><col align="left" span="1"/></colgroup><thead><tr><th align="center" colspan="1" rowspan="1">Feedstock/OC</th><th align="center" colspan="1" rowspan="1">Method</th><th align="center" colspan="1" rowspan="1">Main findings</th><th align="center" colspan="1" rowspan="1">Refs.</th></tr></thead><tbody><tr><td align="left" colspan="1" rowspan="1">Pine sawdust/Fe<sub>2</sub>O<sub>3</sub>-rich sludge ash</td><td align="left" colspan="1" rowspan="1">Isoconversional method–Coats–Redfern</td><td align="left" colspan="1" rowspan="1">The activation energy (Ea) in the low-temperature
+zone (LTZ)
+was independent of the OC fraction, whereas higher OC led to lower
+activation energy in the HTZ.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Low ash coal/Fe<sub>2</sub>O<sub>3</sub>/CO<sub>2</sub>
+</td><td align="left" colspan="1" rowspan="1">Isoconversional method–Coats–Redfern</td><td align="left" colspan="1" rowspan="1">CO<sub>2</sub> yield increased from 17.5% (no OC)→95.7% (with Fe<sub>2</sub>O<sub>3</sub>) under CO<sub>2</sub>; gas conversion 94%; 86% of lattice O in Fe<sub>2</sub>O<sub>3</sub> utilized; activation energy 6–459 kJ·mol<sup>–1</sup> depending on zone; coal–CO<sub>2</sub> = first order, coal–Fe<sub>2</sub>O<sub>3</sub>–CO<sub>2</sub> = third order; BET surface rose from 14.2→32.9 m<sup>2</sup>·g<sup>–1</sup> after reduction.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Corn straw/Fe<sub>2</sub>O<sub>3</sub>
+</td><td align="left" colspan="1" rowspan="1">Isoconversional method–Coats–Redfern and Malek</td><td align="left" colspan="1" rowspan="1">The kinetic mechanisms of pyrolysis, gas–solid reaction, and solid–solid reaction
+were random nucleation, chemical reaction control, and three-dimensional
+diffusion.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Lignin/Bi<sub>2</sub>O<sub>3</sub>
+</td><td align="left" colspan="1" rowspan="1">Isoconversional method: Kissinger–Akahira–Sunose (KAS)</td><td align="left" colspan="1" rowspan="1">Optimum 800–850 °C, Bi<sub>2</sub>O<sub>3</sub>/LG ≈ 5–6 (wt. ratio). Apparent Ea = 151.3–199.8 kJ·mol<sup>–1</sup>; highest at 30 wt % Bi<sub>2</sub>O<sub>3</sub>. For gas products, E(H<sub>2</sub>) &gt; E(CO<sub>2</sub>) &gt; E(CH<sub>4</sub>) &gt; E(CO); peak E(H<sub>2</sub>) = 59.9 kJ·mol<sup>–1</sup>. Steam addition increased
+H<sub>2</sub> and CO<sub>2</sub> yields while decreasing CO.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Mustard waste/FeNi alloy</td><td align="left" colspan="1" rowspan="1">Isoconversional methods: Flynn–Wall–Ozawa (FWO) and KAS</td><td align="left" colspan="1" rowspan="1">Spike-like FeNi enhances lignin decomposition;
+Ea rises from 79→192 kJ mol<sup>–1</sup> (FWO/KAS); 10% FeNi
+yields uniform conversion independent
+of heating rate; calorific value drops due to catalytic gasification.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Pine/NiFe<sub>2</sub>O<sub>4</sub>
+</td><td align="left" colspan="1" rowspan="1">DAME-TI</td><td align="left" colspan="1" rowspan="1">The activation energies of moisture
+loss, devolatilization,
+and char gasification were ∼100, 150–175, and 250–350 kJ/mol, respectively.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Microalgae/Fe<sub>2</sub>O<sub>3</sub>
+</td><td align="left" colspan="1" rowspan="1">Coats–Redfern integral
+model (C1, C1.5, C2)</td><td align="left" colspan="1" rowspan="1">Reduction occurred in three phases: Fe<sub>2</sub>O<sub>3</sub>→Fe<sub>3</sub>O<sub>4</sub> (365–555 °C), Fe<sub>3</sub>O<sub>4</sub>→FeO (595–799 °C), FeO→Fe (800–1200 °C); Ea = 97–194 kJ·mol<sup>–1</sup> (C1); ΔH = 91–185 kJ·mol<sup>–1</sup>, ΔG = −32 to 154 kJ·mol<sup>–1</sup>, ΔS = 0.02–0.13 kJ·mol<sup>–1</sup>·K<sup>–1</sup>; best fits with C1.5 model (R<sup>2</sup> ≈ 0.94).</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Iron ore (Fe<sub>2</sub>O<sub>3</sub>, Khumani IOK)</td><td align="left" colspan="1" rowspan="1">Nonisothermal and isothermal TGA–differential scanning calorimetry (DSC)</td><td align="left" colspan="1" rowspan="1">Reduction and reoxidation kinetics were investigated up to 850 °C under 5–32 mol % H<sub>2</sub>. Three-step reduction (Ea = 133, 30, 83 kJ·mol<sup>–1</sup>) and two-step
+oxidation (Ea = 30, 70 kJ·mol<sup>–1</sup>); annealing reduced oxidation rate by up to 2 orders
+of magnitude.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Iron powder/Industrial lignin,
+bituminous coal, anthracite</td><td align="left" colspan="1" rowspan="1">Nonisothermal TGA, Coats–Redfern D1 model</td><td align="left" colspan="1" rowspan="1">Lignin
+showed the lowest Ea (14.21 kJ·mol<sup>–1</sup>) vs coal (16.81–37.13 kJ·mol<sup>–1</sup>); Ea varied with C/O ratio, lowest at nc:no = 1.2; reduction range 800–1020 °C.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Bamboo powder/Fe<sub>2</sub>O<sub>3</sub> powder</td><td align="left" colspan="1" rowspan="1">Nonisothermal
+kinetics</td><td align="left" colspan="1" rowspan="1">Complete reduction at C/O = 1; four stages (de-H<sub>2</sub>O, Fe<sub>2</sub>O<sub>3</sub>→Fe<sub>3</sub>O<sub>4</sub>→FeO→Fe); Ea = 90.26, 125.13, 51.26 kJ·mol<sup>–1</sup>; random nucleation (<italic>n</italic> = 1–2) and 3D diffusion;
+CO from biochar gasification &gt;700 °C; surface evolved dense→porous→sintered Fe.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">
+<italic>Miscanthus
+giganteus</italic> (MIS)/Khumani iron ore (Fe<sub>2</sub>O<sub>3</sub>, KIO)</td><td align="left" colspan="1" rowspan="1">Nonisothermal TGA–evolved gas analysis (EGA), kinetic fitting
+(Arrhenius)</td><td align="left" colspan="1" rowspan="1">Biochar reduced Fe<sub>2</sub>O<sub>3</sub>→Fe via Fe<sub>3</sub>O<sub>4</sub>→FeO→Fe; full DRI
+at 1000 °C for MIS:KIO ≥ 1:1; Ea = 180 kJ·mol<sup>–1</sup>; reduction faster than H<sub>2</sub> above 900 °C; sponge-like Fe
+with Si redistribution.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Xylan, cellulose, lignin/Fe<sub>2</sub>O<sub>3</sub>
+</td><td align="left" colspan="1" rowspan="1">Multistep model</td><td align="left" colspan="1" rowspan="1">The mass balance-formulated steps required
+fewer parameters
+and thus demanded less computational resources. The activation energy
+changes were diversified by adding an OC. OC altered the yields and
+distributions of intermediates and products.</td><td align="left" colspan="1" rowspan="1"> </td></tr><tr><td align="left" colspan="1" rowspan="1">
+<italic>Chlorella vulgaris</italic>/Iron ore</td><td align="left" colspan="1" rowspan="1">Isoconversional (FWO, KAS,
+Friedman)</td><td align="left" colspan="1" rowspan="1">Three reaction stages were observed; Stages
+2 and 3 followed
+the O3 and D3 models with activation energies of 134.44 and 404.18 kJ mol<sup>–1</sup>, respectively;
+CO yield increased from 0.097→0.313 N m<sup>3</sup> kg<sup>–1</sup>; Fe<sub>2</sub>O<sub>3</sub> catalyzed tar cracking and improved gasification efficiency.</td><td align="left" colspan="1" rowspan="1">
+
+</td></tr></tbody></table></table-wrap><p>Despite growing interest
+in natural Fe-based OCs,
+most previous
+studies have focused on established materials such as conventional
+iron ores, ilmenite, and iron sand, whereas geological provenance
+has rarely been explicitly considered in identifying new OC candidates.
+Volcanic and subvolcanic geological systems can generate or concentrate
+Fe-bearing phases through several processes, including magmatic segregation,
+iron oxide-apatite mineralization, hydrothermal alteration, and the
+weathering and placer accumulation of volcanic rocks. Fe-rich materials
+associated with these environments include Kiruna-type apatite iron
+oxide ores, the magnetite-rich El Laco
+volcanic system,<italic>
+,
+</italic> several iron oxide-apatite deposits
+in Chile and Armenia,<italic>
+,
+</italic> and titanomagnetite iron sands
+derived from volcanic rocks in New Zealand and Indonesia.<italic>
+,
+</italic> These examples demonstrate that volcanic-related geological environments
+can host materials with substantial Fe contents that warrant investigation
+for thermochemical applications. However, volcanic origin alone does
+not establish superior redox performance and should instead be regarded
+as an underexplored perspective for identifying potential natural
+OCs.</p><p>Within this context, Badar stone (<xref rid="fig1" ref-type="fig">Figure 
+</xref>) was selected as a locally available Fe-rich
+natural material from Pati, Central Java, Indonesia. Geological studies
+associate Badar stone with jasper-type formations developed in a submarine
+volcanic environment. Such materials may form through interactions
+between basaltic lava and unconsolidated wet sediment, followed by
+hydrothermal alteration and silicification, and are commonly associated
+with basalt lava and hyaloclastite breccia. The raw material was initially goethite-rich and transformed predominantly
+into hematite after calcination, while elemental analysis showed that
+Fe was the dominant element at 59.7 wt %. Together with its naturally
+heterogeneous mineral composition, these characteristics provide a
+rational basis for its initial evaluation as a potential natural OC.
+Therefore, the selection of Badar stone does not rely solely on its
+previously unexplored status, nor does the present study assume that
+it outperforms established natural ores or synthetic Fe<sub>2</sub>O<sub>3</sub>.</p><fig id="fig1" position="float"><?disp-level 2?><label>1</label><caption><p>Raw Badar stone used as the natural Fe-rich mineral precursor
+in
+this study.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr1" xlink:href="ao6c06288_0001.webp"><?cloudpmc-path blobs/6ea3/13625070/acab9d9af308/ao6c06288_0001.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 632?><?original-width 1263?><?scaled-height 632?><?scaled-width 1263?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c06288_0001.gif"><?cloudpmc-path blobs/6ea3/13625070/9ad677bffa21/ao6c06288_0001.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><p>However, the thermogravimetric
+behavior and apparent
+kinetic behavior
+of Badar stone in biomass conversion remain unexplored. Therefore,
+this study investigates Badar stone as a potential natural OC under
+conditions relevant to reduction in the fuel reactor and compares
+its response with that of synthetic Fe<sub>2</sub>O<sub>3</sub>. Six
+representative biomass feedstocks were selected to cover distinct
+biochemical and ash characteristics, namely rice husk (RH), sawdust
+(SD), and sago waste (SW), as lignocellulosic biomasses, and <italic>Aurantiochytrium</italic> (MA), <italic>Euglena</italic> (ME), and <italic>Spirulina</italic> (MS), as microalgal biomasses. The lignocellulosic
+feedstocks are primarily composed of cellulose, hemicellulose, and
+lignin, whereas the microalgal feedstocks contain different proportions
+of lipids, proteins, and carbohydrates. These compositional differences
+are expected to produce distinct devolatilization and residual solid
+behaviors. The objective is to determine how biomass composition,
+OC loading, and OC type influence the net thermogravimetric response
+and fitted apparent kinetic parameters. Because gaseous products were
+not analyzed, the experiments are not used to distinguish complete
+combustion from syngas-oriented gasification or to demonstrate reactor-scale
+BCLC or BCLG performance.</p></sec><sec id="sec2" disp-level="1"><label>2.</label><title>Experimental
+Section</title><sec id="sec2.1" disp-level="2"><label>2.1.</label><title>Materials</title><p>The proximate and ultimate
+analyses of the six biomass feedstocks are summarized in <xref rid="tbl2" ref-type="table">Table 
+</xref>. Prior to the TGA
+experiments, Badar stone was calcined in an air atmosphere at a heating
+rate of 10 °C/min to 600 °C, then the rate was decreased
+to 5 °C/min until the temperature reached 1,000 °C, and
+held for 12 h to improve its reactivity and mechanical strength. Badar stone was dried at room temperature to
+remove humidity, then crushed and sieved to 80–200 μm.
+In addition, α-Fe<sub>2</sub>O<sub>3</sub> (Wako Pure Chemical
+Industries, Ltd., 99.9%) was employed as OC for comparison.</p><table-wrap id="tbl2" position="float"><?disp-level 3?><label>2</label><caption><title>Characterization of Biomass Used in
+This Study</title></caption><table frame="hsides" rules="groups"><colgroup span="1"><col align="left" span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/></colgroup><thead><tr><th align="center" colspan="1" rowspan="1"> </th><th colspan="4" align="center" rowspan="1">
+<bold>Proximate
+Analysis (%ar)</bold>
+<hr/></th><th colspan="5" align="center" rowspan="1">
+<bold>Ultimate Analysis (%db)</bold>
+<hr/></th></tr><tr><th align="center" colspan="1" rowspan="1">
+<bold>Biomass
+Type</bold>
+</th><th align="center" colspan="1" rowspan="1">VM</th><th align="center" colspan="1" rowspan="1">FC</th><th align="center" colspan="1" rowspan="1">M</th><th align="center" colspan="1" rowspan="1">ASH</th><th align="center" colspan="1" rowspan="1">C</th><th align="center" colspan="1" rowspan="1">H</th><th align="center" colspan="1" rowspan="1">O</th><th align="center" colspan="1" rowspan="1">N</th><th align="center" colspan="1" rowspan="1">S</th></tr></thead><tbody><tr><td align="left" colspan="1" rowspan="1">RH</td><td align="center" colspan="1" rowspan="1">50.18</td><td align="center" colspan="1" rowspan="1">7.84</td><td align="center" colspan="1" rowspan="1">8.96</td><td align="center" colspan="1" rowspan="1">33.03</td><td align="center" colspan="1" rowspan="1">58.55</td><td align="center" colspan="1" rowspan="1">11.54</td><td align="center" colspan="1" rowspan="1">37.39</td><td align="center" colspan="1" rowspan="1">1.23</td><td align="center" colspan="1" rowspan="1">0.22</td></tr><tr><td align="left" colspan="1" rowspan="1">SD</td><td align="center" colspan="1" rowspan="1">77.66</td><td align="center" colspan="1" rowspan="1">8.44</td><td align="center" colspan="1" rowspan="1">8.92</td><td align="center" colspan="1" rowspan="1">4.99</td><td align="center" colspan="1" rowspan="1">51.64</td><td align="center" colspan="1" rowspan="1">8.84</td><td align="center" colspan="1" rowspan="1">45.51</td><td align="center" colspan="1" rowspan="1">0.78</td><td align="center" colspan="1" rowspan="1">0.06</td></tr><tr><td align="left" colspan="1" rowspan="1">SW</td><td align="center" colspan="1" rowspan="1">65.06</td><td align="center" colspan="1" rowspan="1">18.28</td><td align="center" colspan="1" rowspan="1">11.50</td><td align="center" colspan="1" rowspan="1">5.17</td><td align="center" colspan="1" rowspan="1">45.23</td><td align="center" colspan="1" rowspan="1">7.85</td><td align="center" colspan="1" rowspan="1">52.43</td><td align="center" colspan="1" rowspan="1">0.52</td><td align="center" colspan="1" rowspan="1">0.02</td></tr><tr><td align="left" colspan="1" rowspan="1">MA</td><td align="center" colspan="1" rowspan="1">81.08</td><td align="center" colspan="1" rowspan="1">4.04</td><td align="center" colspan="1" rowspan="1">6.37</td><td align="center" colspan="1" rowspan="1">8.51</td><td align="center" colspan="1" rowspan="1">52.59</td><td align="center" colspan="1" rowspan="1">13.70</td><td align="center" colspan="1" rowspan="1">41.79</td><td align="center" colspan="1" rowspan="1">2.00</td><td align="center" colspan="1" rowspan="1">0.56</td></tr><tr><td align="left" colspan="1" rowspan="1">ME</td><td align="center" colspan="1" rowspan="1">81.68</td><td align="center" colspan="1" rowspan="1">5.40</td><td align="center" colspan="1" rowspan="1">9.07</td><td align="center" colspan="1" rowspan="1">3.85</td><td align="center" colspan="1" rowspan="1">50.11</td><td align="center" colspan="1" rowspan="1">10.47</td><td align="center" colspan="1" rowspan="1">42.57</td><td align="center" colspan="1" rowspan="1">6.83</td><td align="center" colspan="1" rowspan="1">0.15</td></tr><tr><td align="left" colspan="1" rowspan="1">MS</td><td align="center" colspan="1" rowspan="1">83.65</td><td align="center" colspan="1" rowspan="1">7.09</td><td align="center" colspan="1" rowspan="1">3.63</td><td align="center" colspan="1" rowspan="1">5.63</td><td align="center" colspan="1" rowspan="1">49.56</td><td align="center" colspan="1" rowspan="1">13.01</td><td align="center" colspan="1" rowspan="1">33.77</td><td align="center" colspan="1" rowspan="1">17.01</td><td align="center" colspan="1" rowspan="1">0.66</td></tr></tbody></table></table-wrap><p>X-ray diffraction (XRD) was performed using a Rigaku
+MiniFlex 600
+to analyze the crystalline structure of the samples. The XRD data
+were collected at a continuous scan rate of 5 °/min over a 2θ
+range of 10° to 80°. The XRD patterns were background corrected,
+mildly smoothed for visualization, and normalized to facilitate comparison
+among samples. The processing did not alter the original peak positions.
+As shown in <xref rid="fig2" ref-type="fig">Figure 
+</xref>, the raw Badar stone contained goethite together with Fe<sub>2</sub>O<sub>3</sub>-bearing phases, with further details provided in <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Figure S.1</ext-link> of the <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Supporting Information</ext-link>. After calcination, the material transformed into
+a predominantly hematite (Fe<sub>2</sub>O<sub>3</sub>), as indicated
+by the characteristic diffraction peaks at 24°, 33°, 36°,
+41°, 49°, 54°, 62°, and 64°. The synthetic
+Fe<sub>2</sub>O<sub>3</sub> reference material was also characterized
+by XRD to establish its initial crystalline phase and ensure a rigorous
+basis for comparison with calcined Badar stone. In addition to phase
+identification, elemental composition was analyzed using ICP–SFMS
+(Inductively Coupled Plasma Sector Field Mass Spectrometry) conducted
+by an external accredited laboratory (ALS Scandinavia, Sweden). The
+reported uncertainty represents the extended measurement uncertainty
+provided by the laboratory at an approximately 95% confidence level.
+Because ICP–SFMS quantified selected metallic elements and
+did not directly determine oxygen, the reported elemental concentrations
+are not expected to sum to 100%. The elemental analysis results summarized
+in <xref rid="tbl3" ref-type="table">Table 
+</xref> show that
+iron is the dominant element in Badar stone, consistent with the XRD
+results and confirming the hematite-rich nature of the material.</p><fig id="fig2" position="float"><?disp-level 3?><label>2</label><caption><p>XRD patterns
+of noncalcined and calcined Badar stone and the synthetic
+Fe<sub>2</sub>O<sub>3</sub> used in this study.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr2" xlink:href="ao6c06288_0002.webp"><?cloudpmc-path blobs/6ea3/13625070/b4e416e5b73f/ao6c06288_0002.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 868?><?original-width 1453?><?scaled-height 868?><?scaled-width 1453?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c06288_0002.gif"><?cloudpmc-path blobs/6ea3/13625070/ab5f40d092d8/ao6c06288_0002.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><table-wrap id="tbl3" position="float"><?disp-level 3?><label>3</label><caption><title>Elemental Analysis of Badar Stone<sup/>
+</title></caption><table frame="hsides" rules="groups"><colgroup span="1"><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="±" span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/><col align="char" char="±" span="1"/><col align="char" char="." span="1"/><col align="char" char="." span="1"/></colgroup><thead><tr><th align="center" colspan="1" rowspan="1">LOI<sup/>
+</th><th align="center" colspan="1" rowspan="1">
+<bold>Al (%)</bold>
+</th><th align="center" colspan="1" rowspan="1">
+<bold>Ca (%)</bold>
+</th><th align="center" colspan="1" rowspan="1">
+<bold>Fe (%)</bold>
+</th><th align="center" colspan="1" rowspan="1">
+<bold>Mg (%)</bold>
+</th><th align="center" colspan="1" rowspan="1">
+<bold>Mn (%)</bold>
+</th><th align="center" colspan="1" rowspan="1">
+<bold>K (%)</bold>
+</th><th align="center" colspan="1" rowspan="1">
+<bold>Si (%)</bold>
+</th><th align="center" colspan="1" rowspan="1">
+<bold>Ti (%)</bold>
+</th><th align="center" colspan="1" rowspan="1">
+<bold>V (%)</bold>
+</th></tr></thead><tbody><tr><td align="center" colspan="1" rowspan="1">0.691</td><td align="center" colspan="1" rowspan="1">0.176</td><td align="center" colspan="1" rowspan="1">0.164</td><td align="center" colspan="1" rowspan="1">59.7 ± 9.16</td><td align="center" colspan="1" rowspan="1">0.132</td><td align="center" colspan="1" rowspan="1">0.0101</td><td align="center" colspan="1" rowspan="1">0.0538</td><td align="center" colspan="1" rowspan="1">1.61 ± 0.21</td><td align="center" colspan="1" rowspan="1">0.00225</td><td align="center" colspan="1" rowspan="1">0.00111</td></tr></tbody></table><table-wrap-foot><fn id="tbl3fn1"><label>a</label><p>LOI = loss on ignition, i.e.,
+weight reduction of the heat-treated sample upon heating to 1000 °C
+in air. The missing 100% is oxygen, and there is an uncertainty in
+the calculation.</p></fn></table-wrap-foot></table-wrap></sec><sec id="sec2.2" disp-level="2"><label>2.2.</label><title>Experimental Setup</title><p>In a typical test,
+N<sub>2</sub> at a flow rate of 500 mL/min was used as an inert purge
+gas to prevent oxidation by ambient air, in accordance with the operating
+requirements of the Rigaku thermogravimetric instrument. The purge
+gas was introduced from the rear of the furnace system and was not
+directed as a high-velocity jet onto the sample surface. The same
+gas-flow condition was consistently applied to all experiments. Biomass
+and OC were weighed separately and manually mixed using a mortar and
+pestle prior to each run to promote a uniform distribution of the
+two solid components. Subsequently, 5 mg of biomass was tested either
+alone as the biomass-only control or physically mixed with 2.5, 5,
+or 10 mg of Badar stone, corresponding to OC-to-biomass mass ratios
+of 0.5, 1, and 2, respectively. Comparative experiments using synthetic
+Fe<sub>2</sub>O<sub>3</sub> were conducted at an OC-to-biomass mass
+ratio of 1. The biomass loading of 5 mg was selected to maintain a
+shallow, reproducible sample bed and to ensure that all biomass and
+OC mixtures remained within the crucible’s practical volumetric
+capacity, particularly for low-bulk-density feedstocks such as sawdust.
+Prior to each TGA experiment, the separately weighed biomass and OC
+were manually mixed using a mortar and pestle to promote a uniform
+distribution of the two solid components. The mixture was then transferred
+directly into the TGA sample holder. The same mixing procedure was
+consistently applied to all experimental conditions. The sample was
+first heated from room temperature to 383 at 20 K/min and held for
+10 min to remove moisture, followed by heating to 1300 K at the same
+rate. Because no external reducing gas was supplied during these runs,
+the measured mass loss reflects biomass pyrolysis and the subsequent
+interaction of pyrolysis-derived gases and char with the OC under
+TGA conditions. Therefore, the present nonisothermal TGA experiments
+are interpreted as a comparative kinetic screening tool rather than
+as a direct representation of reactor-scale chemical looping behavior.
+In addition, selected experimental conditions were independently repeated
+to evaluate the run-to-run repeatability of the TG and DTG profiles.
+The repeated experiments were selected to cover lignocellulosic and
+microalgal biomass samples, biomass-only controls, different Badar
+stone loadings, and synthetic Fe2O3 comparisons. For each repeated
+experiment, the biomass and OC were separately weighed, manually mixed,
+and transferred to the TGA sample holder following the same preparation
+and operating procedures. Repeatability was quantitatively assessed
+using pairwise RMSE values calculated from the normalized TG profiles.
+Representative TG and DTG overlays and the corresponding repeatability
+metrics are provided in <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Table S.1</ext-link> of the <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Supporting Information</ext-link>. The replicate set was
+designed to evaluate the technical repeatability of representative
+experimental conditions rather than to provide statistical replication
+for every biomass and OC combination. Because parameter-specific fitting
+uncertainty was not independently determined, small differences of
+only a few kJ/mol among the fitted apparent activation energies are
+considered comparable and are not interpreted as evidence of distinctly
+different reaction mechanisms.</p></sec><sec id="sec2.3" disp-level="2"><label>2.3.</label><title>Multistep
+Reaction Kinetics</title><p>A multistep
+kinetic approach was employed. In this study, a two-step sequential
+model was adopted based on the work of Sun and Aziz, who investigated xylan (main component of hemicellulose)-,
+cellulose-, and lignin-based biomass with Fe<sub>2</sub>O<sub>3</sub> as the OC, as depicted in <xref rid="fig3" ref-type="fig">Figure 
+</xref>.</p><fig id="fig3" position="float"><?disp-level 3?><label>3</label><caption><p>Schematic of the mass balance equation-based multistep
+kinetics
+scheme.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr3" xlink:href="ao6c06288_0003.webp"><?cloudpmc-path blobs/6ea3/13625070/f497b5e1ac40/ao6c06288_0003.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 313?><?original-width 988?><?scaled-height 313?><?scaled-width 988?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c06288_0003.gif"><?cloudpmc-path blobs/6ea3/13625070/3b896bcbcb4e/ao6c06288_0003.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><p>The mass fractions of the reactant
+S<sub>n–1</sub>, solid
+product S<sub>n</sub>, and a gaseous product V<sub>n</sub> at the
+n-th stage as a function of temperature can be written in <xref rid="eq1" ref-type="disp-formula">eqs 
+</xref>–:
+</p><disp-formula id="eq1"><label>1</label><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="d1e1266" display="block"><mml:mrow><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mrow><mml:mi mathvariant="normal">d</mml:mi></mml:mrow><mml:mrow><mml:mi>ω</mml:mi></mml:mrow></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow><mml:mrow><mml:mo>−</mml:mo></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi mathvariant="normal">dT</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mo form="prefix">−</mml:mo><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>β</mml:mi></mml:mrow></mml:mfrac><mml:msub><mml:mrow><mml:mi mathvariant="normal">k</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow><mml:mrow><mml:mo>−</mml:mo></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow></mml:math></disp-formula><disp-formula id="eq2"><label>2</label><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="d1e1328" display="block"><mml:mrow><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mrow><mml:mi mathvariant="normal">d</mml:mi></mml:mrow><mml:mrow><mml:mi>ω</mml:mi></mml:mrow></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi mathvariant="normal">dT</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>β</mml:mi></mml:mrow></mml:mfrac><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="normal">k</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi>α</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow><mml:mrow><mml:mo>−</mml:mo></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="normal">k</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow><mml:mrow><mml:mo>+</mml:mo></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula><disp-formula id="eq3"><label>3</label><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="d1e1418" display="block"><mml:mrow><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mrow><mml:mi mathvariant="normal">d</mml:mi></mml:mrow><mml:mrow><mml:mi>ω</mml:mi></mml:mrow></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">V</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi mathvariant="normal">dT</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mo form="prefix">−</mml:mo><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>β</mml:mi></mml:mrow></mml:mfrac><mml:msub><mml:mrow><mml:mi mathvariant="normal">k</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:msub><mml:mrow><mml:mi>α</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:msub><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow><mml:mrow><mml:mo>−</mml:mo></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow></mml:math></disp-formula><p>where, T is the temperature
+(K), <italic>β</italic> is the heating rate (K/min), <italic>α</italic>
+<sub>n</sub> is the branching fraction of the intermediate
+solid assigned to
+the solid forming pathway in the n-th step. <italic>α</italic>
+<sub>n</sub> is a fitted model allocation parameter and should not
+be interpreted as a direct experimental measurement of physical solid
+participation or overall conversion. While k<sub>n</sub> represents
+the rate constant, calculated using the Arrhenius equation as shown
+in <xref rid="eq4" ref-type="disp-formula">eq 
+</xref>:</p><disp-formula id="eq4"><label>4</label><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="d1e1507" display="block"><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">k</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="normal">A</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub><mml:mo linebreak="nobreak" lspace="0em" rspace="0.25em">⁡</mml:mo><mml:mi>exp</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mo form="prefix">−</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">E</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi mathvariant="normal">RT</mml:mi></mml:mrow></mml:mfrac><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula><p>where A<sub>n</sub> (s<sup>–1</sup>) and E<sub>n</sub> (kJ/mol) are the pre-exponential factor and apparent
+activation energy, respectively, while R is the universal gas constant.
+When the fitted apparent activation energies of the sequential steps
+are summed for compact comparison, the resulting quantity is denoted
+as ΣEa. ΣEa is used solely as a comparative descriptor
+within the present sequential fitting model and does not represent
+the physical activation energy of a single reaction or the overall
+intrinsic energetic barrier of the process.</p><p>The accuracy of
+the multistep kinetic model is determined by the
+fitting quality, as shown in <xref rid="eq5" ref-type="disp-formula">eqs 
+</xref> and 
+</p><disp-formula id="eq5"><label>5</label><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="d1e1565" display="block"><mml:mrow><mml:mi mathvariant="normal">OF</mml:mi><mml:mo>=</mml:mo><mml:munderover><mml:mrow><mml:mo form="prefix">∑</mml:mo></mml:mrow><mml:mrow><mml:mi mathvariant="normal">i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="normal">N</mml:mi></mml:mrow></mml:munderover><mml:msup><mml:mrow><mml:mrow><mml:mo stretchy="false">[</mml:mo></mml:mrow><mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">TG</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi mathvariant="normal">exp</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="normal">i</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mo>−</mml:mo></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">TG</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi mathvariant="normal">cal</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="normal">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mrow><mml:mrow><mml:mo stretchy="false">]</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:math></disp-formula><disp-formula id="eq6"><label>6</label><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="d1e1629" display="block"><mml:mrow><mml:mi mathvariant="normal">Fit</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:msqrt><mml:mfrac><mml:mrow><mml:mi mathvariant="normal">OF</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">N</mml:mi></mml:mrow></mml:mfrac></mml:msqrt></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mrow><mml:mi mathvariant="normal">TG</mml:mi></mml:mrow><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">exp</mml:mi></mml:mrow><mml:mrow><mml:mo>,</mml:mo></mml:mrow><mml:mrow><mml:mi mathvariant="normal">max</mml:mi></mml:mrow></mml:mrow></mml:msub></mml:mrow></mml:mfrac><mml:mo stretchy="true">]</mml:mo></mml:mrow><mml:mo>×</mml:mo><mml:mn>100</mml:mn><mml:mo>%</mml:mo></mml:mrow></mml:math></disp-formula><p>where
+N is the number of experimental data
+points obtained from thermogravimetric analysis (TGA).</p><p>Since
+the analytical solutions of <xref rid="eq1" ref-type="disp-formula">eqs 
+</xref>– cannot be derived in
+closed form, numerical computation was implemented in MATLAB R2024b
+to estimate the kinetic parameters. The governing equations were numerically
+integrated in MATLAB R2024b using ODE45, which is an explicit Runge–Kutta
+(4,5) solver with adaptive step size control. The objective function
+was minimized using fmincon as a constrained local optimizer to estimate
+the apparent kinetic parameters (A<sub>i</sub>, E<sub>i)</sub> and
+the fitted solid allocation parameter (<italic>α</italic>
+<sub>i</sub>). To reduce dependence on initial guesses, multiple initial
+parameter sets were tested, and the solution with the lowest objective
+function value was retained. Microscale TGA does not reproduce the
+hydrodynamic and solid–gas contacting conditions of a larger
+reactor. Accordingly, the fitted kinetic parameters are interpreted
+as apparent descriptors of the nonisothermal TG response under the
+selected experimental conditions, rather than as intrinsic kinetic
+constants completely independent of heat and mass transfer effects.</p></sec></sec><sec id="sec3" disp-level="1"><label>3.</label><title>Results and Discussion</title><sec id="sec3.1" disp-level="2"><label>3.1.</label><title>Thermogravimetric
+Analysis</title><p>The TGA
+and differential thermogravimetric (DTG) analyses results for all
+biomass samples, along with their mixtures with Badar stone and synthetic
+hematite (Fe<sub>2</sub>O<sub>3</sub>) at ratios of 0.5, 1, and 2,
+are presented in <xref rid="fig4" ref-type="fig">Figure 
+</xref>. The biomass-only condition, without any OC, served as the control
+for evaluating changes associated with OC addition. The corresponding
+difference TG curves, normalized by the initial biomass mass, are
+provided in <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Figure S.4</ext-link> of the <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Supporting Information.</ext-link> The highest decomposition
+peaks were observed at 595, 540, and 600 K for RH, SD, and SW, respectively,
+and at 570, 590, and 593 K for MA, ME, and MS, respectively. Unlike
+the other microalgae, MA exhibited a distinct secondary DTG peak at
+approximately 670 K, indicating an additional devolatilization stage
+associated with its higher lipid fraction.</p><fig id="fig4" position="float"><?disp-level 3?><label>4</label><caption><p>TG and DTG profiles of
+the investigated biomasses: (a) RH, (b)
+SD, (c) SW, (d) MA, (e) ME, and (f) MS.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr4" xlink:href="ao6c06288_0004.webp"><?cloudpmc-path blobs/6ea3/13625070/f44e91c7a080/ao6c06288_0004.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 1887?><?original-width 1600?><?scaled-height 1887?><?scaled-width 1600?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c06288_0004.gif"><?cloudpmc-path blobs/6ea3/13625070/4c1cd8889651/ao6c06288_0004.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><p>The decomposition of pure lignocellulosic-based
+biomass showed
+multiple degradation zones corresponding to the devolatilization of
+hemicellulose, cellulose, and lignin, which align with their characteristic
+biochemical compositions. For RH, the major fractions were cellulose
+(35.86%), lignin (24.52%), and hemicellulose (18.20%). SW contained approximately 39.5% cellulose,
+10.35% lignin, and 17.8% hemicellulose, while Sengon SD comprised 48.98 wt % cellulose, 26.66 wt % lignin,
+and 23.33 wt % hemicellulose
+</p><p>In
+the case of lignocellulosic-based biomass blended with Badar
+stone or Fe<sub>2</sub>O<sub>3</sub>, initial devolatilization occurred
+between 500 and 800 K. The presence of Badar or Fe<sub>2</sub>O<sub>3</sub> had a limited effect on primary volatile release but a greater
+influence on possible interaction among residual char, pyrolysis-derived
+gases, and OC interactions at higher temperatures (950–1100
+K), similar to the reported cellulose–Fe<sub>2</sub>O<sub>3</sub> reactivity. Hemicellulose decomposed
+over a lower but broader temperature range (490–690 K) with
+two DTG peaks, which can be clearly observed in RH and is attributed
+to glycosidic bond cleavage and side-chain fragmentation. In SW and SD, the characteristic double peak
+does not appear, mainly due to the substantially lower cellulose and
+hemicellulose intensities. As shown by Sun and Aziz, the peak intensities of cellulose, hemicellulose, and lignin
+are approximately −90, −30, and −10 mg/K, respectively;
+however, in RH, the very high ash content enhances the distinction
+of the two hemicellulose-related peaks, making them more visible in
+the DTG profile. Lignocellulosic-based biomass exhibited overlapping
+peaks due to the combined degradation of all three components, while
+lignin contributed to a wider thermal span up to 850 K, characterized
+by β-O-4 bond cleavage near 630 K. At elevated temperatures (990–1100 K), additional mass loss
+was observed in the lignocellulosic-based biomass–OC mixtures.
+Under the present TGA conditions, this behavior is more cautiously
+interpreted as being associated with interactions between biomass-derived
+char and pyrolysis-derived gases with the OC, rather than being assigned
+exclusively to a specific iron oxide reduction pathway. This interpretation
+is consistent with previous observations for lignin–Fe<sub>2</sub>O<sub>3</sub> blends.
+</p><p>The
+decomposition of microalgal-based biomass exhibited distinct
+devolatilization behaviors, governed by its biochemical composition,
+which differ markedly from those of lignocellulosic feedstocks. Microalgae
+devolatilization primarily resulted from the thermal degradation of
+carbohydrates, lipids, and proteins. For
+MA, the proximate biochemical composition consisted of approximately
+22.60% protein and 64.00% lipids, with negligible carbohydrates. ME exhibited 17.8–23.2% protein, 6.1–9.8%
+lipids, and 63.7–71.1% carbohydrates, whereas MS was characterized by a high protein content of 55–70%,
+a moderate lipid fraction of 6–9%, and a carbohydrate range
+of 15–25%.
+</p><p>The first DTG
+peak between 550 and 600 K corresponds to protein
+denaturation and polysaccharide decomposition, while the secondary
+peak near 670 K observed for MA is attributed to lipid cracking and
+long-chain hydrocarbon release, consistent with its higher lipid content
+compared to ME and MS. A broad high-temperature region above 700 K
+was associated with the gradual decomposition of residual carbonaceous
+materials and fixed carbon, which devolatilized slowly up to around
+1100 K.<italic>
+,
+</italic> These results indicate that microalgal-based
+biomass exhibits more complex devolatilization behavior than lignocellulosic
+biomass due to the coexistence of nitrogenous and lipid-rich compounds.
+Unlike other microalgae, ME has a deep mass reduction and similar
+to protein- and carbohydrate-rich biomasses such as defatted <italic>Chlorella</italic>, because its thermolytic degradation occurs predominantly
+between 500–600 K, where intense volatilization of intracellular
+organics (proteins, polysaccharides, and residual lipids) takes place,
+leading to rapid devolatilization and release of gases such as CO<sub>2</sub>, CO, CH<sub>4</sub>, and light hydrocarbons. A 1:1 Fe<sub>2</sub>O<sub>3</sub> ratio showed higher reduction
+performance than an equivalent Badar stone ratio and exhibited behavior
+comparable to the 2:1 Badar mixture, highlighting both the catalytic
+advantage and the inherent limitations of pure Fe<sub>2</sub>O<sub>3</sub>.</p><p>To support the temperature-based interpretation, three
+thermal
+zones were defined for the subsequent kinetic analysis, namely LTZ
+(400–800 K), MTZ (800–1000 K), and HTZ (1000–1300
+K). These zones were selected to separate the main thermal regimes
+observed in the TG and DTG profiles. Previous studies reported that
+the reduction of Fe<sub>2</sub>O<sub>3</sub>-based oxygen carriers
+may undergo stepwise reduction from Fe<sub>2</sub>O<sub>3</sub> to
+Fe<sub>3</sub>O<sub>4</sub>, Fe<sub>3</sub>O<sub>4</sub> to FeO, and
+FeO to Fe within overlapping temperature ranges. Ubando et al. reported that in microalgae chemical looping,
+Fe<sub>2</sub>O<sub>3</sub> is reduced to Fe<sub>3</sub>O<sub>4</sub> within 638–828 K, followed by Fe<sub>3</sub>O<sub>4</sub> to FeO at 868–1073 K, and finally FeO to Fe above 1073 K.
+Similarly, Robles et al. found that for
+forest residue biochar, reduction proceeds from Fe<sub>2</sub>O<sub>3</sub>→Fe<sub>3</sub>O<sub>4</sub> at 837–923 K, Fe<sub>3</sub>O<sub>4</sub>→FeO at 923–1004 K, and FeO→Fe
+above 1004 K. Wang et al. conducted sawdust–Fe<sub>2</sub>O<sub>3</sub> reduction experiments, showing that the stepwise
+reduction occurred from Fe<sub>2</sub>O<sub>3</sub>→Fe<sub>3</sub>O<sub>4</sub> at approximately 973 K, followed by Fe<sub>3</sub>O<sub>4</sub>→FeO between 1023–1073 K, and finally
+FeO→Fe at 1123–1173 K. However, in the present study,
+the LTZ, MTZ, and HTZ are used as empirical fitting windows to separate
+distinct regions of the measured TG and DTG profiles and should not
+be interpreted as mechanistically exclusive reaction regimes or as
+one-to-one assignments of individual iron oxide reduction steps. In
+the LTZ and much of the MTZ, biomass devolatilization provides the
+dominant contribution to the observed net mass loss, as indicated
+by the major DTG peaks and the relatively limited separation among
+different OC loadings. Nevertheless, simultaneous oxygen carrier reduction,
+carbon deposition, secondary reactions involving pyrolysis-derived
+species, char formation, and other overlapping processes cannot be
+excluded. Therefore, the fitted parameters represent apparent descriptors
+of the net thermogravimetric response within each temperature window
+rather than intrinsic kinetic parameters of a single rate-controlling
+mechanism.</p><p>To clarify the main thermal transformation reactions
+within each
+zone, <xref rid="tbl4" ref-type="table">Table 
+</xref> summarizes
+the temperature ranges for the main chemical and structural transformations
+of biomass components based on the literature. Microalgae biomass
+contains mainly carbohydrate, lipid, and protein fractions. Moisture and volatile organics are present in
+all types. In the LTZ, dehydration and devolatilization occur alongside
+the decomposition of hemicellulose and a portion of cellulose. In
+the MTZ, cellulose and lignin decomposition together with char formation
+are expected to dominate the overall mass loss, while OC reduction
+may begin to contribute. In the HTZ, the clearer mass-loss differences
+among OC ratios suggest stronger interactions between residual char
+or pyrolysis-derived gases and OC.</p><table-wrap id="tbl4" position="float"><?disp-level 3?><label>4</label><caption><title>Thermal Decomposition
+Ranges of Major
+Biomass Components</title></caption><table frame="hsides" rules="groups"><colgroup span="1"><col align="left" span="1"/><col align="left" span="1"/><col align="left" span="1"/></colgroup><thead><tr><th align="center" colspan="1" rowspan="1">Decomposition
+of compounds</th><th align="center" colspan="1" rowspan="1">Temperature range (K)</th><th align="center" colspan="1" rowspan="1">References</th></tr></thead><tbody><tr><td align="left" colspan="1" rowspan="1">Moisture</td><td align="left" colspan="1" rowspan="1">303–423</td><td align="left" colspan="1" rowspan="1">Andrade et al.
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Hemicelullose</td><td align="left" colspan="1" rowspan="1">493–563</td><td align="left" colspan="1" rowspan="1">Chen et al.
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Cellulose</td><td align="left" colspan="1" rowspan="1">598–643</td><td align="left" colspan="1" rowspan="1">Chen et al.
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Lignin</td><td align="left" colspan="1" rowspan="1">683–733</td><td align="left" colspan="1" rowspan="1">Chen et al.
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Lipid fraction</td><td align="left" colspan="1" rowspan="1">≤463</td><td align="left" colspan="1" rowspan="1">Ross et al.
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Chlorophylls A and B</td><td align="left" colspan="1" rowspan="1">353–393</td><td align="left" colspan="1" rowspan="1">Weemaes et al.
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Carbohydrates and proteins</td><td align="left" colspan="1" rowspan="1">463–703</td><td align="left" colspan="1" rowspan="1">Andrade et al.
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Lipids</td><td align="left" colspan="1" rowspan="1">703–793</td><td align="left" colspan="1" rowspan="1">Figueira
+et al.
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Fixed
+carbon</td><td align="left" colspan="1" rowspan="1">≥793</td><td align="left" colspan="1" rowspan="1">Peng et al.
+</td></tr><tr><td align="left" colspan="1" rowspan="1">Carbonates</td><td align="left" colspan="1" rowspan="1">1023–1073</td><td align="left" colspan="1" rowspan="1">Marcilla
+et al.
+</td></tr></tbody></table></table-wrap><p>In addition, the relatively similar TG trends
+observed
+between
+800 and 1000 K are consistent with the chemical looping experiments
+on corn straw reported by Yan et al. The
+separate TG–DTA tests shown in <xref rid="fig5" ref-type="fig">Figure 
+</xref> provide additional context regarding the
+temperature-dependent reduction behavior of Badar stone and synthetic
+Fe<sub>2</sub>O<sub>3</sub>. Under the gas-fuel conditions used in
+these separate tests, reactions with CO and H<sub>2</sub> became more
+evident near 800 K, whereas CH<sub>4</sub> required higher temperatures.
+However, these gas-fuel experiments should not be interpreted as evidence
+that OC reduction is absent below 1000 K during the biomass experiments.
+Rather, the limited separation among the biomass–OC TG profiles
+suggests that biomass-derived transformations provide the dominant
+contribution to the net mass change in the LTZ and much of the MTZ,
+while oxygen carrier reduction, carbon deposition, and secondary reactions
+may simultaneously contribute.</p><fig id="fig5" position="float"><?disp-level 3?><label>5</label><caption><p>TG-DTA result of Badar stone and synthetic
+Fe<sub>2</sub>O<sub>3</sub> with gas fuels of (a) CO, (b) H<sub>2</sub>, and (c) CH<sub>4</sub>.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr5" xlink:href="ao6c06288_0005.webp"><?cloudpmc-path blobs/6ea3/13625070/c32e4eee7c14/ao6c06288_0005.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 436?><?original-width 1600?><?scaled-height 436?><?scaled-width 1600?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c06288_0005.gif"><?cloudpmc-path blobs/6ea3/13625070/b44b085ede70/ao6c06288_0005.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig></sec><sec id="sec3.2" disp-level="2"><label>3.2.</label><title>Multistep Kinetics</title><sec id="sec3.2.1" disp-level="3"><label>3.2.1.</label><title>Apparent
+Kinetic Behavior from the Multistep
+Fitting Model</title><p>Based on the two-step reaction kinetics, the
+model fittings of all samples at LTZ, MTZ, and HTZ are shown in <xref rid="fig6" ref-type="fig">Figures 
+</xref> and , and the corresponding kinetic parameters are listed in <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Tables S.2 to S.4</ext-link> of the <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Supporting Information.</ext-link> The range of the pre-exponential factor
+(A) and activation energy (E) was 10<sup>3</sup>–10<sup>21</sup> and e<sup>1</sup>–e<sup>7</sup>, respectively, in the model
+fitting process. In summary, the two-step kinetic model was demonstrated
+to attain high fitting quality; for instance, the fitting qualities
+of lignocellulosic-based biomass at LTZ were within the range of 99.28%–99.93%,
+while in MTZ the range of 99.96% to 99.99%, and HTZ is 99.14% and
+99.96%, while of microalgal-based biomass at LTZ were within the range
+of 97.86%–99.88%, while in MTZ the range of 99.96% to 99.99%,
+and HTZ is 99.75% and 99.96%, The low fit is occurs in ME at LTZ,
+mainly due to the sudden drop in the volatilization of ME, as shown
+in <xref rid="fig7" ref-type="fig">Figure 
+</xref>b.</p><fig id="fig6" position="float"><?disp-level 4?><label>6</label><caption><p>Experimental
+and fitted TG profiles for lignocellulosic biomasses
+at different OC ratios.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr6" xlink:href="ao6c06288_0006.webp"><?cloudpmc-path blobs/6ea3/13625070/4f1884713911/ao6c06288_0006.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 1702?><?original-width 1600?><?scaled-height 1702?><?scaled-width 1600?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c06288_0006.gif"><?cloudpmc-path blobs/6ea3/13625070/61a3a17adb0c/ao6c06288_0006.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><fig id="fig7" position="float"><?disp-level 4?><label>7</label><caption><p>Experimental and fitted
+TG profiles for microalgal biomasses
+at
+different OC ratios.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr7" xlink:href="ao6c06288_0007.webp"><?cloudpmc-path blobs/6ea3/13625070/1d17a4e7223c/ao6c06288_0007.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 1702?><?original-width 1600?><?scaled-height 1702?><?scaled-width 1600?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c06288_0007.gif"><?cloudpmc-path blobs/6ea3/13625070/3128e2ff6507/ao6c06288_0007.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><p>The high fitting quality
+indicates that the selected
+mathematical
+structure can adequately describe the measured TG response under the
+present nonisothermal condition. However, the fitted parameters should
+be interpreted as apparent kinetic parameters rather than intrinsic
+kinetic constants of individual elementary reactions. This distinction
+is important because the TG curves reflect overlapping processes of
+biomass decomposition, volatile release, residual char transformation,
+and possible interactions with the mineral phase. Therefore, the two-step
+model is used here as a comparative tool to identify differences among
+biomass and mineral combinations, not as a direct mechanistic proof
+of each individual reaction pathway.</p><p>The apparent activation
+energies of each biomass, OC ratio, and
+zone for lignocellulosic-based and microalgal-based biomass are depicted
+in <xref rid="fig8" ref-type="fig">Figure 
+</xref>a and c,
+respectively. For compact comparison, ΣEa represents the sum
+of the fitted apparent activation energies of the sequential steps
+and is interpreted only as a model-based comparative descriptor, rather
+than as a single physical activation barrier. The individual fitted
+apparent activation energies for each sequential step are provided
+in <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Tables S.2 to S.4</ext-link> in the <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Supporting Information</ext-link>. The kinetic differences
+between LTZ and MTZ remained minimal across mixing ratios. This behavior
+is fully consistent with devolatilization-controlled regimes. This
+behavior is consistent with the TG and DTG results, in which the main
+mass loss below 1000 K is driven by biomass devolatilization.</p><fig id="fig8" position="float"><?disp-level 4?><label>8</label><caption><p>Kinetic parameters
+obtained from multistep analysis, showing (a)
+activation energy, (b) fitted solid allocation parameter α for
+lignocellulosic-based biomass, (c) activation energy, and (d) fitted
+solid allocation parameter α for microalgal-based biomass.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr8" xlink:href="ao6c06288_0008.webp"><?cloudpmc-path blobs/6ea3/13625070/fad967f41796/ao6c06288_0008.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 1831?><?original-width 1600?><?scaled-height 1831?><?scaled-width 1600?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c06288_0008.gif"><?cloudpmc-path blobs/6ea3/13625070/c152a68da1cb/ao6c06288_0008.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><p>In the LTZ, the mass loss may be dominated by the
+release of moisture,
+light volatiles, and the decomposition of easily degradable biomass
+components. For lignocellulosic biomass, this includes hemicellulose
+and part of cellulose decomposition, while for microalgal biomass,
+it includes the decomposition of proteins, carbohydrates, lipids,
+and other intracellular organic compounds. In this region, the generated
+volatile species are not expected to interact strongly with the iron-rich
+mineral phase; therefore, the effect of Badar stone on the overall
+mass loss behavior remains limited.</p><p>In the MTZ, continued decomposition
+of thermally stable biomass-derived
+components, char formation, and secondary transformation of residual
+organics may overlap with the onset of OC associated reactions. The
+difference TG curves presented in <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Figure S.4</ext-link> of the <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Supporting Information</ext-link> show that
+the deviations from the corresponding biomass-only controls were feedstock
+dependent and generally nonmonotonic with Badar stone loading. Although
+the differences remained relatively limited for several Badar stone
+mixtures, more pronounced negative deviations, indicating greater
+net mass loss relative to the biomass-only controls, were observed
+for some synthetic Fe<sub>2</sub>O<sub>3</sub> mixtures. Accordingly,
+the relatively limited variation in the fitted apparent activation
+energies with Badar stone loading should not be interpreted as the
+absence of mineral-assisted reactions. Rather, the fitted parameters
+represent the combined response of unresolved biomass-derived and
+OC associated processes. This interpretation is supported by separate
+TG-DTA tests with representative gas fuels, in which CO and H<sub>2</sub> began to react near 800 K, whereas CH<sub>4</sub> required
+a higher activation temperature, as shown in <xref rid="fig5" ref-type="fig">Figure 
+</xref>.</p><p>Since the majority of devolatilization
+takes place below these
+temperatures, the influence of OC loading on the net TG response remained
+comparatively limited in the LTZ and much of the MTZ under the present
+experimental conditions, resulting in nearly identical apparent activation
+energy values among all biomass types, with differences observed only
+in the fitted solid allocation α in the LTZ, as shown in <xref rid="fig8" ref-type="fig">Figure 
+</xref>b for lignocellulosic-based
+biomass and <xref rid="fig8" ref-type="fig">Figure 
+</xref>d for microalgal-based biomass. Therefore, the mass loss observed
+in the LTZ and most of the MTZ is interpreted as being mainly governed
+by biomass pyrolysis and associated devolatilization reactions, as
+schematically represented by Reaction <xref rid="eq7" ref-type="disp-formula">R1
+</xref>. Due to the absence of
+in situ gas analysis, the following interpretations are discussed
+as plausible reaction pathways rather than definitive mechanisms.</p><disp-formula id="eq7"><label>R1</label><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="d1e2141" display="block"><mml:mi>Biomass</mml:mi><mml:mo>→</mml:mo><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="normal">H</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mi>CO</mml:mi><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>CO</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>CH</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mo>.</mml:mo><mml:mo>.</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mi mathvariant="normal">C</mml:mi><mml:mo>+</mml:mo><mml:mi>Tar</mml:mi></mml:math></disp-formula><p>In the HTZ, the effect
+of the OC ratio
+becomes observable but remains
+secondary to the intrinsic properties of the biomass-derived char.
+The detailed kinetics data are available in <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Tables S.2</ext-link> to <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">S.4</ext-link> in the <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Supporting Information.</ext-link> In the HTZ, the observed behavior
+is likely influenced by heterogeneous interactions between char, pyrolysis-derived
+gases, and the OC. The following reactions
+are therefore presented as plausible overall pathways that may contribute
+in this temperature range, rather than as directly verified individual
+mechanisms under the present TGA conditions.</p><disp-formula id="eq8"><label>R2</label><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="d1e2197" display="block"><mml:mi>OC</mml:mi><mml:mo>+</mml:mo><mml:mi mathvariant="normal">C</mml:mi><mml:mo>→</mml:mo><mml:msub><mml:mrow><mml:mi>OC</mml:mi></mml:mrow><mml:mrow><mml:mi>red</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mi>CO</mml:mi></mml:math></disp-formula><disp-formula id="eq9"><label>R3</label><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="d1e2214" display="block"><mml:mi>OC</mml:mi><mml:mo>+</mml:mo><mml:mi>CO</mml:mi><mml:mo>→</mml:mo><mml:msub><mml:mrow><mml:mi>OC</mml:mi></mml:mrow><mml:mrow><mml:mi>red</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>CO</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></disp-formula><disp-formula id="eq10"><label>R4</label><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="d1e2235" display="block"><mml:mi>OC</mml:mi><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="normal">H</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>→</mml:mo><mml:msub><mml:mrow><mml:mi>OC</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi>red</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="normal">H</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mi mathvariant="normal">O</mml:mi></mml:math></disp-formula><p>These reactions are used to support
+the discussion of possible
+high-temperature interactions, but they should not be interpreted
+as directly verified individual mechanisms under the present experimental
+conditions. Since the biomass TG DTA tests were conducted under N<sub>2</sub> without in situ gas analysis, the formation and consumption
+of H<sub>2</sub>, CO, CO<sub>2</sub>, CH<sub>4</sub>, and other volatile
+species were not directly quantified. Thus, the HTZ discussion focuses
+on apparent kinetic trends and feedstock-dependent behavior rather
+than direct product formation or oxygen carrier conversion.</p><p>For RH, the apparent activation energy in the HTZ remains relatively
+insensitive to the increase in Badar stone ratio, with a sum of fitted
+apparent activation energies of 372.3 kJ/mol at a 0.5 ratio, 367.1
+kJ/mol at a 1:1 ratio, and 369.5 kJ/mol at a 2:1 ratio. This weak
+sensitivity reflects the dominant influence of the exceptionally high
+ash content of RH (33.03%), which is primarily silica-rich and leads
+to impeded contact between the OC and the char surface. Such behavior
+is consistent with the findings of Wu et al., who reported that increasing OC flow rate initially reduces carbon
+deposition but may result in diminishing returns at higher loadings.
+One possible explanation is that the exceptionally high ash content
+of RH, particularly its silica-rich mineral fraction, may restrict
+effective contact or transport between the residual carbonaceous phase
+and the OC. Such ash-related effects could contribute to the limited
+sensitivity of the apparent HTZ response to increasing OC loading,
+although direct confirmation would require complementary structural
+and microstructural characterization. Consequently, increasing the
+Badar stone ratio does not appear to markedly reduce the energetic
+barrier for char–OC interaction. A higher α value indicates
+that, within the present fitted sequential model, a larger fraction
+of the intermediate solid is allocated to the solid-forming branch
+of the corresponding step, rather than to volatile release. Accordingly,
+α<sub>2</sub> in the HTZ should be interpreted as an apparent
+model parameter reflecting how the residual solid is distributed within
+the fitted reaction scheme, not as a direct experimental measurement
+of the fraction of char physically reacting with the OC. For RH, α<sub>2</sub> exhibits only modest fluctuations, with values of 0.927,
+0.933, and 0.925 for the 0.5, 1:1, and 2:1 ratios, respectively. This
+near invariance of α<sub>2</sub> indicates that the amount of
+solid capable of progressing through the HTZ reaction step remains
+constrained by ash-induced structural limitations, despite variations
+in OC loading.</p><p>For SD, a markedly different trend is observed.
+Owing to its very
+low ash content (4.99%) and high volatile matter fraction (77.66%),
+the activation energy in the HTZ increases with increasing Badar stone
+ratio, rising from 363.4 to 371.1 kJ/mol, and then to 387.5 kJ/mol.
+This trend contrasts with the results reported by Xu et al., who found that increasing the OC ratio reduced
+the activation energy. The discrepancy can be attributed to differences
+in OC composition, as the Fe<sub>2</sub>O<sub>3</sub>-rich sludge
+ash used by Xu et al. contained alkaline-earth and alkali-metal species,
+such as CaO and K<sub>2</sub>O. These species are known to promote
+catalytic pyrolysis of solid fuels. In
+the present case, increasing the OC ratio for SD results in a pronounced
+decrease in the fitted solid allocation parameter α<sub>2</sub>, from 0.95 to 0.85. This reduction in α<sub>2</sub> indicates
+that, within the present sequential fitting model, a smaller fraction
+of the intermediate is mathematically allocated to the solid-retaining
+branch of the HTZ step as the Badar stone ratio increases. This fitted
+trend should not be interpreted as a direct measurement of physical
+solid participation or OC utilization.</p><p>For SW, the response
+to increasing the Badar stone ratio is more
+balanced. SW exhibits moderate ash content (5.17%) and relatively
+high fixed carbon (18.28%), resulting in a char structure that is
+both accessible and structurally resilient. The apparent activation
+energy in the HTZ increases only slightly, from 365.6 kJ/mol at a
+0.5 ratio to 366.6 kJ/mol at a 1:1 ratio, and 367.6 kJ/mol at a 2:1
+ratio, indicating that the intrinsic char structure governs the energetic
+barrier rather than OC loading. In contrast to RH and SD, the fitted
+solid allocation parameter α<sub>2</sub> increases modestly
+from approximately 0.93 to 0.97, indicating that, within the present
+fitted sequential model, a larger fraction of the intermediate is
+allocated to the solid-retaining pathway as OC loading increases.
+The present TG data alone do not establish whether this trend arises
+from changes in physical solid accessibility, oxygen transfer, or
+other overlapping processes.</p><p>For microalgal-based biomass, the
+HTZ behavior differs from that
+of lignocellulosic-based biomass, likely reflecting differences in
+biochemical composition and char structure. In this temperature range,
+the stronger sensitivity of the fitted parameters to biomass type
+and OC ratio suggests a larger contribution from interactions between
+microalgae-derived char or pyrolysis-derived gases and the OC. As shown by the HTZ kinetic parameters, the
+apparent activation energy and fitted solid allocation parameter α<sub>2</sub> exhibit pronounced sensitivity to biomass type and OC ratio,
+in contrast to the relatively invariant behavior observed for lignocellulosic-based
+biomass.</p><p>For lipid-rich MA, the ΣEa HTZ remains within
+a relatively
+narrow range when Badar stone is used, with values of 321.6 kJ/mol
+at a 0.5 ratio, 327.9 kJ/mol at a 1:1 ratio, and 317.6 kJ/mol at a
+2:1 ratio. No monotonic trend with increasing OC ratio is observed.
+This indicates that, for lipid-rich microalgae, increasing Badar stone
+loading does not systematically reduce the energetic barrier of HTZ
+reactions. The relatively low and stable apparent activation energy
+indicates limited sensitivity of the net HTZ response to increasing
+Badar stone loading. This behavior may be associated with differences
+in the thermal decomposition products and residual carbonaceous structure
+of the lipid-rich feedstock, although the underlying structural origin
+cannot be established from the present TG data alone. Meanwhile, α<sub>2</sub> increases monotonically with increasing Badar stone ratio,
+rising from 0.771 at a 0.5 ratio, to 0.899 at a 1:1 ratio, and further
+to 0.929 at a 2:1 ratio. This trend suggests that, within the present
+sequential fitting model, a larger fraction of the residual solid
+is assigned to the HTZ solid reaction pathway as the Badar stone ratio
+increases. The relatively low initial α<sub>2</sub> at lower
+Badar ratios may reflect limited apparent interaction between the
+residual solid and the OC, whereas the higher α<sub>2</sub> values
+at larger ratios indicate a broader modeled contribution of the solid
+phase in the HTZ. When Fe<sub>2</sub>O<sub>3</sub> is used, α<sub>2</sub> decreases to 0.836, indicating that carrier mineralogy influences
+the extent of solid participation even when the overall oxygen availability
+is comparable.</p><p>In the case of ME, the ΣEa HTZ exhibits
+a nonmonotonic response
+to the Badar stone ratio. The activation energy increases from 318.1
+kJ/mol at a 0.5 ratio to 345 kJ/mol at a 1:1 ratio, before decreasing
+to 325 kJ/mol at a 2:1 ratio. This intermediate maximum may indicate
+a temporary increase in the apparent resistance of the HTZ process
+at the intermediate ratio. One possible explanation is a change in
+local contact conditions between the residual solid and the OC at
+the intermediate loading. Previous studies have reported passivation-related
+behavior in microalgae–iron systems; however, the present TG
+data do not provide direct evidence that the same mechanism occurs
+here. Accordingly, the observed intermediate maximum is interpreted
+only as a nonmonotonic apparent kinetic response whose structural
+origin requires complementary characterization. Within the multistep
+framework, this behavior reflects a redistribution of reacting solid
+among intermediate states rather than a reduction in overall reactivity,
+consistent with temporary passivation phenomena reported in microalgae–iron
+systems. ME shows a declining trend in α<sub>2</sub> with increasing
+Badar stone ratio. The fitted solid allocation parameter decreases
+from 0.906 at a 0.5 ratio to 0.897 at a 1:1 ratio and further to 0.858
+at a 2:1 ratio, with a comparable value of 0.853 observed for the
+Fe<sub>2</sub>O<sub>3</sub> case. This reduction in α<sub>2</sub> implies that, although OC loading increases, a smaller fraction
+of the solid matrix remains able to proceed through the HTZ reaction
+pathway.</p><p>MS displays the highest fitted HTZ apparent activation
+energy among
+the investigated microalgal biomasses, indicating a comparatively
+more resistant net high-temperature mass-change response. This behavior
+may be associated with the characteristics of protein-rich biomass-derived
+residues, as previously reported in related systems, although the present TG data alone do not directly establish
+the corresponding char structure or reaction mechanism. The sum of
+fitted apparent activation energies decreases from 434.6 kJ/mol at
+a 0.5 ratio to 416.2 kJ/mol at a 1:1 ratio, but increases again to
+453 kJ/mol at a 2:1 ratio, indicating a nonlinear response to OC loading.
+This behavior suggests that moderate Badar stone addition is associated
+with a lower apparent activation energy in the HTZ, whereas further
+increases in the OC ratio do not maintain this trend. This may reflect
+changes in the apparent accessibility or reactivity of the residual
+solid, but a definitive structural explanation is beyond the scope
+of the present TGA data set. Similar trends are evident in Wang et
+al., where microalgae with high protein
+fractions formed stable aromatic residues that required higher activation
+energies for oxidation and reduction. MS exhibits consistently high
+α<sub>2</sub> values across all OC ratios, ranging from 0.862
+to 0.884. The relatively invariant α<sub>2</sub> indicates that
+a large fraction of protein-derived char remains structurally accessible
+for HTZ reactions regardless of carrier type or loading. This behavior
+suggests that, for protein-rich microalgae, the limitation in HTZ
+arises primarily from the energetic difficulty of breaking highly
+aromatic char structures, as reflected in the elevated activation
+energies, rather than from restricted solid participation.</p></sec><sec id="sec3.2.2" disp-level="3"><label>3.2.2.</label><title>Comparison with Synthetic Fe<sub>2</sub>O<sub>3</sub>
+</title><p>A direct comparison between synthetic Fe<sub>2</sub>O<sub>3</sub> (Wako Pure Chemical Industries, Ltd., 99.9%)
+and Badar stone at an identical 1:1 OC-to-biomass ratio reveals systematic
+differences in HTZ behavior across both lignocellulosic- and microalgal-based
+biomasses, as shown in <xref rid="fig8" ref-type="fig">Figures 
+</xref> and , respectively. In this comparison,
+the activation energy is interpreted as an apparent energetic barrier
+obtained from the fitted TG response, while α is interpreted
+as a fitted solid allocation parameter within the two-step model.</p><fig id="fig9" position="float"><?disp-level 4?><label>9</label><caption><p>Comparison
+of kinetic parameters for lignocellulosic-based biomass
+using Badar stone and synthetic Fe<sub>2</sub>O<sub>3</sub>, showing
+(a) activation energy and (b) fitted solid allocation parameter α.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr9" xlink:href="ao6c06288_0009.webp"><?cloudpmc-path blobs/6ea3/13625070/929dbf75901c/ao6c06288_0009.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 930?><?original-width 1600?><?scaled-height 930?><?scaled-width 1600?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c06288_0009.gif"><?cloudpmc-path blobs/6ea3/13625070/3ba97b6ad846/ao6c06288_0009.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><p>For lignocellulosic biomass, the use of synthetic
+Fe<sub>2</sub>O<sub>3</sub> generally results in a lower sum of fitted
+apparent
+activation energy in the HTZ than Badar stone, but is accompanied
+by a reduction in the fitted solid allocation parameter α<sub>2</sub>. In RH, the sum of fitted apparent activation energy decreases
+from 368.1 kJ/mol with Badar stone to 358.3 kJ/mol with Fe<sub>2</sub>O<sub>3</sub>, while α<sub>2</sub> declines from 0.933 to 0.913.
+This behavior indicates that although the energetic barrier for the
+dominant HTZ reaction is slightly reduced, a smaller fraction of the
+solid participates in the reaction pathway when synthetic Fe<sub>2</sub>O<sub>3</sub> is employed. The effect is more pronounced for SW,
+where the sum of fitted apparent activation energies decreases from
+366.6 to 356.4 kJ/mol, but α<sub>2</sub> decreases from 0.954
+to 0.816, suggesting restricted solid participation despite lower
+apparent energetic requirements. For SD, synthetic Fe<sub>2</sub>O<sub>3</sub> yields a substantially lower sum of fitted apparent activation
+energy (307.2 kJ/mol) compared to Badar stone (371.1 kJ/mol), while
+α<sub>2</sub> decreases from 0.906 to 0.890, indicating that
+the reduction in activation energy does not directly translate into
+broader char participation.</p><p>These trends may reflect differences
+in the apparent reduction
+behavior of synthetic Fe<sub>2</sub>O<sub>3</sub> and Badar stone.
+Synthetic Fe<sub>2</sub>O<sub>3</sub> may undergo sharper stepwise
+transitions (Fe<sub>2</sub>O<sub>3</sub>→Fe<sub>3</sub>O<sub>4</sub>→FeO→Fe), which could promote the temporary
+formation of denser intermediate layers and a more localized reaction
+front, as also discussed by Wang et al. In contrast, the heterogeneous mineral composition of Badar stone
+may distribute the redox process over a broader temperature range.
+As a result, although Fe<sub>2</sub>O<sub>3</sub> may exhibit lower
+intrinsic activation energy for specific reduction steps, the formation
+of compact intermediate layers restricts oxygen transport and limits
+the fraction of solid that can effectively react in the HTZ. In contrast,
+Badar stone contains a complex mineral matrix dominated by iron (59.7%
+Fe), with minor but non-negligible amounts of Si (1.61%), Al, Ca,
+Mg, and trace transition metals. This interpretation is further supported
+by ex situ XRD analysis of the reduced samples obtained from RH-based
+experiments (<ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">Figure S.6</ext-link>). The diffraction
+patterns show that synthetic Fe<sub>2</sub>O<sub>3</sub> exhibits
+more pronounced metallic Fe peaks under comparable temperature-programmed
+conditions, indicating faster reduction. In contrast, Badar stone
+retains mixed iron oxide phases (Fe<sub>3</sub>O<sub>4</sub> and FeO),
+suggesting a more gradual reduction behavior within the same experimental
+time window. This difference is likely influenced by the limited reaction
+time in the nonisothermal TGA protocol, in which the experiment was
+terminated while the sample remained at an elevated temperature and
+the char–OC reaction was still progressing. Interestingly,
+metallic Fe formation is already observed at lower Badar loading (0.5
+ratio), whereas higher Badar ratios retain stronger oxide signatures,
+indicating that larger OC amounts require longer reaction time to
+achieve complete reduction under the present conditions. These results
+collectively indicate that oxygen carrier performance in BDCL cannot
+be evaluated solely on the basis of intrinsic reduction kinetics,
+as mineralogical heterogeneity and biomass-dependent interactions
+play equally critical roles in determining overall solid participation
+and reaction pathways.</p><p>For microalgal-based biomass, similar
+but composition-dependent
+trends are observed as shown in <xref rid="fig10" ref-type="fig">Figure 
+</xref>. In MA, the sum of fitted apparent HTZ
+activation energy increases from 328 kJ/mol with Badar stone to 359.3
+kJ/mol with Fe<sub>2</sub>O<sub>3</sub>, while α<sub>2</sub> decreases from 0.899 to 0.836. This indicates that synthetic Fe<sub>2</sub>O<sub>3</sub> imposes a higher energetic penalty and reduces
+the fraction of lipid-derived char able to participate in HTZ reactions.
+ME exhibits a smaller difference in the sum of fitted apparent activation
+energy (345 kJ/mol for Badar stone versus 334.6 kJ/mol for Fe<sub>2</sub>O<sub>3</sub>), accompanied by a slight decrease in α<sub>2</sub> from 0.897 to 0.853, suggesting comparable energetic barriers
+but more limited solid accessibility with Fe<sub>2</sub>O<sub>3</sub>. For MS, both OCs yield similarly high ΣEa (416.2 kJ/mol for
+Badar stone and 429.3 kJ/mol for Fe<sub>2</sub>O<sub>3</sub>). At
+the same time, α<sub>2</sub> remains high but consistently lower
+for Fe<sub>2</sub>O<sub>3</sub> (0.858) than for Badar stone (0.884),
+suggesting that protein-derived char remains intrinsically refractory
+regardless of carrier type. Still, solid participation is more effectively
+sustained by Badar stone.</p><fig id="fig10" position="float"><?disp-level 4?><label>10</label><caption><p>Comparison of kinetic parameters for microalgal-based
+biomass using
+Badar stone and synthetic Fe<sub>2</sub>O<sub>3</sub>, showing (a)
+activation energy and (b) fitted solid allocation parameter α.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr10" xlink:href="ao6c06288_0010.webp"><?cloudpmc-path blobs/6ea3/13625070/5c00e2999adc/ao6c06288_0010.webp?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 889?><?original-width 1600?><?scaled-height 889?><?scaled-width 1600?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c06288_0010.gif"><?cloudpmc-path blobs/6ea3/13625070/fb3d08d2951d/ao6c06288_0010.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><p>It should be noted that the lower α<sub>2</sub> values obtained
+for synthetic Fe<sub>2</sub>O<sub>3</sub> do not necessarily indicate
+lower intrinsic reactivity. In the separate TG–DTA tests with
+CO, CH<sub>4</sub>, and H<sub>2</sub>, as shown in <xref rid="fig4" ref-type="fig">Figure 
+</xref>, synthetic Fe<sub>2</sub>O<sub>3</sub> showed faster apparent reduction behavior than Badar stone.
+Within the present fitting framework, this may correspond to a narrower
+modeled distribution of the reacting solid in the HTZ. However, the
+exact mechanistic basis of this behavior cannot be directly established
+without complementary characterization. Within the sequential multistep
+framework, this behavior concentrates the reaction into a narrower
+fraction of the solid matrix, thereby reducing the overall fraction
+of solid that progresses through the HTZ reaction pathway and manifests
+as a lower α<sub>2</sub> value. In contrast, Badar stone undergoes
+reduction more gradually due to its heterogeneous mineral composition,
+which includes iron as the dominant phase together with Si, Al, Ca,
+Mg, and trace transition metals. This distributed reduction behavior
+delays the formation of dense reduced layers and promotes a more spatially
+uniform reaction front. As a result, a larger fraction of the solid
+matrix participates in HTZ reactions, yielding higher α<sub>2</sub> values despite slower overall reduction rates. Therefore,
+the main advantage of Badar stone in the present study is not its
+higher intrinsic reactivity than synthetic Fe<sub>2</sub>O<sub>3</sub>, but its distinct, more gradual high-temperature response as a low-cost,
+natural, iron-rich mineral. Further gas analysis, cyclic redox experiments,
+and postreaction characterization are needed to determine whether
+this broader TG response can translate into practical oxygen-carrier
+performance in biomass chemical-looping systems.</p></sec></sec><sec id="sec3.3" disp-level="2"><label>3.3.</label><title>Scope and Limitations</title><p>The present
+study provides a comparative TG-DTA-based screening of biomass and
+iron-rich mineral mixtures under chemical looping-relevant thermal
+conditions. The analysis clarifies how different biomass feedstocks
+influence devolatilization, residual solid formation, and apparent
+high-temperature interaction with Badar stone and synthetic Fe<sub>2</sub>O<sub>3</sub>. However, several limitations should be considered
+when interpreting the results.</p><p>First, the biomass and mineral
+mixture experiments were conducted under N<sub>2</sub> without in
+situ gas analysis. Therefore, the formation and consumption of H<sub>2</sub>, CO, CO<sub>2</sub>, CH<sub>4</sub>, tar, and other volatile
+species were not directly quantified. The reactions involving pyrolysis-derived
+gases, residual char, and the oxygen carrier are therefore discussed
+as plausible pathways based on TG-DTA trends and previous literature,
+rather than as directly verified individual reaction mechanisms. The
+measured TG signal represents the net result of simultaneous mass
+loss and possible mass gain phenomena. Depending on biomass composition
+and OC loading, devolatilization, char conversion, oxygen carrier
+reduction, secondary reactions of pyrolysis-derived species, carbon
+deposition, and mineral transformations may overlap within the same
+temperature interval. Because carbon deposition was not independently
+quantified, its contribution cannot be separated from the other processes
+based on TG data alone. Therefore, the fitted kinetic parameters should
+be interpreted as apparent comparative descriptors of the overall
+thermogravimetric response under identical experimental conditions
+rather than as isolated kinetic constants of individual reactions.</p><p>Second, the kinetic parameters obtained from the multistep model
+should be interpreted as apparent parameters under the selected nonisothermal
+condition. The model was applied to reproduce the measured TG profiles
+in the LTZ, MTZ, and HTZ, and it successfully captured the overall
+mass-loss behavior. Nevertheless, the fitted activation energy values
+do not represent intrinsic kinetic constants of elementary reactions.
+Similarly, the fitted parameter α represents the mathematical
+allocation of intermediate material to the solid retaining pathway
+in the sequential model. It should not be interpreted as a direct
+experimental measurement of physical solid participation, char conversion,
+or oxygen carrier utilization.</p><p>Third, the LTZ, MTZ, and HTZ
+were defined as empirical fitting
+windows based on distinct regions of the measured TG and DTG profiles.
+Although these temperature windows overlap with ranges reported for
+biomass decomposition and stepwise iron oxide reduction, they should
+not be interpreted as mechanistically exclusive reaction regimes or
+as one-to-one assignments of individual reduction steps. Multiple
+physicochemical processes may occur simultaneously within each temperature
+window.</p><p>Fourth, the comparison between the Badar stone and synthetic
+Fe<sub>2</sub>O<sub>3</sub> should be understood as a screening-level
+comparison
+between a heterogeneous, natural, iron-rich mineral and a chemically
+uniform synthetic oxide. Synthetic Fe<sub>2</sub>O<sub>3</sub> generally
+showed sharper apparent high-temperature reactivity, whereas Badar
+stone exhibited broader, more gradual high-temperature behavior. However,
+the current data are insufficient to determine whether this broader
+behavior directly translates into higher oxygen transfer capacity,
+better cyclic stability, or improved reactor-scale performance.</p><p>In addition, the TG signal represents the net result of simultaneous
+mass-loss and possible mass-gain phenomena. Depending on biomass composition
+and OC loading, biomass devolatilization, char conversion, oxygen
+carrier reduction, secondary cracking, and carbon deposition may overlap
+within the same temperature interval. Therefore, the present kinetic
+parameters should be interpreted as apparent descriptors of the net
+thermogravimetric response under identical comparative conditions
+rather than as isolated kinetic constants of individual reactions.</p></sec></sec><sec id="sec4" disp-level="1"><label>4.</label><title>Conclusion</title><p>This work investigated the
+initial kinetics of lignocellulosic
+and microalgal biomass in a direct chemical looping process with volcanic-based
+natural metal oxides, using a mass-balance-based multistep kinetic
+model. Rice husk, sawdust, sago waste, and three types of microalgae
+were employed as representative biomass feedstocks, while natural
+Badar stone and synthetic Fe<sub>2</sub>O<sub>3</sub> were used as
+OCs. The thermal decomposition behavior, reaction step structure,
+kinetic parameters, and solid and gas evolution characteristics were
+systematically analyzed based on TG and DTG measurements. The main
+conclusions are summarized as follows.</p><list list-type="label" id="list_0001"><list-item><label>(1)</label><p>TG and DTG analyses
+showed that devolatilization
+of both lignocellulosic- and microalgal-based biomasses occurred mainly
+at 700–800 K and was largely independent of OC type. Lignocellulosic-based
+biomass followed typical hemicellulose, cellulose, and lignin degradation,
+whereas microalgal-based biomass exhibited patterns governed by lipid,
+carbohydrate, and protein contents. The OC had a limited influence
+on volatile release but a greater influence on the apparent high-temperature
+response above 950 K.</p></list-item><list-item><label>(2)</label><p>A three-zone temperature framework
+comprising 400–800, 800–1000, and 1000–1300 K
+was introduced as a practical segmentation of the TG and DTG profiles.
+When combined with the two-step sequential fitting model applied within
+each zone, this approach reproduced the experimental curves with fitting
+values generally above 99%.</p></list-item><list-item><label>(3)</label><p>In the LTZ and MTZ, activation energies
+showed minimal sensitivity to OC ratio for all biomass types, suggesting
+the dominance of biomass pyrolysis and the limited involvement of
+heterogeneous redox reactions.</p></list-item><list-item><label>(4)</label><p>In the HTZ, biomass-dependent kinetic
+behavior became pronounced. Lignocellulosic-based biomass showed weak
+sensitivity to the OC ratio due to char structure and ash effects,
+whereas microalgal-based biomass kinetics were strongly governed by
+biochemical composition, with lipid-rich biomass exhibiting lower
+activation energies and protein-rich biomass showing higher values.</p></list-item><list-item><label>(5)</label><p>At an identical 1:1 ratio,
+synthetic
+Fe<sub>2</sub>O<sub>3</sub> showed faster apparent reduction behavior
+than Badar stone in the comparative TG-DTA tests, whereas the fitted
+α values in the HTZ were generally lower. Within the present
+model framework, this suggests a narrower apparent distribution of
+the reacting solid for Fe<sub>2</sub>O<sub>3</sub> than for Badar
+stone, although direct mechanistic confirmation requires complementary
+characterization.</p></list-item><list-item><label>(6)</label><p>The
+different trends of apparent activation
+energy and fitted α values in the HTZ indicate that these parameters
+describe different aspects of the sequential fitting model and should
+not be interpreted independently as direct measures of intrinsic reactivity
+or overall conversion.</p></list-item></list><p>Although the kinetic
+parameters were derived from temperature-programmed
+chemical looping experiments, the conclusions provide mechanistic
+insights relevant to isothermal chemical looping systems as well.
+Further investigation is required to validate the Badar stone as an
+oxygen carrier for biomass chemical looping applications. In situ
+evolved gas analysis is needed to quantify H<sub>2</sub>, CO, CO<sub>2</sub>, CH<sub>4</sub>, and other gaseous products. Postreaction
+XRD and SEM-EDS analyses are necessary to confirm phase transformation,
+ash-mineral interactions, and surface-morphology changes after the
+reaction. Cyclic redox tests are also required to evaluate oxygen
+transfer capacity, reactivity retention, agglomeration tendency, and
+long-term stability. Therefore, the present work should be regarded
+as an initial screening study that identifies feedstock-dependent
+thermal and kinetic behavior and provides a basis for selecting representative
+biomass and mineral combinations for subsequent validation.</p></sec><sec id="sec13" disp-level="1"><title>Supplementary Material</title><supplementary-material id="sifile1" position="float"><media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ao6c06288_si_001.pdf" mimetype="application" mime-subtype="pdf"><?cloudpmc-path 6ea3/13625070/78c38fd8de80/ao6c06288_si_001.pdf?><?cloudpmc-bucket app?><?size 2618728?></media></supplementary-material></sec><sec id="ack1" sec-type="ack" disp-level="1"><title>Acknowledgments</title><p>This research was supported by the JST SPRING program
+(grant number JPMJSP2108), the JST–JICA SATREPS program (grant
+number JPMJSA2204), and JSPS KAKENHI (grant number JP24K01415). The
+authors also thank Henrik Leion and Victor Purnomo from Chalmers University
+of Technology for providing access to the ALS Scandinavia.</p></sec><sec id="notes1" disp-level="1"><p>The Supporting
+Information is
+available free of charge at <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/10.1021/acsomega.6c06288?goto=supporting-info" ext-link-type="uri">https://pubs.acs.org/doi/10.1021/acsomega.6c06288</ext-link>.</p><list list-type="simple" id="silist1"><list-item><p>TG and DTG profiles of
+noncalcined Badar stone; reproducibility
+assessment of selected TGA experiments; difference TG curves for biomass–oxygen
+carrier mixtures; detailed kinetic parameters for the LTZ, MTZ, and
+HTZ; fitted intermediate species profiles for the six investigated
+biomass feedstocks; ex situ XRD patterns of reduced RH-based samples
+using Badar stone and synthetic Fe<sub>2</sub>O<sub>3</sub> at different
+OC ratios (<ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c06288/suppl_file/ao6c06288_si_001.pdf" ext-link-type="uri">PDF</ext-link>)</p></list-item></list></sec><sec id="notes2" disp-level="1"><p>The
+authors
+declare no competing financial interest.</p></sec><sec id="ref-list1" sec-type="ref-list" disp-level="1"><title>References</title><sec id="ref-list1_sec2" disp-level="2"><ref-list><ref id="ref1"><mixed-citation id="cit1"><named-content content-type="citation-string">Coppola A., Scala F.. Chemical Looping for Combustion of Solid Biomass: A Review. Energy Fuels. 2021;35(23):19248–19265. doi: 10.1021/acs.energyfuels.1c02600.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1021/acs.energyfuels.1c02600"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy Fuels&amp;title=Chemical Looping for Combustion of Solid Biomass: A Review&amp;author=A. Coppola&amp;author=F. Scala&amp;volume=35&amp;issue=23&amp;publication_year=2021&amp;pages=19248-19265&amp;doi=10.1021/acs.energyfuels.1c02600&amp;"/></mixed-citation></ref><ref id="ref2"><mixed-citation id="cit2"><named-content content-type="citation-string">Malico I., Nepomuceno Pereira R., Gonçalves A. C., Sousa A. M. O.. Current status
+and future perspectives for energy production from solid biomass in
+the European industry. Renewable Sustainable
+Energy Rev. 2019;112(June):960–977. doi: 10.1016/j.rser.2019.06.022.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.rser.2019.06.022"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Renewable Sustainable Energy Rev&amp;title=Current status and future perspectives for energy production from solid biomass in the European industry&amp;author=I. Malico&amp;author=R. Nepomuceno Pereira&amp;author=A. C. Gonçalves&amp;author=A. M. O. Sousa&amp;volume=112&amp;issue=June&amp;publication_year=2019&amp;pages=960-977&amp;doi=10.1016/j.rser.2019.06.022&amp;"/></mixed-citation></ref><ref id="ref3"><mixed-citation id="cit3"><named-content content-type="citation-string">Yu L., Zhou W., Luo Z., Wang H., Liu W., Yin K.. Developing Oxygen Carriers for Chemical Looping Biomass Processing:
+Challenges and Opportunities. Adv. Sustainable
+Syst. 2020;4(12):1–23. doi: 10.1002/adsu.202000099.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1002/adsu.202000099"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Adv. Sustainable Syst&amp;title=Developing Oxygen Carriers for Chemical Looping Biomass Processing: Challenges and Opportunities&amp;author=L. Yu&amp;author=W. Zhou&amp;author=Z. Luo&amp;author=H. Wang&amp;author=W. Liu&amp;volume=4&amp;issue=12&amp;publication_year=2020&amp;pages=1-23&amp;doi=10.1002/adsu.202000099&amp;"/></mixed-citation></ref><ref id="ref4"><mixed-citation id="cit4"><named-content content-type="citation-string">Ge H., Guo W., Shen L., Song T., Xiao J.. Biomass gasification
+using chemical looping in a 25kWth reactor with natural hematite as
+oxygen carrier. Chem. Eng. J. 2016;286:174–183. doi: 10.1016/j.cej.2015.10.092.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.cej.2015.10.092"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Chem. Eng. J&amp;title=Biomass gasification using chemical looping in a 25kWth reactor with natural hematite as oxygen carrier&amp;author=H. Ge&amp;author=W. Guo&amp;author=L. Shen&amp;author=T. Song&amp;author=J. Xiao&amp;volume=286&amp;publication_year=2016&amp;pages=174-183&amp;doi=10.1016/j.cej.2015.10.092&amp;"/></mixed-citation></ref><ref id="ref5"><mixed-citation id="cit5"><named-content content-type="citation-string">Condori O., García-Labiano F., de Diego L. F., Izquierdo M. T., Abad A., Adánez J.. Biomass chemical
+looping gasification
+for syngas production using ilmenite as oxygen carrier in a 1.5 kWth
+unit. Chem. Eng. J. 2021;405:126679. doi: 10.1016/j.cej.2020.126679.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.cej.2020.126679"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC8573825"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="34764543"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Chem. Eng. J&amp;title=Biomass chemical looping gasification for syngas production using ilmenite as oxygen carrier in a 1.5 kWth unit&amp;author=O. Condori&amp;author=F. García-Labiano&amp;author=L. F. de Diego&amp;author=M. T. Izquierdo&amp;author=A. Abad&amp;volume=405&amp;publication_year=2021&amp;pages=126679&amp;pmid=34764543&amp;doi=10.1016/j.cej.2020.126679&amp;"/></mixed-citation></ref><ref id="ref6"><mixed-citation id="cit6"><named-content content-type="citation-string">Adánez J., Condori O., de Diego L. F., Garcia-Labiano F., Izquierdo M. T., Abad A.. Syngas production in a 1.5 kWth biomass
+chemical looping gasification unit using Fe and Mn ores as the oxygen
+carrier. Energy Fuels. 2021;35(21):17182–17196. doi: 10.1021/acs.energyfuels.1c01878.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1021/acs.energyfuels.1c01878"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC8573825"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="34764543"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy Fuels&amp;title=Syngas production in a 1.5 kWth biomass chemical looping gasification unit using Fe and Mn ores as the oxygen carrier&amp;author=J. Adánez&amp;author=O. Condori&amp;author=L. F. de Diego&amp;author=F. Garcia-Labiano&amp;author=M. T. Izquierdo&amp;volume=35&amp;issue=21&amp;publication_year=2021&amp;pages=17182-17196&amp;pmid=34764543&amp;doi=10.1021/acs.energyfuels.1c01878&amp;"/></mixed-citation></ref><ref id="ref7"><mixed-citation id="cit7"><named-content content-type="citation-string">Yin S., Shen L., Dosta M., Hartge E.-U., Heinrich S., Lu P., Werther J., Song T.. et al. Chemical looping gasification
+of a biomass pellet with a manganese ore as an oxygen carrier in the
+fluidized bed. Energy Fuels. 2018;32:11674–11682. doi: 10.1021/acs.energyfuels.8b02849.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1021/acs.energyfuels.8b02849"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy Fuels&amp;title=Chemical looping gasification of a biomass pellet with a manganese ore as an oxygen carrier in the fluidized bed&amp;author=S. Yin&amp;author=L. Shen&amp;author=M. Dosta&amp;author=E.-U. Hartge&amp;author=S. Heinrich&amp;volume=32&amp;publication_year=2018&amp;pages=11674-11682&amp;doi=10.1021/acs.energyfuels.8b02849&amp;"/></mixed-citation></ref><ref id="ref8"><mixed-citation id="cit8"><named-content content-type="citation-string">Huang Z., He F., Feng Y., Zhao K., Zheng A., Chang S., Wei G., Zhao Z., Li H.. et al. Biomass Char Direct
+Chemical Looping Gasification Using NiO-Modified Iron Ore as an Oxygen
+Carrier. Energy Fuels. 2014;28:183–191. doi: 10.1021/ef401528k.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1021/ef401528k"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy Fuels&amp;title=Biomass Char Direct Chemical Looping Gasification Using NiO-Modified Iron Ore as an Oxygen Carrier&amp;author=Z. Huang&amp;author=F. He&amp;author=Y. Feng&amp;author=K. Zhao&amp;author=A. Zheng&amp;volume=28&amp;publication_year=2014&amp;pages=183-191&amp;doi=10.1021/ef401528k&amp;"/></mixed-citation></ref><ref id="ref9"><mixed-citation id="cit9"><named-content content-type="citation-string">Vyazovkin S.. et al. ICTAC Kinetics Committee recommendations for analysis of multi-step
+kinetics. Thermochim. Acta. 2020;689(March):178597. doi: 10.1016/j.tca.2020.178597.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.tca.2020.178597"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Thermochim. Acta&amp;title=ICTAC Kinetics Committee recommendations for analysis of multi-step kinetics&amp;author=S. Vyazovkin&amp;volume=689&amp;issue=March&amp;publication_year=2020&amp;pages=178597&amp;doi=10.1016/j.tca.2020.178597&amp;"/></mixed-citation></ref><ref id="ref10"><mixed-citation id="cit10"><named-content content-type="citation-string">da
+Silva J. C. G., de Albuquerque J. G., de Araujo Galdino W. V., de Sena R. F., Andersen S. L. F.. Single-step and multi-step thermokinetic
+study – Deconvolution method as a simple pathway for describe
+properly the biomass pyrolysis for energy conversion. Energy Convers. Manage. 2020;209(December):112653. doi: 10.1016/j.enconman.2020.112653.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.enconman.2020.112653"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy Convers. Manage&amp;title=Single-step and multi-step thermokinetic study – Deconvolution method as a simple pathway for describe properly the biomass pyrolysis for energy conversion&amp;author=J. C. G. da Silva&amp;author=J. G. de Albuquerque&amp;author=W. V. de Araujo Galdino&amp;author=R. F. de Sena&amp;author=S. L. F. Andersen&amp;volume=209&amp;issue=December&amp;publication_year=2020&amp;pages=112653&amp;doi=10.1016/j.enconman.2020.112653&amp;"/></mixed-citation></ref><ref id="ref11"><mixed-citation id="cit11"><named-content content-type="citation-string">Cavagnol S., Sanz E., Nastoll W., Roesler J. F., Zymla V., Perré P.. Inverse analysis of wood pyrolysis with long residence
+times in the temperature range 210–290 C: Selection of multi-step
+kinetic models based on mass loss residues. Thermochim. Acta. 2013;574:1–9. doi: 10.1016/j.tca.2013.09.009.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.tca.2013.09.009"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Thermochim. Acta&amp;title=Inverse analysis of wood pyrolysis with long residence times in the temperature range 210–290 C: Selection of multi-step kinetic models based on mass loss residues&amp;author=S. Cavagnol&amp;author=E. Sanz&amp;author=W. Nastoll&amp;author=J. F. Roesler&amp;author=V. Zymla&amp;volume=574&amp;publication_year=2013&amp;pages=1-9&amp;doi=10.1016/j.tca.2013.09.009&amp;"/></mixed-citation></ref><ref id="ref12"><mixed-citation id="cit12"><named-content content-type="citation-string">Di
+Blasi C., Lanzetta M.. Intrinsic kinetics of isothermal
+xylan degradation in inert atmosphere. J. Anal.
+Appl. Pyrolysis. 1997;40–41:287–303. doi: 10.1016/S0165-2370(97)00028-4.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/S0165-2370(97)00028-4"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Anal. Appl. Pyrolysis&amp;title=Intrinsic kinetics of isothermal xylan degradation in inert atmosphere&amp;author=C. Di Blasi&amp;author=M. Lanzetta&amp;volume=40–41&amp;publication_year=1997&amp;pages=287-303&amp;doi=10.1016/S0165-2370(97)00028-4&amp;"/></mixed-citation></ref><ref id="ref13"><mixed-citation id="cit13"><named-content content-type="citation-string">Chen W. H., Fong Eng C., Lin Y. Y., Bach Q. V., Ashokkumar V., Show P. L.. Two-step thermodegradation kinetics
+of cellulose, hemicelluloses,
+and lignin under isothermal torrefaction analyzed by particle swarm
+optimization. Energy Convers. Manage. 2021;238(March):114116. doi: 10.1016/j.enconman.2021.114116.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.enconman.2021.114116"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy Convers. Manage&amp;title=Two-step thermodegradation kinetics of cellulose, hemicelluloses, and lignin under isothermal torrefaction analyzed by particle swarm optimization&amp;author=W. H. Chen&amp;author=C. Fong Eng&amp;author=Y. Y. Lin&amp;author=Q. V. Bach&amp;author=V. Ashokkumar&amp;volume=238&amp;issue=March&amp;publication_year=2021&amp;pages=114116&amp;doi=10.1016/j.enconman.2021.114116&amp;"/></mixed-citation></ref><ref id="ref14"><mixed-citation id="cit14"><named-content content-type="citation-string">Silveira E. A., Lin B.-J., Colin B., Chaouch M., Pétrissans A., Rousset P., Chen W.-H., Pétrissans M.. et al. Heat treatment kinetics using three-stage
+approach for sustainable
+wood material production. Ind. Crops Prod. 2018;124(August):563–571. doi: 10.1016/j.indcrop.2018.07.045.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.indcrop.2018.07.045"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Ind. Crops Prod&amp;title=Heat treatment kinetics using three-stage approach for sustainable wood material production&amp;author=E. A. Silveira&amp;author=B.-J. Lin&amp;author=B. Colin&amp;author=M. Chaouch&amp;author=A. Pétrissans&amp;volume=124&amp;issue=August&amp;publication_year=2018&amp;pages=563-571&amp;doi=10.1016/j.indcrop.2018.07.045&amp;"/></mixed-citation></ref><ref id="ref15"><mixed-citation id="cit15"><named-content content-type="citation-string">Chai M.. et al. Poplar wood torrefaction:
+Kinetics, thermochemistry and implications. Renewable Sustainable Energy Rev. 2021;143:110962. doi: 10.1016/j.rser.2021.110962.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.rser.2021.110962"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Renewable Sustainable Energy Rev&amp;title=Poplar wood torrefaction: Kinetics, thermochemistry and implications&amp;author=M. Chai&amp;volume=143&amp;publication_year=2021&amp;pages=110962&amp;doi=10.1016/j.rser.2021.110962&amp;"/></mixed-citation></ref><ref id="ref16"><mixed-citation id="cit16"><named-content content-type="citation-string">Xu F.. et al. Direct chemical looping gasification of pine sawdust
+using Fe2O3-rich
+sludge ash as an oxygen carrier: Thermal conversion characteristics,
+product distributions, and gasification performances. Fuel. 2021;304(April):121499. doi: 10.1016/j.fuel.2021.121499.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.fuel.2021.121499"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Fuel&amp;title=Direct chemical looping gasification of pine sawdust using Fe2O3-rich sludge ash as an oxygen carrier: Thermal conversion characteristics, product distributions, and gasification performances&amp;author=F. Xu&amp;volume=304&amp;issue=April&amp;publication_year=2021&amp;pages=121499&amp;doi=10.1016/j.fuel.2021.121499&amp;"/></mixed-citation></ref><ref id="ref17"><mixed-citation id="cit17"><named-content content-type="citation-string">Bhui B., Vairakannu P.. Experimental and kinetic studies on in-situ CO2 gasification
+based chemical looping combustion of low ash coal using Fe2O3 as the
+oxygen carrier. J. CO2 Util. 2019;29(November):103–116. doi: 10.1016/j.jcou.2018.11.012.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.jcou.2018.11.012"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. CO2 Util&amp;title=Experimental and kinetic studies on in-situ CO2 gasification based chemical looping combustion of low ash coal using Fe2O3 as the oxygen carrier&amp;author=B. Bhui&amp;author=P. Vairakannu&amp;volume=29&amp;issue=November&amp;publication_year=2019&amp;pages=103-116&amp;doi=10.1016/j.jcou.2018.11.012&amp;"/></mixed-citation></ref><ref id="ref18"><mixed-citation id="cit18"><named-content content-type="citation-string">Yan X., Hu J., Zhang Q., Zhao S., Dang J., Wang W.. Chemical-looping
+gasification of corn straw with Fe-based oxygen carrier: Thermogravimetric
+analysis. Bioresour. Technol. 2020;303(December):122904. doi: 10.1016/j.biortech.2020.122904.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.biortech.2020.122904"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="32028220"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Bioresour. Technol&amp;title=Chemical-looping gasification of corn straw with Fe-based oxygen carrier: Thermogravimetric analysis&amp;author=X. Yan&amp;author=J. Hu&amp;author=Q. Zhang&amp;author=S. Zhao&amp;author=J. Dang&amp;volume=303&amp;issue=December&amp;publication_year=2020&amp;pages=122904&amp;pmid=32028220&amp;doi=10.1016/j.biortech.2020.122904&amp;"/></mixed-citation></ref><ref id="ref19"><mixed-citation id="cit19"><named-content content-type="citation-string">Ubando A. T., Chen W. H., Ashokkumar V., Chang J. S.. Kinetics and thermodynamics
+dataset of iron oxide reduction using torrefied microalgae for chemical
+looping combustion. Data Brief. 2020;29:105261. doi: 10.1016/j.dib.2020.105261.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.dib.2020.105261"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC7033322"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="32149166"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Data Brief&amp;title=Kinetics and thermodynamics dataset of iron oxide reduction using torrefied microalgae for chemical looping combustion&amp;author=A. T. Ubando&amp;author=W. H. Chen&amp;author=V. Ashokkumar&amp;author=J. S. Chang&amp;volume=29&amp;publication_year=2020&amp;pages=105261&amp;pmid=32149166&amp;doi=10.1016/j.dib.2020.105261&amp;"/></mixed-citation></ref><ref id="ref20"><mixed-citation id="cit20"><named-content content-type="citation-string">Cerciello F., Fabozzi A., Yannakis C., Schmitt S., Narin O., Scherer V., Senneca O.. et al. Kinetics of iron reduction
+upon reduction/oxidation cycles. Int. J. Hydrogen
+Energy. 2024;65(December):337–347. doi: 10.1016/j.ijhydene.2024.04.008.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.ijhydene.2024.04.008"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Int. J. Hydrogen Energy&amp;title=Kinetics of iron reduction upon reduction/oxidation cycles&amp;author=F. Cerciello&amp;author=A. Fabozzi&amp;author=C. Yannakis&amp;author=S. Schmitt&amp;author=O. Narin&amp;volume=65&amp;issue=December&amp;publication_year=2024&amp;pages=337-347&amp;doi=10.1016/j.ijhydene.2024.04.008&amp;"/></mixed-citation></ref><ref id="ref21"><mixed-citation id="cit21"><named-content content-type="citation-string">Fabozzi A., Cerciello F., Senneca O.. Direct reduction of iron ore using
+biomass biochar: Reduction rate, microstructural and morphological
+analysis. Fuel. 2025;383(December):133976. doi: 10.1016/j.fuel.2024.133976.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.fuel.2024.133976"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Fuel&amp;title=Direct reduction of iron ore using biomass biochar: Reduction rate, microstructural and morphological analysis&amp;author=A. Fabozzi&amp;author=F. Cerciello&amp;author=O. Senneca&amp;volume=383&amp;issue=December&amp;publication_year=2025&amp;pages=133976&amp;doi=10.1016/j.fuel.2024.133976&amp;"/></mixed-citation></ref><ref id="ref22"><mixed-citation id="cit22"><named-content content-type="citation-string">Guo W.. et al. Thermodynamics and kinetics analysis from liquid chemical
+looping
+gasification of lignin with bismuth-based oxygen carrier. Fuel Process. Technol. 2021;219(April):106888. doi: 10.1016/j.fuproc.2021.106888.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.fuproc.2021.106888"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Fuel Process. Technol&amp;title=Thermodynamics and kinetics analysis from liquid chemical looping gasification of lignin with bismuth-based oxygen carrier&amp;author=W. Guo&amp;volume=219&amp;issue=April&amp;publication_year=2021&amp;pages=106888&amp;doi=10.1016/j.fuproc.2021.106888&amp;"/></mixed-citation></ref><ref id="ref23"><mixed-citation id="cit23"><named-content content-type="citation-string">Jacob G. A., Prabhakaran S. P. S., Swaminathan G., Joseyphus R. J.. Thermal
+kinetic analysis of mustard biomass with equiatomic iron–nickel
+catalyst and its predictive modeling. Chemosphere. 2022;286:131901. doi: 10.1016/j.chemosphere.2021.131901.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.chemosphere.2021.131901"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="34449323"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Chemosphere&amp;title=Thermal kinetic analysis of mustard biomass with equiatomic iron–nickel catalyst and its predictive modeling&amp;author=G. A. Jacob&amp;author=S. P. S. Prabhakaran&amp;author=G. Swaminathan&amp;author=R. J. Joseyphus&amp;volume=286&amp;publication_year=2022&amp;pages=131901&amp;pmid=34449323&amp;doi=10.1016/j.chemosphere.2021.131901&amp;"/></mixed-citation></ref><ref id="ref24"><mixed-citation id="cit24"><named-content content-type="citation-string">Lin Y., Wang H., Huang Z., Liu M., Wei G., Zhao Z., Li H., Fang Y.. Chemical looping
+gasification
+coupled with steam reforming of biomass using NiFe2O4: Kinetic analysis
+of DAEM-TI, thermodynamic simulation of OC redox, and a loop test. Chem. Eng. J. 2020;395(January):125046. doi: 10.1016/j.cej.2020.125046.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.cej.2020.125046"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Chem. Eng. J&amp;title=Chemical looping gasification coupled with steam reforming of biomass using NiFe2O4: Kinetic analysis of DAEM-TI, thermodynamic simulation of OC redox, and a loop test&amp;author=Y. Lin&amp;author=H. Wang&amp;author=Z. Huang&amp;author=M. Liu&amp;author=G. Wei&amp;volume=395&amp;issue=January&amp;publication_year=2020&amp;pages=125046&amp;doi=10.1016/j.cej.2020.125046&amp;"/></mixed-citation></ref><ref id="ref25"><mixed-citation id="cit25"><named-content content-type="citation-string">Zhou W.. et al. Kinetics of Reduction of Iron Ore Powder by Industrial Lignin from
+Pulping and Papermaking Waste Biomass Energy. Crystals. 2025;15(2):193. doi: 10.3390/cryst15020193.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.3390/cryst15020193"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Crystals&amp;title=Kinetics of Reduction of Iron Ore Powder by Industrial Lignin from Pulping and Papermaking Waste Biomass Energy&amp;author=W. Zhou&amp;volume=15&amp;issue=2&amp;publication_year=2025&amp;pages=193&amp;doi=10.3390/cryst15020193&amp;"/></mixed-citation></ref><ref id="ref26"><mixed-citation id="cit26"><named-content content-type="citation-string">Cao Z.. et al. Insights
+into direct reduction iron using bamboo biomass as a green
+and renewable reducer: Reduction behavior study and kinetics analysis. Sci. Total Environ. 2023;880:163393. doi: 10.1016/j.scitotenv.2023.163393.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.scitotenv.2023.163393"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="37037383"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Sci. Total Environ&amp;title=Insights into direct reduction iron using bamboo biomass as a green and renewable reducer: Reduction behavior study and kinetics analysis&amp;author=Z. Cao&amp;volume=880&amp;publication_year=2023&amp;pages=163393&amp;pmid=37037383&amp;doi=10.1016/j.scitotenv.2023.163393&amp;"/></mixed-citation></ref><ref id="ref27"><mixed-citation id="cit27"><named-content content-type="citation-string">Wang Y., Xing Y., Hong C.. Chemical looping gasification of
+microalgae biomass with Fe-based oxygen carrier for gas production
+and kinetic behavior. Chem. Eng. Process.: Process
+Intensif. 2025;210(November):110215. doi: 10.1016/j.cep.2025.110215.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.cep.2025.110215"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Chem. Eng. Process.: Process Intensif.&amp;title=Chemical looping gasification of microalgae biomass with Fe-based oxygen carrier for gas production and kinetic behavior&amp;author=Y. Wang&amp;author=Y. Xing&amp;author=C. Hong&amp;volume=210&amp;issue=November&amp;publication_year=2025&amp;pages=110215&amp;doi=10.1016/j.cep.2025.110215&amp;"/></mixed-citation></ref><ref id="ref28"><mixed-citation id="cit28"><named-content content-type="citation-string">Ardiani N. R., Setianto S., Santosa B., Wibawa B. M., Panatarani C., Joni I. M.. Quantitative analysis
+of iron sand mineral content
+from the south coast of Cidaun, West Java using rietveld refinement
+method. AIP Conf. Proc. 2020;2219:040003. doi: 10.1063/5.0003018.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1063/5.0003018"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=AIP Conf. Proc.&amp;title=Quantitative analysis of iron sand mineral content from the south coast of Cidaun, West Java using rietveld refinement method&amp;author=N. R. Ardiani&amp;author=S. Setianto&amp;author=B. Santosa&amp;author=B. M. Wibawa&amp;author=C. Panatarani&amp;volume=2219&amp;publication_year=2020&amp;pages=040003&amp;doi=10.1063/5.0003018&amp;"/></mixed-citation></ref><ref id="ref29"><mixed-citation id="cit29"><named-content content-type="citation-string">Guijón R., Henríquez F., Naranjo J. A.. Geological, Geographical and Legal
+Considerations for the Conservation of Unique Iron Oxide and Sulphur
+Flows at El Laco and Lastarria Volcanic Complexes, Central Andes,
+Northern Chile. Geoheritage. 2011;3:299–315. doi: 10.1007/s12371-011-0045-x.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1007/s12371-011-0045-x"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Geoheritage&amp;title=Geological, Geographical and Legal Considerations for the Conservation of Unique Iron Oxide and Sulphur Flows at El Laco and Lastarria Volcanic Complexes, Central Andes, Northern Chile&amp;author=R. Guijón&amp;author=F. Henríquez&amp;author=J. A. Naranjo&amp;volume=3&amp;publication_year=2011&amp;pages=299-315&amp;doi=10.1007/s12371-011-0045-x&amp;"/></mixed-citation></ref><ref id="ref30"><mixed-citation id="cit30"><named-content content-type="citation-string">
+
+Danús Vásquez, H.
+
+Crónicas
+Mineras de Medio Siglo, 1950 to 2000. RIL
+Editores, 2007.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="title=Crónicas Mineras de Medio Siglo, 1950 to 2000&amp;publication_year=2007&amp;"/></mixed-citation></ref><ref id="ref31"><mixed-citation id="cit31"><named-content content-type="citation-string">Nekrylov N.. et al. The role of evaporite in iron oxide-apatite ore deposit formation:
+Constraints of the late Miocene Abovyan deposit, Armenia. Lithos. 2025;508–509:108078. doi: 10.1016/j.lithos.2025.108078.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.lithos.2025.108078"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Lithos&amp;title=The role of evaporite in iron oxide-apatite ore deposit formation: Constraints of the late Miocene Abovyan deposit, Armenia&amp;author=N. Nekrylov&amp;volume=508–509&amp;publication_year=2025&amp;pages=108078&amp;doi=10.1016/j.lithos.2025.108078&amp;"/></mixed-citation></ref><ref id="ref32"><mixed-citation id="cit32"><named-content content-type="citation-string">Watson J. L.. Magnetic
+Assessment of Waipipi Ironsands. N. Z. J. Sci. 1979;22:87–93.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=N. Z. J. Sci.&amp;title=Magnetic Assessment of Waipipi Ironsands&amp;author=J. L. Watson&amp;volume=22&amp;publication_year=1979&amp;pages=87-93&amp;"/></mixed-citation></ref><ref id="ref33"><mixed-citation id="cit33"><named-content content-type="citation-string">
+
+Rees, A.
+
+The Cyclopædia;
+or, Universal Dictionary of Arts, Sciences, and Literature. Longman, Hurst, Rees, Orme &amp; Brown: London, 1819. 10.5962/bhl.title.59683.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.5962/bhl.title.59683"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="title=The Cyclopædia; or, Universal Dictionary of Arts, Sciences, and Literature&amp;publication_year=1819&amp;"/></mixed-citation></ref><ref id="ref34"><mixed-citation id="cit34"><named-content content-type="citation-string">
+
+Fadlin, F.
+; 
+Kusumo, R. J.
+, Studi Genesa dan
+Karakteristik Bahan Galian Jasper ‘Badar Besi’ Daerah
+Kalirejo, Kecamatan Karanggayam, Kabupaten Kebumen, Provinsi Jawa
+Tengah. ReTII, pp 1–10, 2017, <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://journal.itny.ac.id/index.php/ReTII/article/view/260" ext-link-type="uri">https://journal.itny.ac.id/index.php/ReTII/article/view/260</ext-link>.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="title=Studi Genesa dan Karakteristik Bahan Galian Jasper ‘Badar Besi’ Daerah Kalirejo, Kecamatan Karanggayam, Kabupaten Kebumen, Provinsi Jawa Tengah&amp;publication_year=2017&amp;"/></mixed-citation></ref><ref id="ref35"><mixed-citation id="cit35"><named-content content-type="citation-string">Feng Y., Yang Q., Zuo Z., Luo S., Ren D., Lin H.. Study on Preparation of Oxygen Carrier
+Using Copper Slag as Precursor. Front. Energy
+Res. 2021;9(November):781914. doi: 10.3389/fenrg.2021.781914.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.3389/fenrg.2021.781914"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Front. Energy Res&amp;title=Study on Preparation of Oxygen Carrier Using Copper Slag as Precursor&amp;author=Y. Feng&amp;author=Q. Yang&amp;author=Z. Zuo&amp;author=S. Luo&amp;author=D. Ren&amp;volume=9&amp;issue=November&amp;publication_year=2021&amp;pages=781914&amp;doi=10.3389/fenrg.2021.781914&amp;"/></mixed-citation></ref><ref id="ref36"><mixed-citation id="cit36"><named-content content-type="citation-string">Sun Z., Ding L., Kuo P. C., Aziz M.. Reaction kinetics study
+in direct chemical looping process based on a multi-step reaction
+scheme. Fuel. 2023;349(December):128736. doi: 10.1016/j.fuel.2023.128736.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.fuel.2023.128736"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Fuel&amp;title=Reaction kinetics study in direct chemical looping process based on a multi-step reaction scheme&amp;author=Z. Sun&amp;author=L. Ding&amp;author=P. C. Kuo&amp;author=M. Aziz&amp;volume=349&amp;issue=December&amp;publication_year=2023&amp;pages=128736&amp;doi=10.1016/j.fuel.2023.128736&amp;"/></mixed-citation></ref><ref id="ref37"><mixed-citation id="cit37"><named-content content-type="citation-string">Burra K. R. G., Gupta A. K.. Modeling of biomass pyrolysis kinetics
+using sequential
+multi-step reaction model. Fuel. 2019;237(October):1057–1067. doi: 10.1016/j.fuel.2018.09.097.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.fuel.2018.09.097"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Fuel&amp;title=Modeling of biomass pyrolysis kinetics using sequential multi-step reaction model&amp;author=K. R. G. Burra&amp;author=A. K. Gupta&amp;volume=237&amp;issue=October&amp;publication_year=2019&amp;pages=1057-1067&amp;doi=10.1016/j.fuel.2018.09.097&amp;"/></mixed-citation></ref><ref id="ref38"><mixed-citation id="cit38"><named-content content-type="citation-string">Li Y.. et al. A new method of comprehensive
+utilization of rice husk. J. Hazard. Mater. 2011;186(2–3):2151–2156. doi: 10.1016/j.jhazmat.2011.01.013.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.jhazmat.2011.01.013"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="21251754"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Hazard. Mater&amp;title=A new method of comprehensive utilization of rice husk&amp;author=Y. Li&amp;volume=186&amp;issue=2–3&amp;publication_year=2011&amp;pages=2151-2156&amp;pmid=21251754&amp;doi=10.1016/j.jhazmat.2011.01.013&amp;"/></mixed-citation></ref><ref id="ref39"><mixed-citation id="cit39"><named-content content-type="citation-string">Siswati N. D., Wachidah A. N., Ariyani A. E. P.. Selulosa Asetat
+Dari Ampas Sagu. J. Tek. Kim. 2021;15(2):90–94. doi: 10.33005/jurnal_tekkim.v15i2.2547.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.33005/jurnal_tekkim.v15i2.2547"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Tek. Kim&amp;title=Selulosa Asetat Dari Ampas Sagu&amp;author=N. D. Siswati&amp;author=A. N. Wachidah&amp;author=A. E. P. Ariyani&amp;volume=15&amp;issue=2&amp;publication_year=2021&amp;pages=90-94&amp;doi=10.33005/jurnal_tekkim.v15i2.2547&amp;"/></mixed-citation></ref><ref id="ref40"><mixed-citation id="cit40"><named-content content-type="citation-string">Budiyantoro C., Yudhanto F.. Comparative Analysis
+of Cellulose, Hemicellulose and
+Lignin on The Physical and Thermal Properties of Wood Sawdust for
+Bio-Composite Material Fillers. Rev. Compos.
+Mater. Av. 2024;34(1):109–116. doi: 10.18280/rcma.340114.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.18280/rcma.340114"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Rev. Compos. Mater. Av&amp;title=Comparative Analysis of Cellulose, Hemicellulose and Lignin on The Physical and Thermal Properties of Wood Sawdust for Bio-Composite Material Fillers&amp;author=C. Budiyantoro&amp;author=F. Yudhanto&amp;volume=34&amp;issue=1&amp;publication_year=2024&amp;pages=109-116&amp;doi=10.18280/rcma.340114&amp;"/></mixed-citation></ref><ref id="ref41"><mixed-citation id="cit41"><named-content content-type="citation-string">Chen W. H., Eng C. F., Lin Y. Y., Bach Q. V.. Independent parallel
+pyrolysis kinetics of cellulose, hemicelluloses and lignin at various
+heating rates analyzed by evolutionary computation. Energy Convers. Manage. 2020;221(June):113165. doi: 10.1016/j.enconman.2020.113165.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.enconman.2020.113165"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy Convers. Manage&amp;title=Independent parallel pyrolysis kinetics of cellulose, hemicelluloses and lignin at various heating rates analyzed by evolutionary computation&amp;author=W. H. Chen&amp;author=C. F. Eng&amp;author=Y. Y. Lin&amp;author=Q. V. Bach&amp;volume=221&amp;issue=June&amp;publication_year=2020&amp;pages=113165&amp;doi=10.1016/j.enconman.2020.113165&amp;"/></mixed-citation></ref><ref id="ref42"><mixed-citation id="cit42"><named-content content-type="citation-string">Faravelli T., Frassoldati A., Migliavacca G., Ranzi E.. Detailed kinetic modeling
+of the thermal degradation of lignins. Biomass
+Bioenergy. 2010;34(3):290–301. doi: 10.1016/j.biombioe.2009.10.018.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.biombioe.2009.10.018"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Biomass Bioenergy&amp;title=Detailed kinetic modeling of the thermal degradation of lignins&amp;author=T. Faravelli&amp;author=A. Frassoldati&amp;author=G. Migliavacca&amp;author=E. Ranzi&amp;volume=34&amp;issue=3&amp;publication_year=2010&amp;pages=290-301&amp;doi=10.1016/j.biombioe.2009.10.018&amp;"/></mixed-citation></ref><ref id="ref43"><mixed-citation id="cit43"><named-content content-type="citation-string">Chen W. H., Chu Y. S., Liu J. L., Chang J. S.. Thermal degradation
+of carbohydrates, proteins and lipids in microalgae analyzed by evolutionary
+computation. Energy Convers. Manage. 2018;160(January):209–219. doi: 10.1016/j.enconman.2018.01.036.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.enconman.2018.01.036"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy Convers. Manage&amp;title=Thermal degradation of carbohydrates, proteins and lipids in microalgae analyzed by evolutionary computation&amp;author=W. H. Chen&amp;author=Y. S. Chu&amp;author=J. L. Liu&amp;author=J. S. Chang&amp;volume=160&amp;issue=January&amp;publication_year=2018&amp;pages=209-219&amp;doi=10.1016/j.enconman.2018.01.036&amp;"/></mixed-citation></ref><ref id="ref44"><mixed-citation id="cit44"><named-content content-type="citation-string">Rodjaroen S., Chittapun S., Charoenrat T., Nuntapong N., Wetchakul A., Thongprajukaew K.. Dietary supplementation of Aurantiochytrium
+sp. significantly improved growth, feed utilization, skin lightness,
+muscle protein synthesis capacity, and whole-body protein in juvenile
+African sharptooth catfish (Clarias gariepinus) Aquac. Rep. 2024;35:101986. doi: 10.1016/j.aqrep.2024.101986.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.aqrep.2024.101986"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Aquac. Rep.&amp;title=Dietary supplementation of Aurantiochytrium sp. significantly improved growth, feed utilization, skin lightness, muscle protein synthesis capacity, and whole-body protein in juvenile African sharptooth catfish (Clarias gariepinus)&amp;author=S. Rodjaroen&amp;author=S. Chittapun&amp;author=T. Charoenrat&amp;author=N. Nuntapong&amp;author=A. Wetchakul&amp;volume=35&amp;publication_year=2024&amp;pages=101986&amp;doi=10.1016/j.aqrep.2024.101986&amp;"/></mixed-citation></ref><ref id="ref45"><mixed-citation id="cit45"><named-content content-type="citation-string">Turck D.. et al. Safety of dried whole
+cell Euglena gracilis as a novel food pursuant
+to Regulation (EU) 2015/2283. EFSA J. 2020;18(5):e06100.  doi: 10.2903/J.EFSA.2020.6100.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.2903/J.EFSA.2020.6100"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC10464689"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="37649492"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=EFSA J&amp;title=Safety of dried whole cell Euglena gracilis as a novel food pursuant to Regulation (EU) 2015/2283&amp;author=D. Turck&amp;volume=18&amp;issue=5&amp;publication_year=2020&amp;pages=e06100&amp;pmid=37649492&amp;doi=10.2903/J.EFSA.2020.6100&amp;"/></mixed-citation></ref><ref id="ref46"><mixed-citation id="cit46"><named-content content-type="citation-string">Podgórska-Kryszczuk I.. SpirulinaAn
+Invaluable Source of Macro- and Micronutrients with Broad Biological
+Activity and Application Potential. Molecules. 2024;29(22):5387. doi: 10.3390/molecules29225387.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.3390/molecules29225387"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC11596570"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="39598773"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Molecules&amp;title=SpirulinaAn Invaluable Source of Macro- and Micronutrients with Broad Biological Activity and Application Potential&amp;author=I. Podgórska-Kryszczuk&amp;volume=29&amp;issue=22&amp;publication_year=2024&amp;pages=5387&amp;pmid=39598773&amp;doi=10.3390/molecules29225387&amp;"/></mixed-citation></ref><ref id="ref47"><mixed-citation id="cit47"><named-content content-type="citation-string">Chen W. H., Wu Z. Y., Chang J. S.. Isothermal
+and non-isothermal torrefaction
+characteristics and kinetics of microalga Scenedesmus obliquus CNW-N. Bioresour. Technol. 2014;155:245–251. doi: 10.1016/j.biortech.2013.12.116.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.biortech.2013.12.116"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="24457308"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Bioresour. Technol&amp;title=Isothermal and non-isothermal torrefaction characteristics and kinetics of microalga Scenedesmus obliquus CNW-N&amp;author=W. H. Chen&amp;author=Z. Y. Wu&amp;author=J. S. Chang&amp;volume=155&amp;publication_year=2014&amp;pages=245-251&amp;pmid=24457308&amp;doi=10.1016/j.biortech.2013.12.116&amp;"/></mixed-citation></ref><ref id="ref48"><mixed-citation id="cit48"><named-content content-type="citation-string">Peng W., Wu Q., Tu P.. Pyrolytic
+characteristics of heterotrophic Chlorella
+protothecoides for renewable bio-fuel production. J. Appl. Phycol. 2001;13(1):5–12. doi: 10.1023/A:1008153831875.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1023/A:1008153831875"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Appl. Phycol&amp;title=Pyrolytic characteristics of heterotrophic Chlorella protothecoides for renewable bio-fuel production&amp;author=W. Peng&amp;author=Q. Wu&amp;author=P. Tu&amp;volume=13&amp;issue=1&amp;publication_year=2001&amp;pages=5-12&amp;doi=10.1023/A:1008153831875&amp;"/></mixed-citation></ref><ref id="ref49"><mixed-citation id="cit49"><named-content content-type="citation-string">Jung J. M., Kim S., Lee J., Oh J. I., Choi Y. E., Kwon E. E.. Tailoring
+pyrogenic products from pyrolysis of defatted Euglena gracilis using
+CO2 as reactive gas medium. Energy. 2019;174:184–190. doi: 10.1016/j.energy.2019.02.153.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.energy.2019.02.153"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy&amp;title=Tailoring pyrogenic products from pyrolysis of defatted Euglena gracilis using CO2 as reactive gas medium&amp;author=J. M. Jung&amp;author=S. Kim&amp;author=J. Lee&amp;author=J. I. Oh&amp;author=Y. E. Choi&amp;volume=174&amp;publication_year=2019&amp;pages=184-190&amp;doi=10.1016/j.energy.2019.02.153&amp;"/></mixed-citation></ref><ref id="ref50"><mixed-citation id="cit50"><named-content content-type="citation-string">Ubando A. T., Chen W. H., Ashokkumar V., Chang J. S.. Iron oxide reduction
+by torrefied microalgae for CO2 capture and abatement in chemical-looping
+combustion. Energy. 2019;186:115903. doi: 10.1016/j.energy.2019.115903.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.energy.2019.115903"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC7033322"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="32149166"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy&amp;title=Iron oxide reduction by torrefied microalgae for CO2 capture and abatement in chemical-looping combustion&amp;author=A. T. Ubando&amp;author=W. H. Chen&amp;author=V. Ashokkumar&amp;author=J. S. Chang&amp;volume=186&amp;publication_year=2019&amp;pages=115903&amp;pmid=32149166&amp;doi=10.1016/j.energy.2019.115903&amp;"/></mixed-citation></ref><ref id="ref51"><mixed-citation id="cit51"><named-content content-type="citation-string">
+
+Robles, A.
+, Bio-coal
+pre-treatmeant
+for maximized addition in briquettes and coke, Luleå University of Technology, 2017. <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://ltu.diva-portal.org/smash/record.jsf?pid=diva2%253A1155499%2526dswid=948" ext-link-type="uri">http://ltu.diva-portal.org/smash/record.jsf?pid=diva2%3A1155499&amp;dswid=948</ext-link>.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="title=Bio-coal pre-treatmeant for maximized addition in briquettes and coke&amp;publication_year=2017&amp;"/></mixed-citation></ref><ref id="ref52"><mixed-citation id="cit52"><named-content content-type="citation-string">Bach Q. V., Chen W. H.. A comprehensive
+study on pyrolysis kinetics of microalgal
+biomass. Energy Convers. Manage. 2017;131:109–116. doi: 10.1016/j.enconman.2016.10.077.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.enconman.2016.10.077"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Energy Convers. Manage&amp;title=A comprehensive study on pyrolysis kinetics of microalgal biomass&amp;author=Q. V. Bach&amp;author=W. H. Chen&amp;volume=131&amp;publication_year=2017&amp;pages=109-116&amp;doi=10.1016/j.enconman.2016.10.077&amp;"/></mixed-citation></ref><ref id="ref53"><mixed-citation id="cit53"><named-content content-type="citation-string">Andrade L. A., Batista F. R. X., Lira T. S., Barrozo M. A. S., Vieira L. G. M.. Characterization
+and product formation during the catalytic and non-catalytic pyrolysis
+of the green microalgae Chlamydomonas reinhardtii. Renewable Energy. 2018;119:731–740. doi: 10.1016/j.renene.2017.12.056.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.renene.2017.12.056"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Renewable Energy&amp;title=Characterization and product formation during the catalytic and non-catalytic pyrolysis of the green microalgae Chlamydomonas reinhardtii&amp;author=L. A. Andrade&amp;author=F. R. X. Batista&amp;author=T. S. Lira&amp;author=M. A. S. Barrozo&amp;author=L. G. M. Vieira&amp;volume=119&amp;publication_year=2018&amp;pages=731-740&amp;doi=10.1016/j.renene.2017.12.056&amp;"/></mixed-citation></ref><ref id="ref54"><mixed-citation id="cit54"><named-content content-type="citation-string">Chen D.. et al. Insight into biomass pyrolysis mechanism based on cellulose,
+hemicellulose,
+and lignin: Evolution of volatiles and kinetics, elucidation of reaction
+pathways, and characterization of gas, biochar and bio-oil. Combust. Flame. 2022;242:112142. doi: 10.1016/j.combustflame.2022.112142.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.combustflame.2022.112142"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Combust. Flame&amp;title=Insight into biomass pyrolysis mechanism based on cellulose, hemicellulose, and lignin: Evolution of volatiles and kinetics, elucidation of reaction pathways, and characterization of gas, biochar and bio-oil&amp;author=D. Chen&amp;volume=242&amp;publication_year=2022&amp;pages=112142&amp;doi=10.1016/j.combustflame.2022.112142&amp;"/></mixed-citation></ref><ref id="ref55"><mixed-citation id="cit55"><named-content content-type="citation-string">Ross A. B., Jones J. M., Kubacki M. L., Bridgeman T.. Classification
+of macroalgae as fuel and its thermochemical behaviour. Bioresour. Technol. 2008;99(14):6494–6504. doi: 10.1016/j.biortech.2007.11.036.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.biortech.2007.11.036"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="18194859"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Bioresour. Technol&amp;title=Classification of macroalgae as fuel and its thermochemical behaviour&amp;author=A. B. Ross&amp;author=J. M. Jones&amp;author=M. L. Kubacki&amp;author=T. Bridgeman&amp;volume=99&amp;issue=14&amp;publication_year=2008&amp;pages=6494-6504&amp;pmid=18194859&amp;doi=10.1016/j.biortech.2007.11.036&amp;"/></mixed-citation></ref><ref id="ref56"><mixed-citation id="cit56"><named-content content-type="citation-string">Weemaes C. A., Ooms V., Van Loey A. M., Hendrickx M. E.. Kinetics
+of Chlorophyll Degradation and Color Loss in Heated Broccoli Juice. J. Agric. Food Chem. 1999;47(6):2404–2409. doi: 10.1021/jf980663o.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1021/jf980663o"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="10794643"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Agric. Food Chem&amp;title=Kinetics of Chlorophyll Degradation and Color Loss in Heated Broccoli Juice&amp;author=C. A. Weemaes&amp;author=V. Ooms&amp;author=A. M. Van Loey&amp;author=M. E. Hendrickx&amp;volume=47&amp;issue=6&amp;publication_year=1999&amp;pages=2404-2409&amp;pmid=10794643&amp;doi=10.1021/jf980663o&amp;"/></mixed-citation></ref><ref id="ref57"><mixed-citation id="cit57"><named-content content-type="citation-string">Figueira C. E., Moreira P. F., Giudici R.. Thermogravimetric
+analysis of the
+gasification of microalgae Chlorella vulgaris. Bioresour. Technol. 2015;198:717–724. doi: 10.1016/j.biortech.2015.09.059.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.biortech.2015.09.059"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="26447558"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Bioresour. Technol&amp;title=Thermogravimetric analysis of the gasification of microalgae Chlorella vulgaris&amp;author=C. E. Figueira&amp;author=P. F. Moreira&amp;author=R. Giudici&amp;volume=198&amp;publication_year=2015&amp;pages=717-724&amp;pmid=26447558&amp;doi=10.1016/j.biortech.2015.09.059&amp;"/></mixed-citation></ref><ref id="ref58"><mixed-citation id="cit58"><named-content content-type="citation-string">Marcilla A., Catalá L., García-Quesada J. C., Valdés F. J., Hernández M. R.. A review of thermochemical conversion of microalgae. Renewable Sustainable Energy Rev. 2013;27:11–19. doi: 10.1016/j.rser.2013.06.032.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.rser.2013.06.032"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Renewable Sustainable Energy Rev&amp;title=A review of thermochemical conversion of microalgae&amp;author=A. Marcilla&amp;author=L. Catalá&amp;author=J. C. García-Quesada&amp;author=F. J. Valdés&amp;author=M. R. Hernández&amp;volume=27&amp;publication_year=2013&amp;pages=11-19&amp;doi=10.1016/j.rser.2013.06.032&amp;"/></mixed-citation></ref><ref id="ref59"><mixed-citation id="cit59"><named-content content-type="citation-string">Chen J., Zhao K., Zhao Z., He F., Huang Z., Wei G.. Identifying the roles of MFe 2 O
+4 (M = Cu, Ba, Ni, and Co) in the
+chemical looping reforming of char, pyrolysis gas and tar resulting
+from biomass pyrolysis. Int. J. Hydrogen Energy. 2019;44(10):4674–4687. doi: 10.1016/j.ijhydene.2018.12.216.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.ijhydene.2018.12.216"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Int. J. Hydrogen Energy&amp;title=Identifying the roles of MFe 2 O 4 (M = Cu, Ba, Ni, and Co) in the chemical looping reforming of char, pyrolysis gas and tar resulting from biomass pyrolysis&amp;author=J. Chen&amp;author=K. Zhao&amp;author=Z. Zhao&amp;author=F. He&amp;author=Z. Huang&amp;volume=44&amp;issue=10&amp;publication_year=2019&amp;pages=4674-4687&amp;doi=10.1016/j.ijhydene.2018.12.216&amp;"/></mixed-citation></ref><ref id="ref60"><mixed-citation id="cit60"><named-content content-type="citation-string">Wu H. C., Ku Y., Tsai H. H., Kuo Y. L., Tseng Y. H.. Rice husk as solid
+fuel for chemical looping combustion in an annular dual-tube moving
+bed reactor. Chem. Eng. J. 2015;280:82–89. doi: 10.1016/j.cej.2015.05.116.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.cej.2015.05.116"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Chem. Eng. J&amp;title=Rice husk as solid fuel for chemical looping combustion in an annular dual-tube moving bed reactor&amp;author=H. C. Wu&amp;author=Y. Ku&amp;author=H. H. Tsai&amp;author=Y. L. Kuo&amp;author=Y. H. Tseng&amp;volume=280&amp;publication_year=2015&amp;pages=82-89&amp;doi=10.1016/j.cej.2015.05.116&amp;"/></mixed-citation></ref><ref id="ref61"><mixed-citation id="cit61"><named-content content-type="citation-string">Chen J.. et al. Pyrolysis and oxy-fuel
+combustion characteristics and kinetics of
+petrochemical wastewater sludge using thermogravimetric analysis. Bioresour. Technol. 2015;198:115–123. doi: 10.1016/j.biortech.2015.09.011.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.biortech.2015.09.011"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="26386413"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Bioresour. Technol&amp;title=Pyrolysis and oxy-fuel combustion characteristics and kinetics of petrochemical wastewater sludge using thermogravimetric analysis&amp;author=J. Chen&amp;volume=198&amp;publication_year=2015&amp;pages=115-123&amp;pmid=26386413&amp;doi=10.1016/j.biortech.2015.09.011&amp;"/></mixed-citation></ref></ref-list></sec></sec><sec id="_ad93_" xml:lang="en" sec-type="associated-data" disp-level="1"><title>Associated Data</title><sec id="_adsm93_" xml:lang="en" sec-type="supplementary-materials" disp-level="2"><title>Supplementary Materials</title><supplementary-material id="db_ds_supplementary-material1_reqid_" position="float"><media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ao6c06288_si_001.pdf" mimetype="application" mime-subtype="pdf"><?cloudpmc-path 6ea3/13625070/78c38fd8de80/ao6c06288_si_001.pdf?><?cloudpmc-bucket app?><?size 2618728?></media></supplementary-material></sec></sec></body></article>

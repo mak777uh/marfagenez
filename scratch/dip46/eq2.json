@@ -1,0 +1,6 @@
+[
+ "\"heating rate\" AND inactivation AND OPEN_ACCESS:y AND SRC:MED",
+ "\"drying rate\" AND survival AND OPEN_ACCESS:y AND SRC:MED",
+ "\"dose rate\" AND \"surviving fraction\" AND OPEN_ACCESS:y AND SRC:MED",
+ "\"fluence rate\" AND inactivation AND OPEN_ACCESS:y AND SRC:MED"
+]

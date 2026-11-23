@@ -1,0 +1,641 @@
+ 822 acssd Analytical Chemistry Anal Chem PMC13217362 13217362 13217362 42125835 10.1021/acs.analchem.5c06100 Tracking Protein
+Misfolding and Oligomerization: A
+Temperature-Controlled Ion Mobility-Mass Spectrometry Approach Svingou Despoina † McAlary Luke ‡ Harrison Julian Alexander † * Zenobi Renato † * 
+ † 
+Laboratory
+of Organic Chemistry, Department of Chemistry and Applied Biosciences, ETH Zurich, Zurich, 8093
+Switzerland
+ ‡ 
+Molecular
+Horizons and School of Science, Faculty of Science, Medicine and Health, University of Wollongong, Wollongong, New South Wales
+2522, Australia
+ * 
+ zenobi@org.chem.ethz.ch . * 
+ harrison@org.chem.ethz.ch . 13 5 2026 98 20 14683 14683–14694 29 5 2026 © 2026 The Authors. Published by American Chemical Society This article is licensed under CC-BY 4.0 
+## Abstract 
+ status released display-pdf yes is-in-collection-domain yes is-olf no is-manuscript no is-preprint no is-journal-matter no is-scanned no is-retracted no 
+## Introduction 
+−
+ These debilitating diseases, exhibit a complex mechanism of aberrant
+protein misfolding, oligomerization, aggregation and ultimately amyloid
+plaque formation. 
+,
+ A major hurdle in elucidating
+misfolding and early aggregation of proteins has been the lack of
+techniques to capture and analyze low-abundance intermediates taking
+part in this dynamic process in real time. Traditional methods, which mostly yield global information and require
+long incubation times, often fall short in providing the temporal
+and structural resolution necessary to study these dynamic and conformationally
+diverse systems. 
+,
+,
+ However, these low-abundance
+and transient oligomeric assemblies, often coexist in solution, which
+presents a significant challenge for traditional biophysical techniques.
+While powerful, these methodologies typically provide global information
+rather than unambiguous structural and conformational characterization
+that would be needed to resolve dynamic oligomeric ensembles.
+−
+ In native MS, soft nanoelectrospray ionization (nESI)
+and optimized gas pressures and voltage conditions maintain delicate
+molecular interactions of even large noncovalent complexes in the
+gas phase, allowing for detailed structural analysis of heterogeneous
+protein complex ensembles. 
+,
+ Even though structural
+rearrangements are expected upon desolvation, proteins have been shown
+to retain many structural aspects upon transfer to the gas phase. Thus, native MS can serve as a valuable technique
+that is directly correlated to solution-based methodologies. 
+,
+ Especially the development of
+high-resolution IMS platforms shows great promise in deciphering the
+conformational landscape of proteins. 
+,
+ Another methodology,
+known as variable-temperature or temperature-controlled nESI (TC-nESI),
+offers an avenue to probe such processes by accelerating aggregation
+under defined thermal conditions before ionization. 
+,
+ When integrated with high resolution IM-MS, it can provide valuable
+insights into the thermodynamic properties, stability, folding and
+interactions of protein complexes. 
+−
+ In this study, we explore
+its potential to induce and access previously unexplored aggregation
+pathways in real time. 
+ Figure 
+ ). 
+−
+ SOD1 is a 32 kDa homodimeric protein that catalyzes
+the conversion of superoxide, to either H 2 O 2 or O 2, depending on the Cu-oxidation state. Each of its
+monomers is characterized by a β-barrel scaffold consisting
+of eight antiparallel β strands and two loops (an electrostatic
+and a zinc-binding loop). The dimer also contains one copper and one
+zinc ion per 153-residue subunit. 
+,
+ In its fully
+metalated state, the SOD1 dimer is referred to as holo-SOD1, whereas
+the demetalated species is known as apo-SOD1. Currently, over 200
+SOD1 gene mutations are implicated in amyotrophic lateral sclerosis
+(ALS). 
+,
+ These mutations can affect the structure
+and stability of the protein, causing dissociation of metal cofactors,
+the formation of transient neurotoxic oligomers, and finally large
+insoluble inclusions, all hallmarks of neurodegenerative disease. 
+,
+ 1 
+ Figure 
+ a). The approach enables precise control
+of aggregation speed and pathways through temperature-controlled nanoelectrospray
+ionization (TC-nESI) ( Figure 
+ b). Resulting oligomers are characterized using high-resolution
+IM-MS, surface-induced dissociation (SID), and limited proteolysis,
+providing detailed structural and conformational insights at each
+stage ( Figure 
+ c–d).
+This generalizable methodological framework allows the investigation
+of previously uncharacterized intermediates, offering critical understanding
+of the molecular mechanisms underlying disease progression and aiding
+in the development of therapeutic strategies. 
+## Materials and Methods 
+## Sample Preparation 
+ Saccharomyces cerevisiae and bovine Cu/Zn superoxide
+dismutase (SOD1) from bovine erythrocytes, were purchased from Merck
+(Buchs, Switzerland). Buffer exchange and purification of all protein
+samples was achieved via size exclusion chromatography, on an ÄKTA
+go system, equipped with a Superdex Increase 200 10/300 column (Cytiva,
+Massachusetts). All protein samples were sprayed from a 200 mM ammonium
+acetate (AmAc) solution at pH = 7.4 in concentrations ranging from
+20 to 40 μM. These samples were stored at 4 °C until use.
+Other chemicals used throughout the study include MilliQ water (Millipore,
+Bedford), ammonium acetate solution, 7.5 M (Merck, Buchs Switzerland)
+and ethylenediaminetetraacetic acid (EDTA) solution, 0.5 M (Fisher
+Scientific, Reinach, Switzerland). 
+## Native IM-MS Experiments 
+ m / z , followed
+by a three-lens SID cell placed in front of the trap collision cell. 
+,
+ All samples were sprayed in positive mode from borosilicate glass
+capillaries (inner diameter of ∼1 μm) that were pulled
+in-house employing a micropipette puller (P-1000, Sutter Instruments)
+and fitted with a platinum wire. The mass range was set from 50 to
+32000 m / z for the initial holo-SOD1
+study to accommodate higher-mass oligomers and was modified to 50–16000 m / z for the rest of the experiments. For
+the heating experiments with a ramp of 1.0 °C min –1 , the scan rate (i.e., the time over which each spectrum was collected)
+was set to 1s. When a heating rate of 0.3 °C min –1 was employed the scan rate was changed to 2s, to reduce data size
+during longer acquisitions. For all experiments the mass spectrometer
+was operating in “V-mode”, while all data were acquired
+in “Mobility mode”. Primarily, crucial cIMS parameters
+for high-mass ion transmission and optimal ion mobility separation
+were considered, as described by Harrison et al. Operating parameters for all experiments: native IM-MS
+and collision-induced unfolding tandem MS (CIU-MS/MS), are described
+in the Supporting Information ( Tables S1–S4 ). 
+ –1 . 
+ Figures S1 and S12 ), as previously described. 
+,,
+ More specifically, β- and
+γ-subunits of paradoxin (extracted from snake venom), concanavalin
+A, human serum albumin and alcohol dehydrogenase, with concentrations
+of 10–20 μM in 200 mM AmAc, were chosen as standards. 
+,
+## Data Acquisition and Processing 
+## Results and Discussion 
+,
+ Additionally,
+the underlying kinetics of these multifaceted and dynamic processes
+are quite challenging to elucidate. 
+,
+ Here, we detail
+how an MS-based assay, which utilizes TC-nESI and IM-MS, can be used
+to elucidate these transient early aggregation states. 
+## Method Development and Optimization 
+,
+ Here, thermal denaturation MS experiments
+along with high-resolution ion mobility separation, were employed
+for the simultaneous characterization of thermal stability and oligomer
+growth mechanisms. However, several methodological adaptations need
+to be made to study this system with temperature-controlled mass spectrometry.
+Thus far, most studies using this technique employ heating rates ranging
+from 1.0 or 2.0 °C min –1 to much faster thermal
+ramping of laser-based methods, to probe solution-phase stability
+and thermodynamics. 
+,,,
+ However, the typically used heating rates
+may not be suitable for studying proteins involved in neurodegenerative
+disease due to the intricate kinetics of intermediate formation in
+such systems. Therefore, we explored
+different heating rates for a range of temperatures, focusing on their
+effect on the interplay of SOD1 native dimer dissociation, unfolding
+and oligomer formation. 
+ –1 in the temperature
+range of 25–87 °C ( Figure 
+ ). At the beginning of the ramp, the main ions in the
+spectrum corresponded to the native dimer, with charge states ranging
+from 9+ to 12+, with 11+ being the most prominent ( Figure S2 ). Interestingly, for the main charge state of the
+native dimer (2 11+ ), three distinct conformations were
+observed, with CCS of 2826 (native), 3334 and 3666 Å 2 consistent with partial unfolding of the dimeric structure ( Figure S3 ). The latter two conformers are of
+low abundance and cannot be identified in the 10+ and 12+ charge states
+due to overlap with the 5+ and 6+ monomers, respectively ( Figure 
+ ). Other species observed, in lower abundances, include monomer
+(in charge states ranging from 5+ to 8+) and tetramer (ranging from
+14+ to 17+). Only one conformational population was initially observed
+for both ( Figure S2 ). 2 
+ –1 over the full 25–85 °C
+ramp. The zoomed-in spectrum shows the m / z region from 4500 to 6500. The lower m / z range (50–2300) is x10 magnified, while
+the higher m / z range (4000–6500)
+is ×200 enhanced. The corresponding heat map shows three-dimensional
+data of the fast ramp offering intensity, drift time and m / z of all species. The spectra from both the fast
+and the slow ramp ( Figure 
+ a) contain the same number of scans. 
+ Figure 
+ ). Throughout this work, misfolded intermediates
+are denoted as (*), and fully unfolded species as (**), as determined
+by their charge state and experimentally derived CCS. The IM-MS profile
+indicated that the monomers formed two populations ( Figure 
+ ). Based on CCS and charge
+state, these species corresponded to folded (1) and unfolded (1**)
+monomers ( Figure S4 ). The simultaneous
+appearance of two monomeric populations could stem from localized
+monomer unfolding prior to dimer dissociation, a phenomenon unlikely
+in solution and previously attributed to gas-phase dynamics. However, as the abundance of those populations
+increased by heating, they can be considered dimer dissociation products
+resulting from increased internal energy within the complex ( Figures 
+ and S5 ). This can yield monomers of variable degrees
+of unfolding, with the prospect of partial or complete metal loss.
+Concerning higher-order oligomeric structures, mainly tetramers were
+observed, along with some very low-abundance trimers, hexamers and
+octamers ( Figure 
+ ).
+The preliminary data for the typical ramp prompted two prescient questions:
+can the formation of oligomers be better captured using different
+heating parameters? How is the monomer folding population related
+to oligomer assembly? To explore how the kinetics of monomer formation
+and misfolding influence SOD1 oligomer assembly, we modified the heating
+rate of the temperature ramp for this aggregation assay. 
+ –1 for these TC-nESI experiments in the range of 35–85 °C
+( Figure 
+ ). At the beginning of the ramp, the main species match
+those observed in the fast ramp. However, the slightly slower ramp
+gave rise to a greater amount of misfolded monomer and oligomer formation
+( Figure 
+ a). This finding
+aligns with previous research, suggesting that dimer dissociation
+and partial unfolding of monomers is key for oligomer formation. Notably, slower heating shows increased abundance
+of oligomers containing an odd number of subunits, possibly due to
+the increased abundance of monomers available for complexation ( Figure 
+ a). To ensure the
+reproducibility of our results, we performed triplicates of those
+exploratory thermal ramping experiments on holo-SOD1 ( Figures S6 and S7 ). Overall, this data shows
+that it is possible to control the speed of monomer and oligomer formation
+by adjusting the heating rate, revealing previously unseen molecular
+details for this protein. 3 
+ –1 over the
+full 35–85 °C ramp. The zoomed-in spectrum shows the m / z region from 4500 to 6500. The lower m / z range (50–2300) is 10×
+magnified, while the higher m / z range
+(4500–6500) is ×200 enhanced. Charge states of distinct
+oligomers are symbolized as O 
+ n + , where
+O is the number of the subunits and n is the charge.
+The spectra from both the fast ( Figure 
+ ) and the slow ramp contain the same number of scans.
+(b) The corresponding IM-MS heat map showing three-dimensional data
+of the slow ramp offering intensity, drift time and m / z of holo-species. (c) Mass spectrum of apo-SOD1
+during the thermal denaturation experiment (30–70 °C).
+Charge states of distinct oligomers are symbolized as O 
+ n + , where O is the number of the subunits and n is the charge. (d) All apo-species are shown and labeled
+on the three-dimensional IM-MS heat map showing intensities, drift
+times and m / z . 
+ Figure S8 . The results suggest
+that dissociation to mainly folded and shortly after to unfolded monomers
+is achieved after 40 min, deeming it a slow process. Incorporation
+of mainly tetramers and to some extent dimers into higher oligomeric
+structures is rather fast (noticeable in the first 10 min), suggesting
+that holo-oligomer assembly does not necessitate the inclusion of
+monomers and is faster than the dissociation step for holo-SOD1. 
+## Monomer Formation from Holo-and Apo-SOD1 
+ –1 ), with
+corresponding abundance profiles shown in Figure 
+ a. Upon dimer dissociation, three major monomeric
+conformational populations emerged; the native monomers (1), a folded
+(1-M) and a misfolded single-metal intermediate (1*-M) and an unfolded,
+single-metal species (1**-M). These were accompanied by a population
+of unfolded apo-monomers (1**apo) with CCS increasing linearly with
+charge, from 2170 to 3175 Å 2 ( Figures 
+ a and S10, S11 ). 4 
+ –1 . (b,c) Relative abundance profiles
+as a function of temperature for apo-SOD1 dimeric and monomeric populations
+generated from a slow heating experiment within the range of 30–70
+°C and a heating rate of 0.3 °C min –1 (d,e)
+Relative abundance of holo- and apo-oligomers across temperatures.
+The signals of the different oligomeric species are normalized to
+the sum of all oligomer ions. All signals represent weighted averaged
+intensities accounting for the contributions of each charge state
+to their respective population. (f) CCS values of holo- (purple) and
+apo- (green) oligomers. Experimental CCS (CCSexp) reveal isotropic
+growth for both states, following the relationship: σ 1 ·n 2/3 (σ 1 is the CCS of the monomer
+and n is the number of subunits). 
+ Figure 
+ a). All dimeric populations
+shared a similar abundance profile, decreasing steadily until rapid
+depletion at 76.4 ± 2.5 °C ( T 
+ m, holo ), confirming high thermal stability. Dissociation gave rise to native monomers at 74.0 °C, followed
+closely by misfolded and unfolded monomers at 75.3 and 76.9 °C,
+respectively. It is worth mentioning that the main two extended populations
+are comprised of single-metal monomers, as does a fraction of the
+native monomer population, with a formation temperature of 76.1 °C.
+Eventually, the rise of 1** apo-monomers at 84.6 °C is also observed,
+in lower abundance. Interestingly, all three monomer populations peaked
+around 80 °C, before collectively decreasing within a narrow
+range of 83.5–85.0 °C. Unfolded single-metal and apo-monomers
+persisted till the higher end of this range. This melting event verifies
+that these species retain some structure and can be considered intermediates,
+available for higher-order assembly. 
+,
+,
+ Hence, we performed offline demetalation
+by chelation to assess and compare apo-SOD1’s thermal stability
+and oligomeric profiles with those of holo-SOD1. 
+ T 
+ m, apo ) ( Figure 
+ b). The native apo-dimer primarily
+adopts charge states of 10+ to 12+ (2640–2777 Å 2 ), appearing more compact than its holo-analogue due to the loss
+of metal ions ( Figures 
+ c and S13 ). However, for the main charge
+state (11+), two additional conformations, apo-2* and apo-2**, are
+observed with formation temperatures of 37.7 and 38.1 °C, respectively
+( Figure 
+ b). These
+extended dimer populations plateau at 43 °C, in contrast to the
+gradual depletion of the native conformer. Interestingly, they account
+for up to 0.1% of the total apo-dimeric fraction (as calculated by
+relative intensities), a higher ratio compared with holo-dimers (0.06%)
+and have a temperature-dependent unfolding pathway in solution. Regarding
+monomeric species, three monomeric conformations emerge: apo-1 (1668–2168
+Å 2 ), apo-1* (2049–2897 Å 2 ),
+and apo-1** (2201–3223 Å 2 ) ( Figure S14 ). The most compact monomers form at 44.8 °C,
+while the more extended conformations appear at 49.7 °C, with
+their intensities peaking at 51 and 52 °C for apo-1* and apo-1**,
+respectively ( Figure 
+ c). Interestingly, at these temperatures, misfolded apo-1* is the
+most abundant monomeric species ( Figure S15 ). Its gradual decline coincides with the emergence of higher-order
+oligomers, suggesting its role as an oligomerization intermediate. 
+ Figures 
+ d and c,e). Thus, metal depletion shifts
+the mechanism from a late unfolding event (holo) to a stepwise, destabilized
+monomer formation process (apo) that can more readily seed oligomerization. 
+ –1 ) and
+slow (0.3 °C min –1 ) heating, respectively ( Figure S9 ). The investigation was carried out
+by heating the solution in the range of 55–60 °C, where
+dissociation is expected, prior to mass isolation and stepwise increase
+of the collision energy in the trap region, while remaining at 60
+°C. The 8+ apo-monomer was chosen as the precursor as it represents
+the most abundant native charge state and does not overlap with any
+dimeric species. In the short window of an activation potential of
+10–40 V, only a slight difference in the gas-phase stability
+of the two native 8+ monomers was observed. The monomer produced with
+fast heating shifted to an extended conformation at 22.1 V whereas
+the slow ramp produced a less stable monomer which underwent the same
+transition at 19.9 V. This small difference in gas-phase stability
+is barely sufficient to distinguish these transition states, which
+is not feasible solely by comparing their respective arrival time
+distributions (ATDs), in a manner comparable to subtly different antibody
+glycoforms.
+## Oligomer Formation from Holo- and Apo-SOD1 
+ Figure 
+ a and Table S5 ). Notably, a rather high concentration
+of 40 μM (of dimeric SOD1) was chosen, since oligomeric complex
+production is concentration dependent. However, further increase in
+concentration was avoided to prevent nonspecific oligomerization.
+Trimers, hexamers and octamers mirrored the monomers’ abundance
+pattern, whereas tetramers appeared to follow the dimeric profile
+( Figure 
+ d). Intriguingly,
+almost all observed oligomers (besides trimers) retained metal cofactors,
+implying that a subset of holo-dimers and tetramers may be directly
+incorporated into larger complexes. 
+ Figures 
+ d and S16 ). Although this is a gas-phase dissociation of a highly
+charged tetramer, the symmetric charge partitioning observed upon
+SID into trimer and monomer is indicative of native-like subunit architecture. 
+−
+ This indicates that the tetramer is composed of a trimer and a monomer,
+rather than a nonspecific dimer of dimers (as they are most abundant
+in solution), consistent with the dissociation pattern observed during
+thermal denaturation in solution ( Figures S16 and d). Intriguingly, trimers were the only
+oligomers exhibiting metal loss. The pentamer, hexamer, heptamer and
+octamer all follow a similar pattern with tightly clustered formation
+temperatures of 73.8, 73.5, 73.7 and 73.8 °C, respectively. Interestingly,
+their abundance only amounts approximately to 25% of the total oligomer
+abundance (from 4mers up to 8mers), with hexamers and heptamers slightly
+more pronounced compared to the pentamers and octamers ( Figure 
+ d). 
+ Figure 
+ e). The abundance pattern of trimers closely
+follows that of monomers, indicating rapid assembly once monomers
+become available. Notably, the trimers are consumed before the appearance
+of higher structures, with a melting temperature of 56.5 °C.
+Thus, apo-trimers can be considered intermediates, later incorporated
+into higher oligomers. Tetramers follow closely the dimer’s
+pathway. Higher-order structures observed include hexamers, forming
+first at 55.4 °C. Pentamers appear shortly after with a formation
+temperature of 56.5 °C. Heptamers, form at 59.8 °C and finally,
+octamers, form at 60.1 °C. (All charge state distributions and
+CCS values of the apo-oligomers are listed in Table S6 ). 
+,
+ In terms of structure, geometry, and size, all oligomers exhibit
+isotropic growth, while in apo-assemblies, more compaction is observed
+( Figure 
+ f and Tables S5, S6 ). 
+ Figure 
+ d). Notably, holo-oligomers seem to be (based on their abundances)
+preferentially organized in complexes containing an even number of
+subunits, an event concurrent with dimer decrease. However, for apo-oligomers,
+trimers are identified as additional intermediates of a more gradual
+oligomerization process occurring at a much lower temperature range
+of 50–60 °C, whose kinetics are most probably affected
+by the difference in their assembly mechanism(s) ( Figure 
+ e). 
+## Investigating the Assembly Mechanism of Apo-Oligomers 
+ –1 ),
+ensuring oligomer formation. A wide range of surface collision energies
+from 20 to 110 V was explored for all oligomeric assemblies, and relative
+intensities of precursor and dissociation products along this range
+of potential were traced. The results of the dissociation pathways
+of each oligomer are depicted in Figure 
+ , where the cartoons illustrate the most
+probable dissociation pathway. In such an investigation, quadrupole
+selection of specific charge states is challenging, as there is significant
+overlap from different oligomers within the same m / z window. As charge state selection can dictate
+charge partitioning and fragmentation efficiency in SID, lower charge
+states are expected to provide more information about the architecture,
+retaining the structures of bigger subcomplexes. 
+,
+ Hence, for each complex, the lowest of the nonoverlapping charge
+states was chosen and subjected to SID. The exception was the tetramers,
+where the 17+ charge state was chosen because lower charge states
+showed peak overlap with other subunit configurations in the spectrum. 5 
+ y -axis, respectively.
+The profiles of each population are color-coded to match Figure 
+ f. Schematics illustrating
+the most probable dissociation pathway each apo-oligomer are shown
+above the corresponding plots. In these schemes, the color intensity
+of each subcomplex reflects its relative abundance, while noncircular
+shapes represent unfolded species. 
+ Figure 
+ ), except for the tetramer, whose main dissociation
+products were dimers, arising from 40V and withstanding monomer formation
+at higher collision voltage ( Figure 
+ a). For the 18+ pentamers, at 20V, monomers are the
+most abundant product while trimers and dimers are also observed ( Figure 
+ b). However, the
+trimer undergoes rapid dissociation. Since 18+ is one of the lowest
+charge states of the pentamer, it is most likely to consist of trimers
+and dimers that subsequently yield unfolded monomers. For the 21+
+hexamer, the results show the possibility for multiple subcomplex
+combinations, namely tetramer and dimer, or two trimers, but mainly
+a combination of dimers and monomers, as trimers and tetramers are
+only observed with a low abundance at 20V ( Figure 
+ c). As collisional energy increases, the
+pattern of unfolded monomer and to a lesser extent dimer ejection
+dominates. Finally, the 24+ octamer appears to yield multiple dissociation
+mechanisms ( Figure 
+ d). The most stable octamers are comprised of tetramers that increase
+and retain their structure until 110V. Secondarily, heptamers and
+monomers as well as pentamers are visible in lower abundance with
+minimal increase at higher energies. Dimers and monomers also increase
+until 90V, where they give rise to unfolded monomeric species. 
+ Figure 
+ a), the intersection of folded and unfolded abundance
+curves occurs consistently at higher energies for dimers, indicating
+increased resistance to activation-induced unfolding ( Figure 
+ b,c). Together, these observations
+suggest the presence of additional stabilizing interactions at the
+dimer level. To explore the possibility of disulfide linkage-mediated
+oligomerization we reproduced the temperature ramp for a reduced and
+alkylated apo-SOD1 sample containing iodoacetamide (IA), thus blocking
+one of the monomer’s accessible cysteines, otherwise forming
+an intramolecular disulfide bond. The results showed that the carbamidomethylated
+monomer did not act as an aggregation intermediate, whereas the free
+apo-SOD1 did ( Figures S17–S20 ).
+Nonetheless, stable higher-order oligomers were still sufficiently
+formed confirming the possibility of disulfide linkages as one of
+the mechanisms involved in bovine SOD1 higher-order assembly. 
+## Detecting Labile Regions in Apo-SOD1 
+ Bacillus thermoproteolyticus , was employed after
+reaching apo-oligomer formation. Thermolysin hydrolyzes peptide bonds
+at the N-terminal side of hydrophobic residues (e.g., Leu, Ile, Val,
+Phe). Oligomeric complexes in solution are commonly stabilized by
+a network of hydrophobic interactions. Hence, in this experiment proteolysis
+of labile and exposed hydrophobic regions of apo-monomers can provide
+valuable insights into identifying possible binding interfaces in
+solution. 
+ –1 , to induce the production
+of mainly apo-monomers. After identification of cleaved segments ( Table S7 ), more enzyme accessible regions seem
+to be localized on loops V, VI and loop VII, otherwise known as the
+electrostatic loop, containing a high number of hydrophobic residues
+possibly participating in interactions inducing oligomer formation. 
+ Figure 
+ and Table S8 ).
+Notably, our observations align with single-molecule force spectroscopy
+data identifying human-SOD1 strands β1-β3 as a stable
+core, withstanding unfolding, whereas β5-β8 and loop VII
+show greater conformational plasticity. Overall, for bovine apo-SOD1 our proteolysis data suggests that
+loops V and VI, stabilizing the β5-β6 hairpin, and the
+electrostatic loop are more exposed regions in solution. This destabilization
+can, in turn, promote multimer formation and potentially prion-like
+aggregation through conformational templating. 
+,
+ 6 
+## Conclusions 
+,,,
+ This strategy
+helps to bridge a critical gap in understanding the earliest stages
+of neurodegenerative protein aggregation. 
+## Supplementary Material 
+## Acknowledgments 
+ https://www.researchcollection.ethz.ch ) under the DOI: 10.3929/ethz-b-000743117 . 
+ https://pubs.acs.org/doi/10.1021/acs.analchem.5c06100 . 
+ PDF ) 
+## References Bourdenx M., Koulakiotis N. S., Sanoudou D., Bezard E., Dehay B., Tsarbopoulos A.. Protein Aggregation and Neurodegeneration in Prototypical
+Neurodegenerative Diseases: Examples of Amyloidopathies, Tauopathies
+and Synucleinopathies. Prog. Neurobiol. 2017;155:171–193. doi: 10.1016/j.pneurobio.2015.07.003. Ross C. A., Poirier M. A.. Protein Aggregation
+and Neurodegenerative Disease. Nat. Med. 2004;10(S7):S10–S17. doi: 10.1038/nm1066. Wilson
+Iii D. M., Cookson M. R., Van L., Bosch D., Zetterberg H., Holtzman D. M., Dewachter I.. Leading Edge
+Hallmarks of Neurodegenerative Diseases. Cell. 2023;186:693–714. doi: 10.1016/j.cell.2022.12.032. Vaquer-Alicea J., Diamond M. I.. Propagation of Protein
+Aggregation in Neurodegenerative
+Diseases. Annu. Rev. Biochem. 2019;88(1):785–810. doi: 10.1146/annurev-biochem-061516-045049. Pukala T. L.. Mass Spectrometric
+Insights into Protein Aggregation. Essays Biochem. 2023;67(2):243–253. doi: 10.1042/EBC20220103. Horlebein J., Moon E., Szekeres G. P., von Helden G., Österlund N., Pagel K.. Gas-Phase Purification
+Enables Structural
+Studies of Amyloid Intermediates. Trends Chem. 2025;7(6):317–332. doi: 10.1016/j.trechm.2025.04.006. Zhang H., Gong W., Wu S., Perrett S.. Studying Protein Folding
+in Health and Disease Using Biophysical Approaches. Emerg. Top. Life Sci. 2021;5(1):29–38. doi: 10.1042/ETLS20200317. Housmans J., Wu G., Schymkowitz J., Rousseau F., Rousseau F., Rousseau F., Schymkowitz J., Gasthuisberg C. O., Leuven K.. A Guide to Studying
+Protein Aggregation. FEBS J. 2023;290(3):554–583. doi: 10.1111/febs.16312. McAlary L., Aquilina J. A., Yerbury J. J.. Susceptibility of Mutant SOD1 to
+Form a Destabilized Monomer Predicts Cellular Aggregation and Toxicity
+but Not In Vitro Aggregation Propensity. Front.
+Neurosci. 2016;10:499. doi: 10.3389/fnins.2016.00499. Heuvel R. H. v. d., Heck A. J.. Native Protein Mass Spectrometry:
+From Intact Oligomers
+to Functional Machineries. Curr. Opin. Chem.
+Biol. 2004;8(5):519–526. doi: 10.1016/j.cbpa.2004.08.006. Harrison J. A., Pruška A., Bittner P., Muck A., Cooper-Shepherd D. A., Zenobi R.. Advancing Cyclic Ion Mobility Mass Spectrometry Methods
+for Studying Biomolecules: Toward the Conformational Dynamics of Mega
+Dalton Protein Aggregates. Anal. Chem. 2022;94(36):12435–12443. doi: 10.1021/acs.analchem.2c02406. Leney A. C., Heck A. J. R.. Native Mass Spectrometry:
+What Is in the Name? J. Am. Soc. Mass Spectrom. 2017;28:5–13. doi: 10.1007/s13361-016-1545-3. Tamara S., den Boer M. A., Heck A. J. R.. High-Resolution
+Native Mass Spectrometry. Chem. Rev. 2022;122(8):7269–7326. doi: 10.1021/acs.chemrev.1c00212. Heck A. J. R.. Native
+Mass Spectrometry: A Bridge between Interactomics and Structural Biology. Nat Methods. 2008;5:927. doi: 10.1038/nmeth.1265. Esser T. K., Böhning J., Önür A., Chinthapalli D. K., Eriksson L., Grabarics M., Fremdling P., Konijnenberg A., Makarov A., Botman A., Peter C., Benesch J. L. P., Robinson C. V., Gault J., Baker L., Bharat T. A. M., Rauschenbach S.. Cryo-EM of
+Soft-Landed β-Galactosidase:
+Gas-Phase and Native Structures Are Remarkably Similar. Sci. Adv. 2024;10(7):eadl4628. doi: 10.1126/sciadv.adl4628. Ruotolo B. T., Benesch J. L. P., Sandercock A. M., Hyung S.-J., Robinson C. V.. Ion Mobility–Mass
+Spectrometry Analysis of Large Protein Complexes. Nat. Protoc. 2008;3(7):1139–1152. doi: 10.1038/nprot.2008.78. Christofi E., Barran P.. Ion Mobility Mass Spectrometry (IM-MS) for Structural
+Biology: Insights Gained by Measuring Mass, Charge, and Collision
+Cross Section. Chem. Rev. 2023;123:2902. doi: 10.1021/acs.chemrev.2c00600. Eldrid C., Ujma J., Kalfas S., Tomczyk N., Giles K., Morris M., Thalassinos K.. Gas Phase Stability of Protein Ions
+in a Cyclic Ion Mobility Spectrometry Traveling Wave Device. Anal. Chem. 2019;91(12):7554–7561. doi: 10.1021/acs.analchem.8b05641. Sharon E. M., Henderson L. W., Clemmer D. E.. Resolving Hidden
+Solution Conformations
+of Hemoglobin Using IMS-IMS on a Cyclic Instrument. J. Am. Soc. Mass Spectrom. 2023;34(8):1559–1568. doi: 10.1021/jasms.3c00032. Alexander
+Harrison J., Pruška A., Oganesyan I., Bittner P., Zenobi R.. Temperature-Controlled Electrospray
+Ionization: Recent Progress and Applications. Chemistry–A European Journal. 2021;27(72):18015–18028. doi: 10.1002/chem.202102474. Marchand A., Rosu F., Zenobi R., Gabelica V.. Thermal Denaturation
+of DNA G-Quadruplexes and Their Complexes with Ligands: Thermodynamic
+Analysis of the Multiple States Revealed by Mass Spectrometry. J. Am. Chem. Soc. 2018;140(39):12553–12565. doi: 10.1021/jacs.8b07302. El-Baba T. J., Woodall D. W., Raab S. A., Fuller D. R., Laganowsky A., Russell D. H., Clemmer D. E.. Melting Proteins: Evidence for Multiple
+Stable Structures upon Thermal Denaturation of Native Ubiquitin from
+Ion Mobility Spectrometry-Mass Spectrometry Measurements. J. Am. Chem. Soc. 2017;139(18):6306–6309. doi: 10.1021/jacs.7b02774. McCabe J. W., Shirzadeh M., Walker T. E., Lin C.-W., Jones B. J., Wysocki V. H., Barondeau D. P., Clemmer D. E., Laganowsky A., Russell D. H.. Variable-Temperature Electrospray Ionization for Temperature-Dependent
+Folding/Refolding Reactions of Proteins and Ligand Binding. Anal. Chem. 2021;93(18):6924–6931. doi: 10.1021/acs.analchem.1c00870. Laganowsky A., Clemmer D. E., Russell D. H.. Variable-Temperature
+Native Mass
+Spectrometry for Studies of Protein Folding, Stabilities, Assembly,
+and Molecular Interactions. Annu. Rev. Biophys. 2022;51:63–77. doi: 10.1146/annurev-biophys-102221-101121. John R., Mathew J., Mathew A., Aravindakumar C. T., Aravind U. K.. Probing the Role of Cu­(II) Ions on
+Protein Aggregation
+Using Two Model Proteins. ACS Omega. 2021;6(51):35559–35571. doi: 10.1021/acsomega.1c05119. Byrd E. J., Wilkinson M., Radford S. E., Sobott F.. Taking Charge: Metal
+Ions Accelerate Amyloid Aggregation in Sequence Variants of α-Synuclein. J. Am. Soc. Mass Spectrom. 2023;34(3):493–504. doi: 10.1021/jasms.2c00379. Louros N., Schymkowitz J., Rousseau F.. Mechanisms and Pathology of Protein
+Misfolding and Aggregation. Nat. Rev. Mol. Cell
+Biol. 2023;24(12):912–933. doi: 10.1038/s41580-023-00647-2. Das B., Roychowdhury S., Mohanty P., Rizuan A., Chakraborty J., Mittal J., Chattopadhyay K.. A Zn-dependent Structural Transition
+of SOD1 Modulates Its Ability to Undergo Phase Separation. EMBO J. 2023;42(2):e111185. doi: 10.15252/embj.2022111185. Maragakis N. J., Rothstein J. D.. Amyotrophic Lateral Sclerosis: Idiopathic
+and Inherited. Neurobiol. Dis. 2007:521–535. doi: 10.1016/B978-012088592-3/50048-7. Niu B., Mackness B. C., Zitzewitz J. A., Matthews C. R., Gross M. L.. Trifluoroethanol
+Partially Unfolds G93A SOD1 Leading to Protein Aggregation: A Study
+by Native Mass Spectrometry and FPOP Protein Footprinting. Biochemistry. 2020;59(39):3650–3659. doi: 10.1021/acs.biochem.0c00425. Rosen D. R., Siddique T., Patterson D., Figlewicz D. A., Sapp P., Hentati A., Donaldson D., Goto J., O’Regan J. P., Deng H. X., Rahmani Z., Krizus A., McKenna-Yasek D., Cayabyab A., Gaston S. M., Berger R., Tanzi R. E., Halperin J. J., Herzfeldt B., Van den Bergh R., Hung W. Y., Bird T., Deng G., Mulder D. W., Smyth C., Laing N. G., Soriano E., Pericak-Vance M. A., Haines J., Rouleau G. A., Gusella J. S., Horvitz H. R., Brown R. H.. Mutations in Cu/Zn Superoxide Dismutase
+Gene Are Associated with Familial Amyotrophic Lateral Sclerosis. Nature. 1993;362(6415):59–62. doi: 10.1038/362059a0. Suzuki N., Nishiyama A., Warita H., Aoki M.. Genetics of Amyotrophic
+Lateral Sclerosis: Seeking Therapeutic Targets in the Era of Gene
+Therapy. J. Hum. Genet. 2023;68(3):131–152. doi: 10.1038/s10038-022-01055-8. Tsekrekou M., Giannakou M., Papanikolopoulou K., Skretas G.. Protein Aggregation
+and Therapeutic Strategies in SOD1- and TDP-43- Linked ALS. Front. Mol. Biosci. 2024;11:1383453. doi: 10.3389/fmolb.2024.1383453. McAlary L., Yerbury J. J.. Strategies to Promote
+the Maturation of ALS-Associated
+SOD1 Mutants: Small Molecules Return to the Fold. Neural Regen. Res. 2019;14(9):1511–1512. doi: 10.4103/1673-5374.255962. Sannigrahi A., Chowdhury S., Das B., Banerjee A., Halder A., Kumar A., Saleem M., Naganathan A. N., Karmakar S., Chattopadhyay K.. The Metal Cofactor Zinc and Interacting
+Membranes Modulate SOD1 Conformation-Aggregation Landscape in an in
+Vitro ALS Model. eLife. 2021;10:e61453. doi: 10.7554/elife.61453. Giles K., Ujma J., Wildgoose J., Pringle S., Richardson K., Langridge D., Green M.. A Cyclic Ion Mobility-Mass Spectrometry
+System. Anal. Chem. 2019;91(13):8564–8573. doi: 10.1021/acs.analchem.9b01838. Snyder D. T., Panczyk E. M., Somogyi A., Kaplan D. A., Wysocki V.. Simple and
+Minimally Invasive SID Devices for Native Mass Spectrometry. Analytical Chemistry. 2020;16:49. doi: 10.1021/acs.analchem.0c01657. Gabelica V., Shvartsburg A. A., Afonso C., Barran P., Benesch J. L. P., Bleiholder C., Bowers M. T., Bilbao A., Bush M. F., Campbell J. L., Campuzano I. D. G., Causon T., Clowers B. H., Creaser C. S., De Pauw E., Far J., Fernandez-Lima F., Fjeldsted J. C., Giles K., Groessl M., Hogan C. J., Hann S., Kim H. I., Kurulugama R. T., May J. C., McLean J. A., Pagel K., Richardson K., Ridgeway M. E., Rosu F., Sobott F., Thalassinos K., Valentine S. J., Wyttenbach T.. Recommendations for Reporting Ion
+Mobility Mass Spectrometry Measurements. Mass
+Spectrom. Rev. 2019;38(3):291–320. doi: 10.1002/mas.21585. Salbo R., Bush M. F., Naver H., Campuzano I., Robinson C. V., Pettersson I., Jørgensen T. J. D., Haselmann K. F.. Traveling-Wave Ion Mobility Mass Spectrometry of Protein
+Complexes: Accurate Calibrated Collision Cross-Sections of Human Insulin
+Oligomers. Rapid Commun. Mass Spectrom. 2012;26(10):1181–1193. doi: 10.1002/rcm.6211. Harrison J. A., Kelso C., Pukala T. L., Beck J. L.. Conditions for Analysis
+of Native Protein Structures Using Uniform Field Drift Tube Ion Mobility
+Mass Spectrometry and Characterization of Stable Calibrants for TWIM-MS. J. Am. Soc. Mass Spectrom. 2019;30(2):256–267. doi: 10.1007/s13361-018-2074-z. Bush M. F., Hall Z., Giles K., Hoyes J., Robinson C. V., Ruotolo B. T.. Collision Cross Sections of Proteins
+and Their Complexes:
+A Calibration Framework and Database for Gas-Phase Structural Biology. Anal. Chem. 2010;82(22):9557–9565. doi: 10.1021/ac1022953. Marty M. T., Baldwin A. J., Marklund E. G., Hochberg G. K. A., Benesch J. L. P., Robinson C. V.. Bayesian Deconvolution of Mass and Ion Mobility Spectra:
+From Binary Interactions to Polydisperse Ensembles. Anal. Chem. 2015;87(8):4370–4376. doi: 10.1021/acs.analchem.5b00140. Tang H., Andrikopoulos N., Li Y., Ke S., Sun Y., Ding F., Ke P. C.. Emerging Biophysical Origins and
+Pathogenic Implications of Amyloid Oligomers. Nat. Commun. 2025;16(1):2937. doi: 10.1038/s41467-025-58335-y. Kirkitadze M. D., Bitan G., Teplow D. B.. Paradigm
+Shifts in Alzheimer’s
+Disease and Other Neurodegenerative Disorders: The Emerging Role of
+Oligomeric Assemblies. J. Neurosci. Res. 2002;69(5):567–577. doi: 10.1002/jnr.10328. Galzitskaya O. V.. Oligomers
+Are Promising Targets for Drug Development in the Treatment of Proteinopathies. Front. Mol. Neurosci. 2020;12:319. doi: 10.3389/fnmol.2019.00319. Wei J., Meisl G., Dear A. J., Michaels T. C. T., Knowles T. P. J.. Kinetics
+of Amyloid Oligomer Formation. Annu. Rev. Biophys. 2025;54(1):185–207. doi: 10.1146/annurev-biophys-080124-122953. Silva A., Almeida B., Fraga J. S., Taboada P., Martins P. M., Macedo-Ribeiro S.. Distribution
+of Amyloid-Like and Oligomeric Species
+from Protein Aggregation Kinetics. Angewandte
+Chemie International Edition. 2017;56(45):14042–14045. doi: 10.1002/anie.201707345. Butler K. E., Takinami Y., Rainczuk A., Baker E. S., Roberts B. R.. Utilizing
+Ion Mobility-Mass Spectrometry to Investigate the Unfolding Pathway
+of Cu/Zn Superoxide Dismutase. Front. Chem. 2021;9:614595. doi: 10.3389/fchem.2021.614595. Zhuang X., Liu S., Zhang R., Song F., Liu Z., Liu S.. Identification
+of Unfolding and Dissociation Pathways of Superoxide Dismutase in
+the Gas Phase by Ion-Mobility Separation and Tandem Mass Spectrometry. Anal. Chem. 2014;86(23):11599–11605. doi: 10.1021/ac502253t. Jordan J. S., Williams E. R.. Laser Heating Nanoelectrospray Emitters for Fast Protein
+Melting Measurements with Mass Spectrometry. Anal. Chem. 2022;94(48):16894–16900. doi: 10.1021/acs.analchem.2c04204. 
+Raab, S. A.
+; 
+Pan, H.
+; 
+Woodall, D. W.
+; 
+Hales, D. A.
+; 
+Sharon, E. M.
+; 
+Clemmer, D. E.
+. 
+Laser-Induced
+Denaturation of Cytochrome c in Electrospray Droplets. Anal. Chem.
+2025. Gladytz A., Lugovoy E., Charvat A., Häupl T., Siefermann K. R., Abel B.. Intermediates Caught in the Act:
+Tracing Insulin Amyloid Fibril Formation in Time by Combined Optical
+Spectroscopy, Light Scattering, Mass Spectrometry and Microscopy. Phys. Chem. Chem. Phys. 2015;17(2):918–927. doi: 10.1039/C4CP03072A. McAlary L., Harrison J. A., Aquilina J. A., Fitzgerald S. P., Kelso C., Benesch J. L. P., Yerbury J. J.. Trajectory Taken
+by Dimeric Cu/Zn Superoxide Dismutase through the Protein Unfolding
+and Dissociation Landscape Is Modulated by Salt Bridge Formation. Anal. Chem. 2020;92(2):1702–1711. doi: 10.1021/acs.analchem.9b01699. Rumfeldt J. A. O., Lepock J. R., Meiering E. M.. Unfolding and Folding
+Kinetics of
+Amyotrophic Lateral Sclerosis-Associated Mutant Cu,Zn Superoxide Dismutases. J. Mol. Biol. 2009;385(1):278–298. doi: 10.1016/j.jmb.2008.10.003. Roe J. A., Butler A., Scholler D. M., Valentine J. S., Marky L., Breslauer K. J.. Differential Scanning Calorimetry
+of Cu,Zn-Superoxide Dismutase, the Apoprotein, and Its Zinc-Substituted
+Derivatives. Biochemistry. 1988;27(3):950–958. doi: 10.1021/bi00403a017. Redler R. L., Fee L., Fay J. M., Caplow M., Dokholyan N. V.. Non-Native
+Soluble Oligomers of Cu/Zn Superoxide Dismutase (SOD1) Contain a Conformational
+Epitope Linked to Cytotoxicity in Amyotrophic Lateral Sclerosis (ALS) Biochemistry. 2014;53(14):2423–2432. doi: 10.1021/bi500158w. Oztug
+Durer Z. A., Cohlberg J. A., Dinh P., Padua S., Ehrenclou K., Downes S., Tan J. K., Nakano Y., Bowman C. J., Hoskins J. L., Kwon C., Mason A. Z., Rodriguez J. A., Doucette P. A., Shaw B. F., Valentine J. S.. Loss of
+Metal Ions, Disulfide Reduction and Mutations Related to Familial
+ALS Promote Formation of Amyloid-Like Aggregates from Superoxide Dismutase. PLoS One. 2009;4(3):e5004. doi: 10.1371/journal.pone.0005004. Nordlund A., Leinartaite L., Saraboji K., Aisenbrey C., Gröbner G., Zetterström P., Danielsson J., Logan D. T., Oliveberg M.. Functional Features Cause Misfolding
+of the ALS-Provoking Enzyme SOD1. Proc. Natl.
+Acad. Sci. U. S. A. 2009;106(24):9667–9672. doi: 10.1073/pnas.0812046106. Tian Y., Ruotolo B. T.. Collision Induced Unfolding Detects Subtle Differences
+in Intact Antibody Glycoforms and Associated Fragments. Int. J. Mass Spectrom. 2018;425:1–9. doi: 10.1016/j.ijms.2017.12.005. Stiving A. Q., Vanaernum Z. L., Busch F., Harvey S. R., Sarni S. H., Wysocki V. H.. Surface-Induced
+Dissociation: An Effective Method for
+Characterization of Protein Quaternary Structure. Anal. Chem. 2019;91(1):190–209. doi: 10.1021/acs.analchem.8b05071. Seffernick J. T., Harvey S. R., Wysocki V. H., Lindert S.. Predicting Protein
+Complex Structure from Surface-Induced Dissociation Mass Spectrometry
+Data. ACS Cent. Sci. 2019;5(8):1330–1341. doi: 10.1021/acscentsci.8b00912. Harvey S. R., Seffernick J. T., Quintyn R. S., Song Y., Ju Y., Yan J., Sahasrabuddhe A. N., Norris A., Zhou M., Behrman E. J., Lindert S., Wysocki V. H.. Relative Interfacial
+Cleavage Energetics of Protein Complexes Revealed by Surface Collisions. Proc. Natl. Acad. Sci. U. S. A. 2019;116(17):8143–8148. doi: 10.1073/pnas.1817632116. Banci L., Bertini I., Boca M., Calderone V., Cantini F., Girotto S., Vieru M.. Structural and Dynamic
+Aspects Related to Oligomerization of Apo SOD1 and Its Mutants. Proceedings of the National Academy of Sciences. 2009;106(17):6980–6985. doi: 10.1073/pnas.0809845106. Broom H. R., Rumfeldt J. A. O., Vassall K. A., Meiering E. M.. Destabilization
+of the Dimer Interface Is a Common Consequence of Diverse ALS-Associated
+Mutations in Metal Free SOD1. Protein Sci. 2015;24(12):2081–2089. doi: 10.1002/pro.2803. Zhou M., Wysocki V. H.. Surface Induced
+Dissociation: Dissecting Noncovalent
+Protein Complexes in the Gas Phase. Acc. Chem.
+Res. 2014;47(4):1010–1018. doi: 10.1021/ar400223t. Vanaernum Z. L., Gilbert J. D., Belov M. E., Makarov A. A., Horning S. R., Wysocki V. H.. Surface-Induced
+Dissociation of Noncovalent Protein
+Complexes in an Extended Mass Range Orbitrap Mass Spectrometer. Anal. Chem. 2019;91(5):3611–3618. doi: 10.1021/acs.analchem.8b05605. Sen
+Mojumdar S., Scholl Z. N., Dee D. R., Rouleau L., Anand U., Garen C., Woodside M. T.. Partially Native
+Intermediates Mediate Misfolding of SOD1 in Single-Molecule Folding
+Trajectories. Nat. Commun. 2017;8(1):1–11. doi: 10.1038/s41467-017-01996-1. Healy E. F.. A Prion-like
+Mechanism for the Propagated Misfolding of SOD1 from in Silico Modeling
+of Solvated near-Native Conformers. PLoS One. 2017;12(5):e0177284. doi: 10.1371/journal.pone.0177284. Neupane K., Narayan A., Sen Mojumdar S., Adhikari G., Garen C. R., Woodside M. T.. Direct Observation
+of Prion-like Propagation of Protein
+Misfolding Templated by Pathogenic Mutants. Nat. Chem. Biol. 2024;20(9):1220–1226. doi: 10.1038/s41589-024-01672-8. Hane F., Tran G., Attwood S. J., Leonenko Z.. Cu2+ Affects
+Amyloid-β
+(1–42) Aggregation by Increasing Peptide-Peptide Binding Forces. PLoS One. 2013;8(3):e59005. doi: 10.1371/journal.pone.0059005. Abelein A.. Metal Binding
+of Alzheimer’s Amyloid-β and Its Effect on Peptide Self-Assembly. Acc. Chem. Res. 2023;56(19):2653–2663. doi: 10.1021/acs.accounts.3c00370. 
+## Associated Data 
+## Supplementary Materials 
+## Data Availability Statement 
+ https://www.researchcollection.ethz.ch ) under the DOI: 10.3929/ethz-b-000743117 . 

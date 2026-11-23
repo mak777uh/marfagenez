@@ -1,0 +1,1732 @@
+
+ pmc Glob Chang Biol Glob Chang Biol 379 blackwellopen 9888746 GCB Global Change Biology 1354-1013 1365-2486 pmc-is-collection-domain yes pmc-collection-title Wiley Open Access Collection PMC12410053 PMC12410053.1 12410053 12410053 40905536 10.1111/gcb.70472 GCB70472 GCB-25-1991.R1 1 Research Article Research Article Activation Energy of Organic Matter Decomposition in Soil and Consequences of Global Warming Filimonenko Ekaterina https://orcid.org/0000-0002-8146-4514 
+ 1 
+ 2 
+ eafilimonenko@mail.ru Kuzyakov Yakov https://orcid.org/0000-0002-9863-8461 
+ 3 
+ 4 
+ kuzyakov@gwdg.de 
+ 1 
+ National Key Laboratory of Wheat Improvement 
+ College of Agronomy, Shandong Agricultural University 
+ Tai'an 
+ Shandong 
+ China 
+ 2 
+ Sirius University of Science and Technology, Sirius Federal Area 
+ Sochi 
+ Russia 
+ 3 
+ Department of Soil Science of Temperate Ecosystems, Department of Agricultural Soil Science 
+ University of Gottingen 
+ Gottingen 
+ Germany 
+ 4 
+ Peoples Friendship University of Russia (RUDN University) 
+ Moscow 
+ Russia 
+ * 
+ Correspondence: 
+Ekaterina Filimonenko ( eafilimonenko@mail.ru ) 
+Yakov Kuzyakov ( kuzyakov@gwdg.de ) 
+ 04 9 2025 9 2025 31 9 496196 10.1111/gcb.v31.9 e70472 
+ 09 8 2025 
+ 03 6 2025 
+ 11 8 2025 
+ 04 09 2025 05 09 2025 24 09 2026 © 2025 The Author(s). Global Change Biology published by John Wiley & Sons Ltd. https://creativecommons.org/licenses/by/4.0/ This is an open access article under the terms of the http://creativecommons.org/licenses/by/4.0/ License, which permits use, distribution and reproduction in any medium, provided the original work is properly cited. 
+## ABSTRACT 
+ E 
+ a 
+ ) is the minimum energy necessary for (bio)chemical reactions acting as an energy barrier and defining reaction rates, for example, organic matter transformations in soil. Based on the E 
+ a 
+ database of (i) oxidative and hydrolytic enzyme activities, (ii) organic matter mineralization and CO 2 production, (iii) heat release during soil incubation, as well as (iv) thermal oxidation of soil organic matter (SOM), we assess the E 
+ a 
+ of SOM transformation processes. After a short description of the four approaches to assess these E 
+ a 
+ values—all based on the Arrhenius equation—we present the E 
+ a 
+ of chemical oxidation (79 kJ mol −1 , based on thermal oxidation), microbial mineralization (67 kJ mol −1 , CO 2 production), microbial decomposition (40 kJ mol −1 , heat release), and enzyme‐catalyzed hydrolysis of polymers and cleavage of mineral ions of nutrients (33 kJ mol −1 , enzyme driven reactions) from SOM. The catalyzing effects of hydrolytic and oxidative enzymes reduce E 
+ a 
+ of SOM decomposition by more than twice that of its chemical oxidation. The E 
+ a 
+ of enzymatic cleavage of mineral ions of N, P, and S from their organic compounds is 9 kJ mol −1 lower (corresponding to 40‐fold faster reactions) than the hydrolysis of N‐, P‐, and S‐free organic polymers. In soil, where organic compounds are physically protected and enzymes are partly deactivated, microbial mineralization is ~140‐fold faster compared to its pure chemical oxidation. Because processes with higher E 
+ a 
+ are more sensitive to temperature increase, global warming will accelerate the decomposition of stable organic compounds and boost the C cycle much stronger than the cycling of nutrients: N, P, and S. Consequently, the stoichiometry of microbially utilized compounds in warmer conditions will shift toward organic pools with higher C/N ratios. This will decouple the cycling of C and nutrients: N, P, and S. Overall, the E 
+ a 
+ of (bio)chemical transformations of organic matter in soil enables to assess process rates and the inherent stability of SOM pools, as well as their responses to global warming. 
+ E 
+ a 
+ ) is the minimum energy necessary for (bio)chemical reactions defining reaction rates, e.g., organic matter transformations in soil. Based on the E 
+ a 
+ database of enzyme activities, CO 2 production, heat release during soil incubation, and thermal oxidation of soil organic matter, we assess the E 
+ a 
+ of biotic and abiotic transformation processes in soil. Because processes with higher E 
+ a 
+ are more sensitive to temperature increase, global warming will accelerate the decomposition of stable organic compounds and boost the C cycle much stronger than the cycling of nutrients: N, P, and S. 
+ carbon and nutrient cycles energy barrier microbial activities microcalorimetry oxidative and hydrolytic enzymes soil organic matter stability soil thermal analysis 
+ National Key Research and Development Program of China 10.13039/501100012166 
+ 2023YFD200140403 
+ RUDN University Strategic Academic Leadership Program 
+ Shandong Provincial “811” Project of First‐class Discipline Construction 
+ Sirius Federal Territory 
+ 18‐03 date 10.09.2024 pmc-status-qastatus 0 pmc-status-live yes pmc-status-embargo no pmc-status-released yes pmc-prop-open-access yes pmc-prop-olf no pmc-prop-manuscript no pmc-prop-legally-suppressed no pmc-prop-has-pdf yes pmc-prop-has-supplement yes pmc-prop-pdf-only no pmc-prop-suppress-copyright no pmc-prop-is-real-version no pmc-prop-is-scanned-article no pmc-prop-preprint no pmc-prop-in-epmc yes pmc-license-ref CC BY source-schema-version-number 2.0 cover-date September 2025 details-of-publishers-convertor Converter:WILEY_ML3GV2_TO_JATSPMC version:6.6.2 mode:remove_FC converted:04.09.2025 
+ Filimonenko , E. 
+ , and 
+ Y. 
+ Kuzyakov 
+ . 2025 . “ Activation Energy of Organic Matter Decomposition in Soil and Consequences of Global Warming .” Global Change Biology 
+ 31 , no. 9 : e70472 . 10.1111/gcb.70472 . PMC12410053 40905536 
+ Funding: This work was supported by National Key Research and Development Program of China (2023YFD200140403), RUDN University Strategic Academic Leadership Program, Shandong Provincial “811” Project of First‐class Discipline Construction, and Sirius Federal Territory (18‐03 date 10.09.2024). 1 
+## Introduction 
+ 2011 ; von Lützow et al.  2006 ; Sollins et al.  1996 ). The SOM transformation by chemical and biochemical processes can occur when reactant molecules have an energy equal to or greater than the activation energy ( E 
+ a 
+ ) of reaction (Box  1 ). The widely used concept of E 
+ a 
+ as the energy barrier (Figure  1 ) provides insight into the stability of organic compounds—the required energy of molecules for a reaction. Despite a simplification (Menzinger and Wolfgang  1969 ) and assumptions in evaluations of biological processes (Alster et al.  2022 ; Hobbs et al.  2013 ; Schipper et al.  2014 ), the E 
+ a 
+ is specific to a reaction and remains constant when the underlying mechanism remains unaltered. BOX 1 
+## Background Definitions. 
+ Activation energy ( E 
+ a 
+ ) is the minimum amount of energy that must be available for the molecules of reactants to initiate a chemical reaction (Figure  1 ). E 
+ a 
+ is determined by the reaction mechanism and does not depend on temperature. E 
+ a 
+ of a reaction is measured in kilojoules per mole (kJ mol −1 ). 
+ Activation energy ( E 
+ a 
+ ) of SOM decomposition is a measure of the energy required to decompose SOM. The E 
+ a 
+ of SOM decomposition can be used as a proxy for the inherent stability of the SOM. 
+ Arrhenius equation is an empirical formula for the rate constant of a chemical reaction ( k ) depending on the absolute temperature: 
+ k T = A × e − E a R × T 
+ where A is the pre‐exponential factor (s −1 ); E 
+ a 
+ is the activation energy (kJ mol −1 ); R is the universal gas constant (8.314 J K −1  mol −1 ); and T is absolute temperature (K). 
+ Energy barrier is the energy that reactant molecules must exceed to initiate the reaction. The energy barrier is not necessarily equal to the E 
+ a 
+ because the temperature of the substrates may differ from the standard conditions (25°C, 1.0 atm pressure). In this paper, however, we use energy barrier as a synonym for E 
+ a 
+ . 
+ Enthalpy is the total energy of heat in the system, which is equivalent to the sum of total internal energy and resulting energy due to its pressure and volume changes. The system has internal energy both because of the molecules in motion and the state of molecules. Because soil is an open system (constant pressure and volume), the entropy change during the processes of soil organic matter transformation within incubation experiments can be neglected due to extremely low values. Consequently, changes of enthalpy are identical to changes of Gibbs energy. 
+ Hydrolysis is the cleavage of molecules by reaction with water. A water molecule is consumed to cleave a larger molecule into component parts. CO 2 is not produced by hydrolytic reactions, but hydrolysis releases a large amount of energy partly as a heat flux. Accordingly, caution should be exercised when directly comparing CO 2 respired by soil incubations with heat release from SOM decomposition (calorespirometric ratio). 
+ Return‐on‐Investment (ROI) is a concept that the amount of energy obtained by a microbial community (or a microbial cell), e.g., from the outcome of enzymatic reactions, should be larger than the energy they invested for enzyme production. Despite the attractive concept, both the energy investment and the energy yield cannot be easily quantified: The energy investment for enzyme production by a cell is not known. This energy investment does not correspond and has nothing to do with the E 
+ a 
+ of the reaction catalyzed by the enzyme (Figure  1 ). The energy returned is also not known (does not correspond to Δ E in Figure  1 ) because the number of the catalyzed reactions over the enzyme life‐time is also unknown. Furthermore, the losses and deactivation of the enzyme in soil and the products of the enzymatic reaction before the uptake by a microbial cell are not known. So, despite the attractiveness of the ROI concept from the view of microbial adaptations and evolution, it cannot be calculated based on the E 
+ a 
+ and Δ E in Figure  1 . 
+ SOM decomposition is the sum of chemical and biological processes, which involve chemical breakdown and biochemical transformation of organic materials into simple organic and inorganic molecules. SOM decomposition is a stage of SOM mineralization. 
+ SOM mineralization is the sum of chemical and biological processes of complete decomposition, by which carbon and hydrogen are completely oxidized to CO 2 and H 2 O, and nutrients are transformed into plant‐available mineral forms of nitrogen, phosphorus, and sulfur. 
+ SOM stability is an inherent property of SOM, determined by its structural and molecular composition as well as by binding on clays and short‐range ordered minerals. It reflects decomposability regardless of the mechanisms (chemical or biological). We assume here that SOM stability increases with the E 
+ a 
+ necessary for its decomposition (hydrolysis and/or mineralization). 
+ SOM transformation is used here to indicate changes of SOM not necessarily leading to decomposition or complete mineralization. FIGURE 1 
+ E 
+ a 
+ ), the corresponding kinetic energy of molecules (left), and two options to accelerate the reaction rate: (1) temperature increase, (2) change of the reaction mechanism, e.g., by a catalyst. Effects of the energy of reactant molecules to overcome the energy barrier of a reaction: ⓪ under normal temperature, ① rising temperature (red shaded area, left) increases the number of reactant molecules with sufficient energy for the reaction, and ② by catalysts, (e.g., by enzymes). Reducing the activation energy (by modifying the reaction mechanisms, e.g., by enzymes) increases the reaction probability and the rate because the energy of more molecules equals or is above the height of the energy barrier. E 
+ a 
+ : Activation energy (red: Initial reaction, green: Modified reaction); T °C: Temperature increase of the substrate, thus decreasing the threshold to the E 
+ a 
+ ; E‐S‐C: Enzyme‐Substrate‐Complex; Δ E : Difference in the enthalpy between the substrate and product, frequently released as heat. Threshold: The energy necessary for the molecules to reach the activation energy. 
+ 2010 ); or (ii) reduce the activation energy by modifying the reaction mechanism, e.g., by a catalyst (Figure  1 ). An increase in pressure, which is the 3rd potential mechanism to overcome the energy barrier for reactions in gases, is not relevant for the reactions in soils. 
+ 1996 ; von Lützow et al.  2006 ). Stabilization involves three key processes that reduce the accessibility of organic matter to microbial decomposition: (i) chemical recalcitrance of organic compounds; (ii) occlusion, intercalation, hydrophobicity, and encapsulation of organic material; and (iii) interactions with mineral surfaces and polyvalent metal ions. Despite being suggested nearly 30 years ago (Sollins et al.  1996 ) and evaluated in many subsequent studies and reviews (Conant et al.  2011 ; von Lützow et al.  2006 ), these studies did not provide quantitative parameters of stabilization by recalcitrance, occlusion, intercalation, and encapsulation (except hydrophobicity). The most recent studies, however, suggest that SOM stability can be interpreted based on bioenergetic constraints experienced by decomposers (Dufour et al.  2022 ; Henneron et al.  2022 ; Lehmann et al.  2020 ). 
+ 2006 ) because they must overcome the high energy barrier for decomposition (Rovira et al.  2008 ; Williams and Plante  2018 ). Microbial strategies to break down SOM involve the metabolic costs to overcome energetic barriers formed by stabilization mechanisms (Henneron et al.  2022 ; Rovira et al.  2008 ). At first glance, this seems related to the adaptationally relevant concept of ‘energy return on investment’ (ROI) (Hall  2017 ; Harvey et al.  2016 ; Rovira et al.  2008 ; Williams and Plante  2018 ). This impression, however, is inaccurate because the energy investments for e.g., enzyme production, is impossible to relate to the energy return within an unknown number of subsequent biochemical reactions (see details in Box  1 ) (Dufour et al.  2022 ). 
+ 2022 ; Kästner et al.  2021 ), the SOM pools with lower energy barriers are decomposed first (Rovira et al.  2008 ). In contrast, organic compounds with the highest E 
+ a 
+ are more resistant to microbial decomposition and remain in the soil for a long time. Therefore, we hypothesize that the E 
+ a 
+ of organic matter transformation characterizes SOM stability. 
+ 2024 ). Nonetheless, quantifying the E 
+ a 
+ of organic matter transformation processes by microbial and chemical pathways is crucial to understand (i) the inherent stability of organic matter and its pools in soil; (ii) the enzymatic decomposition and microbial utilization of organic compounds; (iii) the reaction rates in response to global warming; (iv) the consequences of decoupling carbon and nutrient cycling; and (v) carbon cycle–climate feedback. 
+ E 
+ a 
+ of specific reactions of SOM transformation by microbial and enzymatic processes, as well as by chemical reactions, clarifies the process rates depending on their mechanisms, and evaluates their response to climate change–soil warming. We also address remaining open questions: (i) What is the difference in energy barrier between enzyme‐catalyzed hydrolysis of organic matter and mineral ions cleavage from organics, as well as complete mineralization of organic matter by microorganisms? (ii) How strongly do enzymes decrease the E 
+ a 
+ of organic matter decomposition in soils compared to non‐catalyzed chemical oxidation? (iii) What are the effects of E 
+ a 
+ on the transformation of organic compounds in the context of carbon and nutrient cycles under global warming? 2 
+## Methods 2.1 
+## Database of Activation Energies 
+ E 
+ a 
+ values and the calculation approach used were clearly described. This yielded 73 papers (Table  S1 ) and 1384 activation energy values (Figure  S1 ). We recorded soil properties (e.g., soil C and N content, pH) when these data were reported. We extracted environmental variables (i.e., geographic: latitude, longitude, elevation; climatic: mean annual precipitation and temperature), ecosystem type (e.g., forest, grassland, cropland), as well as the analytical and calculation approaches used to estimate the activation energy. From the published literature, we collected 911 E 
+ a 
+ values determined based on CO 2 efflux, 253 on potential activities ( V 
+ max 
+ ) of various enzymes, 217 on thermal analysis, and 9 based on microcalorimetry. The weightings of the E 
+ a 
+ values were not necessary because nearly all included papers used four experimental replicates—this means the E 
+ a 
+ values have the same weightings. 
+ 2 production; heat release during soil incubation; thermal oxidation of SOM. The enzyme catalyzed reactions were grouped according to the enzyme groups (hydrolyzing and oxidative enzymes) and element cycles (C, N, P and S). 2.2 
+## Approaches to Calculate Activation Energy 
+ E 
+ a 
+ , each characterized by specific mechanisms of organic matter transformation in soil (and each with a broad range of analytical protocols, summarized in Table  1 with more details in Box  
+ 2 
+ ). All four approaches used to calculate the E 
+ a 
+ of SOM transformation have specific advantages and limitations and describe specific reaction groups (Table  2 ). TABLE 1 
+ E 
+ a 
+ ) of SOM transformation. Key parameters for analytical protocol Calculation protocol and references | align="left" valign="top" rowspan="1" colspan="1">Thermal analysis | align="center" valign="top" rowspan="1" colspan="1">
+ Techniques for converting SOM to CO 
+ 2 
+ and other products 
+ – 
+ – 
+ – 
+ Heating rate 
+ – 
+ – 
+ – 
+ Heating range 
+ – 
+ – 
+ Metrics 
+ – 
+ – 
+ – 
+ | align="center" valign="top" rowspan="1" colspan="1">
+ – 
+ 2019 ; Hemingway et al.  2019 ; Stoner et al.  2023 ) – 
+ 2021 ) – 
+ 1964 ; Yan et al.  2020 ) – 
+ 2020 ) – 
+ 2020 ) – 
+ 2013 ; Guida et al.  2016 ; Silva et al.  2019 ) – 
+ 2015 ; Li et al.  2020 ; Soria‐Verdugo et al.  2017 ) – 
+ 2020 ; Thakur et al.  2018 ) – 
+ 2021 ; Thakur et al.  2018 ) – 
+ 2001 ; Rizzo et al.  2013 ) – 
+ 2016 ; Reinehr et al.  2021 ; Yu et al.  2020 ) – 
+ 2020 ) – 
+ 2020 ) – 
+ 2020 ) – 
+ 2020 ) – 
+ 2013 ) 
+ | align="left" valign="top" rowspan="1" colspan="1">CO 2 efflux | align="center" valign="top" rowspan="1" colspan="1">
+ Soil incubation temperature steps 
+ – 
+ Incubation temperature 
+ – 
+ Temperature increase step 
+ – 
+ Incubation duration 
+ – 
+ Soil moisture 
+ – 
+ – 
+ Metrics 
+ – 
+ 2 release rate 
+ | align="center" valign="top" rowspan="1" colspan="1">
+ – 
+ – 
+ E 
+ a 
+ is calculated based on slope of ln( k ) vs. (1/ T ) (Figure  1 ) 
+ | align="left" valign="top" rowspan="1" colspan="1">Enzyme activities | align="center" valign="top" rowspan="1" colspan="1">
+ Incubation temperature steps 
+ – 
+ Incubation temperature 
+ – 
+ Metrics 
+ – 
+ V 
+ max 
+ ) analytical protocols for enzyme activity: 
+ 2001 ); 
+ 1995 ); 
+ 1988 ); 
+ 2000 ); and many others 
+ | align="center" valign="top" rowspan="1" colspan="1">
+ – 
+ – 
+ E 
+ a 
+ is calculated based on slope of ln( k ) vs. (1/ T ) (Figure  1 ) – 
+ 2016 ) 
+ | align="left" valign="top" rowspan="1" colspan="1">Microcalorimetry | align="center" valign="top" rowspan="1" colspan="1">
+ Temperatures for soil incubation 
+ – 
+ Duration of the isothermal periods after increasing temperature 
+ – 
+ Heating rate 
+ – 
+ Metrics 
+ – 
+ | align="center" valign="top" rowspan="1" colspan="1">
+ – 
+ – 
+ E 
+ a 
+ is calculated based on slope of ln( k ) vs. (1/ T ) (Figure  1 ) 
+ TABLE 2 
+ Advantages Limitations | align="left" colspan="2" valign="top" rowspan="1">
+ Thermal analysis 
+ | align="left" valign="top" rowspan="1" colspan="1">
+ – 
+ – 
+ – 
+ – 
+ – 
+ E 
+ a 
+ of various SOM pools without their physical separation – 
+ E 
+ a 
+ calculation (Box  
+ 2 
+ ) 
+ | align="center" valign="top" rowspan="1" colspan="1">
+ – 
+ – 
+ – 
+ – 
+ | align="left" colspan="2" valign="top" rowspan="1">
+ CO 
+ 2 
+ efflux 
+ | align="left" valign="top" rowspan="1" colspan="1">
+ – 
+ – 
+ – 
+ – 
+ | align="center" valign="top" rowspan="1" colspan="1">
+ – 
+ – 
+ E 
+ a 
+ consequently depends on incubation duration – 
+ 2 as a product (e.g., depolymerization, hydrolysis, sorption/desorption) – 
+ 2 release are not considered as energy investment to SOM decomposition – 
+ | align="left" colspan="2" valign="top" rowspan="1">
+ Potential enzyme activity 
+ | align="left" valign="top" rowspan="1" colspan="1">
+ – 
+ E 
+ a 
+ of enzyme‐specific reactions – 
+ E 
+ a 
+ of reactions without CO 2 release 
+ | align="center" valign="top" rowspan="1" colspan="1">
+ – 
+ – 
+ | align="left" colspan="2" valign="top" rowspan="1">
+ Microcalorimetry 
+ | align="left" valign="top" rowspan="1" colspan="1">
+ – 
+ – 
+ – 
+ 2018 ) 
+ | align="center" valign="top" rowspan="1" colspan="1">
+ – 
+ – 
+ – 
+ – 
+ BOX 2 
+## Approaches to estimate activation energy ( E 
+ a 
+ ) of SOM decomposition. 
+ 1. Thermal analysis 
+ E 
+ a 
+ . 
+ 1.1. One‐heating rate methods (e.g., Coats‐Redfern method): 
+ E 
+ a 
+ is calculated for each stage separately as the slopes of the Arrhenius plot of the natural logarithm of reaction rates vs. (1/ T ) (Figure B1). The increase in the curve slope from the thermally labile SOM (green line) to the thermally persistent SOM (red line) corresponds to a rise in their E 
+ a 
+ . 
+ 1.2. Multi‐heating rate methods (e.g., Friedman method): 
+ B2 ). The differential thermal curves are used to find the points corresponding to e.g., 10% … 90% SOM loss for each heating rate, which are graphically transferred to an Arrhenius plot for E 
+ a 
+ calculation as slopes of the natural logarithm of the ratio of the heating rate and temperature squared (ln( β / T 
+ 2 )) vs. (1/ T ). 
+ 2. CO 
+ 2 
+ efflux 
+ 2 . Rates of CO 2 efflux as a function of soil temperature are used to create an Arrhenius plot of microbial respiration rates vs. (1/ T ) (Figure  2 ). E 
+ a 
+ of microbial SOM decomposition is calculated by the slope of this plot. FIGURE B1 
+ E 
+ a 
+ ) of four pools of soil organic matter (SOM): The rate of thermal mass loss during soil heating at one rate is used. SOM combustion is considered as a multistage reaction. E 
+ a 
+ is calculated for each stage (here four stages) separately as the slopes of the Arrhenius plot of the natural logarithm of reaction rates vs. (1/ T ) (please see Figure  2 ). The increase in the curve slope from the thermally labile SOM (green line) to the thermally persistent SOM (red line) corresponds to a rise in their E 
+ a 
+ . FIGURE B2 
+ E 
+ a 
+ ) of soil organic matter (SOM) decomposition under increasing temperature: The soil is heated at several rates, usually from 3 to 5 rates (here exemplary at 3 rates). The differential thermal curves are used to find the points corresponding to e.g., 20%, 40%, 60%, and 80% of SOM loss for each heating rate, which are graphically transferred to an Arrhenius plot for E 
+ a 
+ calculation as slopes of the natural logarithm of the ratio of the heating rate and temperature squared (ln( β / T 
+ 2 )) vs. (1/ T ). 
+ 3. Potential enzyme activity 
+ V 
+ max 
+ ) at a temperature gradient. The E 
+ a 
+ of individual enzymatic reactions or the enzyme‐catalyzed hydrolysis leading to SOM decomposition is calculated from an Arrhenius plot by the slope of reaction rates vs. (1/ T ) (Figure  B1 ). 
+ 4. Microcalorimetry 
+ E 
+ a 
+ of SOM decomposition is calculated from the Arrhenius plot by the slope of the ratio between the rate of heat release and (1/ T ). 
+ E 
+ a 
+ of microbial decomposition of organic matter. Rates of CO 2 release during soil incubation as a function of temperature are used to estimate the E 
+ a 
+ of microbial mineralization of organic matter. The E 
+ a 
+ of enzyme‐catalyzed hydrolysis of polymers and cleavage of mineral ions (phosphate, ammonium and sulphate) is calculated based on the potential activity ( V 
+ max 
+ ) of enzymes depending on temperature. Calculating the E 
+ a 
+ of noncatalyzed chemical mineralization of SOM involves heating the soil up to extremely high temperatures (600°C–650°C and higher) in an oxidizing (synthetic air or laboratory air) or inert (N 2 or He) atmosphere, combined with measuring the rate of organic matter losses during combustion or pyrolysis. 
+ E 
+ a 
+ of SOM transformation are based on the Arrhenius equation (Box  1 ), regardless of the conversion mechanisms of SOM to CO 2 and other products: 
+ (1) 
+ E a = − R × T × ln k A 
+ where k is the reaction rate, T the absolute temperature in Kelvin, R the gas constant, and A the pre‐exponential factor. 
+ E 
+ a 
+ is defined as the slope of the natural logarithm of the reaction rate vs. the inverse absolute temperature (Figure  2 ). FIGURE 2 
+ E 
+ a 
+ ) calculation based on the Arrhenius equation. E 
+ a 
+ is calculated by multiplying the gas constant (R) by the slope of the natural logarithm of the reaction rate ( k ) vs. the inverse absolute temperature of reaction ( T ). The temperature in °C is presented in violet on the X axis, corresponding to the 1/ T values in Kelvin −1 . 3 
+## Results and Discussion 3.1 
+## Activation Energy of Soil Organic Matter Transformations 
+ E 
+ a 
+ of chemical oxidation > E 
+ a 
+ of microbial mineralization > E 
+ a 
+ of microbial decomposition > E 
+ a 
+ of enzyme‐catalyzed hydrolysis of polymers and cleavage of mineral ions (Figure  3 ). FIGURE 3 
+ E 
+ a 
+ ) of four groups of SOM transformation processes: (i) chemical oxidation (via thermal analysis as pure chemical oxidation of total SOM); (ii) microbial mineralization (analyzed by CO 2 efflux from soil); (iii) microbial decomposition (analyzed by heat release from soil); (iv) enzyme‐catalyzed polymers hydrolysis and mineral ions cleavage (analyzed by potential enzyme activity) (see details in Table  1 and Box  
+ 2 
+ ). X axis: The number of E 
+ a 
+ values for each method of calculations. The distribution of E 
+ a 
+ values for each approach is available in Supporting Information (Figure  S1 ). 3.2 
+## Activation Energy of Chemical Oxidation of Soil Organic Matter 
+ E 
+ a 
+ of chemical oxidation of SOM is 79 ± 5 kJ mol −1 (Figure  3 ). This value reflects the energy barrier to combust the whole SOM to CO 2 , H 2 O, and other oxides, and thus reflects the internal chemical stability (inherent stability) of SOM. Combustion reactions of SOM to CO 2 in an oxidizing atmosphere have a 2.1‐times lower E 
+ a 
+ than that of SOM pyrolysis under inert atmosphere (Figure  S2 ). Accordingly, reactions with oxygen reduce the E 
+ a 
+ to pyrolysis due to the strong electron acceptor potential of O 2 . The use of only internal electron acceptor resources, as in SOM pyrolysis, increases the energetic barrier of the reaction and enormously reduces its rate. This directly explains the accumulation (absence of decomposition) of organic matter under anoxic conditions (e.g., peats, aquatic sediments) and the much slower SOM decomposition in paddies compared to upland soils (Wei et al.  2021 ). 
+ 2008 ) and to soil texture (Stoner et al.  2023 ). Soil minerals, especially clays and Fe and Al (oxyhydr)oxides, strongly bind organic molecules (Feng and Simpson  2008 ; Plante et al.  2011 ; Rovira et al.  2024 ; Stoner et al.  2023 ). The E 
+ a 
+ of chemical mineralization of SOM is not affected by soil moisture, temperature, pH, enzymatic activity, functional diversity of microorganisms, or their seasonal and diurnal dynamics (An et al.  2023 ; Leifeld and von Lützow  2014 ). This makes SOM thermal stability the most valid measure to compare the inherent organic matter stability across soil types and depths (An et al.  2023 ; Plante et al.  2009 , 2011 ) as well as land uses (Filimonenko, Kurganova, et al. 2024 ). We therefore suggest that the E 
+ a 
+ of chemical oxidation (e.g., analyzed by thermal analysis) is the best measure of inherent SOM stability. 
+ 2006 ), determines the differences in the E 
+ a 
+ of the chemical mineralization of individual SOM pools. The value for thermally labile SOM (combusted below 400°C) is lower than that of thermally stable pools (> 400°C) (Filimonenko, Kurganova, et al. 2024 ; Sanderman and Grandy  2020 ; Williams et al.  2014 ). Even though this may be affected by the correlation between E 
+ a 
+ and combustion temperature, which limits interpretability (Vyazovkin 2025 ), the thermally stable SOM is more resistant to breakdown. The breakdown of stable SOM requires more energy inputs and therefore remains undegraded longer in soil than the pools with low thermal stability (Plante et al.  2011 ; Williams and Plante  2018 ). 
+ 2002 ). Lignin decomposition involves (per)oxidative enzymes such as laccases, manganese peroxidase, lignin peroxidase, and versatile peroxidases. In contrast to enzymatic decomposition, the chemical oxidation of lignin can occur spontaneously (Hansen et al.  2018 ; Yu and Kuzyakov  2021 ). The role of such abiotic lignin oxidation for its total mineralization increases under conditions unfavorable for microbial activity, e.g., dry and hot deserts, high UV radiation. The greater contribution of lignin to the CO 2 flux by chemical mineralization of SOM (Hansen et al.  2018 ) reflects its lower E 
+ a 
+ compared to carbohydrates (Markou et al.  2012 ) (Figure  S3 ). 3.3 
+## Activation Energy of Microbial Decomposition and Mineralization of Soil Organic Matter 
+ E 
+ a 
+ and are distinguished here (Box  1 ): SOM decomposition is the sum of chemical breakdown and all biochemical transformations of organic materials yielding simple organic and inorganic molecules. SOM mineralization is the result of SOM transformation to CO 2 and H 2 O and other inorganic molecules, indicating the complete oxidation of organic matter. Most studies do not clearly differ between the two because useful methods to separate and measure them in situ are absent. The first process, however, is identified by the heat flux generated by a series of hydrolytic and oxidative enzymatic reactions, and the second—by the CO 2 flux (and e.g., N mineralization in other studies). 3.3.1 
+## Activation Energy of Microbial Mineralization of Organic Matter in Soil 
+ 2 , H 2 O, NH 4 
+ + etc.) has an E 
+ a 
+ of 67 ± 1 kJ mol −1 (Figure  3 ). The E 
+ a 
+ calculation of SOM mineralization to CO 2 depending on temperature is widely used (Craine et al.  2010 ; Lefèvre et al.  2014 ; Wagai et al.  2013 ), but has three specific limitations: (i) E 
+ a 
+ depends on the ecophysiological status (activity) and community structure of microorganisms (An et al.  2023 ), producing various isoenzymes that differently lower E 
+ a 
+ for the same reaction (Razavi et al. 2016 ); this is affected by land‐use type, ecosystem type, edaphic factors, and fresh input of available organics (Craine et al.  2010 ; Leifeld and von Lützow,  2014 ); (ii) E 
+ a 
+ for CO 2 production characterizes only easily decomposable SOM pools, which are respired (within the duration of incubation experiment), and provides no information about E 
+ a 
+ of total SOM; (iii) E 
+ a 
+ does not consider many SOM transformation reactions that do not produce CO 2 (e.g., depolymerization, hydrolysis reactions, cleavage of mineral ions, sorption/desorption) (Barros et al.  2015 , 2016 ). 
+ 2022 ; Gunina and Kuzyakov  2022 ; Harvey et al.  2012 ; Rovira et al.  2008 ). Accordingly, only the most biogeochemically labile SOM pools with the lowest E 
+ a 
+ are utilized over short‐term incubations. This means that E 
+ a 
+ of the microbial mineralization increases with the soil incubation time (Barros et al.  2016 ; Li et al.  2015 ) (Figure  4 ). The depletion of biochemically labile SOM pools and prolonged microbial utilization of SOM requires overcoming the higher E 
+ a 
+ for the remaining more stable pools (Hartley and Ineson  2008 ; Henneron et al.  2022 ). The higher value of those pools explains a slower decomposition rate with incubation duration (Bosatta and Ågren  1999 ). These results of short incubation experiments (even months or years) regarding slower decomposition over time are confirmed by long‐term (25–80 years) bare fallow experiments under field conditions (Barré et al.  2010 ; Lefèvre et al.  2014 ). FIGURE 4 
+ E 
+ a 
+  ± standard error) of microbial mineralization of soil organic matter. Soil from three main grassland types on the Qinghai‐Tibet Plateau: Alpine meadow, Alpine steppe, Alpine desert (Li et al.  2015 , modified). Dashed arrows show the increase of the differences in the E 
+ a 
+ between the three soils due to depletion of labile organic matter during incubation. 
+ E 
+ a 
+ of chemical mineralization of SOM be directly used to assess microbial mineralization of organic matter under soil conditions? The values in a set of 19 grassland soils in Switzerland (Leifeld and von Lützow  2014 ) were analyzed by two approaches: (i) CO 2 efflux from soil, and (ii) thermal analysis. Comparing the E 
+ a 
+ of the two methodologies for the same soil samples helps assess the susceptibility of organic matter to chemical and microbial mineralization (Leifeld and von Lützow  2014 ; Peltre et al. 2013 ). The E 
+ a 
+ of the former was ~1.6 times higher than that of the latter, and there was no correlation between them (Leifeld and von Lützow  2014 ). Consequently, the value for chemical mineralization of the whole continuum of SOM compounds is not quantitatively applicable to assess the microbially driven mineralization of the easily available SOM pools (An et al.  2023 ; Kästner et al.  2024 ; Leifeld and von Lützow  2014 ). We speculate, however, that the absent correlation reflects the incomparable pools of SOM mineralized by microbial and chemical pathways. Only a few percent of soil organic C are respired as CO 2 during microbially driven mineralization compared to 100% release at~600°C to 6500°C or higher. The small percentage of respired CO 2 during a few days or weeks of incubation reflected solely the most easily available and decomposable SOM pool. The suggestion that the thermally labile pool is the most easily decomposed by microorganisms has been widely postulated (Doležalová‐Weissmannová et al.  2023 ; Sanderman and Grandy  2020 ; Williams et al.  2014 ). Only a few studies, however, confirmed this based on a decrease in the labile SOM content after long‐term (~2 years) soil incubations (Plante et al.  2011 ) or on a larger cumulative CO 2 efflux from soil with lower thermal stability (An et al.  2023 ). 3.3.2 
+## Activation Energy of Microbial Decomposition of Organic Matter in Soil 
+ E 
+ a 
+ of microbially‐driven SOM decomposition is 40 ± 4 kJ mol −1 (Figure  3 ). That process produces both CO 2 and heat (Endress, Chen, et al.  2024 ). The flows of respired CO 2 and released heat, however, are not synchronous because (i) some processes occur with heat release but without CO 2 production: hydrolysis of macromolecules and polymers, sorption/desorption etc. (Wang and Kuzyakov  2023 ); (ii) there is a time‐lag between processes of energy gain (with CO 2 release) and storage in e.g., ATP, whereby this energy will be used and released later (without CO 2 production), e.g., protein synthesis. This raises a key question about the necessity of exactly synchronizing the analytical equipment for the dynamics of heat release (microcalorimetry) with that for CO 2 measurements (e.g., IRGA), whereby the cumulative heat and CO 2 release should be balanced (Maskow et al. 2024 ). 
+ 2001 ; Herrmann et al.  2014 ). Microcalorimetry captures the released heat as the thermodynamic balance resulting from the full range of processes: the exothermic and endothermic chemical and microbial reactions (Kästner et al.  2024 ; Rong et al.  2007 ). Considering the large difference of the E 
+ a 
+ values for heat release and CO 2 production (Figure  3 ), the responsible processes strongly differ. This questions the meaning and applicability of the calorespirometric ratio, frequently used to assess microbial metabolic fluxes in soil (Barros et al.  2015 ; Yang et al. 2024 ). 3.4 
+## Activation Energy of Enzyme‐Catalyzed Polymers Hydrolysis and Mineral Ions Cleavage 
+ E 
+ a 
+ of enzyme‐catalyzed hydrolysis of organic polymers and cleavage of mineral ions in SOM is 33 ± 1 kJ mol −1 (Figure  3 ). Microbial decomposition of high molecular organic compounds includes many parallel and sequential series of enzyme‐catalyzed reactions with specific E 
+ a 
+ (Das et al.  2024 ; Nannipieri  2020 ; Nannipieri et al.  2025 ). These catalytic effects reduced the E 
+ a 
+ of chemical mineralization by 46 kJ mol −1 (Figure  3 ). Assuming the equivalence of the A coefficient from the Arrhenius equation for noncatalyzed chemical oxidation and enzyme‐catalyzed SOM decomposition, as used by Leifeld and von Lützow ( 2014 ), the potential acceleration of enzymatic transformation compared to chemical processes is ~10 8 ‐fold. This acceleration is enormous and describes the potential effects of enzymes ( V 
+ max 
+ ) when (i) the available substrates are not limited, (ii) the reactions proceed in solution, and (iii) organic compounds and enzymes are not protected by physical mechanisms (e.g., entrapping in microaggregates and nanopores) (Blagodatskaya et al.  2016 ; Nannipieri et al.  2018 ). These conditions are rare in soils. This calls for caution regarding the previous suggestion that the higher CO 2 production from soil due to the catalytic effects of enzymes is 1.5 × 10 7 ‐fold compared to its release under the noncatalyzed chemical reactions (Leifeld and von Lützow  2014 ). 
+ 2008 ) by: (i) unsaturation of organic substrates, (ii) spatial heterogeneity of organic compounds (Endress, Dehghani, et al.  2024 ), (iii) mismatch in the localization of substrates and enzymes (Bilyera et al.  2021 ; Zhang et al.  2023 ; Kravchenko et al.  2019 ), (iv) enzyme immobilization on soil minerals (Sarkar et al.  1989 ; Wu et al.  2014 ; Zimmerman and Ahn  2010 ), and (v) partial enzyme deactivation (Wang and Kuzyakov  2023 ). Based on the 12 kJ mol −1 difference between the E 
+ a 
+ of chemical and microbial processes (Figure  3 ), the catalytic acceleration of CO 2 efflux from soil is 140 times (at 20°C). This huge gap between the potential (~10 8 ‐fold, thermal oxidations vs. enzyme‐catalyzed decomposition) and actual effects (140 times, thermal vs. microbial based on CO 2 efflux) of enzymes in accelerating SOM transformation partly explains why organic matter remains undecomposed in soils for very long periods compared to its utilization in solution. We assess that every 1 kJ mol −1 decrease in E 
+ a 
+ due to the catalytic effect of enzymes corresponds to a 1.5‐times (+50%) increase in the SOM decomposition rate under soil conditions. 
+ 2024 ; Zavarzina et al.  2025 ). The energy barrier for specific decomposition reactions (catalyzed by hydrolases) is higher than for non‐specific oxidative processes (catalyzed by oxidases) (Figure  5 ). The E 
+ a 
+ of enzymatic reactions hydrolyzing cleavage of N, P, and S from organic compounds is 9 kJ mol −1 lower than that of enzymatic hydrolytic depolymerization of other (N‐, P‐ and S‐free) organic substances (Figure  5 ). The oxidative reactions for all organic compounds have the same rates as hydrolysis reactions for organic substances containing N, P, or S. Consequently, the turnover of organics containing these elements in soil is much faster than the cycling of N‐, P‐, or S‐free organic compounds (Soldatova et al.  2024 ). FIGURE 5 
+ E 
+ a 
+ ) of hydrolytic and oxidative enzymatic reactions of soil organic matter (SOM) decomposition and E 
+ a 
+ of hydrolytic enzymes of carbon (C), nitrogen (N), phosphorus (P), and sulfur (S) cycles. Means and standard errors are presented. X axis: The number of E 
+ a 
+ values. The E 
+ a 
+ for N‐containing compounds was calculated based on E 
+ a 
+ for β‐glucosaminidase, N‐acetyl‐glucosaminidase, leucine aminopeptidase, urease, arylamidase, BAA‐protease, casein‐protease, L‐asparagine amidohydrolase, and tyrosine aminopeptidase. The E 
+ a 
+ for P‐containing compounds was based on E 
+ a 
+ for acid and alkaline phosphatases and pyrophosphatase; the E 
+ a 
+ for S‐containing compounds was based on E 
+ a 
+ for arylsulfatase; the E 
+ a 
+ of hydrolysis of organic compounds (without N, P, and S) based on β‐glucosidase, β‐D‐fucosidase, cellulase, cellobiohydrolase, and xylanase; the E 
+ a 
+ of oxidative enzyme reactions was based on E 
+ a 
+ for peroxidase, lignin peroxidase, and phenol oxidase. 
+ E 
+ a 
+ (Bosatta and Ågren  1999 ; Quan et al.  2014 ). The lower E 
+ a 
+ of N mineralization (e.g., hydrolytic cleavage of NH 4 
+ + from amino acids) vs. organic C mineralization (Figure  6 ) is the result of N mineralization in the most biochemically labile SOM (low C/N ratio, e.g., proteins, amino sugars), which is the main source of available N for microorganisms. The E 
+ a 
+ of N mineralization presented in the literature reflects only the N net ‐mineralization, which, however, is the result of both N gross‐mineralization and N immobilization. Because nearly all these E 
+ a 
+ values are obtained from incubation experiments without the addition of organic C, the mineral N content (NH 4 
+ + and NO 3 
+ − ) increases in soil continuously. Consequently, mineral N is in excess of remaining available C because the already decomposed available C will be lost as CO 2 . This means that N immobilization processes can be neglected because available C (mainly lost as CO 2 ) is absent, and that the provided E 
+ a 
+ values (Figure  6 ) therefore correspond to N gross‐mineralization. FIGURE 6 
+ E 
+ a 
+ ) of mineralization of soil organic C and N. Means and standard errors are presented. X axis: The number of E 
+ a 
+ values. 
+ 2025 ; Stoner et al.  2023 ). Because of the high physico‐chemical stability of MAOM, N from this slow pool of SOM has a high E 
+ a 
+ of mineralization and can hardly be decomposed by microorganisms. This limits N availability in most natural ecosystems (LeBauer and Treseder  2008 ; Menge et al.  2012 ). 4 
+## Consequences for Soil Organic Matter Decomposition Under Global Warming 
+ 1 ) (Menzinger and Wolfgang  1969 ). The different mean E 
+ a 
+ values of various organic matter transformations in soil (Figure  3 ) suggest that the respective processes will be affected under global warming. This is because the reactions with high E 
+ a 
+ are more strongly accelerated by temperature increases than reactions with low E 
+ a 
+ (Davidson and Janssens  2006 ). Considering the E 
+ a 
+ of the processes evaluated above, we describe below how global warming will change the cycles of C and nutrients by biotic and abiotic processes of SOM decomposition. 4.1 
+## Nutrient Cycles 
+ 2017 ; Razavi et al. 2017 ); (iii) increased solubility of some organic compounds; and (iv) increased decoupling of decomposition of organic compounds with different internal stabilities, i.e., activation energies of their decomposition. Here, we focus solely on the consequences of warming related to the last group of mechanisms directly connected with the differences in E 
+ a 
+ of organic matter pools. 
+ E 
+ a 
+ of specific reactions involved in SOM transformation processes is crucial to better understand the effects of global warming on C, N, P, and S cycles. The decomposition of substances with higher E 
+ a 
+ is more sensitive to temperature increase compared to compounds with low E 
+ a 
+ (Conant et al.  2008 ; Craine et al.  2010 ). Considering the 30% higher E 
+ a 
+ of hydrolysis of N‐, P‐, and S‐free organic compounds compared to cleavage of NH 4 
+ + , HPO 4 
+ 2− and SO 4 
+ 2− from the organic compounds with these nutrients (Figure  5 ), global warming will accelerate soil organic C cycling much more than that of N, P, or S. 
+ E 
+ a 
+ of stable SOM pools also reflects their stronger response to warming compared to labile SOM pools. Accordingly, stable organic C will be intensively involved in biological C cycling, leading to shorter mean residence times of C in soil. This fully agrees with many studies based on other experimental and analytical approaches showing that global warming will destabilize the persistent SOM pools (Henneron et al.  2022 ). The C/N ratio of stable pools (e.g., mineral associated organic matter, MAOM), however, is much lower than that of plant residues and particulate organic matter (POM) (Chang et al.  2024 ). Consequently, opposite to the conclusion based on enzymatic hydrolysis of N, P, and S free organic compounds (see above), nutrients will be involved in cycling in soil more than C. 4.2 
+## Abiotic Mineralization of Organic Matter in Soil Under Warming 
+ E 
+ a 
+ of chemical (abiotic) mineralization of SOM, the oxidation rates by atmospheric oxygen in soil are extremely slow at ambient temperatures (Hansen et al.  2018 ; Leifeld and von Lützow  2014 ). Even though the contribution of direct chemical oxidation is very low compared with microbial mineralization (Kögel‐Knabner  2002 ; Maire et al. 2013 ), the noncatalyzed abiotic processes are relevant for the C cycle under extreme environmental conditions such as heat stresses or droughts, high UV radiation, or changing redox conditions along with the production of reactive oxygen species (Hansen et al.  2018 ; Yu and Kuzyakov  2021 ). 
+ 2018 ). Temperatures above 50°C rapidly reduce or completely stop the activities of β‐glucosidase, α‐1,4‐glucosidase, cellobiohydrolase, N‐acetyl‐glucosaminidase, phosphatase, and sulfatase because of enzyme denaturation (Riah‐Anglet et al.  2015 ; Waldrop and Firestone  2004 ). This reduces enzymatic decomposition under frequent heat stress (Conant et al.  2011 ), which is already common in many topsoils and expected to increase under further climate warming and wildfires (Filimonenko, Uporova, et al. 2024 ; Pei et al.  2023 ; Zhou et al.  2023 ). Considering the above, the stability of organic matter remaining after decomposition of labile SOM pools will rapidly increase (Figure  4 ), as will the initial differences between soils. 
+ E 
+ a 
+ compared to the respective enzyme‐catalyzed processes (Figure  3 ) and is therefore most affected by warming. Based on the E 
+ a 
+ of chemical mineralization (79 kJ mol −1 ; Figure  3 ), warming from 20°C to 21°C will increase the rate of direct chemical oxidation by 14%, and a temperature increase to 22°C would boost this rate by 32%. This example, however, does not consider extreme high soil temperatures: without dense vegetation and direct sunshine, the temperature of the soil surface frequently increases up to more than 70°C. Under such conditions, nearly all enzymatic reactions cease, whereas abiotic decomposition of organic matter increases. 
+ S4 ), high altitude areas, all equatorial deserts, Australian Outback, and polar regions. Considering the increasing intensity of UV radiation, the incineration of all organics on the soil surface will rise. We assume that the relative importance of this abiotic decomposition of soil surface organic matter will rise because high soil temperatures will stop enzymatic and microbial decomposition. 5 
+## Conclusions 
+ E 
+ a 
+ ) – and generalizes it for processes of organic matter transformation in soil. Based on the generalization of E 
+ a 
+ values published in the literature as assessed by four approaches (thermal oxidation of SOM, CO 2 efflux by soil incubation, enzyme activities, and heat release measured by microcalorimetry), we show the principal differences between the rates of chemical and microbial mineralization of SOM, as well as of enzyme‐catalyzed processes of C, N, P, and S cycles (Figure  7 ). FIGURE 7 
+ E 
+ a 
+ ) of soil organic matter (SOM) transformations by enzyme‐catalyzed reactions. The increase in E 
+ a 
+ is accompanied by a decrease in the reaction rate. The higher E 
+ a 
+ of enzyme‐catalyzed hydrolysis of C than of N, P, and S reflects faster acceleration of the C cycle compared to nutrient cycling, leading to their decoupling by global warming. The E 
+ a 
+ values of the enzyme‐catalyzed reactions (as well as of the chemical oxidation) correspond to those in Figures  3 and 5 . 
+ E 
+ a 
+ of chemical mineralization of SOM (thermal oxidation) was 16% higher than that of microbial mineralization to CO 2 , corresponding to 140 times faster microbially (enzyme) driven reactions. Every 1 kJ mol −1 decrease in E 
+ a 
+ due to the catalytic effect of enzymes corresponds to a 1.5 times (+50%) increase in the SOM oxidation rate under soil conditions. During continuous microbial decomposition of SOM, the E 
+ a 
+ increases because the preferably utilized available pools with lower E 
+ a 
+ will be exhausted, and the E 
+ a 
+ of the remaining stable pools is (much) higher. The 30% higher E 
+ a 
+ value of enzyme‐catalyzed hydrolysis of N‐, P‐, or S‐free organic compounds than of the organics containing those elements reflects the faster acceleration of the C cycle with increasing temperatures compared to nutrient cycling. We therefore expect that global warming will decouple C from nutrients and more strongly limit C for microorganisms in soil. 
+ E 
+ a 
+ of organic matter transformation processes in soil is simple to determine by one of the four approaches or their combination. Importantly, E 
+ a 
+ reflects the rates of the main groups of (bio)chemical reactions as well as the intrinsic stability of organic matter in soil. It is therefore very useful to predict the acceleration of the SOM transformation by global warming. 
+## Author Contributions 
+ Ekaterina Filimonenko: conceptualization, data curation, formal analysis, funding acquisition, investigation, methodology, validation, visualization, writing – original draft, writing – review and editing. Yakov Kuzyakov: conceptualization, formal analysis, funding acquisition, investigation, methodology, project administration, supervision, visualization, writing – original draft, writing – review and editing. 
+## Conflicts of Interest 
+## Supporting information 
+ Figure S1: Distribution histograms of activation energy ( E 
+ a 
+ ) of (i) SOM chemical oxidation (analyzed by thermal analysis as pure chemical oxidation of the whole SOM); (ii) SOM microbial mineralization (analyzed by CO 2 efflux from soil); (iii) enzyme‐catalyzed hydrolysis of polymers and cleavage of mineral ions (analyzed by potential enzyme activity). 
+ Figure S2: Activation energy ( E 
+ a 
+ ) of the chemical mineralization of SOM, analyzed by thermal oxidation (complete combustion) and by pyrolysis. Means and standard errors are presented. Numbers above each approach: the number of individual E 
+ a 
+ values. 
+ Figure S3: Activation energy ( E 
+ a 
+ , mean ± SE) of the chemical mineralization of organic substances based on thermal analysis of plant and microalga organic matter. The numbers above each organic substrate reflect the number of individual E 
+ a 
+ values from an additional data set for plant and microalga organic matter that do not belong to the database of E 
+ a 
+ of SOM transformation. Note that the carbohydrates presented here are a wide category of simple sugars (monosaccharides), and their di‐ and oligomers are taken mainly from algae and cyanobacteria (Table S1; (Markou et al.  2012 )). 
+ Figure S4: Abiotic mineralization (incineration) of organic matter of plants by very intensive UV radiation in Atacama Desert. 
+ Table S1: The 73 publications included in this meta‐analysis. 
+## Acknowledgements 
+ 7 , and the editor and both reviewers for very constructive and helpful suggestions that helped to improve the quality of the paper. Open Access funding enabled and organized by Projekt DEAL. 
+## Data Availability Statement 
+ https://doi.org/10.6084/m9.figshare.29949164.v1 . 
+## References 
+ Alef , K. 
+ , and 
+ P. 
+ Nannipieri 
+ . 1995 . Methods in Applied Soil Microbiology and Biochemistry . Academic Press . 
+ Alster , C. J. 
+ , 
+ P. 
+ Baas 
+ , 
+ M. D. 
+ Wallenstein 
+ , 
+ N. G. 
+ Johnson 
+ , and 
+ J. C. 
+ von Fischer 
+ . 2016 . “ Temperature Sensitivity as a Microbial Trait Using Parameters From Macromolecular Rate Theory .” Frontiers in Microbiology 
+ 7 : 1821 . 10.3389/fmicb.2016.01821 . 27909429 
+ PMC5112240 
+ Alster , C. J. 
+ , 
+ J. M. 
+ Robinson 
+ , 
+ V. L. 
+ Arcus 
+ , and 
+ L. A. 
+ Schipper 
+ . 2022 . “ Assessing Thermal Acclimation of Soil Microbial Respiration Using Macromolecular Rate Theory .” Biogeochemistry 
+ 158 : 131 – 141 . 10.1007/s10533-021-00885-6 . 
+ An , Z. 
+ , 
+ P. 
+ Pokharel 
+ , 
+ A. F. 
+ Plante 
+ , et al. 2023 . “ Soil Organic Matter Stability in Forest and Cropland Components of Two Agroforestry Systems in Western Canada .” Geoderma 
+ 433 : 116463 . 10.1016/j.geoderma.2023.116463 . 
+ Barré , P. 
+ , 
+ T. 
+ Eglin 
+ , 
+ B. T. 
+ Christensen 
+ , et al. 2010 . “ Quantifying and Isolating Stable Soil Organic Carbon Using Long‐Term Bare Fallow Experiments .” Biogeosciences 
+ 7 : 3839 – 3850 . 10.5194/bg-7-3839-2010 . 
+ Barros , N. 
+ , 
+ L. D. 
+ Hansen 
+ , 
+ V. 
+ Piñeiro 
+ , and 
+ P. 
+ Vikegard 
+ . 2016 . “ Calorimetry Measures the Response of Soil Organic Matter Biodegradation to Increasing Temperature .” Journal of Thermal Analysis and Calorimetry 
+ 123 : 2397 – 2403 . 10.1007/s10973-015-4947-8 . 
+ Barros , N. 
+ , 
+ V. 
+ Piñeiro 
+ , and 
+ L. D. 
+ Hansen 
+ . 2015 . “ Calorespirometry: A Novel Tool to Assess the Effect of Temperature on Soil Organic Matter Decomposition .” Thermochimica Acta 
+ 618 : 15 – 17 . 10.1016/j.tca.2015.09.005 . 
+ Bilyera , N. 
+ , 
+ X. 
+ Zhang 
+ , 
+ P. 
+ Duddek 
+ , et al. 2021 . “ Maize Genotype‐Specific Exudation Strategies: An Adaptive Mechanism to Increase Microbial Activity in the Rhizosphere .” Soil Biology and Biochemistry 
+ 162 : 108426 . 10.1016/j.soilbio.2021.108426 . 
+ Blagodatskaya , Е. 
+ , 
+ S. 
+ Blagodatsky 
+ , 
+ N. 
+ Khomyakov 
+ , 
+ O. 
+ Myachina 
+ , and 
+ Y. 
+ Kuzyakov 
+ . 2016 . “ Temperature Sensitivity and Enzymatic Mechanisms of Soil Organic Matter Decomposition Along an Altitudinal Gradient on Mount Kilimanjaro .” Scientific Reports 
+ 6 : 22240 . 10.1038/srep22240 . 26924084 
+ PMC4770592 
+ Bosatta , E. 
+ , and 
+ G. I. 
+ Ågren 
+ . 1999 . “ Soil Organic Matter Quality Interpreted Thermodynamically .” Soil Biology and Biochemistry 
+ 31 : 1889 – 1891 . 10.1016/S0038-0717(99)00105-4 . 
+ Ceylan , S. 
+ , and 
+ D. 
+ Kazan 
+ . 2015 . “ Pyrolysis Kinetics and Thermal Characteristics of Microalgae Nannochloropsis Oculata and Tetraselmis sp .” Bioresource Technology 
+ 187 : 1 – 5 . 10.1016/j.biortech.2015.03.081 . 25827246 
+ Chang , Y. 
+ , 
+ N. W. 
+ Sokol 
+ , 
+ K. J. 
+ van Groenigen 
+ , et al. 2024 . “ A Stoichiometric Approach to Estimate Sources of Mineral‐Associated Soil Organic Matter .” Global Change Biology 
+ 30 : e17092 . 10.1111/gcb.17092 . 38273481 
+ Cheng , L. 
+ , 
+ N. 
+ Zhang 
+ , 
+ M. 
+ Yuan 
+ , et al. 2017 . “ Warming Enhances Old Organic Carbon Decomposition Through Altering Functional Microbial Communities .” ISME Journal 
+ 11 : 1825 – 1835 . 10.1038/ismej.2017.48 . 28430189 
+ PMC5520036 
+ Coats , A. W. 
+ , and 
+ J. P. 
+ Redfern 
+ . 1964 . “ Kinetic Parameters From Thermogravimetric Data .” Nature 
+ 201 : 68 – 69 . 10.1038/201068a0 . 
+ Conant , R. T. 
+ , 
+ M. G. 
+ Ryan 
+ , 
+ G. I. 
+ Ågren 
+ , et al. 2011 . “ Temperature and Soil Organic Matter Decomposition Rates ‐ Synthesis of Current Knowledge and a Way Forward .” Global Change Biology 
+ 17 : 3392 – 3404 . 10.1111/j.1365-2486.2011.02496.x . 
+ Conant , R. T. 
+ , 
+ J. M. 
+ Steinweg 
+ , 
+ M. L. 
+ Haddix 
+ , 
+ E. A. 
+ Paul 
+ , 
+ A. F. 
+ Plante 
+ , and 
+ J. 
+ Six 
+ . 2008 . “ Experimental Warming Shows That Decomposition Temperature Sensitivity Increases With Soil Organic Matter Recalcitrance .” Ecology 
+ 89 : 2384 – 2391 . 10.1890/08-0137.1 . 18831158 
+ Craine , J. M. 
+ , 
+ N. 
+ Fierer 
+ , and 
+ K. K. 
+ McLauchlan 
+ . 2010 . “ Widespread Coupling Between the Rate and Temperature Sensitivity of Organic Matter Decay .” Nature Geoscience 
+ 3 : 854 – 857 . 10.1038/ngeo1009 . 
+ Critter , S. A. M. 
+ , 
+ S. S. 
+ Freitas 
+ , and 
+ C. 
+ Airoldi 
+ . 2001 . “ Calorimetry Versus Respirometry for the Monitoring of Microbial Activity in a Tropical Soil .” Applied Soil Ecology 
+ 18 : 217 – 227 . 10.1016/S0929-1393(01)00166-4 . 
+ Das , S. 
+ , 
+ E. 
+ Pendall 
+ , 
+ A. A. 
+ Malik 
+ , 
+ P. 
+ Nannipieri 
+ , and 
+ P. J. 
+ Kim 
+ . 2024 . “ Microbial Control of Soil Organic Matter Dynamics: Effects of Land Use and Climate Change .” Biology and Fertility of Soils 
+ 60 : 1 – 3 . 10.1007/s00374-023-01788-4 . 
+ Davidson , E. A. 
+ , and 
+ I. A. 
+ Janssens 
+ . 2006 . “ Temperature Sensitivity of Soil Carbon Decomposition and Feedbacks to Climate Change .” Nature 
+ 440 : 165 – 173 . 10.1038/nature04514 . 16525463 
+ Doležalová‐Weissmannová , H. 
+ , 
+ S. 
+ Malý 
+ , 
+ M. 
+ Brtnický 
+ , et al. 2023 . “ Practical Applications of Thermogravimetry in Soil Science: Part 5. Linking the Microbial Soil Characteristics of Grassland and Arable Soils to Thermogravimetry Data .” Journal of Thermal Analysis and Calorimetry 
+ 148 : 1599 – 1611 . 10.1007/s10973-022-11709-6 . 
+ Dufour , L. J. P. 
+ , 
+ A. M. 
+ Herrmann 
+ , 
+ J. 
+ Leloup 
+ , et al. 2022 . “ Potential Energetic Return on Investment Positively Correlated With Overall Soil Microbial Activity .” Soil Biology and Biochemistry 
+ 173 : 108800 . 10.1016/j.soilbio.2022.108800 . 
+ Eivazi , F. 
+ , and 
+ M. A. 
+ Tabatabai 
+ . 1988 . “ Glucosidases and Galactosidases in Soils .” Soil Biology and Biochemistry 
+ 20 : 601 – 606 . 10.1016/0038-0717(88)90141-1 . 
+ Endress , M.‐G. 
+ , 
+ R. 
+ Chen 
+ , 
+ E. 
+ Blagodatskaya 
+ , and 
+ S. 
+ Blagodatsky 
+ . 2024 . “ The Coupling of Carbon and Energy Fluxes Reveals Anaerobiosis in an Aerobic Soil Incubation With a Bacillota‐Dominated Community .” Soil Biology and Biochemistry 
+ 195 : 109478 . 10.1016/j.soilbio.2024.109478 . 
+ Endress , M.‐G. 
+ , 
+ F. 
+ Dehghani 
+ , 
+ S. 
+ Blagodatsky 
+ , 
+ T. 
+ Reitz 
+ , 
+ S. 
+ Schlüter 
+ , and 
+ E. 
+ Blagodatskaya 
+ . 2024 . “ Spatial Substrate Heterogeneity Limits Microbial Growth as Revealed by the Joint Experimental Quantification and Modeling of Carbon and Heat Fluxes .” Soil Biology and Biochemistry 
+ 197 : 109509 . 10.1016/j.soilbio.2024.109509 . 
+ Feng , X. 
+ , and 
+ M. J. 
+ Simpson 
+ . 2008 . “ Temperature Responses of Individual Soil Organic Matter Components .” Journal of Geophysical Research 
+ 113 : 2008JG000743 . 10.1029/2008JG000743 . 
+ Filimonenko , E. 
+ , 
+ I. 
+ Kurganova 
+ , 
+ M. 
+ Uporova 
+ , et al. 2024 . “ Energy Storage and Stability of Soil Organic Matter During the Natural Restoration of Abandoned Cropland .” Agriculture, Ecosystems & Environment 
+ 375 : 109198 . 10.1016/j.agee.2024.109198 . 
+ Filimonenko , E. 
+ , 
+ M. 
+ Uporova 
+ , 
+ N. 
+ Prikhodko 
+ , et al. 2024 . “ Organic Matter Stability in Forest‐Tundra Soils After Wildfire .” Catena 
+ 243 : 108155 . 10.1016/j.catena.2024.108155 . 
+ Gai , C. 
+ , 
+ Y. 
+ Zhang 
+ , 
+ W.‐T. 
+ Chen 
+ , 
+ P. 
+ Zhang 
+ , and 
+ Y. 
+ Dong 
+ . 2013 . “ Thermogravimetric and Kinetic Analysis of Thermal Decomposition Characteristics of Low‐Lipid Microalgae .” Bioresource Technology 
+ 150 : 139 – 148 . 10.1016/j.biortech.2013.09.137 . 24161552 
+ Georgiou , K. 
+ , 
+ D. 
+ Angers 
+ , 
+ R. E. 
+ Champiny 
+ , et al. 2025 . “ Soil Carbon Saturation: What Do we Really Know? ” Global Change Biology 
+ 31 : e70197 . 10.1111/gcb.70197 . 40345163 
+ PMC12062940 
+ Grant , K. E. 
+ , 
+ V. V. 
+ Galy 
+ , 
+ O. A. 
+ Chadwick 
+ , and 
+ L. A. 
+ Derry 
+ . 2019 . “ Thermal Oxidation of Carbon in Organic Matter Rich Volcanic Soils: Insights Into SOC Age Differentiation and Mineral Stabilization .” Biogeochemistry 
+ 144 : 291 – 304 . 10.1007/s10533-019-00586-1 . 
+ Guida , M. Y. 
+ , 
+ H. 
+ Bouaik 
+ , 
+ A. 
+ Tabal 
+ , et al. 2016 . “ Thermochemical Treatment of Olive Mill Solid Waste and Olive Mill Wastewater: Pyrolysis Kinetics .” Journal of Thermal Analysis and Calorimetry 
+ 123 : 1657 – 1666 . 10.1007/s10973-015-5061-7 . 
+ Gunina , A. 
+ , and 
+ Y. 
+ Kuzyakov 
+ . 2022 . “ From Energy to (Soil Organic) Matter .” Global Change Biology 
+ 28 : 2169 – 2182 . 10.1111/gcb.16071 . 34978126 
+ Hall , C. A. S. 
+ 2017 . “ Energy Return on Investment .” In Lecture Notes in Energy . Springer International Publishing . 10.1007/978-3-319-47821-0 . 
+ Hansen , L. D. 
+ , 
+ N. 
+ Barros 
+ , 
+ M. K. 
+ Transtrum 
+ , et al. 2018 . “ Effect of Extreme Temperatures on Soil: A Calorimetric Approach .” Thermochimica Acta 
+ 670 : 128 – 135 . 10.1016/j.tca.2018.10.010 . 
+ Hartley , I. P. 
+ , and 
+ P. 
+ Ineson 
+ . 2008 . “ Substrate Quality and the Temperature Sensitivity of Soil Organic Matter Decomposition .” Soil Biology and Biochemistry 
+ 40 : 1567 – 1574 . 10.1016/j.soilbio.2008.01.007 . 
+ Harvey , O. R. 
+ , 
+ L.‐J. 
+ Kuo 
+ , 
+ A. R. 
+ Zimmerman 
+ , 
+ P. 
+ Louchouarn 
+ , 
+ J. E. 
+ Amonette 
+ , and 
+ B. E. 
+ Herbert 
+ . 2012 . “ An Index‐Based Approach to Assessing Recalcitrance and Soil Carbon Sequestration Potential of Engineered Black Carbons (Biochars) .” Environmental Science & Technology 
+ 46 : 1415 – 1421 . 10.1021/es2040398 . 22242866 
+ Harvey , O. R. 
+ , 
+ A. N. 
+ Myers‐Pigg 
+ , 
+ L.‐J. 
+ Kuo 
+ , 
+ B. P. 
+ Singh 
+ , 
+ K. A. 
+ Kuehn 
+ , and 
+ P. 
+ Louchouarn 
+ . 2016 . “ Discrimination in Degradability of Soil Pyrogenic Organic Matter Follows a Return‐On‐Energy‐Investment Principle .” Environmental Science & Technology 
+ 50 : 8578 – 8585 . 10.1021/acs.est.6b01010 . 27398678 
+ Hemingway , J. D. 
+ , 
+ D. H. 
+ Rothman 
+ , 
+ K. E. 
+ Grant 
+ , et al. 2019 . “ Mineral Protection Regulates Long‐Term Global Preservation of Natural Organic Carbon .” Nature 
+ 570 : 228 – 231 . 10.1038/s41586-019-1280-6 . 31190013 
+ Henneron , L. 
+ , 
+ J. 
+ Balesdent 
+ , 
+ G. 
+ Alvarez 
+ , et al. 2022 . “ Bioenergetic Control of Soil Carbon Dynamics Across Depth .” Nature Communications 
+ 13 : 7676 . 10.1038/s41467-022-34951-w . PMC9744916 36509763 
+ Herrmann , A. M. 
+ , 
+ E. 
+ Coucheney 
+ , and 
+ N. 
+ Nunan 
+ . 2014 . “ Isothermal Microcalorimetry Provides New Insight Into Terrestrial Carbon Cycling .” Environmental Science & Technology 
+ 48 : 4344 – 4352 . 10.1021/es403941h . 24625276 
+ Hobbs , J. K. 
+ , 
+ W. 
+ Jiao 
+ , 
+ A. D. 
+ Easter 
+ , 
+ E. J. 
+ Parker 
+ , 
+ L. A. 
+ Schipper 
+ , and 
+ V. L. 
+ Arcus 
+ . 2013 . “ Change in Heat Capacity for Enzyme Catalysis Determines Temperature Dependence of Enzyme Catalyzed Rates .” ACS Chemical Biology 
+ 8 : 2388 – 2393 . 10.1021/cb4005029 . 24015933 
+ Kästner , M. 
+ , 
+ T. 
+ Maskow 
+ , 
+ A. 
+ Miltner 
+ , 
+ M. 
+ Lorenz 
+ , and 
+ S. 
+ Thiele‐Bruhn 
+ . 2024 . “ Assessing Energy Fluxes and Carbon Use in Soil as Controlled by Microbial Activity ‐ A Thermodynamic Perspective A Perspective Paper .” Soil Biology and Biochemistry 
+ 193 : 109403 . 10.1016/j.soilbio.2024.109403 . 
+ Kästner , M. 
+ , 
+ A. 
+ Miltner 
+ , 
+ S. 
+ Thiele‐Bruhn 
+ , and 
+ C. 
+ Liang 
+ . 2021 . “ Microbial Necromass in Soils—Linking Microbes to Soil Processes and Carbon Turnover .” Frontiers in Environmental Science 
+ 9 : 756378 . 10.3389/fenvs.2021.756378 . 
+ Kleber , M. 
+ 2010 . “ What Is Recalcitrant Soil Organic Matter? ” Environment and Chemistry 
+ 7 : 320 . 10.1071/EN10006 . 
+ Kögel‐Knabner , I. 
+ 2002 . “ The Macromolecular Organic Composition of Plant and Microbial Residues as Inputs to Soil Organic Matter .” Soil Biology and Biochemistry 
+ 34 : 139 – 162 . 10.1016/S0038-0717(01)00158-4 . 
+ Kravchenko , A. 
+ , 
+ A. 
+ Guber 
+ , 
+ B. S. 
+ Razavi 
+ , 
+ J. 
+ Koestel 
+ , 
+ E. 
+ Blagodatskaya 
+ , and 
+ Y. 
+ Kuzyakov 
+ . 2019 . “ Spatial Patterns of Extracellular Enzymes: Combining X‐Ray Computed Micro‐Tomography and 2D Zymography .” Soil Biology & Biochemistry 
+ 135 : 411 – 419 . 10.1016/j.soilbio.2019.06.002 . 
+ LeBauer , D. S. 
+ , and 
+ K. K. 
+ Treseder 
+ . 2008 . “ Nitrogen Limitation of Net Primary Productivity in Terrestrial Ecosystems Is Globally Distributed .” Ecology 
+ 89 : 371 – 379 . 10.1890/06-2057.1 . 18409427 
+ Lefèvre , R. 
+ , 
+ P. 
+ Barré 
+ , 
+ F. E. 
+ Moyano 
+ , et al. 2014 . “ Higher Temperature Sensitivity for Stable Than for Labile Soil Organic Carbon – Evidence From Incubations of Long‐Term Bare Fallow Soils .” Global Change Biology 
+ 20 : 633 – 640 . 10.1111/gcb.12402 . 24115336 
+ Lehmann , J. 
+ , 
+ C. M. 
+ Hansel 
+ , 
+ C. 
+ Kaiser 
+ , et al. 2020 . “ Persistence of Soil Organic Carbon Caused by Functional Complexity .” Nature Geoscience 
+ 13 : 529 – 534 . 10.1038/s41561-020-0612-3 . 
+ Leifeld , J. 
+ , and 
+ M. 
+ von Lützow 
+ . 2014 . “ Chemical and Microbial Activation Energies of Soil Organic Matter Decomposition .” Biology and Fertility of Soils 
+ 50 : 147 – 153 . 10.1007/s00374-013-0822-6 . 
+ Li , J. 
+ , 
+ N. 
+ He 
+ , 
+ X. 
+ Wei 
+ , 
+ Y. 
+ Gao 
+ , and 
+ Y. 
+ Zuo 
+ . 2015 . “ Changes in Temperature Sensitivity and Activation Energy of Soil Organic Matter Decomposition in Different Qinghai‐Tibet Plateau Grasslands .” PLoS One 
+ 10 : e0132795 . 10.1371/journal.pone.0132795 . 26176705 
+ PMC4503348 
+ Li , T. 
+ , 
+ F. 
+ Song 
+ , 
+ J. 
+ Zhang 
+ , 
+ S. 
+ Liu 
+ , 
+ B. 
+ Xing 
+ , and 
+ Y. 
+ Bai 
+ . 2020 . “ Pyrolysis Characteristics of Soil Humic Substances Using TG‐FTIR‐MS Combined With Kinetic Models .” Science of the Total Environment 
+ 698 : 134237 . 10.1016/j.scitotenv.2019.134237 . 31494414 
+ Maire , V. 
+ , 
+ G. 
+ Alvarez 
+ , 
+ J. 
+ Colombet 
+ , et al. 2013 . “ An Unknown Oxidative Metabolism Substantially Contributes to Soil CO 2 Emissions .” Biogeosciences 
+ 10 : 1155 – 1167 . 10.5194/bg-10-1155-2013 . 
+ Markou , G. 
+ , 
+ I. 
+ Angelidaki 
+ , and 
+ D. 
+ Georgakakis 
+ . 2012 . “ Microalgal Carbohydrates: An Overview of the Factors Influencing Carbohydrates Production, and of Main Bioconversion Technologies for Production of Biofuels .” Applied Microbiology and Biotechnology 
+ 96 : 631 – 645 . 10.1007/s00253-012-4398-0 . 22996277 
+ Marx , M.‐C. 
+ , 
+ M. 
+ Wood 
+ , and 
+ S. C. 
+ Jarvis 
+ . 2001 . “ A Microplate Fluorimetric Assay for the Study of Enzyme Diversity in Soils .” Soil Biology and Biochemistry 
+ 33 : 1633 – 1640 . 10.1016/s0038-0717(01)00079-7 . 
+ Maskow , T. 
+ , 
+ S. 
+ Yang 
+ , 
+ E. 
+ Di Lodovico 
+ , et al. 2024 . Expanding Understanding: Investigating the Information Value of Calorespirometric Ratio in Dynamic Processes of Soil Microbial Growth Using Calorimetry , 2024 . EGU General Assembly 2024 , EGU24‐6520 . 10.5194/egusphere-egu24-6520 . 
+ Menge , D. N. L. 
+ , 
+ L. O. 
+ Hedin 
+ , and 
+ S. W. 
+ Pacala 
+ . 2012 . “ Nitrogen and Phosphorus Limitation Over Long‐Term Ecosystem Development in Terrestrial Ecosystems .” PLoS One 
+ 7 : e42045 . 10.1371/journal.pone.0042045 . 22870281 
+ PMC3411694 
+ Menzinger , M. 
+ , and 
+ R. 
+ Wolfgang 
+ . 1969 . “ The Meaning and Use of the Arrhenius Activation Energy .” Angewandte Chemie 
+ 8 : 438 – 444 . 10.1002/anie.196904381 . 
+ Miranda , M. I. G. 
+ , 
+ C. I. D. 
+ Bica 
+ , 
+ S. M. B. 
+ Nachtigall 
+ , 
+ N. 
+ Rehman 
+ , and 
+ S. M. L. 
+ Rosa 
+ . 2013 . “ Kinetical Thermal Degradation Study of Maize Straw and Soybean Hull Celluloses by Simultaneous DSC–TGA and MDSC Techniques .” Thermochimica Acta 
+ 565 : 65 – 71 . 10.1016/j.tca.2013.04.012 . 
+ Nannipieri , P. 
+ 2020 . “ Soil Is Still an Unknown Biological System .” Applied Sciences 
+ 10 : 3717 . 10.3390/app10113717 . 
+ Nannipieri , P. 
+ , 
+ G. 
+ Angst 
+ , 
+ C. 
+ Mueller 
+ , and 
+ G. 
+ Pietramellara 
+ . 2025 . “ The Role of Death and Lysis of Microbial and Plant Cells in the Formation of Soil Organic Matter .” Soil Biology and Biochemistry 
+ 204 : 109750 . 10.1016/j.soilbio.2025.109750 . 
+ Nannipieri , P. 
+ , 
+ C. 
+ Trasar‐Cepeda 
+ , and 
+ R. P. 
+ Dick 
+ . 2018 . “ Soil Enzyme Activity: A Brief History and Biochemistry as a Basis for Appropriate Interpretations and Meta‐Analysis .” Biology and Fertility of Soils 
+ 54 : 11 – 19 . 10.1007/s00374-017-1245-6 . 
+ Parham , J. A. 
+ , and 
+ S. P. 
+ Deng 
+ . 2000 . “ Detection, Quantication and Characterization of b‐Glucosaminidase Activity in Soil .” Soil Biology & Biochemistry 
+ 32 : 1183 – 1190 . 10.1016/S00380717(00)00034-1 . 
+ Paul , E. A. 
+ , and 
+ S. D. 
+ Frey 
+ , eds. 2024 . Soil Microbiology, Ecology, and Biochemistry, Fifth . edition. ed . Elsevier, Amsterdam Oxford Cambridge . 
+ Pei , J. 
+ , 
+ J. 
+ Wan 
+ , 
+ H. 
+ Wang 
+ , 
+ C. 
+ Fang 
+ , 
+ M. 
+ Nie 
+ , and 
+ J. 
+ Li 
+ . 2023 . “ Changes in the Activity of Soil Enzymes After Fire .” Geoderma 
+ 437 : 116599 . 10.1016/j.geoderma.2023.116599 . 
+ Peltre , C. 
+ , 
+ J. M. 
+ Fernández 
+ , 
+ J. M. 
+ Craine 
+ , and 
+ A. F. 
+ Plante 
+ . 2013 . “ Relationships Between Biological and Thermal Indices of Soil Organic Matter Stability Differ with Soil Organic Carbon Level .” Soil Science Society of America Journal 
+ 77 : 2020 – 2028 . 10.2136/sssaj2013.02.0081 . 
+ Peng , W. 
+ 2001 . “ Pyrolytic Characteristics of Microalgae as Renewable Energy Source Determined by Thermogravimetric Analysis .” Bioresource Technology 
+ 80 : 1 – 7 . 10.1016/S0960-8524(01)00072-4 . 11554596 
+ Plante , A. F. 
+ , 
+ J. M. 
+ Fernández 
+ , 
+ M. L. 
+ Haddix 
+ , 
+ J. M. 
+ Steinweg 
+ , and 
+ R. T. 
+ Conant 
+ . 2011 . “ Biological, Chemical and Thermal Indices of Soil Organic Matter Stability in Four Grassland Soils .” Soil Biology and Biochemistry 
+ 43 : 1051 – 1058 . 10.1016/j.soilbio.2011.01.024 . 
+ Plante , A. F. 
+ , 
+ J. M. 
+ Fernández 
+ , and 
+ J. 
+ Leifeld 
+ . 2009 . “ Application of Thermal Analysis Techniques in Soil Science .” Geoderma 
+ 153 : 1 – 10 . 10.1016/j.geoderma.2009.08.016 . 
+ Quan , Q. 
+ , 
+ C. 
+ Wang 
+ , 
+ N. 
+ He 
+ , et al. 2014 . “ Forest Type Affects the Coupled Relationships of Soil C and N Mineralization in the Temperate Forests of Northern China .” Scientific Reports 
+ 4 : 6584 . 10.1038/srep06584 . 25322802 
+ PMC4200403 
+ Razavi , B. S. 
+ , 
+ E. 
+ Blagodatskaya 
+ , and 
+ Y. 
+ Kuzyakov 
+ . 2016 . “ Temperature Selects for Static Soil Enzyme Systems to Maintain High Catalytic Efficiency .” Soil Biology & Biochemistry 
+ 97 : 15 – 22 . 10.1016/j.soilbio.2016.02.018 . 
+ Razavi , B. S. 
+ , 
+ S. 
+ Liu 
+ , and 
+ Y. 
+ Kuzyakov 
+ . 2017 . “ Hot Experience for Cold‐Adapted Microorganisms: Temperature Sensitivity of Soil Enzymes .” Soil Biology & Biochemistry 
+ 105 : 236 – 243 . 10.1016/j.soilbio.2016.11.026 . 
+ Reinehr , T. O. 
+ , 
+ M. A. 
+ Ohara 
+ , 
+ M. P. 
+ de Oliveira Santos 
+ , et al. 2021 . “ Study of Pyrolysis Kinetic of Green Corn Husk .” Journal of Thermal Analysis and Calorimetry 
+ 143 : 3181 – 3192 . 10.1007/s10973-020-10345-2 . 
+ Riah‐Anglet , W. 
+ , 
+ I. 
+ Trinsoutrot‐Gattin 
+ , 
+ F. 
+ Martin‐Laurent 
+ , et al. 2015 . “ Soil Microbial Community Structure and Function Relationships: A Heat Stress Experiment .” Applied Soil Ecology 
+ 86 : 121 – 130 . 10.1016/j.apsoil.2014.10.001 . 
+ Rizzo , A. M. 
+ , 
+ M. 
+ Prussi 
+ , 
+ L. 
+ Bettucci 
+ , 
+ I. M. 
+ Libelli 
+ , and 
+ D. 
+ Chiaramonti 
+ . 2013 . “ Characterization of Microalga Chlorella as a Fuel and Its Thermogravimetric Behavior .” Applied Energy 
+ 102 : 24 – 31 . 10.1016/j.apenergy.2012.08.039 . 
+ Rong , X.‐M. 
+ , 
+ Q.‐Y. 
+ Huang 
+ , 
+ D.‐H. 
+ Jiang 
+ , 
+ P. 
+ Cai 
+ , and 
+ W. 
+ Liang 
+ . 2007 . “ Isothermal Microcalorimetry: A Review of Applications in Soil and Environmental Sciences .” Pedosphere 
+ 17 : 137 – 145 . 10.1016/S1002-0160(07)60019-8 . 
+ Rovira , P. 
+ , 
+ C. 
+ Kurz‐Besson 
+ , 
+ M.‐M. 
+ Coûteaux 
+ , and 
+ V. 
+ Ramón Vallejo 
+ . 2008 . “ Changes in Litter Properties During Decomposition: A Study by Differential Thermogravimetry and Scanning Calorimetry .” Soil Biology and Biochemistry 
+ 40 : 172 – 185 . 10.1016/j.soilbio.2007.07.021 . 
+ Rovira , P. 
+ , 
+ T. 
+ Sauras‐Yera 
+ , and 
+ R. M. 
+ Poch 
+ . 2024 . “ Constraints on Organic Matter Stability in Pyrenean Subalpine Grassland Soils: Physical Protection, Biochemical Quality, and the Role of Free Iron Forms .” Environments 
+ 11 : 126 . 10.3390/environments11060126 . 
+ Sanderman , J. 
+ , and 
+ A. S. 
+ Grandy 
+ . 2020 . “ Ramped Thermal Analysis for Isolating Biologically Meaningful Soil Organic Matter Fractions With Distinct Residence Times .” Soil 
+ 6 : 131 – 144 . 10.5194/soil-6-131-2020 . 
+ Sarkar , J. M. 
+ , 
+ A. 
+ Leonowicz 
+ , and 
+ J.‐M. 
+ Bollag 
+ . 1989 . “ Immobilization of Enzymes on Clays and Soils .” Soil Biology and Biochemistry 
+ 21 : 223 – 230 . 10.1016/0038-0717(89)90098-9 . 
+ Schipper , L. A. 
+ , 
+ J. K. 
+ Hobbs 
+ , 
+ S. 
+ Rutledge 
+ , and 
+ V. L. 
+ Arcus 
+ . 2014 . “ Thermodynamic Theory Explains the Temperature Optima of Soil Microbial Processes and High Q 
+ 10 Values at Low Temperatures .” Global Change Biology 
+ 20 : 3578 – 3586 . 10.1111/gcb.12596 . 24706438 
+ Silva , J. E. 
+ , 
+ G. Q. 
+ Calixto 
+ , 
+ C. C. 
+ de Almeida 
+ , et al. 2019 . “ Energy Potential and Thermogravimetric Study of Pyrolysis Kinetics of Biomass Wastes .” Journal of Thermal Analysis and Calorimetry 
+ 137 : 1635 – 1643 . 10.1007/s10973-019-08048-4 . 
+ Sokolov , D. A. 
+ , 
+ I. I. 
+ Dmitrevskaya 
+ , 
+ N. B. 
+ Pautova 
+ , 
+ T. N. 
+ Lebedeva 
+ , 
+ V. A. 
+ Chernikov 
+ , and 
+ V. M. 
+ Semenov 
+ . 2021 . “ A Study of Soil Organic Matter Stability Using Derivatography and Long‐Term Incubation Methods .” Eurasian Soil Science 
+ 54 : 487 – 498 . 10.1134/S1064229321040141 . 
+ Soldatova , E. 
+ , 
+ S. 
+ Krasilnikov 
+ , and 
+ Y. 
+ Kuzyakov 
+ . 2024 . “ Soil Organic Matter Turnover: Global Implications From δ13C and δ15N Signatures .” Science of the Total Environment 
+ 912 : 169423 . 10.1016/j.scitotenv.2023.169423 . 38128662 
+ Sollins , P. 
+ , 
+ P. 
+ Homann 
+ , and 
+ B. A. 
+ Caldwell 
+ . 1996 . “ Stabilization and Destabilization of Soil Organic Matter: Mechanisms and Controls .” Geoderma 
+ 74 : 65 – 105 . 10.1016/S0016-7061(96)00036-5 . 
+ Soria‐Verdugo , A. 
+ , 
+ E. 
+ Goos 
+ , 
+ A. 
+ Morato‐Godino 
+ , 
+ N. 
+ García‐Hernando 
+ , and 
+ U. 
+ Riedel 
+ . 2017 . “ Pyrolysis of Biofuels of the Future: Sewage Sludge and Microalgae – Thermogravimetric Analysis and Modelling of the Pyrolysis Under Different Temperature Conditions .” Energy Conversion and Management 
+ 138 : 261 – 272 . 10.1016/j.enconman.2017.01.059 . 
+ Stoner , S. 
+ , 
+ S. E. 
+ Trumbore 
+ , 
+ J. A. 
+ González‐Pérez 
+ , et al. 2023 . “ Relating Mineral–Organic Matter Stabilization Mechanisms to Carbon Quality and Age Distributions Using Ramped Thermal Analysis .” Philosophical Transactions of the Royal Society A 
+ 381 : 20230139 . 10.1098/rsta.2023.0139 . PMC10642790 37807690 
+ Thakur , L. S. 
+ , 
+ A. K. 
+ Varma 
+ , and 
+ P. 
+ Mondal 
+ . 2018 . “ Analysis of Thermal Behavior and Pyrolytic Characteristics of Vetiver Grass After Phytoremediation Through Thermogravimetric Analysis .” Journal of Thermal Analysis and Calorimetry 
+ 131 : 3053 – 3064 . 10.1007/s10973-017-6788-0 . 
+ von Lützow , M. 
+ , 
+ I. 
+ Kögel‐Knabner 
+ , 
+ K. 
+ Ekschmitt 
+ , et al. 2006 . “ Stabilization of Organic Matter in Temperate Soils: Mechanisms and Their Relevance Under Different Soil Conditions ‐ a Review: Mechanisms for Organic Matter Stabilization in Soils .” European Journal of Soil Science 
+ 57 : 426 – 445 . 10.1111/j.1365-2389.2006.00809.x . 
+ Vyazovkin , S. 
+ 2025 . “ Correlation Between Activation Energy and Reaction Temperature as Observed in Thermal Analysis Kinetics .” Thermochimica Acta 
+ 743 : 179911 . 10.1016/j.tca.2024.179911 . 
+ Wagai , R. 
+ , 
+ A. W. 
+ Kishimoto‐Mo 
+ , 
+ S. 
+ Yonemura 
+ , 
+ Y. 
+ Shirato 
+ , 
+ S. 
+ Hiradate 
+ , and 
+ Y. 
+ Yagasaki 
+ . 2013 . “ Linking Temperature Sensitivity of Soil Organic Matter Decomposition to Its Molecular Structure, Accessibility, and Microbial Physiology .” Global Change Biology 
+ 19 : 1114 – 1125 . 10.1111/gcb.12112 . 23504889 
+ Waldrop , M. P. 
+ , and 
+ M. K. 
+ Firestone 
+ . 2004 . “ Altered Utilization Patterns of Young and Old Soil C by Microorganisms Caused by Temperature Shifts and N Additions .” Biogeochemistry 
+ 67 : 235 – 248 . 10.1023/B:BIOG.0000015321.51462.41 . 
+ Wang , C. 
+ , and 
+ Y. 
+ Kuzyakov 
+ . 2023 . “ Energy Use Efficiency of Soil Microorganisms: Driven by Carbon Recycling and Reduction .” Global Change Biology 
+ 29 : gcb.16925 . 10.1111/gcb.16925 . 37646316 
+ Wei , L. 
+ , 
+ T. 
+ Ge 
+ , 
+ Z. 
+ Zhu 
+ , et al. 2021 . “ Comparing Carbon and Nitrogen Stocks in Paddy and Upland Soils: Accumulation, Stabilization Mechanisms, and Environmental Drivers .” Geoderma 
+ 398 : 115121 . 10.1016/j.geoderma.2021.115121 . 
+ Williams , E. K. 
+ , and 
+ A. F. 
+ Plante 
+ . 2018 . “ A Bioenergetic Framework for Assessing Soil Organic Matter Persistence .” Frontiers in Earth Science 
+ 6 : 143 . 10.3389/feart.2018.00143 . 
+ Williams , E. K. 
+ , 
+ B. E. 
+ Rosenheim 
+ , 
+ A. P. 
+ McNichol 
+ , and 
+ C. A. 
+ Masiello 
+ . 2014 . “ Charring and Non‐Additive Chemical Reactions During Ramped Pyrolysis: Applications to the Characterization of Sedimentary and Soil Organic Material .” Organic Geochemistry 
+ 77 : 106 – 114 . 10.1016/j.orggeochem.2014.10.006 . 
+ Wu , Y. 
+ , 
+ Y. 
+ Jiang 
+ , 
+ J. 
+ Jiao 
+ , et al. 2014 . “ Adsorption of Trametes Versicolor Laccase to Soil Iron and Aluminum Minerals: Enzyme Activity, Kinetics and Stability Studies .” Colloids and Surfaces B: Biointerfaces 
+ 114 : 342 – 348 . 10.1016/j.colsurfb.2013.10.016 . 24225344 
+ Yan , R. 
+ , 
+ J. 
+ Peng 
+ , 
+ Y. 
+ Shen 
+ , 
+ Y. 
+ Zhang 
+ , 
+ L. 
+ Gu 
+ , and 
+ S. 
+ Wang 
+ . 2020 . “ Evaluation on Activation Energy of Deposited Clay Based on Thermo‐Gravimetric Analysis (TGA) and Four Kinetics Models .” Bulletin of Engineering Geology and the Environment 
+ 79 : 371 – 382 . 10.1007/s10064-019-01546-7 . 
+ Yang , S. 
+ , 
+ E. 
+ Di Lodovico 
+ , 
+ A. 
+ Rupp 
+ , et al. 2024 . “ Enhancing Insights: Exploring the Information Content of Calorespirometric Ratio in Dynamic Soil Microbial Growth Processes Through Calorimetry .” Frontiers in Microbiology 
+ 15 : 1321059 . 10.3389/fmicb.2024.1321059 . 38371938 
+ PMC10869564 
+ Yu , D. 
+ , 
+ S. 
+ Hu 
+ , 
+ L. 
+ Wang 
+ , 
+ Q. 
+ Chen 
+ , and 
+ N. 
+ Dong 
+ . 2020 . “ Comparative Study on Pyrolysis Characteristics and Kinetics of Oleaginous Yeast and Algae .” International Journal of Hydrogen Energy 
+ 45 : 10979 – 10990 . 10.1016/j.ijhydene.2020.02.052 . 
+ Yu , G.‐H. 
+ , and 
+ Y. 
+ Kuzyakov 
+ . 2021 . “ Fenton Chemistry and Reactive Oxygen Species in Soil: Abiotic Mechanisms of Biotic Processes, Controls and Consequences for Carbon and Nutrient Cycling .” Earth‐Science Reviews 
+ 214 : 103525 . 10.1016/j.earscirev.2021.103525 . 
+ Zavarzina , A. G. 
+ , 
+ N. A. 
+ Kulikova 
+ , 
+ L. I. 
+ Trubitsina 
+ , et al. 2025 . “ Disentangling Two and Three Domain Laccases in Soils: Contribution of Fungi, Bacteria and Abiotic Processes to Oxidative Activities .” Soil Biology and Biochemistry 
+ 208 : 109861 . 10.1016/j.soilbio.2025.109861 . 
+ Zhang , X. 
+ , 
+ N. 
+ Bilyera 
+ , 
+ L. 
+ Fan 
+ , et al. 2023 . “ The Spatial Distribution of Rhizosphere Microbial Activities Under Drought: Water Availability Is More Important Than Root‐Hair‐Controlled Exudation .” New Phytologist 
+ 237 : 780 – 792 . 10.1111/nph.18409 . 35986650 
+ Zhou , L. 
+ , 
+ S. 
+ Liu 
+ , 
+ Y. 
+ Gu 
+ , 
+ L. 
+ Wu 
+ , 
+ H. 
+ Hu 
+ , and 
+ J. 
+ He 
+ . 2023 . “ Fire Decreases Soil Respiration and Its Components in Terrestrial Ecosystems .” Functional Ecology 
+ 37 : 3124 – 3135 . 10.1111/1365-2435.14443 . 
+ Zimmerman , A. R. 
+ , and 
+ M.‐Y. 
+ Ahn 
+ . 2010 . “ Organo‐Mineral–Enzyme Interaction and Soil Enzyme Activity .” In Soil Enzymology, Soil Biology , edited by 
+ G. 
+ Shukla 
+ and 
+ A. 
+ Varma 
+ , 271 – 292 . Springer . 10.1007/978-3-642-14225-3_15 . 

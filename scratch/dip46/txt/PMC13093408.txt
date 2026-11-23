@@ -1,0 +1,642 @@
+
+ pmc Bioeng Transl Med Bioeng Transl Med 3332 btm 101689146 BTM2 Bioengineering & Translational Medicine 2380-6761 Wiley PMC13093408 PMC13093408.1 13093408 13093408 42016864 10.1002/btm2.70096 BTM270096 1 Research Article Research Article Stability of bacteriophages in spray‐dried polymeric formulations: Effect of excipient polyvinylpyrrolidone glass transition temperature and molecular weight Li et al. Li Mengyu 
+ 1 
+ Cao Yue 
+ 1 
+ Chan Hak‐Kim https://orcid.org/0000-0002-7054-3137 
+ 1 
+ kim.chan@sydney.edu.au 
+ 1 
+ Advanced Drug Delivery Group, Sydney Pharmacy School, Faculty of Medicine and Health 
+ The University of Sydney 
+ Sydney 
+ New South Wales 
+ Australia 
+ * 
+ Correspondence 
+Hak‐Kim Chan, Advanced Drug Delivery Group, Sydney Pharmacy School, Faculty of Medicine and Health, The University of Sydney, Sydney, NSW 2006, Australia. 
+Email: kim.chan@sydney.edu.au 
+ 12 2 2026 3 2026 11 2 512010 10.1002/btm2.v11.2 e70096 
+ 25 10 2025 
+ 23 6 2025 
+ 31 10 2025 
+ 12 02 2026 21 04 2026 22 04 2026 © 2026 The Author(s). Bioengineering & Translational Medicine published by Wiley Periodicals LLC on behalf of American Institute of Chemical Engineers. https://creativecommons.org/licenses/by/4.0/ This is an open access article under the terms of the http://creativecommons.org/licenses/by/4.0/ License, which permits use, distribution and reproduction in any medium, provided the original work is properly cited. 
+## Abstract 
+ 10 ) at 4 and 22°C under 15% RH. Differential scanning calorimetry (DSC) demonstrated Tg increased with PVP molecular weight but decreased substantially with humidity (30–50°C reduction per 20% RH increase). At 33% RH, long‐term stability was achieved with high‐molecular‐weight PVPs (K40, K100), which maintained thermal offsets between Tg and Ts (ΔT ≥ 100°C), while lower‐weight (K15, K25) showed 2–3 log 10 titre loss. Water activity ( aw ) analysis revealed a critical threshold at aw 0.43, above which degradation kinetics increased by approximately a tenfold rate. Arrhenius analysis confirmed that phage degradation rates increased with temperature, consistent with thermally activated destabilization mechanisms. Under higher stress conditions (40°C/≥43% RH), water absorption plasticized the PVP matrix and depressed the Tg while elevated temperature simultaneously accelerated degradation kinetics, resulting in substantial titre losses even when ΔT exceeded 100°C. In conclusion, at mild humidity ( aw  ≤ 0.33) and ambient temperature (≤22°C), high‐molecular‐weight PVP‐based formulations can offer enhanced storage flexibility and reduced cold‐chain dependency for optimal therapeutic viability. 
+ bacteriophage (phage) therapy glass transition temperature (Tg) polymer‐based formulation polyvinylpyrrolidone (PVP) powder stability pmc-status-qastatus 0 pmc-status-live yes pmc-status-embargo no pmc-status-released yes pmc-prop-open-access yes pmc-prop-olf no pmc-prop-manuscript no pmc-prop-legally-suppressed no pmc-prop-has-pdf yes pmc-prop-has-supplement no pmc-prop-pdf-only no pmc-prop-suppress-copyright no pmc-prop-is-real-version no pmc-prop-is-scanned-article no pmc-prop-preprint no pmc-prop-in-epmc yes pmc-license-ref CC BY source-schema-version-number 2.0 cover-date March 2026 details-of-publishers-convertor Converter:WILEY_ML3GV2_TO_JATSPMC version:6.7.3 mode:remove_FC converted:20.04.2026 
+## Translational Impact Statement 
+ 1 
+## INTRODUCTION 
+ 1 
+ , 
+ 2 
+ Spray‐drying has emerged as a viable approach for producing phage powders, with demonstrated feasibility both in vitro and in vivo. 
+ 3 
+ , 
+ 4 
+ The critical challenge in phage powder development lies in preserving biological activity during processing and storage. The spray‐drying process exposes phages to thermal, osmotic, and shear stresses that can cause structural damage and viability loss. 
+ 5 
+ Protective excipients are essential to maintain phage infectivity in the dry state. While disaccharides such as lactose have shown promise in phage formulations, 
+ 6 
+ alternative polymeric stabilizers like polyvinylpyrrolidone (PVP) offer unique advantages including superior processing characteristics and matrix‐forming properties. 
+ 7 
+ , 
+ 8 
+ 9 
+ , 
+ 10 
+ In the water replacement hypothesis, excipient molecules form hydrogen bonds with proteins to replace water interactions lost during dehydration, maintaining the protein structure. 
+ 11 
+ This mechanism requires the excipient to remain in an amorphous state, as crystallization reduces molecular interactions between excipient and protein, leading to structural damage. 
+ 12 
+ , 
+ 13 
+ The vitrification hypothesis proposes that biologics are immobilized within a rigid, glassy matrix formed by the excipient. The protective capacity of this glassy state is characterized by the glass transition temperature (Tg), above which the matrix transitions from rigid glass to mobile rubber, potentially compromising stability. 
+ 9 
+ Studies on protein formulations have established that maintaining storage temperature at least 50°C below glass transition temperature (Tg) ensures adequate protection through reduced molecular mobility. 
+ 14 
+ , 
+ 15 
+ 16 
+ This humidity dependence has been demonstrated in protein formulations, where moisture‐induced Tg depression correlates with increased degradation rates. 
+ 17 
+ Despite the success of using glass state in protein stabilization, its systematic application to phage formulations remains largely unexplored. Protein stability in amorphous solids depends on the specific structural and physicochemical features of each protein, which can influence their susceptibility to desiccation‐induced damage. 
+ 18 
+ The larger size and structural complexity of phages may necessitate higher thermal offsets or different excipient properties for adequate protection. 
+ 10 titre reduction, highlighting the importance of maintaining amorphous matrices. 
+ 19 
+ More recently, our previous work on phage powder stabilization established the fundamental relationship between glass transition temperature and phage bioactivity of lactose‐leucine formulations. 
+ 20 
+ This study demonstrated that maintaining storage temperature below Tg was critical for phage stability, with optimal protection achieved when thermal offsets ΔT exceeded 50°C. However, the investigation focused on sugar‐based excipient systems only. 
+ 21 
+ The hydrogen‐bonding capacity of PVP may contribute to both water replacement and vitrification mechanisms, 
+ 22 
+ though the relative importance of these effects in phage stabilization remains unclear. 
+ 2 
+## MATERIALS AND METHODS 2.1 
+## Materials 
+ Pseudomonas aeruginosa , was sourced from AmpliPhi Biosciences AU (Australia) with an initial concentration of approximately 10 10 PFU/mL. 2.2 
+## Phage powders 
+ 1 
+ , 
+ 4 
+ , 
+ 5 
+ Briefly, the liquid feed consisted of 0.5 mL of a phage suspension (approximately 10 10 PFU/mL) combined with 50 mL of the excipient solution containing either 100% w/w PVP K15, PVP K25, PVP K40, or PVP K100 (pH adjusted to 7.4), yielding a total solid concentration of 25 mg/mL. The term “100% w/w PVP” indicates that PVP was the sole excipient in the formulation, with no additional stabilizing agents. The 25 mg/mL solid content was achieved by dissolving the appropriate weight of PVP in phosphate‐buffered saline (PBS), calculated based on the total mass of solids per volume of solution. The phage titre of the suspension was determined prior to spray drying using a standard plaque assay. The mixture was then spray‐dried using a Büchi Mini Spray Dryer B‐290 (Buchi Labortechnik AG, Flawil, Switzerland) equipped with a standard two‐fluid atomizing nozzle. The spray‐drying parameters were: a liquid feed rate of 1.9 mL/min, an atomizing airflow of 742 L/h, an aspiration rate of 35 m 3 /h, an inlet temperature of 60°C, and outlet temperature maintained between 40 and 41°C. The resulting powders were collected and aliquoted into scintillation vials for storage. To determine the phage titre in the powders, samples were reconstituted in phosphate‐buffered saline (PBS), and phage titres were quantified by plaque assay. 2.3 
+## Phage stability 
+ Pseudomonas aeruginosa strain PAV237 (~2 × 10 8  CFU/mL) was combined with 5 mL of molten nutrient broth top agar (0.4% w/v) and poured onto nutrient agar plates (1.5% w/v). After solidification, aliquots (10 μL) of serially diluted phage suspensions were spotted onto the surface of the agar overlay, allowed to air‐dry for approximately 15 min, and incubated at 37°C for 18 h. Each assay was performed independently in triplicate. Phages were classified as stable if the observed titre loss was below 1 log10 10 . Statistical significance of the observed differences was evaluated by two‐way ANOVA, with results considered statistically significant at p  < 0.05. 2.4 
+## Storage conditions 
+ 23 
+ reflecting the study's specific aim to explore the mechanistic basis of phage stability by inducing differential changes in Tg across formulations. Specific humidity environments were established using various saturated salt solutions: silica beads provided 15% RH, saturated magnesium chloride solution 33% RH, potassium carbonate 43% RH, and magnesium nitrate 53% RH. These saturated salt solutions were prepared by dissolving excess magnesium chloride, potassium carbonate, or magnesium nitrate in distilled water at 40°C under continuous stirring until saturation. Solutions were subsequently cooled to ambient temperature and sealed in airtight containers for 24 h to equilibrate. Saturated solutions were then placed into vacuum‐sealed containers equipped with humidity sensors for 7 days to confirm stable humidity levels. Once the target RH was consistently achieved, phage powders were prepared and placed into the humidity‐controlled boxes containing the respective saturated solutions. 2.5 
+## X‐ray diffraction analysis 
+ 2.6 
+## Scanning electron microscopy 
+ 2.7 
+## Differential scanning calorimeter 
+ 2.8 
+## Phage degradation kinetics 
+ −1 ) was calculated using the equation: 
+ ln N N 0 = − kt , 
+ where N is the phage titre at time t , N ₀ is the initial titre, and k is the degradation rate constant (day −1 ). 
+ k values were calculated at each of the storage conditions (4, 22, and 40°C at 15% and 33% RH) over a 30‐day period and fitted to the Arrhenius equation: 
+ ln k = ln A − E a RT , 
+ where A is the pre‐exponential factor, Eₐ is the activation energy (J/mol), R is the universal gas constant (8.314 J/mol·K), and T is absolute temperature (K). 
+ k as a function of water activity ( aw ), estimated from the equilibrium relative humidity (RH) using the relationship aw  ≈ RH/100 (i.e., RH values of 15%, 33%, 43%, and 53% correspond to aw  ≈ 0.15, 0.33, 0.43, and 0.53, respectively). 3 
+## RESULTS 3.1 
+## Physicochemical characterization of spray‐dried formulations 
+ 1 ). FIGURE 1 
+ 2 ). PVP K15 formulations exhibited dimpled and irregular particle surfaces at 4 and 22°C with 15–33% RH, and extensive particle fusion at 40°C/53% RH. PVP K25 formulations showed generally smooth and spherical morphologies at lower temperatures and RH, but also displayed signs of fusion at 40°C/53% RH. PVP K40 and K100 formulations maintained well‐defined, discrete spherical particles across all tested conditions. In particular, PVP K100 particles stored at 40°C/53% RH appeared notably smooth and uniform, with fewer visible surface irregularities or fusion compared to lower molecular weight formulations under the same conditions. FIGURE 2 
+ 1 ). Exposure to elevated humidity systematically depressed the Tg values. An increase in RH from 15% to 33% lowered the Tg by approximately 40°C, with a further increase to 43% RH causing an additional 25–30°C reduction. TABLE 1 
+ Excipient Storage RH (%) Tg at 4°C (°C) Tg at 22°C (°C) Tg at 40°C (°C) | rowspan="4" align="left" valign="top" colspan="1">PVP K15 | align="left" valign="top" rowspan="1" colspan="1">15 | align="left" valign="top" rowspan="1" colspan="1">128 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">131 ± 0.6 | align="left" valign="top" rowspan="1" colspan="1">147 ± 0.8 | align="left" valign="top" rowspan="1" colspan="1">33 | align="left" valign="top" rowspan="1" colspan="1">88 ± 0.5 | align="left" valign="top" rowspan="1" colspan="1">98 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">109 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">43 | align="left" valign="top" rowspan="1" colspan="1">58 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">53 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | rowspan="4" align="left" valign="top" colspan="1">PVP K25 | align="left" valign="top" rowspan="1" colspan="1">15 | align="left" valign="top" rowspan="1" colspan="1">142 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">164 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">173 ± 0.7 | align="left" valign="top" rowspan="1" colspan="1">33 | align="left" valign="top" rowspan="1" colspan="1">102 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">112 ± 0.3 | align="left" valign="top" rowspan="1" colspan="1">123 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">43 | align="left" valign="top" rowspan="1" colspan="1">70 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">82 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">53 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | rowspan="4" align="left" valign="top" colspan="1">PVP K40 | align="left" valign="top" rowspan="1" colspan="1">15 | align="left" valign="top" rowspan="1" colspan="1">167 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">176 ± 2.7 | align="left" valign="top" rowspan="1" colspan="1">187 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">33 | align="left" valign="top" rowspan="1" colspan="1">127 ± 0.7 | align="left" valign="top" rowspan="1" colspan="1">136 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">155 ± 0.8 | align="left" valign="top" rowspan="1" colspan="1">43 | align="left" valign="top" rowspan="1" colspan="1">97 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">103 ± 0.5 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">53 | align="left" valign="top" rowspan="1" colspan="1">47 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | rowspan="4" align="left" valign="top" colspan="1">PVP K100 | align="left" valign="top" rowspan="1" colspan="1">15 | align="left" valign="top" rowspan="1" colspan="1">175 ± 0.9 | align="left" valign="top" rowspan="1" colspan="1">182 ± 0.8 | align="left" valign="top" rowspan="1" colspan="1">192 ± 0.8 | align="left" valign="top" rowspan="1" colspan="1">33 | align="left" valign="top" rowspan="1" colspan="1">135 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">145 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">160 ± 1.1 | align="left" valign="top" rowspan="1" colspan="1">43 | align="left" valign="top" rowspan="1" colspan="1">106 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">111 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">53 | align="left" valign="top" rowspan="1" colspan="1">54 ± 0.3 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A 
+ 3.2 
+## Phage viability following processing and storage 3.2.1 
+## Initial processing and short‐term stability (7 days) 
+ 10 . The specific losses were 0.20 (K15), 0.45 (K25), 0.38 (K40), and 0.58 (K100) (Figure  3 ). FIGURE 3 
+ n  = 3). 
+ 4 ). At 15% RH, titre losses remained below 1 log 10 for all formulations at 4 and 22°C. However, at 40°C, the PVP K100 formulation exhibited a 0.95 log 10 loss, compared to losses of 2.1–2.23 log 10 for the lower molecular weight grades. At elevated humidity (53% RH and 4°C), a clear trend emerged where titre loss was inversely proportional to PVP molecular weight, ranging from 1.76 log 10 for PVP K100 to 9.45 log 10 for PVP K15. At the most strenuous conditions (40°C and ≥43% RH), all formulations experienced titre losses greater than 9 log 10 . FIGURE 4 
+ n  = 3). Statistical significance was assessed using two‐way ANOVA. * p  < 0.05; ** p  < 0.01; *** p  < 0.001; n.s., not significant. 3.2.2 
+## Long‐term stability (180 days) 
+ 5 ). All formulations maintained high phage titres (~10 8  PFU/mg) for 180 days when stored at 4°C under both 15% and 33% relative humidity. At 22°C and 33% RH, the PVP K100 formulation also preserved high titres (~10 8  PFU/mg) over 180 days, while the PVP K40 formulation maintained titres ranging from ~10 8 to 10 9  PFU/mg under the same conditions. In contrast, the viability of lower molecular weight formulations declined under more challenging conditions. For instance, the PVP K25 formulation titre fell to <1 PFU/mg by 180 days at 4°C/43% RH, while the PVP K15 formulation titre fell to <1 PFU/mg under the same conditions by Day 90. FIGURE 5 
+ n  = 3). 3.3 
+## Correlation of stability with physicochemical parameters 
+ 6 and detailed in Table  2 , a clear inverse relationship was observed between the calculated ΔT value and the measured loss in phage titre after a 7‐day equilibration period. FIGURE 6 
+ 10 titre loss of PEV1, with 15% RH (red), 33% RH (green), 43% RH (black), and 53% RH (blue). TABLE 2 
+ Excipient Storage RH (%) Tg − Ts at 4°C (°C) Tg − Ts at 22°C (°C) Tg − Ts at 40°C (°C) | rowspan="4" align="left" valign="top" colspan="1">PVP K15 | align="left" valign="top" rowspan="1" colspan="1">15 | align="left" valign="top" rowspan="1" colspan="1">124 | align="left" valign="top" rowspan="1" colspan="1">109 | align="left" valign="top" rowspan="1" colspan="1">107 | align="left" valign="top" rowspan="1" colspan="1">33 | align="left" valign="top" rowspan="1" colspan="1">84 | align="left" valign="top" rowspan="1" colspan="1">76 | align="left" valign="top" rowspan="1" colspan="1">69 | align="left" valign="top" rowspan="1" colspan="1">43 | align="left" valign="top" rowspan="1" colspan="1">54 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">53 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | rowspan="4" align="left" valign="top" colspan="1">PVP K25 | align="left" valign="top" rowspan="1" colspan="1">15 | align="left" valign="top" rowspan="1" colspan="1">138 | align="left" valign="top" rowspan="1" colspan="1">142 | align="left" valign="top" rowspan="1" colspan="1">133 | align="left" valign="top" rowspan="1" colspan="1">33 | align="left" valign="top" rowspan="1" colspan="1">98 | align="left" valign="top" rowspan="1" colspan="1">90 | align="left" valign="top" rowspan="1" colspan="1">83 | align="left" valign="top" rowspan="1" colspan="1">43 | align="left" valign="top" rowspan="1" colspan="1">66 | align="left" valign="top" rowspan="1" colspan="1">60 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">53 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | rowspan="4" align="left" valign="top" colspan="1">PVP K40 | align="left" valign="top" rowspan="1" colspan="1">15 | align="left" valign="top" rowspan="1" colspan="1">163 | align="left" valign="top" rowspan="1" colspan="1">154 | align="left" valign="top" rowspan="1" colspan="1">147 | align="left" valign="top" rowspan="1" colspan="1">33 | align="left" valign="top" rowspan="1" colspan="1">123 | align="left" valign="top" rowspan="1" colspan="1">114 | align="left" valign="top" rowspan="1" colspan="1">115 | align="left" valign="top" rowspan="1" colspan="1">43 | align="left" valign="top" rowspan="1" colspan="1">93 | align="left" valign="top" rowspan="1" colspan="1">81 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">53 | align="left" valign="top" rowspan="1" colspan="1">43 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A | rowspan="4" align="left" valign="top" colspan="1">PVP K100 | align="left" valign="top" rowspan="1" colspan="1">15 | align="left" valign="top" rowspan="1" colspan="1">171 | align="left" valign="top" rowspan="1" colspan="1">160 | align="left" valign="top" rowspan="1" colspan="1">152 | align="left" valign="top" rowspan="1" colspan="1">33 | align="left" valign="top" rowspan="1" colspan="1">131 | align="left" valign="top" rowspan="1" colspan="1">123 | align="left" valign="top" rowspan="1" colspan="1">120 | align="left" valign="top" rowspan="1" colspan="1">43 | align="left" valign="top" rowspan="1" colspan="1">102 | align="left" valign="top" rowspan="1" colspan="1">89 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">53 | align="left" valign="top" rowspan="1" colspan="1">50 | align="left" valign="top" rowspan="1" colspan="1">N/A | align="left" valign="top" rowspan="1" colspan="1">N/A 
+ 10 across all formulations. In contrast, at 33% RH, the ΔT values were lower, ranging from 69 to 131°C. Under these conditions, measured titre losses increased significantly to a range of 0.50–3.79 log 10 . It was also noted that at comparable ΔT values, the K100 formulation provided superior protection (0.50 log 10 loss at ΔT = 131°C) compared to lower molecular weight grades (3.18–3.79 log 10 loss). 
+ k ) were determined at 15% and 33% RH. The degradation was found to follow first‐order kinetics, as indicated by the linear relationship in Arrhenius plots of ln( k ) versus inverse temperature ( R 
+ 2  = 0.60–0.99), shown in Figure  7 . The effect of aw on the degradation rate of spray‐dried PEV1 powders was evaluated at 4 and 22°C (Figure  8 ). At both temperatures, the degradation rate constant ( k ) increased as aw rose from 0.15 to 0.43. Between aw 0.15 and 0.33, ln( k ) values showed minimal variation for all formulations. A pronounced increase in ln( k ) was observed when aw reached 0.43, particularly at 22°C, where ln( k ) values approached −1.1 for PVP K15–K40 and −1.9 for PVP K100. FIGURE 7 
+ FIGURE 8 
+ 4 
+## DISCUSSION 
+ 20 
+ we sought to evaluate whether polymer‐based systems could offer enhanced storage stability, particularly under elevated humidity conditions that typically compromise saccharide formulations. Our systematic evaluation focused on glass transition temperature, humidity‐dependent degradation kinetics, and the effects of polymer molecular weight (K15, K25, K40, K100) across storage temperatures ranging from 4 to 40°C and RH values of 15%–53% over a 180‐day period. Our analysis revealed that all PVP formulations achieved equivalent stability at 4 and 22°C under low humidity (15% RH). However, under elevated humidity (33% RH), only PVP K100 consistently achieved the higher thermal offsets required for phage preservation, whereas K40 did not perform better than lower‐MW variants. 
+ 24 
+ PVP having both hydrophilic and hydrophobic components may counteract this by adsorbing at the interface, reducing surface tension, and preventing phage adsorption, thus protecting them within the droplet core. 
+ 25 
+ Additionally, PVP in the dry state could stabilize phages through vitrification, forming a glassy matrix that limits molecular mobility and prevents capsid unfolding. 
+ 26 
+ Its ability to form hydrogen bonds with phage proteins could potentially compensate for water loss during drying, preserving structural integrity. 
+ 27 
+ In our study, all PVP variants effectively preserved PEV1 phage viability immediately post spray‐drying, with the titre losses all below 1 log 10 , ranging from 0.20 (K15) to 0.58 (K100) (Figure  3 ). The differences in titre losses between formulations, spanning less than 0.5 log 10 , are within the typical variability of plaque assays, indicating that these minor variations are not statistically significant and do not reflect a meaningful trend among the PVP variants. These low losses demonstrate PVP's suitability as a stabilizer during the spray‐drying process. 
+ 28 
+ Molecular relaxation processes become increasingly constrained as temperature decreases below Tg, which improves the likelihood for biological macromolecules to maintain their structural integrity. 
+ 29 
+ These findings align with established principles for the stabilization of protein formulation, where maintaining storage temperature at least 50°C below Tg ensures adequate protection through reduced molecular mobility. 
+ 30 
+ Short‐term (7‐day) studies showed that PVP formulations with a ΔT well over 100°C effectively preserved phage bioactivity, with minimal titre losses (<1 log 10 ) at low temperature and humidity (4°C/15% RH) (Figure  4 ). However, ΔT alone was not a complete predictor of stability. At elevated temperatures (40°C), only the K100 formulation maintained low titre loss, while other PVP variants with a ΔT > 50°C showed significant degradation ( p  < 0.05), suggesting other microenvironmental factors are influential. Long‐term stability (180 days), which is vital for commercial viability, mirrored short‐term results at lower temperatures. Formulations with a substantial ΔT stored at 4 and 22°C retained high phage titres (Figure  5 ). Conversely, long‐term stability at elevated temperatures was poor, even with a high ΔT. For instance, the K100 formulation at 40°C/15% RH (ΔT = 112°C) lost nearly all titre by 180 days. Studies on phage thermal stability indicate that some phages lose infectivity at temperatures above 40°C, even in stabilized forms, due to structural damage. 
+ 31 
+ Analysis of Arrhenius degradation kinetics across the 4–40°C temperature range demonstrated linear relationships for all PVP formulations over the initial 30 days, with goodness‐of‐fit coefficients ( R 
+ 2  = 0.60–0.99) confirming the applicability of apparent first‐order kinetics (Figure  7 ). 
+ 2 ). The distinct particle morphology observed for PVP K100, particularly the smooth and spherical shapes retained under high humidity and temperature conditions, reflects the influence of polymer molecular weight on droplet shell formation during spray drying. The final morphology of a spray‐dried particle is governed by the mechanical strength of the crust that forms on the droplet surface as solvent evaporates. The ability of this crust to withstand internal pressure gradients during drying determines whether the particle retains its spherical shape or collapses into a wrinkled form. 
+ 32 
+ In formulations containing low‐molecular‐weight PVPs, the shorter polymer chains form a brittle crust that is prone to buckling, resulting in the irregular and deformed particle surfaces observed for K15 and K25. In contrast, the long‐chain, high‐molecular‐weight PVP (K100) forms a more viscoelastic and mechanically resilient crust that resists collapse during drying, enabling the preservation of a smooth and spherical particle morphology. 
+ 1 ). At 33% RH, Tg decreased by approximately 40°C in all PVP samples, while further humidity increased to 43% RH produced an additional 25–30°C depression (Table  1 ). Each 20% increase in relative humidity resulted in a 30–50°C reduction in Tg across this PVP molecular weight series, demonstrating the pronounced plasticization effect of moisture on polymer matrices. High humidity posed challenges for long‐term phage stability, even with a ΔT > 100°C. At 4°C and 53% RH, PVP K100 exhibited a titre reduction to 110 PFU/mg (~7 log 10 loss) by 180 days, with a ΔT of ~80°C (Table  2 and Figure  5 ). Similarly, at 22°C and 43% RH (estimated ΔT ≈ 70°C), titres dropped to 1400 PFU/mg (~6 log 10 loss). The aw dependence of degradation kinetics provides mechanistic insight into humidity‐mediated destabilization of phage formulations. 
+ 33 
+ Kinetic analysis (Figure  8 ) revealed that increasing aw from 0.15 to 0.33 produced only modest changes in the degradation constant (ln k  ≤ −2.7 for all PVP formulations), indicating that the glassy matrix maintains reasonable protective capacity under low to mild humidity conditions. However, a critical threshold emerges at aw 0.43, where the degradation kinetics increased by a tenfold increase in the degradation rate constant, as reflected by the ln k values of approximately −1.1 for K15 to K40 and −1.9 for K100 (Figure  8 ). At aw 0.53, the degradation rate remained elevated, yielding ln k values of −1.1 for K25–K40 and −1.6 for K100 (Figure  8 ). The increased aw likely plasticizes the polymeric matrix, enhancing molecular mobility of PVP and facilitating degradation of phage, as commonly observed in studies where water acts as a plasticizer in amorphous solids of small molecule drugs and biologics. 
+ 16 
+ , 
+ 34 
+ 1 ), due to enhanced polymer chain entanglement and reduced molecular mobility. 
+ 28 
+ , 
+ 35 
+ The elevated Tg associated with higher molecular weight PVPs translated directly into improved phage stability. At 53% RH and 4°C, titre losses increased significantly with decreasing molecular weight after 7 days of storage: 1.76 log 10 (K100), 2.50 log 10 (K40), 6.55 log 10 (K25), and 9.45 log 10 (K15) ( p  < 0.01) (Figure  4 ). At 40°C and 15% RH, PVP K100, with a ΔT of 112°C, showed a loss of 0.95 log 10 , compared with >2 log 10 in K15, K25, and K40, indicating that higher molecular weight PVPs enhance stability even at elevated temperatures (Table  2 and Figure  4 ). PVP K100 maintained titres of approximately 10 9  PFU/mg at 4 and 22°C under 15% and 33% RH after 180 days (Figure  5 ). At the more humid conditions of 53% RH at 4°C, a detectable titre (110 PFU/mg) after 180 days was still retained in the K100 sample, but not in the lower molecular weight PVP (K15, K25, K40). We proposed that in the higher molecular weight K100, extended polymer chains provide more extensive hydrogen bonding opportunities with phage surface proteins, creating stabilizing networks of intermolecular interactions that facilitate maintenance of protein tertiary structure. 
+ 27 
+ Higher molecular weight PVP matrices exhibit increased entanglement density, which generates more tortuous diffusion pathways. 
+ 36 
+ This structural complexity acts as a barrier to the ingress of mobile species such as water molecules, thereby offering enhanced protection against moisture‐induced degradation and preserving phage integrity. 
+ 36 
+ Our study demonstrates that the stability of spray‐dried phages is fundamentally linked to the physical properties of the polymer matrix. We found that high‐molecular weight (MW) PVP, which promotes a high glass transition temperature (Tg) and extensive polymer chain entanglement, creates a robust vitrified matrix. This structure immobilizes the virions and impedes moisture ingress, thereby kinetically limiting degradation pathways and enhancing long‐term phage viability. Beyond Tg alone, these stabilizing effects arise from the interplay of matrix rigidity, tortuosity, and intermolecular interactions. For instance, increased chain entanglement in high‐MW PVPs leads to more mechanically resilient glassy structures that are less prone to plasticization, while simultaneously restricting the diffusion of water and degradative species. These multiple mechanisms act synergistically to reduce the vulnerability of entrapped phages under storage stress. Based on this established mechanism, we anticipate that other polymers may offer similar protective benefits. Polymers capable of forming amorphous, high‐Tg matrices with long‐chain entanglement—such as high‐MW polyvinyl alcohol (PVA) or polyethylene oxide (PEO)—may replicate these stabilization effects. Exploring such alternatives could expand the design space for phage dry powder formulations, particularly when balancing stability requirements with regulatory, processing, or delivery considerations. 
+ 20 
+ showed ~3 log 10 titre loss under 33% RH, due to moisture‐induced Tg depression (~30°C), which lowered ΔT to below 50°C. This was attributed to increased matrix mobility due to moisture‐induced plasticization. PVP formulations with ΔT values well above 100°C exhibited minimal titre loss, and this superior stability—relative to the lactose system—reflects fundamental differences between polymer‐based and saccharide‐based glasses. PVP forms physically entangled polymer networks that inherently restrict chain mobility and confer high intrinsic Tg. 
+ 16 
+ , 
+ 37 
+ These structural features allow PVP matrices to maintain a rigid glassy state and low molecular mobility, even under moderate humidity, thereby preserving the stability of embedded biologics. In contrast, saccharide‐based glasses—such as those formed by trehalose or lactose—are composed of small, highly soluble molecules that tend to form more homogeneous, amorphous solids without chain entanglement. Although these matrices can also vitrify under dry conditions, they are more susceptible to moisture uptake due to their hygroscopic nature. The absorbed water acts as a plasticizer, significantly lowering Tg and increasing molecular mobility. As a result, saccharide systems often require a safety margin in ΔT. 
+ 38 
+ In our current study, all PVP‐based formulations maintained high phage titres at 4°C and 33% RH, consistent with large ΔT values. However, only the high‐MW formulations remained effective at 22°C and 33% RH, suggesting a key role of polymer molecular weight in maintaining stability under moderate humidity. We propose that tightly bound water in high‐MW PVP may contribute to virion stabilization without plasticizing the matrix. The dense, entangled structure of high‐MW polymers not only resists moisture‐induced Tg suppression but may also retain small amounts of structurally bound water, which can help preserve capsid hydration without compromising glassy integrity. This dual function is consistent with previous reports highlighting the protective role of residual water in protein formulations. 
+ 39 
+ In contrast, low‐MW PVPs, which exhibit greater free volume and chain mobility, are more susceptible to water‐induced plasticization. In such systems, absorbed water behaves more as a plasticizer than a stabilizer, leading to reduced protective capacity. These findings reinforce the importance of ΔT as a predictor of stability, while highlighting that for polymer‐based systems like PVP, both Tg and molecular structure are critical determinants of long‐term preservation under ambient or humid conditions. While the molecular mechanisms underlying these effects were not directly investigated in this study, they align with the observed trends. Future work will apply nanoscale analytical techniques (e.g., AFM‐IR and SNOM) and solid‐state NMR, 
+ 40 
+ , 
+ 41 
+ to further elucidate the interactions among the polymer, water, and phage within the glassy matrix. 
+ 5 
+## CONCLUSIONS 
+ 10 loss over 180 days when stored at 4 and 22°C under 15% RH. At higher humidity (33% RH), long‐term stability was successfully achieved at ambient temperatures (≤22°C) using high‐molecular‐weight PVPs (K40, K100), which provided the necessary thermal offsets (ΔT ≥ 100°C) to maintain a protective glassy state. These findings introduce humidity‐tolerant design parameters for phage formulation in PVP that allow long‐term phage stability storage and reduce cold‐chain dependency. 
+## AUTHOR CONTRIBUTIONS 
+## CONFLICT OF INTEREST STATEMENT 
+## DATA AVAILABILITY STATEMENT 
+## REFERENCES 1 
+ Leung 
+ SS 
+ , 
+ Parumasivam 
+ T 
+ , 
+ Gao 
+ FG 
+ , et al. Production of inhalation phage powders using spray freeze drying and spray drying techniques for treatment of respiratory infections . Pharm Res . 2016 ; 33 ( 6 ): 1486 ‐ 1496 . 26928668 
+ 10.1007/s11095-016-1892-6 PMC5083036 2 
+ Li 
+ M 
+ , 
+ Cao 
+ Y 
+ , 
+ Chan 
+ HK 
+ . Optimizing performance of inhalable bacteriophage powders using human serum albumin (HSA) . Int J Pharm . 2025 ; 678 : 125709 . 40350001 
+ 10.1016/j.ijpharm.2025.125709 3 
+ Lin 
+ Y 
+ , 
+ Quan 
+ D 
+ , 
+ Chang 
+ RYK 
+ , et al. Synergistic activity of phage PEV20‐ciprofloxacin combination powder formulation—a proof‐of‐principle study in a P. aeruginosa lung infection model . Eur J Pharm Biopharm . 2021 ; 158 : 166 ‐ 171 . 33253892 
+ 10.1016/j.ejpb.2020.11.019 PMC7855557 4 
+ Li 
+ M 
+ , 
+ Chang 
+ RYK 
+ , 
+ Lin 
+ Y 
+ , 
+ Morales 
+ S 
+ , 
+ Kutter 
+ E 
+ , 
+ Chan 
+ HK 
+ . Phage cocktail powder for Pseudomonas aeruginosa respiratory infections . Int J Pharm . 2021 ; 596 : 120200 . 33486032 
+ 10.1016/j.ijpharm.2021.120200 PMC7904610 5 
+ Chang 
+ RY 
+ , 
+ Wong 
+ J 
+ , 
+ Mathai 
+ A 
+ , et al. Production of highly stable spray dried phage formulations for treatment of Pseudomonas aeruginosa lung infection . Eur J Pharm Biopharm . 2017 ; 121 : 1 ‐ 13 . 28890220 
+ 10.1016/j.ejpb.2017.09.002 PMC5650506 6 
+ Wang 
+ Y 
+ , 
+ Khanal 
+ D 
+ , 
+ Alreja 
+ AB 
+ , et al. Bacteriophage endolysin powders for inhaled delivery against pulmonary infections . Int J Pharm . 2023 ; 635 : 122679 . 36738804 
+ 10.1016/j.ijpharm.2023.122679 7 
+ Luo 
+ Y 
+ , 
+ Hong 
+ Y 
+ , 
+ Shen 
+ L 
+ , 
+ Wu 
+ F 
+ , 
+ Lin 
+ X 
+ . Multifunctional role of polyvinylpyrrolidone in pharmaceutical formulations . AAPS PharmSciTech . 2021 ; 22 ( 1 ): 34 . 33404984 
+ 10.1208/s12249-020-01909-4 8 
+ Lehmkemper 
+ K 
+ , 
+ Kyeremateng 
+ SO 
+ , 
+ Heinzerling 
+ O 
+ , 
+ Degenhardt 
+ M 
+ , 
+ Sadowski 
+ G 
+ . Long‐term physical stability of PVP‐ and PVPVA‐amorphous solid dispersions . Mol Pharm . 2017 ; 14 ( 1 ): 157 ‐ 171 . 28043133 
+ 10.1021/acs.molpharmaceut.6b00763 9 
+ Chang 
+ LL 
+ , 
+ Pikal 
+ MJ 
+ . Mechanisms of protein stabilization in the solid state . J Pharm Sci . 2009 ; 98 ( 9 ): 2886 ‐ 2908 . 19569054 
+ 10.1002/jps.21825 10 
+ Grasmeijer 
+ N 
+ , 
+ Stankovic 
+ M 
+ , 
+ de Waard 
+ H 
+ , 
+ Frijlink 
+ HW 
+ , 
+ Hinrichs 
+ WL 
+ . Unraveling protein stabilization mechanisms: vitrification and water replacement in a glass transition temperature controlled system . Biochim Biophys Acta . 2013 ; 1834 ( 4 ): 763 ‐ 769 . 23360765 
+ 10.1016/j.bbapap.2013.01.020 11 
+ Allison 
+ SD 
+ , 
+ Chang 
+ B 
+ , 
+ Randolph 
+ TW 
+ , 
+ Carpenter 
+ JF 
+ . Hydrogen bonding between sugar and protein is responsible for inhibition of dehydration‐induced protein unfolding . Arch Biochem Biophys . 1999 ; 365 ( 2 ): 289 ‐ 298 . 10328824 
+ 10.1006/abbi.1999.1175 12 
+ Izutsu 
+ K‐i 
+ , 
+ Yoshioka 
+ S 
+ , 
+ Terao 
+ T 
+ . Decreased protein‐stabilizing effects of cryoprotectants due to crystallization . Pharm Res . 1993 ; 10 : 1232 ‐ 1237 . 8415413 
+ 10.1023/a:1018988823116 13 
+ Pyne 
+ A 
+ , 
+ Chatterjee 
+ K 
+ , 
+ Suryanarayanan 
+ R 
+ . Solute crystallization in mannitol‐glycine systems—implications on protein stabilization in freeze‐dried formulations . J Pharm Sci . 2003 ; 92 ( 11 ): 2272 ‐ 2283 . 14603512 
+ 10.1002/jps.10487 14 
+ Roughton 
+ BC 
+ , 
+ Topp 
+ EM 
+ , 
+ Camarda 
+ KV 
+ . Use of glass transitions in carbohydrate excipient design for lyophilized protein formulations . Comput Chem Eng . 2012 ; 36 ( 10 ): 208 ‐ 216 . 10.1016/j.compchemeng.2011.07.018 PMC3876287 24385675 15 
+ Chang 
+ BS 
+ , 
+ Beauvais 
+ RM 
+ , 
+ Dong 
+ A 
+ , 
+ Carpenter 
+ JF 
+ . Physical factors affecting the storage stability of freeze‐dried interleukin‐1 receptor antagonist: glass transition and protein conformation . Arch Biochem Biophys . 1996 ; 331 ( 2 ): 249 ‐ 258 . 8660705 
+ 10.1006/abbi.1996.0305 16 
+ Hancock 
+ BC 
+ , 
+ Zografi 
+ G 
+ . The relationship between the glass transition temperature and the water content of amorphous pharmaceutical solids . Pharm Res . 1994 ; 11 : 471 ‐ 477 . 8058600 
+ 10.1023/a:1018941810744 17 
+ Rao 
+ Q 
+ , 
+ Klaassen Kamdar 
+ A 
+ , 
+ Labuza 
+ TP 
+ . Storage stability of food protein hydrolysates—a review . Crit Rev Food Sci Nutr . 2016 ; 56 ( 7 ): 1169 ‐ 1192 . 24915379 
+ 10.1080/10408398.2012.758085 18 
+ Haq 
+ IU 
+ , 
+ Chaudhry 
+ WN 
+ , 
+ Akhtar 
+ MN 
+ , 
+ Andleeb 
+ S 
+ , 
+ Qadri 
+ I 
+ . Bacteriophages and their implications on future biotechnology: a review . Virol J . 2012 ; 9 : 9 . 22234269 
+ 10.1186/1743-422X-9-9 PMC3398332 19 
+ Vandenheuvel 
+ D 
+ , 
+ Meeus 
+ J 
+ , 
+ Lavigne 
+ R 
+ , 
+ Van den Mooter 
+ G 
+ . Instability of bacteriophages in spray‐dried trehalose powders is caused by crystallization of the matrix . Int J Pharm . 2014 ; 472 ( 1–2 ): 202 ‐ 205 . 24950368 
+ 10.1016/j.ijpharm.2014.06.026 20 
+ Chang 
+ RYK 
+ , 
+ Kwok 
+ PCL 
+ , 
+ Khanal 
+ D 
+ , et al. Inhalable bacteriophage powders: glass transition temperature and bioactivity stabilization . Bioeng Transl Med . 2020 ; 5 ( 2 ): e10159 . 32440564 
+ 10.1002/btm2.10159 PMC7237144 21 
+ Zeng 
+ XM 
+ , 
+ Martin 
+ GP 
+ , 
+ Marriott 
+ C 
+ . Effects of molecular weight of polyvinylpyrrolidone on the glass transition and crystallization of co‐lyophilized sucrose . Int J Pharm . 2001 ; 218 ( 1–2 ): 63 ‐ 73 . 11337150 
+ 10.1016/s0378-5173(01)00613-5 22 
+ Yuan 
+ X 
+ , 
+ Xiang 
+ TX 
+ , 
+ Anderson 
+ BD 
+ , 
+ Munson 
+ EJ 
+ . Hydrogen bonding interactions in amorphous indomethacin and its amorphous solid dispersions with poly(vinylpyrrolidone) and poly(vinylpyrrolidone‐co‐vinyl acetate) studied using (13)C solid‐state NMR . Mol Pharm . 2015 ; 12 ( 12 ): 4518 ‐ 4528 . 26512737 
+ 10.1021/acs.molpharmaceut.5b00705 23 
+ Scietific Guideline I 
+. Q1A (R2). Stability testing of new drug substances and products . Sci Med Health . 2003 ; 4 : 1 ‐ 24 . 24 
+ Mikayilov 
+ E 
+ , 
+ Tagiyev 
+ D 
+ , 
+ Zeynalov 
+ N 
+ , 
+ Tagiyev 
+ S 
+ . Exploring the role of poly (N‐vinyl pyrrolidone) in drug delivery . Chem Biochem Eng Q . 2024 ; 38 ( 3 ): 185 ‐ 196 . 25 
+ Águila‐Hernández 
+ J 
+ , 
+ Trejo 
+ A 
+ , 
+ García‐Flores 
+ BE 
+ . Volumetric and surface tension behavior of aqueous solutions of polyvinylpyrrolidone in the range (288 to 303) K . J Chem Eng Data . 2011 ; 56 ( 5 ): 2371 ‐ 2378 . 26 
+ Wdowiak 
+ M 
+ , 
+ Paczesny 
+ J 
+ , 
+ Raza 
+ S 
+ . Enhancing the stability of bacteriophages using physical, chemical, and nano‐based approaches: a review . Pharmaceutics . 2022 ; 14 ( 9 ): 1936 . 36145682 
+ 10.3390/pharmaceutics14091936 PMC9502844 27 
+ Sivasankaran 
+ RP 
+ , 
+ Snell 
+ K 
+ , 
+ Kunkel 
+ G 
+ , 
+ Georgiou 
+ P 
+ , 
+ Puente 
+ EG 
+ , 
+ Maynard 
+ HD 
+ . Polymer‐mediated protein/peptide therapeutic stabilization: current progress and future directions . Prog Polym Sci . 2024 ; 156 : 101867 . 28 
+ Asgreen 
+ C 
+ , 
+ Knopp 
+ MM 
+ , 
+ Skytte 
+ J 
+ , 
+ Lobmann 
+ K 
+ . Influence of the polymer glass transition temperature and molecular weight on drug amorphization kinetics using ball milling . Pharmaceutics . 2020 ; 12 ( 6 ): 483 . 32471023 
+ 10.3390/pharmaceutics12060483 PMC7355600 29 
+ Cangialosi 
+ D 
+ , 
+ Alegria 
+ A 
+ , 
+ Colmenero 
+ J 
+ . Route to calculate the length scale for the glass transition in polymers . Phys Rev E Stat Nonlin Soft Matter Phys . 2007 ; 76 ( 1 ): 011514 . 17677457 
+ 10.1103/PhysRevE.76.011514 30 
+ Patel 
+ NG 
+ , 
+ Banella 
+ S 
+ , 
+ Serajuddin 
+ ATM 
+ . Moisture sorption by polymeric excipients commonly used in amorphous solid dispersions and its effect on glass transition temperature: II. Cellulosic polymers . J Pharm Sci . 2022 ; 111 ( 11 ): 3114 ‐ 3129 . 35921915 
+ 10.1016/j.xphs.2022.07.020 31 
+ Gonzalez‐Menendez 
+ E 
+ , 
+ Fernandez 
+ L 
+ , 
+ Gutierrez 
+ D 
+ , 
+ Rodriguez 
+ A 
+ , 
+ Martinez 
+ B 
+ , 
+ Garcia 
+ P 
+ . Comparative analysis of different preservation techniques for the storage of staphylococcus phages aimed for the industrial development of phage‐based antimicrobial products . PLoS One . 2018 ; 13 ( 10 ): e0205728 . 30308048 
+ 10.1371/journal.pone.0205728 PMC6181408 32 
+ Vehring 
+ R 
+ . Pharmaceutical particle engineering via spray drying . Pharm Res . 2008 ; 25 ( 5 ): 999 ‐ 1022 . 18040761 
+ 10.1007/s11095-007-9475-1 PMC2292490 33 
+ Airaksinen 
+ S 
+ , 
+ Karjalainen 
+ M 
+ , 
+ Shevchenko 
+ A 
+ , et al. Role of water in the physical stability of solid dosage formulations . J Pharm Sci . 2005 ; 94 ( 10 ): 2147 ‐ 2165 . 16136577 
+ 10.1002/jps.20411 34 
+ Fitzpatrick 
+ S 
+ , 
+ McCabe 
+ JF 
+ , 
+ Petts 
+ CR 
+ , 
+ Booth 
+ SW 
+ . Effect of moisture on polyvinylpyrrolidone in accelerated stability testing . Int J Pharm . 2002 ; 246 ( 1–2 ): 143 ‐ 151 . 12270617 
+ 10.1016/s0378-5173(02)00375-7 35 
+ Turner 
+ D 
+ , 
+ Schwartz 
+ A 
+ . The glass transition temperature of poly (N‐vinyl pyrrolidone) by differential scanning calorimetry . Polymer . 1985 ; 26 ( 5 ): 757 ‐ 762 . 36 
+ Reimschuessel 
+ H 
+ . On the glass transition temperature of comblike polymers: effects of side chain length and backbone chain structure . J Polym Sci . 1979 ; 17 ( 8 ): 2447 ‐ 2457 . 37 
+ Shamblin 
+ SL 
+ , 
+ Hancock 
+ BC 
+ , 
+ Zografi 
+ G 
+ . Water vapor sorption by peptides, proteins and their formulations . Eur J Pharm Biopharm . 1998 ; 45 ( 3 ): 239 ‐ 247 . 9653628 
+ 10.1016/s0939-6411(98)00006-x 38 
+ Mensink 
+ MA 
+ , 
+ Frijlink 
+ HW 
+ , 
+ van der Voort Maarschalk 
+ K 
+ , 
+ Hinrichs 
+ WL 
+ . How sugars protect proteins in the solid state and during drying (review): mechanisms of stabilization in relation to stress conditions . Eur J Pharm Biopharm . 2017 ; 114 : 288 ‐ 295 . 28189621 
+ 10.1016/j.ejpb.2017.01.024 39 
+ Szakonyi 
+ G 
+ , 
+ Zelkó 
+ R 
+ . The effect of water on the solid state characteristics of pharmaceutical excipients: molecular mechanisms, measurement techniques, and quality aspects of final dosage form . Int J Pharm Investig . 2012 ; 2 ( 1 ): 18 ‐ 25 . 10.4103/2230-973X.96922 PMC3465153 23071956 40 
+ Cao 
+ Y 
+ , 
+ Khanal 
+ D 
+ , 
+ Kim 
+ J 
+ , et al. Stability of bacteriophages in organic solvents for formulations . Int J Pharm . 2023 ; 646 : 123505 . 37832702 
+ 10.1016/j.ijpharm.2023.123505 41 
+ Cao 
+ Y 
+ , 
+ Chang 
+ RYK 
+ , 
+ Banaszak Holl 
+ MM 
+ , 
+ Khanal 
+ D 
+ , 
+ Chan 
+ H‐K 
+ . Impact of heat and acidic stress on the biochemical composition of Pseudomonas aeruginosa bacteriophages—a nanoscale AFM‐IR study . Anal Chem . 2025 ; 97 ( 30 ): 16421 ‐ 16431 . 40695593 
+ 10.1021/acs.analchem.5c02244 

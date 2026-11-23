@@ -1,0 +1,672 @@
+
+ pmc ACS Omega ACS Omega 3686 acsomega 101691658 ao ACS Omega 2470-1343 American Chemical Society http://pubs.acs.org/journal/acsodf PMC12961498 PMC12961498.1 12961498 12961498 41799084 10.1021/acsomega.5c12251 1 Article Quantitative Analysis
+of Amyloid Fibril Nucleation
+by Linking Folding and Nucleation Pathways Using a Robust Ultrasonic
+Assay 6941406 Ota Tomoki 6409103 https://orcid.org/0000-0003-2644-741X Nakajima Kichitaro 7774013 Nakandakari Kouya 7963680 Kondo Tina 3934793 https://orcid.org/0000-0003-3408-1980 Yamaguchi Keiichi 7963675 Matsuda Hirokazu 92062 https://orcid.org/0000-0003-1221-1270 Goto Yuji 345063 https://orcid.org/0000-0002-9602-5194 Ogi Hirotsugu 
+ † 
+ Graduate
+School of Engineering , 13013 The University of
+Osaka , Yamadaoka 2-2 , Suita , Osaka 
+ 560-0871 , Japan 
+ ‡ 
+ Daicel
+Corp. , Ohfuka-cho 3-1 , North Ward , Osaka 
+ 530-0011 , Japan 
+ * E-mail: k.nakajima@prec.eng.osaka-u.ac.jp . Phone: +81 (6)6879
+7278 . 
+ * E-mail: ogi@prec.eng.osaka-u.ac.jp . Phone: +81 (6)6879 7276 . 20 2 2026 03 3 2026 11 8 508895 13855 13864 
+ 20 11 2025 
+ 12 2 2026 
+ 11 2 2026 
+ 20 2 2026 
+ 20 02 2026 06 03 2026 09 03 2026 © 2026 The Authors. Published by American Chemical Society 2026 The Authors https://creativecommons.org/licenses/by-nc-nd/4.0/ This article is licensed under CC-BY-NC-ND 4.0 
+ 2 -microglobulin, a natively folded protein, at various
+temperatures and salt concentrations. The lag time for nucleation
+exhibits a clear dependence on salt concentration: α-synuclein
+amyloid formation is monotonically accelerated with increasing salt
+concentration, whereas β 2 -microglobulin exhibits
+a U-shape dependence. This contrast can be rationalized by evaluating
+the degree of supersaturation as a function of temperature and salt
+concentration, linking the solubility-limited phase transition with
+the folding-related two-state transition. These results demonstrate
+the superior performance of μHANABI as an effective platform
+for physicochemical studies of amyloid formation mechanisms, and the
+obtained results provide a physicochemical understanding of amyloid
+nucleation coupled with the folding reaction. 
+ Japan Society for the Promotion of Science 10.13039/501100001691 
+ 22K14013 
+ Japan Society for the Promotion of Science 10.13039/501100001691 
+ 25K00016 
+ Japan Society for the Promotion of Science 10.13039/501100001691 
+ 25KJ1754 
+ JKA Foundation 10.13039/501100014735 
+ 2024M-583 
+ Support for Pioneering Research Initiated by the Next Generation 10.13039/501100025019 
+ JPMJSP2138 pmc-status-qastatus 0 pmc-status-live yes pmc-status-embargo no pmc-status-released yes pmc-prop-open-access yes pmc-prop-olf no pmc-prop-manuscript no pmc-prop-legally-suppressed no pmc-prop-has-pdf yes pmc-prop-has-supplement yes pmc-prop-pdf-only no pmc-prop-suppress-copyright no pmc-prop-is-real-version no pmc-prop-is-scanned-article no pmc-prop-preprint no pmc-prop-in-epmc yes pmc-license-ref CC BY-NC-ND document-id-old-9 ao5c12251 document-id-new-14 ao5c12251 production-flag-MathML-config-version 3 production-flag-journal-citation-display-style acs-titles production-flag-journal-date-display-style dates-used-rcd-rvd-acc production-flag-si-avail yes document-id-alt-64 76314b1bb5e05328914bcf36df0f775261e7ada1934571f6958c78e44ca3f961 
+## Introduction 
+ Their deposition in biological tissues is the
+pathological hallmark of more than 40 human amyloidoses, including
+Alzheimer’s disease, Parkinson’s disease, and dialysis-related
+amyloidosis. In these diseases, amyloid
+formation occurs at the earliest stage of the pathogenic cascade.
+Therefore, a comprehensive understanding of the molecular mechanisms
+underlying amyloid formation is essential for developing effective
+strategies to prevent amyloidosis. 
+ − 
+ The phase transition of denatured monomers into amyloid fibrils
+can occur when the monomer concentration exceeds its thermodynamic
+solubility. It should be noted that the solubility of denatured monomers
+differs from that of the native state. 
+ , 
+ In general,
+denatured monomers are less soluble compared to their native counterparts, so that extensive denaturation of native monomers
+often facilitates amyloid formation. 
+ The reaction reaches
+equilibrium when the concentration of remaining monomers equals its
+solubility. In addition to the thermodynamic aspect, the kinetics
+of amyloid formation have been extensively investigated using chemical
+kinetics. 
+ , 
+ These studies have revealed detailed molecular
+mechanisms underlying amyloid formation of IDPs, under a variety of reaction conditions. 
+ However, the folding reaction between native and denatured monomers
+should also be taken into account in the description of the overall
+system. Previous studies have successfully captured the thermodynamic
+equilibrium among native monomers, denatured monomers, and amyloid
+fibrils by linking the two-state transition between native and denatured
+monomers with the solubility-limited phase transition between denatured
+monomers and amyloid fibrils. 
+ , 
+ Nevertheless, the quantitative
+analysis of amyloid formation kinetics, in relation to the folding
+reaction, has not yet been addressed. 
+ 2 -microglobulin (β2m) and α-Syn, 
+ , 
+ representing natively folded proteins and IDPs, respectively. We
+focus on the nucleation rate as a key kinetic parameter under varying
+salt concentrations and temperatures, which modulate both the solubility
+of denatured monomers and the equilibrium between native and denatured
+states. 
+ − 
+ Detailed kinetic analyses are often hindered by the
+inherent low reproducibility of the reaction originating from the
+stochastic nature of nucleation and the high sensitivity of amyloid
+formation to ambient conditions. 
+ , 
+ To overcome
+these limitations, we develop a miniaturized ultrasonic platform (μHANABI:
+micro-HANdai Amyloid Burst Inducer) that enables reproducible high-throughput
+analysis of amyloid formation kinetics. This platform exploits ultrasonication to robustly accelerate amyloid
+formation in supersaturated solutions of denatured monomers. 
+ − 
+ Using μHANABI, we quantify the nucleation rates of β2m
+and α-Syn under well-controlled conditions and analyze the results
+within the framework of the classical nucleation theory (CNT). 
+ , 
+ Furthermore, nucleation-dependent amyloid formation governed by
+denatured-monomer solubility is linked to native-denatured folding
+equilibria using a two-state transition model. 
+## Materials and Methods 
+## Construction of μHANABI 
+ Figure 
+ a–d). The design builds
+upon earlier HANABI-series instruments, 
+ , , 
+ which pioneered ultrasonic induction of amyloid fibrils,
+although they were limited by nonuniform acoustic fields due to ultrasonic
+irradiation through a large water bath and insufficient temperature
+stability. In contrast to previous bath-type or multitransducer configurations, μHANABI
+integrates the ultrasonic, thermal, and optical units into a single
+compact head with dimensions of 225 × 235 × 300 mm 3 (length × width × height), thus enhancing operational
+agility and simplicity. 1 
+ n = 18). (g) CD spectra of the α-Syn monomers before
+and after 20 h ultrasonication. 
+ Figure 
+ e). A
+circular sample plate made of cyclic olefin copolymer with an outer
+diameter of 65 mm, containing 18 wells with a volume of 150 μL
+each ( Figure 
+ b–c),
+is positioned above the transducer. The sample plate is mounted inside
+the hollow chamber of the transducer and connected to a copper plate
+with a diameter of 42 mm, through which it is connected to a thin
+rod that penetrated the center of the Langevin transducer. The thin
+rod is connected to a stepper motor below the transducer, allowing
+the motor to rotate the sample plate. The hollow chamber is sealed
+with a lid equipped with a heater unit controlled via a feedback loop,
+ensuring a thermally stable and isolated environment within the transducer
+from room temperature up to 70 °C. Both the side wall of the
+transducer and the lid have through-holes with a diameter of 4 mm
+for the fluorescence measurement of the solution in each well. All
+components are synchronously operated by a single-core microcontroller. 
+ was used to monitor the
+time-course of amyloid formation. Excitation light from a top-mounted
+450 nm LED is directed downward through the hole of the lid, while
+fluorescence emission around 485 nm is collected through the hole
+of the side wall of the transducer by using a photomultiplier tube.
+The laboratory-built program synchronizes rotation of the sample plate
+and fluorescence readout during the ultrasonication phase, sequentially
+recording all 18 wells. The current configuration of μHANABI
+only allows us to measure the fluorescence at the wavelength of the
+ThT dye. Amyloid formation is sometimes evaluated by other fluorophores,
+such as Congo red, which possesses different excitation and emission
+wavelengths. Furthermore, amyloid formation may compete with amorphous
+aggregation, which can be evaluated by the light scattering. 
+ , , 
+ In principle, these measurements
+can be conducted by changing the optical system of μHANABI in
+the future. 
+## Preparation of β2m Sample Solution 
+ Escherichia coli (BL21) and purified using liquid
+chromatography, as previously described. The lyophilized proteins were stored at −20 °C, dissolved
+in deionized water, and filtered through a membrane filter with a
+pore diameter of 220 nm. The protein concentration was quantified
+by UV absorbance at 280 nm. The solution conditions for amyloid formation
+assays were as follows: [β2m] = 0.5 mg/mL, [sodium phosphate
+buffer (pH 7.0)] = 20 mM, [NaCl] = 100−1200 mM, and [ThT] =
+5 μM. 
+## Preparation of α-Syn Sample Solution 
+ Escherichia
+coli (BL21-DE3) and purified using liquid chromatography,
+as previously described. The lyophilized
+proteins were stored at −20 °C, dissolved in deionized
+water, and filtered through a membrane filter with a pore diameter
+of 220 nm. The protein concentration was quantified by UV absorbance
+at 280 nm. The solution conditions for amyloid formation assays were
+as follows: [α-Syn] = 0.2 mg/mL, [sodium phosphate buffer (pH
+7.0)] = 20 mM, [NaCl] = 100−1200 mM, and [ThT] = 5 μM. 
+## Data Collection of Amyloid Formation Kinetics Using μHANABI 
+ t 
+ lag ) was
+defined as the time point at which the ThT fluorescence intensity
+exceeded 20% of its maximum intensity. The mean, standard deviation
+(SD), and coefficient of variation (CV = SD/mean) were calculated
+across all wells. 
+## Circular Dichroism Spectrum Measurements 
+## Analysis of Thermodynamics of Folding Reaction 
+ by assuming a two-state transition N ⇌D.
+The observed ellipticity at 210 nm was modeled as 
+ θ fit ( T ) = θ D ( T ) K F ( T ) + θ N ( T ) K F ( T ) + 1 , K F ( T ) = exp [ − Δ G F ( T ) R T ] 
+ 1 
+ with linear baselines θ N ( T ) = a 
+ N + b 
+ N 
+ T , θ D ( T ) = a 
+ D + b 
+ D 
+ T , where K 
+ F ( T ), Δ G 
+ F ( T ), R , and T denote an
+equilibrium constant of the folding reaction, the Gibbs free-energy
+difference between native and denatured states, the gas constant,
+and absolute temperature, respectively. a 
+ N , b 
+ N , a 
+ D ,
+and b 
+ D are the intersection and slope
+of the background change for the native and denatured states, respectively.
+The free-energy difference of folding reaction can be denoted as 
+ Δ G F ( T ) = − Δ H m ( 1 − T T m ) − Δ C p [ ( T − T m ) − T ln T T m ] 
+ 2 
+ Here, T 
+ m , Δ H 
+ m , and Δ C 
+ p denote the denaturation midpoint, the enthalpy
+difference at the denaturation midpoint, and the heat capacity difference,
+respectively, and were obtained by fitting the theoretical lines to
+experimental data using nonlinear least-squares. The denatured fraction
+and absolute concentration of β2m monomers are 
+ f D ( T ) = 1 1 + K F ( T ) , [ D ] = f D [ β 2 m ] tot 
+ 3 
+ where [β2m] tot is a total monomer concentration. 
+## Results and Discussion 
+## Reproducibility of Amyloid Formation Assay Using μHANABI 
+ Figure 
+ f). To examine changes in the secondary structure of α-Syn
+monomers, CD spectra were acquired before and after the ultrasonic
+assay ( Figure 
+ g). 
+ Figure 
+ f),
+indicative of amyloid formation in the sample solution via a two-step
+mechanism. The amyloid formation of α-Syn
+monomers is corroborated by the change in the CD spectra of the sample
+solution from the random-coil to the β-sheet spectrum ( Figure 
+ g), indicating the
+structural transition from random-coil monomers to β-sheet-rich
+amyloid fibrils. All 18 samples show an increase in fluorescence intensity
+around 3 h, reaching a plateau after approximately 5 h. The average
+lag time for nucleation of the α-Syn samples is 3.3 ± 0.2
+h (mean ± SD), corresponding to a CV value of 6.2%. Achieving
+highly reproducible amyloid formation assays is essential for quantitative
+analysis of the physicochemical mechanisms underlying amyloid formation. However, reproducibility is often limited by
+the stochastic nature of the rate-limiting nucleation step, which
+leads to large variability in amyloid formation kinetics. 
+ , 
+ Indeed, previous studies have reported CV values of the lag time
+ranging from 10 to 25%, even under optimized conditions with ultrasonic
+or shaking agitation. 
+ , 
+ In comparison, μHANABI
+substantially improves assay reproducibility, reducing the CV value
+of the lag time by approximately half. 
+ Cavitation bubbles undergo periodic expansion and shrinkage
+synchronized with the acoustic field. During the expansion phase,
+protein monomers are adsorbed at the bubble interface, whereas subsequent
+shrinkage under positive acoustic pressure condenses the adsorbed
+monomers. This local increase in protein concentration can accelerate
+nucleation events. 
+ , 
+ To achieve high well-to-well
+reproducibility of amyloid formation kinetics, independent samples
+should be exposed to a uniform acoustic field. Accordingly, μHANABI
+is designed with an axially symmetric configuration of sample wells
+and the ultrasonic transducer, enabling reproducible and simultaneous
+kinetic measurements with minimal intersample variability. 
+## Salt and Temperature Dependence of α-Syn Amyloid Formation 
+ Figure 
+ a). The ThT time-course
+curves obtained at 37, 50, and 70 °C are shown in Figure 
+ b–d, as representative
+data. The ThT curves acquired other than these temperatures are shown
+in Figure S1 . The analyzed lag times under
+various conditions are shown as functions of salt concentration ( Figure 
+ e) and temperature
+( Figure 
+ f). 2 
+ n = 4). All curves are shown in Figure S1 . (e and f) Dependence of the lag time
+for nucleation on (e) salt concentration and (f) temperature. The
+error bars and dotted lines denote the standard deviation and guides
+for the eye, respectively. 
+ Figure 
+ b and e).
+This trend is consistently observed at all other temperatures tested
+( Figures 
+ c–e
+and S1 ), consistent with previous reports
+showing that high salt concentrations accelerate amyloid formation. 
+ − 
+ This behavior can be attributed to salting-out effects of NaCl:
+when salt dissolves in water, water molecules hydrate the ions, thereby
+reducing the water activity. At higher salt concentrations, this effect
+becomes more pronounced, leading to a decrease in protein solubility
+due to the reduced number of free water molecules. 
+ , 
+ c – c *)/ c *, where c and c * denote the solute concentration
+and solubility, respectively. A higher degree of supersaturation results
+in a faster nucleation rate. Therefore,
+the observed acceleration of amyloid formation at higher salt concentrations
+can be explained by considering amyloid formation as a phase transition
+of soluble proteins into a crystal-like amyloid state, consistent
+with CNT. 
+ Figure 
+ f). This tendency
+is consistent with several studies investigating the temperature dependence
+of amyloid formation kinetics of IDPs. 
+ , 
+ The temperature-dependent
+acceleration of amyloid formation in IDPs can be attributed to reduced
+protein solubility at elevated temperatures. As hydrophobic hydration
+becomes increasingly entropically unfavorable with elevating temperature,
+the solubility of denatured monomers decreases, leading to higher
+supersaturation and consequently faster amyloid nucleation rates ( Figure 
+ f). 
+ , 
+ More generally, the solubility of the denatured state increases
+again at higher temperatures due to greater entropy gain upon dissolution,
+resulting in a U-shape temperature dependence. 
+ , 
+ However, this tendency was not observed in the temperature range
+tested in this study. 
+ , 
+ focusing on the rate-limiting primary nucleation based on the degree
+of supersaturation provides key physicochemical insight into the process. 
+## Salt and Temperature Dependence of β2m Amyloid Formation 
+ Figure 
+ a). 
+ , 
+ Heating the protein
+solution induces thermal denaturation of native β2m monomers,
+thereby increasing the concentration of denatured species and promoting
+amyloid formation. 
+ , 
+ 3 
+ n = 4). All curves are shown in Figure S2 . (h and i) Dependence of the lag time
+for amyloid nucleation on (h) temperature and (i) salt concentration.
+The error bars and dotted lines denote the standard deviation and
+guides for the eye, respectively. (j) CD spectra of the β2m
+monomer and the ThT-positive and -negative samples with the concentration
+of 1200 mM at 56 °C after 20 h of ultrasonication. 
+ Figure 
+ b). This is likely because the concentrations of denatured
+monomers are below their solubility as most of the monomers are in
+the native state. At 55 °C, amyloid formation was observed only
+at 700 mM ( Figure 
+ c), indicating that 700 mM NaCl is optimum for accelerating the amyloid
+formation of β2m monomers. This salt-concentration dependence
+of the lag time for amyloid nucleation is different from that observed
+for the α-Syn monomers. This tendency was also observed at 56
+and 57 °C ( Figure 
+ d and e), where amyloid formation occurred with lower salt concentrations
+but not with the highest salt concentration among the tested concentrations
+(i.e., 1200 mM). Above 58 °C, amyloid formation was detected
+at 1200 mM ( Figure 
+ f and g). However, the lag time of amyloid nucleation at 1200 mM
+was still slower than that with lower salt concentrations (300 and
+700 mM). 
+ Figure 
+ h) shows essentially the same trend as that observed for α-Syn
+monomers: higher temperatures lead to faster amyloid formation. Although
+the overall trends are similar, the underlying molecular mechanisms
+differ in detail. For IDPs, the acceleration of amyloid formation
+at elevated temperatures primarily arises from a decrease in the monomer
+solubility. This explanation also applies to denatured β2m monomers,
+but its contribution to the observed kinetics is relatively minor.
+The pronounced acceleration of β2m amyloid formation at higher
+temperatures is mainly due to the thermal denaturation of native monomers,
+as discussed quantitatively later. 
+ Figure 
+ i). The CD
+spectrum of the β2m sample without an increase in the ThT fluorescence
+after the 20 h assay was acquired to investigate whether the β2m
+monomers in ThT-negative samples at 1200 mM NaCl remain soluble or
+form ThT-negative amorphous aggregates ( Figure 
+ j). The CD spectra of the samples after the
+assay at 56 °C and 1200 mM NaCl showed a nearly identical spectrum
+to that of native β2m monomers, indicating that the β2m
+monomers remained soluble at higher salt concentrations. This means
+that the effects of the addition of salt on the amyloid formation
+of natively folded proteins are opposed to that on IDPs in which the
+salt accelerated the amyloid formation through salting-out effects.
+We further analyze this phenomenon in the following section. 
+## Quantitative Analysis of Amyloid Nucleation Based on the CNT
+Framework 
+ J . Since amyloid formation
+can be regarded as a one-dimensional crystallization process of denatured
+proteins, 
+ , 
+ this framework can be applied to the analysis
+of the nucleation rate of amyloid fibrils by considering the degree
+of supersaturation of denatured monomers. The CNT framework is an
+extension of the transition state theory, which explicitly describes
+the activation energy toward nucleation by considering critical nuclei. The activation energy is denoted as functions
+of the chemical potential difference between parent and nucleated
+phases, Δμ, the surface energy of nuclei, γ, and
+the volume of molecules, v , as 
+ Δ G ‡ = 16 π γ 3 v 2 3 ( Δ μ ) 2 
+ 4 
+ By substituting this free-energy
+barrier into the transition state theory-based rate expression, the
+nucleation rate can be written as 
+ J = J 0 · exp ( − 16 π γ 3 v 2 3 ( k B T ) 3 ( ln ( 1 + σ ) ) 2 ) 
+ 5 
+ where the relation Δμ
+= k 
+ B 
+ T ·ln­(1 + σ)
+was used, and J 
+ 0 , k 
+ B , and T are
+the kinetic prefactor, the Boltzmann constant, and the absolute temperature,
+respectively. By taking the natural logarithm of both sides of eq 
+ , we obtain the relationship
+between the nucleation rate and the degree of supersaturation as ln J ∝ −(ln­(1 + σ)) −2 , which is used in the following analysis. 
+ t 
+ lag as
+experimental results and relate the lag time with
+the nucleation rate by assuming t 
+ lag ∝ J 
+ –1 . The nucleation rate is given in units
+of s –1 , corresponding to the number of nuclei formed
+per unit time. From this dimensional consideration, the relation t 
+ lag ∝ J 
+ –1 is physically well justified. Experimentally, t 
+ lag is defined as the time at which amyloid fibrils are
+detected by ThT fluorescence. Assuming that the initial appearance
+of detectable amyloid fibrils is governed by primary nucleation from
+denatured monomers, t 
+ lag reflects the
+time required to generate a sufficient number of nuclei to produce
+an experimentally observable amount of amyloid. Under this assumption, t 
+ lag is inversely proportional to the nucleation
+rate, leading to the relation t 
+ lag ∝ J 
+ –1 . 
+ c , for analyzing amyloid nucleation kinetics based on
+CNT, as follows: 
+ [ D ] c ( [ NaCl ] ) = [ D ] c ( 0 ) ( 1 + C 1 [ NaCl ] 1 + C 2 [ NaCl ] ) − 1 
+ 6 
+ where [D] c 
+ (0) represents the baseline solubility
+of denatured monomers in the absence of salt, and C 
+ 1 and C 
+ 2 are arbitrary constants. 
+ D ]. Increasing the salt concentration reduces
+the solubility of the denatured monomers, thereby increasing the degree
+of supersaturation. As a result, the amyloid nucleation rate of IDPs
+is expected to accelerate monotonically with salt concentration, consistent
+with our experimental results. 
+ We
+then analyzed the thermal denaturation of native β2m monomers
+at various salt concentrations by monitoring changes in the CD spectra
+during elevating temperature ( Figure 
+ a). The spectra exhibit a cooperative thermal unfolding
+transition of native monomers with a midpoint temperature ( T 
+ m ) of approximately 65–70 °C. Detailed
+analysis reveals that T 
+ m shifts toward
+higher temperatures at higher salt concentrations ( Figure 
+ a, inset), indicating that
+the addition of salt stabilizes the native state relative to the denatured
+one, consistent with previous reports. 
+ , 
+ Increasing
+the salt concentration lowers the water activity, reducing the availability
+of bulk water for hydrophobic hydration. As a result, the denatured
+state, which exposes a large hydrophobic surface area to the solvent,
+becomes thermodynamically disfavored. Consequently, the equilibrium
+shifts toward the compact native state, which minimizes the solvent-exposed
+hydrophobic area. 
+ , − 
+ 4 
+ T 
+ m at various salt concentrations
+obtained from the fitted curve. (b) Temperature dependence of the
+fraction of denatured protein calculated from fitting the thermal
+denaturation curves of the CD spectra. Inset is the enlarged view
+near the denaturation midpoint. (c) Salt-concentration dependence
+of the concentration of denatured protein and assumed solubility curve
+under various temperatures. (d) Salt-concentration dependence of the
+degree of supersaturation at various temperatures. (e) Salt-concentration
+dependence of the lag time for amyloid nucleation at each temperature,
+calculated based on the degree of supersaturation. (f) Heat map of
+lag time for amyloid nucleation of β2m as a function of temperature
+and salt concentration. 
+ f 
+ D ( T , [NaCl]), as a function of temperature
+and salt concentration ( Figure 
+ b). The thermodynamic parameters of β2m folding derived
+from this fitting ( Table 
+ ) are in good agreement with the values previously reported
+for β2m. The absolute concentration
+of denatured monomers under given conditions was then calculated using f 
+ D ( T , [NaCl]), showing that
+the concentration of denatured monomers monotonically decreases with
+increasing salt concentration at a constant temperature ( Figure 
+ c). Subsequently,
+we determined the salt and temperature dependence of the degree of
+supersaturation using 
+ σ ( T , [ NaCl ] ) = [ β 2 m ] tot · f D ( T , [ NaCl ] ) − [ D ] c ( [ NaCl ] ) [ D ] c ( [ NaCl ] ) 
+ 7 
+ ­( Figure 
+ d). The degree of supersaturation was converted
+into lag time via the relation ln t 
+ lag ∝ [ln­(1 + σ)] −2 ( Figure 
+ e,f), successfully reproducing
+the characteristic U-shape dependence of the lag time for amyloid
+nucleation on salt concentration observed in the ultrasonication-induced
+amyloid assay. 1 
+## Thermodynamic Parameters of the Folding
+Reaction of the β 2 m Monomer at 37 °C NaCl (mM) Δ H (kJ/mol) – T Δ S (kJ/mol) Δ G 
+ F (kJ/mol) Δ C 
+ p (kJ/mol·K) | align="left" colspan="1" rowspan="1">100 | align="char" char="." colspan="1" rowspan="1">–174.5 | align="char" char="." colspan="1" rowspan="1">153.5 | align="char" char="." colspan="1" rowspan="1">–21.02 | align="char" char="." colspan="1" rowspan="1">–5.9 | align="left" colspan="1" rowspan="1">300 | align="char" char="." colspan="1" rowspan="1">–164.5 | align="char" char="." colspan="1" rowspan="1">143.5 | align="char" char="." colspan="1" rowspan="1">–21.05 | align="char" char="." colspan="1" rowspan="1">–6.4 | align="left" colspan="1" rowspan="1">700 | align="char" char="." colspan="1" rowspan="1">–156.3 | align="char" char="." colspan="1" rowspan="1">135.1 | align="char" char="." colspan="1" rowspan="1">–21.17 | align="char" char="." colspan="1" rowspan="1">–6.2 | align="left" colspan="1" rowspan="1">1200 | align="char" char="." colspan="1" rowspan="1">–116.6 | align="char" char="." colspan="1" rowspan="1">95.4 | align="char" char="." colspan="1" rowspan="1">–21.23 | align="char" char="." colspan="1" rowspan="1">–7.3 | align="left" colspan="1" rowspan="1">100 
+ | align="char" char="." colspan="1" rowspan="1">–174.7 | align="char" char="." colspan="1" rowspan="1">155.6 | align="char" char="." colspan="1" rowspan="1">–19.1 | align="char" char="." colspan="1" rowspan="1">–5.0 a 
+ − 
+ Changes in
+fibril polymorphism can substantially alter the free-energy landscape
+of amyloid formation and, consequently, the nucleation process. While
+our analysis assumes a constant surface energy and a single dominant
+fibril polymorph across all conditions, incorporating condition-dependent
+variations in these factors would likely enable a more rigorous and
+comprehensive quantitative description of amyloid nucleation. 
+## Implications toward Clinical Treatment of Amyloidosis 
+ , 
+ suppressing nucleation in vivo represents a promising therapeutic
+strategy for amyloidosis. Importantly, our results suggest that effective
+intervention strategies may differ fundamentally between IDPs and
+natively folded proteins. 
+ surfactant micelles, or de novo-designed peptides. In contrast,
+for natively folded proteins, stabilizing the native state is also
+an effective strategy to inhibit amyloid nucleation by shifting the
+equilibrium away from denatured monomers. This principle has been
+validated clinically in transthyretin (TTR) amyloidosis, where benzoxazole
+compounds such as Tafamidis bind to and stabilize the native tetramer,
+thereby suppressing amyloid formation. 
+ − 
+ Similarly, in other
+systemic amyloidoses caused by natively folded proteins, including
+β2m- and immunoglobulin light-chain amyloidoses, disease-associated
+mutations often destabilize the native structure. 
+ , 
+ These observations suggest that small molecules designed to stabilize
+native conformations may offer a general therapeutic strategy for
+amyloidoses derived from folded proteins. 
+## Conclusions 
+## Supplementary Material 
+ https://pubs.acs.org/doi/10.1021/acsomega.5c12251 . 
+ PDF ) 
+ Sawaya M. R. Hughes M. P. Rodriguez J. A. Riek R. Eisenberg D. S. The expanding
+amyloid family: Structure, stability, function, and pathogenesis Cell 2021 184 4857 4873 10.1016/j.cell.2021.08.013 34534463 PMC8772536 Chiti F. Dobson C. M. Protein Misfolding, Amyloid Formation, and Human Disease:
+A Summary of Progress Over the Last Decade Annu. Rev. Biochem. 2017 86 27 68 10.1146/annurev-biochem-061516-045115 28498720 Knowles T. Vendruscolo M. Dobson C. The amyloid state and its association
+with protein misfolding diseases Nat. Rev.
+Mol. Cell Biol. 2014 15 384 396 10.1038/nrm3810 24854788 Yoshimura Y. Lin Y. Yagi H. Lee Y.-H. Kitayama H. Sakurai K. So M. Ogi H. Naiki H. Goto Y. Distinguishing crystal-like
+amyloid fibrils and glass-like amorphous aggregates from their kinetics
+of formation Proc. Natl. Acad. Sci. U.S.A. 2012 109 14446 14451 10.1073/pnas.1208228109 22908252 PMC3437889 Goto Y. Noji M. Nakajima K. Yamaguchi K. Supersaturation-Dependent
+Formation of Amyloid Fibrils Molecules 2022 27 4588 10.3390/molecules27144588 35889461 PMC9321232 Goto Y. Nakajima K. Yamamoto S. Yamaguchi K. Supersaturation,
+a Critical Factor Underlying Proteostasis of Amyloid Fibril Formation J. Mol. Biol. 2024 436 168475 10.1016/j.jmb.2024.168475 38311232 Yamaguchi K. Nakajima K. Ogi H. Goto Y. Mechanism
+of amyloid
+fibril formation triggered by breakdown of supersaturation npj Biosens. 2025 2 7 10.1038/s44328-025-00028-z PMC10338051 37448594 Qing R. Hao S. Smorodina E. Jin D. Zalevsky A. Zhang S. Protein Design:
+From the Aspect of Water Solubility and Stability Chem. Rev. 2022 122 15672 15711 10.1021/acs.chemrev.1c00757 35921495 PMC9523718 Nick
+Pace C. Treviño S. Prabhakaran E. Scholtz J. M. Protein structure, stability and solubility in water
+and other solvents Philos. Trans. R. Soc. B 2004 359 1225 1234 10.1098/rstb.2004.1500 PMC1693406 15306378 Michaels T. C. Qian D. Šarić A. Vendruscolo M. Linse S. Knowles T. P. Amyloid formation
+as a protein phase
+transition Nat. Rev. Phys. 2023 5 379 397 10.1038/s42254-023-00598-9 Michaels T. C. T. Šarić A. Habchi J. Chia S. Meisl G. Vendruscolo M. Dobson C. M. Knowles T. P. J. Chemical
+Kinetics for Bridging Molecular Mechanisms and Macroscopic Measurements
+of Amyloid Fibril Formation Annu. Rev. Phys.
+Chem. 2018 69 273 298 10.1146/annurev-physchem-050317-021322 29490200 Michaels T. C. T. Šarić A. Meisl G. Heller G. T. Curk S. Arosio P. Linse S. Dobson C. M. Vendruscolo M. Knowles T. P. J. Thermodynamic and Kinetic Design
+Principles for Amyloid-Aggregation Inhibitors Proc. Natl. Acad. Sci. U. S. A. 2020 117 24251 24257 10.1073/pnas.2006684117 32929030 PMC7533883 Catherine K. X. Georg M. Andrzejewska E. A. Krainer G. Dear A. J. Castellana-Cruz M. Turi S. Edu I. A. Vivacqua G. Jacquat R. P. B. Arter W. E. Spillantini M. G. Vendruscolo M. Linse S. Knowles T. P. J. 
+ α -Synuclein
+oligomers form by secondary nucleation Nat.
+Commun. 2024 15 7083 10.1038/s41467-024-50692-4 39153989 PMC11330488 Noji M. Sasahara K. Yamaguchi K. So M. Sakurai K. Kardos J. Naiki H. Goto Y. Heating during
+agitation
+of β 2-microglobulin reveals that supersaturation
+breakdown is required for amyloid fibril formation at neutral pH J. Biol. Chem. 2019 294 15826 15835 10.1074/jbc.RA119.009971 31495783 PMC6816083 Nakajima K. Yamaguchi K. Noji M. Aguirre C. Ikenaka K. Mochizuki H. Zhou L. Ogi H. Ito T. Narita I. Gejyo F. Naiki H. Yamamoto S. Goto Y. Macromolecular crowding and supersaturation protect hemodialysis
+patients from the onset of dialysis-related amyloidosis Nat. Commun. 2022 13 5689 10.1038/s41467-022-33247-3 36192385 PMC9530240 Yamamoto S. Gejyo F. Historical background
+and clinical treatment of dialysis-related
+amyloidosis Biochim. Biophys. Acta 2005 1753 4 10 10.1016/j.bbapap.2005.09.006 16226497 Naiki H. Okoshi T. Ozawa D. Yamaguchi I. Hasegawa K. Molecular pathogenesis of human amyloidosis:
+Lessons
+from β 
+ 2 -microglobulin-related amyloidosis Pathol. Int. 2016 66 193 201 10.1111/pin.12394 26969800 Sasahara K. Yagi H. Naiki H. Goto Y. Heat-induced conversion
+of β 
+ 2 -microglobulin and hen egg-white
+lysozyme into amyloid fibrils J. Mol. Biol. 2007 372 981 991 10.1016/j.jmb.2007.06.088 17681531 Nakajima K. Yamazaki T. Kimura Y. So M. Goto Y. Ogi H. Time-Resolved Observation of Evolution
+of Amyloid- β Oligomer with Temporary Salt Crystals J.
+Phys. Chem. Lett. 2020 11 6176 6184 10.1021/acs.jpclett.0c01487 32687370 Nakajima K. Toda H. Yamaguchi K. So M. Ikenaka K. Mochizuki H. Goto Y. Ogi H. Half-Time
+Heat Map
+Reveals Ultrasonic Effects on Morphology and Kinetics of Amyloidogenic
+Aggregation Reaction ACS Chem. Neurosci. 2021 12 3456 3466 10.1021/acschemneuro.1c00461 34467753 Giehm L. Otzen D. E. Strategies to increase
+the reproducibility of protein
+fibrillization in plate reader assays Anal.
+Biochem. 2010 400 270 281 10.1016/j.ab.2010.02.001 20149780 Umemoto A. Yagi H. So M. Goto Y. High-throughput analysis
+of ultrasonication-forced amyloid fibrillation reveals the mechanism
+underlying the large fluctuation in the lag time J. Biol. Chem. 2014 289 27290 27299 10.1074/jbc.M114.569814 25118286 PMC4175360 Naiki H. Higuchi K. Hosokawa M. Takeda T. Fluorometric determination
+of amyloid fibrils in vitro using the fluorescent dye, thioflavine
+T Anal. Biochem. 1989 177 244 249 10.1016/0003-2697(89)90046-8 2729542 Ohhashi Y. Kihara M. Naiki H. Goto Y. Ultrasonication-induced
+amyloid fibril formation of β 2-microglobulin J. Biol. Chem. 2005 280 32843 32848 10.1074/jbc.M506501200 16046408 Nakajima K. Ogi H. Adachi K. Noi K. Hirao M. Yagi H. Goto Y. Nucleus factory on cavitation bubble for amyloid β fibril Sci. Rep. 2016 6 22015 10.1038/srep22015 26912021 PMC4766559 Goto Y. Nakajima K. Yamaguchi K. So M. Ikenaka K. Mochizuki H. Ogi H. Development of HANABI,
+an ultrasonication-forced
+amyloid fibril inducer Neurochem. Int. 2022 153 105270 10.1016/j.neuint.2021.105270 34954259 
+ Mullin , J. W. 
+ Crystallization , 4 th edition; Butterworth-Heinemann : Oxford , 2001 . Cohen S. I.
+A. Cukalevski R. Michaels T. C. T. Šarić A. Törnquist M. Vendruscolo M. Dobson C. M. Buell A. K. Knowles T. P. J. Linse S. Distinct thermodynamic signatures
+of oligomer generation in the aggregation of the amyloid-beta peptide Nat. Chem. 2018 10 523 531 10.1038/s41557-018-0023-x 29581486 PMC5911155 Jackson S. E. Fersht A. R. Folding of chymotrypsin inhibitor
+2: Evidence for a
+two-state transition Biochemistry 1991 30 10436 10443 10.1021/bi00107a011 1931968 Nakajima K. Noi K. Yamaguchi K. So M. Ikenaka K. Mochizuki H. Ogi H. Goto Y. Optimized
+sonoreactor for accelerative amyloid-fibril
+assays through enhancement of primary nucleation and fragmentation Ultrason. Sonochem. 2021 73 105508 10.1016/j.ultsonch.2021.105508 33770746 PMC7994783 Adachi M. So M. Sakurai K. Kardos J. Goto Y. Supersaturation-limited
+and unlimited phase transitions compete to produce the pathway complexity
+in amyloid fibrillation J. Biol. Chem. 2015 290 18134 18145 10.1074/jbc.M115.648139 26063798 PMC4505058 Adachi M. Noji M. So M. Sasahara K. Kardos J. Naiki H. Goto Y. Aggregation-phase
+diagrams of β 2-microglobulin reveal temperature
+and salt effects
+on competitive formation of amyloids versus amorphous aggregates J. Biol. Chem. 2018 293 14775 14785 10.1074/jbc.RA118.004683 30077972 PMC6153281 Chiba T. Hagihara Y. Higurashi T. Hasegawa K. Naiki H. Goto Y. Amyloid fibril formation
+in the context of full-length protein: Effects
+of proline mutations on the amyloid fibril formation of β 2-microglobulin J. Biol. Chem. 2003 278 47016 47024 10.1074/jbc.M304473200 12958308 Yagi H. Kusaka E. Hongo K. Mizobata T. Kawata Y. Amyloid fibril
+formation of alpha-synuclein is accelerated by preformed amyloid seeds
+of other proteins: implications for the mechanism of transmissible
+conformational diseases J. Biol. Chem. 2005 280 38609 38616 10.1074/jbc.M508623200 16162499 Kardos J. Yamamoto K. Hasegawa K. Naiki H. Goto Y. Direct measurement
+of the thermodynamic parameters of amyloid formation by isothermal
+titration calorimetry J. Biol. Chem. 2004 279 55308 55314 10.1074/jbc.M409677200 15494406 Morris A. M. Watzky M. A. Agar J. N. Finke R. G. Fitting Neurological
+Protein Aggregation Kinetic Data via a 2-Step, Minimal/’Ockham’s
+Razor’ Model: The Finke-Watzky Mechanism of Nucleation Followed
+by Autocatalytic Surface Growth Biochemistry 2008 47 2413 2427 10.1021/bi701899y 18247636 Hellstrand E. Boland B. Walsh D. M. Linse S. Amyloid β -Protein Aggregation Produces Highly
+Reproducible Kinetic Data and
+Occurs by a Two-Phase Process ACS Chem. Neurosci. 2010 1 13 18 10.1021/cn900015v 22778803 PMC3368626 Jean L. Lee C. Vaux D. Enrichment
+of Amyloidogenesis at an Air-Water Interface Biophys. J. 2012 102 1154 1162 10.1016/j.bpj.2012.01.041 22404938 PMC3296044 Nakajima K. Nishioka D. Hirao M. So M. Goto Y. Ogi H. Drastic acceleration of fibrillation of insulin by transient cavitation
+bubble Ultrason. Sonochem. 2017 36 206 211 10.1016/j.ultsonch.2016.11.034 28069203 Sikkink L. A. Ramirez-Alvarado M. Salts Enhance
+Both Protein Stability and Amyloid Formation
+of an Immunoglobulin Light Chain Biophys. Chem. 2008 135 25 31 10.1016/j.bpc.2008.02.019 18395318 PMC2441971 Jain N. Salt-Induced Modulation
+of the Pathway of Amyloid Fibril Formation
+by the Mouse Prion Protein Biochemistry 2010 49 7615 7624 10.1021/bi100745j 20712298 Mizukami T. Bedford J. T. Liao S. H. Greene L. H. Roder H. Effects of
+ionic strength on the folding and stability of SAMP1, a ubiquitin-like
+halophilic protein Front. Mol. Biosci. 2022 121 552 564 10.1016/j.bpj.2022.01.010 PMC8874027 35063455 Baldwin R. L. How Hofmeister
+ion interactions affect protein stability Biophys.
+J. 1996 71 2056 2063 10.1016/S0006-3495(96)79404-3 8889180 PMC1233672 Sabaté R. Gallardo M. Estelrich J. Temperature dependence of the nucleation
+constant rate in β amyloid fibrillogenesis Int. J. Biol. Macromol. 2005 35 9 13 10.1016/j.ijbiomac.2004.11.001 15769509 Paul P. S. Rathnam M. Khalili A. Cortez L. M. Srinivasan M. Planel E. Cho J. Wille H. Sim V. L. Mok S. Kar S. Temperature–Dependent
+Aggregation of Tau Protein
+Is Attenuated by Native PLGA Nanoparticles Under in vitro Conditions Int. J. Nanomed. 2025 20 1999 2019 10.2147/IJN.S494104 PMC11834738 39968061 Morris A. M. Finke R. G. 
+ α -Synuclein aggregation variable
+temperature and variable pH kinetic data: A re-analysis using the
+Finke–Watzky 2-step model of nucleation and autocatalytic growth Biophys. Chem. 2009 140 9 15 10.1016/j.bpc.2008.11.003 19101068 Camino J. D. Gracia P. Cremades N. The role of water in
+the primary
+nucleation of protein amyloid aggregation Biophys.
+Chem. 2021 269 106520 10.1016/j.bpc.2020.106520 33341693 Iljina M. Garcia G. A. Horrocks M. H. Tosatto L. Choi M. J. L. Ganzinger K. A. Abramov A. Y. Gandhi S. Wood N. W. Cremades N. Dobson C. M. Knowles T. P. J. Klenerman D. Kinetic model
+of the aggregation of α -synuclein provides
+insights into prion-like spreading Proc. Natl.
+Acad. Sci. U. S. A. 2016 113 E1206 E1215 10.1073/pnas.1524128113 26884195 PMC4780632 Xu C. K. Meisl G. Andrzejewska E. A. Krainer G. Dear A. J. Castellana-Cruz M. Turi S. Edu I. A. Vivacqua G. Jacquat R. P. B. Arter W. E. Spillantini M. G. Vendruscolo M. Linse S. Knowles T. P. J. 
+ α -synuclein
+oligomers form by secondary nucleation Nat.
+Commun. 2024 15 7083 10.1038/s41467-024-50692-4 39153989 PMC11330488 Noji M. Breakdown of supersaturation
+barrier links protein folding to amyloid
+formation Commun. Biol. 2021 4 120 10.1038/s42003-020-01641-6 33500517 PMC7838177 Jarrett J. T. Lansbury P. T. Seeding “one-dimensional
+crystallization”
+of amyloid: A pathogenic mechanism in Alzheimer’s disease and
+scrapie? Cell 1993 73 1055 1058 10.1016/0092-8674(93)90635-4 8513491 Mao Y. J. Sheng X. R. Pan X. M. The effects
+of NaCl concentration
+and pH on the stability of the hyperthermophilic protein Ssh10b BMC Biochem. 2007 8 28 10.1186/1471-2091-8-28 18096085 PMC2241623 Arakawa T. Timasheff S. N. Preferential
+interactions of proteins with salts in
+concentrated solutions Biochemistry 1982 21 6545 6552 10.1021/bi00268a034 7150575 Arakawa T. Timasheff S. N. Mechanism
+of protein salting in and salting out by
+divalent cation salts: Balance between hydration and salt binding Biochemistry 1984 23 5912 5923 10.1021/bi00320a004 6525340 Privalov P. L. Makhatadze G. I. Contribution of hydration to protein folding thermodynamics.
+II. The entropy and Gibbs energy of hydration J. Mol. Biol. 1993 232 660 679 10.1006/jmbi.1993.1417 8393941 Bousset L. Pieri L. Ruiz-Arlandis G. Gath J. Jensen P. H. Habenstein B. Madiona K. Olieric V. Böckmann A. Meier B. H. Melki R. Structural and functional characterization
+of two alpha-synuclein strains Nat. Commun. 2013 4 2575 10.1038/ncomms3575 24108358 PMC3826637 Wilkinson M. Gallardo R. U. Martinez R. M. Guthertz N. So M. Aubrey L. D. Radford S. E. Ranson N. A. Disease-relevant β 2-microglobulin
+variants share a common amyloid fold Nat. Commun. 2023 14 1190 10.1038/s41467-023-36791-8 36864041 PMC9981686 Aguirre C. Conformational Switch in the Alpha-Synuclein C-Terminal
+Domain Directs
+Its Fibril Polymorphs Chem.Eur. J. 2025 31 e202500650 10.1002/chem.202500650 40410120 PMC12223483 So M. Kimura Y. Yamaguchi K. Sugiki T. Fujiwara T. Aguirre C. Ikenaka K. Mochizuki H. Kawata Y. Goto Y. Polyphenol–solubility alters
+amyloid fibril formation of α –synuclein Protein Sci. 2021 30 1701 1713 10.1002/pro.4130 34046949 PMC8284582 Österlund N. Kulkarni Y. S. Misiaszek A. D. Wallin C. Krüger D. M. Liao Q. Rad F. M. Jarvet J. Strodel B. Wärmländer S. K. Ilag L. L. Kamerlin S. C. L. Gräslund A. Amyloid– β Peptide Interactions with Amphiphilic Surfactants: Electrostatic
+and Hydrophobic Effects ACS Chem. Neurosci. 2018 9 1680 1692 10.1021/acschemneuro.8b00065 29683649 Sahtoe D. D. Design of amyloidogenic
+peptide traps Nat.
+Chem. Biol. 2024 20 981 990 10.1038/s41589-024-01578-5 38503834 PMC11288891 Maurer M. S. Tafamidis treatment for patients with transthyretin amyloid cardiomyopathy N. Engl. J. Med. 2018 379 1007 1016 10.1056/NEJMoa1805689 30145929 Coelho M. R. Long-term effects of tafamidis for the treatment of transthyretin
+familial amyloid polyneuropathy J. Neurol. 2013 260 2802 2814 10.1007/s00415-013-7051-7 23974642 PMC3825212 Sekijima Y. Tojo H. Suga N. Suwa Y. Tsukamoto K. Yoshida K. Tanaka T. Watanabe M. Iwata M. Nakamura K. Ando Y. Pathogenesis
+of transthyretin amyloidosis:
+protein misfolding, aggregation, and clinical presentation Neurology 2010 75 2056 2064 Mizuno H. Dialysis–related amyloidosis associated with a novel β 2–microglobulin variant Amyloid 2021 28 42 49 10.1080/13506129.2020.1813097 32875920 Bulyaki E. Pathogenic D76N Variant of β 2-Microglobulin:
+Synergy of Diverse Effects in Both the Native and Amyloid States Biology 2021 10 1197 10.3390/biology10111197 34827190 PMC8614874 

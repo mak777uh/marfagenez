@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?><article xml:lang="en" article-type="research-article"><front><journal-meta><journal-id journal-id-type="pmc-domain-id">3686</journal-id><journal-id journal-id-type="pmc-domain">acsomega</journal-id><journal-title-group><journal-title>ACS Omega</journal-title><abbrev-journal-title>ACS Omega</abbrev-journal-title></journal-title-group><publisher><publisher-name>American Chemical Society</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type="pmcid">PMC13393358</article-id><article-id pub-id-type="pmcaid">13393358</article-id><article-id pub-id-type="pmcaiid">13393358</article-id><article-id pub-id-type="pmid">42495334</article-id><article-id pub-id-type="doi">10.1021/acsomega.6c04142</article-id><title-group><article-title>Cellulose Acetate Nanoparticles as Eco-Friendly Photosensitizers
+for Antimicrobial Photodynamic Inactivation</article-title></title-group><contrib-group content-type="author"><contrib><name name-style="western"><surname>Flores</surname><given-names initials="RS">Raphael S</given-names></name><xref ref-type="aff" rid="aff1">1</xref></contrib><contrib><name name-style="western"><surname>Miessi</surname><given-names initials="G">Gabriella</given-names></name><xref ref-type="aff" rid="aff1">1</xref></contrib><contrib><name name-style="western"><surname>Cavalheri</surname><given-names initials="PS">Priscila S</given-names></name><xref ref-type="aff" rid="aff1">1</xref></contrib><contrib><name name-style="western"><surname>Miguel</surname><given-names initials="ESC">Emmanuel S C</given-names></name><xref ref-type="aff" rid="aff1">1</xref></contrib><contrib><name name-style="western"><surname>Lima</surname><given-names initials="RG">Regiane G</given-names></name><xref ref-type="aff" rid="aff1">1</xref></contrib><contrib><name name-style="western"><surname>Oliveira</surname><given-names initials="SL">Samuel L</given-names></name><xref ref-type="aff" rid="aff1">1</xref></contrib><contrib><name name-style="western"><surname>Caires</surname><given-names initials="ARL">Anderson R L</given-names></name><xref ref-type="aff" rid="aff1">1</xref><xref rid="cor1" ref-type="author-notes">*</xref></contrib></contrib-group><aff id="aff1"><label>1</label>
+Optics and Photonics Group,
+Institute of Physics, Federal University
+of Mato Grosso do Sul, P.O. Box 549, Campo Grande, Mato Grosso do Sul
+79070-900, Brazil
+</aff><author-notes><fn id="cor1"><label>*</label><p>
+Email: <email>anderson.caires@ufms.br</email>.</p></fn></author-notes><pub-date><day>7</day><month>7</month><year>2026</year></pub-date><volume>11</volume><issue>28</issue><fpage>42742</fpage><page-range>42742–42750</page-range><pub-history><event event-type="pmc-release"><date><day>24</day><month>7</month><year>2026</year></date></event></pub-history><permissions><copyright-statement>© 2026 The Authors. Published by American Chemical Society</copyright-statement><license><license-p>This article is licensed under CC-BY 4.0</license-p></license></permissions><self-uri xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ao6c04142.pdf" content-type="pmc-pdf"><?cloudpmc-path 43ec/13393358/b458022b4163/ao6c04142.pdf?><?cloudpmc-bucket app?><?size 6075283?></self-uri><abstract id="abstract1"><title>Abstract</title><p>Antimicrobial resistance
+has emerged as a critical global health
+issue, demanding sustainable alternatives to conventional antibiotics.
+This study aimed to develop and evaluate cellulose acetate nanoparticles
+(NPs-CA) as eco-friendly photosensitizers for antimicrobial photodynamic
+inactivation (aPDI). NPs-CA were synthesized via nanoprecipitation,
+producing spherical and monodisperse nanoparticles with a mean hydrodynamic
+diameter of 268 ± 8 nm. The particles’ photophysical and
+morphological properties were characterized by UV–vis, SEM,
+and DLS. ROS generation was assessed using dihydroethidium (DHE) assays.
+Acute toxicity was assessed using <italic>Artemia</italic> sp. assays. The nanoparticles exhibited visible light absorption
+at 450 nm and generated ROS upon irradiation. In vitro assays demonstrated
+a &gt;3 log<sub>10</sub> CFU reduction of <italic>Escherichia
+coli</italic> at 500 ppm and complete photoinactivation at
+1000 ppm under blue-light irradiation. <italic>Staphylococcus
+aureus</italic> exhibited low sensitivity, with no significant
+photodynamic effect observed. Toxicity tests indicated an LC<sub>50</sub> of 320.56 ppm and a TU &lt; 0.4, classifying the system as nontoxic.
+NPs-CA are light-activated photosensitizers for <italic>E.
+coli</italic> inactivation, with confirmed safety in ecotoxicological
+assays. These findings support the use of cellulose-based nanomaterials
+as sustainable and biocompatible platforms for antimicrobial photodynamic
+therapy, particularly against multidrug-resistant Gram-negative bacteria.</p></abstract><abstract id="abstract2" abstract-type="graphical"><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="abs1" xlink:href="ao6c04142_0010.jpg"><?cloudpmc-path blobs/43ec/13393358/7d03af4c5c07/ao6c04142_0010.jpg?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 478?><?original-width 997?><?scaled-height 318?><?scaled-width 664?></graphic></abstract><abstract id="abstract3" abstract-type="toc-graphic"><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="tgr1" xlink:href="ao6c04142_0008.jpg"><?cloudpmc-path blobs/43ec/13393358/7d03af4c5c07/ao6c04142_0008.jpg?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 478?><?original-width 997?><?scaled-height 318?><?scaled-width 664?></graphic></abstract><custom-meta-group><custom-meta><meta-name>status</meta-name><meta-value>released</meta-value></custom-meta><custom-meta><meta-name>display-pdf</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>is-olf</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>is-manuscript</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>is-preprint</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>is-journal-matter</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>is-scanned</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>is-retracted</meta-name><meta-value>no</meta-value></custom-meta></custom-meta-group></article-meta><notes notes-type="article-notes"><sec id="historyarticle-meta1" sec-type="history" disp-level="2"><p>Received 2026 Apr 13; Accepted 2026 Jun 26; Revised 2026 Jun 16; Collection date 2026 Jul 21.</p></sec></notes></front><body><sec id="sec1" disp-level="1"><label>1.</label><title>Introduction</title><p>Bacterial infections have
+challenged humanity throughout history,
+causing devastating pandemics like the Black Death (14th century),
+cholera (19th century), and ongoing tuberculosis.<italic>
+−
+
+</italic> The discovery
+of antibiotics initially appeared to solve this problem, but their
+overuse has accelerated drug-resistant strains, returning us to a
+preantibiotic era. Without intervention,
+antimicrobial-resistant pathogens could cause over 10 million annual
+deaths by 2050, with a projected $100 trillion cumulative economic
+impact. Antibiotic resistance occurs through
+four primary mechanisms: reduced outer membrane permeability, enzymatic
+antibiotic inactivation, antibiotic efflux pumps, and drug-target
+modification. These processes collectively decrease intracellular
+antibiotic concentrations or reinforce cellular structures. Beyond future projections, antimicrobial-resistant
+bacteria already pose critical challenges to global healthcare systems.
+Notably, Gram-negative <italic>Escherichia coli</italic>, capable of causing gastrointestinal infections, includes resistant variants like mcr-1-positive strains
+that confer colistin resistance, jeopardizing last-resort antibiotic
+therapies. Equally concerning is Gram-positive <italic>Staphylococcus aureus</italic>, responsible for pneumonia
+and skin infections, with methicillin-resistant
+strains (MRSA) showing 67% higher mortality than susceptible counterparts.
+</p><p>Photodynamic inactivation (PDI) has emerged
+as a promising approach
+for bacterial infections.<italic>
+,
+</italic> The process requires
+three components: a photosensitizer (PS), molecular oxygen (O<sub>2</sub>), and light. The excited PS catalyzes reactions with O<sub>2</sub>, generating reactive oxygen species (ROS) that damage microbial
+cells. ROS production can occur via two
+mechanisms: Type I (electron transfer producing free radicals/peroxides)
+and Type II (energy transfer forming singlet oxygen). The key advantage of PDI as an alternative to antibiotics
+lies in its multisite action. While antibiotics commonly act on specific
+bacterial cellular sites, internalized PS generate ROS simultaneously
+at multiple locations, inducing great oxidative stress. Recent works
+demonstrated that PDI can similarly inactivate multidrug-resistant
+and antibiotic-susceptible bacterial strains.<italic>
+,
+</italic> Additionally, the multisite mechanism of PDI significantly impedes
+the development of mutation-driven resistance.
+</p><p>Despite the growing number of studies exploring antimicrobial
+photodynamic
+inactivation (aPDI), most reported systems rely on classical organic
+dyes, metallic nanoparticles, or conjugated polymers as photosensitizers.
+While effective, these materials often have drawbacks such as photobleaching,
+cytotoxicity, environmental persistence, or the need for complex synthesis
+routes.<italic>
+,
+</italic> In this context, the development of sustainable,
+metal-free, and biodegradable photosensitizing platforms remains an
+important challenge. Natural and semisynthetic polymers have emerged
+as promising alternatives; however, their direct use as photoactive
+systems for aPDI remains underexplored.</p><p>Cellulose, the world’s
+most abundant natural biopolymer
+(40–50% of Earth’s biomass), is a renewable, biodegradable,
+and nontoxic organic polymer derived from plants, bacteria, and tunicates. Its derivative, cellulose acetate (CA), exhibits
+biocompatibility, biodegradability, and mechanical strength, enabling
+processing into films, fibers, and membranes for industrial applications.<italic>
+,
+</italic> Recent research has enhanced CA properties by incorporating bioactive
+nanocomposites, antimicrobial essential
+oil nanocapsules, biomedical packaging
+materials, and drug-delivery nanoparticles. The functional groups (hydroxyl, carboxyl, and
+ether) on its backbone facilitate ionic interactions, making CA an
+excellent nanoreactor for catalytic nanoparticles. Notably, demonstrating minimal environmental toxicity,
+with no phytotoxic, cytotoxic, or genotoxic effects in <italic>Allium cepa</italic> assays. Recently, <italic>Artemia salina</italic> has been adopted as a biological model
+in nanotoxicology because its assays are simple, fast, and cost-effective.
+</p><p>Although cellulose acetate is not a classical
+chromophoric material,
+recent studies have demonstrated that polymeric nanostructures can
+act as indirect photosensitizers through light-induced charge separation,
+defect states, or interfacial oxygen activation.<italic>
+,
+</italic> Confinement
+effects, surface hydroxyl groups, and polymer–solvent interactions
+present in cellulose-based nanoparticles may facilitate ROS generation
+under visible light, even in the absence of conjugated π-systems.</p><p>In this context, the current study investigates cellulose acetate
+nanoparticles (NPs-CA) synthesized via nanoprecipitation as a sustainable,
+metal-free photosensitizing platform for antimicrobial photodynamic
+inactivation (aPDI). Beyond conventional carrier applications, this
+work explores the intrinsic photoactivity of CA-based nanostructures,
+investigating their physicochemical properties, ROS generation capability,
+antimicrobial performance against Gram-negative and Gram-positive
+bacteria, and environmental safety assessed through <italic>Artemia</italic> sp. assays. By doing so, this study aims to advance cellulose-derived
+nanomaterials from passive carriers to active photodynamic agents.</p></sec><sec id="sec2" disp-level="1"><label>2.</label><title>Materials and Methods</title><sec id="sec2.1" disp-level="2"><label>2.1.</label><title>Materials</title><p>Cellulose acetate (CA)
+with a molecular weight approximately equal to 50,000 g/mol, poly­(vinyl
+alcohol) (PVA) with a molecular weight range of 30,000–70,000
+g·mol<sup>–1</sup>, and tetrahydrofuran (THF) were acquired
+from Sigma-Aldrich (St. Louis, MO, USA). Plate Count Agar (PCA) and
+Brain-Heart Infusion Broth (BHI), used for cultivation and assays,
+were obtained from KASVI (São José dos Pinhais, PR,
+BR). Finally, microbiological assays were conducted using <italic>S. aureus</italic> ATCC 25923 and <italic>E. coli</italic> ATCC 25922.</p></sec><sec id="sec2.2" disp-level="2"><label>2.2.</label><title>Nanoparticles Synthesis</title><p>The synthesis
+of the NPs was carried out by the nanoprecipitation method.<italic>
+,
+</italic> First, an organic solution was prepared by adding 40 mg of CA to
+4 mL of THF. An aqueous solution was also prepared by dissolving 13.75
+mg of PVA in 2.5 mL of distilled water. Then, the organic solution
+was added dropwise to the aqueous solution under magnetic stirring.
+The solutions were protected from light and stirred continuously at
+80 rpm for 24 h at 25 °C to ensure complete solvent evaporation.
+Afterward, the volume of the solution was adjusted to 10 mL by adding
+distilled water to achieve a final concentration of 4 mg mL<sup>–1</sup> of CA. The overall synthesis process is illustrated in <xref rid="fig1" ref-type="fig">Figure 
+</xref>.</p><fig id="fig1" position="float"><?disp-level 3?><label>1</label><caption><p>Schematic representation
+of the nanoprecipitation method used for
+the synthesis of cellulose acetate nanoparticles (NPs-CA). An organic
+solution (4 mL THF + 40 mg CA) was added dropwise to an aqueous solution
+(2.5 mL H<sub>2</sub>O + 13.75 mg PVA) under magnetic stirring. The
+mixture was stirred at room temperature for 24 h to allow solvent
+evaporation, and the final volume was adjusted to 10 mL with distilled
+water, yielding a CA concentration of 4 mg·mL<sup>–1</sup>. Created by the authors using <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://BioRender.com" ext-link-type="uri">BioRender.com</ext-link>.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr1" xlink:href="ao6c04142_0001.jpg"><?cloudpmc-path blobs/43ec/13393358/ad61359f35cb/ao6c04142_0001.jpg?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 844?><?original-width 1287?><?scaled-height 422?><?scaled-width 643?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c04142_0001.gif"><?cloudpmc-path blobs/43ec/13393358/9306f198946a/ao6c04142_0001.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig></sec><sec id="sec2.3" disp-level="2"><label>2.3.</label><title>UV–Vis Absorption Characterization</title><p>A UV–vis spectrophotometer (LAMBDA 265 UV/vis) was used
+to measure the absorbance of the NPs-CA. For the measurement, a 200
+μL aliquot of the NPs-CA solution (4 mg·mL<sup>–1</sup>) was diluted with 1800 μL of distilled water. The diluted
+sample was placed in a 1 cm quartz cuvette with four polished sides.
+A baseline was established using distilled water before the absorption
+spectrum was recorded in the 200–700 nm range.</p></sec><sec id="sec2.4" disp-level="2"><label>2.4.</label><title>Dynamic Light Scattering Analysis</title><p>The hydrodynamic
+diameter distribution, polydispersity index (PDI),
+and zeta potential (ζ) of the NPs-CA were determined using a
+Zetasizer Nano-ZS ZEN 3600 (Malvern). For these measurements, a solution
+of NPs-CA at a concentration of 4 mg/mL was diluted in Milli-Q water.
+The analyses were conducted at a constant temperature of 25 °C
+and a constant pH, using an electrophoresis cuvette (DTS1070).</p></sec><sec id="sec2.5" disp-level="2"><label>2.5.</label><title>Scanning Electron Microscope Images</title><p>SEM analysis was
+performed using a JEOL JSM-6380 LV microscope (JEOL,
+Akishima, Tokyo, Japan). Images of the NPs-CA were acquired after
+depositing the nanoparticles onto a metal stub, followed by drying
+and sputtering with a thin conductive gold layer. Morphological analysis
+was conducted on images at 20,000× and 50,000× magnification,
+and nanoparticle size distribution was determined by measuring 100
+randomly selected particles using ImageJ software.</p></sec><sec id="sec2.6" disp-level="2"><label>2.6.</label><title>Fourier Transform Infrared Spectroscopy Analysis</title><p>NPs-CA
+and their pure components were analyzed by FTIR spectroscopy
+in an Agilent Cary 630 FTIR spectrometer (California, USA), equipped
+with an attenuated total reflectance (ATR) accessory featuring a germanium
+crystal. Before analysis, the nanoparticles were centrifuged and oven-dried
+to obtain powdered samples. Ten scans were recorded in the spectral
+range of 4000 to 500 cm<sup>–1</sup> with a resolution of 0.5
+cm<sup>–1</sup>.</p></sec><sec id="sec2.7" disp-level="2"><label>2.7.</label><title>Thermal Analysis</title><p>Thermogravimetric
+analysis (TGA) and differential scanning calorimetry (DSC) were used
+to study the phase transitions of NPs-CA and compare them with those
+of pure AC polymer. Analyses were performed using a NETZSCH STA 449
+F3 Jupiter (Selb, Germany) instrument, with the temperature ranging
+from 20 to 600 °C at a heating rate of 15 °C·min<sup>–1</sup>.</p></sec><sec id="sec2.8" disp-level="2"><label>2.8.</label><title>Photoinactivation Assay</title><p>The bacterial
+strains utilized for the photoinactivation assay were <italic>E. coli</italic> (ATCC 25922) and <italic>S. aureus</italic> (ATCC 25923). These strains were preserved at 2 °C in Müller-Hinton
+broth (Sigma-Aldrich, St. Louis, USA) supplemented with 20% glycerol
+to maintain viability. To prepare the working bacterial suspensions,
+40 μL of each bacterial stock was inoculated into 20 mL of Brain
+Heart Infusion (BHI) medium. This mixture was then incubated at 37
+°C with agitation for 24 h to facilitate bacterial growth. The
+concentration of the resulting bacterial suspension was then standardized
+to a 1.0 McFarland scale by adding phosphate-buffered saline (PBS).
+This standardization was achieved by adjusting the suspension until
+its absorbance at 625 nm reached approximately 0.14, measured in an
+Agilent BioTek Synergy H1Multimode Reader (Santa Clara, CA, USA).
+Various concentrations of NPs-CA solutions were prepared by diluting
+the 4 mg mL<sup>–1</sup> stock solution. Then, 500 μL
+of each NPs-CA solution was mixed with 500 μL of the bacteria-saline
+suspension, resulting in final concentrations of 0.5 McFarland for
+the bacteria and 100, 250, 500, and 1000 ppm for NPs-CA. A negative
+control was also prepared by mixing 500 μL of the bacteria-saline
+suspension with 500 μL of PBS. Samples were divided in two groups:
+irradiated and nonirradiated. Both groups were kept in the dark for
+60 min to allow nanoparticle internalization by the bacteria. After
+this period, 200 μL of each concentration from the irradiated
+group was transferred to a 96-well plate and exposed to blue LED light
+at 450 nm (28 mW cm<sup>–2</sup>) for 90 min, while the nonirradiated
+group remained in darkness. Finally, 200 μL from each concentration
+of both groups were diluted in PBS to a 1:32 ratio and plated on plate
+count agar (PCA) using the spread plate method in a 96-well format.
+Colony-forming units (CFUs) were counted after 24 h of incubation
+at 37 °C. All measurements were performed in duplicate, and the
+entire experiment was repeated three times to ensure statistical reliability.
+For data analysis, raw CFU counts were logarithmically transformed
+(log<sub>10</sub>) to meet the assumptions for parametric statistical
+tests. Standard deviation was calculated for each experimental condition
+across the independent replicates, and statistical significance for
+observed differences between experimental groups was determined using
+the <italic>t</italic>-Student test (p-value &lt;0.05).</p></sec><sec id="sec2.9" disp-level="2"><label>2.9.</label><title>Reactive Oxygen Species Determination</title><p>The generation
+of reactive oxygen species (ROS) was quantified according
+to an adapted protocol based on the method of Caires et al. [29].
+A volume of 70 μL of 5 mM dihydroethidium (DHE) was introduced
+to 2 mL of an aqueous suspension of NPs-CA at a concentration of 500
+ppm. After 10 min in the dark, the mixture was irradiated with a blue
+LED (450 nm) at an irradiance of 28 mW cm<sup>–2</sup> for
+25 min. Within this 35 min, fluorescence emission spectra were acquired
+at 1 min intervals across the 520–700 nm range, with an excitation
+wavelength of 500 nm, using a Sinco FluoroMate FS-2 spectrofluorometer
+(Seoul, Republic of Korea).</p></sec><sec id="sec2.10" disp-level="2"><label>2.10.</label><title>Acute Toxicity Assay in <italic>Artemia</italic> sp</title><p>The acute toxicity assay was
+performed according to<italic>
+,
+</italic> and the ABNT NBR 16530:2016 Brazilian
+standard. The results were expressed
+in median lethal concentration
+(LC<sub>50</sub>), defined as the concentration at which 50% of exposed
+organisms exhibit mortality. For cyst
+hatching, a synthetic seawater solution at 36 g L<sup>–1</sup> and pH 8–9 was aerated for 48 h. After hatching, 10 individuals
+were added to each 10 mL beaker containing 3 mL sample. The temperature
+was maintained at 25 °C, with a 16 h light:8 h dark photoperiod
+in a static system. The LC<sub>50</sub> was calculated for dilutions
+of 1000, 750, 500, 250, 100, 50, 5, and 1 ppm. The pH of the samples
+was adjusted to 7.0 with 1 mol L<sup>–1</sup> NaOH solution.
+The saline solution was used as a negative control and for sample
+dilution. Potassium dichromate at 1% was used as a positive control.
+The assays were performed in triplicate. The LC<sub>50</sub> values
+were calculated from the linear regression of the ratio between the
+percentage of dead (immobilized) nauplii and the sample concentration.
+A nauplius was considered immobile when it could not move its appendages
+or barycenter position for 10 s. For this purpose, PROBIT analysis
+was conducted using StatPlus/mac, AnalystSoft, v8.<italic>
+,
+</italic>
+</p></sec></sec><sec id="sec3" disp-level="1"><label>3.</label><title>Results</title><sec id="sec3.1" disp-level="2"><label>3.1.</label><title>Nanoparticles Characterization</title><p>
+<xref rid="fig2" ref-type="fig">Figure 
+</xref> shows a
+typical
+UV–vis absorption spectrum of NPs-CA. The spectrum exhibits
+a monotonically decreasing absorbance from 250 to 700 nm, with no
+clear absorption peaks. This pattern is consistent with the nonconjugated
+nature of the polymer backbone, which lacks strong chromophoric groups. The absorbance profile of SEM micrograph analysis
+of the NPs-CA (<xref rid="fig3" ref-type="fig">Figure 
+</xref>b) revealed a mean particle diameter of 206 ± 7 nm. In contrast,
+dynamic light scattering (DLS) measurements (<xref rid="fig3" ref-type="fig">Figure 
+</xref>a) showed a larger mean hydrodynamic diameter
+of 268 ± 8 nm, as expected due to the contribution of hydration
+layers surrounding the nanoparticles in solution. Additionally, DLS
+analysis showed a PDI of 0.15 ± 0.02, indicating monodisperse
+behavior of NPs-CA in aqueous solution, as PDIs between 0.1 and 0.7
+are typical of monodisperse systems. The
+zeta potential of NPs-CA was −8.75 ± 0.23 mV, a moderately
+negative value that suggests limited electrostatic stabilization but
+adequate colloidal stability due to steric effects, consistent with
+cellulose-based systems. The size of
+cellulose acetate (CA)-based nanoparticles is highly affected by the
+synthesis method. For example, CA nanocarriers produced via supercritical
+electrospray-assisted techniques exhibited diameters ranging from
+266 to 343 nm, depending on the polymer concentration during processing. In comparison, NPs-CA synthesized via a nanoemulsion
+method with dichloromethane as the organic solvent displayed significantly
+larger average sizes, reaching up to 508 nm [39].</p><fig id="fig2" position="float"><?disp-level 3?><label>2</label><caption><p>UV–vis absorbance
+spectrum of NPs-CA solution at 100 ppm,
+with an arrow indicating the wavelength at 450 nm corresponding to
+blue light irradiation. The inset shows the chemical structure of
+cellulose acetate.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr2" xlink:href="ao6c04142_0002.jpg"><?cloudpmc-path blobs/43ec/13393358/bfa0af368720/ao6c04142_0002.jpg?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 743?><?original-width 992?><?scaled-height 495?><?scaled-width 661?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c04142_0002.gif"><?cloudpmc-path blobs/43ec/13393358/579c04103a52/ao6c04142_0002.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><fig id="fig3" position="float"><?disp-level 3?><label>3</label><caption><p>Diameter distribution
+of NPs-CA measured by (a) DLS and (b) SEM.
+Inset: representative SEM image of NPs-CA.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr3" xlink:href="ao6c04142_0003.jpg"><?cloudpmc-path blobs/43ec/13393358/18549be64f83/ao6c04142_0003.jpg?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 790?><?original-width 1766?><?scaled-height 316?><?scaled-width 706?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c04142_0003.gif"><?cloudpmc-path blobs/43ec/13393358/4256cd7350ee/ao6c04142_0003.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><p>
+<xref rid="fig4" ref-type="fig">Figure 
+</xref> shows the
+FTIR spectra of the NPs-CA compared with their precursor materials,
+CA and PVA. This analysis confirms the chemical composition of the
+nanoparticles and provides insight into the molecular interactions
+occurring during the nanoprecipitation process. The NPs-CA spectrum
+preserves the main vibrational features of the CA polymer backbone,
+indicating that its structural integrity is maintained after synthesis.
+The characteristic CO stretching band at 1738 cm<sup>–1</sup>, associated with ester groups in CA, and the C–O stretching
+of acetyl groups at 1220 cm<sup>–1</sup> are clearly observed.
+Subtle spectral variations, particularly slight shifts in the 1500–1000
+cm<sup>–1</sup> region, provide valuable insight into the nanoparticle
+formation mechanism by indicating significant intermolecular interactions
+between CA and PVA. In addition, a pronounced reduction in the –OH
+stretching band in the NPs-CA spectrum, compared to pure PVA, suggests
+the establishment of intermolecular hydrogen bonding between the hydroxyl
+groups of PVA and the carbonyl or ether oxygen atoms in the CA matrix.
+These interactions play a critical role in stabilizing the nanoparticle
+surface during solvent evaporation, ultimately enabling the formation
+of a cohesive and monodisperse system.<italic>
+,
+</italic>
+</p><fig id="fig4" position="float"><?disp-level 3?><label>4</label><caption><p>FTIR spectra
+of NPs-CA and their individual constituents.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr4" xlink:href="ao6c04142_0004.jpg"><?cloudpmc-path blobs/43ec/13393358/6802fa2fcb09/ao6c04142_0004.jpg?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 850?><?original-width 992?><?scaled-height 566?><?scaled-width 661?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c04142_0004.gif"><?cloudpmc-path blobs/43ec/13393358/7f722d5cb1b3/ao6c04142_0004.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><p>The thermal stability and phase transitions of the NPs-CA were
+evaluated using Thermogravimetric Analysis (TGA) and Differential
+Scanning Calorimetry (DSC), as shown in <xref rid="fig5" ref-type="fig">Figure 
+</xref>. The TGA curve revealed a notable mass loss
+between 300–400 °C, characteristic of CA thermal degradation. Apart from the dehydration-related loss of around
+100 °C, absent in dried samples, the NPs-CA thermal profile closely
+matches that of pure CA. Similarly, the DSC curve of NPs-CA displays
+an endothermic event near 200 °C, linked to polymer crystallization,
+consistent with the thermal behavior of CA. These data confirm that NPs-CA act as a thermally stable carrier,
+preserving the intrinsic thermal properties of CA and highlighting
+their suitability as a durable and biocompatible platform for light-activated
+antimicrobial inactivation.</p><fig id="fig5" position="float"><?disp-level 3?><label>5</label><caption><p>Differential scanning calorimetry (DSC) and
+thermogravimetric analysis
+(TGA) curves of NPs-CA.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr5" xlink:href="ao6c04142_0005.jpg"><?cloudpmc-path blobs/43ec/13393358/029e05e6edf1/ao6c04142_0005.jpg?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 692?><?original-width 992?><?scaled-height 461?><?scaled-width 661?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c04142_0005.gif"><?cloudpmc-path blobs/43ec/13393358/86af68746aa6/ao6c04142_0005.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig></sec><sec id="sec3.2" disp-level="2"><label>3.2.</label><title>Photoinactivation
+Assay</title><p>The antimicrobial
+photoinactivation assay was conducted to assess the photosensitizing
+potential of NPs-CA (<xref rid="fig6" ref-type="fig">Figure 
+</xref>). For <italic>S. aureus</italic>, a modest
+reduction in CFU was observed across all irradiated treatments, including
+the negative control, indicating that blue light alone (in the absence
+of NPs-CA) inhibited bacterial growtha known effect for this
+species.<italic>
+,
+</italic> However, this reduction was less than 1
+log<sub>10</sub> CFU and therefore cannot be classified as bactericidal. In contrast, NPs-CA demonstrated significant
+photobactericidal activity against <italic>E. coli</italic>, achieving &gt;3 log<sub>10</sub> CFU reduction at 500 and 1000
+ppm.
+At 1000 ppm, complete photoinactivation was achieved, with no detectable
+bacterial growth. Statistical analysis comparing the light and dark
+groups confirmed the significance of these findings (<italic>p</italic> &lt; 0.05), establishing that the observed effects were indeed due
+to light exposure and not any chemical effect in the dark <xref rid="tbl1" ref-type="table">Table 
+</xref>.</p><fig id="fig6" position="float"><?disp-level 3?><label>6</label><caption><p>Mean CFU·mL<sup>–1</sup> of (a) <italic>Staphylococcus
+aureus</italic> and (b) <italic>Escherichia coli</italic> in PDI assays following blue light irradiation (450 nm) for 1 h
+and 30 min. (*) indicates photobactericidal activity, defined as a
+reduction greater than 3 log<sub>10</sub> CFU. (c) Representative
+images of CFU growth in Petri dishes.</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr6" xlink:href="ao6c04142_0006.jpg"><?cloudpmc-path blobs/43ec/13393358/71e5395920e8/ao6c04142_0006.jpg?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 2010?><?original-width 1660?><?scaled-height 804?><?scaled-width 664?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c04142_0006.gif"><?cloudpmc-path blobs/43ec/13393358/dc78837e82fa/ao6c04142_0006.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><table-wrap id="tbl1" position="float"><?disp-level 3?><label>1</label><caption><title>Characteristic Infrared Absorption
+Peaks of NPs-CA, CA, and PVA Samples<italic>
+,
+</italic>
+</title></caption><table frame="hsides" rules="groups"><colgroup span="1"><col align="left" span="1"/><col align="left" span="1"/><col align="left" span="1"/><col align="left" span="1"/></colgroup><thead><tr><th align="center" colspan="1" rowspan="1">NPs-CA</th><th align="center" colspan="1" rowspan="1">CA</th><th align="center" colspan="1" rowspan="1">PVA</th><th align="center" colspan="1" rowspan="1">IR Modes</th></tr></thead><tbody><tr><td align="left" colspan="1" rowspan="1">3490 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">3485 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">3281 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">O–H
+stretching</td></tr><tr><td align="left" colspan="1" rowspan="1"> </td><td align="left" colspan="1" rowspan="1"> </td><td align="left" colspan="1" rowspan="1">2914 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">CH<sub>2</sub> asymmetric stretching</td></tr><tr><td align="left" colspan="1" rowspan="1">1738 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">1735 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">1720 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">CO stretching (ester)</td></tr><tr><td align="left" colspan="1" rowspan="1">1220 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">1217 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1"> </td><td align="left" colspan="1" rowspan="1">Acetyl group C–O stretching</td></tr><tr><td align="left" colspan="1" rowspan="1">1034 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">1034 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">1071 cm<sup>–1</sup>
+</td><td align="left" colspan="1" rowspan="1">Primary alcohol C–O symmetric stretching</td></tr></tbody></table></table-wrap></sec><sec id="sec3.3" disp-level="2"><label>3.3.</label><title>Reactive
+Oxygen Species Determination</title><p>To determine whether the photobactericidal
+activity of NPs-CA results
+from photodynamic action, the generation of ROS by NPs-CA under blue
+light exposure was quantified. This was achieved by monitoring the
+fluorescence of ethidium, formed through the reaction between ROS
+(produced by the interaction of photoactivated NPs-CA and molecular
+oxygen) and the nonfluorescent probe dihydroethidium (DHE).
+<xref rid="fig7" ref-type="fig">Figure 
+</xref> shows the fluorescence intensity at 612 nm measured over
+10 min in the dark, followed by 15 min under blue light irradiation.
+No increase in fluorescence was observed during the dark period, indicating
+the absence of ROS generation. In contrast, a marked increase in fluorescence
+was detected upon illumination, demonstrating that NPs-CA rapidly
+generate ROS under light exposure. This fluorescence, observed in
+the 530–730 nm range, results from the formation of ethidium,
+a product of the reaction between ROS and the DHE probe. The time-dependent
+increase in fluorescence under illumination was fitted using the equation <italic>F</italic> = <italic>a</italic>(1-<italic>e</italic>
+<sup>–<italic>k</italic>
+<sub>f</sub>
+<italic>t</italic>
+</sup>), where F represents
+the fluorescence intensity at 612 nm, t is the illumination time,
+and <italic>a</italic> and <italic>k</italic>
+<sub>f</sub> are fitting
+constants obtained from the curve fitting shown in the inset in <xref rid="fig7" ref-type="fig">Figure 
+</xref>b. The parameter <italic>k</italic>
+<sub>f</sub> corresponds to the product of the ROS generation
+rate constant (<italic>k</italic>
+<sub>ROS</sub>) and the DHE concentration,
+(i.e., <italic>k</italic>
+<sub>f</sub> = <italic>k</italic>
+<sub>ROS</sub>[DHE]). For NPs-CA, the values of <italic>k</italic>
+<sub>f</sub> and <italic>k</italic>
+<sub>ROS</sub> were
+determined to be 3.2 × 10<sup>–3</sup> s<sup>–1</sup> and 18 M<sup>–1</sup>·s<sup>–1</sup>, respectively
+(<xref rid="tbl2" ref-type="table">Table 
+</xref>). The obtained <italic>k</italic>
+<sub>ROS</sub> value falls within the typical range observed
+for reaction rates involving free radicals (e.g., H<sub>2</sub>O<sub>2</sub> and O<sub>2</sub>
+<sup>–</sup>) and various target
+molecules.
+</p><fig id="fig7" position="float"><?disp-level 3?><label>7</label><caption><p>(a) Fluorescence profile
+of the NPs-CA + DHE solution over time.
+(b) Fluorescence intensity at 612 nm as a function of time, including
+an initial 10 min period in the dark followed by 15 min of illumination.
+The inset in (b) displays the fitted curve for the kinetics of ROS
+production under illumination (<italic>R</italic>
+<sup>2</sup> = 0.9755).</p></caption><alternatives><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="image" id="gr7" xlink:href="ao6c04142_0007.jpg"><?cloudpmc-path blobs/43ec/13393358/d7c6819a392d/ao6c04142_0007.jpg?><?cloudpmc-bucket cdn?><?image-server-status LOAD_COMPLETED?><?original-height 726?><?original-width 1660?><?scaled-height 290?><?scaled-width 664?></graphic><graphic xmlns:xlink="http://www.w3.org/1999/xlink" content-type="thumb" xlink:href="ao6c04142_0007.gif"><?cloudpmc-path blobs/43ec/13393358/858101aecd54/ao6c04142_0007.gif?><?cloudpmc-bucket cdn?></graphic></alternatives></fig><table-wrap id="tbl2" position="float"><?disp-level 3?><label>2</label><caption><title>ROS Production Rate of NPs-CA under
+Blue Light Irradiation</title></caption><table frame="hsides" rules="groups"><colgroup span="1"><col align="left" span="1"/><col align="left" span="1"/><col align="left" span="1"/></colgroup><thead><tr><th align="center" colspan="1" rowspan="1"> </th><th align="center" colspan="1" rowspan="1">
+<italic>k</italic>
+<sub>f</sub> (10<sup>–3</sup> s<sup>–1</sup>)</th><th align="center" colspan="1" rowspan="1">
+<italic>k</italic>
+<sub>ROS</sub> (10<sup>–3</sup> M<sup>–1</sup> s<sup>–1</sup>)</th></tr></thead><tbody><tr><td align="left" colspan="1" rowspan="1">NPs-CA</td><td align="left" colspan="1" rowspan="1">3.2 ± 0.2</td><td align="left" colspan="1" rowspan="1">18 ± 1</td></tr></tbody></table></table-wrap><p>Additionally, control experiments
+were performed to confirm that
+the observed ROS generation is associated with the CA present in NPs-CA.
+As presented in the Supporting Information, <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c04142/suppl_file/ao6c04142_si_001.pdf" ext-link-type="uri">Figure S1</ext-link> shows that the control solution containing only DHE in aqueous
+medium did not exhibit any increase in fluorescence under blue light
+irradiation, demonstrating that neither the probe nor the irradiation
+conditions alone induce ROS formation. Furthermore, <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c04142/suppl_file/ao6c04142_si_001.pdf" ext-link-type="uri">Figure S2</ext-link> demonstrates that PVA, used solely as a stabilizing
+agent during nanoparticle preparation, does not exhibit absorption
+in the spectral region corresponding to the irradiation wavelength
+employed in this study. Consequently, these results exclude the contribution
+of residual formulation components and indicate that photodynamic
+activity arises predominantly from the CA structure within the nanoparticles.</p></sec><sec id="sec3.4" disp-level="2"><label>3.4.</label><title>Acute Toxicity Assay in <italic>Artemia</italic> sp</title><p>The toxicity assay conducted with <italic>Artemia</italic> sp. nauplii exposed to NPs-CA showed low observable adverse effects
+after 24 h of exposure across the full tested concentration range.
+The LC<sub>50</sub> was determined by following Finney’s PROBIT
+regression method as presented in detail in <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c04142/suppl_file/ao6c04142_si_001.pdf" ext-link-type="uri">Section S3</ext-link> of the Supporting Information. As presented in <xref rid="tbl3" ref-type="table">Table 
+</xref>, the resulting LC<sub>50</sub> value was calculated as 320.56 ± 12.87 ppm. According
+to the toxicity scale proposed by Passino and Smith (1987), adopted by the U.S. Fish and Wildlife Service, NPs-CA fall within the “no acute toxicity”
+category.</p><table-wrap id="tbl3" position="float"><?disp-level 3?><label>3</label><caption><title>Acute Toxicity for <italic>Artemia</italic> sp. after 24 h Exposure to NPs-CA</title></caption><table frame="hsides" rules="groups"><colgroup span="1"><col align="left" span="1"/><col align="left" span="1"/><col align="left" span="1"/><col align="left" span="1"/></colgroup><thead><tr><th align="center" colspan="1" rowspan="1">sample</th><th align="center" colspan="1" rowspan="1">LC<sub>50</sub>
+</th><th align="center" colspan="1" rowspan="1">toxic units (TU)</th><th align="center" colspan="1" rowspan="1">toxicity</th></tr></thead><tbody><tr><td align="left" colspan="1" rowspan="1">NPs-CA</td><td align="left" colspan="1" rowspan="1">320.56 ± 12.87</td><td align="left" colspan="1" rowspan="1">0.32 ± 0.01</td><td align="left" colspan="1" rowspan="1">no acute toxicity</td></tr></tbody></table></table-wrap><p>Additionally, no observable morphological alterations,
+behavioral
+changes, or significant mortality events were observed at any of the
+tested concentrations within the 24 h exposure window. This observation
+corroborates the broader evidence indicating that cellulose-based
+nanomaterials generally exhibit limited ecotoxicological impact in
+short-term marine invertebrate assays, supporting their classification
+as environmentally compatible within similar exposure scenarios.
+</p></sec></sec><sec id="sec4" disp-level="1"><label>4.</label><title>Discussion</title><p>The results
+presented highlight the potential of NPs-CA produced
+through the nanoprecipitation, as an effective platform for antimicrobial
+photodynamic inactivation (aPDI). This method enables the formation
+of well-dispersed nanoparticles with a narrow size distribution (PDI
+≈ 0.15), a mean hydrodynamic diameter of 268 ± 8 nm, and
+spherical morphology. The average dry size recorded by SEM (206 ±
+7 nm) was consistent with the absence of a hydration layer.</p><p>The absorption in the visible range confirmed the photoactivation
+potential of NPs-CA under blue LED (about 450 nm). This phenomenon
+is fundamental for aPDI applications, in which light activation of
+the photosensitizer is required to generate cytotoxic ROS. FTIR analyses
+confirmed the chemical integrity of cellulose acetate within the nanostructure
+and revealed slight peak shifts, suggesting interactions between CA
+and PVA, potentially stabilizing the nanoparticle surface.</p><p>Thermal
+characterization showed that the nanoparticles retained
+the thermal degradation profile of pure cellulose acetate, including
+the main degradation phase between 300–400 °C and an endothermic
+event near 200 °C related to polymer crystallization. These findings indicate structural preservation
+of the biopolymer and support the use of CA as a thermally stable
+carrier.</p><p>Beyond confirming structural integrity, the preserved
+chemical
+structure and surface functionalities of cellulose acetate are crucial
+role in its photodynamic performance. The presence of residual hydroxyl
+and ester groups at the nanoparticle interface may facilitate oxygen
+adsorption and interfacial charge transfer under irradiation, contributing
+to ROS generation. Similar interfacial effects have been reported
+in polymeric and cellulose-based nanostructures, where nanoscale organization
+compensates for the absence of classical chromophores.<italic>
+,
+</italic>
+</p><p>Biological assays revealed that NPs-CA effectively induced
+photoinactivation
+of <italic>E. coli</italic> in a concentration-dependent
+manner. At 500 and 1000 ppm, a photobactericidal effect was observed
+(&gt;3 log<sub>10</sub> CFU reduction), with complete inactivation
+at
+1000 ppm. The Gram-negative nature of <italic>E. coli</italic>, often considered more resistant to photodynamic therapy due to
+its complex outer membrane, makes this finding particularly relevant.
+In contrast, although <italic>S. aureus</italic> showed
+reduced viability under irradiation, the effect was less pronounced,
+and even the control group under light exhibited a reduction in CFU.
+This is consistent with prior reports on the sensitivity of <italic>S. aureus</italic> to blue light exposure alone, and highlights the need to differentiate between
+photodynamic action promoted by exogenous and endogenous photosensitizers.
+</p><p>Quantitative ROS measurements using DHE
+confirmed that NPs-CA generate
+ROS under illumination. The derived reaction rate constant was within
+the expected range for free–radical interactions, reinforcing
+the oxidative mechanism of bacterial inactivation via photodynamic
+action. These results are consistent with previous studies on polymer-based
+photosensitizing systems<italic>
+,
+</italic>
+</p><p>Acute toxicity
+was assessed using <italic>Artemia</italic> sp. to evaluate
+the potential environmental impacts of NPs-CA in
+treatment processes. The results demonstrated that NPs-CA exhibited
+low acute toxicity under the tested conditions, confirming their suitability
+for applications in which environmental exposure may occur. By ruling
+out ecotoxicological effects as a contributing factor, these findings
+reinforce that the performance observed in the treatment process can
+be attributed to the intrinsic photodynamic properties of the nanoparticles
+rather than to nonspecific toxic action.</p><p>Compared to other cellulose-based
+antimicrobial systems, which
+frequently depend on metallic nanoparticles or encapsulated bioactive
+agents to achieve photodynamic or antimicrobial effects,<italic>
+,
+</italic> the NPs-CA presented here operate as a single-component, metal-free
+photosensitizing platform. This simplicity reduces environmental risks,
+synthesis complexity, and regulatory barriers, while still providing
+effective photobactericidal performance under visible light.</p></sec><sec id="sec5" disp-level="1"><label>5.</label><title>Conclusion</title><p>The synthesized NPs-CA show promising characteristics
+that position
+them as an innovative solution for aPDI. Their small average size
+(268 nm), uniform dimensions, and ability to absorb visible light
+are critical attributes for photosensitizing applications. Furthermore,
+thermal and spectroscopic analyses confirmed that NPs-CA retain the
+properties of pure cellulose acetate, ensuring their structural biocompatibility.
+Biological assays, especially those against <italic>E. coli</italic>, revealed that NPs-CA exhibit concentration-dependent bactericidal
+effects, underscoring their potential as photosensitizers. The use
+of cellulose acetate (a naturally abundant, biodegradable, and biocompatible
+polymer) highlights the sustainability of this approach, aligning
+with the demand for environmentally responsible solutions to combat
+antibiotic-resistant bacteria.</p></sec><sec id="sec20" disp-level="1"><title>Supplementary Material</title><supplementary-material id="sifile1" position="float"><media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ao6c04142_si_001.pdf" mimetype="application" mime-subtype="pdf"><?cloudpmc-path 43ec/13393358/ee5495fa0d7f/ao6c04142_si_001.pdf?><?cloudpmc-bucket app?><?size 628926?></media></supplementary-material></sec><sec id="ack1" sec-type="ack" disp-level="1"><title>Acknowledgments</title><p>The authors acknowledge the support of the
+National
+Institute of Science and Technology of Basic Optics and Optics Applied
+to Life Science (465360/2014-9), and the National System of Photonics
+Laboratories-Sisfóton/MCTI (440214/2021-1). This study was
+supported by the Universidade Federal de Mato Grosso do SulUFMS/MECBrasil. <xref rid="fig1" ref-type="fig">Figure 
+</xref> was created by the
+authors using <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://BioRender.com" ext-link-type="uri">BioRender.com</ext-link>.</p></sec><sec id="notes5" disp-level="1"><p>Data is provided
+within the manuscript. Additional data is available upon request.</p></sec><sec id="notes1" disp-level="1"><p>The Supporting Information
+is
+available free of charge at <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/10.1021/acsomega.6c04142?goto=supporting-info" ext-link-type="uri">https://pubs.acs.org/doi/10.1021/acsomega.6c04142</ext-link>.</p><list list-type="simple" id="silist"><list-item><p>ROS production under blue
+light irradiation (Figure
+S1); UV–vis absorption spectrum of PVA and emission profile
+of blue LED light (Figure S2); acute toxicity assay of cellulose acetate
+nanoparticles in Artemia sp., including mortality curve and LC50 determination
+by PROBIT analysis (Figures S3–S4) (<ext-link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pubs.acs.org/doi/suppl/10.1021/acsomega.6c04142/suppl_file/ao6c04142_si_001.pdf" ext-link-type="uri">PDF</ext-link>)</p></list-item></list></sec><sec id="notes4" disp-level="1"><p>Investigation,
+R.S.F., G.M., P.S.C., E.S.C.M. and R.G.L; methodology, R.G.L., A.R.L.C.,
+and S.L.O.; supervision, A.R.L.C.; writingoriginal draft,
+R.S.F.; R.G.L., P.S.C. and A.R.L.C. All authors have read and agreed
+to the published version of the manuscript.</p></sec><sec id="notes2" disp-level="1"><p>This research
+was funded by Fundação de Apoio ao Desenvolvimento do
+Ensino, Ciência e Tecnologia do Estado de Mato Grosso do SulFUNDECT
+(83/053.351/2024; TO: 473/2024 and SIAFIC: 326), Conselho Nacional
+de Desenvolvimento Científico e TecnológicoCNPq
+(313887/2023-3, 421708/2023-9), and Coordenação de Aperfeiçoamento
+de Pessoal de Nível SuperiorCAPES/PrInt (88887.507844/2020-00).
+The Article Processing Charge for the publication of this research
+was funded by the Coordenacao de Aperfeicoamento de Pessoal de Nivel
+Superior (CAPES), Brazil (ROR identifier: 00x0ma614).</p></sec><sec id="notes3" disp-level="1"><p>The authors
+declare no competing financial interest.</p></sec><sec id="ref-list1" sec-type="ref-list" disp-level="1"><title>References</title><sec id="ref-list1_sec2" disp-level="2"><ref-list><ref id="ref1"><mixed-citation id="cit1"><named-content content-type="citation-string">Spyrou M. A., Tukhbatova R. I., Feldman M.. et al. Historical Y. pestis
+Genomes Reveal the European Black Death as the Source of Ancient and
+Modern Plague Pandemics. Cell Host Microbe. 2016;19(6):874–881. doi: 10.1016/j.chom.2016.05.012.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.chom.2016.05.012"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="27281573"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Cell Host Microbe&amp;title=Historical Y. pestis Genomes Reveal the European Black Death as the Source of Ancient and Modern Plague Pandemics&amp;author=M. A. Spyrou&amp;author=R. I. Tukhbatova&amp;author=M. Feldman&amp;volume=19&amp;issue=6&amp;publication_year=2016&amp;pages=874-881&amp;pmid=27281573&amp;doi=10.1016/j.chom.2016.05.012&amp;"/></mixed-citation></ref><ref id="ref2"><mixed-citation id="cit2"><named-content content-type="citation-string">Bañuls A. L., Sanou A., Van Anh N. T., Godreuil S.. Mycobacterium tuberculosis:
+ecology and evolution of a human bacterium. J. Med. Microbiol. 2015;64(11):1261–1269. doi: 10.1099/jmm.0.000171.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1099/jmm.0.000171"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="26385049"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Med. Microbiol.&amp;title=Mycobacterium tuberculosis: ecology and evolution of a human bacterium&amp;author=A. L. Bañuls&amp;author=A. Sanou&amp;author=N. T. Van Anh&amp;author=S. Godreuil&amp;volume=64&amp;issue=11&amp;publication_year=2015&amp;pages=1261-1269&amp;pmid=26385049&amp;doi=10.1099/jmm.0.000171&amp;"/></mixed-citation></ref><ref id="ref3"><mixed-citation id="cit3"><named-content content-type="citation-string">
+
+Krumova, K.
+; 
+Cosa, G.
+. 
+Chapter 1. Overview of Reactive
+Oxygen Species. In Singlet Oxygen: Applications
+in Biosciences and Nanosciences, 2016; pp 1–21.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="title=Singlet Oxygen: Applications in Biosciences and Nanosciences&amp;publication_year=2016&amp;"/></mixed-citation></ref><ref id="ref4"><mixed-citation id="cit4"><named-content content-type="citation-string">Arias C. A., Murray B. E.. Antibiotic-Resistant Bugs in the 21st CenturyA
+Clinical Super-Challenge. N. Engl. J. Med. 2009;360(5):439–443. doi: 10.1056/NEJMp0804651.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1056/NEJMp0804651"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="19179312"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=N. Engl. J. Med.&amp;title=Antibiotic-Resistant Bugs in the 21st CenturyA Clinical Super-Challenge&amp;author=C. A. Arias&amp;author=B. E. Murray&amp;volume=360&amp;issue=5&amp;publication_year=2009&amp;pages=439-443&amp;pmid=19179312&amp;doi=10.1056/NEJMp0804651&amp;"/></mixed-citation></ref><ref id="ref5"><mixed-citation id="cit5"><named-content content-type="citation-string">
+
+Jim, O. ’N.
+
+Tackling
+Drug-Resistant Infections Globally: Final Report And Recommendations. In The Review on Antimicrobial Resistance, 2016; pp 1–84.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="title=The Review on Antimicrobial Resistance&amp;publication_year=2016&amp;"/></mixed-citation></ref><ref id="ref6"><mixed-citation id="cit6"><named-content content-type="citation-string">González-Bello C.. Antibiotic
+adjuvants – A strategy to unlock bacterial resistance to antibiotics. Bioorg. Med. Chem. Lett. 2017;27(18):4221–4228. doi: 10.1016/j.bmcl.2017.08.027.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.bmcl.2017.08.027"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="28827113"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Bioorg. Med. Chem. Lett.&amp;title=Antibiotic adjuvants – A strategy to unlock bacterial resistance to antibiotics&amp;author=C. González-Bello&amp;volume=27&amp;issue=18&amp;publication_year=2017&amp;pages=4221-4228&amp;pmid=28827113&amp;doi=10.1016/j.bmcl.2017.08.027&amp;"/></mixed-citation></ref><ref id="ref7"><mixed-citation id="cit7"><named-content content-type="citation-string">Caires C. S. A., Leal C. R. B., Ramos C. A. N.. et al. Photoinactivation effect
+of eosin methylene blue and chlorophyllin sodium-copper against Staphylococcus
+aureus and Escherichia coli. Lasers Med. Sci. 2017;32(5):1081–1088. doi: 10.1007/s10103-017-2210-1.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1007/s10103-017-2210-1"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="28429192"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Lasers Med. Sci.&amp;title=Photoinactivation effect of eosin methylene blue and chlorophyllin sodium-copper against Staphylococcus aureus and Escherichia coli&amp;author=C. S. A. Caires&amp;author=C. R. B. Leal&amp;author=C. A. N. Ramos&amp;volume=32&amp;issue=5&amp;publication_year=2017&amp;pages=1081-1088&amp;pmid=28429192&amp;doi=10.1007/s10103-017-2210-1&amp;"/></mixed-citation></ref><ref id="ref8"><mixed-citation id="cit8"><named-content content-type="citation-string">Caires C. S. A., Leal C. R. B., Rodrigues A. C. S.. et al. Photoinactivation of
+mcr-1 positive Escherichia coli. Laser Phys.
+Lett. 2018;15(1):015601. doi: 10.1088/1612-202X/aa86e0.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1088/1612-202X/aa86e0"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Laser Phys. Lett.&amp;title=Photoinactivation of mcr-1 positive Escherichia coli&amp;author=C. S. A. Caires&amp;author=C. R. B. Leal&amp;author=A. C. S. Rodrigues&amp;volume=15&amp;issue=1&amp;publication_year=2018&amp;pages=015601&amp;doi=10.1088/1612-202X/aa86e0&amp;"/></mixed-citation></ref><ref id="ref9"><mixed-citation id="cit9"><named-content content-type="citation-string">Lakhundi S., Zhang K.. Methicillin-Resistant
+Staphylococcus aureus: Molecular Characterization,
+Evolution, and Epidemiology. Clin. Microbiol.
+Rev. 2018;31(4):e00020-18.  doi: 10.1128/CMR.00020-18.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1128/CMR.00020-18"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC6148192"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="30209034"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Clin. Microbiol. Rev.&amp;title=Methicillin-Resistant Staphylococcus aureus: Molecular Characterization, Evolution, and Epidemiology&amp;author=S. Lakhundi&amp;author=K. Zhang&amp;volume=31&amp;issue=4&amp;publication_year=2018&amp;pages=e00020-18&amp;pmid=30209034&amp;doi=10.1128/CMR.00020-18&amp;"/></mixed-citation></ref><ref id="ref10"><mixed-citation id="cit10"><named-content content-type="citation-string">Caires C. S. A., Silva C. M., Lima A. R.. et al. Photodynamic Inactivation
+of Methicillin-Resistant Staphylococcus aureus by a Natural Food Colorant
+(E-141ii) Molecules. 2020;25(19):4464. doi: 10.3390/molecules25194464.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.3390/molecules25194464"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC7582792"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="33003282"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Molecules&amp;title=Photodynamic Inactivation of Methicillin-Resistant Staphylococcus aureus by a Natural Food Colorant (E-141ii)&amp;author=C. S. A. Caires&amp;author=C. M. Silva&amp;author=A. R. Lima&amp;volume=25&amp;issue=19&amp;publication_year=2020&amp;pages=4464&amp;pmid=33003282&amp;doi=10.3390/molecules25194464&amp;"/></mixed-citation></ref><ref id="ref11"><mixed-citation id="cit11"><named-content content-type="citation-string">Maisch T.. Resistance
+in antimicrobial photodynamic inactivation of bacteria. Photochem. Photobiol. Sci. 2015;14(8):1518–1526. doi: 10.1039/c5pp00037h.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1039/c5pp00037h"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="26098395"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Photochem. Photobiol. Sci.&amp;title=Resistance in antimicrobial photodynamic inactivation of bacteria&amp;author=T. Maisch&amp;volume=14&amp;issue=8&amp;publication_year=2015&amp;pages=1518-1526&amp;pmid=26098395&amp;doi=10.1039/c5pp00037h&amp;"/></mixed-citation></ref><ref id="ref12"><mixed-citation id="cit12"><named-content content-type="citation-string">Demidova T. N., Hamblin M. R.. Effect of Cell-Photosensitizer Binding and Cell Density
+on Microbial Photoinactivation. Antimicrob.
+Agents Chemother. 2005;49(6):2329–2335. doi: 10.1128/AAC.49.6.2329-2335.2005.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1128/AAC.49.6.2329-2335.2005"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC1140487"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="15917529"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Antimicrob. Agents Chemother.&amp;title=Effect of Cell-Photosensitizer Binding and Cell Density on Microbial Photoinactivation&amp;author=T. N. Demidova&amp;author=M. R. Hamblin&amp;volume=49&amp;issue=6&amp;publication_year=2005&amp;pages=2329-2335&amp;pmid=15917529&amp;doi=10.1128/AAC.49.6.2329-2335.2005&amp;"/></mixed-citation></ref><ref id="ref13"><mixed-citation id="cit13"><named-content content-type="citation-string">Sperandio F., Huang Y. Y., Hamblin M.. Antimicrobial
+Photodynamic Therapy
+to Kill Gram-negative Bacteria. Recent Pat Antiinfect
+Drug Discov. 2014;8(2):108–120. doi: 10.2174/1574891X113089990012.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.2174/1574891X113089990012"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC3740068"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="23550545"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Recent Pat Antiinfect Drug Discov&amp;title=Antimicrobial Photodynamic Therapy to Kill Gram-negative Bacteria&amp;author=F. Sperandio&amp;author=Y. Y. Huang&amp;author=M. Hamblin&amp;volume=8&amp;issue=2&amp;publication_year=2014&amp;pages=108-120&amp;pmid=23550545&amp;doi=10.2174/1574891X113089990012&amp;"/></mixed-citation></ref><ref id="ref14"><mixed-citation id="cit14"><named-content content-type="citation-string">Hamblin M. R., Hasan T.. Photodynamic therapy:
+a new antimicrobial approach to infectious
+disease? Photochem. Photobiol. Sci. 2004;3(5):436–450. doi: 10.1039/b311900a.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1039/b311900a"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC3071049"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="15122361"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Photochem. Photobiol. Sci.&amp;title=Photodynamic therapy: a new antimicrobial approach to infectious disease?&amp;author=M. R. Hamblin&amp;author=T. Hasan&amp;volume=3&amp;issue=5&amp;publication_year=2004&amp;pages=436-450&amp;pmid=15122361&amp;doi=10.1039/b311900a&amp;"/></mixed-citation></ref><ref id="ref15"><mixed-citation id="cit15"><named-content content-type="citation-string">Caires C. S. A., Lima A. R., Lima T. H. N.. et al. Photodynamic inactivation
+of methicillin-resistant Staphylococcus aureus by using Giemsa dye
+as a photosensitizer. Photodiagnosis Photodyn
+Ther. 2024;45:103952. doi: 10.1016/j.pdpdt.2023.103952.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.pdpdt.2023.103952"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="38145771"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Photodiagnosis Photodyn Ther&amp;title=Photodynamic inactivation of methicillin-resistant Staphylococcus aureus by using Giemsa dye as a photosensitizer&amp;author=C. S. A. Caires&amp;author=A. R. Lima&amp;author=T. H. N. Lima&amp;volume=45&amp;publication_year=2024&amp;pages=103952&amp;pmid=38145771&amp;doi=10.1016/j.pdpdt.2023.103952&amp;"/></mixed-citation></ref><ref id="ref16"><mixed-citation id="cit16"><named-content content-type="citation-string">Caires C. S. A., Lima T. H. N., Nascimento R. C.. et al. Photoinactivation of
+Multidrug-Resistant mcr-1 Positive E. coli Using PCPDTBT Conjugated
+Polymer Nanoparticles under White Light. ACS
+Appl. Bio Mater. 2024;7(11):7404–7412. doi: 10.1021/acsabm.4c01049.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1021/acsabm.4c01049"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC11577311"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="39423350"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=ACS Appl. Bio Mater.&amp;title=Photoinactivation of Multidrug-Resistant mcr-1 Positive E. coli Using PCPDTBT Conjugated Polymer Nanoparticles under White Light&amp;author=C. S. A. Caires&amp;author=T. H. N. Lima&amp;author=R. C. Nascimento&amp;volume=7&amp;issue=11&amp;publication_year=2024&amp;pages=7404-7412&amp;pmid=39423350&amp;doi=10.1021/acsabm.4c01049&amp;"/></mixed-citation></ref><ref id="ref17"><mixed-citation id="cit17"><named-content content-type="citation-string">Hamblin M. R.. Antimicrobial
+photodynamic inactivation: a bright new technique to kill resistant
+microbes. Curr. Opin. Microbiol. 2016;33:67–73. doi: 10.1016/j.mib.2016.06.008.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.mib.2016.06.008"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC5069151"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="27421070"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Curr. Opin. Microbiol.&amp;title=Antimicrobial photodynamic inactivation: a bright new technique to kill resistant microbes&amp;author=M. R. Hamblin&amp;volume=33&amp;publication_year=2016&amp;pages=67-73&amp;pmid=27421070&amp;doi=10.1016/j.mib.2016.06.008&amp;"/></mixed-citation></ref><ref id="ref20"><mixed-citation id="cit20"><named-content content-type="citation-string">Joseph B., Sagarika V. K., Sabu C., Kalarikkal N., Thomas S.. Cellulose nanocomposites: Fabrication and biomedical
+applications. J. Bioresour. Bioprod. 2020;5(4):223–237. doi: 10.1016/j.jobab.2020.10.001.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.jobab.2020.10.001"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Bioresour. Bioprod.&amp;title=Cellulose nanocomposites: Fabrication and biomedical applications&amp;author=B. Joseph&amp;author=V. K. Sagarika&amp;author=C. Sabu&amp;author=N. Kalarikkal&amp;author=S. Thomas&amp;volume=5&amp;issue=4&amp;publication_year=2020&amp;pages=223-237&amp;doi=10.1016/j.jobab.2020.10.001&amp;"/></mixed-citation></ref><ref id="ref21"><mixed-citation id="cit21"><named-content content-type="citation-string">Hamed O. A., Jodeh S., Al-Hajj N., Hamed E. M., Abo-Obeid A., Fouad Y.. Cellulose acetate from
+biomass waste of olive industry. J. Wood Sci. 2015;61:45–52. doi: 10.1007/s10086-014-1442-y.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1007/s10086-014-1442-y"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Wood Sci.&amp;title=Cellulose acetate from biomass waste of olive industry&amp;author=O. A. Hamed&amp;author=S. Jodeh&amp;author=N. Al-Hajj&amp;author=E. M. Hamed&amp;author=A. Abo-Obeid&amp;volume=61&amp;publication_year=2015&amp;pages=45-52&amp;doi=10.1007/s10086-014-1442-y&amp;"/></mixed-citation></ref><ref id="ref22"><mixed-citation id="cit22"><named-content content-type="citation-string">Jin X., Xu J., Wang X.. et al. Flexible TiO2/cellulose acetate hybrid film
+as a recyclable photocatalyst. RSC Adv. 2014;4(25):12640. doi: 10.1039/c3ra47710j.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1039/c3ra47710j"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=RSC Adv.&amp;title=Flexible TiO2/cellulose acetate hybrid film as a recyclable photocatalyst&amp;author=X. Jin&amp;author=J. Xu&amp;author=X. Wang&amp;volume=4&amp;issue=25&amp;publication_year=2014&amp;pages=12640&amp;doi=10.1039/c3ra47710j&amp;"/></mixed-citation></ref><ref id="ref23"><mixed-citation id="cit23"><named-content content-type="citation-string">Varshosaz J., Taymouri S., Jafari E., Jahanian-najafabadi A., Taheri A.. Formulation and characterization of cellulose acetate
+butyrate nanoparticles loaded with nevirapine for HIV treatment. J. Drug Deliv Sci. Technol. 2018;48(June):9–20. doi: 10.1016/j.jddst.2018.08.020.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.jddst.2018.08.020"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Drug Deliv Sci. Technol.&amp;title=Formulation and characterization of cellulose acetate butyrate nanoparticles loaded with nevirapine for HIV treatment&amp;author=J. Varshosaz&amp;author=S. Taymouri&amp;author=E. Jafari&amp;author=A. Jahanian-najafabadi&amp;author=A. Taheri&amp;volume=48&amp;issue=June&amp;publication_year=2018&amp;pages=9-20&amp;doi=10.1016/j.jddst.2018.08.020&amp;"/></mixed-citation></ref><ref id="ref24"><mixed-citation id="cit24"><named-content content-type="citation-string">Liakos A. I. L., Iordache F., Scarpellini A.. et al. Cellulose acetate -
+essential oil nanocapsules with antimicrobial activity for biomedical
+applications. Colloids Surf. B Biointerfaces. 2018;172:471–479. doi: 10.1016/j.colsurfb.2018.08.069.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.colsurfb.2018.08.069"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="30199764"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Colloids Surf. B Biointerfaces&amp;title=Cellulose acetate - essential oil nanocapsules with antimicrobial activity for biomedical applications&amp;author=A. I. L. Liakos&amp;author=F. Iordache&amp;author=A. Scarpellini&amp;volume=172&amp;publication_year=2018&amp;pages=471-479&amp;pmid=30199764&amp;doi=10.1016/j.colsurfb.2018.08.069&amp;"/></mixed-citation></ref><ref id="ref25"><mixed-citation id="cit25"><named-content content-type="citation-string">Marrez D. A., Abdelhamid A. E., Darwesh O. M.. Eco-friendly cellulose acetate green
+synthesized silver nano-composite as antibacterial packaging system
+for food safety. Food Packag. Shelf Life. 2019;20(December 2018):100302. doi: 10.1016/j.fpsl.2019.100302.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.fpsl.2019.100302"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Food Packag. Shelf Life&amp;title=Eco-friendly cellulose acetate green synthesized silver nano-composite as antibacterial packaging system for food safety&amp;author=D. A. Marrez&amp;author=A. E. Abdelhamid&amp;author=O. M. Darwesh&amp;volume=20&amp;issue=December 2018&amp;publication_year=2019&amp;pages=100302&amp;doi=10.1016/j.fpsl.2019.100302&amp;"/></mixed-citation></ref><ref id="ref26"><mixed-citation id="cit26"><named-content content-type="citation-string">Huda E., Rahmi K.. Preparation and characterization
+of cellulose acetate from cotton. IOP Conf Series:
+Earth and Environmental Science. 2019;364:012021. doi: 10.1088/1755-1315/364/1/012021.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1088/1755-1315/364/1/012021"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=IOP Conf Series: Earth and Environmental Science&amp;title=Preparation and characterization of cellulose acetate from cotton&amp;author=E. Huda&amp;author=K. Rahmi&amp;volume=364&amp;publication_year=2019&amp;pages=012021&amp;doi=10.1088/1755-1315/364/1/012021&amp;"/></mixed-citation></ref><ref id="ref27"><mixed-citation id="cit27"><named-content content-type="citation-string">Bifaria E. N., Khanb S. B., Alamryb K. A., Asirib A. M., Akhtard K.. Cellulose
+Acetate Based Nanocomposites for Biomedical Applications: A Review. Curr. Pharm. Des. 2016;22:3007–3019. doi: 10.2174/1381612822666160316160016.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.2174/1381612822666160316160016"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="26979093"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Curr. Pharm. Des.&amp;title=Cellulose Acetate Based Nanocomposites for Biomedical Applications: A Review&amp;author=E. N. Bifaria&amp;author=S. B. Khanb&amp;author=K. A. Alamryb&amp;author=A. M. Asirib&amp;author=K. Akhtard&amp;volume=22&amp;publication_year=2016&amp;pages=3007-3019&amp;pmid=26979093&amp;doi=10.2174/1381612822666160316160016&amp;"/></mixed-citation></ref><ref id="ref28"><mixed-citation id="cit28"><named-content content-type="citation-string">Lima R. G., Maranni M., Araujo L. O.. et al. Preparation and Phytotoxicity
+Evaluation of Cellulose Acetate Nanoparticles. Polymers. 2022;14(22):5022. doi: 10.3390/polym14225022.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.3390/polym14225022"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC9695549"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="36433149"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Polymers&amp;title=Preparation and Phytotoxicity Evaluation of Cellulose Acetate Nanoparticles&amp;author=R. G. Lima&amp;author=M. Maranni&amp;author=L. O. Araujo&amp;volume=14&amp;issue=22&amp;publication_year=2022&amp;pages=5022&amp;pmid=36433149&amp;doi=10.3390/polym14225022&amp;"/></mixed-citation></ref><ref id="ref29"><mixed-citation id="cit29"><named-content content-type="citation-string">Pecoraro R., Scalisi E. M., Messina G.. et al. 
+Artemia salina: A microcrustacean to assess engineered
+nanoparticles toxicity. Microsc. Res. Tech. 2021;84(3):531–536. doi: 10.1002/jemt.23609.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1002/jemt.23609"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="32986921"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Microsc. Res. Tech.&amp;title=Artemia salina: A microcrustacean to assess engineered nanoparticles toxicity&amp;author=R. Pecoraro&amp;author=E. M. Scalisi&amp;author=G. Messina&amp;volume=84&amp;issue=3&amp;publication_year=2021&amp;pages=531-536&amp;pmid=32986921&amp;doi=10.1002/jemt.23609&amp;"/></mixed-citation></ref><ref id="ref30"><mixed-citation id="cit30"><named-content content-type="citation-string">Orelma H., Hokkanen A., Leppänen I., Kammiovirta K., Kapulainen M., Harlin A.. Optical cellulose fiber
+made from
+regenerated cellulose and cellulose acetate for water sensor applications. Cellulose. 2020;27(3):1543–1553. doi: 10.1007/s10570-019-02882-3.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1007/s10570-019-02882-3"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Cellulose&amp;title=Optical cellulose fiber made from regenerated cellulose and cellulose acetate for water sensor applications&amp;author=H. Orelma&amp;author=A. Hokkanen&amp;author=I. Leppänen&amp;author=K. Kammiovirta&amp;author=M. Kapulainen&amp;volume=27&amp;issue=3&amp;publication_year=2020&amp;pages=1543-1553&amp;doi=10.1007/s10570-019-02882-3&amp;"/></mixed-citation></ref><ref id="ref31"><mixed-citation id="cit31"><named-content content-type="citation-string">Abelha T. F., Neumann P. R., Holthof J.. et al. Low molecular
+weight
+PEG-PLGA polymers provide a superior matrix for conjugated polymer
+nanoparticles in terms of physicochemical properties, biocompatibility
+and optical/photoacoustic performance. J. Mater.
+Chem. B. 2019;7(33):5115–5124. doi: 10.1039/C9TB00937J.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1039/C9TB00937J"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="31363720"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Mater. Chem. B&amp;title=Low molecular weight PEG-PLGA polymers provide a superior matrix for conjugated polymer nanoparticles in terms of physicochemical properties, biocompatibility and optical/photoacoustic performance&amp;author=T. F. Abelha&amp;author=P. R. Neumann&amp;author=J. Holthof&amp;volume=7&amp;issue=33&amp;publication_year=2019&amp;pages=5115-5124&amp;pmid=31363720&amp;doi=10.1039/C9TB00937J&amp;"/></mixed-citation></ref><ref id="ref32"><mixed-citation id="cit32"><named-content content-type="citation-string">Lichtfouse J., Lécluse L., Demelier A., Giannoni P.. Brine shrimp Artemia
+salina to evaluate the impact of environmental concentrations of BMAA
+and isomers, DAB and AEG, via mortality (nauplii) and behavioural
+(adult) tests. Sci. Total Environ. 2024;957:177521. doi: 10.1016/j.scitotenv.2024.177521.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.scitotenv.2024.177521"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="39551205"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Sci. Total Environ.&amp;title=Brine shrimp Artemia salina to evaluate the impact of environmental concentrations of BMAA and isomers, DAB and AEG, via mortality (nauplii) and behavioural (adult) tests&amp;author=J. Lichtfouse&amp;author=L. Lécluse&amp;author=A. Demelier&amp;author=P. Giannoni&amp;volume=957&amp;publication_year=2024&amp;pages=177521&amp;pmid=39551205&amp;doi=10.1016/j.scitotenv.2024.177521&amp;"/></mixed-citation></ref><ref id="ref33"><mixed-citation id="cit33"><named-content content-type="citation-string">Cavalheri P. S., Machado B. S., da Silva T. F.. et al. Optimization of a combined
+system of vertical flow constructed wetland and solar photo-Fenton
+for ketoprofen removal in sewage and landfill leachate. Chemical Engineering Journal. 2023;475:146282. doi: 10.1016/j.cej.2023.146282.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.cej.2023.146282"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Chemical Engineering Journal&amp;title=Optimization of a combined system of vertical flow constructed wetland and solar photo-Fenton for ketoprofen removal in sewage and landfill leachate&amp;author=P. S. Cavalheri&amp;author=B. S. Machado&amp;author=T. F. da Silva&amp;volume=475&amp;publication_year=2023&amp;pages=146282&amp;doi=10.1016/j.cej.2023.146282&amp;"/></mixed-citation></ref><ref id="ref34"><mixed-citation id="cit34"><named-content content-type="citation-string">
+ABNT 
+NBR 16530: Ecotoxicologia Aquática–Toxicidade
+Aguda–Método de Ensaio Com Artemia Sp (Crustacea, Brachiopoda); Associação Brasileira de Normas Técnicas
+(ABNT): São Paulo, Brazil, 2021; pp 1–24.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="title=NBR 16530: Ecotoxicologia Aquática–Toxicidade Aguda–Método de Ensaio Com Artemia Sp (Crustacea, Brachiopoda)&amp;publication_year=2021&amp;"/></mixed-citation></ref><ref id="ref35"><mixed-citation id="cit35"><named-content content-type="citation-string">Persoone G., Marsalek B., Blinova I.. et al. A practical and user-friendly
+toxicity classification system with microbiotests for natural waters
+and wastewaters. Environ. Toxicol. 2003;18(6):395–402. doi: 10.1002/tox.10141.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1002/tox.10141"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="14608609"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Environ. Toxicol.&amp;title=A practical and user-friendly toxicity classification system with microbiotests for natural waters and wastewaters&amp;author=G. Persoone&amp;author=B. Marsalek&amp;author=I. Blinova&amp;volume=18&amp;issue=6&amp;publication_year=2003&amp;pages=395-402&amp;pmid=14608609&amp;doi=10.1002/tox.10141&amp;"/></mixed-citation></ref><ref id="ref36"><mixed-citation id="cit36"><named-content content-type="citation-string">Faria R. S., Silva H. D., Mello-Andrade F.. et al. Ruthenium­(II)/Benzonitrile
+Complex Induces Cytotoxic Effect in Sarcoma-180 Cells by Caspase-Mediated
+and Tp53/p21-Mediated Apoptosis, with Moderate Brine Shrimp Toxicity. Biol. Trace Elem. Res. 2020;198(2):669–680. doi: 10.1007/s12011-020-02098-8.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1007/s12011-020-02098-8"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="32266641"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Biol. Trace Elem. Res.&amp;title=Ruthenium­(II)/Benzonitrile Complex Induces Cytotoxic Effect in Sarcoma-180 Cells by Caspase-Mediated and Tp53/p21-Mediated Apoptosis, with Moderate Brine Shrimp Toxicity&amp;author=R. S. Faria&amp;author=H. D. Silva&amp;author=F. Mello-Andrade&amp;volume=198&amp;issue=2&amp;publication_year=2020&amp;pages=669-680&amp;pmid=32266641&amp;doi=10.1007/s12011-020-02098-8&amp;"/></mixed-citation></ref><ref id="ref37"><mixed-citation id="cit37"><named-content content-type="citation-string">Duarte G. K. G. F., Menezes A. C. S., Naves P. L. F., Bueno O. C., Santos R. G., Silva Junior W. M.. TOXICITY OF Esenbeckia pumila Pohl
+(Rutaceae) ON Artemia salina AND Atta sexdens rubropilosa. Revista Caatinga. 2019;32(1):101–112. doi: 10.1590/1983-21252019v32n111rc.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1590/1983-21252019v32n111rc"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Revista Caatinga&amp;title=TOXICITY OF Esenbeckia pumila Pohl (Rutaceae) ON Artemia salina AND Atta sexdens rubropilosa&amp;author=G. K. G. F. Duarte&amp;author=A. C. S. Menezes&amp;author=P. L. F. Naves&amp;author=O. C. Bueno&amp;author=R. G. Santos&amp;volume=32&amp;issue=1&amp;publication_year=2019&amp;pages=101-112&amp;doi=10.1590/1983-21252019v32n111rc&amp;"/></mixed-citation></ref><ref id="ref38"><mixed-citation id="cit38"><named-content content-type="citation-string">Sankarganesh P., Parthasarathy V., Ganesh Kumar A.. et al. Preparation of cellulose-PVA
+blended hydrogels for wound healing applications with controlled release
+of the antibacterial drug: an in vitro anticancer activity. Biomass Convers. Biorefin. 2024;14(3):3385–3395. doi: 10.1007/s13399-022-02586-y.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1007/s13399-022-02586-y"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Biomass Convers. Biorefin.&amp;title=Preparation of cellulose-PVA blended hydrogels for wound healing applications with controlled release of the antibacterial drug: an in vitro anticancer activity&amp;author=P. Sankarganesh&amp;author=V. Parthasarathy&amp;author=A. Ganesh Kumar&amp;volume=14&amp;issue=3&amp;publication_year=2024&amp;pages=3385-3395&amp;doi=10.1007/s13399-022-02586-y&amp;"/></mixed-citation></ref><ref id="ref39"><mixed-citation id="cit39"><named-content content-type="citation-string">Leelanarathiwat K., Katsuta Y., Katsuragi H., Watanabe F.. Antibacterial activity
+of blue high-power light-emitting diode-activated flavin mononucleotide
+against Staphylococcus aureus biofilm on a sandblasted and etched
+surface. Photodiagnosis Photodyn Ther. 2020;31:101855. doi: 10.1016/j.pdpdt.2020.101855.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.pdpdt.2020.101855"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="32512247"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Photodiagnosis Photodyn Ther&amp;title=Antibacterial activity of blue high-power light-emitting diode-activated flavin mononucleotide against Staphylococcus aureus biofilm on a sandblasted and etched surface&amp;author=K. Leelanarathiwat&amp;author=Y. Katsuta&amp;author=H. Katsuragi&amp;author=F. Watanabe&amp;volume=31&amp;publication_year=2020&amp;pages=101855&amp;pmid=32512247&amp;doi=10.1016/j.pdpdt.2020.101855&amp;"/></mixed-citation></ref><ref id="ref40"><mixed-citation id="cit40"><named-content content-type="citation-string">Barud H. S., de Araújo Júnior A. M., Santos D. B.. et al. Thermal
+behavior of cellulose acetate produced from homogeneous acetylation
+of bacterial cellulose. Thermochim. Acta. 2008;471(1–2):61–69. doi: 10.1016/j.tca.2008.02.009.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.tca.2008.02.009"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Thermochim. Acta&amp;title=Thermal behavior of cellulose acetate produced from homogeneous acetylation of bacterial cellulose&amp;author=H. S. Barud&amp;author=A. M. de Araújo Júnior&amp;author=D. B. Santos&amp;volume=471&amp;issue=1–2&amp;publication_year=2008&amp;pages=61-69&amp;doi=10.1016/j.tca.2008.02.009&amp;"/></mixed-citation></ref><ref id="ref41"><mixed-citation id="cit41"><named-content content-type="citation-string">Kharazmi A., Faraji N., Mat Hussin R., Saion E., Yunus W. M. M., Behzad K.. Structural, optical,
+opto-thermal and thermal properties
+of ZnS–PVA nanofluids synthesized through a radiolytic approach. Beilstein J. Nanotechnol. 2015;6:529–536. doi: 10.3762/bjnano.6.55.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.3762/bjnano.6.55"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC4362026"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="25821695"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Beilstein J. Nanotechnol.&amp;title=Structural, optical, opto-thermal and thermal properties of ZnS–PVA nanofluids synthesized through a radiolytic approach&amp;author=A. Kharazmi&amp;author=N. Faraji&amp;author=R. Mat Hussin&amp;author=E. Saion&amp;author=W. M. M. Yunus&amp;volume=6&amp;publication_year=2015&amp;pages=529-536&amp;pmid=25821695&amp;doi=10.3762/bjnano.6.55&amp;"/></mixed-citation></ref><ref id="ref42"><mixed-citation id="cit42"><named-content content-type="citation-string">Galo I. D. C., Prado R. P., Santos W. G. D.. Blue and red light photoemitters
+as approach to inhibit Staphylococcus aureus and Pseudomonas aeruginosa
+growth. Brazilian Journal of Biology. 2022;82:e231742.  doi: 10.1590/1519-6984.231742.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1590/1519-6984.231742"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="33787710"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Brazilian Journal of Biology&amp;title=Blue and red light photoemitters as approach to inhibit Staphylococcus aureus and Pseudomonas aeruginosa growth&amp;author=I. D. C. Galo&amp;author=R. P. Prado&amp;author=W. G. D. Santos&amp;volume=82&amp;publication_year=2022&amp;pages=e231742&amp;pmid=33787710&amp;doi=10.1590/1519-6984.231742&amp;"/></mixed-citation></ref><ref id="ref43"><mixed-citation id="cit43"><named-content content-type="citation-string">Silva F., Lourenço O., Queiroz J. A., Domingues F. C.. Bacteriostatic
+versus bactericidal activity of ciprofloxacin in Escherichia coli
+assessed by flow cytometry using a novel far-red dye. J. Antibiot. 2011;64(4):321–325. doi: 10.1038/ja.2011.5.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1038/ja.2011.5"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="21326251"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=J. Antibiot.&amp;title=Bacteriostatic versus bactericidal activity of ciprofloxacin in Escherichia coli assessed by flow cytometry using a novel far-red dye&amp;author=F. Silva&amp;author=O. Lourenço&amp;author=J. A. Queiroz&amp;author=F. C. Domingues&amp;volume=64&amp;issue=4&amp;publication_year=2011&amp;pages=321-325&amp;pmid=21326251&amp;doi=10.1038/ja.2011.5&amp;"/></mixed-citation></ref><ref id="ref44"><mixed-citation id="cit44"><named-content content-type="citation-string">Yazdani M.. Concerns in
+the application of fluorescent probes DCDHF-DA, DHR 123 and DHE to
+measure reactive oxygen species in vitro. Toxicol.
+In Vitro. 2015;30(1):578–582. doi: 10.1016/j.tiv.2015.08.010.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.tiv.2015.08.010"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="26318276"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Toxicol. In Vitro&amp;title=Concerns in the application of fluorescent probes DCDHF-DA, DHR 123 and DHE to measure reactive oxygen species in vitro&amp;author=M. Yazdani&amp;volume=30&amp;issue=1&amp;publication_year=2015&amp;pages=578-582&amp;pmid=26318276&amp;doi=10.1016/j.tiv.2015.08.010&amp;"/></mixed-citation></ref><ref id="ref45"><mixed-citation id="cit45"><named-content content-type="citation-string">Pedruzzi D. P., Araujo L. O., Falco W. F.. et al. ZnO nanoparticles impact
+on the photosynthetic activity of Vicia faba: Effect of particle size
+and concentration. NanoImpact. 2020;19(July):100246. doi: 10.1016/j.impact.2020.100246.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.impact.2020.100246"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=NanoImpact&amp;title=ZnO nanoparticles impact on the photosynthetic activity of Vicia faba: Effect of particle size and concentration&amp;author=D. P. Pedruzzi&amp;author=L. O. Araujo&amp;author=W. F. Falco&amp;volume=19&amp;issue=July&amp;publication_year=2020&amp;pages=100246&amp;doi=10.1016/j.impact.2020.100246&amp;"/></mixed-citation></ref><ref id="ref46"><mixed-citation id="cit46"><named-content content-type="citation-string">Passino D. R. M., Smith S. B.. Acute bioassays
+and hazard evaluation of representative
+contaminants detected in great lakes fish. Environ.
+Toxicol. Chem. 1987;6(11):901–907. doi: 10.1002/etc.5620061111.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1002/etc.5620061111"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Environ. Toxicol. Chem.&amp;title=Acute bioassays and hazard evaluation of representative contaminants detected in great lakes fish&amp;author=D. R. M. Passino&amp;author=S. B. Smith&amp;volume=6&amp;issue=11&amp;publication_year=1987&amp;pages=901-907&amp;doi=10.1002/etc.5620061111&amp;"/></mixed-citation></ref><ref id="ref47"><mixed-citation id="cit47"><named-content content-type="citation-string">Hafez N. F. M., Mutalib M. I. A., Bustam M. A. B., El-Harbawi M., Leveque J. M.. Ecotoxicity of Pyridinium Based ILs
+towards Guppy Fish
+and Four Bacterial Strains. Procedia Eng. 2016;148:830–838. doi: 10.1016/j.proeng.2016.06.625.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.proeng.2016.06.625"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Procedia Eng.&amp;title=Ecotoxicity of Pyridinium Based ILs towards Guppy Fish and Four Bacterial Strains&amp;author=N. F. M. Hafez&amp;author=M. I. A. Mutalib&amp;author=M. A. B. Bustam&amp;author=M. El-Harbawi&amp;author=J. M. Leveque&amp;volume=148&amp;publication_year=2016&amp;pages=830-838&amp;doi=10.1016/j.proeng.2016.06.625&amp;"/></mixed-citation></ref><ref id="ref48"><mixed-citation id="cit48"><named-content content-type="citation-string">Ogonowski M., Edlund U., Gorokhova E.. et al. Multi-level toxicity
+assessment of engineered cellulose nanofibrils in Daphnia
+magna
+. Nanotoxicology. 2018;12(6):509–521. doi: 10.1080/17435390.2018.1464229.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1080/17435390.2018.1464229"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="29732936"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Nanotoxicology&amp;title=Multi-level toxicity assessment of engineered cellulose nanofibrils in Daphnia magna&amp;author=M. Ogonowski&amp;author=U. Edlund&amp;author=E. Gorokhova&amp;volume=12&amp;issue=6&amp;publication_year=2018&amp;pages=509-521&amp;pmid=29732936&amp;doi=10.1080/17435390.2018.1464229&amp;"/></mixed-citation></ref><ref id="ref49"><mixed-citation id="cit49"><named-content content-type="citation-string">Caires C. S. A., Farias L. A. S., Gomes L. E.. et al. Effective killing of
+bacteria under blue-light irradiation promoted by green synthesized
+silver nanoparticles loaded on reduced graphene oxide sheets. Materials Science and Engineering: C. 2020;113:110984. doi: 10.1016/j.msec.2020.110984.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.1016/j.msec.2020.110984"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="32487400"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Materials Science and Engineering: C&amp;title=Effective killing of bacteria under blue-light irradiation promoted by green synthesized silver nanoparticles loaded on reduced graphene oxide sheets&amp;author=C. S. A. Caires&amp;author=L. A. S. Farias&amp;author=L. E. Gomes&amp;volume=113&amp;publication_year=2020&amp;pages=110984&amp;pmid=32487400&amp;doi=10.1016/j.msec.2020.110984&amp;"/></mixed-citation></ref><ref id="ref50"><mixed-citation id="cit50"><named-content content-type="citation-string">Caires C. S. A., Silva C. M., Lima A. R., Alves L. M., Lima T. H. N., Rodrigues A. C. S., Chang M. R., Oliveira S. L., Whitby C., Nascimento V. A.. et al. Photodynamic inactivation
+of methicillin-resistant staphylococcus aureus by a natural food colorant
+(e-141II) Molecules. 2020;25(19):4464. doi: 10.3390/molecules25194464.</named-content><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="doi" xlink:href="10.3390/molecules25194464"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmcid" xlink:href="PMC7582792"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="pmid" xlink:href="33003282"/><ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="google-scholar" xlink:href="journal=Molecules&amp;title=Photodynamic inactivation of methicillin-resistant staphylococcus aureus by a natural food colorant (e-141II)&amp;author=C. S. A. Caires&amp;author=C. M. Silva&amp;author=A. R. Lima&amp;author=L. M. Alves&amp;author=T. H. N. Lima&amp;volume=25&amp;issue=19&amp;publication_year=2020&amp;pages=4464&amp;pmid=33003282&amp;doi=10.3390/molecules25194464&amp;"/></mixed-citation></ref></ref-list></sec></sec><sec id="_ad93_" xml:lang="en" sec-type="associated-data" disp-level="1"><title>Associated Data</title><sec id="_adsm93_" xml:lang="en" sec-type="supplementary-materials" disp-level="2"><title>Supplementary Materials</title><supplementary-material id="db_ds_supplementary-material1_reqid_" position="float"><media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ao6c04142_si_001.pdf" mimetype="application" mime-subtype="pdf"><?cloudpmc-path 43ec/13393358/ee5495fa0d7f/ao6c04142_si_001.pdf?><?cloudpmc-bucket app?><?size 628926?></media></supplementary-material></sec><sec id="_adda93_" xml:lang="en" sec-type="data-availability-statement" disp-level="2"><title>Data Availability Statement</title><p>Data is provided
+within the manuscript. Additional data is available upon request.</p></sec></sec></body></article>

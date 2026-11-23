@@ -1,0 +1,308 @@
+
+ pmc Molecules Molecules 3416 molecules 100964009 molecules Molecules 1420-3049 Multidisciplinary Digital Publishing Institute (MDPI) PMC13306050 PMC13306050.1 13306050 13306050 42357537 10.3390/molecules31122141 molecules-31-02141 1 Article One-Step Combustion Synthesis of Carbon-Doped BiVO 4 Yellow Pigments with Enhanced Visible-Light Photocatalytic Antibacterial Performance https://orcid.org/0000-0001-6507-6805 Zhang Xiaojun Data curation Writing – original draft Formal analysis Investigation Validation Visualization Writing – review & editing Conceptualization 1 2 * † Wang Tianxu Conceptualization Writing – review & editing Data curation 3 † https://orcid.org/0000-0002-1361-9588 Jiang Feng Investigation Data curation 3 * Su Xiaoli Writing – review & editing Project administration Resources 3 * Liu Xun Data curation 2 Xu Yanqiao Data curation 1 Feng Guo Investigation Supervision 1 Wu Qian Data curation 1 Bencini Andrea Academic Editor 1 National Engineering Research Center for Domestic & Building Ceramics, Jingdezhen Ceramic University, Jingdezhen 333000, China; xuyanqiao@jci.edu.cn (Y.X.); fengguo@jci.edu.cn (G.F.); wuqian@jci.edu.cn (Q.W.) 2 State Key Laboratory of Advanced Environmental Technology & Guangdong Provincial Key Laboratory of Mineral Physics and Materials, Guangzhou Institute of Geochemistry, Chinese Academy of Sciences, Guangzhou 510640, China; liuxun@gig.ac.cn 3 Department of Material Science and Engineering, Jingdezhen Ceramic University, Jingdezhen 333000, China; 13673104706@163.com * Correspondence: zhangxiaojun@jci.edu.cn (X.Z.); jiangfeng@jci.edu.cn (F.J.); suxiaoli@jci.edu.cn (X.S.) † 
+ 17 6 2026 6 2026 31 12 516377 2141 26 4 2026 03 6 2026 12 6 2026 17 06 2026 27 06 2026 19 11 2026 © 2026 by the authors. 2026 https://creativecommons.org/licenses/by/4.0/ Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license . 
+ 4 (C-BiVO 4 ) pigments were synthesized via a one-step self-propagating combustion synthesis (SCS) using citric acid as a fuel and carbon source. The effects of citric acid dosage on phase composition, morphology, chromatic performance, and antibacterial activity were systematically investigated. The results indicate that carbon doping induces lattice expansion and oxygen vacancy formation, modulates the electronic band structure, and significantly suppresses photogenerated electron-hole recombination. At an optimal citric acid to BiVO 4 molar ratio of 1.2, the pigment exhibits excellent yellow chromaticity ( b* = 79.71). Under visible-light irradiation, C-BiVO 4 achieves a methylene blue photodegradation rate of 96.63% and an E. coli inactivation efficiency of 99.99%, substantially outperforming undoped BiVO 4 . Moreover, the C-BiVO 4 yellow pigment shows good dispersibility and thermal stability in PMMA and glass matrices and passes acute skin irritation and dermal toxicity tests, confirming its low toxicity and non-irritating nature. This work provides a new strategy for developing environmentally friendly inorganic pigments that combine high chromaticity with photocatalytic antibacterial functionality. pigment yellow bismuth vanadate carbon doping self-propagating combustion method 
+ Jiangxi Provincial Natural Science Foundation https://ror.org/04aqat463 
+ 20232BAB204031 20232BAB204012 20252BAC200254 Science and Technology Planning Project of Guangdong Province 2023B1212060048 Guangdong Basic and Applied Basic Research Foundation 2025A1515110408 Jingdezhen Science and Technology project 2025GY004 2026GY009 This work was kindly supported by Jiangxi Provincial Natural Science Foundation (20232BAB204031, 20232BAB204012, 20252BAC200254), Science and Technology Planning Project of Guangdong Province (2023B1212060048), Guangdong Basic and Applied Basic Research Foundation (2025A1515110408), Jingdezhen Science and Technology Bureau Planning Project (2025GY004, 2026GY009). pmc-status-qastatus 0 pmc-status-live yes pmc-status-embargo no pmc-status-released yes pmc-prop-open-access yes pmc-prop-olf no pmc-prop-manuscript no pmc-prop-legally-suppressed no pmc-prop-has-pdf yes pmc-prop-has-supplement yes pmc-prop-pdf-only no pmc-prop-suppress-copyright no pmc-prop-is-real-version no pmc-prop-is-scanned-article no pmc-prop-preprint no pmc-prop-in-epmc yes pmc-license-ref CC BY 
+## 1. Introduction 
+ 1 ]. With the rapid evolution of material science, there is an escalating demand to expand the functionality of inorganic pigments, moving beyond mere aesthetics to include smart features such as near-infrared reflective heat insulation, thermochromism, and photocatalytic antibacterial activity [ 2 , 3 , 4 ]. In the post-pandemic era, the increasing demand for environmental protection of indoor and workplace hygiene has driven the development of multifunctional inorganic pigments with high color-rendering properties and strong antibacterial activity to become a current research hotspot. 
+ 5 ]. Unlike traditional silver-based antibacterial materials, these pigments offer a cleaner and more sustainable approach, as they can decompose bacterial remains and toxins into CO 2 and H 2 O under light irradiation. Furthermore, integrating these pigments into diverse substrates allows for the effective immobilization of the active powders, overcoming the separation and recycling challenges typically associated with loose photocatalysts [ 6 ]. While TiO 2 (P25) is currently the commercial standard for such applications, its wide bandgap (Eg ≈ 3.2 eV) restricts its photocatalytic activity to the ultraviolet (UV) region, severely limiting its practical utility in indoor environments [ 7 ]. 
+ 4 ), particularly in its monoclinic scheelite phase (m-BiVO 4 ), has emerged as an ideal candidate due to its brilliant yellow hue, excellent chemical stability, and favorable visible-light response [ 8 ]. Despite these advantages, the practical application of m-BiVO 4 is hindered by its relatively small surface area and the rapid recombination of photogenerated charge carriers, which limit its photocatalytic efficiency [ 9 , 10 , 11 , 12 ]. Extensive efforts have been devoted to improving its performance, including morphology control [ 13 ], heterojunction construction [ 14 ], noble metal deposition [ 15 ], and elemental doping [ 16 , 17 , 18 ]. However, these strategies often involve complex multi-step processes, costly precursors, or the introduction of toxic heavy metals, which may compromise the coloring performance or economic viability of the pigments. In this study, we propose a rational and facile one-step self-propagating combustion synthesis (SCS) strategy to engineer carbon-doped BiVO 4 (C-BiVO 4 ) pigments, utilizing citric acid (CA) as a multifunctional agent serving as both fuel and carbon source. Through this approach, high-performance yellow pigments were synthesized, achieving an impressive yellowness value ( b* = 79) and a 99.99% bacterial inactivation rate against E. coli under visible-light irradiation. The influence of citric acid dosage on the phase composition, morphology, coloristic properties, and antibacterial efficacy was systematically investigated. This work not only provides a robust pathway for the sustainable synthesis of multifunctional inorganic pigments but also validates their exceptional application stability in diverse matrices, such as polymethyl methacrylate (PMMA) plastic and glass. 
+## 2. Results and Discussion 
+ 4 synthesized via the self-propagating combustion method, this study employed XRD characterization on samples prepared with citric acid amounts ranging from 0 to 1.6 ( Figure 1 ). The results confirmed the successful synthesis of the pure monoclinic phase BiVO 4 (JCPDS 14-0688) across all samples while identifying a systematic shift of the (121) diffraction peak toward lower angles relative to the baseline of ~29.3° as the CA amount increased [ 19 , 20 ]. Furthermore, samples with higher CA amounts (1.2–1.6) exhibited slight peak broadening and intensity attenuation. These findings indicate that carbon incorporation induces lattice expansion and distortion via substitution or interstitial doping [ 21 ], thereby verifying the effective and controllable modulation of carbon doping in m-BiVO 4 while suggesting that excessive CA dosage may result in reduced grain size and slight decreases in crystallinity. Additionally, the effects of heating rate and combustion atmosphere on the phase composition and chromatic performance of the C-BiVO 4 pigments were further investigated, as shown in Figure S1 and Table S1 . The results indicate that all samples synthesized in an air atmosphere at heating rates of 2–10 °C min −1 maintain the monoclinic BiVO 4 phase with good crystallinity and high yellowness values ( b* > 72). In contrast, the sample prepared under N 2 atmosphere exhibits significant darkening in color and presents much lower chromaticity due to excessive carbon retention during combustion. These results confirm that the combustion atmosphere plays a critical role in regulating carbon content, crystallization behavior, and pigment color performance. 
+ 4 lattice rather than the existence of surface residual carbon, Rietveld refinement was performed on the XRD patterns of pristine BiVO 4 and C-BiVO 4 (n(CA)/n(Bi) = 1.2), as shown in Figure 2 and Table 1 . The refinement results exhibit good fitting reliability with low R wp and R p values, confirming the high crystallinity and phase purity of both samples. Compared with pristine BiVO 4 , the C-BiVO 4 sample shows slight increases in lattice parameters from a = 5.1814 Å, b = 5.1033 Å, and c = 11.7019 Å to a = 5.1824 Å, b = 5.1113 Å, and c = 11.7042 Å, respectively. Consequently, the unit cell volume expands from 309.418 Å 3 to 310.027 Å 3 . This lattice expansion is consistent with the shift of the (121) diffraction peak toward lower angles, which provides quantitative evidence for the incorporation of carbon atoms into the BiVO 4 lattice, inducing lattice distortion rather than simply forming surface carbon residues. 
+ 4 pigments prepared with citric acid amounts ranging from 0 to 1.6 were investigated by SEM, as shown in Figure 3 . The results reveal a systematic morphological evolution as the citric acid amount increases, transitioning from irregular sheets without citric acid to well-defined cubes (n(citric acid)/n(BiVO 4 ) = 0.4–0.8) and finally to ellipsoidal structures (n(citric acid)/n(BiVO 4 ) = 1.2–1.6), accompanied by a noticeable decrease in particle size and enhanced dispersion. This morphological transformation is attributed to the dual role of citric acid: as a fuel, it governs combustion dynamics and nucleation density [ 22 ]. As a carbon source, it alters crystal growth kinetics through doping [ 23 ]. Consequently, these findings demonstrate that the self-propagating combustion method enables precise morphological control over C-BiVO 4 by adjusting the citric acid amount. 
+ Figure 4 shows the N 2 adsorption–desorption isotherms and corresponding pore size distribution curves of the C-BiVO 4 pigments prepared with different n(CA)/n(Bi) ratios. All samples exhibit type-IV isotherms with H3-type hysteresis loops, indicating the presence of mesoporous structures formed by the aggregation of primary particles. With increasing citric acid amount, the BET surface area gradually increases from 4.6926 m 2 g −1 for pristine BiVO 4 to 4.7634, 5.6475, 8.6198, and 16.7481 m 2 g −1 for C-BiVO 4 samples with n(CA)/n(Bi) ratios of 0.4, 0.8, 1.2, and 1.6, respectively. This trend is highly consistent with the SEM observations, where the particle morphology evolves from irregular sheet-like structures to olive-like ellipsoidal particles with smaller sizes. 
+ Figure 5 illustrates the TEM, EDS mapping and HRTEM images of C-BiVO 4 and BiVO 4 pigments. The results show that C-BiVO 4 pigment exhibits a rough, ellipsoidal morphology, approximately 400–500 nm in size ( Figure 5 a), with EDS mapping confirming the uniform distribution of carbon within the matrix ( Figure 5 b). HRTEM combined with FFT analysis measures lattice spacings of 2.28 Å and 2.13 Å with an included angle of 110°, corresponding to the 
+ ( 2 _ 1 _ 1 ) 
+ and 
+ ( 05 1 _ ) 
+ planes and a zone axis of [215], confirming that the product is monoclinic m-BiVO 4 ( Figure 5 c). In contrast, the pure BiVO 4 sample ( Figure 5 d–f) exhibits an irregular sheet-like morphology with sharp edges and larger particle sizes (approximately 600–800 nm). No carbon signal is detected by EDS mapping, confirming the absence of carbon doping. HRTEM shows a lattice spacing of 3.10 Å corresponding to the 
+ ( 1 _ 2 _ 1 ) 
+ plane with a zone axis of [ 
+ 1 _ 0 1 _ 
+ ], also identified as monoclinic m-BiVO 4 [ 24 ]. Additional HRTEM images ( Figure S2 ) reveal clear lattice fringes and good crystallinity of the C-BiVO 4 particles, while no obvious amorphous carbon shell or continuous surface carbon coating layer was observed around the particles. These findings demonstrate that citric acid acts as both a morphology-directing agent and a carbon source, inducing a transition from sheet-like to ellipsoidal morphology and facilitating uniform carbon doping [ 25 ]. 
+ 4 and determine the underlying doping mechanism, X-ray photoelectron spectroscopy (XPS) was employed to characterize samples prepared with varying citric acid amounts ( Figure 6 ). The results demonstrate that, with increasing carbon content, both Bi 4f and V 2p peaks exhibit a systematic negative shift toward lower binding energies (relative to the baseline values of ~159.1 eV and ~516.7 eV for pure BiVO 4 ), indicating a significant modulation of the local electronic environment surrounding Bi and V atoms [ 16 , 26 , 27 ]. Concurrently, the O 1s spectra reveal a relative decrease in the lattice oxygen signal (~529.5–530.0 eV) alongside a notable increase in the oxygen vacancy-related adsorbed oxygen signal (~531.5–532.5 eV) [ 28 , 29 ]. Consequently, it is concluded that carbon atoms have been successfully doped into the BiVO 4 lattice, inducing lattice distortion and simultaneously generating oxygen vacancies to maintain charge neutrality. 
+ Figure 7 presents the Raman and FTIR spectra of C-BiVO 4 pigments prepared with different citric acid amounts to further elucidate the influence of carbon doping on the local structure and chemical bonding environment of BiVO 4 . In the Raman spectra ( Figure 7 a), all samples exhibit the characteristic vibrational modes of monoclinic scheelite BiVO 4 , confirming that the crystal structure remains unchanged after carbon doping. The strong Raman peak located at ~815 cm −1 , is assigned to the symmetric stretching vibration of the V–O bond in the VO 4 tetrahedron [ 30 , 31 ]. The peak gradually shifts toward lower wavenumbers with increasing citric acid amount, accompanied by slight peak broadening. This phenomenon indicates the weakening and distortion of V–O bonds caused by lattice expansion and local structural disorder induced by carbon incorporation [ 32 , 33 ]. 
+ Figure 7 b further support these structural changes. The characteristic absorption band located at ~736 cm −1 [ 34 ] corresponds to the asymmetric stretching vibration of V–O bonds in monoclinic BiVO 4 , which exhibits a slight blue shift with increasing carbon content, indicating the change in the local bonding environment due to carbon-induced lattice distortion and defect generation. Meanwhile, the gradual weakening of the shoulder near ~830 cm −1 is consistent with the Raman results, further confirming the structural perturbation of the VO 4 units [ 34 , 35 ]. Furthermore, the Raman and FTIR results correlate well with the SEM, BET, and XPS analyses. The increased structural disorder induced by carbon doping suppresses crystal growth during combustion synthesis, leading to the morphology evolution from irregular sheet-like particles to uniform ellipsoidal structures with a smaller size, accompanied by an increase in BET specific surface area. Meanwhile, the lattice distortion revealed by Raman, FTIR and XPS contributes to the enhanced visible-light absorption and improved charge separation behavior. Consequently, the synergistic modulation of crystal structure, morphology, and electronic properties is expected to enhance the photocatalytic antibacterial performance of the C-BiVO 4 pigments. 
+ 4 , density functional theory (DFT) calculations were performed and compared with experimental results. Firstly, crystal structure models of pristine BiVO 4 and C-doped BiVO 4 were constructed (C partially substituting the O site), and their band structures and density of states (DOS) were calculated, as shown in Figure 8 a–f. Subsequently, corresponding samples were synthesized via a self-propagating combustion method and experimentally characterized using UV-vis diffuse reflectance spectra ( Figure 8 g,h). DFT calculations revealed that after C doping, the crystal retains a monoclinic scheelite structure with slight lattice distortion, the band gap decreases from 2.42 eV for pristine BiVO 4 to 2.13 eV, and the DOS analysis shows that C 2p orbitals introduce impurity states within the band gap. In contrast, UV-Vis DRS experimentally determined the band gaps of pristine BiVO 4 and C-BiVO 4 to be 2.50 eV and 2.48 eV, respectively, with a band gap reduction of only 0.02 eV. The calculated bandgap of C-BiVO 4 is 2.13 eV, which is lower than the experimentally measured value (2.48 eV). This discrepancy is mainly attributed to the intrinsic theoretical bandgap underestimation (TBE) associated with conventional GGA-based DFT calculations for semiconductor systems [ 21 , 24 ]. Nevertheless, both the DFT calculations and experimental UV-Vis results consistently demonstrate that carbon incorporation leads to the narrowing of the bandgap and thus enhances the visible-light absorption of BiVO 4 . 
+ Figure 9 presents comprehensive photoluminescence (PL) spectroscopy and photocatalytic degradation evaluations of methylene blue (MB) under simulated solar light. PL characterization revealed that the photoluminescence intensity of C-BiVO 4 pigment (n(CA)/n(Bi) = 1.2) decreased significantly to approximately 20% of that of BiVO 4 with the same emission peak position (~520 nm), indicating effective suppression of electron-hole recombination by carbon doping [ 36 ]. Correspondingly, photocatalytic performance tests demonstrated that after 40 min of irradiation, the MB degradation rate of C-BiVO 4 reached 96.63%, markedly outperforming the 75.67% achieved by BiVO 4 pigment. 
+ 4 yellow pigment, antibacterial experiments were conducted against both Gram-negative Escherichia coli ( E. coli ) and Gram-positive Staphylococcus aureus ( S. aureus ) using a standard colony-forming unit (CFU) assay under dark and visible-light irradiation, as shown in Figure 10 . The samples were incubated with bacterial suspensions for 30 and 120 min, followed by serial dilution and colony counting. Under dark conditions, both BiVO 4 and C-BiVO 4 exhibited limited antibacterial activity, indicating that the bacterial inactivation is mainly driven by photocatalytic processes rather than intrinsic toxicity. Upon visible-light irradiation, however, the bacterial viability decreased dramatically. For E. coli , the Log 10 (CFU mL −1 ) value of the C-BiVO 4 group decreased from approximately 7.8 under dark conditions to ~4.5 after 30 min of irradiation and further to ~4.0 after 120 min, achieving a substantial bacterial reduction of over 99.9%. Similarly, the bacterial viability of S. aureus decreased from ~7.3 to ~4.7 after 30 min of irradiation and further to ~4.5 after 120 min. In comparison, pristine BiVO 4 exhibited significantly weaker antibacterial efficacy under identical conditions. These results demonstrate that carbon doping markedly enhances the photocatalytic antibacterial performance of BiVO 4 against both bacterial strains. 
+ Figure 10 b,c. The relatively small error bars indicate good reproducibility and statistical reliability of the antibacterial experiments. Furthermore, the consistent antibacterial enhancement observed for both bacterial strains confirms that the photocatalytic antibacterial activity of C-BiVO 4 is non-specific, thereby broadening the practical applicability of the pigment in antibacterial materials. 
+ 4 pigment under visible-light irradiation ( Figure S3 ). The antibacterial efficiencies against S. aureus remained approximately 99.99%, 99.99%, 99.90%, 99.78%, and 99.47% after the 1st to 5th cycles, respectively, while the corresponding efficiencies against E. coli were maintained at about 99.99%, 99.99%, 99.94%, 99.90%, and 99.50%. Although a slight decrease in antibacterial activity was observed after repeated cycling, the antibacterial efficiencies toward both bacterial strains remained above 99.4% after five cycles. These results indicate that the C-BiVO 4 pigment possesses excellent photocatalytic stability. 
+ 4 pigments is shown in Figure 11 a–c. The results reveal that the yellowness ( b* ) of the pigments exhibits a trend of increasing first and then decreasing, among which the C-BiVO 4 pigment (n(CA)/n(Bi) = 1.2) exhibits the deepest yellow with optimal coloristic attributes of L* = 74.09, a* = 7.78, and b* = 79.71 ( Table S2 ). Conversely, excessive citric acid amount (>1.2) results in decreased color saturation due to carbon residues, which introduce gray-black impurities. Furthermore, application tests demonstrate that the pigments prepared under these optimized conditions exhibit excellent dispersibility, thermal stability, and coloring performance in both PMMA and glass matrices. Thus, C-BiVO 4 yellow pigment successfully achieves the dual-function integration of “high color rendering and high antibacterial activity,” providing an effective strategy for developing inorganic pigments that combine aesthetic appeal with functionality. 
+ 4 yellow pigment for consumer-related sectors, acute skin irritation and dermal toxicity tests were conducted in accordance with GB/T 21604-2008 and GB/T 21606-2008 standards ( Table S3 and Table S4 ), respectively [ 37 , 38 ]. The experimental results demonstrated that in the skin irritation test, the scores for erythema and edema at all observation points were 0, well below the threshold of <0.5, classifying the pigment as non-irritating. Meanwhile, in the acute dermal toxicity test, neither toxic symptoms nor mortality was observed in SD rats within a 14-day period following a dosage of 2000 mg/kg, with an LD 50 value greater than 2000 mg/kg, which categorized the substance as low toxicity. These findings confirm that the synthesized C-BiVO 4 pigment, which exhibits both high chromaticity and excellent photocatalytic antibacterial performance, possesses superior biocompatibility and safety, providing a robust scientific basis for its potential application in consumer goods such as toys, surface coatings, and food packaging. 
+## 3. Materials and Methods 
+## 3.1. Sample Preparation 
+ 3 ) 3 ·5H 2 O, 99%, Aladdin Co., Ltd., Shanghai, China) and ammonium metavanadate (NH 4 VO 3 , 99%, Aladdin Co., Ltd., Shanghai, China), respectively, while citric acid (C 6 H 8 O 7 ·H 2 O, 99.5%, Aladdin Co., Ltd., Shanghai, China) was employed as both the fuel and carbon source. Deionized water was used as the solvent, while aqueous ammonia and nitric acid were employed for pH adjustment. Briefly, specific amounts of Bi(NO 3 ) 3 ·5H 2 O and citric acid were dissolved in 1 mM HNO 3 solution. Simultaneously, NH 4 VO 3 was dissolved in a separate 1 mM HNO 3 solution. The vanadium precursor solution was slowly added dropwise into the bismuth precursor solution under continuous stirring to form a transparent green solution, with the molar ratios n(CA)/n(Bi 3+ )/n(V 5+ ) = (0~1.6):1:1. The pH of the mixture was adjusted to 7 using aqueous ammonia, followed by stirring at room temperature for 2 h. Finally, the precursor solution was heated in a muffle furnace under an air atmosphere at 200 °C with 5 °C/min to trigger the self-propagating combustion reaction, resulting in the in situ synthesis of the C-BiVO 4 yellow pigment. 
+## 3.2. Characterization 
+## 3.2.1. X-Ray Diffraction (XRD) 
+ −1 and a step size of 0.02°. Prior to measurement, the powder samples were finely ground and uniformly spread on a low-background sample holder. The Rietveld analysis of the XRD pattern was calculated by the Fullprof-2k software (Version 2.05) package. 
+## 3.2.2. X-Ray Photoelectron Spectroscopy (XPS) 
+## 3.2.3. Electron Microscopy 
+## 3.2.4. Raman and FTIR Spectroscopy 
+ −1 . Fourier transform infrared (FTIR) spectra were collected using an FTIR spectrometer (INVENIO S, Bruker, Germany) in the range of 400–4000 cm −1 employing the KBr pellet method, with a sample-to-KBr mass ratio of 1 mg to 80 mg. 
+## 3.2.5. BET Surface Area 
+ 2 adsorption–desorption isotherms of the samples were measured using an ASAP 2020 system (Micromeritics Instrument Corporation, Norcross, GA, USA) at 77 K. Prior to measurement, the samples were degassed under vacuum to remove physically adsorbed impurities. The specific surface area (SSA) was calculated using the Brunauer-Emmett-Teller (BET) method. 
+## 3.2.6. Photoluminescence and UV-Vis Diffuse Reflectance Spectroscopy 
+ 4 was used as the reference material. The band gap energies were estimated using the Kubelka-Munk transformation. 
+## 3.2.7. Colorimetric Measurements 
+ L*a*b* color space, where L* represents lightness, a* represents the red-green coordinate, and b* represents the yellow-blue coordinate. Each sample was measured at least three times at different positions, and the average values were calculated to ensure reproducibility. 
+## 3.3. Bacterial Inhibition Assays 
+ Escherichia coli ( E. coli , ATCC 8739) and Staphylococcus aureus ( S. aureus , CMCC 26003). Cells were cultured overnight in 50 mL of Luria–Bertani (LB) broth at 37 °C ( E. coli ) and 25 °C ( S. aureus ) with shaking (180 rpm). The cells were harvested by centrifugation, washed twice with sterile 0.9% saline solution, and resuspended for subsequent use. The bacterial concentration was adjusted to an optical density at 600 nm (OD 600 ) of approximately 0.5 using a UV–visible spectrophotometer (SDPTOP UV2900). To initiate the assay, a specific volume of bacterial suspension was transferred into a 250 mL Erlenmeyer flask containing the test materials (final concentration: 150 μg/mL). For the light-irradiated groups, the flasks were placed on a shaker approximately 20 cm below a solar simulator (equipped with a 420 nm cut-off filter), ensuring a constant light intensity. Corresponding control and non-irradiated groups were maintained in the dark. After 30 min of treatment, aliquots were collected from each flask for plate counting. The agar plates were incubated at 37 °C for 12 h, after which the colonies were quantified. The results were expressed as colony-forming units per milliliter (CFU/mL). All experiments were performed in triplicate. 
+## 4. Conclusions 
+ 4 yellow pigments were successfully fabricated via a one-step self-propagating combustion method using citric acid as a fuel and carbon source. Carbon doping induces lattice distortion and oxygen vacancy formation, narrows the band gap, and effectively suppresses photogenerated charge carrier recombination. At an optimal citric acid to BiVO 4 molar ratio of 1.2, the pigment achieves outstanding chromatic performance ( b* = 79.71). The C-BiVO 4 pigment exhibits high photocatalytic degradation efficiency and excellent antibacterial activity under visible light, achieving a 99.99% inactivation rate against E. coli . Biocompatibility tests confirm its non-irritating nature and low acute dermal toxicity. Furthermore, the pigment demonstrates good processability in plastic and glass matrices, highlighting its potential for multifunctional coatings, packaging materials, and consumer products. 
+## Acknowledgments 
+ Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to people or property resulting from any ideas, methods, instructions or products referred to in the content. 
+## Supplementary Materials 
+ https://www.mdpi.com/article/10.3390/molecules31122141/s1 , Figure S1: XRD patterns of C-BiVO 4 pigments prepared by different heating rates (a) and atmosphere (b); Figure S2: TEM (a,b) and HRTEM (c) images of the C-BiVO 4 sample; Figure S3: Recycling experiments of photocatalytic inactivation of S. aureus (a) and E. coli (b); Table S1: CIE coordinates of C-BiVO 4 yellow pigment prepared by different heating rates and atmosphere; Table S2: CIE coordination of C-BiVO 4 yellow pigment prepared by different n(CA)/n(Bi); Table S3: Skin irritation scoring record of C-BiVO 4 yellow pigment in rabbits. Table S4: Results of acute dermal toxicity test of BiVO 4 yellow pigments in SD rats. 
+## Author Contributions 
+## Data Availability Statement 
+ Supplementary Material . Further inquiries can be directed to the corresponding authors. 
+## Conflicts of Interest 
+## Correction Statement 
+## References 1. 
+ Gonzalez V. 
+ Wallez G. 
+ Gourier D. 
+ De Caro C. 
+ De Meyer S. 
+ Bijker I. 
+ Janssens K. 
+ Thoury M. 
+ Gabrieli F. 
+ Monico L. 
+ Structure–optical properties relationships in cobalt-based purple pigments used by robert delaunay J. Am. Chem. Soc. 2025 147 2587 2596 39772469 10.1021/jacs.4c14523 2. 
+ Lin L. 
+ Yin J. 
+ Zhang B. 
+ Zha K. 
+ Tao S. 
+ Wang J. 
+ Fang L. 
+ Zhao M. 
+ Lu C. 
+ Xu Z. 
+ Synergistic cooling effect of metal-doped red-orange pigments: One-step synthesis for enhanced near-infrared reflectance and selective infrared emission ACS Sustain. Chem. Eng. 2025 13 2072 2085 3. 
+ Hidalgo-Araujo A.C. 
+ Salomão R. 
+ Berardi U. 
+ Dornelles K.A. 
+ Design and characterization of a SiO 2 -TiO 2 coating containing organic and inorganic thermochromic pigments and optimized with TiO 2 -P25 for improved long-term performance in energy-efficient roofing Sol. Energy Mater. Sol. Cells 2025 289 113655 113669 4. 
+ Soleiman-Beigi M. 
+ Mohammadi M. 
+ Kohzadi H. 
+ An overview on copper in industrial chemistry: From ancient pigment to modern catalysis Coord. Chem. Rev. 2025 529 216438 216468 10.1016/j.ccr.2025.216438 5. 
+ Wang W. 
+ Li G. 
+ Xia D. 
+ An T. 
+ Zhao H. 
+ Wong P.K. 
+ Photocatalytic nanomaterials for solar-driven bacterial inactivation: Recent progress and challenges Environ. Sci. Nano 2017 4 782 799 10.1039/c7en00063d 6. 
+ Miki-Yoshida M. 
+ Paraguay F. 
+ Antunez W. 
+ Microstructural characterization of thin films TiO 2 deposited inside a tubing by spray pyrolysis Microsc. Microanal. 2001 7 412 413 10.1017/s1431927600028130 7. 
+ Hayashi K. 
+ Nozaki K. 
+ Tan Z. 
+ Fujita K. 
+ Nemoto R. 
+ Yamashita K. 
+ Miura H. 
+ Itaka K. 
+ Ohara S. 
+ Enhanced antibacterial property of facet-engineered TiO 2 nanosheet in presence and absence of ultraviolet irradiation Materials 2020 13 78 90 10.3390/ma13010078 PMC6981437 31877887 8. 
+ Cao X. 
+ Gu Y. 
+ Tian H. 
+ Fang Y. 
+ Johnson D. 
+ Ren Z. 
+ Chen C. 
+ Huang Y. 
+ Microemulsion synthesis of ms / tz -BiVO 4 composites: The effect of pH on crystal structure and photocatalytic performance Ceram. Int. 2020 46 20788 20797 9. 
+ Srinivasan N. 
+ Anbuchezhiyan M. 
+ Harish S. 
+ Ponnusamy S. 
+ Efficient catalytic activity of BiVO 4 nanostructures by crystal facet regulation for environmental remediation Chemosphere 2022 289 133097 133110 10.1016/j.chemosphere.2021.133097 34861257 10. 
+ Chen Y. 
+ Li Y. 
+ Luo N. 
+ Shang W. 
+ Shi S. 
+ Li H. 
+ Liang Y. 
+ Zhou A. 
+ Kinetic comparison of photocatalysis with H 2 O 2 -free photo-Fenton process on BiVO 4 and the effective antibiotic degradation Chem. Eng. J. 2022 429 132577 132586 11. 
+ Xie B.P. 
+ Bactericidal activity of monoclinic BiVO 4 under visible light irradiation Chin. J. Disinfect. 2010 27 14 16 12. 
+ Malathi A. 
+ Madhavan J. 
+ Ashokkumar M. 
+ Arunachalam P. 
+ A review on BiVO 4 photocatalyst: Activity enhancement methods for solar photocatalytic applications Appl. Catal. A Gen. 2018 555 47 74 10.1016/j.apcata.2018.02.010 13. 
+ Wang W. 
+ Yu Y. 
+ An T. 
+ Li G. 
+ Yip H.Y. 
+ Yu J.C. 
+ Wong P.K. 
+ Visible-light-driven photocatalytic inactivation of E. coli K-12 by bismuth vanadate nanotubes: Bactericidal performance and mechanism Environ. Sci. Technol. 2012 46 4599 4606 22428729 10.1021/es2042977 14. 
+ Xiang Z. 
+ Wang Y. 
+ Zhang D. 
+ Ju P. 
+ BiOI/BiVO 4 p-n heterojunction with enhanced photocatalytic activity under visible-light irradiation J. Ind. Eng. Chem. 2016 40 83 92 15. 
+ Booshehri A.Y. 
+ Goh S.C.-K. 
+ Hong J. 
+ Jiang R. 
+ Xu R. 
+ Effect of depositing silver nanoparticles on BiVO 4 in enhancing visible light photocatalytic inactivation of bacteria in water J. Mater. Chem. A 2014 2 6209 6217 10.1039/c3ta15392d 16. 
+ Regmi C. 
+ Dhakal D. 
+ Lee S.W. 
+ Visible-light-induced Ag/BiVO 4 semiconductor with enhanced photocatalytic and antibacterial performance Nanotechnology 2018 29 064001 064016 29219840 10.1088/1361-6528/aaa052 17. 
+ Regmi C. 
+ Kshetri Y.K. 
+ Dhakal D. 
+ Sohng J.K. 
+ Rosei F. 
+ Lee S.W. 
+ Insight into phosphate doped BiVO 4 heterostructure for multifunctional photocatalytic performances: A combined experimental and DFT study Appl. Surf. Sci. 2019 466 787 800 10.1016/j.apsusc.2018.10.069 18. 
+ Regmi C. 
+ Kshetri Y.K. 
+ Pandey R.P. 
+ Kim T.-H. 
+ Gyawali G. 
+ Lee S.W. 
+ Understanding the multifunctionality in Cu-doped BiVO 4 semiconductor photocatalyst J. Environ. Sci. 2019 75 84 97 10.1016/j.jes.2018.03.005 30473310 19. 
+ Liu B. 
+ Wang X. 
+ Zhang Y. 
+ Wan K. 
+ Xu L. 
+ Ma S. 
+ Zhao R. 
+ Wang S. 
+ Huang W. 
+ Bismuth vacancies induced lattice strain in BiVO 4 photoanodes boosting charge separation for water oxidation Adv. Energy Mater. 2025 15 2403835 20. 
+ Wang J. 
+ Muhammad N. 
+ Chuai Z. 
+ Xu W. 
+ Tan X. 
+ Zhou Q. 
+ Yu Y. 
+ Guo J. 
+ Li T. 
+ Xu B. 
+ Photothermal CuS as a hole transfer layer on BiVO 4 photoanode for efficient solar water oxidation Angew. Chem. Int. Ed. 2025 64 e202507259 10.1002/anie.202507259 40503673 21. 
+ Zhao D. 
+ Zong W. 
+ Fan Z. 
+ Fang Y.-W. 
+ Xiong S. 
+ Du M. 
+ Wu T. 
+ Ji F. 
+ Xu X. 
+ Synthesis of carbon-doped nanosheets m-BiVO 4 with three-dimensional (3D) hierarchical structure by one-step hydrothermal method and evaluation of their high visible-light photocatalytic property J. Nanopart. Res. 2017 19 124 139 22. 
+ Chandradass J. 
+ Kim M.H. 
+ Bae D.S. 
+ Influence of citric acid to aluminium nitrate molar ratio on the combustion synthesis of alumina–zirconia nanopowders J. Alloys Compd. 2009 470 9 12 10.1016/j.jallcom.2008.02.089 23. 
+ Wang K. 
+ Yin Z. 
+ Zhao P. 
+ Synthesis of macroporous Li 4 SiO 4 via a citric acid-based sol–gel route coupled with carbon coating and its CO 2 chemisorption properties Ceram. Int. 2016 42 2990 2999 24. 
+ Yang R. 
+ Zhu R. 
+ Fan Y. 
+ Hu L. 
+ Chen Q. 
+ In situ synthesis of C-doped BiVO 4 with natural leaf as a template under different calcination temperatures RSC Adv. 2019 9 14004 14010 35519349 10.1039/c9ra01875a PMC9064008 25. 
+ Bai M. 
+ Li W. 
+ Yang H. 
+ Dong W. 
+ Wang Q. 
+ Chang Q. 
+ Morphology-controlled synthesis of MoS 2 using citric acid as a complexing agent and self-assembly inducer for high electrochemical performance RSC Adv. 2022 12 28463 28472 10.1039/d2ra05351a 36320538 PMC9533416 26. 
+ Hu C. 
+ Chen Q. 
+ Tian M. 
+ Wang W. 
+ Yu J. 
+ Chen L. 
+ Efficient combination of carbon quantum dots and BiVO 4 for significantly enhanced photocatalytic activities Catalysts 2023 13 463 10.3390/catal13030463 27. 
+ Shi Y. 
+ Zhao Q. 
+ Guan B. 
+ Li J. 
+ Gao G. 
+ Zhi J. 
+ Onion-like carbon with controllable carbon atom hybridization embedded in BiVO 4 photoanode for enhanced photoelectrochemical water splitting Appl. Surf. Sci. 2023 614 156120 156127 10.1016/j.apsusc.2022.156120 28. 
+ Ghosh S. 
+ Patel M. 
+ Choi H. 
+ Youn S. 
+ Jeong C. 
+ Kim J. 
+ Oxygen vacancies mediated Co-sputtered Ti-doped BiVO 4 thin films-based transparent photovoltaic device Adv. Electron. Mater. 2024 10 2300498 29. 
+ Xu J. 
+ Bian Z. 
+ Xin X. 
+ Chen A. 
+ Wang H. 
+ Size dependence of nanosheet BiVO 4 with oxygen vacancies and exposed {0 0 1} facets on the photodegradation of oxytetracycline Chem. Eng. J. 2017 337 684 696 30. 
+ Zhang L. 
+ Chen D. 
+ Jiao X. 
+ Monoclinic structured BiVO 4 nanosheets: Hydrothermal preparation, formation mechanism, and coloristic and photocatalytic properties J. Phys. Chem. B 2006 110 2668 2673 10.1021/jp056367d 16471870 31. 
+ Kudo A. 
+ Omori K. 
+ Kato H. 
+ A novel aqueous process for preparation of crystal form-controlled and highly crystalline BiVO 4 powder from layered vanadates at room temperature and its photocatalytic and photophysical properties J. Am. Chem. Soc. 1999 121 11459 11467 32. 
+ Sun Y. 
+ Xie Y. 
+ Wu C. 
+ Zhang S. 
+ Jiang S. 
+ Aqueous synthesis of mesostructured BiVO 4 quantum tubes with excellent dual response to visible light and temperature Nano Res. 2010 3 620 631 10.1007/s12274-010-0022-8 33. 
+ Shang M. 
+ Wang W. 
+ Ren J. 
+ Sun S. 
+ Zhang L. 
+ A novel BiVO 4 hierarchical nanostructure: Controllable synthesis, growth mechanism and application in photocatalysis CrystEngComm 2010 12 1754 1758 10.1039/b923115c 34. 
+ Zhang A. 
+ Zhang J. 
+ Hydrothermal processing for obtaining of BiVO 4 nanoparticles Mater. Lett. 2009 63 1939 1942 10.1016/j.matlet.2009.06.013 35. 
+ Ekthammathat N. 
+ Phuruangrat A. 
+ Thongtem S. 
+ Thongtem T. 
+ Synthesis, characterization and antibacterial activity of BiVO 4 microstructure Russ. J. Phys. Chem. A 2018 92 1036 1040 10.1134/s0036024418050114 36. 
+ Sriwichai S. 
+ Sakulsermsuk S. 
+ Duangjam S. 
+ Wetchakun K. 
+ Wetchakun N. 
+ Synergistic effects of Ce and Mo co-doping for enhancing photocatalytic activity of BiVO 4 on methyl orange degradation Mater. Sci. Semicond. Process. 2024 184 108791 108801 10.1016/j.mssp.2024.108791 37. GB/T 21604-2008 Test Method of Acute Dermal Irritation/Corrosion for Chemicals Standards Press of China Beijing, China 2008 38. GB/T 21606-2008 Test Method of Acute Dermal Toxicity for Chemicals Standards Press of China Beijing, China 2008 Figure 1 
+ 4 pigments synthesized with varying citric acid amounts and the corresponding enlarged view of the (121) diffraction peak within the 2θ range of 28–30°. Figure 2 
+ a ) the BiVO 4 (n(CA)/n(Bi) = 0) and ( b ) C-BiVO 4 (n(CA)/n(Bi) = 1.2) samples. Figure 3 
+ 4 pigments with different n(CA)/n(Bi) ratios: ( a ) 0, ( b ) 0.4, ( c ) 0.8, ( d ) 1.2, and ( e ) 1.6. Figure 4 
+ 2 adsorption–desorption isotherms and corresponding pore size distribution curves (insets) of C-BiVO 4 pigments with different n(CA)/n(Bi) ratios: ( a ) 0, ( b ) 0.4, ( c ) 0.8, ( d ) 1.2, and ( e ) 1.6. Figure 5 
+ 4 ( a – c ) and BiVO 4 ( d – f ) pigments. Figure 6 
+ 4 pigment with varying citric acid amounts: ( a ) Bi 4f, ( b ) V 2p and ( c ) O 1s. Figure 7 
+ a ) and FTIR ( b ) spectra of C-BiVO 4 pigment with varying n(CA)/n(Bi) ratios. Figure 8 
+ a , d ) Optimized crystal structures, ( b , e ) electronic band structures, ( c , f ) total and partial density of states (DOS and PDOS) and ( g , h ) UV-vis diffuse reflectance spectra and the corresponding plots of (F(R) hν ) 2 vs. hν of BiVO 4 and C-doped BiV(O 0.95 C 0.05 ) 4 , respectively. (In Figure 8 ( d ), a, b, and c represent the crystallographic axes). Figure 9 
+ a ) PL spectra of BiVO 4 and C-doped BiVO 4 pigments. Time-dependent UV-vis absorption spectra of MB solutions during photocatalytic degradation using C-BiVO 4 ( b ) and BiVO 4 ( c ) pigments as photocatalysts (the insets display the corresponding visual color changes in the MB solutions over the degradation process). Figure 10 
+ a ) Digital photographs of bacterial colony formation on agar plates after treatment with BiVO 4 or C-BiVO 4 under dark and light conditions for 30 and 120 min, with corresponding bacterial viability expressed as Log 10 (CFU mL −1 ) for E. coli ( b ) and S. aureus ( c ). Error bars represent standard deviations from three independent experiments. Figure 11 
+ 4 pigment. ( a ) CIE L*-a*-b* value with citric acid/BiVO 4 molar ratio. ( b ) CIE chromaticity diagram. ( c ) Digital photograph of C-BiVO 4 pigments. ( d , e ) Digital photographs of C-BiVO 4 pigment applied on PMMA and glass (600 °C) substrates, respectively. molecules-31-02141-t001_Table 1 Table 1 
+ n(CA)/n(Bi) 0 1.2 | align="center" valign="middle" rowspan="1" colspan="1">a (Å) | align="center" valign="middle" rowspan="1" colspan="1">5.1814 | align="center" valign="middle" rowspan="1" colspan="1">5.1824 | align="center" valign="middle" rowspan="1" colspan="1">b (Å) | align="center" valign="middle" rowspan="1" colspan="1">5.1033 | align="center" valign="middle" rowspan="1" colspan="1">5.1113 | align="center" valign="middle" rowspan="1" colspan="1">c (Å) | align="center" valign="middle" rowspan="1" colspan="1">11.7019 | align="center" valign="middle" rowspan="1" colspan="1">11.7042 | align="center" valign="middle" rowspan="1" colspan="1">Volume (Å) | align="center" valign="middle" rowspan="1" colspan="1">309.418 | align="center" valign="middle" rowspan="1" colspan="1">310.027 | align="center" valign="middle" rowspan="1" colspan="1">R wp (%) | align="center" valign="middle" rowspan="1" colspan="1">6.53 | align="center" valign="middle" rowspan="1" colspan="1">6.56 | align="center" valign="middle" style="border-bottom:solid thin" rowspan="1" colspan="1">R p (%) | align="center" valign="middle" style="border-bottom:solid thin" rowspan="1" colspan="1">5.00 | align="center" valign="middle" style="border-bottom:solid thin" rowspan="1" colspan="1">4.96 

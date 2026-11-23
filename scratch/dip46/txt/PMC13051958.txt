@@ -1,0 +1,1192 @@
+
+ pmc Protein Sci Protein Sci 507 prosci 9211750 PRO Protein Science : A Publication of the Protein Society 0961-8368 1469-896X Wiley PMC13051958 PMC13051958.1 13051958 13051958 41940686 10.1002/pro.70555 PRO70555 1 Research Article Research Article Hydrophobic interactions of a substrate with L193 on the flexible substrate‐binding loop contribute to 3α‐hydroxysteroid dehydrogenase/carbonyl reductase catalytic efficiency Chen et al. Chen Yan‐Liang 
+ 1 
+ Chou Yun‐Hao 
+ 2 
+ Lee Hwei‐Jen 
+ 3 
+ Wang Tzu‐Pin 
+ 4 
+ Hwang Chi‐Ching 
+ 1 
+ 2 
+ 5 
+ cchwang@kmu.edu.tw 
+ 1 
+ Department of Biochemistry, Faculty of Medicine, College of Medicine 
+ Kaohsiung Medical University 
+ Kaohsiung 
+ Taiwan 
+ 2 
+ Graduate Institute of Medicine, College of Medicine 
+ Kaohsiung Medical University 
+ Kaohsiung 
+ Taiwan 
+ 3 
+ Graduate Institute of Biochemistry, College of Biomedical Science 
+ National Defense Medical University 
+ Taipei 
+ Taiwan 
+ 4 
+ Department of Medicinal and Applied Chemistry 
+ Kaohsiung Medical University 
+ Kaohsiung 
+ Taiwan 
+ 5 
+ Department of Medical Research 
+ Kaohsiung Medical University Hospital 
+ Kaohsiung 
+ Taiwan 
+ * 
+ Correspondence 
+Chi‐Ching Hwang, Department of Biochemistry, Faculty of Medicine, College of Medicine, Kaohsiung Medical University, Kaohsiung, Taiwan. 
+Email: cchwang@kmu.edu.tw 
+ 06 4 2026 5 2026 35 5 511026 10.1002/pro.v35.5 e70555 
+ 27 2 2026 
+ 23 10 2025 
+ 16 3 2026 
+ 06 04 2026 07 04 2026 07 04 2026 © 2026 The Author(s). Protein Science published by Wiley Periodicals LLC on behalf of The Protein Society. https://creativecommons.org/licenses/by-nc/4.0/ This is an open access article under the terms of the http://creativecommons.org/licenses/by-nc/4.0/ License, which permits use, distribution and reproduction in any medium, provided the original work is properly cited and is not used for commercial purposes. 
+## Abstract 
+ Comamonas testosteroni . Residue L193 on the flexible substrate‐binding loop was substituted with amino acids spanning a hydrophobicity gradient (W, I, F, M, V, P, A, T, G). Differential scanning fluorimetry showed comparable melting temperatures among variants, indicating minimal effects on global thermal stability. Steady‐state kinetics revealed decreased catalytic efficiency with reduced side‐chain hydrophobicity and corresponding increases in activation free energy ( ΔG 
+ ‡ 
+ ). With the exception of L193W, L193I, L193F, L193P, and L193T, log( k 
+ cat 
+ /K 
+ M 
+ ) correlated linearly and positively with residue hydrophobicity, supporting a key role of hydrophobic interactions involving L193 in stabilizing the transition state of androsterone in the 3α‐HSD/CR‐catalyzed reaction. Truncated substrates (2‐decalol, cyclohexanol) cause a significant decrease in catalytic efficiency, exhibiting similar trends with shallower slopes, consistent with predominant L193 close to the steroid A‐ring. Molecular dynamics simulations indicated that NAD + and substrate binding promote loop closure and strengthen hydrophobic interactions involving L193 in the active site. These data establish that the hydrophobic interaction of residue 193 with the transition state of substrate, linked to remote binding interactions of the loop with the unreactive portion of the substrate, significantly contributes to 3α‐HSD/CR catalysis. enzyme catalysis Gibbs free energy change hydrophobic interaction remote binding interaction steady‐state kinetics substrate‐binding loop thermal stability 
+ Kaohsiung Medical University 10.13039/501100004694 
+ KMU‐M113002 KMU‐M114001 pmc-status-qastatus 0 pmc-status-live yes pmc-status-embargo no pmc-status-released yes pmc-prop-open-access yes pmc-prop-olf no pmc-prop-manuscript no pmc-prop-legally-suppressed no pmc-prop-has-pdf yes pmc-prop-has-supplement yes pmc-prop-pdf-only no pmc-prop-suppress-copyright no pmc-prop-is-real-version no pmc-prop-is-scanned-article no pmc-prop-preprint no pmc-prop-in-epmc yes pmc-license-ref CC BY-NC source-schema-version-number 2.0 cover-date May 2026 details-of-publishers-convertor Converter:WILEY_ML3GV2_TO_JATSPMC version:6.7.3 mode:remove_FC converted:06.04.2026 1 
+## INTRODUCTION 
+ 2015 ; Hammes et al.,  2011 ; Ma & Nussinov,  2010 ; Pauling,  1948 ; Richard et al.,  2018 ; Schramm et al.,  2008 ). Upon binding of the substrate, the enzyme undergoes a conformational change from the inactive, unliganded open form to a catalytically active closed form, thereby stabilizing the enzymatic reaction transition state via the induced‐fit model (Hegazy & Richard,  2025a ; Richard,  2019 ). In contrast, some enzymes exist in multiple conformations, and ligand binding stabilizes the active conformation, thereby shifting the population toward the active state through a conformational‐selection mechanism (Boehr et al.,  2009 ; Weikl & Paul,  2014 ). The binding energy from the interaction of the enzyme with the substrate in the active site can be utilized to correctly position the reactive portion of a substrate relative to the functional groups by favorable ionic, hydrogen bonding, van der Waals, and hydrophobic interactions of the transition state to lower the activation energy of the chemical reaction. Meanwhile, the binding energy from the flexible substrate‐binding loop with the non‐reacting portions of the substrate can be used for inducing the conformational change to close the loops, in which waters are excluded from the active site, and making enhanced interaction with the transition state to increase the rate for the reaction (Amyes et al.,  2001 ; Amyes et al.,  2005 ; Chen et al.,  2014 ; Jencks,  1975 ; Johnson et al.,  2016 ; Leemhuis et al.,  2002 ; Leferink et al.,  2014 ; Whitty et al.,  1995 ; Wolfenden & Snider,  2001 ). Despite extensive evidence, the precise contribution of loop‐associated hydrophobic interactions to catalysis remains incompletely defined. 
+ 1986 ; Kulkarni et al.,  2017 ; Ponnuswamy,  1993 ; Richard et al.,  2016 ; Rose & Wolfenden,  1993 ). Hydrophobic interactions result from the tendency of nonpolar amino acids to aggregate and avoid aqueous environments, thereby creating stable hydrophobic cores within proteins and enzymes. This tendency results in burying hydrophobic residues, which can stabilize the folded state and bind with the nonpolar portion of ligands. Hence, optimal hydrophobic interactions within enzyme active sites are crucial for substrate binding and specificity, and for stabilizing the transition states, thus enhancing catalytic efficiency. Modifying either the hydrophobicity of the enzyme's binding site or substrate by altering the amino acid residues has been demonstrated to have a significant impact on catalytic efficiency in subtilisin and chymotrypsin (Estell et al.,  1986 ; Hansch & Coats,  1970 ; Wangikar et al.,  1995 ). To quantitatively characterize the hydrophobicity of amino acids, different methodologies have been conducted by measuring the propensity of these residues to transition from aqueous to hydrophobic environments, such as organic solution, the transmembrane region of a protein, and theoretical calculation (Fauchere & Pliska,  1983 ; Kyte & Doolittle,  1982 ; Radzicka & Wolfenden,  1988 ; Simm et al.,  2016 ; Wimley & White,  1996 ; Zhao & London,  2006 ). These different approaches give various hydrophobic scales with significant differences among scales, which causes difficulty in elucidating their role in enzyme catalysis quantitatively. To mimic amino acids in the peptide structure, Fauchère and Pliska quantified amino acid hydrophobicity by measuring the partitioning of N‐acetyl‐amino‐acid amides in an octanol/water system compared to that for glycine. This study gives the hydrophobic parameters (π R ) of the side chains of the 20 amino acids and the related free energy for transfer for each amino acid measured from H 2 O to octanol relative to glycine (Fauchere & Pliska,  1983 ). Thereby, the value of π R may provide a basis for evaluating binding energy from the hydrophobic interaction involved in enzyme catalysis. 
+ 2017 ; Benach et al.,  1999 ; Ladenstein et al.,  2008 ; Savino et al.,  2016 ; Tanaka et al.,  1996 ). These changes in loop conformation upon substrate binding are consistent with the induced fit model, in which binding with reactants induces the conformation changes and arranges into a form suitable for transition‐state formation, and implicates their involvement in enzyme catalysis. However, the precise contribution of loop–substrate hydrophobic interactions in SDR catalysis remains unclear. 3α‐Hydroxysteroid dehydrogenase/carbonyl reductase (3α‐HSD/CR) from Comamonas testosteroni (E.C. 1.1.1.50) is a member of SDR superfamily that oxidizes androsterone with NAD + via a steady‐state ordered Bi Bi mechanism, in which NAD + binds first and NADH is released last (Chang et al.,  2007 ; Hwang et al.,  2013 ; Skalhegg,  1975 ) (Figure  1a,b ). Catalysis proceeds through deprotonation of the C3 hydroxyl group of androsterone by the conserved residue Y155, enabling hydride transfer to the C4 position of the NAD + nicotinamide ring (Hwang et al.,  2005 ). Crystal structures reveal a flexible substrate‐binding loop (residues P185–P219) with an unresolved region spanning residues of 188 TETPLLQAGLQDPRYGESIAK 208 in the apoenzyme (Chang et al.,  2009 ; Grimm et al.,  2000 ). Structure prediction by the program AlphaFold3 ( https://alphafoldserver.com/ ) suggests that this loop adopts a helix‐turn‐helix fold, and hydrophobicity analysis identifies L193 residue as the most nonpolar position based on the F.P. hydrophobic scale through the ProtScale program (Figure  1c,d ). Together with the hydrophobic nature of androsterone, this system provides a suitable model for quantifying the role of hydrophobic interactions of a flexible substrate‐binding loop with a hydrophobic substrate in enzyme catalysis. FIGURE 1 
+ + with androsterone to form NADH and androstandione. The chemical structure of truncated substrates of 2‐decalol and cyclohexanol is shown. (b) The kinetic scheme for an ordered Bi Bi mechanism, showing the reaction binds NAD + first and releases NADH last in the 3α‐HSD/CR‐catalyzed reaction. (c) Overlap the predicted structure (AF‐ P80702 ‐F1; cyan) with the crystal structure of 3α‐HSD/CR (PDB: 1fjh ; gray), shown in monomer. The flexible substrate‐binding loop (P185‐P219) appears in a helix‐turn‐helix structure predicted from the AlphaFold3 program ( https://alphafold.ebi.ac.uk/entry/P80702 ), with the unresolved part (T188‐K208) that appeared in the crystal structure shown in red. (d) The hydrophobic score of amino acid residues in the substrate‐binding loop calculated by the ProtScale program ( https://web.expasy.org/protscale/ ) using the hydrophobicity scale determined by Fauchere and Pliska ( 1983 ), showing L193 is the most hydrophobic residue in the substrate‐binding loop (P185‐P219). 
+ 2 
+## RESULTS 2.1 
+## Mutagenesis, overexpression, and purification of wild‐type ( WT ) and mutant 3α‐ HSD / CRs 
+ Escherichia coli BL21 cells. The desired mutations were verified by DNA sequencing. WT and mutant 3α‐HSD/CRs were overexpressed in E. coli BL21 cells and purified by Ni 2+ ‐chelate chromatography using an imidazole step gradient in 0.15 M NaCl, 50 mM phosphate at pH 7.4. Each expressed enzyme appeared pure and homogenous, confirmed by the SDS‐PAGE (Figure  S1 ). 2.2 
+## Steady‐state kinetics of WT and mutant 3α‐ HSD / CRs 
+ 2.2.1 
+## 
+Catalytic efficiency of WT and mutant 3α‐ HSD / CRs acting on androsterone
+ + in 0.1 M CAPS, pH 10.5. 3α‐HSD/CR variants show distinct effects on rate and kinetic mechanism. For WT 3α‐HSD/CR, a steady‐state ordered mechanism has been established, with the rate‐limiting step on the release of NADH, but changes to the step of hydride transfer at low, limiting concentrations of androsterone (Chang et al.,  2007 ; Hwang et al.,  2013 ). The initial rate pattern for the WT enzyme and mutant 3α‐HSD/CRs acting on androsterone ( v 
+ 0 vs. [androsterone]) is shown in Figure  S2A . The initial rate pattern for the WT enzyme shows the lines intersecting on the left of the ordinate in the double‐reciprocal plot (1/ v 
+ 0 vs. [1/(androsterone)]). L193F, L193M, L193V, and R201A 3α‐HSD/CR variants showed the same pattern, consistent with a steady‐state ordered mechanism (Cook & Cleland,  2007 ) (Figure  2a ). Initial rate data were fit to Equation ( 2 ) by nonlinear regression to obtain the kinetic parameters of K 
+ iA , 
+ K 
+ A 
+ , K 
+ B 
+ , k 
+ cat 
+ , and k 
+ cat 
+ /K 
+ B 
+ (Table  S1 ). Mutants L193W and Y202A produced line families that intersected on the ordinate, consistent with a rapid equilibrium ordered mechanism. Data were fit to Equation ( 3 ) to obtain the kinetic parameters of K 
+ iA , 
+ K 
+ B 
+ , k 
+ cat 
+ , and k 
+ cat 
+ /K 
+ B 
+ . The L193I, L193P, L193A, L193T, and L193G variants did not reach saturation with androsterone within its solubility limit under our assay conditions (pH 10.5, 25°C; ~120 μM), precluding reliable determination of K 
+ M 
+ and k 
+ cat 
+ from steady‐state kinetics. Therefore, we measured initial rates at low androsterone concentrations, where v 
+ 0 is proportional to androsterone concentration, at several fixed concentrations of NAD + (Figure  S2A ). The experimental rate data were fit to Equation ( 4 ) using nonlinear regression to obtain K 
+ iA , 
+ K 
+ B 
+ , and k 
+ cat 
+ /K 
+ B 
+ . The obtained kinetic parameters for the WT and mutant 3α‐HSD/CRs‐catalyzed reactions are shown in Table  S1 . The catalytic efficiency for the WT and mutant 3α‐HSD/CRs that catalyzed the oxidation of androsterone is shown in Table  1 . Compared to the WT 3α‐HSD/CR, the k 
+ cat 
+ decreases by 4‐, 1.2‐, and 2.2‐fold for L193W, R201A, and Y202A variants, and increases by 1.0‐, 1.7‐, and 1.6‐fold for L193F, L193M, and L193V, respectively. The mutants of L193W, L193I, L193F, L193M, L193V, L193P, L193A, L193T, L193G, R201A, and Y202A decrease catalytic efficiency ( k 
+ cat 
+ /K 
+ M 
+ ) for androsterone by 29‐, 10‐, 2.3‐, 4.7‐, 9‐, 8.5 × 10 4 ‐, 100‐, 30‐, 2.0 × 10 3 ‐, 2.7‐, and 38‐fold, respectively, while the dissociation constant ( K 
+ iA 
+ ) for NAD + from the binary complex increases 2.7‐, 1.1‐, 0.4‐, 1.7‐, 3.9‐, 2.2‐, 3.6‐, 2.7‐, 5.7‐, 1.2‐, and 2.6‐fold, respectively. FIGURE 2 
+ + in 0.1 M CAPS at pH 10.5. Different amounts of WT and mutant enzymes were added as needed to measure initial rates. For androsterone, the lines represent the fit of data points using Equation ( 2 ) for L193F, L193M, L193V, and R201A mutant enzymes, Equation ( 3 ) for L193W and Y202A mutant enzymes, and Equation ( 4 ) for L193I, L193P, L193A, L193T, and L193G mutant enzymes. For both 2‐decalol and cyclohexanol, the lines represent the fit of data points using Equation ( 3 ) for L193I, L193F, and L193M mutant enzymes, and Equation ( 4 ) for L193W, L193V, L193P, L193A, L193T, and L193G mutant enzymes, respectively. TABLE 1 
+ a 
+ , 
+ b 
+ , 
+ c 
+ Enzyme π R 
+ d 
+ Androsterone 2‐Decalol Cyclohexanol 
+ k 
+ cat 
+ /K 
+ Androsterone 
+ (M −1  s −1 
+ × 10 6 ) Δ G 
+ ‡ 
+ (kcal/mol) 
+ k 
+ cat 
+ /K 
+ 2‐decalol 
+ (M −1  s −1 
+ × 10 3 ) Δ G 
+ ‡ 
+ (kcal/mol) 
+ k 
+ cat 
+ /K 
+ Cyclohexanol 
+ (M −1  s −1 ) Δ G 
+ ‡ 
+ (kcal/mol) | align="left" valign="top" rowspan="1" colspan="1">WT 
+ e 
+ | align="left" valign="top" rowspan="1" colspan="1">1.7 | align="left" valign="top" rowspan="1" colspan="1">180 ± 30 | align="left" valign="top" rowspan="1" colspan="1">6.2 ± 0.3 | align="left" valign="top" rowspan="1" colspan="1">3.7 ± 0.4 | align="left" valign="top" rowspan="1" colspan="1">12.6 ± 0.3 | align="left" valign="top" rowspan="1" colspan="1">100 ± 10 | align="left" valign="top" rowspan="1" colspan="1">14.7 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">L193W | align="left" valign="top" rowspan="1" colspan="1">2.25 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">8.2 ± 0.3 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">14.1 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">15.8 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">L193I | align="left" valign="top" rowspan="1" colspan="1">1.80 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">7.6 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">13.6 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">15.7 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">L193F | align="left" valign="top" rowspan="1" colspan="1">1.79 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">6.7 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">13.3 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">15.4 ± 0.3 | align="left" valign="top" rowspan="1" colspan="1">L193M | align="left" valign="top" rowspan="1" colspan="1">1.23 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">7.1 ± 0.3 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">13.7 ± 0.3 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">15.2 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">L193V | align="left" valign="top" rowspan="1" colspan="1">1.22 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">7.5 ± 0.3 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">13.8 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">16.0 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">L193P | align="left" valign="top" rowspan="1" colspan="1">0.72 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">12.9 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">17.3 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">18.0 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">L193A | align="left" valign="top" rowspan="1" colspan="1">0.31 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">8.9 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">15.0 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">16.9 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">L193T | align="left" valign="top" rowspan="1" colspan="1">0.26 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">8.2 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">14.4 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">16.4 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1">L193G | align="left" valign="top" rowspan="1" colspan="1">0 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">10.7 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">15.8 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">16.6 ± 0.2 | align="left" valign="top" rowspan="1" colspan="1">R201A | align="left" valign="top" rowspan="1" colspan="1">‐ | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">6.8 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1"/> | align="left" valign="top" rowspan="1" colspan="1"/> | align="left" valign="top" rowspan="1" colspan="1"/> | align="left" valign="top" rowspan="1" colspan="1"/> | align="left" valign="top" rowspan="1" colspan="1">Y202A | align="left" valign="top" rowspan="1" colspan="1">‐ | align="left" valign="top" rowspan="1" colspan="1">
+ | align="left" valign="top" rowspan="1" colspan="1">8.3 ± 0.1 | align="left" valign="top" rowspan="1" colspan="1"/> | align="left" valign="top" rowspan="1" colspan="1"/> | align="left" valign="top" rowspan="1" colspan="1"/> | align="left" valign="top" rowspan="1" colspan="1"/> 
+ a 
+ k 
+ cat 
+ /K 
+ M 
+ ) was obtained by studying the initial rate patterns for WT and mutant 3α‐HSD/CRs‐catalyzed reaction at pH 10.5. 
+ b 
+ c 
+ ΔG 
+ ‡ 
+ are calculated from Equation ( 5 ) with the propagated error calculated. 
+ d 
+ R , the relative hydrophobicity of the side‐chain of an amino acid compared to glycine, is from Fauchere and Pliska ( 1983 ). 
+ e 
+ 2017 ). 2.2.2 
+## 
+Catalytic efficiency of the WT and mutant 3α‐ HSD / CRs acting on the truncated substrates
+ + (Figure  S2B,C ). The initial rate patterns for the WT and mutants of L193W, L193I, L193V, L193P, L193A, L193T, and L193G 3α‐HSD/CRs show that the lines intersect on the ordinate in a double‐reciprocal plot, consistent with a rapid equilibrium ordered mechanism (Figure  2b,c ). Initial rate data were fit to Equation ( 3 ) for the WT and mutants of L193I, L193F, and L193M variants, whereas initial rate data were fit to Equation ( 4 ) for L193W, L193V, L193P, L193A, L193T, and L193G variants. The obtained kinetic parameters for the WT and mutant 3α‐HSD/CRs catalyzed the reaction of NAD + with 2‐decalol and cyclohexanol are shown in Tables  1 and S1 . These mutants significantly decrease the activity for 2‐decalol and cyclohexanol in comparison with that for androsterone. Compared to the WT 3α‐HSD/CR, the k 
+ cat 
+ decreases by 1.7‐, 2.4‐, and 1.8‐fold for 2‐decalol, and 1.1‐, 2.5‐, and 2.8‐fold for cyclohexanol for L193I, L193F, and L193M variants, respectively. While the mutants of L193W, L193I, L193F, L193M, L193V, L193P, L193A, L193T, and L193G decrease catalytic efficiency ( k 
+ cat 
+ /K 
+ m 
+ ) by 12‐, 5.3‐, 3.4‐, 6.2‐, 7.7‐, 3.1 × 10 3 ‐, 56‐, 20‐, and 220‐fold for 2‐decalol, respectively, and 6.2‐, 5.6‐, 3.1‐, 2.3‐, 8.1‐, 244‐, 40‐, 18‐, and 24‐fold for cyclohexanol, respectively. The dissociation constant (K 
+ iA 
+ ) for NAD + from the binary complex increases by 9.2‐, 2.5‐, 0.9‐, 2.1‐, 22‐, 27‐, 50‐, 19‐, and 23‐fold for 2‐decalol, respectively, and 14‐, 3.1‐, 1.4‐, 5.8‐, 20‐, 26‐, 25‐, 12‐, and 151‐fold for cyclohexanol, respectively. 2.3 
+## Effect of hydrophobicity at position 193 on catalytic efficiency and activation energy of the 3α‐ HSD / CR ‐catalyzed reaction 
+ R ) from the study of Fauchère and Pliska, which quantified amino acid hydrophobicity based on distribution coefficients (D) by measuring the partitioning of N‐acetyl‐amino‐acid amides for the side chains of the 20 amino acids between n‐octanol and water. The hydrophobic parameter (π R ) represents the difference in log D values between a modified side chain and glycine, and provides the related free energy for transfer for each amino acid measured from H 2 O to octanol relative to glycine. A greater partitioning of N‐acetyl‐amino‐acid amides into the n‐octanol phase corresponds to a higher log D value and a larger π R value, characterized by increased hydrophobicity. To prevent generating additional H‐bonds, extra‐electrostatic interactions, and unpaired charges in the active site, which may interfere with the hydrophobic interaction investigated in the enzyme reaction, we replaced L193 with the amino acid residues of W, I, F, M, V, P, A, T, and G with different hydrophobic side chains for the study. The relative hydrophobicity parameters (π R ) for the side chains of L, W, I, F, M, V, P, A, T, and G are 1.7, 2.25, 1.8, 1.79, 1.23, 1.22, 0.72, 0.31, 0.26, and 0, respectively (Fauchere & Pliska,  1983 ). For the L193I variant, the side‐chain hydrophobicity is comparable to WT, but its geometry differs. In contrast, the L193T variant has a side‐chain shape similar to L193A, yet it may form additional hydrogen bonds with active‐site residues. 
+ k 
+ cat 
+ /K 
+ M 
+ ) for androsterone as a function of the hydrophobicity of the side chain at residue 193 in the active site shows a weak linear relationship with the slope of 1.1 ± 0.6 ( R 
+ 2  = 0.3) (Figure  S3 ), but shows a strong linear relationship with the exception of the W, F, I, P, and T substitutions (Figure  3a ). The data were fit to Equation ( 6 ), yielding a slope of 1.8 ± 0.2 ( R 
+ 2  = 0.95). Similar linear relations were observed for 2‐decalol and cyclohexanol, with reduced slopes of 1.3 ± 0.1 ( R 
+ 2  = 0.98) and 0.9 ± 0.2 ( R 
+ 2  = 0.84), respectively. The result indicates that the catalytic efficiency of 3α‐HSD/CR is affected by the hydrophobicity of both residue 193 and substrate. The decrease in k 
+ cat 
+ /K 
+ M 
+ indicates the increase in the activation energy for the enzyme‐catalyzed reaction. We calculated the Gibbs free energy of activation (Δ G 
+ ‡ 
+ ) from the kinetic parameter of k 
+ cat 
+ /K 
+ M 
+ using Equation ( 5 ). A plot of Δ G 
+ ‡ 
+ as a function of the hydrophobicity of the side chain at residue 193 shows a reverse linear relationship for androsterone, 2‐decalol, and cyclohexanol, with the slopes of −2.4 ± 0.3, −1.7 ± 0.1, and − 1.2 ± 0.3, and the intercepts of 10.2 ± 0.3, 15.7 ± 0.2, and 16.9 ± 0.3, respectively, omitting the data from L193W, L193I, L193F, L193P, and L193T mutants (Figure  3b ). Given that 2‐decalol and cyclohexanol lack CD‐ and BCD‐rings of steroid, respectively, these trends indicate that the remote binding interaction linked to the role of residue 193, which mainly interacts with the A‐ring of the steroid scaffold, and emphasize that the hydrophobicity at loop residue 193 plays a crucial role in 3α‐HSD/CR catalysis. FIGURE 3 
+ k 
+ cat 
+ /K 
+ M 
+ ), and (b) the activation energy (Δ G 
+ ‡ 
+ ) of the 3α‐HSD/CR‐catalyzed reaction. The values of k 
+ cat 
+ /K 
+ m 
+ and Δ G 
+ ‡ 
+ of the 3α‐HSD/CR catalyzed reaction of NAD + with androsterone ( ), 2‐decalol ( ), and cyclohexanol ( ) are from Table  1 . The lines represent the linear fit of log( k 
+ cat 
+ /K 
+ M 
+ ) or ΔG 
+ ‡ 
+ to the hydrophobicity (π R ) of the side chain of amino acids (solid symbols) using Equation ( 6 ), omitting the data from the W193, I193, F193, and P193 mutants (empty symbols). The amino acid residues are labeled by single‐letter codes. 2.4 
+## Thermal stability of 3α‐ HSD / CR variants 
+ S4 ). These results suggest a two‐state transition from the native state (N) to the denatured state (U). The melting temperature ( T 
+ m 
+ ) at the midpoint of the unfolding curve represents the temperature at which 50% of the protein population is in a denatured state. Equation ( 7 ) was fit to the fluorescence data to obtain T 
+ m 
+ and ΔH 
+ m 
+ (Table  S2 ). The T 
+ m 
+ values for WT, L193W, L193I, L193F, L193M, L193V, L193P, L193A, L193T, and L193G 3α‐HSD/CRs are 53.1°C, 52.5°C, 52.0°C, 52.3°C, 52.5°C, 52.4°C, 52.6°C, 52.1°C, 52.3°C, and 52.7°C, respectively, indicating that mutation at L193 situated on the base of the flexible substrate loop has little effect on the thermal stability of 3α‐HSD/CR variants. 2.5 
+## Molecular dynamics simulations of WT and mutants of 3α‐ HSD / CRs 
+ + ‐bound binary complex of 3α‐HSD/CR (PDB ID: 1fjh and 1fk8 , respectively) was not resolved, the initial conformations of this region were constructed based on homologous structures prior to MD simulations. We performed structure simulations and analysis of WT and mutant 3α‐HSD/CRs using the Amber package with the Amber force field FF19SB applied in the topology of the enzyme to understand the conformation of the substrate‐binding loop and its interactions with substrate. Simulations of the ternary complexes of WT and L193A, L193W, and L193P mutants were performed with restraints between NAD + and the substrate to ensure the substrate was consistently bound to the active site throughout the simulations. 
+ + binary complex for 200 ns. The WT and mutant structures were stable during the simulation and showed smaller RMSD values for the ternary complex compared to the apoenzyme and NAD + ‐bound binary complex, while a similar RMSD value was observed for the ternary complex of WT and mutant enzymes (Figure  S5 ). The results show that the substrate‐binding loop is less flexible upon substrate binding. To examine how substrate binding and mutation at residue L193 influence the flexibility of the substrate‐binding loop of 3α‐HSD/CR, the root mean square fluctuation (RMSF) values of backbone atoms were calculated for each residue over the course of the MD trajectories for both WT and mutant enzymes (Figure  S6 ). The simulation of the apoenzyme revealed two major regions with Cα RMSF values greater than 1.5 Å, including G147‐E148 and P191‐I206. The highest RMSF peak corresponded to residue R201, located within the substrate‐binding loop, with an average value of 4.1 Å in the apoenzyme. This peak decreased to 3.4 Å and 1.9 Å in the binary and ternary complexes, respectively. These results are consistent with the increased backbone mobility of the substrate‐binding loop (P185‐K208) observed in the apoenzyme, which corresponds to the unresolved region (T188‐K208) in the crystal structure. The higher RMSF values reflect greater loop flexibility during MD simulations; therefore, the reduced RMSF of the substrate‐binding loop in the ternary complex likely indicates that substrate binding stabilizes the loop in a closed conformation. Furthermore, comparison of RMSF values for residue R201 among the ternary complexes WT‐NAD + ‐androsterone, WT‐NAD + ‐2‐decalol, WT‐NAD + ‐cyclohexanol, and L193A‐NAD + ‐androsterone showed only slight variations, with values of 1.9, 1.7, 2.3, and 1.8 Å, respectively, but increase to 2.9 Å for both L193P and L193W ternary complexes. 
+ 4 ). The substrate‐binding loop appears in the open state (E O ) in the active site of the apoenzyme and in the closed states in the binary (E' C ) and ternary (E C ) complexes of the WT enzyme, which are involved in the formation of the hydrogen bonding between the residues Y202 and N152 and the salt bridge between the residues R201 and E148 (Figure  4b ). The closed form in the active site is formed in the binary complex, where residue L193 is involved in the hydrophobic interaction with the nicotinamide of NAD + . In addition, residue L193, which interacts with I206 in the substrate‐binding loop in the apoenzyme, is repositioned to contact both androsterone and the nicotinamide ring, while the Y202‐N152 hydrogen bond and R201‐E148 salt bridge are formed in the ternary complexes of WT‐NAD + ‐androsterone. Our results support the emerging view that cofactor binding energy in dehydrogenases can be utilized to drive conformational reorganization that stabilizes a catalytically competent active‐site configuration for hydride transfer, analogous to recent proposals for other NAD‐dependent systems, such as glycerol phosphate dehydrogenase, phosphite dehydrogenase, and formate dehydrogenase (Cristobal et al.,  2023 ; Hegazy et al.,  2024 ; Hegazy & Richard,  2025b ). FIGURE 4 
+ + binary (teal), and WT‐NAD + ‐androsterone ternary (gray) structures, highlighting the substrate‐binding loop (P185‐P209), which appeared as a helix‐turn‐helix secondary structure, in green, cyan, and black, respectively. The substrate‐binding loop of WT 3α‐HSD/CR is open in apo and closed in the binary and ternary complexes. (b) Active site close‐up of the overlap structures of apo, binary complex, and ternary complex of WT 3α‐HSD/CRs. The distances of L193 with nicotinamide of NAD + and androsterone, R201 with E148, and Y202 with N152 are listed in Table  2 . For clarity, only the binding interactions of the binary and ternary complexes are shown as dashed lines with labeled distances in Å. (c) The ternary complexes of WT 3α‐HSD/CRs with the truncated substrates of 2‐decalol and cyclohexanol show a closed conformation. Overlap of WT‐NAD + ‐androsterone (gray), WT‐NAD + ‐2‐decalol (light orange), and WT‐NAD + ‐cyclohexanol (light blue) ternary complexes shows androsterone, 2‐decalol, and cyclohexanol bound in different conformations and positions in the active site, with the substrate‐binding loop highlighted in black, orange, and blue, respectively. (d) The ternary active site close‐up shows the differential interactions of L193 with nicotinamide of NAD + , R201 with E148, and Y202 with N152, with dashed lines labeled distances in Å. (e) Overlap of WT‐NAD + ‐androsterone (gray) and L193A‐NAD + ‐androsterone (salmon) ternary complexes in the closed conformation, with the substrate‐binding loop in black and red, respectively. Replacement of L193 by alanine affects the conformation of the substrate‐binding loop and the interactions of NAD + and androsterone. The nicotinamide ring of NAD + and androsterone are bound in slightly different conformations. (f) Ternary active site close‐up highlights differences in the interactions of L(A)193 with nicotinamide of NAD + , R201 with E148, and Y202 with N152, with dashed lines labeled distances in Å. (g) Superposition of the WT (gray) and L193P (tv_blue) ternary complexes bound to NAD + and androsterone in the closed conformation. The substrate‐binding loops are highlighted in black for the WT and blue for the L193P mutant. (h) The active site close‐up highlights L(P)193 with the nicotinamide moiety of NAD + . (i) Overlap of WT‐NAD + ‐androsterone (gray; black loop) and L193W‐NAD + ‐androsterone (pale green; green loop) complexes in the closed state. (j) The active site close‐up highlights the differential interactions between residue L(W)193 and the nicotinamide ring of NAD + . 
+ + and the truncated substrates. The hydrogen bonding between the residues Y202 and backbone NH of N152 is observed for WT‐NAD + ‐2‐decalol and the salt bridge of R201 and E148 formed in the WT‐NAD + ‐cyclohexanol, respectively (Figure  4c,d ). The distances between these interactions are shown in Table  2 . Since Y155 acts as a general base to abstract the proton from the hydroxyl group at C3 of androsterone, and L193 mainly interacts with the A‐ring of androsterone, we measured the distance between the Cα carbon of residues 155 and 193 to probe the loop's conformational state. In the apoenzyme, this distance is the greatest at 18.1 Å in an open conformation. Upon binding of NAD + and androsterone to form binary and ternary complexes, respectively, the substrate binding loop adopts a closed conformation, where the distance between the Cα atoms of residues Y155 and L193 is decreased to 11.8 Å in the ternary complex. The hydrophobic interactions of L193 are formed with the proximal hydrophobic region of androsterone. Replacement of leucine by alanine weakened hydrophobic contacts with the substrate, increased the distance between residue A193 and the A‐ring of androsterone. L193A mutant remains in the closed form with the hydrogen bonding interaction of Y202 and N152, but the salt bridge of R201 and E148 in the tip of the substrate‐binding loop is disrupted, and the distance between the Cα atoms of residues Y155 and A193 increased (Figure  4e,f ). TABLE 2 
+ a 
+ . 3α‐HSD/CR L193‐Y155 
+ b 
+ L193‐NAD + 
+ c 
+ L193‐substrate 
+ d 
+ R201‐E148 Y202‐N152 | align="left" valign="top" rowspan="1" colspan="1">apoenzyme | align="left" valign="top" rowspan="1" colspan="1">18.1 (C α ‐C α ) | align="left" valign="top" rowspan="1" colspan="1">‐ | align="left" valign="top" rowspan="1" colspan="1">‐ | align="left" valign="top" rowspan="1" colspan="1">26.4 (N η2 ‐O ε2 ) | align="left" valign="top" rowspan="1" colspan="1">
+ η ‐O δ1 ) 
+ η ‐N N152 ) 
+ | align="left" valign="top" rowspan="1" colspan="1">WT‐NAD + 
+ | align="left" valign="top" rowspan="1" colspan="1">15.4 (C α ‐C α ) | align="left" valign="top" rowspan="1" colspan="1">4.2 (C δ2 ‐C3) | align="left" valign="top" rowspan="1" colspan="1">‐ | align="left" valign="top" rowspan="1" colspan="1">2.8 (N η2 ‐O ε2 ) | align="left" valign="top" rowspan="1" colspan="1">
+ η ‐O δ1 ) 
+ η ‐N N152 ) 
+ | align="left" valign="top" rowspan="1" colspan="1">WT‐NAD + ‐Androsterone | align="left" valign="top" rowspan="1" colspan="1">11.8 (C α ‐C α ) | align="left" valign="top" rowspan="1" colspan="1">5.0 (C δ2 ‐C3) | align="left" valign="top" rowspan="1" colspan="1">4.3 (C δ1 ‐C3) | align="left" valign="top" rowspan="1" colspan="1">3.1 (N η2 ‐O ε2 ) | align="left" valign="top" rowspan="1" colspan="1">
+ η ‐O δ1 ) 
+ η ‐N N152 ) 
+ | align="left" valign="top" rowspan="1" colspan="1">WT‐NAD + ‐2‐decalol | align="left" valign="top" rowspan="1" colspan="1">13.3 (C α ‐C α ) | align="left" valign="top" rowspan="1" colspan="1">5.4 (C δ2 ‐C3) | align="left" valign="top" rowspan="1" colspan="1">5.4 (C δ2 ‐C1) | align="left" valign="top" rowspan="1" colspan="1">8.8 (N η2 ‐O ε2 ) | align="left" valign="top" rowspan="1" colspan="1">
+ η ‐O δ1 ) 
+ η ‐N N152 ) 
+ | align="left" valign="top" rowspan="1" colspan="1">WT‐NAD + ‐Cyclohexanol | align="left" valign="top" rowspan="1" colspan="1">14.4 (C α ‐C α ) | align="left" valign="top" rowspan="1" colspan="1">6.2 (C δ2 ‐C3) | align="left" valign="top" rowspan="1" colspan="1">6.3 (C δ1 ‐C1) | align="left" valign="top" rowspan="1" colspan="1">2.8 (N η1 ‐O ε2 ) | align="left" valign="top" rowspan="1" colspan="1">
+ η ‐O δ1 ) 
+ η ‐N N152 ) 
+ Residue 193‐Y155 Residue 193‐NAD + 
+ Residue 193‐substrate R201‐E148 Y202‐N152 | align="left" valign="top" rowspan="1" colspan="1">L193A‐NAD + ‐Androsterone | align="left" valign="top" rowspan="1" colspan="1">13.6 (C α ‐C α ) | align="left" valign="top" rowspan="1" colspan="1">5.8 (C β ‐C3) | align="left" valign="top" rowspan="1" colspan="1">6.2 (C β ‐C3) | align="left" valign="top" rowspan="1" colspan="1">8.9 (N η2 ‐O ε1 ) | align="left" valign="top" rowspan="1" colspan="1">
+ η ‐O δ1 ) 
+ η ‐N N152 ) 
+ | align="left" valign="top" rowspan="1" colspan="1">L193P‐NAD + ‐Androsterone | align="left" valign="top" rowspan="1" colspan="1">11.3 (C α ‐C α ) | align="left" valign="top" rowspan="1" colspan="1">4.8 (C γ ‐C3) | align="left" valign="top" rowspan="1" colspan="1">4.7 (C γ ‐C3) | align="left" valign="top" rowspan="1" colspan="1">11.6 (N η2 ‐O ε2 ) | align="left" valign="top" rowspan="1" colspan="1">
+ η ‐O δ1 ) 
+ η ‐N N152 ) 
+ | align="left" valign="top" rowspan="1" colspan="1">L193W‐NAD + ‐Androsterone | align="left" valign="top" rowspan="1" colspan="1">10.5 (C α ‐C α ) | align="left" valign="top" rowspan="1" colspan="1">3.8 (C δ1 ‐C3) | align="left" valign="top" rowspan="1" colspan="1">4.7 (C δ1 ‐C3) | align="left" valign="top" rowspan="1" colspan="1">2.8 (N η2 ‐O ε1 ) | align="left" valign="top" rowspan="1" colspan="1">
+ η ‐O δ1 ) 
+ η ‐N N152 ) 
+ a 
+ b 
+ c 
+ δ2 of L193 and the C3 of the NAD + nicotinamide. 
+ d 
+ δ2 of L193 and the substrate carbon bearing the hydroxy group. 
+ + ‐androsterone ternary complex (Figure  4g,h ). In contrast, replacing L193 with proline disrupts the R201‐E148 salt bridge and the Y202‐N152 hydrogen bond at the tip of the substrate‐binding loop, thereby increasing loop dynamics (Figure  4i,j ). 3 
+## DISCUSSION 3.1 
+## Functional role of the flexible substrate‐binding loop 
+ 1999 ). Conformational changes and loop motions are widely implicated in solvent exclusion, the precise positioning of catalytic residues and substrates, the optimization of transition‐state interactions, and the facilitation of product release (Johnson & Holyoak, 2010 ; Schramm et al.,  2008 ). The shape complementarity between the enzyme and substrate in the active site is a major determinant of binding energy and specificity, and catalysis is promoted by enforcing near‐attack conformations and by forming active‐site cages that are structurally complementary to transition‐state geometries (Bruice & Benkovic,  2000 ; Fersht,  1999 ). Substrate‐induced conformational changes from the open inactive conformation (E O ) to the closed active conformation (E C ) have been characterized in triosephosphate isomerase, glycerol 3‐phosphate dehydrogenase, and orotidine 5'‐monophosphate decarboxylase. In these enzymes, loop and side‐chain motions promote catalysis by stabilizing the closed active state (E C ) via the binding energy of direct protein–substrate phosphodianion interactions, the side chain‐side chain packing networks, and reshaping the active‐site microenvironment to favor transition‐state formation (Amyes & Richard,  2013 ; Hegazy & Richard,  2025a ; Hegazy & Richard,  2025b ; Malabanan et al.,  2010 ; Richard et al.,  2018 ). 
+ + ‐bound binary complex show overall similarity but lack resolution of the flexible substrate‐binding loop (Grimm et al.,  2000 ). MD simulations revealed that this loop adopts a helix–turn–helix structure, open in the apoenzyme and closed in both the WT‐NAD + binary and the WT‐NAD + ‐androsterone ternary complexes. Closure of the NAD + binary complex is critical for subsequent substrate binding, and the ternary complexes display distinct conformations and interactions depending on the substrate. These findings are consistent with an ordered Bi Bi kinetic mechanism, in which NAD + binds first and induces the conformational closure that prepares the active site for substrate entry. In the WT ternary complex with androsterone, the NAD + nicotinamide ring reorients toward androsterone to enable hydride transfer in the reaction. The hydrophobic side‐chain of L193 modulates the local environment together with a salt bridge between R201 and E148 to stabilize the loop closure in the WT‐NAD + binary complex. Upon binding with androsterone, L193 moves toward the A‐ring of androsterone, accompanied by an additional Y202‐N152 hydrogen bond. This closed form expels solvent from the active site and enhances hydrophobic packing between L193 and androsterone, which may further provide a force to stabilize the transition state and lower the activation energy for facilitating the reaction. Thus, the flexible loop appears to function as a dynamic gate to permit substrate access when open and shield the active site when closed. R201 and Y202 serve as gatekeepers, forming key salt‐bridge and hydrogen‐bond interactions by interacting with E148 and N152, respectively, to reinforce the closed state. Substituting R201 or Y202 with alanine disrupts these contacts, reducing catalytic efficiency by 2.7 and 38‐fold, respectively. This is consistent with MD simulations of the ternary complex, in which the Y202‐N152 hydrogen bond and the R201‐E148 salt bridge stabilize the active closed conformation and help tune the active‐site microenvironment to favor formation of the hydride‐transfer transition state. Y202 plays a more direct role in organizing the catalytically competent closed‐loop state, likely due to its position at the loop tip and closer proximity to the substrate region. In addition to the Y202‐N152 hydrogen bond, the aromatic ring of Y202 may contribute to local packing and hydrophobic contacts with the bound androsterone, whereas R201 appears to function primarily through the R201‐E148 interaction network that supports loop closure. 
+ Comamonas testosteroni belongs to the short‐chain dehydrogenase/reductase (SDR) superfamily. Sequence alignments across SDR enzymes typically reveal low overall sequence identity but conservation of motifs, including the N‐terminal Gly‐X 3 ‐Gly‐X‐Gly cofactor‐binding sequence and the catalytically important Ser‐Tyr‐Lys‐Asn tetrad, whereas the substrate‐binding loop is among the most divergent regions (Filling et al.,  2002 ; Kallberg et al.,  2002 ). To assess conservation within bacterial 3α‐hydroxysteroid dehydrogenases, we retrieved protein sequences from Gram‐negative species in the NCBI Reference Sequence database (RefSeq, http://www.ncbi.nlm.nih.gov/RefSeq ) and performed multiple‐sequence alignment. Notably, L193, R201, and Y202 within the substrate‐binding loop are highly conserved among Gram‐negative orthologs (Figure  S7 ), supporting a functionally important role for this loop region. Broader phylogenetic analyses of more distantly related homologs will be needed to determine whether these residues govern active‐site loop function more generally. 3.2 
+## Role of L193 in catalysis 
+ + , androsterone, 2‐decalol, and cyclohexanol in the active site. Compared to WT, catalyzing the reaction of NAD + with androsterone, the dissociation constant ( K 
+ iA 
+ ) is increased for the mutants from 1.1‐fold for the L193I mutant to 5.7‐fold for the L193G mutant, except for the L193F mutant with a 2.4‐fold decrease. The plot of log( K 
+ iA 
+ ) versus hydrophobicity at residue 193 shows a scattered distribution with a weak linear relationship (data not shown). The K 
+ M 
+ value cannot be determined for mutants of L193I, L193P, L193A, L193T, and L193G variants with androsterone, and for mutants of L193W, L193V, L193P, L193A, L193T, and L193G variants with 2‐decalol and cyclohexanol due to the solubility limit. The results suggest that the mutation alters the loop conformation involved in the substrate binding. The failure to reach saturation within the accessible substrate concentration range is consistent with a substantially increased apparent K 
+ M 
+ , which may result from amino acid substitution–dependent steric mismatch, altered packing, or changes in local polarity. 
+ 2017 ). Although direct kinetic isotope effect measurements were not conducted for all L193 variants in the present study, the intersection of the family lines in the Lineweaver‐Burk plot suggests a conserved catalytic sequence across variants (Figure  2 , Table  S1 ). Kinetic analysis of mutants showed that initial‐rate patterns for L193F, L193M, and L193V 3α‐HSD/CR variants followed a steady‐state ordered mechanism, whereas L193W, L193I, L193P, L193A, L193T, and L193G mutants displayed a rapid‐equilibrium ordered mechanism for androsterone oxidation. With truncated substrates (2‐decalol and cyclohexanol), all variants, including WT, followed rapid‐equilibrium ordered mechanisms, which indicates that the rate of the chemical step is far lower than the release of NAD + from the E‐NAD + binary complex. 
+ k 
+ cat 
+ /K 
+ M 
+ for androsterone includes the steps from androsterone binding to androstandione release. We therefore interpret k 
+ cat 
+ /K 
+ M 
+ trends as a composite kinetic parameter that includes all pre‐transition‐state steps. The changes in k 
+ cat 
+ /K 
+ M 
+ may also reflect altered conformational transitions associated with loop mobility and ES capture, rather than hydride transfer alone. Thus, the hydrophobic contribution of residue 193 likely influences both TS stabilization and the free energy landscape of ES formation. In all cases, catalytic efficiencies decreased, corresponding to higher activation energies for the reaction (Table  1 ). Thereby, Δ G 
+ ‡ 
+ derived from k 
+ cat 
+ /K 
+ M 
+ reflects the difference in the free energy from the state of the binding of reactants to the transition state of the hydride transfer for the reaction catalyzed by the 3α‐HSD/CR variants. Across variants, k 
+ cat 
+ /K 
+ M 
+ increased with side‐chain hydrophobicity at position 193. Except for W193, I193, F193, and P193, a strong linear correlation between log( k 
+ cat 
+ /K 
+ M 
+ ) and the hydrophobic parameter (π R ) was observed for androsterone (slope = 1.8 ± 0.2; R 
+ 2  = 0.95), with smaller slopes for 2‐decalol (slope = 1.3 ± 0.1; R 
+ 2  = 0.98) and cyclohexanol (slope = 0.9 ± 0.2; R 
+ 2  = 0.84). These results indicate the critical role of hydrophobic interactions involving L193 in stabilizing the transition state of hydride transfer from androsterone to NAD + in the 3α‐HSD/CR‐catalyzed reaction, and L193 contributes primarily through hydrophobic contacts with the steroid A‐ring. However, we cannot rule out the possibility that certain L193 mutations alter the rate of conformational reorganization of the loop rather than hydride transfer itself. Future stopped‐flow or KIE experiments will be required to determine whether hydride transfer remains rate‐limiting for each variant. 
+ + nicotinamide) and Cα‐C3 (L193‐androsterone) in the WT‐NAD + ‐androsterone ternary complex is 8.7 and 8.0 Å, respectively, which suggests that L193 does not directly contact the catalytic center. Accordingly, we propose that L193 modulates catalysis primarily through indirect, conformational, and environmental effects. L193 residue stabilizes the closed, catalytically competent substrate‐binding loop and thereby tunes the local packing and physicochemical environment surrounding the NAD + nicotinamide ring and bound androsterone during the hydride‐transfer step. The side‐chain substitutions at position 193 could alter the reaction barrier by shifting the population and stability of the closed state and by subtly reorganizing the local electrostatic and hydrophobic milieu that supports productive substrate and cofactor positioning and catalytic residue alignment. 
+ k 
+ cat 
+ /K 
+ M 
+ ) by ~10‐fold and cannot be saturated by androsterone, consistent with a loss of shape complementarity required for productive binding and transition‐state formation in 3α‐HSD/CR catalysis. Likewise, the bulkier aromatic substitutions perturb packing in the binding pocket: L193F and L193W increase K 
+ M 
+ by 2.3‐ and 7.1‐fold, respectively, and decrease k 
+ cat 
+ /K 
+ M 
+ by 2.3‐ and 29‐fold, respectively, consistent with steric constraints that impair productive substrate positioning. In contrast, L193V exhibits high catalytic performance ( k 
+ cat 
+ /K 
+ M 
+  = 2.0 × 10 7  M −1  s −1 ; K 
+ M 
+  = 40 μM). Replacing Val with Thr preserves a similar side‐chain size but introduces a polar hydroxyl group. Accordingly, L193T decreases k 
+ cat 
+ /K 
+ M 
+ by 3.4‐fold and also cannot be saturated by androsterone, suggesting that the T193 hydroxyl group disrupts hydrophobic packing and introduces unfavorable interactions in the steroid‐binding pocket. Proline provides a distinct case. Because L193 lies within a helix–turn–helix motif, introducing Pro at this position is expected to distort local helical geometry rather than rigidify the substrate‐binding loop (Bright & Sansom,  2003 ). Consistent with the loss of the R201‐E148 salt bridge and the Y202‐N152 hydrogen bond (Figure  4i,j ), this structural perturbation likely increases loop flexibility and destabilizes the closed, catalytically competent conformation, preventing optimal alignment of the substrate and catalytic groups for hydride transfer and thereby causing a pronounced decrease in catalytic efficiency. 
+ G 
+ ‡ 
+ versus π R of the side chain at residue 193 yielded reverse linear relations for androsterone, 2‐decalol, and cyclohexanol with slopes of −2.4 ± 0.3, −1.7 ± 0.1, and − 1.2 ± 0.3, respectively. This demonstrates that increasing side‐chain hydrophobicity decreases the activation energy, with the greatest sensitivity for androsterone. Because π R represents the free‐energy change for transfer of amino acid side chains from water to octanol relative to glycine, the slopes indicate that decreases in the activation energy are proportional to the side‐chain hydrophobicity. The reduction in Δ G 
+ ‡ 
+ was approximately 2.4‐, 1.7‐, and 1.2‐fold as large as the free energy of transfer of straight chain groups of N‐acetyl‐amino‐acid amides from water to n‐octanol for androsterone, 2‐decalol, and cyclohexanol, respectively. Thus, higher hydrophobicity at L193 lowers the activation energy by enhancing enzyme–transition‐state interactions. We have demonstrated that the WT 3α‐HSD/CR acting on 2‐decalol and cyclohexanol significantly decreases catalytic efficiency due to the loss of remote binding energy (Hwang et al.,  2017 ). The smaller slopes for truncated substrates reflect loss of remote binding interactions provided by the CD‐ and BCD‐rings of androsterone. These rings contribute to catalysis by stabilizing the transition state through loop interactions, linking flexible‐loop closure and hydrophobic contacts to transition‐state stabilization in enzyme catalysis. 
+ 5 ). As the hydrophobicity (π R ) of residue G193 to L193 increases from 0 to 1.7, the difference in the activation energy ( ΔΔG 
+ ‡ 
+ ) decreases by 1.9, 3.2, and 4.5 kcal/mol for the substrates of cyclohexanol, 2‐decalol, and androsterone, respectively. Moreover, compared to cyclohexanol, the remote binding energy from the B‐ and BCD‐rings of androsterone lowers the activation energy by 0.8 and 5.9 kcal/mol for the L193G mutant, while 2.1 and 8.5 kcal/mol for WT 3α‐HSD/CR, respectively. Both the remote binding and the proximity hydrophobic interactions of androsterone with L193 residue synergistically contribute to the 3α‐HSD/CR catalytic efficiency, supported by the simulation of the ternary complexes of 3α‐HSD/CR, which shows a closed form with the differential interaction of L193 and the substrate‐binding loop with androsterone, 2‐decalol, and cyclohexanol. Together, these findings show that local hydrophobic contacts from L193 and remote interactions from the steroid scaffold act cooperatively to lower the activation energy and enhance catalysis. FIGURE 5 
+ ΔΔG 
+ ‡ 
+ ) is −1.9, −3.2, and − 4.5 kcal/mol for WT 3α‐HSD/CR acting on cyclohexanol, 2‐decalol, and androsterone, respectively, compared to the L193G mutant. Increasing the remote binding interaction through the B‐ring and BCD‐ring of androsterone decreases the activation energy by 0.8 and 5.9 kcal/mol for the L193G mutant and 2.1 and 8.5 kcal/mol for the WT 3α‐HSD/CR, respectively. The activation energy ( ΔG 
+ ‡ 
+ ) for WT and L193G mutant 3α‐HSD/CR reacting with cyclohexanol, 2‐decalol, and androsterone is from Table  2 with the unit of kcal/mol. 
+ 6 ) in which hydrophobic interactions between the substrate‐binding loop (P185–P219) and the substrate stabilize the closed loop conformation (E C ), thereby shifting the equilibrium away from the open inactive form (E O ). MD simulations show that the substrate‐binding loop in an open conformation of apoenzyme (E O ) changes to a closed conformation in the NAD + ‐bound binary complex (E' C A). This conformational change is required to properly position active‐site residues for subsequent androsterone binding and to promote further closure of the substrate‐binding loop, yielding the closed E C AB ternary complex. Within this induced‐fit model, the kinetic parameter K 
+ iA 
+ reflects both NAD + binding and the accompanying conformational transition to E' C A. Substitutions at L193 are expected to modulate hydrophobic contacts and perturb local loop packing and interaction networks within the active site, thereby altering the stability of E' C A and shifting K 
+ iA 
+ . Meanwhile, the k 
+ cat/ 
+ K 
+ M 
+ for androsterone reflects the composite process spanning androsterone, the ligand‐coupled transition to the closed active E C AB ternary complex, and progression through the hydride‐transfer step leading to androstanedione formation and release. This ligand‐driven loop closure is proposed to lower the activation free energy primarily by improving active‐site organization rather than through direct transition‐state contact. Accordingly, L193 mutations that destabilize the closed E' C and E C conformations are predicted to increase K 
+ iA 
+ and K 
+ M 
+ for androsterone and to reduce catalytic efficiency ( k 
+ cat 
+ /K 
+ B 
+ ) by indirectly weakening transition‐state stabilization. FIGURE 6 
+ + (A) binds to apo 3α‐HSD/CR (E O ), inducing closure of the substrate‐binding loop to form a closed, inactive binary complex (E' C A), which is in equilibrium with the closed, active binary form (E C A) with K C  << 1, where K C  = [E' C A]/[E C A]. Binding of androsterone (B) stabilizes E C A, yielding the active ternary complex (E C AB). Hydride transfer from androsterone to NAD + via transition state (E C AB ‡ ) forms the product of androstandione (P) and NADH (Q). 4 
+## CONCLUSIONS 
+ k 
+ cat 
+ /K 
+ M 
+ ) scales directly with side‐chain hydrophobicity, whereas the activation free energy ( ΔG 
+ ‡ 
+ ) decreases proportionally. Comparative analyses with truncated substrates of 2‐decalol and cyclohexanol showed reduced catalytic efficiencies and smaller slopes in hydrophobicity‐activity correlations, indicating that L193 primarily interacts with the steroid A‐ring, while distal rings contacts provide additional binding energy for the stabilization of the transition state. Importantly, variants that deviate from simple hydrophobicity trends underscore the role of shape complementarity, in which changes in side‐chain size, branching, or polarity can impose steric constraints or disrupt packing, thereby impairing productive substrate orientation in both the ground state and the transition state. Thus, hydrophobicity contributes to stabilization of the closed active form, but optimal catalysis requires a geometrically compatible packing interface between L193, the loop, and the steroid. Thermal stability assays confirmed that substitutions at L193 did not affect global protein folding, emphasizing that observed effects were functional rather than structural. 
+ + nicotinamide, and stabilizes hydrophobic contacts between L193 and the substrate. In addition, the Y202‐N152 hydrogen bond and the R201‐E148 salt bridge reinforce the closed, catalytically competent state, linking local interaction networks to conformational gating and to the maintenance of a properly shaped binding pocket. Substitution of leucine by alanine disrupted these interactions, weakened loop–substrate packing, and increased loop mobility. 
+ C ) relative to the open form (E O ), thereby activating 3α‐HSD/CR for catalysis. This work highlights the critical contribution of loop‐associated hydrophobicity to enzyme catalysis, where the P185–P219 loop functions as a substrate‐responsive gating element that couples binding energy, through both hydrophobicity and geometric compatibility, to the formation of a solvent‐excluded, transition‐state–stabilizing active site optimized for hydride transfer in the 3α‐HSD/CR‐catalyzed reaction. 5 
+## MATERIALS AND METHODS 5.1 
+## Reagents 
+ + were from Sigma‐Aldrich. Sodium 3‐(cyclohexylamino)‐1‐propane sulfonate (CAPS) and 4‐(2‐hydroxyethyl)‐1‐piperazineethanesulfonic acid (HEPES) were from Sigma. SYPRO Orange (5000×) was from Thermo Fisher Scientific. 5.2 
+## Site‐directed mutagenesis of 3α‐ HSD / CR variants 
+ S3 . The original DNA template was digested using Dpn1 endonuclease, which specifically targets methylated and hemimethylated DNA. The resulting nicked vector DNA, harboring the desired mutations, was then transformed into DH5α competent cells. A plasmid containing the 3α‐HSD/CR gene or its mutant variants was transformed into Escherichia coli BL21(DE3) cells. The entire set of mutants derived from 3α‐HSD/CR cDNA was sequenced to ensure fidelity. 5.3 
+## Overexpression, purification, and characterization of 3α‐ HSD / CRs 
+ 2+ ‐NTA) resin column for purification. Proteins were eluted using a stepwise gradient from 0 to 0.5 M imidazole containing 50 mM phosphate, 0.15 M NaCl at pH 7.4. The fractions containing His‐tagged 3α‐HSD/CR were pooled and extensively dialyzed against dialysis buffer containing 1 mM EDTA, 10% glycerol, and 10 mM HEPES at pH 7.4. The pure protein was obtained in a homogeneous form, as confirmed by 15% SDS‐PAGE. Protein concentrations were determined spectrophotometrically, using a dimeric form with ε 280  = 22,920 M −1  cm −1 , as calculated by ProtParam (Wilkins et al.,  1999 ). 5.4 
+## Steady‐state kinetics 
+ + catalyzed by the WT and mutant 3α‐HSD/CRs was measured by monitoring the formation of NADH at 340 nm spectrophotometrically on a Lambda 650 UV/VIS spectrometer (PerkinElmer), utilizing a molar extinction coefficient (ε 340 ) of 6220 M −1  cm −1 . Typically, the initial rate pattern for the WT and mutant 3α‐HSD/CRs‐catalyzed reaction was obtained by varying the concentrations of androsterone or the truncated analog of 2‐decalol and cyclohexanol at several fixed concentrations of NAD + in 0.1 mg/mL BSA and 0.1 M CAPS at pH 10.5 at 25°C. The assay was conducted at pH 10.5 for an optimum 3α‐HSD/CR‐catalyzed reaction (Hwang et al.,  2005 ). Due to differences in activity among the truncated analogs, different amounts of WT and mutant 3α‐HSD/CRs were added for the assay. Typically, the concentrations of WT 3α‐HSD/CR for the assay of androsterone, 2‐decalol, and cyclohexanol are 0.085 nM, 85 nM, and 34 nM, respectively (Hwang et al.,  2017 ). The substrate concentrations were determined three times using an endpoint assay with 3α‐HSD/CR for androsterone and 2‐decalol, and equine alcohol dehydrogenase for cyclohexanol. All reactions were initiated by adding the enzyme. 5.5 
+## Thermal unfolding of 3α‐ HSD / CR 
+ 2023 ). DSF measurements were performed at pH 7.0 to compare global folding stability across variants under near‐neutral conditions and to minimize pH‐driven destabilization effects during thermal unfolding. A solution containing 2 μM 3α‐HSD/CR and 5x SYPRO Orange in 100 mM HEPES buffer at pH 7.0 was dispensed into a 96‐well PCR plate and sealed with an optical adhesive film to minimize evaporation. DSF data were collected using a QuantStudio 3 real‐time PCR system (Thermo Fisher Scientific), with fluorescence excitation and emission detected via the VIC channel. The thermal denaturation assay was conducted at a heating rate of 0.9°C/min over the temperature range 25°C to 85°C. Fluorescence intensities obtained from the DSF experiments were imported into Microsoft Excel and subsequently analyzed in SigmaPlot 11.0 using the appropriate equations. The baselines for the native and denatured states were determined by selecting linear regions at low and high temperatures, respectively, and were integrated into the fitting process. Fluorescence intensity data were fit to Equation ( 7 ) to obtain the T 
+ m 
+ and ΔH 
+ m 
+ values of 3α‐HSD/CR variants. 5.6 
+## Molecular dynamics simulations of apo‐form, binary, and ternary complexes of 3α‐ HSD / CR 
+ 1fk8 ). Since the loop region (residues T188–K208) was not resolved in this structure, it was modeled using a template loop structure from Pseudomonas 3α‐HSD (PDB: 2DKN ), based on the high structural similarity between the two homologous enzymes. The 3α‐HSD/CR homologous model was built in Modeller 10.5. Androsterone and 2‐decalol were docked by AutoDock Vina to generate substrate‐bound 3α‐HSD/CR structures. Simulation and analysis were performed utilizing the Amber package of Amber24. The MD simulations were performed three times with different velocities to ensure reliable results. The Amber force field FF19SB was applied in the topology of 3α‐HSD/CR. For substrates, parameters were obtained from the generalized amber force field (GAFF2). An octahedral box of 10 Å was constructed around 3α‐HSD/CR, and the ensemble system was solvated in the TIP3P water model. The protonation state of 3α‐HSD/CR at pH 7 was estimated using the H++ program except for Y155 in the ternary complex, which acts as a general base. The charge of 3α‐HSD/CR was neutralized by 150 mM NaCl as a salt buffer. Minimization was applied for 1000 steps. Enzyme and ligands in the system were restrained on 100 kcal·mol −1 ·Å −2 , followed by heating in 1 ns from 100 to 298 K in NVT, then equilibrating in the NPT ensemble system for 1 ns. A brief minimization of everything was conducted with a 10 kcal·mol −1 ·Å −2 restraint on Cα atoms. Following the remaining steps for relaxation, the positional restraints decrease on the Cα atoms to 10, then 0.1 kcal·mol −1 ·Å −2 for 1 ns, respectively. A final unrestrained relaxation of the system was performed for 1 ns. The MD simulations were carried out using the pmemd module of the GPU‐accelerated Amber 24 package. The production MD simulation was performed using 2 fs time steps and the SHAKE algorithm. The cut‐off distance for classical non‐bond interaction was set to 9 Å. The Langevin (collision frequency of 1 ps −1 ) and Monte Carlo barostat methods were applied for the regulation of temperature and pressure, respectively. The simulation was performed for 100 ns in the NPT ensemble (298 K, 1 atm). 
+ −2 . These restraints were applied to mimic the near‐attack conformation of the substrate in the hydride transfer pathway from C3‐H of androsterone to C4 of nicotinamide of NAD + during the reaction. 5.7 
+## Data analysis 
+ 1 ). In Equation ( 1 ), v and V represent the initial and maximum velocities, and K 
+ A 
+ the Michaelis constant for substrate A. All kinetic data were globally fit by nonlinear regression in SigmaPlot using the original initial‐rate data. Double reciprocal plots of the families of lines, in which the initial velocities were plotted against substrate concentrations, were constructed for illustration. Data consistent with steady‐state or rapid‐equilibrium ordered mechanisms were fit to Equations ( 2 ) and ( 3 ), respectively, where A and B are the varied substrates, and K 
+ iA 
+ , K 
+ A 
+ and K 
+ B 
+ are the inhibition constant for substrate A, and the Michaelis constants for substrates A and B, respectively. The K 
+ iA 
+ represents the dissociation constant for NAD + from E‐NAD + complex. In case the concentration of B is far less than K 
+ B 
+ ([B] <<  K 
+ B 
+ ) for a rapid equilibrium ordered kinetic mechanism, Equation ( 3 ) reduces to Equation ( 4 ). Data were fit to Equation ( 4 ) to obtain apparent V/K 
+ B 
+ . The rate constant k for a reaction related with the Gibbs free energy of activation ( ΔG 
+ ‡ 
+ ) is shown in Equation ( 5 ), according to the transition state theory for chemical and enzyme‐catalyzed reactions (Garcia‐Viloca et al.,  2004 ; Truhlar,  2015 ), where R is the gas constant, T is the temperature in Kelvin, and ΔG ‡ is the difference in free energy between the transition state and ground state of the reaction. The factor ( k 
+ B 
+ T / h ) is a frequency factor for crossing the transition state, where k 
+ B 
+ and h are the Boltzmann and Planck constants, respectively. The rate constant k can be either k 
+ cat 
+ /K 
+ m 
+ or k 
+ cat 
+ , depending on the rate‐limiting step in the overall enzyme‐catalyzed reaction. The relationship of log( k 
+ cat 
+ /K 
+ m 
+ ) and ΔG 
+ ‡ 
+ with the hydrophobicity of the side‐chain of amino acid residue was fit to Equation ( 6 ), where y is either log( k 
+ cat 
+ /K 
+ m 
+ ) or ΔG 
+ ‡ 
+ , and the hydrophobicity index of amino acids (π R ) is based on the ratio of N‐acetyl amino acid amide in water/octanol. The hydrophobic parameters π R express the hydrophobicity of the side‐chain R compared to the side‐chain of glycine, π R  = log D (acetyl‐amino acid amide) – log D (acetyl‐glycine amide), where D is the distribution coefficient of the parent compound and of its substituted derivative in octanol/water (Fauchere & Pliska,  1983 ). 
+ K 
+ eq 
+ ) and the Gibbs free energy of denaturation ( ΔG 
+ U 
+ ). Protein denaturation was monitored through changes in fluorescence intensity. The observed fluorescence intensity (y t ) as a function of temperature was fit to Equation ( 7 ) to determine the thermodynamic parameters of the melting temperature ( T 
+ m 
+ ) and the enthalpy of denaturation ( ΔH 
+ m 
+ ). T 
+ m 
+ represents the temperature at which 50% of the protein is denatured, while ΔH 
+ m 
+ corresponds to the enthalpy change at T 
+ m 
+ . y n and y u are the fluorescence intensities of N and U, respectively, which are assumed to follow linear functions of temperature. 
+ (1) 
+ v = V A / K A + A 
+ (2) 
+ v = V AB / K iA K B + K A B + K B A + AB 
+ (3) 
+ v = V AB / K iA K B + K B A + AB 
+ (4) 
+ v = V / K B AB / K iA + A 
+ (5) 
+ k = k B T / h exp − Δ G ‡ / RT 
+ (6) 
+ y = a π R + b 
+ (7) 
+ y t = y n + exp − ∆ H m 1 − T T m + ∆ C p T − T m − T ln T T m RT × y u 1 + exp − ∆ H m 1 − T T m + ∆ C p T − T m − T ln T T m RT 
+## AUTHOR CONTRIBUTIONS 
+ Yan‐Liang Chen: Conceptualization; investigation (lead); data curation; Yun‐Hao Chou: Investigation. Hwei‐Jen Lee: Conceptualization (supporting). Tzu‐Pin Wang: Conceptualization (supporting). Chi‐Ching Hwang: Conceptualization (lead); methodology; supervision; validation, writing—original draft (lead); formal analysis (lead); writing—review and editing. 
+## CONFLICT OF INTEREST STATEMENT 
+## Supporting information 
+ Table S1. Kinetic parameters for WT and mutant 3α‐HSD/CRs that catalyzed the oxidation of androsterone, 2‐decalol, and cyclohexanol, respectively. 
+ Table S2. 
+ T 
+ m 
+ and ΔH 
+ m 
+ values of WT and mutant 3α‐HDS/CRs. 
+ Table S3. Oligonucleotide primers used for site‐directed mutagenesis. 
+ Figure S1. SDS‐PAGE of WT and mutant 3α‐HSD/CRs. SDS‐PAGE analysis of (A)WT, L193W, L193F, L193M, L193V, L193P, L193A, and L193G 3α‐HSD/CRs, and (B) WT, L193I, L193T, R201A, and Y202A 3α‐HSD/CRs purified through Ni 2+ ‐NTA resin affinity chromatography. The WT and mutants (10 μg) were loaded on lanes and separated by 15% SDS‐PAGE. The molecular weights (kDa) of the standard protein are labeled. 
+ Figure S2. Initial rate pattern for the WT and mutant 3α‐HSD/CRs catalyzed reaction of androsterone and the truncated analogs. Initial rate patterns were obtained by varying the concentration of (A) androsterone, (B) 2‐decalol, and (C) cyclohexanol at several fixed concentrations of NAD + in 0.1 M CAPS at pH 10.5. Different amounts of WT and mutant enzymes were added as needed to measure initial rates. For androsterone, the lines represent the fit of data points using Equation ( 2 ) for L193F, L193M, L193V, and R201A mutant enzymes, Equation ( 3 ) for L193W and Y202A mutant enzymes, and Equation ( 4 ) for L193I, L193P, L193A, L193T, and L193G mutant enzymes. For both 2‐decalol and cyclohexanol, the lines represent the fit of data points using Equation ( 3 ) for L193I, L193F, and L193M mutant enzymes, and Equation ( 4 ) for L193W, L193V, L193P, L193A, L193T, and L193G mutant enzymes, respectively. 
+ Figure S3. Hydrophobicity dependence of catalysis for L193 variants of 3α‐HSD/CR. (A) Catalytic efficiency ( k 
+ cat 
+ /K 
+ M 
+ ) and (B) activation free energy (Δ G 
+ ‡ 
+ ) are plotted as a function of the side‐chain hydrophobicity parameter (π R ) at position 193. Data for WT and L193W, L193I, L193F, L193M, L193V, L193P, L193A, L193T, and L193G were obtained from Table  1 for reactions of NAD + with androsterone (●), 2‐decalol (▼), and cyclohexanol (■). Lines show linear regressions of log( k 
+ cat 
+ /K 
+ M 
+ ) (A) or Δ G 
+ ‡ 
+ (B) versus π R for the series of L193 substitutions (solid symbols) using Equation ( 6 ). For log( k 
+ cat 
+ /K 
+ M 
+ ), slopes (±SE) and R 
+ 2 values are 1.1 ± 0.6 and 0.3 (androsterone), 0.8 ± 0.4 and 0.4 (2‐decalol), and 0.6 ± 0.2 and 0.4 (cyclohexanol). For Δ G 
+ ‡ 
+ , slopes (±SE) and R 
+ 2 values are −1.5 ± 0.8 and 0.3 (androsterone), −1.1 ± 0.5 and 0.4 (2‐decalol), and − 0.8 ± 0.3 and 0.4 (cyclohexanol). Amino acid substitutions are labeled using single‐letter codes. 
+ Figure S4. Melting curves of WT and mutant 3α‐HDS/CRs by differential scanning fluorimetry. The thermal unfolding curves of WT and the mutants show a two‐state transition at pH 7.0 and yield similar T m values. The black lines represent a fit of data to Equation ( 7 ) for a two‐state transition. All experiments were performed at least in triplicate, and the representative fluorescence melting curves are presented. 
+ Figure S5. RMSD of backbone atoms (Cα, C, N, O) for WT and L193 mutant 3α‐HSD/CRs. MD simulations showed stable trajectories in triplicate over 100 ns for the WT apoenzyme (A) and the ternary complexes of WT‐NAD + ‐androsterone (C), WT‐NAD + ‐2‐decalol (D), WT‐NAD + ‐cyclohexanol (E), L193A‐NAD + ‐androsterone (F), L193P‐NAD + ‐androsterone (G), and L193W‐NAD + ‐androsterone (H), and over 200 ns for the WT‐NAD + binary complex (B). 
+ Figure S6. Superposition of the average RMSF profiles of WT and L193 mutant 3α‐HSD/CRs. (A) WT‐NAD + ‐androsterone ternary complexes (black), WT‐NAD + binary complex (red), and WT apoenzyme (green). (B) WT ternary complexes with androsterone (black), 2‐decalol (red), and cyclohexanol (green). (C) Ternary complexes of WT (black), L193A (red), L193A (green), and L193W (yellow) mutants 3α‐HSD/CRs. Average RMSF values were calculated from three independent simulations. 
+ Figure S7. Part of multiple sequence alignment of 3‐alpha‐hydroxysteroid 3‐dehydrogenase with orthologous proteins in 19 bacteria. Sequences of 3‐alpha‐hydroxysteroid 3‐dehydrogenase from various bacterial species were retrieved from the NCBI RefSeq from the following bacterial sources: hsd_01 ( Comamonas testosteroni ), hsd_02 ( Comamonas sp. C24C), hsd_03 ( Comamonas thiooxydans ), hsd_04 ( Comamonas guangdongensis ), hsd_05 ( Comamonas sp.), hsd_06 ( Comamonas sp.), hsd_07 ( Comamonas resistens ), hsd_08 ( Comamonas sp. C11), hsd_09 ( Comamonas sp. Y33R10–2), hsd_10 ( Comamonas brasiliensis ), hsd_11 ( Comamonas suwonensis ), hsd_12 ( Comamonas sp. AG1104), hsd_13 ( Comamonas sp. 26), hsd_14 ( Pseudomonas sp.), hsd_15 ( Pseudomonas flexibilis ), hsd_16 ( Stutzerimonas balearica ), hsd_17 ( Stutzerimonas sp.), hsd_18 ( Stutzerimonas frequens ), and hsd_19 ( Stutzerimonas stutzeri ). These 19 sequences were subjected to multiple sequence alignments using Constraint‐Based Alignment tool (COBALT) analysis. The positions corresponding to L193, R201, and Y202 are highlighted to illustrate their degree of conservation across different bacterial enzymes. Conserved and variable residues are indicated according to the alignment. 
+## ACKNOWLEDGMENTS 
+## DATA AVAILABILITY STATEMENT 
+## REFERENCES 
+ Amaral 
+ M 
+ , 
+ Kokh 
+ D 
+ , 
+ Bomke 
+ J 
+ , 
+ Wegener 
+ A 
+ , 
+ Buchstaller 
+ H 
+ , 
+ Eggenweiler 
+ H 
+ , et al. Protein conformational flexibility modulates kinetics and thermodynamics of drug binding . Nat Commun . 2017 ; 8 : 2276 . 29273709 
+ 10.1038/s41467-017-02258-w PMC5741624 
+ Amyes 
+ TL 
+ , 
+ O'Donoghue 
+ AC 
+ , 
+ Richard 
+ JP 
+ . Contribution of phosphate intrinsic binding energy to the enzymatic rate acceleration for triosephosphate isomerase . J Am Chem Soc . 2001 ; 123 : 11325 – 11326 . 11697989 
+ 10.1021/ja016754a 
+ Amyes 
+ TL 
+ , 
+ Richard 
+ JP 
+ . Specificity in transition state binding: the Pauling model revisited . Biochemistry . 2013 ; 52 : 2021 – 2035 . 23327224 
+ 10.1021/bi301491r PMC3679207 
+ Amyes 
+ TL 
+ , 
+ Richard 
+ JP 
+ , 
+ Tait 
+ JJ 
+ . Activation of orotidine 5′‐monophosphate decarboxylase by phosphite dianion: the whole substrate is the sum of two parts . J Am Chem Soc . 2005 ; 127 : 15708 – 15709 . 16277505 
+ 10.1021/ja055493s 
+ Benach 
+ J 
+ , 
+ Atrian 
+ S 
+ , 
+ Gonzalez‐Duarte 
+ R 
+ , 
+ Ladenstein 
+ R 
+ . The catalytic reaction and inhibition mechanism of Drosophila alcohol dehydrogenase: observation of an enzyme‐bound NAD‐ketone adduct at 1.4 A resolution by X‐ray crystallography . J Mol Biol . 1999 ; 289 : 335 – 355 . 10366509 
+ 10.1006/jmbi.1999.2765 
+ Boehr 
+ DD 
+ , 
+ Nussinov 
+ R 
+ , 
+ Wright 
+ PE 
+ . The role of dynamic conformational ensembles in biomolecular recognition . Nat Chem Biol . 2009 ; 5 : 789 – 796 . 19841628 
+ 10.1038/nchembio.232 PMC2916928 
+ Bright 
+ JN 
+ , 
+ Sansom 
+ MS 
+ . The flexing/twirling helix: exploring the flexibility about molecular hinges formed by proline and glycine motifs in transmembrane helices . J Phys Chem B . 2003 ; 107 : 627 – 636 . 
+ Bruice 
+ TC 
+ , 
+ Benkovic 
+ SJ 
+ . Chemical basis for enzyme catalysis . Biochemistry . 2000 ; 39 : 6267 – 6274 . 10828939 
+ 10.1021/bi0003689 
+ Callender 
+ R 
+ , 
+ Dyer 
+ RB 
+ . The dynamical nature of enzymatic catalysis . Acc Chem Res . 2015 ; 48 : 407 – 413 . 25539144 
+ 10.1021/ar5002928 PMC4333057 
+ Chang 
+ YH 
+ , 
+ Chuang 
+ LY 
+ , 
+ Hwang 
+ CC 
+ . Mechanism of proton transfer in the 3alpha‐hydroxysteroid dehydrogenase/carbonyl reductase from Comamonas testosteroni 
+ . J Biol Chem . 2007 ; 282 : 34306 – 34314 . 17893142 
+ 10.1074/jbc.M706336200 
+ Chang 
+ YH 
+ , 
+ Huang 
+ TJ 
+ , 
+ Chuang 
+ LY 
+ , 
+ Hwang 
+ CC 
+ . Role of S114 in the NADH‐induced conformational change and catalysis of 3alpha‐hydroxysteroid dehydrogenase/carbonyl reductase from Comamonas testosteroni 
+ . Biochim Biophys Acta . 2009 ; 1794 : 1459 – 1466 . 19520191 
+ 10.1016/j.bbapap.2009.06.006 
+ Chen 
+ CH 
+ , 
+ Namanja 
+ AT 
+ , 
+ Chen 
+ Y 
+ . Conformational flexibility and changes underlying activation of the SUMO‐specific protease SENP1 by remote substrate binding . Nat Commun . 2014 ; 5 : 4968 . 25263960 
+ 10.1038/ncomms5968 PMC4285349 
+ Chou 
+ YH 
+ , 
+ Hsieh 
+ CL 
+ , 
+ Chen 
+ YL 
+ , 
+ Wang 
+ TP 
+ , 
+ Wu 
+ WJ 
+ , 
+ Hwang 
+ CC 
+ . Characterization of the pH‐dependent protein stability of 3alpha‐hydroxysteroid dehydrogenase/carbonyl reductase by differential scanning fluorimetry . Protein Sci . 2023 ; 32 : e4710 . 37354013 
+ 10.1002/pro.4710 PMC10357940 
+ Cook 
+ PF 
+ , 
+ Cleland 
+ WW 
+ . Enzyme kinetics and mechanism . New York, US : Garland Science ; 2007 . 
+ Cristobal 
+ JR 
+ , 
+ Nagorski 
+ RW 
+ , 
+ Richard 
+ JP 
+ . Utilization of cofactor binding energy for enzyme catalysis: formate dehydrogenase‐catalyzed reactions of the whole NAD cofactor and cofactor pieces . Biochemistry . 2023 ; 62 : 2314 – 2324 . 37463347 
+ 10.1021/acs.biochem.3c00290 PMC10399567 
+ Estell 
+ DA 
+ , 
+ Graycar 
+ TP 
+ , 
+ Miller 
+ JV 
+ , 
+ Powers 
+ DB 
+ , 
+ Wells 
+ JA 
+ , 
+ Burnier 
+ JP 
+ , et al. Probing steric and hydrophobic effects on enzyme‐substrate interactions by protein engineering . Science . 1986 ; 233 : 659 – 663 . 17835820 
+ 10.1126/science.233.4764.659 
+ Fauchere 
+ J‐L 
+ , 
+ Pliska 
+ V 
+ . Hydrophobic parameters pi of amino‐acid side chains from the partitioning of N‐acetyl‐amino amides . Eur. J. Med. Chem . 1983 ; 18 : 369 – 375 . 
+ Fersht 
+ A 
+ . Structure and mechanism in protein science: a guide to enzyme catalysis and protein folding . New York : Macmillan ; 1999 . 
+ Filling 
+ C 
+ , 
+ Berndt 
+ KD 
+ , 
+ Benach 
+ J 
+ , 
+ Knapp 
+ S 
+ , 
+ Prozorovski 
+ T 
+ , 
+ Nordling 
+ E 
+ , et al. Critical residues for structure and catalysis in short‐chain dehydrogenases/reductases . J Biol Chem . 2002 ; 277 : 25677 – 25684 . 11976334 
+ 10.1074/jbc.M202160200 
+ Garcia‐Viloca 
+ M 
+ , 
+ Gao 
+ J 
+ , 
+ Karplus 
+ M 
+ , 
+ Truhlar 
+ DG 
+ . How enzymes work: analysis by modern rate theory and computer simulations . Science . 2004 ; 303 : 186 – 195 . 14716003 
+ 10.1126/science.1088172 
+ Grimm 
+ C 
+ , 
+ Maser 
+ E 
+ , 
+ Mobus 
+ E 
+ , 
+ Klebe 
+ G 
+ , 
+ Reuter 
+ K 
+ , 
+ Ficner 
+ R 
+ . The crystal structure of 3alpha ‐hydroxysteroid dehydrogenase/carbonyl reductase from Comamonas testosteroni shows a novel oligomerization pattern within the short chain dehydrogenase/reductase family . J Biol Chem . 2000 ; 275 : 41333 – 41339 . 11007791 
+ 10.1074/jbc.M007559200 
+ Hammes 
+ GG 
+ , 
+ Benkovic 
+ SJ 
+ , 
+ Hammes‐Schiffer 
+ S 
+ . Flexibility, diversity, and cooperativity: pillars of enzyme catalysis . Biochemistry . 2011 ; 50 : 10422 – 10430 . 22029278 
+ 10.1021/bi201486f PMC3226911 
+ Hansch 
+ C 
+ , 
+ Coats 
+ E 
+ . α‐Chymotrypsin: a case study of substituent constants and regression analysis in enzymic structure—activity relationships . J Pharm Sci . 1970 ; 59 : 731 – 743 . 4912447 
+ 10.1002/jps.2600590602 
+ Hegazy 
+ R 
+ , 
+ Cristobal 
+ JR 
+ , 
+ Richard 
+ JP 
+ . Glycerol 3‐phosphate dehydrogenase catalyzed hydride transfer: enzyme activation by cofactor pieces . Biochemistry . 2024 ; 63 : 2878 – 2891 . 39319842 
+ 10.1021/acs.biochem.4c00324 PMC11542618 
+ Hegazy 
+ R 
+ , 
+ Richard 
+ JP 
+ . The role of protein side chains in enzyme‐activating conformational changes: lessons from studies on variant enzymes . Chem Rev . 2025a ; 125 : 11524 – 11566 . 41115254 
+ 10.1021/acs.chemrev.5c00572 PMC12874384 
+ Hegazy 
+ R 
+ , 
+ Richard 
+ JP 
+ . Enzyme architecture: activation of phosphite dehydrogenase‐catalyzed hydride transfer by NAD+ cofactor fragments . Biochemistry . 2025b ; 64 : 4581 – 4593 . 41220039 
+ 10.1021/acs.biochem.5c00561 PMC12676663 
+ Hwang 
+ CC 
+ , 
+ Chang 
+ PR 
+ , 
+ Wang 
+ TP 
+ . Contribution of remote substrate binding energy to the enzymatic rate acceleration for 3 alpha‐hydroxysteroid dehydrogenase/carbonyl reductase . Chem Biol Interact . 2017 ; 276 : 133 – 140 . 28137513 
+ 10.1016/j.cbi.2017.01.016 
+ Hwang 
+ CC 
+ , 
+ Chang 
+ YH 
+ , 
+ Hsu 
+ CN 
+ , 
+ Hsu 
+ HH 
+ , 
+ Li 
+ CW 
+ , 
+ Pon 
+ HI 
+ . Mechanistic roles of Ser‐114, Tyr‐155, and Lys‐159 in 3 alpha‐hydroxysteroid dehydrogenase/carbonyl reductase from Comamonas testosteroni 
+ . J Biol Chem . 2005 ; 280 : 3522 – 3528 . 15572373 
+ 10.1074/jbc.M411751200 
+ Hwang 
+ CC 
+ , 
+ Chang 
+ YH 
+ , 
+ Lee 
+ HJ 
+ , 
+ Wang 
+ TP 
+ , 
+ Su 
+ YM 
+ , 
+ Chen 
+ HW 
+ , et al. The catalytic roles of P185 and T188 and substrate‐binding loop flexibility in 3 alpha‐hydroxysteroid dehydrogenase/carbonyl reductase from Comamonas testosteroni 
+ . PLoS One . 2013 ; 8 : e63594 . 23717450 
+ 10.1371/journal.pone.0063594 PMC3662788 
+ Jencks 
+ WP 
+ . Binding energy, specificity, and enzymic catalysis: the circe effect . Adv Enzymol Relat Areas Mol Biol . 1975 ; 43 : 219 – 410 . 892 
+ 10.1002/9780470122884.ch4 
+ Johnson 
+ TA 
+ , 
+ Holyoak 
+ T 
+ . Increasing the conformational entropy of the omega‐loop lid domain in phosphoenolpyruvate carboxykinase impairs catalysis and decreases catalytic fidelity . Biochemistry . 2010 ; 49 : 5176 – 5187 . 20476774 
+ 10.1021/bi100399e PMC2893389 
+ Johnson 
+ TA 
+ , 
+ McLeod 
+ MJ 
+ , 
+ Holyoak 
+ T 
+ . Utilization of substrate intrinsic binding energy for conformational change and catalytic function in phosphoenolpyruvate carboxykinase . Biochemistry . 2016 ; 55 : 575 – 587 . 26709450 
+ 10.1021/acs.biochem.5b01215 
+ Kallberg 
+ Y 
+ , 
+ Oppermann 
+ U 
+ , 
+ Jornvall 
+ H 
+ , 
+ Persson 
+ B 
+ . Short‐chain dehydrogenase/reductase (SDR) relationships: a large family with eight clusters common to human, animal, and plant genomes . Protein Sci . 2002 ; 11 : 636 – 641 . 11847285 
+ 10.1110/ps.26902 PMC2373483 
+ Kulkarni 
+ YS 
+ , 
+ Liao 
+ Q 
+ , 
+ Petrović 
+ D a 
+ , 
+ Krüger 
+ DM 
+ , 
+ Strodel 
+ B 
+ , 
+ Amyes 
+ TL 
+ , et al. Enzyme architecture: modeling the operation of a hydrophobic clamp in catalysis by triosephosphate isomerase . J Am Chem Soc . 2017 ; 139 : 10514 – 10525 . 28683550 
+ 10.1021/jacs.7b05576 PMC5543394 
+ Kyte 
+ J 
+ , 
+ Doolittle 
+ RF 
+ . A simple method for displaying the hydropathic character of a protein . J Mol Biol . 1982 ; 157 : 105 – 132 . 7108955 
+ 10.1016/0022-2836(82)90515-0 
+ Ladenstein 
+ R 
+ , 
+ Winberg 
+ JO 
+ , 
+ Benach 
+ J 
+ . Medium‐ and short‐chain dehydrogenase/reductase gene and protein families: structure‐function relationships in short‐chain alcohol dehydrogenases . Cell Mol Life Sci . 2008 ; 65 : 3918 – 3935 . 19011748 
+ 10.1007/s00018-008-8590-4 PMC11131792 
+ Leemhuis 
+ H 
+ , 
+ Uitdehaag 
+ JC 
+ , 
+ Rozeboom 
+ HJ 
+ , 
+ Dijkstra 
+ BW 
+ , 
+ Dijkhuizen 
+ L 
+ . The remote substrate binding subsite‐6 in cyclodextrin‐glycosyltransferase controls the transferase activity of the enzyme via an induced‐fit mechanism . J Biol Chem . 2002 ; 277 : 1113 – 1119 . 11696539 
+ 10.1074/jbc.M106667200 
+ Leferink 
+ NG 
+ , 
+ Antonyuk 
+ SV 
+ , 
+ Houwman 
+ JA 
+ , 
+ Scrutton 
+ NS 
+ , 
+ Eady 
+ RR 
+ , 
+ Hasnain 
+ SS 
+ . Impact of residues remote from the catalytic centre on enzyme catalysis of copper nitrite reductase . Nat Commun . 2014 ; 5 : 4395 . 25022223 
+ 10.1038/ncomms5395 PMC4104443 
+ Ma 
+ B 
+ , 
+ Nussinov 
+ R 
+ . Enzyme dynamics point to stepwise conformational selection in catalysis . Curr Opin Chem Biol . 2010 ; 14 : 652 – 659 . 20822947 
+ 10.1016/j.cbpa.2010.08.012 PMC6407632 
+ Malabanan 
+ MM 
+ , 
+ Amyes 
+ TL 
+ , 
+ Richard 
+ JP 
+ . A role for flexible loops in enzyme catalysis . Curr Opin Struct Biol . 2010 ; 20 : 702 – 710 . 20951028 
+ 10.1016/j.sbi.2010.09.005 PMC2994964 
+ Pauling 
+ L 
+ . Nature of forces between large molecules of biological interest . Nature . 1948 ; 161 : 707 – 709 . 18860270 
+ 10.1038/161707a0 
+ Ponnuswamy 
+ PK 
+ . Hydrophobic characteristics of folded proteins . Prog Biophys Mol Biol . 1993 ; 59 : 57 – 103 . 8419986 
+ 10.1016/0079-6107(93)90007-7 
+ Radzicka 
+ A 
+ , 
+ Wolfenden 
+ R 
+ . Comparing the polarities of the amino acids: side‐chain distribution coefficients between the vapor phase, cyclohexane, 1‐octanol, and neutral aqueous solution . Biochemistry . 1988 ; 27 : 1664 – 1670 . 
+ Richard 
+ JP 
+ . Protein flexibility and stiffness enable efficient enzymatic catalysis . J Am Chem Soc . 2019 ; 141 : 3320 – 3331 . 30703322 
+ 10.1021/jacs.8b10836 PMC6396832 
+ Richard 
+ JP 
+ , 
+ Amyes 
+ TL 
+ , 
+ Malabanan 
+ MM 
+ , 
+ Zhai 
+ X 
+ , 
+ Kim 
+ KJ 
+ , 
+ Reinhardt 
+ CJ 
+ , et al. Structure‐function studies of hydrophobic residues that clamp a basic glutamate side chain during catalysis by triosephosphate isomerase . Biochemistry . 2016 ; 55 : 3036 – 3047 . 27149328 
+ 10.1021/acs.biochem.6b00311 PMC4934371 
+ Richard 
+ JP 
+ , 
+ Amyes 
+ TL 
+ , 
+ Reyes 
+ AC 
+ . Orotidine 5'‐monophosphate decarboxylase: probing the limits of the possible for enzyme catalysis . Acc Chem Res . 2018 ; 51 : 960 – 969 . 29595949 
+ 10.1021/acs.accounts.8b00059 PMC6016548 
+ Rose 
+ GD 
+ , 
+ Wolfenden 
+ R 
+ . Hydrogen bonding, hydrophobicity, packing, and protein folding . Annu Rev Biophys Biomol Struct . 1993 ; 22 : 381 – 415 . 8347995 
+ 10.1146/annurev.bb.22.060193.002121 
+ Savino 
+ S 
+ , 
+ Ferrandi 
+ EE 
+ , 
+ Forneris 
+ F 
+ , 
+ Rovida 
+ S 
+ , 
+ Riva 
+ S 
+ , 
+ Monti 
+ D 
+ , et al. Structural and biochemical insights into 7beta‐hydroxysteroid dehydrogenase stereoselectivity . Proteins . 2016 ; 84 : 859 – 865 . 27006087 
+ 10.1002/prot.25036 
+ Schramm 
+ AM 
+ , 
+ Mehra‐Chaudhary 
+ R 
+ , 
+ Furdui 
+ CM 
+ , 
+ Beamer 
+ LJ 
+ . Backbone flexibility, conformational change, and catalysis in a phosphohexomutase from Pseudomonas aeruginosa . Biochemistry . 2008 ; 47 : 9154 – 9162 . 18690721 
+ 10.1021/bi8005219 
+ Simm 
+ S 
+ , 
+ Einloft 
+ J 
+ , 
+ Mirus 
+ O 
+ , 
+ Schleiff 
+ E 
+ . 50 years of amino acid hydrophobicity scales: revisiting the capacity for peptide classification . Biol Res . 2016 ; 49 : 31 . 27378087 
+ 10.1186/s40659-016-0092-5 PMC4932767 
+ Skalhegg 
+ BA 
+ . 3Alpha‐hydroxysteroid dehydrogenase from Pseudomonas testosteroni : kinetic properties with NAD and its thionicotinamide analogue . Eur J Biochem . 1975 ; 50 : 603 – 609 . 234846 
+ 10.1111/j.1432-1033.1975.tb09901.x 
+ Tanaka 
+ N 
+ , 
+ Nonaka 
+ T 
+ , 
+ Tanabe 
+ T 
+ , 
+ Yoshimoto 
+ T 
+ , 
+ Tsuru 
+ D 
+ , 
+ Mitsui 
+ Y 
+ . Crystal structures of the binary and ternary complexes of 7 alpha‐hydroxysteroid dehydrogenase from Escherichia coli 
+ . Biochemistry . 1996 ; 35 : 7715 – 7730 . 8672472 
+ 10.1021/bi951904d 
+ Truhlar 
+ DG 
+ . Transition state theory for enzyme kinetics . Arch Biochem Biophys . 2015 ; 582 : 10 – 17 . 26008760 
+ 10.1016/j.abb.2015.05.004 PMC4555010 
+ Wangikar 
+ PP 
+ , 
+ Rich 
+ JO 
+ , 
+ Clark 
+ DS 
+ , 
+ Dordick 
+ JS 
+ . Probing enzymic transition state hydrophobicities . Biochemistry . 1995 ; 34 : 12302 – 12310 . 7547973 
+ 10.1021/bi00038a026 
+ Weikl 
+ TR 
+ , 
+ Paul 
+ F 
+ . Conformational selection in protein binding and function . Protein Sci . 2014 ; 23 : 1508 – 1518 . 25155241 
+ 10.1002/pro.2539 PMC4241102 
+ Whitty 
+ A 
+ , 
+ Fierke 
+ CA 
+ , 
+ Jencks 
+ WP 
+ . Role of binding energy with coenzyme A in catalysis by 3‐oxoacid coenzyme A transferase . Biochemistry . 1995 ; 34 : 11678 – 11689 . 7547900 
+ 10.1021/bi00037a005 
+ Wilkins 
+ MR 
+ , 
+ Gasteiger 
+ E 
+ , 
+ Bairoch 
+ A 
+ , 
+ Sanchez 
+ JC 
+ , 
+ Williams 
+ KL 
+ , 
+ Appel 
+ RD 
+ , et al. Protein identification and analysis tools in the ExPASy server . Methods Mol Biol . 1999 ; 112 : 531 – 552 . 10027275 
+ 10.1385/1-59259-584-7:531 
+ Wimley 
+ WC 
+ , 
+ White 
+ SH 
+ . Experimentally determined hydrophobicity scale for proteins at membrane interfaces . Nat Struct Biol . 1996 ; 3 : 842 – 848 . 8836100 
+ 10.1038/nsb1096-842 
+ Wolfenden 
+ R 
+ , 
+ Snider 
+ MJ 
+ . The depth of chemical time and the power of enzymes as catalysts . Acc Chem Res . 2001 ; 34 : 938 – 945 . 11747411 
+ 10.1021/ar000058i 
+ Zhao 
+ G 
+ , 
+ London 
+ E 
+ . An amino acid “transmembrane tendency” scale that approaches the theoretical limit to accuracy for prediction of transmembrane helices: relationship to biological hydrophobicity . Protein Sci . 2006 ; 15 : 1987 – 2001 . 16877712 
+ 10.1110/ps.062286306 PMC2242586 
