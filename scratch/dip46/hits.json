@@ -1,0 +1,71 @@
+{
+ "8708735": {
+  "meta": {
+   "doi": "10.3390/life11121295",
+   "title": "The Effect of High-Dose-Rate Pulsed Radiation on the Survival of Clinically Relevant Radioresistant Cells",
+   "year": 2021,
+   "q": "effect of dose rate on cell survival clonogenic"
+  },
+  "len": 29171,
+  "best": [
+   [
+    10,
+    "On day 6 (day 2 after the end of 5 d of irradiation), the number of cells in SAS and SAS-R exposed to high-dose-rate PR was significantly decreased compared with that for single exposure ( p = 0.008 and p = 0.03, respectively)."
+   ],
+   [
+    10,
+    "In a comparison between DHE RMFI corresponding to a single exposure and high-dose-rate PR, the ROS level of high-dose-rate PR was slightly higher 2 d after irradiation ( p = 0.08), and a significant increase was observed 3 d after irradiation ( p = 0.03)."
+   ],
+   [
+    10,
+    "In SAS-R cells, RMFI in DHR123 tended to decrease with time, and 2 d after irradiation, RMFI in DHR123 in high-dose-rate PR was significantly higher than that in single exposure ( p = 0.04)."
+   ],
+   [
+    10,
+    "However, γH2AX RMFI in SAS cells subjected to high-dose-rate PR irradiation began to gradually increase from 24 h onwards and was significantly increased at 72 h ( p = 0.007), compared with that for single exposure."
+   ],
+   [
+    10,
+    "Four days following 8 Gy irradiation, the cell number in SAS cells exposed to high-dose-rate PR was significantly decreased compared with SAS cells exposed to single exposure ( p = 0.011)."
+   ],
+   [
+    10,
+    "At 6 d post-irradiation, the cell number in both SAS and SAS-R subjected to high-dose-rate PR was significantly decreased compared to that subjected to single exposure ( p = 0.013 and p = 0.04, respectively)."
+   ]
+  ]
+ },
+ "7042228": {
+  "meta": {
+   "doi": "10.1038/s41598-020-60459-8",
+   "title": "Inactivation of Listeria and E. coli by Deep-UV LED: effect of substrate conditions on inactivation kinetics",
+   "year": 2020,
+   "q": "effect of irradiance on UV inactivation rate"
+  },
+  "len": 62992,
+  "best": [
+   [
+    11,
+    "innocua | colspan=\"1\" rowspan=\"1\">Dry | colspan=\"1\" rowspan=\"1\">−3.61 ± 0.24 a | colspan=\"1\" rowspan=\"1\">0.15 ± 0.03  A | colspan=\"1\" rowspan=\"1\">0.99   The inactivation data was fitted using the Weibull model, and an excellent agreement between measured and predicted Log( N / N 0 ) values was obtained for the dry coupons for both strains, with R 2 = 1.00 and 0.99 for E."
+   ]
+  ]
+ },
+ "8994679": {
+  "meta": {
+   "doi": "10.1016/j.jpap.2022.100120",
+   "title": "UV inactivation of Semliki Forest virus and bacteria by alternative light sources",
+   "year": 2022,
+   "q": "effect of irradiance on UV inactivation rate"
+  },
+  "len": 49258,
+  "best": [
+   [
+    11,
+    "The two-stage model for Hg HFEL - k 1 =0.42 ± 0.04 cm 2 /mJ (R 2 =0.98), k 2 =0.110 ± 0.004 cm 2 /mJ (R 2 =0.99); Tl-Sb HFEL - k  = 0.23 ± 0.03 cm 2 /mJ (R 2 =0.94), As HFEL for one-stage linear fit - k  = 0.17 ± 0.04 cm 2 /mJ (R 2 =0.84) but for two-stage plot k 1 =0.27 ± 0.02 cm 2 /mJ (R 2 =0.98), k 2 =0.01 cm 2 /mJ (R 2 =1) (Supplementary material, Figs."
+   ],
+   [
+    11,
+    "At least, fitting by taking into account the second stage gives better agreement with k  = 0.17 ± 0.04 cm 2 /mJ (R 2  = 0.84) for one-stage linear fit, but k   1  = 0.27 ± 0.02 cm 2 /mJ (R 2  = 0.98), k   2 =0.01 cm 2 /mJ (R 2  = 1) for the two-stage plot (Supplementary material, Figs."
+   ]
+  ]
+ }
+}

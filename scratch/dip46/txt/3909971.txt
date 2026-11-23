@@ -1,0 +1,81 @@
+ Biomed Res Int Biomed Res Int 2029 bmri 101600173 BMRI BioMed Research International 2314-6133 2314-6141 Wiley PMC3909971 PMC3909971.1 3909971 3909971 24527436 10.1155/2014/162102 1 Research Article Individual Osmotic Fragility Distribution: A New Parameter for Determination of the Osmotic Properties of Human Red Blood Cells Walski Tomasz 
+ 1 
+ 2 
+ Chludzińska Ludmiła 
+ 1 
+ Komorowska Małgorzata 
+ 1 
+ 2 
+ * Witkiewicz Wojciech 
+ 2 
+ 1 Institute of Biomedical Engineering and Instrumentation, Wrocław University of Technology, Wybrzeże Wyspiańskiego 27, 50-370 Wrocław, Poland 2 Regional Specialist Hospital in Wrocław, Research and Development Centre, Kamieńskiego 73a, 51-124 Wrocław, Poland *Małgorzata Komorowska: malgorzata.komorowska@pwr.wroc.pl 
+ 2014 2 1 2014 2014 233200 162102 10 9 2013 3 12 2013 5 12 2013 02 01 2014 13 02 2014 15 01 2018 Copyright © 2014 Tomasz Walski et al. 2014 https://creativecommons.org/licenses/by/3.0/ This is an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited. 
+ pmc-status-qastatus 0 pmc-status-live yes pmc-status-embargo no pmc-status-released yes pmc-prop-open-access yes pmc-prop-olf no pmc-prop-manuscript no pmc-prop-legally-suppressed no pmc-prop-has-pdf yes pmc-prop-has-supplement no pmc-prop-pdf-only no pmc-prop-suppress-copyright no pmc-prop-is-real-version no pmc-prop-is-scanned-article no pmc-prop-preprint no pmc-prop-in-epmc yes pmc-license-ref CC BY 
+## 1. Introduction 
+ 1 ]. The degree of resistance of red blood cells (RBC) to lysis as a result of a decrease in the NaCl concentration of their environment is the basis of the osmotic fragility test. Experimentally, the conventional osmotic fragility test consists of measuring the intensity of light transmitted through a Hb solution produced by suspension of erythrocytes in a hypotonic media. The light wavelength commonly used is λ = 540 nm, where only haemoglobin, as a major protein of the RBC, contributes to light absorption. Osmotic fragility is defined by shifts in the haemolysis curve, which relates absorbance versus NaCl concentration, and is often established by determination of 50% of the haemolysis points. 
+ 2 ], temperature [ 3 ], ultrasound effects [ 4 ], drugs [ 2 ], and irradiation [ 4 ]. The osmotic fragility test is also useful for diagnosis of certain haematological diseases, for example, haemolytic anaemia, hereditary spherocytosis, and elliptocytosis, glucose-6-phosphate dehydrogenase deficiency, and sickle cell anaemia, as well as for RBCs from uremic or diabetic patients [ 5 , 6 ]. Low osmotic resistance may lead to intravascular haemolysis, which causes a reduction of the RBC life span [ 5 , 7 ]. The osmotic fragility curve of red cells not only reflects the average membrane and cytoplasmic properties, but may also provide information on the distribution of those properties within the sample [ 8 ]. 
+## 1.1. Theoretical Consideration 
+ 9 ]. Swelling is a limiting process of cell lysis; thus the osmotic fragility reflects the ability of the cell to uptake water in a hypotonic medium. When the external osmotic pressure is reduced, the cell volume increases. The relation between osmotic pressure and cell volume is expressed by the equation [ 6 ]: (1) ∏ ∏ iso = V iso − b V − b , 
+where b is a part of the RBCs volume osmotically inactive and ∏ iso and V 
+ iso are the osmotic pressure and volume for the isotonic media and ∏ and V for hypotonic media. The critical osmotic pressure ∏ cj for an individual cell, j , and the critical volume V 
+ cj corresponding to it are rewritten in the following form [ 6 ]:
+ (2) ∏ c , j ∗ = ∏ c j ∏ iso = V iso , j − b j V c , j − b j . 
+A distribution of the critical volumes associated with the distribution of critical osmotic pressures is expected. The absolute values of osmotically nonresponsible water are about 3.57 and 0.33 g water/g dry mass in the haemoglobin solution and in the erythrocytes, respectively [ 10 ]. It was proposed that the extent of osmotically nonresponsive water correlates with water interacting with protein. Protein-water interaction is a key factor in the restriction of water diffusion within the cell. Bogner et al. demonstrated that about 20% of intracellular water is directly related to intracellular proteins in terms of osmosis in human erythrocytes [ 10 ]. 
+ 11 , 12 ]. The authors assumed that the strength distribution function f 
+ d is Gaussian in form and is expressed by the following equation:
+ (3) f d = 1 2 exp [ ( c − p 1 p 2 ) 2 ] , 
+where c is NaCl concentration and p 
+ 1 and p 
+ 2 are parameters characterising the location of the maximum of the distribution function and its dispersion, respectively. Parameters p 
+ 1 and p 
+ 2 are positive and nonzero [ 11 ]. The fraction of erythrocytes having strengths greater than value x is given by the ratio of integrals as follows:
+ (4) ∫ x ∞ f d d c ∫ − x ∞ f d d c = 1 + erf ( ( p 1 − x ) / p 2 ) 2 , 
+where erf ( x )  is the error function with argument   x . 
+ 4 ), the fraction of haemolysed RBCs, H 
+ f , at a given stress x (critical NaCl concentration) can be further calculated in terms of the complimentary error function: (5) H f = 1 2 erf   c ( x − p 1 p 2 ) . 
+ p 
+ 3 is introduced:
+ (6) H abs = p 3 erf   c ( x − p 1 p 2 ) , 
+where p 
+ 3 is one-half of the maximum absorbance, p 
+ 2 is the ratio of NaCl concentration in which haemolysis occurs, and p 
+ 1 is the osmotic fragility (an NaCl concentration where 50% of the cells are haemolysed). The above mentioned parameters could be visible on the first derivative of the haemolysis curve. Troiano et al. identified the presence of two populations of Iguana iguana red cells through analysis of the osmotic fragility derivative curve [ 8 ]. 
+## 1.2. Aim of the Study 
+## 2. Materials and Methods 
+## 2.1. Preparative Procedure 
+## 2.2. Irradiation Procedure 
+ 3 volume, 10% haematocrit) containing the suspension. The power density of incident light was 6.9 mW·cm −2 . During exposure, the suspension was gently stirred and cooled. Irradiation temperature was kept at a constant 293 ± 2 K by means of an air- and water-cooling system. The cells were irradiated for 900 sec periods. 
+## 2.3. Ozonation Procedure 
+ 3 /h. The stirred suspension (15 cm 3 volume with 10% haematocrit) of the red cells in the PBS solution was incubated for 900 sec under a stream of the ozone/oxygen mixture (0.5% v/w). The cells were then washed and resolved in the PBS solution again. 
+## 2.4. Osmotic Fragility Curve 
+ 7 ), that is, 0%—no haemolysis occurred and 100%—all cells are haemolysed:
+ (7) A N = A x − A iso A a q − A iso 100 % , 
+where A 
+ N is normalised relative absorbance, A 
+ x is the absorbance of the solution for the measured sample, A 
+ iso is the absorbance of the solution in an isotonic external medium, and A 
+ aq is the absorbance when 100% of the cells haemolysed in distilled water. The region of the haemolysis curve beginning at the point where haemolysis of the cells begins until the end of the process (the steepest part of the curve) can be estimated as linear. The concentration of the external solution when 50% of the cells are haemolysed is a measure of the osmotic fragility parameter (OF). 
+ 9 ]. In relation to the first derivative curve (distribution of osmotic properties in the measured cell population), we estimated the dispersion ( σ ) of the osmotic properties within the RBC sample. The example of an ideal haemolysis curve and the parameters discussed above are presented in Figure 1 . 
+## 2.5. Effect of Storage Time 
+ 2.1 and 2.2 . 
+## 2.6. Statistical Analysis 
+ Statistica 8 , produced by StatSoft . Student's paired t -test was used for the statistical analysis. Differences were considered significant at P < 0.05. 
+## 3. Results and Discussion 
+ Figure 2 shows the haemolysis curve obtained for the control sample and the irradiated sample. The osmotic fragility, calculated from that curves, is the same within the empirical error. Calculation of the first derivative of the function presented in Figure 2 allowed us to visualise the changes in osmotic fragility distribution after exposure to NIR. Because the osmotic fragility for modified and unmodified cells is nearly the same, the maximum position on the first derivative curve is not shifted, but the distribution of cells that differentiate due to their osmotic properties is more dispersed for the control cells. After irradiation, the cells are more unified by their osmotic properties. It is clear that cells with the lowest and the highest osmotic fragility after NIR modification are closer to the mean value of this parameter. The overall analysis of haemolysis curves and first derivative curves of the studied blood samples is shown in Table 1 . For all the samples studied, no significant differences between the mean osmotic fragilities for the control and irradiated samples were observed ( P > 0.05), but the distribution of the osmotic properties of treated cells is always less dispersed ( P < 0.0001). 
+ Figure 3 . Osmotic fragility increases; that is, the value of the osmotic fragility is shifted to a higher NaCl concentration, after oxidative stress, and the shape of the haemolysis curve and the osmotic fragility distribution function are changed. In contradiction to the irradiated cells, the osmotic properties of ozonated cells are much more widely dispersed in comparison to the control samples. Exposure of RBCs to ozone resulted in an increased osmotic fragility due to lipid and protein peroxidation [ 13 ], which also induces spontaneous haemolysis of cells (autohaemolysis) in an isotonic solution. A nonzero value of the distribution function for the isotonic solution is a consequence of this process. 
+ Figure 4 illustrates the dependence between the width of osmotic fragility distribution and the slope of the steepest part of the haemolysis curve. The experimental dependence between these parameters is linear ( Figure 4 ) for all blood samples measured by us. Theoretical simulation for ideal Gaussian distribution clearly shows that the relation between the width of distribution and the slope is only linear within a narrow domain. For high and low values of mean osmotic fragility, the obtained results show that the properties of the cells' osmotic distribution do not have Gaussian distribution. Thus, a full description of the osmotic properties of the cell population requires at least two parameters—the osmotic fragility value and the width (dispersion σ ) of osmotic fragility distribution. While the dispersion σ is a linear function of the steepness of the haemolysis curve, a new parameter has been introduced—the slope factor of the haemolysis curve, which is a measure of distribution of the osmotic properties in the cell population. 
+ 14 – 16 ], liposomes [ 17 , 18 ], and even molecules such as amino acids [ 19 , 20 ] or DNA [ 20 ] are sensitive to irradiation with NIR light. In our previous papers, we reported the effects of NIR irradiation ( in vitro ) on erythrocyte membranes. Changes of membrane structure and polarity, shape, and the viscoelastic properties of erythrocytes were monitored. After exposure to NIR, the membrane fluidity decreases, the polarity decreases in the vicinity of the polar heads, the rate of haemolysis is decreased from the control value, and the zeta potential, electrophoretically measured, was changed upon irradiation as well as the cell shape. Erythrocytes after exposure to near infrared radiation (NIR), and which were later ozonated, are protected against oxidative stress. All the processes observed [ 14 – 20 ] could be induced by the changes of water structures, which weaken the interactions between the water molecules and membrane surfaces and strengthens the hydrophobic effects. In relation to protein 4.1, a component of the red cell membrane skeleton exists in two major forms: 4.1a and 4.1b. It was established that the mean ratio of both proteins (4.1a/4.1b) in the erythrocytes correlates with the average life span [ 21 ]. The measurements of the cell age parameter revealed that erythrocytes of different ages were not uniformly affected by cell swelling. The progressive decrease in K + 
+ i and increase in Na + 
+ i contents in a subpopulation of the RBCs of increasing cell density are consistent with the decrease in the cell volume and with cell water loss. On the other hand, the decreased surface area (as a result of the formation of hemichromes) and increased cytoplasm viscosity (due to increased mean cell haemoglobin concentration) lower cell deformability [ 22 , 23 ], which is observed in cell aging. In the densest cells, the mean sphericity (a dimensionless measure of surface-to-volume) is not significantly different than for other cell populations, but the distribution variance of the oldest population is significantly increased. This may be evidence of the loss of volume regulation and increased membrane permeability of these RBCs [ 22 ]. This is supported by the results of Marks and Johnson, who found that young mature human erythrocytes were more resistant to haemolysis in hypotonic media than old cells [ 24 ]. Thus, the youngest and the oldest cells represent the tails of the distribution function. The narrowing of the osmotic fragility distribution is probably caused by rehydration of the youngest and dehydration of the oldest RBCs. It is clear that both of the groups of cells are the most sensitive to NIR radiation. If we assume that in vitro aging is comparable to in vivo aging, the results presented in Figure 5 strongly support our suggestions. We investigated the effect of the storage time of RBCs on NIR radiation effectiveness in the alteration of the erythrocytes' osmotic properties. Erythrocytes stored for a shorter (<10 days) and longer (>30 days) time after exposure to NIR were characterised by decreased dispersion of the distribution (approx. 50%–60%) as compared to the control samples. Between 10 and 30 days of storage, the relative change of the slope factor reached a minimal value of 10%–20%. 
+## 4. Conclusion 
+## Acknowledgments 
+## Conflict of Interests 
+ Figure 1 
+ σ —dispersion of the osmotic properties within the human RBC sample, a —the slope of the steepest part of the haemolysis curve, and OF—the osmotic fragility. Figure 2 
+ Figure 3 
+ Figure 4 
+ Figure 5 
+ Table 1 
+ Haemolysis curve parameter Control NIR 
+ P value mean ± SD mean ± SD | align="left" rowspan="1" colspan="1">Osmotic fragility (%) | align="center" rowspan="1" colspan="1">0.39 ± 0.03 | align="center" rowspan="1" colspan="1">0.40 ± 0.03 | align="center" rowspan="1" colspan="1">0.78 | align="left" rowspan="1" colspan="1">Slope factor of haemolysis curve (% −1 ) | align="center" rowspan="1" colspan="1">−3.65 ± 0.68 | align="center" rowspan="1" colspan="1">−4.88 ± 0.92 | align="center" rowspan="1" colspan="1">0.000015 | align="left" rowspan="1" colspan="1">Half-width of the distribution (%) | align="center" rowspan="1" colspan="1">0.214 ± 0.036 | align="center" rowspan="1" colspan="1">0.148 ± 0.049 | align="center" rowspan="1" colspan="1">0.000010 
+ n = 8, values of P < 0.05 were considered significant. 
