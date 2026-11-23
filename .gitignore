@@ -48,3 +48,22 @@ results/_verify_default.log
 # shared HTTP cache of the search runner: derived, rebuilt on demand
 literature/cache/
 literature/fulltext/
+
+# Одноразовые скрипты: кладём в scratch/, а не в корень.
+/_dip*
+/_d3*
+/verify_*
+/fetch_*
+/patch_*
+/fix_*
+/wire_*
+/get_*
+/find_*
+/hunt_*
+/grep_*
+/synth*
+/dip[0-9]*_
+/doc6map.py
+/add_elephant.py
+/record319.py
+/superagent_decision.py
