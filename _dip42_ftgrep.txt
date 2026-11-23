@@ -1,0 +1,31 @@
+### PMC8395648 len=53029
+S: Fluorescence microscopy did not immediately show obvious filamentous growth upon the addition of 5 equiv of C18:1 LUVs.
+S: Growth and Division of Protocells Multilamellar vesicles were prepared as described above and were tagged with 0.15 mol % N -(lissamine rhodamine B sulfonyl)-1,2-dihexadecanoyl- sn -glycero-3-phosphoethanolamine (LR-DHPE).
+S: Spontaneous division of C14:1 MLVs after feeding with 1 equiv of C18:1 LUVs (within first seconds) ( AVI ) Movie S2.
+S: Spontaneous division of C14:1 MLVs after feeding with 1 equiv of C18:1 LUVs (after first seconds) ( AVI ) Author Contributions Ö.D.T.
+
+### PMC4985002 len=54069
+S: In order to study vesicle growth, we have developed a method for immobilizing multilamellar fatty acid vesicles on modified glass surfaces and inducing filamentous membrane growth under flow.
+S: Here, we developed an assay that allows for the immobilization of fatty acid vesicles on the surface of glass slides and thus makes long-term observation of growing vesicles possible.
+S: Open in a new tab Filamentous growth of immobilized fatty acid vesicles.
+S: (C) Filamentous growth of immobilized vesicles (containing 10 mM HPTS) at 75 mM NaCl, 50 mM Bicine/NaOH pH 8.5, and 0.8 mM oleic acid micelles at a flow rate of 20 μL/min.
+S: Flow is already present at t = 0 s, but there is a delay before the growth starts due to the dead volume between valve and flow chamber, which illustrates the immobilization of vesicles (panels 1 and 2).
+S: We then examined the behavior of immobilized vesicles when exposed to a continuous flow of the growth-promoting micelle solution.
+S: Because the alkaline micelle solution must be neutralized to avoid dissolving the immobilized vesicles and to allow growth to occur, we flowed a solution of freshly neutralized oleate micelles (which are thus in the process of transforming into vesicles) through the flow chamber.
+S: In this way the concentration and growth-promoting potential of the freshly neutralized micelles are kept constant over time, as freshly mixed solution passes over the surface of immobilized vesicles at a constant flow rate.
+S: In previous experiments done in the absence of flow it was unclear how many filaments could grow per vesicle, 13 while with flow almost all vesicles we observed (>99%) had only a single filament connecting the point of surface attachment to the spherical vesicle.
+S: To test this idea, we measured initial vesicle sizes and initial growth velocities (i.e., change in filament length vs time) for vesicles growing in 0.8 mM oleic acid micelles, freshly neutralized in 50 mM Na + -bicine pH 8.5, 75 mM NaCl at a flow rate of 20 μL/min.
+S: Initial filament growth velocities (as measured by kymograph analysis) of vesicles at 75 mM NaCl, 50 mM Bicine pH 8.5 (with NaOH), and 0.8 mM oleic acid micelles with a flow rate of 20 μL/min are plotted against vesicle diameter.
+S: We observed that varying the concentration of free micelles between 0.8 mM (roughly 8-fold the critical aggregate concentration at pH 8.5) and 8 mM did not significantly influence the filament growth velocity (Figure 3 A).
+
+### PMC10187163 len=51410
+S: We achieve membrane area growth by adding alkaline oleate micelles to a buffered solution of vesicles; the increase in total membrane lipid is denoted as a change in lipid concentration, ΔC A , relative to a starting lipid concentration of 0.5 mM.
+S: We previously reported that an increase in lipid concentration by micelle addition (ΔC A = 1 mM) to oleate GUVs results in outward budding, with the GUVs transforming into a series of smaller vesicles in close proximity, and possibly still connected by tethers ( Figure 1(a) ).
+S: 9 Addition of a higher concentration of micelles (ΔC A > 1 mM) resulted in vesicle division.
+S: Because increasing the surface area and reducing the internal volume would be predicted to increase the surface area to volume ratio, we expected that doing both simultaneously, denoted as stimulus A (ΔC V = 100 mM, ΔC A = 1 mM), might also cause vesicle division.
+S: a) Outward budding of GUVs was induced by micelle addition (stimulus B; Δ C A = 1 mM).
+S: Therefore, we can conclude that instead of budding outward (stimulus B; ΔC V = 0 mM, ΔC A = 1 mM Figure 1(b) ), the vesicles had budded inward .
+S: Interestingly, micelle addition (ΔC A = 0.5 mM to 5 mM) accompanied by varying levels of osmotic shock (ΔC V = 25 mM to 100 mM), consistently led to inward budding.
+S: The relative timescales of water efflux, which is expected to be rapid, and micelle-driven surface area growth (see SI ), which is slower, indicate that water efflux and a modest increase in total area are adequate to drive endocytosis within seconds.
+S: One possibility is that the bilayer leaflets have an asymmetric interaction with water molecules or ions during simultaneous water efflux and membrane growth.
+S: To simulate growing, permeable vesicles under osmotic shock, we used the immersed boundary method to simulate the coupled fluid-structure interaction of permeable vesicles growing in an incompressible aqueous solution.
