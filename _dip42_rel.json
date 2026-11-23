@@ -1,0 +1,184 @@
+[
+ {
+  "doi": "10.1021/ja051784p",
+  "title": "RNA Catalysis in Model Protocell Vesicles",
+  "year": 2005,
+  "cn": 280,
+  "abstract": "We are engaged in a long-term effort to synthesize chemical systems capable of Darwinian evolution, based on the encapsulation of self-replicating nucleic acids in self-replicating membrane vesicles. Here, we address the issue of the compatibility of these two replicating systems. Fatty acids form vesicles that are able to grow and divide, but vesicles composed solely of fatty acids are incompatible with the folding and activity of most ribozymes, because low concentrations of divalent cations (e.g., Mg(2+)) cause fatty acids to precipitate. Furthermore, vesicles that grow and divide must be permeable to the cations and substrates required for internal metabolism. We used a mixture of myristoleic acid and its glycerol monoester to construct vesicles that were Mg(2+)-tolerant and found that Mg(2+) cations can permeate the membrane and equilibrate within a few minutes. In vesicles encapsulating a hammerhead ribozyme, the addition of external Mg(2+) led to the activation and self-cleavage of the ribozyme molecules. Vesicles composed of these amphiphiles grew spontaneously through osmotically driven competition between vesicles, and further modification of the membrane composition allowed growth following mixed micelle addition. Our results show that membranes made from simple amphiphiles can form vesicles that are stable enough to retain encapsulated RNAs in the presence of divalent cations, yet dynamic enough to grow spontaneously and allow the passage of Mg(2+) and mononucleotides without specific macromolecular transporters. This combination of stability and dynamics is critical for building model protocells in the laboratory and may have been important for early cellular evolution."
+ },
+ {
+  "doi": "10.2113/gselements.1.3.145",
+  "title": "Mineral Catalysis and Prebiotic Synthesis: Montmorillonite-Catalyzed Formation of RNA",
+  "year": 2005,
+  "cn": 253,
+  "abstract": "Montmorillonite, a clay mineral formed by the weathering of volcanic ash, may have played a central role in the evolution of life. Because of its structure, montmorillonite tends to adsorb organic compounds and this contributes to its ability to catalyze a variety of organic reactions critical to scenarios of life's origins. We have shown experimentally that RNA molecules bind efficiently to clays and that montmorillonite can catalyze the formation of longer molecules (oligomers), thus lending support to the RNA world hypothesis. This theory proposes that life based on RNA preceded current life, which is based on DNA and protein."
+ },
+ {
+  "doi": "10.1021/acssynbio.9b00034",
+  "title": "One-Pot Assembly of Complex Giant Unilamellar Vesicle-Based Synthetic Cells",
+  "year": 2019,
+  "cn": 150,
+  "abstract": "Here, we introduce a one-pot method for the bottom-up assembly of complex single- and multicompartment synthetic cells. Cellular components are enclosed within giant unilamellar vesicles (GUVs), produced at the milliliter scale directly from small unilamellar vesicles (SUVs) or proteoliposomes with only basic laboratory equipment within minutes. Toward this end, we layer an aqueous solution, containing SUVs and all biocomponents, on top of an oil-surfactant mix. Manual shaking induces the spontaneous formation of surfactant-stabilized water-in-oil droplets with a spherical supported lipid bilayer at their periphery. Finally, to release GUV-based synthetic cells from the oil and the surfactant shell into the physiological environment, we add an aqueous buffer and a droplet-destabilizing agent. We prove that the obtained GUVs are unilamellar by reconstituting the pore-forming membrane protein \u03b1-hemolysin and assess the membrane quality with cryotransmission electron microscopy (cryoTEM), fluorescence recovery after photobleaching (FRAP), and zeta-potential measurements as well as confocal fluorescence imaging. We further demonstrate that our GUV formation method overcomes key challenges of standard techniques, offering high volumes, a flexible choice of lipid compositions and buffer conditions, straightforward coreconstitution of proteins, and a high encapsulation efficiency of biomolecules and even large cargo including cells. We thereby provide a simple, robust, and broadly applicable strategy to mass-produce complex multicomponent GUVs for high-throughput testing in synthetic biology and biomedicine, which can directly be implemented in laboratories around the world."
+ },
+ {
+  "doi": "10.1101/sqb.2009.74.014",
+  "title": "Reconstructing the Emergence of Cellular Life through the Synthesis of Model Protocells",
+  "year": 2009,
+  "cn": 115,
+  "abstract": "The complexity of modern biological life has long made it difficult to understand how life could emerge spontaneously from the chemistry of the early earth. The key to resolving this mystery lies in the simplicity of the earliest living cells, together with the ability of the appropriate molecular building blocks to spontaneously self-assemble into larger structures. In our view, the two key components of a primitive cell are not only self-assembling, but also self-replicating, structures: the nucleic acid genome and the cell membrane. Here, we summarize recent experimental progress toward the synthesis of efficient self-replicating nucleic acid and membrane vesicle systems and discuss some of the issues that arise during efforts to integrate these two subsystems into a coherent whole. We have shown that spontaneous nucleic-acid-copying chemistry can take place within membrane vesicles, using externally supplied activated nucleotides as substrates. Thus, membranes need not be a barrier to the uptake of environmentally supplied nutrients. We examine some of the remaining obstacles that must be overcome to enable the synthesis of a complete self-replicating protocell, and we discuss the implications of these experiments for our understanding of the emergence of Darwinian evolution and the origin and early evolution of cellular life."
+ },
+ {
+  "doi": "10.1126/science.1091765",
+  "title": "The Importance of Being Alkaline",
+  "year": 2003,
+  "cn": 86,
+  "abstract": "The earliest forms of \"protolife\" on Earth must have been able to reproduce and replicate; it is likely that they were also cellular. How might such systems have formed? In his Perspective, Russell highlights the report by Hanczyc et al., who show that clay particles can catalyze the formation of lipid vesicles. These particles also adsorb RNA. If the vesicles are forced to divide, RNA is distributed among the daughter vesicles. Similar conditions to those used in the experiments may have existed at mounds created by alkaline, hydrothermal seepages on the ancient ocean floor. However, instead of lipids, polypeptides formed from amino acids may have formed the first organic membranes."
+ },
+ {
+  "doi": "10.1021/acs.nanolett.1c00822",
+  "title": "Light-Triggered Cargo Loading and Division of DNA-Containing Giant Unilamellar Lipid Vesicles",
+  "year": 2021,
+  "cn": 63,
+  "abstract": "A minimal synthetic cell should contain a substrate for information storage and have the capability to divide. Notable efforts were made to assemble functional synthetic cells from the bottom up, however often lacking the capability to reproduce. Here, we develop a mechanism to fully control reversible cargo loading and division of DNA-containing giant unilamellar vesicles (GUVs) with light. We make use of the photosensitizer Chlorin e6 (Ce6) which self-assembles into lipid bilayers and leads to local lipid peroxidation upon illumination. On the time scale of minutes, illumination induces the formation of transient pores, which we exploit for cargo encapsulation or controlled release. In combination with osmosis, complete division of two daughter GUVs can be triggered within seconds of illumination due to a spontaneous curvature increase. We ultimately demonstrate the division of a selected DNA-containing GUV with full spatiotemporal control-proving the relevance of the division mechanism for bottom-up synthetic biology."
+ },
+ {
+  "doi": "10.1021/jacsau.0c00079",
+  "title": "Population-Level Membrane Diversity Triggers Growth and Division of Protocells",
+  "year": 2021,
+  "cn": 35,
+  "abstract": "To date, multiple mechanisms have been described for the growth and division of model protocells, all of which exploit the lipid dynamics of fatty acids. In some examples, the more heterogeneous aggregate consisting of fatty acid and diacyl phospholipid or fatty acid and peptide grows at the expense of the more homogeneous aggregate containing a restricted set of lipids with similar dynamics. Imbalances between surface area and volume during growth can generate filamentous vesicles, which are typically divided by shear forces. Here, we describe another pathway for growth and division that depends simply on differences in the compositions of fatty acid membranes without additional components. Growth is driven by the thermodynamically favorable mixing of lipids between two populations, i.e., the system as a whole proceeds toward equilibrium. Division is the result of growth-induced curvature. Importantly, growth and division do not require a specific composition of lipids. For example, vesicles made from one type of lipid, e.g., short-chain fatty acids, grow and divide when fed with vesicles consisting of another type of lipid, e.g., long-chain fatty acids, and vice versa. After equilibration, additional rounds of growth and division could potentially proceed by the introduction of compositionally distinct aggregates. Since prebiotic synthesis likely gave rise to mixtures of lipids, the data are consistent with the presence of growing and dividing protocells on the prebiotic Earth."
+ },
+ {
+  "doi": "10.1039/c2mb25375e",
+  "title": "Early self-reproduction, the emergence of division mechanisms in protocells",
+  "year": 2012,
+  "cn": 34,
+  "abstract": "Synthetic Biology approaches are proposing model systems and providing experimental evidences that life can arise as spontaneous chemical self-assembly process where the ability to reproduce itself is an essential feature of the living system. The appearance of early cells has required an amphiphilic membrane compartment to confine molecular information against diffusion, and the ability to self-replicate the boundary layer and the genetic information. The initial spontaneous self-replication mechanisms based on thermodynamic instability would have evolved in a prebiotic and later biological catalysis. Early studies demonstrate that fatty acids spontaneously assemble into bilayer membranes, building vesicles able to grow by incorporation of free lipid molecules and divide. Early replication mechanisms may have seen inorganic molecules playing a role as the first catalysts. The emergence of a short ribozyme or short catalytic peptide may have initiated the first prebiotic membrane lipid synthesis required for vesicle growth. The evolution of early catalysts towards the simplest translation machine to deliver proteins from RNA sequences was likely to give early birth to one single enzyme controlling protocell membrane division. The cell replication process assisted by complex enzymes for lipid synthesis is the result of evolved pathways in early cells. Evolution from organic molecules to protocells and early cells, thus from chemistry to biology, may have occurred in and out of the boundary layer. Here we review recent experimental work describing membrane and vesicle division mechanisms based on chemico-physical spontaneous processes, inorganic early catalysis and enzyme based mechanisms controlling early protocell division and finally the feedback from minimal genome studies."
+ },
+ {
+  "doi": "10.1038/s41598-019-43367-4",
+  "title": "DNA Length-dependent Division of a Giant Vesicle-based Model Protocell",
+  "year": 2019,
+  "cn": 33,
+  "abstract": "DNA is an essential carrier of sequence-based genetic information for all life today. However, the chemical and physical properties of DNA may also affect the structure and dynamics of a vesicle-based model protocell in which it is encapsulated. To test these effects, we constructed a polyethylene glycol-grafted giant vesicle system capable of undergoing growth and division. The system incorporates a specific interaction between DNA and lipophilic catalysts as well as components of PCR. We found that vesicle division depends on the length of the encapsulated DNA, and the self-assembly of an internal supramolecular catalyst possibly leads to the direct causal relationship between DNA length and the capacity of the vesicle to self-reproduce. These results may help elucidate how nucleic acids could have functioned in the division of prebiotic protocells."
+ },
+ {
+  "doi": "10.1098/rstb.2007.2074",
+  "title": "Synthetic Turing protocells: vesicle self-reproduction through symmetry-breaking instabilities",
+  "year": 2007,
+  "cn": 32,
+  "abstract": "The reproduction of a living cell requires a repeatable set of chemical events to be properly coordinated. Such events define a replication cycle, coupling the growth and shape change of the cell membrane with internal metabolic reactions. Although the logic of such process is determined by potentially simple physico-chemical laws, modelling of a full, self-maintained cell cycle is not trivial. Here we present a novel approach to the problem that makes use of so-called symmetry breaking instabilities as the engine of cell growth and division. It is shown that the process occurs as a consequence of the breaking of spatial symmetry and provides a reliable mechanism of vesicle growth and reproduction. Our model opens the possibility of a synthetic protocell lacking information but displaying self-reproduction under a very simple set of chemical reactions."
+ },
+ {
+  "doi": "10.1021/acsnano.3c07706",
+  "title": "Cyclophospholipids Enable a Protocellular Life Cycle",
+  "year": 2023,
+  "cn": 31,
+  "abstract": "There is currently no plausible path for the emergence of a self-replicating protocell, because prevalent formulations of model protocells are built with fatty acid vesicles that cannot withstand the concentrations of Mg 2+ needed for the function and replication of nucleic acids. Although prebiotic chelates increase the survivability of fatty acid vesicles, the resulting model protocells are incapable of growth and division. Here, we show that protocells made of mixtures of cyclophospholipids and fatty acids can grow and divide in the presence of Mg 2+ -citrate. Importantly, these protocells retain encapsulated nucleic acids during growth and division, can acquire nucleotides from their surroundings, and are compatible with the nonenzymatic extension of an RNA oligonucleotide, chemistry needed for the replication of a primitive genome. Our work shows that prebiotically plausible mixtures of lipids form protocells that are active under the conditions necessary for the emergence of Darwinian evolution."
+ },
+ {
+  "doi": "10.1021/jacs.4c08226",
+  "title": "Chemically Driven Division of Protocells by Membrane Budding",
+  "year": 2024,
+  "cn": 25,
+  "abstract": "Division is crucial for replicating biological compartments and, by extension, a fundamental aspect of life. Current studies highlight the importance of simple vesicular structures in prebiotic conditions, yet the mechanisms behind their self-division remain poorly understood. Recent research suggests that environmental factors can induce phase transitions in fatty acid-based protocells, leading to vesicle fission. However, using chemical energy to induce vesicle division, similar to the extant of life, has been less explored. This study investigates a mechanism of vesicle division by membrane budding driven by chemical energy without complex molecular machinery. We demonstrate that, in response to chemical fuel, simple fatty acid-based vesicles can bud off smaller daughter vesicles. The division mechanism is finely controlled by adjusting fuel concentration, offering valuable insights into primitive cellular dynamics. We showcase the robustness of self-division across different fatty acids, retaining encapsulated materials during division and suggesting protocell-like behavior. These results underscore the potential for chemical energy to drive autonomous replication in protocell models, highlighting a plausible pathway for the emergence of life. Furthermore, this study contributes to the development of synthetic cells, enhancing our understanding of the minimal requirements for cellular life and providing a foundation for future research in synthetic biology and the origins of life."
+ },
+ {
+  "doi": "10.1042/bst20190576",
+  "title": "A protocell with fusion and division",
+  "year": 2019,
+  "cn": 19,
+  "abstract": "A protocell is a synthetic form of cellular life that is constructed from phospholipid vesicles and used to understand the emergence of life from a nonliving chemical network. To be considered 'living', a protocell should be capable of self-proliferation, which includes successive growth and division processes. The growth of protocells can be achieved via vesicle fusion approaches. In this review, we provide a brief overview of recent research on the formation of a protocell, fusion and division processes of the protocell, and encapsulation of a defined chemical network such as the genetic material. We also provide some perspectives on the challenges and future developments of synthetic protocell research."
+ },
+ {
+  "doi": "10.1093/molbev/msaa138",
+  "title": "Peptide\u2013Oleate Complexes Create Novel Membrane-Bound Compartments",
+  "year": 2020,
+  "cn": 9,
+  "abstract": "A challenging question in evolutionary theory is the origin of cell division and plausible molecular mechanisms involved. Here, we made the surprising observation that complexes formed by short alpha-helical peptides and oleic acid can create multiple membrane-enclosed spaces from a single lipid vesicle. The findings suggest that such complexes may contain the molecular information necessary to initiate and sustain this process. Based on these observations, we propose a new molecular model to understand protocell division."
+ },
+ {
+  "doi": "10.3390/life12101635",
+  "title": "Evolution of Proliferative Model Protocells Highly Responsive to the Environment",
+  "year": 2022,
+  "cn": 6,
+  "abstract": "In this review, we discuss various methods of reproducing life dynamics using a constructive approach. An increase in the structural complexity of a model protocell is accompanied by an increase in the stage of reproduction of a compartment (giant vesicle; GV) from simple reproduction to linked reproduction with the replication of information molecules (DNA), and eventually to recursive proliferation of a model protocell. An encounter between a plural protic catalyst (C) and DNA within a GV membrane containing a plural cationic lipid (V) spontaneously forms a supramolecular catalyst (C@DNA) that catalyzes the production of cationic membrane lipid V. The local formation of V causes budding deformation of the GV and equivolume divisions. The length of the DNA strand influences the frequency of proliferation, associated with the emergence of a primitive information flow that induces phenotypic plasticity in response to environmental conditions. A predominant protocell appears from the competitive proliferation of protocells containing DNA with different strand lengths, leading to an evolvable model protocell. Recently, peptides of amino acid thioesters have been used to construct peptide droplets through liquid\u2013liquid phase separation. These droplets grew, owing to the supply of nutrients, and were divided repeatedly under a physical stimulus. This proposed chemical system demonstrates a new perspective of the origins of membraneless protocells, i.e., the \u201cdroplet world\u201d hypothesis. Proliferative model protocells can be regarded as autonomous supramolecular machines. This concept of this review may open new horizons of \u201cevolution\u201d for intelligent supramolecular machines and robotics."
+ },
+ {
+  "doi": "10.1039/d4sm00915k",
+  "title": "Osmotic spawning vesicle",
+  "year": 2024,
+  "cn": 5,
+  "abstract": "We discovered a cascade vesicle division system driven by osmotic inflation. Binary giant unilamellar vesicles (GUVs) composed of sodium bis(2-ethylhexyl)sulfosuccinate (AOT) and cholesterol (Chol) were subjected to an osmotic pressure difference by encapsulating membrane-impermeable osmolytes (typically sucrose) in an external aqueous solution containing membrane-permeable osmolytes (typically fructose). This simple setup enabled the mother GUVs to repeatedly form small membrane buds and subsequently undergo divisions over several hundred seconds, resulting in the production of approximately 30-300 daughter GUVs from a single mother GUV. The observed morphological change of GUVs is well described by the mechanical balance between membrane bending, membrane tension, and osmotic pressure difference based on the spontaneous curvature model. This \"osmotic spawning\" behavior of GUVs does not rely on chemical reactions or functional macromolecules. Therefore, this cascade division system is compatible with various chemical systems and has the potential to implement proliferation ability in artificial cells, drug delivery systems, and protocells simply by modifying their membrane compartments and osmolytes."
+ },
+ {
+  "doi": "10.1021/acsnano.6c03241",
+  "title": "Flip Flop-Associated Growth and Division of Synthetic Cells",
+  "year": 2026,
+  "cn": 5,
+  "abstract": "Cells grow their boundaries by incorporating newly synthesized lipids into their membranes as well as through fusion of intracellular vesicles. As these processes yield trans-bilayer imbalances in lipid numbers, cells must redistribute lipids across the bilayer to enable sustained growth. Using giant and large unilamellar vesicles (GUVs and LUVs, respectively), we here recapitulate cellular growth and division under various conditions of transmembrane 'flip flop' of lipids. By dynamically monitoring the changes in reduced volume, spontaneous curvature, and area difference of GUVs that grow by fusion of many small LUVs, the morphology of these growing 'synthetic cells' is quantified. We demonstrate, for membranes containing various flip flop-capable molecules, that curvature stresses are relieved, generating more symmetrically sized buds, without significantly compromising the membrane integrity. Further increasing the neck curvature is shown to lead to bud scission. The mechanisms presented here offer insights into cell growth and division, which are important for understanding early protocells and designing synthetic cells that are able to grow and divide."
+ },
+ {
+  "doi": "10.1101/2019.12.30.881557",
+  "title": "Protein-free division of giant unilamellar vesicles controlled by enzymatic activity",
+  "year": 2019,
+  "cn": 4,
+  "abstract": "Cell division is one of the hallmarks of life. Success in the bottom-up assembly of synthetic cells will, no doubt, depend on strategies for the controlled autonomous division of protocellular compartments. Here, we describe the protein-free division of giant unilamellar lipid vesicles (GUVs) based on the combination of two physical principles \u2013 phase separation and osmosis. We visualize the division process with confocal fluorescence microscopy and derive a conceptual model based on the vesicle geometry. The model successfully predicts the shape transformations over time as well as the time point of the final pinching of the daughter vesicles. Remarkably, we show that two fundamentally distinct yet highly abundant processes \u2013 water evaporation and metabolic activity \u2013 can both regulate the autonomous division of GUVs. Our work may hint towards mechanisms that governed the division of protocells and adds to the strategic toolbox of bottom-up synthetic biology with its vision of bringing matter to life."
+ },
+ {
+  "doi": "10.1201/9781315152516-28",
+  "title": "Giant unilamellar vesicles: From protocell models to the construction of minimal cells",
+  "year": 2019,
+  "cn": 3,
+  "abstract": "Minimal cells are minimal forms of life and therefore contain all essential features of living cells. Protocells are hypothetical systems which are thought to have formed before the first cells originated from the non-living at the origin(s) of life. Approaches towards the construction of protocell models and minimal cells are discussed. One key goal is to equip giant vesicles with a vesicle self-reproduction mechanism and with endovesicular reaction networks. The physical background for understanding of such complex, cell-like giant vesicle systems is provided in terms of membrane physics of membranes and on the basis of experimental observations."
+ },
+ {
+  "doi": "10.1246/cl.140081",
+  "title": "A Synthetic Cell Division System: Effect of Nonbilayer-forming Lipid on Division of Liposomal Membranes",
+  "year": 2014,
+  "cn": 1,
+  "abstract": "Spontaneous division of lipid bilayer vesicles was observed for giant vesicles formed by a phospholipid mixture containing a nonbilayer-forming lipid, i.e., a nonionic peptide lipid with a quinoyl head moiety. This synthetic cell division involved dynamic sequential processes, including phase separation of mixed lipids in the vesicles, vesicle deformation from a spherical to an elliptical shape, and subsequently fission."
+ },
+ {
+  "doi": "10.5059/yukigoseikyokaishi.80.1149",
+  "title": "Construction of Artificial Cell as an Autonomous Supramolecular Machine",
+  "year": 2022,
+  "cn": 1,
+  "abstract": "A living cell can be regarded as an ideal machine. To understand the origin of life, it is important to construct a model protocell from a chemical aspect. We have developed a model protocell based on a giant vesicle (GV) in which the self-reproduction of GVs and the replication of their internal DNA proceed in tandem. The success of this linked self-reproduction was attributed to the spontaneous formation of a supramolecular catalyst (C@DNA) consisting of DNA and a protic amphiphile (C), both of which are embedded in the membrane. This model protocell can be viewed as a proliferating supramolecular machine. Furthermore, the frequency and pattern of GV division were found to depend not on the base sequence but on the length of the encapsulated DNA. The C@DNA functions as a lipo-deoxyribosome, and there is a causal relationship between the length of the DNA comprising C@DNA and frequency of protocell proliferation. On the other hand, the newly constructed recursive loop of proliferation consists of four stages: ingestion, replication, maturation, and division, with similarities to the four stages of the living cell cycle. The GV-based model protocells responsible for this soft information flow are sensitive to the environment (starvation time) and exhibit phenotypic plasticity. It was found that a dominant species emerged in an intense competitive proliferation among GVs with DNA of different lengths. This primitive natural selection is a step toward the ultimate goal of model protocells: supramolecular machines that can mimic evolution."
+ },
+ {
+  "doi": "10.5281/zenodo.17569139",
+  "title": "Clay-Catalyzed Wet\u2013Dry Cycling as a Systems-Chemistry Route to Proto-Life",
+  "year": 2025,
+  "cn": 1,
+  "abstract": "We propose a unified model in which fluctuating in which fluctuating wet-dry cycles on clay-rich mineral surfaces concentrate monomers, catalyse condensation into peptides and nucleic acids, and package reaction products into lipid-vesicle systems, thus generating protocells subject to primitive selection. Specifically, clay minerals act as adsorbers, concentrators and catalysts of polymerization, while recurrent dehydration/hydration cycles supply far-from-equilibrium driving force and reduce water-activity to favour condensation over hydrolysis. The scenario integrates elements of the \u201cRNA world\u201d, \u201clipid world\u201d and \u201cmetabolism-first\u201d models within a systems-chemistry framework, and leads to five experimentally accessible predictions: (1) polymer length and yield enhancements in clay + wet-dry systems, (2) autocatalytic cycles emerging from enriched oligomer populations, (3) amplification of enantiomeric excess (homochirality) with clay surfaces, (4) mineralogical/geochemical signatures in ancient sediments consistent with cycling, and (5) astrobiological implications for Mars and icy moons. We outline how this model can be quantitatively tested using montmorillonite (or smectite) clays, amino-/hydroxy-acids, nucleotides, and fatty-acid vesicles under defined cycling protocols."
+ },
+ {
+  "doi": "10.2187/bss.20.10",
+  "title": "Constructive Approach towards Origin of Life",
+  "year": 2006,
+  "cn": 0,
+  "abstract": "As a minimal cell model, a self-reproducing compartment made of membrane molecules, containing a metabolic reac-tion network and informational substances, is proposed. When a precursor of the membrane molecule was added to an aqueous dispersion of giant vesicles, the precursor was converted to the membrane molecule within the vesicular mem-brane containing a catalyst. As a result, the vesicles got corpulent and self-divided, increasing the number of giant vesi-cles. Besides, if the vesicle contained an informational amphiphile with an oligonuleotide head, a polymerization en-zyme, and a template DNA, etc., polymerization of DNA took place on the inner surface of the giant vesicle. This self-reproducing vesicular system is expected to give an excellent clue to understand the origin of life in terms of a con-structive approach."
+ },
+ {
+  "doi": "10.5360/membrane.44.63",
+  "title": "Eight Experiments for Constructing Model Protocells with Giant Vesicles",
+  "year": 2019,
+  "cn": 0,
+  "abstract": "In 2001, Szostak, Bartel, and Luisi proposed a concept of \u201cprotocell\u201d that is composed of lipid bilayer membrane and capable to evolve and continue metabolism. Eighteen years have passed since then, with the development of various technologies, the protocell has come just before the realization. The protocell is a chemical model that elaborately imitates the dynamics of living cells in a constitutive approach. In order to understand these studies, especially for graduate students and researchers from other fields, we classify chemical models of cell\u2013sized closed lipid bilayer membrane (giant vesicle) in eight directions and discuss them here: preparation of giant vesicles, encapsulation of DNA/RNA, introduction of membrane proteins, install of cell division mechanics, self\u2013reproduction, functionalization for motility, signal communication, and recurrent cycle of mutation and selection."
+ },
+ {
+  "doi": "10.7554/elife.03695.018",
+  "title": "Oscillatory phase separation during expulsion of daughter GUVs",
+  "year": 2021,
+  "cn": 0,
+  "abstract": "A video assembled from time-lapse fluorescence images of phase-separating GUVs containing internal \u2018organelle\u2019 vesicles. GUVs consisting of POPC:SM:Ch (2:2:1) labeled with 0.5 mol% Sphingomyelin-Atto647N (SM-647N) (pseudo-colored green), encapsulate 1 M sucrose, and diluted in MilliQ water at 25\u00b0C. The video reveals shifting patterns of osmotic pressure and tension during expulsion of the internal vesicles after an osmotic differential had been established. Key steps include (A) a homogeneous, flaccid mother vesicle encapsulating tense daughter vesicles, at a time point prior to vesicle expulsion; (B) just after expulsion, the daughter GUV remains tense exhibiting oscillatory phase separation, while the mother GUV is left deflated and homogenous due to the sudden loss of volume; (C) The mother GUV subsequently becomes inflated by influx of water; and (D) the mother GUV begins to exhibit oscillatory phase separation."
+ },
+ {
+  "doi": "10.5281/zenodo.19480099",
+  "title": "Photo-Electrochemical Osmotic Drive: A Model for Physical Evolution of Protocells via Nanoparticle-Mediated Cannibalism",
+  "year": 2026,
+  "cn": 0,
+  "abstract": "This paper proposes a novel framework for prebiotic protocell evolution that addresses a critical flaw in passive growth models (e.g., the Szostak model): the dilution of internal osmolytes following vesicle division. We hypothesize that semiconductor nanoparticles (e.g., FeS, ZnS, TiO2) embedded within fatty acid (FA) membranes act as photovoltaic transducers. Upon photon absorption, these nanoparticles generate charge carriers that partially oxidize fatty acid chains into hydrophilic fragments. These fragments, acting as internal osmolytes, increase the internal osmotic pressure (turgor), driving vesicle expansion and the competitive acquisition of membrane material from less active neighbors. This \"osmotic cannibalism\" establishes a system of physical selection where only vesicles with an optimal balance between metabolic output and structural integrity survive and divide."
+ }
+]
