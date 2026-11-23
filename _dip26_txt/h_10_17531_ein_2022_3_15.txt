@@ -1,0 +1,1398 @@
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REliabilit y Vo l . 24, No. 3, 2022544
+Eksploatacja i Niezawodnosc – Maintenance and Reliability
+Volume 24 (2022), Issue 3
+journal homepage: http://www.ein.org.pl
+Indexed by:
+(*) Corresponding author.
+E-mail addresses:
+1. Introduction
+From the viewpoint of marketing, a warranty is a type of advertis-
+ing tool. Due to this, if producers (manufactures) offer each product 
+an attractive warranty, then the corresponding warranty becomes a 
+powerful promotion tool. From the users’ perspective, warranty is an 
+assurance of the product’s reliability. In view of this, if a product un-
+der an attractive warranty is purchased, the product’s reliability before 
+the expiry of the warranty (i.e., the product’s reliability in the warranty 
+period) can be strongly ensured at no cost or at partial cost. Therefore, 
+producers and users (consumers) can benefit from warranties.
+Warranties (i.e., warranty policies, similarly hereinafter) have been 
+extensively researched in recent years. The research direction on war-
+ranties can be summarized as three directions. The first direction aims 
+to devise condition-based warranty by using a stochastic degradation 
+process in [16, 22] to characterize the deterioration of the product. For 
+example, the deterioration of items is modeled by an inverse-Gaussian 
+(IG) process and an optimal condition-based renewable warranty was 
+suggested in [2]; the deterioration of the product was modeled by an 
+Although renewing pro-rate replacement warranty (RPRW) can help producers obtain some 
+compensation from users, there seldom exists a two-dimensional random RPRW with a 
+refund (2D-RRPRW with R) where a refund can guarantee the fairness of users. In addition, 
+although random periodic replacement last (RPRL) can extend the service span after the 
+expiry of the warranty, RPRL considering preventive maintenance (PM) has been seldom 
+modeled to further lengthen the service span after the expiry of the warranty. In view of 
+these, a 2D-RRPRW with R is devised to guarantee the fairness of users by integrating the 
+limited job cycles and a refund into RPRW. Under the case where 2D-RRPRW with R war-
+rants products with job cycles, a RPRL with PM is modeled to further lengthen the service 
+span after the expiry of the warranty and reduce the failure frequency. It shows that to short-
+en the warranty period can makes the warranty cost of 2D-RRPRW with R to be less than 
+the warranty cost of classic RPRW; and the performance of RPRL with PM outperforms the 
+performance of classic RPRL.
+Highlights Abstract
+A novel random warranty is proposed by incorpo-•	
+rating a refund and job cycles.
+The refund is used to guarantee users’ fairness.•	
+A random periodic replacement last with PM •	
+(RPRL with PM) is modeled.
+RPRL with PM can further lengthen the service •	
+span after the expiry of the warranty.
+A random maintenance last model with preventive maintenance  
+for the product under a random warranty
+Lijun Shang a, Anquan Zou a, Qingan Qiu b, Yongjun Du c
+a Foshan University, School of Quality Management and Standardization, Foshan 528225, China 
+b Beijing Institute of Technology, School of Management & Economics, Beijing 100081, China 
+c Lanzhou University of Technology, School of Economics and Management, Lanzhou 730050, China 
+Shang L, Zou A, Qiu Q, Du Y. A random maintenance last model with preventive maintenance for the product under a random warranty. 
+Eksploatacja i Niezawodnosc – Maintenance and Reliability 2022; 24 (3): 544–553, http://doi.org/10.17531/ein.2022.3.15.
+Article citation info:
+random RPRW, refund, replacement last, PM, failure frequency.
+Keywords
+This is an open access article under the CC BY license 
+(https://creativecommons.org/licenses/by/4.0/)
+IG process and condition-based renewing free replacement warranty 
+was optimized in [17]. The second direction focuses on the design 
+of lifetime-based warranty by setting the lifetime of the product to 
+follow a distribution function. For example, [31] modeled the first 
+failure time as a distribution function and designed warranty menu for 
+a two-dimensional warranty; [25] modeled the failure time as a distri-
+bution function and studied a warranty which is a combination of base 
+and extended warranties; [15] set the lifetime of the product to obey 
+a distribution function and optimized a three-dimensional warranty; 
+other warranty research can be founded in [3, 5, 7, 26, 29]. The third 
+direction designs performance-based warranty by modeling simulta-
+neously the deterioration of the product as a stochastic degradation 
+process and a distribution function. For example, [27] modeled the 
+deterioration of the product as a stochastic degradation process and a 
+distribution function, and studied a performance-based warranty for 
+products, which includes competing hard and soft failures.
+[17] divided warranties into one-dimensional warranties, two-di-
+mensional warranties, simple warranties and combination warranties. 
+Among all warranties, renewing (renewable) warranty (RW) is one of 
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REliabilit y Vo l . 24, No. 3, 2022 545
+the most attractive warranties. As a kind of special RW, renewing free 
+replacement warranty (RFRW) [8, 28] requires that the failed product 
+before the expiry of the warranty is replaced free of charge with a new 
+identical product under RFRW. If the product’s reliability is higher 
+and the production cost is lower, then RFRW is obviously an ideal 
+warranty. For the product with a lower reliability and a higher produc-
+tion cost, RFRW can make producers incur the higher warranty costs. 
+In this case, RFRW is no longer an ideal warranty. For the product 
+with a lower reliability and a higher production cost, one of its ideal 
+warranties is renewing pro-rate replacement warranty (RPRW) [6, 
+15]. This is because RPRW can make producers to obtain some com-
+pensation from users, in the form of charging a pro-rate fee to perform 
+a replacement triggered by a failed product.
+Lately, warranties with refunds [9, 12] were studied and focused 
+in academia and industry. Because this kind of warranty requires that 
+producers offer a partial or full refund to users when the product’s 
+performance before the expiry of the warranty can’t meet require-
+ments, it is also one of the most attractive warranties. If a refund is 
+integrated into an original RW, then RW will become a most attrac-
+tive warranty, compared with original RW and original warranties 
+with refunds [14]. However, few original RW has been redesigned 
+by integrating a refund.
+From the viewpoint of the reliability management, the reliability 
+management in the life cycle of the product includes two types. The 
+first type is that the reliability management before the expiry of the 
+warranty (i.e., the reliability management in the warranty period), 
+which is in the charge of the manufacturer; the second type is that 
+the reliability management after the expiry of the warranty (i.e., the 
+reliability management in the post-warranty period), which is not in 
+the charge of the producer. In view of this, users tend to focus on 
+how the product’s reliability after the expiry of the warranty is guar-
+anteed. From the user’s viewpoint, some maintenance policies have 
+been modeled to guarantee the product’s reliability after the expiry of 
+the warranty. For example, by using a stochastic degradation process 
+in [30, 32, 35, 36] to characterize the deterioration of the product, [17] 
+investigated an optimal condition-based maintenance to ensure the 
+product’s reliability after the expiry of the warranty. In addition, by 
+modeling the lifetime of the product as a distribution function, some 
+maintenance policies have been developed to guarantee the product’s 
+reliability after the expiry of the warranty. For example, [4] defined 
+that the lifetimes of components follows some distribution functions 
+and investigated optimization maintenance models for warranted co-
+herent systems that are composed of n  components ( 1n ≥ ), which 
+were used to guarantee the product’s reliability after the expiry of the 
+warranty; the product’s lifetime was modeled as a distribution function 
+and then the replacement strategy with minimal repairs was adopted 
+to ensure the product’s reliability after the expiry of the warranty in 
+[10, 19] modeled a maintenance–replacement policy to guarantee the 
+product’s reliability after the expiry of the warranty, under the case 
+where the product’s lifetime was set to follow a distribution function.
+Recently, wireless monitoring system (WMS) integrated with the 
+advanced technologies (such as in-situ sensors, industrial networks, 
+control technologies) are being applied extensively in the prognostic 
+and health management of the product. In addition, WMS can moni-
+tor job cycles of the product which does successive missions at job 
+cycles. In other words, WMS can help in real time measure the total 
+working time of the product. This signals that the product’s reliability 
+can be ensured by means of WMS. By defining each working time 
+as an independent random variable (i.e., random working time) and 
+integrating it into some classic maintenance policies, [13] has been 
+modeled some maintenance policies to ensure the product’s reliabil-
+ity, which are called random maintenance policies in [13]. Besides, 
+[33] proposed replacement first and last, under the case at which all 
+working cycles are modeled as independent and identically distribut-
+ed random variables; [20] proposed general age replacement, replace-
+ment first, replacement last and replacement next, which are modeled 
+by integrating random working time; [34] studied age and periodic 
+replacement last models with continuous and discrete policies, under 
+the case where all working cycles were defined as variable working 
+cycles.
+Similarly, by introducing job/working cycles to the reliability man-
+agement before the expiry of the warranty, some random warranties 
+can be designed from the producer’s perspective; by introducing job/
+working cycles to the reliability management after the expiry of the 
+warranty, some random maintenance policies to guarantee the prod-
+uct’s reliability after the expiry of the warranty can be modeled from 
+the user’s perspective. Considering these, by incorporating random 
+working cycles into the life cycle of the product, [21] earlier proposed 
+two random warranties to guarantee the product’ s reliability before 
+the expiry of the warranty and two random maintenance policies to 
+guarantee the product’ s reliability after the expiry of the warranty. Al-
+though two random warranties have been proposed earlier in the above 
+literature, authors have neglected a fact that a refund can remove the 
+unfairness of users whose warranty expires before the warranty period 
+at the accomplishment of the limited random working cycles. In ad-
+dition, to extend the service span after the expiry of the warranty, a 
+random periodic replacement last to guarantee the product’s reliability 
+after the expiry of the warranty has been modeled earlier in the above 
+literature, authors did not consider a reality that preventive mainte-
+nance (PM) can improve the product’s reliability, which can further 
+lengthen the service span after the expiry of the warranty and further 
+reduce the failure frequency.
+In this paper, we incorporating both the limited job cycles and a re-
+fund into original RPRW and devise a two-dimensional random RPRW 
+with a refund (2D-RRPRW with R) from the producer’ perspective. 
+The devised 2D-RRPRW with R stipulates that ① if the failure does 
+not happen until the warranty period or until the accomplishment 
+of the limited job cycles, whichever comes first, then the producer 
+charges the user a pro-rata fee to replace the failed product with a new 
+identical product under the same warranty; otherwise, 2D-RRPRW 
+with R will expire at the warranty period or at the accomplishment 
+of the limited job cycles, whichever comes first; ② if 2D-RRPRW 
+with R expires before the warranty period at the accomplishment of 
+the limited job cycles, then the producer will provide users a partial 
+refund to guarantee the fairness of users whose warranty expires be-
+fore the warranty period at the accomplishment of the limited random 
+working cycles. Extending 2D-RRPRW with R to the reliability man-
+agement after the expiry of the warranty, a users’ random maintenance 
+policy is modeled to ensure the product’s reliability after the expiry 
+of the warranty. The random maintenance policy of the user satisfies 
+that ① if the first job cycle (i.e., the first job cycle after the expiry of 
+the warranty, hereinafter similarly) is accomplished after the planned 
+time, then the product through 2D-RRPRW with R is replaced after 
+the planned time at the accomplishment of the first job cycle; other-
+wise the product through 2D-RRPRW with R is replaced after the ac-
+complishment of the first job cycle at the planned time; ② if the first 
+job cycle still is not accomplished until the planned time, then PM is 
+done at the planned time to improve the product’s reliability, which 
+can further lengthen the service span after the expiry of the warranty 
+and further reduce the failure frequency; ③ minimal repair removes 
+all failures before replacement. Obviously, the random maintenance 
+policy mentioned above includes a random periodic replacement last 
+(which is composed of ① as well as ③) and a PM, thus such random 
+maintenance policy can be referred to as a random periodic replace-
+ment last with PM (RPRL with PM) policy.
+The contribution of this paper is listed as three key aspects: (1) by 
+introducing the limited job cycles and a refund to an original RPRW, 
+a novel warranty is proposed to ensure the product’s reliability before 
+the expiry of the warranty; (2) a refund is used to guarantee the fair-
+ness of users whose warranty expiration occurs before the warranty 
+period at the accomplishment of the limited job cycles; (3) by incor-
+porating the limited job cycles and a PM into the service span after the 
+expiry of the warranty, RPRL with PM is modeled to further lengthen 
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REliabilit y Vo l . 24, No. 3, 2022546
+the service span after the expiry of the warranty and to further reduce 
+the failure frequency.
+The paper structure is listed as follows. Section 2 provides model 
+assumptions, devises the producer’s random warranty with a refund, 
+and evaluates the warranty cost. In Section 3, RPRL with PM is pre-
+sented, and the cost rate model is derived. In Section4, numerical ex-
+periments to perform sensitivity analysis and to illustrate the proposed 
+approaches are offered. Section 5 draws conclusions.
+2. Random warranty of producers
+2.1. Model assumption
+The used assumptions are listed as:
+The product is repairable.•	
+The product can be continuously monitored and performs succes-•	
+sive missions at job cycles.
+The time to replacement, PM or minimal repair is disregarded.•	
+Each warranty claim is accepted.•	
+Each abbreviation for warranty represents a corresponding war-•	
+ranty policy. 
+All information is symmetric, which means that the producer and •	
+customer know all parameters and cost items.
+All job cycles are independent random variables with an identical •	
+distribution function which is memory-less.
+2.2. Warranty devising
+As far as the warranty term is concerned, if removing the pro-rata 
+fee in RPRW, then RPRW is reduced to RFRW. This means that RFRW 
+is a special case of RPRW and that RPRW is a generalized warranty. 
+By incorporating the random working cycle into classic maintenances 
+policies, [13] designed and modeled some new maintenances policies, 
+which were called random maintenance policies in [13]. Without ex-
+ception, by incorporating the limited job cycles into RPRW and con-
+sidering ‘whichever comes first’, we can devise a two-dimensional 
+random RPRW (2D-RRPRW) at which the warranty period w  and 
+the number m  (0 m<<∞) of job cycles are two warranty limits. 
+When such 2D-RRPRW warrants the product, the warranty service of 
+the user with a higher product job frequency and a shorter product job 
+cycle expires very easily before the warranty period w  at the accom-
+plishment of the thm  job cycle. This type of users may be aware that 
+they are not treated as equal as other users whose warranty expiration 
+occurs before the accomplishment of the thm  job cycle at the war-
+ranty period w . From the viewpoint of the warranty theory, the refund 
+is one of methods to guarantee the fairness of users with a higher 
+product job frequency and a shorter product job cycle.
+Based on the above analysis, by integrating the limited job cycles 
+and a refund into RPRW, we devise a two-dimensional random RPRW 
+with a refund from the producer’s perspective, as shown below.
+If the failure does not happen until the warranty period 1) w  or 
+until the accomplishment of the thm  job cycle, whichever 
+comes first, then the warranty expires meanwhile the product 
+goes through warranty.
+If the failure occurs before the warranty period 2) w  or before 
+the accomplishment of the thm  job cycle, whichever comes 
+first, then the product does not go through warranty meanwhile 
+a new identical product warranted by the present warranty will 
+be adopted to replace the failed product.
+The producer charges users a pro-rata fee to perform each re-3) 
+placement triggered by the failure.
+If the warranty expiration occurs before the warranty period 4) w  
+at the accomplishment of the thm  job cycle, then the producer 
+will provide users a partial refund to make users have the sense 
+of fairness.
+Note that ① obviously, w  and m  are two types of warranty 
+limits, thus the warranty region of the devised warranty is given by 
+(0, ] (0, ]wm× ; ② the replacement is done in the form of charging 
+a pro-rata fee; ③ for users with a higher product job frequency and 
+a shorter product job cycle, their warranty expiration happens very 
+easily before the warranty period w  at the accomplishment of the 
+thm  job cycle, therefore a partial refund is offered to them in order 
+that they are treated as equal as other users whose warranty expira-
+tion happens before the accomplishment of the thm  job cycle at the 
+warranty period w . In view of these, similar to the name of ran-
+dom maintenances in [13], thus it is reasonable that such warranty 
+is regarded as a two-dimensional random RPRW with a refund (2D-
+RRPRW with R).
+2.3. Warranty cost evaluation
+Let X  be the time of the product first failure. Then, the distribu-
+tion and reliability function of X  are denoted by ()Fx and ()Fx , where ()()1FxFx+=. And let ()Gy be an identical distribution function of all job cycles iY  ( 1 , 2 , ,i =  ). According to the reliabil-
+ity theory, then the distribution and reliability function of the work-
+ing time mS  (where 
+0
+m
+mi
+i
+SY
+=
+= ∑ ) are denoted by a Stieltjes convo-
+lution ( ) ( 1) 0( ) ( )d ( ) smmG s G suGu−=−∫  and a Stieltjes convolution 
+() ()()1 ()mmGsGs=− , respectively. Obviously, 2D-RRPRW with R 
+expires before the accomplishment of the thm  job cycle at the war-
+ranty period w  or before the warranty period w  at the accomplish-
+ment of the thm  job cycle. By summing probabilities, then the prob-
+ability q  that 2D-RRPRW with R expires can be computed as:
+{ } { } () () () 00Pr , Pr , ()() ()d () 1 ()d() wwm mm m mmq w S w X S wS X G wFw Fu G u G u Fu=<<+<<= + =−∫∫
+(1)
+By 2D-RRPRW with R, if the failure happens before the warranty 
+period w  or before the accomplishment of the thm  job cycle, which-
+ever comes first, then 2D-RRPRW with R is renewed rather than expir-
+ing. This event can be characterized as an inequality min( , )mX wS< . 
+Thus, the probability p  that 2D-RRPRW with R does not expire can 
+be computed as:
+ () 0Pr{ min( , )} ( )d ( ) w m mp X wS G u Fu=<=∫  (2)
+Clearly, 1qp+=.
+1j −  failures have occurred in the warranty region (0, ] (0, ]wm×  until the thj  product ( 1 , 2 ,j =  ) goes through 2D-RRPRW with R. 
+According to the probability theory, the number 1j −  satisfies the geometric distribution 1jpq− . Furthermore, until the first product 
+goes through 2D-RRPRW with R, the expected value [ 1 ]Ej−  of the replacements triggered by all failures can be modeled as:
+ 
+()
+1 0
+()1 0
+()d()
+[ 1] ( 1)
+1 ()d()
+w m
+j
+w mj
+G uFupEj p qj q G uFu ∞ − = −= ⋅−== − ∫∑ ∫  (3)
+Let kX  ( 0,1, 2,k =  ) be the lifetime of the thk  product which 
+fails in the warranty region (0, ] (0, ]wm× . Obviously, This event can 
+be characterized as an inequality min( , )kmX wS≤ . Then, the life-
+times kX  ( 0,1, 2,k =  ) are independent and follow an identical dis-
+tribution function ()Hx:
+ { }
+()
+0
+()
+0
+()d()
+( ) Pr | min( , )
+()d()
+x m
+kkmw m
+G u Fu
+Hx X xX wS
+G u Fu
+=<≤ =∫
+∫
+     (4)
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REliabilit y Vo l . 24, No. 3, 2022 547
+where 0 0X =  and 0 xw<<. 
+Assume that the pro-rata fee that the producer charges is only af-
+fected by the working time t  ( 0 tw<≤), then the pro-rata fee ()Pt at the working time t  is modeled as:
+ ()bP t at=  (5)
+where 01a<<, 0 log ( / )wRbCa<<  and RC  is the producer’s unit replacement cost.
+For the thk  product which failed in the warranty region 
+(0, ] (0, ]wm× , its working time is equal to its lifetime kX . Then, 
+its pro-rata fee is given by ()kPX. Furthermore, after the thk  failed 
+product is replaced, the producer suffers a net replacement cost 
+()RkCPX− . Therefore, after the th( 1 )j −  failed product is replaced, 
+the producer’s total replacement cost 1jTRC −  is given by:
+ ( ) ( )
+11
+1
+00
+() ()
+jjb
+jRkRk
+kk
+TRC C PX C aX
+−−
+−
+==
+=−=−∑∑ (6)
+As mentioned above, kX  follows ()Hx in (4) and 1j −  satisfies 1jpq− . Therefore, the expected value []E TRC  of the producer’s total replacement cost 1jTRC −  can be represented by:
+ETRC EpqTRC Ej EC aX
+Caxj
+j
+j
+Rk
+b R
+b
+[][][][()]=⋅=−⋅−()=
+−()−
+−
+=
+∞
+∑
+1
+1
+1
+1
+GGxFx
+GuFu
+mw
+mw
+()
+()
+() ()
+() ()
+d
+d
+0
+01
+∫
+∫−
+(7)
+where [ 1 ]Ej−  has been offered by (3) and 
+EC aX CaxG xFxGuFuRk b R bmw mw [()] () ()/()()() ()−()=−()∫∫dd00.
+By the definition of 2D-RRPRW with R, when 2D-RRPRW with 
+R expires before the warranty period w  at the accomplishment of the 
+thm  job cycle, the producer provides the user a partial refund. Let 
+()mRS be a refund at the working time mS , then the refund ()mRS 
+is represented by:
+ RS CS forS w
+forS w
+m
+Rm m
+m
+() (),
+,
+= −<
+≥
+
+
+
+α β
+0
+ (8)
+where 01α<< and 0 log ( / )wRCβα<< .
+When 2D-RRPRW with R expires before the warranty period w  
+at the accomplishment of the thm  job cycle, the working time of the 
+product is equal to mS . In this case, the distribution function ()Ks of the working time mS  can be derived as:
+ { } { }
+()
+0
+()
+0
+()d ()Pr ,() Pr , ()d ()
+s m
+mm
+w mmm
+FuG uS sS XKs S wS X FuG u <<==<< ∫ ∫  (9)
+where 0 sw<<. 
+As mentioned above, the case that 2D-RRPRW with R expires can 
+be divided two cases. The first case is that 2D-RRPRW with R expires 
+before the accomplishment of the thm  job cycle at the warranty pe-
+riod w . The second case is that 2D-RRPRW with R expires before 
+the warranty period w  at the accomplishment of the thm  job cycle. 
+Let wq  be the probability that 2D-RRPRW with R expires before the 
+accomplishment of the thm  job cycle at the warranty period w , then 
+wq  is represented by ()Pr{ , } ()()m wmq wS w X G wFw=<<= . The probability wQ  that the first product survives 2D-RRPRW with R be-
+fore the accomplishment of the thm  job cycle at the warranty period 
+w  can be computed as:
+ 
+()
+1
+()1 0
+()()
+1 1 ()d()
+m
+j ww
+www mj
+qqG wFwQ pq pq G uFu ∞ − = = ===− − ∑ ∫  (10)
+Let mq  be the probability that 2D-RRPRW with R expires before the 
+warranty period w  at the accomplishment of the thm  job cycle, then 
+mq  is represented by () 0Pr{ , } ()d () w m mmmq S wS X Fu G u=<<=∫ . Furthermore, the probability mQ  that the first product goes through 
+2D-RRPRW with R before the warranty period w  at the accomplish-
+ment of the thm  job cycle can be computed as:
+ 
+()
+1 0
+()1 0
+()d ()
+1 1 ()d()
+w m
+j mm
+mmw mj
+FuG uqqQ pq pq G uFu ∞ − = = ===− − ∫∑ ∫  (11)
+Since wmqqq+=, the equation 1wmQQ+= holds. The probability wQ  that the first product goes through 2D-RRPRW with R before the accomplishment of the thm  job cycle at the war-
+ranty period w  has been offered in (10) and the probability mQ  that the first product goes through 2D-RRPRW with R before the warranty 
+period w  at the accomplishment of the thm  job cycle has been of-
+fered in (11). Since the working time mS  follows ()Ks in (9), the expected value R  of the refund ()mRS can be represented by:
+()
+0
+0 ()
+0
+( )()d ()
+0 [( )] ()d()
+1 ()d()
+w m
+Rw
+wmmm w m
+C s Fs G s
+R Q Q ERS Q Rs Ks
+G u Fu
+βα−
+= ⋅+ ⋅ = ⋅ =
+−
+∫∫
+∫
+ (12)
+According to the definition of 2D-RRPRW with R, the warranty 
+cost of 2D-RRPRW with R includes the expected value []E TRC  of the total replacement cost 1iTRC −  and the expected value R  of the refund ()mRS. By summing (7) and (12), the warranty cost W C  of 
+2D-RRPRW with R is evaluated as:
+WC ETRC R
+CaxG xFxCsFsG sR bmw R w m
+=+=
+−() +−∫∫[] () () ()() (() ()dd00α β ))
+() ()()1 0−∫ GuFumw d
+(13)
+When m →∞, ()()1mG •→. This means that when m →∞, the 
+warranty limit m  fails and 2D-RRPRW with R is reduced to renew-
+ing pro-rata replacement warranty (RPRW) [6, 15]. Therefore, when 
+m →∞, the warranty cost W C  of 2D-RRPRW with R can be simpli-
+fied as a warranty cost of RPRW, i.e.:
+ lim
+()
+()m
+R
+bw
+WC
+CaxFx
+Fw→∞
+=
+−()∫ d0  (14)
+Besides, 0bax =  (i.e., ()0Px= ) means that the pro-rata fee is 
+removed, and m →∞ means that the warranty limit m  fails. There-
+fore, when 0bax =  (i.e., ()0Px= ) and m →∞, the warranty cost 
+W C  of 2D-RRPRW with R can be simplified as a warranty cost of 
+renewing free replacement warranty (RFRW) [8, 28], i.e.:
+ lim () ()ax
+m
+R
+b
+WC CFw Fw→
+→∞
+=
+0  (15)
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REliabilit y Vo l . 24, No. 3, 2022548
+3. The users’ random maintenance model
+As mentioned above, the user’s focus is how the product’s reli-
+ability after the expiry of the warranty is ensured. In this section, by 
+defining that 2D-RRPRW with R warrants the product with job cy-
+cles, a random maintenance policy of users is planned to guarantee the 
+product’s reliability after the expiry of the warranty, as shown below.
+It is planned that the product’s reliability after the expiry of the 
+warranty is ensured by a random periodic replacement last with PM 
+(RPRL with PM) policy satisfying ① the product through 2D-RRPRW 
+with R is replaced at the accomplishment of the first job cycle or at the 
+planned time T , whichever comes last; ② if the first job cycle is not 
+accomplished until the planned time T , then PM will be done at the 
+planned time T  to lengthen the service span after the expiry of the 
+warranty and to reduce the failure frequency; ③ all failures before re-
+placement undergo minimal repair. Obviously, if PM is removed from 
+RRL with PM, then RPRL with PM is simplified as a random periodic 
+replacement last (RPRL) [21] at which the replacement is carried out 
+at the accomplishment of the first job cycle or at the planned time T
+, whichever comes last, and all failures before replacement undergo 
+minimal repair. 
+Obviously, according to the definition of RPRL with PM, RPRL 
+with PM includes two kinds of replacement. The first kind is to re-
+place the product through 2D-RRPRW with R after the planned time 
+T  at the accomplishment of the first job cycle; the second kind is to 
+replace the product through 2D-RRPRW with R after the accomplish-
+ment of the first job cycle at the planned time T .
+For convenience, define that the product’s life cycle begins in in-
+stallation completing and ends in replacement occurring at the ex-
+pense of users [10], which is a sum of the time span of 2D-RRPRW 
+with R and the service span of RPRL with PM). By means of this 
+definition, the cost rate model related to RPRL with PM can be de-
+rived, as shown below.
+3.1. Life cycle cost computation
+Hereinabove, it has been assumed that the distribution function 
+()Gy is memory-less. This assumption signals that the remaining-
+time-to-accomplishment of a job and all job cycles after the expiry of 
+the warranty are independent random variables with the distribution 
+function ()Gy. Therefore, let fY  be the first job cycle after the ex-
+piry of the warranty, then fY  follows ()Gy.. For the product through 2D-RRPRW with R, when it is replaced in the form of the first kind 
+of replacement, the first job cycle fY  satisfies fYT> . When this 
+case occurs, the first job cycle fY  follows the distribution function 
+()Hy:
+ ()( ) Pr{ | } ()ff GyHy Y yYTGT=<>= (16)
+where yT> .
+Furthermore, for the product through 2D-RRPRW with R, when it 
+is replaced in the form of the second kind of replacement, the first job 
+cycle fY  satisfies fYT< . When this case occurs, the first job cycle 
+fY  follows the distribution function ()Iy:
+ ()( ) Pr{ | } ()ff GyIy Y yYTGT=<<= (17)
+where yT< .
+If the first job cycle still is not completed until the planned time T , 
+the product through 2D-RRPRW with R before the accomplishment 
+of the thm  job cycle at the warranty period w  will undergo PM at the 
+planned time T . Similar to [11, 23], age reduction is used to charac-
+terize the reliability improvement. Denote ()wTϕ ⋅+ ( 01ϕ<<) by 
+a virtual age after MP at the planned time T , then the age reduction 
+resulting from PM is given by ( 1 ) ( )wTϕ−⋅+. Furthermore, PM cost 
+()pmCT is modeled as an increasing function with respect to the age 
+reduction ( 1 ) ( )wTϕ−⋅+, i.e.:
+ ( )( ) ( 1 ) ( )pm ICTc wTκηϕ=−⋅+ (18)
+where ,0ηκ>  and Ic  ( 0Ic > ) is a cost coefficient on the reli-
+ability improvement.
+For the product through 2D-RRPRW with R before the accom-
+plishment of the thm  job cycle at the warranty period w , when it is 
+replaced after the planned time T  at the accomplishment of the first 
+job cycle, the user’s total minimal repair cost 1 (;)w pw fCTY after the expiry of the warranty can be represented by:
+ ( )1 00( ; ) ( )d ( ) dfTYw pw f m mC TY c rw u u c r w T u uϕ= ++ ⋅++∫∫   (19)
+where ()rwu+  and ( )()rwTuϕ ⋅++ are the failure rate function at the warranty period w  and at the virtual age ()wTϕ ⋅+.
+Since fY  in (19) follows ()Hy in (16), the expected value 1 ()wCT of the user’s total minimal repair cost 1 (;)w pw fCTY can be rewritten as:
+CT CTyHy
+crwuurwT uu
+w
+pw
+w
+T
+m
+Ty
+1
+00
+1() (;)d ()
+() ()
+==
+++⋅++()(∞
+∫
+∫∫ddϕ ))
+∞
+∫T Gy
+GT
+d()
+()
+(20)
+For the product through 2D-RRPRW with R before the accomplish-
+ment of the thm  job cycle at the warranty period w , when its replace-
+ment is carried out after the accomplishment of the first job cycle at 
+the planned time T , the user’s total minimal repair cost 2 ()wCT after 
+the expiry of the warranty can be given by:
+ 2 0( ) ( )d Tw mCTcrwuu=+∫  (21)
+The probability that the first kind of replacement occurs is given by ( ) Pr{ }fGT YT=> and the probability that the second kind of 
+replacement occurs is given by ( ) Pr{ }fGT YT=<. Thus, for the 
+product through 2D-RRPRW with R before the accomplishment of 
+the thm  job cycle at the warranty period w , when RPRL with PM 
+ensures its reliability after the expiry of the warranty, the expected 
+total minimal repair cost ()wCT of RPRL with PM is:
+CT GT CTGT CT
+cGTrwuurwT
+www
+m
+T
+() () () () ()
+() () ()
+=⋅+⋅
+=⋅++ ⋅+∫
+12
+0 d+ϕ uuuGy GT rw uu
+crwuur
+y
+T
+T
+m
+T
+()()++   
+=++
+∫∫∫
+∫
+∞
+dd
+d
+00
+0
+d()()()
+() ϕ⋅⋅ +()()   ∫∫ ∞ ()d()wTuuGy y T +d0
+(22)
+For the product through 2D-RRPRW with R before the accomplish-
+ment of the first job cycle at the warranty period w , the expected total 
+cost ()wTC T of RPRL with PM is represented by:
+TC TCTCTCcwTcrw uu rw pm w rI m T () () () ()() ()=++= −⋅+()+++⋅∫ηϕ ϕκ1 0 d(()d()wTuuGy C y T r++()()   +∫∫ ∞ d0
+(23)
+where rC  represents the user’s unit replacement cost.
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REliabilit y Vo l . 24, No. 3, 2022 549
+For the product through 2D-RRPRW with R before the warranty 
+period w  at the accomplishment of the first job cycle, by replacing w  in ()wTC T  with mS , the expected total cost (;)m mTC T S  of RPRL with PM is expressed as:
+TC TS cSTcrS uu rSTum mI mmm T m(; )()()()=−⋅+()()+++⋅++()∫ηϕ ϕ κ 1 0 dduuGyC y T r0∫∫ ()   + ∞ d()
+(24)
+Since mS  in (24) follows ()Ks in (9), the expected total cost 
+(;)m mTC T S  can be rewritten as:
+TC TTCTsKs
+csTcrs uu r
+mmw
+Im
+T
+() (;)d ()
+() ()
+=
+=
+−⋅+()()+++
+∫
+∫
+0
+01ηϕ ϕκ d ⋅⋅ ++()()      ∫∫∫ ∞ ()d()()()
+()
+()sTuuGy FsGs
+Fu
+y
+T
+mw dd
+d
+00
+GGu
+C
+mw r()()0∫ +
+(25)
+The probability wQ  that the first product goes through 2D-RRPRW with R before the accomplishment of the thm  job cycle at the war-
+ranty period w  has been offered in (10) and the probability mQ  that the first product goes through 2D-RRPRW with R before the warranty 
+period w  at the accomplishment of the thm  job cycle has been of-
+fered in (11). Then, under the condition that the product is warranted 
+by 2D-RRPRW with R, the expected total cost [ ( )]ECT of RPRL 
+with PM is computed as:
+ECTQTC TQTC T
+GwFw cwT
+w
+w
+m
+m
+m
+I
+[()] () ()
+()()[()()
+=⋅ +⋅
+=
+−⋅+()()+ηϕκ1 ccrwuurwTuuGy
+c
+m
+Ty
+T
+I
+() ()d()]
+()
+++ ⋅++()()   
++−
+∫∫∫
+∞
+dd00
+1
+ϕ
+ηϕ⋅⋅ +()()+++⋅++()()   ∫∫∫ ∞ sT crsuursTuuGym Ty T κ ϕ() ()d()dd00    
+−
++
+=
+∫
+∫
+FsGs
+GuFu
+C
+GsFs c
+mw
+mw r
+m
+() ()
+() ()
+() ()
+()
+()
+()
+d
+d
+d[
+0
+01
+η IIm
+Ty
+TsT crsuursTuuGy() () ()d()1 00−⋅+()()+++⋅++()()∫∫∫
+∞
+ϕϕκ dd      
++−⋅()++⋅+()(
+∫
+∫∫
+]
+dd
+0
+001
+w
+Im
+Ty
+cTcruu rTuuηϕ ϕκ() () ))   
+−
++
+∞
+∫
+∫
+T
+mw r
+Gy
+GuFu
+C
+d()
+() ()()1 0 d
+(26)
+Each of all failures in the warranty region (0, ] (0, ]wm×  makes 
+the user to incur a failure cost fc  and meanwhile the user provides a pro-rata fee ()jPX to the producer. Thus, the thj  failed product 
+in the warranty region (0, ] (0, ]wm×  makes the user incur a total cost ()fjcPX+ . Furthermore, by replacing ()RCPx−  in W C  with ()fcPx+ , the expected value []fcEC of the total failure cost result-
+ing from all failures is represented by:
+EC
+cPxG xFx
+GuFu
+caxG
+fc
+f
+mw
+mw
+f
+b
+[]
+(()) () ()
+() ()
+()()
+()
+=
++
+−
+=
++∫
+∫
+d
+d
+0
+01
+(()
+()
+() ()
+() ()
+mw
+mw
+xFx
+GuFu
+d
+d
+0
+01
+∫
+∫−
+(27)
+As mentioned above, the life cycle is a sum of the warranty service 
+period (i.e., a time span) of 2D-RRPRW with R and the time span 
+of RPRL with PM. This indicates that the total cost in the life cycle 
+is composed of the total failure cost []fcEC of 2D-RRPRW with R, the expected value R  of the refund ()mRS and the expected cost 
+[ ( )]ECT of RPRL with PM. Therefore, by algebraic operation, the expected total cost ()LCC T  in the life cycle is able to be computed 
+as:
+LCCT EC RECT
+GsFs csTc
+fc
+m
+I
+() [] [()]
+() () ()()
+=−+
+=+
+−⋅+()()+
+ξ
+ηϕκd[ 1 mm Ty T w rs uu rsTuuGy() ()d()++ ⋅++()()      
++
+∫∫∫∫
+∞
+dd]000 ϕ
+ηηϕ ϕκcTcruu rTuuGyIm Ty T() () d()1
+1
+00−⋅()++⋅+()()   
+−
+∫∫∫
+∞
+dd
+GGuFumw ()() ()d0∫
+(28)
+where  
+ξαβ=−+= +−−∫∫EC RC caxG xFxCsFsGfc rf bmw R w m[] ()() () ()()() ()dd00(()/()()()sGuFuCmw r()−()+∫1 0 d .
+3.2. Life cycle length calculation
+Until the thj  product survives 2D-RRPRW with R, 1j −  failures 
+have occurred in the warranty region (0, ] (0, ]wm× . When this case 
+occurs, the total warranty service period resulting from 1j −  failures 
+is represented by 
+1
+0
+j
+k
+k
+X
+−
+=
+∑ , here 0 0X = . Since the number 1j −  satis-
+fies 1jpq− , the expected value fW  of 1
+0
+j
+k
+k
+X
+−
+=
+∑  can be expressed as:
+WpqE XEjEX
+xG xF
+f
+j
+k
+k
+j
+j
+k
+m
+=⋅
+
+
+
+
+
+=−⋅=− = − = ∞ ∑∑ 1 0 1 1 1[][][] ()() d (() () ()() x GuFu w mw 0 01 ∫ ∫− d
+(29)
+where [ 1 ]Ej−  has been offered by (3) and 
+() ()
+000[ ] d() ()d()/ ()d()
+wwwmm
+kEX xHx xG x Fx G u Fu==∫∫∫.
+When the product goes through 2D-RRPRW with R before the 
+accomplishment of the thm  job cycle at the warranty period w , 
+the warranty service period of the product equates to w . When the 
+product goes through 2D-RRPRW with R before the warranty period 
+w  at the accomplishment of the thm  job cycle, the warranty service 
+period of the product is equal to mS . Thus, for the product through 
+2D-RRPRW with R, the expected value gW  of the warranty service 
+period can be expressed as:
+WQwQ ES
+GwFwwsFs Gs
+GuF
+gw mm
+mmw
+m
+=⋅+⋅ =
++
+−
+∫[] ()() () ()
+() (
+() ()
+()
+d
+d
+0
+1 uu
+w
+)0∫
+ (30)
+where wQ  and mQ  have been offered in (10) and (11); 
+() ()
+000[ ] d() ()d ()/ ()d ()
+wwwmm
+mE S s K s sF s G s F u G u==∫∫∫.
+By summing (29) and (30), the warranty service period W  pro-
+duced by 2D-RRPRW with R is obtained as:
+WWW
+xG xFx
+GuFu
+GwFwwsF
+fg
+mw
+mw
+m
+=+=
+−
++
++∫
+∫
+()
+()
+()() ()
+() ()
+()() (d
+d
+0
+01
+ssG s
+GuFu
+GuFu u
+Gu
+mw
+mw
+mw
+m
+)()
+() ()
+()()
+()
+()
+()
+()
+()
+d
+d
+d
+d
+0
+0
+0
+11
+∫
+∫
+∫
+−
+=
+− FFu
+w
+()0∫
+(31)
+When the product through 2D-RRPRW with R is replaced in the 
+form of the first kind of replacement, the service span 1 ()pwLT of RPRL with PM can be given by:
+ LT yHy yGy GTpw T T 1 () () () ()== ∞
+∞
+∫ ∫d d  (32)
+When the product through 2D-RRPRW with R is replaced in the form 
+of the second kind of replacement, the service span 2 ()pwLT of RPRL with PM can be represented by:
+ LTTpw2 ()=  (33)
+The probability that the first kind of replacement occurs is given by ()GT and the probability that the second kind of replacement occurs 
+is given by ()GT. Thus, when RPRL with PM ensures the product’s 
+reliability after the expiry of the warranty, the service span ()pwLT of RPRL with PM can be given by:
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REliabilit y Vo l . 24, No. 3, 2022550
+LTGT LTGT LT yGyGTTTGypw pw w pw T() () () () () () () ()=⋅ +⋅ =+⋅=+ ∞ ∫12ddyyT ∞ ∫
+(34)
+By summing (31) and (34), the life cycle length ()LT can be cal- culated as:
+ LT WL T
+GuFu u
+GuFu
+TGyypw
+mw
+mw T() ()
+() ()
+() ()
+()
+()
+()
+=+ =
+−
+++∫
+∫
+∞d
+d
+d0
+01
+∫∫     (35)
+3.3. Cost rate derivation
+Based on the renewal rewarded theorem in [1], the expected cost 
+rate ()CR T  can be derived as:
+CR T LCCT LT
+GuFu
+GsFs c
+mw
+m
+I
+() () ()
+() ()
+() () (
+()
+()
+==
+−()+
+−
+∫ξ
+ηϕ
+1
+1
+0 d
+d[ ))()()d()⋅+()()+++⋅++()()   ∫∫∫ ∞ sT crsuursTuuGym Ty T κ ϕdd00   
++−⋅()++⋅+()()
+∫
+∫∫∫
+∞
+]
+dd
+0
+001
+w
+Im
+Ty
+TcTcruu rTuuηϕ ϕκ() () dGGy
+GuFuuT Gyymw T
+()
+()() ()()
+
+  
+++∫∫
+∞
+dd0
+(36)
+3.4.	 Model	simplification
+The expected cost rate ()CR T  in (36) is derived under the condi-
+tion that the product is warranted by 2D-RRPRW with R and the prod-
+uct’s reliability after the expiry of the warranty is ensured by RPRL 
+with PM. By setting parameter values, some special models can be 
+simplified from ()CR T , which can represent special cases, as shown 
+below.
+Case 1: the model in (36) when m →∞ is simplified as:
+lim()
+()()/()()
+m
+f
+bw
+rI m
+CR T
+caxFxFwCcwTcr
+→∞
+=
++++−⋅+()()+∫ d0 1ηϕκ (() ()d()
+() /()(
+wuurwTuuGy
+FuuFwTG
+Ty
+T
+w
+++⋅+()()
+++
+∫∫∫
+∫
+∞
+d+d
+d
+00
+0
+ϕ
+yyyT )d
+∞
+∫
+(37)
+When m →∞, ()()1mG •→. Hereinbefore, m →∞ meant that 
+the warranty limit m  was removed and 2D-RRPRW with R was sim-
+plified as RPRW in [15]. Therefore, the model in (37) is a cost rate 
+model at which RPRW is adopted to warrant the product and RPRL 
+with PM is planned to ensure the product’ s reliability after the expiry 
+of the warranty.
+Case 2: the model in (36) when 1ϕ =  can be simplified as:
+lim()
+() () () () ()() ()
+ϕ
+ξ
+→
+=
+−()++∫
+1
+001 CR T GuFu cGsFsrsuumw m m T dd[d∫∫∫∫∫∫++()++()    ∞∞ Gursuu ru uGuruu
+G
+T
+wT
+T()() () ()()d
+(
+d] d00
+mmw
+TuFuuTGyy) ()() ()dd0∫∫++ ∞
+(38)
+()1ϕ ⋅= means that PM at the planned time T  is removed and 
+RPRL with PM is simplified as RPRL. Therefore, the model in (38) 
+is a cost rate model where 2D-RRPRW with R warrants the product 
+and RPRL in [21] ensures the product’s reliability after the expiry of 
+the warranty.
+Case 3: the model in (36) when m →∞ and 1ϕ =  can be simpli-
+fied as:
+lim()
+()()/()()()
+m
+f
+bw
+rm
+T
+CR T
+caxFxFwCcrwuuGu
+→∞
+→
+=
++++++∫∫
+ϕ 1
+00ddrrw uu
+Fu uFwT Gy y
+T
+w
+T
+()
+() /()()
++()
+++
+∞
+∞
+∫
+∫∫
+d
+dd0
+(39)
+By Case 1 and Case 2, the model in (39) a cost rate model in which 
+RPRW in [15] warrants the product and RPRL in [21] ensures the 
+product’s reliability after the expiry of the warranty.
+4. Numerical experiments
+Assume that the time of the product first failure follows a distribu-
+tion function 0( ) 1 exp( ( )d )
+x
+Fx ruu=−−∫  where ()ruuεγ= , 0γ >  
+and 0ε > ; suppose that the distribution function of all job cycles is 
+given by ( ) 1 exp( )Gy yλ=−−; suppose that cost and time are quoted 
+in the dollar and year, respectively; and some constant parameters are 
+offered in Table 1. Other parameters (not including the decision vari-
+able T ) not to be mentioned in Table 1 are assigned when used. Next, 
+the approaches investigated will be illustrated by means of parameters 
+in Table 1.
+4.1. The proposed warranty’s sensitivity analysis
+To explore the property of the proposed warranty (PW), Figure 1 is 
+plotted where 0.8γ = , 0.1mc = , 0.1fc = , 2λ = , 0.2aα == and 8RC = . As shown in Figure 1, when m  increases for 1, 1.05, 1.1w = , the warranty cost of 2D-RRPRW with R first increases from a val-
+ue less than the warranty cost (which can be obtained by comput-
+ing l i m
+m
+WC
+→∞
+) of RPRW to a value greater than the warranty cost 
+of RPRW, then decreases to the warranty cost of RPRW. However, 
+for 0.95w = , the warranty cost of 2D-RRPRW with R first increases 
+from a value greater than the warranty cost (which can be obtained by 
+computing l i m
+m
+WC
+→∞
+) of RPRW to a peak value, then decreases to the 
+warranty cost of RPRW. These signal that when the warranty period 
+w  is longer, although the producer offers a refund to guarantee the 
+user’s fairness, the warranty cost of 2D-RRPRW with R still is less 
+than the warranty cost of RPRW; but, under the case where the war-
+ranty period w  is shorter, the refund to guarantee the user’s fairness 
+makes the warranty cost of 2D-RRPRW with R to increase to a value 
+which is always greater than or equal to the warranty cost of RPRW. 
+The above contrast indicates that by limiting the warranty period w , 
+the warranty cost of 2D-RRPRW with R can be less than the warranty 
+cost of classic RPRW. In addition, Figure 1 indicates that the warranty 
+cost of 2D-RRPRW with R increases when w  is increasing and m  is fixed. 
+As shown in Figure 2 where 2λ = , 0.8γ = , 0.1mc = , 0.1fc = , 
+0.2aα == and 8RC = , when m  increases for the same w , the warranty cost of 2D-RRPRW with R (i.e., 1PW ) is equal to or greater 
+than the warranty cost of 2PW  (i.e., 2D-RRPRW); the warranty cost 
+of RPRW is still equal to or greater than the warranty cost of 2PW  
+(i.e., 2D-RRPRW). Note that 2D-RRPRW can be obtained by remov-
+ing the refund from 2D-RRPRW with R. The above changes indicate 
+that although the refund to guarantee the user’s fairness can make 
+the warranty cost of 2D-RRPRW with R to be less than the warranty 
+cost of classic RPRW, it is still greater than the warranty cost of 2D-
+RRPRW, which is because the refund is shouldered by the producer.
+4.2. Sensitivity analysis of users’ RPRL with PM
+To display whether the optimum RPRL with PM exists uniquely, 
+we make Figure 3 where 1.2γ = , 0.1fc = , 0.5aα ==, 3λ = , 
+10RC = , 2m =  and 3w = . Figure 3 shows that the optimum cost 
+rate *()CR T  and planned time *T  exist uniquely. This means that the 
+optimum RPRL with PM exists uniquely. From Subplot (A) where 
+15rC = , it is found that when mc  increases, *T  is decreasing while 
+Table 1. Parameter values
+ε b η Ic κ β
+2 1 1 2 1 1
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REliabilit y Vo l . 24, No. 3, 2022 551
+*()CR T  is increasing. This signals that the smaller minimal repair cost mc  is able to reduce the cost rate and extend the service span 
+after the expiry of the warranty. From Subplot (B) where 0.3mc = , 
+it is discovered that when rC  increases, *T  increases and *()CR T  also increases. This illustrates that the greater replacement cost rC  is 
+able to extend the service span after the expiry of the warranty while 
+is not able to reduce the cost rate.
+To indicate the effect of w  and λ  on RPRL with PM, we plot 
+Figure 4 where 1.2γ = , 0.1mc = , 0.1fc = , 0.5aα ==, 10RC = , 
+15rC =  and 2m = . As shown in Subplot (A) where 3λ = , the op-
+timum cost rate *()CR T  and planned time *T  decreases when w  increases and λ  is fixed.. This indicates that a longer warranty period w  is able to reduce the cost rate but is not able to extend the service 
+span after the expiry of the warranty. From Subplot (B) where 2w = , 
+it is found that *T  and *()CR T  increase when λ  increases and w  is fixed. From the overall viewpoint, the above phenomena signal that 
+the shorter job cycles (i.e., the case that λ  is greater) is able to extend 
+the service span after the expiry of the warranty at the expense of the 
+greater cost rate.
+4.3. Performance illustration
+In this paper, we have planned that RPRL with PM ensured the 
+product’s reliability after the expiry of the warranty. If RPRL with PM 
+is removed from RPRL with PM, then RPRL with PM is transformed 
+into RPRL in [21], which has been mentioned above. The expected 
+cost rate related to RPRL has been offered in (38). These signal that 
+RPRL with PM or RPRL can ensure the product’s reliability after the 
+expiry of the warranty. Form the user’s perspective, a problem is how 
+to select the best policy from RPRL with PM and RPRL to ensure the 
+product’s reliability after the expiry of the warranty. Obviously, the 
+policy at which the service span after the expiry of the warranty is lon-
+ger and the cost rate is lower is an ideal policy to ensure the product’s 
+reliability after the expiry of the warranty.
+To explore whether the service span after the expiry of the warranty 
+is longer and whether cost rate is lower, we make Figure 5 where 
+1.2γ = , 0.5mc = , 0.1fc = , 0.5aα ==, 3w = , 3λ = , 10RC = , 
+20rC =  and 2m = . As indicated in Figure 5, compared RPRL, when 
+RPRL with PM is used to ensure the product’s reliability after the ex-
+piry of the warranty, the service span after the expiry of the warranty 
+is longer and the cost rate is lower. These signal that the performance 
+of RPRL with PM is superior to the performance of RPRL, thus RPRL 
+with PM is an ideal policy to guarantee the product’s reliability after 
+the expiry of the warranty.
+Note that if the information in Figure 5 is not obtained, then com-
+parison method in [24] can be used to compare performances.
+5. Conclusions
+By taking the resultant force which is formed by the advanced tech-
+nologies (such as in-situ sensors, industrial networks, control technol-
+ogies) as a technological background, in this paper we firstly integrat-
+ed the limited job cycles into classic RPRW and devised a producer’s 
+two-dimensional random RPRW with a refund (2D-RRPRW with R) 
+to guarantee the product’s reliability of the product that does succes-
+Fig. 4. The effect of w  and λ  on RPRL with PMFig. 3. The effect of mc  and rC  on RPRL with PM
+Fig. 2. Sensitivity analysis of 2D-RRPRW with RFig. 1. Sensitivity analysis of 2D-RRPRW with R
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REliabilit y Vo l . 24, No. 3, 2022552
+References
+Barlow RE, Proschan F. Mathematical theory of reliability. John Wiley & Sons, Hoboken 1965, 1. http://10.1214/aoms/1177699826.
+Cha JH, Finkelstein M, Levitin G. Optimal warranty policy with inspection for heterogeneous, stochastically degrading items.  European 2. 
+Journal of Operational Research 2021; 289(3): 1142–1152, https://doi.org/10.1016/j.ejor.2020.07.045. 
+Hooti F, Ahmadi J, Longobardi M. Optimal extended warranty length with limited number of repairs in the warranty period. Reliability 3. 
+Engineering & System Safety 2020; 203: 107111, https://doi.org/10.1016/j.ress.2020.107111.
+Hashemi, M, Asadi M, Tavangar M. Optimal maintenance strategies for coherent systems: A warranty dependent approach. Reliability 4. 
+Engineering & System Safety 2022; 217: 108027, https://doi.org/10.1016/j.ress.2021.108027. 
+He Z, Wang D, He S, Zhang Y, Dai A. Two-dimensional extended warranty strategy including maintenance level and purchase time: A win-5. 
+win perspective. Computers & Industrial Engineering 2020; 141: 106294, https://doi.org/10.1016/j.cie.2020.106294. 
+Jung KM, Park M, Park DH. Cost optimization model following extended renewing two-phase warranty. Computers & Industrial Engineering 6. 
+2015; 79: 188–194, https://doi.org/10.1016/j.cie.2014.10.016.
+Luo M, Wu S. A comprehensive analysis of warranty claims and optimal policies. European Journal of Operational Research 2019; 276: 7. 
+144–159, https://doi.org/10.1016/j.ejor.2018.12.034.
+Liu B, Wu J, Xie M. Cost analysis for multi-component system with failure interaction under renewing free-replacement warranty. European 8. 
+Journal of Operational Research 2015; 243(3): 874–882, https://doi.org/10.1016/j.ejor.2015.01.030. 
+Li T, He S, Zhao X. Optimal warranty policy design for deteriorating products with random failure threshold. Reliability Engineering & 9. 
+System Safety, 2022; 218: 108142, https://doi.org/10.1016/j.ress.2021.108142.
+Liu P, Wang G, Su P. Optimal replacement strategies for warranty products with multiple failure modes after warranty expiry. Computers & 10. 
+Industrial Engineering 2021; 153: 107040, https://doi.org/10.1016/j.cie.2020.107040. 
+Lin D, Jin B, Chang D. A PSO approach for the integrated maintenance model. Reliability Engineering & System Safety, 2020; 193: 106625, 11. 
+https://doi.org/10.1016/j.ress.2019.106625.
+Liu P, Wang G, Su P. Optimal maintenance strategies for warranty products with limited repair time and limited repair number. Reliability 12. 
+Engineering & System Safety, 2021; 210: 107554, https://doi.org/10.1016/j.ress.2021.107554.
+Nakagawa T. Random maintenance policies. Springer, London 2014, https://10.1007/978-1-4471-6575-0.13. 
+Park M, Jung KM, Park DH. Warranty cost analysis for second-hand products under a two-stage repair-or-full refund policy. Reliability 14. 
+Engineering & System Safety 2020; 193: 106596, https://doi.org/10.1016/j.ress.2019.106596.
+Qiao P, Shen J, Zhang F, Ma Y. Optimal warranty policy for repairable products with a three-dimensional renewable combination warranty. 15. 
+Computers & Industrial Engineering 2022; 168: 108056, https://doi.org/10.1016/j.cie.2022.108056.
+Qiu Q, Cui L. Gamma process based optimal mission abort policy. Reliability Engineering & System Safety, 2019; 190: 106496, 16. https://doi.
+org/10.1016/j.ress.2019.106496.
+Shang L, Si S, Sun S, Jin T. Optimal warranty design and post-warranty maintenance for products subject to stochastic degradation. IISE 17. 
+Transactions 2018; 50(10): 913–927, https://doi.org/10.1080/24725854.2018.1448490. 
+Shafiee	 M,	 Chukova	 S.	 Maintenance	 models	 in	 warranty:	A	 literature	 review.	 European	 Journal	 of	 Operational	 Research,	 2013;	 229(3):	18. 
+561–572, https://doi.org/10.1016/j.ejor.2013.01.017.
+Shang L, Si S, Cai Z. Optimal maintenance–replacement policy of products with competing failures after expiry of the warranty. Computers 19. 
+& Industrial Engineering 2016; 98: 68–77, https://doi.org/10.1016/j.cie.2016.05.012. 
+Sheu SH, Tsai HN, Sheu UY, Zhang ZG. Optimal replacement policies for a system based on a one-cycle criterion. Reliability Engineering 20. 
+& System Safety 2019; 191: 106527, https://doi.org/10.1016/j.ress.2019.106527. 
+sive missions at job cycles. A refund is used to guarantee the fairness 
+of users whose warranty expiration occurs before the warranty period 
+at the accomplishment of the limited number of job cycles. The war-
+ranty cost of2D-RRPRW with R was modeled and some special war-
+ranty models were obtained by altering warranty terms. By integrating 
+the first job cycle into the service span after the expiry of the warranty, 
+we investigated a users’ random periodic replacement last with pre-
+ventive maintenance (RPRL with PM) to further lengthen the service 
+span after the expiry of the warranty and further reduce the failure 
+frequency. Some classic cost rate models were provided by simplify-
+ing model. We used sensitivities analysis to explore the characteristics 
+of the proposed approaches. It was shown that although 2D-RRPRW 
+with R requires the producer provide a partial to the user, the producer 
+can make the warranty cost of 2D-RRPRW with R to be less than the 
+warranty cost of classic RPRW by limiting the warranty period; and 
+RPRL with PM is superior to RPRL.
+Acknowledgments
+This article is supported by the National Social Science Fund of 
+China (No. 2017BJY008), the Base and Basic Applied Study of 
+Guangdong Province (No. 2020A1515011360), the National Natural 
+Science Foundation of China (No. 72001026, 72161025, 71871181, 
+71961030), and Natural Science Basic Research Program of Shaanxi 
+(2021JM-419). 
+Fig. 5 Performance comparisons
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REliabilit y Vo l . 24, No. 3, 2022 553
+Shang L, Qiu Q, Wang X. Random periodic replacement models after the expiry of 2D-warranty. Computers & Industrial Engineering 2022; 21. 
+164: 107885, https://doi.org/10.1016/j.cie.2021.107885.
+Salem M B, Fouladirad M, Deloux E. Variance Gamma process as degradation model for prognosis and imperfect maintenance of centrifugal 22. 
+pumps. Reliability Engineering & System Safety, 2022; 223: 108417, https://doi.org/10.1016/j.ress.2022.108417.
+Syamsundar A, Naikan V N A, Wu S. Extended arithmetic reduction of age models for the failure process of a repairable system. Reliability 23. 
+Engineering & System Safety, 2021; 215: 107875, https://doi.org/10.1016/j.ress.2021.107875.
+Shang L, Wang H, Wu C, Cai Z. The post-warranty random maintenance policies for the product with random working cycles. Eksploatacja 24. 
+i Niezawodnosc – Maintenance and Reliability 2021; 23 (4): 726–735, http://doi.org/10.17531/ein.2021.4.15.
+Wang L, Pei Z, Zhu H, Liu B. Optimising extended warranty policies following the two-dimensional warranty with repair time threshold. 25. 
+Eksploatacja i Niezawodnosc - Maintenance and Reliability 2018; 20(4): 523–530, http://dx.doi.org/10.17531/ein.2018.4.3.
+Wang X, Xie W, Ye ZS, Tang L. Aggregate discounted warranty cost forecasting considering the failed-but-not-reported events. Reliability 26. 
+Engineering & System Safety, 2017; 168: 355-364, https://doi.org/10.1016/j.ress.2017.04.009.
+Wang X, Liu B, Zhao X. A performance-based warranty for products subject to competing hard and soft failures. International Journal of 27. 
+Production Economics 2021; 233: 107974, https://doi.org/10.1016/j.ijpe.2020.107974.
+Wang X, He K, He Z, Li L, Xie M. Cost analysis of a piece-wise renewing free replacement warranty policy. Computers & Industrial 28. 
+Engineering 2019; 135: 1047–1062, https://doi.org/10.1016/j.cie.2019.07.015.
+Xie W, Shen L, Zhong Y. Two-dimensional aggregate warranty demand forecasting under sales uncertainty. IISE Transactions 2017; 49(5): 29. 
+553–565, https://doi.org/10.1080/24725854.2016.1263769.
+Ye Z S, Xie M. Stochastic modelling and analysis of degradation for highly reliable products. Applied Stochastic Models in Business and 30. 
+Industry, 2015; 31(1): 16–32, https://doi.org/10.1002/asmb.2063.
+Ye Z S, Murthy D N P. Warranty menu design for a two-dimensional warranty. Reliability Engineering & System Safety 2016; 155: 21–29, 31. 
+https://doi.org/10.1016/j.ress.2016.05.013. 
+Yang L, Chen Y, Qiu Q, Wang J. Risk Control of Mission-Critical Systems: Abort Decision-Makings Integrating Health and Age Conditions. 32. 
+IEEE Transactions on Industrial Informatics, 2022; https://doi.org/ 10.1109/TII.2022.3141416.
+Zhao	X,	Nakagawa	T.	Optimization	problems	of	replacement	first	or	last	in	reliability	theory.	European	Journal	of	Operational	Research	33. 
+2012; 223(1): 141–149, https://doi.org/10.1016/j.ejor.2012.05.035.
+Zhao X, Nakagawa T, Zuo M. Optimal replacement last with continuous and discrete policies. IEEE Transactions on Reliability 2014; 63: 34. 
+868–880, http://dx.doi.org/10.1109/TR.2014.2337811.
+Zhao X, Sun J, Qiu Q, Chen K. Optimal inspection and mission abort policies for systems subject to degradation. European Journal of 35. 
+Operational Research, 2021; 292(2): 610–621, https://doi.org/10.1016/j.ejor.2020.11.015.
+Zhao X, Fan Y, Qiu Q, Chen K. Multi-criteria mission abort policy for systems subject to two-stage degradation process. European Journal 36. 
+of Operational Research, 2021; 295(1): 233–245, https://doi.org/10.1016/j.ejor.2021.02.043.

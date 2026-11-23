@@ -1,0 +1,798 @@
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+Journal of  the Operations Reseaicl!
+Society of  Japan
+ Vol. 39, Ne. 2, June 1996
+    GRAPHICALISTATISTICAL  APPROACH
+TO  REPAIR  LIMIT  REPLACEMENT  PROBLEM
+ Hirofumi Koshimae Tadashi Dohi Naoto  Kaio  Shunji Osaki
+Hiroshima University ffiroshi7na University ffiroshima Shudo  University ffiroshima University
+(Received June 13, 1994; Revised January 25, 1995)
+Abstract The total time on  test (TTT) concept  has proved to be a very  usefuI  tool in many  reliability
+applications.  The  graphical solution  procedure  based on  this concept  giyes geometrical interpretations to
+the solutions  of  reliability  problems  as  well  as  the optima}  policies from empirical  data direct}y. In fact, some
+kinds of reliability  models  such  as  age  replacement  and  burn-in problems  have been analyzed  by applying
+the TTT  coiicept.
+   In this paper,  we  discuss the optimaJ  repair  limit replacement  policy, which  determines the timillg
+to stop  repairing  a  unit  after  it fails. We  propose two  kinds of  selution  precedure$ for the repair  limit
+replacement  problem  with  atime  constraint,  where  one  is a straightforwardlalgebraic  procedure  and  another
+is a  geornetrical one  based on  the TTT  concept.  Aiso, we  develop a  cemputer  seftware  utilizing  the computer
+graphics to calculate  the optimal  repair  limit policy numerically,  and  refer  to its educational  effect.
+1. Introductien
+The total time on  test (TTT) concept  has proved to be a very  us ¢ ful tool in many  reliability
+applications.  One  of  these generat･ions is the TT'T transform, defined as  a certaill  function
+of  t,he survivor  function, and  another  is the  TTT  plot, defined as  an  empirical  counterpart.
+The seminal  work  by Barlow and  Campo  [2] discussed the  generalizations of  'TTT  concept
+for the characteristics  of lifet･ime dist･ribut･ion classes alld  the hypethesis test. On  the other
+hand, some  kinds of  reliabilit･y  models  have been analyzed  by using  this concept  [8]. The
+graphical solution  procedure  based on  the TTT  concept  gives the geometrical interpretations
+to the solutions  of  reliability  problems  as  well  as  t･he optimal  policies from  the empirical
+data directly. Every preblem t･hat can  be transformed  into a problem  of minimizing  a
+type of  objective  function, e.g.  prevent･ive maintenance  problems  with  perfect!imperfect
+replacernent  [4-61, t･he discounted age  replacement  problem  [7] and  the optimal  burn-in
+precedure [9], can  be analyzed  b}r the met･hod  based on  the TTT  concept.
+   Howeyer, a great number  of  reliability  problems, which  should  be unalyzed  by using  the'TTT
+ concept･,  have been remained,  ,One  of  them  is a repair  limit, replacement  problem.
+In the  typical age  replacement  problem  (see [1]), the unit  is maiutained  preventively at
+a  prespecified time  or  correct･ivel}r  at  failure, whichever  oc(:urs  first. and  then returned  to
+operation  after  maintenance.  On  the  ot･her  hand, in the repair  limit replacement  probl¢ rn,
+the failed unit  is repaired  ifthe repair  time is relatively  short,  and  t･he failed unit  is rcpiaced
+if the  repair  time is too long, Hastings [10] considered  the repair  limit. problem  for army
+vehicles'and  proposed t･hree rnethods  of  optimizing  the repair  limit･ policies by simulation,
+hill-ciimbing and  dynamic programming.  Nakagawa  and  Osaki [12, 13], Okumoto  a,nd  Osaki
+l14i alld  Kaio and  Osaki [111 extende(1  the Hastings' model  and  discussed different repair
+limit replacernent  problems. In this 1)aper, we  discuss the optimal  repair  limit policy for a,
+one-unit  s}rstem,  which  has a different model  framework from earlier  cont･ributions  [11-14] ,,
+by using  the T[I][I] concept.
+230
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+                        C]riiphicai Appa)ach  to Repair Limft P)obletn '  231
+   The  repair  limit problem  under  consideration  is the  fbllowing: "rhen the original  unit-
+in one-unit  system  fails, the repair  is started  immediately, If the repair'  is completed  up  to
+a  prespecified time, then t･he repaired  unit  is installed as  soon  as  the repair  is complet･ed.
+The unit  upon  repair  is assumed  to be as  good as  new.  On  the ot･her  hand, if the repair
+time is greater than the pTespecified time, the failed unit  is scrapped  and  a spare  is ordered
+immediatel}r. It･ is delive.red and  installed after  a  lead ti7ne, The  problem  is t-o obtain  the
+optimal  repair  time limit minimizing  the total expected  cost  per unit  t-ime in t･he steady-
+state.  It･ is noticed  t･hat･ the concept  of  estimated  repai･r  timeis never  included in the problem,
+but the  lead time  fbr t,he spare  is considered.  This  is a  most  different point from earlier
+models  [11-14],
+   The paper is erganized  as follows: First, the straig'htforward  and  algebraic  solution  pro-
+cedure  to obt,ain  the eptimal  policies is given under  a  different, assumption  from Nakagawa
+and  Osaki [13]. Then,  the necessary  and  suMciellt  condition  for the  existence  of  an  optimal
+repair  time limit is derived analyt･ically,  Second, we  int･erpret the repair  limit problem  graph-
+ically and  propose a  visual  solut･ion  procedure for the  problem, Then,  t-he TTT  transform
+plays a significant  role. It should  be noted  t･hat the necessary  and  suficient  condition  derived
+by the 
+'TTT
+ transform has a  dual relation  with  that by t･he algebraic  method.  Furthermore,
+we  consider  a nonparametric  solution  procedure  using  the TTT  plot when  t･he coniplete  data
+of  the repair  time is given. By applying  the TTT  plot, we  can  obtain  the optimal  repair
+limit policies from the actual  data without  specifying  the repair  time distribut･ion. Finally,
+numerical  examples  show  that the TTT  concept  is useful  for the repair  limit problem, We
+also develop a  visual  computer  software  to represent  the optimal  repair  limit policies, and
+report  the results  of  numerical  expeTiments.
+2. Replacement  Problem  for Repairable Unit
+Consider a single-unit  system,  where  each  spare  is provided only  following an  order  after  a
+Iead time L and  each  failed unit  is repairable,  The original  unit  begins operating  at  tirne
+O. The mean  failure time for each  unit  is mf(>  O). When  the unit  has failed, the repair  is
+started  immediately, If the  repair  is completed  up  to the  time  limit fbr repair  to E [O,oo),
+then the  unit  is installed at  that  time.  It is assumed  that  the  unit  once  repaired,  is presumed
+as  good as  new.  However, if the repair  time is greater than to, i:e. if the repa.ir  is not
+completed  up  to the t･ime to, t･hen the failed unit  is scrapped,  and  the spare  unit･  is ordered
+immediately and  delivered aft･er the lead time L(>  O). It is assumed  that the time required
+for replacement･  is negligible  (or included in the lead time L), From  this point of  view,  the
+time  to is called  the  repair  time  limit (see [10-14]).
+   The repair  time for each  unit  has an  arbitrary  distribution G(t) wit,h  density g(t) and
+finite mean  m,(>  O). The  dist･ribution G(･) is assumed  to haMe an  inverse functien, ･i.e.
+a-i(･), and  to be continuous  and  strictly  increasing. Under t･hese'model assumptions,  we
+define the  interval from  the  start- of  the  operation  to the  fo11owing st･art as  one  cycle  (see
+Fig. 1>, 
+'
+ 
+'
+   Next, we  consider  the cost  st･ructure,  [I]he cests  considered  in t,his paper are  t･he following;
+a cost･ per unit  time k.(> O) is incurred for repairing  failed unit,  a cost  per unit  t,ime kf(> e)
+is incurred for t･he shortage  and  a  cost  c(>  O) is incurred for each  order.  Ill particular, we
+assume:
+                                  krL<C･  (I)
+This assumpt,ion  implies that the ordering  cost  is larger than  the repair  cost  during the timc
+interval t c [O, L], ･i.e. until  the delivery of a new  unit.
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  Opeiations  Reseaich
+        232
+Society  ofJapan
+Il Koshin]fle, ZDohi,  N  Kaio &
+o t
+to
+S. Osaki
+IOStS  to
+o
+tlee.}tz･e..
+to L
+i to <t
+                           1 :Renewaipoint
+                     D  I Stateofoperation
+                             I Repair
+                     EZZIIZZIII 1 state ofordcr  with  iead timc
+                          ×  : Unit failure
+                         O  : Comp]etion ofrepair
+                   Figure 1: State Diaglam fbr One Cycle.
+  FoT an  infinite planning horizon, it is appTopriat,e  to adopt  the total expected  cost  per
+unit  time  in the steady-state.  The  following three costs  are  considered  fbr ene  cycle:
+(i) The expected  repair  cost･ is
+                
+k.{.t[`O tdG(t)+  
+.1[1
+'O
+ tedG(t)} =:  k. 
+.(l`e(i(t)dt,
+ (2)
+where  G(t) =:  1 -  G(t).
+(ii) The expected  shortage  cost  is
+          
+k･f{y[tO tdG(t) + yll
+oc(t,
+ + L)dG<t)} ==  kf{y:tO (i<t)dt + La(to)}. (3)
+(iii) The expected  ordering  cost  is cG(to).
+  The mean  time  of  one  cycle  is given by
+             E]T(to) =  y['O <7nf + t)d(](t) + .Ll]O (･mf t to + L)dG(t)
+                   
+=
+ mf+yCtO  G(t)dt+LG(to> <4)
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  ofJapan
+                        thalthicaJ Approach to Repmr Liniit Rrobfein 233
+Then, the total expected  cost  per unit  time  in the  steady-st･ate  is, from Ress [16, p.52],
+                           -  lim [t･he total cost  on  (o,tl]                     C(to)                           -t-oo  t
+                              Ec(te)                                                                         (5)                           -                            -  ET(te)'
+where  Ea(to) is the total expected  cost  for one  cycle  as follows:
+                E]. (t,) =  (k, +kf)  .1[`e ci(t)dt +(icfL+,)a(t,). (6)
+Then, the problem is to obtain  the optimal  repair  time limit to' minimizing  C(te) and  is
+fOrmulated as  fo11ews:
+                         to' :=  argminoft,(..C(to)･  (7)
+   Define t･he numerator  of the derivative of C(to) with  respect  to to divided by G<to), as
+q(to), i,e.
+          q(to) 
+=
+ {k. +  kf - (kfL+ c)r(te)}{mf  +  Y[`O (7(t)dt +  LGi(t,)}
+                   
+- (1 - Lr(t,)) {(k. + kf) y[tO a(t)dt +  (kfL + c)a<to)},  (8)
+where
+                             r(t)ig(t)IG(t)  (9)                                                    '
+is called  instantaneous repair  rate  and  is equivalent  to the hazard rate  of  the repair  time
+distributioll G(t). We  assume  that r(t)  is difierentiable without  loss of  generality. Two
+special  cases,  to =  O and  to .  oo,  are
+                                      kfL -t- c
+                               
+C(O)=.f+L  (10)
+                                                          '
+and
+                                    (k. +  kf)rn.                             C(oo)=  , (11)
+                                     mf  +  Mr
+respectively,
+   The fbllowing theorem  gives the existence  ef  the optimal  repair  time limit.
+Theerem  2.1: If g(oo) >  O or  Q(O) <  O, t-hen there exists  at least one  opt.irnal  repair  time
+limit t6 E [O,oo) or  to' E (O,Dol minimizing  the total expected  cost. peT unit, t,ime in the
+steady-state.  
+'
+Proof: By taking the iegarithm of  C(to), we  have
+                                      G(to)                       d
+                      ill/E ln C(to)= E. (t,)E. (t,)q(to)･ (12)
+Fora  syMciently  large to, the equatien  above  is
+                        ziitk in C(to) t E.(tG,:tE';(t,) q( oo),  (i3)
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+234 II Koshin]ac, Z  Dohi, N  f(kio & S. Osaki
+where
+     g( oo)  =  {k,, + kf L (kfL + c)r<oo)}(mf  + m.)  - (l - Lr(oo)){(k. + icf)mr}, (14)
+On the other  hand, for a suMciently  small  to, we  have
+                        EiitIlnc(to) fy E.(tG,gtX(t,)q(e), (ls)
+where
+          q(O) 
+=
+ {k. + kf - (kfL+ e)T(0)}(mf  -- L) - (1 - Lr(O))(kfL+  c), '(16)
+Thus, if g(oo) >  O or g<O) <  O, then there exists  at least one  optimal  repair  time limit t6
+(O ( t6 <  oc  or  O < to' S oo)  minimizing  the tet,al expected  cost  per unit  t･ime in the
+steady-state.  
+'D
+   Next, we  have the theorem  on  the uniqueness  of the optimal  repair  time limit by sup-
+posing the monotone  property ef instantaneQus repair  rate,
+Theorem  2.2; (1) Suppose that the repair  time distribution G(t) has a strictly  DHR
+(decreasing hazard rate).
+  (i) If q(oo) >  O and  q(O) <  O, then there  exists  a finite and  unique  optimal  repair  time
+     limit to' E (O, co)  satisfying  g(to) =  0 and  the corresponding  minimum  tot･al expected
+     cost  per unit  time in the steady-state  is
+                               7  k. +  kf -  (kfL+ c)r(ta)
+                          
+C(tg)- i-  Lr(to  ' (i7)
+ (ii) If q(O) 2 e, then the eptimal  repair  time limit is to' =  e, i.e. it is optimal  to order  a
+     spare  automatically,  and  the repair  is never  carried  out.  The corTesponding  minimum
+     total expected  cest  per unit  time is given by Eq, (10).
+ (iii) If g(oo) S O, then the optimal  repairtime  limit is to' -  oo,  i,e. the repair  is completed
+     and  no  spare  should  be ordered.  The  corresponding  minimum  total expected  cost  per
+     unit  time  is given by Eq, (11).
+<2) Suppose that the repair  time distribution has an  IHR  (increasing hazard rate).  Then, if
+(kfL + c)(mf  +  m.)  <  ((k. + kf)m.)<mf +  L), to* =  O, otherwise,  to' -, oo,
+Proof; Differentiating C(te) with  respect  to to and  setting  it equal  to zero  implies the
+equation  g(to) ==  O. Further, with  res.pect  to to, we  have
+              g'(to) 
+=
+ -?'(to>{(kfL+c)mf  -(k.L-c)  y[`O a(t)dt}, (18)
+where  the symbol  '  indicates the derivative. When  the repair  t･ime distribution has a strictly
+DHR,  i.e. r'(to)  <  O, the function g<to) is strictly  increasing from the assumption  k.L <  e.
+If g(O) < O and  q(oo) > O, t･hen there exists  an  optimal  repair  time lirnit to' E CO,oo)
+which  minimizes  the total expected  cost  per unit  time C(to), as  a  finite and  unique  solution
+t･o g(to) =  O, since  g(to) is strictly  increasing and  continuous.  Substituting the relation  of
+g(to) =:  O into C(to) in Eq. (5) yields Eq, (17). If q(O) -> O, then C(to) is strictly  increasing,
+and  the opt-imal  repair  time limit is to* =  O. If g(oo) S O, t-hen C(te) is strictly  decreasing,
+and  to' -  oo･
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+                        Gmphical Approach  to Repiiii' Limit lhobleni 235
+   On the other  hand, when  the repair  time distribution has an  IHR, i.e. r'(te)  2 O, then
+g(to) is decreasing. If C(O) <  C(oo), then to' =  O, otherwise  to' -, oo,  The proof is
+completed,  Z
+   In the following section,  we  develop the geometrical so}ution  procedure  applying  the
+TTT  transform for the repair  Iimit replacement  problem.
+3. 0ptimal  Repair  Limit Policy by  TTT  [[hransfbrm
+Following Barlow and  Campo  [2] and  Bergman  and  Klefsj6 [8], the scaled  tot,al time on  test
+(TTT) transform of  a  repair  time distribution is defined as
+               
+'
+ cb(p)Ei.  yCG-i(P)a(t)dt, ef{pfi,  (ig)
+where
+                          G-i(p)-inf{t:G(t)2pu},  (20)
+and  where  the mean  repair  t･ime m.  is given by
+                             
+7n.  ..  LG'i{i) a(t)dt, (2i)
+The following relationship  bet･ween the aging  and  the  scaled  TTT  transform  is well  known
+Csee Barlow l3], Osaki and  Li [15] and  Shaked and  Shant･hikumar [l7]):
+ (i) G(t) is IHR  (DHR) if and  only  if ¢(p) is concave  (convex) on  [O,1].
+ (ii) If G(t) is IFRA  (DFRA) then ip(p) is starshaped  on  [O, 1].
+ (iii) If G(t) is NBUE  (NWUE) if and  only  if di(p) ) (E{)p for p E [O, 1],
+ (iv) If C(t) is DMRL  (IMRL) if and  only  if (1 -  ip(p))/(1 -  p) is nonincreasing  (nonde-
+     creasing)  on  [0, 1].
+   From Eq. (5), we  have
+                           (k. + kf)mf + k.L -  c
+        
+C(ta)
+ 
+=
+ CkrL -  c)  ×  
+-
+.,  +L  e" illtiS(t)d, - L
++
+Glii
+t
+)
+e)
+ 
++
+ (kr +  kf)･  (22)
+Censequently, we  obtain  the following dual optimization  problem.
+Lemma  3.1: Finding t･he optimal  repair  time  limit to' minimizing  the total expected  cost
+per unit  time in the steady-state  C(to) is equivalent  t･o obtaining
+                  
+p:=argmmos,.i{-
+-
+(
+k
+,
+k"
+.
+LL
+ii.ill-IS,i
+Q
+)
+(P
+.
+)
+,} (23)
+The proof is omit･ted  for simplicity.
+   Next, we  interpret the conditions  of  optirnality  in Theorem  2.2 geomet･rically, 1)y using
+the relationship  bet･ween t･he aging  and  t･he T[I]T transform. First･, "ie  consider  t･he ease  where
+NII-Electionic  Libiaiy  
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+236  H. Koshimfie, TDahi. iY  Ktaio&S.  Osaki
+ G(t) is strictly  DHR,  Since diCp) becomes a  convex  function in p, the nonlinear  equation  <8)
+ is rewritten  by
+      q<to) 
+=
+ {k. + kf rr (kfL + c)r(te)}mf  + (k.L - c)  {Zi(to) + r<to)  Xl`O (i(t)dt}. (24)
+ Consider the graph  y =  di(p) in the plane (x,y) =  (p, ip(p)), where  p c [O, oo]  and  ip(p) E
+ [O, 1]. Define t,he point B =  (mB, yB), where
+                  (XBi YB) i  (1 + (krk.+Lkt)E'if' kkf,2  -+ .C' M.f,)  (25)
+ Since the slope  of  the equation  y ==  O(p) is
+                            d 1
+                              ¢(p) -                                                                          (26)                                    Mrr(G-i(p))                            dp
+ (see [2, p. 455]) and  the t･angent line for the point M  ==  (p*, ip<p')) is
+                                   1
+                       
+P<P) =:  m.r(G'i(p'))(PMP*)+ip(P')'  (27)
+ the  colldition  that  the  pQint B  is oyer  y =  so(p) is g(to*) =  e.
+    Moreover, define the intersection Z =  (xz, yz) of  the tangent line for the point O  =  (O, O)
+ in t･he equation  y :=  di(p) and  the straight  line
+                                   kfL+c  mf
+                               Y=  krL-c'm.'  (28)
+ Then, we  harre
+                   (xz,yz)=(:IS'l:mfr(o). :l,L 
+'-
+ f･ llii) (2g)
+ If the coordinate  x =  p of  the point B is greater than  that of  the peint Z, then  gCO) <  O,
+ otherwise,  g(O) }il O under  the assumption  k.L <  c. Similarly, the intersect･ion I =  (xi, yi) of
+ the  tangent line for the point U =  (1,1) and  the straight･  line
+                                     Ck. +  kf)mf                                                                          (30)                              p=1+                                       krL rm C
+ becomes
+             (Xi,Yi) ii (1 + Ck'k.tLkl),Mf,1+ (k'k,;Lkl),Mf'..,1(..)) (31)
+ If the coordinate  y of  the point B is greater than  that  of  the  point Z, then  q(oo) >  O,
+ otherwise,  q(oo) f O under  the assumption  k.L <  c. Thus, the graphical determination of
+ the optimal  repair  time limit in the st･rictly DHR  case  is illustrated in Fig. 2,
+                   (kfL+C)Mf-{krL-CtCkr+kf)Mf}MT<O･ (32)
+    Second, consider  the case  where  GCt) is IHR.  In this case,  di(p) becomes  a concave
+ funct,ion in p. Figure 3 shows  t･he schematic  illustration of  t･he optimal  repair  limit policy. If
+ the coordinate  x =::  p of  the point B is strictly  negative  and  if the  slQpe  of  the st,raight  line
+ BO  is strictly  smaller  thall t･hat･ of  the line BU, theu we  have From  Eqs. (10) and  (1!), the
+ inequality above  is equivalent  to the  condition  C<O) <  C(oo). Converseiy, if xB  <  O and  if
+ the slope  of  the straight  line BO  is not  small  than  that･ of  the line BU, t･hen C'(O) 2 (;'(oc･)
+ is satisfied.  Similarly, the condit･ion  xB  }i O also  implies CCO) >  C(cx)).
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaichSociety  ofJapan
+Chaphical Apaioachto Repaij' Limit Aobiem 237
+y
+U---mrm'l
+y- ¢ ip)-El 1
+1 l11
+1
+1 L1
+o1
+'
+P
+Z
+B
+I
+o(e, o)U(1,
+ l)B(1+
+z(
+(kr +  kf)mf
+I(1 +
+M(p'
+     ic.,L -  c
+kfL+c
+      mfr(O), krL-C
+  (kr +  kf)mf
+ kfL+c  mfl
+'krL-c
+ Mr7
+kfL + c.  uL4
+krL-C  TTir1
+   (k. -t- kf>mf1+ 1
+   k,L-c
+, ¢(p'))
+,
+k.L-cnL.?-(oo))
+FiguTe 2: Illustration of  Graphical Deeermination of  Optimal Repair T
+                (Strictly DHR  Case)
+imeLimit･.
+Fina1}y, we  summarize
+Theorem
+ (i) If xB
+the results  above  as  the foIIowing theorem.
+3.2: (1) Suppose that t･he scaled  TTT  transform di(p)
+>  xz  and  yB >  yi, then  there  exists  a  unique  solution
+               p' c max  (o,i F (k'k.+Lkl)2"f),i]
+which  rriinimizes  the cost  functien given by Eq. (22)
+given by the coordinate  x  =  p in the cont･act  point
+point B. The  corresponding  minimum  expected  cost･
+is st･rict,ly convex,
+(33)
+, Then,  the  optimal  solution  p' is
+Af(p,¢(p)) fbr y =  ip(p) from the
+is given by Eq. (17).
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+238 H/ Koshitnae, 7  Dohi, N  K?iio &  S. Osaki
+y
+'
+U--m---
+y- ¢ ip)/!I
+/ 1
+1 l/-
+1
+1 1
+!o p
+!
+B //l///-/
+B
+                   0(O,O)
+                   U(l, 1)
+                   
+,(,.  (kzikl)2nf, 2f. ,L -+g･ ttl)
+Figure 3: Illustration of  Graphical Determination of Optimal Repair Time Limit･.
+                           (IHR Case)
+ (ii) If mB  g xz,  then the optimal  repair  limit policy is p' =  O (to' =  O) and  the corre-
+     sponding  minimttm  expected  cost  is given by Eq. (10),
+ (iii) If yB ( yi, then the eptimal  repair  limit･ policy is p' =  1 (to* -  oo)  and  the corre-
+     
+sponding  minimum  expected  cost  is given by Eq. (11),(2) ,Suppose that th¢  scaled  TTT  transform is concave,  If the poillt B lies completel.v  above
+the 450 line, then  the  optimal  solution  is p' =  O (to' =  O), otherwise,  p' =  1 (to' -  /)c･).
+   From the discussion above,  we  can  obtain  the optimal  repair  limit policy graphically
+when  the repair  time distribution is strictly  DHR  or  IHR, If the repair  t･ime dist･ribution
+is neit･her  IHR  nor  DHR  and  if the algebraic  method  is adopted,  it will  be dificult t･o
+obtain  the optimal  rep&ir  time limit analyticall}r.  In general, the investigation of the aging
+property from the cmpirical  data is rather  troublesome  and  it is not  always  possible to
+determine whether  the  hypothesis of  being IHR  or  DHR  is reject･ed  or  not,  [I]hus, we  should
+also  consider  the case  where  t･he repair  tirne distributioll belongs to more  general classes
+<see Fig. 4). Then,  it is possible to analyze  such  a case  by using  t･he graphical solution
+procedure  proposed  here. In the fo11owing section,  we  propose a met･hod  te est･imate  t･he
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaichSociety  ofJapan
+(l,aphical Airptoachto Repait' Lirnit Jhableni 239
+optimal  pelicy from the empirical  data directly.
+y
+U----rm-//
+y==ipip) / 1
+1 l
+/ l
+1 1
+/ 1
+l 1
+o! M
+p
+B
+Figure 4
+          o(o, o)
+          U(1, 1)
+          
+B(1+(k'k.+Lk!),Mf;kkf.LL+-,C L'.'Zf.)
+          MCP'･ip(P*))
+: Illustration of Graphical Determination of Optimal Repair T
+               (S-shaped Case)
+imeLimit,
+4. 0ptimal  Repair  Limit Policy by  TTT  PIot
+In this section,  we  propose  a  statistical  method  using  the TTT  plotting for complete  samples
+to estimate  the optimal  repair  limit policy. Suppose that the optimal  repair  time limit has
+to be estimat･ed  from an  ordered  complete  sample  O =  xe  S mi  S x2  S ･･- S mn  of  rgpair
+times  from an  absolutely  continuous  repair  time distribut･ion G(･), which  is unknown.  The'TTT
+ stat･istics  based on  this sample  are  defined as
+                 i
+            ZiZ(n-j'+1)(x,-xj-i),  i== 1,2,-･-,n; Tb=O.  (34)
+                 jm-1
+In a  similar  fashien to Sectien 3, we  define the scaled  TTT  st･atistics  as
+                        
+u,EK,  t=  O, 1, 2,---,n (3s)
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+240 IL Koshimae, T, Dohi, N, Kaio &  S. Osaki
+ui
+U-----m-l/1
+l
+l 1
+1
+1
+- 1
+/1 l
+o/ M I
+.t-n
+B.
+o(e,o)U(1,
+ 1)
+B(1+
+M(t',
+(kT +  kf)7Ttf kfl) +c
+u")k.L-c
+ 
+'k.L-c
+Figure 5: Illustration of  Graphica
+by Using TTT  PIot.
+M.'r)
+I Determination  of  Optimal Repair Time  Limit･
+  By plott-ing the point (iln, ui)  (i =  O, 1, 2, ･ ･ ･ , n)  and  coimect･ing  them  b.v line segment･s,
+we  obtain  a curve  called  the scaZed  TTTpZot. Thus, we  can  express  these plotting posit･ions
+by using  the empirical  repair  tirne dist･ribution funct･ion G.(x)  defined as  (see [2])
+             
+G.(x)  =(E  i:i Z E<{-  X.<  X'+i'  Z=  O,  ii2  ,"-  1･  (36)
+Since
+                       i
+                       un ==  Gn(xi), i=  e, 1, 2,･･･,n, (37>
+                       7}
+and  from the discussion in Section 3, we  estimate  the optimal  repair  limit policy minimizing
+the t･otal expected  cost  per unit  time in the st･eady-st,ate.  To t･his end,  one  calculates  each
+coordinate  of  the points B, I and  Z, and  applies  the result･ in the  previous section  direct,ly.
+Finall}r, the estiniator  xi* for the optiinal  repair  tillie liiriit is o}}tained  froni the cooTdinate
+pi･ =  i*/n,, which  givcs the  minimurn  slope.
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+                        Gi'txphicai Ampioach to Repair J.imit Fb'obJem 241
+   We  summarize  the main  result  in this paper  as  follows.
+Theorem  4.1: Suppose that  an  ordered  sample  O =  xo  S xi  S x2  S ･･･ S xn  of  repair
+tirne from an  absolutely  cont･inuous  repair  time distribution G(･), which  is unknown,  is given.
+Then the optimal  repait  time Iimit xi#  minimizing  the total expect･ed  cost  per unit  time in
+the  steady-state  is given by
+                         
+i*=argmin,{i:X  
+--
+ 
+Y.B.
+ }･ (38)
+5. Numerical  Examples  and  Concluding  Remarks
+We  have develeped a  computer  software  to realize  the optimal  repair  limit policy. In the
+fo11owing discussion, numerical  examples  using  the TTT  t･ransform and  the TTT  plot are
+presented.
+TTT  tranoforTn
+Let us  consider  the case  where  the repair  time distribution is known. Note that･ one  must
+represent  to' -  oo  on  computer,  For cenvenience,  t･he upper  value  of  to is substituted  by
+to =  125 in the  system.  That  ls, to' =  125 roughly  means  to' --> oo,  In fact, we  can
+check  that the total expected  cost  for to' ==  125 is almost  equal  t･o t･hat for to' -  oo  and
+G(125) u 1, and  thus we  can  conclude  that to =  125 is a suficiently  large value  of  repair
+time limit.
+Example  1-1: The  parameters  are  mf  =  O.050, L : O.15, c  =  5.0, k. =  27 and  kf =  le.
+The Weibull distribution with  e =  2,O and  6 =  O,8 is assumed  as  the repair  time distribution,
+where
+                          G(t) =:  1-,.p{-(g>s}.  (3g)
+This case  obviously  implies that･ the instantaneous repair  rat･e is monotonically  decreasing.
+Figure 6 displays the output  in this example,  We  obtain  B  =:  (-O.947, -O.151)  and  find
+that the slope  for the point O from the point B is rninimiim,  i.e, p' =  O, Thus, we  estimate
+the eptimal  repair  time limit to' ==  e and  the minimum  expect,ed  cost  C(to') =  32.500.
+Example  1-2: The parameters  a･re mf  ==  O,5, L =  O.1, c =  4.0, k. ==  5.0 and  kf =  6.5. The
+gamrna distribution with  A =  1.0 and  a  ==  O,8 is assumed,  where
+                       G(t)=y[`Aexp(-As)(As)"'ids C40)
+This case  corresponds  to strictly  DHR  case.  From  Fig. 7, we  find that the slope  for
+M  ::: (0.693,O.654) from B =  <-O.643,-O.840) is minimum.  Hence, we  have p' =  O.693
+andi  the  optimal  repair  time  limit･ to' =  O.9210. Then t･he corresponding  expected  cost  is
+C(to*) =  7.041.
+Example  1-3; The  parameters  mf  ==  0.050, L =  1.5, c =  50, k, ==  30 and  kf =  10 and
+the XNeibull distribution with  e =L' 2,e and  6 =  O.8 are  assumed,  From Fig. 8, we  find t･hat,
+the slope  for U ='  (1, 1) from B =  (O.600, -O,287)  is mhLinium.  Hence, we  havc p' =  1 and
+to' -  oc.  This means  that it･ is opt･imal  that no  spare  should  order.  The corresponding
+expected  cost  is C(to') =  39,136.
+ TTT  piot
+Supposc that the complete  sample  data of  repair  t,ime is givcn, If we  can  est･imate  the repair
+time distribution frorn the data, then we  may  test the fit of  the  dist･ribution to the data,
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+242 H, Kbshimae, Z Dohi, N  Kkio &  S. asaki
+y･
+thela =  2,OOebeta = O,SOO
+mv  tt 2.266
+mf=  O,050L = O.150e
+ =: S.O{K)kr!27.eeo
+kf.10,OOO
+8X2finity'-)3.2iS6oo.2oi
+te  =     o.ooo
+-O.Y47
+B
+i
+il
+I
+1'Ol'''''.rs.."s.tt.tt.."tttttttttttttttttttt-O,151
+f
+'''
+1
+ll
+p
+/
+Figure 6: Example 1-1.
+lambda=  1.DOO
+a]pha=  g.SOO
+tnr=  O,791
+mf.  O,500
+L .  O.1ooc
+ !  4.000kr =  S.O(H)
+kf.  6,5{)OEi5')
+ 
+=-77'P7`sio
+C(inrEnity}! 7.046to=     D.921JO."3
+y
+O.65
+:
+:
+o/'./tt'tt.''tt''''.ttt''''
+          tt
+      ..,.......ty!,t
+        '"i'        t.        t,
+      /  i･      ttt
+         '
+   ""'' i'
+  ttt :  .tt t
+ /7  ･,
+tt ,t.t t . /t ,t-
+'.t
+1
+li'
+-tB/'
+ '
+ i----
+ -e.Mo
+Q.693p
+i'
+Figure 7: Example 1-2.
+and  the mean  time may  be estimat･ed  by using  probability paper, However, it seems  to be
+common  in practical management  t,o calculat･e  the  ordinary  arithmetic  meaii
+     n
+Mr  i  Z  Xi/n･
+    i=1
+(41)
+In most  cases,  it is essentially  dificult to specify  the repair  time dist･ribution. By  substituting
+the arithmetic  mean  for t･he mean  repair  time, we  nurnerically  determine t･he opt･imal  repair
+llrnit policy, Here, three kinds of  data sets, which  are  given in Table 1, are  used.
+Example  2-1: Dat･a Set 1 and  the parameters  mf  =  25.292, L･ ==  5.724, c :=  80.215,
+k. ==  3.5el and  kf =  1.151 are  assurned.  Figure 9 is a plot of  the data, Then, the slope
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+Chaphicaiaprv'oachto Repait' Lin]it fhablem 243
+).
+theta!2,OOO
+-tttt1
+beta=o,soo
+mr=2.266
+mf=o.oso
+L=1.5ooe±so.oooki-.30,OOG
+kf.10.DOO
+C(e}.41,935
+C(infinity)=39.136
+t-O-->illfil]ity 'f''
+ot･'t.t'.t.t
+-O.2S7tttttttttt.t....ttttttt
+       ''"'/f
+    /'''t      '
+    tt/
+   ttt
+tt't 
+tt
+ it 
+tt
+    ttt
+    .1
+   t//O.600,,'
+ 1-7･
+ 
+''
+  '
+ .,ty'B
+p
+1li/
+lli
+Figure8:  Example  1-3,
+[[lable 1:Sample  Data Sets,
+Data Set 1.
+ixi1 2 3 4 5 6 7 8 9 10
+1.207 1.311 3.648 9,69910.69  28,79 52.17 63,26 77,18 440.9
+Data  Set 2,
+ixiixi12345678910ll12131415
+524495163667071787980139  166 198 224
+161718192021222324252627282930
+225 230 243 26e 265 267291  329 341 343 343  356 358 363 367
+Data  Set  3.
+ixi1234 5 6 7 8 9 10111213
+21 113 382 517 120515851930  2210 2340 2870 3340 4010 4850
+fOr the point M  ==  (O.500,O,116) from B  =  (-O.955,-O.530) is minimum.  Then,  we  have
+ps' ==  O,5ee and  the optimal  repair  t･ime limit to' =  10,690.
+Example  2-2: Data Set 2 and  the parameters mf  =[  25.292, L =  5,748, c =:  80.788,
+k. =  3.010 and  kf =  1.499 are  assumed,  respectively,  From  Fig, 10, the slope  for O =  (O, O)
+from B =  (-O,796, -O.180)  is minimum,  Hence, we  have pe' =  O and  the opt･imal  r'epair
+t･ime limit to' is O.
+Example  2-3: Data Set 3 and  the pararneters mf  ==  46.816, L =:  15.993, c =  278.702,
+k. =  1.830 and  kf =  0.989 are  assumed,  respectively.  In Fig. 11, the slope  fbr U =  (1,1)
+from B =  (O.471, -O,950)  is minimum.  Hence, we  have pi3' =  1 and  to' -  oo,
+   It should  be noted  that one  can  easily  carry  out  the sensitivity  analyses  of  the optimal
+repair time Iimit- for model  paramet.ers, when  the solution  procedures  via  the TTT  transform
+and  the [I]'[['T plot are  adopted.  Especially, we  can  observe  ho"r t,he opt･imal  policies are
+influenced as  parameters  are  changed,  This may  be an  advant･age  of  using  the TTT  concept.
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+244 H/ Kbshimae, 71 Dcthi, AL Kaio &  S, Osaki
+Figure 9: Example 2-1.
+Figvre 10: Example 2-2,
+Since the seftware  developed is made  by using  the computer  graphics, we  can  visually  cat･ch
+the optimal  repair  limit policies. Since practitioners like such  visual  representations,  t･he
+software  will  be usefu1  in planning the maintenance  of  repairable  system,
+   This paper has addressed  the  problem  to determine optim&1  repair  t･ime limit minirnizing
+the total expected  cost  per unit  time in t･he steady-state.  In particular, we  have proposed  a
+graphical met･hod  applicable  to the repair  time limit replacement  problem. The procedure
+provided is nonparametric  and  can  estimate  the optimal  solution  from complete  sample  data
+directly, without  specifying  the repair  time dist･ribut･ion, We  have focused on  only  t･he repair
+limit replaccment  wit･h time constraillt. Similarly, the problem  with  cost  constraiiLt  can  be
+analyzed  by using  [[][r[I] concept,  which  will  be st･udicd  in forthcoming papers, Further, it is
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+GtHphical Alrproach to Repaii' Li'mit Ihobieni 245
+                           Figure 11: Example  2-3,
+noticed  that some  important preblems  have been rernained  in this field. For example,  the
+two-unit redundant  systems,  the Qne-unit  system  with  delay should  be aBalyzed  by applying
+the  TTT  concept.
+References
+ [1] Barlow, R. E. and  Proschan, F.: Mathe7natical Theory of  ReZiability, Wiley, 1965.
+ [2] Barlow, R. E. and  Campo,  R.: 
+"Total
+ Time  on  
+fllest
+ Processes and  Applicatiens to
+    Failure Data  Analysis", Reliability and  lhult [I}'ee Analysis (R. E. Barlow, J. Fussell
+    and  N, D, Singpurwalla, eds.), pp, 451-481, SIAM,  1975,
+ [3] Barlow, R, E,: 
+"Geometry
+ of  the Tota-l Time  on  Test [[liransform", Naval Research
+    Logistics quarterly, Vol. 26, pp, 393-402, 1979.
+ [4] Bergman, B,: 
+"On
+ Age Replacement and  the [I]otal Time  on  Test Concept", Scand･ina-
+    vian  Journal of  Statistics, Vol, 6, pp. 161-168, 1979.
+ [5] Bergman,  B.: 
+`[Onthe
+ Decision to Replace  a  Unit･ Early or  Late -- A  Graphical Solution
+    
+",
+ thcroelectronics and  Reliability, Vol. 20, pp, 895-896, 1980.
+ [61 Bergman,  B. and  Klefsjd, B,: 
+CLA
+ Graphical Method  Applicable to Age Replacement
+    Problems", IffEE [T}'ansaction on  Reliability, Vol. 31, pp. 478-481, 1982.
+ I7j Bergman, B. and  Klefaj6, B.: 
+`"TTT-transforms
+ and  Age Replacements with  Discounted
+    Costs", Naval  Research Logi･stics Quarterly, Vol, 30, pp. 631-639, 1983.
+ [8] Bergman, B. and  Klefsj6, B.: "The  Total Time  on  Test Concept and  It,s Use in Relia-
+    bi!it･y Theory", Operations Research, Vol. 32, pp. 596-607, 1984.
+ [9] Bergman, B, and  Klefsj6, B,: 
+CLBurn-in
+ Models and  TTT-t･ransforms", (?uality and
+    Reliabi,lity ffnginee'ring ibite'nnational, Vol. 1, pp. 125-136, 1985,
+[10] Hastings, N, A, J.: 
+[Cl]he
+ Repair Limit Replacement Method", Operational Research
+    quarterly, Vol. 2e, pp, 337-349, 1969.
+[11] Kaio, N. and  Osaki, S./ C:Optinium  Repair Limit Policies with  a  Time Constraint",
+    intemationat ,JournaZ  of  Systems Sc'ience, VOI, 13, pp, 1345-l350, 1982.
+[12] Nakagaxra, T. and  Osaki, S.i 
+`tThe
+ Optimiirn R ¢ pair Limit Replacement Policies':,
+    Operational Research Quarterly, Vbl, 25, pp. 311-317, 1974.
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaichSociety  of  Japan
+246 H, Koshin]ae, TDohi,  N. Kbio de S. Osaki
+[13]
+[14]
+[15]
+p6]
+[171
+Nakaga;wa, T. and  Osaki, S,: 
+LtOptimum
+ Ordering Policies with  Lead Time for An
+Operating Unit", R. A, L  R. O, Recherche  operationnelle/Operations  ReseaT=h, Vbl,
+12, pp. 383-393, 1978,
+Okumoto, K. and  Osaki, S.: `[Repair  Limit Replacement Policies with  Lead Time",
+Zeitschrijt fVr Operations Research, Vol. 20, pp, I33-142, 1976,
+Osaki, S. and  Li, Xin-Xiang.: 
+(CTTT
+ PIot and  Theoretical Distributions" (in Japallese), Communications of  Qpe7utions Research Society of  Japan, Vol, 31, pp. 307-311, 1986.
+Ross, S, M,: Applied Probabitity Models with  Optimi.2ati,on AppZications, Holden-Day,
+1970,Shaked,
+ )v{. and  Shanthikumar, J, G.: 
+CtReliability
+ and  Maintainability)', Stochastic
+Models, ffandboeks in Operations Research and  Management  Science Vbl, 2 (D. P. Heyman  and  M. J. Sobel, eds.),  pp, 653-713, North-Helland, 1990.
+Tadashi Dohi and  Shunji Osaki;
+Department  of Industrial and  Systems Engineering,
+Hiroshima University, 4-1 Kagamiyama  1 Chome,
+Higashi-Hiroshima 739, Japan.
+E-mail; dohi@gal,sys.hiroshima-u,ac.jp

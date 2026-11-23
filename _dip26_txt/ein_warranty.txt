@@ -1,0 +1,987 @@
+
+[[page 1]]
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .17, No. 3, 2015 365
+Article citation info:
+Cheng Zh, YAng ZY, ZhAo JM, WAng YB, Li ZW. Preventive maintenance strategy optimizing model under two-dimensional warranty 
+policy. eksploatacja i niezawodnosc – Maintenance and Reliability 2015; 17 (3): 365–373, http://dx.doi.org/10.17531/ein.2015.3.6.
+Zhong hua Cheng
+Zhi Yuan YAng
+Jian Min ZhAo
+Ya Bin WAng
+Zhi Wei Li
+Preventive maintenance strategy oPtimizing model under 
+two-dimensional warranty Policy
+model oPtymalizacji strategii konserwacji zaPobiegawczej 
+w warunkach dwuwymiarowej Polityki gwarancyjnej
+An effective warranty servicing strategy should be made considering both warranty cost and product availability. Based on the 
+two-dimensional free repair warranty, a strategy combining the imperfect preventive maintenance and minimal repair is proposed 
+where the imperfect preventive maintenances are implemented in a special subregion of the warranty and all other failures are 
+repaired minimally. By modeling the warranty cost and product availability, we derive the optimum warranty servicing strategy 
+and corresponding parameters to minimize the cost-effective of unit time. Finally, we provide a numerical illustration and a com-
+parison with some other strategies.
+Keywords: two-dimensional warranty, imperfect preventive maintenance, availability.
+Efektywna strategia obsługi gwarancyjnej powinna uwzględniać zarówno koszty gwarancji jak i dyspozycyjność produktu. W 
+oparciu o pojęcie dwuwymiarowej gwarancji bezpłatnej naprawy, zaproponowano strategię łączącą niepełną konserwację zapo-
+biegawczą z naprawą minimalną, gdzie działania obsługowe w ramach niepełnej konserwacji zapobiegawczej przeprowadza się 
+w ramach specjalnego podobszaru gwarancji, a wszelkie inne uszkodzenia naprawia się w ramach naprawy minimalnej. Modelu-
+jąc koszty naprawy oraz dyspozycyjność produktu, wyprowadzono optymalną strategię obsługi gwarancyjnej oraz odpowiadające 
+jej parametry w celu zminimalizowania kosztów na jednostkę czasu. Na koniec, proponowane rozwiązanie zilustrowano na przy-
+kładzie numerycznym oraz porównano z innymi strategiami.
+Słowa kluczowe: gwarancja dwuwymiarowa, niepełna konserwacja zapobiegawcza, dyspozycyjność.
+1. Introduction
+A warranty servicing strategy has significant impact on manu-
+facturer’s warranty cost and the product availability. As requirement 
+of consumers for the quality of products is increasing, product avail-
+ability will obviously affect consumer satisfaction and the reputation 
+of manufacturer and then the product sales, so reasonable warranty 
+strategy should be made considering both warranty cost and product 
+availability to meet the interests of both sides.
+Preventive maintenance could reduce the product failure rate so 
+that reduce the warranty cost and improve availability effectively. 
+With the updating of warranty policy, warranty cost model under 
+the preventive maintenance is developed in many studies. Chun [2] 
+introduced the periodic preventive maintenance in prior time when 
+he studied product warranty. This model is generalized by Jack and 
+Dagpunar [7], where the product can be repaired “as good as new” 
+after preventive maintenance, and preventive maintenance period is 
+variable. Yeh and Lo [12] extends the model with making the preven-
+tive maintenance degree reach some specific level to minimize the 
+warranty cost. The study [4] derives an optimal preventive warranty 
+strategy to minimize the product’s long term expected cost by balanc-
+ing the saving and added cost by preventive maintenance during war-
+ranty period, and obtains the optimal preventive maintenance period 
+and puts forward effective algorithm. The above studies introduce 
+preventive maintenance into the one-dimensional warranty policy and 
+are aimed at getting the lowest warranty cost without considering the 
+product availability. In addition, preventive maintenance is not always 
+effectively, as the new product just begins to operate, unreasonable 
+preventive maintenance often leads to a high warranty cost and low 
+availability since the failure rate is relatively low at the beginning of 
+exploitation.
+A summary of the different warranty policies is given in [1]. They 
+can be divided into one-dimensional and two-dimensional policies 
+broadly. For the study of optimizing models under two-dimensional 
+warranty, Iskandar and Murthy [6] proposed a repair-replacement 
+strategy with two subregions to optimize the warranty cost, where 
+minimal repair and replacement strategy is adopted in different su-
+bregions. In [5], the strategy in [6] is improved to a new repair-re-
+placement strategy with three subregions, where the first failure in the 
+middle subregion Ω2 will be handled by replacement, and the remain-
+ing failures are all repaired minimally. The strategy in [5] is improved 
+to an imperfect repair strategy by Yun and Kang [13], where the first 
+repair in the middle subregion is imperfect, and all remaining repairs 
+are minimal, and then, this strategy is generalized to an n-subregion 
+strategy by Varnosafaderani and Chukova [10, 11], where the first 
+repair in each intermediate subregions (Ω2-Ωn-1) are imperfect, and 
+other failures are repaired minimally. The above studies mentioned 
+are aimed at optimizing the warranty cost without considering the pre-
+ventive maintenance and product availability, but the availability, like 
+warranty cost, is also an important factor to influence the warranty 
+strategy because it is related to consumer satisfaction, especially for 
+some specific customer as army.
+[[page 2]]
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .17, No. 3, 2015366
+sc i E N c E  a N d  tE c h N o l o g y
+In view of the above analysis, this paper introduces the minimal- 
+imperfect preventive maintenance combination strategy considering 
+a product with a two-dimensional free repair warranty and presents 
+a mathematical optimization model to derive the optimal preventive 
+maintenance strategy in the warranty period with respect to the war-
+ranty cost and product availability.
+2. Warranty servicing strategy
+The product is sold with a two-dimensional free repair warranty. 
+As mentioned in earlier research, the two-dimensional warranty is 
+characterized by a region Ω in a two-dimensional plane and the repair 
+is free to consumer in this region [6].
+In this paper, the case where warranty region Ω is a rectangle with 
+the age limit K and usage limit L is studied, and the warranty expires 
+when either limit is exceeded. The minimal – imperfect preventive 
+maintenance combination strategy is introduced to deal with the fail-
+ure in warranty region. The warranty servicing strategy is implement-
+ed as follows.
+Firstly, as in [6], the warranty region Ω [(0, K)×(0, L)] is divided 
+into two disjoint subregions Ω1 and Ω2, as shown in Fig. 1. The shapes 
+of the subregions are governed by a rate parameter r (r≥0), such that
+ 1 12
+1
+,  LLrrKK==. 
+Then, given the subregions Ω1 and Ω2, the minimal - imperfect 
+preventive maintenance combination strategy is as follows:
+all repairs in Ω1 are minimal with cost Cf and duration (a) Tf.
+The first imperfect preventive maintenance is taken at the time (b) 
+point the warranty over the subregion Ω1 expires, and periodic 
+preventive maintenance (PM) is implemented in Ω2 with cost Cp, 
+duration Tp and period T, and the remaining failures are rectified 
+by minimal maintenance.
+The warranty policy introduced above is of certain practical sig-
+nificance. In the subregion Ω1, the failure rate is relatively low since 
+the product just begins to operate, so minimal repair is effective. PM 
+strategy is adopted in Ω2 since the failure rate rises with the increase 
+of the product’s age/usage, and the proper PM action can reduce the 
+shutdown loss and maintenance cost caused by failure. In practice, 
+having a combination of the minimal repair and PM often leads to 
+lower warranty servicing cost and higher product availability.
+3. Modeling product failure and imperfect mainte-
+nance
+Two different approaches have been used to model the product 
+failure process for the analysis of two-dimensional warranty policies. 
+They are one-dimensional and two-dimensional approaches, and the 
+detailed description has been introduced in related literature [8]. In 
+this study, the failure process under two dimensions is modeled using 
+the one-dimensional approach.
+In the one–dimensional approach, product usage is considered as 
+a function of the age of the product. Assuming that the relationship is 
+linear with a nonnegative coefficient R, such that 
+ () ()U t RT t= ,
+where U(t) and T(t) are the usage and age of the product at time t, 
+and the usage rate R is a nonnegative random variable with a known 
+distribution function G(r). When no product failure occurs before t or 
+all the failures are repaired, then T(t) = t. However, if the product is 
+not repairable and the failure product must be replaced by a new one, 
+then T(t) < t. For details, see [6].
+Product failures are modeled by a stochastic process with an in-
+tensity function dependent on age and usage of the product. Given a 
+usage rate r, the intensity function will have a single variable t since 
+the usage can be conveyed by age, such that
+ λϕtr Tt Ut()= () ()(), .
+With the simplest being a polynomial of order one [6], the follow-
+ing conditional intensity function form is given by:
+ λθθθ θtr rTtUt()=+ + ()+ ()01 23, (1)
+and a polynomial of order two is given in [5], as follows:
+ λθθθ θtr rTtTtU t()=+ + ()+ () ()01 2 2 3 , (2)
+with the parameters θi>0.
+To model the imperfect preventive maintenance effect on the 
+failure rate of the product, a modification of the “virtual age” model 
+proposed in [3] is introduced, where the effect of an imperfect main-
+tenance is expressed by a reduction of the system virtual age, that is, 
+after preventive maintenance, the failure rate decreases to a former 
+level as the age of the product reduces, and the corresponding former 
+age is the “virtual age” (or effective age).
+Given the minimal - imperfect preventive maintenance combina-
+tion strategy, we introduce the improvement factor α, and the virtual 
+age reduction depends on α. Based on the model in [3], the failure rate 
+of the product is defined by its virtual age (or effective age), and when 
+an imperfect maintenance is performed on the product, its virtual age 
+will be reduced. Assume that the j-th preventive maintenance inter-
+val is j∆ , and after the j-th imperfect preventive maintenance with 
+improvement factor αj, the virtual age reduces by ()jjTα ∆ . So the 
+virtual age after the j-th preventive maintenance can be given by:
+ vt Tt Tji
+i
+j
+i() () ()=−
+=
+∑α
+1
+∆ . (3)
+Since the product in this study is repairable and all failures are re-
+paired minimally, then T(t) = t, and the eq.(3) can be transformed to:
+ vt tji
+i
+j
+i()=−
+=
+∑α
+1
+∆ , (4)
+Fig. 1. Subregions of the warranty region
+[[page 3]]
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .17, No. 3, 2015 367
+sc i E N c E  a N d  tE c h N o l o g y
+so the conditional intensity function after the j-th preventive mainte-
+nance becomes:
+ λλ λα ααjj i
+i
+j
+i
+i
+tr vtrtXTrwith T()= ()=−−
+
+
+
+
+
+ = == ∑∑() 1 22
+1
+0   , (5)
+where λ()• r  is the initial intensity function of the process and X 
+is the time point that the warranty over the subregion Ω1 will expire 
+(see Fig.1). αi ∈[,]01  represents the degree of a repair (improvement 
+factors), which is the level of the applied effort to improve the state of 
+product. Based on the model, α = 0 means that the preventive mainte-
+nance is minimal and PM action has no significant effect on the state 
+of the product. Besides, α = 1 means that the repair is perfect and the 
+state of product is restored to ‘‘as good as new’’ state. The conditional 
+intensity function of the process after an imperfect maintenance is 
+between the conditional intensities after a minimal repair and a perfect 
+repair.
+4. Two-dimensional warranty cost and availability mod-
+els
+Let ECΩ ϖ() and EAΩ ϖ() denote the expected warranty cost 
+and availability over the warranty region Ω respectively, where ϖ  
+represents the parameters of the minimal – imperfect preventive 
+maintenance combination strategy and is given by ϖ =()KTr11,, . 
+We assume that 1 pKT K+<. Each whole preventive warranty cost is 
+denoted by pC , which includes the preventive warranty expected cost 
+and the loss of shutdown. Analogously, each whole failure warranty 
+cost is denoted by fC . Consider the following two cases: (a) 12rr≤ ; 
+(b) 12rr> . See Fig.2.
+4.1. Case (a): 12rr≤
+For this case, the warranty region is divided according 1r  and 2r  , 
+and considering the value of usage rate Rr= , the following three 
+subcases are discussed:
+ (a.1) 1rr≤ ; (a.2) 12r rr<≤ ; (a.3) 2rr< .
+We denote the expected warranty costs and availability, con-
+ditional on Rr= , for the three subcases by ECr 1 ϖ(), ECr 2 ϖ(), 
+ECr 3 ϖ() and EAr 1 ϖ(), EAr 2 ϖ(), EAr 3 ϖ(), respectively.
+4.1.1. Case (a.1): 1rr≤
+Cost model: In this case, the warranty over the subregions Ω1 and 
+Ω2 will expire at time points K1 and K, respectively (see Fig.2). Then 
+the expected warranty cost can be given as follows:
+ EC CENKrnCECT EC KKr fpfi
+i
+n
+fn1 1
+1
+1
+1ϖ()= ()++ ()+ ()
+=
+−
+∑ , ,   (6)
+where EN Kr1() represents failure quantities in the subregion Ω1. n 
+is the number of imperfect preventive maintenance in the subregion 
+Ω2. ( )fiEC T  is the expected cost of minimal repairs in the i-th peri-
+odic preventive maintenance interval. EC KKfn 1,() is the expected 
+cost of minimal repairs between KT nTTpp1 1++−()+() and K.
+Since failures over [0, K1] are repaired minimally and no preven-
+tive maintenance is implemented, the expected number of minimal 
+repairs in the subregion Ω1 is equal to:
+ EN Kr tr dt
+K
+1 0
+1
+()= ()∫ λ . (7)
+In general, the duration of a repair is minute relative to preventive 
+maintenance period, so we can neglect the influence and use the eq.(7) 
+to derive approximately expected the number of failure [9].
+Periodic imperfect preventive maintenance will be implemented 
+in the subregion Ω2. Given the period of preventive maintenance T 
+and maintenance duration Tp, n is expressed by:
+ nnKKrint KK TTTpp= ()=−−()+()+ 111, . (8)
+The warranty over the subregion Ω1 will expire at time K1, so the 
+the conditional intensity function after the j-th imperfect maintenance 
+(the j-th preventive maintenance interval) becomes:
+ λλααji
+i
+j
+tr tK Tr()=− −
+
+
+
+
+
+= ∑11 2 . (9)
+Then, in the i-th periodic preventive maintenance interval, fail-
+ures are rectified by minimal repairs. Then, the numbers of minimal 
+repairs is given by:
+ EN itrdtri
+KiTiT
+KiTT
+p
+p
+()= ()
++− +
+++
+∫ λ
+1
+1
+1()
+()
+. (10)
+So the total expected cost of the minimal repairs in the n preven-
+tive maintenance intervals can be given as follows:
+Fig. 2. analysis for case (a) and (b)
+(b) r1 > r2
+(a) r1 ≤r 2
+
+[[page 4]]
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .17, No. 3, 2015368
+sc i E N c E  a N d  tE c h N o l o g y
+ EC TENiCfi
+i
+n
+r
+i
+n
+f()= ()
+=
+−
+=
+−
+∑∑
+1
+1
+1
+1
+. (11)
+In the same way, the failure number of the product between 
+KT nTTpp1 1++−()+() and K is expressed as:
+ EN ntrdtrn
+KnTnT
+K
+p
+()= ()
++− +
+∫ λ
+1 1()
+. (12)
+So the expected warranty cost of the product of the time between 
+KT nTTpp1 1++−()+() to K is given as:
+ EC KK EN nCfn rf1,()= () . (13)
+Then, the expected warranty cost can be obtained by inserting 
+eq.(7)-(13) into (6):
+EC Ctrdtint KKTTTC
+tr
+r f
+K
+ppp
+i
+K
+1
+0 1
+1
+1
+1ϖλ
+λ
+()= ()+−−()+()+ 
++ ()
+∫
++(()
+()
+()iTiT
+KiTT
+f
+i
+n
+n
+KnTnT
+K
+p
+p
+p
+dtCtrdtC
+−+
+++
+=
+−
++− +
+∫∑ ∫+ ()
+11
+1
+1
+1
+1
+λ ff .  (14)
+Availability model: In this case, since the warranty will cease at 
+time K, expected availability in the warranty region can be expressed 
+as follows:
+ EA KED Kr r1 1 ϖ ϖ()= − (), (15)
+where EDr 1 ϖ() is the expected shutdown time in the warranty region 
+and has the similar expression with ECr 1 ϖ() by Tp and Tf replace Cp 
+and Cf . So EDr 1 ϖ() is given by:
+ ED TENKrnTETT ET KKr fpfi
+i
+n
+fn1 1
+1
+1
+1ϖ()= ()++ ()+ ()
+=
+−
+∑ , .   (16)
+Similarly, ( )fiET T  is the expected shutdown time of minimal 
+repairs in the i-th periodic preventive maintenance interval, and 
+( )1,fnET K K  is the expected shutdown time of minimal repairs be-
+tween ( )1 ( 1)ppK T n TT++− +  and K. The expressions as follows:
+ ET TENiTfi
+i
+n
+r
+i
+n
+f()= ()
+=
+−
+=
+−
+∑∑
+1
+1
+1
+1
+, (17)
+ ET KK EN nTfn rf1,()= () . (18)
+The remaining parameters are the same as in eq.(6). Then, the 
+function of expected availability can be given as follows:
+EA K
+Ttrdtint KKTTTT
+tr
+r
+f
+K
+ppp
+i
+1
+0 1
+1 1
+1
+1
+ϖ
+λ
+λ
+()=−
+()+−−()+()+ 
++ (
+∫
+)) + ()
++− +
+++
+=
+−
++− +
+∫∑
+KiTiT
+KiTT
+f
+i
+n
+n
+KnTnT
+K
+p
+p
+p
+dtTtr
+1
+1
+111
+1
+1()
+()
+()
+λ∫∫
+
+
+
+
+
+
+
+
+
+
+
+dtTf
+. 
+ (19)
+To facilitate subsequent calculation, the expected cost in the war-
+ranty region can be viewed as a function of the decision variables (K1, 
+T) and the warranty time limit K, denote:
+ EC KKTr
+def1 1ϖφ()= (),, . (20)
+Similarly, the expected availability in warranty region is denoted 
+by:
+ EA KKTr
+def1 1ϖξ()= (),, . (21)
+4.1.2. Case (a.2): 12r rr<≤
+In this case, due to exceeding the usage limit L1, the warranty 
+over the subregions Ω1 and Ω2 will expire at time points τ1  and K 
+respectively (see Fig.2). With τ11= Lr. Then the expected warranty 
+cost for this case becomes:
+ 
+EC KT
+CENrnC EC TECK
+r
+fpfi
+i
+n
+fn
+2 1
+1
+1
+1
+1
+ϖφτ
+ττ
+()= ()
+= ()++ ()+ ()
+=
+−
+∑
+,,
+, ,  (22)
+where the time limit K1 in eq.(6) is replaced by τ1 .
+Similarly, the expected availability in the warranty region be-
+comes:
+EA KT
+KTEN rnTETT ET K
+r
+fpfi
+i
+n
+fn
+2 1
+1
+1
+1
+1
+ϖξτ
+ττ
+()= ()
+=− ()++ ()+ (
+=
+−
+∑
+,,
+, )) 
+
+
+
+
+
+
+
+
+
+
+
+K . (23)
+4.1.3. Case (a.3): 2rr<
+In this case, due to exceeding the usage limit L1 and L, the war-
+ranty over the subregions Ω1 and Ω2 will expire at time points τ1  and 
+τ , respectively (see Fig.2). With:
+ τ1 1 = L r , τ = L r , 
+then the expected warranty cost for this case becomes:
+ 
+EC T
+CENrnC EC TEC
+r
+fpfi
+i
+n
+fn
+3 1
+1
+1
+1
+1
+ϖφττ
+τττ
+()= ()
+= ()++ ()+ ()
+=
+−
+∑
+,,
+, ,   (24)
+where the time limit K1 and K in eq.(6) is replaced by τ1  and τ , 
+respectively.
+Similarly, the expected availability in the warranty region be-
+comes:
+[[page 5]]
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .17, No. 3, 2015 369
+sc i E N c E  a N d  tE c h N o l o g y
+EA T
+TENrnT ET TET
+r
+fpfi
+i
+n
+fn
+3 1
+1
+1
+1
+1
+ϖξττ
+ττ ττ
+()= ()
+=− ()++ ()+ (
+=
+−
+∑
+,,
+, )) 
+
+
+
+
+
+
+
+
+
+
+
+τ . (25)
+In the end, we remove the conditioning on Rr= , where R has 
+distribution function G(r), to get the expected warranty cost for case 
+(a), given by:
+EC EC dG rECdGr EC dG rr
+r
+rr
+r
+rr
+Ω ϖϖ ϖϖ()= () ()+ () ()+ () ()∫∫∫ ∞1 0 231 1 2 2 . 
+(26)
+Similarly, the expected availability in the warranty region is given 
+by:
+EA EA dG rEAdGr EA dG rr
+r
+rr
+r
+rr
+Ω ϖϖ ϖϖ()= () ()+ () ()+ () ()∫∫∫ ∞1 0 231 1 2 2 . 
+(27)
+4.2. Case1 (b): 12rr>
+For this case, similar to case (a), the following three subcases are 
+considered:
+ (b.1) 2rr≤ ; (b.2) 21r rr<≤ ; (b.3) 1rr< .
+We use the same denotation setting with case (a) to model the 
+expected warranty cost and availability under case (b).
+Using eq.(17), the expected warranty cost under the three sub-
+cases are given by:
+ EC KKTr 1 1ϖφ()= (),, ,
+ EC KTr 2 1ϖφ τ()= (),, ,
+ EC Tr 3 1ϖφττ()= (),, .
+The expected availability under the three subcases are given by:
+ EA KKTr 1 1ϖξ()= (),, ,
+ EA KTr 2 1ϖξ τ()= (),, ,
+ EA Tr 3 1ϖξττ()= (),, .
+Note that subcases (1) and (3) for case (b) are the same as that for 
+case (a), and the only difference is for subcase (2) since the warranty 
+ceases at distinct time. See Fig. (2).
+On removing the conditioning, we have the expected warranty 
+cost given by:
+EC EC dG rECdGr EC dG rr
+r
+rr
+r
+rr
+Ω ϖϖ ϖϖ()= () ()+ () ()+ () ()∫∫∫ ∞1 0 232 2 1 1 , 
+(28)
+accordingly, the expected availability is given by:
+EA EA dG rEAdGr EA dG rr
+r
+rr
+r
+rr
+Ω ϖϖ ϖϖ()= () ()+ () ()+ () ()∫∫∫ ∞1 0 232 2 1 1 .      
+(29)
+5. Deriving optimum warranty servicing strategy
+Scientific warranty servicing strategy demands to control war-
+ranty cost and guarantee availability simultaneously. To derive the 
+optimum warranty servicing strategy, the optimizing model is given 
+as follows:
+ 
+minEC
+st EA A
+KK TKK
+   
+   
+ 
+Ω
+Ω
+()
+.. ()
+;
+ϖ
+ϖ ≥
+<< <<−
+
+
+
+
+
+
+0
+1100
+ (30)
+where the decision variable ϖ = (,,)KTr11. The optimizing model is 
+to minimize the warranty cost on the premise of ensuring the expect-
+ed availability greater than 0A , which can derive optimum warranty 
+servicing strategy for both manufacturer and consumer. As the model 
+is difficult to calculate, a grid search in specific regions is performed 
+to obtain the optimum results.
+In general, when the 11( ,)Kr  is fixed, the expected warranty cost 
+ECΩ ()ϖ  will increase first and then decrease with the growth of the preventive maintenance interval T, and the expected availability 
+EAΩ ()ϖ ∗  has the opposite trend. Based on the optimizing model pro- posed above, the following three cases are considered (see Fig.3):
+ case (1): ucTT< , then uTT∗ = ,
+ case (2): lcuTTT≤≤, then cTT∗ = ,
+ case (3): clTT< , then lTT∗ = ,
+where lT  and uT  represent the lower and upper limits of PM interval 
+T under EA AΩ ()ϖ ≥ 0 , respectively, and cT is the PM interval to min-
+imize the expected warranty cost without constrains, T∗ is the optimal 
+solution of the optimizing model under fixed 11( ,)Kr . Similarly, the 
+values of T∗  can be obtained under different 11( ,)Kr , and then, the 
+optimum warranty servicing strategy ϖ∗∗∗∗= (,,)KTr11 and the cor-
+responding ECΩ ()ϖ∗  and EAΩ ()ϖ ∗  can be derived by comparative 
+analysis. The analytic procedure is analogous for other curve forms.
+To obtain more integrated information about the optimum warran-
+ty servicing strategy, unit cost-effective of the product is introduced 
+as follows:
+ EV EC EEAΩΩ Ω() () ()ϖϖτϖ=  , (31)
+where Eτ  is the expected warranty period, and it is given by:
+ EKGr LrdG rrτ =+
+∞
+∫() ()2 2 . (32)
+The unit cost-effective of the product with optimum warranty 
+servicing strategy can be derived using eq.(31), combining with the 
+optimizing solutions, which can provide scientific information for 
+both manufacturer and consumer.
+[[page 6]]
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .17, No. 3, 2015370
+sc i E N c E  a N d  tE c h N o l o g y
+6. An example
+Considering an automobile component sold with a free-repair 
+warranty policy, we will pay attention to the warranty cost from the 
+manufacturer perspective and the availability from the consumer per-
+spective. Assume K=3 (3 years) and L=3 (30000 km), so r2=L/K=1. 
+And the acceptable lower limit of availability is 0 0.92A = .
+For the convenience of calculation, let improvement factors 
+ααi = , that is each PM actions corresponding the same improvement 
+factor. Commonly, the PMs duration Tp is less than the minimal repair 
+duration Tf, and Cp≤Cf. The Cf and Tf are assumed to be constant with 
+the value 1 and 0.02 respectively; then, Cp and Tp are assumed to be 
+the function of improvement factor α , as follows:
+ CCCp =+0 αβ, and TTpf==αα002. .
+The expression shows the cost of preventive maintenance will in-
+crease exponentially with the growth of improvement factor. In this 
+instance, let 0 0.1C = , 1C =  and β = 3 .
+In this example, as in [5], we consider the form for the initial con-
+ditional failure intensity given by eq.(2), as follows:
+ 
+λθθθ θtr rTtUt
+rrt
+()=+ + ()+ ()
+=+ ++()
+01 23
+201 02 07 07.. .. .
+The distribution of usage rate can be estimated using the real data. 
+In this study, the following two distributions are considered:
+ Normal:   R ~ N [1, 0.46],
+ Excessive:  R ~ N [2, 0.86].
+To see the impact of different usage rate distribution forms on the 
+warranty servicing strategy, a uniform distribution is given to make a 
+comparison:
+ R ~ uniform [0.2, 1.8] with E(R) =1, D(R) =0.46.
+For different values of α  and for each of the three usage catego-
+ries, a grid search is performed to find the optimal decision variables 
+denoted by ϖ∗∗∗∗=()KTr11,,  using the optimizing model in sec-
+tion 5. The variable K1 and T are increasing in steps of 0.1 over the 
+interval [0, 3] and [0.1, 3], respectively. For convenience, the value of 
+rate parameter r1 is increasing in steps of 0.2 starting 0.2, and the re-
+maining cases can be calculation in the same way.
+Using the mathematical model and optimization procedure pro-
+posed above, the optimal values of ECΩ ()ϖ  and EAΩ ()ϖ ∗ can be 
+obtained for the three usage categories. Fig.4 shows the values of ex-
+pected warranty cost and availability with normal usage, as r1 = 1 and
+α = 06. .
+Let 1 0.6K = , the warranty cost and availability trends can 
+be derived by dimension reduction analysis to Fig.4, as shown in 
+Fig.5. Obviously, it matches case (2) proposed in section 5, so 
+cTT∗ =  .
+Similarly, we can derive the corresponding optimal results with 
+different r1 and α  under different usage categories, and the summary 
+of these results is shown in Table 1 – Table 4.
+Firstly, the two usage categories under normal distribution are 
+considered and the results are presented in Table 1–Table 3. 
+Fig. 3. Optimal T under different cases
+Fig. 4. Grid patterns of cost and availability functions
+
+[[page 7]]
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .17, No. 3, 2015 371
+sc i E N c E  a N d  tE c h N o l o g y
+In Table 1, the minimum cost-effective of unit time EV Ω ϖ∗ () 
+under different improvement factors is given in column 4, and the cor-
+respondingly optimal expected warranty cost ECΩ ()ϖ∗  and availa-
+bility EAΩ ()ϖ ∗  are given in columns 2–3. Columns 5–6 present the 
+minimum warranty cost EC0,T and maximum availability EA0,T when 
+K1=0, that is, the periodic PMs are implemented during the whole 
+warranty period. The last two columns present the minimum warranty 
+cost ECMR and maximum availability EAMR without PM actions in 
+warranty region. The notations in Table 2 are the same as in Table 1.
+Optimal warranty servicing strategy and corresponding cost and 
+availability in each row are printed in boldface in Table 1–Table 3. 
+The following results can be obtained by analyzing these tables:
+For each of the two usage categories, The warranty cost ECΩ ϖ∗ ()
+is always less than EC0,T and ECMR, and the availability EAΩ ϖ∗ ()al-
+ways higher than EA0,T  and EAMR  under different α  values, which 
+leads to a relatively lower unit efficient cost under the warranty serv-
+icing strategy introduced in section 2. For example, for the excessive 
+usage category, when α = 07. , the warranty cost under the combina-
+tion strategy can be reduced by 55.1% and 7.4% compared adopting 
+the minimal repair or periodic preventive maintenance alone, respec-
+tively, and the corresponding availability has an increase of 3.4% and 
+0.2%.
+The values of unit efficient cost are decreasing firstly and then 
+increasing with the rise of improvement factor. The optimal value is 
+obtained when α = 05.  for normal usage and α = 07.  for excessive 
+usage, which indicates that it is worthy to perform a better degree of 
+imperfect preventive maintenance with high usage rates.
+Fig. 5. The warranty cost and availability trends
+Table 1 Optimization results for the normal usage rate under different α
+α ECΩ ϖ∗ ()EAΩ ϖ∗ ()EV Ω ϖ∗ () EC0,T EA0,T ECMR EAMR
+0.1 6.7394 0.9383 2.9172 6.7573 0.9364
+8.0017 0.9347
+0.2 5.6044 0.9406 2.4200 5.6375 0.9368
+0.3 4.3174 0.9487 1.8483 4.3352 0.9441
+0.4 3.8647 0.9549 1.6438 3.9238 0.9506
+0.5 3.5530 0.9604 1.5025 3.6726 0.9594
+0.6 3.5844 0.9606 1.5155 3.6285 0.9598
+0.7 3.5852 0.9608 1.5155 3.6815 0.9602
+0.8 3.6323 0.9611 1.5350 3.7327 0.9606
+0.9 3.7662 0.9612 1.5914 3.8216 0.9609
+Table 2. Optimization results for the excessive usage rate under different α
+α ( )EC ϖΩ∗ ( )EA ϖΩ∗ ( )EV ϖΩ∗ EC0,T EA0,T ECMR EAMR
+0.1 2.6446 0.9302 2.2312 2.6589 0.9298
+3.7121 0.9286
+0.2 2.2884 0.9310 1.9346 2.3106 0.9309
+0.3 2.0496 0.9397 1.7072 2.0725 0.9395
+0.4 1.8773 0.9472 1.5569 1.9204 0.9470
+0.5 1.7712 0.9535 1.4610 1.8181 0.9533
+0.6 1.6850 0.9586 1.3846 1.8097 0.9585
+0.7 1.6647 0.9603 1.3691 1.7971 0.9587
+0.8 1.7078 0.9601 1.4006 1.8539 0.9587
+0.9 1.8120 0.9596 1.4868 1.9854 0.9584
+[[page 8]]
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .17, No. 3, 2015372
+sc i E N c E  a N d  tE c h N o l o g y
+The optimal parameters related to warranty servicing strategy are 
+given in Table 3, which include the usage limit and age limit of Ω1 and 
+preventive maintenance period T. It can be seen from the table that:
+In most cases, the r1 * under normal usage is greater than under 
+excessive usage, that is to say, the shape of the minimal repair region 
+Ω1 is relatively flat and with a lower usage limit under excessive us-
+age for a fixedα . It can be also noticed that the usage limit of region 
+Ω1 has a growth trend when the improvement factors increase. The 
+optimal warranty servicing strategies are printed in boldface.
+Table 4 shows the optimal warranty servicing strategy and the 
+value of unit efficient cost under normal distribution (R ~ N [1, 0.46]) 
+and uniform distribution (R ~ uniform [0.2, 1.8]). As presented in this 
+table, although the expectation and variation of the two distributions 
+are identical, there are obvious differences in the optimal results, so 
+it is important to confirm reasonable distribution according to reality 
+before making warranty servicing strategy. 
+Table 3. Optimal warranty servicing strategy for the two usage categories  under normal distribution
+Usage category α K1 * L1 * T* r1 * ( )EV ϖΩ∗
+normal
+0.1 0.7 0.70 0.2 1.0 2.9172
+0.2 0.8 0.80 0.2 1.0 2.4200
+0.3 0.7 0.70 0.3 1.0 1.8483
+0.4 0.9 0.90 0.5 1.0 1.6438
+0.5 1.0 1.00 0.5 1.0 1.5025
+0.6 0.9 0.90 0.7 1.0 1.5155
+0.7 1.2 1.20 0.6 1.0 1.5155
+0.8 1.1 1.10 0.7 1.0 1.5350
+0.9 1.3 1.30 0.7 1.0 1.5914
+excessive
+0.1 1.5 0.60 0.3 0.4 2.2312
+0.2 1.6 0.64 0.2 0.4 1.9346
+0.3 1.1 0.66 0.3 0.6 1.7072
+0.4 1.3 0.78 0.4 0.6 1.5569
+0.5 1.6 0.96 0.5 0.6 1.4610
+0.6 1.5 0.90 0.6 0.6 1.3846
+0.7 1.2 0.96 0.6 0.8 1.3691
+0.8 0.8 0.80 0.6 1.0 1.4006
+0.9 1.2 1.20 0.6 1.0 1.4868
+Table 4. Optimal warranty servicing strategy for different usage rate distributions
+Distribution forms α K1 * T* r1 * ( )EV ϖΩ∗
+normal distribution
+0.1 0.7 0.2 1.0 2.9172
+0.2 0.8 0.2 1.0 2.4200
+0.3 0.7 0.3 1.0 1.8483
+0.4 0.9 0.5 1.0 1.6438
+0.5 1.0 0.5 1.0 1.5025
+0.6 0.9 0.7 1.0 1.5155
+0.7 1.2 0.6 1.0 1.5155
+0.8 1.1 0.7 1.0 1.5350
+0.9 1.3 0.7 1.0 1.5914
+Uniform distribution
+0.1 0.7 0.2 1.0 2.9802
+0.2 0.7 0.2 1.0 2.4739
+0.3 0.8 0.3 1.0 2.0782
+0.4 0.7 0.4 1.0 1.7656
+0.5 0.7 0.5 1.0 1.5429
+0.6 0.8 0.6 1.0 1.3930
+0.7 0.9 0.7 1.0 1.2689
+0.8 0.9 0.7 1.0 1.2848
+0.9 1.0 1.0 1.0 1.3054
+[[page 9]]
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .17, No. 3, 2015 373
+sc i E N c E  a N d  tE c h N o l o g y
+Table 1 – Table 4 include the balance of the needs and interests 
+between the manufacture and the consumer under different imperfect 
+PM improvement factor, the corresponding calculation results as war-
+ranty cost, the availability and unit efficient cost, which can provide 
+scientific reference for selecting the reasonable warranty servicing 
+strategy to balance the benefit of manufacturer and consumer. 
+In addition, for the convenience of implement or maintenance 
+capacity constraints reasons, the PM’s period T or improvement fac-
+tor α  may be a limited value in reality, then we can also derive the 
+optimum warranty servicing strategy using the mathematical model 
+proposed in this paper (as shown in Fig. 4).
+7. conclusions
+In this paper, a strategy combining the imperfect preventive main-
+tenance and minimal repair is proposed under the free repair war-
+ranty policy, then warranty cost and availability models are built, and 
+optimum warranty servicing strategies are identified with respect to 
+both warranty cost and product availability. We provide a numerical 
+illustration to show the optimization method and accurate calculation 
+results under different strategies and make a comparison, which can 
+offer a reference to select the optimum warranty servicing strategy 
+benefiting both manufacturer and consumer.
+The result of this paper can be extended in several ways. One 
+possible extension is to consider the preventive maintenance under 
+pro-rata warranty policy since the PMs can improve the product avail-
+ability and benefit to consumer. Another option for generalization is 
+to develop the functional relationship between the product availability 
+and sales, and then, make the optimum warranty servicing strategy.
+Acknowledgement
+The research work is supported by the National Natural Science 
+Foundation of China with contract number 70971135.
+References
+1. Blischke W R, Murthy D N P. Warranty cost analysis. New York: CRC Press, 1994.
+2. Hun Y H. Optimal number of periodic preventive maintenance operations under warranty. Reliability Engineering and System Safety 1992; 
+37(3): 223-225, http://dx.doi.org/10.1016/0951-8320(92)90127-7.
+3. Doyen L, Gaudoin O. Classes of imperfect repair models based on reduction of failure intensity or virtual age. Reliability Engineering and 
+System Safety 2004; 84(1): 45-56, http://dx.doi.org/10.1016/S0951-8320(03)00173-X.
+4. Guo J, Fei H. An optimal preventive maintenance policy for product sold with warranty. Journal of Mathematics 2009; 29(4): 546-550.
+5. Iskandar B P, Murthy D N P, Jack N. A new repair–replace strategy for items sold with a two-dimensional warranty, Computers and Operations 
+Research 2005; 32 (3): 669-682, http://dx.doi.org/10.1016/j.cor.2003.08.011.
+6. Iskandar B P, Murthy D N P. Repair-replace strategies for two-dimensional warranty policies. Mathematical and Computer Modelling 2003; 
+38: 1233-1241, http://dx.doi.org/10.1016/S0895-7177(03)90125-7.
+7. Jack N, Dagpunar J S. An optimal imperfect maintenance policy over a warranty period. Microelectronics and Reliability 1994; 34(3): 529-
+534, http://dx.doi.org/10.1016/0026-2714(94)90091-4.
+8. Murthy D N P, Iskandar B P, Wilson R J. Two-dimensional failure free warranties: Two-dimensional point process models. Operations 
+Research 1995; 43: 356-366, http://dx.doi.org/10.1287/opre.43.2.356.
+9. Tsai Y, Wang K, Tsai L. A study of availability-centered preventive maintenance for multi-component systems. Reliability Engineering and 
+System Safety 2004; 84(3): 261-270, http://dx.doi.org/10.1016/j.ress.2003.11.011.
+10. Varnosafaderani S, Chukova S. An imperfect repair strategy for two-dimensional warranty. Journal of the Operational Research Society, 
+2012; 63(6): 846-859,http://dx.doi.org/10.1057/jors.2011.66.
+11. Varnosafaderani S, Chukova S. A two-dimensional warranty servicing strategy based on reduction in product failure intensity. Computers 
+and Mathematics with Applications 2012; 63: 201-213, http://dx.doi.org/10.1016/j.camwa.2011.11.011.
+12. Yeh R H, Lo H C. Optimal preventive maintenance warranty policy for repairable products. European Journal of Operational Research 2001; 
+134(1): 59-69, http://dx.doi.org/10.1016/S0377-2217(00)00238-1.
+13. Yun W Y, Kang K M. Imperfect repair policies under two-dimensional warranty. Proceedings of the Institution of Mechanical Engineers 
+2007; 221(4): 239-247, http://dx.doi.org/10.1243/1748006XJRR55.
+zhonghua cheng
+zhiyuan yang
+jianmin zhao
+yabin wang
+zhiwei li
+Department of Management engineering 
+Mechanical engineering College
+Shijiazhuang, hebei, 050003, P.R. China
+e-mail: zszs197466@163.com, yzy_sjz90@126.com, jm_zhao@
+hotmail.com, wangyabin123@163.com, arhqs@126.com

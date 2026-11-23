@@ -1,0 +1,488 @@
+ Available online at www.ijpe-online.com 
+  
+ 
+vol. 19, no. 4, April 2023, pp. 263-272 
+DOI: 10.23940/ijpe.23.04.p5.263272 
+ 
+ 
+ 
+ 
+* Corresponding author. 
+E-mail address: y.eddouh@gmail.com 
+Imperfect Maintenance Model for Optimizing  
+Air Compressor Availability 
+Yassine Eddouha,*, Abdelmajid Dayab, Rabie Elotmania, and Abdelhamid Touachec 
+aSciences for Energy Laboratory LabSIPE, ENSAJ, Chouaib Doukkali University, Morocco 
+bDepartment of Physics, Laboratory of M3ER, FSTE, Moulay Ismail University of Meknes, Morocco 
+cMechanical Engineering Laboratory, Sidi Mohamed Ben Abdellah University, Fez, Morocco 
+ 
+ 
+Abstract 
+The demand for compressed air systems to power pneumatic tools has steadily increased across various industries, such as chemicals, 
+construction, mining, and oil and gas. However, due to the high complexity of air compressor technology and the need for higher availability, 
+standard maintenance activities are insufficient. As a result, compressed air systems require a proper high-level maintenance strategy and 
+effective monitoring. This article addresses the imperfect preventive maintenance (PM) optimization problem by implementing preventive 
+replacements and minimal repairs to maximize the average availability of the air compressor subject to continuous degradation while 
+satisfying minimal maintenance cost rate requirements. Each maintenance action is associated with a cost and duration, and the imperfect 
+PM and corrective maintenance results are modeled on the maintenance cost rate and availability. The proposed imperfect PM optimization 
+model aims to determine the optimal number of imperfect repairs and the replacement time. A mathematical model is introduced as nonlinear 
+programming, and an algorithm is proposed to solve the optimization problem. Overall, this article provides a comprehensive and formal 
+analysis of the maintenance strategy for air compressors, offering valuable insights into the optimization of imperfect preventive 
+maintenance. 
+ 
+Keywords: availability; imperfect preventive maintenance; optimization; air-compressor; preventive replacement; mathematical modeling  
+ 
+© 2023 Totem Publisher, Inc. All rights reserved. 
+ 
+ 
+1.  Introduction  
+ 
+The air compressor station is a complex and comprehensive facility comprising an air receiver tank and air compressor that 
+is vital to ensuring a continuous supply of compressed air for pneumatic tools in various industrial, trade, and workshop 
+applications. Regular inspections and maintenance are necessary to ensure the equipment operates continuously and safely, 
+and to prevent downtime. Various techniques and methods, such as RCM, FTA, RAM, and FMECA, are applied in developing 
+maintenance strategies. Although maintenance actions help restore equipment to a near-new condition, maintenance costs 
+increase incrementally over time. Therefore, a critical decision in the facility's lifecycle is to determine the lowest cost of 
+maintenance or replacement. The decision to maintain or replace is challenging and crucial. As air compressors are subjected 
+to continuous preventive maintenance and failure repair, their performance declines faster, and maintenance costs increase 
+over time. The economic life cycle of the air-compressor under imperfect maintenance is crucial to maintenance management. 
+How to increase air-compressor availability and make a decision on the economic replacement time is the main focus of this 
+paper. This study will adopt the concepts of the maximization of availability combined with reliability analysis, in order to 
+develop a replacement decision model for the air compressor under imperfect maintenance within cost constraints. 
+ 
+Companies can achieve competitiveness in the market and profitability by ensuring high availability of their production 
+units. This is achieved by developing and optimizing maintenance strategies for production systems. In the event of a failure, 
+efficient maintenance plans are implemented to determine whether a repair or replacement action is necessary. Corrective 
+maintenance (CM) and preventive maintenance (PM) are the two categories of maintenance systems that are considered for 
+repair purposes. Corrective maintenance involves repairing faulty systems with the aim of restoring the broken systems. 
+Preventive maintenance involves carrying out actions at regular intervals to minimize or avoid equipment failure and maintain 
+264                                     Yassine Eddouh, Abdelmajid Daya, Rabie Elotmani, and Abdelhamid Touache 
+the required level of performance over a prescribed service life. Therefore, several studies suppose that preventive 
+maintenance is perfect, which is an ideal situation between the effects (perfect, imperfect, and minimal) of maintenance.  
+ 
+When dealing with complex reparable equipment, such as turbines in power plants, pumps, compressors, and pipelines, 
+imperfect preventive maintenance actions and operations are often requested and adopted. These strategies aim to maintain 
+equipment performance between the two extremes of operating states: the as-good-as-new state and the as-bad-as-old state 
+[1]. Although imperfect maintenance is prevalent in practical maintenance activities, many studies have presented and used 
+imperfect preventive maintenance strategies in different sectors. For instance, [2] presented optimization models for 
+preventive maintenance under perfect and imperfect conditions, as well as two-level actions. [3] summarized imperfect 
+maintenance models studied in literature from 1965 to 2020. The majority of imperfect maintenance strategies are based on 
+the quasi-renewal process, with different models for modeling imperfect results, such as virtual age, the (p, q) model, and age 
+reduction. [4] used reliability-centered maintenance models and hybrid hazard rate approaches to optimize imperfect 
+preventive maintenance for multicomponent repair systems. [5] studied the availability and optimal imperfect maintenance 
+strategies of a series configuration system and presented eleven imperfect repair maintenance models in their research results. 
+A model was constructed to enhance the mission reliability of complex systems by considering varied maintenance behaviors 
+such as minimal, imperfect, and replacement, and a selective maintenance decision-making model was proposed to maximize 
+current reliability, as demonstrated in a case study. [6] investigated the analysis of availability and optimization of the 
+maintenance of the maintained system in many imperfect repairs. 
+ 
+Optimization is the process of achieving the best possible outcome within specific conditions. Its main objective is to 
+determine the conditions that yield the highest or lowest value of certain decision variables in a function. In the design, 
+construction, commissioning, and maintenance of any production system, many managerial and technological decisions must 
+be made to maximize benefits or minimize effort. One critical objective in maintenance decisions is to optimize equipment 
+availability, which ensures that the production system remains efficient while reducing maintenance costs. For example, 
+maximizing equipment availability is crucial in pneumatic systems, control systems, and instrumentation, especially in 
+automated industrial processes, where system downtime can have severe consequences. Numerous studies in the literature 
+address the optimization of availability under imperfect preventive maintenance. [7] used a numerical algorithm and PSO to 
+obtain an optimal imperfect preventive maintenance interval that maximizes the two-dimensional warranty product 
+availability. [8] developed a preventive maintenance policy for a single system subject to random failure. The system is either 
+periodically and imperfectly repaired with probability q or perfectly with probability p. They developed a mathematical model 
+to determine the optimal preventive maintenance period that maximizes the system's stationary availability. [9] discussed an 
+availability-based optimization model where imperfect preventive maintenance is applied under the hybrid hazard rate. [10] 
+studied the optimization of reliability, availability, and cost of a system in parallel configuration under replacement and 
+imperfect preventive maintenance. In [11], an integrated availability maximization algorithm was used to select one of four 
+turbine components that exhibit decreased reliability. Imperfect maintenance was then applied to replace the failed turbine 
+component. 
+ 
+The purpose of this paper is to maximize the availability of an air compressor subject to continuous degradation under 
+imperfect preventive maintenance with cost constraints. Air compressors are complex equipment used in various industries, 
+and their proper maintenance is critical to ensure operational efficiency, reliability, and production output. Previous studies 
+have investigated the optimization of compressor operations and maintenance, such as [12] and [13], demonstrating that 
+optimizing maintenance and operational tasks leads to better solutions in terms of total costs. Recently, [14] studied new 
+predictive maintenance approaches under Industry 4.0 for a centrifugal compressor. To achieve the objective of this paper, 
+the number of imperfect repairs and preventive replacement time for the air compressor station will be determined to maximize 
+availability while considering a limited budget. To this end, the current preventive maintenance interval will be adjusted 
+within the maintenance cost by defining a maximum number of imperfect corrective maintenance events between two 
+consecutive preventive maintenance activities. The paper's contribution is summarized as follows: 
+• Investigating an imperfect maintenance model based on decision variables (number of imperfect repairs and 
+replacement time). 
+• Deriving air compressor station equipment availability and valuable time distributions.  
+• Developing a model to minimize cost. 
+• Designing an optimization problem to obtain the optimal decision variables that maximize availability while 
+considering maintenance cost rate constraints. 
+ 
+2. Imperfect Maintenance Model 
+ 
+The imperfect maintenance model is a type of maintenance strategy that recognizes that despite regular maintenance efforts, 
+there is still a chance that equipment or machinery will experience failures or breakdowns. This model assumes that 
+Imperfect Maintenance Model for Optimizing Air Compressor Availability                                         265 
+maintenance activities can only reduce the probability of failure and not eliminate it completely. The imperfect maintenance 
+model aims to optimize the maintenance schedule to minimize downtime and repair costs while maintaining a certain level of 
+reliability. This model takes into account factors such as equipment age, usage, and operating conditions to determine the best 
+maintenance strategy to implement. The imperfect maintenance model is commonly used in industries such as manufacturing, 
+transportation, and aviation where equipment reliability is crucial for efficient operations. The imperfect maintenance 
+approach encompasses two main categories of maintenance, namely corrective and preventive maintenance. It is characterized 
+by the degree to which an item's operational state is restored. Figure 1 provides a summary of this classification. 
+ 
+ 
+Figure 1. Classification of maintenance categories 
+2.1. Assumption and notation 
+ 
+The imperfect maintenance model has been proposed for the purpose of modeling the performance, optimizing costs, and 
+maximizing availability of an air compressor system. To develop the mathematical model, certain assumptions have been 
+taken into account, which are as follows: 
+• The system initiates operation at time 0. 
+• The strategy's efficacy is evaluated over an infinite horizon. 
+• Preventive replacement costs are presumed to be less than corrective replacement costs. 
+• The failure rate is considered to be continuous and monotonically increasing 
+ 
+The notations are presented in Table 1: 
+Table 1. Notation 
+Notation Description of the Notations Used Notation Description of the Notations Used 
+PM Preventive maintenance FMECA Failure mode effects and criticality analysis 
+CM Corrective maintenance T Replacement time 
+RCM Reliability centered maintenance K-1 Number of imperfect repairs 
+FTA Fault tree analysis cp Preventive maintenance cost at fixed T 
+RAM Reliability, availability, and maintainability cfr Imperfect repair cost 
+ 
+2.2. Mathematical development of imperfect repair model 
+ 
+In this section, the imperfect repair model is presented as a framework for modeling imperfect maintenance. In this model, it 
+is assumed that when a system fails, the repair action can restore the system to the state it was in immediately prior to the 
+failure. Assuming that a unit starts working at time 0; upon failure I, it is imperfectly repaired at a cost cf + (i − 1)cv.  
+Within, i ≤ k − 1, k and i are integers. cf and cv are respectively the fixed repair cost and incremental cost. (k − 1) is the 
+number of imperfect repairs. 
+ 
+Suppose that a new unit has a lifetime X1, and the first imperfect repair time Y1 is within µ expected lifetime, and ƞ 
+is the expected repair time of a new unit. The unit lifetime after the first imperfect repair and the second imperfect repair time 
+will be converted respectively into αX1 and βY1. With mean αµ and βƞ as the expected repair time, this means that the 
+repair time is increasing as the number of imperfect repairs increases under the incremental factor for repair time β ≥ 1. 
+Additionally, 0 < α ≤ 1 indicates that the lifetime decreases at each imperfect repair. 
+ 
+If a unit is new at t = 0, after X1 units of time, the system fails and the time to perform an imperfect repair is Y1. Based 
+on the quasi-renewal process, the next repair actions will be carried out after X1 units of time, and the repair time will be Y1. 
+In others words, as the system is in a good operating state and major repairs should not be required for a short period. Therefore, 
+after (k − 1)th imperfect repairs at failures, the unit will be in worse operating condition, and major maintenance actions, 
+
+266                                     Yassine Eddouh, Abdelmajid Daya, Rabie Elotmani, and Abdelhamid Touache 
+especially preventive maintenance, are necessary at a higher cost. 
+ 
+For that: X2 = αX1, 0 ≤ α ≤ 1 and Y2 = βY1, β ≥ 1 
+The (k − 1)th repair will take place after XK−1 = αK−2X1 and the same for YK−1 = βK−2Y1 
+The expected maintenance cost per unit of time is given by Equation (1): 
+ 
+L(T, k; α, β) = C(T,k;α,β) D(T,k;α,β)                                   (1) 
+ 
+Where, per a renewal cycle, C(T, k; α, β) is the expected total maintenance cost cycle and D(T, k; α, β) is the expected 
+duration. The reader is therefore referred to the work performed by [15] for more details on the model. The expected 
+maintenance cost of the system is defined as Equation (2): 
+ 
+L(T, k; α, β) =
+(k−1)cf+(k−1)(k−2) 2 cv+cp.S1(α1−kT)+cfr.F1(α1−kT)
+µ(1−αk−1)
+1−α +ƞ(1−βk−1) 1−β +∫ s1(α1−kx)dxT 0 =  
+(k−1)cf+(k−1)(k−2) 2 cv+(cp−cfr).S1(α1−kT)+cfr
+µ(1−αk−1)
+1−α +ƞ(1−βk−1) 1−β +∫ s1(α1−kx)dxT 0       (2) 
+ 
+Where shown in Equations (3) and (4): 
+ 
+C(T, k; α, β) = (k − 1)cf + (k−1)(k−2) 2 cv + cp. s1 ( 1 αk−1 T) + cfr. F1 ( 1 αk−1 T)        (3) 
+ 
+D(T, k; α, β) = µ(1−α1−k) 1−α + ƞ(1−β1−k) 1−β + ∫ s1 ( 1 αk−1 x) dx T 0           (4) 
+ 
+Within F1(t) = 1 − S1(t). 
+ 
+There are two cases under which the optimal maintenance policy that minimizes the expected rate of maintenance cost 
+can be determined. 
+ 
+The first case, where k is the fixed number of imperfect repairs action and T is the preventive maintenance interval 
+and considered the decision variable. In this case, to find the optimal T∗  that minimizes the maintenance cost rate 
+L(T, k; α, β), let: 
+ 
+r1(t) represent the failure rates and s1(t) represent the reliability function of a new unit where s1(t) = 1 − F1(t). 
+Then as shown as Equation (5): 
+ 
+∂L(T,k;α,β)
+∂T = 0 = r1(α1−kT)α1−k [ µ(1−αk−1) 1−α + ƞ(1−βk−1) 1−β + ∫ s1(α1−kx)dx T 0 ] − F1(αk−1T) − [(k−1)cf+(k−1)(k−2) 2 cv+cp] (cfr−cp)    (5) 
+ 
+In Equation (6), there is a unique optimal interval preventive maintenance if r1(t) is continuous and strictly increasing 
+to infinity and if: 
+ 
+r1(0)α1−k [ µ(1−αk−1) 1−α + ƞ(1−βk−1) 1−β + ∫ s1(α1−kx)dx T 0 ] F1(0) ≤ [(k−1)cf+(k−1)(k−2) 2 cv+cp] (cfr−cp)          (6) 
+ 
+The second case, where k is the number of imperfect repairs action and T is the preventive maintenance interval. 
+These are both considered decision variables. The optimum solution for T∗ and k∗ can be obtained by differentiating 
+maintenance cost rates concerning T and k, setting them equal to zero if they exist as Equation (7). 
+ 
+{
+∂L(T,k;α,β)
+∂T = 0
+∂L(T,k;α,β)
+∂k = 0
+                         (7) 
+ 
+Numerical computations methods will be utilized to resolve the above equations and find the optimal values for T and 
+k. To illustrate, the expected maintenance cost after preventive maintenance actions is drawn in Figure 2. Figure 2 corresponds 
+to the case where the Weibull parameters are set to β = 2 and ƞ = 900. For a horizon of different repair imperfect preventive 
+maintenance, the expected maintenance cost is obtained by using Equation (4) and evaluated for K= 2:7. 
+In Figure 2, it can be observed that the cost varies over time for different values of K. The cost initially increases at a 
+Imperfect Maintenance Model for Optimizing Air Compressor Availability                                         267 
+faster rate and then gradually slows down until it reaches an upper limit. This suggests that Equation (4) is an increasing 
+function that eventually reaches a saturation point. From this, we can infer that the maintenance cost is not solely dependent 
+on the repair time T, but also on the number of imperfect repairs. 
+ 
+ 
+Figure 2. Maintenance cost rate vs replacement time for different values of imperfect repairs numbers 
+ 
+The selection of the repair time T and the number K of imperfect repair preventive maintenance (PM) actions can 
+significantly impact the performance of the maintenance policy in economic terms. Specifically, a reduced number of 
+imperfect repairs implies prolonged and uninterrupted usage of the system, but at the expense of an increased risk of failure. 
+ 
+On the other hand, an increased number of imperfect repair PM actions reduces the number of system failures, but leads 
+to higher maintenance costs and system unavailability. The maintenance optimization problem addressed in this paper is to 
+identify a balance between the number of imperfect repair PM actions and the minimum cost required to maximize the average 
+system availability. 
+ 
+2.3. Maintenance optimization model 
+ 
+In the present paper, the preventive maintenance strategy adopted involves replacing the system either after the (K-1)th repair 
+preventive maintenance or after a certain age, whichever occurs first. Corrective maintenance is carried out when the system 
+fails, while preventive maintenance is conducted when the system survives until reaching a certain age T. The repair action is 
+imperfect, meaning that the lifetime of the system after each repair is reduced to a fraction of its previous lifetime, thereby 
+representing a decreasing quasi-renewal process. Additionally, the repair time is increased to several times the previous one, 
+and the successive lifetimes and times are independent, thereby representing a growing quasi-renewal process. As such, T and 
+K are both considered decision variables and parameters. The optimal maintenance policy involves determining the optimum 
+values for both the number of repair K and the replacement time T that minimize the expected total cost and subsequently 
+maximize the average system availability. The average system availability is a function of both decision variables and 
+parameters and is denoted as A(T, k; α, β)). It is defined as Equation (8): 
+ 
+A(T, k; α, β) = U(T,k;α,β) D(T,k;α,β)                  (8) 
+ 
+Where U(T, k; α, β) is the accumulated operating time. As Equation (9): 
+ 
+U(T, k; α, β) = µ + αµ + ⋯ + αk−2µ + ∫ Fp̅̅̅(t)dt = µ(1−αk−1) 1−α + ∫ s1(α1−kt)dt T 0 T 0                (9) 
+ 
+ 
+Where µ is the mean life and FP(t) = 1 − (1 − F1(t))p. According to the imperfect repair model [15], the average 
+
+268                                     Yassine Eddouh, Abdelmajid Daya, Rabie Elotmani, and Abdelhamid Touache 
+availability of the system is defined as Equation (10): 
+ 
+A(T, k; α, β) =
+µ(1−αk−1)
+1−α +∫ s1(α1−kt)dtT 0
+µ(1−αk−1)
+1−α +ƞ(1−βk−1) 1−β +∫ s1( 1 αk−1x)dxT 0                    (10) 
+ 
+By maximizing the system availability A(T, k; α, β), the optimal maintenance policy can be determined according to the 
+optimal values obtained for both the number of imperfect repairs and replacement time within the minimal value of expected 
+maintenance cost. Therefore, the following optimization problem can be formulated as Equations (11) and (12):  
+ 
+Maximize  
+ 
+A(T, k; α, β) =
+µ(1−α(k−1))
+1−α +∫ s1(α(1−k)t)dtT 0
+µ(1−α(k−1))
+1−α +ƞ(1−β(k−1)) 1−β +∫ s1( 1 αk−1x)dxT 0                         (11) 
+Subject to  
+ 
+L(T, k; α, β) =
+(k−1)cf+(k−1)(k−2) 2 cv+cp.S1(α1−kT)+cfr.F1(α1−kT)
+µ(1−αk−1)
+1−α +ƞ(1−βk−1) 1−β +∫ s1(α1−kx)dxT 0 ≤ L0               (12) 
+ 
+Where L0 is the minimal predeterminal cost value, T > 0, and k is a positive integer. Accordingly, the following 
+algorithm is proposed for the computation of minimal expected maintenance cost and the optimal PM and replacement 
+schedule as Algorithm 1: 
+ 
+Algorithm 1 
+Step 1: As the availability varies inversely with k and directly with T. Compute solutions replacement time T of Equation 
+(6). 
+Step 2: Use solutions in Step 1 to solve minimal expected cost L of Equation (2) with respect to number of imperfect 
+repairs. 
+Step 3: Derived from step 1 and step 2. Choose K to minimize 𝐿 ≤ 𝐿0. 
+Step 4: Based on the results of Step 1 and Step 3 with the optimal number K we find T for maximum availability 
+ 
+In the following section, a numerical example illustrates the proposed preventive maintenance optimization model. The 
+above algorithm is adopted, and the results obtained are discussed.  
+ 
+3. Numerical Example 
+ 
+To illustrate the application of the proposed model, the case of an industrial air compressor station is used. The air-compressor 
+station is located on a chemical platform in Morocco. The air compressor station is comprised of the following equipment: 2 
+air compressors and 1 dryer. The air-compressor station is in the utility area. High-pressure air is provided by two compressors 
+to supply sufficient compressed air to pneumatic valves and pneumatic instruments. This station’s equipment is needed to run 
+continuously to keep adequate system pressure. Each compressor delivers 8.5 bar, with a capacity of 360 Nm3/h. Two of the 
+compressors share one dryer to remove moisture and contaminants from the compressed air. Air delivery is via piping from a 
+storage tank to the facilities. The storage tank capacity is 25 m3. If one compressor is operating, the other would be in standby 
+mode or down for maintenance or repair. Figure 3 illustrates the RBD (reliability block diagram) for air-compressor station 
+equipment. The two compressors are in a parallel configuration, and both are in series with a dryer.  
+ 
+ 
+Figure 3. RBD air-compressor station 
+As the air compressor is the critical equipment of the air compressor station, it will be chosen to conduct the numerical 
+
+Imperfect Maintenance Model for Optimizing Air Compressor Availability                                         269 
+example. The historical record data of times between failures (TBF) are gathered from the air compressor station lifetime and 
+fitted to identify failure distribution by applying the maximum likelihood estimation method in Minitab software. The 
+probabilistic distribution of the time necessary for repairing a failure is described by the Weibull two-parameter model. The 
+goodness of fit is calculated using the Anderson–Darling statistical test. Hence, the shape and scale values are shown in Table 
+2. 
+ 
+Table 2. Weibull distribution parameters for air-compressor 
+Equipment Shape Parameter Scale Parameter Anderson-Darling 
+Compressor 1.248 339.66 1.185 
+ 
+To study the reliability and availability of the air compressor station equipment, the MTBF and MTTR are expressed as 
+Equations (13) to (15) [16]: 
+ 
+MTBF = ƞ.Γ (1+
+1
+β), where Γ is the gamma function, and MTTR =  
+Repair the faults
+Number of Faults          (13) 
+ 
+Hence, the reliability R(t) is given by 
+ R(t) = e
+[−(t ƞ) β ] .                                       (14) 
+ 
+The following equation determines the availability,  
+ 
+A(t) [17]: A =
+MTBF
+MTBF+MTTR .                               (15) 
+ 
+For this illustrative example, the data was originally collected from an industrial air compressor displayed in Table 3. 
+ 
+Table 3. Collected historical data for the year 2018 
+Equipment Operating Time (h) Number of Failures Downtime (Hours) 
+Compressor 6336 5 77 
+ 
+Knowing that the MTBF represents the mean time between failures, it is intended to identify the time that elapses 
+between consecutive failures in this set of equipment. The availability and reliability of the air compressor in MTBF time are 
+given in Table 4. 
+ 
+Table 4. Reliability and MTBF value for air compressor 
+Equipment MTBF (Hours) Failure Rate/Hours Reliability (%) Availability (%) 
+Compressor 316.46 0.003610358 40.00% 95.36% 
+ 
+The air compressed should experience its mission with a required availability greater than 95.36%. Therefore, the 
+maximum number of successive corrective maintenance actions taken by the intermediate maintenance is 10. The other 
+parameters are displayed in Table 5.  
+ 
+Table 5. Maintenance cost data 
+cv c fr ƞ β cf cp α 
+256 4235 0,98 2.09 430 141 0,33 
+ 
+The graph depicted in Figure 4 illustrates an inverse relationship between the air compressor's availability and the number 
+of imperfect repairs. This indicates that, as anticipated, conducting more frequent preventive maintenance actions is necessary 
+to maintain higher system availability, resulting in reduced system availability. 
+  
+270                                     Yassine Eddouh, Abdelmajid Daya, Rabie Elotmani, and Abdelhamid Touache 
+ 
+Figure 4. Average availability vs number of imperfect repairs 
+ 
+Hence, a higher frequency of maintenance actions typically indicates more frequent equipment breakdowns or other 
+issues requiring attention, which can have adverse effects on its availability. Conversely, equipment that requires fewer 
+maintenance actions tends to be more reliable and have higher availability. Therefore, the maintenance optimization problem 
+to be solved involves determining the optimal number of imperfect repair maintenance to maximize the air compressor’s 
+average availability while minimizing the expected cost, subject to certain constraints. This is achieved by simultaneously 
+varying the replacement time T and the number of imperfect repairs k. The minimum expected cost of maintenance, denoted 
+by L(T,k;α,β), is determined by the optimal values of T* and K* as presented in Table 6, with Figure 5 providing a visual 
+representation of these results. 
+ 
+Table 6. Optimal expected maintenance cost rate 
+Optimal Parameter Compressor 
+L(T, k; α, β) 12.49 
+T* 0.987 
+K* 2.943≈3 
+ 
+K is an integer, but for computational purposes, it is computed as a real number and then rounded to an integer.  
+ 
+ 
+Figure 5. Optimal maintenance cost rate 
+ 
+
+Imperfect Maintenance Model for Optimizing Air Compressor Availability                                         271 
+Based on the findings presented in Figure 5, it can be observed that the air compressor station equipment is likely to 
+undergo imperfect repair at relatively low costs. After undergoing two rounds of repair following failures, the equipment 
+station will either be replaced preventively at an age of 0.99-time units at a cost of 141 or replaced at the time of the next 
+expected failure, whichever happens first. The latter option incurs a higher cost of 4235. 
+ 
+Therefore, Table 7 shows the air compressor average availability A(T, k; α, β) as well as the optimal replacement time 
+T* and the optimal number k* of imperfect repair actions, while the maintenance cost rate is less than the predetermined value 
+L0(T, k; α, β).  
+ 
+Table 7. Results for optimization problem for air compressor station equipment 
+Optimal Solution T* K* Expected Maintenance Cost Availability 
+Compressor 1 0.99 2.86≈3 12.49 99.36% 
+ 
+From Table 7, it is found that the average availability is increased to 99.36%. In comparison, the current air-compressor 
+availability value was increased to 95.36%. 
+ 
+Figure 6. Maximal availability with optimal K* and T* under minimal maintenance cost 
+ 
+As illustrated in Figure 6, the most optimal maintenance approach for the air compressor system equipment involves 
+conducting repairs following the first two instances of failure, incurring costs of 430 and 686, respectively. Subsequently, the 
+equipment should undergo imperfect preventive maintenance every 0.99 times at a cost of 141, with any additional failures 
+between preventive maintenance actions being addressed through repair at a higher cost of 4235. It can be concluded that the 
+maintenance optimization problem for the air compressor system equipment involves determining the optimal number of 
+imperfect repair maintenance actions needed to maximize its average availability while minimizing expected costs, subject to 
+certain constraints. The results of the analysis suggest that conducting repairs following the first two failures, followed by 
+imperfect preventive maintenance every 0.99 times, and repairing the system upon another failure between preventive 
+maintenance actions, yields the most favorable outcomes in terms of cost and availability. These findings can assist in 
+developing a more effective and efficient maintenance strategy for the air compressor system equipment. 
+ 
+4. Conclusion 
+ 
+Optimizing system availability while minimizing maintenance costs is a challenging yet critical objective in the engineering 
+field. One of the most significant factors contributing to the prevention of system failures is the implementation of an effective 
+preventive maintenance strategy. This paper addresses the optimization of imperfect preventive maintenance models, where 
+repair actions are subject to imperfections modeled under a quasi-renewal process. The model takes into account both 
+availability and expected maintenance costs, from which a mathematical optimization model is derived. Through investigation, 
+optimal maintenance policies are derived, which include determining the replacement time and the number of imperfect 
+repairs required to maximize the average availability of the system while adhering to minimal maintenance cost constraints. 
+To demonstrate the effectiveness of the proposed model, an air compressor system example is continuously monitored and 
+
+272                                     Yassine Eddouh, Abdelmajid Daya, Rabie Elotmani, and Abdelhamid Touache 
+subject to continuous degradation. The study shows that the proposed model can optimize system availability while 
+minimizing maintenance costs. There are several potential extensions of this work, such as incorporating the use of resources 
+and factors related to component quality in future studies. 
+ 
+References  
+ 
+1. Stapelberg, R.F. Availability and maintainability in engineering design, Springer London, pp. 295-527, 2009.  
+2. Ding, F. and Tian, Z. Opportunistic maintenance optimization for wind turbine systems considering imperfect maintenance 
+actions. International Journal of Reliability, Quality and Safety Engineering, vol. 18, no. 5, pp. 463-481, 2011. 
+3. Sharma, G., Sahu, P.K., and Rai, R.N., Imperfect maintenance and proportional hazard models: a literature survey from 1965 to 
+2020. Life Cycle Reliability and Safety Engineering, vol. 11, no. 1, pp.87-103, 2022. 
+4. Zhang, L., Chen, X., Khatab, A., and An, Y. Optimizing imperfect preventive maintenance in multi-component repairable systems 
+under s-dependent competing risks. Reliability Engineering & System Safety, vol. 219, p.108177, 2022. 
+5. Wang, H. and Pham, H. Availability and maintenance of series systems subject to imperfect repair and correlated failure and 
+repair. European Journal of Operational Research, vol. 174, no. 3, pp. 1706-1722, 2006. 
+6. Qiu, Q., Liu, B., Lin, C., and Wang, J. Availability analysis and maintenance optimization for multiple failure mode systems 
+considering imperfect repair. Proceedings of the Institution of Mechanical Engineers, Part O: Journal of Risk and Reliability, vol. 
+235, no. 6, pp.982-997, 2021. 
+7. Wang, R., Cheng, Z., Rong, L., Bai, Y., and Wang, Q. Availability optimization of two-dimensional warranty products under 
+imperfect preventive maintenance. IEEE Access, vol. 9, pp.8099-8109, 2021. 
+8. Samet, S., Chelbi, A., and Hmida, F. Repairable systems availability optimization under imperfect maintenance. Bulletin of the 
+Polish Academy of Sciences: Technical Sciences, pp. 249-256, 2009. 
+9. Khatab, A., Ait-Kadi, D., and Rezg, N. Availability optimisation for stochastic degrading systems under imperfect preventive 
+maintenance. International Journal of Production Research, vol. 52, no. 14, pp. 4132-4141, 2014. 
+10. Temraz, N.S.Y. Availability and reliability of a parallel system under imperfect repair and replacement: analysis and cost 
+optimization. International Journal of System Assurance Engineering and Management, vol. 10, pp.1002-1009, 2019. 
+11. Sa’ad, A., Nyoungue, A.C., and Hajej, Z. An integrated maintenance and power generation forecast by ANN approach based on 
+availability maximization of a wind farm. Energy Reports, vol. 8, pp. 282-301, 2022. 
+12. Xenos, D.P., Kopanos, G.M., Cicciotti, M., and Thornhill, N.F. Operational optimization of networks of compressors considering 
+condition-based maintenance. Computers & Chemical Engineering, vol. 84, pp.117-131, 2016. 
+13. Kopanos, G.M., Xenos, D.P., Cicciotti, M., Pistikopoulos, E.N., and Thornhill, N.F. Optimization of a network of compressors in 
+parallel: Operational and maintenance planning–The air separation plant case. Applied Energy, vol. 146, pp.453-470, 2015. 
+14. Nordal, H. and El-Thalji, I. Assessing the technical specifications of predictive maintenance: A case study of centrifugal 
+compressor. Applied Sciences, vol. 11, no. 4, pp. 1527, 2021. 
+15. Wang, H. and Pham, H. Reliability and Optimal Maintenance. London: Springer-Verlag London Limited, 2006. 
+16. Lomte, R.U., Bhosle, S.P., Ambad, P.M., and Gaikwad, R.A. Reliability improvement for TSR machine of Banburry mixer using 
+plant optimization process. Procedia Manufacturing, vol. 20, pp. 440-445, 2018. 
+17. Aggarwal, A.K., Kumar, S., and Singh, V. Performance modeling of the serial processes in refining system of a sugar plant using 
+RAMD analysis. International Journal of System Assurance Engineering and Management, vol. 8, Supply 2, pp.1910-1922, 2017. 

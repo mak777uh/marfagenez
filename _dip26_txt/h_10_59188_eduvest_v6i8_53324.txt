@@ -1,0 +1,625 @@
+ 
+8712 
+ Eduvest – Journal of Universal Studies 
+Volume 6 Number 8, August, 2026 
+p- ISSN 2775-3735- e-ISSN 2775-3727 
+ 
+ Optimization of Preventive Replacement of Critical Components in the  
+Komatsu PC2000-8 Excavator to Minimize Downtime at PT XYZ 
+ 
+Imam Nur Soleh*, Mokh Suef  
+Institut Teknologi Sepuluh Nopember, Indonesia  
+Email: imamnur256@gmail.com*, m_suef@ie.its.ac.id 
+ 
+Keywords  ABSTRACT 
+preventive maintenance; Age 
+Replacement; Reliability; 
+Downtime; availability; Excavator 
+ The availability of primary loading equipment, particularly the Komatsu 
+PC2000-8 excavator, is a key determinant of operational efficiency in 
+open-pit mining. Failures of critical components directly affect 
+downtime, maintenance costs, and key performance indicators, including 
+physical availability (PA), mean time between failures (MTBF), and 
+mean time to repair (MTTR). Current preventive maintenance practices, 
+which largely follow generic original equipment manufacturer (OEM) 
+replacement intervals, often fail to prevent actual breakdowns, 
+highlighting the need to optimize preventive replacement intervals based 
+on cost and downtime minimization. This study aims to determine the 
+optimal preventive replacement intervals for the critical components of 
+the Komatsu PC2000-8 excavator to minimize downtime and 
+maintenance costs while improving equipment availability. The study 
+employed a quantitative comparative optimization approach. Critical 
+components were identified using a Pareto diagram based on failure 
+frequency and cumulative downtime. Reliability analysis was performed 
+by selecting the most appropriate time-between-failures distribution 
+using Relyence Weibull software to estimate the distribution parameters. 
+Reliability, hazard rate, MTBF, and cost analyses comparing preventive 
+and corrective replacement—including spare parts, labor, supporting 
+equipment, and lost production or contractual implications—were 
+subsequently performed. An Age Replacement policy was then 
+optimized to determine replacement intervals that minimized the long-
+run average cost per unit time while satisfying equipment availability 
+constraints. The results indicated that the optimal preventive 
+replacement intervals based on cost minimization were 11,545 hours for 
+the Boom Cylinder, 16,820 hours for the Turbocharger, 7,366 hours for 
+the Water Pump, 20,026 hours for the Final Drive, and 19,624 hours for 
+the Radiator.  
+ 
+INTRODUCTION 
+The efficiency of open-pit coal mining operations depends heavily on the availability and 
+reliability of primary loading equipment, such as large-capacity excavators (Karikari, 2026; Lin, 
+2026; S. Q. Liu et al., 2025; Tasoglu et al., 2026). As the primary equipment in the excavation and 
+loading cycle, excavator downtime directly interrupts the entire production chain, including 
+hauling and supporting equipment operations, resulting in substantial productivity losses and 
+potential contractual penalties. In the Indonesian coal mining industry, which possesses one of the 
+
+8713 
+largest coal reserves in the Asia-Pacific region, maintaining high operational efficiency has 
+become increasingly important amid fluctuating coal prices and intensifying competition among 
+mining contractors. 
+PT XYZ, a major mining contractor operating more than 15 mining sites across Kalimantan, 
+Sulawesi, and Sumatra, faces persistent challenges in maintaining excavator availability. The 
+company operates seven Komatsu PC2000-8 excavators as its primary loading equipment, 
+supported by 40 dump trucks, four bulldozers, and two motor graders. Among these, excavators 
+play the most critical role in the production system because they perform the excavation and 
+loading processes (Kim et al., 2025; W. Liu et al., 2022; Molaei et al., 2023). When an excavator 
+experiences a breakdown, excavation activities cease, preventing both overburden and coal from 
+being loaded. Consequently, dump trucks cannot transport material, and the entire production 
+chain is disrupted. Therefore, equipment availability has been established as one of the key 
+performance indicators (KPIs) by the mine owner to ensure contractual production targets are 
+achieved (Levious, 2024). 
+To monitor equipment performance, PT XYZ applies several KPIs, including physical 
+availability (PA), mean time to repair (MTTR), and mean time between failures (MTBF) (Karikari, 
+2026; Kononis et al., 2026; Moemenishahraki, 2025; Prabowo & Baskoro, 2026; Tasoglu et al., 
+2026). These indicators are intended to minimize excavator downtime, maintain production 
+targets, and improve operational efficiency. The company's target PA decreased from 96.06% in 
+the first year to 92.85% in the third year, while the MTTR target increased from 2 to 6 hours, and 
+the MTBF target decreased from 100 to 72 hours. This trend reflects management's recognition 
+that, as equipment ages, failures become more frequent and repairs require more time, ultimately 
+reducing equipment availability. Accordingly, these KPI targets anticipate the gradual decline in 
+equipment reliability throughout its operational life (Alade et al., 2024; Marinagi et al., 2023; 
+Rediske et al., 2022; Souifi et al., 2022). 
+Throughout the contract period, PT XYZ encountered ongoing challenges in maintaining 
+equipment availability. Equipment availability affects not only production performance but also 
+compliance with contractual obligations between the contractor and the mine owner. Failure to 
+achieve production targets may result in contractual penalties. Therefore, an effective maintenance 
+strategy is essential for minimizing downtime and sustaining operational performance. Beyond its 
+technical implications, equipment downtime also has significant financial consequences. PT XYZ 
+estimates downtime costs using the hourly rental value of each type of heavy equipment. 
+Excavators have the highest hourly operating value (IDR 288xxxx/hour), followed by dump trucks 
+(IDR 144xxxx/hour), indicating that downtime involving excavators results in the greatest 
+financial losses. Operationally, excavators function as the primary loading equipment; 
+consequently, when an excavator is unavailable, dump trucks, bulldozers, and motor graders 
+cannot operate efficiently. Thus, the financial impact of downtime is determined not only by the 
+hourly operating value of each unit but also by the equipment's role within the production system. 
+PT XYZ currently implements preventive, predictive, and corrective maintenance strategies 
+to improve equipment reliability, maximize availability, and extend the service life of its heavy 
+ 
+8714 
+equipment fleet. Preventive maintenance is conducted on a scheduled basis and includes routine 
+inspections, lubrication, and replacement of consumable components. However, in practice, 
+preventive maintenance is still largely based on original equipment manufacturer (OEM) 
+recommendations, which primarily specify the replacement of basic components, such as filters 
+and lubricants, at 250-hour service intervals. This approach may result in both over-maintenance, 
+through premature component replacement, and under-maintenance, by delaying the replacement 
+of other critical components until failure occurs. Consequently, equipment availability declines 
+because many critical components are replaced only after failure through corrective maintenance. 
+Predictive maintenance at PT XYZ is intended to improve maintenance effectiveness by 
+monitoring component conditions using onboard sensors and the Vehicle Health Monitoring 
+System (VHMS). However, its implementation remains suboptimal because operational data can 
+only be downloaded during scheduled preventive maintenance, which occurs every 250 operating 
+hours. Moreover, VHMS data require specialized interpretation, and inaccurate analysis may lead 
+to inappropriate maintenance decisions, unnecessary work, incorrect spare-parts procurement, and 
+prolonged downtime. As a result, predictive maintenance has not achieved its intended 
+effectiveness, and the company continues to rely heavily on corrective maintenance following 
+component failure. 
+Corrective maintenance at PT XYZ involves replacing components only after failure has 
+occurred. Because this strategy is reactive, it frequently results in unplanned downtime and 
+substantially higher repair costs than scheduled maintenance. Its implementation also presents 
+significant logistical challenges, particularly regarding spare-parts procurement. Since many 
+mining sites are located far from authorized distributors, obtaining replacement components often 
+requires considerable lead time. This situation is further complicated by the need to mobilize 
+supporting equipment and maintenance personnel on short notice after a failure occurs. In addition, 
+the high cost of major heavy-equipment components places considerable pressure on maintenance 
+budgets when emergency procurement is required. Unexpected demand for replacement parts also 
+increases the risk of delivery delays or stock shortages, particularly for infrequently used or 
+imported components. Consequently, corrective maintenance not only extends equipment 
+downtime but also introduces uncertainty into operational planning. 
+Failure frequency and repair duration vary considerably among excavator components. A 
+preliminary analysis of failure records identified five critical components of the Komatsu PC2000-
+8 excavator that contributed most significantly to downtime: the boom cylinder, turbocharger, 
+water pump, final drive, and radiator. These components exhibited both high failure frequencies 
+and extended repair durations, while also requiring costly replacement parts, making them the 
+primary targets for maintenance optimization. 
+The Age Replacement method provides a systematic approach for determining optimal 
+preventive replacement intervals by balancing the costs of scheduled replacement against the costs 
+associated with unexpected failures. Under this policy, a component is replaced either at a 
+predetermined replacement age (t<sub>p</sub>) or upon failure, whichever occurs first (Jardine 
+& Tsang, 2013). This method is particularly suitable for critical components exhibiting increasing 
+8715 
+failure rates because it identifies replacement intervals that minimize the long-run average cost per 
+unit time or total downtime. Previous studies have successfully applied the Age Replacement 
+method to various industrial applications, including filling machines (Mustofa et al., 2018), water 
+pumps (Answary & Waluyo, 2024), and projection spot-welding machines (Ulugbek et al., 2018). 
+Within the mining sector, reliability-centered maintenance approaches have been investigated for 
+heavy equipment (Burhannudin & Anshori, 2022; Sembiring et al., 2021; Silva et al., 2023); 
+however, the application of Age Replacement optimization to large-capacity Komatsu PC2000-8 
+excavators operating in Indonesian coal mines has received limited attention. 
+Despite the growing body of literature on maintenance optimization, several important 
+research gaps remain. First, although OEM recommendations provide general replacement 
+intervals for excavator components, they do not account for site-specific operating conditions, 
+actual failure characteristics, or the cost structure of Indonesian coal mining operations. 
+Consequently, these recommendations may not minimize either downtime or maintenance costs. 
+Second, most previous studies have optimized either maintenance cost or equipment availability 
+independently, without simultaneously addressing both objectives, despite their equal importance 
+for mining contractors operating under contractual availability requirements. Third, although the 
+Age Replacement method has been widely applied in other industries, its systematic application 
+to the critical components of the Komatsu PC2000-8 excavator in Indonesian coal mining has not 
+been adequately reported in the peer-reviewed literature. Finally, no previous study has 
+comprehensively compared optimal preventive replacement intervals derived from reliability-
+based optimization with existing OEM-recommended intervals and mean time to failure (MTTF)-
+based intervals to evaluate their relative effects on equipment reliability, availability, downtime, 
+and maintenance cost. 
+Given these identified research gaps, this study applies a reliability-based quantitative 
+approach using the Age Replacement method to optimize preventive replacement intervals for the 
+critical components of the Komatsu PC2000-8 excavator. The study employs two optimization 
+criteria: (1) cost minimization, which seeks to minimize the long-run average maintenance cost 
+per unit time, and (2) downtime minimization, which seeks to minimize total downtime per unit 
+time while maintaining the required equipment availability. This dual-objective approach is 
+particularly relevant to PT XYZ because it enables the company to select maintenance strategies 
+that align with either economic or operational priorities, depending on contractual requirements 
+and operational objectives. The analysis utilizes operational and reliability data for the Komatsu 
+PC2000-8 excavator collected from January 2021 to December 2025, including downtime records, 
+failure-time distribution parameters, maintenance durations, and comprehensive maintenance cost 
+data. 
+Specifically, this study aims to: (1) identify the critical components of the Komatsu PC2000-
+8 excavator based on failure frequency and cumulative downtime; (2) determine the optimal 
+preventive replacement intervals using the Age Replacement method under the cost-minimization 
+criterion; (3) determine the optimal preventive replacement intervals using the Age Replacement 
+method under the downtime-minimization criterion; (4) compare the reliability and availability 
+ 
+8716 
+achieved using the optimized replacement intervals with those obtained under the existing mean 
+time to failure (MTTF)-based practice and the original equipment manufacturer (OEM) 
+recommendations; (5) evaluate the potential reductions in maintenance costs and downtime 
+resulting from the implementation of the optimized replacement intervals over the excavator's 
+72,000-hour operational life; and (6) conduct a sensitivity analysis to identify the variables with 
+the greatest influence on maintenance costs and downtime. 
+This study is expected to make three main contributions. From a theoretical perspective, it 
+extends the application of the Age Replacement method to large-capacity excavators operating in 
+Indonesian coal mining and provides empirical evidence regarding optimal replacement intervals 
+for five critical components. From a practical perspective, it offers PT XYZ a data-driven 
+maintenance strategy capable of reducing downtime and maintenance costs while improving 
+equipment availability, thereby supporting the achievement of contractual production targets and 
+reducing the risk of contractual penalties. From a policy perspective, the findings may support the 
+development of more accurate, site-specific maintenance protocols that move beyond generic 
+OEM recommendations, thereby contributing to improved operational efficiency and 
+competitiveness in the Indonesian mining industry. Accordingly, this study is expected to bridge 
+the gap between theoretical maintenance optimization models and their practical implementation 
+in the mining sector. 
+ 
+METHOD 
+This study employed a structured quantitative approach using a reliability-based preventive 
+replacement optimization model based on the Age Replacement policy. The primary objective was 
+to determine the optimal preventive replacement interval (t<sub>p</sub>) using two optimization 
+criteria: (1) minimization of the long-run average maintenance cost and (2) minimization of 
+average downtime while maintaining the required equipment availability. The analysis utilized 
+operational and reliability data from the Komatsu PC2000-8 excavator at PT XYZ collected 
+between January 2021 and December 2025. The dataset included downtime records, failure-time 
+distribution parameters, maintenance durations, and maintenance cost components, including 
+replacement costs, labor costs, and production loss costs. Data were collected through direct 
+observation of preventive maintenance activities, structured interviews with relevant personnel, 
+and analysis of the company's historical maintenance records. 
+Data analysis was performed using Relyence Weibull software. Operational records were 
+first converted into time-between-failures (TBF) data, and a Pareto analysis was conducted to 
+identify the critical components based on failure frequency and cumulative downtime. A goodness-
+of-fit test was then performed to determine the most appropriate probability distribution and 
+estimate the reliability parameters, including the failure rate, mean time between failures (MTBF), 
+and mean time to repair (MTTR). Numerical optimization was subsequently conducted to 
+determine the optimal preventive replacement intervals by evaluating candidate intervals around 
+the existing mean time to failure (MTTF)-based practice and the original equipment manufacturer 
+8717 
+(OEM) recommendations. Finally, a sensitivity analysis was performed to assess the robustness of 
+the optimized replacement intervals under varying maintenance costs and maintenance durations. 
+ 
+RESULT AND DISCUSSION 
+Optimal Preventive Replacement Intervals of Critical Components Using The Age-
+Replacement Method.  
+After the optimal preventive replacement interval is obtained, a comparison is made with 
+the MTTF value as a representation of existing conditions and the replacement interval 
+recommended by the Dealer/OEM for each critical component, either based on the criteria of cost 
+minimization and downtime minimization. 
+Component Replacement Intervals Using the Age-Replacement Method to Minimize Total 
+Costs 
+The optimal preventive replacement interval based on the cost minimization criteria 
+obtained, is further compared to the Dealer/OEM recommendation replacement interval as the 
+value based on existing conditions (MTTF. The calculation results show that the optimal 
+preventive replacement interval (tp) for all critical components is smaller than the OEM 
+recommendation interval and MTTF value. At shorter intervals, the cost of failure is still relatively 
+low, while at longer intervals, the risk of failure increases so that the cost of replacing the damage 
+becomes greater. Therefore, the total cost of maintenance reaches the minimum value at the 
+optimal preventive replacement interval (tp) based on the cost minimization criterion, which is set 
+as the optimal preventive replacement interval. The expected rate of total cost for critical 
+components of the PC2000-8 Excavator can be seen in Figures 1 to 5. 
+ 
+ 
+Figure 1 Total Cost Expectation Rate Curve Cylinder Boom 
+Source: Data processing results using Relyence Weibull software (PT XYZ operational data, 2021-2025) 
+Based on Figure 1, the curve shows the relationship between the preventive replacement 
+interval (tp) and the expected total cost of maintenance of the Cylinder Boom components. In 
+shorter (tp), the cost of prevention is relatively high because replacements are done more 
+frequently. Conversely, in longer (tp), the cost of damage increases as the risk of component failure 
+increases. The optimal preventive replacement interval was obtained at (tp) 11,545 hours with an 
+expected total cost of Rp 24,003.69 per hour. This cost value is lower than the OEM 
+
+ 
+8718 
+recommendation at (tp) 12,000 hours with an expected total cost of IDR 24,030,667 per hour, as 
+well as the existing condition or MTTF at (tp) 14,579,756 hours with an expected total cost of IDR 
+24,515,181 per hour. Thus, (tp) 11,545 hours was chosen as the optimal preventive reimbursement 
+interval as it resulted in the lowest expected total cost of care. Next, Figure 2 presents the expected 
+rate curve of the total cost for the Turbocharge component. 
+ 
+ 
+Figure 2 Total Cost Expectation Rate Curve Turbocharge 
+Source: Data processing results using Relyence Weibull software (PT XYZ operational data, 2021-2025) 
+ 
+Based on Figure 2, the curve shows the expected change in the total maintenance cost of 
+the Turbocharge component with the variation in the preventive replacement interval (tp). At too 
+short intervals (tp), prevention costs tend to be higher because component replacements are done 
+more frequently. Conversely, as the TP gets longer, the cost of damage increases because the 
+chance of component failure becomes greater. The calculation results show that the optimal 
+preventive replacement interval for Turbocharge components is obtained at (tp) 16,820 hours with 
+an expected total cost of Rp 4,412,855 per hour. This cost value is lower than the OEM 
+recommendation at (tp) 18,000 hours with an expected total cost of IDR 4,635,577 per hour, as 
+well as the existing condition or MTTF at (tp) 20,710 hours with an expected total cost of IDR 
+7,622,019 per hour. Thus, the replacement of Turbocharge components at (tp) 16,820 hours is 
+considered the most economical because it results in the lowest expected total maintenance cost 
+compared to OEM methods and existing conditions. Figure 3 presents the expected rate curve of 
+the total cost for Water Pump components.  
+ 
+
+8719 
+ 
+Figure 3 Total Cost Expectation Rate Curve Water Pump 
+Source: Data processing results using Relyence Weibull software (PT XYZ operational data, 2021-2025) 
+ 
+Based on Figure 3, the curve shows the change in the expected total cost of replacing Water 
+Pump components with the variation in the preventive replacement interval (tp). At (tp) that is too 
+short, the cost of preventive replacement tends to be higher because components are replaced more 
+frequently. Conversely, the longer it is (tp), the cost due to damage increases as the chance of 
+component failure increases. The calculation results show that the optimal preventive replacement 
+interval for Water Pump components is obtained at (tp) 7,366 hours with an expected total cost of 
+Rp 6,099.99 per hour. This cost value is lower than the OEM recommendation at (tp) 9,000 hours 
+with an expected total cost of IDR 6,196.32 per hour, as well as the existing condition or MTTF at 
+(tp) 12,052 hours with an expected total cost of IDR 6,467.88 per hour. Thus, the replacement of 
+the Water Pump at (tp) 7,366 hours is considered the most economical because it results in the 
+lowest expected total maintenance cost compared to OEM methods and existing conditions. Figure 
+5.4 presents the total cost expected rate curve for Final Drive components. 
+ 
+ 
+Figure 4 Total Cost Expectation Rate Curve Final Drive 
+
+ 
+8720 
+Source: Data processing results using Relyence Weibull software (PT XYZ operational data, 2021-2025) 
+ 
+Based on Figure 4, the curve shows the expected change in the total maintenance cost of 
+Final Drive components to the variation in the preventive replacement interval (tp). The cost of 
+preventive replacement tends to decrease when (tp) is extended as the frequency of replacement 
+becomes lower. However, at longer intervals, the cost of damage increases as the risk of component 
+failure increases. The calculation results show that the optimal preventive replacement interval for 
+the Final Drive component is obtained at (tp) 20,026 hours with an expected total cost of Rp 
+37,793,312 per hour. This cost value is lower than the existing condition or MTTF at (tp) 23,467 
+hours with an expected total cost of IDR 46,565,378 per hour, and the OEM recommendation at 
+(tp) 24,000 hours with an expected total cost of IDR 46,804,393 per hour. Thus, the replacement 
+of the Final Drive at (tp) 20,026 hours is considered the most economical because it results in the 
+lowest expected total maintenance cost. Figure 5.5 presents the expected rate curve of the total 
+cost for the Radiator components. 
+ 
+ 
+Figure 5 Total Cost Expectation Rate Curve Radiator 
+Source: Data processing results using Relyence Weibull software (PT XYZ operational data, 2021-2025) 
+Based on Figure 5, the curve shows the expected change in the total maintenance cost of 
+the Radiator component with the variation in the preventive replacement interval (tp). The cost of 
+preventive replacement decreases when (tp) gets longer because the frequency of replacement 
+becomes lower. In contrast, the cost due to damage increases as the (tp) increases, as the risk of 
+component failure becomes greater. The calculation results show that the optimal preventive 
+replacement interval for radiator components is obtained at (tp) 19,624 hours with an expected 
+total cost of Rp 5,900,112 per hour. This cost value is lower than the existing condition or MTTF 
+at (tp) 21,879 hours with an expected total cost of IDR 7,345,273 per hour, as well as the OEM 
+recommendation at (tp) 24,000 hours with an expected total cost of IDR 10,089,579 per hour. Thus, 
+the replacement of the radiator at (tp) 19,624 hours is considered the most economical because it 
+results in the lowest expected total maintenance cost. 
+
+8721 
+ 
+Component Replacement Intervals Using the Age Replacement Method to Minimize 
+Downtime  
+The optimal preventive replacement interval based on the minimized downtime approach 
+obtained, is then compared to the dealer recommendation (OEM) interval and the MTTF value-
+based interval for each critical component. The calculation results show that the optimal preventive 
+replacement interval (tp) for all critical components has a smaller value than the OEM 
+recommendation interval and the MTTF value. The expected rate of total downtime can be seen in 
+Figures 6 to 10 
+ 
+Figure 6 Expectations of the Curve Lays Downtime Cylinder Boom 
+Source: Data processing results using Relyence Weibull software (PT XYZ operational data, 2021-2025) 
+ 
+ Based on Figure 6, the curve shows the relationship between the preventive replacement 
+interval (tp) and the expected downtime average per hour of operation for the Cylinder Boom. 
+Downtime. The result of preventive replacement is relatively high in the short term (TP) because 
+the frequency of replacement is higher, resulting in downtime. As a result of the damage increases 
+in the length (TP). The optimal preventive replacement interval was obtained at (tp) 10,690 hours, 
+with expectations downtime of 0.00104869403 hours per operating hour, lower than the OEM 
+recommendation of (tp) 12,000 hours with expectations downtime of 0.00106281737 hours per 
+operating hour, and the existing condition of MTTF at (TP) 14,579,756 hours with an expected 
+downtime of 0.00112278253 hours per operating hour of operation. Figure 7 presents the total 
+expected rate curve for downtime for the Turbocharge components. 
+ 
+
+ 
+8722 
+ 
+Figure 7 Expectations of the Curve Lays Downtime Turbocharge 
+Source: Data processing results using Relyence Weibull software (PT XYZ operational data, 2021-2025) 
+ In Figure 7, show Expectations downtime average per hour of operation for the 
+Turbocharge components. Downtime due to preventive replacement is high in short (tp) due to the 
+frequency of replacements, whereas downtime as a result of the damage increases in the length 
+(TP). The optimal interval is set at (tp) 17,555 hours, with expected downtime 0.0007242104 hours 
+per operating hour, lower than the OEM recommendation of (tp) 18,000 hours with expectations 
+of downtime amounting to 0.00072765632 hours per hour of operation, and the existing condition 
+of MTTF at (tp) 20,710 hours with expectations of downtime 0.00087087302 hours per operating 
+hour. Next, Figure 8 presents the total expected rate curve for the downtime for the Water Pump. 
+ 
+ 
+Figure 8 Expectations of the Curve Lays Downtime Water Pump 
+Source: Data processing results using Relyence Weibull software (PT XYZ operational data, 2021-2025) 
+ 
+Based on Figure 8, the curve shows the expected average downtime per hour of operation 
+for the Water Pump. Downtime due to replacement prevention is high at short (tp), while downtime 
+
+8723 
+due to damage increases at long tp. The optimal interval was obtained at (tp) 8,618 hours with an 
+expected downtime of 0.00059466319 hours per operating hour, lower than the OEM 
+recommendation at (tp) 9,000 hours with an expected downtime of 0.00059490699 hours per 
+operating hour, and the existing condition of MTTF at (tp) 12,052 hours with an expected 
+downtime of 0.00060242654 hours per operating hour. Figure 9 presents the expected rate curve 
+of total downtime for Final Drive components.  
+ 
+ 
+Figure 9 Expectations of the Curve Lays Downtime Final Drive 
+Source: Data processing results using Relyence Weibull software (PT XYZ operational data, 2021-2025) 
+ 
+ Based on Figure 9, the curve shows the expected downtime average per hour of operation 
+for the Final Drive. Downtime due to high preventive replacement in short (TP), while downtime 
+As a result of the damage increases in the length (TP). The optimal interval was obtained at (tp) 
+19.643 hours with expected downtime by 0.0006271979 hours per hour of operation, lower than 
+the OEM recommendation of (tp) 24,000 hours with expected downtime 0.00105255881 hours per 
+hour of operation, and the existing condition of MTTF at (tp) 23,467 hours with expected 
+downtime 0.00101030288 hours per hour of operation. Figure 10 presents the total expected rate 
+curve for the downtime for components Radiator. 
+ 
+
+ 
+8724 
+ 
+Figure 10 Expectations of the Curve Lays Downtime Radiator 
+Source: Data processing results using Relyence Weibull software (PT XYZ operational data, 2021-2025) 
+ 
+Based on Figure 10, the curve shows the expected average downtime per hour of operation 
+for the Radiator components. Downtime due to preventive replacement is high in short (tp), while 
+downtime due to damage increases in long (tp). The optimal interval was obtained at (tp) 19,664 
+hours with an expected downtime of 0.0004179035 hours per operating hour, lower than the OEM 
+recommendation at (tp) 24,000 hours with an expected downtime of 0.0006874145 hours per 
+operating hour and the existing condition of MTTF at (tp) 21,879 hours with an expected downtime 
+of 0.00051197725 hours per operating hour.  
+Figures 6 to 10 show that the expected downtime at the optimal prevention interval is lower 
+than the MTTF interval and the OEM recommendation for all critical components. D(Tp) 
+prevention downtime decreases as the replacement interval increases, while D(Tf) damage 
+downtime increases, so the total downtime curve has a minimum point set as the optimal 
+prevention interval for each component.  
+optimal component replacement for the cost minimization criterion, which is 11,545 hours 
+for Cylinder Boom components with a total cost expected value of IDR 24003.69; 16,820 hours 
+for Turbocharger components with a total cost expected value of IDR 4,412.86; 7,366 hours for 
+Water Pump components with a total cost expected value of IDR 6,100.00; 20,026 hours for Final 
+Drive components with an expected value of total costs of IDR 37,793.31; and 19,624 hours for 
+Radiator components with an expected total cost value of IDR 5,900.11. 
+Meanwhile, the optimal component replacement interval for the downtime minimization 
+criterion is 10,690 hours for Cylinder Boom components with a total expected downtime value of 
+0.001048694 hours; 17,555 hours for Turbocharger components with a value of 0.0007242 hours; 
+8,618 hours for Water Pump components with a value of 0.0005946 hours; 19,643 hours for Final 
+Drive components with a value of 0.0006272 hours; and 19,664 hours for Radiator components 
+with a value of 0.000417904 hours. 
+PT XYZ is a company engaged in mineral and coal mining services, especially in the 
+provision and rental of heavy equipment units for coal mining activities. The operation of the heavy 
+
+8725 
+equipment is used in the mine with the open pit method, which is greatly influenced by weather 
+conditions. During the rainy season, mining activities are generally stopped, and after the rain 
+subsides, additional time is needed for preparation before operations can resume. 
+In its implementation, this operational activity is regulated in a work contract between the 
+contractor as the holder of a mining services business license (IUJP) and a mining business license 
+holder (IUP). In the contract, the IUP owner, as the service user, sets certain performance targets, 
+one of which is a high level of availability of the tool. PT XYZ, as a contractor, may be subject to 
+a penalty if the availability value does not reach the agreed target. On the contrary, the ability to 
+meet these targets will improve the company's reputation in the mining industry and open up 
+opportunities for cooperation with other mine owners. The level of equipment availability is 
+closely related to the total downtime in an operating period. The smaller the downtime, the higher 
+the availability rate of the tool. Therefore, in determining maintenance policies, PT XYZ needs to 
+prioritize efforts to minimize downtime without ignoring cost efficiency considerations. 
+Comparison of Total Costs and Total Downtime Based on Existing Component 
+Replacement (MTTF) Policy, Dealer Recommendation (OEM), and Minimized Downtime 
+This comparison is carried out to evaluate whether each component is more appropriate for 
+preventive replacement according to the predetermined interval. The evaluation was carried out by 
+considering several factors, including component replacement time, labor costs, supporting 
+equipment costs, lost production, and component prices at various interval conditions, namely the 
+optimal preventive replacement interval (tp) obtained based on the criteria of cost minimization 
+and minimization of downtime. existing conditions based on MTTF values, as well as preventive 
+replacement intervals recommended by the dealer/OEM. The number of component replacements 
+is calculated based on the PC2000-8 Excavator's operating life of 72,000 hours, during which 
+period the unit is planned to be scrapped or resold. During the life of the operation, general 
+overhaul activities are carried out every 24,000 hours. The replacement of components in this 
+analysis is assumed to be carried out at the time the unit undergoes an overhaul in the first cycle, 
+so that the frequency of subsequent replacement follows a predetermined replacement interval 
+shows the total downtime and total cost of replacing critical components of the PC2000-8 
+Excavator based on existing methods (MTTF), dealer (OEM) recommendations, and minimizing 
+downtime. For Cylinder Boom, MTTF produces 28 hours of downtime with a total cost of IDR 
+600,222,000, while OEM and minimum downtime both produce 16 hours of downtime with a total 
+cost of IDR 385,906,000. Turbocharge has 15 hours of downtime and IDR 166,555,000 for MTTF, 
+as well as 12 hours of downtime and IDR 70,540,000 for OEM, and minimized downtime. For 
+Water Pump, MTTF 18 hours of downtime and IDR 214,250,800, OEM, and a minimum downtime 
+of 12 hours of downtime each, with a total cost of IDR 120,554,700. Final Drive shows 18 hours 
+of downtime and IDR 880,536,950 for MTTF, while OEM and minimum downtime both have 8 
+hours of downtime at IDR 732,830,950. For Radiators, MTTF has 14 hours of downtime and a 
+total cost of IDR 219,942,200, while OEM and minimum downtime have 8 hours of downtime at 
+IDR 112,784,200. Overall, the MTTF method has the highest downtime and total cost, while OEM 
+and minimized downtime show similar results in terms of both downtime and cost. Thus, a follow-
+ 
+8726 
+up review is needed to determine the method between OEM and downtime minimization that meets 
+the reliability value according to company policy and has the highest reliability value. 
+Comparison of PC2000-8 Excavator Critical Component Reliability with Dealer 
+Recommendation (OEM) Method, and Minimized Downtime 
+Reliability level (reliability) in each method is calculated to determine the ability of the 
+components to operate without experiencing failure at a predetermined interval. Calculation of 
+values’ reliability for each critical component is based on a reliability function. In this study, the 
+reliability is also compared to the company's policy, which is a minimum reliability level of 0.70. 
+The value indicates that the component is expected to have a minimum probability of 70% 
+remaining functional without experiencing failure until the set replacement interval. Thus, the 
+interval preventive replacement. The proposed ones are not only assessed based on cost 
+minimization and minimizing downtime, but must also meet the minimum limit reliability of the 
+company, so that the component replacement policy remains operationally feasible. Value 
+comparison results, reliability of each method is presented in Table 1.  
+Table 1 Comparison of Reliability Critical Components, Excavator PC2000-8, OEM Method and 
+Minimization of Downtime 
+Components  Dealer Recommendations  Minimized Downtime  tp (hours) Reliability tp (hours) Reliability 
+Cylinder Boom  12.000 0,71 10.690 0,80 
+Turbocharge 18.000 0,93 17.555 0,98 
+Water Pump 9.000 0,87 8.618 0,89 
+Final Drive  24.000 0,39 19.643 0,99 
+Radiator  24.000 0,39 19.664 0,99 
+Source: Data processing results with Microsoft Excel 
+Based on Table 1, for Cylinder Boom, the OEM method produces reliability by 0.71, while 
+the minimization method downtime by 0.80; Both meet the minimum limit of 0.70, but the 
+minimum method downtime is more recommended because it has a value reliability higher. On 
+Turbocharge, both methods are above the minimum limit (OEM 0.93; minimum downtime 0.98), 
+so the minimization method is chosen for providing higher reliability. Water Pump shows 
+reliability OEM 0.87 and minimum downtime 0,89; Although both are policy-compliant, the 
+higher value at the minimum downtime makes it a top choice. For Final Drive, the OEM method 
+does not meet the minimum limit (0.39), while the minimum downtime of 0.99 meets the 
+company's policy and is selected. Radiator also shows a similar pattern, with an OEM of 0.39 
+below the limit, while the minimized downtime of 0.99 meets the policy and is chosen as the 
+optimal method. Minimization Method Downtime. It is chosen for all components because it 
+provides a higher reliability value and is in accordance with the company's policy. 
+ 
+Comparison of PC2000-8 Excavator Critical Component Availability with Existing Method 
+(MTTF) and Optimal Interval 
+8727 
+Once the optimum replacement interval is known, it will compare the existing availability 
+with the optimal replacement interval (tp). By using formula 2.27, the availability value presented 
+in Table 2 is obtained. 
+Table 2. Comparison Availability Optimal existence and interval 
+Components  Existing (MTTF) tp Optimum  tp (hours) Avialibility tp (hours) Avialibility 
+Cylinder Boom  14.579,76 99,900% 10.690 99,925% 
+Turbocharge 20.709,62 99,929% 17.555 99,932% 
+Water Pump 12.052,14 99,922% 7.366 99,946% 
+Final Drive  23.466,53 99,903% 19.643 99,959% 
+Radiator  21.878,65 99,932% 19.664 99,959% 
+Source: Data processing results with Microsoft Excel 
+Based on Table 2, it can be seen that there is an increase in the availability value of each 
+component after the implementation of the optimal preventive replacement interval (tp) compared 
+to the existing condition (MTTF). Cylinder Boom components have increased their availability 
+value from 99.900% to 99.924%. Turbocharger components have increased from 99.929% to 
+99.932%. Furthermore, the Water Pump component increased from 99.922% to 99.946%, the Final 
+Drive component increased from 99.903% to 99.959%, and the Radiator component increased 
+from 99.932% to 99.959%. The improvement shows that the implementation of optimal preventive 
+replacement intervals is able to reduce downtime, thereby increasing equipment availability. With 
+more precise replacement intervals, components can be replaced before a failure occurs, making 
+the operation of the unit more reliable and efficient. 
+ 
+CONCLUSION 
+Based on the results of the data analysis, the critical components of the Komatsu PC2000-8 
+excavator at PT XYZ were identified as the boom cylinder, turbocharger, water pump, final drive, 
+and radiator. The Age Replacement method demonstrated that the optimal preventive replacement 
+intervals differed according to the optimization criterion. Under the cost-minimization criterion, 
+the optimal replacement intervals were 11,545 operating hours for the boom cylinder, 16,820 hours 
+for the turbocharger, 7,366 hours for the water pump, 20,026 hours for the final drive, and 19,624 
+hours for the radiator. Under the downtime-minimization criterion, the corresponding optimal 
+replacement intervals were 10,690 operating hours for the boom cylinder, 17,555 hours for the 
+turbocharger, 8,618 hours for the water pump, 19,643 hours for the final drive, and 19,664 hours 
+for the radiator. Sensitivity analysis indicated that variations in maintenance cost and maintenance 
+time influenced the optimal preventive replacement intervals, total maintenance cost, and 
+equipment downtime. Among the evaluated variables, preventive replacement component cost was 
+the most influential factor affecting total maintenance cost, with a sensitivity index of 0.5122. 
+Therefore, controlling component replacement costs should be prioritized to optimize the 
+maintenance costs associated with the critical components of the Komatsu PC2000-8 excavator at 
+PT XYZ. 
+ 
+ 
+8728 
+REFERENCE 
+Alade, B., Ocheni, E., Onyekachukwu, M., & Olufinmilayo, S. (2024). Big data for predictive 
+maintenance in Industry 4.0: Enhancing operational efficiency and equipment reliability. 
+International Journal of Computer Application Technology Research, 13(10), 37–51. 
+Answary, A., & Waluyo, B. (2024). Age replacement model for preventive maintenance of finish 
+water pumps: A case study in regional drinking water companies (PDAM). Borobudur 
+Engineering Review, 4(1), 38–55. 
+Burhannudin, M., & Anshori, M. (2022). Implementasi reliability centered maintenance pada 
+excavator PC-800. JISO: Journal of Industrial and Systems Optimization, 5(2), 143–150. 
+Karikari, Y. S. (2026). A validated simulation framework for fuel and operational performance 
+analysis in truck-shovel mining systems. 
+Kim, H., Kim, J., An, B., Song, T., Oh, J., Kim, M., & Lee, S. (2025). The influence of real-time 
+feedback on excavator operator actions in footing excavation: Machine guidance and 
+conventional methods. Applied Sciences, 15(7), 3729. 
+Kononis, E. P. A., Irawati, D. Y., & Andrian, D. (2026). MTTR, MTBF, and OEE analysis of a 
+blown film extrusion machine for preventive maintenance optimization. Heuristic. 
+Levious, S. L. (2024). Investigating the flow of information in a surface iron ore mining operation 
+(Master's thesis, University of the Witwatersrand). 
+Lin, Z. (2026). Open pit loading. In The ECPH encyclopedia of mining and metallurgy (pp. 1477–
+1480). Springer. 
+Liu, S. Q., Liu, L., Kozan, E., Corry, P., Masoud, M., Chung, S., & Li, X. (2025). Machine learning 
+for open-pit mining: A systematic review. International Journal of Mining, Reclamation and 
+Environment, 39(1), 1–39. 
+Liu, W., Luo, X., Zhang, J., Niu, D., Deng, J., Sun, W., & Kang, J. (2022). Review on control 
+systems and control strategies for excavators. Journal of Physics: Conference Series, 
+2301(1), 012023. 
+Marinagi, C., Reklitis, P., Trivellas, P., & Sakas, D. (2023). The impact of Industry 4.0 
+technologies on key performance indicators for a resilient supply chain 4.0. Sustainability, 
+15(6), 5185. 
+Moemenishahraki, P. (2025). Reliability and maintenance performance analysis of a 1600-ton 
+press machine using MTBF, MTTR, KPI, and downtime indicators. Industrial Engineering, 
+9(2), 36–41. 
+Molaei, A., Kolu, A., Lahtinen, K., & Geimer, M. (2023). Automatic estimation of excavator actual 
+and relative cycle times in loading operations. Automation in Construction, 156, 105080. 
+Mustofa, F. H., Utomo, R. F., & Soemadi, K. (2018). Filling machine preventive maintenance 
+using age replacement method in PT Lucas Djaja. MATEC Web of Conferences, 154, 01056. 
+https://doi.org/10.1051/matecconf/201815401056 
+Prabowo, S. A., & Baskoro, G. (2026). Optimizing excavator physical availability using Lean Six 
+Sigma and predictive inventory management: A case study of PC1250 at Samarinda coal 
+mine. ILTEK: Jurnal Teknologi, 21(1), 342–348. 
+Rediske, G., Michels, L., Siluk, J. C. M., Rigo, P. D., Rosa, C. B., & Bortolini, R. J. F. (2022). 
+Management of operation and maintenance practices in photovoltaic plants: Key 
+performance indicators. International Journal of Energy Research, 46(6), 7118–7136. 
+Sembiring, N., Tambunan, M., & Devany, J. (2021). Design of preventive maintenance system at 
+PT. Y with reliability engineering approach. IOP Conference Series: Materials Science and 
+Engineering, 1122(1), 012042. https://doi.org/10.1088/1757-899X/1122/1/012042 
+8729 
+Silva, A. F., Santos, E. C. S., Luz, R. M. do N., & Fernandes, R. da S. (2023). Analysis of 
+preventive maintenance strategy in off-road trucks. Gestão & Produção, 30. 
+https://doi.org/10.1590/1806-9649-2023v30e5923 
+Souifi, A., Boulanger, Z. C., Zolghadri, M., Barkallah, M., & Haddar, M. (2022). Uncertainty of 
+key performance indicators for Industry 4.0: A methodology based on the theory of belief 
+functions. Computers in Industry, 140, 103666. 
+Tasoglu, G., Senol, M. E., Ozfirat, P. M., & Ozfirat, M. K. (2026). Research in underground 
+mining methods considering rock mechanics, multi-criteria decision making, work safety, 
+and economic analysis. Mining, Metallurgy & Exploration, 1–28. 
+Ulugbek, F., Sheng, B., Xiao, Z., & Ismael, T. (2018). A reliability-based preventive maintenance 
+methodology for the projection spot welding machine. Management Science Letters, 8, 497–
+506. https://doi.org/10.5267/j.msl.2018.5.005 
+Wang, K., Deng, C., & Ding, L. (2020). Optimal condition-based maintenance strategy for multi-
+component systems under degradation failures. Energies, 13(17), 4346. 
+https://doi.org/10.3390/en13174346 
+ 
+ 
+ 

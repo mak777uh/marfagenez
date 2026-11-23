@@ -1,0 +1,657 @@
+This is a peer-reviewed, accepted author manuscript of the following research article: 
+Finkelstein, M & Cha, JH 2024, 'Preventive maintenance for the constrained multi-
+attempt minimal repair', Reliability Engineering and System Safety, vol. 243, 109899. 
+https://doi.org/10.1016/j.ress.2023.109899 
+ 
+ 
+1 
+Preventive maintenance for the constrained multi-attempt 
+minimal repair 
+Ji Hwan Cha1,a and Maxim Finkelsteina,b,  
+aDepartment of Statistics, Ewha Womans University, Seoul, 120-750, Rep. of Korea. 
+E-mail: jhcha@ewha.ac.kr 
+b Department of Mathematical Statistics, University of the Free State, Bloemfontein, South 
+Africa 
+E-mail: FinkelM@ufs.ac.za 
+cDepartment of Management Science, University of Strathclyde, Glasgow, UK 
+ 
+Abstract. In practice, at some instances, the repair of a failed item can be unsuccessful and should 
+be repeated due to various reasons. This can happen in practice with a minimal repair when a failed 
+part of a system is replaced, e.g., by the faulty spare.  The corresponding stochastic model that 
+takes into account this possibility can be described probabilistically in terms of the Polya-Aeppli 
+process, which is a generalization of the Poisson process to the case of multiple occurrences of 
+events. Some useful properties for considering optimal preventive maintenance problems are 
+derived. The optimal replacement policy for a system with the multi-attempt minimal repairs is 
+defined and analysed. The characteristic feature of this policy is that the system is replaced not 
+only on reaching the predetermined age but also after a fixed number of unsuccessful minimal 
+repairs. The detailed numerical examples illustrate our findings. 
+Keywords: Minimal repair; Polya-Aeppli process; Poisson process; maintenance; optimal 
+replacement 
+ 
+1. Introduction 
+Minimal repair was first introduced by Barlow and Hunter (1960) and, since that time, it became 
+the most often used type of repair in maintenance modelling. In contrast to perfect repair (as good 
+as new), it is an “as bad as old” repair, bringing a system to a state it had just before a failure (Cha 
+and Finkelstein (2018a), Chahkandi et al (2014), Finkelstein (2008) to name a few). The most 
+common situation in practice described by a minimal repair is when a failure of a system that 
+consists of a large number of components is repaired by replacing only the failed component.   
+      Denote by L the lifetime of a system and by 𝐹(𝑡), 𝜆(𝑡)  and 𝐹̅(𝑡) = 1 − 𝐹(𝑡)  the cdf, the 
+failure rate and the survival function, respectively. It follows from the definition (Finkelstein 
+(2008)) that an item that has started operation at 𝑡 = 0 , had failed and was instantaneously 
+ 
+1 Corresponding Author 
+Preventive maintenance for the constrained multi-attempt minimal repair 
+2 
+minimally repaired at time 𝑥,  has the following distribution of the remaining lifetime (to the next 
+failure): 
+𝐹(𝑡|𝑥) ≡ 𝐹(𝑥 + 𝑡) − 𝐹(𝑥) 𝐹̅(𝑥) = 1 − 𝑒𝑥𝑝 {− ∫ 𝜆(𝑢)𝑑𝑢
+𝑥+𝑡
+𝑥
+}. 
+This means that the future performance of a system after minimal repair does not depend on its 
+previous history, whereas the process of minimal repairs forms the memoryless nonhomogeneous 
+Poisson process (NHPP) with rate 𝜆(𝑡).  
+     In practice, at some instances, minimal repair can be unsuccessful and it should be repeated.  
+This can happen, e.g., due to the faulty spare parts, the error in diagnostics of the failed 
+components, human error, the failure of another component while replacing the failed one, the 
+design fault, an impact of external or internal shocks, etc. Even in the everyday life, when one tries 
+to restore the failed home appliance, this does not always happen from the first attempt (the 
+simplest example would be the light bulb) (Cha and Finkelstein (2023). Therefore, to model the 
+real-life minimal maintenance of various engineering systems, the possibility of an unsuccessful 
+minimal repair should be considered.  
+     The process of minimal (instantaneous) repairs is the Poisson point process, which is orderly 
+(without multiple occurrences), whereas the described situation with multi-attempt minimal 
+repairs suggests that the process to be employed for modelling should be non-orderly, i.e., with 
+the possibility of multiple occurrences.  For the corresponding modelling, in our study, we suggest 
+to use the Polya-Aeppli process, which is a generalization of the Poisson process to the case of 
+multiple occurrences (Minkova (2004),  Jacob and Jose (2018)). This process is based on the well-
+known Polya-Aeppli distribution, which is a compound-type generalization of the Poisson 
+distribution (see, e.g., Johnson et al (2005)). The authors in the referenced papers consider only 
+actuarial applications of this process to obtain, e.g., the corresponding ruin probabilities when 
+claims arrive in patches. Moreover, practically all publications (except Chukova and Minkova 
+(2019)) deal with homogeneous settings when inter-arrival times in the process are exponentially 
+distributed (HPP). However, preventive maintenance (PM), which is the application considered in 
+our paper, in this case cannot be defined, as there is no related ‘aging’ in items and, therefore, PM 
+is, obviously, irrelevant. The PM modelling is one of the most vital topics in reliability theory and 
+practice. Several books entirely devoted to this topic (see, e.g. Nakagawa (2005), Gertsbakh 
+(2005), Wang and Pham (2006)) and thousands of papers can be found in reliability literature (see 
+e.g.,  Finkelstein et al (2023), Guo and Liang (2022), Hamidi et al (2016), Pedersen and Vatn 
+(2022), Tambe and Kulkarni (2022), Zhang et al (2021), Wang et al (2021) among others for recent 
+developments). However, all these studies do not consider the topic of the current paper. 
+     In our recent paper (Cha and Finkelstein (2023)), the novel notion of the multi-attempt minimal 
+repair was introduced for the first time in the literature. The main emphasis was on considering 
+the setting when the probability of unsuccessful repair is increasing in time, thus introducing 
+another source of aging (along with the increasing failure rate) in the model. The latter is important 
+for the corresponding PM modelling.  The number of unsuccessful minimal repairs was considered 
+as unlimited. However, from practical considerations and in the framework of preventive 
+maintenance, it is natural to assume that if the unsuccessful repair is performed several times, then 
+Preventive maintenance for the constrained multi-attempt minimal repair 
+3 
+it is reasonable to replace a system and not continue with costly minimal repairs. This can indicate 
+that something ‘is wrong’ with a system and it should be replaced. Possible causes for unsuccessful 
+minimal repairs were listed above. Thus, the distribution of the number of unsuccessful attempts 
+before the successful one or replacement of a system should have a bounded support. Therefore, 
+in this paper, we had first to obtain appropriate analytical properties of the introduced modification 
+of the Polya-Aeppli process that are necessary for considering the following optimal preventive 
+maintenance setting:  
+A system is replaced at time T or after the consecutive unsuccessful repair with number k, 
+whichever comes first.  
+Secondly, for k limited, the costs for the corresponding renewal cycle and its duration should be 
+obtained (which is not straightforward due to the stated limitation) for considering the problem of 
+minimization of the expected cost rate.  
+    The developed approach and methodology are innovative as well as the application to the 
+described PM problem. We assume that this publication can trigger research on various 
+applications of non-orderly stochastic processes (with multiple occurrences). For instance, the 
+cascading shock processes can be another topic of research in this area.  
+     The paper is organized as follows. In Section 2, we provide the definitions and properties of 
+the non-stationary Polya-Aeppli process which are necessary for the forthcoming discussion. 
+Section 3 provides theoretical description of the ingredients of the corresponding optimization 
+problem, which is formulated and discussed. Section 4 contains numerical illustrations for the 
+obtained results. Short concluding remarks are given in Section 5. Finally, a possible 
+generalization to the case when the probability of unsuccessful event is indexed by a random 
+parameter is deferred to Appendix. 
+       
+2. Preliminaries 
+Let a system, characterized by the baseline failure rate 𝜆(𝑡), be minimally (instantaneously) 
+repaired on each failure. Each minimal repair is unsuccessful with probability (1 − 𝜃) and is 
+successful with probability 𝜃. If it is unsuccessful, it should be repeated. For the preliminary results 
+of this section that are necessary for our further reasoning, as in Cha and Finkelstein (2023), we 
+assume that according to the stated probabilities, the number of unsuccessful repairs before the 
+successful one is a geometric random variable (therefore, with unbounded support). However, in 
+practice, one should not perform unsuccessful repairs ‘unlimited’ and a reasonable bound after 
+which the system should be ‘preventively’ replaced should be considered. Possible causes for 
+unsuccessful minimal repairs were listed in the Introduction.  
+Let 𝑀(𝑡) be the number of failures of a system until time 𝑡 and 𝑁(𝑡) be the total number of 
+minimal repairs (including unsuccessful and successful minimal repairs) until time 𝑡.  Obviously, 
+the counting process {𝑀(𝑡), 𝑡 ≥ 0} follows the NHPP with the intensity function 𝜆(𝑡), whereas 
+{𝑁(𝑡), 𝑡 ≥ 0}  in this reliability-wise setting is the non-stationary/nonhomogeneous Polya-Aeppli 
+process that was defined and described in Chukova and Minkova (2019).  In our paper we define 
+it differently (although equivalently), which is more convenient for further discussions in this 
+paper.  
+Definition 1.  Let {𝑀(𝑡), 𝑡 ≥ 0} be the NHPP with the intensity function 𝜆(𝑡) and define 𝑁(𝑡) as 
+Preventive maintenance for the constrained multi-attempt minimal repair 
+4 
+𝑁(𝑡) = 𝑋1 + 𝑋2 + ⋯ + 𝑋𝑀(𝑡),                                        (1) 
+where 𝑋1, 𝑋2, … are the i.i.d. geometric random variables with parameter 𝜃 and independent of 
+𝑀(𝑡). Then, the counting process {𝑁(𝑡), 𝑡 ≥ 0} is called the non-stationary Polya-Aeppli process 
+with parameter set (𝜆(𝑡), 𝜃).  
+It is easy to see that, obviously, 
+𝑃(𝑁(𝑡) = 0) = exp{ − 𝛬(𝑡)}, 
+whereas for larger values of n 
+𝑃(𝑁(𝑡) = 𝑛) = ∑ ( 𝑛 − 1 𝑚 − 1) (1 − 𝜃)𝑛−𝑚𝜃𝑚 𝛬(𝑡)𝑚 𝑚! exp{ − 𝛬(𝑡)}𝑛 𝑚=1 , 𝑛 = 1,2, …,               (2) 
+where 𝛬(𝑡) = ∫ 𝜆(𝑢)𝑑𝑢 𝑡 0 . 
+Indeed, for 𝑛 = 1,2, ⋯, 
+𝑃(𝑁(𝑡) = 𝑛) = ∑ 𝑃(𝑁(𝑡) = 𝑛|𝑀(𝑡) = 𝑚)𝑃(𝑀(𝑡) = 𝑚)𝑛 𝑚=1 , 
+where (𝑁(𝑡) = 𝑛|𝑀(𝑡) = 𝑚)  is distributed as a negative binomial random variable with 
+parameters (𝜃, 𝑚), i.e., 
+𝑃(𝑁(𝑡) = 𝑛|𝑀(𝑡) = 𝑚) = ( 𝑛 − 1 𝑚 − 1) 𝜃𝑚(1 − 𝜃)𝑛−𝑚, 
+As for the NHPP with rate 𝜆(𝑢):   
+𝑃(𝑀(𝑡) = 𝑚) = 𝛬(𝑡)𝑚
+𝑚! exp{ − 𝛬(𝑡)} ,                                      (3) 
+we arrive at (2).  It clear that (2) reduces to (3) when 𝜃 = 1 (all minimal repairs are successful)  
+It can be also easily shown and also follows from (Chukova and Minkova (2019))  
+𝐸[𝑁(𝑡)] = 1 𝜃 Λ(𝑡),                                                        (4) 
+Relationship (2) gives the discrete distribution for the number of events in the Polya-Aeppli 
+process, while (3) defines that for the NHPP. It is worthwhile to obtain the distribution for only 
+unsuccessful number of repairs as well. This will be used for generalizations of the next section. 
+The formal derivations are as follows: 
+𝑃(𝑁(𝑡) − 𝑀(𝑡) = 0) = 𝑃(𝑀(𝑡) = 0) + ∑ 𝑃(𝑁(𝑡) = 𝑚|𝑀(𝑡) = 𝑚)𝑃(𝑀(𝑡) = 𝑚)
+∞
+𝑚=1
+ 
+= exp{ − 𝛬(𝑡)} + ∑ 𝜃𝑚 𝛬(𝑡)𝑚
+𝑚! 𝑒𝑥𝑝{ − 𝛬(𝑡)} = 𝑒𝑥𝑝{ − (1 − 𝜃)𝛬(𝑡)},
+∞
+𝑚=1
+ 
+𝑃(𝑁(𝑡) − 𝑀(𝑡) = 𝑘) = ∑ 𝑃(𝑁(𝑡) = 𝑚 + 𝑘|𝑀(𝑡) = 𝑚)𝑃(𝑀(𝑡) = 𝑚)
+∞
+𝑚=1
+ 
+Preventive maintenance for the constrained multi-attempt minimal repair 
+5 
+= ∑ (𝑚 + 𝑘 − 1 𝑚 − 1 ) (1 − 𝜃)𝑘𝜃𝑚∞ 𝑚=1 𝛬(𝑡)𝑚 𝑚! 𝑒𝑥𝑝{ − 𝛬(𝑡)}, 
+,...2,1=k  
+It follows from (4) and the fact that 𝐸[𝑀(𝑡)] = Λ(𝑡) for the NHPP, 
+𝐸[𝑁(𝑡) − 𝑀(𝑡)] = 𝐸[𝑁(𝑡)] − 𝐸[𝑀(𝑡)] = ( 1 𝜃 − 1) Λ(𝑡).                             (5) 
+3. PM for systems with multi-attempt repair 
+3.1 Replacement policy  
+Let 𝑐𝑚 denote the cost of minimal repair, whereas 𝑐𝑟 is the cost of replacement 𝑐𝑟 > 𝑐𝑚. We 
+assume for simplicity that the costs of successful and unsuccessful minimal repairs are equal, 
+however, if it is not the case, our reasoning can be easily generalized to account for this. 
+Furthermore, as often, we assume that the repair times are negligible. The natural PM setting in 
+the framework of the Polya-Aeppli process described in the previous section would be the periodic 
+one (Nakagawa (2005)) when a system is replaced at times 𝑛𝑇, 𝑛 = 1,2, …, whereas minimal 
+repairs are performed in-between. This is a typical strategy for ‘ordinary’ minimal repairs for 
+degrading systems that can be implemented in our case as well. It follows from (4) that the 
+expected long-run cost rate can be defined as the following quotient, which is the slightly modified 
+(by parameter 𝜃) ‘classical’ expression  
+𝑐(𝑇, 𝜃) =
+𝑐𝑚
+𝜃 ∫ 𝜆(𝑢)𝑑𝑢 𝑇 0 + 𝑐𝑟
+𝑇                                                        (6) 
+It is well-known that if, e.g., the failure rate is strictly increasing and 𝜆(𝑡) → ∞ when 𝑡 → ∞, then 
+for the classical periodic setting (with 𝜃 = 1) there exists an optimal T* minimizing (6). Therefore, 
+in this case, it exists for (6) as well. On the other hand, if the failure rate is strictly increasing to a 
+finite limit, then (6) will have a finite optimal T* (by analogy with Nakagawa (2005)), if  
+∫ 𝑡
+∞
+0
+𝑑(𝜆(𝑡)) > 𝜃𝑐𝑟
+𝑐𝑚
+, 
+which, depending on the value of parameter 𝜃 , can be rather restrictive. 
+     However, as it was mentioned in the Introduction, in practice, one should not perform unlimited 
+number of unsuccessful repairs as the Polya-Aeppli process suggests and a reasonable limit after 
+which the system should be ‘preventively’ replaced should be implemented. Although formally 
+the trials are independent, a few unsuccessful attempts usually indicate that something is ‘wrong’ 
+with the system itself and using the geometric random variable with unbounded support is 
+unreasonable from a practical point of view. Therefore, the approach should be modified 
+accordingly. It turns out that this is not straightforward, as now we have additional replacements 
+that are executed if the number of unsuccessful repairs exceeds a certain limit,   
+     Assume first, formally that the number of unsuccessful repairs that are performed upon failures 
+is unlimited. Then, in accordance with the model, for a fixed 𝑘 ≥ 1, each NHPP event (failure of 
+a system) can be classified into two types: 
+Preventive maintenance for the constrained multi-attempt minimal repair 
+6 
+Type 1 event: There are strictly less than k unsuccessful minimal repairs; 
+Type 2 event: There are at least k unsuccessful minimal repairs. 
+Then, on each NHPP event, the Type 1 event occurs with probability (1 − 𝑝) and the Type 2 event 
+occurs with probability 𝑝, where 𝑝 = (1 − 𝜃)k, independently of everything else. Thus, we have 
+two thinned processes (Finkelstein and Cha (2013), Cha and Finkelstein (2018b)) denoted by  
+{𝑁1𝜃(𝑡), 𝑡 ≥ 0} and {𝑁2𝜃(𝑡), 𝑡 ≥ 0}, respectively.  Note that from the properties of thinning the 
+NHPP,  {𝑁1𝜃(𝑡), 𝑡 ≥ 0} is the NHPP with intensity function (1 − 𝑝)𝜆(𝑡) and {𝑁2𝜃(𝑡), 𝑡 ≥ 0} is 
+the NHPP with intensity function 𝑝𝜆(𝑡) and they are independent.  
+     Under the setting described above, our replacement policy is as follows: 
+ 
+Replacement Policy: A system is replaced by a new one at time T or after the consecutive 𝑘 ≥ 1 
+unsuccessful minimal repairs, whichever comes first.  
+ 
+This is a generalization of a classical age replacement setting (Barlow and Hunter (1960), 
+Nakagawa (2005)) to the case of multiple attempts of minimal repair, which obviously, differs 
+from the periodic PM policy described in (6). Specifically, with respect to the introduced thinned 
+processes the replacement policy can be equivalently formulated as: 
+ A system is replaced by a new one at the first Type 2 event or T, whichever occurs first.  
+3.2. Expected long-run costs and optimization problem 
+To derive the corresponding expected long-run cost rate, denote first by 𝑌𝜃 the time until the  first 
+Type 2 event that results in the replacement of a system. It is indexed by the important parameter 
+of our model,  𝜃 . Later we will consider the case when this parameter is random. In accordance 
+with the thinning procedure, the failure rate that describes  𝑌𝜃 is 𝑝𝜆(𝑡) and let 𝐺𝜃(𝑡) be the 
+corresponding cdf. Then  
+𝐺̅𝜃(𝑡) ≡ 1 − 𝐺𝜃(𝑡) = 𝑒𝑥𝑝{− ∫  𝑝𝜆(𝑥)𝑑𝑥} 𝑡 0 = 𝑒𝑥𝑝{− ∫  (1 − 𝜃)k𝜆(𝑥)𝑑𝑥} 𝑡 0 . 
+In accordance with a standard approach based on the mean reward theorem in the theory of renewal 
+processes (Ross (1996)), the expected long-run cost rate for the PM model is given by  
+𝑐(𝑇, 𝑘, 𝜃) = 𝐶(𝑇, 𝑘, 𝜃) 𝐸[min{𝑌𝜃 , 𝑇}},                                                   (7)  
+where 𝐶(𝑇, 𝑘, 𝜃) is the expected cost in a renewal cycle and the denominator is the expected length 
+of a renewal cycle.  Obviously,  
+𝐸[𝑚𝑖𝑛{𝑌𝜃, 𝑇}] = ∫ 𝑃(𝑚𝑖𝑛{𝑌𝜃, 𝑇} > 𝑥)𝑑𝑥 =
+∞
+0
+∫ 𝐺̅𝜃(𝑡)𝑑𝑥.
+𝑇
+0
+ 
+Denote by 𝑊𝜃 the number of Type 1 events in a renewal cycle. Then 
+ 
+Preventive maintenance for the constrained multi-attempt minimal repair 
+7 
+𝐸[𝑊𝜃] = 𝐸[𝑊𝜃|𝑌𝜃 ≤ 𝑇]𝑃(𝑌𝜃 ≤ 𝑇) + 𝐸[𝑊𝜃|𝑌𝜃 > 𝑇]𝑃(𝑌𝜃 > 𝑇) 
+ 
+𝐸[𝑊𝜃||𝑌𝜃 ≤ 𝑇] = ∫ 𝐸[𝑊𝜃|𝑌𝜃 = 𝑡]
+𝑇
+0
+𝑔𝜃(𝑡)
+𝐺𝜃(𝑇) 𝑑𝑡 = ∫ ∫ (1 − 𝑝)𝜆(𝑥)𝑑𝑥
+𝑡
+0
+𝑇
+0
+𝑔𝜃(𝑡)
+𝐺𝜃(𝑇) 𝑑𝑡, 
+where 𝑔𝜃(𝑡) = 𝑑𝐺𝜃(𝑡)/𝑑𝑡. 
+𝐸[𝑊𝜃|𝑌𝜃 > 𝑇] = ∫(1 − 𝑝)𝜆(𝑥)𝑑𝑥
+𝑇
+0
+ 
+Thus,  
+𝐸[𝑊𝜃] = ∫ ∫ (1 − 𝑝)𝜆(𝑥)𝑑𝑥
+𝑡
+0
+𝑇
+0
+𝑔𝜃(𝑡)𝑑𝑡 + 𝐺̅𝜃(𝑇) ∫(1 − 𝑝)𝜆(𝑥)𝑑𝑥
+𝑇
+0
+                  (8) 
+Equation (8) has a simple intuitive meaning. Note first, that ∫ (1 − 𝑝)𝜆(𝑥)𝑑𝑥 𝑡 0  is the mean number 
+of events in [0,t] in the thinned NHPP with intensity function (1 − 𝑝)𝜆(𝑥). Then the first term 
+defines the expected number of  Type 1 events that had occurred before the Type 2 event occurred 
+in [0,T], whereas the second term defines that for the case when the Type 2 event did not occur 
+before T.  
+We will derive now 𝐸[𝑁𝜃𝑢], the expected number of unsuccessful minimal repairs in a cycle. In 
+accordance with our setting, on each Type 1 event, the distribution of the number of unsuccessful 
+minimal repairs 𝑋𝜃,𝑘 is  
+ 𝜃(1 − 𝜃)𝑥
+1 − (1 − 𝜃)𝑘 , 𝑥 = 0,1,2, . . . , 𝑘 − 1 
+with the corresponding expectation  
+𝐸[𝑋𝜃,𝑘] = ∑ 𝑥 𝜃(1 − 𝜃)𝑥 1 − (1 − 𝜃)𝑘 = 𝑘−1
+𝑥=0
+1
+𝜃 + (𝑘 − 1) − 𝑘 1 − (1 − 𝜃)𝑘  .                   (9) 
+Then the expected number of unsuccessful minimal repairs in a cycle is just a product of (8) and 
+(9) due to independence of corresponding random variables. Thus  
+𝐸[𝑁𝜃𝑢] = {∫ ∫ (1 − 𝑝)𝜆(𝑥)𝑑𝑥
+𝑡
+0
+𝑇
+0
+𝑔𝜃(𝑡)𝑑𝑡 + ∫(1 − 𝑝)𝜆(𝑥)𝑑𝑥
+𝑇
+0
+𝐺̅𝜃(𝑇)} 
+× (1 𝜃 + (𝑘 − 1) − 𝑘 1 − (1 − 𝜃)𝑘). 
+Obviously, the expected number of successful minimal repairs in a cycle is given by the expected 
+number of Type 1 events (8).  
+Preventive maintenance for the constrained multi-attempt minimal repair 
+8 
+      Now we are able to derive the expected long-run cost rate for the described setting. As was 
+mentioned, for simplicity, we assume that the cost of minimal repair for successful and 
+unsuccessful minimal repairs is the same, 𝑐𝑚. However, the derived relationships allow for the 
+straightforward generalization to the case of different costs. In accordance with (7) 
+𝑐(𝑇, 𝑘, 𝜃) = 𝐶(𝑇, 𝑘, 𝜃)
+∫ 𝐺̅𝜃(𝑡)𝑑𝑥 𝑇 0 ,                                                         (10) 
+where 
+𝐶(𝑇, 𝑘, 𝜃) = {∫ ∫ (1 − 𝑝)𝜆(𝑥)𝑑𝑥
+𝑡
+0
+𝑇
+0
+𝑔𝜃(𝑡)𝑑𝑡 + 𝐺̅𝜃(𝑇) ∫(1 − 𝑝)𝜆(𝑥)𝑑𝑥
+𝑇
+0
+} 
+× (1 𝜃 + 𝑘 − 𝑘 1 − (1 − 𝜃)𝑘) 𝑐𝑚 + 𝑐𝑟.                                      (11) 
+Note that the term (𝑘 − 1) in 𝐸[𝑁𝜃𝑢] is replaced by the term k in 𝐶(𝑇, 𝑘, 𝜃) as each ‘batch’ of 
+minimal repairs for the Type 1 events is followed by the successful minimal repair with the same 
+cost 𝑐𝑚 . 
+     After the foregoing discussions and derivations, we are now able surprisingly (at least, for the 
+authors) to link our reasoning with the Brown-Proschan model (1983). In this well-known and 
+widely used in application model of imperfect repair, each failure is minimally repaired with 
+probability 1 − 𝑝 and is perfectly repaired (replacement) with probability p. Those are some 
+generally set probabilities, whereas in our model they can be interpreted specifically and defined 
+as follows: we have two ‘end maintenance’ events: successful minimal repair (after  0,1, … , 𝑘 − 1 
+unsuccessful minimal repairs) and perfect repair (replacement) after k unsuccessful minimal 
+repairs with specified probability 𝑝 = (1 − 𝜃)k . 
+     Thus, for our ‘endpoint minimal repair’ the aggregated expected cost that includes the cost of 
+unsuccessful repairs is  
+𝑐𝑚(𝑘, 𝜃) ≡ (1 𝜃 + 𝑘 − 𝑘 1 − (1 − 𝜃)𝑘) 𝑐𝑚, 
+whereas the ‘endpoint replacement’ has the cost  
+𝑐𝑓 = 𝑐𝑟 + 𝑘𝑐𝑚. 
+It can be seen that 𝑐𝑚(𝑘, 𝜃) of our model corresponds to 𝑐𝑚 in the Brown-Proschan model, 𝑐𝑟 
+corresponds to the same replacement cost 𝑐𝑟, whereas the cost of corrective maintenance (on 
+failure) 𝑐𝑓 in the Brown-Proschan model corresponds to 𝑐𝑟 + 𝑘𝑐𝑚,  which is the combined cost of 
+replacement and of the preceding k  unsuccessful minimal repairs. For the sake of comparison, we 
+denote this value by 𝑐𝑓  also. Thus, in our model, obviously,  𝑐𝑓 > 𝑐𝑟 , which is a necessary 
+condition for having an optimal maintenance time in classical PM model (Barlow and Hunter 
+(1960)).   
+Preventive maintenance for the constrained multi-attempt minimal repair 
+9 
+    In view of the foregoing consideration, we can apply now the optimal PM reasoning for the 
+Brown-Proschan model with the specified above probabilities and cost structure. This was 
+considered and analyzed in detail in Cha and Finkelstein (2018a) (see also Beichelt (1993)). In 
+accordance with this study, when the failure rate is increasing and  lim
+𝑡→∞
+𝜆(𝑡) = ∞, the optimal 
+replacement problem  
+0( *, , ) min ( , , )Tc T k c T k=
+                                           (12) 
+has the finite unique solution T*, whereas the optimal cost rate in (10) is given by the following 
+simple relationship 
+𝑐(𝑇∗, 𝑘, 𝜃) = 𝜆(𝑇∗)[(𝑐𝑓 − 𝑐𝑟) + 𝑐𝑚(𝑘, 𝜃)(1 − 𝑝)] 
+= 𝜆(𝑇∗)[𝑘𝑐𝑚 + (1 − 𝑝)𝑐𝑚(𝑘, 𝜃)]. 
+When the failure rate is increasing to a constant, the sufficient condition for existence of the unique 
+solution of (12) is 
+𝜆(∞) > 𝑐𝑓
+(𝑐𝑓 − 𝑐𝑟) ∫ 𝐺̅𝜃(𝑡)𝑑𝑥 ∞ 0 = 𝑐𝑟 + 𝑘𝑐𝑚 𝑘𝑐𝑚 ∫ 𝐺̅𝜃(𝑡)𝑑𝑥 ∞ 0 . 
+ 
+We see that with the increase of k, the difference  𝑐𝑓 − 𝑐𝑟 is increasing (which is crucial for PM 
+problems) and this inequality is easier to meet.  
+4. Numerical illustrations and discussion 
+For completeness, we start with the case when k is not limited. It should be noted that when 𝑐𝑚 ≪
+𝑐𝑟, then our optimization problem is not practically relevant, as in fact, it does not usually matter 
+how many cheap unsuccessful minimal repairs are performed. Therefore, for our modeling, it 
+should be just 𝑐𝑚 < 𝑐𝑟.  The long-run expected cost rate for this case is given by (6) and Fig.1 
+shows the corresponding curves for selected values of parameters. We add the case 𝜃 = 1.0  that 
+corresponds to only successful minimal repairs (k=0) just for comparison. As expected, with the 
+increase of 𝜃 , the optimal preventive maintenance time T* is increasing, whereas the 
+corresponding minimal cost rate is decreasing. The former follows from the fact that the time for 
+the first Type 2 event is increasing with 𝜃 , whereas the latter follows directly from (6). When 𝜃 =
+1.0 , all events are from the corresponding Poisson process (minimal repairs) and (6) also captures 
+this situation. As unsuccessful minimal repairs impose additional costs, this case, as expected from 
+general considerations, results in the largest T*   and the smallest long-run cost rate.  
+ 
+Preventive maintenance for the constrained multi-attempt minimal repair 
+10 
+ 
+ Fig. 1. 𝑘 = ∞, 𝜆(𝑡) = 𝑡; 𝑐𝑚 = 3, 𝑐𝑟 = 10 
+ 
+The optimal PM times and the corresponding minimal costs are given in the following table: 
+ 
+𝜃 T* 𝑐(𝑇∗, 𝑘, 𝜃) 
+0.6 2.01 10.00 
+0.8 2.31 8.66 
+0.9 2.45 8.16 
+1.0 2.59 7.74 
+Table 1. The optimal PM times and the corresponding minimal costs when 𝑘 = ∞, 𝜆(𝑡) = 𝑡; 
+𝑐𝑚 = 3, 𝑐𝑟 = 10 
+ 
+In Fig. 2 the case k=4 is considered for the same values of parameters.  
+ 
+������
+��
+��
+��
+��
+� �
+������
+������ ���
+��� ��������� ���
+��������� � ���
+� � �
+Preventive maintenance for the constrained multi-attempt minimal repair 
+11 
+ 
+Fig. 2. k=4, 𝜆(𝑡) = 𝑡; 𝑐𝑚 = 3, 𝑐𝑟 = 10 
+ 
+The optimal PM times and the corresponding minimal costs are given in the following table: 
+ 
+𝜃 T* 𝑐(𝑇∗, 𝑘, 𝜃) 
+0.6 2.10 9.59 
+0.8 2.32 8.63 
+0.9 2.45 8.16 
+Table 2. The optimal PM times and the corresponding minimal costs when k=4, 𝜆(𝑡) = 𝑡; 𝑐𝑚 =
+3, 𝑐𝑟 = 10 
+ 
+We see that the pattern is similar to that in Fig.1 (with marginally larger T*   and marginally smaller 
+( *, 4, )c T k =
+ as most of the corresponding realizations, when 𝑘 = ∞ are the same as for k=4.  
+ 
+������
+�
+�
+�
+�
+���
+�
+�
+��
+� � � � �
+����������� �������
+Preventive maintenance for the constrained multi-attempt minimal repair 
+12 
+ 
+Fig. 3. k=2, 𝜆(𝑡) = 𝑡; 𝑐𝑚 = 3, 𝑐𝑟 = 10 
+ 
+The optimal PM times and the corresponding minimal costs are given in the following table: 
+ 
+𝜃 T* 𝑐(𝑇∗, 𝑘, 𝜃) 
+0.6 2.59 8.39 
+0.8 2.46 8.27 
+0.9 2.49 8.07 
+Table 3. The optimal PM times and the corresponding minimal costs when k=2, 𝜆(𝑡) = 𝑡; 𝑐𝑚 =
+3, 𝑐𝑟 = 10 
+ 
+For k=2  (Fig. 3), we see that now, T* is not monotone with increase of  𝜃 . However, minimal 
+costs, which is the criterion in our optimization are still decreasing, as previously, when 𝜃 is 
+increasing. 
+Finally, the case with minimal allowed unsuccessful repairs, k=1 is illustrated by Fig. 4 
+ 
+ 
+������
+��
+��
+��
+��
+��
+�
+� � � � �
+Preventive maintenance for the constrained multi-attempt minimal repair 
+13 
+ 
+Fig.4. k=1, 𝜆(𝑡) = 𝑡; 𝑐𝑚 = 3, 𝑐𝑟 = 10 
+ 
+The optimal PM times and the corresponding minimal costs are given in the following table: 
+ 
+𝜃 T* 𝑐(𝑇∗, 𝑘, 𝜃) 
+0.6 4.06 7.30 
+0.8 3.10 7.44 
+0.9 2.81 7.58 
+Table 4. The optimal PM times and the corresponding minimal costs when k=1, 𝜆(𝑡) = 𝑡; 𝑐𝑚 =
+3, 𝑐𝑟 = 10 
+ 
+In contrast to previous cases, it can be observed that now with increase of 𝜃, optimal T  is 
+decreasing, whereas minimal costs are increasing. Thus, from the performed numerical 
+experiments, we see that for 𝑘 ≥ 2, optimal solutions of the problem (12) were achieved for the 
+largest value of the given probability 𝜃, whereas when k=1, the optimal solution is given by the 
+smallest value. Those are the properties of the complex optimization problem. However, it should 
+be noted that 𝜃  is given and is not a decision parameter of the model. Also, comparing Fig 1 with 
+no limit on k with Fig. 4 with the best performing limit k=1, we observe that the decrease in the 
+expected long-run cost rate is quite substantial. 
+     Moreover, comparing all figures, it follows that the value k=1 attains  minimum of the expected 
+long-run costs for each value of 𝜃, as compared with the corresponding values for other values of 
+k. It means that, if we are to include k as the decision parameters of the optimization problem (12), 
+k=1, will be the optimal value. Thus, the corresponding bivariate optimal problem  
+0, 1( *, *, ) min ( , , )Tkc T k c T k=
+ 
+������
+��
+��
+��
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+� �� ������ ������ ��
+�
+�� ��� ������ �������� ���
+������������ � � � � � � � � � ���
+� � � � �
+Preventive maintenance for the constrained multi-attempt minimal repair 
+14 
+can be formulated. In our examples k*=1. However, other numerical experiments show that when 
+𝑐𝑚/𝑐𝑟 is decreasing (in the considered case it was 0.3), the larger values of k*  (e.g., k*=2) are 
+possible. This topic should be considered and analyzed numerically in more detail in the future 
+research.  
+ 
+5. Concluding remarks 
+In practice, minimal repair can be unsuccessful, in which case it should be repeated until an item 
+is operable. This occurs due to various reasons: the faulty spare parts, the error in diagnostics of 
+the failed component, the maintenance action fault, the failure of another component while 
+replacing the failed one, the design fault, etc.  
+The Polya-Aeppli process is a convenient tool for modelling the Poisson-driven processes with 
+multiple occurrences.  The latter occur, for instance, in the case of unsuccessful minimal repairs.   
+In the literature, the Polya-Aeppli process was used mostly in risk and actuarial settings describing 
+e.g., the possibility of multiple claims in a small interval of time. Some other reliability 
+applications can be considered in the future research, e.g., in modelling of cascading shocks that 
+are impacting operating systems. On the other hand, the cascading failures in systems can be also 
+considered, when a failure of one component triggers the failures of several others. 
+In Section 2, we have obtained some useful properties of the Polya-Aeppli process that were 
+used in the rest of the paper for the corresponding preventive maintenance modelling. From 
+practical considerations and in the framework of preventive maintenance, it is natural to assume 
+that if the unsuccessful repair is performed several times, then it is reasonable to replace a system 
+and not continue with costly minimal repairs. This can indicate that something ‘is wrong’ with a 
+system and it should be replaced. Therefore, in this paper we mostly consider the case when the 
+possible number of unsuccessful repairs is limited. 
+The optimal PM problem that minimizes the expected long-run cost rate for a system with a 
+limited number of unsuccessful minimal repairs is discussed. Its numerical analysis is presented 
+showing that for the considered values of parameters the value of k=1 achieves the minimal cost 
+rate as compared with larger values.  
+ 
+ 
+Appendix. Generalization to random 𝜃 
+All the relationships in Section 3 and 4 were indexed by parameter 𝜃  of the corresponding 
+geometric distribution that characterizes the number of unsuccessful minimal repairs. It follows 
+from our derivations that the optimal replacement time 𝑇∗ and the optimal long-run cost rate 
+𝑐(𝑇∗, 𝑘, 𝜃)  depend on 𝜃 . However, due to the scarce information and other reasons (e.g., 
+heterogeneity in spare parts for minimal repairs and in maintenance procedures) it is reasonable to 
+consider it to be random. Therefore, our derivations for the fixed realization Θ = 𝜃  can  be 
+averaged accordingly. For this, denote by 𝜋(𝜃) the pdf of Θ with support in [0,1]. Note that, as all 
+expectations in Section 3 have been derived for a given  Θ = θ , they can be regarded as 
+conditional expectations. Thus, the relevant expressions of the previous section should be 
+integrated with respect to this distribution, i.e., the denominator in (10) becomes  
+Preventive maintenance for the constrained multi-attempt minimal repair 
+15 
+∫ ∫ 𝐺̅𝜃(𝑡)𝑑𝑥
+𝑇
+0
+𝜋(𝜃)𝑑𝜃
+1
+0
+, 
+whereas the numerator reads now ∫ 𝐶(𝑇, 𝑘, 𝜃)𝜋(𝜃)𝑑𝜃 1 0 , where  𝐶(𝑇, 𝑘, 𝜃)  is defined in (11). 
+Therefore, finally 
+𝑐(𝑇, 𝑘) = ∫ 𝐶(𝑇, 𝑘, 𝜃)𝜋(𝜃)𝑑𝜃 1 0
+∫ ∫ 𝐺̅𝜃(𝑡)𝑑𝑥 𝑇 0 𝜋(𝜃)𝑑𝜃 1 0 .                                                   
+The optimal problem (12) can be considered numerically, whereas the existence of the finite 
+optimal T* follows from our reasoning of the previous section and the fact that it exists for every 
+realization Θ = θ (at least, when lim
+𝑡→∞
+𝜆(𝑡) = ∞). 
+Acknowledgements 
+The work of the first author was supported by Basic Science Research Program through the 
+National Research Foundation of Korea (NRF) funded by the Ministry of Education (Grant 
+Number: 2019R1A6A1A11051177).  
+ 
+References  
+Barlow RE, Hunter L (1960). Optimum preventive maintenance policies. Operations Research  8 
+: 90-100. 
+Badıa FG, Berrade MD, Campos CA (2002) Optimal inspection and preventive maintenance of 
+units with revealed and unrevealed failures. Reliability Engineering & System Safety 78:157-
+163. 
+Brown M, Proschan F (1983). Imperfect repair. Journal of Applied Probability 20:851‐862. 
+Beichelt FE (1993). A unifying treatment of replacement policies with minimal repair. Naval 
+Research Logistics Quartily 40:51‐67.  
+Cha JH, Finkelstein M (2018a). On preventive maintenance under different assumptions on the 
+failure/repair processes. Quality and Reliability Engineering International 34:66-77.  
+Cha JH, Finkelstein M. (2018b). Point Processes for Reliability Analysis: Shocks and Repairable 
+Systems. London: Springer. 
+Cha JH, Finkelstein M (2023). On the multi-attempt minimal repair and the corresponding 
+counting process. Applied Stochastic Models in Business and Industry, (accepted). 
+Chahkandi M, Ahmadi J, Baratpour S (2014). Some results for repairable systems with minimal 
+repairs. Applied Stochastic Models in Business and Industry 30:218-226. 
+Chukova S, Minkova LD (2019). Nonhomogeneous Polya-Aeppli process. Communications in 
+Statistics-Simulation and Computation 48:2955-2967. 
+Finkelstein M (2008). Failure Rate Modeling for Reliability and Risk. London: Springer. 
+Finkelstein M, Cha JH (2013). Stochastic Modelling for Reliability: Shocks, Burn-in and 
+Heterogeneous Populations. Springer, London. 
+Finkelstein M, Shafiee M, Kotchap AN. (2016). Classical optimal replacement strategies revisited. 
+IEEE Transaction on Reliability. 65:540-546. 
+Finkelstein M, Cha JH, Langston A (2023).  Improving classical optimal age-replacement policies 
+for degrading items. Reliability Engineering & System Safety. 236:109302. 
+Preventive maintenance for the constrained multi-attempt minimal repair 
+16 
+Gertsbakh I (2005). Reliability Theory with Applications to Preventive Maintenance. Springer: 
+Berlin. 
+Guo C,  Liang Z (2022). A predictive Markov decision process for optimizing inspection and 
+maintenance strategies of partially observable multi-state systems. Reliability Engineering & 
+System Safety 226:108683. 
+Jacob S, Jose KK (2018). Generalized Polya-Aeppli process and its applications in risk modeling 
+and analysis. IOSR Journal of Business and Management 20:24-35.  
+Johnson NL, Kemp AW, Kotz S (2005). Univariate Discrete Distributions. Wiley Series in 
+Probability and Mathematical Statistics, Third Edition. New York: John Wiley. 
+Hamidi M, Szidarovsky F, Szidarovszky M. (2016) New one cycle criteria for optimizing 
+preventive replacement policies. Reliability Engineering & System Safety 154:42-48.  
+Nakagawa T (2005). Maintenance theory of reliability. London: Springer. 
+Minkova LD (2004). The Pólya-Aeppli process and ruin problems. JAMSA 3:221–234. 
+Pedersen TI, Vatn J (2022). Optimizing a condition-based maintenance policy by taking the 
+preferences of a risk-averse decision maker into account. Reliability Engineering & System 
+Safety 228:108775. 
+Ross S (1996). Stochastic Processes. New York: John Wiley. 
+Shaked M, Shanthikumar JG (2007). Stochastic Orders. New York: Springer. 
+Tambe P, Kulkarni MS (2022). A reliability based integrated model of maintenance planning with 
+quality control and production decision for improving operational performance. Reliability 
+Engineering & System Safety 226:108681. 
+Zhang F, Shen J, Liao, H, Ma, Y (2021). Optimal preventive maintenance policy for a system 
+subject to two-phase imperfect inspections. Reliability Engineering & System Safety 205: 
+107254. 
+Wang J, Miao Y (2021). Optimal preventive maintenance policy of the balanced system under the 
+semi-Markov model. Reliability Engineering & System Safety 213:107690. 
+Wang J, Qiu Q, Wang H (2021). , Joint optimization of condition-based and age-based replacement 
+policy and inventory policy for a two-unit series system. Reliability Engineering and System 
+Safety 205:107251. 
+Wang H, Pham H (2006). Reliability and Optimal Maintenance. London: Springer. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

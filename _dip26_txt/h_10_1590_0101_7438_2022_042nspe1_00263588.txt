@@ -1,0 +1,1139 @@
+Pesquisa Operacional (2022) 42(nspe1): e263588 p.1-27
+doi: 10.1590/0101-7438.2022.042nspe1.00263588
+© 2022 Brazilian Operations Research Society
+Printed version ISSN 0101-7438 / Online version ISSN 1678-5142
+www.scielo.br/pope
+ARTICLES
+AGE-BASED REPLACEMENT WITH IMPERFECT REPAIR AND
+RISK AS LOW AS REASONABLY PRACTICABLE
+Joyce Ara´ujo1*, Rodrigo Lopes2 and Philip Scarf3
+Received April 30, 2022 / Accepted August 24, 2022
+ABSTRACT. Maintenance policies must consider system reliability and the risk of accidents in systems
+where equipment failures represent a risk. In this context, this work proposes an age replacement policy
+with Bayesian imperfect repair and considers the “as low as reasonably practicable” (ALARP) principle.
+The policy determines the age of replacement that minimizes the long-run cost per unit time when the failure
+rate is ALARP. The model also supposes that failures are either minimally or perfectly repaired, depending
+on the skill of the maintainer. Numerical applications are performed with and without the disproportion
+factor in ALARP, both for infinite and one-replacement-cycle horizons. The results show that considering
+imperfect repair leads to an increase in replacement costs and a decrease in the optimal replacement age
+when considering the ALARP principle. The model applies to situations where there are conflicts of interest
+between maintenance management and risk; that is, cases where the aim is to reduce the cost of replacing
+equipment and minimize the risks. Maintenance policies must consider system reliability and the risk of
+accidents in systems where equipment failures represent a risk. In this context, this work proposes an age
+replacement policy with Bayesian imperfect repair and considers the “as low as reasonably practicable”
+(ALARP) principle. The policy determines the age of replacement that minimizes the long-run cost per unit
+time when the failure rate is ALARP. The model also supposes that failures are either minimally or perfectly
+repaired, depending on the skill of the maintainer. Numerical applications are performed with and without
+the disproportion factor in ALARP, both for infinite and one-replacement-cycle horizons. The results show
+that considering imperfect repair leads to an increase in replacement costs and a decrease in the optimal
+replacement age when considering the ALARP principle. The model applies to situations where there are
+conflicts of interest between maintenance management and risk; that is, cases where the aim is to reduce
+the cost of replacing equipment and minimize the risks.
+Keywords: maintenance, replacement, risk, safety, reliability, ALARP.
+*Corresponding author
+1RANDOM - Research Group on Risk and Decision Analysis in Operations and Maintenance, Management Engineering
+Department, Federal University of Pernambuco, Rodovia BR-104, Km 59, s/n, Nova Caruaru, 55002-970 Caruaru, PE,
+Brazil – E-mail: joyce.danielle.araujo@gmail.com – https://orcid.org/0000-0002-8015-0011
+2RANDOM - Research Group on Risk and Decision Analysis in Operations and Maintenance, Management Engineering
+Department, Federal University of Pernambuco, Rodovia BR-104, Km 59, s/n, Nova Caruaru, 55002-970 Caruaru, PE,
+Brazil – E-mail: r.s.lopes@random.org.br – https://orcid.org/0000-0001-5339-3301
+3RANDOM - Research Group on Risk and Decision Analysis in Operations and Maintenance UFPE, Cardiff Business
+School, Cardiff University, Cardiff, CF10 3AT, UK – E-mail: ScarfP@cardiff.ac.uk – https://orcid.org/0000-0001-5623-
+906X
+2 IMPERFECT REPAIR WITH ALARP
+1 INTRODUCTION
+Failures of engineered objects can negatively impact cost and availability as well as impact upon
+safety and the environment (Abbas & Shafiee, 2020). Therefore, maintenance planning needs
+to be associated with other activities of operators, such as quality control, production planning,
+and risk management. Also, there is the possibility of inducing failures and accidents during
+equipment maintenance, leading to explosions, fires, and toxic releases (Vatn & Aven, 2010). In
+this way, maintenance and risk should be managed simultaneously.
+In the search for this integration, some works have introduced security restrictions to maintenance
+optimization and argued the need to analyze beyond the cost-benefit relationship (Aven & Castro,
+2008, 2009; Flage et al., 2012). Other studies implemented the acceptance criteria of the As
+Low As Reasonably Practicable (ALARP) principle in maintenance optimization to reduce both
+maintenance costs and the risk of accident (Flage, 2013, 2018).
+Nonetheless, most works in the literature assume that maintenance occurs without errors and that
+items are perfectly restored. Depending on the system studied, replacement policies with perfect
+repair still present themselves as economical and effective models. However, consideration of
+imperfect repair brings models closer to reality (Toledo et al., 2015), as it allows the quality of
+the maintenance action to be affected by factors such as the skills of the maintenance team and
+the methods, technology, and tools used (Khatab & Aghezzaf, 2016; Sheu et al., 2019). Thus,
+maintenance actions’ quality may harm an engineered object’s elements, such as product quality,
+costs, production time, availability, reliability, and safety (Pham & Wang, 1996; Rivera-G ´Omez
+et al., 2021).
+Concerning age-replacement policies based on imperfect repair, it is possible to describe some
+studies in the literature. Brown and Proschan (1983) suggest an imperfect repair model in which
+the item is perfectly repaired with probability p or minimally repaired with probability q =
+1 − p. In the model of Fontenot and Proschan (1984), the item is perfectly repaired (replaced)
+at age T , and in intermittent failures (corrective maintenance) imperfect maintenance is taken
+into consideration. The model presented by Lim, Lu and Park (1998) treats the probability of the
+item being perfectly repaired as a random variable (Bayesian imperfect repair). Lim, Qu and Zuo
+(2016) considered that the quality of the maintenance action is a random variable governed by a
+probability distribution, where the probabilities of repairing the system perfectly are different for
+each employee since they have different repair skills.
+The lack of knowledge, incomplete information, and the misunderstanding of data can be real
+problems for maintenance actions and require adequate attention. In these contexts, the use of
+Bayesian probabilities becomes opportune as it allows the consideration of knowledge obtained
+before the occurrence of events and the updating of this knowledge over time, since it allows
+the insertion of expert knowledge, as well as obtaining reliable results, even though little data is
+available (Tuan, Yann & Mitra, 2015).
+Given the complexity of production systems, the uncertainties related to the quality of mainte-
+nance action, the age at which equipment will fail, and the consequences of failures, maintenance
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 3
+managers face the challenge of defining maintenance strategies that jointly consider the costs and
+risks involved in decisions.
+In situations involving risk, ALARP can be used to limit risk following imposed regulation and
+targeted security practices, considering costs (Jones-Lee & Aven, 2011). The principle states
+that risks must be reduced, except where there is a gross disproportion between the necessary
+resources and the benefits of safety measures (Aven & Abrahamsen, 2007). In this way, main-
+tenance activities contribute to mitigating failures and controlling accident risks, which can be
+prioritized and treated with the support of ALARP.
+In this paper, we developed a model based on the age replacement policy with Bayesian im-
+perfect repair, including the ALARP analysis. Given that imperfect repairs can happen and that
+equipment maintenance is integrated with risk management, we analyze how the uncertainty in
+the quality of maintenance action impacts on a risk perspective. The proposed model considers
+that the quality of the maintenance action varies due to the different skills of the maintainers
+and allows the definition of the optimal replacement age that minimizes maintenance costs while
+preventing accident risks from exceeding the ALARP region.
+The next section presents the proposed model. Numerical studies are performed in Section 3.
+Section 4 discusses the managerial implications. And Section 5 presents the conclusions.
+2 PROPOSED MODEL
+This section presents the age replacement model based on Bayesian imperfect repair with
+ALARP implementation and risk acceptance criteria.
+2.1 Model assumptions
+The model assumes:
+• Time to failure of equipment is a random variable with a known probability density
+function f (t) with an increasing failure rate;
+• The component only supports two states, failed or operational, and system failure is
+identified immediately;
+• The times to perform a replacement and repair are negligible;
+• There are k repair teams, each with different repair skills, and the quality of maintenance
+is a random variable described by a probability distribution;
+• The model considers a homogeneous risk;
+• The system is renewed at age T or the first perfectly repaired failure, whichever occurs
+first.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+4 IMPERFECT REPAIR WITH ALARP
+2.2 Age replacement policy
+The organization is assumed to have k repair teams, with different repair skills. When team
+i perform the repair, it is a minimal repair with probability 1 − pi and perfect repair (system
+renewal) with probability pi, where i = 1, . . ., k. Figure 1 illustrates the proposed model with its
+decisions. As input, there are fixed maintenance costs and parameters related to risk management.
+The costs incurred for replacement, perfect repair, and imperfect repair are calculated according
+to the degree of repair, the possible occurrence of the accident, and the approach used for the
+Value of Preventing a Fatality (VPF).
+Does the
+system survive
+until 𝑇?
+Preventive
+replacement
+Perfect
+repair
+No perfect
+repair
+What is the
+degree of 
+repair?
+Does failure
+cause an
+accident?
+Is the VPF 
+fixed?
+Yes
+Yes Yes
+Yes Yes
+No
+No No
+No No
+Perfect
+Imperfect
+INPUTS
+OUTPUTS
+𝐶𝑟
+𝐶𝑝
+𝐶𝑚
+ሻ𝐶𝑚 = (𝐶𝑚′ + 𝑝𝐴𝑃𝐿𝐿𝐴𝑣
+൯𝐶𝑝 = (𝐶𝑝′ + 𝑝𝐴𝑃𝐿𝐿𝐴𝑣
+𝐶𝑚 = 𝐶𝑚′ + 𝑝𝐴𝑃𝐿𝐿𝐴𝑑(𝑅 𝑇 ሻ𝑣
+𝐶𝑝 = 𝐶𝑝′ + 𝑝𝐴𝑃𝐿𝐿𝐴𝑑(𝑅 𝑇 ሻ𝑣𝐶𝑝 = 𝐶𝑝′
+𝐶𝑚 = 𝐶𝑚′
+𝐶𝑟 = 𝐶𝑟′
+Is the VPF 
+fixed?
+𝐶𝑟′
+𝐶𝑝′
+𝐶𝑚′
+𝑝𝐴
+𝑃𝐿𝐿𝐴
+𝑣
+𝑑(𝑅 𝑇 ሻ
+Does failure
+cause an
+accident?
+Figure 1 – Proposed model.
+The cost of preventive replacement, Cr = C′ r, refers to the cost of replacing the system at the
+programmed age, T.
+The expected safety cost, Cs, is considered when the failure results in an accident A. By assuming
+that the VPF is fixed, Cs is composed by multiplying the probability of occurrence of the
+accident due to failure (pA), the expected number of deaths (PLLA) and the Value of Preventing
+a Fatality (v).
+When considering that the VPF is increasing in the ALARP region, the gross disproportion factor,
+d (R (T )), is inserted into the value of Cs. This factor is expressed as follows.
+d(R(T )) =
+
+
+
+1, y≤r0
+g(R(T )), r0 < y < r1
+∞, y≥r1
+(1)
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 5
+Since R (T ) refers to the risk index and its value can be an approximation of the upper limit
+of the PLL when assuming that a person is exposed to the risk related to the maintenance of the
+system in question, expressed by Equation (2).
+R(T ) =
+h
+F(T )
+
+1 +
+j u
+T
+k
+− F
+
+T −
+
+u −
+j u
+T
+k
+T
+i
+pAPLLA (2)
+The perfect repair cost, Cp, is the value of replacing the system perfectly when the system fails
+before T . If there is no accident due to failure (with probability 1 − pA), Cp will be equal to
+the usual perfect repair cost (C′ p). In the situation where the accident A occurs (with probability
+pA), Cp will be composed of C′ p and the expected cost of security (Cs).
+Equations (3) and (4) present the composition of Cp for the fixed and increasing VPF,
+respectively.
+Cp = C′ p + pAPLLAv (3)
+Cp = C′ p + pAPLLAd(R(T ))v (4)
+The cost of imperfect repair, Cm, is the cost of repairing the system in a less than perfect way.
+Similarly to the perfect repair cost, if the failure causes an accident, Cm, will be composed of the
+non-perfect fixed repair cost (C′ m) and Cs. The imperfect repair cost is expressed by Equations
+(5) and (6) for fixed and increasing VPF, respectively.
+Cm = C′ m + pAPLLAv (5)
+Cm = C′ m + pAPLLAd(R(T ))v (6)
+The number of failures at (0, t) is the sum of the number of perfect repairs at (0, t) and the number
+of non-perfect repairs at (0, t). That is, N (t) = L (t) + M(t). So, Y1 = {t≥0|L (t) = 1} is the
+waiting time when the first perfect repair occurs and Z1 = {t≥0|M (t) = 1} is the waiting time
+where the first non-perfect repair occurs. In this way, M (Y1) refers to the number of non-perfect
+repairs in (0,Y1] and, according to Sheu et al. (1999), Y1 is independent of {M (t) ,t≥0}.
+According to Lim, Lu and Park (1998), H(t) = P (Y1≥t) = ∑k i=1 F pi (t)πi and G(t) = P (Z1≥t) =
+∑k i=1 F (1−pi)(t)πi. Furthermore, {L (t) ,t≥0} and {M (t) ,t≥0} are Non-Homogeneous Poisson
+Process (NHPP) with the respective intensity functions (Lim, Qu & Zuo, 2016):
+rH (t) = r(t) A(t, 1) A(t, 0) (7)
+rG(t) = r(t) Z(t, 1) Z(t, 0) (8)
+Since A (t, n) = ∑k i=1 pn i F pi (t)πi and Z (t, n) = ∑k i=1(1 − pi)nF (1−pi)(t)πi. Also, rH (t) and rG (t)
+are the failure rate functions of H and G, respectively. Next, the infinite-horizon and one-
+replacement-cycle cases will be presented based on Lim, Qu and Zuo (2016) and extended to
+the situation in which the ALARP risk acceptance criteria are considered.
+In sequence, the expected cost per unit of time is formulated for the infinite-horizon planning and
+the one-replacement-cycle case.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+6 IMPERFECT REPAIR WITH ALARP
+2.2.1 Expected cost per unit of time – Infinite-horizon case
+By proposing that Y1,Y2,... are independent and identically distributed random variables (i.i.d.)
+of H(y), the duration time between two consecutive system renewals is indicated by Y ∗ i =
+min(Yi, T ) for i = 1, 2, . . . as described in Equation (9).
+Y ∗ i = YiI(0,T )(Yi) + T I(T,∞)(Yi) (9)
+The first part of Equation (9) corresponds to the waiting time for the ith perfect repair and the
+probability of the system failing before T . The second part is composed of the age T and the
+probability of the system surviving until T . Thus, the expected value of Y ∗ i is (Lim, Qu & Zuo,
+2016):
+E(Y ∗ 1 ) =
+Z T
+0
+tdH(t) + T H(T ) =
+Z T
+0
+H(t)dt (10)
+In turn, the total cost incurred during the renewal interval Y ∗ i for i = 1, 2, . . .,Y ∗ i is obtained by
+Equation (11).
+C∗ i = [Cp +CmM(Yi)]I(0,T )(Yi) + [Cr +CmM(T )]I(T,∞)(Yi) (11)
+The first part of Equation (11) is composed of the probability of the system failing before T and
+being repaired perfectly, the cost of the perfect repair (Cp) and the costs of the non-perfect repairs
+that occurred until performed the first perfect repair, that is, the amount spent on a non-perfect
+repair (Cm) multiplied by the number of non-perfect repairs performed in the interval.
+The second part contains the probability of the system surviving until (Cr), in addition, the costs
+of non-perfect repairs that occurred until age T are considered. In this way, the expected cost to
+operate the system when the VPF is fixed is equal to Equation (12).
+E(C∗ 1 ) = (C′ m + pAPLLAv)
+Z T
+0
+H(t)rG(t)dt + (C′ p + pAPLLAv)H(T ) +C′ rH(T ) (12)
+Similarly, when the VPF is increasing, the expected cost of operating the system is defined by
+Equation (13).
+E(C∗ 1 ) =  C′m + pAPLLAd(R(T ))v  Z T 0 H(t)rG(t)dt +  C′ p + pAPLLAd(R(T ))v  H(T ) +Cr′H(T ) (13)
+Note that, {(Y ∗ 1 ,C∗ 1 )} comprise a renewal process, in which renewal occurs when there is a re-
+placement or perfect repair. Let K(t) be the expected cost to operate the system during the time
+interval [0,t], according to Renewal Reward Theorem (Ross, 2010):
+B(T ) = lim
+t→∞
+K(t)
+t = E(C∗ 1 ) E(Y ∗ 1 ) (14)
+Given the above, when considering the fixed VPF, the total cost incurred during the renewal
+interval is obtained by dividing the cost incurred in the renewal interval by the duration of the
+interval, as shown in Equation (15).
+B(T ) = (C′m + pAPLLAv) R T 0 H(t)rG(t)dt + (C′ p + pAPLLAv)H(T ) +C′ rH(T ) R T
+0 H(t)dt
+(15)
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 7
+When the total cost incurred during the renewal interval considers the VPF is increasing,
+Equation (16) is obtained.
+B(T ) = [C′m + pAPLLAd(R(T ))v] R T 0 H(t)rG(t)dt +  C′ p + pAPLLAd(R(T ))v  H(T ) +C′rH(T ) R T
+0 H(t)dt
+(16)
+Thus, the objective is to find the replacement age that minimizes the expected long-term cost,
+B(T ), and that complies with the risk acceptance criteria, i.e., R(T ) is less than r1.
+2.2.2 Expected cost per unit of time – One-replacement-cycle case
+When working with only one-replacement-cycle, will analyze the expected cost per unit of time
+of that cycle. A cycle can be delimited by the occurrence of failures before or after age T , so the
+total cost per unit of time between two successive replacements when the planned replacement
+is performed at age T, W (T ), is equal to:
+W (T ) =
+Cp +CmM(Y1)
+Y1
+
+I(0,T )(Yi) +
+Cr +CmM(T )
+T
+
+I(T,∞)(Yi) (17)
+Using the independence of Y1 and {M (t) ,t≥0}, the expected value of W (T ) is (Lim, Qu &
+Zuo, 2016):
+E[W (T )] = E
+
+I(0,T )(Y1)
+Cp +CmM(Y1)
+Y1
+
++ E
+
+I(T,∞)(Yi)
+Cr +CmM(T )
+T
+
+(18)
+E[W (T )] = Cp
+Z T
+0
+1
+t dH(t) + CrH(T ) T + Cm
+R T
+0 rG(t)dt
+T −Cm
+Z T
+0
+ H(t)
+t rG(t) − 1 t Z t 0 rG(z)dz  dt (19)
+Equation (20) shows the expected value of W (T ) when the VPF is fixed.
+E[W (T )] = (C′ p + pAPLLAd(R(T ))v)
+Z T
+0
+1
+t dH(t) + CrH(T ) T + (C′m + pAPLLAd(R(T ))v) R T 0 rG(t)dt T
+− (C′m + pAPLLAd(R(T ))v)
+Z T
+0
+ H(t)
+t rG(t) − 1 t Z t 0 rG(z)dz  dt (20)
+For the case of increasing VPF, the expected value of W (T ) is expressed by Equation (21).
+E[W (T )] = (C′ p + pAPLLAv)
+Z T
+0
+1
+t dH(t) + CrH(T ) T + (C′m + pAPLLAv) R T 0 rG(t)dt T
+− (C′m + pAPLLAv)
+Z T
+0
+ H(t)
+t rG(t) − 1 t Z t 0 rG(z)dz  dt (21)
+The objective is to find the replacement age that minimizes the expected long-run cost,
+E[W (T )], and that complies with the risk acceptance criteria, i.e., R(T ) is less than r1.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+8 IMPERFECT REPAIR WITH ALARP
+3 NUMERICAL STUDIES
+This section uses numerical examples to illustrate the proposed model. The numerical application
+comprises the cases with one and two points prior. In addition, the equations for the modeling
+of four points prior are presented. For the modeling of the cases, the Python (Python Software
+Foundation, 2020) programming language was used.
+Let F be a Weibull distribution with scale parameter θ = 1, shape parameter β > 0 and let
+t≥0. According to the proposal by Lim, Qu e Zuo (2016), we have the following equations.
+r (t) = βtβ −1 (22)
+H (T ) =
+k
+∑
+i=1
+e−pitβ ·πi (23)
+h (t) =
+k
+∑
+i=1
+β pitβ −1e−pitβ ·πi (24)
+rH (t) = βtβ −1 ∑k i=1 pie−pitβ ·πi
+∑k i=1 e−pitβ ·πi (25)
+rG (t) = βtβ −1 ∑k i=1(1 − pi)e−(1−pi)tβ ·πi
+∑k i=1 e−(1−pi)tβ ·πi (26)
+3.1 One-point prior
+For illustrative purposes, both for the infinite-horizon case and the one-replacement-cycle case,
+the values are shown in Table 1.
+Table 1 – Input values for model illustration.
+C′ r C′ p C′ m v pA PLLA β θ p1 r0 r1 u
+1 2 0.25 100 0.1 0.01 2 1 0.9 10−5 10−3 1
+The acceptance criteria were defined according to the values suggested by the Society for Risk
+Analysis (SRA). Weibull’s parameters represent a system with a wear pattern (β ) equal to 2 and
+a characteristic life (θ ) equal to 1. The proportions outlined for the values of maintenance costs
+and risk parameters aim to portray the reality of productive systems where is the probability of
+accident occurrence due to failure.
+3.1.1 Infinite-horizon case
+In the context of one-point prior, it is assumed that P = p1 with probability 1, for the infinite-
+horizon, Equations (15) and (16) were applied to obtain the expected long-term cost per unit of
+time. For the case of fixed VPF, the values of Cp and Cm were defined by Equations (3) and
+(5), whereas Equations (4) and (6) were used to express the case of increasing VPF.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 9
+By applying the values from Table 2 and modifying the values of the wear pattern (β ), the curves
+shown in Figure 2 were obtained. The curves represent the expected long-term cost for the fixed
+VPF (blue line) and the VPF increasing (red line), as well as the asymptotic PLL (orange line)
+and the upper limit of the PLL (green line). Note that the cost curves appear similar to each other,
+whereas the risk curves showed greater sensitivity to changing parameters.
+Figure 2b shows the curves for β = 2. When considering the fixed VPF, the optimal replacement
+age is T ∗ f = 1.05, with the lowest long-term. Whereas, when using crescent VPF, the ideal
+replacement age is T ∗ c = 0.95 and the lowest long-term cost is 2.400.
+It can be seen that the case based on the crescent VPF has a lower ideal replacement age, whereas
+the long-term replacement cost is higher. This situation occurs because the disproportion fac-
+tor increases over time, causing the risk index and cost to increase. Therefore, replacing the
+equipment at a younger age becomes more conservative.
+(b) ß = 2
+(d) ß = 3
+(a) ß = 1.5
+(c) ß = 2.5
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Figure 2 – Long-term expected cost and risk index for (a) β =1.5, (b) β =2, (c) β =2.5 and (d) β =3.
+For the values used, it is noted that throughout the analyzed interval, the upper limit of the PLL
+is included in the acceptance levels (10−5 and 10−3), whereas when considering the asymptotic
+PLL, the acceptance criteria restrict the set of optimal replacement times to the interval [0, 1.6].
+Thus, both in T ∗ c = 0.95 and in T ∗ f = 1.05 the risk values are within the acceptable level and
+are allowed.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+10 IMPERFECT REPAIR WITH ALARP
+Figure 3a shows the optimal long-term cost for different p values when analyzing the fixed VPF
+when β = 2, β = 2.5, and β = 3. It appears that, in all three cases, the optimal long-term cost
+increases when p increases, that is, when the repair tends to be perfect. The greater likelihood of
+a perfect repair entails more expensive because the cost of such a repair is more expensive than
+the cost of replacement. In this way, the optimal replacement age decreases as p increases, since
+it is more economical to replace before failure.
+(b) Optimal cost for increasing VPF
+(d) Percentage error for increasing VPF
+(a) Optimal cost for fixed VPF
+(c) Percentage error for fixed VPF
+Figure 3 – Long-run optimal cost for different p values (3a and 3b) and percentage error
+of optimal cost in infinite-horizon (3c and 3d).
+Furthermore, it is noted that the long-run cost optimal decreases when the wear pattern (β ), of the
+system increases. Since the non-perfect repair cost is less than the perfect repair cost, it becomes
+more economical to perform the non-perfect repair as β grows, this causes the long-run optimal
+cost to decrease.
+Figure 3b brings information similar to that presented in Figure 3a, this time for the situation
+where the VPF is increasing. It is possible to observe that the long-run optimal cost also increases
+when p increases and decreases when β increases.
+Figures 3c and 3d show the relative differences between the optimal long-term costs as p varies,
+that is, the differences between the values found for the optimal cost considering the imperfect
+repair (with different probabilities) and the values of the optimal cost when having a perfect re-
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 11
+pair. Note that the closer the probability of perfect repair approaches 1, the smaller the percentage
+error in cost.
+For example, assuming p = 0.80 and β = 2, the relative error is 7.628 and 6.901 when
+the VPF is fixed and increasing, respectively. On the other hand, when p = 0.90 and β = 2,
+the relative error is 3.738 and 3.178 when the VPF is fixed and increasing, respectively. The
+percentage error is also smaller considering the increasing VPF for the other values of p and β .
+Figure 4 presents the curves of the asymptotic PLL and upper bound of the PLL for different
+values of p and β = 2, indicating that both the asymptotic PLL and the upper limit of the PLL
+increase when p increases. Note that values above 10−3 do not fall within the ALARP region.
+In the case of the upper limit of the PLL, the results are in the ALARP region for all p values
+used. The asymptotic PLL surpassed the ALARP region at ages Tc = 1.85, Tc = 1.6, Tc = 1.45
+and Tc = 1.3 for p equal to 0.85, 0.9, 0.95 and 1, respectively. Thus, as p increased, the
+asymptotic PLL increased and the optimal age of replacement decreased.
+(b) Upper bound  for PLL(a) Asymptotic PLL
+Figure 4 – (a) Asymptotic PLL and (b) upper bound of the PLL for different values of p.
+A numerical experiment was carried out to investigate the effects of varying the parameters of
+the model. As can be seen in Table 2, each parameter was changed by −50, −25, +25 and +50,
+while the others were kept fixed.
+For the three values of p studied, when the C′ m increases, the optimal replacement age (T ∗) does
+not change and the B(T ∗) increases.
+When the replacement cost (C′ r) increases, T ∗ and B(T ∗) increase.
+When the perfect repair cost (C′ p increases, T ∗ decreases and B(T ∗) increases. The better
+the repair grade, the higher the cost, and as it is cheaper to replace before failure, the optimal
+replacement age is reduced.
+When the expected number of deaths (PLLA) increases, T ∗ c stays or increases, whereas B(T ∗)
+increases. The same behavior is observed for the probability of accident due to failure (pA) and
+the Value of Preventing a Fatality (v) when changed separately. This behavior is due to increased
+risk, so the cost increases and it becomes safer to replace the system at a younger age.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+12 IMPERFECT REPAIR WITH ALARP
+Table 2 – Sensitivity analysis for one-point prior (infinite-horizon).
+Changes (%) p = 0, 8 p = 0.9 p = 1
+Fixed VPF Crescent VPF Fixed VPF Crescent VPF Fixed VPF Crescent VPF
+T ∗ f B(T ∗ f ) T ∗ c B(T ∗ c ) T ∗ f B(T ∗ f ) T ∗ c B(T ∗ c ) T ∗ f B(T ∗ f ) T ∗ c B(T ∗ c )
+C′ m
+-50 1.10 2.073 1.05 2.286 1.05 2.174 0.95 2.390 1.05 2.270 0.95 2.479
+-25 1.10 2.085 1.05 2.297 1.05 2.179 0.95 2.395 1.05 2.270 0.95 2.479
++25 1.10 2.108 1.05 2.320 1.05 2.190 0.95 2.406 1.05 2.270 0.95 2.479
++50 1.10 2.120 1.05 2.331 1.05 2.196 0.95 2.411 1.05 2.270 0.95 2.479
+C′ p
+-50 2.00 1.205 2.00 1.440 2.00 1.224 2.00 1.416 2.00 1.245 2.00 1.398
+-25 1.55 1.686 2.00 1.930 1.50 1.741 2.00 1.940 1.50 1.795 2.00 1.954
++25 0.90 2.445 0.80 2.631 0.85 2.560 0.80 2.745 0.85 2.669 0.75 2.852
++50 0.80 2.751 0.70 2.908 0.75 2.888 0.70 3.045 0.70 3.019 0.65 3.174
+C′ r
+-50 0.60 1.686 0.55 1.784 0.60 1.762 0.55 1.865 0.55 1.838 0.50 1.935
+-25 0.85 1.942 0.70 2.110 0.80 2.028 0.70 2.196 0.80 2.111 0.70 2.280
++25 1.45 2.177 2.00 2.430 1.40 2.263 2.00 2.472 1.40 2.346 2.00 2.516
++50 2.00 2.205 2.00 2.440 2.00 2.288 2.00 2.480 1.95 2.368 2.00 2.521
+PLLA
+-50 1.15 2.049 1.05 2.104 1.10 2.139 1.05 2.195 1.05 2.226 1.00 2.280
+-25 1.10 2.073 1.05 2.193 1.10 2.162 1.00 2.286 1.05 2.248 1.00 2.368
++25 1.10 2.120 1.05 2.450 1.05 2.207 0.85 2.534 1.00 2.291 0.90 2.613
++50 1.05 2.143 0.75 2.592 1.05 2.229 0.75 2.681 1.00 2.312 0.80 2.763
+pA
+-50 1.15 2.049 1.05 2.104 1.10 2.139 1.05 2.195 1.05 2.226 1.00 2.280
+-25 1.10 2.073 1.05 2.193 1.10 2.162 1.00 2.286 1.05 2.248 1.00 2.368
++25 1.10 2.120 1.05 2.450 1.05 2.207 0.85 2.534 1.00 2.291 0.90 2.613
++50 1.05 2.143 0.75 2.592 1.05 2.229 0.75 2.681 1.00 2.312 0.80 2.763
+v
+-50 1.15 2.049 1.05 2.158 1.10 2.139 1.05 2.251 1.05 2.226 1.00 2.334
+-25 1.10 2.073 1.05 2.233 1.10 2.162 1.00 2.328 1.05 2.248 0.95 2.407
++25 1.10 2.120 1.05 2.383 1.05 2.207 0.90 2.472 1.00 2.291 0.90 2.549
++50 1.05 2.143 0.85 2.458 1.05 2.229 0.85 2.541 1.00 2.312 0.85 2.619
+θ
+-50 0.55 4.193 0.35 4.986 0.55 4.370 0.30 5.310 0.50 4.540 0.25 5.730
+-25 0.85 2.796 2.00 3.149 0.80 2.913 2.00 3.195 0.75 3.027 2.00 3.255
++25 1.40 1.677 1.10 1.817 1.35 1.748 1.05 1.888 1.30 1.816 1.05 1.956
++50 1.65 1.398 1.35 1.509 1.60 1.456 1.35 1.568 1.55 1.513 1.30 1.624
+β
+-25 2.00 2.080 2.00 2.251 2.00 2.201 2.00 2.351 2.00 2.320 2.00 2.449
++25 0.90 2.016 0.75 2.179 0.85 2.083 0.75 2.242 0.85 2.146 0.75 2.303
++50 0.80 1.925 0.75 2.040 0.80 1.976 0.70 2.090 0.80 2.027 0.70 2.137
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 13
+When the scale parameter (θ ) increases, T ∗ and B(T ∗) decrease for both the fixed and the
+variable VPF cases.
+Finally, when the shape parameter (β ) increases, T ∗ and B(T ∗) decrease. When β decreases,
+T ∗ e B(T ∗) increase. As the wear pattern increases, the system tends to be repaired more often
+and the repair performed tends to be non-perfect because its cost is lower than the perfect repair,
+so there is a decrease in the expected long-term cost.
+Furthermore, it was found that in some moments when p increased, the asymptotic PLL in-
+creased. It is expected that with increasing p reliability will increase and risk will decrease.
+However, it is understood that when working with probabilistic models such variations may
+occur, since the system will not always be perfectly or minimally repaired.
+3.1.2 One-replacement-cycle case
+By applying the values from Table 1, the curves shown in Figure 5 were obtained. For β = 2,
+when considering the fixed VPF, the optimal replacement age is T ∗ f = 0.7 and the optimal cost
+is 3.244. When using crescent VPF, the optimal replacement age is T ∗ c = 0.6 and the optimal
+cost is 3.482.
+During the entire analyzed interval, the upper limit of the PLL is included in the acceptance
+levels (10−5 and 10−3), whereas when considering the asymptotic PLL, the acceptance criteria
+constrain the set of optimal replacement times to the interval [0, 1.6]. Thus, both in T ∗ f = 0.7
+and in T ∗ c = 0.6 the risk values are within the acceptable level and are allowed.
+The increase in the risk index results from the increase in β . Similar to the infinite-horizon case,
+the optimal cost was higher and the optimal age decreased when the VPF was considered to
+increase. This is due to the increase in the risk index over time.
+When working with the one-replacement-cycle case, both in the case of fixed VPF and increasing
+VPF the optimal cost increases and the replacement age decreases when compared to the infinite
+time horizon. With the increase in risk, it becomes more appropriate to replace the equipment at
+a younger age to preserve lives, so there is an increase in cost.
+Figures 6a and 6b show the optimal cost for different values of p when β = 2, β = 2.5 and
+β = 3. By modifying the values of p, it is noted that for both the fixed VPF and the increasing
+VPF the optimal cost increases as p increases because when the repair tends to be perfect it is
+more economical to replace the system before failure due to the high cost of the system.
+When the wear pattern (β ) increases, the optimal cost decreases. This is due to the greater prob-
+ability of failure and the tendency to perform more non-perfect repairs because they are cheaper.
+This behavior is similar to the infinite planning horizon.
+In Figures 6c and 6d, the percentage error of optimal cost decreases as the repair tends to be
+perfect. When considering p = 0.80 and β = 2, the relative error is 3.084 and 3.311 when
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+14 IMPERFECT REPAIR WITH ALARP
+(b) ß = 2
+(d) ß = 3
+(a) ß = 1.5
+(c) ß = 2.5
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Figure 5 – One-replacement-cycle cost for (a) β =1.5, (b) β =2, (c) β =2.5 and (d) β =3.
+(b) Optimal cost for increasing VPF
+(d) Percentage error for increasing VPF
+(a) Optimal cost for fixed VPF
+(c) Percentage error for fixed VPF
+Figure 6 – Optimal one-replacement-cycle cost for different values of p (6a and 6b) and
+percentage error of the optimal cost for one-replacement-cycle (6c and 6d).
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 15
+the VPF is fixed and increasing, respectively. Thus, the relative error is smaller when compared
+to the infinite planning horizon.
+In turn, when p = 0.90 and β = 2, the relative error is 3.244 and 3.482 when the VPF is
+fixed and increasing, respectively. For the other values of p and β the percentage error is also
+smaller considering the increasing VPF.
+The asymptotic PLL and the upper limit of the PLL present the same behavior as in Figure 4 since
+the same F (T ) cumulative distribution function is used . Sensitivity analysis was also performed
+for the one-replacement-cycle case. Despite the values themselves being different, it was noticed
+that the results behaved similarly to those presented in Table 2, and in the one-replacement-cycle
+case, the values of T ∗ c were lower, whereas the values of B(T ∗ c ) were higher.
+3.1.3 Synthesis of results for one-point prior
+Table 3 presents the summary of the main results obtained for one-point prior. It is possible to
+notice once again that the optimal age values are higher when the time horizon is infinite and
+the costs are lower. In the case of both the infinite-horizon and the one-replacement-cycle, the
+insertion of the ALARP acceptance criteria decreased the value of the optimal age and increased
+the costs.
+Table 3 – Synthesis of results for one-point prior.
+p = 0.8 p = 0.9 p = 1
+T ∗ B(T ∗) T ∗ B(T ∗) T ∗ B(T ∗)
+Infinite-Horizon
+Without ALARP 1.20 2.001 1.15 2.093 1.10 2.182
+Fixed VPF 1.10 2.097 1.05 2.185 1.05 2.270
+Increasing VPF 1.05 2.308 0.95 2.400 0.95 2.479
+One-replacement-cycle
+Without ALARP 0.80 2.966 0.75 3.126 0.70 3.278
+Fixed VPF 0.75 3.084 0.70 3.244 0.65 3.398
+Increasing VPF 0.70 3.244 0.60 3.482 0.55 3.643
+Figure 7 shows the cost curves when the ALARP risk principles are not introduced in the model,
+that is, the model is limited to the case proposed by Lim, Qu and Zuo (2016). The curves are
+similar to the cases in which ALARP was introduced. However, when the risk is not adopted, for
+the infinite-horizon case, we have B(T ∗) = 2.093 and T ∗ = 1.15. In turn, for the finite-horizon,
+B(T ∗) = 3.126 and T ∗ = 0.75.
+Such behavior demonstrates considering risk in the model brings a more conservative result
+about the replacement age and the costs become higher. In this way, replacements will take place
+at shorter and more frequent intervals, resulting in the need for greater attention to maintenance
+personnel.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+16 IMPERFECT REPAIR WITH ALARP
+(b)(a)
+Expected cost (Infinite-horizon) Expected cost (Finite-horizon)
+Figure 7 – (a) Expected cost and (b) one-replacement-cycle without ALARP.
+The different perspectives presented are useful for maintenance managers to adjust maintenance
+schedules, the choice of the case to be adopted will depend on the planning horizon of interest
+and the degree of risk acceptance.
+3.2 Two points prior
+Use of more than one-point prior can be applied to the situation that the organization has k = 2
+repair teams, its members have different repair skills and are randomly requested to repair a
+failed system. Thus, the probability of a perfect repair varies randomly due to the skills of the
+collaborators.
+P is considered a random variable with the following distribution when admitting two points
+prior.
+P =
+(
+p1with probability π1
+p2with probability π2
+(27)
+So that π1 + π2 = 1, 0≤p1 < p2≤1. Thus, we have the following equations for the context of
+two points prior.
+H(t) = π1e−p1( t θ ) β + π2e−p2( t θ ) β (28)
+h(t) = β θ tβ −1
+
+p1π1e−p1( t θ ) β + p2π2e−p2( t θ ) β
+
+(29)
+rH (t) = β θ tβ −1
+
+ p1π1e−p1( t θ ) β + p2π2e−p2( t θ ) β
+π1e−p1( t θ ) β + π2e−p2( t θ ) β
+
+ (30)
+rG(t) = β θ tβ −1
+
+ (1 − p1) π1e−(1−p1)( t θ ) β + (1 − p2) π2e−(1−p2)( t θ ) β
+π1e−(1−p1)( t θ ) β + π2e−(1−p2)( t θ ) β
+
+ (31)
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 17
+R(T ) =
+(
+1 −
+
+π1e−p1( T θ ) β + π2e−p2( T θ ) β
+ 
+1 +
+j u
+T
+k
+− 1
+−
+
+π1e −p1
+ 
+T −(u−⌊ u T ⌋T )
+θ
+!β
++ π2e
+−p2
+ 
+T −(u−⌊ u T ⌋T )
+θ
+!β 
+
+)
+pAPLLA (32)
+To illustrate the application of the model, the initial values from Table 1 will continue to be used.
+However, p1 will be equal to 0.8.
+3.2.1 Case of the infinite-horizon
+Figure 8 shows the expected long-term cost for the fixed VPF and the increasing VPF for the
+case where p1 = 0.8, p2 = 0.9, π1 = 0.5, and π2 = 0.5. When the VPF is fixed, the ideal
+replacement age is T ∗ f = 1, 1, with the lowest long-term cost being 2.139. Whereas, when using
+crescent VPF, the ideal replacement age is T ∗ c = 1.05 and the lowest long-term cost is 2.355.
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Figure 8 – Long-run expected cost for two points prior for β =2.
+Thus, when working with two points prior and reducing one of the p values, it can be seen that
+the cost has decreased and the replacement age has increased for the fixed VPF and the variable
+VPF, a situation similar to that portrayed for a point a prior.
+The upper bound for PLL is included in the acceptance levels (10−5 and 10−3) throughout the
+range shown, for ages above 1.5 the asymptotic PLL does not fall into the ALARP region.
+Figure 9 shows the behavior of the 4 curves for some values of p2 and β when π1 = 0.4 and
+π2 = 0.6. The curves are slightly altered as p varies and undergo a large change as β increases.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+18 IMPERFECT REPAIR WITH ALARP
+(b) ß = 3, p2= 0.9
+(d) ß = 3, p2= 0.95
+(a) ß = 2.5, p2= 0.9
+(c) ß = 2.5, p2= 0.95
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+(f) ß = 3, p2= 1(e) ß = 2.5, p2= 1
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Figure 9 – Long-run expected cost for two points prior and different values of p2 and β .
+When addressing risk, Figure 10 shows how the upper bound of the PLL behaves when β and
+p vary. For the values considered in the illustration, in all cases, the upper PLL was found to
+be within the ALARP region. Similar to a prior point, as it is considered a probabilistic model,
+even with an increase in p, imperfect repairs can still occur because they follow a probability
+distribution.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 19
+(b) ß = 2, �1= 0.4, �2= 0.6
+(d) ß  = 2.5, �1= 0.4, �2= 0.6
+(a) ß = 2, �1= 0.5, �2= 0.5
+(c) ß  = 2.5, �1= 0.5, �2= 0.5
+(f) ß = 3, �1= 0.4, �2= 0.6(e) ß = 3, �1= 0.5, �2= 0.5
+Figure 10 – Upper PLL for two points prior varying β and π.
+3.2.2 One-replacement-cycle case
+Figure 11 shows the one-replacement-cycle cost for fixed VPF and the crescent VPF for the case
+where p1 = 0.8, p2 = 0.95, π1 = 0.5, and π2 = 0.5.
+When the VPF is fixed, the ideal replacement age is T ∗ f = 0.70, with the lowest cost of one-
+replacement-cycle equal to 2.034. Whereas, when using crescent VPF, the ideal replacement age
+is T ∗ c = 0.60 and the lowest cost of one-replacement-cycle is equal to 3.4379.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+20 IMPERFECT REPAIR WITH ALARP
+Upper bound for PLL
+Asymptotic PLL
+Increasing VPF
+Fixed VPF
+Figure 11 – One-replacement-cycle cost for two points prior for β =2.
+When using π1 = 0.4 and π2 = 0.6, when the VPF is fixed, the ideal replacement age is
+T ∗ f = 0.70 and E[W (T ∗)] = 2.227. In turn, when the VPF is increasing, the ideal replacement
+age is T ∗ c = 0.60 and the lowest cost of one-replacement-cycle is equal to E[W (T ∗)] = 3.463.
+For the analyzed values, the optimal age of replacement did not change, and the optimal cost
+suffered an insignificant variation with the change in π.
+3.2.3 Synthesis of results for two points prior
+Table 4 has the optimal replacement ages and their related costs. Regarding the optimal age of
+replacement, it increases when β increases, there is a slight decrease when p changes and there
+is almost no variation when π is changed. Thus, it is understood that the shape parameter and
+the repair quality influence the replacement age more than the prior distributions.
+However, it is interesting that the prior distributions are considered in the model so that uncer-
+tainties are included, and decision-makers have greater support for their choices. In addition, a
+considerable part of the maintenance actions are still performed by humans and they are prone
+to errors due to the deficiency in documentation, communication, tools, and methodologies, as
+well as difficulties that may arise during the maintenance activity (Morag et al., 2018). Thus,
+due to the high interaction between maintainers and equipment, it is necessary to consider the
+possibility of human error.
+In addition to considering the impact of competencies on team performance, organizations needs
+to think about the capabilities that teams need, plans for team building, and ways to develop those
+capabilities of maintainers. It is worth mentioning that in scenarios that involve high risk, main-
+tenance activities are usually carried out with the help of high technology, and with the advent of
+industry 4.0, the use of digital technologies in maintenance activities has grown (Alvanchi et al.,
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 21
+2021). Thus, this scenario will demand new capabilities and skills that need to be explored, for ex-
+ample, leadership, time management, information analysis, problem-solving, interpersonal skills,
+collaboration, and knowing how to use virtual and augmented reality technologies (Romero et
+al., 2016a, b).
+Table 4 – Synthesis of results for two points prior (infinite-horizon).
+β π VPF p2 = 0.9 p2 = 0.95 p2 = 1
+T ∗ B(T ∗) T ∗ B(T ∗) T ∗ B(T ∗)
+β = 2
+π1 = 0.5 e π2 = 0.5
+Fixed 1.10 2.139 1.10 2.159 1.10 2.178
+Increasing 1.05 2.356 0.95 2.376 0.95 2.393
+π1 = 0.4 e π2 = 0.6
+Fixed 1.10 2.148 1.10 2.173 1.05 2.196
+Increasing 1.05 2.366 0.95 2.388 0.95 2.409
+β = 2.5
+π1 = 0.5 e π2 = 0.5
+Fixed 0.90 2.049 0.90 2.064 0.90 2.080
+Increasing 0.75 2.210 0.75 2.225 0.75 2.239
+π1 = 0.4 e π2 = 0.6
+Fixed 0.9 2.056 0.90 2.075 0.85 2.093
+Increasing 0.75 2.217 0.75 2.234 0.75 2.251
+β = 3
+π1 = 0.5 e π2 = 0.5
+Fixed 0.80 1.950 0.80 1.962 0.80 1.974
+Increasing 0.70 2.065 0.70 2.077 0.70 2.088
+π1 = 0.4 e π2 = 0.6
+Fixed 0.80 1.955 0.80 1.970 0.80 1.984
+Increasing 0.70 2.070 0.70 2.084 0.70 2.097
+Figure 12 summarizes the behavior of the optimal age and the optimal replacement cost for one
+and two points prior. In summary, when considering one or more points prior, for both infinite
+and finite planning horizons, when the risk is introduced, and increased over time, the optimal
+replacement age decreases and the optimal cost increases. Furthermore, as the probability of
+perfect repair increases, the optimal age decreases, and the cost increases, this behavior is more
+noticeable in the case of one-point prior.
+3.3 Four points prior
+For the case of four points prior, P is considered a random variable with the following distribution.
+P =
+
+
+
+p1 with probability π1
+p2 with probability π2
+p3 with probability π3
+p4 with probability π4
+(33)
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+22 IMPERFECT REPAIR WITH ALARP
+Without 
+ALARP
+Without 
+ALARP
+Fixed VPF 
+Increasing
+VPF
+Fixed VPF 
+Increasing
+VPF
+Finite-
+Horizon
+Inputs
+Infinite-
+Horizon
+Optimal Age Optimal Cost
+Optimal Age Optimal Cost
+Figure 12 – Synthesis of optimal age performance and optimal cost.
+So that π1 + π2 + π3 + π4 = 1, then, we have the following equations for the context of four points prior.
+H(t) = π1e−p1( t θ )β + π2e−p2( t θ )β + π3e−p3( t θ )β + π4e−p4( t θ )β (34)
+h(t) = β θ tβ −1
+
+p1π1e−p1( t θ )β + p2π2e−p2( t θ )β + p3π3e−p3( t θ )β + p4π4e−p4( t θ )β  (35)
+rH (t) = β θ tβ −1
+
+ p1π1e−p1( t θ )β + p2π2e−p2( t θ )β + p3π3e−p3( t θ )β + p4π4e−p4( t θ )β
+π1e−p1( t θ )β + π2e−p2( t θ )β + π3e−p3( t θ )β + π4e−p4( t θ )β
+
+ (36)
+rG(t) = β θ tβ −1
+
+ (1 − p1) π1e−(1−p1)( t θ )β + (1 − p2) π2e−(1−p2)( t θ )β + (1 − p3) π3e−(1−p3)( t θ )β + (1 − p4) π4e−(1−p4)( t θ )β
+π1e−(1−p1)( t θ )β + π2e−(1−p2)( t θ )β + π3e−(1−p3)( t θ )β + π4e−(1−p4)( t θ )β
+
+
+(37)
+R(T ) =
+
+
+
+"
+1 −
+ 
+π1e−p1
+ T
+θ
+β
++ π2e−p2
+ T
+θ
+β
++ π3e−p3
+ T
+θ
+β
++ π4e−p4
+ T
+θ
+β !#  
+1 +
+ u
+T
+
+−1 −
+
+π1e −p1
+ 
+T −(u−⌊ u T ⌋T )
+θ
+!β
++ π2e
+−p2
+ 
+T −(u−⌊ u T ⌋T )
+θ
+!β
++ π3e
+−p3
+ 
+T −(u−⌊ u T ⌋T )
+θ
+!β
++ π4e
+−p4
+ 
+T −(u−⌊ u T ⌋T )
+θ
+!β 
+
+
+
+ pAPLLA
+(38)
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 23
+4 MANAGEMENT INSIGHTS
+The increased emphasis on sustainable production requires greater commitment from companies
+to preserve the environment and develop society. By reducing accident risks and negative impacts
+on nature, organizations gain advantages, namely compliance with environmental legislation,
+greater competitiveness, better credibility from the surrounding community and customers, and
+improving their internal processes (Peterson et al., 2021).
+On the other hand, failures in production systems can cause great economic, social and environ-
+mental losses, in such a way that organizations need to create strategies that contribute to the
+minimization of accidents and risks must be identified, analyzed and treated.
+The maintenance of equipment influences the reliability and, consequently, the safety of
+the systems. Therefore, effective maintenance actions can cooperate to minimize the risk of
+accidents.
+In managerial terms, the application of the proposed model allows the teams involved with main-
+tenance management to work in association with maintenance costs, equipment reliability, and
+the risks involved in making decisions about replacement ages. Furthermore, this work draws
+attention to the fact that the competencies of the members of the maintenance teams can impact
+the performance of the tasks performed. This study also can alert organizations to the need to
+reflect on the capabilities required in maintenance teams, strategies for team composition, and
+plans to leverage these intended capabilities.
+The application of the model allows the optimal replacement ages to be obtained, that is, those
+that minimize costs and allow the risk to keep within the ALARP risk region or the widely
+acceptable region. The choice of the number of points prior, the planning horizon and the use of
+the disproportion factor will depend on the number of teams involved, the requirements related to
+risk exposure and the preferences of maintenance managers, according to the context in question.
+The fact of admitting that the repair can be imperfect brings the model closer to reality when
+compared to models that consider that the system is always perfectly restored since mainte-
+nance activities can present errors resulting from deficiencies related to the people involved, the
+methodologies applied and the technology used.
+Both maintenance actions and risk analysis add uncertainties, for example, regarding the qual-
+ity of the maintenance action, the time when equipment will fail, the consequences of failures,
+and the absence or inaccuracy of data. Therefore, the use of prior distributions in the proposed
+model admits that the knowledge of experts is considered so that some of these uncertainties are
+encompassed.
+However, it is important to note that using Bayesian probability does not exclude the need for
+review and judgment by decision-makers after numerical analyses. For cases where decisions
+have a high impact on security, it is interesting, for example, to create a “Safety Board” formed
+by multidisciplinary experts for a broader discussion (Vatn & Aven, 2010).
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+24 IMPERFECT REPAIR WITH ALARP
+Given the importance of the decision process being informed about risk and the need for reli-
+able and accurate information, it is believed that the more useful information the teams enjoy,
+the better the team’s knowledge and the greater the prospect of good decisions. Thus, it is ex-
+pected that this model will contribute to including relevant information in maintenance manage-
+ment decision-making processes and support managers in conflicting situations between risk and
+maintenance.
+5 CONCLUSION
+Faced with the need for integration between maintenance management and risk management
+in organizations, this work aimed to propose an age replacement policy with Bayesian imperfect
+repair that considers the risk and to analyze how the uncertainty of the quality of the maintenance
+action impacts ALARP and the total cost of maintenance.
+The policy was modeled for the infinite-horizon planning and one-replacement-cycle, so it can be
+used both in stable situations over time and for cases in which the cycles change. In addition, it
+encompassed both situations in which the risk index is fixed and cases in which it increases over
+time, which makes the model adaptable both for circumstances in which decision-makers need
+to be more conservative about safety and in occasions with greater permissiveness concerning
+risk restrictions.
+Numerical application results showed that cases that relied on increasing VPF had a lower opti-
+mal replacement age and higher long-term replacement cost. This was because the disproportion
+factor became larger over time, causing the risk and cost index to increase, so replacing the
+equipment at a younger age became more conservative.
+When two points prior were considered, it was noticed that the shape parameter and the quality
+of the repair had a considerable influence on the age of replacement, whereas the prior distribu-
+tions had a smaller impact. Furthermore, the sensitivity analysis showed that the model behaved
+as expected when subjected to different variations, showing good performance. Thus, the pro-
+posed model is suitable to be used in real cases to support risk management and maintenance
+management decisions.
+The use of adequate maintenance models contributes to assertive decision-making so that acci-
+dents can be prevented, culminating in benefits for society, the environment, and the economy.
+Therefore, it is hoped that applying the proposed model will help companies in their maintenance
+strategies when there is a conflict between risk management and maintenance.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 25
+6 NOTATION
+X Lifetime of a system.
+F (t) , f (t) , r(t) CDF, PDF, and failure rate of X, respectively.
+T Age for planned replacement.
+pA Probability of an accident (A) given that the system has failed.
+PLLA Potential Loss of Life given an accident (A), i.e., expected number of fatalities.
+v Value of Preventing a Fatality (VPF).
+Cs Safety cost.
+C′p,C′m,C′r, Cost for perfect repair considering only the failure cost, cost for no perfect
+repair considering only the failure cost and replacement cost, respectively.
+Cp,Cm,Cr Costs for perfect repair considering only the failure and safety cost, no perfect
+repair considering only the failure and safety cost and replacement cost,
+respectively.
+P Randon variable representing the probability of a perfect repair
+N (t) , L (t) , M(t) Number of failures, number of perfect repairs, and number of no perfect repair
+in (0,t), respectively.
+Y1 e Z1 Waiting times at which the first perfect repair and the first no perfect repair
+occurs, respectively.
+H(t) e G(t) CDFs of Y1 and Z1, respectively.
+rH (t) e rG (t) Failure rates de Y1 and Z1, respectively.
+Y ∗ 1 Time duration between two successive renewals of system.
+C∗ 1 Total cost incurred over the renewal interval Y ∗ 1 .
+R(T ) Above limit of PLL, approximation of risk index.
+d(R(T )) Disproportion factor.
+B(T ) Expected long-run cost per unit time.
+W(T) Total cost per unit time between two successive replacement.
+Acknowledgements
+The work was supported by funding from the Coordination for the Improvement of Higher
+Education Personnel in Brazil (Capes).
+References
+ABBAS M & SHAFIEE M. 2020. An overview of maintenance management strategies for
+corroded steel structures in extreme marine environments. Marine Structures, 71(Mai 2020):
+102718.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+26 IMPERFECT REPAIR WITH ALARP
+ALVANCHI A, TOHIDIFAR A, MOUSAVI M, AZAD R & ROKOOEI S. 2021. A critical study of
+the existing issues in manufacturing maintenance systems: Can BIM fill the gap? Computers in
+Industry, 131: 103484.
+AVEN T & ABRAHAMSEN E. 2007. On the use of cost-benefit analysis in ALARP processes.
+International Journal of Performability Engineering, 3(3): 345–353.
+AVEN T & CASTRO IT. 2008. A minimal repair replacement model with two types of failure
+and a safety constraint. European Journal of Operational Research, 188(2): 506–515.
+AVEN T & CASTRO IT. 2009. A delay-time model with safety constraint. Reliability
+Engineering and System Safety, 94(2): 261–267.
+BROWN M & PROSCHAN F. 1983. Imperfect Repair. Journal of Applied Probability, 20(4):
+851–859.
+FLAGE R. 2013. On risk reduction principles in the context of maintenance optimisation mod-
+elling. Proceedings of the Institution of Mechanical Engineers, Part O: Journal of Risk and
+Reliability, 227(3): 241–250.
+FLAGE R. 2018. Maintenance Optimization and Its Relation to Safety. Handbook of Safety
+Principles, pp. 540–564.
+FLAGE R, COIT DW, LUXHØJ JT & AVEN T. 2012. Safety constraints applied to an adaptive
+Bayesian condition-based maintenance optimization model. Reliability Engineering and System
+Safety, 102: 16–26.
+FONTENOT RA & PROSCHAN F. 1984. Some imperfect maintenance models. In: M ABDEL-
+HAMEED EAE (Ed.), Reliability Theory and Models. Orlando: Academic Press.
+FOUNDATION PS. 2020. Python Language Reference.
+JONES-LEE M & AVEN T. 2011. ALARP - What does it really mean? Reliability Engineering
+and System Safety, 96(8): 877–882.
+KHATAB A & AGHEZZAF E. 2016. Selective maintenance optimization when quality of im-
+perfect maintenance actions are stochastic. Reliability Engineering and System Safety, 150:
+182–189.
+LIM JH, LU KL & PARK DH. 1998. Bayesian imperfect repair model. Communications in
+Statistics - Theory and Methods, 27 (4)(June 2014): 965–984.
+LIM JH, QU J & ZUO MJ. 2016. Age replacement policy based on imperfect repair with random
+probability. Reliability Engineering and System Safety, 149: 24–33.
+MORAG I, CHEMWENO P, PINTELON L & SHEIKHALISHAHI M. 2018. Identifying the causes
+of human error in maintenance work in developing countries. International Journal of Industrial
+Ergonomics, 68(July): 222–230.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588
+JOYCE ARA ´UJO, RODRIGO LOPES and PHILIP SCARF 27
+PETERSON M, MINTON EA, LIU RL & BARTHOLOMEW DE. 2021. Sustainable Marketing
+and Consumer Support for Sustainable Businsses. Sustainable Production and Consumption, 27:
+157–168.
+PHAM H & WANG H. 1996. Imperfect maintenance. vol. 2217.
+RIVERA-G ´OMEZ H, GHARBI A, KENN ´E JP, ORTIZ-ZARCO R & CORONA-ARMENTA JR.
+2021. Joint production, inspection and maintenance control policies for deteriorating system
+under quality constraint. Journal of Manufacturing Systems, 60: 585–607.
+ROMERO D, BERNUS P, NORAN O, STAHRE J & FAST-BERGLUND A. 2016a. The Opera-
+tor 4.0: Human Cyber-Physical Systems & Adaptive Automation Towards Human-Automation
+Symbiosis Work Systems. In: IFIP International Conference on Advances in Production Man-
+agement Systems. APMS 2016: Advances in Production Management Systems. Initiatives for a
+Sustainable World, vol. 2. pp. 677–686. Springer.
+ROMERO D, STAHRE J, WUEST T, NORAN O, BERNUS P, FAST-BERGLUND A & GORECKY
+D. 2016b. Towards an operator 4.0 typology: A human-centric perspective on the fourth indus-
+trial revolution technologies. In: CIE 2016: 46th International Conferences on Computers and
+Industrial Engineering. pp. 29–31. October. Tianjin, China.
+ROSS SM. 2010. Renewal Theory and Its Applications. In: Introduction to Probability Models.
+pp. 421–495. Elsevier.
+SHEU SH, SHEU UY, TSAI HN & ZHANG ZG. 2019. Optimal replacement policies for a system
+based on a one-cycle criterion. Reliability Engineering and System Safety, 191(June): 106527.
+SHEU SH, YEH RH, LIN YB & JUANG MG. 1999. A Bayesian perspective on age replacement
+with minimal repair. Reliability Engineering and System Safety, 65(March 1998): 55–64.
+TOLEDO MLGD, FREITAS MA, COLOSIMO EA & GILARDONI GL. 2015. ARA and ARI
+imperfect repair models: Estimation, goodness-of-fit and reliability prediction. Reliability
+Engineering and System Safety, 140: 107–115.
+TUAN ND, YANN D & MITRA F. 2015. Bayesian Analysis of the Brown–Proschan Model.
+Stochastics and Quality Control, 30(1): 9–20.
+VATN J & AVEN T. 2010. An approach to maintenance optimization where safety issues are
+important. Reliability Engineering and System Safety, 95(1): 58–63.
+How to cite
+ARA ´UJO J, LOPES R & SCARF P. 2022. Age-based replacement with imperfect repair and risk
+as low as reasonably practicable. Pesquisa Operacional, 42 (nspe1): e263588. doi: 10.1590/0101-
+7438.2022.042nspe1.00263588.
+Pesquisa Operacional, Vol. 42(nspe1), 2022: e263588

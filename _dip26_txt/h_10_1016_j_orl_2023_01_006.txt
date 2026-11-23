@@ -1,0 +1,847 @@
+UvA-DARE is a service provided by the library of the University of Amsterdam (https://dare.uva.nl)
+UvA-DARE (Digital Academic Repository)
+Data-driven preventive maintenance for a heterogeneous machine portfolio
+Deprez, L.; Antonio, K.; Arts, J.; Boute, R.
+DOI
+10.1016/j.orl.2023.01.006
+Publication date
+2023
+Document Version
+Final published version
+Published in
+Operations Research Letters
+License
+Article 25fa Dutch Copyright Act (https://www.openaccess.nl/en/policies/open-access-in-
+dutch-copyright-law-taverne-amendment)
+Link to publication
+Citation for published version (APA):
+Deprez, L., Antonio, K., Arts, J., & Boute, R. (2023). Data-driven preventive maintenance for a
+heterogeneous machine portfolio. Operations Research Letters, 51(2), 163-170.
+https://doi.org/10.1016/j.orl.2023.01.006
+General rights
+It is not permitted to download or to forward/distribute the text or part of it without the consent of the author(s)
+and/or copyright holder(s), other than for strictly personal, individual use, unless the work is under an open
+content license (like Creative Commons).
+Disclaimer/Complaints regulations
+If you believe that digital publication of certain material infringes any of your rights or (privacy) interests, please
+let the Library know, stating your reasons. In case of a legitimate complaint, the Library will make the material
+inaccessible and/or remove it from the website. Please Ask the Library: https://uba.uva.nl/en/contact, or a letter
+to: Library of the University of Amsterdam, Secretariat, P.O. Box 19185, 1000 GD Amsterdam, The Netherlands.
+You will be contacted as soon as possible.
+Download date:23 Nov 2026
+Operations Research Letters 51 (2023) 163–170
+Contents lists available at ScienceDirect
+Operations Research Letters
+journal homepage: www.elsevier.com/locate/orl
+Data-driven preventive maintenance for a heterogeneous machine 
+portfolio
+Laurens Depreza,∗, Katrien Antoniob,c, Joachim Artsa, Robert Bouteb,d,e
+a Luxembourg Centre for Logistics and Supply Chain Management, University of Luxembourg, Luxembourg
+b Faculty of Economics and Business, KU Leuven, Belgium
+c Faculty of Economics and Business, University of Amsterdam, the Netherlands
+d Technology & Operations Management Area, Vlerick Business School, Belgium
+e VCCM, Flanders Make, Belgium
+a r t i c l e i n f o a b s t r a c t
+Article history:
+Received 24 August 2021
+Received in revised form 29 November 2022
+Accepted 4 January 2023
+Available online 10 January 2023
+Keywords:
+Preventive maintenance
+Data pooling
+Proportional hazards
+Small data
+We describe a data-driven approach to optimize periodic maintenance policies for a heterogeneous 
+portfolio with different machine proﬁles. When insuﬃcient data are available per proﬁle to assess 
+failure intensities and costs accurately, we pool the data of all machine proﬁles and evaluate the 
+effect of (observable) machine characteristics by calibrating appropriate statistical models. This reduces 
+maintenance costs compared to a stratiﬁed approach that splits the data into subsets per proﬁle and a 
+uniform approach that treats all proﬁles the same.
+© 2023 Elsevier B.V. All rights reserved.
+1. Introduction
+Despite advances in condition monitoring, time- or age-based 
+periodic preventive maintenance is still common practice in many 
+companies. Under this policy, preventive maintenance (PM) inter-
+ventions are scheduled at a periodic interval, either measured in 
+calendar time or running hours. This interval is determined by 
+trading off the failure rate and corresponding failure costs against 
+the cost of performing preventive maintenance. Most literature as-
+sumes that the failure behaviour, or failure intensity, is known, in 
+line with [5]. In practice, however, the failure distribution may not 
+be known and should be estimated based on historical data. This 
+may introduce some challenges. A small machine population may 
+not provide suﬃcient maintenance and failure data for an accurate 
+estimation. The lack of suﬃcient data to accurately estimate re-
+gression parameters is known as the ‘small data’ problem. Even 
+when the machine population is of adequate size, the machine 
+population might be heterogeneous and as such may contain mul-
+tiple different machine proﬁles. This heterogeneity can be caused 
+by different running conditions, environmental factors or differ-
+ent manufacturing plants where the machines were assembled and 
+might induce different failure intensities and costs. Estimation by 
+* Corresponding author. 6 Rue Richard Coudenhove-Kalergi, 1359 Luxembourg, 
+Luxembourg.
+E-mail address: laurens.deprez@kuleuven.be (L. Deprez).
+stratifying, or splitting the data, per machine proﬁle might again 
+induce the small data problem. Aggregating these machine data 
+without taking into account the heterogeneity in the machine pop-
+ulation leads to a maintenance policy that is optimal for an average 
+machine, but it is not tailored to a particular machine (proﬁle). The 
+novelty of our approach is that we introduce a multivariate time-
+to-failure and cost model such that the data of all machines (across 
+the different machine proﬁles) can be pooled. This allows differen-
+tiating the PM policy over the different machine proﬁles, while at 
+same time obtains accurate time-to-failure and maintenance cost 
+estimates for a heterogeneous machine population. The latter is 
+not possible when stratifying data per machine proﬁle.
+Service providers, who maintain the assets of their customers, 
+can make use of such an approach. Their maintenance portfolio 
+provides them potentially with ample historical maintenance and 
+failure data, yet data per machine proﬁle might be limited. Our 
+objective is to optimize the periodic maintenance interval by ex-
+plicitly considering the heterogeneity in the machine portfolio that 
+is induced by observable machine characteristics. Our policy op-
+timization applies to a ﬁnite horizon, motivated by the ﬁnite du-
+ration of service maintenance contracts or (extended) warranties 
+[22,15]. We focus on observable machine characteristics that re-
+main constant during the contract horizon, e.g. running conditions, 
+country, operating environment and industry type. This categorizes 
+each machine in a speciﬁc machine proﬁle, speciﬁed by these ma-
+chine characteristics. By tailoring the maintenance policy to the 
+https://doi.org/10.1016/j.orl.2023.01.006
+0167-6377/© 2023 Elsevier B.V. All rights reserved.
+L. Deprez, K. Antonio, J. Arts et al. Operations Research Letters 51 (2023) 163–170
+machine proﬁle, the resulting cost optimization may lead to higher 
+proﬁt margins or lower contract prices.
+Population heterogeneity has been studied by Dursun et al. 
+[15], Abdul-Malak et al. [1], and de Jonge et al. [10], among others. 
+In [15], [1], and [10], parts (or machines) originate from multi-
+ple, mostly two, different sub-populations with different failure 
+distributions. It is unknown to which sub-population a spare part 
+belongs but the failure distribution of each sub-population itself is 
+known. In their analysis, the sub-population of the part is inferred 
+by observing its failure behaviour and adapting the maintenance 
+policy accordingly. In contrast, we consider the case where it is 
+known to which sub-population machines belong as machines are 
+labelled by their machine proﬁle, characterized by observable ma-
+chine characteristics. The underlying failure distribution, however, 
+is not known and we infer the failure behaviour and maintenance 
+costs for each machine proﬁle from data. Drent et al. [14]also 
+deals with an unknown failure distribution but assumes population 
+homogeneity. In their paper the failure distribution and mainte-
+nance policy are inferred by means of a Bayesian approach as 
+information accumulates during the machine operation. The in-
+formation accumulation process consists of both censored (i.e., 
+preventive replacements) and uncensored (i.e., corrective replace-
+ments) observations of the underlying lifetime distribution. This 
+leads to an inherent exploration-exploitation trade-off. Exploration 
+(i.e., a longer periodic maintenance interval) increases the prob-
+ability of corrective replacement, but at the same time leads to 
+accumulating more, valuable, information. In our approach there is 
+no exploration-exploitation trade-off as the data over all machine 
+proﬁles has been collected prior to the moment of estimation.
+Our methodology relies on a data set with historical failure and 
+maintenance data of a heterogeneous machine portfolio. We learn
+the failure behaviour and costs and assess the effect of (observ-
+able) machine characteristics by calibrating appropriate statistical 
+models. The calibrated statistical models enable the optimization 
+of each machine proﬁle’s periodic maintenance interval. We study 
+how the resulting maintenance policies are more cost-effective 
+than (1) a uniform approach that disregards the machine proﬁles, 
+and (2) a stratiﬁed approach that splits the data per machine pro-
+ﬁle to take into account each machine proﬁle.
+The next section introduces our reliability model, the optimality 
+condition for the periodic maintenance interval and the predic-
+tive models to calibrate the failure behaviour and costs. Section 3
+numerically evaluates how and when our data pooling approach 
+reduces maintenance costs. Section 4 concludes.
+2. Maintenance policies for a heterogeneous machine population
+We ﬁrst set out the details of our reliability model. We then 
+specify the optimality condition for a periodic, preventive mainte-
+nance policy over a ﬁnite horizon for a heterogeneous machine 
+population. Finally we establish the statistical models and their 
+calibration to data to estimate the failure rate, and the costs of 
+failure and preventive maintenance.
+2.1. Reliability model
+We consider the optimization of the number of preventive 
+maintenance interventions, n, for a machine during a ﬁnite hori-
+zon [0, /Delta1t], e.g. the coverage period of a service agreement. In our 
+analysis we will assume that failures require minimal, as-good-as-
+old, corrective maintenance (see e.g. [4,19,27,13,2]) and planned, 
+preventive maintenance actions are perfect. The latter justiﬁes a 
+periodic maintenance policy, where preventive maintenance is ex-
+ecuted with a ﬁxed interval /Delta1tpm = /Delta1t n+1, at times tk = k/Delta1tpm
+(k = 1, ..., n). Each machine is characterized by a set of machine 
+characteristics or covariates x, e.g. operating conditions, industry 
+type, or country, that remain the same during the planning hori-
+zon.
+Failure times We specify the machine-dependent failure intensity 
+function λ(t) in each maintenance interval under the Cox pro-
+portional hazards assumption [8]with the same baseline failure 
+intensity function λ0(t) for each machine and β representing the 
+impact of the machine characteristics x. The proportional hazards 
+model is a versatile model to analyze the effect of operating con-
+ditions (or covariates) on the lifetime of a system. Kumar and 
+Westberg [17]have shown that models from the proportional haz-
+ards family appear to be the better ones for analyzing the effect 
+of the covariates. It is also very convenient to add terms or cross 
+products. The practical value of the proportional hazards model 
+has been demonstrated, for instance, by Barabadi et al. [3]in a 
+case study in mining equipment to identify the covariates that in-
+ﬂuence the reliability. We acknowledge that, like any multi-variate 
+model, there is a risk of mis-speciﬁcation in proportional hazard 
+models. We show in Section 3.5 that the beneﬁts of data pooling 
+outweigh this risk.
+The machine-dependent failure intensity function λ(t) deﬁnes 
+a non-homogeneous Poisson process [21]for the arrival of fail-
+ures. With t the time since the last PM intervention, the machine-
+speciﬁc failure intensity function λ(t) is then characterized by
+λ(t) = λ0(t)exp(β′ · x) for t ∈[0, tk − tk−1)(∀k), (1)
+where t0 = 0 and tn+1 = /Delta1t, respectively referring to the start and 
+end of the planning horizon. Assuming perfect preventive main-
+tenance, the failure intensity function λ(t) is the same for each 
+inter-PM interval.
+The baseline failure intensity λ0(t) can take any parametric 
+form. We deﬁne λ0(t) by a Weibull failure intensity function, 
+which is regularly used in the reliability literature to model failure 
+times [6,25,26], with scale parameter α ∈ R+ 0 and shape γ ∈ R+,
+λ0(t) = γαγ tγ−1.
+Costs of maintenance The expected preventive maintenance cost, 
+cp (x), and expected failure cost, c f (x) are modelled with a gamma 
+generalized linear model (GLM) to account for the impact of the 
+machine characteristics x. [11]argues that gamma models are 
+appropriate to model cost data given their positive support and 
+right-skewed distribution. We denote the scale of the gamma dis-
+tribution by θ f for the failure costs. For the expected failure costs, 
+the GLM with categorical explanatory variables x is speciﬁed by 
+(see [23]for an overview)
+c f (x) = exp
+(
+β′ f · (1, x) ) = exp
+⎛
+⎝β f ,0 +
+q∑
+j=1
+β f , j x j
+⎞
+⎠ , (2)
+with β′ f · (1, x) the linear predictor. The impact of the machine 
+characteristics x on the cost of failure is captured by β f . We re-
+mark that the ﬁrst component of the vector β f acts as an intercept 
+and consequently the length of the vector β f is one plus the 
+length of vector x, i.e. 1 + q. The expected preventive maintenance 
+costs cp (x) are similarly speciﬁed. Their respective parameters are 
+denoted with subscript p. We remark that we set the parameters 
+for the cost of preventive maintenance cp (x) and the cost of fail-
+ure c f (x) such that cp (x) < c f (x) for each combination of machine 
+characteristics x.
+Total maintenance costs The expected total maintenance cost over 
+the horizon [0, /Delta1t] for a policy with preventive maintenance at 
+164
+L. Deprez, K. Antonio, J. Arts et al. Operations Research Letters 51 (2023) 163–170
+(consecutive) times {t1, t2, ..., tn} (⊂[0, /Delta1t]), on a machine with 
+characteristics x is then deﬁned by,
+Cx({t1, t2,..., tn}) = c f (x)
+n∑
+k=0
+tk+1−tk∫
+0
+λ(t)dt + ncp (x)
+= c f (x)
+n∑
+k=0
+tk+1−tk∫
+0
+λ0(t)exp(β′ · x)dt + ncp (x)
+= c f (x)exp(β′ · x)
+n∑
+k=0
+/Lambda10(tk+1 − tk) + ncp (x),
+(3)
+where /Lambda10(t) =
+∫ t
+0 λ0(u)du. The integral 
+∫ tk+1−tk
+0 λ(u)du represents 
+the expected number of failures between tk and tk+1. The lat-
+ter is a property of non-homogeneous Poisson processes [18]. By 
+summing over all preventive maintenance intervals we obtain all 
+failures during the horizon [0, /Delta1t]. Equation (3)can be simpliﬁed 
+for periodic maintenance with ﬁxed interval /Delta1tpm = /Delta1t n+1. In this 
+case, the expected total maintenance costs Cx(n) is a function of 
+the number of preventive maintenance interventions, n,
+Cx(n) = c f (x)exp(β′ · x)(n + 1)/Lambda10(/Delta1tpm) + ncp (x). (4)
+Observe that the impact of the machine characteristics x on the 
+failure rate, i.e. exp(β′ · x) is equivalent to an increase in the ex-
+pected failure costs with the same factor, exp(β′ · x).
+2.2. Optimality condition for a differentiated, periodic policy
+We denote n⋆ the optimal number of PMs that minimizes the 
+total maintenance costs in Eq. (4)during the planning horizon 
+[0, /Delta1t]. Although n⋆ depends on the machine characteristics x, we 
+will adopt n⋆ instead of n⋆(x) to simplify notation.
+Proposition 1. If the baseline failure intensity λ0(t) is strictly increasing 
+in t (∈ R+), then the optimal number of PMs, n⋆, is the smallest n ∈ N0
+that satisﬁes,
+(n + 1)/Lambda10
+( /Delta1t
+n + 1
+)
+− (n + 2)/Lambda10
+( /Delta1t
+n + 2
+)
+≤ cp (x) c f (x)exp(β′ · x).
+(5)
+Proof. The second order derivative of the total maintenance cost 
+(for n ∈ R+) is
+d2Cx(n)
+dn2 = c f (x)exp(β′ · x) /Delta1t2 (n + 1)3 λ′ 0 ( /Delta1t n + 1 ) ,
+with λ′ 0(t) the ﬁrst order derivative of λ0(t). If λ0(t) is strictly in-
+creasing, i.e. λ′ 0(t) > 0 (∀t ∈ R+), then Cx(n) is convex on R+. The 
+optimal n∗ satisﬁes the ﬁrst order optimality condition, i.e. it is 
+the smallest n (∈ N0) for which /Delta11[Cx](n) ≥ 0 where the forward 
+difference of the cost function /Delta11[Cx](n) = Cx(n + 1) − Cx(n). /Box
+2.3. Calibration of predictive models to estimate failure intensity and 
+costs
+The optimal periodic maintenance policy depends on the failure 
+intensity and the costs of failure and maintenance of each machine 
+proﬁle (as deﬁned by the characteristics x). We now describe the 
+statistical models and their calibration to estimate this failure in-
+tensity and the costs given a data set with failure and maintenance 
+records.
+Time-to-failure model From the failure intensity function for each 
+inter-PM interval, λ(t), (Eq. (1)) and the timings of the PM in-
+terventions, {t1, t2, ..., tn}, we deﬁne the failure intensity function 
+λT (t) in absolute time, i.e. since the start of the observation hori-
+zon,
+λT (t) =
+⎧
+⎪⎪⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎪⎪⎩
+λ0(t)exp(β′ · x) if 0 ≤ t < t1
+λ0(t − t1)exp(β′ · x) if t1 ≤ t < t2
+λ0(t − t2)exp(β′ · x) if t2 ≤ t < t3
+...
+λ0(t − tn)exp(β′ · x) if tn ≤ t ≤ /Delta1t.
+The timings of the PM interventions, or the PM interval, should 
+be known to set up the expression for λT (t). This is not an issue, 
+however, since the PM interventions are planned upfront. Denote 
+R(t|t−) the reliability, or survival function, for the time-to-next-
+failure, with t− the time of the previous failure,
+R(t|t−) = exp
+⎛
+⎜⎝−
+t∫
+t−
+λT (u)du
+⎞
+⎟⎠ .
+To calibrate the time-to-failure model and consequently ﬁnd esti-
+mates for the parameters of the baseline failure intensity function 
+λ0(t), i.e. α and γ , and the impact of the covariates β, we max-
+imize the time-to-failure log-likelihood. The events of interest are 
+the failures as well as the end of the observation horizon for each 
+machine in the data. The latter acts as a censoring event. Each 
+event is characterized by the vector (t f , t f ,−, x, δ), where t f is the 
+event time, t f ,− the time of the previous event, x the machine 
+characteristics and δ ∈{0, 1} where δ = 0 indicates a censored 
+event, i.e. the end of the observation horizon, and δ = 1a failure. 
+Summing over failure events j on machine i in the data provides 
+the expression for the log-likelihood for the time-to-failure data,
+L(α,γ, β) =
+N∑
+i=1
+fi∑
+j=1
+δ j log
+(
+λT (t f , j )
+)
++ log
+(
+R(t f , j |t f , j,−)
+)
+, (6)
+where N is the total number of machines and fi is the number of 
+failures (including the end of the observation horizon) on machine 
+i. Consequently, the failures contribute with the logarithm of the 
+probability density function and the end of the observation horizon 
+with the logarithm of the reliability. Maximizing the log-likelihood 
+L(α, γ, β) for the time-to-failure model leads to estimates for the 
+parameters α and γ of the baseline failure intensity function λ0(t)
+and the impact of the covariates β.
+Costs model We calibrate separate gamma generalized linear mod-
+els (GLMs), as speciﬁed in Eq. (2), for the expected preventive 
+maintenance costs cp (x) and the expected failure costs c f (x) tak-
+ing into account the machine characteristics x. This provides esti-
+mates for β p and β f , the impact of the machine characteristics x
+on the preventive maintenance costs and on the failure costs re-
+spectively, and for θp and θ f , the scale parameter of the gamma 
+distribution of the preventive maintenance costs and of the failure 
+costs respectively.
+Benchmark approaches The approach described above makes use 
+of all available failure and maintenance data by pooling the data 
+across all machines. We therefore refer to this approach as the 
+pooling approach. Yet, by specifying and calibrating the impact of 
+the machine characteristics x on the failure intensity and costs, our 
+approach can differentiate the optimal periodic policy per machine 
+165
+L. Deprez, K. Antonio, J. Arts et al. Operations Research Letters 51 (2023) 163–170
+proﬁle. We specify two benchmark approaches. First, a uniform
+approach that aggregates the data, but disregards the machine pro-
+ﬁles, calibrates the time-to-failure and costs models ignoring the 
+machine characteristics x. This is identical to setting β = 0 when 
+optimizing the log-likelihood in Eq. (6). Similarly, we also ignore 
+the machine characteristics x when calibrating the cost models. 
+This gives us only estimates for βp,0, θp , β f ,0 and θp . This ap-
+proach also makes use of all available data, but the models are 
+calibrated as if all machines would have no machine-speciﬁc char-
+acteristics, resulting in a uniform PM policy with identical, opti-
+mized number of PM interventions n⋆ for each machine (proﬁle). 
+Second, we also benchmark against a stratiﬁed approach. For this 
+approach, we split or stratify the data in subsets that only contain 
+data on a single machine proﬁle, i.e. combination of machine char-
+acteristics, and then calibrate the time-to-failure and costs models 
+in similar fashion to the uniform approach, i.e. by ignoring the 
+machine characteristics x, for each subset. The models for each 
+machine proﬁle serve as input to optimize the number of PM in-
+terventions. Although these policies are capable of differentiating 
+over the different machine proﬁles, they use less data to calibrate 
+the models. The latter can lead to less accurate estimates and infe-
+rior cost performance of the resulting maintenance policies. In our 
+numerical analysis we will also benchmark against the oracle ap-
+proach. The oracle knows the distribution of the failure behaviour 
+and costs, and their associated parameters and is hence equiva-
+lent to assuming an inﬁnite number of observations. Here we use 
+the true distributions (rather than estimates) to ﬁnd the optimal 
+number of preventive maintenance interventions for each machine 
+proﬁle. These oracle policies serve as a lower bound on the costs.
+3. Results and insights
+We set up a numerical experiment to assess the value of dif-
+ferentiating the PM policy per machine proﬁle by pooling the data 
+using the approach described in the previous section. To do so, 
+we generate a data set with maintenance and failure records from 
+a heterogeneous machine portfolio with different machine proﬁles. 
+The simulation engine to generate this data set is described in Sec-
+tion 3.1. We calibrate the parameters of the time-to-failure and 
+cost models making use of maximum likelihood estimation (de-
+scribed in Section 2.3), and apply the optimality condition (Propo-
+sition 1) to prescribe the optimal number of preventive mainte-
+nance interventions for each machine proﬁle. We report the cost 
+performance of this approach in Section 3.2 and illustrate how 
+each approach performs with limited amounts of data in Sec-
+tion 3.3. In Section 3.4 we check whether it is actually worth 
+differentiating the PM policy at all compared to adopting a uni-
+form PM policy that is identical across all machine proﬁles. Finally, 
+Section 3.5 studies model mis-speciﬁcation where the ﬁtted model 
+has a different parametric form from the model from which the 
+data were simulated.
+3.1. Simulation engine
+We generate a data set of failures and maintenance records for 
+a heterogeneous machine portfolio, following the reliability model 
+introduced in Section 2.1. We consider a portfolio with 240 ma-
+chines, of which 90% is observed for /Delta1ti = 5years and 10% has 
+a shorter history of /Delta1ti
+d
+∼ U [1, 5] years. We characterize each ma-
+chine by 4 features, x = (x1,1, x1,2, x1,3, x1,4)T ∈{0, 1}4 which are 
+randomly assigned following a uniform distribution. This leads to 
+16 different machine proﬁles, each occurring in the portfolio with 
+equal probability.
+The preventive maintenance interventions in the data set are 
+executed periodically with an interval of /Delta1tPM = 1year. Recurrent 
+failure times in a PM interval are generated by inverse transform 
+sampling from the failure distribution determined by the failure 
+intensity function in Eq. (1)[20,7,16,24]. The costs of failures and 
+preventive maintenance interventions are positive, follow a right-
+skewed distribution and are dependent of machine characteristics 
+x. To accommodate for these properties, they are sampled from a 
+gamma GLM [12,9].
+The simulation parameters that we have used to generated fail-
+ure times and costs are summarized in Supplementary Table (Ap-
+pendix A). Our parameters set the mean time-to-failure for the ma-
+chine proﬁle x = (0000) equal to 1.27 years, if the machine would 
+not be maintained preventively. The expected costs cp (x) and c f (x)
+for machine proﬁle x = (0000) are respectively 30 and 300. With-
+out loss of generality, we let the costs of a PM be independent of 
+the machine characteristics, as the optimality condition (Eq. (5)) 
+only depends on the ratio of cp (x) and c f (x). In Supplementary 
+Table (Appendix B), we display an extract of the failure and main-
+tenance records in our simulated data set. In Sections 3.2-3.4, the 
+data are generated from correctly speciﬁed models, i.e., of the 
+same parametric form. Section 3.5 studies model mis-speciﬁcation 
+where the ﬁtted model has a different parametric form from the 
+model from which the data were simulated.
+3.2. What is the value of data pooling?
+Table 1 reports for a single simulated data set the optimal num-
+ber of preventive maintenance interventions, n⋆, during a time 
+horizon of /Delta1t = 5years for each of the 16 machine proﬁles, as de-
+termined by the different approaches. These different approaches 
+all rely on the optimality condition in Proposition 1, yet with dif-
+ferent estimations of the failure behaviour and the costs. We refer 
+to Section 2.3 for a discussion of these approaches. Depending on 
+the (simulated) data set, the estimations of the failure behaviour 
+and the costs, and therefore also the prescribed number of PM in-
+terventions, may slightly differ. To report the cost performance of 
+each of these approaches, we therefore generated 100 data sets 
+with identical simulation parameters. Table 2 reports the average 
+total maintenance costs for each approach (making use of Eq. (4)), 
+as well as the empirical 95%-conﬁdence interval over the 100 sim-
+ulation runs. The costs are given with respect to the costs of the 
+oracle approach by means of a multiplicative ratio. Furthermore, 
+we include the cost performance for an average machine proﬁle. 
+The maintenance cost for the average machine proﬁle is deter-
+mined by taking the average of the costs of all machine proﬁles 
+with equal weights. Since the oracle serves as a lower bound, all 
+other approaches will have higher or at best equal costs. The or-
+acle provides the optimal differentiated maintenance strategy over 
+the different machine proﬁles. To obtain these policies, however, 
+we would need inﬁnite amount of data to exactly know the un-
+derlying failure behaviour and costs.
+The maintenance costs obtained under the stratiﬁed approach 
+are on average only 5% higher compared to the oracle for the av-
+erage machine proﬁle (see Table 2). However, for machine proﬁle 
+x = (1100) the cost performance resulting from a stratiﬁed ap-
+proach is worse, i.e. 8.3% on average, compared to the oracle. For a 
+speciﬁc data set, we also observe that there can be a large discrep-
+ancy between the prescribed number of PMs by the oracle and the 
+stratiﬁed approach, e.g. the oracle and the stratiﬁed approach re-
+spectively prescribe 13 and 6PMs for machine proﬁle x = (0100)
+(see Table 1). In general, there is also a lot of spread in the cost 
+performance under the stratiﬁed approach. The 97.5% quantiles for 
+the maintenance costs are very high, up to 74.4% higher than the 
+costs obtained by the oracle (see proﬁle x = (0011) in Table 2). 
+The lack of suﬃcient data per proﬁle due to the stratiﬁcation of 
+the data set, may lead to poor and volatile performance.
+The uniform approach pools the data across machine proﬁles, 
+yet without tailoring the maintenance policies to each machine 
+166
+L. Deprez, K. Antonio, J. Arts et al. Operations Research Letters 51 (2023) 163–170
+Table 1
+Prescribed number of PMs during a contract horizon of 5years for a single data set.
+machine proﬁle oracle pooling stratiﬁed uniform
+0000 10 9 11 10
+0001 6 6 5 10
+0010 8 8 7 10
+0011 5 5 4 10
+0 1 0 0 13 11 6 10
+0101 9 8 6 10
+0 1 1 0 11 9 9 10
+0111 7 6 5 10
+1 0 0 0 14 13 13 10
+1 0 0 1 9 9 10 10
+1 0 1 0 11 11 13 10
+1011 7 7 5 10
+1100 18 15 21 10
+1101 12 11 10 10
+1110 15 13 15 10
+1111 10 9 5 10
+proﬁle. This approach alleviates the lack of data, but also leads 
+to an average loss of 5% compared to the oracle, in this case due 
+to lack of differentiation in the PM policies. Although the average 
+performance of the uniform approach and the stratiﬁed approach 
+is (almost) the same, the spread on the costs under the uniform
+approach is much smaller. This is also observed from the smaller 
+97.5% quantiles for speciﬁc machine proﬁles compared to the strat-
+iﬁed approach.
+The pooling approach makes use of all the data, and also dif-
+ferentiates the maintenance policies over the different machine 
+proﬁles. This leads to considerably better performance compared to 
+the stratiﬁed and uniform approaches, only having a loss of 0.7% on 
+average with respect to the oracle. The improvement is not only for 
+the average machine, it also is the case for the different machine 
+proﬁles. Furthermore, the spread in performance, as quantiﬁed by 
+the 95%-conﬁdence intervals, is considerably smaller compared to 
+the stratiﬁed and uniform approach, both for an average machine 
+and for each individual machine proﬁle.
+3.3. How does data pooling overcome the small data problem?
+Although the pooling and stratiﬁed approaches have a similar 
+goal, i.e. tailoring the maintenance policy to its machine proﬁle, 
+they use the data set in a different way. While the pooling ap-
+proach uses all the data over the different proﬁles, relying on the 
+assumption of proportional hazards for the failure behaviour and 
+the assumption of a GLM for the costs, the stratiﬁed approach only 
+considers the data per proﬁle completely disjoint from the others. 
+Splitting the data set per machine proﬁle produces smaller subsets 
+of data, potentially inducing a small data problem. The consequent 
+underperformance of the stratiﬁed approach is due to the fact that 
+insuﬃcient data may be available per machine proﬁle to estimate 
+the failure behaviour and costs accurately from the data. Clearly, 
+if suﬃcient data would be available for each machine proﬁle, both 
+the stratiﬁed and pooling approach converge to the oracle. Yet, the 
+rate at which both approaches converge is different.
+Fig. 1 demonstrates this convergence by displaying the relative 
+costs of the stratiﬁed and the pooling approach with respect to the 
+oracle when we gradually increase the number of machines in the 
+data set, and thus the number of failure and maintenance records 
+that are used to estimate the failure behaviour and costs. We start 
+from a data set generated by 10 machines observed during 5years 
+and consider increases of 10 machines at a time. These increases 
+correspond to an additional 50 machine years of historical data 
+(recall that the mean time-to-failure for machine proﬁle x = (0000)
+is equal to 1.27 years). We report the average cost performance 
+over 40 simulated data sets with identical parameters and focus 
+on the average machine and worst performing machine proﬁle, 
+i.e. the machine proﬁle that has the highest relative costs with re-
+spect to the oracle at any given size of the data set. Fig. 1 shows 
+how both the stratiﬁed and the pooling approach converge to the 
+oracle costs. Yet, the rate of convergence for the pooling is much 
+higher than the stratiﬁed approach. Also the 90%-conﬁdence inter-
+vals for the pooling approach are smaller and shrink faster than 
+the stratiﬁed approach. To get insight in the rate of convergence, 
+we consider the relative costs, averaged over the 40 simulated data 
+sets, of the average proﬁle as a function of the number of ma-
+chines, and we look for a such that,
+average relative costs = a number of machines + 1.
+We ﬁnd ﬁtted values for a equal to 1.715 and 13.341 for the pool-
+ing and stratiﬁed approach respectively. The ratio of these values 
+indicates that the pooling approach converges to the oracle over 
+seven and half times faster than the stratiﬁed approach in the num-
+ber of machines on average. It shows how the pooling approach 
+requires much less data to obtain adequate performance.
+Another downside of the stratiﬁed approach is that it cannot 
+prescribe the number of PMs for a machine proﬁle that is not 
+available in the data set. For instance, if we consider a data set 
+generated by only 10 machines, not all 16 proﬁles will be rep-
+resented in the data. This also explains the sharp cost increase 
+of the worst performing machine proﬁle under the stratiﬁed ap-
+proach when the machine portfolio is small (see Fig. 1, panel (b)). 
+In that case, increasing the number of machines also increases the 
+number of machine proﬁles in the data set, and with that also the 
+likelihood of a worse performing proﬁle. This is not the case under 
+a pooling approach. Even when certain combinations of machine 
+characteristics, i.e. machine proﬁles, may not be observed in the 
+data, the pooling approach can still prescribe the preferred num-
+ber of PM interventions. This property is essential for an OEM or 
+a service provider when they expand their maintenance portfolio 
+with machine proﬁles, for which no data is yet available.
+3.4. When is it valuable to differentiate the PM policy?
+Whereas our numerical experiment has shown how our pool-
+ing approach is capable to differentiate the PM policy per machine 
+proﬁle, it is worthwhile to check whether differentiating the main-
+tenance policy is actually worth the effort compared to adopting a 
+uniform PM policy that is the same for all machines. We do so by 
+careful analysis of the optimality condition in Proposition 1. Specif-
+ically, we consider the equivalent condition under the assumption 
+of a Weibull failure intensity function,
+(α/Delta1t)γ (n + 2)γ−1 − (n + 1)γ−1
+((n + 1)(n + 2))γ−1 ≤ cratio(x), (7)
+where
+cratio(x) = cp (x) c f (x)exp(β′ · x)
+denotes the machine proﬁle speciﬁc cost ratio. This ratio provides 
+an indication how many PM interventions are economic for a ma-
+chine proﬁle x: a low value of cratio(x) indicates that it is preferred 
+to perform many PM interventions on this machine proﬁle, as the 
+cost of preventive maintenance is low compared to the cost of fail-
+ure, and vice versa for a high value of cratio(x). The left-hand-side 
+of (7) depends on the baseline failure intensity, characterized by 
+the Weibull scale α and shape γ , and the contract length /Delta1t. 
+167
+L. Deprez, K. Antonio, J. Arts et al. Operations Research Letters 51 (2023) 163–170
+Table 2
+Average costs (and empirical 95%-conﬁdence interval) over 100 simulated data sets with identical parameters. Costs are determined exact using Eq. (4). We display the 
+absolute costs for the oracle and the relative costs w.r.t. the oracle for the other approaches. The relative costs are determined by division with the costs realized under oracle. 
+The average machine proﬁle’s costs are determined by taking the average over all machine proﬁles with equal weights.
+machine proﬁle oracle pooling (%) stratiﬁed (%) uniform (%)
+0 0 0 0 634.09 100.5 (100,102.2) 104.2 (100,120.3) 100.3 (100,102.2)
+0 0 0 1 415.9 100.2 (100,102.2) 105 (100,134.5) 109.5 (101.8,112.4)
+0 0 1 0 513.71 100.3 (100,100.8) 104.6 (100,137.4) 102.8 (100,104.2)
+0 0 1 1 334.48 100.3 (100,102.1) 107.5 (100,174.4) 121.6 (108.5,126.2)
+0 1 0 0 822.79 100.9 (100,105) 105 (100,134.4) 103.2 (101.5,111)
+0 1 0 1 542.25 100.3 (100,101.5) 105.6 (100,132.8) 101.6 (100,102.7)
+0 1 1 0 668.46 100.6 (100,103.4) 103.7 (100,123.7) 100.3 (100,103.4)
+0 1 1 1 438.12 100.3 (100,100.6) 104.9 (100,139.3) 107.5 (101.1,110)
+1 0 0 0 866.42 100.9 (100,104.9) 103.7 (100,126.3) 104.6 (102.5,113.6)
+1 0 0 1 570.88 100.3 (100,100.6) 103.8 (100,114.1) 101 (100,101.7)
+1 0 1 0 704.05 100.6 (100,102.1) 103.9 (100,127.6) 100.7 (100,104.9)
+1 0 1 1 462.11 100.3 (100,101.3) 104.2 (100,128.6) 105.6 (100.4,107.8)
+1 1 0 0 1121.07 101.8 (100,111.5) 108.3 (100,136.6) 115.4 (111.5,130.8)
+1 1 0 1 741.59 100.6 (100,103.3) 103.5 (100,119.8) 101.3 (100.2,106.7)
+1110 912.53 101.2 (100,106.6) 106.5 (100,135.6) 106.2 (103.7,116.4)
+1111 602.3 100.3(100,101.2) 103.3(100,116.9) 100.4 (100,101.2)
+average 646.92 100.7 (100,103.5) 105 (101.1,111.7) 105 (104.6,108.5)
+Fig. 1. Relative costs for the pooling approach and the stratiﬁed approach with respect to the oracle in function of the number of machines that generate data, averaged over 
+40 simulated data sets with identical parameters and with the empirical 90%-conﬁdence interval shaded. Panel (a) Relative costs of the average machine proﬁle; panel (b) 
+Relative costs of the worst performing machine proﬁle.
+Both are independent of the machine proﬁle x. The right-hand-
+side cratio(x) captures all the effects of the heterogeneity in the 
+machine portfolio. It depends on the machine proﬁle’s costs of fail-
+ure via c f (x) and preventive maintenance via cp (x) and the impact 
+of the proﬁle on the failure behaviour, exp(β′ · x).
+It is insightful to visualize this optimality condition. The dots 
+in Fig. 2 visualize the left-hand-side of (7)for each value of n, 
+the number of PM interventions performed during the contract 
+horizon. The minimum and maximum value of cratio (x) over the 
+machine proﬁles, resp. min(cratio(x)) and max(cratio(x)), are indi-
+cated by dashed horizontal lines. These two horizontal lines deﬁne 
+the region of the optimal number of PMs for the machine proﬁles, 
+deﬁned by x. We highlight these PM policies in light blue. When 
+there are many light blue dots, the optimal PM policies differ much 
+across the different machine proﬁles. In the extreme case where 
+there is only a single point in this region, then the same number 
+of PMs is optimal for all machine proﬁles and differentiation of the 
+PM policy is not required.
+An extensive analysis of the optimality condition and the re-
+sulting number of differentiated PM policies, reveals that less het-
+erogeneity in the machine portfolio, resulting in a smaller gap be-
+tween min(cratio(x)) and max(cratio(x)) with the horizontal, dashed 
+lines closer together, leads to less differentiation in the PM poli-
+cies over the different machine proﬁles (see Fig. 2b). Also, a larger 
+Weibull shape γ of the failure behaviour (while adapting scale α
+accordingly to maintain a constant mean-time-to-failure), makes 
+the left-hand-side of the optimality condition steeper, i.e. the left-
+hand-side decreases faster (see Fig. 2c). This reduces the number 
+of different optimal PM policies across the proﬁles and diminishes 
+the effect of the heterogeneity of the machine population.
+3.5. Model mis-speciﬁcation vs data-pooling
+The data pooling approach requires the speciﬁcation of rele-
+vant terms in (1). In certain contexts, a modeller may not cor-
+rectly identify all the terms that should be present in a propor-
+tional hazard model. The stratiﬁed approach is immune to such 
+mis-speciﬁcations, but requires large amounts of data to obtain ac-
+curate estimates. The data-pooling approach is susceptible to such 
+mis-speciﬁcations but has the advantage of being able to pool the 
+data. Below we consider a set-up to study which effect is domi-
+nant.
+We consider a set-up with only two (binary) covariates, i.e. 
+x1, x2 ∈{0, 1}, impacting the time-to-failure. We simulate the fail-
+ure times for each machine from following machine-speciﬁc failure 
+intensity function ˜λ(t),
+168
+L. Deprez, K. Antonio, J. Arts et al. Operations Research Letters 51 (2023) 163–170
+Fig. 2. Left-hand-side of the optimality condition (dots) and min(cratio(x)) and max(cratio(x)) (dashed horizontal lines). The available number of PMs determined by 
+min(cratio(x)) and max(cratio(x)) are highlighted in light blue. (For interpretation of the colours in the ﬁgure(s), the reader is referred to the web version of this arti-
+cle.)
+Fig. 3. Relative costs for the pooling approach and the stratiﬁed approach with respect to the oracle in function of the number of machines that generate data according to 
+the set-up in Section 3.5, averaged over 20 simulated data sets with identical parameters and with the empirical 90%-conﬁdence interval shaded.
+169
+L. Deprez, K. Antonio, J. Arts et al. Operations Research Letters 51 (2023) 163–170
+˜λ(t) = λ0(t)exp
+(
+βx1 + βx2 + β ρ x1x2
+)
+for t ∈[0, tk −tk−1)(∀k),
+(8)
+where t0 = 0 and tn+1 = /Delta1t, respectively refer to the start and end 
+of the planning horizon. We choose the same β for the covariates 
+x1 and x2 to ensure that the impact of the cross-term (x1 x2) is 
+of the same magnitude as the main effects. The parameter ρ con-
+trols the relative impact of the cross-term. The simulation of failure 
+and maintenance costs is not changed from the original set-up. We 
+compare the stratiﬁed approach with the data pooling approach 
+but let the data pooling approach ﬁt the following mis-speciﬁed 
+model:
+ˆλ(t) = λ0(t)exp (βx1 + βx2) for t ∈[0, tk − tk−1)(∀k). (9)
+Thus we can interpret ρ−1 as measuring the amount of model mis-
+speciﬁcation of the data pooling approach. Note that the stratiﬁed 
+approach does not suffer from mis-speciﬁcation since it makes no 
+assumption of the impact of the covariates on the time-to-failure 
+(nor the failure or maintenance costs). Consequently, the resulting 
+maintenance policies for the pooling approach will result from the 
+mis-speciﬁed model and we will be able to test the impact of this 
+mis-speciﬁcation.
+In order to assess the impact of the mis-speciﬁcation, we com-
+pare the costs relative to the oracle of both the pooling approach 
+and the stratiﬁed approach for decreasing ρ (increased model mis-
+speciﬁcation). The oracle is of course adapted to consider the in-
+ﬂuence of the cross-term. The results are displayed in Fig. 3. They 
+show that the effect of data pooling outweighs the effect of model 
+mis-speciﬁcation in all considered settings. This is a strong indica-
+tion, that, while mis-speciﬁcation is likely to happen, its negative 
+impact is easily offset by the beneﬁts of data pooling.
+4. Conclusion
+This paper describes a data-driven approach to optimize the 
+periodic, preventive maintenance policies for a heterogeneous ma-
+chine population over a ﬁnite time horizon. The heterogeneity of 
+the machine population is characterized by observable machine 
+characteristics that induce different machine proﬁles. Our approach 
+pools the available data of failure and maintenance records over 
+the different machine proﬁles in order to learn as best as possi-
+ble the failure behaviour and the costs of failure and maintenance 
+for each machine proﬁle. We rely on the assumption of propor-
+tional hazards for the failure behaviour and on the assumption 
+of a gamma GLM for the costs to accomplish this data pooling. 
+In conjunction with the estimates for the failure behaviour and 
+the costs, our optimality condition for the number of preventive 
+maintenance interventions delivers tailored maintenance policies 
+for each machine proﬁle. By means of numerical experiments, we 
+compare our pooling approach with both a stratiﬁed approach that 
+splits the data per machine proﬁle and a uniform approach that 
+disregards the machine proﬁles and prescribes the same uniform 
+PM policy for all machine proﬁles. The pooling approach outper-
+forms these benchmarks and additionally has a smaller spread on 
+its performance. We also show how the pooling approach is more 
+data-eﬃcient than the stratiﬁed approach, even under mild model 
+mis-speciﬁcation. This means that the pooling approach obtains 
+better performing maintenance policies for the same amount of 
+data. Finally, we investigate when it is worth differentiating the 
+PM policy given the heterogeneity in the machine population and 
+the failure intensity, motivating the approach introduced in this 
+paper.
+Appendix A. Supplementary material
+Supplementary material related to this article can be found on-
+line at https://doi .org /10 .1016 /j .orl .2023 .01.006.
+References
+[1] David T. Abdul-Malak, Jeffrey P. Kharoufeh, Lisa M. Maillart, Maintaining sys-
+tems with heterogeneous spare parts, Nav. Res. Logist. 66 (6) (2019) 485–501.
+[2] Joachim Arts, Rob Basten, Design of multi-component periodic maintenance 
+programs with single-component models, IISE Trans. 50 (7) (2018) 606–615.
+[3] Abbas Barabadi, Javad Barabady, Tore Markeset, Application of reliability mod-
+els with covariates in spare part prediction and optimization–a case study, 
+Reliab. Eng. Syst. Saf. 123 (2014) 1–7.
+[4] R.E. Barlow, F. Proschan, Mathematical Theory of Reliability, Wiley, 1965.
+[5] Richard Barlow, Larry Hunter, Optimum preventive maintenance policies, Oper. 
+Res. 8(1) (1960) 90–100.
+[6] A. Bobbio, A. Cumani, A. Premoli, O. Saracco, Modeling and identiﬁcation of 
+nonexponential distributions by homogeneous Markov processes, in: Proc. of 
+the Sixth Advances in Reliability Symposium, 1980.
+[7] Richard J. Cook, Jerald Lawless, The Statistical Analysis of Recurrent Events, 
+Springer Science & Business Media, 2007.
+[8] David R. Cox, Partial likelihood, Biometrika 62 (2) (1975) 269–276.
+[9] Piet De Jong, Gillian Z. Heller, et al., Generalized Linear Models for Insurance 
+Data, Cambridge University Press, Cambridge, 2008.
+[10] Bram de Jonge, Arjan S. Dijkstra, Ward Romeijnders, Cost beneﬁts of postponing 
+time-based maintenance under lifetime distribution uncertainty, Reliab. Eng. 
+Syst. Saf. 140 (2015) 15–21.
+[11] Łukasz Delong, Mathias Lindholm, Mario V. Wüthrich, Collective reserving us-
+ing individual claims data, Scand. Actuar. J. (2021) 1–28.
+[12] Michel Denuit, Xavier Maréchal, Sandra Pitrebois, Jean-Franc¸ois Walhin, Actuar-
+ial Modelling of Claim Counts: Risk Classiﬁcation, Credibility and Bonus-Malus 
+Systems, John Wiley & Sons, 2007.
+[13] Laurent Doyen, Olivier Gaudoin, Modeling and assessment of aging and eﬃ-
+ciency of corrective and planned preventive maintenance, IEEE Trans. Reliab. 
+60 (4) (2011) 759–769.
+[14] Collin Drent, Stella Kapodistria, Onno Boxma, Censored lifetime learning: opti-
+mal bayesian age-replacement policies, Oper. Res. Lett. 48 (6) (2020) 827–834.
+[15] ˙Ipek Dursun, Alp Akc¸ay, Geert-Jan Van Houtum, Age-based maintenance under 
+population heterogeneity: optimal exploration and exploitation, Eur. J. Oper. 
+Res. 301 (3) (2022) 1007–1020.
+[16] Antje Jahn-Eimermacher, Katharina Ingel, Ann-Kathrin Ozga, Stella Preussler, 
+Harald Binder, Simulating recurrent event data with hazard functions deﬁned 
+on a total time scale, BMC Med. Res. Methodol. 15 (1) (2015) 16.
+[17] Dhananjay Kumar, Ulf Westberg, Some reliability models for analyzing the ef-
+fect of operating conditions, Int. J. Reliab. Qual. Saf. Eng. 4(2) (1997) 133–148.
+[18] P.A.W. Lewis, Gerald S. Shedler, Simulation of nonhomogeneous Poisson pro-
+cesses by thinning, Nav. Res. Logist. Q. 26 (3) (1979) 403–413.
+[19] Bo Henry Lindqvist, et al., On the statistical modeling and analysis of repairable 
+systems, Stat. Sci. 21 (4) (2006) 532–551.
+[20] Chris Metcalfe, Simon G. Thompson, The importance of varying the event 
+generation process in simulation studies of statistical methods for recurrent 
+events, Stat. Med. 25 (1) (2006) 165–179.
+[21] Jesper Moller, Rasmus Plenge Waagepetersen, Statistical Inference and Simula-
+tion for Spatial Point Processes, CRC Press, 2003.
+[22] Toshio Nakagawa, Satoshi Mizutani, A summary of maintenance policies for a 
+ﬁnite interval, Reliab. Eng. Syst. Saf. 94 (1) (2009) 89–96.
+[23] Esbjörn Ohlsson, Björn Johansson, Non-life Insurance Pricing with Generalized 
+Linear Models, vol. 2, Springer, 2010.
+[24] Juliette Pénichoux, Thierry Moreau, Aurélien Latouche, Simulating recurrent 
+events that mimic actual data: a review of the literature with emphasis on 
+event-dependence, arXiv preprint, arXiv:1503 .05798, 2015.
+[25] W. Wang, P.A. Scarf, M.A.J. Smith, On the application of a model of condition-
+based maintenance, J. Oper. Res. Soc. 51 (11) (2000) 1218–1227.
+[26] Shaomin Wu, A failure process model with the exponential smoothing of in-
+tensity functions, Eur. J. Oper. Res. 275 (2) (2019) 502–513.
+[27] Shaomin Wu, Ming J. Zuo, Linear and nonlinear preventive maintenance mod-
+els, IEEE Trans. Reliab. 59 (1) (2010) 242–249.
+170

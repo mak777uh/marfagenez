@@ -1,0 +1,764 @@
+
+[[page 1]]
+Research Article
+Delayed Age Replacement Policy with Uncertain Lifetime
+Xueyan Li and Chunxiao Zhang
+CollegeofScience,CivilAviationUniversityofChina,Tianjin300300,China
+CorrespondenceshouldbeaddressedtoXueyanLi;zh83665727@126.com
+Received4July2014;Accepted11October2014
+AcademicEditor:WenbinWang
+Copyright © 2015 X.LiandC.Zhang.ThisisanopenaccessarticledistributedundertheCreativeCommonsAttributionLicense,
+whichpermitsunrestricteduse,distribution,andreproductioninanymedium,providedtheoriginalworkisproperlycited.
+This paper considers the delayed age replacement policy, in which the lifetimes of all units are assumed to be uncertain variables,
+andthelifetimeofthefirstunithasanuncertaintydistributionwhichisdifferentfromtheothers.Adelayedagereplacementmodel
+whichisconcernedwithfindingtheoptimalreplacementtimetominimizetheexpectedcostisdeveloped.Inthepolicy,theoptimal
+replacementtimeisirrelevanttotheuncertaindistributionoflifetimeofthefirstunitovertheinfinitetimespan.
+1. Introduction
+The replacement policy for the unit based on its age is
+called age replacement policy, which means that a unit is
+always replaced at failure or at an age 𝑇,whicheveroccurs
+first. Age replacement policy is easy to operate especially for
+multicomponentsystems,soitisoneofthewidelyusedmain-
+tenancepolicies.Agereplacementpolicieshavebeenstudied
+theoreticallybymanyauthors.In1965,BarlowandProschan
+[1] studied the basic replacement policies. Furthermore, age
+replacement policy with continuous discounting was pro-
+posed by Fox in 1966 [2]. Scheaffer [3] considered optimum
+agereplacementpolicieswithanincreasingcostfactor.Later
+in1979,Clerouxetal.[4]studiedagereplacementpolicywith
+randomcharges.ClerouxandHanscom[5]studiedageneral
+age replacement model with minimal repair. Boland and
+Proschan [6]studiedthecasewhentherepaircostincreases
+with age. Jhang and Sheu [7]proposedanopportunity-
+based age replacement policy with minimalrepair. For more
+development of replacement policies, readers can refer to
+Nakagawa[8].
+In the above literatures, the lifetime of a unit is regarded
+as a random variable, and probability theory is employed
+to deal with the optimization of the replacement policy.
+Theprobabilitytheoryisapplicableonlywhenwehavethe
+large enough sample size. However when no samples are
+available in some situation, we have to invite some domain
+expertstoevaluatethebeliefdegreethateacheventwilloccur.
+Since human tends to overweight unlikely events [9], the
+belief degree may have a much larger range than the real
+frequency. Therefore, it is unreasonable to employ stochastic
+method for the particularity of the problem. In order to
+rationally deal with belief degrees, uncertainty theory was
+founded by Liu in 2007 [10],andwasrefinedbyLiuin2010
+[11] based on normality, duality, subadditivity, and product
+axioms. Nowadays, uncertainty theory has become a branch
+of axiomatic mathematics for modeling human uncertainty,
+andsomeapplicationscanbefoundinvariousfields.
+Yao and Ralescu [12]firstlyproposedtheuncertain
+age replacement policy, where the lifetimes of all units are
+assumed as iid uncertain variables. However, in practice of
+maintenanceengineering,thelifetimeofthefirstunitmaybe
+quite different from the remains. If the age 𝑇 is unchanging
+in the age replacement policy, only the lifetime of the first
+unit has an uncertainty distribution which is different from
+the others. The first replacement point may be observed at
+a delayed time and call it delayed age replacement policy as
+the delayed renewal process. In this paper, we will consider
+the delayed age replacement policy with uncertain lifetimes
+of all units, and the lifetime of first unit has a different
+uncertaintydistributionfromtheothers.Andthen,adelayed
+age replacement model to find the optimal predetermined
+replacementtime 𝑇 willbedeveloped.
+Thispaperisorganizedasfollows:Section2recalls some
+basicconceptsandpropertiesaboutuncertaintytheorywhich
+will be used throughout the paper. In Section3,delayedage
+replacement policy in uncertain environment is introduced
+and the expected cost over infinite time is proposed; thus
+Hindawi Publishing Corporation
+Mathematical Problems in Engineering
+Volume 2015, Article ID 528726, 6 pages
+http://dx.doi.org/10.1155/2015/528726
+[[page 2]]
+2 MathematicalProblemsinEngineering
+theoptimalagereplacementtimewillbederived.Numerical
+exampleisgiveninSection4,followedbySection5wherewe
+concludethepaper.
+2. Preliminaries
+Let Γ beanonemptyset. L isa 𝜎-algebraon Γ.Eachelement
+Λ inthe 𝜎-algebra L iscalledanevent.Uncertainmeasureis
+afunctionfromL to [0, 1].Inordertopresentanaxiomatic
+definition of uncertain measure, it is necessary to assign to
+each event Λ anumberM{Λ} which indicates the belief
+degreethattheevent Λ willoccur.Inordertoensurethatthe
+number M{Λ} has certain mathematical properties, Liu [10]
+proposedthefollowingthreeaxioms.
+Axiom 1: (normality axiom) M{Γ} = 1 for the
+universalset Γ.
+Axiom2:(dualityaxiom) M{Λ} + M{Λ𝑐}=1forany
+event Λ.
+Axiom 3: (subadditivity axiom) For every countable
+sequenceofevents Λ1,Λ2,...,wehave
+M {
+∞
+⋃
+𝑖=1
+Λ𝑖}≤
+∞
+∑
+𝑖=1
+M {Λ𝑖}. (1)
+Definition1(Liu[10]). Thesetfunction M iscalledanuncer-
+tainmeasureifitsatisfiesthenormality,duality,subadditivity,
+andproductaxioms.
+Definition2(Liu[10]). Anuncertainvariableisameasurable
+function 𝜉 fromtheuncertaintyspace (Γ, L, M) tothesetof
+realnumbers;thatis,foranyBorelset 𝐵 ofrealnumbers,the
+set
+{𝜉∈𝐵} = {𝛾∈Γ|𝜉(𝛾) ∈𝐵} (2)
+isanevent.
+In order to describe an uncertain variable, a concept of
+uncertaintydistributionisintroducedasfollows.
+Definition 3 (Liu [10]). The uncertainty distribution of an
+uncertainvariable 𝜉 isdefinedby
+Φ(𝑥) = M {𝜉≤𝑥}, (3)
+foranyrealnumber 𝑥.
+Expected value is the average of an uncertain variable in
+thesenseofuncertainmeasureandrepresentedthesizeof
+uncertainvariable.
+Definition 4 (Liu [10]). Let 𝜉 be an uncertain variable. Then
+theexpectedvalueof 𝜉 isdefinedby
+𝐸[𝜉]=∫
++∞
+0
+M {𝜉≥𝑟}𝑑𝑟 − ∫
+0
+−∞
+M {𝜉≤𝑟}𝑑𝑟
+= ∫
++∞
+0
+(1−Φ(𝑥))𝑑𝑥 − ∫
+0
+−∞
+Φ(𝑥)𝑑𝑥
+(4)
+provided that at least one of the two integrals is finite.
+An uncertain process [13]isessentiallyasequenceof
+uncertain variables indexed by time. Renewal process is one
+of the most important uncertain processes in which events
+occur continuously and independently of one another in
+uncertaintimes.
+Definition5(Liu[13]). Let 𝜉1,𝜉2,...beiidpositiveuncertain
+variables.Define 𝑆0 =0and 𝑆𝑛 =𝜉1 +𝜉2 +⋅⋅⋅+𝜉𝑛 for 𝑛≥1.
+Thentheuncertainprocess
+𝑁𝑡 = max 𝑛≥0 {𝑛 | 𝑆𝑛 ≤𝑡} (5)
+iscalledanuncertainrenewalprocess.
+Age replacement means that an element is always
+replacedatfailureoratanage𝑇.If𝜉1,𝜉2,... denote the
+lifetimesoftheelementswhichareiiduncertainvariablewith
+acommonuncertaintydistribution,thentheactuallifetimes
+oftheelementsareiiduncertainvariables
+𝜉1 ∧𝑇,𝜉2 ∧𝑇,..., (6)
+whichmaygenerateanuncertainrenewalprocess:
+𝑁𝑡 = max 𝑛≥0 {𝑛 |
+𝑛
+∑
+𝑖=1
+(𝜉𝑖 ∧𝑇)≤𝑡}. (7)
+Yao and Ralescu [12]investigatedtheuncertainage
+replacement policy and obtained the long-run average
+replacementcostasfollows:
+lim
+𝑡→∞
+𝐸[
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ]= 𝑎 𝑇 + 𝑏−𝑎 𝑇 Φ(𝑇) + ∫ 𝑇 0 Φ(𝑥) 𝑥2 𝑑𝑥,
+(8)
+where 𝑓(𝑥) isthereplacementcostfunction.
+3. Delayed Age Replacement Policy
+Consider an age replacement policy in which a unit is
+replaced at constant time 𝑇 after its installation or at failure,
+whichever occurs first. We assume that failures are instantly
+detectedandreplacedwithanewone,whereitsreplacement
+time is negligible. Assume that the lifetimes of the units
+are uncertain variables 𝜉1,𝜉2,...,and𝜉1 has an uncertainty
+distribution which is different from the others. A net unit is
+installed at time 𝑡=0. Then, the actual lifetimes of the units
+are uncertain variables 𝜉1 ∧𝑇,𝜉2 ∧𝑇,...,whichgeneratean
+uncertaindelayedrenewalprocess:
+𝑁𝑡 = max{𝑛 |
+𝑛
+∑
+𝑖=1
+(𝜉𝑖 ∧𝑇)≤𝑡}, (9)
+where𝜉1∧𝑇hasanuncertaintydistributionwhichisdifferent
+fromtheothers.Weconsidertheproblemofminimizingthe
+expected cost per unit of time for an infinite time span. For
+simplicity,weintroducethefollowingcostfunction:
+𝑓(𝑥) ={𝑏, if 𝑥<𝑇 𝑎, if 𝑥=𝑇, (10)
+[[page 3]]
+MathematicalProblemsinEngineering 3
+where 𝑎>0isthecostofreplacingtheunitatage𝑇 and 𝑏 is
+the cost of replacing the unit at failure, which is larger than
+𝑎.Then𝑓(𝜉𝑖 ∧𝑇)denotesthecosttoreplacethe 𝑖thunit,and
+theexpectedtotalreplacementcostbeforetime 𝑡 is
+𝐸[
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)]. (11)
+Theaveragecostoverthetime 𝑡 isexpressedas
+lim
+𝑡→∞
+𝐸[
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ]. (12)
+Delayed age replacement policy aims at finding an opti-
+mal time 𝑇∗ to minimize the average replacement cost; that
+is,
+lim
+𝑡→∞
+𝐸[
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇∗)
+𝑡 ] = min 𝑇 lim 𝑡→∞ 𝐸[
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ].
+(13)
+Lemma6(YaoandRalescu[12]). Let 𝜉 beapositiveuncertain
+variable with an uncertainty distribution Φ.Giventhat
+𝑓(𝑥) ={𝑏, 𝑖𝑓𝑥<𝑇 𝑎, 𝑖𝑓𝑥=𝑇, (14)
+with 0<𝑎<𝑏, the uncertain variable
+𝑓(𝜉∧𝑇)
+𝜉∧𝑇 (15)
+hasanuncertaintydistribution
+Ψ(𝑥) =
+{{{{{
+{{{{{
+{
+0𝑖𝑓𝑥<𝑎 𝑇
+1−Φ(𝑇) 𝑖𝑓 𝑎 𝑇 ≤𝑥< 𝑏 𝑇
+1−Φ(𝑏 𝑥)𝑖𝑓𝑥≥𝑏 𝑇.
+, (16)
+Lemma 7 (Yao and Ralescu [12]). Let 𝑁𝑡 be an uncertain
+renewalprocesswithiiduncertaininterarrivaltimes 𝜉1,𝜉2,...,
+and let 𝑓 beapositivefunction.Then
+∑𝑁𝑡 𝑖=1 𝑓(𝜉𝑖)
+∑𝑁𝑡 𝑖=1 𝑔(𝜉𝑖) , 𝑓(𝜉1) 𝑔(𝜉1), (17)
+haveacommon uncertaintydistribution.
+Theorem 8. Let 𝜉1,𝜉2,...be a sequence of positive uncertain
+variables.If𝜉1 hasanuncertaintydistribution Φ1 and 𝜉2,𝜉3,...
+has a common uncertainty distribution Φ, 𝑁𝑡 is an uncertain
+renewalprocesswithuncertaininterarrivals 𝜉1 ∧𝑇,𝜉2 ∧𝑇,....
+Given that
+𝑓(𝑥) ={𝑏, 𝑖𝑓𝑥<𝑇 𝑎, 𝑖𝑓𝑥=𝑇, (18)
+with 0<𝑎<𝑏, the uncertainty distribution Ψ𝑡(𝑥) of the
+uncertain variable
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 (19)
+satisfies
+lim
+𝑡→∞
+Ψ𝑡 (𝑥) ≥
+{{{{{
+{{{{{
+{
+0𝑖𝑓𝑥≤𝑎 𝑇
+1−Φ(𝑇) 𝑖𝑓 𝑎 𝑇 <𝑥≤ 𝑏 𝑇
+1−Φ(𝑏 𝑥)𝑖𝑓𝑥>𝑏 𝑇.
+(20)
+Proof. Since
+𝑓(𝜉1 ∧𝑇)≥𝑎,
+𝑁𝑡
+∑
+𝑖=2
+(𝜉𝑖 ∧𝑇)≤𝑡, (21)
+wehave
+Ψ𝑡 (𝑥) = M {
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ≤𝑥}
+≥ M
+{
+{
+{
+(𝑎 + ∑𝑁𝑡 𝑖=2 𝑓(𝜉𝑖 ∧𝑇))
+𝑡 ≤𝑥
+}
+}
+}
+= M {(∑𝑁𝑡 𝑖=2 𝑓(𝜉𝑖 ∧𝑇)
+∑𝑁𝑡 𝑖=2 𝜉𝑖 ∧𝑇 )(
+𝑁𝑡
+∑
+𝑖=2
+𝜉𝑖 ∧𝑇
+𝑡 )≤𝑥−𝑎 𝑡 }
+≥ M {∑𝑁𝑡 𝑖=2 𝑓(𝜉𝑖 ∧𝑇)
+∑𝑁𝑡 𝑖=2 (𝜉𝑖 ∧𝑇) ≤𝑥−𝑎 𝑡 }
+= M {𝑓(𝜉2 ∧𝑇) 𝜉2 ∧𝑇 ≤𝑥−𝑎 𝑡 }
+=Ψ(𝑥−𝑎 𝑡 )
+=
+{{{{{
+{{{{{
+{
+0 if 𝑥<𝑎 𝑡 + 𝑎 𝑇
+1−Φ(𝑇) if 𝑎 𝑡 + 𝑎 𝑇 ≤𝑥<𝑎 𝑡 + 𝑏 𝑇
+1−Φ( 𝑏 𝑥 − 𝑎/𝑡) if 𝑥≥𝑎 𝑡 + 𝑏 𝑇.
+(22)
+ThelastsecondinequalityholdsbecauseofLemma6.
+Thus
+lim
+𝑡→∞
+Ψ𝑡 (𝑥) ≥ lim 𝑡→∞ Ψ(𝑥− 𝑎 𝑡 )
+=
+{{{{{
+{{{{{
+{
+0 if 𝑥≤ 𝑎 𝑇
+1−Φ(𝑇) if 𝑎 𝑇 <𝑥≤ 𝑏 𝑇
+1−Φ(𝑏 𝑥) if 𝑥> 𝑏 𝑇.
+(23)
+The theoremis proved.
+[[page 4]]
+4 MathematicalProblemsinEngineering
+Theorem 9. Let 𝜉1,𝜉2,...be a sequence of positive uncertain
+variables.If𝜉1 hasanuncertaintydistribution Φ1 and 𝜉2,𝜉3,...
+has a common uncertainty distribution Φ, 𝑁𝑡 is an uncertain
+renewalprocesswithuncertaininterarrivals 𝜉1 ∧𝑇,𝜉2 ∧𝑇,....
+Given that
+𝑓(𝑥) ={𝑏, 𝑖𝑓𝑥<𝑇 𝑎, 𝑖𝑓𝑥=𝑇, (24)
+with 0<𝑎<𝑏the uncertainty distribution Ψ𝑡(𝑥) of the
+uncertain variable
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 (25)
+satisfies
+lim
+𝑡→∞
+Ψ𝑡 (𝑥) ≤
+{{{{{
+{{{{{
+{
+0𝑖𝑓𝑥<𝑎 𝑇
+1−Φ(𝑇) 𝑖𝑓 𝑎 𝑇 ≤𝑥< 𝑏 𝑇
+1−Φ(𝑏 𝑥)𝑖𝑓𝑥≥𝑏 𝑇.
+(26)
+Proof.
+Case 1. Assume that 𝑥 < 𝑎/𝑇.Let𝑡> 𝑇𝑎/(𝑎 − 𝑇𝑥) ;thenwe
+have
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ≥ 𝑎𝑁𝑡 𝑡 ≥ 𝑎(𝑡/𝑇 − 1) 𝑡
+= 𝑎 𝑇 (1 − 𝑇 𝑡 )
+>𝑥.
+(27)
+It is concluded that
+lim
+𝑡→∞
+Ψ𝑡 (𝑥) = M {
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ≤𝑥}=0. (28)
+Case 2. Assume that 𝑎/𝑇 ≤ 𝑥 < 𝑏/𝑇.Firstly,wewillprove
+that
+{
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ≤ 𝑏 𝑇}⊂ ∞ ⋃ 𝑖=2 {𝜉𝑖 >𝑇−𝜀}, (29)
+forany 𝜀>0provided that 𝑡 islargeenough.Forany
+𝛾∈
+∞
+⋂
+𝑖=2
+{𝜉𝑖 ≤𝑇−𝜀}, (30)
+when 𝑡≥𝑇(2𝑇−𝜀)/𝜀,itcanbeobtainedthat
+𝑁𝑡(𝛾)
+∑
+𝑖=1
+𝑓(𝜉𝑖 (𝛾) ∧ 𝑇)
+𝑡 > 𝑏𝑁𝑡−𝑇 (𝛾) 𝑡
+≥ 𝑏((𝑡−𝑇)/(𝑇−𝜀) −1) 𝑡
+> 𝑏 𝑇.
+(31)
+Thatmeans
+∞
+⋂
+𝑖=2
+{𝜉𝑖 ≤𝑇−𝜀}⊂{
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 > 𝑏 𝑇}. (32)
+It is equivalent of
+{
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ≤ 𝑏 𝑇}⊂ ∞ ⋃ 𝑖=2 {𝜉𝑖 >𝑇−𝜀}, (33)
+provided that 𝑡 islargerthan 𝑇(2𝑇 − 𝜀)/𝜀.
+Accordingtothemonotonicityofuncertaindistribution,
+forany 𝑥 ∈ [𝑎/𝑇, 𝑏/𝑇),weobtainthat
+lim
+𝑡→∞
+Ψ𝑡 (𝑥) ≤ lim 𝑡→∞ Ψ𝑡 ( 𝑏 𝑇)=M { 𝑁𝑡 ∑ 𝑖=1 𝑓(𝜉𝑖 ∧𝑇) 𝑡 ≤ 𝑏 𝑇}
+≤ M {
+∞
+⋃
+𝑖=2
+{𝜉𝑖 >𝑇−𝜀}}
+=1−Φ(𝑇−𝜀).
+(34)
+Letting 𝜀→0,wehave
+lim
+𝑡→∞
+Ψ𝑡 (𝑥) ≤1−Φ(𝑇). (35)
+Case3.Assumethat 𝑥 ≥ 𝑏/𝑇.Forany𝜀>0andfixing
+𝛾∈
+∞
+⋂
+𝑖=2
+{𝜉𝑖 ≤ 𝑏 𝑥 −𝜀}, (36)
+when
+𝑡≥𝑏(𝑏+𝑥𝑇−𝑥𝜀) 𝑥2𝜀 , (37)
+wehave
+𝑁𝑡(𝛾)
+∑
+𝑖=1
+𝑓(𝜉𝑖 (𝛾) ∧ 𝑇)
+𝑡 > 𝑏𝑁𝑡−𝑇 (𝛾) 𝑡
+≥ 𝑏 𝑡 ( 𝑡−𝑇 𝑏/𝑥 − 𝜀 −1)
+>𝑥.
+(38)
+Thus
+∞
+⋂
+𝑖=2
+{𝜉𝑖 ≤ 𝑏 𝑥 −𝜀}⊂{ 𝑁𝑡 ∑ 𝑖=1 𝑓(𝜉𝑖 ∧𝑇) 𝑡 >𝑥}. (39)
+Thatis
+{
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ≤𝑥}⊂
+∞
+⋃
+𝑖=2
+{𝜉𝑖 > 𝑏 𝑥 −𝜀}, (40)
+[[page 5]]
+MathematicalProblemsinEngineering 5
+provided that 𝑡 islargeenough.Therefore,itcanbeobtained
+that
+lim
+𝑡→∞
+Ψ𝑡 (𝑥) = lim 𝑡→∞ M {
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ≤𝑥}
+≤ M {
+∞
+⋃
+𝑖=2
+{𝜉𝑖 > 𝑏 𝑥 −𝜀}}=1−Φ(𝑏 𝑥 −𝜀).
+(41)
+Letting 𝜀→0,forany𝑥 ≥ 𝑏/𝑇,wehave
+lim
+𝑡→∞
+Ψ𝑡 (𝑥) ≤1−Φ(𝑏 𝑥). (42)
+The theoremis proved.
+Theorem10. Let 𝜉1,𝜉2,...beasequence of positiveuncertain
+variables.If𝜉1 hasanuncertaintydistribution Φ1 and 𝜉2,𝜉3,...
+has a common uncertainty distribution Φ, 𝑁𝑡 is an uncertain
+renewalprocesswithuncertaininterarrivals 𝜉1 ∧𝑇,𝜉2 ∧𝑇,....
+Given that
+𝑓(𝑥) ={𝑏, 𝑖𝑓𝑥<𝑇 𝑎, 𝑖𝑓𝑥=𝑇, (43)
+with 0<𝑎<𝑏,then
+lim
+𝑡→∞
+𝐸[
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ]= 𝑎 𝑇 + 𝑏−𝑎 𝑇 Φ(𝑇) + ∫ 𝑇 0 Φ(𝑥) 𝑥2 𝑑𝑥.
+(44)
+Proof. Let
+Υ1 (𝑥) =
+{{{{{
+{{{{{
+{
+0 if 𝑥≤ 𝑎 𝑇
+1−Φ(𝑇) if 𝑎 𝑇 <𝑥≤ 𝑏 𝑇
+1−Φ(𝑏 𝑥) if 𝑥> 𝑏 𝑇,
+Υ2 (𝑥) =
+{{{{{
+{{{{{
+{
+0 if 𝑥< 𝑎 𝑇
+1−Φ(𝑇) if 𝑎 𝑇 ≤𝑥< 𝑏 𝑇
+1−Φ(𝑏 𝑥) if 𝑥≥ 𝑏 𝑇.
+(45)
+Thus
+∫
++∞
+0
+(1 − Υ1 (𝑥))𝑑𝑥=∫
++∞
+0
+(1 − Υ2 (𝑥))𝑑𝑥
+= 𝑎 𝑇 + 𝑏−𝑎 𝑇 Φ(𝑇) + ∫ +∞ 𝑏/𝑇 Φ(𝑏 𝑥)𝑑𝑥
+= 𝑎 𝑇 + 𝑏−𝑎 𝑇 Φ(𝑇) +𝑏∫ 𝑇 0 Φ(𝑥) 𝑥2 𝑑𝑥.
+(46)
+Note that lim𝑡→∞Ψ𝑡(𝑥) ≥ Υ1(𝑥) by Theorem8 and
+lim𝑡→∞Ψ𝑡(𝑥) ≤ Υ2(𝑥) byTheorem9.AccordingtotheFatou
+lemma,wecanobtain
+∫
++∞
+0
+1−Υ2 (𝑥)𝑑𝑥 ≤ lim 𝑡→∞ 𝐸[
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ]
+= lim
+𝑡→∞
+∫
++∞
+0
+1−Ψ𝑡 (𝑥)𝑑𝑥
+≤ ∫
++∞
+0
+1−Υ1 (𝑥)𝑑𝑥.
+(47)
+Sowehave
+lim
+𝑡→∞
+𝐸[
+𝑁𝑡
+∑
+𝑖=1
+𝑓(𝜉𝑖 ∧𝑇)
+𝑡 ]= 𝑎 𝑇 + 𝑏−𝑎 𝑇 Φ(𝑇) + ∫ 𝑇 0 Φ(𝑥) 𝑥2 𝑑𝑥.
+(48)
+The theorem is proved. It follows from Theorem10 that the
+optimal replacement time 𝑇∗ is just the replacement time 𝑇
+whichsatisfies
+min
+𝑇
+{ 𝑎 𝑇 + 𝑏−𝑎 𝑇 Φ(𝑇) + ∫ 𝑇 0 Φ(𝑥) 𝑥2 𝑑𝑥} . (49)
+4. Number Example
+Let 𝜉1,𝜉2,...be a sequence of positive uncertain variables. If
+𝜉1 has a lognormal uncertainty distribution LOGN(𝑒1,𝜎1)
+where 𝑒1 and 𝜎1 arerealnumberswith 𝜎>0and 𝜉2,𝜉3,...has
+acommonlognormaluncertaintydistribution LOGN(𝑒, 𝜎)
+where 𝑒 and 𝜎 are real numbers with 𝜎>0,let𝑁𝑡 be an
+uncertain renewal process with uncertain interarrivals 𝜉1 ∧
+𝑇, 𝜉2 ∧𝑇,...forany 0<𝑇<+∞.Giventhat
+𝑓(𝑥) ={𝑏, if 𝑥<𝑇 𝑎, if 𝑥=𝑇, (50)
+with 0<𝑎<𝑏,thenitfollowsfromTheorem10 that the
+expectedcostoverinfinitetimespanis
+𝑎
+𝑇 + 𝑏−𝑎 𝑇 Φ(𝑇) + ∫ 𝑇 0 Φ(𝑥) 𝑥2 𝑑𝑥
+= 𝑎 𝑇 + 𝑏−𝑎 𝑇 (1 + exp(𝜋(𝑒 − ln𝑇) √3𝜎 )) −1
++ ∫
+𝑇
+0
+1
+𝑥2 (1 + exp(𝜋(𝑒−ln𝑥) √3𝜎 )) −1 𝑑𝑥.
+(51)
+Theoptimalreplacementtime 𝑇∗ isjustthereplacementtime
+𝑇 whichsatisfies
+min
+𝑇
+{ 𝑎 𝑇 + 𝑏−𝑎 𝑇 (1 + exp(𝜋(𝑒 − ln𝑇) √3𝜎 )) −1
++∫
+𝑇
+0
+1
+𝑥2 (1 + exp(𝜋(𝑒 − ln𝑥) √3𝜎 )) −1 𝑑𝑥} . (52)
+[[page 6]]
+6 MathematicalProblemsinEngineering
+0 1
+2
+2.1
+2.2
+2.3
+2.4
+2.5
+2.6
+2.7
+2.8
+2.9
+3
+Cost
+0.2 0.4 0.6 0.8
+Time T
+Figure 1: The expected cost function curve under the changes of
+time 𝑇.
+In particular, let 𝑒=1, 𝜎=2, 𝑏 = 0.2,and𝑎 = 0.1;we
+give the changing trend of the expected cost function with
+time 𝑇 in Figure1.ItcanbeseenobviouslyfromFigure1
+thattheexpectedcostismonotoneincreasingfirstlyandthen
+monotone decreasing in time 𝑇.Wecanobtaintheoptimal
+replacement time 𝑇∗ = 0.2467 and the minimum cost is
+2.1117.
+5. Conclusions
+Thispaperfirststudiedthedelayedagereplacementpolicyin
+uncertain environment. It gave the expected costs in infinite
+time span and found the optimal replacement time which
+minimizestheexpectedcost.Theoptimaltimetoreplacethe
+unit was irrelevant to the uncertain distribution of the first
+unit.Inaddition,anumberexamplewasgave.
+Conflict of Interests
+The authors declare that there is no conflict of interests
+regardingthepublicationofthispaper.
+Acknowledgments
+ThisworkwassupportedbytheYoungScientistsFundofthe
+National Natural Science Foundation of China (61403395),
+the Natural Science Foundation of Tianjin Grant 13JCY-
+BJC39000, and Special Fundof the Civil AviationUniversity
+ofChinaoftheFundamentalResearchFundsfortheCentral
+UniversitiesunderGrantno.3122013D004.
+References
+[1] R.E.BarlowandF.Proschan,MathematicalTheoryofReliability,
+JohnWiley&Sons,NewYork,NY,USA,1965.
+[2] B. Fox, “Age replacement with discounting,” Operations Re-
+search,vol.14,no.3,pp.533–537,1966.
+[3] R. L. Scheaffer, “Optimum age replacement policies with an
+inceasing cost factor,”Technometrics,vol.13,no.1,pp.139–144,
+1971.
+[4] R. Cleroux, S. Dubuc, and C. Tilquin, “The age replacement
+problemwithminimalrepairandrandomrepaircosts,”Opera-
+tionsResearch,vol.27,no.6,pp.1158–1167,1979.
+[5] R.ClerouxandM.Hanscom,“Agereplacementwithadjustment
+anddepreciationcostsandinterestcharges,”Technometrics,vol.
+16,pp.235–239,1974.
+[6] P. J. Boland and F. Proschan, “Periodic replacement with
+increasingminimalrepaircostsatfailure,”OperationsResearch,
+vol.30,no.6,pp.1183–1189,1982.
+[7] J.P.JhangandS.H.Sheu,“Opportunity-basedagereplacement
+policy with minimal repair,”Reliability Engineering and System
+Safety,vol.64,no.3,pp.339–344,1999.
+[8] T. Nakagawa,Maintenance Theory of Reliability, Springer, Lon-
+don,UK,2005.
+[9] D. Kahneman and A. Tversky, “Prospect theory: an analysis of
+decisions under risk,”Econometrica, vol. 47, no. 2, pp. 263–291,
+1979.
+[10] B.Liu,Uncertainty Theory,Springer,Berlin,Germany,2007.
+[11] B. Liu, Uncertainty Theory, Springer, Berlin, Germany, 3rd
+edition,2010.
+[12] K.YaoandD.A.Ralescu,“Agereplacementpolicyinuncertain
+environment,” Iranian Journal of Fuzzy Systems,vol.10,no.2,
+pp.29–39,2013,http://orsc.edu.cn/online/110906.pdf.
+[13] B. Liu, “Fuzzy process, hybrid process and uncertain process,”
+Journal of Uncertain Systems,vol.2,no.1,pp.3–16,2008.
+[[page 7]]
+Submit your manuscripts at
+http://www.hindawi.com
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Mathematics
+Journal of
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Mathematical Problems 
+in Engineering
+Hindawi Publishing Corporation
+http://www.hindawi.com
+Differential Equations
+International Journal of
+Volume 2014
+Applied Mathematics
+Journal of
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Probability and Statistics
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Journal of
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Mathematical Physics
+Advances in
+Complex Analysis
+Journal of
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Optimization
+Journal of
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Combinatorics
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+International Journal of
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Operations Research
+Advances in
+Journal of
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Function Spaces
+Abstract and 
+Applied Analysis
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+International 
+Journal of 
+Mathematics and 
+Mathematical 
+Sciences
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+The Scientific 
+World Journal
+Hindawi Publishing Corporation 
+http://www.hindawi.com Volume 2014
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Algebra
+Discrete Dynamics in 
+Nature and Society
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Decision Sciences
+Advances in
+Discrete Mathematics
+Journal of
+Hindawi Publishing Corporation
+http://www.hindawi.com
+Volume 2014
+Hindawi Publishing Corporation
+http://www.hindawi.com Volume 2014
+Stochastic Analysis
+International Journal of

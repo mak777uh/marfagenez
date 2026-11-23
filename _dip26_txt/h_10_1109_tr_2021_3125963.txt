@@ -1,0 +1,1224 @@
+IEEE TRANSACTIONS ON RELIABILITY, VOL. 72, NO. 1, MARCH 2023 395
+Optimal Inspection Policy for a Single-Unit System
+Considering Two Failure Modes and
+Production Wait Time
+Hui Xiao , Yuanmin Yan ,GangKou , and Shaomin Wu
+Abstract—In many real production systems, a system may be
+stopped due to a lack of demand or exhaustion of raw materials.
+This is known as production wait and provides a good opportunity
+for maintenance. Meanwhile, the increased complexity of the mod-
+ern machines brings new challenges for modeling and analyzing
+their failure behaviors. To address these real-world problems, this
+article considers a single-unit system that may fail due to either
+hard failures or soft failures. The wait time of a system is utilized
+to conduct inspections and maintenance. The system is replaced
+when a defect is found during an inspection, a failure occurred
+or a prespeciﬁed age threshold is reached, whichever comes ﬁrst.
+The cost model, which is the long-run maintenance cost per unit of
+time, is derived. The optimal periodical inspection interval and the
+threshold age to minimize the long run maintenance cost per unit
+of time is then obtained. A case study is conducted to demonstrate
+the proposed maintenance model. The study shows using the pro-
+posed maintenance model can reduce the cost. Sensitivity analysis
+illustrates how each cost parameter affects the optimal inspection
+interval and the optimal age threshold.
+Index Terms—Delay-time concept, inspection, maintenance
+decision, multiple failure modes, production wait.
+NOMENCLATURE
+X1,d Duration of the normal state for failure mode 1.
+X1,f Duration of the defect state for failure mode 1.
+X2 Duration of the operating state for failure mode
+2.
+τ Time at which the defective state of failure mode
+1 occurs.
+t Time of system failure.
+Manuscript received 4 May 2021; revised 28 September 2021; accepted 31
+October 2021. Date of publication 14 December 2021; date of current version
+3 March 2023. This work was supported in part by the National Natural
+Science Foundation of China under Grant 71971176, Grant 71725001, and
+Grant 71910107002 and in part by the Fundamental Research Funds for the
+Central Universities under Grant JBK2103010. Associate Editor: Zhisheng Ye.
+(Corresponding author: Gang Kou.)
+Hui Xiao and Yuanmin Yan are with the Department of Management Science
+and Engineering, Southwestern University of Finance and Economics, Chengdu
+611130, China (e-mail: msxh@swufe.edu.cn; yuanmin_yan@163.com).
+Gang Kou is with the School of Business Administration, Faculty of Business
+Administration, Southwestern University of Finance and Economics, Chengdu
+611130, China (e-mail: kougang@swufe.edu.cn).
+Shaomin Wu is with Kent Business School, University of Kent, Canterbury
+CT2 7FS, U.K. (e-mail: s.m.wu@kent.ac.uk).
+Color versions of one or more ﬁgures in this article are available at
+https://doi.org/10.1109/TR.2021.3125963.
+Digital Object Identiﬁer 10.1109/TR.2021.3125963
+tw Time at which the ﬁrst production wait happens
+after the system being defective.
+Tw Random arrival time of the nearest produc-
+tion wait that occurs after the system becomes
+defective.
+T Periodic inspection interval.
+Tp Time of the periodic inspection renewal.
+Tk,fj Time of the system failure renewal, where
+j =1,2,3.
+Tk,wj Time of the production wait inspection renewal,
+where j =1,2,3.
+Tage Age threshold at which the system is replaced
+immediately, and is equal to nT.
+N(τ) Number of production waits that occur during
+[0,τ].
+fj(·) Probability density function of variable j,j =
+X1,d,X1,f,X2.
+Fj(·) Cumulative distribution function of variable
+j,j = X1,d,X1,f,X2.
+Rj(·) Survival probability ofj, andRj(·)=1−Fj(·),
+j = X1,d,X1,f,X2.
+πp Inspection cost of the periodical inspection.
+πw Inspection cost of the production wait inspection.
+cp Replacement cost.
+cf Replacement cost in the case of the system
+failure.
+EC p (n,T) Expected renewal cycle cost for the periodical
+inspection renewal.
+EC f (n,T) Expected renewal cycle cost for the failure
+renewal.
+EC w(n,T) Expected renewal cycle cost for the production
+wait inspection renewal.
+EC a (n,T) Expected renewal cycle cost for the age-based
+renewal.
+EL p (n,T) Expected renewal cycle length for the periodical
+inspection renewal
+EL f (n,T) Expected renewal cycle length for the failure
+renewal.
+EL w(n,T) Expected renewal cycle length for the production
+wait inspection renewal.
+EL a (n,T) Expected renewal cycle length for the age-based
+renewal.
+EC(n,T) Average renewal cost of the system.
+EL(n,T) Average renewal length of the system.
+EC/L(n,T) Expected long run cost per unit of time.
+This work is licensed under a Creative Commons Attribution 4.0 License. For more information, see https://creativecommons.org/licenses/by/4.0/
+396 IEEE TRANSACTIONS ON RELIABILITY, VOL. 72, NO. 1, MARCH 2023
+I. INTRODUCTION
+M
+AINTENANCE is a widely used approach to reduce the
+operational cost of industrial assets in many sectors such
+as power grid systems and transportation infrastructure [1]–[4].
+Based on how the maintenance action is triggered, we can
+categorize the strategies as corrective maintenance [5], [6], pre-
+ventive maintenance [7]–[12], and condition-based maintenance
+[13]–[17]. The main objectives of maintenance management
+of technical systems are to minimize maintenance cost and to
+increase system reliability.
+In practice, a system may fail due to multiple types of failures
+that are independent from each other [18]–[20]. If a failure is
+instantaneous and has the characteristic of self-announcement,
+it is referred to as a hard failure. Otherwise, if a failure generates
+early warning signals or its degradation mode can be detected
+by inspection or condition monitoring, it is a soft failure [21],
+[22]. For example, a production system may consist of several
+subsystems, including electromechanical systems composed of
+mechanical and electrical components. The mechanical compo-
+nents may be continuously monitored or periodically inspected
+for wear, while electrical components may suffer suddenly fail-
+ures [23]. The feed subsystem of a boring machine is composed
+of the feed screw and other components. The manufacturing
+accuracy is determined by the feed screw, which the core compo-
+nent of the subsystem. When the error exceeds the predetermined
+level and cannot meet the quality requirements, it is considered
+as a soft failure. In addition, hard failures of other components
+of the subsystem can also cause the subsystem to stop working
+[24]. These two examples show that the practical system usually
+fails due to different types of failure modes. Thus, analyzing the
+different failure modes can provide a more accurate modeling
+of the system reliability.
+The progress of a soft failure may go through multiple stages,
+including perfect functioning, defects and failure [25]. For ex-
+ample, the increasing number of defective items is an indicative
+signal of defects in a production system. Inspection is an effec-
+tive way to detect such signals so that maintenance actions can be
+taken before system failure. To characterize the failure process
+with multiple stages, the delay-time concept, is introduced in
+[26]. In the literature, a substantial amount of works has devoted
+to modeling and optimizing inspection policies and maintenance
+policies using the concept delay-time. For example, the two-
+stage failure process was extended to three stages to distinguish
+between major and minor defects [27]–[30]. The delay time
+model was also used to determine optimal maintenance policies
+in the case of postponed replacement [31]–[33]. Furthermore,
+the delay time modeling approach was also adopted to optimize
+the maintenance and spare part inventory jointly [34]–[36].
+From the perspective of applications, the delay time concept has
+been applied to different types of systems such as production
+systems [37], airport runways [38], critical systems [39], and
+bus ﬂeets [40].
+In production systems, some wait time can be utilized to con-
+duct inspection and maintenance to lower the cost or to mitigate
+the interruption. Production wait, which occurs randomly due
+to a lack of demand or exhaustion of raw materials, provides
+a good opportunity for inspection and maintenance [41]–[44].
+For example, the inspection maintenance opportunity arises for
+a machine with excessive buffers in a smoothing production line
+[45]. Thus, making full use of the opportunity of production wait
+to identify defects in machines can reduce the disruption time
+during the normal operation.
+However, in the literature, there is little research on analyz-
+ing how the production wait time can be utilized to conduct
+inspection or maintenance, especially for complex systems that
+subject to multiple failure modes. In this research, a single-unit
+system that may fail due to two independent failure modes
+is considered. Production waiting time is utilized to conduct
+inspections. Whenever a defect is found during an inspection,
+whether it is a periodical inspection or a production wait inspec-
+tion, the system is replaced. When the system fails or reaches
+a threshold age, it is also replaced. Under these assumptions,
+the long run maintenance cost per unit of time is derived and
+is minimized to ﬁnd the optimal periodical inspection intervals
+and age thresholds.
+The contribution of this article is three-fold. First, it develops a
+maintenance cost model for a single-unit system considering two
+failure modes and production wait time. The optimal periodical
+inspection interval and the aged-based replacement time are then
+sought by minimizing the long run average maintenance cost per
+unit of time. Second, it proves that utilizing the production waits
+for inspection and maintenance can reduce the long run average
+maintenance cost per unit of time. Finally, through sensitivity
+analysis, it provides useful insights for decision maker to choose
+the most appropriate maintenance model under different scenar-
+ios.
+The remainder of this article is arranged as follows. Section II
+provides the system description and the maintenance model.
+Section III derives the cost model for the proposed maintenance
+policy. Section IV provides a case study. Finally, Section V
+concludes this article.
+II. PROBLEM FORMULATION
+This section ﬁrst provides a description of the system, and
+then proposes a maintenance policy for this system. Finally, the
+maintenance model is developed for the proposed maintenance
+policy.
+A. System Description
+Consider a single-unit system that is subject to two types of
+independent failures, both of which can cause the system to fail.
+Failure mode 1 is referred to as a soft failure. The progress
+of a soft failure includes three states: normal, defective and
+failed. The transition from the normal state to the defective
+state transits the system from new to defective and the transition
+from the defective state transits the system from defective to
+failure. Let X1,d and X1,f denote the durations of the normal
+state and the defective state, respectively, with the corresponding
+distributions of sojourn times FX1,d(·) and FX1,f (·), and the
+probability density functions being (pdfs)fX1,d(·) andfX1,f (·).
+Failure mode 2 is referred to as a hard failure, which occurs
+without any early warning signals. The time of the system from
+new to failure in the case of a hard failure is described by a
+random variable X2, with a CDF being FX2(·) and a pdf being
+fX2(·).
+XIAO et al.: OPTIMAL INSPECTION POLICY FOR A SINGLE-UNIT SYSTEM CONSIDERING TWO FAILURE MODES AND PRODUCTION WAIT TIME 397
+When the system is defective, it can continue operating. The
+defective state of the system can only be identiﬁed through
+two types of inspections. The ﬁrst type of inspection, which is
+called periodical inspection, is conducted periodically. The other
+type of inspection, which is called production wait inspection,
+is conducted when the system stops for production wait that
+occur randomly. The production wait happens independently
+from the failure process of the system. When the system fails
+due to either failure mode, it can be observed immediately. In
+order to reduce the probability of failures that may cause a huge
+cost, the age-based replacement is considered. In this article,
+replacement is the same as a system renewal.
+B. Maintenance Policy
+We deﬁne the maintenance policy as follows. Starting from
+new, periodical inspections are conducted with an interval of
+T . The production wait inspection is also conducted when a
+production wait happens. The occurrence of production wait
+follows a Poisson process with rate λ. The system is replaced if
+an inspection (either the periodical inspection or the production
+wait inspection) ﬁnds the system in a defective state, the system
+fails, or the age of the system reaches Tage, whichever occurs
+ﬁrst. The replacement time is negligible. The maintenance policy
+has two decision variables: the periodic inspection interval T
+and the time for age-based replacement. In practice, the time for
+age-based replacement is usually assumed to be a multiple of pe-
+riodical inspection interval for the convenience of maintenance
+crew. Thus, we assume the time for age-based replacement isnT ,
+wheren is a positive integer. This assumption is also frequently
+used in the literature of maintenance [23], [33], [37], [44].
+The novelty of this maintenance model is the consideration of
+two types of failure modes and utilizing the production wait time
+to carry out inspection and maintenance. In this way, the policy
+takes greater care of industry practice, and model the real-world
+problem more accurately.
+The cost parameters associated with the maintenance policy
+are explained as follows. The ﬁrst type of cost is inspection cost.
+Letπp andπw represent the cost of a periodical inspection and a
+production wait inspection, respectively. Since the periodical
+inspection interrupts the production process, it is reasonable
+to assume that πp >πw. The second type of cost is the re-
+placement cost. Based on the assumption that the duration of
+each production wait and the replacement time is negligible
+compared with the system lifetime, it is reasonable to assume
+that the replacement cost is the same for: i) replacing the system
+during periodical inspection, ii) replacing the system when the
+system reaches the age ofTage, iii) replacing the system during
+production wait inspection. Although the periodical inspection
+replacement interrupt the production process, the cost associ-
+ated with interruption is already considered in the inspection
+cost, where we have assumed that πp >πw.Letcp denote the
+replacement cost. Letcf denote the replace cost when the system
+fails. The replacement cost incurred due to system failure can
+be much larger than cp because the sudden failure may bring
+unpredictable losses for the system. Note the unpredictable loss
+(penalty cost) for the system failure has already been included
+incf .
+C. Maintenance Model
+Note that the production wait occurs randomly according to
+a Poison process with arrival rate of λ.LetTw denote random
+arrival time of the nearest production wait that occurs immedi-
+ately after the system becomes defective. The probability that
+the nearest production wait occurs aftertw fortw ∈ (τ,∞) is
+P (Tw >tw)=P {[N (tw)−N (τ)] = 0} = e−λ(tw−τ) (1)
+whereN(tw) andN(τ) denote the number of production waits
+during the time interval [0,tw] and [0,τ] , respectively, and
+E[N(τ)] = λτ .
+Thus, the pdf of Tw is
+fTw (tw)=−dP (Tw >tw) dtw = λe−λ(tw−τ). (2)
+The maintenance cost model can be derived as follows.
+Let Tf be the system lifetime and F(t) be the survival
+probability of the system before t. Then, we can derive F(t)
+as follows:
+F (t)=P (Tf <t)=P [(X1,d +X1,f <t)∪(X2 <t)]
+=1−[1−F1 (t)]×[1−F2 (t)]
+= F1 (t)+F2 (t)−F1 (t)F2 (t) (3)
+where F1(t) and F2(t) denote the probabilities that the sys-
+tem fails before t due to failure mode 1 and failure mode 2,
+respectively.
+The equality in (3) exits since the two failure modes are
+independent. F1(t) can be further expressed as
+F1 (t)=P (X1,d +X1,f <t)
+= P [(X1,d <t)∪(X1,f <t−X1,d)]
+=
+∫ t
+0
+fX1,d (τ)FX1,f (t−τ)dτ. (4)
+Soft and hard failures are often assumed to be independent
+[21], [23], [46]–[48]. Based on the maintenance policy deﬁned
+above, we study the optimal inspection policy for a single-unit
+system subject to two independent failure modes: the soft failure
+and the hard failure. Both failure modes can lead to the system
+failure. The system may be renewed under four different scenar-
+ios. When one of the scenarios occurs, the system will update
+immediately according to our assumptions, so the other three
+updates will not happen. Therefore, the four different scenarios
+are independent of each other.
+1) Periodical inspection renewal: The system is renewed
+when the periodical inspection ﬁnds it in the defective
+state.
+2) Failure renewal: The system is renewed immediately after
+failure occurs.
+3) Production wait inspection renewal: The system is re-
+newed immediately after the defective state is found by
+an inspection during production wait.
+4) Age-based renewal: When the system reaches the age of
+Tage, no inspections are performed, even though it is still in
+the normal, it will be renewed. The threshold age of system
+Tage is an multiple of the periodic inspection interval, i.e.,
+Tage = nT , where n ≥ 1 is a positive integer.
+398 IEEE TRANSACTIONS ON RELIABILITY, VOL. 72, NO. 1, MARCH 2023
+Fig. 1. Graphic representation of periodical renewal.
+Given n and T ,letEC p (n,T), EC f (n,T), EC w(n,T), and
+EC a (n,T) denote the expected renewal cycle costs for the pe-
+riodical inspection renewal, failure renewal, production wait
+inspection renewal, and age-based renewal, respectively. Let
+EL p (n,T), EL f (n,T), EL w(n,T), and EL a (n,T)denote the ex-
+pected renewal cycle lengths for the periodical inspection re-
+newal, failure renewal, production wait inspection renewal, and
+age-based renewal, respectively. Let EC(n,T) and EL(n,T)
+denote the average renewal cost and renewal length of the system
+given n and T .
+Then, the expected long run cost per unit of timeEC/L(n,T)
+can be expressed as
+EC/L (n,T)=EC (n,T) EL (n,T)
+=
+EC p (n,T)+EC f (n,T)+EC w(n,T)+EC a (n,T)
+ELp (n,T)+EL f (n,T)+ELw(n,T)+ELa (n,T) . (5)
+The objective of determining the optimal the maintenance
+policy is to ﬁnd the best n and T such that EC/T(n,T) can be
+minimized. This is equivalent to solving the following optimiza-
+tion problem:
+minEC/L (n,T),s.t.T ∈ (0,∞),n∈{1,2,...}. (6)
+The difﬁculty associated with solving the optimization prob-
+lem in (6) is the derivation of the explicit expression of the
+objective function EC/L(n,T). In the following sections, we
+aim to obtainEC/L(n,T) explicitly by analyzing each renewal
+scenario separately.
+III. COST MODEL FOR THE MAINTENANCE POLICY
+Based on the analysis in Section II-C, we derive the explicit
+expressions for EC p (n,T), EC f (n,T), EC w(n,T), EC a (n,T),
+EL p (n,T), EL f (n,T), EL w(n,T), and EL a (n,T) by analyzing
+each of the four types of system renewals separately.
+A. Periodical Inspection Renewal
+In the case of the periodical inspection renewal, it only hap-
+pens at time kT , where k =1,2,...,n−1. Fig. 1 provides
+a typical graphic representation for the scenario that the kth
+periodical inspection ﬁnds the system is in the defective state,
+whereT is the periodical inspection interval;X1,d is the duration
+of failure mode 1 in the normal state; X1,f is the duration of at
+the failure mode 1 defect state; andX2 is the duration of failure
+mode 2 at the operating state.
+As shown in Fig. 1, the system is renewed at thekth periodical
+inspection when the following conditions are met: 1) the system
+is still in the normal state up to time (k −1)T ; 2) the system
+becomes defective before timekT ; 3) no production wait occurs
+after the system being defective; and 4) the system has not failed.
+Letτ denote the time when the system becomes defective. Ac-
+cording to the description mentioned above,τ must be between
+(k −1)T and kT .LetTp denote the length of the periodical
+renewal. The probability that Tp is equal tokT is
+P (Tp = kT)
+= P
+{
+[(k −1)T<τ<kT]∩[N (kT)−N (τ)=0]
+∩[(X1,d +X1,f) >kT]∩[X2 >kT]
+}
+= P [(k −1)T<τ<kT]×P [N (kT)−N (τ)=0]
+×P (X2 >kT) ×P [(X1,d +X1,f) >kT]
+= RX2 (kT)
+∫ kT
+(k−1)T
+e−λ(kT−τ)fX1,d (τ)RX1,f (kT −τ)dτ
+(7)
+where RX1.f (·)=1−FX1.f (·) and RX2(·)=1−FX2(·) de-
+note the survival functions.
+The last equality of (7) follows because:
+P [N (kT)−N (τ)=0]=e−λ(kT−τ) (8)
+where the equality in (8) comes from (1) and (2).
+Given the probability function that the length of the periodical
+renewal Tp is equal to kT in (7), the expected renewal cycle
+length for the periodical inspection renewal EL p (n,T) can be
+obtained by using a weighted average as
+EL p (n,T)=
+n−1∑
+k=1
+kT×P (Tp = kT)
+=
+n−1∑
+k=1
+kT×RX2 (kT)
+×
+∫ kT
+(k−1)T
+e−λ(kT−τ)fX1,d (τ)RX1,f (kT −τ)dτ. (9)
+Similarly, we can derive the expected renewal cycle cost for
+the periodical inspection renewal EC p (n,T) as follows:
+EC p (n,T)=
+n−1∑
+k=1
+[πpk +πwN (τ)+cp]×P (Tp = kT)
+=
+n−1∑
+k=1
+[πpk +πwN (τ)+cp]
+×RX2 (kT)
+∫ kT
+(k−1)T
+e−λ(kT−τ)fX1,d (τ)RX1,f (kT −τ)dτ
+(10)
+where πp and πw represent the inspection cost of a periodical
+inspection and a production wait inspection, respectively; cp
+denotes the replacement cost.
+B. Failure Renewal
+In the case of the failure renewal, the system may fail due to
+either failure mode 1 or failure mode 2. If the system fails due
+to failure mode 2, it may fail before or after the system becomes
+XIAO et al.: OPTIMAL INSPECTION POLICY FOR A SINGLE-UNIT SYSTEM CONSIDERING TWO FAILURE MODES AND PRODUCTION WAIT TIME 399
+Fig. 2. Graphic representation of failure renewal.
+defective. The three different scenarios are shown in Fig. 2. We
+analyze each scenario one by one as follows.
+1) Scenario 1: A typical case of Scenario 1 is graphically
+shown in Fig. 2(a). Under this scenario, the system fails due to
+failure mode 1, and the failure happens between the (k −1)th
+and the kth inspections, where k =1,2,...,n.Lett denote
+the time when the system fails and τ denote the time when the
+system becomes defective.
+Scenario 1 happens when the following conditions are met:
+1) the system is still in the normal state up to time(k −1)T ;2)
+the system becomes defective before timekT ; 3) no probability
+density function production wait occurs during the period from
+being defective to failure, i.e., in the time interval [τ,t); and 4)
+the system fails after being defective due to failure mode 1 while
+the failure due to failure mode 2 does not occur.
+Based on four conditions,t ∈ ((k −1)T, kT) andτ ∈ ((k −
+1)T,t).LetTk,f1 be the random variable that denotes the failure
+time of the system in the case of Scenario 1. Then, the probability
+that Tf1 is between (k −1)T and kT is given in (11).
+2) Scenario 2: A typical case of Scenario 2 is graphically
+shown in Fig. 2(b). Under this scenario, the system fails due to
+failure mode 2, and the failure happens between the (k −1)th
+and the kth inspections, where k =1,2,...,n.Lett denote
+the time when the system fails and τ denote the time when the
+system becomes defective.
+Scenario 2 happens when the following conditions are met:
+1) the system is still in the normal state up to time(k −1)T ;2)
+the system fails at timet due to failure mode 2, wheret ∈ ((k −
+1)T,kT); 3) the system becomes defective at timeτ , whereτ ∈
+((k −1)T,t) , and it remains defective up tot; 4) no production
+wait occurs during the period from being defective to failure,
+i.e., in the time interval [τ,t).
+LetTk,f2 be the random variable that denotes the failure time
+of the system in the case of Scenario 2. Then, the probability
+that Tk,f2 is between (k −1)T and kT is given in (12).
+3) Scenario 3: A typical case of Scenario 3 is graphically
+shown in Fig. 2(c). Under this scenario, the system fails due to
+failure mode 2, and the failure happens between the (k −1)th
+and thekth inspections, wherek =1,2,...,n. The system fails
+suddenly when it is still in the normal state. Lett denote the time
+when the system fails, where t ∈ ((k −1)T,kT).LetTk,f3 be
+the random variable that denotes the failure time of the system
+in the case of Scenario 3. Then, the probability that Tk,f3 is
+between (k −1)T and kT is
+P {(k −1)T<Tk,f3 <kT}
+=
+∫ kT
+(k−1)T
+lim
+Δt→0
+P {[X2 ∈ (t,t+Δt)]∩(X1,d >t)}
+Δt dt
+=
+∫ kT
+(k−1)T
+RX1,d (t)fX2 (t)dt. (13)
+Since the three scenarios are independent, the probability that
+a failure renewal happens between the (k −1)th and the kth
+inspections is the sum of the three probabilities. LetTk,f denote
+the time of the system that fails between the (k −1)th and the
+kth inspections. Then, we have (14).
+P {(k −1)T<Tk,f1 <kT}
+=
+∫ kT
+(k−1)T
+lim
+Δt→0
+P
+⎧
+⎨
+⎩
+[(X1,d +X1,f) ∈ (t,t+Δt)]
+∩[(k −1)T<X1,d <t]
+∩(X2 >t)∩[N(t)−N(τ)=0]
+⎫
+⎬
+⎭
+Δt dt
+=
+∫ kT
+(k−1)T
+RX2(t)
+∫ t
+(k−1)T
+e−λ(t−τ) ×fX1,d(τ)×fX1,f (t−τ)dτdt (11)
+P {(k −1)T<Tk,f2 <kT}
+=
+∫ kT
+(k−1)T
+lim
+Δt→0
+P
+{[X2 ∈ (t,t+Δt)]∩[(k −1)T<X1,d <t]
+∩[(X1,d +X1,f) >t]∩[N (t)−N (τ)=0]
+}
+Δt dt
+=
+∫ kT
+(k−1)T
+fX2 (t)
+∫ t
+(k−1)T
+e−λ(t−τ)fX1,d (τ)RX1,f (t−τ)dτdt (12)
+400 IEEE TRANSACTIONS ON RELIABILITY, VOL. 72, NO. 1, MARCH 2023
+The probability density function of Tk,f can be obtained by
+differentiating (14) with respect to t.LetfTk,f (t) denote this
+pdf. Then, we have
+fTk,f (t)=RX2(t)
+∫ t
+(k−1)T
+e−λ(t−τ)
+×fX1,d(τ)×fX1,f (t−τ)dτ
++fX2 (t)
+∫ t
+(k−1)T
+e−λ(t−τ)fX1,d (τ)RX1,f (t−τ)dτ
++RX1,d (t)fX2 (t). (15)
+Then, the expected length for the failure renewal, denoted by
+EL f (n,T), can be obtained as
+EL f (n,T)=
+n∑
+k=1
+∫ kT
+(k−1)T
+t×fTk,f (t)dt. (16)
+The expected cost for the failure renewal, denoted by
+EC f (n,T), can be obtained as
+EC f (n,T)
+=
+n∑
+k=1
+([πp (k −1)+πwN (τ)+cf]
+×P [(k −1)T<Tk,f1 <kT])
++
+n∑
+k=1
+([πp (k −1)+πwN (τ)+cf]
+×P [(k −1)T<Tk,f2 <kT])
++
+n∑
+k=1
+([πp (k −1)+πwN (t)+cf]
+×P [(k −1)T<Tk,f3 <kT]). (17)
+C. Production Wait Inspection Renewal
+During the production waits, inspections are also carried out.
+If an inspection ﬁnds out that the system is at the defective
+state, the system is replaced. A production wait inspection
+renewal happens when a production wait is needed after the
+system being defective before failure. Fig. 3 shows an example
+of the production wait renewal happen between the (k −1)th
+and the kth inspections. Note that the three different cases in
+Fig. 3. Graphic representation of production wait inspection renewal.
+Fig. 3(a)–(c) can be considered together when we derive the
+analytical model.
+Suppose that a production wait inspection renewal happens
+between the (k −1)th and the kth inspections. As shown in
+Fig. 3, the system is still in the normal state up to time(k −1)T .
+Let τ denote the time when the system becomes defective and
+tw be the time that the ﬁrst production wait happens after the
+system being defective. As shown in Fig. 3, we know thattw ∈
+((k −1)T,kT) and τ ∈ ((k −1)T,tw). In order to make the
+production wait inspection renewal happens, the system must
+have not failed yet up to timetw.LetTk,w denote the time of the
+production wait renewal that happens between the(k −1)th and
+thekth inspections. Then, we can obtain the probability density
+function of Tk,w, which is shown in (18).
+Thus, the probability of the production wait renewal between
+the(k −1)th and the kth inspections is
+P {(k −1)T<Tk,w <kT} =
+∫ kT
+(k−1)T
+fTk,w (tw)dtw. (19)
+Then, the expected length for the production wait inspection
+renewal, denoted by EL w(n,T), can be obtained as
+EL w (n,T)=
+n∑
+k=1
+∫ kT
+(k−1)T
+tw ×fTk,w (tw)dtw. (20)
+P {(k −1)T<Tk,f <kT}
+=
+∫ kT
+(k−1)T
+RX2(t)
+∫ t
+(k−1)T
+e−λ(t−τ) ×fX1,d(τ)×fX1,f (t−τ)dτdt
++
+∫ kT
+(k−1)T
+fX2 (t)
+∫ t
+(k−1)T
+e−λ(t−τ)fX1,d (τ)RX1,f (t−τ)dτdt
++
+∫ kT
+(k−1)T
+RX1,d (t)fX2 (t)dt (14)
+XIAO et al.: OPTIMAL INSPECTION POLICY FOR A SINGLE-UNIT SYSTEM CONSIDERING TWO FAILURE MODES AND PRODUCTION WAIT TIME 401
+Fig. 4. Graphic representation of age-based renewal.
+The expected cost for the production wait inspection renewal,
+denoted by EC w(n,T), can be obtained asEC w (n,T)
+=
+n∑
+k=1
+{
+[πp (k −1)+πwN (tw)+cp]
+×P {(k −1)T<Tk,w <kT}
+}
+. (21)
+D. Age-Based Renewal
+When the system reaches the age ofnT , the system is replaced
+without any inspection. The age-based replacement happens if
+the system is still in the normal state when it reaches the age of
+nT or if the system becomes defective at some time between
+(n−1)T and nT , and there is no production wait after the
+system being defective. The two scenarios are shown in Fig. 4
+(a) and (b), respectively.
+1) Scenario 1: In this scenario, the system is in the normal
+state at time nT . Thus, X1,d and X2 must be larger than nT .
+The probability that the system is in the normal, denoted by
+PTage,1 isPTage,1 = P {(X1,d >nT)∩(X2 >nT)}
+= RX1,d (nT)RX2 (nT). (22)
+2) Scenario 2: In this scenario, the system is in the normal
+state at the(n−1)th periodical inspection. The system becomes
+defective at time τ , which is between (n−1)T and nT .No
+production wait happens during (τ,nT). The system has not
+faileduptonT . The probability that this scenario happens,
+denoted by PTage,2,is
+PTage,2
+= P
+{
+[(n−1)T<X1,d <nT]∩[(X1,d +X1,f) >nT]
+∩(X2 >nT)∩[N (nT)−N (τ)=0]
+}
+= RX2 (nT)
+∫ nT
+(n−1)T
+e−λ(nT−τ)fX1,d (τ)RX1,f (nT −τ)dτ.
+(23)
+Then, the expected length for the age-based renewal, denoted
+by EL a (n,T), can be obtained as
+EL a (n,T)=nT × ( PTage,1 +PTage,2 ) . (24)
+The expected cost for the age-based renewal, denoted by
+EC w(n,T), can be obtained as
+EC a (n,T)=[πp (n−1)+πwN (nT)+cp]×PTage,1
++[πp (n−1)+πwN (τ)+cp]×PTage,2 (25)
+whereN(nT) andN(τ) denote the number of production waits
+within time nT and τ .
+In summary, we have derived the EC p (n,T), EC f (n,T),
+EC w(n,T), EC a (n,T) and EL p (n,T), EL f (n,T), EL w(n,T),
+EL w(n,T) given n and T . The optimal value of n and T can
+be obtained by solving the optimization model deﬁned in (6).
+IV. CASE STUDY
+The numerical study is adapted from the single-component
+steel convertor plant in a steel mill [37]. The production machine
+is a key plant in the process of steel making. This machine
+converts molten iron into steel by removing impurities from the
+molten iron through the oxidation process. Manual periodical
+inspections are conducted regularly. The machine operates 24 h
+a day for 7 days a week and may stop due to insufﬁcient supply
+of molten iron. This is referred to as the production wait time,
+which can be utilized for inspection and maintenance. The elec-
+tromechanical system of this machine consists of mechanical
+and electrical components, which may suffer soft failures or hard
+failures. Defects of the machine such as fatigue cracks, pitting
+corrosion and the decrease of the steel quality can be found
+during inspections. Besides, the system is overhauled when it
+reaches the age of Tage in order to reduce the probability of
+system failures that may cause a signiﬁcant loss. The time of
+overhaul can be treated as a renewal point.
+Weibull distribution is commonly used for modeling the
+failure process of engineering systems. Since no real data are
+collected from the system, we provide a rough estimation for the
+parameters based on the two related work [23], [37]. Although
+the parameters are not collected from real systems, the numer-
+ical analysis provides useful insights for analyzing production
+systems with two failure modes and production wait time. The
+failure process of this system follows a Weibull distribution as
+fX1,d (x)=(1.5/5.61)(x/5.61)0.5 exp ( −(x/5.61)1.5)
+fTk,w (tw)
+= lim
+Δtw→0
+P
+{
+[(k −1)T<X1,d <tw]∩[Tk,w ∈ (tw,tw +Δtw)]
+∩(X2 >tw)∩[(X1,d +X1,f) >tw]
+}
+Δtw
+= RX2 (tw)
+∫ tw
+(k−1)T
+fTw (tw)fX1,d (τ)RX1,f (tw −τ)dτ (18)
+402 IEEE TRANSACTIONS ON RELIABILITY, VOL. 72, NO. 1, MARCH 2023
+Fig. 5. Expected long run cost per unit of time under different values of n and
+T .
+fX1,f (x)=(1.2/2.02)(x/2.02)0.2 exp ( −(x/2.02)1.2)
+fX2 (x)=(2/10.83)(x/10.83)1 exp ( −(x/10.83)2) .
+We assume the unit cost for the periodical inspection is 800,
+the unit cost for the production wait inspection is 50, the cost
+for the inspection replacement is 10 000, and the cost for the
+failure replacement is 70 000. The arrival of the production wait
+follows a Poisson distribution with a rate of 0.8.
+A. Proposed Maintenance Model
+Fig. 5 shows the expected long run cost per unit of time under
+different values of n and T .
+From the ﬁgure we can see that ﬁnding the optimal values of
+n andT can reduce the cost signiﬁcantly. The minimized cost is
+6599 withn =4andT =0.98, while the cost can reach nearly
+14 000 in the case of n =1and T =0.8. This demonstrates
+the beneﬁt of ﬁnding the optimal periodical inspection interval
+and the optimal time for age-based replacement.
+Given that the data is not directly collected from the real
+system, it would be important for us to carry out sensitivity
+analysis on each cost parameter. We will analyze how the change
+of the cost parametersπp,πw,cp, andcf affect the expected long
+run cost per unit of time.
+Figs. 6 and 7 show the effect ofπp (periodical inspection cost)
+andπw (production wait inspection cost) onEC/L(n∗,T∗) (the
+optimal expected long run cost per unit of time).
+As shown in Figs. 6 and 7, the optimal expected long run cost
+per unit of time EC/L(n∗,T∗) increases almost linearly with
+increasing cost of a periodical inspection or increasing cost of
+production inspection. This suggests that the inspection cost has
+an approximately linear relationship withEC/L(n∗,T∗).
+The effects of cp (the replacement cost) on EC/L(n∗,T∗)
+and T∗ age (the optimal time for the age-based replacement) are
+shown in Fig. 8, which indicates that both EC/L(n∗,T∗) and
+T∗ age increase with increasing cp. This conclusion suggests that
+the system should be used for a longer time if the replacement
+cost becomes higher.
+Fig. 9 shows the effect of cf (the failure replacement cost)
+on EC/L(n∗,T∗) and T∗ age. EC/L(n∗,T∗) still increases with
+Fig. 6. Effect of periodic inspection cost on EC/L(n∗,T∗).
+Fig. 7. Effect of production wait inspection cost on EC/L(n∗,T∗).
+increasing cf . Different from Fig. 8, T∗ age decreases with in-
+creasingcf . Due to higher cost of failure replacement, the system
+will be used for a shorter time such that the probability of failure
+decreases. This reduces the expected cost of failure replacement.
+This suggests that high reliability system should be replaced
+more frequently.
+In this numerical study, the arrival of production is assumed to
+follow a Poisson process with a rate of λ =0.8. The effect of λ
+onEC/L(n∗,T∗) andT∗ age are shown in Fig. 10. Increasing the
+arrival rate can results in longer time for periodical inspection.
+This result clearly shows that utilizing the production wait time
+can reduce the long run maintenance cost per unit of time.
+B. Comparison With Existing Models
+To further justify the effectiveness of the proposed mainte-
+nance model, we compare our model with some existing models.
+The four models for comparison are summarized as follows.
+1) Policy 1 is the proposed maintenance in this article that
+considers both the periodical inspection and production
+wait inspection. The system is also replaced when it
+reaches a threshold age.
+XIAO et al.: OPTIMAL INSPECTION POLICY FOR A SINGLE-UNIT SYSTEM CONSIDERING TWO FAILURE MODES AND PRODUCTION WAIT TIME 403
+Fig. 8. Effect of cp (the replacement cost) on EC/L(n∗,T∗) and T∗ age.
+Fig. 9. Effect of cf (the failure replacement cost) on EC/L(n∗,T∗) and T∗ age.
+2) Policy 2 is a maintenance model studied in [23],
+which considers the periodical inspection and age-based
+replacement.
+3) Policy 3 is a variant of our proposed maintenance model
+that only carries out inspections during production wait
+time. No periodical inspection is scheduled. The system
+is also replaced when it reaches a threshold age.
+4) Policy 4 is a variant of our proposed maintenance model
+that does not perform age-based replacement. Inspection
+and maintenance are carried out periodically and during
+the production wait time.
+Since policy 2 is the maintenance model studied in [23], we
+can use their maintenance cost model directly. Policy 4 can be
+obtain easily using policy 1 (the proposed policy in this article)
+by letting n be inﬁnity. Thus, in order to avoid repetition, we
+only provide the cost model for policy 3 at Appendix A.
+To demonstrate the robustness of the proposed maintenance
+model, we perform sensitivity analyses of each cost parameter
+through comparing the above four models. These sensitivity
+analyses include: 1) Sensitivity analysis of the periodical in-
+spection cost (πp), 2) Sensitivity analysis of the production wait
+inspection cost (πw), 3) Sensitivity analysis of the inspection
+Fig. 10. Effect of λ (the arrival rate of production wait) on EC/L(n∗,T∗)
+and T∗ age.
+Fig. 11. Impact of the periodical inspection cost for different maintenance
+models.
+replacement cost (cp), and 4) Sensitivity analysis of the failure
+replacement cost (cf ).
+Figs. 11–14 show the impact of the cost parameters πp, πw,
+cp, andcf towards the long time cost per unit of time for all the
+four maintenance models. From the ﬁgures, we can see that the
+total cost per unit of time increases with the increasing of πp,
+πw,cp, orcf for each maintenance model. In all ﬁgures, policy
+1 outperforms any other maintenance models.
+In general, policy 4, which does not consider the age-based
+replacement, underperforms in most of the scenarios. This in-
+dicates that the age-based replacement policy is important to
+reduce the potential risk of hard failure, thereby helping to reduce
+the long run maintenance cost per unit of time.
+V. C ONCLUSION
+Motivated by real-world applications, this article considered
+two types of failures in single-unit systems: a traditional catas-
+trophic failure and a two-stage delay failure. Besides periodi-
+cal inspections, the production wait occurred due to a lack of
+demand or a shortage of materials is utilized as an opportunity
+404 IEEE TRANSACTIONS ON RELIABILITY, VOL. 72, NO. 1, MARCH 2023
+Fig. 12. Impact of the production wait inspection cost for different mainte-
+nance models.
+Fig. 13. Impact of the replacement cost for different maintenance models.
+Fig. 14. Impact of the failure replacement cost for different maintenance.
+to conduct inspection and maintenance. The system is replaced
+when any of the following conditions is met 1) the system fails,
+2) the age of the system reaches a prespeciﬁed threshold, 3) a
+defect is found during inspection. We developed a cost model
+for the proposed maintenance policy and analyzed the effect of
+each cost parameter on the expected long run cost per unit of
+time. Furthermore, we gave some special cases as alternative
+maintenance polices, and compared the proposed maintenance
+policy with these alternative policies. The case study showed
+that the proposed maintenance policy reduced the expected
+long run maintenance cost per unit of time. Through the study,
+we also concluded that how each cost parameter affected the
+optimal periodical inspection interval and the optimal time for
+the age-based replacement.
+Although this article analyzes a production system subject
+to two failure modes, the modeling and analyzing methods
+can be easily extended to system with multiple failure modes.
+In future, the optimal inspection and maintenance policy for
+a multicomponent system with multiple failure modes can be
+studied.
+APPENDIX A.
+Before we derive the cost model for policy 3, we ﬁrst deﬁne
+the following variables that are different from those used in the
+main part of this article.
+Tfj System failure renewal time of policy 3 under sce-
+nario, j,j =1,2,3.
+EC f (Tage) Expected renewal cycle cost for the failure renewal
+of policy 3.
+EC w(Tage) Expected renewal cycle costs for the production
+wait inspection renewal of policy 3.
+EC a (Tage) Expected renewal cycle costs for the age-based
+renewal of policy 3.
+EL f (Tage) Expected renewal cycle length for the failure re-
+newal of policy 3.
+EL w(Tage) Expected renewal cycle length for the production
+wait inspection renewal of policy 3.
+EL a (Tage) Expected renewal cycle length for the age-based
+renewal of policy 3.
+Γw Time of the production wait inspection renewal of
+policy 3.
+In the case of policy 3, the system is only inspected during
+the production wait time. There is no periodical inspection.
+Thus, there exist three types of system renewal including fail-
+ure renewal, production wait inspection renewal and age-based
+renewal.
+Failure Renewal
+A typical scenario of the failure renewal for policy 3 is shown
+in Fig. 15(a)–(c). Part (a) denotes the scenario that the failure is
+caused by the ﬁrst failure mode. It requires that there should be
+no production wait occurs after the system becomes defective
+at the time τ . Part (b) denotes the scenario that the failure is
+caused by the second failure mode, but the system is already
+defective before failure. This scenario also requires there should
+be no production wait occurs after the system becomes defective
+at the time τ . Part (c) denotes the scenario that the failure is
+caused by the second failure mode. The system does not become
+defective.
+XIAO et al.: OPTIMAL INSPECTION POLICY FOR A SINGLE-UNIT SYSTEM CONSIDERING TWO FAILURE MODES AND PRODUCTION WAIT TIME 405
+Let P{0 <Tfj <Tage} denote the probability the jth sce-
+nario of the failure renewal happens before the age threshold,
+wherej =1,2,3 denotes the three scenarios in Fig. 15. Based
+on the discussion previously, we can obtain the following (A1),
+(A2) and (A3).
+Since the three scenarios are independent, the probability that
+a failure renewal happens before the age threshold is shown in
+(A4).
+The probability density function of Tk,f can be obtained by
+differentiating (A4) with respect to t.LetfTk,f (t) denote this
+probability density function. Then, we have
+fTf (t)=RX2(t)
+∫ t
+0
+e−λ(t−τ) ×fX1,d(τ)×fX1,f (t−τ)dτ
++fX2 (t)
+∫ t
+0
+e−λ(t−τ)fX1,d (τ)RX1,f (t−τ)dτ
++RX1,d (t)fX2 (t). (A5)
+Then, the expected length for the failure renewal, denoted by
+EL f (Tage) , can be obtained as
+EL f (Tage)=
+∫ Tage
+0
+t×fTf (t)dt. (A6)
+The expected cost for the failure renewal, denoted by
+EC f (Tage), can be obtained as
+EC f (Tage)=[πwN (τ)+cf]×P {0 <Tf1 <Tage}
++[πwN (τ)+cf]×P {0 <Tf2 <Tage}
++[πwN (t)+cf]×P {0 <Tf3 <Tage}. (A7)
+Production Wait Inspection Renewal
+Fig. 16 shows the case when production wait inspection
+renewal happens for policy 3. In any of the scenarios (a), (b),
+(c), it requires a production wait occurs after the system become
+defective at time τ and this production wait occurs before the
+system fails.
+P {0 <Tf1 <Tage}
+=
+∫ Tage
+0
+lim
+Δt→0
+P
+{
+[(X1,d +X1,f) ∈ (t,t+Δt)]
+∩(0 <X1,d <t)∩(X2 >t)∩[N(t)−N(τ)=0]
+}
+Δt dt
+=
+∫ Tage
+0
+RX2(t)
+∫ t
+0
+e−λ(t−τ) ×fX1,d(τ)×fX1,f (t−τ)dτdt (A1)
+P {0 <Tf2 <Tage}
+=
+∫ Tage
+0
+lim
+Δt→0
+P
+{
+[X2 ∈ (t,t+Δt)]∩(0 <X1,d <t)
+∩[(X1,d +X1,f) >t]∩[N (t)−N (τ)=0]
+}
+Δt dt
+=
+∫ Tage
+0
+fX2 (t)
+∫ t
+0
+e−λ(t−τ)fX1,d (τ)RX1,f (t−τ)dτdt (A2)
+P {0 <Tf3 <Tage}
+=
+∫ Tage
+0
+lim
+Δt→0
+P {[X2 ∈ (t,t+Δt)]∩(X1,d >t)}
+Δt dt
+=
+∫ Tage
+0
+RX1,d (t)fX2 (t)dt (A3)
+P {0 <Tf <Tage}
+= P {0 <Tf1 <Tage}+P {0 <Tf2 <Tage}+P {0 <Tf3 <Tage}
+=
+∫ Tage
+0
+RX2(t)
+∫ t
+0
+e−λ(t−τ) ×fX1,d(τ)×fX1,f (t−τ)dτdt
++
+∫ Tage
+0
+fX2 (t)
+∫ t
+0
+e−λ(t−τ)fX1,d (τ)RX1,f (t−τ)dτdt
++
+∫ Tage
+0
+RX1,d (t)fX2 (t)dt (A4)
+406 IEEE TRANSACTIONS ON RELIABILITY, VOL. 72, NO. 1, MARCH 2023
+Fig. 15. Graphic representation of failure renewal of the policy 3.
+Fig. 16. Graphic representation of production wait inspection renewal of
+policy 3.
+Let Γw be the random variable that denotes the time of the
+production wait renewal. The probability density function is
+given in (A8).
+Thus, the probability of the production wait renewal of policy
+3is
+P {0 < Γw <Tage} =
+∫ Tage
+0
+fΓw (tw)dtw. (A9)
+Then, the expected length for the production wait inspection
+renewal, denoted byEL w(n,T), can be obtained as
+EL w (Tage)=
+∫ Tage
+0
+tw ×fΓw (tw)dtw. (A10)
+Fig. 17. Graphic representation of age-based renewal of policy 3.
+The expected cost for the production wait inspection renewal,
+denoted by EC w(n,T), can be obtained as
+EC w (Tage)=[πwN (tw)+cp]×P {0 < Γw <Tage}.
+(A11)
+Age-Based Renewal
+Age-based renewal happens if either the scenario (a) or sce-
+nario (b) of Fig. 17 occurs. Scenario (a) means the system is still
+in the normal state after it reaches the age of Tage. Scenario (b)
+means the system is defective when it reaches the age of Tage,
+but there is no production wait occurs after the system become
+defective.
+LetPTage,1 andPTage,2 denote the probability of Scenario (a)
+and Scenario (b) happen, respectively. We have
+PTage,1 = P {(X1,d >Tage)∩(X2 >Tage)}
+= RX1,d (Tage)RX2 (Tage) (A12)
+PTage,2 = P
+{
+[0 <X1,d <Tage]∩[(X1,d +X1,f) >Tage]
+∩(X2 >Tage)∩[N (Tage)−N (τ)=0]
+}
+= RX2 (Tage)
+∫ Tage
+0
+e−λ(Tage−τ)fX1,d (τ)RX1,f (Tage −τ)dτ.
+(A13)
+Then, the expected length for the age-based renewal, denoted
+by EL a (Tage), can be obtained as
+EL a (Tage)=Tage × ( PTage,1 +PTage,2 ) . (A14)
+The expected cost for the age-based renewal, denoted by
+EC w(n,T), can be obtained as
+EC a (Tage)=[πwN (nT)+cp]×PTage,1
++[πwN (τ)+cp]×PTage,2 (A15)
+whereN(nT) andN(τ) denote the number of production waits
+within time nT and τ .
+fΓw (tw) = lim Δtw→0
+P
+⎧
+⎨
+⎩
+(0 <X1,d <Tage)∩[Γw ∈ (tw,tw +Δtw)]
+∩(X2 >tw)∩[(X1,d +X1,f) >tw]
+⎫
+⎬
+⎭
+Δtw
+= RX2 (tw)
+∫tw
+0 fTw(tw)fX1,d (τ)RX1,f (tw −τ)dτ
+(A8)
+XIAO et al.: OPTIMAL INSPECTION POLICY FOR A SINGLE-UNIT SYSTEM CONSIDERING TWO FAILURE MODES AND PRODUCTION WAIT TIME 407
+Summarizing the three different types of system renewal, the
+long-run maintenance cost per unit of time is
+EC f (Tage)+EC w(Tage)+EC a (Tage)
+EL f (Tage)+ELw(Tage)+ELa (Tage). (A16)
+REFERENCES
+[1] Q. Sun, Z. S. Ye, and X. Zhu, “Managing component degradation in series
+systems for balancing degradation through reallocation and maintenance,”
+IISE Trans., vol. 52, no. 7, pp. 797–810, Jul. 2020.
+[2] Q. Sun, Z. S. Ye, and N. Chen, “Optimal inspection and replacement
+policies for multi-unit systems subject to degradation,” IEEE Trans. Rel.,
+vol. 67, no. 1, pp. 401–413, Mar. 2018.
+[3] G. Levitin, L. Xing, and Y. Dai, “Optimal operation and maintenance
+scheduling in m-out-of-n standby systems with reusable elements,” Rel.
+Eng. Syst. Saf., vol. 211, Jul. 2021, Art. no. 107582.
+[4] B. Liu, R. H. Yeh, X. Min, and W. Kuo, “Maintenance scheduling for
+multicomponent systems with hidden failures,” IEEE Trans. Rel., vol. 66,
+no. 4, pp. 1280–1292, Dec. 2017.
+[5] X. Zhao, J. Sun, Q. Qiu, and K. Chen, “Optimal inspection and mission
+abort policies for systems subject to degradation,” Eur. J. Oper. Res.,
+vol. 292, no. 2, pp. 610–621, Jul. 2020.
+[6] Y. Liu, B. Zhang, T. Jiang, and T. Xiahou, “Optimization of multilevel
+inspection strategy for nonrepairable multistate systems,” IEEE Trans.
+Rel., vol. 69, no. 3, pp. 968–985, Sep. 2020.
+[7] S. Mizutani, X. Zhao, and T. Nakagawa, “Age and periodic replacement
+policies with two failure modes in general replacement models,” Rel. Eng.
+Syst. Saf., vol. 214, Oct. 2021, Art. no. 107754.
+[8] B. Liu, M. Xie, and W. Kuo, “Reliability modeling and preventive main-
+tenance of load-sharing systems with degrading components,” IIE Trans.,
+vol. 48, no. 8, pp. 699–709, Aug. 2016.
+[9] H. Dui, S. Chen, and J. Wang, “Failure-oriented maintenance analysis
+of nodes and edges in network systems,” Rel. Eng. Syst. Saf., vol. 215,
+Nov. 2021, Art. no. 107894.
+[10] G. Levitin, M. Finkelstein, and Y. Dai, “Optimal preventive replacement
+policy for homogeneous cold standby systems with reusable elements,”
+Rel. Eng. Syst. Saf., vol. 204, Dec. 2020, Art. no. 107135.
+[11] X. Zhao, S. Mizutani, M. Chen, and T. Nakagawa, “Preventive replacement
+policies for parallel systems with deviation costs between replacement and
+failure,” Ann. Oper. Res., Sep. 2020, doi: 10.1007/s10479-020-03791-6.
+[12] Z. Zhu, Y. Xiang, M. Li, W. Zhu, and K. Schneider, “Preventive main-
+tenance subject to equipment unavailability,” IEEE Trans. Rel., vol. 68,
+no. 3, pp. 1009–1020, Sep. 2019.
+[13] H. Dui, S. Li, L. Xing, and H. Liu, “System performance-based joint
+importance analysis guided maintenance for repairable system,” Rel. Eng.
+Syst. Saf., vol. 186, pp. 162–175, Jun. 2019.
+[14] N. Chen, Z. S. Ye, Y. Xiang, and L. Zhang, “Condition-based maintenance
+using the inverse Gaussian degradation model,” Eur. J. Oper. Res.,vol. 243,
+no. 1, pp. 190–199, May 2015.
+[15] Y. Li, S. Peng, Y. Li, and W. Jiang. A review of condition-based mainte-
+nance: Its prognostic and operational aspects. Front. Eng., vol. 7, no. 3,
+pp. 323–334, 2020.
+[16] Y. Xiang, D. W. Coit, and Q. Feng, “Accelerated burn-in and condition-
+based maintenance for n-subpopulations subject to stochastic degrada-
+tion,” IIE Trans., vol. 46, no. 10, pp. 1093–1106, Oct. 2014.
+[17] H. K. Wang, H. Z. Huang, Y. F. Li, and Y. J. Yang, “Condition-based
+maintenance with scheduling threshold and maintenance threshold,” IEEE
+Trans. Rel., vol. 65, no. 2, pp. 513–524, Jun. 2016.
+[18] X. Liu, J. Li, K. N. Al-Khalifa, A. S. Hamouda, D. W. Coit, and E.
+A. Elsayed, “Condition-based maintenance for continuously monitored
+degrading systems with multiple failure modes,” IIE Trans., vol. 45, no. 4,
+pp. 422–435, Apr. 2013.
+[19] S. Wu and I. T. Castro, “Maintenance policy for a system with a weighted
+linear combination of degradation processes,” Eur. J. Oper. Res., vol. 280,
+no. 1, pp. 124–133, Jan. 2020.
+[20] S. Lu, D. Shi, and H. Xiao, “Reliability of sliding window systems with
+two failure modes,” Rel. Eng. Syst. Saf., vol. 188, pp. 366–376, Aug. 2019.
+[21] M. Mahmoudi, A. Elwany, K. Shahanaghi, and M. R. Gholamian, “A delay
+time model with multiple defect types and multiple inspection methods,”
+IEEE Trans. Rel., vol. 66, no. 4, pp. 1073–1084, Dec. 2017.
+[22] N. Zhang, M. Fouladirad, A. Barros, and J. Zhang, “Condition-based main-
+tenance for a K-out-of-N deteriorating system under periodic inspection
+with failure dependence,” Eur. J. Oper. Res., vol. 287, no. 1, pp. 159–167,
+Nov. 2020.
+[23] R. Peng, B. Liu, Q. Zhai, and W. Wang, “Optimal maintenance strategy
+for systems with two failure modes,” Rel. Eng. Syst. Saf., vol. 188,
+pp. 624–632, Aug. 2019.
+[24] R. Zheng and V. Makis, “Optimal condition-based maintenance with
+general repair and two dependent failure modes,” Comput. Ind. Eng.,
+vol. 141, Mar. 2020, Art. no. 106322.
+[25] F. Zhang, J. Shen, H. Liao, and Y. Ma, “Optimal preventive maintenance
+policy for a system subject to two-phase imperfect inspections,” Rel. Eng.
+Syst. Saf., vol. 205, Jan. 2021, Art. no. 107254.
+[26] A. H. Christer and W. M. Waller, “Reducing production downtime using
+delay–time analysis,” J. Oper. Res. Soc., vol. 35, no. 6, pp. 499–512, 1984.
+[27] W. Wang, F. Zhao, and R. Peng, “Preventive maintenance model with a
+two-level inspection policy based on a three-stage failure process,” Rel.
+Eng. Syst. Saf., vol. 121, pp. 207–220, Jan. 2014.
+[28] L. Wang, Y. Yang, H. Zhu, and G. Liu, “Optimal condition-based renewable
+warranty policy for products with three-stage failure process,” Qual.
+Technol. Quant. Manag., vol. 17, no. 2, pp. 216–233, 2021.
+[29] H. Wang, W. Wang, and R. Peng, “A two-phase inspection model for a
+single component system with three-stage degradation,” Rel. Eng. Syst.
+Saf., vol. 158, pp. 31–40, Feb. 2017.
+[30] L. Yang, X. Ma, and Y. Zhao, “A condition-based maintenance model for
+a three-state system subject to degradation and environmental shocks,”
+Comput. Ind. Eng., vol. 105, pp. 210–222, Mar. 2017.
+[31] M. D. Berrade, P. A. Scarf, and C. A. V. Cavalcante, “A study of post-
+poned replacement in a delay time model,” Rel. Eng. Syst. Saf., vol. 168,
+pp. 70–79, Dec. 2017.
+[32] C. D. V. Oosteroma, A. H. Elwany, D. Çelebi, and G. J. V. Houtuma,
+“Optimal policies for a delay time model with postponed replacement,”
+Eur. J. Oper. Res., vol. 232, no. 1, pp. 186–197, Jan. 2014.
+[33] L. Yang, Z. S. Ye, C. G. Lee, S. F. Yang, and R. Peng, “A two-phase
+preventive maintenance policy considering imperfect repair and postponed
+replacement,” Eur. J. Oper. Res., vol. 274, no. 3, pp. 966–977, May 2019.
+[34] W. Wang, “A stochastic model for joint spare parts inventory and planned
+maintenance optimization,” Eur. J. Oper. Res., vol. 216, no. 1, pp. 127–139,
+Jan. 2012.
+[35] F. Zhao, X. J. Liu, R. Peng, and J. S. Kang, “Joint optimization of inspection
+and spare ordering policy for a four-state delay-time type system,” Comput.
+Ind. Eng., vol. 139, Jan. 2020, Art. no. 106205.
+[36] M. C. A. O. Keizer, R. H. Teunter, and J. Veldman, “Joint condition-
+based maintenance and inventory optimization for systems with multiple
+components,” Eur. J. Oper. Res., vol. 257, no. 1, pp. 209–222, Feb. 2017.
+[37] F. Zhao, W. Wang, and R. Peng, “Delay-time-based preventive mainte-
+nance modelling for a production plant: A case study in a steel mill,” J.
+Oper. Res. Soc., vol. 66, no. 12, pp. 2015–2024, Dec. 2015.
+[38] N. M. D. Souza and A. T. D. A. Filho, “A systematic airport runway main-
+tenance and inspection policy based on a delay time modeling approach,”
+Autom. Construction, vol. 110, Feb. 2020, Art. no. 103039.
+[39] P. A. Scarf, C. A. V. Cavalcante, and R. S. Lopes, “Delay-time modelling
+of a critical system subject to random inspections,” Eur. J. Oper. Res.,
+vol. 278, no. 3, pp. 772–782, Nov. 2019.
+[40] M. I. Desa and A. H. Christer, “Modelling in the absence of data: A case
+study of ﬂeet maintenance in a developing country,” J. Oper. Res. Soc.,
+vol. 52, pp. 247–260, Apr. 2001.
+[41] Z. Zhang and L. Yang, “State-based opportunistic maintenance with mul-
+tifunctional maintenance windows,” IEEE Trans. Rel., vol. 70, no. 4, pp.
+1481–1496, Dec. 2021.
+[42] T. Xia, X. Jin, L. Xi, and J. Ni, “Production-driven opportunistic main-
+tenance for batch production based on MAM–APB scheduling,” Eur. J.
+Oper. Res., vol. 240, no. 3, pp. 781–790, Feb. 2015.
+[43] J. Hu, Q. Sun, and Z. Ye, “Replacement and repair optimization for
+production systems under random production waits,” IEEE Trans. Rel.,
+to be published, doi: 10.1109/TR.2021.3111651.
+[44] P. Li, W. Wang, and R. Peng, “Age-based replacement policy with con-
+sideration of production wait time,” IEEE Trans. Rel., vol. 65, no. 1,
+pp. 235–247, Mar. 2016.
+[45] T. Wu, X. Ma, L. Yang, and Y. Zhao, “Proactive maintenance scheduling
+in consideration of imperfect repairs and production wait time,” J. Manuf.
+Syst., vol. 53, pp. 183–194, Oct. 2019.
+[46] W. Huang and R. Askin, “Reliability analysis of electronic devices with
+multiple competing failure modes involving performance aging degrada-
+tion,” Qual. Reliab. Eng. Int., vol. 19, no. 3, pp. 241–254, May 2003.
+[47] Y. Zhu, E. Elsayed, H. Liao, and L. Chan, “Availability optimization of
+systems subject to competing risk,” Eur. J. Oper. Res., vol. 202, no. 3,
+pp. 781–788, May 2010.
+[48] Z. Ye, M. Xie, L. Tang, and Y. Shen, “Degradation based burn in planning
+under competing risks,” Technometrics, vol. 54, no. 2, pp. 159–168, 2012.

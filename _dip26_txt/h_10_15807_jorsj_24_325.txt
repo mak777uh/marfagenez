@@ -1,0 +1,769 @@
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+Journal ofthe  Operations Research
+SocietyofJapan
+  VoL  24, No. 4, December  1981
+  GENERALIZED  MODELS  FOR  DETERMINING  OPTIMAL
+NUMBER  OF  MINIMAL  REPAIRS  BEFORE  REPLACEMENT
+         Teshio Nakagawa
+          Mlaijo U}iiversity
+(Received January 31, 1981; Revised June 9, 1981)
+Abstraet This paper summarizes  the results  ofthe  basic model  of  Makabe and  Morimura, in which  a unit  is replaced
+at k-th failure. The two  generalized models  are  considered:  A) A unit  has two types of failures and  is replaced  at type
+2 failure or  k-th type 1 failure. B) A  system  has two types ofunits  and  is replaced  at unit  2 failure or  k-th unit  ] failure.
+The  expected  cost rates  for each  rnodel  are  obtained,  using  the calculus  method  of  probability. It is shown  that the
+optimal  numbers  k* which  minimize  the cost  rates  are  given by unique  solutions  of  equations  under  certain conditions.
+1. Introduction
+    Makabe  and  )lorimura  [4, 5, 6] propose6  the  new  replacement  where  a  unit
+is replaced  at  k-th failure,  and  discussed  the  opttmum  policy.  Morimura  [7]
+also  considered  several  extended  models.  Thts  is a  modtfication  of  pertodic
+replacernent  model  introduced  by  Barlow  and  Hunter  [l], in which  a  unit  is re-
+placed  at  ttme  T and  undergoes  only  minimal  repair  at  failures  between  periodic
+replacements.  This  pelicy  is  useful  in  the  case  where  the  total  operating  time
+of  a  unit  is  not  recorded  or  it  is  much  time  and  costly  to  replace  a  unit  in
+operatton.  Therefore,  thts  could  be  used  in  maintaining  a  complex  system  with
+many  equipments  of  the  same  type.
+     Thts  paper  su!nmarizes  the  known  results  of  the  basic  Tnodel  of  Makabe  and
+Morimura  and  makes  additional  discussions.  Further,  the  following  two  gener-
+alized  models  are  considered:
+A) A  unit  has  two  types  of  failures  when  tt  fails:  Type  i failure  occurs  with
+   probability  or and  is  corrected  with  minimal  repair,  and  whereas  type  2 fail-
+   ure  occurs  with  probabiltty  1 - a  and  a  unit  has  to  be  replaced.  If  the
+   k-th type  1 fatlure  occurs  before  type  2 failure,  then  a  unit  is replaced
+                                   325
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaich  Society  of  Japan
+326 .. TAlakognwa
+   preventively.
+B) A  system  has  two  types  of  units:  bJhen unit  1 fatls,  ± t undergoes  minimal
+   Tepair,  andi  when  unit  Z fails,  a  system  has  to  be replaced.  If  unit  1 fail.s
+   at  k times  before  unit  2 failure,  then  a  system  is  replaced  preventively.
+     We de:ive the  expeated  cost  rates  for each  model  and  
+'obtain
+ the  op'ttmal
+         k
+numbers  k to  minimize  the  eost  rates,  when  the  hazard  rate  is monotone  in-
+ereasing.  Other  useful  dis ¢ ussions  of  results  are  further  made.
+                                           '
+2. Basic Model
+     The  unit  is replaced  at  the  time  of  k-th failure  (k =  1, 2, ...) after
+its  installatton  and  undergoes  only  minimal  repair  at  failures  between  replace-
+ments.  Assume  that  the  unit  has  a  failure  tiTne distribution  F(t) wtth  finite
+mean  v and  has  a  density  f(t). Then,  the  hazard  rate  (or the  failure  rate)
+is if(t)  i f(t)/pt(t) and  the  cumulative  hazard  is R(t)  i fS p(u)de,  which  has
+a  relation  i(t) = exp[-R(t)],  where  7(t) ! Z - F(t).  It is further  assumed
+that  the  hazard  rate  ne(t)  is continuous,  monotone  increasing,  and  rethains  un-
+disturbed  by  minimfi1  repair.  rhus,  there  exists  the  limit of  ?(an)  i lim  ve(t),
+                                                                     t-,o
+which  may  be  possibly  infinity,
+     Let  el  be  the  cost  of  mtnimal  repair  and  c2  be the  cost  of  replacement.
+Then,  if  the  times  for repair  and  replacement  are  negligible,  then  the  expected
+cost  rate  is, from  [4],
+                 (k-1)el+c2  
+'
+(1) C(k)-k-1  -  (k-1,  2, ...),
+                      oo
+                 g.X.o to Pg' (t)dt
+where  pg.(t) :- {[R(t)]g'lit}e-R(t) (g' -- 0, 1, ...),  which  represents  the proba-
+bility  that  J' failures  occur  tn  the  interval  [0, t].  ･
+                                 de
+     We  seek  the  optimal  number  k which  minimizes  C(k) in  (1) when  r(t)  is
+continuous  and  monotone  tncreasing.  .
+                                             ik
+     Theorem  1. If  there  exists  a  solution  k which  sattsfies
+                                                       ･ (k-  ,2,  ...),(2) L(k)lc21cl  and  L(k-O<c21ql  . . 1
+                                                                       '
+it  is  unique  and  minimtzes  C(k), where
+(3) L(k)  i
+k.1     co
+J' .Eo fO Pg' (O dt                - (k - 1)  ca
+ fo Pk(t)dt
+     o
+(k == 1, 2, ...),
+        '
+(k -  0).
+     
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaich  Society  of  Japan
+                          OptimalMimberofMinimatRepairs  327
+     Proof: We  suppose  that  C(O)  =  oo  for  simplicity.  Then,  a  necessary  con-
+dition  that  there  exists  a finite  kS minimizing  C(k) is that  a kX satisfies
+e(k+1) > C(k) and  C(k)  < C(k-1)  (k =  1, 2, ,..).  :hus,  these  inequalities
+give  (2). Further,
+                           k
+          
+L(k""1) -  L(k) =  g..Eo J:; F'j(t)dt[l!fi; Pk+1(t)dt  -  l/fii l'k(t)dt]
+                        > o,
+sinee  f: pk(t)dt  is a  decreasing  function  of  k from  LemTna  5 of  [7, p. 103] or
+(i) of  Appendix,  when  r<t)  is monotone  increasing.  Thus,  a  solution  to (2)
+must  be  unique.
+     We may  compute  only  a  minimum  k* such  that  L(k)  > c2!cl  if it exists  and
+(4) f:I pkil"2(t)dt  
+<C(krk)
+ -< fll F,iii(t)dt 
+-
+                                    '
+                                                                  *
+Further,  it is easily  seen  that  L(1)  > l. Thus,  if al  ) c2  then  k ==  1, vize,
+the  unit  shouMd  be replaeed  at  the  first  failure.
+                                                 co
+     
+From  (i) of  Appendix,  we  also  have  that  il:mL fo Pk(t)dt "  11r(oo),  where
+1!T(co) =  O whenever  ge(co) =  ou.  Thus,  we  can  give the  following  uppeT  limit  of
+ k ･ k:
+     ,Theorem 2. Suppose  that  ce(co) > c21(vcl).  Then,  there  exists  a  unique                            '
+minimum  k which  sattsfies
+(5) fl IPk(t)cltEu(cl!e2)  (lt=1, 2, ...),
+     k-
+and  k <  k.
+     Proof: We easily  have
+                    co
+                                                            (k -  1, 2, ...),(6) 0(k)  l ulfo  pk(t)a"t
+since  fS pk(t)dt is decreasing  in  k.                                      Further,  from  the  assumption  that  xe(ca)
+                                         - oo
+> c21(vcl),  there  exists  a  unique  minimum  k such  that  vlfo  pk(t)dt  ) c2fcl,
+       co
+ke･, fo Pk(t)dt  E u(cllc2)n  Hence,  from  the  inequality  of  (6), we  have
+k <E.
+,.,.  I:.:(℃i.',k･li:C.il,::e:.: :O:gi.l::,t:,gil,gi.2o,.:}:igl, l:l?;,ela::;e,l,E",p-
+for  6 >  1. Then,  ge(oo) ==  oo and  from  (6),
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaichSociety  ofJapan
+328  rIVhkcrgtxwa
+          f: p,(t)dt  .  tim rfXl,I  B)) ,
+          k-1
+          g..!of: pJ･(t)dt 
+-
+ 
+r(i?il)B)
+ .
+                             *
+Thus,  there  exists  a  unique  k which  m ±nimizes  C(k) and  it is,  from  (2),
+                  lc
+(7) k" =[  (.2 - 1)] + 1,
+                B-1  1
+where  [ ec ] denotes  the  greatest  integer  contained  in x.
+     Vnttl  now,  we  have  assumed  that  the  times  for repair  and  replacernent  are
+negligible.  In reality,  it requires  some  time  .to make  a  repair  or  a  replaee-
+ment,  and  probably,  it  may  be  much  smaller  than  an  operating  tiTme  of  the  unit
+Let  Tl  be  the  random  variable  denoting  the  repair  time  and  T2  denoting  the
+replacement  time.  Further,  let cl(Tl)  be the  repair  cost  which  includes  all
+cests  incurred  due te repair  and  unit  failure, and  e2(T2)  be the  replaeement
+cost.  Then,  tn a  similar  way  of  obtaining  (1), we  easily  have
+                  (k - 1)E[cl(Tl)]  +  E[e2(a:2)] (8) C(lc)=km2  (k =1,  2, ...),
+                     co
+                 g..Eofo Pg'(t)dt +  (k -  1)ll1 +  V2
+where  pt  i E[Ti]  (t =  1, 2)e When  ol(IVI)  =  cl  +  coTl  and  e2(T2>  "  C2  +  CoT2,
+C(k)  agxees  with  the  equation  (3.2) of  [7]. Further,  when  el(Tl)  =  1il and
+C2(T2)  "  T2, 1 - C(k)  represents  the  limiting  efficiency,  i.e.,  the  steady-
+state  availabtlity,  whtch  is  given  by (2.3) of  [7].
+     In  this  case,  Theorems  1 & 2 are  repifritten  as:
+              1 k
+     Theorem  1 . If  there  exists  a  solution                                             k which  satisfies
+(9) L(k) ) E[e2(T2)JfE[el(Tl)]  and  L(k-1)  < E[e2(Ili2)]IE[el(Tl)]
+                                                            (k -  1, 2, ...),
+it is unique  and  mintmtzes  C(k),  where
+k-1    co
+g･-EofO P"' (t)dt '  (k -1)vl  + U2-  (k - 1)
+tt
+(10)
+Then,
+     L(k) i
+Theorem 2'.
+ there  exists
+          co
+         fo pk(t)dt + pl
+                  o
+Suppose  that  llve(co) <  ( LL
+ a  unique  minimum  k whieh+
+ )2){E[el(Tl)]IE[e
+sattsfies
+(k =  1, 2, ...)
+(k -  O).
+2(T2)]}  
+-
+ Pl･
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaich  Society  of  Japan
+                           0ptimalMimberofMinimalRepairs  329
+           co
+(11) Jo pk(t)dt  E ( u +  y2){E[el(TP]IE[C2(T2)]}  -  Ui,
+     de-
+and  k < k.
+     Theorems  1' & 2' are  easUy  proved  because  L(k)  is monotone  increastng
+in k and
+                      v+u                           2(12) L(k)>.  ･- .
+               
+-
+ fo pk(t)dt  + vl
+3. Two Types of  Failures
+     We  consider  the  unit  w ± th  two  types  of  failures [3]. When  the  unit  fails,
+type  1 failure  occurs  with  probability  a  and  is removed  by minimal  repair,  and
+type  2 failure  oecurs  with  probability  1 - a  and  is removecl  by replacement.
+Type  1 failure  is a  minor  failure  which  is easily  restored  to  the  same  operat-
+ing  state  before  failure  by  minima1  repair,  and  whereas  type  2 failure  incurs
+atotal  b=eakdown.  .
+     The  unit  is ieplaced  at  the  ttmes  of  type  2 failure  or  k-th  type  1 fail-
+ure,  whichever  occurs  first.  Then,  the  expected  number  of  mintmal  repairs
+(i.e., type  1 failures)  beiore  replaeement  is
+a3) (k - oak  + i (g' - oagJ-i (i - or) =  (or - ak)la-  a).
+                      .
+                      g-1  .
+Thus,  the  expected  cost  rate  ts  easily  given  by
+                            k
+                   
+el[(a  - ct )1(1 - ct)]  + c2
+(14) C(k;a)=  k-.2 . (k=1,  2, ...).
+                       g..Eo 
+orgf:;
+ pg･(t)dt
+wrien ct =  1, C(k;1) is equal  t,o (1) and  the  optimal  poliay  is discussed  in Sec-
+tion  2. When  a =  O, C(k;O) =  c21u,  which  is constant  for all  k, and  hence,
+the  unit  is replaced  only  at  type  2 failure. Therefore,  we  need  only  discuss
+the  opttmal  po!tcy  in case  of  O < or < 1. To  simplify  equations,  we  denote  u                                                                            a
+   co  -  a
+i fo [F(t)i dt. When  a  =  1, ua  =  v which  is the  mean  time  to  failuTe  of  the
+  .unzt.
+     Theorem  3.
+(i) Suppose  that  O <  ct  <  1 and  ne5co) >  [acl + (1 -  a)a2]1(pl-.cl)d  Then7  there
+     exists  a  finite  and  unique  k (ct) .which sati$fies
+(15) L(k;ct) ) e21cl  and  L(k-2;a)  < c2!cl  (k =  1, 2, ...),
+where  .
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaichSociety  ofJapan
+330              Z  Mkccguwa
+k-1 .
+g,:o 
+"J
+ f: Pg'(t)dt .
+(16) L(k;ct) i
+(ii) If v(co)  E [crCl
+expected  cost  is
+Q7) lim  C(k;a)
+          k-ro
+     Proof: The
+(15). Further,  it  
+'
+and  hence,  lim
+obtaining  TitZl?t?rem 1,
+(15) exists  and  it  
+'
+hand,  if re(oo) <  [ctc              -1         Vc
+hence,  k +  co,  and
+     If cl  l c2  then
+"(t)  is  monotone  
+'
+     It  is easily
+low ± ng  theorem:
+     Theorem  4. If
+is  deereastng  in  tt,
+are  given  in (2) and
+ cofo
+ Pk(t)dt
+     o
+[or1(1 - .)]  +
+1
+   k-a
+- or
+                                 ik
+     +(1  cl)  thenk(ct).ee,
+        
+Cl  C2
+               Pl-or  
+'
+  inequalities  C(k+1;a) >  C(k;a)  and  C(k;a)  < C(k-1;a)  imply
+    is  easily  seen  that  L(k;or) is an  increasing  function  of  k,
+D(k;a) := vlmage(oo) - [al(l - a)].  Thus,  in a similar  way  of
+      iE ?(co)  >  [acl + (1 - a)c2]1(ul-.cl)  then  a  solution  to
+    is  unique  fTom  the  monotonieity  of  L(k;cr). On  the  other
+      + (1 - a)e2]!(ul".cl)  then  L(k;or) <  c21cl  for  all  k, and
+    froin (14), we  have (17).
+       tvk
+      k (a) =  1 since  L(1;a) >  c2/cl.  F:rtheT,  note  that  if
+  increastng  to  infinity  then  a  fin ± te k (ct) extsts  uniquely.
+   seen  that  dL(k;or)lda >  O Eor  all  k. Thus,  we  have  the  fol-
+                                                           *
+     
+P(co)  '  [ael +  (l*- or)c2]4(ulH.el)  for  Ovi< a  <rr1  then  k (cr)
+     and  hence,  1>k  (a) >k,  where  both  k and  k exist                                                          and
+      (5), respectively.
+  (k
+  (k
+andthe
+1, 2, ...),
+0)'
+ resulting
+4. Two Types of  Units
+     Consider  a system  with  two  types  of  units  which  operate  statistical  inde-
+pendently.  When  unit  1 fail.s, it undergoes  minimal  repair  tnstanfaneously
+and  begins  to  operate  again.  When  unit  2 fails,  the  system  is replaced  with-
+out  repairing  unit  2. Unit  1 has  a  faUure  time  distribution  F(t),  the  hazard
+rate  w(t)  and  the  cumulative  hazard  R(t),  whicli  have the  same  assumptions  as
+the  basic  model.  Unit  2 has  a  failure  time  distribution  G(t)  with  finite
+                                      '
+rnean  A,
+  . Suppose  that  the  $ystern  ts replaced  at  the  times  of  unit  2 failure  or
+k-th unit  l failure,  whichever  occurs  first.  1]hen, the  mean  tirne  to  replace･-
+     .rnent  zs
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpeiations  Reseaich  Society  of  Japan
+                                  Optimai ?VLtmber ofMlnimal  Repairs 331
+                  k k-1
+        
+(18) g..{lli!i tl'j-1(t)dG(t) '  fil ti(t)l'k-1(t)?(t)dt  ==  ,i.Eo fil i(t)PJ'(t)dt'
+       where  G(t)  ! 1 - a(t),  and  the  expected  number  of  minimal  repairs  before
+       replacement  is
+                  k
+       
+(l9) J.!1 (g' r  1)f:  Pg･.1(t)cZG(t) +  (k -" 1)f: Z7(t)pk"1(t)v(t)dt                                                      '
+                                               k                                                -1,                                                    co
+                                             
+=
+ g.-El fo a(t)Pgi-1(t)r(t)dt.
+       Thus,  the  expeqted  cost  rate  is 
+'
+                             k-2                                  oo  -
+                        - 
+Cl
+ g..Eo Io a(t)l'J'(t)?(t)cZt +  ¢ 2
+       (20) C(k;a)-  k.1 ..-  (k ==  2, 2, ...).
+                           
+' g'.Eo fo a(t)Pg'(t)dt             `
+       When  G(t) =: 1 for t > O, C(k;a) is equal  to  (1), and  when  i(t) =  1 for  t < T
+       
+and  O for t > T, this  corresponds  to  the  model  of  "?olicy  IV'' of  Morimura  [7]
+            Assume  that  the  hazard  rate  of  unit  2 is h(t) i g(t)lli(t), where  g(t)  is'
+       a  density  of  G(t).
+            Theorem  5. Suppose  that  h(t) is continuous  and  increasing.  Then,  if
+       there  exists  a  solution  kft whieh  satisfies
+       (21) L(k;a) l c21el  and  L(k-1;G) < c21cl  (k =  1, 2, ...),
+       it is unique  and  minimizes  C(k;G),  where                                                       tt
+                             
+f: i(t)Pk-1(t)"(t)dt g
+k.l';
+ f: i(t)pg'(t)dt
+                                        co -
+                                       fo a(t)Pk(t)dt
+                                             k.2
+                                                  co  m
+       
+(22) L(k;G)  E  fi  g..io fo G(t)Pg'(t)"(t)dt  (k :=  1' 2' ''')'
+                                              O (k-O).
+            Proof: The  inequali.ties  cr(k+1;G)  l C(k;G) and  C(k;a)  < C(k-1;a)  give
+       (21). Further,
+       
+(23) L(k+i;c])  -  L(k;G) =  g.kio Jl; zii(t)ps'(t)dt ( f iiz; a i2Iilli ( eillllliliil t
+                                                                       NII-Electionic  
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaichSociety  of  Japan
+332 71 INlakagawa
+                                      . rft i(t)pk-1(t)r(t)dt]
+                                           S a(t)pk(t)dt J
+                                      >  o,
+since  fli Zi(t)pk(t)"(:)d#lfii i/(t)pk+1(t)dt is an  increasing  function  oE  k froin
+(ii) of  Appendix,  when  h(t) is increasing.  Thus,  if a  solution  to (21) exists,
+                '
+lt  is  unique.
+     Further,  we  have,  from  (ii) of  Appendix,
+(24) lim  L(k;a)  =  A[p(co) +  h(oo)] - J'2I i(t)?(t)dt.
+          k-,co
+T2uE,  if "(t)  +  h(t)  is monotone  increasing  and  w(co)  X h(oo) >  (11X)[(e2!cl) +
+               then  tltere exthsts  a  finite  and  unique  k which  satisfies  (21).ro G(t)r(t)dtl
+For  example,  suppose  that  h(t) is monotone  increasing  and  F(t) is exponential,
+i.e.,  F(t) =  1 - exp(--t!v).  Then,  if h(co) > c21(Xcl)  then  a solution  to (21)
+exists  uniquely.
+     In  Sections  3 & 4, we  have assumed  that  the  replaeernent  costs  for  the
+both  cases  of  the  k-th  type  1 (unit I) failure  and  type  2 (unit 2) failure  are
+the  same.  In rea.lity,  it Tnay  be  different  from  each  other,  )Je suppose  that
+c2  is the  replacement  cost  of  the  k-th type  l (unit l) failure  and  c3  is the
+replacement  cest  of  the  type  2 (unit 2) failure. Then, the  expected  cost  rates
+in (14) and  (20) are  rewritten  as,  respectively,
+                   
+ci[(a  - ak)la  - ct)] + e2crk  + c3a  -･ ak)
+(25) C(k;or) ,
+(26) C(k;G)  =
+   k-2cZl
+   g'--0
+    k-1
+     x
+    g' -O
+ coto
+ G(t)P
+  'orgfX
+ pg.(t)dt
+u･ (t)v (t)dt +  c2  f
+               co
+     + a3[1  - fo
+oo -o
+ G(t)pk-1(t)p(t)dt
+G(t}pkT.1(t)r(t)dt]
+Welarcan discuss  the  optimal  numbers
+ method,  although  we  omit  here.
+k-1
+ zg'
+ -0
+ wh
+f
+ic
+co0
+h
+C (t)Pg' (t)dt
+minirnize  C(k;a)and  C(k;G)  by a  simi-
+5,Conclusions  and  Examples
+ We  have  considered  thebasiemodel,where  theunit  is replaced  at  k-th
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaich  Society  of  Japan
+                           Optimal IVitmber ofMinimal  Repairs 333
+                                           '
+failure,  and  the  two  generalized  models  whiclt  include  the  bastc  model  as  a
+                                                      
+JA'
+special  case.  We  have  discussed  the  optimal  numbexs  k nhich  minimize  the
+expected  cost  rates  of  each  model.  It has  been  shown  in the  theorems  that
+ dek
+ 
+iS,i:;::,?Y.Z
+ :l:IM.:: iXC.h.;2:S.e(kl,6'.; £<ts ::iiX :l:I':lles the  expected
+cost  c(k;a) ± n  (25) when  iT(t)ik= exp(--t3)  for B >  1. When  c2  =;  a3,  it ts shown
+from  IJheorems  3 and  4 that  k (ct) exists  uniquely  and  is decreasing  in a  Eor
+                                  ft
+O<a  < 1. Further,  when  a=  1, k (ct> is given  in (7). If  c                                                               +  (c                                                                         )(1 --                                                                    -c                                                              1 3             ik 2
+a)  > O then  k (or) ts given  by  a  minimum  value  such  that
+          
+(i,i,lus'i) i.:,; "g'r,[f･l}iB)  + ctk >  .,  ;i:.i :3il,i,orl ., ･
+It is easily  seen  that  k*(a) is small  when  ellcl  or  c3fc2  for c2  >  cl  is large･
+Conversely,  if el  + (e3 -  c2)(1  -  a)  E R then  lt (cr) -.  eo.
+     Table  1 shows  the  optimal  number  k (a) for,the  probability  cr of  type  1                                                                      '
+failure  and  the  ratio  of  cost  c3  to  :ost c2  when  we  assume  B =  2 and  cllc2  =
+O.1. It is of  great  interest  that  k (or) is increasing  in g for c                                                                        how-                                                                   >c                                                                       2,                                                                 l
+ever,  is deereasing  for c3  s c2.  We  can  explain  the  reason  why  k (a) ± s in-
+creasing  in  a for c3/c2;  If c3  > c2  then  the cost  of  replaeernent  for  type  1
+failure  is cheaper  than  that  for type  2 failure  and  the  nupaber  of  its  failures
+                               ft
+increases  with  a,  and  hence,  k (or) is large  when  ct is large. This  situation
+                                                                       '
+                                           su
+Table  1. Variation  in the  optimal  number  k (a) for the  probability  ct of  type
+          1 failure  and  the  ratio  of  c3  to c2,  where  Bt2  and  eYc2  =  O.1.
+c31c2or
+O.8 O.9 LO 1.2 1.5 2.0 3.o
+O.1 co co 30 6 2 1 1
+O.2 oo oo 27 6 3 1 1
+O.3 co 220 24 6 3 2 1
+O.4 co 112 22 7 3 2 l
+O.5 oo 64 20 7 4 2 1
+O.6 288 39 l7 7 4 2 1
+O.7 64 25 l5 8 5 3 2
+O.8 26 l7 13 8 6 4 2
+O.9 14 12 11 9
+'7
+5 4
+LO 10 IO 10 10 zo 10 10
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaichSociety  of  Japan
+334
+would  reflect  a  real  world
+to  replace  the  unit  often
+minimal  repairs  for type  1
+does  with  or. Thus,  it  may
+number  k when  a  is large.
+small  enough.
+Acknowledgement
+     The  author  wishes  to
+for  useful  suggestions  and
+[ll
+[2]
+[3]
+[4]
+[5]
+[6]
+[7]
+[8]
+         T  ?Vlakagawa
+. On  the  other  hand,
+before  type  2 fallure
+ failure  increases  as
+ be  better  te  replace
+             ".
+ Evidently,  k (or) is
+ if c3l  e2  then  ± t is not  good
+, however,  the  total  cost  of  -
+ the  number  of  its  failures
+ the  unit  preventively  at  sQme
+rapidly  increasing  when  el  is
+                     than'k  Dr.  Kowada  of  Nagoya  Institute  of  Technology
+                      helpfull  comments.
+                            References                 '
+Barlow,  R.E.  and  Hunter,  L.C.;  Optimum  Preventtve  Maintenance  Policies.
+operations Reseavch,  Vol.9,  No,9  (1960), 90-100.
+Barlow,  R.E.  and  ?roschan,  F,:  uathemattcaZ  gVzeovey of  ReltabiZity.  John
+"JUey&Sons,  New  York,  1965.  
+'
+Beichelt,  F. and  Fischer,  K.:  General  Failure  Model  Applied  to  Preventive
+Maintenance  Policies.  JE'EE Tveans. on  ReZiabiZity.  Vol.R-29,  No.1  (1980),
+'39-41.
+ .
+Makabe,  H. and  Morimura,  H.:  A  New  Poliey  ior Preventive  Maintenance.  er.
+(ipemtaons  Res. Soe. gapan, Vol.5,  No,3  (1963), llO-124.
+Makabe,  H.  and  Morimura,  H.:  On  Some  Preventive  Maintenance  Policies.  el.
+opeTataons Res.  Soe. ellrxpan,  Vol.6,  No.1  (1963), l7-47.                             .
+Makabe,  H. and  Morimura,  H.:  Some  Constderqtions  on  Preventtve  }iainte-
+nance  Policies  with  Numerieal  Analysis.  g. opevationS Res. Soe. Japan,
+Vol.7,  No.4  (l965), 154-171.  
+'                                '
+Morimura,  H.:  On  Some  Preventive  Maintenance  Policies  for  IFR.  J. Qpev-
+atton  Res.  Soc. elapan.  Vol.12,  No.3  (1970), 94-124.
+Parks,  K.S.:  OptiTnal  Number  of  Minimal  Repairs  before  Replacement.  fUEE
+T"ans.  on  ReZtabiZ#y,  VoLR-28,  No.2  (1979), 137-140.
+Appendix
+     We  show  the  following  two
+rems,  when  the  hazard  rate  T(t)
+(t) fT pk(t)dt  is  decreasing  in
+results  which
+ is  continuous
+            oo
+ k and  lim  f            0       k-ro,
+a=e  useful  for  proving  the  theo-
+ and  monotone  increasing:
+Pk(t)dt  
+=
+ 1!ve(oo), where  1/r(co) 
+=
+                    
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich
+(io
+L
+(Al)
+and
+(A2)
+Thus
+(A3)
+Thus
+(A4)
+Society  ofJapan
+                     (2ptimalAiumberOfMinimalRepairs 33s
+  O whenever  ge(oo) ± co.
+  If h(t) is eontinuous  and  increa$ing  then
+                                     '
+              k-1
+     rXE-(!)l),  
+"a'(t)f(t)dt
+               k is increasing  inkand
+      fB [R8)] zii(t)ii(t)dt
+                 k-1
+       , f: E(l)l), 
+-e(t)f(t)dt
+ -
+     
+kl-i,eoM fs [R£?)]k ?ii(e)'pm(t)dt 
+M
+ 
+h(M)
+ 
++
+ 
+ve(co)'
+Proof of  (i)
+ Using  the  =elation
+                               k              k-1
+      t [R(bl)]                          [R(t)]
+     fo (k-2)!  r(U)dza=  k! (k=1,  2, ...),                                      '
+the  assumption  that  p(t)  is  monotone  incTeasing,  we  have
+              k                                       k-1
+     f: [R £l)] .-R(t)dt  .  f: [fS :£ (Z)l)!                                           v(u)du]eLR(t)dt
+                                       k-1
+                         
+< f: [fS [{(℃)l)! d.]f(t)dt
+                                   k-1
+                         
+-
+ f: E{(E)l,,                                        e-R(t)dt.
+  co,
+ fo pk(t)dt  is decreasing  in k.                    '
+ Furtheri
+              k k
+     ,: [R£g)] :.-R(t)dt  -f:  [R£l)] i;X(ll't) d'
+                          ) .?.)  f: [R £?)]k f(t)dt =  .t.)  ･
+                        '
+ On  the  other  hand,  for  any  T  e ('O, co),
+              k k k
+      co  [R(t)]
+     fo k! e-'R(t)dt  =  r: [R £g)] e-R(t)dt  +  r: [R{4)] e-R(t)dt
+                          E fS [R£{)]k e-R(t)dt  ".tT)  '
+'
+     lit:mL fS [R{?)]k e-R(t)dt  E .tg,)  .
+                                                        NII-Electionic  
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaichSociety  ofJapan
+336 T: ?VIihagawa
+Therefore,  combining  (A3) and  (A4), we  have
+(A5) iiL:ms fS [R£l)]k e-R(t)dt  ..t.)  ,
+since  T  is arbitrary.
+2. Proof of  (ii)
+     Integrating  by  parts,  we  have
+e I£(!)llrli z7(t)f(t)dt= fz [R£g)]k zii(t)f(t)dt +f7  [R{g,)]k fi(t)g(t)dt.
+First,  we  show  that
+           oo k                     a(t>f(t)dt          fo [R(t)] (A6) f7 [R(t)]k zi(t)I(t)dt
+is increasing  in k when  r(t)  is monotone  increasing.  Let
+          q(T) E ff [R(t)]k+i a(t)f(t)dt fZl [R(t)]k zi(t)i{(t)dt
+               - fS [R(t)]k -d(t)f(t)dt  fZ [R(t)]k+1 i(t)iT(t)dt.
+Then,  tt  is  easily  seen  that
+                 '
+          q(o) 
+=
+ o,
+(A7)           '
+          q (T) > O.    '1]hus,
+ q(T) > O ler  al,l T > O, and  hence,  (A6) is increasing  in  k. Similarly,
+          fZ [R(t)]k I(t)g(t)dt (A8)
+ fT [R(t)]k i7(t)i(t)dt     'is
+ also  increasing,  which  may  be  possibly  aonstant.  Therefore,  from  (A6) and
+                                                     k                            k-1
+(As), we  have that  f:l [£ (e)l)! Zii(t)f(t)dtlf:l [R8,)] Zii(t)P(t)dt ts increas-
+ing  in  k.
+     Next,  we  show  that
+               oo k                         i(t)f(t)dt              Jo [R(t)] (A9) klL:MS f℃ [R(t)]k z]i(t)p(t>dt ="(co)'
+Evidently,
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaichSociety  ofJapan
+(AIO)
+On  the
+(All)
+                   (iptimallViimberofMinimalRepairs
+   rS [R(t)]k a(t)f(t)dt
+                     -  <w(oo).
+   ItFii-'ili;EllSLi'7i-Ziil5ii;ill[R(t)] G(t)F(t)dt  
+-
+other  hand,  for  any  T E (O, co),  we  have
+   f: [R(t)]k i(t>f(t)dt fS {R(t)]k zi(t)f(t)dt +  JooT     k[R(t)]
+337
+G(t)f(t)dt
+It]i:rmilEEIIJTi7i-2!EIIIJIFEII[R(t)] a(t)F(t)dt
+                ed
+           
+r(T)fT  [R(t)]
+>
+f
+kZ
+ [R(t)] Z!(t)i(t)dt +  f
+ G(t)F(t)dt
+-7
+ [R(t)] G(t)F(t)dt+fTI7Ml/IIiEEISfiiMR(t)] G(t)F(t)dt
+                       r(T)
+coT      k[R(t)]G(t)F(t)dt
+Further
+(A12)
+     1
+  the,
+   fT
+    0
+     T +  {f      0braeket
+      k[R(t)]
+       --  co
+[R(t)] G(t)F(t)dtlfT
+of  the  denomtnator  is
+Zi(t)i(t)dt [R(T) ]k
+            <
+[R(C)] G(t)IP(t)tlt}
+, for T <  Tl,
+ff i(t)T(t)dt
+-n t
+o
+ItEil-iEEI;J'i'7E-iElllJl[R(t)]G(t)F(t)dt
+        fZ i(t)I(t)dt <
+fTl[R(t)]
+7]hus ,
+(AI3)
+which
+(A14)
+1]herefore
+      [R(T
+from  (AIO)
+    ?(co)  >
+imply  (A9)
+         co
+        ro
+1
+'
+1:mk-+ea
+ .
+)/R(T)]
+ (All),
+    co
+    fo
+k fooT ndG(t)i'(t)clt
+    z
+ and  (A12), we  have
+[R(t)]k zi(t)f(t)dt
+"
+[R(tr)r]i;r77;TI-:T] G(t)F(t)dt
+ is arbitrary.  In
+P(t).g(t)dt
+l
+G(t)F(t)dt
+ O ask
+limku,eo
+ co
+     co
+    fosxnce
+[R(t)]
+Tk
+ y(T),.similar
+-- co
+        a  way,
+    h(co).
+ we  complete  the  proof.
+Toshio  NAKAGAIifA:
+  Faculty  of  Seience  and
+  University,  Tenpaku-cho
+  Nagoya,  468, Japan.
+.
+'
+ fX [ff(t)]k
+mbinig  (A9)
+F(t)a(t)dt
+and  (A14),
+Department  of  Mathemattcs,
+       Engineertng,  Meijo
+       , Tenpaku-ku,
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The 　 Operatlons 　 Research 　 Soclety 　 of 　 Japan
+338 T．　 NakOgawa
+ア ブ ス ト ラ ク ト
+小 修 理 の 最 適 数 を 決 定 す る モ デ ル の 一 般 化
+名 城 大 学 中 　 川 　 覃 　 夫
+　 真 壁 と 森 村 は ユ ニ ッ ト が 時 間 で な く ， 故 障 回 数 で も っ て 事 前 CC取 替 え る 新 し い 方 策 を 考 え ， 研 究 し
+た 。 こ れ は Barlow 　 and 　 Hunter に よ っ て 導 入 さ れ た 故 障 で 小 修 理 を す る 定 期 取 替 方 策 を 実 用 的
+に 補 正 し た モ デ ル で あ り ， ユ ニ ッ ト の 全 稼 動 時 間 が 測 定 で き な い 場 合 や 稼 動 中 の ユ ニ ッ ト を 取 替 え る
+の に 多 額 の 費 用 を 要 す る 場 合 に ， 有 効 的 な 方 策 と し て 知 ら れ て い る 。
+　 こ こ で は ， 今 迄 に 得 ら れ て い る 結 果 よ り も 深 く 単 位 時 間 当 り の 期 待 費 用 を 最 小 に す る 最 適 方 策 を 議
+論 し ， 定 理 の 形 で そ の 結 果 を 明 確 に 与 え る 。 あ る 適 当 な 仮 定 の も と で ， 取 替 ま で の 最 適 故 障 回 数 が 方
+程 式 の 唯 一 の 解 と し て 求 め ら れ ， そ れ の 上 限 な ど が 示 さ れ る 。 そ こ か ら ， 最 適 な 有 限 回 数 が 存 在 す る
+た め の 1 つ の 十 分 条 件 が 簡 単 に 得 ら れ る 。
+　 さ ら に ， こ の モ デ ル を 拡 張 し た 次 の 2 つ の 取 替 方 策 を 考 え る 。
+1． ユ ニ ッ ト が 故 障 し た と き ， 2 っ の タ イ プ の 故 障 の 種 類 を も つ 。 タ イ プ 1 は 確 率 a で 故 障 し ， 小 修
+　 理 さ れ ， タ イ プ 2 は 確 率 ／ 一 α で 故 障 し ， 修 理 せ ず に 取 替 え ら れ る 。 も し タ イ プ 1 が タ イ プ 2 の 故
+　 陣 す る 前 IU．　 il回 故 障 し た な ら ば ， 事 前 取 替 す る 。
+2． シ ス テ ム は 異 な る 2種 類 の ユ ニ ッ ト か ら 構 成 さ れ る 。 ユ ニ ヅ ト 1が 故 障 し た と き ， 小 修 理 さ れ ，
+　
+ユ ニ ッ ト 2 が 故 障 し た と き ， シ ス テ ム は 修 理 せ ず lc取 替 え ら れ る 。 も し ユ ニ ッ ト 1 が ユ ニ ッ ト 2 の
+　 故 障 す る 前 （C 　 h 回 故 障 し た な ら ば ， 事 前 取 替 す る 。
+　 こ の 2 つ の モ デ ル tC対 し て ， そ れ ぞ れ 単 位 時 間 当 り の 期 待 費 用 を 求 め ， 最 適 方 策 tcつ い て 議 論 す る 。
+基 本 的 な モ デ ル の と き に 得 ら れ た 結 果 を 拡 張 し た 形 の 定 理 が 与 え ら れ る 。
+　 最 後 に ， 故 障 分 布 が ワ イ ブ ル 分 布 に 従 う 場 合 の 数 値 例 を 示 し ， 結 果 を 検 討 す る 。
+N 工 工 一Electronlc 　 Llbrary 　

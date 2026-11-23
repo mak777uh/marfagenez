@@ -1,0 +1,126 @@
+{
+ "ageext93": {
+  "doi": "10.1051/ro/1993270303371",
+  "title": "Extended optimal age replacement policy with minimal repair",
+  "year": 1993,
+  "urls": [
+   "https://www.rairo-ro.org/articles/ro/pdf/1993/03/ro1993270303371.pdf",
+   "https://www.rairo-ro.org/10.1051/ro/1993270303371/pdf",
+   "https://www.rairo-ro.org/articles/ro/pdf/1993/03/ro1993270303371.pdf"
+  ]
+ },
+ "pmsum80": {
+  "doi": "10.1051/ro/1980140302491",
+  "title": "A summary of imperfect preventive maintenance policies with minimal repair",
+  "year": 1980,
+  "urls": [
+   "https://www.rairo-ro.org/articles/ro/pdf/1980/03/ro1980140302491.pdf",
+   "https://www.rairo-ro.org/10.1051/ro/1980140302491/pdf",
+   "https://www.rairo-ro.org/articles/ro/pdf/1980/03/ro1980140302491.pdf"
+  ]
+ },
+ "ermm_age": {
+  "doi": "10.2991/ermm-14.2014.101",
+  "title": "Optimization of Age Replacement Policy for Aging Multi-state System with Imperfect Maintenance",
+  "year": 2014,
+  "urls": [
+   "https://www.atlantis-press.com/article/11308.pdf",
+   "https://www.atlantis-press.com/article/11308.pdf"
+  ]
+ },
+ "ermm_repl": {
+  "doi": "10.2991/ermm-14.2014.100",
+  "title": "Preventive Replacement Policy and Imperfect Maintenance Model with Random Working Times",
+  "year": 2014,
+  "urls": [
+   "https://www.atlantis-press.com/article/11307.pdf",
+   "https://www.atlantis-press.com/article/11307.pdf"
+  ]
+ },
+ "mdpi_app": {
+  "doi": "10.3390/app131810210",
+  "title": "Imperfect Preventive Maintenance Optimization with Variable Age Reduction Factor and Independent Intervention Level",
+  "year": 2023,
+  "urls": [
+   "https://www.mdpi.com/2076-3417/13/18/10210/pdf?version=1694441514",
+   "https://www.mdpi.com/2076-3417/13/18/10210/pdf?version=1694441514"
+  ]
+ },
+ "mdpi_math": {
+  "doi": "10.3390/math7080716",
+  "title": "Maintenance Optimization for Repairable Deteriorating Systems under Imperfect Preventive Maintenance",
+  "year": 2019,
+  "urls": [
+   "https://www.mdpi.com/2227-7390/7/8/716/pdf?version=1565182098",
+   "https://www.mdpi.com/2227-7390/7/8/716/pdf?version=1565182098"
+  ]
+ },
+ "srsp23": {
+  "doi": "10.26408/srsp-2023-11",
+  "title": "Optimizing repair/replacement policy if cumulative distribution function of time-to-repair is rational function",
+  "year": 2023,
+  "urls": [
+   "https://doi.org/10.26408/srsp-2023-11",
+   "https://doi.org/10.26408/srsp-2023-11"
+  ]
+ },
+ "bjps_costlimit": {
+  "doi": "10.1214/16-bjps317",
+  "title": "A bivariate optimal replacement policy with cumulative repair cost limit for a two-unit system under shock damage interaction",
+  "year": 2017,
+  "urls": [
+   "https://projecteuclid.org/journals/brazilian-journal-of-probability-and-statistics/volume-31/issue-2/A-bivariate-optimal-replacement-policy-with-cumulative-repair-cost-limit/10.1214/16-BJPS317.pdf",
+   "https://projecteuclid.org/journals/brazilian-journal-of-probability-and-statistics/volume-31/issue-2/A-bivariate-optimal-replacement-policy-with-cumulative-repair-cost-limit/10.1214/16-BJPS317.pdf"
+  ]
+ },
+ "hindawi_delayed": {
+  "doi": "10.1155/2015/528726",
+  "title": "Delayed Age Replacement Policy with Uncertain Lifetime",
+  "year": 2015,
+  "urls": [
+   "https://downloads.hindawi.com/journals/mpe/2015/528726.pdf",
+   "https://downloads.hindawi.com/journals/mpe/2015/528726.pdf"
+  ]
+ },
+ "iop_1": {
+  "doi": "10.1088/1757-899x/1043/2/022012",
+  "title": "A Multi-objective Optimization for Simultaneous Determination of Spare Part Numbers and Imperfect Preventive Maintenance",
+  "year": 2021,
+  "urls": [
+   "https://iopscience.iop.org/article/10.1088/1757-899X/1043/2/022012/pdf",
+   "https://iopscience.iop.org/article/10.1088/1757-899X/1043/2/022012/pdf"
+  ]
+ },
+ "jomase_idg": {
+  "doi": "10.36842/jomase.v70i1.593",
+  "title": "Weibull Reliability Modeling with Right-Censored Data and Age-Replacement Optimization for IDG on Boeing 737-900ER",
+  "year": 2026,
+  "urls": [
+   "https://isomase.org/Journals/index.php/jomase/article/download/593/440",
+   "https://isomase.org/Journals/index.php/jomase/article/download/593/440"
+  ]
+ },
+ "tqs_series": {
+  "doi": "10.17929/tqs.8.51",
+  "title": "Optimal Age-replacement Policy for Series Systems Considering Maintenance Time",
+  "year": 2022,
+  "urls": [
+   "https://www.jstage.jst.go.jp/article/tqs/8/1/8_51/_pdf",
+   "https://www.jstage.jst.go.jp/article/tqs/8/1/8_51/_pdf"
+  ]
+ },
+ "ein_warranty": {
+  "doi": "10.17531/ein.2015.3.6",
+  "title": "Preventive maintenance strategy optimizing model under two-dimensional warranty policy",
+  "year": 2015,
+  "urls": [
+   "https://doi.org/10.17531/ein.2015.3.6",
+   "https://doi.org/10.17531/ein.2015.3.6"
+  ]
+ },
+ "apm_warranty": {
+  "doi": "10.1016/j.apm.2016.01.022",
+  "urls": [],
+  "note": "not in pool"
+ }
+}

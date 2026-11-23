@@ -1,0 +1,622 @@
+
+[[page 1]]
+Optimization of Age Replacement Policy for Aging 
+Multi-state System with Imperfect Maintenance 
+Yen-Luan Chen 
+Department of Marketing Management, 
+Takming University of Science and Technology, 
+Taipei, Taiwan  
+clchen@takming.edu.tw 
+ 
+ 
+Abstract—This article proposes the modified age replacement 
+policy for a multi -state system composed of multi -state elements. 
+The degradation of the multi -state element is assumed to follow 
+the non-homogeneous continuous time Markov process which is a 
+continuous time and discrete state process. A recursive approach 
+is presented to efficiently compute the time- dependent state 
+probability distribution of the multi-state element. The state and 
+performance distribution of the entire multi -state system are 
+evaluated via the combination of the stochastic process and the 
+Lz-transform method. The concept of user -centered reliability 
+measure is developed based on the system performance and the 
+user demand. We develop the age replacement policy for an aging 
+multi-state system subject to imperfect maintenance in a failure 
+state. The optimum replacement schedule which minimizes the 
+mean cost rate is derived analytically and discussed numerically.  
+Keywords-multi-state system; n on-homogeneous continuous 
+time Markov process; maintenance; optimization; reliability 
+I.  INTRODUCTION 
+To maintain a system in a working state, avoidance of 
+system failure during operation is important for reliability 
+engineers. Various kinds of systems suffer deterioration due to 
+age and use, it is reasonable to conduct maintenance activities 
+at periodic times or after a certain age of the system . Age 
+replacement policy (ARP) is a well -known preventive 
+replacement policy: an operating system is replaced at age T  
+or at failure, whichever occurs first [1] . However, when a 
+system experiences failures, it is either scrapped or minimally 
+repaired in many practical situations. Brown and Proschan [2]  
+considered a m odel in which, upon failure, the system is 
+replaced with probability p  and is minimally repaired with 
+probability q (=1-p), and this activity can be called as imperfect 
+maintenance with (,)pq rule [3]. A large amount of literature 
+models and extends the imperfect maintenance activity 
+described above for traditional binary state systems, and some 
+recent applications can be found in such as [4]－[5]. In this 
+paper, we will develop the modified age replacement policy for 
+a multi- state system (MSS) consisting of multi -state elements 
+and incorporating imperfect maintenance quality. 
+In multi -state reliability modeling, the system may have 
+more than two states of working efficiency, and the MSS 
+should be considered thus. The MSS concerned in the present 
+paper is defined as a system that has a finite number of discrete 
+performance rates, from perfectly functioning to complete 
+failure, resulting from the degradation or/and failure of some 
+elements in the system [6]. Such a MSS is usually viewed as in 
+a failure state once its performance rate falls below the user 
+demand (required performance level). Therefore, the MSS 
+reliability can be measured as t he probability that the system 
+has not reached any of the states with the performance rate less 
+than the specified demand  [7]－[8]. 
+Many real -world systems are composed of multi -state 
+elements (MSEs), which have different performance levels and 
+several fai lure modes with various effects on the system’s 
+entire performance [9] . To describe the degradation process of 
+individual elements, Lisnianski and Levitin  [6] employ the 
+homogeneous continuous time Markov model which assumes 
+that the element’s transition i ntensity to the next state only 
+depends on the current state. However, it is more realistic to 
+consider the case that an element’s deterioration process is not 
+only related to the current state, but also to the age effect of the 
+element [10]. Taking this c oncept into account, the non-
+homogeneous continuous time Markov process (NHCTMP) is 
+utilized in this paper to derive the stochastic process of 
+individual elements by means of considering the time -
+dependent increasing state transition intensity. 
+In this paper, we treat the modified age replacement policy 
+for an aging MSS composed of MSEs. The degradation of 
+multi-state element (MSE) is assumed to follow the NHCTMP, 
+and a recursive approach is presented to efficiently compute the 
+time-dependent state probability distribution of MSE. The Lz -
+transform method proposed in [11] and the concept of user 
+demand are employed to facilitate the reliability assessment of 
+series-parallel MSS consisting of MSEs.  We concern with 
+modeling the MSS and undergo imperfect mainten ance with 
+(,)pq rule when the performance of MSS degrades to a failure 
+state. The optimum replacement time  T* for the maintenance 
+policy can be determined by minimizing the expected cost per 
+unit time. 
+II. MSS DESCRIPTION AND RELIABILITY MEASURES 
+A. System Description  
+Suppose that a multi- state system (MSS)  consists of n 
+independent multi-state elements (MSEs). Element k   in MSS 
+International Conference on Education Reform and Modern Management (ERMM 2014)
+© 2014. The authors - Published by Atlantis Press
+374
+[[page 2]]
+can have 1km +  different states corresponding to the 
+performance rates, represented by the set ,0 ,1 ,{ , ,, } kk k kmGG G , 
+where ,kjG  is the perf ormance rate in the state j , 
+{0, 1, , }kjm∈  . Let ()k tΦ  and ()kGt be the state and 
+performance rate of element k  at time t , respectively, where 
+( ) {0, 1, , }kktmΦ∈   and ,0 ,1 ,() { , , , } kk k k kmGt G G G∈  . The 
+degradation of element k  from the best state (perfect 
+functioning) (0)kkmΦ= to lower states  ( ) { 1,kktmΦ∈ − 
+2, , 0}km −   is modeled using a general stochastic process 
+known as a non-homogeneous continuous time Markov process 
+(NHCTMP), where state 0 is the worst state (complete failure). 
+We also assume that the proces s of element k  can be degraded 
+directly to any lower state from state  i  to state j  for all ji<  
+and , { , 1, , 0}kkij m m∈− . 
+For element k , the instantaneous  transition rate of from 
+state i  to state j  at time t  can be written as 
+ { } , 0 Pr ( ) | ( )( ) lim k kk ij h th j t it h λ → Φ+=Φ =≡ . (1) 
+A typical stat e-space diagram of a MSE k  is illustrated in 
+Figure1. 
+mk mk-1 1 0
+,1() kk
+k
+mm tλ −
+, () k
+k
+mjtλ
+j
+,1 () k
+k
+m tλ
+,0 () k
+k
+m tλ
+1,0 ()k tλ
+,1 ()k j tλ
+,0 ()k j tλ 1, () k
+k
+mjtλ −
+1,1 () k
+k
+m tλ −
+1,0 () k
+k
+m tλ −
+, kkmG ,1kkmG − ,kjG ,1kG ,0kG
+ 
+Figure 1.  MSS structure and state-space diagrams for the system’s elements. 
+Let { }, () Pr ()kj kPt t j≡Φ=  be the element state 
+probability in state j  at time t , and ,,() d () dkj kjPt Pt t′ ≡ , 
+where { , 1, , 0}kkj mm∈− . The state probabilities satisfy the 
+condition ,0 () 1
+km
+kjj Pt = =∑ , because at any instant t , element 
+k  can always be in one and only one of 1km +  states. 
+The Chapman -Kolmogorov (C -K) forward equations for 
+element k  in MSS following a NHCTMP can be written in the 
+matrix form  
+, ,1,2 ,1,0
+, , 1 , 2 ,1 ,0
+1, 1 1, 2 1,1 1,0
+2, 2 2, 1 2,0
+() () ()  () ()
+() () () () ()
+0 () () () ()
+0 0 () () (
+kk k
+kk kk kk k k
+kk kk k k
+kk k k
+km km km k k
+k k k kk
+mm mm mm m m
+k k kk
+mm mm m m
+k kk
+mm m m
+P tP tP t P tP t
+t t t tt
+t t tt
+tt
+λ λ λ λλ
+λ λ λλ
+λ λλ
+−−
+−−
+−− −− − −
+−− − −
+′ ′ ′ ′′
+=
+
+
+
+
+1,1 1,0
+, ,1,2 ,1,0
+)
+0 0 0 () ()
+0 0 0 00
+  () () ()  () () ,
+kk k
+kk
+km km km k k
+t
+tt
+P tP tP t P tP t
+λλ
+−−
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+ (2) 
+and 
+1
+,,0 () ()
+ikk
+ii i jj ttλλ
+−
+=
+= −∑ . To determine the state probability 
+, ()kjPt , the C- K equations (2) can be recursively solved to 
+obtain 
+ ,,0 ( ) exp ( )d k kk
+t k
+km m mP t ssλ= ∫ , (3) 
+1
+, , 1, 1 , 10
+1
+() ()()exp ()dd,
+                                                              1, 2, , 0,
+k
+kk k
+mik
+m
+ttkk
+kj k imiijmi jj mi
+ij
+kk
+P t P ss
+jm m
+τ
+τ λτ λ τ
++−
++− +− +−
+= +
+=
+=−−
+∑ ∫∫
+
+ (4) 
+under the initial conditions , (0) 1 kkmP =  and , (0) 0kjP =  for 
+1, 2, , 0kkjm m=−− . 
+B. MSS Reliability Measures  
+The universal generating function (UGF) is a z -transform-
+based approach first proposed by Ushakov [12] and has been 
+widely applied to MSS reliability analysis. A new Lz -transform 
+method presented by Lisni anski [11] can be applied to aging 
+MSS. Lz-transform is similar to UGF and is proven that there 
+are existence and uniqueness for such a case where transition 
+intensities are continuous functions of time. 
+By means of Lz-transform, the entire MSS may have 1M +  
+different states corresponding to the cumulative performance 
+rates, which is unambiguously determined by the system 
+configuration and performance rates  of elements. Possible 
+performance rates are represented by the set 01{,,, }MGG G , 
+where jG  is the performance rate in the state {0, 1, , }jM∈  . 
+Let ()tΦ  and ()Gt  be the state and performance rate of the 
+system at time t , respectively. The probability associated with 
+the individual system state in state j  at time t  is denoted by 
+()jPt ( { } { }Pr ( ) Pr ( ) jt j Gt G≡ Φ= = = ), {0, 1, , }jM∈  . 
+The traditional reliability measure for a binary state system 
+only focuses on the time to failure. When applied to the MSS, 
+reliability can be considered to be a measure of the ability of a 
+system to meet user demand [13]. The user of the system sets a 
+minimum expected performance rate from the system, called 
+the user demand, represented as w . Du ring each operation 
+375
+[[page 3]]
+cycle, as the system’s output performance ()Gt  at time t  
+drops below w , the system is interpreted to have failed from 
+the user’s perspective even though the system might not ha ve 
+physically failed in reality. Therefore, the general definition of 
+MSS reliability can be given by  (, )Rtw ≡  { }Pr ( )Gt w≥ . 
+Furthermore, we define { }inf :wjS jG w≡≥, then the entire 
+set of possible states can be divided into two dis joint subsets 
+corresponding to acceptable states { , 1, , }w wSS M+   and 
+unacceptable (or failure) states {0, 1, , 1}wS − . The reliability 
+function can be rewritten as 
+ { }(, ) (, ) Pr () ()
+w
+M
+w wj
+jS
+Rtw RtS t S P t
+=
+≡ ≡ Φ≥ =∑ . (5) 
+Based on the same manner as in the traditional binary state 
+system, let X  be the life t ime of a MSS, then the distribution 
+function (, )wFtS , the probability density function (, )wftS , 
+and the failure rate (, )wrtS  of X  can be also obtained 
+according to  the reliability function. 
+III. AGE REPLACEMENT MODEL 
+A modified age replacement policy for a MSS in which 
+maintenances take place according to the following scheme. 
+A new MSS with survival, failure ti me distribution, and 
+failure rate  under the user demand w  described in Section II is 
+installed at time 0. A planned replacement is carried out 
+whenever the system reaches age T . It is assumed that the 
+MSS failures at age t  can experience two types: a type- I 
+failure (minor) occurs with probability q  and is corrected by 
+minimal repair, whereas a type- II failure (catastrophic) occurs 
+with probability  (1 )pq= −  and requires an unplanned 
+replacement. In summary, the MSS is replaced at age T  or at 
+any type-II failure, whichever occurs first.  A renewal cycle is 
+defined as the time interval between two consecutive 
+replacements. 
+The mean cost rate of a replacement cycle can be derived as  
+0
+0
+(,) (,) (,)(,)d
+(, )
+( , )d
+T
+Tp w Yp w M p w w
+w T
+pw
+CF TS CF TS c F tS qrtS t
+JTS
+F tS t
+++
+≡ ∫
+∫
+, (6) 
+where (, )pwF tS  is the survival function of time to first type -II 
+failure, YC  and TC  are t he unplanned and planned  
+replacement costs. To determine the optimal 
+*
+T  that minimizes 
+(, )wJTS , we see that d(, )d 0wJTS T=  if and only if 
+00
+(,) (,)d ( )(,) (,)(,)d ,
+TT
+w pw YTp w M pw w TTS F tS t C C F TS c F tS qrtS t Cϕ −− + =∫∫ (6) 
+where (, ) ( ) (, ) (, )w YT w M wTS C C prTS cqrTSϕ ≡− + . If 
+(, )wTSϕ  is increasing in T  and lim ( , )wT TSϕ →∞ = ∞ , then there 
+exists a finite and unique 
+*
+T  which satisfies ( 6) and the 
+optimal mean cost rate is 
+**
+(, ) (, )wwJTS TSϕ= . 
+IV. NUMERICAL EXAMPLE 
+Consider a flow transmission MSS that is shown in Figure 
+1 consisting of three aging MSE [14] . The water or oil flow is 
+transmitted from left to right. 
+ 
+1 0
+Element 1
+1 0
+Element 2 1 0
+Element 3
+2
+ 
+Figure 2.  MSS structure and state-space diagrams for the system’s elements. 
+Suppose that the degradation of element k  ( 1, 2, 3k = ) 
+follows NHCTMP with instantaneous transition rates of a 
+Weibull process  as 
+34
+, () 2 ( )
+k
+ij t t ijλ = −  for ij> , and the 
+age-related transition intensities are given in Table I. 
+TABLE I.  PARAMETERS FOR EACH ELEMENT  
+Element 
+(#) 
+State Performance rates 
+(tons/min) 
+Transition intensities 
+(year-1) State probabilities and initial condition 
+1 1 1,1G =1.5 13 1,0 () 2ttλ =  1,1 ()Pt, 1,1 (0) 1P =  
+ 0 1,0G =0.0  1,0 ()Pt, 1,0 () 0Pt=  
+2 1 2,1G =2.0 23 1,0 () 2ttλ =  2,1 ()Pt, 2,1 (0) 1P =  
+ 0 2,0G =0.0  2,0 ()Pt, 2,0 () 0Pt=  
+3 2 3,2G =4.0 33 2,1 () 2ttλ =  3,2 ()Pt, 3,2 (0) 1P =  
+ 1 3,1G =1.8 33 2,0 ( ) 0.125ttλ =  3,1 ()Pt, 3,1 (0) 0P =  
+ 0 3,0G =0.0 33 1,0 () 2ttλ =  3,0 ()Pt, 3,0 (0) 0P =  
+ 
+. 
+Further, the state probability of each element can be 
+recursively solved corresponding C-K equation (2) and directly 
+determined by using equations (3) and (4) as below. 
+• For element 1, 
+4
+1,1
+0.5
+()
+t
+Pt e
+−
+=  and 
+4
+5
+1,0
+0.
+() 1
+t
+ePt
+−
+= − . 
+• For element 2, 
+4
+2,1
+0.5
+()
+t
+Pt e
+−
+=  and 
+4
+5
+2,0
+0.
+() 1
+t
+ePt
+−
+= − . 
+• For element 3,  
+4
+0.7391
+3,2 ()
+t
+ePt
+−
+= , 
+44
+0.5 0.739
+3,1
+1
+( ) 16 16
+tt
+eePt
+−−
+= − , and              
+44
+0.5 0.7391
+3,0 ( ) 1 16 15
+tt
+Pt e e
+−−
+=−+ . 
+The system output performance rate is defined as the 
+maximum flow that can be transmitted.  According to the 
+376
+[[page 4]]
+system structure φ  and performance rate combination property, 
+the output performance rate of the entire MSS is defined as  
+( ) { }123 1 23() (), (), () min () (), ()Gt GtGtGt Gt GtGtφ= = + . Then 
+the Lz-transform of the entire MSS is  
+( )
+1, 2, 3,1 23
+123
+123
+112 4min( , )
+1, 2, 3,
+000 0
+{ ()} () () () () ,
+j jj jGGG G
+z jj j j
+jj j j
+L Gt P tP tP tz P tz
++
+= = = =
+= =∑∑∑ ∑
+where jG  and ()jPt as shown in Table II 
+TABLE II.  PERFORMANCE RATES AND STATE PROBABILITIES OF MSS  
+State Performance rates 
+(tons/min) 
+State probabilities 
+4 4G =3.5 4 1,1 2,1 3,2() () () ()Pt P tP tP t=  
+3 3G =2.0 3 1,0 2,1 3,2() () () ()Pt P tP tP t=  
+2 2G =1.8 2 2,1 3,1() () ()Pt P tP t=  
+1 1G =1.5 1 1,1 2,0 3,1 3,2() () ()[ () ()]Pt P tP t P t P t= +  
+0 0G =0.0 0 1,0 2,0 1,1 3,0 1,0 2,1 3,0() () () () () () () ()Pt P tP t P tP t P tP tP t= ++  
+ . 
+Assuming the user demand 1.8w = (tons/min), then 
+1.8wSS= =2, the acceptable states  are { }2, 3, 4 , and failure 
+states are { }0,1 . Therefore, the reliability function (, )wRtS   
+under the user demand 1.8w =  is equal to 234() () ()Pt Pt Pt++. 
+We consider a repair limit replacement policy where, in a 
+failure state, one replaces the system or repair s it depending on 
+the random cost C  with density function ()lu . A system 
+undergoes a  corrective replacement if Ccδ ∞>  and is 
+minimally repaired if Ccδ ∞≤ , where  c∞  is the constant cost  
+of replacement at failure and δ  ( 01δ≤≤) can be interpreted 
+as a fraction of the constant cost c∞ . Hence, δ  satisfies 
+0
+( )d
+c
+q lu u
+δ ∞
+= ∫ , and the expected minimal repair  cost mc  can 
+be given by  
+0
+( )d
+c
+mc ul u u q
+δ ∞
+= ∫ . The parameter q  is varied 
+to determine its influence on the optimal policy and it s mean 
+cost. The optimal age replacement times and related minimum 
+mean cost rates for the MSS with imperfect maintenance are 
+reported in Tables III. 
+TABLE III.  OPTIMAL  POLICY AND MEAN COST RATE  FOR A MSS 
+2
+1000, 1500, 1000, ~ (300, 75 ), 1.5,1.8TYC C c CN w∞= = = =  
+q 
+Case 1. w =1.5 
+ 
+Case 2. w =1.8 
+*T  * 1.5(, )JT S   *T  * 1.8(, )JT S  
+1.0 1.1320 1052.3598 
+ 
+1.0998 1168.3735 
+0.9 1.1283 1059.6843 
+ 
+1.0966 1182.4403 
+0.8 1.1213 1069.2934 
+ 
+1.0895 1200.5788 
+0.7 1.1131 1080.3719 
+ 
+1.0806 1219.7508 
+0.6 1.1040 1091.3448 
+ 
+1.0706 1239.5490 
+0.5 1.0995 1127.8942 
+ 
+1.0599 1259.9358 
+0.4 1.0846 1114.5013 
+ 
+1.0487 1280.7967 
+0.3 1.0744 1125.8154 
+ 
+1.0370 1301.6417 
+0.2 1.0641 1137.9952 
+ 
+1.0248 1322.4599 
+0.1 1.0533 1149.6630 
+ 
+1.0121 1344.1460 
+0.0 1.0415 1163.0153 
+ 
+0.9978 1367.3369 
+ 
+ 
+From the numerical results, we have the following 
+observations: 
+• When the probability of minimal repair increases, we 
+should extend the replacement schedule in order to 
+reduce the minimum mean cost rates. 
+• By comparing Case 1 and Case 2,  if the user demand 
+decreases, it is observable that the replacement 
+schedule should be extended via t he improved 
+operating cost rate. 
+• We see that some improvement can be made in the 
+minimum mean cost rate if one allows for minimal 
+repair at minor failure. 
+ACKNOWLEDGMENT 
+This research was supported by the National Science 
+Council of Ta iwan, ROC, under Grant No. NSC102-2410-H-
+147-008. 
+REFERENCES 
+ 
+[1] R.E. Barlow and L.C. Hunter, “ Optimum preventive maintenance 
+policies,” Operations Research, vol. 8, pp. 90-100, 1960. 
+[2] M. Brown and F. Proschan, “Imperfect repair, ” Journal of Applied 
+Probability, vol. 20, pp. 851-859, 1983. 
+[3] H. Pham and H. Wang, “Imperfect maintenance,” European Journal of 
+Operational Research, vol. 94, pp. 425-438, 1996. 
+[4] C.C. Chang, S.H. Sheu, and Y.L. Chen, “Optimal number of minimal 
+repairs before replacement based on a cumulative repair -cost limit 
+policy,” Computers & Industrial Engineering, vol. 59, pp. 603-610, 2010. 
+[5] Y.L. Chen, “A bivariate optimal imperfect preventive maintenance 
+policy for a used system with two- type shocks,” Computers & Industrial 
+Engineering, vol. 63, pp. 1227-1234, 2012. 
+[6] A. Lisnianski and G. Levitin, Multi-State System Reliability, 
+Assessment, Optimization and Application, World Scientific: Singapore, 
+2003. 
+[7] J. Xue and K. Yang, “Dynamic reliability analysis of coherent multistate 
+systems,” IEEE Transactions on Reliability, vol. 44(4), pp. 683- 688, 
+1995. 
+[8] Y.W. Liu and K.C. Kapur, “Reliability measures for dynamic Multi-
+State systems and their applications for system design and evaluation,” 
+IIE Transactions, vol. 38(6), pp. 511-520, 2006. 
+[9] A. Lisnianski, “Extended block diagram method for a multi -state system 
+reliability assessment,” Reliability Engineering and System Safety, vol. 
+92(12), pp. 1601-1607, 2007. 
+[10] Y.W. Liu and K.C. Kapur, “Customer’s cumulative experience measures 
+for reliability of non -repairable aging multi- state systems, ” Quality 
+Technology & Quantitative Management, vol. 4(2), pp. 225-234, 2007. 
+[11] A. Lisnianski, Lz-transform for a Discrete- state Continuous -time 
+Markov Process and its Applications to Multi- state System Reliability, 
+In: Recent Advance in System Reliability . Signatures, Multi -state 
+Systems and Statistical Inference, Springer: London, 2012. 
+[12] I. Ushakov, “Universal generating function, ” Soviet Journal of 
+Computing System Science, vol. 24(5), pp. 118-129, 1986. 
+[13] G . Levitin and A. Lisnianski, “Optimization of imperfect preventive 
+maintenance for multi- state systems ,” Reliability Engineering an d 
+System Safety, vol. 67, pp. 193-203, 2000. 
+[14] C.M. Tan and N. Raghavan, “A framework to practical predictive 
+maintenance modeling for multi- state systems,” Reliability Engineering 
+& System Safety, vol. 93(8), pp. 1138-1150, 2008. 
+ 
+377

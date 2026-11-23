@@ -1,0 +1,427 @@
+Proceedings of the International Conference on Industrial Engineering and Operations Management 
+Istanbul, Turkey, March 7-10, 2022 
+© IEOM Society International 
+Imperfect Preventive Maintenance Planning Optimization 
+f
+or Leased Machines 
+Zied Hajej, Mohamed Ali Kammoun and Nidhal Rezg 
+L
+aboratoire de Génie Informatique, de Production et de Maintenance 
+(LGIPM), Metz, France 
+{mohamed-ali.kammoun, zied.hajej, nidhal.rezg}@univ-lorraine.fr 
+Abstract 
+We
+ aim in this paper to investigate a preventive maintenance scheduling with imperfect repair for 
+a manufacturing system. The considered system is composed of several parallel leased machines. 
+It has to satisfy a random demand over a finite horizon. Machines are subject to failures that are 
+strongly correlated to the production rates of each machine. The objective is to study the impact 
+of imperfect preventive maintenance on maintenance plan for a leased system characterized by a 
+variable number of machines. We propose hereinafter a model which allows minimizing the total 
+maintenance cost by obtaining the optimal number of imperfect maintenances for each machine. 
+A numerical example is given in order to validate the robustness of the developed approach. 
+Keywords 
+Im
+perfect maintenance, Leased machines, Random demand, Equipment degradation, Maintenance cost. 
+1. Introduction
+Production policy and maintenance strategy of manufacturing systems are subjects to different uncertainties such as 
+f
+ailures, variability in machines availability, random customers’ demand, etc. In order to face these uncertainties, the 
+firms are oriented to policies of collaboration and cooperation with other companies. In this context, leasing industrial 
+equipment rather than purchasing it is considered as one of the best solution in term of cost. Pongpech et al. (2006) 
+show the importance of the leasing and presented that the cause of equipment leasing is the increase of the cost of 
+purchase of a new one. 
+Concerning maintenance while leasing equipment, Chang et al. (2009) considered a maintenance policy and a 
+m
+athematical model for the expected total profit. At failure, minimal repair brings the equipment back to the operating 
+state. Imperfect preventive maintenances (PM) are carried out to avoid possible failures when the age of the equipment 
+reaches a certain threshold value. A numerical example was given in order to illustrate the impact of the number of 
+lease periods and the maintenance policy on the expected total cost. Chang et al. (2011) proposed a mathematical 
+model and a numerical example in order to obtain the optimal maintenance schedule and the length of the lease period 
+by illustrating the effects of the optimal lease period length on the maintenance plan. 
+Shalaby et al. (2004) developed a new optimization problem f or multi-component and multi-state systems by 
+proposing an optimization model for preventive maintenance scheduling.  Rezg et al. (2004) proposed a jointly stock 
+and maintenance optimization in a production system of numerous machines. Cui et al. (2014) presented jointly 
+op
+timized the production and the maintenance plans for a manufacturing system made of a single unit taking into 
+account the quality and the solution robustness. A three-phase heuristic approach is used to solve the problem. Fakher 
+et al. (2015) considered a lot-sizing solving problem with the preventive maintenance scheduling taking into account 
+the quality of the equipment. A genetic algorithm was used in order to determine the production and maintenance 
+schedules for a system made of M fixed machines. Yalaoui et al. (2014) studied the case of a production system which 
+has a decreasing capacity in order to determine its production and maintenance plans. Zied et al. (2014) studied a 
+si
+ngle machine system producing multi-products and subject to random failures. The total production and maintenance 
+770
+Proceedings of the International Conference on Industrial Engineering and Operations Management 
+Istanbul, Turkey, March 7-10, 2022 
+© IEOM Society International 
+costs were minimized taking into account several parameters such as inventory, backorder, set-up, preventive and 
+corrective maintenance. 
+In the same context, the study of Feng and Yan (2000) considered the variability of demand, the production capacity 
+and processing time in a discrete-state version of Kimemia and Gershwin (1983). A production system composed by 
+a serial machines with random demand is introduced in the work of Song and Sun (1998). These works are extended 
+by taking into account the maintenance actions optimization (Nguyen and Murthy, 1981; Panagiotidou and Tagaras, 
+2007; Park et al., 2018; Wang et al., 2019). Kibouka et al. (2018) introduced the setup times and costs in the 
+optimization model. In addition, Kenné et al. (2012) concentrated on supplier reliability in the supply chain. Gouiaa 
+et al. (2018) discussed the integrated model of economic production, obtained quantity and maintenance policy. 
+Recently, Kammoun et al. (2020) proposed new approach to deal with dynamic lot-sizing and maintenance problem 
+under aspect energetic. They introduced a novel maintenance strategy to determine a common preventive maintenance 
+plan for several machines to minimize the total maintenance cost. Also, the authors proposed a risk analysis to 
+unforeseen disruption of availability machines with the aim of helping the production stakeholders to achieve the 
+obtained forecasting lot-size plan. 
+In our work, based on the works of Medhioub et al. (2014) and Zied et al. (2015) w e propose maintenance strategy 
+in
+tegrated to production policy by considering the impact the variation of the production rates and imperfect preventive 
+maintenance on the degradation degree of each machine and consequently the influence on the average number of 
+failure and the optimal maintenance strategy. The contribution of this paper is that the decision about performing a 
+PM activity is related to the average number of failures of the machine contrarily to previous works which considered 
+in most cases the reliability level as a threshold. In this work we aim to determine the optimal production and 
+maintenance plans characterized by the optimal combination of number of leased machines, the quantity of products 
+and the PMs number for each machine and that by minimizing the total costs. 
+This paper is organized as follow: We describe in Section 2 the problem and its industrial context. An analytical study 
+of the used policy and its deterministic equivalent problem are given in Section 3. Section 4 is devoted to a numerical 
+example. A conclusion is proposed in section 5. 
+2. Problem description and industrial context
+2.1 I ndustrial context
+The production system under study is inspired by an existing industrial case of a manufacturing firm specialized in
+p
+roducing steel parts. The policy of this firm consists in leasing machines in order to produce specific types of products
+ordered by customers. The firm receives a random demand of one type of product which fluctuates according to a
+normal distribution and that must be satisfied. The number of machines to lease is strongly dependent to the customer’s
+demand and may vary from a production period to another. Each machine can perform max NX  hours in regular time, 
+a
+nd max SX hours in overtime. The following figure illustrates the studied production system. 
+d(k) S 
+ M1 
+ M2 
+ Mp 
+U 
+Figure 1. Production system description 
+771
+Proceedings of the International Conference on Industrial Engineering and Operations Management 
+Istanbul, Turkey, March 7-10, 2022 
+© IEOM Society International 
+The objective of this work is to determine the economical production plan characterized by the optimal number of 
+machines for each production period as well as the production quantities to be produced per period and the then to 
+determine the optimal maintenance strategy characterized by the optimal number of preventive maintenance to be 
+achieved on the machines. 
+2.2 N otations  
+We use the following notations in order to describe our model 
+H:
+ time horizon; 
+Δk: length of each production period; kd : random demand for each period k 
+kS : stock level at the end of a period k ; u: production rate of machines 
+ikp : quantity produced by machine i (i = 1,…, Mk) in period k (k = 1, 2, …, H); 
+( )ik tλ : failure rate of a machine i during a production period k;
+iA  : average number of failures; 
+Decision Variables 
+Mk: leased machines’ number during k (k= 1, 2, …, H); 
+  : operating time that a machine i  (i = 1,…, Mk) perform during period k as regular time (k = 1, 2, …, H);
+  : operating time that a machine i  (i = 1,…, Mk) perform during period k as overtime (k = 1, 2, …, H);
+Ni: n umber of imperfect preventive maintenance actions during time horizon; 
+Production and maintenance costs 
+1c : cost of leasing a single unit; 2c : fixed costs of leasing (eg: administration costs); 
+3c : adding/removal’s cost of a machine from period k-1 to period k; 
+4c : constant of asymmetry in costs (HMMS);  oc : Operating cost per overtime hour; 
+nc : Cost of unused regular time hour; hc : holding cost; 
+( )tΓ : total maintenance cost; pM : single preventive maintenance cost; 
+cM : single corrective maintenance cost; 
+3. Production policy
+In order to easy the problem’s resolution, we aim in this section at developing an analytical study and establishing a 
+d
+eterministic equivalent formulation of our problem. 
+The equivalent deterministic problem is characterized by maintaining the same properties of the original problem and 
+setting some variables to their means and variances. We introduce at first the following notations used to describe the 
+deterministic problem: 
+; { }k kE M M=  ; { } S S ik ikE X X= { }; N N ik ikE X X=
+0;PkV = 0;MkV = 0;NXik V = 0SXik V =  
+With { }E x  is the mean of x and { }V x  is the variance.
+Making the required transformations, we can obtain the following simplified cost 
+{ }, , ˆ i k i kE S S=
+772
+Proceedings of the International Conference on Industrial Engineering and Operations Management 
+Istanbul, Turkey, March 7-10, 2022 
+© IEOM Society International 
+( )
+( ) ( )( )
+( ) ( )
+( )( )
+( ) ( )
+( )
+2
+1 2 3 1 4
+1
+max
+1
+, , 1 2
+1 2
+2 2
+2 2
+Δ
+1 Δ m
+ax 0,
+ˆˆ
+1 12
+12
+k
+k
+N
+S
+k ik ik
+k k k
+M
+S
+o k ik
+i
+M
+N SH k n ik
+i
+M X X k
+h k k
+d d
+c M c c M M c
+c θ t
+X
+θ c t X X
+Min
+c S a a d
+Ha V H a V
+H H
+−
+=
+=
+=
+  ⋅ + + ⋅ − −    
+  + ⋅ ⋅ ⋅     
+   + − ⋅ ⋅ ⋅ −    
+  + ⋅ − + ⋅   
+ + + ⋅ ⋅ ⋅ + + ⋅
+
+ ⋅ ⋅ − 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ (1) 
+The deterministic transformation of the service level constraint leads [10] to a specific minimum cumulative 
+production quantity which is strongly correlated to the service level requirements. This constraint can be expressed 
+as follows: 
+( ) ( ) ( )
+−
+−× × +≥ −≥ β σ ϕ β1 1 ˆˆPr 0 d kk ko Sb S k d
+φ : Cumulative Gaussian distribution function with mean  ˆ kd an d finite variance ( )d kV . 
+4. Maintenance policy
+The objective of this maintenance strategy is to find the optimal number of preventive maintenance actions by
+m
+inimizing the total cost of preventive and corrective maintenance actions.  Recall that the total maintenance cost
+during the finite horizon of production is expressed by the following equation:
+( )min .( 1) .N i iCM Mp N Mc A= − +
+Wi
+th : 
+1 ( 1)
+max
+11 0 0
+0
+( ) . ( ).
+ik
+Tj i j nk
+ij jj
+p
+kt
+tuA b dt
+a T t
+α
+α
+α
+α α
+α
+λ λ− −
+−= =
+=
+ 
+ ∆+ 
+=  
+  +       ∏  
+To determine the optimal number of preventive maintenance actions Ni for each machine, we used the following 
+a
+lgorithm by considering the production plan established in the production policy as an inputs variables. 
+773
+Proceedings of the International Conference on Industrial Engineering and Operations Management 
+Istanbul, Turkey, March 7-10, 2022 
+© IEOM Society International 
+Figure 2. Numerical procedure for maintenance strategy 
+5. Numerical results
+The following arbitrarily chosen input data are considered: Δk = 1; H=15; 1c =500; 2c =10; 3c =50; 4c =2.5; hc =15; 
+nc =20; oc =30; pM =100; cM =5000. Service rate: β=0.95 and initial inventory level: I0 =300. Random Demand: 
+dσ = 25 and d kμ =1000. 
+The nominal degradation follows a Weibull distribution given by: 
+	
+    ∙ 	  
+Th
+e nominal failure rate function corresponds to a nominal processing rate when machines perform at their 
+maximum level.  
+As inputs we assume that:   2 and  =100.
+Using all this input data we are now able to find the economic production plan which consists in the optimal number 
+of leased machines and the quantity to produce in each period using a numerical procedure method. The results are 
+exhibited in table 1.  
+Table 1. Production planning 
+   
+ !"#$ 1 962 1000 5
+ !"#$ 2 1005 840 5
+ !"#$ 3 1001 920 6
+ !"#$ 4 1044 1040 6
+ !"#$ 5 994 1320 5
+ !"#$ 6 1022 760 5
+ !"#$ 7 935 920 6
+Calculation CM(N) 
+Iteration N=1 
+CM(N)≤ CM(N-1)
+No 
+N*=N-1 
+yes 
+N=N+1 
+774
+Proceedings of the International Conference on Industrial Engineering and Operations Management 
+Istanbul, Turkey, March 7-10, 2022 
+© IEOM Society International 
+ !"#$ 8 998 1240 5
+ !"#$ 9 992 800 5
+ !"#$ 10 1004 1000 5
+ !"#$ 11 1013 1360 6
+ !"#$ 12 1007 1360 5
+ !"#$ 13 1010 1200 6
+ !"#$ 14 1026 840 6
+ !"#$ 15 1005 1240 5
+./01 23/ 1,014. 1067. 8
+Fo
+r the maintenance plan, we use the results of the production planning as inputs. The maintenance scheduling can be 
+obtained considering pM =100; cM =5000; 3 1 2 1 kb kα += + ; 2 1 ka kα = + . 
+I
+n order to obtain the optimal PM plan, the cost parameters, the Weibull parameters and the adjustment factors must 
+be determined. These parameters can be found using the failure and maintenance database. Concerning adjustment 
+parameters, the users need to observe the failure rate function before and after each PM. In our numerical example, 
+we will arbitrarily select these parameters’ values and introduce them in our model in order to illustrate the results. 
+Recall that our contribution for maintenance policy is to establish the maintenance plans for each machine. Also, this 
+study assume that failure rate of machine depends on its produced quantity. So, first, the optimal production   plan 
+presented by Table 1 is used as inputs to establish the maintenance plans for each machine, as shown in Table 2. We 
+can conclude that for similar production rates between machines leads to very close maintenance plans, which is 
+explained by the strong correlation between failure rate and production rate. The total maintenance cost of six 
+machines is equal to 2478,8 7. 8.
+After computing these parameters, the optimal number of preventive maintenance actions Ni* is obtained by 
+minimizing the total maintenance cost. The maintenance plan is illustrated in the following table. 
+Table 2. Maintenance planning 
+9:;ℎ"= > ?9 (7. 8)
+1 5 612.6
+2 4 510,2
+3 4 455,3
+4 4 425,8
+5 5 595,2
+6 4 492,3
+From tables above, we can conclude that the number of preventive maintenance activities for machines are nearly the 
+s
+ame. This is due to very similar usage rates for machines which affect their degradation rate. The similarity in usage 
+rate is due to very close customer’s demand over the horizon. 
+6. Conclusion
+We presented in this work an integrated preventive maintenance problem for a parallel leased machines system. We 
+studied the impact of the quantity of goods produced on the degradation rate of the machines as well as the influence 
+of imperfect preventive maintenance activities on the maintenance plan. The number of machines and the quantity 
+produced at each production period which are strongly correlated to the random demand were also determined and 
+used as inputs data to determine the maintenance schedule.   
+In the future, an important extension of this work will be addressed by considering the ecological aspect by the 
+management of the returned products with bad quality. In this context, the returned product can be reused as a raw 
+material in the production process or for remanufacturing, which allows us to optimize consumed energy and reduce 
+the waste that can be created. Another application is possible by extending the proposed model on production system 
+775
+Proceedings of the International Conference on Industrial Engineering and Operations Management 
+Istanbul, Turkey, March 7-10, 2022 
+© IEOM Society International 
+that produces more than one item. In this case, the set-up time of machines and consequently the incurred start-up 
+energy can be considered. In addition, several random requests corresponding to the multi-product produced should 
+be met. 
+References 
+Pongpech, J., & Murthy, D. N. P. (2006). Optimal periodic preventive maintenance policy for leased 
+equipment. Reliability Engineering & System Safety, 91(7), 772-777. 
+Chang, W. L., Yeh, R. H., & Lo, H. C. (2009). Optimal number of leased periods and maintenance policy with 
+threshold value on age for leased equipment. APIEMS, 14-16. 
+Shalaby, M. A., Gomaa, A. H., & Mohib, A. M. (2004). A genetic algorithm for preventive maintenance scheduling 
+in a multiunit multistate system. Journal of Engineering and Applied Science, 51(4), 795-811. 
+Rezg, N., Xie, X., & Mati, Y. (2004). Joint optimization of preventive maintenance and inventory control in a 
+production line using simulation. International Journal of Production Research, 42(10), 2029-2046. 
+Cui, W. W., Lu, Z., & Pan, E. (2014). Integrated production scheduling and maintenance policy for robustness in a 
+single machine. Computers & Operations Research, 47, 81-91. 
+Fa
+kher HB, Nourelfath M, Gendreau M, 2015. Joint production-maintenance planning in an imperfect system with 
+quality degradation, 6th IESM Conference, October 2015, Seville, Spain 
+Yalaoui A, Chaabi K, Yalaoui F., 2014. Integrated production planning and preventive maintenance in deteriorating 
+production systems, Information Sciences, vol. 278, pp. 841-861. 
+Zied, H., Sofiene, D., & Nidhal, R. (2014). Joint optimisation of maintenance and production policies with 
+subcontracting and product returns. Journal of Intelligent Manufacturing, 25(3), 589-602. 
+Zied, H., Nidhal, R., & Tarek, A. (2015, March). A production planning optimization for multi parallel machine under 
+withdrawal right. In 2015 International Conference on Industrial Engineering and Operations Management 
+(IEOM) (pp. 1-5). IEEE. 
+Medhioub, F., Hajej, Z., & Rezg, N. (2014, June). A stochastic production planning optimization for multi parallel 
+machine under leasing Contract. In Probabilistic Safety Assessment & Management conference. 
+Chang, W. L., & Lo, H. C. (2011). Joint determination  of lease period and preventive maintenance policy for leased 
+equipment with residual value. Computers & Industrial Engineering, 61(3), 489-496. 
+Feng, Y., & Yan, H. (2000). Optimal production control in a discrete manufacturing system with unreliable machines 
+and random demands. IEEE Transactions on Automatic Control, 45(12), 2280-2296. 
+Kimemia, J., & Gershwin, S. B. (1983). An algorithm for the computer control of a flexible manufacturing 
+system. AIIE Transactions, 15(4), 353-362. 
+Song, D. P., & Sun, Y. X. (1998). Optimal service control of a serial production line with unreliable workstations and 
+random demand. Automatica, 34(9), 1047-1060. 
+Nguyen, D. G., & Murthy, D. N. P. (1981). Optimal preventive maintenance policies for repairable 
+systems. Operations Research, 29(6), 1181-1194. 
+Panagiotidou, S., & Tagaras, G. (2007). Optimal preventive maintenance for equipment with two quality states and 
+general failure time distributions. European journal of operational research, 180(1), 329-353. 
+Park, M., Jung, K. M., & Park, D. H. (2018). Optimization of periodic preventive maintenance policy following the 
+expiration of two-dimensional warranty. Reliability Engineering & System Safety, 170, 1-9. 
+Wang, Y., & Li, L. (2013). Time-of-use based electricity demand response for sustainable manufacturing 
+systems. Energy, 63, 233-244. 
+Kammoun, M. A., Hajej, Z., & Rezg, N. (2020). Risk analysis for lot-sizing and maintenance optimization problem 
+under energy constraint with subcontractor solution. International Journal of Quality & Reliability Management. 
+Kibouka, G. R., Nganga-Kouya, D., Kenné, J. P., Polotski, V., & Songmene, V. (2018). Maintenance and setup 
+planning in manufacturing systems under uncertainties. Journal of Quality in Maintenance Engineering. 
+Kenné, J. P., Dejax, P., & Gharbi, A. (2012). Production planning of a hybrid manufacturing–remanufacturing system 
+under uncertainty within a closed-loop supply chain. International Journal of Production Economics, 135(1), 81-
+93. 
+Gouiaa-Mtibaa, A., Dellagi, S., Achour, Z., & Erray, W. (2018). Integrated Maintenance-Quality policy with rework 
+process under improved imperfect preventive maintenance. Reliability Engineering & System Safety, 173, 1-11. 
+776
+Proceedings of the International Conference on Industrial Engineering and Operations Management 
+Istanbul, Turkey, March 7-10, 2022 
+© IEOM Society International 
+Biographies 
+Hajej Zied is an Associate professor (HDR) at the University of Lorraine, Metz platform since September 2012. It 
+o
+perates research and responsible for the RiAD (Risk Analysis on Decision Making) team in the laboratory LGIPM 
+Metz and responsible of master for industrial engineering system (ISC-GSI) delocalized in Wroclaw-Poland. After 
+obtaining his doctorate at the University of Paul Verlaine - Metz in 2010, he was employed at the University of Metz 
+as research engineer until August 2012. His main areas of research on the optimization of maintenance policies 
+coupled to production and the development of methods and support the design and control tools in the production 
+systems of goods and services. He is the author of numerous articles in international community of industrial 
+engineering. Her teaching areas include Reliability/Maintenance, modeling and organization of manufacturing and 
+logistics systems, the practice of simulation, automation, and quality system production. 
+Mohamed Ali Kammoun is a research engineer in the laboratory of computer engineering, production and 
+maintenance (LGIPM) and work at the University of Lorraine since 2009. He obtained his PhD in automatics, signal 
+and image processing, computer engineering in 2013, master in science and technology in 2009 and electrical 
+engineering in 2008. Dr. Kammoun's main research interest is in control synthesis, integrated maintenance in 
+production and data mining integrated in maintenance strategies. Recent applications include air traffic flow 
+management, controller synthesis for industrial systems and hospital supply chain management. 
+Nidhal Rezg  is a Doctor of Industrial Automatic from the National Institute of Applied Sciences (INSA) 
+in Lyon in 1996. Accreditation to supervise research at the University of Metz in 2003. he was Professor at 
+the Faculty of Engineering of the University of Moncton, New Brunswick Canada from 1997 to 1999 and 
+Associate professor at the University of Metz until 2004, and currently holds  the position of Professor of 
+University. He is director of LGIPM laboratory since October 2006 and scientific responsable of the INRIA 
+CusTom team from 2007 to 2011. His research interests is the optimization of maintenance policies coupled 
+to production, the optimal control SED. He is the author of sixty papers in international journals, directors 
+of 12 theses and 4 Accreditation to supervise research. Keywords research are modeling, simulation and 
+optimization of stochastic processes, reliability and maintenance and Petri nets. 
+777

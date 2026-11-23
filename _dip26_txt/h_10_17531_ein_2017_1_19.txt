@@ -1,0 +1,835 @@
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .19, No. 1, 2017134
+Article citation info:
+1. Introduction and literature survey
+Many maintenance strategies, policies and methods have been de-
+veloped, which are aimed at making maintenance cheaper and more 
+effective. Such programs have the minimization of costs, downtime 
+and losses due to failure of critical objects of the equipment as their 
+main objective. Cost minimization improves the effectiveness and 
+profitability of the organization [1, 2, 9, 12, 13, 20]. 
+For creation of the maintenance policies, well described data min-
+ing input is very important. [4]. 
+In recent years, useful models of preventive and predictive main-
+tenance optimization with different complexity and applicability have 
+been further developed.
+In the paper, [5] the authors proposed a quasi-periodic imperfect 
+preventive maintenance policy. Finally, a real case study of preventive 
+maintenance on Chinese diesel locomotives is examined to illustrate 
+the proposed maintenance policy.
+The paper [6] proposes an approach in which preventive and fail-
+ure replacement costs as well as inspection cost are taken into account 
+to determine the optimal replacement policy and an age-based inspec-
+tion scheme, such that the total average costs of replacements and 
+inspections is minimized.
+Determination of the preventive effect of optimal replacement 
+policies in the paper [8] is based on aging intensity and the cost ratio 
+of failure and preventive replacements. One of its conclusions is that 
+not every preventive maintenance is fully effective and a policy of, 
+“run to failure” can be more effective (note: in some cases).
+The proposed model in the paper [10] takes into consideration the 
+stochastic nature of equipment failures. The output from the model 
+is a cost distribution against the time from which the minimum cost 
+may be found for a particular period and this period is defined as the 
+optimum lifespan of the machine part.
+The paper [11] considers periodic preventive maintenance poli-
+cies for a deteriorating repairable system. On each failure, the system 
+is repaired and, at the planned times, it is periodically maintained to 
+improve its performance reliability. Most periodic preventive main-
+tenance (PM) models for repairable systems have been studied as-
+suming that the failure process between two PMs follows the nonho-
+mogeneous Poisson process (NHPP), implying the minimal repair on 
+each failure.
+The paper [14] regarding warranty policy considering three main-
+tenance options for products with multiple failure modes also showed 
+the broad usability of the Weibull distribution. This fact supports the 
+decision of the authors to also use the Weibull function.
+The paper [15] presents a new mathematical function to model an 
+improvement based on the ratio of maintenance and repair costs, and 
+demonstrate how it outperforms fixed improvement factor models by 
+analyzing the effectiveness in terms of cost and reliability of a system. 
+Legát V, MošnA F, ALeš Z, JurčA V. Preventive maintenance models – higher operational reliability. eksploatacja i niezawodnosc – Ma-
+intenance and reliability 2017; 19 (1): 134–141, http://dx.doi.org/10.17531/ein.2017.1.19.
+Václav Legát
+František MošnA
+Zdeněk ALeš
+Vladimír JurčA
+Preventive maintenance models – higher oPerational reliability
+modele konserwacji zaPobiegawczej 
+a wyższa niezawodność eksPloatacyjna
+The authors present a method for determining the optimal interval for preventive periodical maintenance and an optimal di-
+agnostic parameter for predictive maintenance/replacement. Additionally, the authors raise the question: how does preventive 
+maintenance influence the probability of failure and the operational reliability of system elements that have undergone preventive 
+periodical maintenance? They answer the question using analytical and simulation computing approaches. The results are in 
+quantitative form, giving relationships between preventive maintenance intervals and reliability functions. Examples demonstrate 
+suitability of the method for typical engineering objects using a three parameters Weibull distribution. Application of the method 
+is of substantial benefit to both the manufacturer and the user of technical equipment.
+Keywords: preventive maintenance, predictive maintenance, maintenance interval optimization, reliability 
+improvement.
+Autorzy przedstawiają metodę określania optymalnego czasu przerwy na okresową konserwację zapobiegawczą oraz optymal-
+nego parametru diagnostycznego dla konserwacji predykcyjnej/wymiany Dodatkowo, autorzy zadają pytanie, jaki jest wpływ 
+konserwacji zapobiegawczej na prawdopodobieństwo wystąpienia uszkodzenia oraz na niezawodność eksploatacyjną elementów 
+systemu, w stosunku do których zastosowano okresową konserwację zapobiegawczą. Odpowiedzi na te pytania, autorzy poszukują 
+posługując się metodami analizy i symulacji komputerowej. Wyniki podane w formie ilościowej, informują o związkach między 
+przerwami na konserwację predykcyjną a funkcjami niezawodnościowymi. Podane przykłady pokazują, z wykorzystaniem trójpa-
+rametrowego rozkładu Weibulla, że proponowana metoda może być stosowana w przypadku typowych obiektów inżynieryjnych. 
+Zastosowanie omawianej metody przynosi znaczące korzyści zarówno wytwórcom jak i użytkownikom sprzętu technicznego.
+Słowa kluczowe: konserwacja zapobiegawcza, konserwacja predykcyjna, optymalizacja przerw konserwacyj-
+nych, doskonalenie niezawodności.
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .19, No. 1, 2017 135
+sc i E N c E  a N d  tE c h N o l o g y
+It determines the optimal preventive maintenance and replacement 
+schedule of the system.
+The paper [16] takes into account degradation modeling and 
+maintenance policy for a two-stage degradation system, which deg-
+radation process is nonlinear and degradation rate is change over time 
+in both stages. Influence analysis of different model parameter and 
+maintenance policy is studied in numerical examples with results that 
+the proposed optimal maintenance policy can help to reduce the mean 
+cost rate.
+In the paper, [17] the authors proposed a hybrid imperfect main-
+tenance model with random adjustment-reduction parameters and a 
+maintenance policy. Furthermore, a numerical example and an exam-
+ple of the fuel injection pump of diesel engines are carried out and 
+presented to illustrate the proposed method.
+A mathematic model of optimization of maintenance intervals 
+having regard to the risk is presented in the paper [18]. Precise calcu-
+lations were made for steam turbines that operate in power units.
+Maintenance can represent a significant portion of the cost in as-
+set intensive organizations, as breakdowns have an impact on the ca-
+pacity, quality and cost of operation [21]. However, the formulation of 
+a maintenance strategy depends on a number of factors, including the 
+cost of down time, reliability characteristics and redundancy of assets. 
+Consequently, the balance between preventive maintenance (PM) and 
+corrective maintenance (CM) for minimizing costs varies between or-
+ganizations and assets. Nevertheless, there are some rules of thumb on 
+the balance between PM and CM, such as the 80/20 rule.
+In the paper [22], an approach is presented, which allows evalu-
+ation of various possible maintenance scenarios with respect to both 
+reliability and economic criteria. Authors included three deterioration 
+states (D1 ÷ D3) and three repairs: minor (index = 1), medium (2) and 
+major (3), but in real machine operation it is difficult to define these 
+general states and repairs exactly.
+In the paper [23] a double-fold Weibull competing risk model us-
+ing the real failure data from railway operation, was developed for the 
+engine system of a diesel locomotive and its current maintenance. Re-
+sults show that the maintenance period varies widely between winter 
+and summer, and that optimized maintenance can increase the avail-
+ability and decrease cost more than the existing policy. 
+The paper [7] is a very large review on machinery diagnostics 
+and prognostics implementing condition-based maintenance using 
+271 references and other reviews in the paper [19] using 104 refer-
+ences which point to future perspectives on maintenance optimiza-
+tion. These two references [7, 19] fully support the authors method, 
+from data collection through data processing to optimal maintenance 
+decision making.
+These references proposed interesting models regarding concrete 
+application on particular technical systems with different structures 
+and as well a general solution. The authors did not find in the review, 
+a simple model of predictive maintenance optimization for industrial 
+practice and no idea that preventive maintenance improves reliabil-
+ity including utilization of a three parameters Weibull distribution.  
+According to authors’ experiences from different fields of industry, 
+maintenance managers need simple and general methods for design of 
+maintenance programs and policies optimization. Therefore, the ob-
+jective of this paper is to contribute to the optimization of predictive 
+maintenance with a new simple semi-stochastic model. A further ob-
+jective was to give maintenance staff evidence that preventive mainte-
+nance improves operational reliability based on a mathematical theory 
+of reliability [1, 20] and authors works [9, 12, 13]. Finally, all models 
+are demonstrated using numerical simulation with a three parameters 
+Weibull distribution supported by table processor Excel.
+2. Optimization of predictive maintenance
+In discussing machine maintenance strategy, it is customary to 
+distinguish between the following methods (policies) [3]:
+corrective maintenancea)  - maintenance carried out after fault 
+recognition and intended to put an item into a state in which it 
+can perform a required function,
+preventive maintenance -b)  maintenance carried out at predeter-
+mined intervals or according to prescribed criteria and intended 
+to reduce the probability of failure or the degradation of the 
+functioning of an item; following policies c), d) and e) are also 
+preventive maintenance,
+predetermined maintenancec) , preventive maintenance carried 
+out in accordance with established intervals of time or number 
+of units of use but without previous condition investigation,
+condition based maintenanced)  - preventive maintenance which 
+includes a combination of condition monitoring and/or inspec-
+tion and/or testing, analysis and the ensuing maintenance ac-
+tions; the condition monitoring and/or inspection and/or testing 
+may be scheduled, on request or continuous,
+predictive maintenancee)  - condition based maintenance car-
+ried out following a forecast derived from repeated analysis or 
+known characteristics and evaluation of the significant param-
+eters of the degradation of the item. 
+The proposed model of predictive maintenance optimization is 
+based on minimization of unit maintenance, diagnostics and failure risk 
+cost c(Sp) of a component [1]:
+ · ppr f pd
+p
+C  + L F( )Sc( ) =  + Sct( )S  (1)
+where Sp is a diagnostic signal for predictive maintenance; diagnostic 
+signal is allowed to be a random variable, Cpr is cost of preventive 
+maintenance, Lf is loss due to failure risk ( · pfL F( )S ); loss due to 
+failure risk can be calculated as a difference between cost of corrective 
+maintenance and cost of preventive maintenance, it means Lf=Ccm - 
+Cpr, F(Sp) is probability of failure depending on diagnostic signal Sp, cd 
+denotes unit costs of condition monitoring to obtain diagnostic signal 
+Sp,t(Sp) is the mean time corresponding to diagnostic signal Sp, which 
+can be determined from operational data using the formula:
+ 
+pp m( )  n-m( )SS
+ip jpp
+i=1 j=1
+1t ( ) = S tS t Sn () + ()∑∑  (2)
+where ti(Sp) denotes the operating time of the ith object surviving at 
+the level Sp, tj(Sp) denotes the time to failure of the jth object which 
+failed before reaching the state Sp, m(Sp) is the number of objects 
+reaching state Sp without failure and n is the total number of objects 
+in the investigated population. To obtain these data it is necessary to 
+carry out an operational observation – life test of objects population 
+including on-line diagnostic measurement till failure or at least diag-
+nostic signals Spf closely before failure occurs. In the first case, it is 
+easy to apply equation (2) and probability of failure (distribution func-
+tion) F(Sp) can be obtained by means of diagnostic signals Sp shortly 
+before failure. If there are only recognized diagnostic signals (techni-
+cal states) closely before failures, it is necessary to calculate operat-
+ing time related to selected diagnostic signal Sp which is used as an 
+indicator for predictive maintenance of an object. 
+For calculation of mean operating time, versus diagnostic signal 
+for predictive maintenance ()ptS , authors use a simplified model in 
+which the technical state degradation (a change of diagnostic signal) 
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .19, No. 1, 2017136
+sc i E N c E  a N d  tE c h N o l o g y
+runs along a straight line from start state pzS  to limit value of techni-
+cal state (to failure) pfiS  i-th object. The accuracy of this approxima-
+tion from point of technical solution is sufficient. Calculation of the 
+()iptS  is carried out in a case of the piS  < pfiS  according to equation 
+(3):
+ ()() ,pi pz i p i pfi
+pfi pz
+SS
+tS tS SS
+−
+= −  (3)
+If pj pfjSS≥ , the operating time to failure of the jth object which 
+failed before reaching the diagnostic signal Sp, we can read directly 
+from the database of operating time to failure of the jth object which 
+failed before reaching the diagnostic signal pjt( )S . Interpretation of 
+these input data is clear from Fig. 1.
+Unit costs of preventive maintenance and failure risk versus diag-
+nostic signal for predictive maintenance and optimal diagnostic signal 
+for predictive maintenance Spo (for ()pcS = minimum) we can calcu-
+late, using equation (4):
+() ()
+11
+·( ) ·( )
+() () 1 () () p
+pr f p pr f p
+pd dmS n m Spp
+ip jp
+ij
+C L FS C L FS
+cS c ctS
+tS t Sn
+−
+==
+++
+= += +
++
+ ∑∑
+  (4)
+For a proposed model of predictive maintenance optimization (4) 
+it is necessary to obtain or calculate input data as follows:
+cost of preventive maintenance a) Cpr
+losses due to failure risk b) Lf 
+probability of failure versus diagnostic signal for predictive main-c) 
+tenance F(Sp)
+mean operating time versus diagnostic signal for predictive main-d) 
+tenance pt( )S
+unit cost of diagnostics (condition monitoring)e)  cd
+diagnostic signal for predictive maintenancef)  Sp,
+Optimal predictive dispositional operating time td(Spo) from actual 
+operating time ()tS  in decision making state to optimal operating time 
+()potS  for predictive maintenance (restoration, replacement) is calcu-
+lated from equation
+ ()()()d po pot S tS tS=− (5)
+3. Calculation of mean life and reliability functions of 
+preventive predetermined maintained objects
+If we should prove that preventive predetermined maintenance 
+increases operational reliability, we must calculate reliability function 
+of object predetermined maintained in operating time tp and its mean 
+life ET of preventively predetermined maintained objects in time tp 
+comparing with corrective maintenance of the same object.
+Let us monitor a series of objects that underwent preventive pre-
+determined maintenance (were replaced) after time interval tp using a 
+new object with the same reliability properties. Also, let us suppose 
+that its durability is characterized by a random variable X with a con-
+tinuous density function f and distribution function F.
+Object reliability can be improved during operation by preventive 
+predetermined replacement at time tp. Durability of k-th component is 
+also described by a random variable Xk with the same density function 
+f and distribution function F. We suppose that random variables X1, 
+X2,…are independent.
+Let us denote by T a random variable which describes the life 
+of preventively predetermined replaced objects. Further, we derive 
+the formula of the density function fT and the distribution function fT 
+for the random variable T. We are particularly interested in the mean 
+value ET.
+Let us denote p = P[Xk < tp], q = P[Xk ≥ tp] = 1 – p and 
+I = 
+0
+()
+t p
+xf x∫ dx. We express the random variable T using Xk in the fol-
+lowing way:
+ 
+1 1p
+112
+1123
+112 1
+for X  t
+for ³ ,  
+2 for³,³,  
+...............
+ for³,³, ,³, .
+p pp
+p ppp
+p k p p kpk p
+X
+t X XtX t
+T tX XtXtXt
+ktX XtXt XtX t++
+<
+ +<
+=+ <
+
+
+ + …<
+With respect to independence X1, X2, ..., from the total probability 
+theorem it holds for arbitrary x ∈<0;∞):
+( )
+11
+12 12
+11
+11
+1 12
+1
+    [ ]
+[ / ][ ]
+[ / ³, ] [³, ]
+[ / ³ , ..., ³ , ]
+[³, , ³, ]  
+[/][/³,] 
+ [ / ³ , ...,
+T
+pp
+pppp
+p kpk p
+p kpk p
+p pp
+p
+F x PT x
+PTxXtPXt
+PTxXtX t PXtX t
+PT x X t X t X t
+PX t X t X t
+PT x X t p PT x X t X t pq
+PT x X t X
++
++
+=<=
+=< <× <+
++ < < × < +…+
++< <×
+⋅ … < +…=
+=< <×+< <×+…+
++< 1³, ]  .k kpk pt X t pq+ < × +…
+(6)
+Further, we calculate according to the definition of conditional 
+probability with respect to the independence of X1, X2, …
+ 
+11
+11 1
+1 11
+11
+1 pp
+[ / ³ , , ³ , ]
+ [  / ³ , , ³ , ]
+, ,..., ,
+,..., ,
+in(x kt ,t )
+.
+p kpk p
+p k p kpk p
+k p p kpk p
+p kpk p
+k
+k
+k
+PT x X t X t X t
+P kt X x X t X t X t
+P xktXt XtX tX
+PX t X tX t
+PX m q
+pq
++
+++
++ +
++
++
+< … <=
+=+< … <=
+<− ≥ ≥ <==≥≥<
+<−⋅=
+⋅
+   (7)
+Fig. 1. Principle of input data determination for calculation of mean operat-
+ing time versus diagnostic signal for predictive maintenance ()ptS
+
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .19, No. 1, 2017 137
+sc i E N c E  a N d  tE c h N o l o g y
+After substitution (7) into equation (6) we obtain:
+[ ] 1 pp pp
+00
+( ) min(x kt ,t ) (min(x kt ,t ))kk Tk
+kk
+F x PT x P X Fqq
+∞∞
++
+==
+= <= < − ⋅= − ⋅∑∑
+It is possible to itemize the distribution function FT around the 
+following intervals:
+( ) ( )
+( ) ( ) ( )
+( ) ( ) ( )2
+on 0;
+on ; 2()
+(  2 ) on 2 ; 3
+.........................................
+p
+p p pp
+T
+p p p pp
+Fx t
+F t qF x t t tFx
+FtqFxtqFxt tt
+
+
+ +−=
+ +−+ −
+
+   (8)
+Last, using a modified equation (8), we calculate the failure prob-
+ability FT(t) and the reliability function RT(t) for the components that 
+underwent preventive predetermined maintenance:
+FT(t)  =  F(t po )  + R(t po )F(t − tpo )  + R 2(tpo )F(t − 2tpo ) +  R3(tpo )F(t −3tpo ) + … (9)
+and
+ RT(t) = 1 – FT(t) (10)
+We obtain density function fT  by differentiation of FT:
+ 
+( ) ( )
+( ) ( )
+( ) ( )2
+on 0;
+on ; 2()
+2 on 2 ; 3
+.............................
+p
+p pp
+T
+p pp
+fx t
+qf x t t tfx
+qfxt tt
+
+
+ −=
+ −
+
+ (11)
+Finally, we calculate the mean value of life (sum of particular 
+operating time) for objects that underwent preventive predetermined 
+replacement:
+( 1)
+00
+() ( )
+ktkp pT kt pk ET x dx xf x dxxf q kt ∞ ∞ + = = = −=∑∫∫
+1
+0 00000
+( ) () ( () ) ( () )
+tttppp
+k kk
+pp
+k kk
+q x kt f x dx xf x dx q qt f x dx kq
+∞ ∞∞−
+= ==
+=+= + =∑ ∑∑∫∫∫
+2
+11
+1 (1 ) pI pqtq q =+ =− −
+,pI qt p + =  (12)
+we have used the formula for the sum of the geometrical series 1 + q + 
+q2 + ... +qk + ... =1 / (1 − q) and from this formula through differentia-
+tion we have obtained the derived formula 
+1 + 2q + 3q2 + ... + kqk-1 + ... = 1 / (1−q)2.
+Integral I can be modified using integration by parts:
+ 
+00
+() ( ) ()
+ttpp
+ppI xf x dx F F x dxtt= =− =∫∫
+           
+00
+() () ,
+ttpp
+pp pp R x dx q R x dxtt t= − + =− +∫∫ (13)
+where R(x) = 1 − F(x) is reliability function. 
+For mean value ET of the life of preventively predetermined 
+maintained objects at time tp we obtain the following equation:
+ 0
+0
+()1 ()() 1 () ttpp pp R x dx ET R x dxFt Rt ==− ∫∫   (14)
+From equation (14) it is clear that mean life of preventive prede-
+termined maintained objects ET > 0 ()R x dx ∞ ∫  (mean life of corrective 
+maintained objects) for tp<<∞. This fact proves that preventive pre-
+determined maintenance increases operational reliability of objects 
+comparing with corrective maintenance.
+Optimal value of operating time to predetermined maintenance tpo 
+[1] it is possible to calculate from equation (15) which is analogical to 
+equation (1) and (4) and using three parameters Weibull distribution 
+function, we obtain:
+ 
+0
+·(1 exp( ( ) )·( )
+() () exp( ( )
+t
+tp t
+pt
+pr fpr f p t
+p
+tp
+t
+tCLC L Ft
+ct tt t dt
+α
+γ α
+γ
+β
+β
+−
+−+ −−+
+==
+−∫
+    (15)
+For solution of equation (14) and (15) it is possible to use a nu-
+merical method, e.g. to use MS Excel.
+4. Numerical solution
+We have simulated the life tf of 44 objects to failure and their tech-
+nical state (diagnostic signals) Sf shortly before failure, including costs 
+and losses. Value of diagnostic signal may represent the ratio of a two 
+values of variable, therefore, the value presented by diagnostic signal is a 
+dimensionless number. There were obtained input data – see Table 1.
+Using input reliability and economic data regarding life time tf 
+from Table 1 and software http://wessa.net/rwasp_fitdistrweibull.
+wasp we obtained mean operating time to failure (MOTTF), standard 
+deviation (SDt) and parameters αt, βt and γt of the Weibull distribution 
+function – see Table 2.
+Using input reliability data regarding technical state (diagnos-
+tic signal) Sf from Table 1 and software http://wessa.net/rwasp_fit-
+distrweibull.wasp, we obtained average diagnostic signal (technical 
+state) fS , standard deviation (SDS) and parameters αS, βS and γS of 
+the Weibull distribution function – see Table 3.
+Fig. 2. Dependency of unit costs of preventive maintenance and unit costs of 
+failure risk c(tp) versus operating time to preventive predetermined 
+maintenance tp
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .19, No. 1, 2017138
+sc i E N c E  a N d  tE c h N o l o g y
+Table 1. Simulated input data – life tf and diagnostic signal Sf closely before failure including costs
+Object Nr. 1 2 3 4 5 6 7 8 9 10 11
+tf (h) 501 635 727 753 799 941 988 995 1012 1087 1111
+Sf 3.01 3.07 3.09 3.10 3.13 3.16 3.18 3.19 3.20 3.21 3.22
+Object Nr. 12 13 14 15 16 17 18 19 20 21 22
+tf (h) 1125 1163 1194 1199 1205 1210 1223 1238 1245 1256 1277
+Sf 3.23 3.24 3.25 3.26 3.27 3.28 3.28 3.29 3.29 3.40 3.40
+Object Nr. 23 24 25 26 27 28 29 30 31 32 33
+tf (h) 1298 1356 1375 1399 1410 1447 1492 1512 1544 1588 1625
+Sf 3.41 3.43 3.46 3.47 3.48 3.49 3.49 3.50 3.52 3.53 3.55
+Object Nr. 34 35 36 37 38 39 40 41 42 43 44
+tf (h) 1678 1739 1749 1763 1799 1832 1979 2030 2213 2375 2700
+Sf 3.57 3.58 3.59 3.60 3.62 3.65 3.69 3.72 3.79 3.85 3.97
+Costs of preventive maintenance Cpr (EUR) 10,000
+Costs of corrective maintenance Ccm (EUR) 21,000
+Production losses due to failure and following down time Lf (EUR) 11,000
+Unit costs of condition monitoring cd (EUR/h) 1.2
+Table 2. Parameters of the Weibull distribution function – MOTTF, SDt, αt, βt and γt
+MOTTF (h) Standard deviation SDt (h) Shape parameter  αt Scale parameter  βt Location parameter γt
+MTTF t
+t
+t=++β α γ·( )Γ 1 1
+Γ is Gama function
+SDtt
+t t
+=+−+β ααΓΓ()()2 1 1 1 2
+Γ is Gama function
+1.823 971.465 500
+1363.39 490.56
+Table 3. Parameters of the Weibull distribution function – fS , SDS, αS, βS and γS
+Mean value fS Standard deviation SDS Shape parameter αS Scale parameter βS Location parameter γS
+S fS
+S
+S=++β α γ·( )Γ 1 1
+Γ is Gama function
+SDSS
+S S
+=+−+β ααΓΓ()()2 1 1 1 2
+Γ is Gama function
+1.825 0.450 3.00
+3.4 0.227
+Table 4. Unit costs of preventive maintenance and failure risk versus operating time (period) of preventive predetermined maintenance (optimal data are 
+formatted bold)
+tp (h) 1,000 1,020 1,040 1,060 1,077 1,100 1,120 3,500
+c(tp) (EUR/h) 13.486 13.465 13.451 13.444 13.442 13.445 13.452 15.400
+Table 5. Unit costs of predictive maintenance, diagnostics and failure risk versus diagnostic signal for predictive maintenance (optimal data are format-
+ted bold)
+Sp (-) 3.1 3.2 3.3 3.4 3.5 3.6 3.7 3.8
+pt( )S (h) 732.0 930.1 1,075.2 1,186.3 1,275.3 1,328.8 1,355.7 1,370.8
+c(Sp) (EUR/h) 15.182 12.753 11.861 11.592 11.613 11.937 12.445 12.999
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .19, No. 1, 2017 139
+sc i E N c E  a N d  tE c h N o l o g y
+Unit costs of preventive maintenance and failure risk 
+L
+t
+f
+pt
+t
+t·( exp( ())1−− −γ β α  versus operating time (period) of preven-
+tive predetermined maintenance we can calculate by means of equation 
+(15) –see some results in Table 4 and on Fig. 2.
+ cS
+CL S
+n tS tS
+p
+pr f
+S
+ip
+i
+mS
+jp
+j
+p S S
+p
+()
+·( exp( ())
+() ()
+()=
++−−
++
+−
+=
+∑
+1
+1
+1
+γ α
+β
+==
+−
+∑
+
+
+
+
+
+
+
+
++
+1
+nmS dp c()  (16)
+Now we can calculate optimal diagnostic signal (technical state) for 
+restoration Spo using equation (4) substituting Weibull distribution func-
+tion to equation (16) and by application MS Excel, we can calculate unit 
+costs c(Sp) of preventive maintenance, diagnostics and failure risk versus 
+diagnostic signal for predictive maintenance, optimal diagnostic signal 
+Spo (technical state) for restoration and mean operating time versus diag-
+nostic signal for predictive maintenance  
+()ptS = 
+() ()
+11
+1 () () ppmS nmS ip jp
+ij
+tS tSn
+−
+==
+
++
+ ∑∑– see Table 5 and Fig. 3. 
+Knowledge of optimal diagnostic signal Spo (see Fig. 3) is very im-
+portant for the design of predictive maintenance. We can very easily in-
+dicate dispositional operating time )( p od St  according to equation (5) to 
+be able to plan the maintenance of an object.
+Now we use MS Excel to compute mean life ET of the objects 
+that have undergone preventive maintenance after the optimal interval  
+tpo = 1,076.7 hours (according to the equation (15)) by the Weibull 
+distribution function with parameters αt, βt and γt using numerical 
+method of R(t) integration. 
+ET
+Rxdx
+R t
+exp t dtpot
+po
+t p
+t
+po t
+= − =
++−−
+−
+∫ ∫()
+()
+(( ))
+exp(
+0
+1
+1
+γ γ βγ α t t t
+−−
+= − = −
+())po tt γ α
+β
+1,076.72
+0.6795 3,359.41  hours
+(17)
+Numerical calculation (for the Weibull distribution function with 
+parameters αt = 1.823, βt = 971.466 and γt=500) of RT(t) is done ac-
+cording to equations (9) and (10) and of R(t) is done according to 
+equation (18) – see Fig. 4. 
+ Rt t t
+t
+t() exp( ())=−−γ β α  (18)
+From this figure it is clear that the object with predetermined mainte-
+nance has a much better reliability function RT(t) than the same object 
+maintained after failure (reliability function R(t)).
+5. Conclusion
+Authors offer a tool for maintenance managers which represents 
+general methods of calculating the optimal interval for predetermined 
+maintenance and the optimal diagnostic signal for predictive mainte-
+nance/replacement – equations (1) and (15). Further, the authors de-
+duced equations for mean life and probability reliability function of 
+predetermined maintained machine objects and equations for predic-
+tive maintenance optimization – equations (10), (12) and (14). Au-
+thors proof that preventive maintenance improves reliability. From 
+equation (14) it is clear that mean life of preventive predetermined 
+maintained objects ET > Rxdx()0
+∞
+∫  (mean life of corrective main-
+tained objects) for tp<<∞. Numerical solution presented graphically 
+on Fig. 4 also shows that reliability of preventive predetermined 
+maintained objects decreases more slowly than the reliability of ob-
+jects which are running to failure.
+The example shows an application of the proposed mathematical 
+model on a virtual machine object. When we replace the component 
+after failure, the MOTTF = 1,363 hours and production losses due to 
+the failure risk Lf = 11,000 EUR and unit costs of preventive mainte-
+nance and failure risk, then c(MOTTF) = 15.4 EUR/hour. When we 
+introduce predetermined maintenance (for tpo = 1,077 hours) of the 
+object, the MOTTF increases to ET = 3,360 hours and unit costs of 
+preventive maintenance and failure risk decrease to 13.4 EUR/hour – 
+see Fig. 2 and Fig. 4. 
+When we introduce predictive maintenance on the same object 
+using the derived equation (16), we obtained optimal diagnostic sig-
+nal Spo = 3.4 and unit costs c(Spo) = 11.6 EUR/hour. If we compare 
+these unit costs with unit costs of periodic maintenance (c(tpo) = 13.4 
+EUR/hour), we see that this predictive maintenance strategy brings 
+economical effect of 1.8 EUR/hour. We can see the comparison of all 
+results of the example of chosen maintenance policies from Table 6. 
+Fig. 3. Dependency of unit costs of preventive maintenance, diagnostics and 
+failure risk versus diagnostic signal of predictive maintenance Sp
+Fig. 4. Reliability functions R(t) (object is running to failure without 
+preventive maintenance) and RT(t) (preventive predetermined 
+maintained object) versus operating time
+
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .19, No. 1, 2017140
+sc i E N c E  a N d  tE c h N o l o g y
+The best maintenance policy from point of unit costs for this example 
+is a predictive maintenance.
+The benefit of the proposed mathematical models is not only the 
+ability to compute the optimal interval of predetermined maintenance 
+and optimal diagnostic signal for predictive maintenance, but also to 
+provide quantitative proof that preventive predetermined maintenance 
+increases operational reliability of machine objects. The decision lies 
+with maintenance specialists, whether or not they adopt and apply 
+these models and methods for improving maintenance effectiveness 
+of industry production equipment.
+Table 6. Comparison of all results of maintenance policies from the example
+Maintenance policy Diagnostic signal (h, -) Unit costs (EUR/h)
+Corrective maintenance tp →∞ c(tp →∞) = 15.4
+Predetermined maintenance tpo = 1.077 c( t )po  = 13.4
+Predictive maintenance Sdo = 3.4 c( S )p  = 11.6
+References
+1. Barlow R E, Proschan F. Mathematical Theory of Reliability. John Wiley & Sons, New York 1965
+2.  Burduk A, Chlebus E. Evaluation of the risk in production systems with a parallel reliability structure. Eksploatacja i Niezawodność - 
+Maintenance and Reliability 2009; 2(42): 84-95.
+3. EN 13306:2010 Maintenance - Maintenance terminology.
+4. Galar D, Gustafson A, Tormos B, Berges L. Maintenance Decision Making based on different types of data fusion. Eksploatacja i 
+Niezawodnosc – Maintenance and Reliability 2012; 14 (2): 135–144.
+5. Gao W, Zhang Z, Ji H, Zhou j, Liu Q. Optimal quasi-periodic preventive maintenance policies for a repairable system with stochastic 
+maintenance interval. Eksploatacja i Niezawodnosc – Maintenance and Reliability 2015; 17 (3): 389–397, https://doi.org/10.17531/
+ein.2015.3.9.
+6. Golmakani H R, Fattahipour F. Age-based inspection scheme for condition-based maintenance. Journal of Quality in Maintenance Engineering 
+2011; 17 (1): 93-110, https://doi.org/10.1108/13552511111116277.
+7. Jardine A K S, Lin D, Banjevith D. A review on machinery diagnostics and prognostics implementing condition-based maintenance. 
+Mechanical Systems and Signal Processing 2006; 20 (7): 1483-1510, https://doi.org/10.1016/j.ymssp.2005.09.012.
+8. Jiang R, Ji P, Tsang A H C. Preventive effect of optimal replacement policies. Journal of Quality in Maintenance Engineering 2010; 12 (3): 
+267–274, https://doi.org/10.1108/13552510610685101.
+9.  Jurča V, Hladík T, Aleš Z. Optimization of preventive maintenance intervals. Eksploatacja i Niezawodnosc – Maintenance and Reliability 
+2008; 3: 41-44
+10. Khalil J, Saad S M, Gindy N. An integrated cost optimisation maintenance model for industrial equipment. Journal of Quality in Maintenance 
+Engineering 2009; 15 (1): 106–118, https://doi.org/10.1108/13552510910943912.
+11. Lee H, Cha J H. New stochastic models for preventive maintenance and maintenance optimization. European Journal of Operational Research 
+2016; 255 (1): 80-90, https://doi.org/10.1016/j.ejor.2016.04.020.
+12.  Legát V, Mošna F, Červenka V, Jurča V. Optimization of preventive maintenance and information system. In: Eksploatacja i Niezawodność 
+- Maintenance and Reliability 2002; 4: 24 -29.
+13. Legat V, Zaludova A H, Cervenka V, Jurca V. Contribution to optimization of preventive replacement. Reliability Engineering and System 
+Safety 1996; 51: 259 – 266, https://doi.org/10.1016/0951-8320(96)00124-X.
+14. Li X, Jia Y, Wang P, Zhao J. Renewable warranty policy for multiple-failure-mode product considering different maintenance options. 
+Eksploatacja i Niezawodnosc – Maintenance and Reliability 2015; 17 (4): 551–560, https://doi.org/10.17531/ein.2015.4.10.
+15. Moghaddam K Z, Usher J S. Optimal preventive maintenance and replacement schedules with variable improvement factor. Journal of 
+Quality in Maintenance Engineering 2010; 16 (3): 271–287, https://doi.org/10.1108/13552511011072916.
+16. Ni X, Zhao J, Song W, Guo C, Li H. Nonlinear degradation modeling and maintenance policy for a two-stage degradation system based on 
+cumulative damage model. Eksploatacja i Niezawodnosc – Maintenance and Reliability 2016; 18 (2): 171–180, https://doi.org/10.17531/
+ein.2016.2.3.
+17. Peng W, Liu Y, Zhang X, Huang H Z. Sequential preventive maintenance policies with consideration of random adjustment-reduction 
+features. Eksploatacja i Niezawodnosc – Maintenance and Reliability 2015; 17 (2): 306–313, https://doi.org/10.17531/ein.2015.2.19.
+18.  Rusin A, Wojaczek A. Optimization of power machines maintenance intervals taking the risk into consideration. Eksploatacja i Niezawodność 
+- Maintenance and Reliability 2012; 14 (1): 72-76.
+19. Sharma A, Yadava G S, Deshmukh S G. A literature review and future perspectives on maintenance optimization, Journal of Quality in 
+Maintenance Engineering 2011; 17 (1): 5 – 25, https://doi.org/10.1108/13552511111116222.
+20. Sherif Y S. Optimal Maintenance Schedules of Systems Subject to Stochastic Failure. Microelectronic Reliability 1982; 22: 15 29.
+21.  Stenstrom C, Norrbin P, Parida A, Kumar U. Preventive and corrective maintenance - cost comparison and cost-benefit analysis. Structure 
+Acknowledgement
+The paper was prepared with support from project IGA CULS Prague 2016: 31190/1312/3117 Effect of mixtures of biofuels on production 
+of nitrogen oxide and smoke of combustion engine during NRSC.
+Ek s p l o a t a c j a  i Ni E z a w o d N o s c  – Ma i N t E N a N c E  a N d  REl i a b i l i t y Vo l .19, No. 1, 2017 141
+sc i E N c E  a N d  tE c h N o l o g y
+and Infrastructure Engineering 2016; 12 (5): 603-617, https://doi.org/10.1080/15732479.2015.1032983.
+22. Sugier J, Anders G J. Modelling and evaluation of deterioration process with maintenance activities. Eksploatacja i Niezawodnosc – 
+Maintenance and Reliability 2013; 15 (4): 305–311.
+23. Zhang Z, Gao W, Zhou Y, Zhang Z. Reliability modeling and maintenance optimization of the diesel system in locomotives. Eksploatacja i 
+Niezawodnosc – Maintenance and Reliability 2012; 14 (4): 302–311.
+václav legát
+Department for Quality and Dependability of Machines, 
+Faculty of engineering, university of Life Sciences Prague
+Kamycka 129, 16521 Prague 6 – Suchdol, Czech republic
+František mošna
+Department of Mathematics 
+Faculty of engineering, university of Life Sciences Prague
+Kamycka 129, 16521 Prague 6 – Suchdol, Czech republic
+zdeněk aleš
+vladimír jurča
+Department for Quality and Dependability of Machines, 
+Faculty of engineering, university of Life Sciences Prague
+Kamycka 129, 16521 Prague 6 – Suchdol, Czech republic
+e-mails: legat@tf.czu.cz, mosna@tf.czu.cz, ales@tf.czu.cz, 
+jurca@tf.czu.cz

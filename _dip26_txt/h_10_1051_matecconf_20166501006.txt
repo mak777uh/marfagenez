@@ -1,0 +1,376 @@
+Qian Zhou: zhouqian826@126.com 
+Imperfect Preventive Maintenance Model Study Based On Reliability 
+Limitation 
+Qian Zhou
+1, a
+, Yufeng Sun
+2 
+1
+Technology Center, AVIC CHENGDU AIRCRAFT INDUSTRIAL(GROUP) CO.,LTD , Chengdu 610073, China 
+2
+School of Reliability and Systems Engineering, Beihang University, Beijing 100191, China 
+Abstract. Effective maintenance is crucial for equipment performance in industry. Imperfect maintenance conform to 
+actual failure process. Taking the dynamic preventive maintenance cost into account, the preventive maintenance 
+model was constructed by using age reduction factor. The model regards the minimization of repair cost rate as final 
+target. It use allowed smallest reliability as the replacement condition. Equipment life was assumed to follow two 
+parameters Weibull distribution since it was one of the most commonly adopted distributions to fit cumulative failure 
+problems. Eventually the example verifies the rationality and benefits of the model. 
+Introduction 
+Equipment is the major asset of the modern enterprise. 
+Preventive maintenance is an ideal repair method in 
+eliminating fault. The traditional repair assume that the 
+equipment will return to perfect state or minimal repair 
+state after repair, which is not consistent with the actual 
+situation. Most of the equipment will restore to a state 
+between them, which is called imperfect maintenance[1]. 
+For example, the proper adjustment of the engine is 
+imperfect maintenance, because the engine will not return 
+to a new state but a state improved a lot after the 
+adjustment.  
+Pham and Wang divided imperfect maintenance into 
+eight categories: /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23,pq rule, /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23,pt qt rule, 
+improvement factor method, the virtual age method, 
+impact model method, /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23,/g68/g69rule, 
+composite /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23,pq rules and other[2]. Malik proposed the 
+concept of improvement factor[3]. It can measure age 
+improvement degree and failure rate after repair. Chan 
+and Shaw gives two types of failure rate recovery mode 
+that depends on the length of service and maintenance 
+effect[4]: fixed reduced type and ratio of reduced type. 
+The traditional preventive maintenance method 
+calculates the maintenance cycle according to the average 
+life, reliability or single repair cost. It does n’t consider 
+the balance between reliability and repair cost. By 
+introducing the reliability constraints, the paper 
+establishes a better preventive maintenance model 
+considering both cost and reliability. 
+Imperfect preventive maintenance model  
+The following are several basic assumptions of the 
+model:  
+(1) Equipment conduct (N-1)th imperfect maintenance 
+then it will be replaced in the Nth in the infinite time 
+domain.  
+(2) Equipment will conduct minimum repair in the 
+periodic preventive maintenance interval h  if failure 
+occur. The minimum repair can only make equipment 
+return to a normal operation state, it doesn’t change 
+failure rate. 
+(3) The effect of imperfect preventive maintenance 
+can be achieved by age reduction factor. Age reduction 
+factor is influenced by equipment age and preventive 
+maintenance cost rate. It is a dynamic value.  
+(4) Single preventive maintenance cost shows a linear 
+relationship with repair numbers. It is expressed 
+as pmi f vccic/g32/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23.Equipment is worn with increase of 
+device age, each maintenance time becomes longer, 
+which is /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#231/pmitkih/g32/g152/g152, 1/k is time adjustment 
+parameter.  
+(5) Single minimal repair cost mrc  and single repair 
+time mrt  are constant. Production loss cost per unit time 
+sc is constant. 
+Figure.1 is the periodic imperfect preventive 
+maintenance strategy model diagram. 
+7LPH 1 UHSODFHPHQW
+3UHYHQWLYH
+PDLQWDQFH
+0LQLPXPUHSDLU
+ Figure 1. imperfect preventive maintenance model 
+Equipment operation is a degradation process. 
+Imperfect preventive maintenance can improve the life of 
+  
+ 
+DOI: 10.1051/01006 (2016)
+I
+, matecconf/2016MATEC Web of Conferences 65 650
+CNSCM 2016
+1006
+ © The Authors, published by EDP Sciences. This is an open access article distributed under  the terms of the Creative  Commons Attribution
+ License 4.0 (http://creativecommons.org/licenses/by/4.0/). 
+equipment. Age reduction factor i/g75  is used to indicate 
+the recovery degree after the preventive maintenance [5]. 
+                  ,1,, 1
+bi
+pmi
+i
+pr
+caiNc/g75
+/g152
+/g167/g183
+/g32/g152 /g32 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g168/g184/g168/g184/g169/g185
+ ,1
+,
+   (1) 
+a  is repair cost adjustment factor, and 
+0 pr pmiac c/g100/g100. pmic  is single preventive 
+maintenance cost. prc  is one replacement cost, and 
+pmi prcc/g100 . b  is adjustment coefficient of repair times, 
+and 01b/g31/g31. 
+We can use age reduction factor to obtain the 
+effective age. The bigger the age reduction factor is, the 
+smaller effective age is. This paper uses the age 
+proportion reduced model, only the maintenance of the 
+last age can get the percentage recovery. The effective 
+age before and after the maintenance is expressed as 
+formula (2). 
+                  /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#2311 1,1ThT h/g75/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g32/g32/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23  (2) 
+Similarly, the effective age before and after the i th 
+maintenance is shown in formula (3). 
+        
+1
+11
+(),()
+ii
+ijij
+jj
+Ti hTi h/g75/g75
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/g32/g32
+/g32/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /g32/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g166/g166  (3) 
+After implementation of /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#231
+th
+N /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23  prevention 
+maintenance, replacement will be implemented in the 
+thN maintenance cycle. The preventive replacement 
+timeline is shown in formula (4). 
+                           
+1
+1
+()
+N
+Nj
+j
+TN h/g75
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/g32
+/g32/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g166   (4) 
+The Weibull distribution form can describe the failure 
+regularity of mechanical equipment, it is widely used in 
+practical production. The failure rate expression of the 
+distribution is shown in formula (5). /g69  is the shape 
+parameter./g68  is a scale parameter. 
+                  /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23
+1
+tt
+/g69
+/g69/g79 /g68/g68
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/g167/g183/g32 /g168/g184/g169/g185   (5) 
+Equipment failure numbers iw in the thi  imperfect 
+maintenance cycle can be obtained according to the 
+failure rate. 
+/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23
+1
+11
+11
+1
+i
+i
+T
+i T
+ii
+ii
+jj
+wtdt
+h ii
+/g69/g69/g69
+/g79
+/g75/g75/g68
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/g32/g32
+/g32
+/g170/g186/g167/g183/g167 /g183/g167/g183/g171/g187/g32/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g168/g184/g168 /g184/g168/g184/g169/g185/g171/g187/g169/g185/g169 /g185/g172/g188
+/g179
+/g166/g166
+  (6) 
+Total costs totalC  include total preventive repair 
+costs pmC , total minimum repair costs mrC , production 
+loss costs pC  and replacement costs prC .It is expressed 
+as formula (7). 
+/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23
+/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23
+11
+11 11
+11
+1111
+1
+       =
+       =
+1      =   1 2
+total pm mr p pr
+NN NN
+pmi mr i s pmi mr i pr
+ii ii
+NNNN
+f v mr i s mr i pr
+iiii
+N
+v
+mr s mr i f
+i
+CCCCC
+ccwcttwC
+icic cwc h tw Ck
+NN ccct w N c c
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/g32/g32 /g32/g32
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/g32/g32/g32/g32
+/g32
+/g32/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/g167/g183/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g168/g184/g169/g185
+/g167/g183/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /g152/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g168/g184/g169/g185
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g170/g186/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g171/g187
+/g172/g188
+/g166/g166 /g166/g166
+/g166/g166/g166/g166
+/g166 /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#231 .2 spr NN h Ck /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23  (7) 
+Equipment total running time T before replacement 
+includes preventive maintenance interval h  and 
+preventive maintenance time. The repair cost rate 
+/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23,ChN is expressed as formula (8). It is a Concave 
+function. This paper omits the proof process. 
+/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23
+/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23
+/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23
+11
+111
+, 
+111   122
+= .1
+2
+total
+Nii
+v
+mr s mr j j f s pr
+ijj
+CChN T
+NN c NN hhcct i i N c c Ck
+NN hNh k
+/g69/g69/g69
+/g75/g75/g68 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /g32/g32/g32
+/g32
+/g170/g186/g167/g183/g167/g183/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g170/g186/g167/g183/g171/g187/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g168/g184/g168/g184/g168/g184 /g171/g187/g169/g185/g171/g187/g172/g188/g169/g185/g169/g185/g172/g188
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/g166/g166/g166
+  (8) 
+This paper adopts periodic imperfect preventive 
+strategies under failure rate limits. It is time to conduct 
+preventive replacement when the equipment reliability is 
+equal to the predetermined limit level minR . Equipment 
+failure process obeys Weibull distribution. NT /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23  is 
+replacement time. Then h  can be obtained through the 
+following methods. 
+      /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23#23min1exp/NN NRT FT T R
+/g69
+/g68/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g170/g186/g32/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /g32 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /g32/g171/g187/g172/g188   (9) 
+    /;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23
+11
+min min
+1
+1
+1
+1
+ln ln=.Nbi
+N
+pmij
+j
+j pr
+RRh
+cN Nac
+/g69/g69
+/g68/g68
+/g75
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g152
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23
+/g32
+/g32
+/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g32
+/g167/g183/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23 /;#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23#23/g152/g168/g184/g168/g184/g169/g185 /g166 /g166
+  (10) 
+Set 1N /g32 , get corresponding h , then get 
+(, )ChN ˗ set 1NN/g32/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23˗ If 
+(, ) (, 1)ChN ChN/g33/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23, record (, 1)ChN/;#23#23#23#23#23#23#23#23#23#23#23#23#23#23 as the 
+minimum new cost. 
+Verification Example 
+Equipment fault time obey the Weibull distribution. 
+The parameter is shown in Table 1. 
+ 
+ 
+ 
+ 
+DOI: 10.1051/01006 (2016)
+I
+, matecconf/2016MATEC Web of Conferences 65 650
+CNSCM 2016
+1006
+2
+Table . model parameter 
+parameter value parameter value 
+/g68  221 fc  5000 
+/g69  3 vc  100 
+b  0.002 k  500 
+prc  4000000 minR  0.6 
+sc  5000 mrc  8000 
+mrt  0.4   
+Age reduction factor curve is shown in Figure.2. Age 
+reduction factor decreases with increasing device age 
+gradually. The age reduction factor of first imperfect 
+preventive maintenance is 1=0.9868/g75 .while the 50th  
+age reduction factor is 50 =0.5493/g75 , the equipment only 
+can restore to the state of 54.93%. 
+Using iterative algorithm I obtain the maintenance 
+cost of different repair numbers. The relationship 
+between repair cost rate and the maintenance numbers is 
+shown in Figure.3. Repair cost rate decrease at first with 
+the increase of N but it starts to increase in the end. This 
+is consistent with the actual situation. It gets the 
+minimum value when 89.862213,Nh/g32/g32.The 
+maintenance interval h which changes with repair 
+numbers is shown in Figure.4. 
+Figure 2. age reduction factor changes with N
+Figure 3. repair cost rate changes with N
+Figure 4. h changes with N
+Conclusion 
+Equipment can’t become as good as new after 
+maintenance. The article construct imperfect preventive 
+maintenance model based on periodic prevention. Age 
+reduction factor is used to describe the effective age after 
+maintenance. By adding reliability constraint condition, 
+such policies can ensure that reliability of the equipment 
+is kept above a certain predetermined level and thus the 
+risk of sudden functional failure is low. The method 
+mentioned in the article has certain reference significance 
+on the costs optimization of enterprise. The imperfect 
+preventive maintenance model can quantitively determine 
+the maintenance interval and provide suggestion for the 
+operation of the company maintenance policy. 
+References 
+1. Nakagawa T, “Optimum policies when preventive 
+maintenance is imperfect,” IEEE Transactions on 
+Reliability, vol. R-28, Oct. 1979, pp. 331-332. 
+2. Pham H and Wang H. Imperfect maintenance 
+[J].European Journal of Operational Research 
+94:425-438. 1996. 
+3. Malik, V and Jardine, A.K.S Optimal Replacement 
+for A General Model with Imperfect Repair [J], 
+Journal of the Operational Research 
+Society,43/2:111-120.1992. 
+4. Chan, J.K. and Shaw, L. Modeling Repairable 
+Systems with Failure Rates that Depend on Age and 
+Maintenance [J].IEEE Transactions on Reliability, 
+Vol.42, No.4:566-571, 1993. 
+5. Shi Xutian. Aging equipment preventive repair 
+policy optimization [D].Jilin: Jilin university,2008. 
+ 
+DOI: 10.1051/01006 (2016)
+I
+, matecconf/2016MATEC Web of Conferences 65 650
+CNSCM 2016
+1006
+3
+1

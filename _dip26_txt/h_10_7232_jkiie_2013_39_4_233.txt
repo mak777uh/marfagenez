@@ -1,0 +1,549 @@
+Journal of the Korean Institute of Industrial Engineers http://dx.doi.org/10.7232/JKIIE.2013.39.4.233
+Vol. 39, No. 4, pp. 233-238, August 2013. © 2013 KIIE
+ISSN 1225-0988 | EISSN 2234-6457 <Original Research Paper>
+A Repair-Time Limit Replacement Model with Imperfect Repair
+Il Han Chung 1․Won Young Yun2†*
+1Changwon Center, Defense Agency for Technology and Quality
+2Department of Industrial Engineering, Pusan National University
+불완전 수리에서의 수리시간한계를 가진 교체모형
+정일한1․윤원영2
+1국방기술품질원 창원센터 / 2부산대학교 산업공학과 
+This article concerns a profit model in a repair limit replacement problem with imperfect repair. If a system fails, 
+we should decide whether we repair the failed system (repair option) or replace it by new one (replacement 
+option with a lead time). We assume that repair times are random variables and can be estimated before repair 
+with estimation error. If the estimated repair time is less than the specified limit (repair time limit), the failed unit 
+is repaired but the unit after repair is different from the new one (imperfect repair). Otherwise, we order a new 
+unit to replace the failed unit. The long run average profit (expected profit rate) is used as an optimization 
+criterion and the optimal repair time limit maximizes the expected profit rate. Some special cases are derived.
+Keywords: Imperfect Repair, Repair Time Limit, Replacement, Profit Rate, Lead Time
+1. Introduction
+For repairable systems, the maintenance plan during life cy-
+cle is important and affects the life cycle cost. Usually we 
+can repair the failed system or sometimes replace it by new 
+one. The maintenance engineer estimates repair cost (time) 
+and if the repair cost (time) is relatively cheap (short), the 
+failed system is repaired, otherwise, replaced by new one. A 
+lot of papers deal with replacement problems based on repair 
+limit. In the existing literature, the proposed models may be 
+classified into two main types: repair-cost limit and repair- 
+time limit models. In the repair-cost limit models, when a 
+unit fails, the repair cost is estimated and repair is undertaken 
+if the estimated cost is less than a pre-specified cost limit. 
+Otherwise, the unit is replaced (Wang and Pham, 2005). In 
+the repair-time limit models, a unit is repaired at failure: if 
+the repair is completed within a pre-specified time, it is put 
+into operation again. Otherwise, it is replaced by a new one 
+and the new one is used. 
+This paper concerns a repair-time limit replacement model. 
+The repair-limit replacement problems are considered by 
+Drinkwater and Hastings (1967). Hastings (1968, 1969, 1970), 
+Lambe (1974) and White (1989) formulate the repair limit 
+replacement problems by applying the dynamic program-
+ming. Love et al. (1982) and Love and Guo (1996) consider 
+repair limit problems in vehicle replacement cases. Nakagawa 
+and Osaki (1974), Kaio and Osaki (1981, 1982), Muth (1977), 
+and Nguyen and Murthy (1980, 1981) derive the optimal re-
+pair-time limits minimizing the expected cost rates with and 
+without discounting. 
+Dohi et al. (1995, 1996,  1997, 1998, 2000a, 2000b, 2001a,  
+2001b, 2003a, 2003b, 2006, 2007, 2010) deal with cost and 
+profit models in repair time limit problems with and without 
+discounting. In particular, Dohi et al . (1998, 2006, 2010) 
+consider stochastic profit models recently under earning rate 
+This research was supported by Basic Science Research Program through the National Research Foundation of Korea(NRF) funded by the 
+Ministry of Education, Science and Technology(No.2010-0025084).
+†Corresponding author : Professor Won Young Yun, Department of In dustrial Engineering, Pusan National University, Jangjeon-dong,  
+Kumjeong-ku, Busan, 609-735, Korea, Tel : +82- 51-510-2421, Fax : +82-51-512-7603, E-mail : wonyun@pusan.ac.kr
+  Received September 18, 2012; Revision Received March 11, 2013; Accepted March 19, 2013.
+234 Il Han Chung․Won Young Yun
+criterions. Dohi et al . (1995, 1996, 1997, 1998, 2000a) in-
+troduce the concept of subjective repair-time distribution and 
+considered graphical optimization problems to minimize the 
+expected cost in estimation of the optimal decision. Dohi et 
+al. (1996, 2000a, 2001a, 2001b, 2003b) also study imperfect 
+repair models. For an excellent survey of repair-time limit re-
+placement problems, see Dohi and Kaio (2005). In the most 
+models related to repair-time limit policies, the exact repair 
+times are not known before completing the repair. Kim and 
+Yun (2010) consider a repair time limit model with estima-
+tion error. 
+In this paper, a profit model in repair time limit problem 
+with imperfect repair is studied. If the estimated repair time 
+is less than the repair time limit, the failed unit is repaired but 
+the unit after repair is different from a new one (imperfect re-
+pair). Otherwise, we order a new unit to replace the failed 
+unit. The long run average profit (expected profit rate) is ob-
+tained and the optimal repair time limit maximizes the ex-
+pected profit rate. Two special cases about repair time in-
+formation are derived.
+Notation
+ : repair time limit 
+  : cdf and mean life of new units
+    : cdf and mean life of units after imperfect 
+repair
+   : cdf, pdf and failure rate function of 
+repair time
+k : penalty cost per unit time when the production machine 
+is in down state
+ : earning rate per unit operation time
+  : repair cost per unit time
+c : fixed cost associated with the ordering of a new unit
+L : lead time for delivery of a new unit
+ ⋅  ⋅
+2. A Repair Time Limit Replacement 
+Model
+In this section, we consider a repair time limit replacement 
+model with imperfect repair. Consider a simple system that is 
+repairable and can be replaced by a new unit. Once the ma-
+chine is failed, the maintenance engineers wish to decide 
+whether to repair it or order a new unit for replacement. Basi-
+cally, the repair times can be considered as a random variable 
+and it is assumed that the unit after repair is different from 
+the new one. The mean failure times after repair and replace-
+ment are  and  respectively. If the new one unit is or-
+dered, then it is delivered after the lead time L. it is assumed 
+that the replacement time is negligible. In the repair time lim-
+it replacement model, we decide to repair or replace the unit 
+(ordering a new unit) based on the estimated repair time.
+We assume that we can estimate the actual repair time  
+before repair but there is the estimation error in estimation. 
+Once the machine is failed, we estimate the repair time. If the 
+estimated repair time is greater than a pre-specified limit , 
+then we order a new unit. After the new unit is delivered af-
+ter the lead time L, the failed unit is replaced by the new one 
+and it is operated, where the replacement time can be 
+negligible. Otherwise we repair the failed part. In case that 
+the actual repair time is less than  but the repair time is esti-
+mated greater than , a replacement is carried out. In the re-
+verse case, a repair is performed over . It is assumed that 
+the estimated repair time, Te is a function of the actual repair 
+time and estimation error, i.e. Te = Ta+ε. Given the actual re-
+pair time Ta = t, the estimated repair time is Te|t, whose con-
+ditional probability density function is denoted as h(u|t). 
+In this paper, we consider the decision point of repair and 
+replacement as the starting point of a cycle and the time to 
+failure of units as the ending point of a cycle. We consider 
+earning rate for operation period, ordering cost, repair cost 
+and penalty cost for downtime. The length and profit of a cy-
+cle depend on our repair/replacement decision based on the 
+estimated repair time.
+To obtain the expected duration and profit of a renewal cy-
+cle, we first consider the conditional expected duration and 
+profit, and then obtain the unconditional ones. If the actual 
+repair time is given as t, then the estimated value of repair 
+time for a given actual repair time is a random variable with 
+conditional distribution function,   
+
+
+  
+ ≤  . Since the decision point about repair and 
+replacement is regarded as a renewal point, the expected du-
+ration of a renewal cycle for a given actual repair time is giv-
+en by
+         
+Also, the expected profit of a renewal cycle for a given ac-
+tual repair time becomes
+                
+Thus, the unconditioned expected duration and profit of a 
+renewal cycle, which are denoted by    and   , 
+respectively, can be written as
+      
+
+∞
+      (1)
+                                 
+                  
+
+∞
+        
+  
+
+∞
+     
+                                
+A Repair-Time Limit Replacement Model with Imperfect Repair 235
+                  
+
+∞
+       
+                             
+  
+From the renewal reward argument, the expected profit 
+rate under imperfect repair which is denoted by    can 
+be written as TPp1(t0) = VL1(t0)/TL1(t0). The optimal repair- 
+time limit,    is the value maximizing the expected profit 
+rate and the optimal profit is given by
+   ≤  ∞        (2)
+In general case, it is difficult to obtain analytically the opti-
+mal solution of the Equation (2). We consider a special case 
+where the expected profit rate over an infinite time horizon 
+can be derived as a closed form. The estimated repair time, 
+Te is a function of the actual repair time and estimation error, 
+i.e. Te = Ta+ε  where the estimation error is assumed to be an 
+independent and normally distri buted random variable with 
+mean 0 and variance σe 2. We also assume that given the ac-
+tual repair time Ta = t, the estimated repair time Te|t, has an 
+independent and identical normal distribution with mean t 
+and variance σe 2, i.e. Te|t~N(t, σe 2). Secondly, the actual re-
+pair time, Ta is assumed to follow a normal distribution with 
+mean, μa and variance, σa 2. Generally, normal distribution 
+has the following results (Kim and Yun, 2010);
+1) 
+ ∞
+∞
+ 
+
+
+
+    
+   
+
+
+ 
+2) 
+ ∞
+∞
+   
+
+
+
+    
+   
+
+
+ 
+             
+ 
+
+
+
+
+    
+   
+
+
+Using the previous results, the expected duration and profit 
+of a renewal cycle are given by
+             (3)
+                 ×
+
+
+
+    
+   
+
+
+     
+ 
+
+
+
+
+    
+   
+
+
+      
+                           
+                 ×
+
+
+
+    
+   
+
+
+     
+   
+
+
+
+
+    
+   
+
+
+For normally distributed repair times, the closed form of 
+the expected profit rate is obtained. It is difficult to obtain the 
+optimal repair time limit to maximize the expected profit rate 
+analytically but we can find the approximate optimal sol-
+utions numerically from Equation (3). 
+3. Special Cases
+In this section, we consider two special cases in the repair 
+time limit model with imperfect repair and all model assump-
+tions are same as in section 2. 
+Firstly, we assume that we have no information about re-
+pair time at decision points for repair and replacement but 
+know only general information (distribution of repair time). 
+Thus, it is impossible to decide to repair or replace the failed 
+unit based on the estimated repair time. In this model, we 
+start to repair the unit immediately when it is failed. If the re-
+pair is completed up to the time limit , then we operate the 
+unit again. Otherwise, we scrapped the unit and order a new 
+unit, and the new unit is delivered after the lead time L. 
+In this model, the total expected profit for a cycle consists 
+of the expected repair cost and total earning amount. The ex-
+pected cost is same as 
+         
+
+
+        
+       
+
+
+    
+The total earning amount for a cycle is   
+
+  .
+The expected duration of one cycle is same as
+  
+
+ 
+         .
+The expected profit rate under no information which is de-
+noted by    can be written as 
+  
+  
+
+
+         
+    
+
+
+      
+        (4)
+• Theorem 1 : 
+(1) If the repair-time distribution  is IHR (increasing ha-
+zard rate), the optimal repair time limit is 0 (always repair 
+case) or infinite (always ordering case).
+(2) If the repair time distribution G(t) is strictly DHR (decre-
+asing hazard rate), there exists a finite and unique optimal 
+repair time limit        ∞ under some conditions 
+(Kaio and Dohi, 2005) and the corresponding minimum 
+expected profit rate is given by
+                        (5)
+Secondly, we assume that we can estimate the repair time 
+perfectly. When the system is failed, the repair time can be 
+236 Il Han Chung․Won Young Yun
+        
+         
+Figure 1.  Long-run average profit rates per unit time under various values of σe
+estimated and known. This special case is equal to the model 
+in Dohi et al. (2006). If the estimated repair time is less than 
+, we start to repair the failed system. Otherwise, we order a 
+new unit and replace the system after the unit is delivered af-
+ter a lead time. Then, in this model, the total profit for a cycle 
+consists of the expected repair cost and total earning amount. 
+The expected cost is same as 
+  
+
+
+     
+The total earning amount for a cycle is   
+ .
+The expected duration of one cycle is same as
+  
+
+
+       .
+The expected profit rate under perfectly estimated repair 
+time which is denoted by    can be written as
+  
+  
+
+
+      
+    
+
+
+    
+        (6)
+• Theorem 2 :
+(1) If the repair-time distribution  is IHR (increasing 
+hazard rate), the optimal repair time limit is 0 (always re-
+pair case) or infinite (always ordering case).
+(2) If the repair time distribution G(t) is strictly DHR (decrea-
+sing hazard rate), there exists a finite and unique optimal 
+repair time limit        ∞ under some conditions 
+(Kaio and Dohi, 2005) and the corresponding minimum 
+expected profit rate is given by
+                        (7) 
+We derived the expected profit rates of two special cases. 
+The difference between three cases is the information amount 
+about repair times at failures. Thus, we can evaluate the val-
+ue of information from three cases, for example, the expected 
+value of perfect information per unit time (EVPI). From 
+Equation (4) and Equation (6), we find the optimal repair 
+time limits and EVPI is given by 
+         (8)
+                  
+          
+                
+        
+          
+ 
+Thus, the cost to get the perfect information should be less 
+than EVPI to use the perfect information. Using similar way, 
+we can evaluate the value of partial information.
+4. Illustrative Examples
+In this section, we present numerical examples to illustrate 
+the analysis and obtain the optimal repair time limits. Sup-
+pose that the actual repair time distribution follows a normal 
+distribution with mean    and standard deviation   . 
+The standard values of other cost and model parameters are 
+given as                  , and 
+k = 2. We consider some cases with different values of  , 
+and find some trends of optimal repair time limits.
+Using Equation (3) ～Equation (6), we calculate the ex-
+pected duration, profit of a renewal cycle and the long run 
+A Repair-Time Limit Replacement Model with Imperfect Repair 237
+average profit per unit time. We used Matlab 7.0 to calculate 
+these equations and find the optimal  to maximize the long 
+run average profit rate. <Figure 1> shows the long run aver-
+age profit rates with different values of   and k = 2. From 
+<Figure 1>, we can know that the long run average profit rate 
+and the optimal repair time limit decrease as the variance of 
+estimation error increases. It means that if it is not easy to es-
+timate the repair time precisely, we prefer ordering the new 
+one to repairing. 
+To investigate the effect of penalty cost of machine break-
+down and the degree of imperfect repair, we consider some 
+cases with various values of the degree of imperfect in-
+formation (      ). <Figure 2> and <Figure 3> 
+show that the optimal repair time limit increases if the penal-
+ty cost k and the mean life after repair increase. It implies 
+that the repair is preferred to replacement as the penalty cost 
+becomes relatively large or the mean life after repair is long. 
+In addition, we can know from <Figure 4> and <Figure 5> 
+that the optimal repair time limit increases as the lead time 
+increases. In particular, the difference between the optimal 
+repair time limits decreases as the lead time increases and the 
+optimal repair time limit eventually converge to the same 
+value.
+ Figure 2.  Optimal t 0 under various values of σe 
+and K
+ Figure 3.  Optimal t 0 under various values of σe 
+and μir 
+ Figure 4.  Optimal t 0 under various values of L 
+and μir
+ Figure 5.  Optimal t 0 under various values of σe 
+and L
+5. Conclusions
+In this paper, we considered a repair-time limit replacement 
+model with imperfect repair and estimation error. The repair 
+time is assumed to be a random variable but the replacement 
+time with a new unit is negligible. In order to replace the 
+failed unit, the new unit should be ordered and is delivered 
+after a lead time L. If a system fails, we should decide to start 
+to repair or to order a new unit. Based on the available in-
+formation for repair time, we can choose one among repair 
+and replacement options and we estimate the repair time to 
+recover the system failure. If the estimated repair time is less 
+than the pre-specified limit, then we start to repair the failed 
+system. Otherwise we order the new item and finally replace 
+the system. We studied a profit model with partial in-
+formation about repair time and imperfect repair. The ex-
+pected profit rate was derived and some special cases have 
+been studied. 
+For further studies, repair time limit models with preventive 
+maintenance, repair time limit models with finite time hori-
+zon, and repair time limit optimization problems with finite 
+or random time horizon (Nakagawa and Mizutani, 2009) may 
+be promising topics. 
+238 Il Han Chung․Won Young Yun
+References 
+Dohi, T. and Kaio, N. (2005), Repair-limit replacement program in in-
+dustrial maintenance-renewal reward process modeling , Applied 
+Economic informatics and Systems Sciences edited by T. Tokimasa, 
+S. Hiraki and N. Kaio, 157-172, Kyushu University Press, Fukuoka.
+Dohi, T. Aoki, T. Kaio, N., and Osaki, S. (1998), Non-parametric pre-
+ventive maintenance optimization models under earning rate criteria, 
+IIE Trans., 30, 1099-1108.
+Dohi, T. Aoki, T. Kaio, N., and Osaki, S. (2001), Optimization the repair 
+time limit replacement schedule with discounting and imperfect re-
+pair, Journal of Quality in Maintenance Engineering, 7, 71-84.
+Dohi, T. Aoki, T. Kaio, N., and Osaki, S. (2003), The optimal repair-time 
+limit replacement policy with imperfect repair : Lorenz transform ap-
+proach, Mathematical and Computer Modellin, 38, 1169-1176.
+Dohi, T. Aoki, T. Kaio, N., and Osaki, S. (2006), Statistical estimation al-
+gorithms for some repair-limit replacement scheduling problems un-
+der earning rate criteria, Computers and Mathematics with Applica-
+tions, 51, 345-356.
+Dohi, T. Kaio, N., and Osaki, S. (2007), Stochastic profit models under 
+repair-limit replacement program , Proceedings of International 
+Workshop on Recent Advances in Stochastic Operations Research II, 
+27-34.
+Dohi, T. Kaio, N., and Osaki, S. (2010), A stochastic profit model under 
+repair-limit replacement program with imperfect repair, Proceedings 
+of 4th Asia-Pacific International Symposium (APARM 2010), 153- 
+160.
+Dohi, T., Kaio, N., and Osaki, S. (1995), Solution procedure for a repair 
+limit problem using the TTT concept, IMA Journal of Mathematics 
+Applied in Business and Industry, 6, 101-111.
+Dohi, T., Kaio, N., and Osaki, S. (2000), A graphical method to repair cost 
+limit replacement policies with imperfect repair, Mathematical and 
+Computer Modelling, 31, 99-106.
+Dohi, T., Kaio, N., and Osaki, S. (2001), Determination of optimal re-
+pair-cost limit on the Lorenz curve, Journal of the Operations Rese-
+arch Society of Japan, 44, 207-219.
+Dohi, T., Kaio, N., and Osaki, S. (2003), A new graphical method to esti-
+mate the optimal repair-time limit with incomplete repair and dis-
+counting, Computers and Mathematics with Applications , 46, 999- 
+1007.
+Dohi, T., Koshimae, H., Kaio, N., and Osaki, S. (1997), Geometrical in-
+terpretations of repair cost limit replacement policies, International 
+Journal of Reliability, Quality and Safety Engineering, 4, 309-333.
+Dohi, T., Matsushima, N., Kaio, N., and Osaki, S. (1996), Nonparametric 
+repair limit replacement policies with imperfect repair, European 
+Journal of Operational Research, 96, 260-273.
+Dohi, T., Takeita, K., and Osaki, S. (2000), Graphical methods for de-
+termining/estimating optimal repair-limit replacement policies, Inter-
+national Journal of Reliability, Quality and Safety Engineering , 7, 
+43-60.
+Drinkwater, R. W. and Hastings, N. A. J. (1967), An economical replace-
+ment model, Operational Research Quarterly, 18, 121-138.
+Hastings, N. A. J. (1968), Some notes on dynamic programming and re-
+placement, Operational Research Quarterly, 19, 453-464.
+Hastings, N. A. J. (1969), The repair limit replacement method, Operatio-
+nal Research Quarterly, 20, 337-349.
+Hastings, N. A. J. (1970), Equipment replacement and the repair limit 
+method, In Operational Research in Maintenance, edited by Jardine, 
+A. K. S., 100-118, Manchester University Press, Barnes and Noble 
+Inc., New York.
+Kaio, N. and Osaki, S. (1981), Optimum repair limit policies with cost 
+constraint, Microelectronics and Reliability, 21, 597-599.
+Kaio, N. and Osaki, S. (1982), Optimum repair limit policies with a time 
+constraint. International Journal of Systems Science, 13, 1345-1350.
+Kaio, N., Dohi, T. and Osaki, S. (2002), Classical replacement models, In 
+Stochastic Models in Reliability and Maintenance , edited by Osaki, 
+S., 65-87, Springer-Verlag, Berlin.
+Kim, H. G. and Yun, W. Y. (2010), A repair time limit replacement policy 
+with estimation error, Communications in Statistics-Theory and Me-
+thods, 39, 1-14.
+Koshimae, H., Dohi, T., Kaio, N. and Osaki, S. (1996), Graphical/statisti-
+cal approach to repair limit replacement problem, Journal of the 
+Operations Research Society of Japan, 39, 230-246.
+Lambe, T. A. (1974), The decision to repair or scrap a machine, Operatio-
+nal Research Quarterly, 25, 99-110.
+Love, C. E., Rodger, R., and Blazenko, G. (1982), Repair limit policies for 
+vehicle replacement, INFOR, 20, 226-237.
+Love, C. E. and Guo, R. (1996), Utilizing Weibull failure rates in repair 
+limit analysis for equipment replacement/preventive maintenance de-
+cisions, Journal of Operational Research Society, 47, 1366-1376.
+Muth, E. J. (1977), An optimal decision rule for repair vs replacement, 
+IEEE Transactions on Reliability, R-26, 179-181.
+Nakagawa, T. (2006), Maintenance theory of reliability, Springer.
+Nakagawa, T. and Mizutani, S. (2009), A summary of maintenance poli-
+cies for a finite interval, Reliability Engineering and System Safety, 
+94, 89-96.
+Nakagawa, T. and Osaki, S. (1974), The optimum repair limit replace-
+ment policies, Operational Research Quarterly, 25, 311-317.
+Nguyen, D. G. and Murthy, D. N. P. (1980), A note on the repair limit re-
+placement policy. Journal of Operational Research Society, 31, 1103- 
+1104.
+Nguyen, D. G. and Murthy, D. N. P. (1981), Optimal repair limit replace-
+ment policies with imperfect repair, Journal of Operational Research 
+Society, 32, 409-416.
+Wang, H. and Pham, H. (2005), Reliability and optimal maintenance , 
+Springer-Verlag, Lodon.
+White, D.  J. (1989), Repair limit replacement, OR Spectrum, 11, 143-149.

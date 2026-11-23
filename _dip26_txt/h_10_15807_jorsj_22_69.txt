@@ -1,0 +1,837 @@
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaich  Society  of  Japan
+Journal of  the Operations Research
+Society of  Japan
+  Vol. 22, No, 1, March, 1979
+ON  A  PREVENTIVE  MAINTENANCE  WITH
+             MONITORED  SYSTEM
+            Kazuyuki Suzuki
+       7bkyo  institute of 71echnology
+(Received June 30, r978; Revised October 6, 1978)
+Abstract A  monitored  system  consists  of  a core system  and  its monitor,  A  core  system  follows a general life time
+distribution, but its state, good or not good, cannot  be observed  directly. In order  to infer the state  of  the core  system,
+we  use the information from the monitor  whose  states  are  stochastically  related  to tlte states  of  the core  system.  Using
+its information, we  rnake  the maintenance  policy for the core system  so as to rninimize the total expected  cost  incurred
+by a sequence  of  actiens.  This paper shows  the conditions  under  which  an  optimal  maintenance  policy for the above
+model  has the'form  of  a control  1imit pojicy, Also, a nurnerical exarnple  where  the life time of  the system  follows a
+Weibull distubution is p[esentecl,
+l. Introduction
+     Stoahastic  decision  models  with  complete  state  observation  have  been
+investigated  by many  authors  ([11, [8], I9]), etc･)･  Derman  [3] and  Hatoyama  [s]
+formulate  the  problems  as  Markovian  decision  processes  (ma]P's), and  show
+that  an  optimal  policy  has  a  sirnple  form  called  a  control  limit  policy  under
+some  eonditions  [6].
+     Stochastic  decision  models  with  uncertain  information  have  also  been
+investigated  by several  authors  ([4], [11], [12], eta.)  ttnder  the  assumption
+that  the  internal  state  of  the  system  is known  with  eertainty  by 
+"inspeation''.
+Models  with  uncertain  inforrnation where  tiLnspeetion does not  neeessarily  reveal
+the  true  state  of  the  system  are  worthwhi!e  to  censider  in  many  practical
+applications.  MDP's  with  the  abotie  property  are  often  called  partially  observ-
+able  Markov  processes  ([13], [15]), or  MDP's  with  incornplete  state  observation
+([10], [14]). In  this  paper,  however,  we  use  the  term  monitored  system  or
+system  with  a  monitor  instead.  Here  the  state  of  a  monitor  is  observable  but:
+it  does  not  describe  the  state  of  the  system  deterministically,  but  only  sto-
+ehastically.  Toward  the  direction  of  this  approach,  Sawaragi  and  Yoshikawa  [14]
+                                         69
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaich  Society  of  Japan
+70 K, Suzuld
+and  Renius  [ZO] study  the  prchbabilistic  properties  of  t:he rnodel  introducing  a
+set  of  probability  measutes.  Smallwood  and  Sondik  [15] treat  the  problem  over
+a  ftnite  planntng  horizon,  and  Sawaki  and  Ichikawa  [131 investigate  E-optimal
+solution.  But  there  appears  to  have been almost  no  research  work  diseusstng  the
+optimality  of  a  solution  over'  an  infinitehorizon  in corterete  and  practical  forms.
+Besides,  in  stochastic  rnodels  with  a  monitor,  they  usually  assume  that  the
+transition  probabilities  of  the  system  are  independent  of  its  age,  and  general
+failure  distributtens  such  as  Weibull  distribution  are  not  considered  at. all.
+On  the  other  hand, preventive  manitenance  systems  with  a  rnonitor  have been
+developed  as  
+"Condttion
+ Monitortng  System"  .or 
+"Machine
+ Diagnosis  Technique  by
+Censur".  Nowadays,  monitoriri.g  is  often  necessary  and  very  important  for  the
+Tnaintenance  ef  the  complex  systems  such.  as  aircrafts.  .
+     Therefore  in this  paper,  we  consider  a  rnon't'tered  system  where  the  tTansi-
+tion  of  the  states  of  the  system  may  depend  on  its age.  We  show  that  under
+some  eonditions,  the  optima1  policy  has the  EorTn of  a  control  limit  policy.
+2. Model Descrfiption of  the Monitored System
+     ConsideT  a  system  vifhich  takes  one  of  two  underlyin.g  statesi  - O (good) and
+l (t'ailvre), these  states  we  call  internal  states  of  the  coresystern.  Its
+transition  frorn good  to  fatlure  follows  some  faUure  distribttttons. But  we
+are  not  permitted  to  observe  the  internal  state  of  the  core  system  direetly.
+What  we  can  do is  to  obtain  the  informat ±on  on  tts internal  state  from  the  so-
+ca!led  
+'Vmonitor",
+ and  to  inier  the  internaZ  state  from  the  state  of  the  rnonitor.
+We  assume  that  the  monitor  has a  ffnite  nurnber  of  states  and  ean  be akifays
+observed,  and  the  states  ef  the  monitor  are  stochastically  related  to  the
+internal  states  of  the  core  system.  Moreover,  the  stat,es  of  the  monitor,
+        '
+{O,Z,2,'"-, £ }, ave  orCered  in  such  a  way  that  a  higher  number  shows  a higher
+probability  of  a faiture  of  the  core  system.  Observing  the  states  of  the  monitor,
+what  we  rnust  consider  ts when  to  replace  the  core  system.  If  we  take  action
+"replaee",
+ then  the  core  system  is renewed  and  returns  to a  good state.  On the
+other  ha'ad, if we  take  action  
+"keep",
+ the  eore  systern  aontinues  to  operate,  and
+the  transition  oE  the  internalstateoceurs  according  to its fa ±iure dtstribu-
+tions.  ･After the  transition  of  the  internal  state,  we  observe  the  state  of  the
+mo'nitor  to  infer  the  internal  state.  From  this  information  and  the  htstory  up
+to  new,  we  take  'the next  aation,  and  so  on,  Besides,  several  kinds  of  costs  are
+incurred,  depending  on  the  aations  to  be taken  and  the  tnternal  state  of  the
+core  systeip.  Hence,  the  problem  is  to rninirnize  the  total  expected  eost  incurred
+by  a  sequence  of  actions.
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaichSociety  of  Japan
+                         Mbin  tenance  with  Mbnitored S,stem 7.l
+    In order  to  clarify  the  above  model,'we  make  the  followirig  deftnittons,
+notations,  and  assumptions.  
+'
+                                  '                      '
+1)     S =  {O, 1}  is  a  set  of  the  internal  states  of  the  core  system  (O means  .[t
+     is in  good  condition,  while  1 ･implies  its  failure).
+2) M  =  {O, 1, 2,''',k} is a set  of  the  states  of  the  monitor.
+3) A={ao(keep),  al(replaee)}  is aset  of  actions.  .
+     T  =  {O, 1, 2, ..-} is  a  set  whose  element  represents  the  age  of  the  core4)
+     system.  Here  we  define  a  unitof  the  age  (a period)  as  the  time  needed  Eor
+     the  monitor  to  censor  the  internal  state  of  the  core  system.
+5) Transttion  of  the  systeii,  of  age  t follows  P(t)  e Pr(S  l STA),  t E'T,
+     where  XY means  a Cartesian  product  of  X  and  Y, and  Pr(X1  Y) is a
+     set  of  all  conditional  probabilities  on  X  given  Y.
+6) The  state  of  the  monitor  is  stochasttcally  related  to  tlte internal  states
+     of  the  core  system.  Its  conditional  probability  is given  by Q e Pr(M  I S).
+7) ¢ e sO  is the  initial  information,  where  O is a  set  of  the  states  of
+     the  whole  system.  .
+8)     As  costs,  we  consider  a  replaeement  eost  R, an  operatitng  cost  L  per
+     unit  period,  and  a  breakdown  cost  D  per  uni.t  period.
+     If ige take  action  al(replace),  then  a replacement  
+'eosl:
+ R  is incurred,
+and  a  new  system  with  age  O is installed  at  the  beginning  of  the  next  period.
+Zf we  take  action  ao(keep),  then  an  ope'rating  cost  L is aharged  per unit
+period.  Furthermore,  if  we  take  action  ao  in  case  the  core  system  has been
+failed already,  then  a  breakdown  cost  D is  added  per  untt  periDd  (see Table
+                                                          '1)o
+    .We assume  that  all  cost,  transition  probabtlities  and  condit-ional  pro-
+babilities  are  knovJn and  that  all  costs  are  bounded  and  non-negative.  Further-
+more,  if the  transitienprobability  of  the  core  system  gan be  assumed  to  be
+independent  of  its  age  t  e  T, the  data  H on  the  whole  system,  i.e. H =
+              Table  1. Relations  of  actions,  costs  and  states
+                                 '                                      '
+                                           cost
+                               core  state:  O core  state
+                                      L L+D
+                                      R R
+                                                      -
+                                                             NII-Electionic  Libiaiy
+'
+.actlon
+A
+.meanzng
+ao
+'
+keep
+al
+'
+replace/m
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpeiations  Reseaich  Society  of  Japan
+        72 K. Suzuld
+       OAMA  
+'''
+ AM  is reduced  into  a  posterior  probability  g ! G m  Pr(S  l H)  by
+       Bayes'  theorem  [13]. Hovifever in  the  case  where  the  transition  probability
+       depends  on  t e T, the  above  reduction  is incomplete  and  we  rnust  take
+        (g, t) e GT : O as  a  state  of  the  whole  system.  Here  we  define  the  posterior
+       probability  g e G as  the  probability  that  the  core  system  is in failure.
+            Aecordtng  to  the  above  definitions,  the  transttion  probability  ?(t)  on
+       the  internal  states  of  the  core  system  of  age  t is given  by,
+(2.1) ?(t)=
+where  (t, j)-th element  ef
+1 - exp{-f:+IA(u)du},  "rhere
+is the  internal  state  of  the
+be introduced  similarly,
+     Conditional  probability
+(2.2) Q-
+where  the  element  q.,
+                    lj
+Here  we  assume  that  q is  in
+that  the  number  of  states  of
+     Then  if we  take  action
+posterior  probabi!ity  ts
+(2.3) Pr(St+1"1
+                 Pr(St+1  =  1,
+     ?(t)
+       A(t)
+      core
+        Q
+       qoo
+       qlo
+represents
+     dependent
+      the  monitor
+     
+ao(keep)  at
+ calculated  as
+      l Gt=  g, A
+      Mt+1  =mI
+1-  r(t)  r(t)
+  O 1
+  1 O
+  1 O
+represents  Pr(S
+                t+1
+   is a  fatlure  rate
+ system  at  age  tE
+                 '
+ on  the  state  of  the
+  qol  '''  qo £
+  qll  
+'''
+ q12
+  Pr (Mt =j  St =
+      of  the  t
+ is 2
+ age
+t=a
+ ct
+ age+
+ 1.
+ tE  T,
+ ,M
+    t+1o
+ 
+=g,A
+T
+ ' if
+    if '
+ jls
+      t
+of  the
+.
+ Mt'
+   .monltor
+ao(keep)  E A
+al(replace)
+ 
+#  i),  and
+core  system.
+G and  A
+ t t
+ is given  by
+i) for  any
+ ET  of  the
+ using  Bayes'
+ =  m)
+t 
+:=
+ ao)
+e  A,
+r(O  =
+s
+  t
+ can
+tE  T,
+system  and
+ theorem,  the
+Pr  (Mt+]=ml  Gt  -  g,
+ ql.{r(t)  a-g)
+At  =  ao)
+ +  g}
+qo.{(1-r(t)>(1-g)}  +ql.{r(t)(1-g)+g}
+B.(g,t)
+A (g,t)
+ m
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaich  Society  of  Japan
+                          imin  tenance  wr'th MOnitored System 7'3
+Also  the  probability  that  the  monitor  shows  state  m  when  the  age  of  the  core
+                                                       '
+system  is t+1  is
+(2･4) Pr (Mt+1 
+=
+ m  [ Gt  =  g, At  =  ao)  tt  qo,,{(1-r(t))(i-g)}  +qi.{r(t)  (i-g) +  g}
+                                       
+i Am(g, t).
+Let  V[g,  tl  denote  the  total  expeeted  cost  incurred  when an  opttmal  policy  is
+eTrrployed,  given  that  the  whole  system  starts  in state  (g, t)  E O and  future  costs
+aTe  discounted  by a  factor  B. Then  V[g,  t] is the  unique  solution  of
+                                      £  B (g,t)
+(2.5) V[g, t] 
+=
+ min  {L + gD + B,,goV[AM(g,t) ,t+  1] A.(g, t) ;
+                                           m
+                           R +  BV [O, O]}
+                            (ao) (al)
+                 
+i
+ (.:ln.1){V [g, t] ; V  [g, t]}.
+     In  the  next  section,  we  show  that  if  the  failure  rate  X(t)  of  the  core
+system  is IFR,  the  optimal  policy  has  the  form of  a  control  limit  policy,  and
+the  state  space  e is divided  tnto  two  regions.  rt is remarkable  that  we  need
+not  consider  the  condition  on  a  conditional  probability  Q of  a  monitor.
+Here  we  notice  that  a  non-randoTnized  statienary  rule  is obtained  as  the  unique
+solution  to  (2.5), stnce  all  costs  are  bounded  and  action  space  is ftnite  [2].
+3. Control  Limit  Policy  with  Respect  to Monitored  System.
+     In  this  section  -ife discuss  an  optimal  rnatntenanee  policy  foT  a  monitored
+                                                      i - -
+system.  An  important  and  interesting  point  in preventive  mamtenance  is
+whether  an  optima1  maintenance  poliey  has  a  siTnple  form  or  not.  For  example,
+we  speak  of  a  control  1imit  policy  as  the  poliey  where  the  system  is replaced
+if and  only  tf its  condttion  is worse  than  some  eritieal  value.  If an  opttrnal
+poliey  is  known  to  possess  this  simple  type  of  policy,  it is very  convenient
+fer the  maintenanee  ef  the  sy'stem.  In  the  following,  we  give  some  conditions
+under  which  a  control  limit poliey  is optimal.
+     First  we  show  that  under  the  following  Condition  1,  the  cost  functton
+V[g,  t] is a  monotone  non-deereasing  function  in both g and  t.
+     Condition  1.
+         (a) For  any  i,j  (OiiSj  S2),
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaichSociety  ofJapan
+74 K. Suzuld
+                                     '
+                            qoi :qlQj. '
+                            q!i  i qij 
+"
+         (b) FailuFe  rate  A(t) is  IFR  (IFR stands  for  increasing  (non-
+                decreasing  tn strict  sense)  failure  rate).
+                For any  k (O Sk  s  2),         (c)                               un                                   "t"                   '
+                             se £
+                            ..Ekqim
+ l 
+,,Ekqom
+ 
+'
+      '
+Here  we  notice  that  Condition  1 (a) implies  Condition  1 (c) (see Appendix5.
+Thus  in the  following  discussion  Condit ± on  l (c) ean  be  omitted  from  Condition
+L
+     Lernma 1. Condition  1 is suffieient  for  Condition  2 stated  below.
+       Conditlor 2.
+                                  2
+         (a) For  Ogj  l<unt£ , 2 Am(g, t) is monotone  non-deereasing  iLn                                     .
+                    , m="J
+                both  g an,i  t (gt G, te  T).
+                B (g, t)
+         (b) AM(g,  t),is'  monotone  non-decreasing,in  g, t and  m  (g e G,
+                 m
+                         '
+                te  T, mE  M).                                                                    '
+     Proef : (i) Condition  L (b) and  1(c) are  necessary  and  sufficient  for
+Condition  2(a),  since  from (?..4), ,
+                                                                        {L       2 2 A
+       E A.(g, t) ={  Z (qi,. - qo.)}(i  - r(t))/g  + { E (q!. - qclt,)} r(t)  +  F..
+     m=j  rn!=j TnF.j  m::1
+                      2 2 2
+                  
+=
+ {E (q.i,. - qo.)}(i  "" g) r(t)  +{ E.(qi. ' qo.)}  g+  2.q(),,
+                     m=j  m=.]  rn=1
+                                                          '
+and  O s  g s  1 , O s- r(t)  s  IL. The  proof  immediately  follows.  .      -m  Ttm Trt
+     (iO  Condition  1(a) and  1(b) are  sufficient  for Condition  2(b).  Sinee
+from  property  O2qo.  E1,  Olr(t)  5.I CO grn l2,  t=O,1,  '''),  and  the
+derivative  of  r(t)  ({lltrr(t) =  exp{-f:+lx(u)du}a(t-}-1)  -- A(t))),  we  'can  easiiy
+                                                  B (g,t)
+prove  that  the  partial  derivative  or  differences  of  fiM(g,tTs- vith respect  to
+                                                   ln .
+g. t and  m  are  all  non--negative  under  Condttien  1(a) and  1(b) . For  exarnple,
+with  respect  to m  (OS  /t SjS £ ),
+NII-Electionic
+qom
+ '
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaichSociety  ofJapan
+BA (g, t)  B
+ (g, t-) 
+-A
+j
+ (g, t)i
+ (g, t)i
+Mbin tenance  ma'th  Mbnitored System
+{r(t)(1g)+g}(q )(1-g)(1-r(t))
+75
+                            w tqlqoqlt
+ 
+-
+ [qoj{(1-r(t))(1-g)} +  qlj{r(t)(1-g)+g}][qoi{(1-r(t))(1-g)}+qli{r(t)(1-g)+g}].
+Thus  if qoiqij  - qojqii  i-. o, i･e･ aq?{l-ii ). Eq21-i. ,  then  I:i.-i[ggill i. Ill. [gglli             '
+(O Si  Sj  S  A).
+     From  (i) and  (iD, the  result  is obtained.  D                                        '
+     Lemma 2. Assume  Conditio'n  2(a) holds and  Vrn[g, t] is non-negative  and  a
+monotone  non-deereasing  function  in  g, t and  m.  Then,
+                  £
+                  E A.(g,  t) v.[g,  t]
+                m==O
+is  alse  monotone  non-decreasing  in  g and  t.
+PrOOf: From  A (g, t) )O  and  Abel's  identity,  
+'
+               m -
+(3ei) :g{i/oA.(g,t) Vm[gst]}=  
+.l/o{&g
+ Arn(g,t)} Vm[g,t]  + 
+.i/oAm(g,t){eOg
+ V.[g,t]}
+                           Z ,,,l/8gg  A.(g,t)}  v.[g,t]
+                           
+=
+ 
+.l/o{gg-
+ A.(g,t)}  vo[g,t]
+                                   
++ 
+,,,li&i
+ Am(g't){Vi[g,t]  - vo[g,t]}
+                                   +  ---
+                                   
++ 
+.l/£
+{gg A,,(g,t)}{vA[g,t]- v £ ..i[g,t]}.
+[[Jhus from Condition  2(a), Vo[g,t]  l.. O and  the  monotonicity  of  Vm[g,tl  in Tn,
+                     £
+                gg {.ioA.(g,t) v.[g,t]}  i o.
+By  the  similar  argument  we  can  show  that
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaich  Society  of  Japan
+76 K. Suzuld
+                       k 2
+                      .ZoA.(g,t
+ + 1) V.[g,t  + 1] -  
+.Z.oA.(g,t)
+ v.[g,t]  l o,
+yielding  the  second  part  of  the  lerrma. []
+     Lemma 3. under  condit/toh  2, V[g,t]  is monotone  non-decreasing  in  both
+g and  t.
+     PrOof : The proof  is by induction.  Let  Vn[g,t]  denote  the  optimal  n-
+period  cost.  Then,
+                      vl[g,tl =  min  {L + gD ; R} ,
+(3'2)
+ vn[g,t]  =  .i.  {L + gD + B.lov"-i[ll:[:III ,t+  i] A.(g,t);
+                                             n-1
+                                                [O,O]}, (n .>" 2).                                       R+  BV
+For  n=  1, vi[g,t]  is monotone  non-decreasing  in g and  t. if vnMi[g,t]  is
+                                                                   B (g,,t)
+rnonotone  non-decreasing  in g and  t, then  under  condition  2(b),  Vn-1[AM(g,t)  ,
+                                                                    rn
+t +  1] is monotone  non-decxeasing  in g, t and  Tn. Further,  this  value  is
+non-negat ±ve  since  all  costs  are  non-negative.  Here V [g, t] in Lemma  2
+                                                    m
+                    B (g,t)
+corresponds  to  Vn-1[AM(g,t)-  , t +  1]. Then  from  Lemma  2 and  (3.2), Vn[g,t]
+                    m
+is  monotone  non-decreasing  /tn  g and  t. This  holds  for  all  n,  and  as
+                      ltm vn[g,  t]  =  v[g,  t],
+                      n-5os
+V[g,  t] is monotone  non-decreasing  in g and  t. Z
+Here  we  notice  that  the  conciition  on'a  monitor,  qOi  > :ql9j- (o s. i sj  s 2),  can
+                                             qli=qlj  
+-
+ 
+-
+ 
+-
+                                                                   qom be obtained  by rearranging  the states  of  a  monitor  in SuCh  a  WaY  that  'qmlm  iS
+in  the  decreasing  order,  and  by giving  the  name  'state  j' to  the  j-th state
+after  the  arrangement,  say  i., for each  j. Nothing  in the  proof  of  the  above
+                           ]
+lemma  can  be  disturbed  by  the  reordering  of  the  states.  Therefore  above  corLdi-
+tton  on  a  monitor  always  holds  for  any  eases.  So  in praetice,  we  need  only
+Cond ± tion  1(b) on  the  life  time  distribution  of  a  core  system.  Then  next  theorem
+can  be obtained,
+    Theorem.  If a  failure  rate  X(t)  of  a  eore  system  is IFR,  then  an  opti.mal
+NII-Electionic  
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaichSociety  ofJapan
+                           Maintenance with  MonitoredSystem
+policy  has  the  form  of  a  control  limit  policy,  and  the  state  space  ¢ is
+divided  into at  most  two  regions.
+     Proof  : From  (2.5)
+                   (al)
+                  v  [g, t] -R+  Bv[o, o],
+which  is constant  for  any  g and  t. Hence  by  the  rnonotonicity  of  V[g,t]
+theorem  ts obtatned.
+     Therefore  three  cases  will  happen  on  the  partition  of  the  state  space
+(see Fig.  1).
+         es  oo oo
+        t  t t
+                     
+ao(keep)  al(replace)
+          
+                                                   10
+        
+O -g  1O  ""g  -g  1
+          (a) 1]wo regtons  (b) One  region  (c) One  region
+                Fig.  1 Three  types  eE  control  limit  policies
+The  following  discussion  is  devoted  topresenta  necessary  or  a  sufficient
+eondition  for each  of  the  above  three  cases.
+77
+the
+  []o
+Remarks
+    Ll
+    1.2
+    2.1
+.
+If R>  L + D, then  an  optiTnal  action  for (O, O) E O is ao(keep).
+    L+D
+          >  R +  3V[O, O], then  an  optimal  action  for  (1, co)  e  OIf    1-B
+is al(replaee).
+[1 region,  keep  /'ts always  optirnal  ]
+ao(keep)  ts always  optimal  if R>L  and  D =･  O.
+Under  this  condition,  the  objective  function  ± s  given  by
+                          L
+              
+v[g,  t] ==  1-B'
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpelationsReseaichSociety  ofJapan
+78 K. Suzuke
+                 fer any  (g, t)  gO.
+         2.2  [1 region,  replace  is always  optimalll
+                 al(replace]]  is always  optima!  if and  only  if R s L.
+                 Furthermor{/t  in this  case,  the  object ±ve  function  is given  by
+                                         R
+                              v[g. t] =  1-s  '
+                 for  any  (tT,, t)  eO.
+         2.3 E2 regions,,  necessar'y  conclitionl
+                 R>  L and  Dt  O is a  necessary  coiidition  for that  the  st/ate
+                 space  O ti1,s divided  into two  regions.
+         2.4  [2 regions,  sufftcient  eondition]
+                 The  state  space  e is divided  into i:wo regions  if R>L+D
+                      L+D
+                             >R+B  V[O,  O].                 and
+                      1-B
+?roof  and  comments  are  giveTi  in appendix.  Thus,  on!y  in the  case  where  the
+eonditions  in  Remark  2.3  or  2.4  hold,  we  need  to  solve  equation  (2.5) to  find
+an  optirnal  policy.
+4. Numerical  example
+     Equation  (2.5) is easily  solved  by the  policy  iteration  technique  [7].
+                   /
+Consider  the  ease  where  the  life  time  of  a  system  fol]Lows the  Weibull  distri,-
+bution  with  a  failure  rate  x(t) t  ! tM-1(t>  o), i.e.  r(t)  =  1-exp[2{(t+oM-t
+                                   ct ct
+We  set  the  values  of  the  pax'arneters of  the  monitored  system  in  the  fellowin2:,
+In  this
+the  form
+ Q-
+case
+ of  athe aontrol
+O.7
+O.2
+con
+     o.
+     o.
+ditton
+  limit
+     5
+  t4
+ T,
+     2
+     1
+     o
+ 2N
+:i
+8
+  af
+   poliey
+  /.
+  i-
+  ,-ae(keep)
+  L
+           '
+           1
+    
+->  g .55
+umerieal
+       L=
+ ) m=
+     '
+Theorem  is
+     with
+ 3.0, D=  3.0,, R=  7.0,
+ 2.o,  a=  6.o, B=  o.go.
+ satisfied,  and  an  opttmal  policy  has
+two  regions  as  in  Fig.  2.
+al(re-
+ place)
+Fig.
+    e65
+ 1
+example  oE  acontro].  Iimit  policy
+                NII-Electionic
+m}].
+The Operations Research Society of Japan
+NII-Electronic Library Service
+TheOpeiations  Reseaich  Society  of  Japan
+                                 thintenance with Mbnitored  System 7V
+                                                                  '
+      5. Concluding Remark
+           rn  this  paper, we  show  the  condition  under  which  an  optirnal  rnaintenanee
+      policy  has  the  form  of  a  cont/drol  limit  policy.  It  is  noticeable  that  the
+      conditton  on  the  eonditional  1)robabtlities  of  a  monitor,  qOi  > [ql!li- (osisjs2),
+                                                                   
+--
+ qlj  
+---
+                                                               q1i.
+      can  be  neglected  by  Teordering  the  states  of  a  monitor.  So  in case  where  a
+      eore  system  has  two  states,  the  eondition  we  must  eonsider  is only  on  a  failure
+      rate  X(t)  of  the  core  system.  But  some  conditions  on  a  monitor  would  be
+      required  for the  ordering  of  's;he states  of  a  monttor  where  a  aote  system  has
+      more  than  two  states,  whieh  will  be  a  futu're  topic  to  be  studied.
+                                                          '
+           Acknowledgements                                              '
+           I sincerely  thank  ?rofessor  H. Makabe  and  Dr.  Y.  Hatoyama  for  thetr  helpful
+      suggestions  and  guidanae  throughout  this  paper.  I also  wish  to  acknowledge  the
+      referees  for  their  valuable  eomments  and  suggestions  to  improve  this  paper.                                                                    '
+                                                                          '
+                                        Appendix  ･
+      A.1  Proof  that  Condition  Z(a)  is sufficient  for Condition  1(c):
+              As qij(i  
+=
+ O, 1, Osj  s  £ ) is  an  element  of  a probability  matrix,
+                     2 2
+                    .!oqom  
+=
+ .;oql.  
+xx
+ ls o s qij s 1.
+      Hence  the  following  inequality
+                                        '
+                    qoo qol  qo2
+                        > >o-  // >                                           s
+                    qlO=qll  
+=
+ 
+"=
+ q12
+      is transformed  into
+                         2
+                    i-  Eqom                                   cLol  qoR                        m=1
+                                >-  > -..  >                                                        '
+                         2 
+==
+ (lll  ='  t7'  q12
+                    
+z - 
+.Zlqlm
+                                       £  fl
+      
+by the  substitutions  qoo =  i -  
+mgiqorn'
+ qio 
+"
+ i -  
+m!iqim'
+                                                                       NII-Electionic  
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaichSociety  ofJapan
+80
+The  result  then  follows  from
+above  inequality.
+A.2  ?roof  of  Remarks:
+     Remarks  1.1 and  1.2  aan
+     (i) Proof  of  Remark  2.:L
+             v[1, co]  .<- r, +B
+                        L
+        i,e.  V[1,  co]  s                    -1-
+Now  as  R>L+D  (D=O),
+By  the  monotonicity  of  V,
+             V[O,  O] .)- L +  B
+K, Suzuin
+straightforwardalgebraic
+be easily  obtained  from
+ : FromD=O  and  (2.
+ V[1,  co],
+3-'
+ao(keep)  is
+  £ B (O, O)
+      m
+optiTnalfor
+manipulations
+ (2.5).
+5),
+(O, O) EQ  by
+.ZoV[A.(o,  e) 
+,
+ i] A.(O,  o)
+of  the
+    D
+RemarkLL
+or
+       >L+
+v[o,  o] iiL
+B V[O,  O],
+B'
+Therefore,
+Thus
+for
+Thus
+for
+any
+for
+Therefore
+      L          S  V{O,  O] s  V[1,      1-B-  =
+any  (g, t)eO  ,
+                L
+    
+v[g,  t] =1-  BT '
+(tt) Proof  of  Rema/rk  2.2 :
+       (neaessary condition)  If
+(g, t) EO,
+    V[g, tl =R+eV[O,  O].
+ (g, t) =  (o, o),
+    v[o,  o] =R+ev[o,  o],
+                Ri.e.  v[O,  O] =  1 H k- '
+,for  any  (g, t)  e O,
+V[g, t]  =  R+BV[O
+      L
+co]  s  -1-B'
+az(replace)
+        R
+,o]=
+      1-B'
+is always'optimal,then
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaichSociety  ofJapan
+                           Main  tenance  with  Mbnitored System
+Now  frorn (2.5),
+               (a                  ) k
+              
+v O  [g, t] =L+  gD + B.io(1 } B) Am(O'  O)
+                                        R
+                          
+=L+
+ gD +  Bl mB,
+               (al) R
+              
+v [g, t] =!  R+  Bl -B･
+If al(replace)  is always  optimal,  then  for any  (g, t)  E O ,
+              v(aO [g, t] lv  1)[g, t].                   ) (a
+must  hold.  Hence  L+  gD  l.R must  hold  for  any  ge  [O, 1].  Therefore
+al(replace)  is always  optimal,  then  L !l.. R.
+     (sufficient condition)  The  result  can  be easily  obtained  from (2.5)
+by  the  monotonicity  of  V.
+Remark  2.3 follows  from  the  contrapositive  of  Remark  2.i  and  the  negation
+the  eondition  in  Remark  2.2.  And  Remark  2.4  is  obtained  from  Remarks  1.1
+L2.
+if
+ and
+ of
+ and
+   m
+81
+[1]
+[2]
+[3]
+[41
+[s]
+[6]
+[7]
+                            References
+                             '
+Barlow,  R. E., Proschan,  F. and  Hunter,  L.: hathematteaZ  Theo?y  of
+ReZiahiZity.  John  Wiley,  New  York, 1965.
+Blackwell,  D.:  Dtseounted  Dynamia  PrograTfmiing.  AnnaZs  of  PlathemattcaZ
+Statasties,  Vel.  36(1965),  226-235.
+Derman,  C.:  On Optimal  Replacement  Rules  when  Changes  of  State  are
+Markovian.  dothematicaZ  Opttmigataon  Llieehntques  (ed. R. Bellraan).
+University  of  California  Press,  Berkeley,  1963, 20].210.
+Girshick,  M. A. and  Rubin,  H: A Bayes' Apprcoach to  a  Qua!ity Control
+Medel.  AnnaZs  of  dothematieaZ  Statisttes,  Vol.  23(1952),  1!4--125.
+Hatoyama,  Y.:  Markov  Mai.ntenance  Models  with  Control  of  Queue. clour'naZ
+of  the  opertitions Resea?ch  Soeeety  of  cfapan.  Vol.  19(1977),  164-181.
+Hatoyama,  Y.:  Mathematics  of  Reliability  (3). Commttnications of' the
+Ciperattons  Reseapch  Soeaety  ojF' Japan,  Vol.  23(1978),  44-49.
+Howard,  R. A.:  Duncpnae  Pveog?rming  and  im?kov  Proeesses.  Technelogy
+Press  & John  Wiley,  New  York,  1960.
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The  OpeiationsReseaichSociety  of  Japan
+82
+[8]
+[9]
+[10]
+[11]
+[12]
+[13]
+[14]
+[15]
+                             K. Suzuld
+ Jorgenson,  D, W.,  McCall,  J. J. and  Radner,  R.:  qptimaZ RepZacernent
+ PoZacy. North-Holland  Publishing  Company,  Amsterdam,  1967.                               '                                                     '
+ Morimura,  H. and  Makabe, H.:  On  Some  Preventive  Maintenance  Policies.
+ gozapnaZ  of  the  operations Researeh  Soeaety  of  Japan,  Vol. 6(l963),  17-47.
+ IUienius,  D.;  Incomplete  Information  in Markovain  Decision  Models.  1'he
+ AnuaZs  of  Statisties,  Vol.  2.(1974), l327-I334.
+ Rosenfield,  D.:  Markovian  Deterioration  with  Uncertain  Information  - A
+ More  General  Medel.  NavaZ  Reseanch  Logaseies  (?zectrte"Zy, Vol.  23(1976),
+ 389-405,
+ 
+Ross,  S. M.: quali.ty Control  Upder  Marlcovian  Deterioration.  hanagement
+ Scienee,  Vol.  17(1971),                       694-706.
+ Sawaki,  K.  and  Ichikawa,  A.:  Optimal  Cpnt'rol  for  Partially  Obsexvable
+ Markov  Deciston  Processe$  over  an  Infinite  HoTizon.  tToul'nczZ  of  the
+'Qperations
+ Resea?eh  Soeiety  of  cfapan.  Vol.  21(1978),,  1-16.
+ Sawaragi,  Y. and  Yoshikawa,  T.:' Discrete-time  Markovian  Decision  ?roce.sses
+ with  Incomplete  State  Observation.  The  AnnaZs  of  imthematieaZ  Stat'isties,
+ Vol. 41(1970),  78-86.                                                    '
+,Smollwpod,  R., D. and  Sondik,  E. J･,: The  Optimal  Control  of  ･PartiaUy.
+ Observable  ho=kov  Processes  over  a  Finite  Horizon,  0peuataons.  Reseavch,
+ Vol.  21(1973),  1071-1088.
+,Kazuyuki  SUZUKI  : Departrnent  of  Management
+   Engtneer ±ng,  Tokyo  Institute  ef
+   Technology,  O-okayama,  Meg,uro-ku
+   Tokyo,  152', Japan.
+The Operations Research Society of Japan
+NII-Electronic Library Service
+The 　 Operatlons 　 Research 　 Soclety 　 of 　 Japan
+Maintenance　wr’th　Monitored　System 83
+ア ブ ス ト ラ ク ト
+状 態 監 視 保 全 に 関 す る 一 考 察
+東 京 工 業 大 学 鈴 木 和 幸
+　 本 論 文 は ， 従 来 の 時 間 計 画 保 全 に 対 し て ， 近 年 導 入 さ れ た 状 態 監 視 保 全 （monitored 　 Inainte −
+nance ） に 関 し ，論 じ た も の で あ る 。 今 ． あ る 装 置 を 考 え る 。 こ の 装 置 （ 以 下 “本 体 ” と 呼 ぶ ） の 稼 働
+状 態 は 外 部 か ら は 直 接 把 握 す る こ と は 出 来 ず ，
+“
+モ ニ タ ー ” と 呼 ば れ る 状 態 監 視 装 置 か ら の 皆 報 に 基
+づ き 本 体 の 状 態 を 推 測 す る 。 本 体 は ， 正 常 又 は 故 障 の 2 状 態 を と り ， そ の 遷 移 は 故 障 率 2（t） を も つ
+寿 命 分 布 に 従 う も の と す る 。 一 方 モ ： ＝ タ ー は （9 ＋ 1）個 の 状 態 を と り ， そ の 状 態 は ， 本 体 の 状 態 の 条
+件 付 確 率 ． 即 ち ， 次 の 確 率 行 列 に よ っ て 規 定 さ れ る も の と す る ，
+　　　　　　　　　　
+・
+一
+〔
+qoo　　　qo　1　「’’’”　90？．
+qlo　　　ql且　呷”　 鹽’°　91君 〕 ，
+た だ し ， 9ij は 本 体 が 状 態 i （ o （正 常 ） ， 1 （ 故 障 ））に あ る と き に モ ＝ タ ーが 状 態 」を と る 確 率 で あ る 。
+　 本 体 の 状 態 遷 移 確 率 が 本 体 の 稼 働 時 間 t ∈ T に 独 立 な 場 合 は ， Partially　 Observable　 Markov
+Decision　 Processes 　 と し て 有 限 期 間 問 題 ， ε 一 〇 ptimal 解 等 が 研 究 さ れ て い る 。 し か し ， 稼 働 時
+間 を 考 慮 し ， 無 限 期 間 問 題 を 具 体 的 ・ 実 用 的 な 形 で 取 扱 っ た も の は み ら れ な い 。 そ こ で 本 論 文 で は 上
+記 の 点 を 考 慮 し モ デ ル 化 を 行 な っ た 。 な お ， ア ク シ ョ ン と し て ｛ keep ， replace ｝ ， 目 的 函 数 と し
+て 総 期 待 費 用 を 考 え た 。
+　 本 論 文 の モ デ ル に お い て は ， べ 一 ズ の 定 理 に よ る 事 後 確 率 G と 本 体 の 稼 働 時 間 T の 直 積 集 合 G ・ T
+≡ の に 過 去 の 履 歴 が 縮 約 さ れ ． こ の の を 用 い て ， 最 適 保 全 方 式 に 従 っ た 場 合 の 総 期 待 費 用 iceeす る 関
+数 方 程 式 が 得 ら れ る 。 こ の 式 に 基 づ き ， 次 の 条 件 が 成 り 立 つ と き ， 最 適 保 全 方 式 は ， 状 態 空 間 の が 高
+々 2 分 割 さ れ る コ ン ト ロ ー ル リ ミ ッ ト ポ リ シ ー に よ っ て 与 え ら れ る こ と が 示 さ れ る ，
+条 件 （・ ・ 色 ≧ 璽 （ 。 ≦ 、 ≦ 、 ≦ ． ＿ ） ，
+　 　 　 　 　 91i　 　 　 9， j
+  　 本 体 の 故 障 率 λ （ t） が IFR 。
+　 な お ， 条 件 （a ｝は ， モ ニ タ ー の 状 態 の 並 べ 換 え に よ り 満 た さ れ ， 条 件 （b｝の λ （ の に 関 す る 条 件 の み が
+必 要 と な る 。 最 後 に 本 体 の 寿 命 が ワ イ ブ ル 分 布 に 従 う 場 合 の 計 算 例 が 与 え ら れ て い る 。
+N 工 工 一Electronlc 　 Llbrary 　
