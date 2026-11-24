@@ -6,11 +6,11 @@
 
 ## Сводка
 
-Утверждений, формул, дыр и соответствий: **152**; с литературной опорой: **16** (11%).
+Утверждений, формул, дыр и соответствий: **152**; с литературной опорой: **30** (20%).
 
 | вид | всего | с опорой |
 |---|---|---|
-| claim | 116 | 6 |
+| claim | 116 | 20 |
 | formula | 31 | 9 |
 | gap | 3 | 1 |
 | correspondence | 2 | 0 |
@@ -35,6 +35,20 @@
 | F-024 | formula | B18-01-0003, B21-01-0004, B26-01-0008, DIP49-0001, DIP49-0002, DIP49-0006, DIP53-0003, DIP53-0005, DIP59-0001, DIP59-0003, DIP59-0005 |
 | F-029 | formula | B22-01-0004, DIP46-0001, DIP47-0002, DIP47-0003, DIP53-0011 |
 | GAP-02 | gap | B24-01-0003 |
+| L-060 | claim | A-0006, DIP11-0003, DIP11-0010, DIP5-0010 |
+| L-064 | claim | B26-01-0001, B26-01-0009 |
+| L-065 | claim | B8-06-0001, DIP14-0002 |
+| L-073 | claim | P-0001, P-0002, P-0007, P-0008, P-0010 |
+| L-090 | claim | P-0010 |
+| L-091 | claim | FT-0003, FT-0004 |
+| L-092 | claim | B7-05-0001, B7-05-0002 |
+| L-094 | claim | A-0005, C-0001, C-0002, C-0003, C-0004, C-0006 |
+| L-096 | claim | A-0003, A-0011, W4-0013 |
+| L-100 | claim | W2-0001, W2-0004 |
+| L-102 | claim | A-0002 |
+| L-106 | claim | A-0001, A-0011, W4-0013, W4-0014 |
+| L-107 | claim | B7-01-0002, B8-01-0001-b |
+| L-108 | claim | A-0004 |
 
 ## Узлы без опоры (самое важное)
 
@@ -127,12 +141,9 @@
 | L-057 | claim | hypothesis | Одноклеточные делят ресурс между **асимметричным распределением** и **починкой** — В модел |
 | L-058 | claim | hypothesis | Кривые выживания выводятся из **оптимального распределения ресурса** — Интенсивность почин |
 | L-059 | claim | hypothesis | DEB: правило κ, приоритет поддержания и голодание — Энергия делится **правилом κ**: доля κ |
-| L-060 | claim | hypothesis | Графы «процесс–обеспечение»: замыкание становится вычислимым — Разные теории самоорганизац |
 | L-061 | claim | hypothesis | Формальное условие замыкания ограничений (цитата) — «We characterize biological organizati |
 | L-062 | claim | hypothesis | Двойственные переменные LP — это **химические потенциалы** — «the dual to the linear progr |
 | L-063 | claim | hypothesis | COT как **структурная** рамка, независимая от кинетики — COT даёт **структурную и алгебраи |
-| L-064 | claim | hypothesis | Инвариант из стехиометрии и цена предположения о стационарности — (1) Консервативные поток |
-| L-065 | claim | hypothesis | Ядро выживания: определение и **алгоритм** — «The subset of evolutions viable in K is deno |
 | L-066 | claim | hypothesis | Пространство выживания: граница как **геометрическая** величина — В **viability space** на |
 | L-067 | claim | hypothesis | ITI: индивидуальность как **сохраняемая временная целостность** — «There is little agreeme |
 | L-068 | claim | hypothesis | Информационная индивидуальность **требует причинности**, а не корреляции — Информационные  |
@@ -140,7 +151,6 @@
 | L-070 | claim | hypothesis | Приближение Тулджапурака: цена дисперсии — **число** — При **малой вариации** и **отсутств |
 | L-071 | claim | hypothesis | Диверсификация стоит дорого, и её темп — не универсален — Bet-hedging через диверсификацию |
 | L-072 | claim | hypothesis | Зерно среды и число решений решают, **какой** bet-hedging работает — **Мультипликативное** |
-| L-073 | claim | hypothesis | Рост мембраны протоклетки: **скорость зависит от внешнего липида** — «The autocatalytic re |
 | L-074 | claim | hypothesis | Проницаемость как **движущая сила отбора** — Устойчивость везикулы зависит от **состава ли |
 | L-075 | claim | hypothesis | Критерий «когда реакционная сеть — метаболизм», поддерживающий рост и деление — Сформулиро |
 | L-076 | claim | hypothesis | Эффект матрицы: размер потомков **наследуется** без генов — «the size distribution of the  |
@@ -157,29 +167,19 @@
 | L-087 | claim | hypothesis | Теория выживания на границе жизнь–смерть: заявка на недостающее — «Many cell models deal w |
 | L-088 | claim | hypothesis | Viability ≠ survival: различение, которого нам не хватало — «**Survival** describes an **o |
 | L-089 | claim | hypothesis | Minimal Conditions for Protocell Stationary Growth — минимальные условия стационарного рос |
-| L-090 | claim | hypothesis | The “protocell”: A mathematical model of self-maintenance — самоподдержание протоклетки ка |
-| L-091 | claim | hypothesis | Synergistic effects of repair, resilience and retention of damage determine the conditions |
-| L-092 | claim | hypothesis | Balance between asymmetric allocation and repair of somatic damage in unicellular life for |
 | L-093 | claim | hypothesis | Autopoiesis: The organization of living systems, its characterization and a model — Varela |
-| L-094 | claim | hypothesis | Biological organisation as closure of constraints — Montévil & Mossio 2015 — организация к |
 | L-095 | claim | hypothesis | Detecting autocatalytic, self-sustaining sets in chemical reaction systems — Hordijk & Ste |
-| L-096 | claim | hypothesis | Asymmetric segregation of protein aggregates is associated with cellular aging and rejuven |
 | L-097 | claim | hypothesis | THE MAINTENANCE OF THE ACCURACY OF PROTEIN SYNTHESIS AND ITS RELEVANCE TO AGEING — Orgel 1 |
 | L-098 | claim | hypothesis | Stochastic modeling of aging cells reveals how damage accumulation, repair, and cell-divis |
 | L-099 | claim | hypothesis | Evolution of ageing — Kirkwood 1977 — эволюция старения: компромисс ремонта и размножения |
-| L-100 | claim | hypothesis | Selforganization of matter and the evolution of biological macromolecules — Eigen 1971 — с |
 | L-101 | claim | hypothesis | Statistical theory of asymmetric damage segregation in clonal cell populations — Найдено п |
-| L-102 | claim | hypothesis | A network theory of ageing: the interactions of defective mitochondria, aberrant proteins, |
 | L-103 | claim | hypothesis | Self-maintenance and Self-reproduction in an Abstract Cell Model — Ono & Ikegami 2000 — са |
 | L-104 | claim | hypothesis | Thirty Years of Computational Autopoiesis: A Review — McMullin & Varela 2004 — реимплемент |
 | L-105 | claim | hypothesis | Closure to efficient causation, computability and artificial life — Cárdenas et al. 2010 — |
-| L-106 | claim | hypothesis | Proteasome inhibition by lipofuscin/ceroid during postmitotic aging of fibroblasts — Sitte |
-| L-107 | claim | hypothesis | Lipofuscin inhibits the proteasome by binding to surface motifs — Höhn et al. 2011 — титро |
-| L-108 | claim | hypothesis | Damage dynamics and the role of chance in the timing of E. coli cell death — Damage dynami |
 
 ## Что это значит
 
-1. **Опора есть у 16 из 152** — остальные наши утверждения пока живут без
+1. **Опора есть у 30 из 152** — остальные наши утверждения пока живут без
    внешней пары. Это не значит, что они неверны: часть из них — наши собственные конструкции
    (пороги, ядра, цены), которым в литературе соответствует не одна работа, а класс явлений.
 2. **Без опоры остались целые механизмы:** обмен, организация, смерть, агентность. Ровно те, у

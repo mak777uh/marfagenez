@@ -15334,7 +15334,13 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "A-0006",
+          "DIP11-0003",
+          "DIP11-0010",
+          "DIP5-0010"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -15519,7 +15525,11 @@
           "pmid": null,
           "url": "https://arxiv.org/abs/0808.0321",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "B26-01-0001",
+          "B26-01-0009"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15560,7 +15570,11 @@
           "pmid": null,
           "url": "https://doi.org/10.1137/0328044",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "B8-06-0001",
+          "DIP14-0002"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15939,7 +15953,14 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "P-0001",
+          "P-0002",
+          "P-0007",
+          "P-0008",
+          "P-0010"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -16675,7 +16696,10 @@
           "pmid": null,
           "url": "https://doi.org/10.1016/0303-2647(86)90008-0",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "P-0010"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16716,7 +16740,11 @@
           "pmid": null,
           "url": "https://doi.org/10.1038/s41598-020-58444-2",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FT-0003",
+          "FT-0004"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16757,7 +16785,11 @@
           "pmid": null,
           "url": "https://doi.org/10.1073/pnas.2400008121",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "B7-05-0001",
+          "B7-05-0002"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16839,7 +16871,15 @@
           "pmid": null,
           "url": "https://doi.org/10.1016/j.jtbi.2015.02.029",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "A-0005",
+          "C-0001",
+          "C-0002",
+          "C-0003",
+          "C-0004",
+          "C-0006"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16921,7 +16961,12 @@
           "pmid": null,
           "url": "https://doi.org/10.1073/pnas.0708931105",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "A-0003",
+          "A-0011",
+          "W4-0013"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -17085,7 +17130,11 @@
           "pmid": null,
           "url": "https://doi.org/10.1007/BF00623322",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "W2-0001",
+          "W2-0004"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -17167,7 +17216,10 @@
           "pmid": null,
           "url": "https://doi.org/10.1016/S0921-8734(96)90005-3",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "A-0002"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -17331,7 +17383,13 @@
           "pmid": null,
           "url": "https://doi.org/10.1096/fj.99-0843com",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "A-0001",
+          "A-0011",
+          "W4-0013",
+          "W4-0014"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -17372,7 +17430,11 @@
           "pmid": null,
           "url": "https://doi.org/10.1016/j.freeradbiomed.2010.12.011",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "B7-01-0002",
+          "B8-01-0001-b"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -17413,7 +17475,10 @@
           "pmid": null,
           "url": "https://doi.org/10.1038/s41467-023-37930-x",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "A-0004"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -18245,8 +18310,8 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
@@ -18255,8 +18320,8 @@
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -18280,6 +18345,11 @@
     },
     {
       "from": "C-002",
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
+    },
+    {
+      "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
@@ -18287,11 +18357,6 @@
       "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
-    },
-    {
-      "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -18315,11 +18380,6 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
-      "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -18327,6 +18387,11 @@
       "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
+    },
+    {
+      "from": "C-003",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -18440,11 +18505,6 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
-      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -18452,6 +18512,16 @@
       "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
+    },
+    {
+      "from": "F-022",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
+    },
+    {
+      "from": "F-023",
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
@@ -18462,11 +18532,6 @@
       "from": "F-023",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
-    },
-    {
-      "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
     },
     {
       "from": "GAP-01",
@@ -18600,8 +18665,8 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
@@ -18610,8 +18675,8 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
@@ -18635,17 +18700,17 @@
     },
     {
       "from": "CORR-02",
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
