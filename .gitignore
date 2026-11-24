@@ -67,3 +67,9 @@ literature/fulltext/
 /add_elephant.py
 /record319.py
 /superagent_decision.py
+
+# координация: производные и служебные каталоги
+.coord/graveyard/
+.coord/locks/
+.coord/gens/
+.coord/STATUS.md

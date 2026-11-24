@@ -1,6 +1,6 @@
-# Статус координации — 2026-11-24T22:28:18Z
+# Статус координации — 2026-11-24T23:36:16Z
 
-## Свободные задачи: 17
+## Свободные задачи: 14
 
 - `P1-identity-122` (research, приоритет 10): P1-identity-122 — Сшивка по тождеству источника для оставшихся утверждений
 - `P10-synthesis-09` (research, приоритет 60): P10-synthesis-09 — SYNTHESIS-09: обзор после смены формулы и роста покрытия
@@ -16,10 +16,6 @@
 - `S1-experiments` (research, приоритет 5): S1-experiments — Эксперименты: прогоны, проверки, воспроизводимость
 - `S2-literature-graph` (research, приоритет 6): S2-literature-graph — Литература и граф: ячейки, связи, сшивка
 - `S3-formulas-lean` (research, приоритет 7): S3-formulas-lean — Формулы и Lean: вывод, проверка, единицы
-- `probe-overlap` (research, приоритет 50): probe-overlap — пересечение
-- `probe-overlap2` (research, приоритет 50): probe-overlap2 — пересечение-2
-- `probe-prot` (research, приоритет 50): probe-prot — ядро
 
-## Активные: 1
+## Активные: 0
 
-- `probe-alive`: агент probe, gen 1, возраст 0м, heartbeat 0м, DONE=False, VERIFY=False
