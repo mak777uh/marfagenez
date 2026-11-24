@@ -44,6 +44,12 @@ EVENTS = COORD / "events"
 AGENTS = COORD / "agents"
 TTL_MIN = 180  # через сколько минут задача считается «зависшей»
 
+# Зоны контракта состояния: их правит только main, иначе ломается checks/agents и гейт.
+PROTECTED = (
+    "core/", "laws/", "verus/", "checks/", "run.sh", "AGENTS.md",
+    "kg/nodes.jsonl", "kg/migrate.py", "kg/kg.py", "tools/coord.py",
+)
+
 
 def now() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
@@ -60,11 +66,12 @@ def sha(p: pathlib.Path) -> str:
 
 
 def task_card(task_id: str, title: str, area: str, accept: list[str], priority: int,
-              author: str, note: str = "") -> str:
+              author: str, note: str = "", kind: str = "research") -> str:
     lines = [
         f"# {task_id} — {title}",
         "",
         f"- автор: `{author}`",
+        f"- вид: `{kind}`",
         f"- приоритет: {priority}",
         f"- создана: {now()}",
         "",
@@ -96,8 +103,9 @@ def cmd_add(a) -> int:
         print(f"ошибка: задача {a.id} уже существует")
         return 1
     d.mkdir(parents=True)
-    (d / "TASK.md").write_text(task_card(a.id, a.title, a.area, a.accept, a.priority, a.agent, a.note),
-                               encoding="utf-8")
+    (d / "TASK.md").write_text(
+        task_card(a.id, a.title, a.area, a.accept, a.priority, a.agent, a.note, a.kind),
+        encoding="utf-8")
     event(a.agent, f"создана задача `{a.id}` — {a.title}")
     print(f"добавлено: {a.id}")
     return 0
@@ -122,8 +130,49 @@ def cmd_list(_a) -> int:
                     extra = f" [agent={j.get('agent')}, taken={j.get('taken_at')}]"
                 if (p / "DONE.json").exists():
                     extra += " DONE-заявка"
-            print(f"  {p.name}: {title}{extra}")
+            kind = ""
+            if t.exists():
+                for ln in t.read_text(encoding="utf-8").splitlines()[:6]:
+                    if ln.startswith("- вид:"):
+                        kind = f" [{ln.split('`')[1]}]"
+            print(f"  {p.name}: {title}{kind}{extra}")
     return 0
+
+
+def _active_areas() -> dict[str, tuple[str, list[str]]]:
+    out = {}
+    if not ACTIVE.exists():
+        return out
+    for p in ACTIVE.iterdir():
+        if not p.is_dir():
+            continue
+        c = p / ".claim.json"
+        if c.exists():
+            j = json.loads(c.read_text(encoding="utf-8"))
+            out[p.name] = (j.get("agent", "?"), j.get("area") or [])
+    return out
+
+
+def _overlap(mine: list[str], theirs: list[str]) -> list[str]:
+    """Пересечение по префиксу каталога и по общему glob-префиксу."""
+    bad = []
+    for m in mine:
+        mp = m.split("*")[0].rstrip("/")
+        for t in theirs:
+            tp = t.split("*")[0].rstrip("/")
+            if mp == tp or mp.startswith(tp + "/") or tp.startswith(mp + "/"):
+                bad.append(f"{m} ↔ {t}")
+    return bad
+
+
+def _protected(area: list[str]) -> list[str]:
+    hit = []
+    for a in area:
+        ap = a.split("*")[0]
+        for z in PROTECTED:
+            if ap.startswith(z) or z.startswith(ap) or ap.rstrip("/") == z.rstrip("/"):
+                hit.append(a)
+    return hit
 
 
 def cmd_take(a) -> int:
@@ -131,6 +180,17 @@ def cmd_take(a) -> int:
     dst = ACTIVE / a.id
     if not src.exists():
         print(f"ошибка: {a.id} нет в pending")
+        return 1
+    area = _area_of(src / "TASK.md")
+    busy = _active_areas()
+    for other, (agent, other_area) in busy.items():
+        bad = _overlap(area, other_area)
+        if bad:
+            print(f"ошибка: область пересекается с активной {other} (агент {agent}): {bad}")
+            return 1
+    prot = _protected(area)
+    if prot and a.agent != "main":
+        print(f"ошибка: защищённые зоны правит только main: {prot}")
         return 1
     try:
         dst.mkdir(parents=True)  # атомарно: второму агенту достанется FileExistsError
@@ -318,7 +378,8 @@ def main(argv: list[str]) -> int:
     p = sub.add_parser("add"); p.add_argument("--id", required=True); p.add_argument("--title", required=True)
     p.add_argument("--area", required=True); p.add_argument("--accept", action="append", default=[])
     p.add_argument("--priority", type=int, default=50); p.add_argument("--agent", default="main")
-    p.add_argument("--note", default=""); p.set_defaults(fn=cmd_add)
+    p.add_argument("--note", default=""); p.add_argument("--kind", default="research")
+    p.set_defaults(fn=cmd_add)
 
     p = sub.add_parser("list"); p.set_defaults(fn=cmd_list)
     p = sub.add_parser("take"); p.add_argument("id"); p.add_argument("--agent", required=True); p.set_defaults(fn=cmd_take)
