@@ -388,7 +388,8 @@
         },
         "lit_ref": [
           "B21-01-0001",
-          "DIP48-0010"
+          "DIP48-0010",
+          "DIP49-0005"
         ]
       }
     },
@@ -426,7 +427,9 @@
           "checked_by": null
         },
         "lit_ref": [
-          "DIP52-0003"
+          "DIP48-0008",
+          "DIP52-0003",
+          "DIP52-0005"
         ]
       }
     },
@@ -477,8 +480,11 @@
         },
         "lit_ref": [
           "B22-01-0001",
+          "B23-01-0002",
           "DIP47-0004",
-          "DIP51-0001"
+          "DIP49-0003",
+          "DIP51-0001",
+          "DIP51-0006"
         ]
       }
     },
@@ -586,7 +592,8 @@
           "checked_by": null
         },
         "lit_ref": [
-          "B24-01-0003"
+          "B24-01-0003",
+          "DIP51-0004"
         ]
       }
     },
@@ -871,8 +878,13 @@
         },
         "lit_ref": [
           "B20-01-0002",
+          "B20-02-0001",
           "B25-01-0001",
-          "DIP52-0001"
+          "DIP46-0009",
+          "DIP52-0001",
+          "DIP52-0011",
+          "DIP52-0012",
+          "DIP53-0002"
         ]
       }
     },
@@ -1123,6 +1135,7 @@
           "DIP49-0010",
           "DIP51-0008",
           "DIP53-0002",
+          "DIP53-0006",
           "DIP53-0009"
         ]
       }
@@ -1261,8 +1274,12 @@
         },
         "lit_ref": [
           "B18-01-0003",
+          "B21-01-0004",
           "DIP49-0001",
-          "DIP49-0006"
+          "DIP49-0002",
+          "DIP49-0006",
+          "DIP53-0003",
+          "DIP53-0005"
         ]
       }
     },
@@ -1450,8 +1467,11 @@
           "checked_by": null
         },
         "lit_ref": [
+          "B22-01-0004",
           "DIP46-0001",
-          "DIP47-0002"
+          "DIP47-0002",
+          "DIP47-0003",
+          "DIP53-0011"
         ]
       }
     },
@@ -18181,13 +18201,13 @@
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
@@ -18246,8 +18266,8 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -18256,8 +18276,8 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
@@ -18371,8 +18391,8 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "F-022",
@@ -18381,8 +18401,8 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "F-023",
@@ -18536,13 +18556,13 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
