@@ -28,6 +28,8 @@ from __future__ import annotations
 
 import argparse
 import calendar
+import re
+import shlex
 import contextlib
 import hashlib
 import json
@@ -49,6 +51,9 @@ STANDING = COORD / "standing"
 LOCKS = COORD / "locks"
 GRAVEYARD = COORD / "graveyard"
 GENS = COORD / "gens"
+MAIL = COORD / "mail"
+BOARD = COORD / "board.md"
+MAIL_KINDS = ("note", "bug", "instruction", "question", "reply")
 
 TTL_MIN = 180            # абсолютный предел жизни задачи
 HEARTBEAT_TTL_MIN = 30   # без heartbeat столько минут — исполнитель считается мёртвым
@@ -60,6 +65,15 @@ PROTECTED = (
     "kg/nodes.jsonl", "kg/migrate.py", "kg/kg.py", "tools/coord.py",
 )
 TRIVIAL_ACCEPT = {"true", ":", "exit", "echo", ""}
+ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$")
+KINDS = ("research", "request", "maint")
+
+
+def valid_id(value: str) -> str:
+    """ID и имя агента — только безопасные символы: никаких `/`, `..`, пробелов."""
+    if not isinstance(value, str) or not ID_RE.fullmatch(value) or value in (".", ".."):
+        raise ValueError(f"недопустимый идентификатор: {value!r}")
+    return value
 
 
 # ---------------------------------------------------------------- утилиты
@@ -142,18 +156,30 @@ def lock(timeout: float = 60.0):
         except FileExistsError:
             try:
                 if time.time() - path.stat().st_mtime > LOCK_TTL_S:
-                    shutil.rmtree(path, ignore_errors=True)
+                    staled = path.with_name(f"coord.lock.stale-{os.getpid()}-{time.time_ns()}")
+                    try:
+                        os.rename(path, staled)   # ровно один ломатель
+                        shutil.rmtree(staled, ignore_errors=True)
+                    except OSError:
+                        pass
                     continue
             except FileNotFoundError:
                 continue
             if time.time() - t0 > timeout:
                 raise TimeoutError("замок координации занят слишком долго")
             time.sleep(0.05)
+    token = f"{os.getpid()}-{time.time_ns()}"
     try:
-        atomic_json(path / "owner.json", {"pid": os.getpid(), "at": now()})
+        atomic_json(path / "owner.json", {"pid": os.getpid(), "token": token, "at": now()})
         yield
     finally:
-        shutil.rmtree(path, ignore_errors=True)
+        # удаляем только СВОЙ замок: чужой (перехваченный) не трогаем
+        try:
+            owner = json.loads((path / "owner.json").read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            owner = {}
+        if owner.get("token") == token:
+            shutil.rmtree(path, ignore_errors=True)
 
 
 # ---------------------------------------------------------------- области
@@ -185,6 +211,28 @@ def overlap(mine: list[str], theirs: list[str]) -> list[str]:
             if mp.startswith(tp) or tp.startswith(mp):
                 bad.append(f"{m} ↔ {t}")
     return bad
+
+
+def in_area(rel: str, areas: list[str]) -> bool:
+    """Настоящая проверка «путь внутри области»: нормализация, запрет `..`, glob-match."""
+    try:
+        rel_n = norm_area(rel)
+    except ValueError:
+        return False
+    for a in areas:
+        try:
+            a_n = norm_area(a)
+        except ValueError:
+            continue
+        literal = a_n.split("*")[0]
+        if "*" in a_n:
+            import fnmatch
+            if fnmatch.fnmatch(rel_n, a_n) or rel_n.startswith(literal.rstrip("/") + "/"):
+                return True
+        else:
+            if rel_n == a_n or rel_n.startswith(a_n.rstrip("/") + "/"):
+                return True
+    return False
 
 
 def protected(area: list[str]) -> list[str]:
@@ -293,6 +341,11 @@ def next_gen(task_id: str) -> int:
 # ---------------------------------------------------------------- команды
 
 def cmd_register(a) -> int:
+    try:
+        valid_id(a.agent)
+    except ValueError as e:
+        print(f"ошибка: {e}")
+        return 1
     AGENTS.mkdir(parents=True, exist_ok=True)
     p = AGENTS / f"{a.agent}.md"
     if p.exists() and not a.force:
@@ -320,10 +373,24 @@ def accept_ok(cmds: list[str]) -> tuple[bool, str]:
             return False, f"команда не ссылается на файл: {c!r}"
         if t.startswith("git ") or "rm -rf" in t:
             return False, f"запрещённая команда в accept: {c!r}"
+        if any(tok in t for tok in (";", "&&", "||", "|", ">", "<", "`", "$(", "\n")):
+            return False, f"shell-операторы в accept запрещены: {c!r}"
+        try:
+            argv = shlex.split(t)
+        except ValueError:
+            return False, f"не разбирается: {c!r}"
+        if not argv[0].startswith("python3"):
+            return False, f"accept разрешён только для python3: {c!r}"
     return True, ""
 
 
 def cmd_add(a) -> int:
+    try:
+        valid_id(a.id)
+        valid_id(a.agent)
+    except ValueError as e:
+        print(f"ошибка: {e}")
+        return 1
     ok, why = accept_ok(a.accept)
     if not ok:
         print(f"ошибка: {why}")
@@ -394,6 +461,12 @@ def cmd_list(_a) -> int:
 
 
 def cmd_take(a) -> int:
+    try:
+        valid_id(a.id)
+        valid_id(a.agent)
+    except ValueError as e:
+        print(f"ошибка: {e}")
+        return 1
     if not (AGENTS / f"{a.agent}.md").exists():
         print("ошибка: агент не зарегистрирован (`register --agent …`)")
         return 1
@@ -452,7 +525,10 @@ def cmd_take(a) -> int:
         os.rename(tmp, dst)          # единственная commit-точка
         if not standing:
             shutil.rmtree(src, ignore_errors=True)
+    unread = len(_iter_mail(a.agent, "new"))
     event(a.agent, f"взята задача `{round_id}` (gen={gen})")
+    if unread:
+        print(f"внимание: {unread} непрочитанных писем — `python3 tools/coord.py inbox --agent {a.agent}`")
     print(f"взято: {round_id}" + (" (постоянная карточка осталась в pending)" if standing else ""))
     return 0
 
@@ -493,7 +569,7 @@ def cmd_finish(a) -> int:
         if not q.exists():
             print(f"ошибка: артефакт не существует: {rel}")
             return 1
-        if not overlap([rel], claim.get("area") or []):
+        if not in_area(rel, claim.get("area") or []):
             print(f"ошибка: артефакт вне рабочей области: {rel}")
             return 1
         arts.append({"path": rel, "sha256": sha(q), "bytes": q.stat().st_size})
@@ -506,6 +582,12 @@ def cmd_finish(a) -> int:
     return 0
 
 
+def _verify_fail(d: pathlib.Path, reason: str) -> int:
+    atomic_json(d / "VERIFY.json", {"ok": False, "reason": reason, "verified_at": now()})
+    print(f"verify: красный ({reason})")
+    return 1
+
+
 def cmd_verify(a) -> int:
     if a.agent != "main":
         print("ошибка: verify выполняет только main")
@@ -515,29 +597,40 @@ def cmd_verify(a) -> int:
         print("ошибка: задача не активна")
         return 1
     if not (d / "DONE.json").exists():
-        print("ошибка: нет DONE.json — завершение не заявлено")
-        return 1
+        return _verify_fail(d, "нет DONE.json")
     claim = read_json(d / ".claim.json")
     if sha(d / "TASK.md") != claim.get("task_sha256"):
-        print("ПРОВАЛ: TASK.md изменён после взятия")
-        return 1
+        return _verify_fail(d, "TASK.md изменён после взятия")
     card = card_of(d / "TASK.md")
     if not card["accept"]:
-        print("ошибка: в карточке нет критериев приёмки")
-        return 1
+        return _verify_fail(d, "нет критериев приёмки")
+    okc, why = accept_ok(card["accept"])
+    if not okc:
+        return _verify_fail(d, f"недопустимая accept-команда: {why}")
     done = read_json(d / "DONE.json")
     bad_art = [art["path"] for art in (done.get("artifacts") or [])
                if not (ROOT / art["path"]).exists() or sha(ROOT / art["path"]) != art["sha256"]]
     results = []
     for c in card["accept"]:
-        r = subprocess.run(c, shell=True, cwd=ROOT, capture_output=True, text=True,
-                           timeout=ACCEPT_TIMEOUT)
+        argv = shlex.split(c)
+        try:
+            r = subprocess.run(argv, cwd=ROOT, capture_output=True, text=True,
+                               timeout=ACCEPT_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            results.append({"cmd": c, "rc": 124, "tail": "timeout"})
+            print(f"[ПРОВАЛ] {c}: timeout")
+            continue
+        except FileNotFoundError:
+            results.append({"cmd": c, "rc": 127, "tail": "команда не найдена"})
+            print(f"[ПРОВАЛ] {c}: команда не найдена")
+            continue
         results.append({"cmd": c, "rc": r.returncode,
                         "tail": "\n".join((r.stdout or r.stderr).strip().splitlines()[-3:])})
         print(f"[{'ok' if r.returncode == 0 else 'ПРОВАЛ'}] {c}")
     ok = all(x["rc"] == 0 for x in results) and not bad_art
     atomic_json(d / "VERIFY.json", {
-        "ok": ok, "task_sha256": claim.get("task_sha256"), "gen": claim.get("gen"),
+        "ok": ok, "task_sha256": claim.get("task_sha256"),
+        "done_sha256": sha(d / "DONE.json"), "gen": claim.get("gen"),
         "verified_at": now(), "by": a.agent, "results": results, "bad_artifacts": bad_art,
     })
     if bad_art:
@@ -570,6 +663,18 @@ def cmd_close(a) -> int:
         if ver.get("task_sha256") != claim.get("task_sha256") or ver.get("gen") != claim.get("gen"):
             print("ошибка: VERIFY.json от другой версии задачи")
             return 1
+        if sha(d / "TASK.md") != claim.get("task_sha256"):
+            print("ошибка: TASK.md изменён после verify")
+            return 1
+        done = read_json(d / "DONE.json")
+        if ver.get("done_sha256") and ver["done_sha256"] != sha(d / "DONE.json"):
+            print("ошибка: DONE.json изменён после verify")
+            return 1
+        bad = [x["path"] for x in (done.get("artifacts") or [])
+               if not (ROOT / x["path"]).exists() or sha(ROOT / x["path"]) != x["sha256"]]
+        if bad:
+            print(f"ошибка: артефакты изменены после verify: {bad}")
+            return 1
         month = time.strftime("%Y-%m")
         target = DONE / month / a.id
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -582,6 +687,11 @@ def cmd_close(a) -> int:
 
 
 def cmd_release(a) -> int:
+    with lock():
+        return _release_locked(a)
+
+
+def _release_locked(a) -> int:
     d = ACTIVE / a.id
     if not d.exists():
         print("ошибка: задача не активна")
@@ -682,9 +792,147 @@ def cmd_status(_a) -> int:
         lines.append(f"- `{task}`: агент {c.get('agent')}, gen {c.get('gen')}, "
                      f"возраст {age_min(c.get('taken_at')):.0f}м, heartbeat {hb:.0f}м, "
                      f"DONE={(d / 'DONE.json').exists()}, VERIFY={(d / 'VERIFY.json').exists()}")
+    if MAIL.exists():
+        lines += ["", "## Непрочитанная почта", ""]
+        for d in sorted(MAIL.iterdir()):
+            if d.is_dir():
+                lines.append(f"- `{d.name}`: {len(_iter_mail(d.name, 'new'))}")
     out = "\n".join(lines) + "\n"
     atomic_write(COORD / "STATUS.md", out)
     print(out)
+    return 0
+
+
+# ---------------------------------------------------------------- почта агентов
+
+def _mail_dir(agent: str, box: str = "new") -> pathlib.Path:
+    d = MAIL / agent / box
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def _msg_id() -> str:
+    return time.strftime("%Y%m%dT%H%M%S") + f"-{os.getpid():05d}"
+
+
+def cmd_note(a) -> int:
+    """Письмо другому агенту (или всем). Лежит в его inbox, ничего не затирает."""
+    try:
+        valid_id(a.agent)
+        if a.to != "all":
+            valid_id(a.to)
+    except ValueError as e:
+        print(f"ошибка: {e}")
+        return 1
+    if not (AGENTS / f"{a.agent}.md").exists():
+        print("ошибка: ты не зарегистрирован (`register --agent …`)")
+        return 1
+    if a.kind not in MAIL_KINDS:
+        print(f"ошибка: вид сообщения {a.kind!r} не из {MAIL_KINDS}")
+        return 1
+    body = a.text or sys.stdin.read()
+    if not body.strip():
+        print("ошибка: пустое сообщение")
+        return 1
+    mid = _msg_id()
+    header = [
+        f"# {a.topic or '(без темы)'}",
+        "",
+        f"- id: `{mid}`",
+        f"- от: `{a.agent}`",
+        f"- кому: `{a.to}`",
+        f"- вид: `{a.kind}`",
+        f"- время: {now()}",
+    ]
+    if a.ref:
+        header.append(f"- про: {a.ref}")
+    header += ["", "---", "", body.rstrip(), ""]
+    text = "\n".join(header)
+
+    targets = [a.to] if a.to != "all" else [p.stem for p in AGENTS.glob("*.md") if p.stem != a.agent]
+    for t in targets:
+        atomic_write(_mail_dir(t, "new") / f"{mid}-{a.agent}.md", text)
+    event(a.agent, f"письмо `{mid}` → {a.to} ({a.kind}): {a.topic or 'без темы'}")
+    print(f"отправлено: {mid} → {', '.join(targets)}")
+    return 0
+
+
+def _iter_mail(agent: str, box: str):
+    d = MAIL / agent / box
+    if not d.exists():
+        return []
+    return sorted(d.glob("*.md"))
+
+
+def cmd_inbox(a) -> int:
+    try:
+        valid_id(a.agent)
+    except ValueError as e:
+        print(f"ошибка: {e}")
+        return 1
+    boxes = ["new"] if not a.all else ["new", "read"]
+    total = 0
+    for box in boxes:
+        msgs = _iter_mail(a.agent, box)
+        total += len(msgs)
+        if not msgs:
+            continue
+        print(f"\n== {a.agent}/{box}: {len(msgs)}")
+        for m in msgs:
+            head = m.read_text(encoding="utf-8").splitlines()
+            topic = head[0][2:].strip() if head else m.name
+            meta = " | ".join(ln[2:] for ln in head[1:8] if ln.startswith("- "))
+            print(f"  {m.name}")
+            print(f"    {topic}")
+            if a.verbose:
+                print(f"    {meta}")
+    if total == 0:
+        print(f"пусто: у {a.agent} нет писем")
+    return 0
+
+
+def cmd_read(a) -> int:
+    try:
+        valid_id(a.agent)
+    except ValueError as e:
+        print(f"ошибка: {e}")
+        return 1
+    src = MAIL / a.agent / "new" / a.msg
+    if not src.exists():
+        print(f"ошибка: нет письма {a.msg} в новом")
+        return 1
+    if a.print:
+        print(src.read_text(encoding="utf-8"))
+    dst = MAIL / a.agent / "read" / a.msg
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    os.replace(src, dst)
+    print(f"прочитано: {a.msg}")
+    return 0
+
+
+def cmd_board(a) -> int:
+    """Общая доска: то, что должен увидеть каждый (поломки, запреты, договорённости)."""
+    with lock():
+        BOARD.parent.mkdir(parents=True, exist_ok=True)
+        entry = f"\n## {now()} — {a.agent}\n\n{a.text}\n"
+        if BOARD.exists():
+            atomic_write(BOARD, BOARD.read_text(encoding="utf-8").rstrip() + "\n" + entry)
+        else:
+            atomic_write(BOARD, "# Доска координации\n" + entry)
+    event(a.agent, f"запись на доску: {a.text.splitlines()[0][:80]}")
+    print("записано на доску")
+    return 0
+
+
+def cmd_unread(_a) -> int:
+    """Сколько непрочитанного у каждого агента — для status и быстрой проверки."""
+    if not MAIL.exists():
+        print("почты нет")
+        return 0
+    for d in sorted(MAIL.iterdir()):
+        if d.is_dir():
+            n = len(_iter_mail(d.name, "new"))
+            print(f"{d.name}: {n}")
     return 0
 
 
@@ -703,7 +951,8 @@ def main(argv: list[str]) -> int:
     p.add_argument("--id", required=True); p.add_argument("--title", required=True)
     p.add_argument("--area", required=True); p.add_argument("--accept", action="append", default=[])
     p.add_argument("--priority", type=int, default=50); p.add_argument("--agent", default="main")
-    p.add_argument("--note", default=""); p.add_argument("--kind", default="research")
+    p.add_argument("--note", default="")
+    p.add_argument("--kind", default="research", choices=list(KINDS))
     p.add_argument("--standing", action="store_true"); p.set_defaults(fn=cmd_add)
 
     p = sub.add_parser("list"); p.set_defaults(fn=cmd_list)
@@ -723,6 +972,26 @@ def main(argv: list[str]) -> int:
     p = sub.add_parser("stale"); p.set_defaults(fn=cmd_stale)
     p = sub.add_parser("recover"); p.add_argument("--agent", default="main"); p.set_defaults(fn=cmd_recover)
     p = sub.add_parser("status"); p.set_defaults(fn=cmd_status)
+
+    p = sub.add_parser("note")
+    p.add_argument("--agent", required=True, help="кто пишет")
+    p.add_argument("--to", required=True, help="кому (имя агента или all)")
+    p.add_argument("--text", default="", help="текст; если пусто — читается stdin")
+    p.add_argument("--topic", default=""); p.add_argument("--ref", default="")
+    p.add_argument("--kind", default="note", choices=list(MAIL_KINDS))
+    p.set_defaults(fn=cmd_note)
+
+    p = sub.add_parser("inbox"); p.add_argument("--agent", required=True)
+    p.add_argument("--all", action="store_true"); p.add_argument("--verbose", action="store_true")
+    p.set_defaults(fn=cmd_inbox)
+
+    p = sub.add_parser("read"); p.add_argument("msg"); p.add_argument("--agent", required=True)
+    p.add_argument("--print", dest="print", action="store_true"); p.set_defaults(fn=cmd_read)
+
+    p = sub.add_parser("board"); p.add_argument("--agent", required=True)
+    p.add_argument("--text", required=True); p.set_defaults(fn=cmd_board)
+
+    p = sub.add_parser("unread"); p.set_defaults(fn=cmd_unread)
 
     a = ap.parse_args(argv)
     try:
