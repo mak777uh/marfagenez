@@ -56,8 +56,16 @@ def check(reports: pathlib.Path, tasks: pathlib.Path) -> list[str]:
         for atom in atoms:
             atom_id = atom.get("atom", "?")
             for field in ("atom", "statement", "domain", "kind", "works", "confidence"):
-                if not atom.get(field):
-                    errs.append(f"D2 {task_id}/{atom_id}: нет `{field}`")
+                if atom.get(field):
+                    continue
+                # Пустота (`gap`) — это результат поиска, а не отсутствие работы:
+                # `map_contract.py` разрешает ей не иметь `works`, если записан
+                # протокол поиска (`searched` + `scope`). Здесь то же правило,
+                # иначе дип не может честно записать «не найдено».
+                if field == "works" and atom.get("kind") == "gap" \
+                        and atom.get("searched") and atom.get("scope"):
+                    continue
+                errs.append(f"D2 {task_id}/{atom_id}: нет `{field}`")
             if atom.get("confidence") == "high" and atom.get("locator_status") != "verified":
                 errs.append(f"D3 {task_id}/{atom_id}: high с непроверенным локатором")
             if atom.get("locator_status") not in ("verified", "unverified"):
