@@ -1,0 +1,265 @@
+
+ Cell-type memory in a single-cell eukaryote requires the continuous presence of a specific transcription regulator - PMC
+ Skip to main content
+ An official website of the United States government
+ Here's how you know 
+ Here's how you know 
+ Official websites use .gov 
+ A
+ .gov website belongs to an official
+ government organization in the United States.
+ Secure .gov websites use HTTPS 
+ A lock (
+ Lock 
+ Locked padlock icon
+ ) or https:// means you've safely
+ connected to the .gov website. Share sensitive
+ information only on official, secure websites.
+ Search
+ Log in 
+ Dashboard
+ Publications
+ Account settings
+ Log out
+ Search…
+ Search NCBI
+ Primary site navigation
+ Search
+ Logged in as:
+ Dashboard
+ Publications
+ Account settings
+ Log in
+ Search PMC Full-Text Archive 
+ Search in PMC 
+ Journal List
+ User Guide
+ PERMALINK 
+ Copy 
+ As a library, NLM provides access to scientific literature. Inclusion in an NLM database does not imply endorsement of, or agreement with,
+ the contents by NLM or the National Institutes of Health. 
+ Learn more:
+ PMC Disclaimer 
+ |
+ PMC Copyright Notice
+ Proc Natl Acad Sci U S A . 2023 May 15;120(21):e2220568120. doi: 10.1073/pnas.2220568120 
+ Search in PMC 
+ Search in PubMed 
+ View in NLM Catalog 
+ Add to search 
+ Cell-type memory in a single-cell eukaryote requires the continuous presence of a specific transcription regulator 
+ Chien-Der Lee 
+ Chien-Der Lee 
+ a Department of Microbiology and Immunology, University of California, San Francisco, CA
+94158 
+ Find articles by Chien-Der Lee 
+ a , Naomi Ziv 
+ Naomi Ziv 
+ a Department of Microbiology and Immunology, University of California, San Francisco, CA
+94158 
+ Find articles by Naomi Ziv 
+ a , Alexander D Johnson 
+ Alexander D Johnson 
+ a Department of Microbiology and Immunology, University of California, San Francisco, CA
+94158 
+ Find articles by Alexander D Johnson 
+ a, 1 
+ Author information 
+ Article notes 
+ Copyright and License information 
+ a Department of Microbiology and Immunology, University of California, San Francisco, CA
+94158 
+ 1 To whom correspondence may be addressed. Email: ajohnson@cgl.ucsf.edu . 
+ Edited by Jasper Rine, University of California, Berkeley, CA; received December 5, 2022; accepted March 15, 2023 
+ Received 2022 Dec 5; Accepted 2023 Mar 15; Issue date 2023 May 23. 
+ Copyright © 2023 the Author(s). Published by PNAS. 
+ This open access article is distributed under Creative Commons Attribution-NonCommercial-NoDerivatives License 4.0 (CC BY-NC-ND) . 
+ PMC Copyright notice 
+ PMCID: PMC10214202 PMID: 37186823 
+ Significance 
+ Once a eukaryotic cell type is formed, its identity is typically maintained through many rounds of cell division. In principle, such cell-type memory can be produced by many different mechanisms, but it has been difficult to isolate the intrinsic basis of cell memory from other aspects of gene expression. We performed experiments in a fungal species ( Candida albicans , a component of the human microbiome) where a particular cell type is stably maintained for thousands of cell divisions. The results cleanly rule out several popular models for cell-type memory and demonstrate that, in this case, a key transcription factor is needed continuously to maintain cell-type memory—even across a single cell division cycle. 
+ Keywords: cell-type memory, transcriptional feedback loop, Candida albicans , degron Abstract 
+ A fundamental question in biology is how a eukaryotic cell type can be stably maintained through many rounds of DNA replication and cell division. In this paper, we investigate this question in a fungal species, Candida albicans , where two different cells types (white and opaque) arise from the same genome. Once formed, each cell type is stable for thousands of generations. Here, we investigate the mechanisms underlying opaque cell “memory.” Using an auxin-mediated degradation system, we rapidly removed Wor1, the primary transcription activator of the opaque state and, using a variety of methods, determined how long cells can maintain the opaque state. Within approximately 1 h of Wor1 destruction, opaque cells irreversibly lose their memory and switch to the white cell state. This observation rules out several competing models for cell memory and demonstrates that the continuous presence of Wor1 is needed to maintain the opaque cell state—even across a single cell division cycle. We also provide evidence for a threshold concentration of Wor1 in opaque cells, below which opaque cells irreversibly switch to white cells. Finally, we provide a detailed description of the gene expression changes that occur during this switch in cell types. 
+ A central principle of developmental biology holds that a cell type, once formed, can maintain its identity through many rounds of cell division. Several mechanisms can, in principle, produce such cell memory including transcriptional feedback loops, directly inherited chromatin structures, directly inherited DNA modifications (such as methylation), and propagation of prions ( 1 ). All of these mechanisms have been implicated in cell memory, but because they also influence gene expression, it has often been difficult to isolate the intrinsic basis of cell memory from the many other aspects of gene expression. Given the current state of knowledge, it seems especially important to rigorously investigate cell memory in a variety of different systems, the goal being to understand those mechanisms that are widely applicable. 
+ In this paper, we investigate an example of cell memory in the fungal species Candida albicans , a component of the human microbiome and an opportunistic pathogen of humans. Unlike the great majority of fungal species, C. albicans undergoes a process known as white–opaque switching ( 2 ), which allows two different cell types, each of which is heritable for thousands of cell divisions, to arise from a single genome. The switching machinery is highly conserved across clinical isolates of C. albicans and extends to Candida dubliniensis ( 3 ), which diverged from a common ancestor with C. albicans some 10 to 20 Mya. 
+ All of these observations demonstrate that white–opaque switching is under very strong selection and must therefore be of key importance for those Candida species that retain it. White and opaque cells differ in many ways. They can easily be distinguished by the appearance of their colonies on agar plates or by their cell shapes under a light microscope. Opaque cells mate over a million-fold more efficiently than white cells ( 4 ), and the two cell types exhibit different interactions with the immune system and express different metabolic pathways ( 5 – 7 ). Over ten percent of the genome is differentially expressed (more than threefold) between the two cell types ( 8 , 9 ). 
+ The central regulator of the opaque cell type is the Wor1 protein. Cells deleted for the WOR1 gene are locked in the white state, and ectopic expression of WOR1 in white cells causes them to switch en masse to the opaque form ( 10 – 12 ). Wor1 is a transcription regulator with an unusual DNA recognition motif ( 13 , 14 ) which binds directly to its own control region and thereby activates its own transcription; it also binds to and activates many additional opaque-specific genes ( 15 – 17 ). 
+ Although Wor1 is the central regulator of white–opaque switching, other transcription regulators contribute to the stability of the opaque state, once formed ( 12 , 15 , 16 , 18 – 23 ). As determined by gene expression and chromatin immunoprecipitation studies, these regulators form a complex network of nested feedback loops ( Fig. 1 A ). We have proposed that the transcriptional network of Fig. 1 A , which is largely dormant in white cells but becomes excited in opaque cells, is inherently self-sustaining and responsible for maintaining “memory” of the opaque state across cell divisions ( 15 ); however, this idea has not been explicitly tested or refined, nor have competing models been ruled out. In this paper, we document the consequences of rapidly destroying the Wor1 protein in opaque cells to answer the following questions: Is the continual presence of Wor1 required for maintenance of the opaque state? Can the additional regulators of Fig. 1 A provide a “backup” and supply transient memory of the opaque state (perhaps for a limited number of generations) in the absence of Wor1? Could an inherited form of chromatin structure preserve the opaque state in the absence of Wor1 and if so, for how many cell divisions? When Wor1 is destroyed, how does the complex, highly connected gene control circuit of Fig. 1 A respond? 
+ Fig. 1. 
+ Open in a new tab 
+ Wor1 protein is required to maintain opaque colony morphology. ( A ) Simplified model of white–opaque transcriptional circuit. Key transcription regulators are labeled in boxes. Genes in white boxes are up-regulated in the indicated cell type relative to their expression in the alternative cell type. Conversely, genes in gray boxes are down-regulated in the indicated cell type. In white cells, Efg1 represses WOR1 transcription and the Wor1 feedback loop is inactive. In opaque cells, Wor1 and other transcription regulators form a set of positive transcriptional feedback loops and repress EFG1 transcription. Arrowheads and bars represent activation and repression, respectively. ( B ) Wor1-degron opaque cells were grown in SD+aa+uri at 25 °C and treated with or without 100 µM auxin. Aliquots of the cultures were harvested at indicated time points, followed by protein extraction. Wor1-degron protein was detected by western blot with polyclonal antibody against the Wor1 protein [Zordan et al. ( 10 )]. Tubulin was used as a loading control. The Wor1-degron protein levels were quantified and normalized by tubulin levels. The quantified value of each lane was shown below the blot. 100 was assigned to time 0 for each strain for comparison. ( C ) Auxin-treated Wor1-degron opaque cells were collected at indicated timepoints and plated on SD+aa+uri agar plate to determine the percentage of opaque colony in the population. Wor1-degron protein levels were quantified by western blots as indicated in ( B ). The colony counting was carried out with three biological replicates as shown in SI Appendix , Fig. S1 A and the western blotting with two biological replicates. Bars represent SD. ( D ) Examples of colonies analyzed. Wor1-degron opaque cells at the beginning of the experiment ( Top ) and cells with or without auxin for 6 h were collected and followed by diluting out the auxin to stop further auxin-induced Wor1 degradation. The number at the Bottom of each image indicates the opaque colony percentage for these samples. Results 
+ Opaque Cells Lose Cell-Type Memory When Wor1 Is Depleted. 
+ We adapted an auxin-mediated degradation system ( 24 ) for use in C. albicans . The endogenous Wor1 was tagged with degron and green fluorescent protein (GFP) to allow determining in real time the effects of rapidly degrading Wor1 in opaque cells ( Methods ). As shown in Fig. 1 B and C , Wor1-degron protein levels in opaque cell culture decreased to ~35% after 1.5 h of auxin treatment and were undetectable after 6 h; in contrast, Wor1-degron protein levels in the same strain remained stable in the absence of auxin ( Fig. 1 B ). In the same experiment, we removed aliquots of the culture, rapidly washed the cells to remove the auxin, and plated cells in the absence of auxin to determine whether or not the cells remained committed to the opaque state. Because white and opaque cells produce easily distinguishable colonies on agar plates, we simply counted them. After 6 h of auxin treatment (when Wor1 protein was undetectable), 100% of colonies exhibited the white colony morphology ( Fig. 1 D ), indicating that the opaque state could not be recovered when the auxin was removed at this point. As a control, the parallel culture maintained in the absence of auxin gave rise to 100% opaque colonies ( Fig. 1 D and SI Appendix , Fig. S1 A ). At earlier points in the time course of auxin treatment, the percentage of cells that remained in the opaque state (monitored by colony counts after washing, as described above) gradually decreased and correlated well with the Wor1-degron protein levels; there is a consistent delay, on average, of approximately 1 h between the percentage of Wor1 remaining in the culture and the percentage of cells that retain memory of the opaque state ( Fig. 1 C ). This lag is shorter than the generation time for opaque cells in this growth medium (90 min), and we interpret these results as meaning that, without Wor1, the opaque state cannot be reliably transmitted across even a single cell complete division cycle. This interpretation relies on control experiments ( SI Appendix , Fig. S1 B and Supplementary Text ) showing that the auxin-free wash rapidly reverses the protein destruction caused by the degron, consistent with previous reports of rapid auxin reversibility in Saccharomyces cerevisiae ( 25 ). A Critical Wor1 Protein Level Is Required for Opaque Cell-Type Memory. 
+ An important insight into the maintenance of the opaque state can be gleaned from the developed colonies ( Fig. 1 C ), especially at the intermediate timepoints (i.e., 1 to 3 h). After washing the cells to remove the auxin, over 99% of the colonies that developed were either purely white or purely opaque across the entire time course. Thus, when Wor1 is partially degraded (on a bulk culture basis), individual cells either maintained or lost memory of the opaque state but did not produce mixed-state colonies. 
+ To obtain a higher-resolution view of the effects of degrading Wor1, we used a microfluidic perfusion system coupled with fluorescence microscopy to monitor the Wor1 protein levels in individual cells. The experiment began with opaque cells (showing their characteristic elongated shapes) with strong nuclear GFP signals from the Wor1-degron protein ( Fig. 2 , “0” timepoint). By 10 h of auxin treatment, the culture was dominated by white cells (easily recognized by their yeast-like budding morphology) with no detectable GFP signal ( Fig. 2 and Movie S1 ). Consistent with the bulk western blot results ( Fig. 1 B ), the level of GFP signal observed in individual cells decreased continuously over time after auxin addition. However, clear heterogeneity in the GFP signal was observed from one cell to the next (e.g., 2-h timepoint in Fig. 2 ), indicating that, following auxin treatment, individual cells display different levels of Wor1. To test the fate of cells with different levels of Wor1, we used the same microfluidic system as described above, but instead of continuous flow of auxin, we utilized a 2-h pulse of auxin, followed by a wash step in the auxin-free medium. (The continuous presence of auxin and the absence of auxin ( Fig. 3 A and C , respectively) were included as controls.) After 2 h of auxin treatment, the fields of cells show heterogeneous levels of GFP signal ( Fig. 3 B and Movie S2 ), consistent with previous results ( Fig. 2 ); for example, those cells at the top of field in Fig. 3 B are brighter than those at the bottom. Following the shift to auxin-free medium, those cells with brighter GFP signal returned to their original high GFP levels, and all their progeny cells maintained the opaque cellular morphology and high GFP signal. In contrast, cells with lower levels of GFP at 2 h (e.g., those at the bottom of the field) continued to lose the GFP signal after the auxin-free wash; progeny cells eventually lost both fluorescence and opaque cell morphology; that is, they became white cells. This trend—high-expressing cells remained opaque after the auxin-free wash and low-expressing cells did not recover the opaque state following the wash––was observed in many independent microfluidic chambers ( SI Appendix , Fig. S2 ). These results show that, to maintain the opaque state after transient auxin treatment, a critical threshold level of Wor1 is needed. We can make a rough estimate of the threshold concentration of Wor1 needed to maintain the opaque state. As shown in Fig. 1 C , when the bulk culture level of Wor1 has decreased to 75% of the original level (after 45 min of auxin treatment), 100% of the cells remain opaque after washing, indicating that, on average, an opaque cell can withstand at least a 25% drop in the Wor1 protein level without irreversibly switching to a white cell. At our next timepoint (1.5 h), the Wor1 protein has dropped to approximately 35% of its opaque level, and there is a significant loss of opaque cell memory. 
+ Fig. 2. 
+ Open in a new tab 
+ Degradation of Wor1 protein immediately destabilizes opaque cell phenotype. Live cell imaging of Wor1-degron opaque cells upon auxin treatment. Wor1-degron opaque cells were loaded into CellASIC ONIX2 Microfluidic Pad Trap plate (Y04T, Millipore-Sigma). On three sides of each chamber ( Top , Left , and Bottom ), are pillars to retain cells but allow flow of media during culture. Cells were supplied with continuous flow of base medium SD+aa+uri with 500 µM auxin at 25 °C beginning at time = 0. Images were taken at indicated time with 100× objective in both Differential Interference Contrast (DIC) and Fluorescein (FITC) channels. Two founder cells are labeled with black and red arrows. Their corresponding daughter cells were labeled by gray and orange arrows. Both daughter cells were morphologically shorter than the founder cells and different from yeast-like white cells. Fig. 3. 
+ Open in a new tab 
+ Opaque cells can recover after limited degradation of the Wor1 protein, but cannot recover after Wor1 levels fall below a threshold concentration. Wor1-degron cells were imaged in microfluidic plate as described in Fig. 2 . The base medium is SD+aa+uri and the auxin medium is SD+aa+uri+500 µM auxin. The medium was supplied in the following order: Continuous flow of base medium throughout the experiment ( A ). 2-h pulse of auxin medium, followed by continuous flow of base medium (auxin-free) throughout the experiment ( B ). Continuous flow of auxin medium throughout the experiment ( C ). To more directly visualize the threshold levels of Wor1, we tracked 36 individual cells exposed to 4 h of auxin treatment followed by a auxin-free wash step in the microfluidic device ( Fig. 4 ). In this experiment, approximately half of the cells remained opaque and half reverted to white following the wash. We can estimate the threshold needed to maintain the opaque state by comparing the distributions of Wor1 GFP signal at the end of the auxin exposure between cells that retained the opaque state to those that switched to the white state. If we normalize to the range of fluorescence between white cells and opaque cells (as in Fig. 4 C ), we estimate the threshold as approximately 25% of typical opaque levels. As we cannot differentiate low levels of Wor1 GFP from autofluorescence, this constitutes a lower limit for the threshold. Considering absolute fluorescence values (as shown in the example in Fig. 4 A ), the threshold is estimated as 70% of typical opaque values, which is the upper limit of the threshold concentration. These values are consistent with those observed in the bulk culture experiments where Wor1 levels were determined directly by western blot rather than fluorescence ( Fig. 2 ). Taking all these observations together, we estimate the threshold level of Wor1 to be between 25% and 75% of its level in normal opaque cells. 
+ Fig. 4. 
+ Open in a new tab 
+ Single-cell tracking of Wor1-GFP 1 fluorescence reveals a threshold for maintaining opaque cell state. ( A ) Single-cell traces of Wor1-GFP fluorescence for two cells within a single microfluidic trap. Cells were exposed to media containing 100 µM auxin for 4 h followed by media without auxin. Fluorescence decreased in both cells during auxin treatment. Fluorescence remained slightly higher in one cell (colored teal) which regained high levels of fluorescence after auxin was removed. Fluorescence in the second cell (colored yellow) remained low and did not reappear after auxin removal, indicating an irreversible switch to the white cell state. ( B ) Subset of images representing data shown in ( A ) with time proceeding from Top-Left to Bottom-Right . Cell outlines using the same colors as in ( A ) and are based on automated image analysis. ( C ) Distributions of single-cell measurements of Wor1-GFP fluorescence for a total of 36 cells grouped by their eventual maintenance of the opaque state (teal, n = 18) or loss (yellow, n = 18) of the opaque state (evaluated at 10 to 12 h). Data were scaled by typical white and opaque values of fluorescence (horizontal gray lines). Horizontal red line depicts the approximate threshold above which cells tend to maintain the opaque cell state. In comparison to the bulk culture experiment of Fig. 1 , a longer time of auxin treatment was required in this microfluidic experiment to produce approximately the same rate of switching. Wor1 Destruction Induces Gradual Loss of Opaque Cellular Morphology and Transcriptional Profile. 
+ The microfluidic system also allowed tracking of the changes in the appearance of individual cells as they switched from opaque to white in response to Wor1 degradation. After the Wor1-degron-GFP protein became undetectable in a mother cell, even the daughter cells (which also lack the GFP signal) did not immediately exhibit the characteristic white cell morphology (yeast-like, budding cells); rather, they displayed an intermediate morphology–shorter than the original opaque cells, but easily distinguishable from true white cells ( Fig. 2 ). Subsequent generations of cells became shorter and shorter and, by three generations, the cells exhibited the conventional white-cell morphology. Thus, upon Wor1 degradation, memory of the opaque state is lost within an hour, but several generations are required for remodeling of the cells to be completed. This lag is not surprising as, among other features, the cell wall structure of white and opaque cells differs dramatically in appearance ( 2 ). 
+ As described earlier, white and opaque cells of C. albicans have significantly different gene expression profiles, commensurate with their many phenotypic differences. The rapid degradation of Wor1 allowed us to order the gene expression changes that occur when cells switch from opaque to white. We performed RNAseq in Wor1-degron opaque cells at 8 timepoints across 6 h of auxin treatment ( SI Appendix , Figs. S1 C , S3, and S4 and Supplementary Text ). Obviously, there is a great deal of information from these experiments, and here we mention only a few observations. First, levels of Wor1 mRNA rapidly decline upon auxin treatment, consistent with previous work showing that the Wor1 protein directly activates its own transcription ( 17 ). Second, the other activators of white–opaque switching ( Fig. 1 A ) show different, idiosyncratic patterns; for example, WOR3 mRNA declines even faster than WOR1 mRNA, CZF1 declines slowly, and WOR4 transiently increases before slowly declining. Fourth, the bulk of the genes that change are white- or opaque-enriched genes and can easily be grouped into early, middle, and late clusters depending on their responses to Wor1 destruction ( SI Appendix , Supplementary Text ). Finally, by 6 h of auxin treatment, the transcription pattern closely resembled that of true white cells, but some opaque-specific mRNAs had not fully declined to their white cell levels ( SI Appendix , Fig. S3 ), consistent with the lag in cell morphology observed in the microfluidic experiments. Discussion 
+ In this paper, we address how a particular cell type (the opaque cell) of the fungal species C. albicans is faithfully maintained across thousands of cell generations. The formation and maintenance of this cell type is “epigenetic” in the sense that the genome sequence remains the same as that of the other cell type, the white cell ( 26 ). Our strategy relies on rapidly degrading the key transcription regulator of the opaque state (Wor1) and monitoring the consequences using fluorescence microscopy, RNA-seq, cell-type commitment plating assays, and other approaches. 
+ The principal conclusions of this paper are as follows: 
+ 1. Within an hour of auxin-mediated Wor1 degradation, opaque cells irreversibly switch to the white cell state; that is, they cannot be rescued after this point by removing the auxin and halting the destruction. In these experiments, the doubling time of cells is 90 min; therefore, memory of the opaque state cannot be transmitted across even a single complete round of cell division, much less the thousands of generations typical of the opaque state inheritance. 
+ 2. A threshold level of Wor1, estimated to be between 25% and 75% of the normal level of Wor1 in opaque cells, is needed to maintain the opaque state. Although there is some degree of robustness of the opaque state to fluctuating levels of Wor1, this tolerance is clearly limited in degree. 
+ 3. Following Wor1 degradation and the irreversible loss of opaque cell memory, several additional generations are required for the transitioning opaque cells to fully assume the morphological appearance and mRNA expression pattern of true white cells. 
+ 4. When Wor1 protein is degraded, its mRNA rapidly declines, but the mRNAs of the additional transcription regulators of the opaque cell circuit ( Fig. 1 A ) do not decline in concert with Wor1. Some of these mRNAs retain their opaque cell levels well after Wor1 has been degraded (and some even transiently increase), but this sustained synthesis is not sufficient to provide even a temporary backup mechanism to maintain memory of the opaque state. 
+ These results demonstrate that there can be no other mechanism for cell memory that functions independently of the Wor1 protein. As far as is known, Wor1 does not have any specialized properties other than being a sequence-specific DNA binding protein that regulates transcription. It follows that models such as directly inherited chromatin structures or directly inherited DNA modifications cannot independently provide opaque cell memory across even a single complete cell division cycle. These mechanisms may well come into play to fully express the opaque state, but, on their own, they cannot explain how the memory of this state is maintained. We note that Wor1 is believed to form a biomolecular condensate with most of the other transcription regulators of Fig. 1 A ( 27 ); our results show that this proposed condensate does not protect Wor1 from auxin-mediated degradation, nor can any remaining condensate be a source of cell memory independent of Wor1. 
+ A model that is consistent with all the observations in this paper is a relatively simple transcription feedback model for cell memory, where Wor1 protein activates its own synthesis and is transmitted to daughter cells, sustaining the feedback loop across cell divisions. There is a well-studied precedent for a single transcriptional feedback loop providing stable cell memory across thousands of generations, namely the bacteriophage lambda repressor, which holds an integrated prophage in check while activating its own synthesis ( 28 ). A conceptionally similar, artificial transcriptional feedback loop in S. cerevisiae has been described that also exhibits cell memory ( 29 , 30 ), indicating that there is no theoretical barrier to this solution in eukaryotes. Our work shows that a similar principle can explain a much more complex, naturally occurring system, one that underlies a large cell-type program in a fungal pathogen. 
+ The C. albicans experiments described here provide several advantages over other studies of cell memory. For example, removal of a key cell type–specific transcription regulator from animal cells has been typically carried out by blocking (sometimes only partially) new synthesis of the protein, often requiring relatively long times for the protein itself to decline. An exception is Bates et al. where Oct4 was rapidly degraded in pluripotent mouse stem cells using a similar auxin-mediated system ( 31 ). Rapid depletion of Oct4 was shown to affect the expression of many genes involved in pluripotency, but the point at which the stem cells irreversibly lost pluripotency was not reported. Serrano-Saiz et al. showed that the transcription regulators unc-86 (in worms) and Brn3a (in mice) are continually required to maintain the “neuron-class” differentiated cell type ( 32 ). And the C. elegans transcription regulator che-1 was shown to require a positive feedback loop to maintain a particular type of neuron ( 33 ). An important difference between these experiments and ours is that maintenance of the differentiated state in these postmitotic cells does not require that the memory persists across cell divisions. Our experiments directly address a case where cell memory remains stable across many cycles of cell division. Given that this basic mechanism—a self-sustaining positive feedback loop—is found across diverse settings in bacteria, fungi, and animals, it seems likely that this same basic mechanism will be applicable to many other cases of cell memory. Methods 
+ Auxin-Induced Wor1 Protein Degradation. 
+ The WOR1-degron opaque cells were grown in SD+aa+uri until the cell density reached 0.20 OD/mL. Auxin (3-Indoleacetic acid, Sigma-Aldrich) was then added at a final concentration of 100 µM. After treatment, an aliquot of the culture was taken from the culture and analyzed for Wor1 (by western blots). Another aliquot of the culture was washed and plated on the SD+aa+uri agar plate, followed by the counting of white and opaque colonies to determine the population of these two cell types. To monitor the changes at the single-cell level in real time, a microfluidic perfusion system coupled with fluorescence microscopy was used. Supplementary Material 
+ Appendix 01 (PDF) 
+ Click here for additional data file. (1.2MB, pdf) 
+ Dataset S01 (XLSX) 
+ Click here for additional data file. (5.2MB, xlsx) 
+ Dataset S02 (XLSX) 
+ Click here for additional data file. (42.6KB, xlsx) 
+ Movie S1. Time course images taken every 15 minutes, corresponding to Fig. 2. 
+ Download video file (7.5MB, avi) 
+ Movie S2. Time course images taken every 15 minutes, corresponding to Fig. 3B. 
+ Download video file (5.9MB, avi) 
+ Acknowledgments 
+ We thank Elizabeth Costa for valuable suggestion of the auxin system. We thank members of the Johnson Laboratory, especially Matthew Lohse, and Jenny Zhang for valuable experimental advice and comment on the manuscript and Oliver Hobart for valuable comments on the manuscript. Sequencing was performed at the UCSF Center for Advanced Technology (CAT), supported by UCSF Program for Breakthrough Biomedical Research (PBBR), Research Resource Program (RRP) Institutional Matching Instrumentation Awards (IMIA), and NIH 1S10OD028511-01 grants. This study was supported by NIH grants R01AI049187 and R01GM37049 to A.D.J. 
+ Author contributions 
+ C.-D.L. and A.D.J. designed research; C.-D.L. performed research; C.-D.L. and N.Z. analyzed data; and C.-D.L. and A.D.J. wrote the paper. Competing interests 
+ The authors declare no competing interest. Footnotes 
+ This article is a PNAS Direct Submission. Data, Materials, and Software Availability 
+ All study data are included in the article and/or supporting information . Supporting Information References 
+ 1. Alberts B., et al. , Molecular Biology of the Cell (Garland Science, ed. 6, 2014). [ Google Scholar ] 
+ 2. Slutsky B., et al. , “White-opaque transition”: A second high-frequency switching system in Candida albicans. J. Bacteriol.
+169, 189–197 (1987). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 3. Pujol C., et al. , The closely related species Candida albicans and Candida dubliniensis can mate. Eukaryot Cell.
+3, 1015–1027 (2004). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 4. Miller M. G., Johnson A. D., White-opaque switching in candida albicans is controlled by mating-type locus homeodomain proteins and allows efficient mating. Cell.
+110, 293–302 (2002). [ DOI ] [ PubMed ] [ Google Scholar ] 
+ 5. Brenes L. R., Lohse M. B., Hartooni N., Johnson A. D., A set of diverse genes influence the frequency of white-opaque switching in Candida albicans. G3 (Bethesda)
+10, 2593–2600 (2020). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 6. Dalal C. K., et al. , A population shift between two heritable cell types of the pathogen Candida albicans is based both on switching and selective proliferation. Proc. Natl. Acad. Sci. U.S.A.
+116, 26918–26924 (2019). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 7. Ene I. V., et al. , Phenotypic profiling reveals that candida albicans opaque cells represent a metabolically specialized cell state compared to default white cells. mBio
+7, e01269-16 (2016). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 8. Lan C.-Y., et al. , Metabolic specialization associated with phenotypic switching in Candida albicans. Proc. Natl. Acad. Sci. U.S.A.
+99, 14907–14912 (2002). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 9. Tuch B. B., et al. , The transcriptomes of two heritable cell types illuminate the circuit governing their differentiation. PLoS Genet.
+6, e1001070 (2010). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 10. Zordan R. E., Galgoczy D. J., Johnson A. D., Epigenetic properties of white–opaque switching in Candida albicans are based on a self-sustaining transcriptional feedback loop. Proc. Natl. Acad. Sci. U.S.A.
+103, 12807–12812 (2006). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 11. Huang G., et al. , Bistable expression of WOR1 , a master regulator of white–opaque switching in Candida albicans. Proc. Natl. Acad. Sci. U.S.A.
+103, 12813–12818 (2006). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 12. Srikantha T., et al. , TOS9 regulates white-opaque switching in Candida albicans. Eukaryot Cell.
+5, 1674–1687 (2006). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 13. Lohse M. B., Zordan R. E., Cain C. W., Johnson A. D., Distinct class of DNA-binding domains is exemplified by a master regulator of phenotypic switching in Candida albicans. Proc. Natl. Acad. Sci. U.S.A. 107, 14105–14110 (2010). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 14. Zhang S., Zhang T., Yan M., Ding J., Chen J., Crystal structure of the WOPR-DNA complex and implications for Wor1 function in white-opaque switching of Candida albicans. Cell Res.
+24, 1108–1120 (2014). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 15. Zordan R. E., Miller M. G., Galgoczy D. J., Tuch B. B., Johnson A. D., Interlocking transcriptional feedback loops control white-opaque switching in Candida albicans. PLos Biol.
+5, e256 (2007). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 16. Hernday A. D., et al. , Structure of the transcriptional network controlling white-opaque switching in Candida albicans. Mol. Microbiol.
+90, 22–35 (2013). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 17. Ziv N., Brenes L. R., Johnson A., Multiple molecular events underlie stochastic switching between 2 heritable cell states in fungi. PLoS Biol.
+20, e3001657 (2022). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 18. Sonneborn A., Tebarth B., Ernst J. F., Control of white-opaque phenotypic switching in Candida albicans by the Efg1p morphogenetic regulator. Infect. Immun.
+67, 4560–4655 (1999). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 19. Vinces M. D., Kumamoto C. A., The morphogenetic regulator Czf1p is a DNA-binding protein that regulates white–opaque switching in Candida albicans. Microbiology
+153, 2877–2884 (2007). [ DOI ] [ PubMed ] [ Google Scholar ] 
+ 20. Wang H., et al. , Candida albicans Zcf37, a zinc finger protein, is required for stabilization of the white state. FEBS Lett.
+585, 797–802 (2011). [ DOI ] [ PubMed ] [ Google Scholar ] 
+ 21. Hernday A. D., et al. , Ssn6 defines a new level of regulation of white-opaque switching in Candida albicans and is required for the stochasticity of the switch. mBio
+7, e01565-15 (2016). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 22. Lohse M. B., Johnson A. D., Identification and characterization of Wor4, a new transcriptional regulator of white-opaque switching. G3 (Bethesda)
+6, 721–729 (2016). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 23. Srikantha T., Tsai L. K., Daniels K., Soll D. R., EFG1 null mutants of Candida albicans switch but cannot express the complete phenotype of white-phase budding cells. J. Bacteriol.
+182, 1580–1591 (2000). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 24. Nishimura K., Fukagawa T., Takisawa H., Kakimoto T., Kanemaki M., An auxin-based degron system for the rapid depletion of proteins in nonplant cells. Nat. Methods
+6, 917–922 (2009). [ DOI ] [ PubMed ] [ Google Scholar ] 
+ 25. Papagiannakis A., de Jonge J. J., Zhang Z., Heinemann M., Quantitative characterization of the auxin-inducible degron: A guide for dynamic protein depletion in single yeast cells. Sci. Rep.
+7, 4704 (2017). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 26. Beekman C. N., Cuomo C. A., Bennett R. J., Ene I. V., Comparative genomics of white and opaque cell states supports an epigenetic mechanism of phenotypic switching in Candida albicans. G3 (Bethesda)
+11, jkab001 (2021). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 27. Frazer C., et al. , Epigenetic cell fate in Candida albicans is controlled by transcription factor condensates acting at super-enhancer-like elements. Nat. Microbiol.
+5, 1374–1389 (2020). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 28. Ptashne M., A Genetic Switch. Third Edition, Phage Lambda Revisited (CSH Press, 2004), vol. 84. [ Google Scholar ] 
+ 29. Ajo-Franklin C. M., et al. , Rational design of memory in eukaryotic cells. Gene. Dev.
+21, 2271–2276 (2007). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 30. Yang Y., Nemhauser J. L., Klavins E., Synthetic bistability and differentiation in yeast. Acs Synth. Biol.
+8, 929–936 (2019). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 31. Bates L. E., Alves M. R. P., Silva J. C. R., Auxin-degron system identifies immediate mechanisms of OCT4. Stem. Cell Rep.
+16, 1818–1831 (2021). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ 32. Serrano-Saiz E., Leyva-Díaz E., Cruz E. D. L., Hobert O., BRN3-type POU homeobox genes maintain the identity of mature postmitotic neurons in nematodes and mice. Curr. Biol.
+28, 2813–2823.e2 (2018). [ DOI ] [ PubMed ] [ Google Scholar ] 
+ 33. Leyva-Díaz E., Hobert O., Transcription factor autoregulation is required for acquisition and maintenance of neuronal identity. Development.
+146, dev177378 (2019). [ DOI ] [ PMC free article ] [ PubMed ] [ Google Scholar ] 
+ Associated Data 
+ This section collects any data citations, data availability statements, or supplementary materials included in this article. 
+ Supplementary Materials 
+ Appendix 01 (PDF) 
+ Click here for additional data file. (1.2MB, pdf) 
+ Dataset S01 (XLSX) 
+ Click here for additional data file. (5.2MB, xlsx) 
+ Dataset S02 (XLSX) 
+ Click here for additional data file. (42.6KB, xlsx) 
+ Movie S1. Time course images taken every 15 minutes, corresponding to Fig. 2. 
+ Download video file (7.5MB, avi) 
+ Movie S2. Time course images taken every 15 minutes, corresponding to Fig. 3B. 
+ Download video file (5.9MB, avi) 
+ Data Availability Statement 
+ All study data are included in the article and/or supporting information . 
+ Articles from Proceedings of the National Academy of Sciences of the United States of America are provided here courtesy of National Academy of Sciences 
+ ACTIONS 
+ View on publisher site 
+ PDF (1.4 MB) 
+ Cite 
+ Collections 
+ Permalink 
+ PERMALINK 
+ Copy 
+ RESOURCES 
+ Similar articles
+ Cited by other articles
+ Links to NCBI Databases
+ Cite 
+ Copy 
+ Download .nbib 
+ .nbib 
+ Format: 
+ AMA
+ APA
+ MLA
+ NLM
+ Add to Collections 
+ Create a new collection 
+ Add to an existing collection 
+ Name your collection
+ * 
+ Choose a collection
+ Unable to load your collection due to an error 
+ Please try again 
+ Add
+ Cancel
+ Follow NCBI
+ NCBI on X (formerly known as Twitter) 
+ NCBI on Facebook 
+ NCBI on LinkedIn 
+ NCBI on GitHub 
+ NCBI RSS feed 
+ Connect with NLM
+ NLM on X (formerly known as Twitter) 
+ NLM on Facebook 
+ NLM on YouTube 
+ National Library of Medicine
+ 8600 Rockville Pike Bethesda, MD 20894 
+ Web Policies
+ FOIA
+ HHS Vulnerability Disclosure
+ Help
+ Accessibility
+ Careers
+ NLM
+ NIH
+ HHS
+ USA.gov
+ Back to Top 
