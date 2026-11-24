@@ -1,7 +1,0 @@
-[
- "FULL_TEXT:\"heating rate\" AND FULL_TEXT:inactivation AND OPEN_ACCESS:y",
- "FULL_TEXT:\"drying rate\" AND FULL_TEXT:survival AND OPEN_ACCESS:y",
- "FULL_TEXT:\"dose rate\" AND FULL_TEXT:\"surviving fraction\" AND FULL_TEXT:\"dose-rate\" AND OPEN_ACCESS:y",
- "FULL_TEXT:\"fluence rate\" AND FULL_TEXT:inactivation AND OPEN_ACCESS:y",
- "FULL_TEXT:\"cooling rate\" AND FULL_TEXT:survival AND FULL_TEXT:cryopreservation AND OPEN_ACCESS:y"
-]
