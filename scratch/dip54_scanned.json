@@ -1,0 +1,1155 @@
+{
+ "10.3390/ijms27115098": {
+  "title": "Magnetically Targeted Drug Transport Across a Tumor Cell Membrane Under Magnetic Field Gradients.",
+  "pmcid": "PMC13257761",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "2. Results and Discussion",
+    "sent": "The range B = 0.1 – 2 T is provided to indicate physically relevant magnetic field strengths for magnetic targeting configurations, whereas the numerical results are primarily interpreted through the resulting values of v m a g and the magnetic Peclet number."
+   },
+   {
+    "kind": "Bi",
+    "section": "2. Results and Discussion",
+    "sent": "For the representative parameter set, the membrane Biot number is B i = P m R / D e = 0.5 , indicating that membrane resistance and extracellular diffusive resistance are comparable in magnitude."
+   },
+   {
+    "kind": "Pe",
+    "section": "2. Results and Discussion",
+    "sent": "Based on the magnetic drift velocity considered at the upper end of the simulated range, v m a g = 5 × 10 − 7 m s − 1 , the corresponding magnetic Peclet number is P e m = v m a g R / D e ≈ 0.5 ."
+   },
+   {
+    "kind": "Pe",
+    "section": "3.4. Dimensionless Formulation",
+    "sent": "Further, the magnetic Peclet number is defined as (14) P e m a g = v m a g ( R ) R D e where v mag ( R ) is the magnetic drift velocity at the cell surface."
+   },
+   {
+    "kind": "Bi",
+    "section": "3.4. Dimensionless Formulation",
+    "sent": "The membrane Biot number is given by (15) B i = P m R D e , where P m is the cell membrane permeability."
+   }
+  ]
+ },
+ "10.1039/d6sm00060f": {
+  "title": "Modeling tumor transport and growth with poroelastic biopolymer networks.",
+  "pmcid": "PMC13040666",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Péclet number governs growth factor transport and distribution in the alginate gel geometry",
+    "sent": "2.3 Péclet number governs growth factor transport and distribution in the alginate gel geometry Next, we modeled the effects of fluid flow on growth factor transport."
+   },
+   {
+    "kind": "Pe",
+    "section": "Péclet number governs growth factor transport and distribution in the alginate gel geometry",
+    "sent": "(C) Radial profiles of at six time points (0, 60, 120, 180, 240, 360 min) for five Péclet numbers (0.2208, 2.208, 5.0, 22.08, 220.8)."
+   },
+   {
+    "kind": "Pe",
+    "section": "Growth factor concentration gradients modulate tumor proliferation dynamics",
+    "sent": "To compare tumor growth under different Péclet number conditions and spatial regions, we also conducted the ABM simulations using growth factor profiles in two distinct regions in our computational grid (region A at r = 0 mm and region B at r = 3.6 mm), under different Péclet number conditions."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "In the growth factor saturated environment, higher Péclet number conditions help retain more growth factors and promote more spatially uniform distribution of growth factors as compared to low Péclet number conditions ( Fig. 4C )."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "Our model is consistent with previous findings that growth-induced solid stress and interstitial fluid pressure can influence tumor growth by suppressing proliferation and collapsing vessels, 19,47,48 and that these forces drive vascular remodeling and heterogeneity in hypoxia. 49–51 We employed an ABM to simulate and compare tumor growth under different Péclet number conditions."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "In a growth factor-saturated tumor microenvironment, high Péclet number (higher compression) promotes tumor growth, while low Péclet number results in slower progression or even regression of tumors ( Fig. 6C )."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "Under high Péclet number conditions, growth factors are more evenly distributed, resulting in similar local tumor growth rates across different regions of the tumor microenvironment (as shown by Fig. 6C high Pe cases, where no significant difference in mean tumor load was observed between regions A and B)."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "In contrast, under low Péclet number conditions, steep solute concentration gradients emerge, resulting in heterogeneous growth factor availability and regionally variable tumor growth (as shown by Fig. 6C low Pe cases, where mean tumor load was found to be significantly different between regions A and B)."
+   },
+   {
+    "kind": "Pe",
+    "section": "Growth factor transport",
+    "sent": "5.7 Growth factor transport 5.7.1 Advection–diffusion PDE and Péclet number Compression of the poroelastic gel induces a range of outward fluid fluxes under varying levels of stress and strain rates."
+   }
+  ]
+ },
+ "10.1098/rsif.2026.0196": {
+  "title": "How brain pulsations drive solute transport in the cranial subarachnoid space: insights from a toy model.",
+  "pmcid": "PMC13641946",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Methods",
+    "sent": "With S fixed, we plot the Péclet number in figure 2 across a range of physiological values of A and α arising from species differences, individual variability and physiological states."
+   },
+   {
+    "kind": "Pe",
+    "section": "Transport",
+    "sent": "Transport In §2.1 , we found the Péclet number P e using a timescale analysis to identify the transport regimes and thereby the appropriate methodology for simplifying the system."
+   },
+   {
+    "kind": "Pe",
+    "section": "Transport",
+    "sent": "We now consider the effective Péclet number characterising solute transport governed by the time-averaged transport equation (2.10) ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "The relative contribution of advective and diffusive terms in the long-time averaged transport equation is captured by the effective oscillatory Péclet number P e s = A 2 α 4 S , which depends on (dimensionless) amplitude of oscillations A , Womersley number α and Schmidt number S ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "To examine transport across parameter regimes, we first considered local initialisation of a solute (case 1) for low, intermediate and high steady-streaming Péclet number P e s ."
+   }
+  ]
+ },
+ "10.1128/jb.00188-26": {
+  "title": "Dimensional analysis as a tool for biofilm comparative analysis: bridging the interdisciplinary divides.",
+  "pmcid": "PMC13584748",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "DIMENSIONAL ANALYSIS IN BIOFILM RESEARCH",
+    "sent": "These can be combined through multiplication and division to produce new, potentially the “correct” dimensionless number (equation (4), the Sherwood number)."
+   },
+   {
+    "kind": "Bi",
+    "section": "Dimensionless numbers for biofilm characterizations",
+    "sent": "Chemical mass transport, of species like nutrients, antibodies, oxygen, and carbon dioxide, can be described using either the Sherwood number, Sh, equation (4), or the Biot number, Bi, equation (7), depending on which measurements are available for non-diffusive flux."
+   },
+   {
+    "kind": "Sh",
+    "section": "Dimensionless numbers for biofilm characterizations",
+    "sent": "Chemical mass transport, of species like nutrients, antibodies, oxygen, and carbon dioxide, can be described using either the Sherwood number, Sh, equation (4), or the Biot number, Bi, equation (7), depending on which measurements are available for non-diffusive flux."
+   },
+   {
+    "kind": "Sh",
+    "section": "Dimensionless numbers for biofilm characterizations",
+    "sent": "To determine a Sherwood number, the Schmidt number, Sc, equation (5), is needed."
+   },
+   {
+    "kind": "Pe",
+    "section": "Dimensionless numbers for biofilm characterizations",
+    "sent": "The mass Peclet number, Pe, equation (6), is a special case of the Sherwood number describing the balance of advection of a species to the diffusion of a species when the exponents of the Sc and Re are one ( 47 )."
+   },
+   {
+    "kind": "Sh",
+    "section": "Dimensionless numbers for biofilm characterizations",
+    "sent": "The mass Peclet number, Pe, equation (6), is a special case of the Sherwood number describing the balance of advection of a species to the diffusion of a species when the exponents of the Sc and Re are one ( 47 )."
+   },
+   {
+    "kind": "Da",
+    "section": "Dimensionless numbers for biofilm characterizations",
+    "sent": "The simplest dimensionless number that describes reaction kinetics is the Damköhler number, equations (9)–(11)."
+   },
+   {
+    "kind": "Da",
+    "section": "Dimensionless numbers for biofilm characterizations",
+    "sent": "A biofilm-specific Damköhler number for the production of chemicals, equation (9), ( 42 ), uses a substrate with a concentration S b u l k , biofilm thickness l , and a maximum substrate conversion rate, r m a x ."
+   },
+   {
+    "kind": "Sh",
+    "section": "DIMENSIONAL ANALYSIS WITH STANDARDS AND MODEL SYSTEMS IN PRACTICE",
+    "sent": "Here, the metabolic efficiency is plotted versus the log of the Sherwood number (equation 4)."
+   },
+   {
+    "kind": "Sh",
+    "section": "DIMENSIONAL ANALYSIS WITH STANDARDS AND MODEL SYSTEMS IN PRACTICE",
+    "sent": "Fig 3 Semi-log plot of the Sherwood number versus metabolic efficiency for the data in Fig. 1 ."
+   }
+  ]
+ },
+ "10.3390/ma19214648": {
+  "title": "Radon Diffusion Coefficients of Barrier Materials: A Critical Review of Measurement, Modeling, and Laboratory-to-Field Interpretation.",
+  "pmcid": "PMC13765201",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "2.4. Diffusion-Decay-Advection Equation and Regime Criterion",
+    "sent": "The corresponding Peclet number is (9) Pe = u D L c D bulk = v g L c D pore where L c is a stated characteristic length, commonly the specimen thickness."
+   },
+   {
+    "kind": "Pe",
+    "section": "2.4. Diffusion-Decay-Advection Equation and Regime Criterion",
+    "sent": "With L c = d , Equation (9) then becomes (10) Pe = k g Δ p μ g D bulk so that the specimen-average Peclet number is independent of thickness and is set by the ratio of permeability to diffusivity."
+   },
+   {
+    "kind": "Pe",
+    "section": "2.4. Diffusion-Decay-Advection Equation and Regime Criterion",
+    "sent": "For numerical simulation, the analogous mesh Peclet number, Pe h = | u | h /(2 D ) for element size h , indicates whether standard Galerkin or central-difference schemes will oscillate ( Pe h &gt; 1), and hence whether local mesh refinement or a stabilized advection scheme is required [ 32 , 33 ]."
+   },
+   {
+    "kind": "Pe",
+    "section": "5.2.3. Pressure Gradients",
+    "sent": "The consistent Peclet number is that of Equation (9), and an order-of-magnitude example is given in Section 2.4 ."
+   }
+  ]
+ },
+ "10.1007/s10162-026-01047-x": {
+  "title": "Cochlear Aqueduct Advection and Diffusion Inferred from Computed Tomography Imaging with a Bayesian Approach.",
+  "pmcid": "PMC13504145",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Results",
+    "sent": "The fifth column shows the posterior (black) and exact value (red dashed line) of the Peclet number, Eq. 3 ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Parameter Inference and Data Prediction Can Detect Slow Advection with Spatially Varying Diffusion in Synthetic Data",
+    "sent": "Even for slow advection corresponding to Péclet number less than one, the velocity is correctly inferred (columns 4 and 5)."
+   },
+   {
+    "kind": "Pe",
+    "section": "The Model Successfully Predicts CT Data with Inferred Transport Parameters",
+    "sent": "The fourth column shows the posterior (black) of the Peclet number, Eq. 3 ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Inferred Transport Parameters Indicate that Diffusion Dominates for Small Tracers",
+    "sent": "However, advection was never more than a few microns per second, corresponding to a Péclet number rarely larger than 1 (column 4)."
+   },
+   {
+    "kind": "Pe",
+    "section": "Approximate Closed-form Solution for Cochlear Aqueduct Transport of Larger Particles with Constant Diffusion",
+    "sent": "As the Péclet number approaches zero, the net transport approaches 6 \\documentclass[12pt]{minimal} \\usepackage{amsmath} \\usepackage{wasysym} \\usepackage{amsfonts} \\usepackage{amssymb} \\usepackage{amsbsy} \\usepackage{mathrsfs} \\usepackage{upgreek} \\setlength{\\oddsidemargin}{-69pt} \\begin{document}$$\\begin{aligned} J = A D (c_0 - c_1) / x^\\text {max} \\end{aligned}$$\\end{document} J = A D ( c 0 - c 1 ) / x max (as can be checked using, e.g., L’Hôpital’s rule)."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "The inferred distributions of advection mostly overlapped considerably with zero and were rarely great than 1µm/s, meaning that for the small tracer studied, advection barely contributed and the Péclet number was usually less than 1 in magnitude."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "As an order of magnitude estimate, advection would dominate when the Péclet number is at least 10, requiring therefore a molecule ten times bigger by radius than our CT tracer, or a thousand times bigger by volume (and therefore weight)."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "In that study, a tracer of similar size (0.6kDa) was reported to flow with speeds near 0.04µm/s within tissue, corresponding to a Péclet number just under 1 (over the longer distance of the whole brain)."
+   }
+  ]
+ },
+ "10.1073/pnas.2519691122": {
+  "title": "Enhanced dispersion of active microswimmers in confined flows.",
+  "pmcid": "PMC12718325",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Experiments",
+    "sent": "In panels ( B – D ), the experimental parameters are Péclet number Pe = 9.15 (i.e., P _ = 1 mbar ), and flow-oscillation period T = 2 s ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Mean-Square Displacements.",
+    "sent": "( A ) Experimental ensemble-averaged MSDs MSD [ x ^ ] ( τ ) (circles) and MSD [ y ] ( τ ) (squares), respectively parallel and perpendicular to the flow, as functions of time increment τ , for Péclet number Pe = 9.15 , and flow-oscillation period T = 2 s ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Mean-Square Displacements.",
+    "sent": "Moreover, in Fig. 2 B , we observe that MSD [ x ^ ] increases as Pe increases, which indicates that both the variance of the speed and the dispersion coefficient grow with the Péclet number."
+   },
+   {
+    "kind": "Pe",
+    "section": "Velocity Variance.",
+    "sent": "( A ) Experimental ensemble-averaged mean square velocities ⟨ V x 2 ⟩ (circles) and ⟨ V y 2 ⟩ (squares), respectively parallel and perpendicular to the flow, as functions of the squared Péclet number Pe 2 , for various flow-oscillation periods T , as indicated."
+   },
+   {
+    "kind": "Pe",
+    "section": "Dispersion coefficient.",
+    "sent": "( A ) Experimental ensemble-averaged dispersion coefficient D x parallel to the flow as a function of the squared Péclet number Pe 2 , for various flow-oscillation periods T , as indicated."
+   },
+   {
+    "kind": "Pe",
+    "section": "Dispersion coefficient.",
+    "sent": "( B ) Ratio D x / D 0 of the parallel dispersion coefficient to the raw effective diffusion coefficient as a function of squared Péclet number Pe 2 , for various flow-oscillation periods T , as indicated."
+   },
+   {
+    "kind": "Pe",
+    "section": "Dispersion coefficient.",
+    "sent": "To test this mechanism further, we plot in Fig. 4 B the ratio of the parallel dispersion coefficient D x to the raw effective diffusion coefficient D 0 as a function of the squared Péclet number Pe 2 , for all the experimental and numerical data."
+   },
+   {
+    "kind": "Pe",
+    "section": "Flow Control.",
+    "sent": "The associated flow velocity is estimated from first-moment analysis on tracer trajectories to be about 10 μ m / s , leading to an absolute error on the Péclet number of about 2 , which is much smaller than the range of this study."
+   }
+  ]
+ },
+ "10.1073/pnas.2516069123": {
+  "title": "A shear-induced limit on bacterial surface adhesion in fluid flow.",
+  "pmcid": "PMC12846803",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Continuum Model for Bacterial Transport and Adhesion.",
+    "sent": "The final source term on the right-hand sides of both equations in Eq. 4 captures rotational diffusion, which is inversely proportional to the rotational Péclet number, P e r = γ ˙ / D r , the ratio of fluid rotation to rotational diffusion."
+   },
+   {
+    "kind": "Pe",
+    "section": "Continuum Model for Bacterial Transport and Adhesion.",
+    "sent": "Alternative model closures could offer more accurate angular distributions at large rotational Péclet numbers (albeit at the potential expense of analytic tractability); see, for example, ref. 25 ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Active Lévêque boundary layer.",
+    "sent": "We note that (Eq. 12 formally captures the effect of bacterial motility and flow on dispersion near the surface through the effective Péclet number, P e eff ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Active Lévêque boundary layer.",
+    "sent": "Additionally, for spherical bacteria ( β = 0 ), the effective Péclet number P e eff = ( 4 + P e r 2 ) / 2 P e r V s 2 , which is the 2D equivalent of the D yy component of the diffusion tensor calculated in ref. 18 ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Bacterial Adhesion Rates.",
+    "sent": "Given the mathematical equivalence noted above, Eq. 15 shares the same functional form as the classic result derived for passive particles in ref. 14 , but here with an effective Péclet number that we have calculated explicitly, which captures the interacting effects of bacterial motility, shear-induced alignment, and bacterial shape on adhesion."
+   },
+   {
+    "kind": "Pe",
+    "section": "Bacterial Adhesion Rates.",
+    "sent": "The value of the dimensionless effective Péclet number as a function of dimensionless parameters ( P e r , V s ) is shown in Fig. 2 D for β = 0 ."
+   }
+  ]
+ },
+ "10.1002/advs.202523365": {
+  "title": "Nanozyme Microrobots: Programmable Spatiotemporal Catalysis for Targeted Therapy and Diagnostics.",
+  "pmcid": "PMC12955896",
+  "year": "2026",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.1002/adma.73845": {
+  "title": "A Porous Interfacial Photothermal Layer of Fused Core-Shell Carbon-Polymer Nanospheres for Directional Salt Crystallization and Zero-Liquid-Discharge.",
+  "pmcid": "PMC13431731",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Introduction",
+    "sent": "From a mass‐transport perspective, interfacial salt accumulation, salt redistribution, and localized crystallization are fundamentally governed by the competition between advective ion transport and diffusive relaxation, which can be quantified by the Péclet number (Pe) [ 24 ]."
+   },
+   {
+    "kind": "Pe",
+    "section": "Introduction",
+    "sent": "A representative study by Wang and coworkers demonstrated that suppressing advection to reduce the Péclet number below one can promote diffusion‐dominated selective crystallization [ 25 ]."
+   },
+   {
+    "kind": "Pe",
+    "section": "Péclet‐Number‐Guided Advection‐Dominated Salt Transport",
+    "sent": "2.4 Péclet‐Number‐Guided Advection‐Dominated Salt Transport While the above results demonstrate the exceptional evaporation performance of the hierarchical evaporator, effective operation under hypersaline conditions additionally requires that concentrated brine be continuously displaced away from the active evaporation interface."
+   },
+   {
+    "kind": "Pe",
+    "section": "Péclet‐Number‐Guided Advection‐Dominated Salt Transport",
+    "sent": "(b) Directional Péclet‐number analysis, indicating advection‐dominated salt transport ( P e ≫1) along the top evaporation layer and hydrogel sidewall, but diffusion‐dominated transport ( P e &lt; 1) across the thin thickness."
+   }
+  ]
+ },
+ "10.1016/j.bbrep.2025.102426": {
+  "title": "Investigating the inflammatory response to exposure of ultrafine TiO&lt;sub&gt;2&lt;/sub&gt; particulate matter to HUVECs.",
+  "pmcid": "PMC12808626",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Microhydrodynamics",
+    "sent": "A Péclet number that is greater than 1 indicates that convective transport is predominating in the system and that particles of this radius and larger have a tendency to sediment directly."
+   },
+   {
+    "kind": "Pe",
+    "section": "Microhydrodynamics",
+    "sent": "A Péclet number that is smaller than 1 indicates that diffusive transport is predominating and that particles of this radius and smaller should remain in solution longer, diffusing about randomly."
+   },
+   {
+    "kind": "Pe",
+    "section": "Microhydrodynamics",
+    "sent": "Representative particle paths at different Péclet numbers are depicted in Fig. 1 ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Microhydrodynamics",
+    "sent": "(3.1) by substituting the critical Péclet number and by rearranging to solve for the particle radius."
+   },
+   {
+    "kind": "Pe",
+    "section": "Microhydrodynamics",
+    "sent": "Given our experimental conditions, we calculated that the critical Péclet number of 1 corresponded with a critical diameter of 850 µm."
+   },
+   {
+    "kind": "Pe",
+    "section": "Microhydrodynamics",
+    "sent": "In practice, a Péclet number of 0.1 or greater will lead to substantial sedimentation, corresponding with a critical diameter of 480 nm, which was indicated on Fig. 2 ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Microhydrodynamics",
+    "sent": "Our DLS results ( Fig. 2 ) indicated that sedimentation and probable aggregation does readily occur; therefore, the Péclet number provides the necessary assessment of transport in this system."
+   },
+   {
+    "kind": "Pe",
+    "section": "Microhydrodynamics",
+    "sent": "Fig. 3 The calculations of the Péclet number and terminal settling velocity utilize the particle density as stated from the manufacturer."
+   }
+  ]
+ },
+ "10.1039/d6fd00128a": {
+  "title": "Modelling and simulation of species transport in capillary-fed electrolysis cells.",
+  "pmcid": "PMC13757278",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Steady-state concentration profile",
+    "sent": "To obtain this value at the top ( x * = 1), the corresponding Péclet number obtained from eqn (11) is 12 and the corresponding profile is indicated in red in Fig. 2(a) ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Steady-state concentration profile",
+    "sent": "The red line corresponds to the Péclet number for which the solubility limit is first reached at the top; see eqn (12) ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Steady-state concentration profile",
+    "sent": "(b) Péclet number as a function of current density i and distance travelled x 1 ."
+   }
+  ]
+ },
+ "10.1007/s11095-026-04129-w": {
+  "title": "Dead-Space Microdomains as Explicit Barriers to Extracellular Drug Transport in Alzheimer's Disease.",
+  "pmcid": "PMC13593633",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Neglecting Advection: Scaling Analysis",
+    "sent": "Re-evaluating the Péclet number for the antibody case using the same conservative velocity and length scales yields 9 Pe Adu ≈ ( 0.1 μ m / s ) ( 10 μ m ) 30 μ m 2 / s ≈ 3.3 × 10 - 2 ≪ 1 ."
+   }
+  ]
+ },
+ "10.1038/s44172-025-00527-x": {
+  "title": "Pillar arrays as tunable interfacial barriers for microphysiological systems.",
+  "pmcid": "PMC12634667",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Characterization of molecular transport across the diffusion barrier",
+    "sent": "We summarize the Peclet number for different configurations of the pillar barrier and flow rates in the media channel (Fig. 3B )."
+   },
+   {
+    "kind": "Pe",
+    "section": "Characterization of molecular transport across the diffusion barrier",
+    "sent": "A Peclet number of 1 represents equal contribution of advection and diffusion, whereas less than 1 implies dominance of diffusion in the mass transport of the biomolecule."
+   },
+   {
+    "kind": "Pe",
+    "section": "Characterization of molecular transport across the diffusion barrier",
+    "sent": "Peclet number for a no-pillar barrier configuration consisting of a 2 µm channel (no pores) is provided for reference, as well as Peclet number and velocity (mean ± standard deviation) based on in vivo data from Chary and Jain (1989) 27 ."
+   }
+  ]
+ },
+ "10.1126/sciadv.aeb0404": {
+  "title": "MR-AIV reveals in vivo brain-wide fluid flow with physics-informed AI.",
+  "pmcid": "PMC13215179",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "MR-AIV delineates advection- and diffusion-dominated transport",
+    "sent": "( A to C ) Local Péclet number on mid-coronal ( z-y ), sagittal ( x-y ), and transverse ( x-z ) planes in mouse 1."
+   },
+   {
+    "kind": "Pe",
+    "section": "MR-AIV delineates advection- and diffusion-dominated transport",
+    "sent": "( D ) The probability densities of local Péclet number throughout the brains of five mice (M1 to M5)."
+   },
+   {
+    "kind": "Pe",
+    "section": "Underlying physical laws",
+    "sent": "Local Péclet number The local Péclet number Pe is a dimensionless parameter that describes the relative contributions of advection and diffusion to mass transport, defined as Pe = u ⋅ ∇ c D ∇ 2 c ¯ (6) where the operator · ¯ denotes an average over time."
+   }
+  ]
+ },
+ "10.1111/micc.70011": {
+  "title": "Convection Effect of Plasma Flow on Oxygen Transport in Capillaries: An In-Depth Numerical Investigation.",
+  "pmcid": "PMC12009512",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Introduction",
+    "sent": "However, using typical microcirculation values, the Peclet number, a non‐dimensional parameter to characterize the relative strengths of convection and diffusion in mass transfer [ 7 ], was found to be on the order of unity, which suggests that plasma convection could play a certain role in oxygen transport and should not be ignored [ 8 , 9 ]."
+   },
+   {
+    "kind": "Pe",
+    "section": "On the Peclet Number",
+    "sent": "3.4 On the Peclet Number In heat and mass transfer, the Peclet number Pe is often used to characterize the relative strength of convective and diffusive contributions [ 7 ], and it has been considered in previous studies when discussing the plasma convection effect on oxygen transport [ 8 , 9 , 25 ]."
+   },
+   {
+    "kind": "Pe",
+    "section": "On the Peclet Number",
+    "sent": "This small value (∼ 10 −3 ) of the modified Peclet number agrees with our observation of the weak convection effect in previous sections."
+   }
+  ]
+ },
+ "10.1021/acs.langmuir.5c06768": {
+  "title": "Upper Bounds on the Colloid Separation Efficiency of Diffusiophoresis.",
+  "pmcid": "PMC13192318",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Estimation of Parameters",
+    "sent": "Estimation of Parameters In order to estimate the Péclet number Pe p , the particle diffusivity D p can be calculated using the Stokes–Einstein relation D p = k B T /(6πμ R p ), with k B the Boltzmann constant, T the absolute temperature, μ the dynamic viscosity of the medium, and R p the particle radius."
+   },
+   {
+    "kind": "Pe",
+    "section": "Particle Distributions at Pe p ≫ 1",
+    "sent": "In summary, the particle distributions in the limit of large particle Péclet number Pe p ≫ 1 will tend to either exponential ( eq ) or Gaussian ( eq ) curves near channel walls, depending on whether the chemical source delivers a liquid or a gas."
+   },
+   {
+    "kind": "Da",
+    "section": "Microfluidic Experiments",
+    "sent": "Using well-characterized values of the reaction rate constants k f and k r , we can estimate the scale for the ionic concentration C i 0 ≈ 0.118 mM and the Damköhler numbers, as defined in eqs and , Da s ≈ 1.28 and Da i ≈ 306 in all experiments."
+   },
+   {
+    "kind": "Pe",
+    "section": "Results and Discussion",
+    "sent": "(b) Maximum particle concentration n max (at walls y = ±1) as a function of the particle Péclet number Pe p , as defined in eq ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Conclusion",
+    "sent": "Three governing dimensionless parameters emerge from the theory: two Damköhler numbers Da s and Da i , given by eqs 21 a-b and comparing the rates of dissociation kinetics to the diffusion of the solute and resulting ions, and a particle Péclet number Pe p , given by eq and comparing diffusiophoretic migration to the Brownian diffusion of the particles."
+   },
+   {
+    "kind": "Da",
+    "section": "Conclusion",
+    "sent": "Three governing dimensionless parameters emerge from the theory: two Damköhler numbers Da s and Da i , given by eqs 21 a-b and comparing the rates of dissociation kinetics to the diffusion of the solute and resulting ions, and a particle Péclet number Pe p , given by eq and comparing diffusiophoretic migration to the Brownian diffusion of the particles."
+   }
+  ]
+ },
+ "10.1016/j.bpj.2026.03.023": {
+  "title": "Impact of red blood cell rigidity on in vivo flow dynamics and lingering in bifurcations.",
+  "pmcid": "PMC13351919",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Introduction",
+    "sent": "In previous investigations, where we showcased the influence of lingering on RBC partitioning in capillary bifurcations within the microcirculation, we found that an increase in the lingering Péclet number corresponds to a greater deviation from the Zweifach-Fung empirical model, demonstrating a direct correlation ( 11 , 18 )."
+   },
+   {
+    "kind": "Pe",
+    "section": "Results and discussion",
+    "sent": "A comparison of the lingering Péclet number between rigid and healthy cells is shown in Fig. 5 b ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Results and discussion",
+    "sent": "S8 ) the differences in lingering Péclet number originate in the interaction of cells with the apex rather than the lateral distribution of cells."
+   }
+  ]
+ },
+ "10.1021/acs.chemrestox.5c00540": {
+  "title": "Neutralization Kinetics and Transport Define the Dermal Decontamination Window for Warfare and Industrial Toxicants.",
+  "pmcid": "PMC13188160",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Materials and Methods",
+    "sent": "The first is the Damköhler number ( Da = k h 2 / D SC ), which compares the diffusion to the reaction time scale."
+   },
+   {
+    "kind": "Da",
+    "section": "Results",
+    "sent": "The Damköhler number range ( Da = 0–10) spans from diffusion-dominated to reaction-dominated regimes, while the surface loss number range ( π surf = 0.4–2.0) encompasses scenarios where surface-clearance mechanisms contribute significantly to contaminant removal."
+   },
+   {
+    "kind": "Da",
+    "section": "Results",
+    "sent": "Figures – systematically examine how these metrics change with Da and π surf , revealing the transition from transport-driven to reaction-dominated behavior. 2 Effective surface clearance time constant ( τ eff,surf ) as a function of Damköhler number ( Da ) for various surface loss numbers ( π surf = 0.4, 0.8, 1.2, 1.6, 2.0)."
+   },
+   {
+    "kind": "Da",
+    "section": "Results",
+    "sent": "However, as Da increases beyond approximately 8, the curves converge toward common asymptotes, indicating that π surf variations have a negligible impact at higher reactivity. 3 Effective absorption time constant ( τ eff,abs ) versus Damköhler number ( Da ) for surface loss numbers ranging from π surf = 0.4 to 2.0."
+   },
+   {
+    "kind": "Da",
+    "section": "Results",
+    "sent": "Absorption times decrease more rapidly with π surf at low Da , while the profiles approach a common plateau at higher Da . 4 Effective reaction time constant (τ eff,reac ) as a function of internal Damköhler number ( Da ) for different surface loss numbers ( π surf = 0.4, 0.8, 1.2, 1.6, 2.0)."
+   },
+   {
+    "kind": "Da",
+    "section": "Results",
+    "sent": "This confirms a sustained dependence on π surf , as surface processes continue to exert a persistent, though diminishing, influence even in the reaction-control regime. 5 Steady-state absorbed mass fraction ( M abs (∞)) vs internal Damköhler number ( Da ) for various surface loss numbers ( π surf )."
+   },
+   {
+    "kind": "Da",
+    "section": "Results",
+    "sent": "Higher π surf yields greater surface removal at all Da values, with persistent separation even at high Da . 7 Steady-state reacted mass fraction ( M reac (∞)) as a function of Damköhler number ( Da ) for surface loss numbers ( π surf = 0.4, 0.8, 1.2, 1.6, 2.0)."
+   },
+   {
+    "kind": "Da",
+    "section": "Discussions",
+    "sent": "With a diffusion coefficient D SC = 4.3 × 10 –10 cm 2 /s, a first-order neutralization rate constant k = 2.1 × 10 –4 s –1 , and a stratum corneum thickness h = 13.4 μm, the internal Damköhler number is Da = k h 2 / D SC ≈ 0.88."
+   },
+   {
+    "kind": "Da",
+    "section": "Mechanistic Integration",
+    "sent": "In the low-Damköhler regime ( Da &lt; 3), internal neutralization is slow relative to transport."
+   }
+  ]
+ },
+ "10.1021/jacs.6c12039": {
+  "title": "Decoupling CO2 Availability from Bulk Solubility via Biohybrid Reaction-Diffusion Nanoconfinement.",
+  "pmcid": "PMC13587671",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Mass Transport and Confinement in CA-HNF Interfaces",
+    "sent": "The Wilbur-Anderson assay confirms that CA-HNF retains substantial catalytic activity after immobilization; however, variations in enzyme accessibility, local pH, confinement, and mass transport may affect the effective kinetic parameter under electrochemical conditions. 4 Calculated CO 2 concentration profiles and Damköhler number analysis."
+   },
+   {
+    "kind": "Da",
+    "section": "Mass Transport and Confinement in CA-HNF Interfaces",
+    "sent": "To quantitatively assess the relative importance of reaction and transport, the Damköhler number (Da) is introduced as Da = k eff · L 2 D eff where L is the characteristic length scale of the system."
+   },
+   {
+    "kind": "Da",
+    "section": "Mass Transport and Confinement in CA-HNF Interfaces",
+    "sent": "Applying this correction factor decreases the estimated Damköhler number from Da ≈ 1.75 to Da ≈ 1.2, and increases the corresponding characteristic reaction–diffusion length by approximately 20%."
+   },
+   {
+    "kind": "Da",
+    "section": "Mass Transport and Confinement in CA-HNF Interfaces",
+    "sent": "The Damköhler number near unity confirms that the system operates at the interface between kinetic and transport control, with neither process overwhelmingly dominant, a regime that maximizes the coupling efficiency between enzymatic CO 2 generation and its local consumption."
+   },
+   {
+    "kind": "Da",
+    "section": "Mass Transport and Confinement in CA-HNF Interfaces",
+    "sent": "The calculated concentration enhancement, characteristic diffusion length, and Damköhler number are model-derived quantities based on effective kinetic and transport parameters and do not represent direct operando measurements of the interfacial CO 2 concentration."
+   },
+   {
+    "kind": "Da",
+    "section": "Mass Transport and Confinement in CA-HNF Interfaces",
+    "sent": "Under this assumption, the Damköhler number would decrease from approximately 1.75 to approximately 1.2, while the characteristic reaction–diffusion length would increase by approximately 20%."
+   }
+  ]
+ },
+ "10.1021/acsomega.6c04382": {
+  "title": "Mechanistic Modeling of Electrochemical Gold Transfer from Gold Leaf to Screen-Printed Electrodes.",
+  "pmcid": "PMC13382820",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Sensitivity Analysis and Mechanistic Insights",
+    "sent": "3.5 Sensitivity Analysis and Mechanistic Insights The governing mechanism of the sequential electrochemical gold transfer process was further elucidated through a dimensionless analysis based on the Damköhler number, defined as Da = k dep L / D , which represents the ratio between interfacial reaction kinetics and diffusive mass transport."
+   }
+  ]
+ },
+ "10.3390/s25206271": {
+  "title": "Interplay of the Mass Transport and Reaction Kinetics for Lateral Flow Immunoassay Integrated on Lab-on-Disc.",
+  "pmcid": "PMC12567277",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "1. Introduction",
+    "sent": "We recognize that existing metrics like the Damköhler number Da (the ratio of reaction rate to advective transport rate) used in prior LFA studies [ 43 ] do not account for the finite thickness of the flow channel [ 44 , 45 ]."
+   },
+   {
+    "kind": "Da",
+    "section": "4. Mass Transport-Reaction Kinetics Analysis",
+    "sent": "The Damköhler number, D a [ 54 , 55 ], for reaction (11) is described by Equation (12) below:"
+   },
+   {
+    "kind": "Pe",
+    "section": "4. Mass Transport-Reaction Kinetics Analysis",
+    "sent": "In Equation (12), the denominator was used as convection/advection only ( D a only instead of Peclet number), since, for particles of 200 nm size, advection dominates diffusion [ 56 ]."
+   },
+   {
+    "kind": "Da",
+    "section": "5.2. CD Spin Speed Influence on the Detection Signal Strength",
+    "sent": "Figure 10 b presents the variation in the Damköhler number (Da) as a function of CD spin rate."
+   }
+  ]
+ },
+ "10.3390/microorganisms14102335": {
+  "title": "Microbial Biodegradation of Plastics: Methods for Assessing Degradation Mechanisms and Optimization Strategies.",
+  "pmcid": "PMC13707969",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "5.2. Enzymatic Degradation of Plastic",
+    "sent": "Variations in stirring intensity, particle size assays, and the Damköhler number can help diagnose mass transfer limitation phenomena [ 113 ]."
+   }
+  ]
+ },
+ "10.1002/cnm.70212": {
+  "title": "Mesoscale Simulations of Blood Coagulation in Flow and Quiescent Domains Using SDPD.",
+  "pmcid": "PMC13583149",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Computational Model",
+    "sent": "Finally, the Damköhler number, Da = H 2 / D τ r , relates diffusion and reaction timescales, with τ r denoting a characteristic reaction time."
+   },
+   {
+    "kind": "Pe",
+    "section": "Computational Model",
+    "sent": "In this work, we focus on the microvascular regime, characterized by vessel diameters of 5–100 μm , low Reynolds numbers (Re ≲ 1 ), and moderate‐to‐high Peclet numbers (Pe ∼ 10 1 − 10 4 )."
+   },
+   {
+    "kind": "Da",
+    "section": "Effect of Fibrinogen Concentration on Fibrin Formation",
+    "sent": "IIa exhibits moderate reaction dominance ( Da ≈ 2.3 ), whereas Fbn formation is characterized by a much larger Damköhler number ( Da ≈ 355 ), leading to rapid local stabilization once thrombin becomes available."
+   },
+   {
+    "kind": "Da",
+    "section": "Characteristic Timescales and Dimensionless Numbers",
+    "sent": "The Damköhler numbers confirm that both IIa and Fbn operate in a reaction‐dominated regime ( Da IIa ≳ 1 , Da Fbn ≫ 1 ), consistent with the rapid vertical homogenization observed in the spatial maps in Figure 7 ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Implications",
+    "sent": "Implications These estimates place the microvascular regime firmly within low–Reynolds‐number flows ( Re ≲ 1 ), where inertia is negligible, and moderate‐to‐high Péclet numbers ( Pe ∼ 10 1 − 10 4 ), where advection competes with or dominates over molecular diffusion."
+   }
+  ]
+ },
+ "10.1038/s41467-026-77543-8": {
+  "title": "Twinned-magnesium metal negative electrodes enable reversible magnesium electrodeposition.",
+  "pmcid": "PMC13554073",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Nucleation and growth mechanism of Mg",
+    "sent": "This balance can be quantitatively assessed on the basis of the nondimensional electrochemical Damköhler number ( D a ) 5 , 42 , which is defined as the ratio of the electrochemical reaction rate ( k e ) to the surface diffusion rate ( k d ) (Supplementary Note 3 )."
+   },
+   {
+    "kind": "Da",
+    "section": "Nucleation and growth mechanism of Mg",
+    "sent": "Insets: schematic representations of the corresponding diffusion pathways for twinned Mg structure, Mg(10 1 ¯ 2), and Mg(0001). i Deposition morphology phase map as a function of Damköhler number. j Plots of t / t m and ( j / j m ) 2 in comparison with theoretical 3D models for a Mg cell using Mg and 70-twinned Mg electrodes."
+   }
+  ]
+ },
+ "10.1021/acsmacrolett.6c00475": {
+  "title": "Penetrant-Triggered Responsiveness in Carboxylate Polymer of Intrinsic Microporosity.",
+  "pmcid": "PMC13689930",
+  "year": "2026",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.1038/s41467-026-74020-0": {
+  "title": "Real-time electrical monitoring of enzymatic catalytic dynamics at the single-molecule level.",
+  "pmcid": "PMC13396217",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Substrate concentration dependence of conductance change in CYP1A1",
+    "sent": "To quantify the influence of diffusion, we calculated the Damköhler number (Da) and obtained a value of approximately 0.23 (see “Methods”)."
+   }
+  ]
+ },
+ "10.1021/acsomega.5c11636": {
+  "title": "Numerical Simulation of the Influence of Structural Parameters on the Performance of a Direct Sodium Formate/Sodium Persulfate Microfluidic Fuel Cell.",
+  "pmcid": "PMC13150598",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Dimensionless Parameters",
+    "sent": "2.4 Dimensionless Parameters To characterize the transport and reaction regimes in the MFC, three key dimensionless numbers are introduced: the Reynolds number ( Re ), the Peclet number ( Pe ), and the Damköhler number ( Da )."
+   },
+   {
+    "kind": "Da",
+    "section": "Dimensionless Parameters",
+    "sent": "2.4 Dimensionless Parameters To characterize the transport and reaction regimes in the MFC, three key dimensionless numbers are introduced: the Reynolds number ( Re ), the Peclet number ( Pe ), and the Damköhler number ( Da )."
+   },
+   {
+    "kind": "Pe",
+    "section": "Dimensionless Parameters",
+    "sent": "Peclet number ( Pe ) measures the relative importance of convective and diffusive mass transport: , 28 P e = u L D where D is the diffusion coefficient for HCOONa or Na 2 S 2 O 8 ."
+   },
+   {
+    "kind": "Da",
+    "section": "Dimensionless Parameters",
+    "sent": "Damköhler number ( Da II ) represents the ratio of the reaction rate to the mass transport rate: , 29 D a II = k L 2 D where k is the effective reaction rate constant."
+   }
+  ]
+ },
+ "10.1021/acs.biomac.4c00412": {
+  "title": "Monomer Equilibrium and Transport in Emulsion and Miniemulsion Polymerization.",
+  "pmcid": "PMC11170938",
+  "year": "2024",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Monomer Transport",
+    "sent": "In order to investigate monomer transport during emulsion polymerization during interval II, Schork 58 has drawn on the definition of the Damkohler Number."
+   },
+   {
+    "kind": "Da",
+    "section": "Monomer Transport",
+    "sent": "If both the reaction and transport rates are taken as their maxima, the Damkohler Number serves as a measure of reaction version transport limitation: if this Damkohler Number is greater than 0.1, the system is judged to be transport limited."
+   },
+   {
+    "kind": "Da",
+    "section": "Monomer Transport",
+    "sent": "This gives a significant monomer transport limitation as well as accounting for the approximations made in the model above.) Schork 58 has calculated the Damkohler Number during Interval II of the emulsion polymerization of a wide range of monomers."
+   },
+   {
+    "kind": "Da",
+    "section": "Monomer Transport",
+    "sent": "Table 2 Damkohler Number for Selected Monomers a a Shading indicates monomers with monomer transport limitation."
+   },
+   {
+    "kind": "Da",
+    "section": "Monomer Transport",
+    "sent": "Based on this observation he suggest a short cut estimate for the Damkohler Number as 13 which, for a 95% confidence interval for values of Da est near 0.1 predicts that the actual Da to be between 0.84 Da est and 1.19 Da est ."
+   },
+   {
+    "kind": "Da",
+    "section": "Effect of Monomer Conversion on Monomer Transport Limitation",
+    "sent": "3.1.2 Effect of Monomer Conversion on Monomer Transport Limitation It should be noted that all Damkohler Numbers above were calculated at a fixed set of conditions."
+   },
+   {
+    "kind": "Da",
+    "section": "Effect of Monomer Conversion on Monomer Transport Limitation",
+    "sent": "Four monomers have been chosen, spanning the range of Damkohler Numbers in Table 2 ."
+   },
+   {
+    "kind": "Da",
+    "section": "Effect of Monomer Conversion on Monomer Transport Limitation",
+    "sent": "Table 3 Damkohler Number as a Function of Monomer Conversion for Selected Monomers Monomer Conv."
+   },
+   {
+    "kind": "Da",
+    "section": "Batch Copolymerization",
+    "sent": "Since the copolymerizations Damkohler Numbers are based on the homopolymerization Damkohler Numbers, it is possible to write a shortcut (estimated) copolymerization Damkohler Number as 17 Damkohler Numbers for binary copolymerization pairs that indicate possible monomer transport limitation for the secondary monomer are listed in Table 4 ."
+   },
+   {
+    "kind": "Da",
+    "section": "Batch Copolymerization",
+    "sent": "Table 4 Damkohler Numbers for Binary Copolymerization Monomer Pairs Exhibiting Monomer Transport Limitation for the Secondary Monomers a a Shading indicates monomers with monomer transport limitation."
+   },
+   {
+    "kind": "Da",
+    "section": "Semibatch Polymerization",
+    "sent": "It can be shown 63 that 20 where Da B co is the batch copolymerization Damkohler Number previously discussed, x is the overall monomer conversion and all other symbols are as above, with the note that the superscript co refers to batch copolymerization, while the superscript SF refers to starved-feed copolymerization."
+   },
+   {
+    "kind": "Da",
+    "section": "Polymerization of Gaseous Monomers",
+    "sent": "All other values are identical to those for the liquid monomer Damkohler analysis. 58 Selected Damkohler Numbers for gaseous monomers batch homopolymerized are listed below in Table 5 ."
+   },
+   {
+    "kind": "Da",
+    "section": "Polymerization of Gaseous Monomers",
+    "sent": "Selected values of the Damkohler Numbers for gaseous monomers (10 mol %) copolymerized with liquid monomer (90 mol %) are listed in Table 6 ."
+   },
+   {
+    "kind": "Da",
+    "section": "Polymerization of Gaseous Monomers",
+    "sent": "Table 6 Selected Damkohler Numbers for Batch Copolymerization of Gaseous Monomers with Liquid Monomers From Reference ( 64 ) ComonomersGaseous/Liquid Damkohler Number Damkohler Number 880 kPa 101.3 kPa Vinyl Acetate/Ethylene 0.018 1.53 Methyl Methacrylate/Vinyl Chloride 0.0001 0.006 Styrene/Vinyl Chloride 0.027 2.33"
+   }
+  ]
+ },
+ "10.3390/polym18101248": {
+  "title": "A Reaction-Diffusion Model for Capturing Mass Loss and Microstructure Evolution in Enzymatic Degradation of Poly(&lt;i&gt;ε&lt;/i&gt;-Caprolactone) Films.",
+  "pmcid": "PMC13210852",
+  "year": "2026",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3389/fchem.2026.1884122": {
+  "title": "Exergy-guided multiphysics analysis of transport irreversibilities in PEMFC flow-field architectures.",
+  "pmcid": "PMC13490156",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "Results and discussion",
+    "sent": "Mass transfer effect, as indicated by the Sherwood number (Sh) in Figure 11c , is on a very positive trend."
+   },
+   {
+    "kind": "Pe",
+    "section": "Results and discussion",
+    "sent": "In contrast, Figure 11d shows that increasing the Peclet number (Pe) has a negative impact on performance."
+   }
+  ]
+ },
+ "10.1002/psp4.70323": {
+  "title": "A Generalization of the Ternary Binding Model to Membrane-Confined Systems With Finite Copy Number.",
+  "pmcid": "PMC13524076",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Materials and Methods",
+    "sent": "Critically, the generalization to the membrane‐confined open system (Section 4 ) will replace the closed‐system ligand mass balance (Equation 14 ) with an open‐reservoir boundary condition justified by a Damköhler analysis."
+   }
+  ]
+ },
+ "10.1002/advs.77916": {
+  "title": "Transport-Reaction-Signal Coupling in Lateral Flow Assays for Next-Generation Point-of-Care Diagnostics.",
+  "pmcid": "PMC13625143",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Effect of Particle Size",
+    "sent": "As particle size increases, diffusivity ( D eff ) decreases, which in turn elevates the effective Péclet number ( Pe ) of the system (Figure 3A )."
+   },
+   {
+    "kind": "Da",
+    "section": "Phase II: Reaction",
+    "sent": "In kinetic terms, this deficiency in effective C B 0 lowers the practical capture capacity of the interface and constrains the effective Damköhler number ( Da ) of the system, thereby reducing signal generation even when transport to the test line is adequate."
+   }
+  ]
+ },
+ "10.3390/foods14040580": {
+  "title": "Multifilm Mass Transfer and Reaction Rate Kinetics in a Newly Developed In Vitro Digestion System for Carbohydrate Digestion.",
+  "pmcid": "PMC11854830",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "1. Introduction",
+    "sent": "A dimensionless group, the Damköhler number ( Da ), may be used to assess the relative importance of mass transfer and chemical reaction in determining the overall reaction rate and time [ 35 , 36 ]."
+   },
+   {
+    "kind": "Da",
+    "section": "2.2.3. Intestine Digestion Model",
+    "sent": "The dimensional analysis, such as the estimation of the Reynolds number and Damköhler numbers, was performed in the Section 3 for comparing the in vitro model and the in vivo digestion system."
+   },
+   {
+    "kind": "Da",
+    "section": "3.2. Mass Transfer and Reaction in the Lab-Built Oral Model",
+    "sent": "The Damköhler number ( Da ) is the ratio of the chemical reaction rate to the mass transfer) rate occurring in a system [ 67 ]."
+   },
+   {
+    "kind": "Da",
+    "section": "3.2. Mass Transfer and Reaction in the Lab-Built Oral Model",
+    "sent": "Table 5 Damköhler numbers estimation for oral digestion process of the test foods (bananas and carrots) by this in vitro system."
+   },
+   {
+    "kind": "Da",
+    "section": "3.4. Model Time Constants for Mass Transfer and Reaction in the Lab-Built Intestine Model",
+    "sent": "Table 7 Damköhler numbers estimation for intestine digestion process of the test foods (sucrose and maltodextrin) by this in vitro system."
+   }
+  ]
+ },
+ "10.1021/acs.chemmater.5c01522": {
+  "title": "Elucidating the Kinetics and Thermodynamics of Organic Vapor Phase Infiltration and Molecular Layer Deposition for Dissolution Resilient Polymers.",
+  "pmcid": "PMC12659019",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Introduction",
+    "sent": "(1) relative rates of reaction and diffusion (Damköhler number, Da ), (2) the hindrance to diffusion caused by reactions ( , Hebrew letter “resh”), and (3) the relative concentrations of precursor and functional groups ( , Hebrew letter “kaf”). , Finally, we harness organic MLD/VPI for enhancing the solvent resistance of polymers."
+   },
+   {
+    "kind": "Da",
+    "section": "Quantification of Vapor Phase Infiltration",
+    "sent": "Additional details about this correction can be found in the SI, Section V . 3.3.1 Comparison of Damköhler Numbers The value of D 0 for organic precursors in PVA were over an order of magnitude lower than that of TMA, likely due to the bulkier and more rigid structures of the organic precursors."
+   }
+  ]
+ },
+ "10.1021/acs.langmuir.5c03488": {
+  "title": "Microfluidic Flow-Focusing for Size-Controlled Formation of Cubosomes.",
+  "pmcid": "PMC12573805",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Influence of Mixing and Flow Conditions on Cubosome Size",
+    "sent": "The balance between τ mix and the time needed for phytantriol to self-assemble into cubosomes (τ assbl ) can be expressed by the Damköhler number for precipitation: 13 D a p = τ m i x / τ a s s b l ."
+   }
+  ]
+ },
+ "10.1021/acsaenm.4c00561": {
+  "title": "Understanding the Current Distribution and Mass Transport Properties in 3D-Printed Architected Flow-Through Electrodes.",
+  "pmcid": "PMC11960682",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Introduction",
+    "sent": "Finally, we discuss approaches to scaling analysis and introduce a modified Wagner number ( Wa Lattice ) offering predictive insights into macroscopic coating uniformity and thus current distribution as well as a modified Damköhler number ( Da Lattice –1 ) to infer mass-transfer effects of the unit cell geometry on submicron level nonuniformities or defects."
+   },
+   {
+    "kind": "Pe",
+    "section": "Mass Transport Engineering Correlations",
+    "sent": "2.4 Mass Transport Engineering Correlations To evaluate each electrode geometry for mass transport characteristics and comparison to other electrode systems, fluid- and mass-transfer correlations such as the Reynolds, Sherwood, and Peclet numbers can be used to generalize the performance, accounting for differences in porosity, surface area, and beam size."
+   },
+   {
+    "kind": "Sh",
+    "section": "Mass Transport Engineering Correlations",
+    "sent": "2.4 Mass Transport Engineering Correlations To evaluate each electrode geometry for mass transport characteristics and comparison to other electrode systems, fluid- and mass-transfer correlations such as the Reynolds, Sherwood, and Peclet numbers can be used to generalize the performance, accounting for differences in porosity, surface area, and beam size."
+   },
+   {
+    "kind": "Pe",
+    "section": "Mass Transport Engineering Correlations",
+    "sent": "The Peclet number ( Pe ) quantifies the relative mass transport of convection to diffusion defined as ( eq 13 ) 13 To compare to felt, woven, and 3D-printed electrode literature, these architected electrodes can be plotted as the overall mass-transfer coefficient k m a vs v derived from the aforementioned numerical model shown in Figure S9 ."
+   }
+  ]
+ },
+ "10.1093/nsr/nwag383": {
+  "title": "Zeolite membrane reactors for efficient catalytic conversion of CO&lt;sub&gt;2&lt;/sub&gt; into high-value chemicals.",
+  "pmcid": "PMC13387069",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Progress in process simulation of CO2 catalytic conversion",
+    "sent": "In addition, membrane reactor performance also depends on the Damköhler number (Da), normalized gas permeance (θH 2 O or θMeOH) and pressure; increasing these parameters enhances CO 2 conversion, and in methanol-selective systems also improves methanol selectivity [ 62 ]."
+   }
+  ]
+ },
+ "10.3390/ijms27209232": {
+  "title": "Cerium Dioxide-Based Scavenging of Environmentally Persistent Free Radicals in Fine Particulate Matter: A Prospective Review.",
+  "pmcid": "PMC13705378",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "6.2.4. Airflow, Contact Time, and the Turnover-Rate Constraint",
+    "sent": "Experimental validation should measure radical scavenging as a function of face velocity and filter thickness, and should report the dimensionless contact time or Damköhler number, so that performance can be compared across different filter configurations [ 2 , 16 , 24 , 40 , 55 ]."
+   }
+  ]
+ },
+ "10.1021/acs.iecr.5c03595": {
+  "title": "Modeling Flow and Mass Transfer within Hollow Fiber Packaging for Gas Separation.",
+  "pmcid": "PMC13329895",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "Performance Evaluation",
+    "sent": "The mass-transfer characteristics are expressed in terms of Sherwood number S h = h (2 R )/ D where h is the effective mass-transfer coefficient that accounts for sources of nonideality captured in fiber-scale simulations."
+   }
+  ]
+ },
+ "10.1097/mat.0000000000002444": {
+  "title": "Numerical Investigation of Gas Exchange Processes in Hollow-Fiber Membrane Bundles.",
+  "pmcid": "PMC12736405",
+  "year": "2026",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/membranes16090299": {
+  "title": "Full-Scale Multistage Pressure-Retarded Osmosis for Osmotic Energy Generation: Optimization of Specific and Net Energy Production.",
+  "pmcid": "PMC13609321",
+  "year": "2026",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ }
+}
