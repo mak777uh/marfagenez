@@ -46,7 +46,8 @@ MODES = {"formal", "literature", "experiment"}   # three kinds of research, not 
 EXPAND_THRESHOLD = 8   # degree at which one hop is already a full screen
 EXPAND_CAP = 60        # nodes printed before the "+K ещё" marker
 RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as",
-             "predicted_by", "analogous_to", "candidate_supports", "tested_in", "stated_in", "normalizes_to", "refuted_by"}
+             "predicted_by", "analogous_to", "candidate_supports", "tested_in", "stated_in", "normalizes_to",
+             "refuted_by", "bridges", "maps_to"}
 # relations that carry epistemic weight; mechanical ones do not, by construction (D-07)
 EPISTEMIC_RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as"}
 
@@ -158,6 +159,73 @@ def invariants(nodes):
     return problems
 
 
+def compile_edges(nodes):
+    """Every edge the corpus actually has.
+
+    `relations` is only the declared layer (8 nodes out of 580). Evidence references,
+    gap sides and correspondence sides live in `evidence[]` and `data.*` and used to be
+    invisible to `build()`. They are compiled here, mechanically, with their own types.
+    """
+    ids = {n["id"] for n in nodes}
+    kinds = {n["id"]: n.get("kind") for n in nodes}
+    out = []
+    seen = set()
+
+    def add(src_id, dst_id, kind):
+        if not src_id or not dst_id or src_id == dst_id or not kind:
+            return
+        if src_id not in ids or dst_id not in ids:
+            return
+        key = (src_id, dst_id, kind)
+        if key in seen:
+            return
+        seen.add(key)
+        out.append({"from": src_id, "to": dst_id, "type": kind})
+
+    for n in nodes:
+        for r in n.get("relations") or []:
+            add(n["id"], r.get("target"), r.get("type"))
+        for ev in n.get("evidence") or []:
+            ref = str(ev.get("ref", ""))
+            for target in ref_targets(nodes, ref):
+                kind = "tested_in" if kinds.get(target) == "experiment" else "stated_in"
+                add(n["id"], target, kind)
+        data = n.get("data") or {}
+        if n.get("kind") == "gap":
+            for side in ("left", "right"):
+                add(n["id"], data.get(side), "bridges")
+            for key in ("existing_evidence", "evidence_left", "evidence_right"):
+                for ref in _as_refs(data.get(key)):
+                    for target in ref_targets(nodes, ref):
+                        add(n["id"], target, "tested_in")
+        if n.get("kind") == "correspondence":
+            for side in ("left", "right"):
+                add(n["id"], data.get(side), "maps_to")
+            for key in ("existing_evidence", "evidence_left", "evidence_right"):
+                for ref in _as_refs(data.get(key)):
+                    for target in ref_targets(nodes, ref):
+                        add(n["id"], target, "tested_in")
+    return out
+
+
+def _as_refs(value):
+    """`existing_evidence` may be a string, a list of strings, or a list of dicts."""
+    if not value:
+        return []
+    if isinstance(value, str):
+        return [value]
+    out = []
+    for item in value:
+        if isinstance(item, str):
+            out.append(item)
+        elif isinstance(item, dict):
+            for key in ("ref", "id", "target"):
+                if item.get(key):
+                    out.append(str(item[key]))
+                    break
+    return out
+
+
 def build(nodes):
     problems = invariants(nodes)
     if problems:
@@ -168,14 +236,14 @@ def build(nodes):
     kinds = Counter(n["kind"] for n in nodes)
     epistemic = Counter(n["epistemic"] for n in nodes)
     provenance = Counter(n["provenance"] for n in nodes)
-    edges = [{"from": n["id"], "to": r["target"], "type": r["type"]}
-             for n in nodes for r in n.get("relations", [])]
+    edges = compile_edges(nodes)
     refuted = {m["id"] for m in nodes if m["epistemic"] == "refuted"}
     refuted_referenced = sorted({r["target"] for n in nodes for r in n.get("relations", [])
                                  if r["type"] in ("supports", "extends", "qualifies")
                                  and r["target"] in refuted})
     frontier = {
-        "without_evidence": sorted(n["id"] for n in nodes if not n.get("evidence")),
+        "without_evidence": sorted(n["id"] for n in nodes
+                                   if not n.get("evidence") and n.get("kind") != "evidence"),
         "extracted_only": sorted(n["id"] for n in nodes if n.get("provenance") == "extracted"),
         "refuted_still_referenced": refuted_referenced,
         "contested": sorted(n["id"] for n in nodes if n.get("epistemic") == "contested"),
@@ -193,7 +261,7 @@ def build(nodes):
         for ln_id in n.get("lines") or []:
             line_counts[ln_id] = line_counts.get(ln_id, 0) + 1
             line_incidents[ln_id] = line_incidents.get(ln_id, 0) + 1
-            if n["id"].startswith(("C-", "DEF-")):
+            if n["kind"] in ("claim", "definition", "formula"):
                 line_hubs.setdefault(ln_id, []).append(n["id"])
     lines_block = [{"id": lid, "label": line_labels.get(lid, lid),
                     "nodes": line_counts.get(lid, 0),
@@ -212,7 +280,14 @@ def build(nodes):
         "built_at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc)
                     .isoformat(timespec="seconds"),
         "counts": {"total": len(nodes), "by_kind": dict(kinds), "by_epistemic": dict(epistemic),
-                   "by_provenance": dict(provenance), "edges": len(edges)},
+                   "by_provenance": dict(provenance), "edges": len(edges),
+                   "edges_by_type": dict(Counter(e["type"] for e in edges)),
+                   # runs carry a verdict, not knowledge; keep the two counters apart
+                   "by_epistemic_statements": dict(Counter(
+                       n.get("epistemic") for n in nodes
+                       if n.get("kind") in ("claim", "formula", "definition"))),
+                   "by_epistemic_runs": dict(Counter(
+                       n.get("epistemic") for n in nodes if n.get("kind") == "experiment"))},
         "invariants": [
             "every node has non-empty context",
             "established implies at least one evidence item",
@@ -379,7 +454,15 @@ def atlas(nodes, cluster_id=None):
     for ln in meta.get("lines", []):
         print("  " + ln["id"].ljust(15) + " " + ln["label"].ljust(26) + " узлов " + str(ln["nodes"]))
     print()
-    print("дороги между линиями: " + str(counts.get("edges", 0)) + " рёбер на " + str(len(meta.get("lines", []))) + " линий")
+    line_of = {n["id"]: set(n.get("lines") or []) for n in nodes}
+    strict = 0
+    if GRAPH.exists():
+        for e in json.loads(GRAPH.read_text(encoding="utf-8")).get("edges", []):
+            a, b = line_of.get(e["from"], set()), line_of.get(e["to"], set())
+            if a and b and not (a & b):
+                strict += 1
+    print("дороги: " + str(counts.get("edges", 0)) + " рёбер, из них строго межлинейных " + str(strict) +
+          " на " + str(len(meta.get("lines", []))) + " линий")
     print("дыры: без свидетельств " + str(len(holes.get("without_evidence", []))) + " · только извлечено " + str(len(holes.get("extracted_only", []))) + " · опровергнуто, но используется " + str(len(holes.get("refuted_still_referenced", []))))
     print("куда смотреть: atlas <линия> · expand C-001 · math")
     print("legacy: K1–K5 — старые сообщества, доступны как алиасы")
@@ -616,8 +699,9 @@ def extra_invariants(nodes):
         if n.get("lines"):
             lines = n.get("lines")
             vocab = line_vocab()
-            if n.get("kind") != "claim":
-                problems.append(n["id"] + ": lines belong to claims only (got " + str(n.get("kind")) + ")")
+            if n.get("kind") not in ("claim", "formula"):
+                problems.append(n["id"] + ": lines belong to claims and formulas only (got " +
+                                str(n.get("kind")) + ")")
             if not isinstance(lines, list) or any(not isinstance(x, str) or not x.strip() for x in lines):
                 problems.append(n["id"] + ": lines must be a non-empty list of non-empty strings")
             elif len(set(lines)) != len(lines):

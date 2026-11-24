@@ -1,7 +1,7 @@
 {
   "schema": "kg/2",
   "human_confirmed": [],
-  "built_at": "2026-11-22T02:23:02+00:00",
+  "built_at": "2026-11-24T04:54:29+00:00",
   "counts": {
     "total": 580,
     "by_kind": {
@@ -23,7 +23,31 @@
       "verified_agent": 444,
       "extracted": 136
     },
-    "edges": 12
+    "edges": 84,
+    "edges_by_type": {
+      "qualifies": 3,
+      "tested_in": 28,
+      "stated_in": 34,
+      "extends": 2,
+      "analogous_to": 3,
+      "normalizes_to": 1,
+      "refutes": 1,
+      "refuted_by": 1,
+      "supports": 1,
+      "bridges": 6,
+      "maps_to": 4
+    },
+    "by_epistemic_statements": {
+      "established": 9,
+      "hypothesis": 146,
+      "refuted": 1,
+      "bounded": 1
+    },
+    "by_epistemic_runs": {
+      "established": 312,
+      "refuted": 66,
+      "hypothesis": 29
+    }
   },
   "invariants": [
     "every node has non-empty context",
@@ -91,50 +115,73 @@
     {
       "id": "granica",
       "label": "Граница",
-      "nodes": 8,
+      "nodes": 10,
       "hubs": [
         "C-001",
-        "C-002"
+        "C-002",
+        "F-023",
+        "F-031"
       ]
     },
     {
       "id": "obmen",
       "label": "Обмен",
-      "nodes": 2,
-      "hubs": []
+      "nodes": 6,
+      "hubs": [
+        "F-004",
+        "F-005",
+        "F-021",
+        "F-027"
+      ]
     },
     {
       "id": "svoi-usloviya",
       "label": "Свои условия",
-      "nodes": 6,
+      "nodes": 9,
       "hubs": [
-        "C-003"
+        "C-003",
+        "F-009",
+        "F-011",
+        "F-022"
       ]
     },
     {
       "id": "organizaciya",
       "label": "Организация с разделением",
-      "nodes": 3,
-      "hubs": []
+      "nodes": 6,
+      "hubs": [
+        "F-010",
+        "F-012",
+        "F-030",
+        "L-016"
+      ]
     },
     {
       "id": "proshloe",
       "label": "Прошлое",
-      "nodes": 4,
+      "nodes": 7,
       "hubs": [
-        "C-008"
+        "C-008",
+        "F-007",
+        "F-017",
+        "F-025"
       ]
     },
     {
       "id": "smert",
       "label": "Смерть",
-      "nodes": 4,
-      "hubs": []
+      "nodes": 6,
+      "hubs": [
+        "F-001",
+        "F-020",
+        "L-001",
+        "L-004"
+      ]
     },
     {
       "id": "porog",
       "label": "Порог и критичность",
-      "nodes": 10,
+      "nodes": 17,
       "hubs": [
         "C-002",
         "C-004",
@@ -145,38 +192,37 @@
     {
       "id": "vybor",
       "label": "Выбор",
-      "nodes": 11,
+      "nodes": 16,
       "hubs": [
-        "C-006"
+        "C-006",
+        "F-008",
+        "F-014",
+        "F-016"
       ]
     },
     {
       "id": "individualnost",
       "label": "Индивидуальность",
-      "nodes": 6,
-      "hubs": []
+      "nodes": 9,
+      "hubs": [
+        "F-013",
+        "F-015",
+        "F-028",
+        "L-017"
+      ]
     },
     {
       "id": "agentnost",
       "label": "Агентность",
       "nodes": 1,
-      "hubs": []
+      "hubs": [
+        "L-015"
+      ]
     }
   ],
   "lines_version": 1,
   "frontier": {
     "without_evidence": [
-      "EV-EXP-CLOSURE-MEASURE",
-      "EV-EXP-PRICE-KINKS",
-      "EV-EXP-SHADOW-PRICE",
-      "EV-FINDING-247",
-      "EV-FINDING-297",
-      "EV-FINDING-309",
-      "EV-FINDING-316",
-      "EV-FINDING-317",
-      "EV-FINDING-318",
-      "EV-FINDING-319",
-      "EV-FINDING-320",
       "F-002",
       "F-004",
       "F-005",
@@ -363,6 +409,6 @@
     "check"
   ],
   "hashes": {
-    "graph": "37e359cac9d8b243"
+    "graph": "9317cb88acb65fa2"
   }
 }

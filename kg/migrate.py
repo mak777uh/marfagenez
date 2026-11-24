@@ -82,6 +82,15 @@ def formulas():
             "created_at": "2026-11-20",
             "updated_at": "2026-11-21",
         })
+        lm = re.search(r"^\*\*Линии\.\*\*\s*(.+)$", body, re.M)
+        if lm:
+            ids = [x.strip() for x in lm.group(1).split(",") if x.strip()]
+            if ids:
+                out[-1]["lines"] = sorted(set(ids))
+                out[-1]["data"] = {"lines_provenance": {
+                    "method": "declared in formula record",
+                    "source": "docs/ELEPHANT-LITERATURE.md",
+                    "checked_by": None}}
     return out
 
 
