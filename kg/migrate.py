@@ -312,6 +312,24 @@ def literature():
     return out
 
 
+def apply_lit_refs(nodes):
+    """Сшивка с литературной картой: `kg/lit-refs.json` (узел kg/ -> ячейки `literature/map/`).
+
+    Вынесено в функцию, потому что тот же второй проход делает `kg/regress.py`; иначе сверка
+    «корпус -> nodes.jsonl» видит расхождение по `data`, которого нет в корпусе.
+    Поле необязательное: если файла нет, ничего не меняется.
+    """
+    path = ROOT / "kg" / "lit-refs.json"
+    if not path.exists():
+        return nodes
+    lit = json.loads(path.read_text(encoding="utf-8")).get("map", {})
+    for node in nodes:
+        refs = lit.get(node["id"])
+        if refs:
+            node.setdefault("data", {})["lit_ref"] = sorted(set(refs))
+    return nodes
+
+
 def literature_overrides():
     path = ROOT / "kg" / "literature-overrides.json"
     if not path.exists():
@@ -377,6 +395,7 @@ def evidence_nodes(base):
 
 def main():
     base = claims() + formulas() + experiments() + literature() + definitions() + bridges()
+    base = apply_lit_refs(base)
     nodes = base + evidence_nodes(base)
     seen = set()
     unique = []

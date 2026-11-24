@@ -210,7 +210,12 @@
       "lines": [
         "porog"
       ],
-      "kind": "claim"
+      "kind": "claim",
+      "data": {
+        "lit_ref": [
+          "B22-01-0001"
+        ]
+      }
     },
     {
       "id": "C-006",
@@ -251,7 +256,12 @@
       "lines": [
         "vybor"
       ],
-      "kind": "claim"
+      "kind": "claim",
+      "data": {
+        "lit_ref": [
+          "B22-01-0006"
+        ]
+      }
     },
     {
       "id": "C-007",
@@ -375,7 +385,11 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "B21-01-0001",
+          "DIP48-0010"
+        ]
       }
     },
     {
@@ -410,7 +424,10 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP52-0003"
+        ]
       }
     },
     {
@@ -457,7 +474,12 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "B22-01-0001",
+          "DIP47-0004",
+          "DIP51-0001"
+        ]
       }
     },
     {
@@ -562,7 +584,10 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "B24-01-0003"
+        ]
       }
     },
     {
@@ -843,7 +868,12 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "B20-01-0002",
+          "B25-01-0001",
+          "DIP52-0001"
+        ]
       }
     },
     {
@@ -1088,7 +1118,13 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP49-0010",
+          "DIP51-0008",
+          "DIP53-0002",
+          "DIP53-0009"
+        ]
       }
     },
     {
@@ -1222,7 +1258,12 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "B18-01-0003",
+          "DIP49-0001",
+          "DIP49-0006"
+        ]
       }
     },
     {
@@ -1407,7 +1448,11 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP46-0001",
+          "DIP47-0002"
+        ]
       }
     },
     {
@@ -17672,7 +17717,10 @@
           "F-018",
           "F-029"
         ],
-        "status": "open"
+        "status": "open",
+        "lit_ref": [
+          "B24-01-0003"
+        ]
       },
       "created_at": "2026-11-21",
       "updated_at": "2026-11-21"
@@ -18128,17 +18176,17 @@
     },
     {
       "from": "C-001",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-001",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
     },
     {
       "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -18163,17 +18211,17 @@
     },
     {
       "from": "C-002",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-002",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
     },
     {
       "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18198,12 +18246,12 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
@@ -18323,12 +18371,12 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
@@ -18338,17 +18386,17 @@
     },
     {
       "from": "F-023",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
+    },
+    {
+      "from": "F-023",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
     },
     {
       "from": "F-023",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18483,17 +18531,17 @@
     },
     {
       "from": "CORR-02",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
     },
     {
       "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -18518,17 +18566,17 @@
     },
     {
       "from": "CORR-02",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {

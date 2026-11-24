@@ -12,7 +12,9 @@ M6 `gap` требует `searched` и `scope`;
 M7 `contradiction` требует минимум двух работ;
 M8 рёбра ссылаются на существующие ячейки;
 M9 доля `analogous` среди рёбер не больше трети (иначе карта становится метафорами);
-M10 `high` требует формулы или цитаты, и локатор должен быть `verified`.
+M10 `high` требует формулы или цитаты, и локатор должен быть `verified`;
+M11 необязательное `kg_ref` (сшивка с `kg/`) — список непустых id вида `C-*`, `F-*`, `L-*`, `GAP-*`,
+    `CORR-*`, `DEF-*`; поле может отсутствовать, но если есть — обязано быть корректным.
 
 Usage:
     python3 checks/map_contract.py
@@ -98,6 +100,19 @@ def check(atoms_path: pathlib.Path, edges_path: pathlib.Path) -> list[str]:
     # A ratio on three edges says nothing; the rule applies once the map has enough links to matter.
     if total >= 9 and types.get("analogous", 0) / total > 1 / 3:
         errs.append(f"M9 аналогий {types.get('analogous')} из {total}: больше трети, карта превращается в метафоры")
+    # M11: необязательная сшивка с картой знаний. Поле может отсутствовать; если есть — обязано быть корректным.
+    for a in atoms:
+        refs = a.get("kg_ref")
+        if refs is None:
+            continue
+        if not isinstance(refs, list) or not refs:
+            errs.append(f"M11 {a.get('atom')}: kg_ref должен быть непустым списком")
+            continue
+        for r in refs:
+            if not isinstance(r, str) or not r.strip():
+                errs.append(f"M11 {a.get('atom')}: пустая запись в kg_ref")
+            elif not r.startswith(("C-", "F-", "L-", "GAP-", "CORR-", "DEF-", "EV-", "EXP-")):
+                errs.append(f"M11 {a.get('atom')}: kg_ref {r!r} не id из kg/")
     return errs
 
 

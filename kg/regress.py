@@ -33,7 +33,7 @@ def rebuilt():
     base = (migrate.claims() + migrate.formulas() + migrate.experiments()
             + migrate.literature() + migrate.definitions() + migrate.bridges())
     # the same second pass `migrate.main` does: evidence objects are derived from the corpus too
-    nodes = base + migrate.evidence_nodes(base)
+    nodes = migrate.apply_lit_refs(base + migrate.evidence_nodes(base))
     return {n["id"]: n for n in nodes}
 
 
