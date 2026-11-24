@@ -98,6 +98,7 @@
       "data": {
         "lit_ref": [
           "B26-01-0001",
+          "B26-01-0009",
           "DIP56-0003",
           "DIP57-0002",
           "DIP57-0006",
@@ -18233,17 +18234,17 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-001",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
     },
     {
       "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-001",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -18268,12 +18269,12 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18308,13 +18309,13 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -18433,22 +18434,22 @@
     },
     {
       "from": "F-022",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
+    },
+    {
+      "from": "F-022",
       "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
     },
     {
-      "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "from": "F-023",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "F-023",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
@@ -18588,17 +18589,17 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
     },
     {
       "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -18623,12 +18624,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
