@@ -39,7 +39,13 @@
       "lines": [
         "granica"
       ],
-      "kind": "claim"
+      "kind": "claim",
+      "data": {
+        "lit_ref": [
+          "DIP56-0004",
+          "DIP56-0007"
+        ]
+      }
     },
     {
       "id": "C-002",
@@ -87,7 +93,12 @@
         "granica",
         "porog"
       ],
-      "kind": "claim"
+      "kind": "claim",
+      "data": {
+        "lit_ref": [
+          "DIP56-0003"
+        ]
+      }
     },
     {
       "id": "C-003",
@@ -484,7 +495,8 @@
           "DIP47-0004",
           "DIP49-0003",
           "DIP51-0001",
-          "DIP51-0006"
+          "DIP51-0006",
+          "DIP56-0002"
         ]
       }
     },
@@ -555,7 +567,10 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP56-0005"
+        ]
       }
     },
     {
@@ -1136,7 +1151,11 @@
           "DIP51-0008",
           "DIP53-0002",
           "DIP53-0006",
-          "DIP53-0009"
+          "DIP53-0009",
+          "DIP56-0004",
+          "DIP56-0005",
+          "DIP56-0007",
+          "DIP56-0009"
         ]
       }
     },
@@ -18196,6 +18215,11 @@
     },
     {
       "from": "C-001",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
+    },
+    {
+      "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
@@ -18203,11 +18227,6 @@
       "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
-    },
-    {
-      "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
     },
     {
       "from": "C-001",
@@ -18236,13 +18255,13 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -18266,11 +18285,6 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
-      "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -18278,6 +18292,11 @@
       "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
+    },
+    {
+      "from": "C-003",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -18391,11 +18410,6 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
-      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -18405,19 +18419,24 @@
       "type": "tested_in"
     },
     {
+      "from": "F-022",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
+    },
+    {
       "from": "F-023",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "GAP-01",
@@ -18551,6 +18570,11 @@
     },
     {
       "from": "CORR-02",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
@@ -18558,11 +18582,6 @@
       "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
     },
     {
       "from": "CORR-02",
@@ -18591,12 +18610,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
