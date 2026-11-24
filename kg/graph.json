@@ -96,7 +96,12 @@
       "kind": "claim",
       "data": {
         "lit_ref": [
-          "DIP56-0003"
+          "DIP56-0003",
+          "DIP57-0002",
+          "DIP57-0006",
+          "DIP57-0008",
+          "DIP57-0009",
+          "DIP57-0010"
         ]
       }
     },
@@ -440,7 +445,8 @@
         "lit_ref": [
           "DIP48-0008",
           "DIP52-0003",
-          "DIP52-0005"
+          "DIP52-0005",
+          "DIP57-0002"
         ]
       }
     },
@@ -496,7 +502,8 @@
           "DIP49-0003",
           "DIP51-0001",
           "DIP51-0006",
-          "DIP56-0002"
+          "DIP56-0002",
+          "DIP57-0005"
         ]
       }
     },
@@ -899,7 +906,8 @@
           "DIP52-0001",
           "DIP52-0011",
           "DIP52-0012",
-          "DIP53-0002"
+          "DIP53-0002",
+          "DIP57-0006"
         ]
       }
     },
@@ -18215,13 +18223,13 @@
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
@@ -18570,13 +18578,13 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
