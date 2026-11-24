@@ -1,0 +1,1853 @@
+ARTICLE
+Adaptive responses of animals to climate
+change are most likely insufﬁcient
+Viktoriia Radchuk
+et al.#
+Biological responses to climate change have been widely documented across taxa and
+regions, but it remains unclear whether species are maintaining a good match between
+phenotype and environment, i.e. whether observed trait changes are adaptive. Here we
+reviewed 10,090 abstracts and extracted data from 71 studies reported in 58 relevant pub-
+lications, to assess quantitatively whether phenotypic trait changes associated with climate
+change are adaptive in animals. A meta-analysis focussing on birds, the taxon best repre-
+sented in our dataset, suggests that global warming has not systematically affected mor-
+phological traits, but has advanced phenological traits. We demonstrate that these advances
+are adaptive for some species, but imperfect as evidenced by the observed consistent
+selection for earlier timing. Application of a theoretical model indicates that the evolutionary
+load imposed by incomplete adaptive responses to ongoing climate change may already be
+threatening the persistence of species.
+https://doi.org/10.1038/s41467-019-10924-4
+OPEN
+Correspondence and requests for materials should be addressed to V.R. (email: radchuk@izw-berlin.de). #A full list of authors and their afﬁliations appears at
+the end of the paper.
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+1
+1234567890():,;
+
+C
+limate change can reduce the viability of species and
+associated biodiversity loss can impact ecosystem func-
+tions and services1–3. Fitness losses (i.e. reductions in
+survival or reproductive rates) can be mitigated, however, if
+populations respond adaptively by undergoing morphological,
+physiological or behavioural changes that maintain an adequate
+match—or at least reduce the extent of mismatch—between
+phenotype and environment. Such adaptive phenotypic changes
+—which we call ‘adaptive response’ (to climate change)—come
+about via phenotypic plasticity, microevolution or a combination
+of both, and can occur in tandem with geographic range shifts4–6.
+Quantifying adaptive responses, or demonstrating their absence
+despite directional selection, is important in a biodiversity con-
+servation
+context
+for
+predicting
+species’
+abundances
+or
+distributions4,5 and for mitigating the effects of climate change on
+biodiversity by developing strategies tailored to species’ ecolo-
+gies4–6.
+Longitudinal studies of wild populations provide the oppor-
+tunity to determine whether phenotypic changes are adaptive (e.g.
+refs. 7–9). A phenotypic change qualiﬁes as an adaptive response
+to climate change if three conditions are met: (1) a climatic factor
+changes over time, (2) this climatic factor affects a phenotypic
+trait of a species and (3) the corresponding trait change confers
+ﬁtness beneﬁts (Fig. 1)10,11. These conditions are usually assessed
+in isolation11–14 (but see, for example, refs. 7,8) and hence most
+studies can only speculate on whether adaptive responses have
+occurred. Here, we extracted data from many published studies to
+assess these three conditions in free-living animals and thus
+determine whether the observed phenotypic changes are adaptive.
+Multiple studies report data satisfying the ﬁrst two conditions.
+In particular, increases in temperatures across multiple locations
+during recent decades are well documented (i.e. global warm-
+ing15). Similarly, the effects of climate change on several traits are
+well characterized. For example, the timing of biological events,
+such as reproduction or migration (hereafter ‘phenological
+traits’),
+has
+generally
+advanced
+across
+multiple
+taxa
+and
+locations13,16–18. ‘Morphological traits’, such as body size or
+mass, have also responded to climate change, but show no general
+systematic pattern8,14,19,20.
+A substantial challenge to test the third condition is that the
+data must be collected over multiple generations in single
+populations. Existing datasets assembling data on either trait
+variation21–23 or selection24–26 across taxa, although valuable, are
+not well suited for testing whether phenotypic trait changes are
+adaptive, because these two types of datasets rarely overlap in
+terms of species, traits, study location and study period. Recently,
+Condition 1
+Condition 2
+Climate
+Trait
+Trait
+Clim
+
+7.5
+b
+f
+e
+a
+c
+d
+120
+100
+80
+4.5
+5.5
+6.5
+7.5
+6.5
+5.5
+4.5
+1975
+1985
+1995
+2005
+Year
+1975
+1985
+1995
+2005
+Year
+Year
+WMSD
+Fitness
+Assessing WMSD
+1.5
+0.5
+–0.5
+–1.5
+–2.5
+Condition 3
+0.3
+–0.1
+–0.5
+–0.5
+–0.1
+Trait change over time
+(SD per year)
+0.3
+Weighted mean
+selection differential
+Selection differential
+Adaptive
+Adaptive
+Maladaptive
+Maladaptive
+Temperature (°C)
+Temperature (°C)
+Standardized trait
+–2
+–1
+0
+1
+2
+Each year
+1
+0
+–1
+Egg laying date
+Relative fitness
+Fig. 1 A framework for inferring phenotypic adaptive responses using three conditions. a General framework. Arrows indicate hypothesized causal
+relationships, with dashed arrow indicating that we accounted for the effects associated with years when assessing the effect of climate on traits. b–f
+demonstrate steps of the framework using as an example one study from our dataset—Wilson et al.69. b Condition 1 is assessed by βClim, the slope of a
+climatic variable on years, c Condition 2 is assessed by βTrait, the slope of the mean population trait values on climate. d Interim step: assessing the linear
+selection differentials (β). Note that each dot here represents an individual measurement in the respective year and not a population mean; analyses of
+selection were not performed here but in original publications, except for a few studies, thus inset d is a conceptual depiction and not based on real data.
+e To assess condition 3, ﬁrst the weighted mean annual selection differential (WMSD) is estimated. f Condition 3 is then assessed by checking whether
+selection occurs in the same direction as the trait change over time, calculated as the product of the slopes from conditions 1 and 2. Red lines and font in
+b–f illustrate the predictions from model ﬁts. Grey lines and font illustrate the lack of effect in each condition. As an example, if temperature increased over
+years (as shown by the red line in b), phenology advanced (depicted by the red line in c) and WMSD was negative (as depicted by the red line in e), then
+ﬁtness beneﬁts are associated with phenological advancement, reﬂecting an adaptive response (point falls in quadrant 3 in f). Source data are provided as a
+Source Data ﬁle
+ARTICLE
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+2
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+
+Siepielski et al.27 assembled a global dataset combining climatic
+factors and selection in species and showed that precipitation,
+rather than temperature, explained most of the variation in
+selection. However, neither their analysis nor a follow-up study28
+assessed whether phenotypic responses to climate (PRC) were
+adaptive because the assembled dataset does not contain data on
+trait changes.
+We conducted a systematic literature search to assemble the
+necessary data to assess whether trait changes in response to
+climate change are adaptive across animal species worldwide. We
+mainly investigated the phenotypic responses of birds, because
+complete data on other taxa were scarce. We demonstrate that
+advancement of phenology is adaptive in some bird species, but
+this response is not universal. Further, modelling suggests that
+even bird species responding adaptively to climate change may
+adapt too slowly to be able to persist in the longer term.
+Results
+Systematic literature search. Our literature search focused on
+studies that investigated how change in temperature, precipitation
+or both affects morphological or phenological traits in arachnids,
+insects, amphibians, reptiles, birds or mammals. To assess all
+three conditions necessary for inferring adaptive responses to
+climate change (Fig. 1), we selected publications reporting the
+following data from natural populations during at least 6 years:
+(1) annual values of a climatic variable, (2) annual mean values
+(+SE) of a phenotypic trait at the population level and (3) annual
+linear selection differentials measured on the trait(s). Annual
+linear selection differentials were measured as the slope of relative
+ﬁtness on standardized trait values29 (Methods, Fig. 1d) and
+reported for at least one of the three ﬁtness components: adult
+survival, reproduction (measured as number of offspring) or
+recruitment (measured as number of offspring contributing to the
+population size the following year).
+A search on Web of Knowledge (Methods) returned 10,090
+publications, of which 58 were retained. These publications
+reported data on 4835 studies (representing 1413 non-aquatic
+species in 23 countries) that contained information on pheno-
+typic responses to climate change. Out of these 4835 studies, a
+subset of 71 studies (representing 17 species in 13 countries)
+contained all the information required to assess whether
+responses were adaptive (including selection differentials, Meth-
+ods). We stored information on the 4835 studies in the ‘PRC’
+dataset, and information on the subset of the 71 studies in the
+‘PRC with Selection data’ (PRCS) dataset. We used the PRC
+dataset to assess how representative the PRCS subset was with
+regard to (1) the observed change in climatic factors over time,
+and (2) the change in phenotypic traits in response to climatic
+factors. We deﬁne a ‘study’ as a dataset satisfying our selection
+criteria for a unique combination of a species, location, climatic
+factor, phenotypic trait and ﬁtness component. We had more
+studies than publications because some publications reported data
+for several species, several climatic factors and/or several
+phenotypic traits.
+Structure of PRC and PRCS datasets. The studies in both
+datasets were predominantly conducted in the Northern Hemi-
+sphere (Supplementary Fig. 1). The PRC dataset was heavily
+biased towards arthropods (88% of studies), with other taxa
+constituting only a small proportion of the studied species
+(Supplementary Fig. 2). In contrast, the PRCS dataset was heavily
+biased towards birds (95%). We found no studies for insects and
+amphibians that reported annual selection data and satisﬁed all
+other inclusion criteria. Among the climatic variables used,
+temperature dominated both datasets (>70%, Supplementary
+Fig. 2); therefore, we focused on the effects of temperature
+changes in the main text and provide results for precipitation in
+Supplementary Fig. 3 and Supplementary Note 1. The majority of
+studies focused on phenological (rather than morphological)
+traits, with this bias being less pronounced for the PRCS dataset.
+The median duration of a study was 29 years in the PRCS dataset
+and 24 years in the PRC dataset (Supplementary Fig. 4).
+Adaptive responses to global warming. We generally expected
+that warming temperatures would be associated with an advance
+in phenological events, because most studies on phenology in our
+PRC dataset represented early season (spring) events in the
+Northern Hemisphere, and such events were previously shown to
+mainly advance with warming temperatures30,31. We deﬁned a
+trait change to be adaptive in response to climate if the climate-
+driven change in phenotype occurred in the same direction as
+linear selection. For example, with an increase in temperature
+over the years, breeding time occurs progressively earlier, with
+earlier breeding conferring higher ﬁtness (Fig. 1). In contrast, if
+the trait changed in the direction opposite to selection (e.g. later
+breeding, despite earlier breeding being favoured), then the
+response was considered maladaptive11. The detected adaptive
+responses might be due to microevolution, phenotypic plasticity
+or both. As we used selection differentials that were measured at
+the phenotypic level, we could not differentiate among these
+sources.
+We conducted separate analyses for PRCS and PRC datasets
+and, within each of them, for temperature and precipitation. We
+ﬁrst quantiﬁed the three conditions necessary to infer adaptive
+responses for each study (Fig. 1). We assessed condition 1
+(change in climate over years) with ‘model 1’. This linear mixed-
+effects model predicted the annual values of the climatic variable
+using the year (modelled as a quantitative variable), thereby
+estimating the slope of climate on years for each study (Fig. 1b).
+We assessed condition 2 (change of phenotypic traits with the
+climatic variable) with ‘model 2’. This linear mixed-effects model
+predicted the mean annual standardized population trait values
+using
+the
+climatic
+variable
+(temperature
+or
+precipitation,
+modelled as a quantitative variable), thereby estimating the slope
+of traits on climate for each study (Fig. 1c). This model also
+included year as a quantitative variable to account for effects of
+years on phenotypic traits not mediated by climate. We assessed
+condition 3 (climate-driven trait changes are associated with
+ﬁtness beneﬁts) in a two-step procedure. First, we ﬁtted ‘model
+3’—a linear mixed-effects model that predicted the annual linear
+selection differentials (weighted by the inverse of their variances)
+with an intercept, thereby estimating the weighted mean of
+annual selection differentials (WMSDs) for each study (Fig. 1e,
+see Methods for details). Second, we plotted the obtained WMSD
+as a function of the climate-driven trait change over time,
+calculated as the product of the slopes from conditions 1 and 2,
+that is, by βclim times βTrait (Fig. 1f). In this framework, a trait
+change qualiﬁes as an adaptive response if both WMSD and the
+trait change over time have the same sign. If their signs differ,
+then the trait change is maladaptive. We also reﬁtted model 3
+using year as a ﬁxed-effect (quantitative) predictor to assess a
+potential directional change in selection over years (Methods).
+Since the measures of phenological responses are sensitive to
+methodological biases30, in particular to temporal trends in
+species abundance32, we also reﬁtted an extended version of
+model 2 by additionally including abundance both as a ﬁxed-
+effect explanatory variable and as an explanatory variable for
+residual variance (Methods). This model was ﬁtted to a subset of
+studies for which we could extract abundance data. In all models,
+we accounted for ﬁrst-order temporal autocorrelation (if this
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+ARTICLE
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+3
+
+increased the predictive power of the ﬁtted model), and thus also
+considered year (modelled as a qualitative variable) as a random
+effect.
+We then performed three meta-analyses to obtain (1) the
+average slope of climate on years across studies, (2) the average
+slope of traits on climate across studies and (3) the WMSD across
+studies. The purpose of these meta-analyses is to provide such
+average values while accounting for the uncertainty associated
+with each estimate and for the heterogeneity stemming from
+variation in study design. All three meta-analyses were performed
+using mixed-effects models (Methods). We also reﬁtted these
+models to assess whether the relationships found depended on
+taxon, type of morphological measure, type of phenological
+measure, endothermy, ﬁtness component used to measure
+selection and generation length (Methods). Finally, we compared
+the proportion of studies showing adaptive responses (i.e. the
+same sign of WMSD and climate-driven trait change over time)
+to the proportion of studies showing maladaptive responses (i.e.
+WMSD and trait change over time differ in their sign) with a
+binomial test (Methods). We also performed a meta-analysis of
+the product between WMSD and the sign of the climate-driven
+trait change over time using a mixed-effects model (Methods).
+In
+line
+with
+the
+recent
+global
+temperature
+increase33,
+temperature increased across studies by 0.040 ± 0.007 °C (mean
+± SE) per year according to the PRCS dataset (likelihood ratio test
+[LRT]
+between
+the
+model
+with
+and
+without
+change
+in
+temperature over years: χ2 = 20.4, df = 1, p < 0.001), and by
+0.043 ± 0.005 °C per year according to the PRC dataset (χ2 = 41.0,
+df = 1, p < 0.001) (Fig. 2). These rates are slightly higher than
+those observed in recent meta-analyses that, similarly to our
+study, are biased toward data from northern latitudes (range
+0.03–0.05 °C per year17,31). A possible explanation for this
+discrepancy is that warming rates are higher in recent time series
+such as ours (Supplementary Fig. 5, median ﬁrst year in the PRCS
+dataset = 1980, and median study duration = 29 years)31,34.
+Consistent with previous work13,16,17, phenology advanced
+with increasing temperatures at a rate of −0.260 ± 0.069 standard
+deviations in the focal trait per degree Celsius (SD per °C)
+according to the PRCS dataset (LRT between the model with and
+without change in phenology: χ2 = 11.2, df = 1, p < 0.001) and at
+a rate of −0.248 ± 0.037 SD per °C according to the PRC dataset
+(χ2 = 22.9, df = 1, p < 0.001). In the PRC dataset, the phenological
+response to temperature varied among taxa (Fig. 3, LRT between
+the model with and without taxon as a predictor: χ2 = 133.5, df =
+5, p < 0.001), with the strongest phenological advancement found
+in amphibians, followed by insects and birds (Supplementary
+Data 1). This ﬁnding is in line with previous research showing
+that amphibians advanced their phenology faster than other
+taxa13,16. In contrast to Cohen et al.17, we did not ﬁnd signiﬁcant
+variation in phenological responses among different types of traits
+(categorized as arrival, breeding and development), either in the
+PRCS dataset (Supplementary Data 2, LRT between the model
+with and without the trait type as a predictor: χ2 = 0.5, df = 2,
+p = 0.775) or in the PRC dataset (LRT: χ2 = 0.4, df = 2, p =
+0.809). Our ﬁndings of advancing phenology with warming
+temperatures were qualitatively unaffected by including abun-
+dance,
+and,
+although
+abundance
+did
+affect
+phenological
+responses, the effects of temperature on phenology were generally
+larger than those of abundance (Supplementary Fig. 6).
+Morphological traits were not associated with temperature in
+the PRCS (rate of change: 0.060 ± 0.078 SD per °C; LRT: χ2 = 0.6,
+df = 1, p = 0.443) and only marginally associated with tempera-
+ture in the PRC dataset (rate of change: −0.053 ± 0.029 SD per °C;
+LRT: χ2 = 3.3, df = 1, p = 0.068). Neither endothermy nor type of
+morphological measure (skeletal vs. body mass) moderated the
+relationship
+between morphological
+traits and temperature
+(Supplementary Data 2). Our analyses indicated, however, that
+taxa may moderate the effect of temperature on morphology in
+the PRC dataset (LRT: χ2 = 4.5, df = 1, p = 0.11, Supplementary
+Data 2), with negative associations on average observed in
+mammals, and no strong association found in birds (Fig. 3).
+Across studies, we found a negative WMSD (=−0.159 ± 0.061
+SD−1) for phenological traits (LRT between the model assuming
+WMSD is non-zero and the one assuming it equals zero: χ2 = 6.1,
+df = 1, p = 0.014), reﬂecting higher ﬁtness for earlier-occurring
+biological events. We also found an indication of the variation in
+the strength of selection among ﬁtness components (LRT between
+the model with and without ﬁtness component as a predictor: χ2
+= 5.8, df = 2, p = 0.055), with the most negative selection acting
+via recruitment (Fig. 4). We did not ﬁnd a signiﬁcant relationship
+between annual linear selection differentials and years across
+studies (LRT for phenological traits: χ2 = 0.1, df = 1, p = 0.764;
+LRT
+for
+morphological
+traits:
+χ2 = 0.5,
+df = 1,
+p = 0.497,
+Supplementary Fig. 7). Contrary to selection on phenology,
+WMSD for morphological traits on average did not differ
+signiﬁcantly from zero across studies (WMSD = 0.044 ± 0.043
+SD−1; LRT: χ2 = 1.2, df = 1, p = 0.268). We thus did not
+investigate temporal changes in selection for this trait category.
+For phenological traits, negative selection favouring the
+observed advancing phenology in the context of warming
+temperature suggests adaptive responses. Accordingly, in 23 out
+of 38 studies, phenology advanced over time as temperatures
+N0,7
+N0,7
+FI,1
+FI,1
+SE, 20
+DK, 16
+DK, 14
+DK, 15
+DK, 15
+NL, 24
+NL, 24
+NL, 24
+NL, 11
+NL, 10
+UK, 9
+UK, 8
+UK, 6
+UK, 23
+BE, 12
+BE, 12
+BE, 12
+BE, 12
+BE, 12
+BE, 12
+BE, 12
+BE, 12
+FR, 17
+CA, 25
+FR, 13
+FR, 18
+FR, 18
+FR, 18
+FR, 18
+NZ, 22
+USA, 19
+ES, 4
+ES, 3
+ES, 5
+ES, 2
+ES, 2
+ES, 2
+Across
+studies
+–1.0
+–0.5
+0.0
+0.5
+1.0
+Effect of year on temperature (°C per year)
+PRCS
+PRC
+Fig. 2 Temporal trend in temperature shown for each study in the
+phenotypic responses to climate with selection (PRCS) dataset. Each study
+is identiﬁed by the publication identity (Supplementary Data 3) and the
+two-letter country code. Studies are sorted by the decreasing distance of
+their location from the equator. Bars show 95% conﬁdence intervals and
+the symbol size is proportional to the study sample size. Dotted lines
+extending the bars help link the labels to the respective effect sizes. The
+overall effect sizes calculated across studies in the PRCS dataset (including
+only studies with selection data, black) and the PRC dataset (including
+studies with and without selection data, blue) indicate temperature
+increase over time across studies. Source data are provided as a Source
+Data ﬁle
+ARTICLE
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+4
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+
+increased, and at the same time negative selection was acting on
+phenology (studies in quadrant III of Fig. 5a), suggesting adaptive
+responses. A binomial test revealed a tendency for phenological
+responses to be more frequently adaptive than maladaptive (mean
+proportion of studies with adaptive responses = 0.66, p = 0.07,
+Fig. 5). The meta-analysis conﬁrmed the direction of this effect
+(product of WMSD with the sign of the climate-driven trait
+change = 0.091 ± 0.068),
+although
+not
+reaching
+signiﬁcance
+(Supplementary Fig. 8, LRT: χ2 = 1.9, df = 1, p = 0.17), likely
+due to high heterogeneity among studies (Higgins I2, i.e. the
+proportion of total heterogeneity due to between-study variation
+was 0.999). For morphological traits, which have not changed
+much over time in response to climate, the proportion of adaptive
+and maladaptive responses did not differ (Fig. 5, binomial test,
+mean proportion of studies with adaptive responses = 0.5, p = 1).
+Implications for population persistence. To assess the impli-
+cations for population persistence of selection acting on
+phenology across studies, we used the ‘moving optimum’ model
+of Bürger and Lynch35. This model, which assumes an optimum
+phenotype that changes linearly over time due to environmental
+change, predicts that the lag between the actual population
+mean phenotype and the optimum should eventually become
+constant if the population tracks the moving optimum via
+microevolution (subsequent extensions allowed for phenotypic
+plasticity, e.g. ref. 36). This prediction seems valid in our
+populations since (1) climatic changes are well approximated by
+a linear trend (Fig. 2) and (2) selection is non-zero and constant
+over time across studies, as indicated by the lack of a temporal
+trend in annual linear selection differentials. The Bürger and
+Lynch35 model can be used to assess the critical lag behind the
+optimum, which represents the situation where the population
+just replaces itself (population growth rate λ = 1). Comparing
+the actual to the critical lag provides insight into the expected
+persistence of populations: if the actual lag is greater than the
+critical lag, then the population growth rate is lower than 1,
+Arrival date, 20
+Birth date, 17
+Egg laying date, 3
+Date develop. stage, 12
+Develop. time, 12
+Egg laying date, 12
+Egg laying date, 18
+Egg laying date, 18
+Egg laying date, 18
+Egg laying date, 18
+Egg laying date, 23
+Egg laying date, 25
+Egg laying date, 4
+Date develop. stage, 12
+Develop. time, 12
+Egg laying date, 1
+Egg laying date, 1
+Egg laying date, 6
+Egg laying date, 10
+Egg laying date, 12
+Incubation time, 12
+Nest time, 12
+Nest time, 12
+Incubation time, 12
+Nest time, 12
+Nest time, 12
+Settlement date, 13
+Egg laying date, 9
+Egg laying date, 24
+Egg laying date, 24
+Egg laying date, 24
+Egg laying date, 2
+Egg laying date, 2
+Egg laying date, 2
+Egg laying date, 7
+Egg laying date, 7
+Egg laying date, 19
+Across studies,
+PRCS dataset
+Across studies,
+PRC dataset
+–2
+–1
+Effect of temperature on trait (SD per °C)
+0
+1
+2
+Phenological
+Phenological
+Aves
+Mammalia
+Reptilia
+Amphibia
+Arachnida
+Insecta
+Morphological
+Aves
+Mammalia
+Reptilia
+BCI, 5
+BCI, 5
+Body mass, 22
+Body mass, 22
+Body mass, 11
+Body mass, 11
+Body mass, 11
+Tarsus length, 11
+Tarsus length, 11
+Tarsus length, 11
+Morphological
+Arrival date, 16
+Arrival date, 16
+Arrival date, 15
+Arrival date, 15
+IC interval, 14
+Fig. 3 Trait changes in response to temperature. For each study in the phenotypic responses to climate with selection (PRCS) dataset, the changes in
+morphological traits are shown in grey and the changes in phenological traits are shown in black. Each study is identiﬁed by the publication identity, the
+trait and the species. Studies are sorted by trait category (black: phenological; grey: morphological), and within it by species, trait name and publication
+identity. Overall, phenological traits in both the PRCS dataset (black) and the PRC dataset (dark blue) were negatively affected by temperature.
+Morphological traits were not associated with temperature in the PRCS (grey) and showed a tendency to a negative association with temperature in the
+PRC dataset (cyan). In the PRC dataset there was signiﬁcant variation among taxa in the effect of temperature on phenological (blue) traits, and a tendency
+to such variation for morphological traits (cyan). See Fig. 2 for legend details. The majority of the species pictures were taken from Pixabay (https://
+pixabay.com/images/). The exceptions are a picture of red-billed gull (credit: co-author J.A.M.) and four pictures taken from Macaulay library (https://
+www.macaulaylibrary.org/). Illustration credits for pictures taken from Macaulay library: great reed warbler—Peter Kennerley/Macaulay Library at the
+Cornell Lab of Ornithology (ML30060261), European pied ﬂycatcher—Suzanne Labbé/Macaulay Library at the Cornell Lab of Ornithology (ML30638911),
+song sparrow—Steven Mlodinow/Macaulay Library at the Cornell Lab of Ornithology (ML47325951) and Eurasian scops owl—Jon Lowes/Macaulay
+Library at the Cornell Lab of Ornithology (ML103371221). Source data are provided as a Source Data ﬁle
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+ARTICLE
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+5
+
+meaning substantial extinction risk; otherwise, the populations
+are assumed to have a negligible extinction risk. The estimation
+of both the actual and critical lags requires several parameter
+estimates, which we could not retrieve from the publications
+behind our data (Methods). However, our numerical analysis of
+a large parameter space shows that the difference between the
+actual and critical lags is mostly inﬂuenced by two parameters:
+β, the strength of directional selection, for which we used the
+absolute values of our WMSD estimates for each study, and ω2,
+the width of the ﬁtness function, for which we did not have
+study-speciﬁc estimates (Fig. 6a–f). We thus applied the Bürger
+and Lynch35 model using ω2 values published for other spe-
+cies37 together with the study-speciﬁc β estimates (absolute
+values of WMSD) and showed that for the populations of 9 out
+of 13 study species, the actual lag exceeds the critical lag when
+large values of ω2 are considered (Fig. 6g). Moreover, the
+probability that none of the study species is at risk (λ < 1) is
+virtually zero (Supplementary Fig. 9).
+Discussion
+To date, the majority of global multi-species studies assessing
+animal responses to climate change have focused on changes in
+distribution ranges3,38,39, whereas phenotypic responses and the
+extent to which they may be adaptive remain little studied40.
+Moreover, models commonly used to predict species distributions
+and population viability under climate change usually do not
+incorporate the potential for species to adapt, often because
+appropriate data are unavailable to parameterize process-based
+models5,41,42. Our study thus makes an important contribution
+by focusing on the temporal dimension of species responses to
+changing environments. We demonstrate that some bird species
+analysed here seem to respond to warming temperatures by
+Arrival date, recruitment, 20
+Arrival date, reproduction, 20
+Arrival date, survival, 20
+Birth date, survival, 17
+Egg laying date, reproduction, 3
+Egg laying date, recruitment, 12
+Date develop. stage, recruitment, 12
+Incubation time, recruitment, 12
+Develop. time, recruitment, 12
+Nest time, recruitment, 12
+Egg laying date, recruitment, 18
+Egg laying date, recruitment, 18
+Egg laying date, recruitment, 18
+Egg laying date, recruitment, 18
+Egg laying date, recruitment, 23
+Settlement date, reproduction, 13
+Settlement date, reproduction, 13
+Egg laying date, reproduction, 9
+IC interval, reproduction, 14
+Egg laying date, recruitment, 25
+Egg laying date, reproduction, 25
+Egg laying date, reproduction, 4
+Egg laying date, recruitment, 6
+Egg laying date, recruitment, 10
+Egg laying date, recruitment, 12
+Date develop. stage, recruitment, 12
+Incubation time, recruitment, 12
+Develop time, recruitment, 12
+Nest time, recruitment, 12
+Egg laying date, reproduction, 1
+Egg laying date, survival, 10
+Egg laying date, reproduction, 2
+Egg laying date, reproduction, 7
+Arrival date, survival, 15
+Egg laying date, reproduction, 19
+BCI, reproduction, 5
+BCI, reproduction, 5
+Body mass, recruitment, 22
+Body mass, recruitment, 22
+Body mass, reproduction, 22
+Body mass, reproduction, 22
+Body mass, survival, 22
+Body mass, survival, 22
+Body mass, survival, 11
+Body mass, survival, 11
+Body mass, survival, 11
+Body mass, survival, 8
+Body mass, recruitment, 11
+Body mass, recruitment, 11
+Body mass, recruitment, 11
+Tarsus length, recruitment, 11
+Tarsus length, survival, 11
+Tarsus length, survival, 11
+Tarsus length, survival, 11
+Morphological
+Tarsus length, recruitment, 11
+Tarsus length, recruitment, 11
+Egg laying date, reproduction, 25
+Egg laying date, survival, 25
+Egg laying date, reproduction, 23
+Phenological
+Recruitment
+Reproduction
+Survival
+–2
+–1
+0
+Selection on trait (SD–1)
+1
+2
+Across
+Studies
+Fig. 4 Weighted mean of annual selection differentials (WMSDs) for each study. WMSD is shown for phenological (black) and morphological (grey) traits.
+Each study is identiﬁed by the publication identity, the trait, the species and the ﬁtness component. Studies are sorted by trait category (phenological:
+black; morphological: grey), and within it by species, ﬁtness category and publication identity. Repeated labels correspond to either different locations
+reported in the same publication, or to measurements on different sexes. Across studies, we found signiﬁcant negative selection on phenological and no
+statistically signiﬁcant selection on morphological traits. There was signiﬁcant variation in WMSD on phenological traits among ﬁtness components. See
+Fig. 2 for legend details. Results are robust to the exclusion of the outlier (publication identity 9). The majority of the species pictures were taken from
+Pixabay (https://pixabay.com/images/). The exceptions are a picture of red-billed gull (credit: co-author J.A.M.) and four pictures taken from Macaulay
+library (https://www.macaulaylibrary.org/). Illustration credits for pictures taken from Macaulay library: great reed warbler—Peter Kennerley/Macaulay
+Library at the Cornell Lab of Ornithology (ML30060261), European pied ﬂycatcher—Suzanne Labbé/Macaulay Library at the Cornell Lab of Ornithology
+(ML30638911), song sparrow—Steven Mlodinow/Macaulay Library at the Cornell Lab of Ornithology (ML47325951) and Eurasian scops owl—Jon Lowes/
+Macaulay Library at the Cornell Lab of Ornithology (ML103371221). Source data are provided as a Source Data ﬁle
+ARTICLE
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+6
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+
+adaptive advancement of their phenology, emphasizing the pos-
+sibility of species tracking their thermal niches in situ, which can
+occur with or without shifts in geographic ranges43. However, we
+did not ﬁnd evidence for adaptive change in all species, and even
+populations undergoing adaptive change may do so at a pace that
+does not guarantee their persistence. We further document var-
+iation among ﬁtness components in the strength of selection, with
+the strongest negative selection stemming from individual var-
+iation in recruitment, followed by selection from variation in
+reproduction and survival. Such strongest selection acting via
+recruitment and reproduction may point to a mechanism
+underlying adaptive phenological responses in birds, which is the
+synchrony of breeding with the availability of resources7,9,44.
+Our ﬁndings of adaptive phenological responses to global
+warming in some bird species, reported here, should not be
+interpreted over-optimistically. Indeed, perfect adaptation would
+imply no selection and the signiﬁcant directional selection
+observed across studies thus indicates that adaptive responses are
+imperfect, assuming selection estimates are not consistently
+biased, for example, see ref. 45. Furthermore, the lack of a tem-
+poral trend in the strength of selection means that, although
+populations are not perfectly adapted in their phenology, they are
+not getting more adapted or less maladapted over time as tem-
+peratures continue to rise. This result suggests that they are
+phenotypically tracking a shifting optimum, lagging behind at a
+constant rate, as predicted by Bürger and Lynch35. Our com-
+parisons of the actual vs. critical lags suggest that there is low but
+non-negligible probability that the degree of maladaptation is
+large enough for the majority of our study populations to be at
+risk. The actual risk of population extinction may in fact be larger
+because our estimations do not account for several sources of
+stochasticity35. Moreover, our dataset predominantly includes
+common and abundant species (e.g. Parus major, Cyanistes
+caeruleus, Ficedula hypoleuca, Pica pica) for which collection of
+selection data is relatively easy. The generality of adaptive phe-
+nological responses among rare or endangered species, or those
+with different life histories, remains to be established46. We fear
+that the forecasts of population persistence for such species will
+be more pessimistic.
+To assess the extent to what animals are able to track climate
+change, we here used an approach based on selection differentials
+by testing whether selection over time is signiﬁcant across studies,
+and whether it is aligned with the direction of the phenotypic
+change over time. Alternative approaches exist, for example, the
+velocity of climate change can be used to assess the expected
+phenological change that is required to track climate change18,47.
+This approach allowed the authors to demonstrate that, in gen-
+eral, faster phenological shifts occur in regions of faster climate
+change18. Although it would be insightful to compare the results
+obtained with the approach adopted here and the one based on
+the velocity of climate, this would only be possible for phenolo-
+gical, and not morphological traits.
+Selection and trait change in our analyses were measured at the
+phenotypic and not the genetic level. Therefore, we cannot
+determine whether the adaptive phenological responses were due
+to microevolution or adaptive phenotypic plasticity, nor their
+relative contributions. Further insights would require differ-
+entiating between genetic and environmental components of the
+0.2
+II
+III
+I
+IV
+II
+III
+I
+IV
+0.10
+0.05
+0.00
+–0.05
+–0.10
+0.10
+0.05
+0.00
+–0.05
+–0.10
+0.1
+0.0
+Weighted mean selection
+differential
+Weighted mean selection
+differential
+–0.2
+–0.4
+–0.4
+–0.3
+–0.2
+0.0
+0.1
+0.2
+Trait change over time (SD per year)
+1.0
+0.8
+Proportion of studies
+0.6
+0.4
+0.2
+0.0
+Phenology
+Adaptative
+Maladaptive
+Morphology
+Trait change over time (SD per year)
+–0.1
+a
+b
+c
+Fig. 5 Adaptive and maladaptive responses to climate change. a, b Weighted mean of annual selection differentials (WMSDs) as a function of the climate-
+driven phenotypic change over time for a phenological and b morphological traits. The climate-driven phenotypic change over time is calculated as a
+product of the slopes from the ﬁrst two conditions of the framework (the ﬁrst slope reﬂects the change in temperature over time and the second slope
+reﬂects the change in traits with temperature). Roman numerals shown in red identify four quadrants. Points in quadrant I (upper right) and III (lower left)
+indicate studies for which phenotypic change over time occurred in the same direction as observed weighted mean annual selection differential, reﬂecting
+adaptive responses. Points in quadrants II and IV analogously indicate a maladaptive response. c Proportion of studies that showed adaptive and
+maladaptive phenological and morphological responses. Bars reﬂect 95% conﬁdence interval (CI). We found a tendency for adaptive phenological
+responses and no evidence of adaptive responses in morphological traits. Source data are provided as a Source Data ﬁle
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+ARTICLE
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+7
+
+phenotype and how each relates to the ﬁtness of individuals10,48.
+This could be done by using animal models11,49, employing
+common-garden and reciprocal transplant experiments (approa-
+ches more suitable for plants, invertebrates and ﬁsh) or by
+combining genetic or genomic and phenotypic information10,50.
+Further, our analyses are correlative and we cannot rule out the
+possibility that the presumed effects of temperature are in fact
+due to other or additional environmental variables that correlate
+with
+climate,
+or
+that
+selection
+estimates
+are
+biased
+by
+environmental correlations between trait and ﬁtness51, or do not
+accurately reﬂect total selection as a result of being based on
+incomplete ﬁtness measures.
+Similar to the recent global assessments of the climate effects
+on phenology17,34 and selection27, our datasets are heavily biased
+towards studies from the Northern Hemisphere. Additionally, the
+majority of the phenological traits in our datasets focus on early
+season (spring) events. Previous research has shown that early
+season phenological responses, especially at northern latitudes,
+ −2 
+0
+ 2 
+ 4 
+ 6 
+ 8 
+ 10 
+0.05
+0.15
+0.25
+0.35
+10
+20
+30
+40
+50
+a
+b
+c
+d
+e
+f
+g
+0.05
+0.15
+0.25
+0.35
+10
+20
+30
+40
+50
+0.05
+0.15
+0.25
+0.35
+10
+20
+30
+40
+50
+0.05
+0.15
+0.25
+0.35
+10
+20
+30
+40
+50
+0.05
+0.15
+0.25
+0.35
+10
+20
+30
+40
+50
+0.05
+0.15
+0.25
+0.35
+10
+20
+30
+40
+50
+ −4 
+ −2 
+ 0 
+ 2 
+ 4 
+ 6 
+ 8 
+ −4 
+ −2 
+ 0 
+ 2 
+ 4 
+ 6 
+ 8 
+ −6 
+ −4 
+−2
+ 0 
+ 2 
+ 4 
+ 6 
+ 8 
+ −4 
+ −2 
+ 0 
+ 2 
+ 4 
+ 6 
+ 8 
+ −4 
+ −2 
+ 0 
+ 2 
+ 4 
+ 6 
+ 8 
+–10
+–5
+0
+5
+10
+15
+−10
+−5
+0
+5
+10
+B = 1.2
+B = 2
+ω2, Width of fitness function
+Acrocephalus arundinaceus
+Capreolus capreolus
+Coracias garrulus
+Cyanistes caeruleus
+Falco naumanni
+Hirundo rustica
+Melospiza melodia
+Otus scops
+Parus major
+Plectrophenax nivalis
+Pica pica
+Sterna paradisaea
+Uria aalge
+ALL
+Difference between actual
+and critical lag
+h 2 = 0.04
+N e = 1
+h 2 = 0.33
+N e = 10000
+β, Strength of directional selection
+Species
+Fig. 6 Differences between actual and critical lags. a–f shows differences between actual and critical lags calculated for a range of β (linear selection
+differentials, absolute values) and ω2 (width of the ﬁtness function) for: a, d extreme values of parameters B (maximal offspring production), b, e extreme
+values of h2 (heritability) and c, f extreme values of Ne (effective population size), while keeping other parameters at baseline (Supplementary Table 4).
+g Differences between actual and critical lags for species in our dataset (violin plots depict distributions resulting from drawing 1000 ω2 values and
+different studies per species). Contour lines show isoclines for the differences (black solid: extinction risk; black dashed: no extinction risk; grey: threshold).
+Histograms represent distributions of β and ω2 used to produce g). Red-shaded area in g demonstrates that populations are at risk (i.e. population growth
+rate < 1)
+ARTICLE
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+8
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+
+are advancing with warming temperatures16,31,52, and therefore
+an advancement of phenological events was our main working
+assumption. Although the majority of phenological events is
+reported to advance, delays with warming temperatures have also
+been recorded17,53,54. For example, delay in emergence from
+hibernation of Columbian ground squirrels was associated with
+lower ﬁtness, and thus was maladaptive53. Similarly, in our study,
+the majority of maladaptive responses occurred when selection
+acted in the direction of earlier phenological events, but observed
+phenological events were delayed over the study period (Fig. 5a).
+However, whether such delays are generally maladaptive across
+hemispheres and seasons is unknown. We believe that our pro-
+posed framework (Fig. 1) will facilitate answering such questions
+in the future.
+Decrease in body size was suggested to be the third general
+response of species to global warming, together with changes in
+phenology and distributions55,56. However, evidence for this
+response
+is
+equivocal14,19,20,55,56.
+Our
+results
+suggest
+that
+inconsistency in ﬁndings to date may be explained by different
+studies focusing on different taxa (e.g. birds14,20, mammals57).
+Indeed, we found that the association between morphological
+traits and temperature tends to differ among taxa, with only
+mammals showing a clear negative association. This ﬁnding
+contrasts with a lack of relationship between temperature and
+morphology reported for mammals by Meiri et al.57, potentially
+because their study periods were longer than ours, and they used
+a
+different
+morphological
+measure
+(condyle-basal
+length).
+Although our PRC dataset is not exhaustive, our ﬁndings of
+variation among taxa in both phenological and morphological
+responses highlight the importance of collecting observations on a
+wide range of taxa.
+The assembled PRCS dataset suggests several avenues for fur-
+ther research. For example, currently underappreciated effects of
+climatic variation on traits and, in turn, on ﬁtness and population
+viability may be pronounced58 and our datasets could be used to
+investigate them. Further, extending this dataset to incorporate
+vital rates and, ideally, population growth rate would allow for the
+mapping of environmental changes onto demography via phe-
+notypic traits44,59,60, and ultimately a better assessment of how
+trait responses impact population persistence.
+Our results are an important ﬁrst demonstration that, at least
+in a range of bird species, adaptive phenological responses may
+partially alleviate negative ﬁtness effects of changing climate.
+Further work is needed to quantify the extent of such buffering
+and to broaden the taxonomic scope to determine if this con-
+clusion also applies to species already encountering higher
+extinction risk for reasons unrelated to climate. The PRC(S)
+datasets that we assembled should stimulate research on the
+resilience of animal populations in the face of global change and
+contribute to a better predictive framework to assist future con-
+servation management actions.
+Methods
+Systematic literature review. We aimed at assessing adaptive phenotypic
+responses to climate change across six broad taxa of animals: arachnids, insects,
+amphibians, reptiles, birds and mammals. We distinguished between two climatic
+variables: temperature and precipitation. We relied on the authors of the original
+studies for their expertise and knowledge of the biology of the species and system in
+the: (1) choice of the appropriate time window over which the annual means of the
+climatic values were calculated, rather than using a single time window for all
+species. For instance, if in a bird study the mean temperature over the 2 months
+preceding nesting was used as an explanatory variable for the timing of egg laying,
+we used this speciﬁc climatic variable; (2) choice of the speciﬁc climatic variables,
+be it air, sea surface or soil temperature, rather than using a single climatic variable
+across all species; and (3) choice of the spatial scale of the study, so that the
+measured variables were considered local at that scale. We focused on studies that
+recorded both changes of at least one climatic variable over time and changes in
+either morphological or phenological traits for at least one studied species.
+Phenological traits reﬂect shifts in timing of biological events, for example, egg-
+laying date, antler cast date or mean ﬂight date in insects. Morphological traits
+reﬂect the size or mass of the whole body or its parts (e.g., bill length, wing length,
+body mass).
+To assess whether trait changes were adaptive, we only used studies that
+measured selection on the trait(s) of interest by means of linear selection
+differentials29 using one of the following ﬁtness components: recruitment,
+reproduction, and adult survival. Linear selection differentials for all studies were
+calculated following Lande and Arnold29, as the slope of the linear model, with
+relative ﬁtness (individual ﬁtness divided by mean ﬁtness) as response and the z-
+transformed trait value as predictor. Only studies that reported SE estimates along
+with annual linear selection differentials were retained. For the majority of studies,
+we extracted selection differentials directly from the published studies, and for
+12 studies, we calculated them ourselves using the respective individual-level data
+shared by the authors.
+To identify the studies satisfying the above-mentioned criteria, we searched the
+Web of Knowledge (search conducted on 23 May 2016, Berlin) combining the
+following keywords for climate change (‘climate change’ OR ‘temperat*’ OR ‘global
+change’ OR ‘precipit’), adaptation (‘plastic*’ OR ‘adapt*’ OR ‘selection’ OR
+‘reaction norm’) and trait category (‘body size’ OR ‘body mass’ OR ‘body length’
+OR ‘emerg* date’ OR ‘arriv* date’ OR ‘breed* date’). For taxa, we used broad taxon
+names in the ﬁrst search (‘bird*’ OR ‘mammal*’ OR ‘arachnid*’ OR ‘insect*’ OR
+‘reptil*’ OR ‘amphibia*’ OR ‘spider*’). Next, to increase the probability of ﬁnding
+the relevant papers, we run the search by using instead of taxa names detailed
+names below the level of the Class, as follows: (‘rodent*’ OR ‘primat*’ OR ‘rabbit*’
+OR ‘hare’ OR ‘mole’ OR ‘shrew*’ OR ‘viverrid*’ OR ‘hyaena’ OR ‘bear*’ OR ‘seal*’
+OR ‘mustelid*’ OR ‘skunk*’ OR ‘Ailurid*’ OR ‘walrus*’ OR ‘pinniped*’ OR ‘canid*’
+OR ‘mongoos*’ OR ‘felid*’ OR ‘pangolin*’ OR ‘mammal*’ OR ‘bird*’ OR
+‘ﬂamingo*’ OR ‘pigeon*’ OR ‘grouse*’ OR ‘cuckoo*’ OR ‘turaco*’ OR ‘rail*’ OR
+‘wader*’ OR ‘shorebird*’ OR ‘penguin*’ OR ‘stork*’ OR ‘pelican*’ OR ‘condor*’ OR
+‘owl*’ OR ‘hornbill*’ OR “hoopoe*’ OR ‘kingﬁsher*’ OR ‘woodpecker*’ OR ‘falcon*’
+OR ‘parrot*’ OR ‘songbird*’ OR ‘turtle*’ OR ‘tortoise*’ OR ‘lizard*’ OR ‘snake*’ OR
+‘crocodil*’ OR ‘caiman*’ OR ‘alligator*’ OR ‘reptil*’ OR ‘frog*’ OR ‘salamander*’
+OR ‘toad*’ OR ‘amphibia*’ OR ‘insect*’ OR ‘beetle*’ OR ‘butterﬂ*’ OR ‘moth*’ OR
+‘mosquito*’ OR ‘midge*’ OR ‘dragonﬂy*’ OR ‘wasp*’ OR ‘bee*’ OR ‘ant*’ NOT
+(‘ﬁsh*’ OR ‘water*’ OR ‘aquatic*’)). These detailed taxon names were combined
+with the same keywords for climate change, adaptation and trait as before. Finally,
+we joined the unique records from each of these two searches in a single database.
+The literature search returned 10,090 publications, 56 of which were retained
+after skimming the abstracts. Of these 56 publications, 23 contained the data
+necessary to assess the three conditions required to infer adaptive responses and
+were used for assembling the ﬁnal dataset (PRCS dataset). In cases where several
+publications reported on the same study system (same species in the same location,
+measuring the same traits and selection via exactly same ﬁtness components), we
+retained the publication that reported data for the longest time period. We
+assembled the PRCS dataset by directly extracting the data from the identiﬁed 23
+publications wherever possible, or by contacting the authors to ask for the original
+data. Data were extracted either from tables directly or from plots by digitizing
+them with the help of WebPlotDigitiser or the metagear package in R61. In the
+process of contacting the authors, one research group offered to share relevant
+unpublished data on two more species, adding two more studies to the dataset,
+totalling 25 publications. The PRCS dataset consisted of 71 studies containing data
+on annual values of climatic factors, annual phenotypic trait values and annual
+linear selection differentials for 17 species in 13 countries (Supplementary Data 3).
+The remaining 33 publications from the originally selected 56 (58 with the
+shared unpublished data considered as two publications) did not report data on
+selection, but presented data on the annual values of climatic factors and mean
+population phenotypic traits, totalling 4764 studies that covered 1401 species. We
+retained these studies and combined them together with the 71 studies in the PRCS
+dataset to assemble the ‘PRC’ dataset (Supplementary Data 3). With the PRC
+dataset, we did not aim for comprehensive coverage of the literature published on
+the topic. Instead, we used this larger PRC dataset to verify whether the smaller
+PRCS dataset was representative in terms of climate change over time and trait
+change in response to a climatic factor. A ﬂowchart showing the numbers of studies
+included at each stage of the systematic literature review is given in Supplementary
+Fig. 10.
+Assessing whether the responses are adaptive. Separate analyses were con-
+ducted for the PRCS and PRC datasets and, within each of them, for temperature
+and precipitation. All analyses were conducted using linear models as no deviation
+from linearity was detected by visual inspection of the relations between (1) year
+and climate, (2) trait and climate and (3) selection and year for each study (Sup-
+plementary Figs. 11–15). First, we assessed for each study condition 1 necessary to
+infer adaptive responses (i.e. the extent to which the climatic variable changed
+directionally over years). To this end, we ﬁtted for each study a mixed-effects
+model with the climatic variable as the response and the year as a ﬁxed covariate,
+taking into account temporal autocorrelation (as random effect):
+Climt ¼ α þ βClim ´ Yeart þ εt þ ε;
+ð1Þ
+where Clim is the quantitative climate variable, Year the quantitative year covariate,
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+ARTICLE
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+9
+
+t the time, εt is a Gaussian random variable with mean zero and following an AR1
+model over years, and ε is an independent Gaussian random variable with mean
+zero and variance representing the residual variance of the study. βClim is the
+regression coefﬁcient reﬂecting the slope of the climatic variable on the year for the
+study (Fig. 1b). To avoid overﬁtting, we reﬁtted the same model without the
+AR1 structure and retained, for each study, the model structure leading to the
+lowest marginal AIC62. This approach was applied to all the models ﬁtted to each
+study (i.e. to assess conditions 2 and 3, and change of selection across years, as
+described below).
+We assessed condition 2, the relation between the trait and the climatic variable,
+separately for phenological and morphological traits. For this, we ﬁtted a mixed-
+effects model for each study with mean annual population trait values as a response
+and the climatic variable and the year as ﬁxed effects. Year was included as a
+quantitative predictor in this model to account for the effects of variables other
+than the considered climatic variable, which had changed with time and could have
+affected the trait. Examples of such variables are any environmental alterations,
+such as land use change and succession but also other climatic variables, which
+potentially could have affected the trait, but for which we did not have data. In this
+model, we took into account temporal autocorrelation in the response variable and
+weighted the residual variance by the variance of the response variable (i.e. the
+reported squared SE of the mean annual population trait values) to account for
+between-year variation in uncertainty associated with mean annual population trait
+values. Prior to ﬁtting the models we z-transformed trait values (i.e. subtracted the
+mean and divided by their reported standard deviation) to later compare the effect
+of the climatic variable on different traits. Accordingly, we also transformed the
+weights of the residual variance by dividing the reported SEs by the SD of the mean
+annual population trait values per study. The ﬁtted model was:
+Traitt ¼ α þ βTrait ´ Climt þ γ ´ Yeart þ εt þ ε;
+ð2Þ
+where Trait is the mean phenotypic trait (z-scaled across the years within the
+study), Clim the quantitative climate covariate, Year the quantitative year covariate,
+t the time, εt is a Gaussian random variable with mean zero and following a AR1
+model over years, and ε is an independent Gaussian random variable with mean
+zero and variance proportional to the estimated variance of the mean phenotypic
+trait (which depends on t). βTrait is the regression coefﬁcient reﬂecting the slope of
+the trait on the climatic variable for the study (Fig. 1c).
+We assessed condition 3 of whether the trait change was associated with ﬁtness
+beneﬁts in a two-step procedure. In the ﬁrst step, we ﬁtted for each study an
+intercept-only mixed-effects model with annual linear selection differentials as a
+response. We allowed for temporal autocorrelation and weighted the residual
+variance by the variance of the annual linear selection differentials (i.e. the reported
+squared SE of the annual selection differentials). The ﬁtted model was:
+Selt ¼ α þ εt þ ε;
+ð3Þ
+where Sel is the estimate of the yearly linear selection differential, t is the time, εt is
+a Gaussian random variable with mean zero and following an AR1 model over
+years, and ε is an independent Gaussian random variable with mean zero and
+variance proportional to the estimated variance of the annual linear selection
+differential (which depends on t). The intercept α describes a non-zero mean of the
+autoregressive process. The predictions from the ﬁtted model (Selt), including the
+random effect, are estimates of annual linear selection differentials, and their
+inverse-variance weighted average is termed ‘weighted mean annual selection
+differential’, WMSD (Fig. 1e). The variance used in weighting is the prediction
+variance. The SE of the WMSD is deduced from these weights and from the
+covariance matrix of the predictions (see source code of the function extract_effects
+() in our R package ‘adRes’ for details).
+In the second step, to assess whether the response is adaptive, we considered
+WMSD in combination with the slopes obtained for the previous two conditions, as
+follows: we deﬁned a trait change to be adaptive in response to climate if the
+climate-driven change in phenotype occurred in the same direction as linear
+selection. In contrast, if the climate-driven change in phenotype occurred in the
+direction opposite to selection, then the response was considered maladaptive. We
+measured the climate-driven change in phenotype as the product of the slopes
+obtained for conditions 1 and 2. A WMSD estimate of zero indicates a lack of
+selection11. A WMSD of zero together with no trait change could indicate a
+stationary optimum phenotype, and a WMSD of zero together with a signiﬁcant
+change in trait could indicate that a moving optimum phenotype is perfectly
+tracked by phenotypic plasticity (a negligible WMSD could also imply a ﬂat ﬁtness
+surface, i.e. no ﬁtness penalty for deviating from the optimum). To assess whether
+the trait is adaptive, we plotted for each study the WMSD against the product of
+slopes extracted from conditions 1 and 2, which quantiﬁes the observed climate-
+driven trait change over time (Fig. 5). The studies qualify as adaptive if their
+WMSD has the same sign as the product of the slopes assessing conditions 1 and 2.
+We also ﬁtted a modiﬁed version of the model speciﬁed in Eq. (3) to assess a
+potential temporal (linear) change in the annual linear selection differentials over
+years. To this end, for each study we ﬁtted a mixed-effects model that accounted for
+temporal autocorrelation. We weighted the residual variance by the variance of the
+annual linear selection differentials (i.e. the reported squared SE) to account for
+uncertainty in the estimates of annual selection differentials. The ﬁtted model was:
+Selt ¼ α þ βSel ´ Yeart þ εt þ ε;
+ð4Þ
+where Sel is the estimate of the yearly linear selection differential, Year the
+quantitative year covariate, t the time, εt a Gaussian random variable with mean
+zero and following an AR1 model over years, and ε is an independent Gaussian
+random variable with mean zero and variance proportional to the estimated
+variance of the yearly linear selection differential (which depends on t). βSel is the
+regression coefﬁcient that corresponds to the slope of the annual linear selection
+differentials on the year for the study.
+Meta-analyses. To demonstrate general responses across species and locations, we
+require each of the three conditions necessary to infer adaptive responses to be met
+consistently across studies, for example, that, on average, temperature increased
+over time, warmer temperatures were associated with advancing phenology and
+advancing phenology corresponded to ﬁtness beneﬁts (i.e. negative selection on
+phenological traits given the two above-mentioned conditions are satisﬁed). To test
+for such general trends in adaptive responses across studies, we ﬁtted three mixed-
+effects meta-analyses to the PRCS dataset, two for the ﬁrst two conditions and the
+third to assess whether WMSD differed from zero. We tested the third condition in
+two ways. First, we performed a binomial test to compare the proportion of studies
+exhibiting adaptive (i.e. same sign for WMSD and the climate-driven trait change
+over time) vs. maladaptive (i.e. WMSD and the climate-driven trait change over
+time differ in their signs) responses to climate change. Second, we performed a
+mixed-effects meta-analysis similar to the three other ones.
+First, we assessed whether, across studies, the values of the climatic factor
+changed with time by using the slope of a climatic factor on year (obtained from
+the mixed-effects models of condition 1 for each study, see above) as response (i.e.
+effect size in meta-analysis terminology), and study identity and publication
+identity as qualitative variables deﬁning random effects inﬂuencing the intercept.
+Second, to assess whether climate change was associated with trait changes across
+studies, we used the slope of the z-transformed trait on the climatic factor
+(obtained from the mixed-effects models of condition 2 while accounting for the
+effect of year on the trait) as response and study identity and publication identity as
+qualitative variables deﬁning random effects inﬂuencing the intercept. We ﬁtted
+separate models for phenological and morphological traits, because our dataset
+contained fewer studies of the latter compared to the former. Since morphological
+traits included either measures of body mass or size (e.g. wing, tarsus and skull
+length), we tested whether the effect of temperature depended on the type of
+measure by including it as a ﬁxed-effect covariate with three levels (body mass, size
+and body condition index; we distinguished body condition index from the two
+other levels as it has elements of both of them). Analogously, we assessed whether
+the effect of temperature on phenology depended on the type of phenological
+measure used, by including it as a ﬁxed-effect covariate with three levels, similarly
+to Cohen et al.17: arrival, breeding/rearing (e.g. nesting, egg laying, birth, hatching)
+and development (e.g. time in a certain developmental stage, antler casting date).
+Third, to assess whether, across studies, traits were under positive or negative
+selection during the study period, we used as response the WMSD values obtained
+from the mixed-effect models for the ﬁrst step assessing condition 3. In this model,
+we also used study identity and publication identity as qualitative variables deﬁning
+random effects inﬂuencing the intercept. We tested whether selection depended on
+generation length and differed among ﬁtness components by including these latter
+variables as ﬁxed effects in the model. Generation length was extracted from the
+literature, mainly using the electronic database of BirdLife International. Similarly,
+to assess whether across studies there was a directional linear change in the annual
+linear selection differentials over time, we ﬁtted a mixed-effects model using as
+response the slopes of the annual linear selection differentials on time (obtained
+with Eq. (4)). This model included study identity and publication identity as
+qualitative variables deﬁning random effects inﬂuencing the intercept. Finally, to
+assess whether responses were on average adaptive, we also ran a mixed-effects
+meta-analytic model using as response the product of the WMSD with the sign of
+the climate-driven trait change over time. We included study identity and
+publication identity as qualitative variables deﬁning the random effects in this
+model. We ﬁtted separate models for phenological and morphological traits to test
+whether both WMSD and the product of WMSD with the sign of the climate-
+driven trait change differed from zero.
+For each type of climatic variable (temperature and precipitation) in the PRC
+dataset, we ﬁtted two mixed-effects meta-analyses, analogous to the mixed-effects
+meta-analytic models we ran on the PRCS dataset. With these meta-analyses we
+assessed whether across the studies (1) there was a directional change in the
+climatic values over time and (2) traits were affected by the climatic variable. As
+responses (i.e. effect sizes) in these models, we used the slopes extracted for each
+study from the respective mixed-effects models ﬁtted analogously to those used for
+the PRCS dataset (see section above). For both morphological and phenological
+traits, we assessed whether the effect of climate on traits differed among taxa by
+including taxon as a ﬁxed effect. For morphological traits, we also assessed whether
+the responses to climate differed among endothermic and ectothermic animals, by
+including endothermy as a ﬁxed effect in the model.
+All data analyses were conducted in R version 3.5.063 and implemented in the R
+package ‘adRes’, which is provided for the sake of transparency and reproducibility.
+Mixed-effects models for each study and mixed-effects meta-analytic models were
+ﬁtted using restricted maximum likelihood (ML) with the spaMM package version
+2.4.9464. For each meta-analytic mixed-effects model, we conducted model
+ARTICLE
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+10
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+
+diagnostics by inspecting whether the standardized residuals deviated from a
+normal distribution and whether there were any patterns in standardized residuals
+when regressed on the predictor. Model diagnostics were satisfactory for all models.
+We assessed the signiﬁcance of ﬁxed effects and intercepts with asymptotic
+likelihood ratio χ2 tests by comparing the model with a given effect vs. the model
+without the effect, both ﬁtted using ML in spaMM.
+We assessed the amount of heterogeneity among studies in our meta-analyses
+using commonly recommended approaches65. In particular, we tested whether the
+total amount of heterogeneity (Q) was statistically signiﬁcant and estimated
+Higgins I2 and H2 (ref. 65). Higgins I2 reﬂects the proportion of total heterogeneity
+due to between-study variation (i.e. random effects) and ranges from 0 to 1. A value
+of 0 means that heterogeneity is due to within-study variation exclusively, whereas
+a value of 1 indicates that heterogeneity is due to between-study variation. This
+metric is, therefore, comparable among different meta-analyses. H2 is a ratio
+showing the proportion of observed heterogeneity in relation to what would be
+expected under the null hypothesis of homogeneity. For example, a value of 2
+means that there is twice as much variation as would be expected if no between-
+study variation were present (i.e. H2 = 1). We found that the amount of
+heterogeneity differed among the two datasets and tested models, with moderate
+heterogeneity for models testing conditions 1 and 2 and considerable heterogeneity
+for models testing condition 3 (Supplementary Note 1, Supplementary Table 1).
+We also tested for the evidence of publication bias by (1) visual inspection of the
+funnel plots and (2) Egger’s test65. No evidence of small-study effect (that may be
+an indication of publication bias) was found for effect sizes used to test all three
+conditions in the PRCS dataset (Supplementary Figs. 16–17, Supplementary
+Note 1).
+Sensitivity analyses. One study in the meta-analytical models testing conditions 2
+and 3 for phenology in the PRCS dataset appeared to be an outlier (ref. 66, Figs. 3
+and 4). Therefore, we also re-ran the models without this study (Supplementary
+Tables 2 and 3). Additionally, the PRCS dataset contained mainly studies on bird
+species, and only one for a mammal species67. To test how sensitive the results were
+to inclusion of this taxon, we re-ran the analyses after excluding the study for
+mammal species. The main ﬁndings were qualitatively unaffected by excluding
+either the only mammal study or an apparent outlier from the PRCS dataset, or
+both (Supplementary Tables 2 and 3).
+Measures of phenological responses are known to be sensitive to
+methodological biases30, in particular to temporal trends in abundance of the
+sampled species32. Indeed, if species abundance increases over time, the probability
+of recording earlier events increases (especially if phenology is measured as the ﬁrst
+occurrence date), meaning that species abundance can affect mean of the
+distribution of a phenological trait. For the same reason, the variance around the
+mean phenological response may be sensitive to population size, with higher
+variance at lower population sizes. To assess the sensitivity of our results to
+potential changes in population sizes over time, we ﬁtted a heteroskedastic model
+in which population abundance was included both as a ﬁxed-effect explanatory
+variable and as an explanatory variable for the model of the residual variance. This
+model is an extension of the models speciﬁed in Eq. (2) that were used to assess
+condition 2. This model was ﬁt to each study for which abundance data were
+available and where the duration of the study was at least 11 years (28 out of
+42 studies). The ﬁtted model was:
+Traitt ¼ α þ βTrait ´ Climt þ γ ´ Yeart þ δ ´ Abundt þ εt þ ε;
+ð5Þ
+where Trait is the mean phenotypic trait (z-scaled across the years within each
+study), Clim the quantitative climate covariate, Year the quantitative year covariate,
+Abund the quantitative covariate for species abundance, t the time, εt is a Gaussian
+random variable with mean zero and following an AR1 model over years, and ε is
+an independent Gaussian random variable with mean zero and variance
+proportional to the estimated variance of the mean phenotypic trait (which
+depends on t). βTrait, γ and δ are regression coefﬁcients that correspond to the
+slopes of the trait on the climatic variable, the trait on year and the trait on the
+abundance for the study, respectively. To avoid overﬁtting, we reﬁtted the same
+model without the AR1 structure and retained, for each study, the model structure
+leading to the lowest marginal AIC, analogously to how it was done for the models
+ﬁtted to assess conditions 1, 2 and 3.
+The results were qualitatively unaffected by the inclusion of abundance in the
+models: the rate of advancement in phenology estimated across the studies was
+−0.346 ± 0.102 SD per °C (LRT between the model with and without change in
+phenology: χ2 = 8.4, df = 1, p = 0.004) when including abundance and −0.335 ±
+0.088 SD per °C without abundance (LRT: χ2 = 9.19, df = 1, p = 0.002; for
+comparison’s sake both models were ﬁtted to a subset of studies for which
+abundance data were available). We also found that although abundance affects
+phenology, its effects were on average smaller compared to the effects of
+temperature (Supplementary Fig. 6).
+Implications for population persistence. To assess implications of our ﬁndings for
+population persistence, we ﬁrst calculated the actual lag (Lag) between the observed
+mean phenotype and the optimum by following Estes and Arnold (2007)37:
+Lag ¼ β 
+ω2 þ σ2
+p
+
+
+;
+ð6Þ
+where β is a standardized linear selection differential, ω2 a width of the ﬁtness
+function, and σ2
+p phenotypic variance (here scaled to 1). This lag is expected to be
+asymptotically constant when the optimum is shifting at a constant rate and under
+other assumptions detailed in Bürger and Lynch35.
+Next, we calculated the critical lag (Lagcrit) between the phenotype and the
+optimum following Bürger and Lynch35 (see also ref. 68):
+Lagcrit ¼ kc=s;
+ð7Þ
+where kc is the critical rate of environmental change and s is a measure for the
+strength of selection, s ¼ σ2
+g=
+
+σ2
+g þ Vs
+
+, with σ2
+g genetic variance and Vs the
+strength of stabilizing selection around the optimum, calculated as Vs ¼ ω2 þ σ2
+e,
+with ω2 the width of the ﬁtness function and σ2
+e environmental variance in the trait.
+The critical lag reﬂects a situation where the population can just replace itself
+(population growth λ = 1) and comparison between the actual and the critical lag
+provides insight into the persistence of populations. If the actual lag is larger than
+the critical lag, then the population growth rate is lower than 1, implying
+substantial extinction risk. We therefore focused our numeric analyses on this
+difference between the actual lag and the critical lag. Note that this analysis relies
+on strong assumptions described in the original papers (e.g. heritability is
+considered in the estimation of the critical lag but not in that of the actual lag, and
+that the reverse is true for plasticity), but more accurate methods, for example,
+ref. 36, would require detailed data that are not available for most of our study
+populations.
+In the ﬁrst step, we assessed the difference between the actual and the critical lag
+across a range of parameter values (Supplementary Table 4) to study the sensitivity
+of the difference to known (i.e. estimated) or unknown parameters. This analysis
+revealed that the results are most sensitive to the values of ω2 and β (Fig. 6a–f).
+Therefore, in the second step, we computed the difference among the observed and
+critical lags for each study in our PRCS dataset (Fig. 6g), by (1) using as β the
+absolute values of the estimates of WMSD for each study and (2) drawing 1000
+random ω2 per study. We drew these random values from the empirical
+distribution of ω2 estimates provided in Fig. 7 from Estes and Arnold37.
+Reporting summary. Further information on research design is available in
+the Nature Research Reporting Summary linked to this article.
+Data availability
+The PRC dataset, containing metadata on each study as well as coefﬁcients estimated for
+each step of the framework (Fig. 1) per each study, is available as Supplementary Data 4.
+We also make available the raw data for a subset of studies for which we received the
+consent of data owners (4819 out of 4835 studies). These data are available as part of the
+R package ‘adRes’ (www.github.com/radchukv/adRes), which implements the complete
+workﬂow of this study and provides functions to be used to conduct similar analyses on
+new data in the future. The source data underlying Figs. 1b, c, 1e, f, 2, 3, 4 and 5a–c are
+provided as a Source Data ﬁle.
+Code availability
+The complete workﬂow implementing each step of the proposed framework (Fig. 1) is
+available as the R package ‘adRes’ (www.github.com/radchukv/adRes). The functions
+included in the package allow conducting the analyses as described in this study and can
+be applied to either the shared dataset that is included in the R package or to a new
+dataset formatted in the same way.
+Received: 24 March 2018 Accepted: 15 May 2019
+References
+1.
+Sakschewski, B. et al. Resilience of Amazon forests emerges from plant trait
+diversity. Nat. Clim. Chang. 6, 1032–1036 (2016).
+2.
+Paciﬁci, M. et al. ‘Species’ traits inﬂuenced their response to recent climate
+change. Nat. Clim. Chang. 7, 205–208 (2017).
+3.
+Thomas, C. D. et al. Extinction risk from climate change. Nature 427, 145–148
+(2004).
+4.
+Schindler, D. E. & Hilborn, R. Prediction, precaution, and policy under global
+change. Science 347, 953–954 (2015).
+5.
+Urban, M. C. et al. Improving the forecast for biodiversity under climate
+change. Science 353, 1113–1122 (2016).
+6.
+Hoffmann, A. A. & Sgrò, C. M. Climate change and evolutionary adaptation.
+Nature 470, 479–485 (2011).
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+ARTICLE
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+11
+
+7.
+Charmantier, A. et al. Adaptive phenotypic plasticity in response to climate
+change in a wild bird population. Science 320, 800–803 (2008).
+8.
+van Gils, J. A. et al. Body shrinkage due to Arctic warming reduces red knot
+ﬁtness in tropical wintering range. Science 352, 819–821 (2016).
+9.
+Post, E. & Forchhammer, M. C. Climate change reduces reproductive success
+of an Arctic herbivore through trophic mismatch. Philos. Trans. R. Soc. Ser. B
+363, 2367–2373 (2008).
+10. Gienapp, P., Teplitsky, C., Alho, J. S., Mills, J. A. & Merilä, J. Climate change
+and evolution: disentangling environmental and genetic responses. Mol. Ecol.
+17, 167–178 (2008).
+11. Merilä, J. & Hendry, A. P. Climate change, adaptation, and phenotypic
+plasticity: the problem and the evidence. Evol. Appl. 7, 1–14 (2014).
+12. Parmesan, C. & Yohe, G. A globally coherent ﬁngerprint of climate change
+impacts across natural systems. Nature 421, 37–42 (2003).
+13. Thackeray, S. J. et al. Phenological sensitivity to climate across taxa and
+trophic levels. Nature 535, 241–245 (2016).
+14. Yom-Tov, Y., Yom-Tov, S., Wright, J., Thorne, C. J. R. & Du Feu, R. Recent
+changes in body weight and wing length among some British passerine birds.
+Oikos 112, 91–101 (2006).
+15. Pachauri, R. et al. Climate Change 2014: Synthesis Report. 5 (2014). https://doi.
+org/10.1017/CBO9781107415324.
+16. Parmesan, C. Inﬂuences of species, latitudes and methodologies on estimates
+of phenological response to global warming. Glob. Chang. Biol. 13, 1860–1872
+(2007).
+17. Cohen, J. M., Lajeunesse, M. J. & Rohr, J. R. A global synthesis of animal
+phenological responses to climate change. Nat. Clim. Chang. https://doi.org/
+10.1038/s41558-018-0067-3 (2018)
+18. Poloczanska, E. S. et al. Global imprint of climate change on marine life. Nat.
+Clim. Chang. 3, 919–925 (2013).
+19. Gotanda, K. M., Correa, C., Turcotte, M. M., Rolshausen, G. & Hendry, A. P.
+Linking macrotrends and microrates: re-evaluating microevolutionary support
+for Cope’s rule. Evolution 69, 1345–1354 (2015).
+20. Teplitsky, C. & Millien, V. Climate warming and Bergmann’s rule through
+time: is there any evidence? Evol. Appl. 7, 156–168 (2014).
+21. Kattge, J. et al. TRY—a global database of plant traits. Glob. Chang. Biol. 17,
+2905–2935 (2011).
+22. Salguero-Gómez, R. et al. COMADRE: a global data base of animal
+demography. J. Anim. Ecol. 85, 371–384 (2016).
+23. Jones, K. E. et al. PanTHERIA: a species-level database of life history, ecology,
+and geography of extant and recently extinct mammals. Ecology 90,
+2648–2648 (2009).
+24. Kingsolver, J. G. et al. The strength of phenotypic selection in natural
+populations. Am. Nat. 157, 245–261 (2001).
+25. Kingsolver, J. G. & Diamond, S. E. Phenotypic selection in natural
+populations: what limits directional selection? Am. Nat. 177, 346–357 (2011).
+26. Siepielski, A. M., DiBattista, J. D. & Carlson, S. M. It’s about time: the
+temporal dynamics of phenotypic selection in the wild. Ecol. Lett. 12,
+1261–1276 (2009).
+27. Siepielski, A. M. et al. Precipitation drives global variation in natural selection.
+Science 355, 959–962 (2017).
+28. Caruso, C. M. et al. What are the environmental determinants of phenotypic
+selection? A meta-analysis of experimental studies. Am. Nat. 190, 363–376
+(2017).
+29. Lande, R. & Arnold, S. J. The measurement of selection on correlated
+characters. Evolution 37, 1210–1226 (1983).
+30. Brown, C. J. et al. Ecological and methodological drivers of ‘species’
+distribution and phenology responses to climate change. Glob. Chang. Biol. 22,
+1548–1560 (2016).
+31. Post, E., Steinman, B. A. & Mann, M. E. Acceleration of phenological advance
+and warming with latitude over the past century. Sci. Rep. 8, https://doi.org/
+10.1038/s41598-018-22258-0 (2018).
+32. Miller-Rushing, A. J., Lloyd-Evans, T. L., Primack, R. B. & Satzinger, P. Bird
+migration times, climate change, and changing population sizes. Glob. Chang.
+Biol. 14, 1959–1972 (2008).
+33. IPCC. Climate change 2014: synthesis report. Contribution of working groups
+I, II and III to the Fifth Assessment Report of the Intergovernmental Panel on
+Climate Change. In Core Writing Team (eds Pachauri, R. K. & Meyer, L. A.)
+151 (IPCC, Geneva, Switzerland, 2014). https://doi.org/10.1017/
+CBO9781107415324.
+34. Kharouba, H. M. et al. Global shifts in the phenological synchrony of species
+interactions over recent decades. Proc. Natl. Acad. Sci. USA https://doi.org/
+10.1073/pnas.1714511115 (2018).
+35. Bϋrger, R. & Lynch, M. Evolution and extinction in a changing environment—
+a quantitative-genetic analysis. Evolution 49, 151–163 (1995).
+36. Chevin, L. M., Lande, R. & Mace, G. M. Adaptation, plasticity, and extinction
+in a changing environment: towards a predictive theory. PLoS Biol. 8, https://
+doi.org/10.1371/journal.pbio.1000357 (2010).
+37. Estes, S. & Arnold, S. J. Resolving the paradox of stasis: models with stabilizing
+selection explain evolutionary divergence on all timescales. Am. Nat. 169,
+227–244 (2007).
+38. VanDerWal, J. et al. Focus on poleward shifts in species’ distribution
+underestimates the ﬁngerprint of climate change. Nat. Clim. Chang. 3,
+239–243 (2012).
+39. Devictor, V. et al. Differences in the climatic debts of birds and butterﬂies at a
+continental scale. Nat. Clim. Chang. 2, 121–124 (2012).
+40. Parmesan, C. Ecological and evolutionary responses to recent climate change.
+Annu. Rev. Ecol. Evol. Syst. 37, 637–669 (2006).
+41. Pierson, J. C. et al. Incorporating evolutionary processes into population
+viability models. Conserv. Biol. 29, 755–764 (2015).
+42. Schiffers, K. H. & Travis, J. M. J. ALADYN—a spatially explicit, allelic model
+for simulating adaptive dynamics. Ecography J. 37, 1288–1291 (2014).
+43. Socolar, J. B., Epanchin, P. N., Beissinger, S. R. & Tingley, M. W. Phenological
+shifts conserve thermal niches in North American birds and reshape
+expectations for climate-driven range shifts. Proc. Natl Acad. Sci. USA. https://
+doi.org/10.1073/pnas.1705897114 (2017).
+44. Reed, T. E., Grøtan, V., Jenouvrier, S., Sæther, B.-E. & Visser, M. E. Population
+growth in a wild bird is buffered against phenological mismatch. Science 340,
+488–491 (2013).
+45. Rausher, M. D. The measurement of selection on quantitative traits: biases due
+to environmental covariances between traits and ﬁtness. Evolution (N. Y). 46,
+616–626 (1992).
+46. Vedder, O., Bouwhuis, S. & Sheldon, B. C. Quantitative assessment of the
+importance of phenotypic plasticity in adaptation to climate change in wild
+bird populations. PLoS Biol. 11, https://doi.org/10.1371/journal.pbio.1001605
+(2013).
+47. Burrows, M. T. et al. Geographical limits to species-range shifts are suggested
+by climate velocity. Nature https://doi.org/10.1038/nature12976 (2014).
+48. Torda, G. et al. Rapid adaptive responses to climate change in corals. Nat.
+Clim. Chang. 7, 627–636 (2017).
+49. Kruuk, L. E. B. Estimating genetic parameters in natural populations using the
+‘animal model’. Philos. Trans. R. Soc. Lond. Ser. B 359, 873–890 (2004).
+50. Courtiol, A., Tropf, F. C. & Mills, M. C. When genes and environment
+disagree: Making sense of trends in recent human evolution. Proc. Natl Acad.
+Sci. USA. 113, 7693–7695 (2016).
+51. Kruuk, L. E. B., Merilä, J. & Sheldon, B. C. When environmental variation
+short-circuits natural selection. Trends Ecol. Evol. 18, 207–209 (2003).
+52. Parmesan, C. & Yohe, G. A globally coherent ﬁngerprint of climate change
+impacts across natural systems. Nature 421, 37 (2003).
+53. Lane, J. E., Kruuk, L. E. B., Charmantier, A., Murie, J. O. & Dobson, F. S.
+Delayed phenology and reduced ﬁtness associated with climate change in a
+wild hibernator. Nature 489, 554–557 (2012).
+54. Miles, W. T. S. et al. Quantifying full phenological event distributions reveals
+simultaneous advances, temporal stability and delays in spring and autumn
+migration timing in long-distance migratory birds. Glob. Chang. Biol. 23,
+1400–1414 (2017).
+55. Gardner, J. L., Peters, A., Kearney, M. R., Joseph, L. & Heinsohn, R. Declining
+body size: a third universal response to warming? Trends Ecol. Evol. 26,
+285–291 (2011).
+56. Sheridan, J. A. & Bickford, D. Shrinking body size as an ecological response to
+climate change. Nat. Clim. Chang. 1, 401–406 (2011).
+57. Meiri, S., Guy, D., Dayan, T. & Simberloff, D. Global change and carnivore
+body size: data are stasis. Glob. Ecol. Biogeogr. 18, 240–247 (2009).
+58. Vasseur, D. A. et al. Increased temperature variation poses a greater risk to
+species than climate warming. Proc. Biol. Sci. 281, 20132612 (2014).
+59. McLean, N., Lawson, C. R., Leech, D. I. & van de Pol, M. Predicting when
+climate-driven phenotypic change affects population dynamics. Ecol. Lett. 19,
+595–608 (2016).
+60. Coulson, T. et al. Modelling adaptive and nonadaptive responses of
+populations to environmental change. Am. Nat. 3, 313–336 (2017).
+61. Lajeunesse, M. J. Facilitating systematic reviews, data extraction and meta-
+analysis with the metagear package for R. Methods Ecol. Evol. 7, 323–330
+(2016).
+62. Vaida, F. & Blanchard, S. Conditional Akaike information for mixed-effects
+models. Biometrika 92, 351–370 (2005).
+63. R. Core Team. R: A Language and Environment for Statistical Computing (R
+Foundation for Statistical Computing, Vienna, 2018).
+64. Rousset, F. & Ferdy, J.-B. Testing environmental and genetic effects in the
+presence of spatial autocorrelation. Ecography J. 37, 781–790 (2014).
+65. Koricheva, J., Gurevitch, J. & Mengersen, K. Handbook of Meta-analysis
+in Ecology and Evolution (Princeton University Press, Englewood Cliffs,
+2013).
+66. Goodenough, A. E., Hart, A. G. & Elliot, S. L. What prevents phenological
+adjustment to climate change in migrant bird species? Evidence against the
+‘arrival constraint’ hypothesis. Int. J. Biometeorol. 55, 97–102 (2011).
+ARTICLE
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+12
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+
+67. Plard, F. et al. Mismatch between birth date and vegetation phenology slows
+the demography of roe deer. PLoS Biol. 12, https://doi.org/10.1371/journal.
+pbio.1001828 (2014).
+68. Gienapp, P. et al. Predicting demographically sustainable rates of adaptation:
+can great tit breeding time keep pace with climate change?. Philos. Trans. R.
+Soc. Ser. B 368, 20120289–20120289 (2012).
+69. Wilson, S., Norris, D. R., Wilson, A. G. & Arcese, P. Breeding experience and
+population density affect the ability of a songbird to respond to future climate
+variation. Proc. R. Soc. Ser. B 274, 2539–2545 (2007).
+Acknowledgements
+We are grateful to many researchers who collected ﬁeld data and kindly shared them.
+Without such contributions this study would have been impossible. In particular, we
+would like to thank the ‘Wicken Fen ringing group’, Mats Björklund, Richard du Feu,
+Philip W. Hedrick, Loeske Kruuk, Andrew G. McAdam, Josephine Pemberton, Lisa
+Schwanz, William Sydeman, Dakota McCoy, Rory Telemeco, Chris Thorne, Marco
+Rughetti, Wolf Blanckenhorn and Tim Sparks. This study was initiated by the workshop
+series of the Leibniz Forschungsverbund (LVB) Biodiversität ‘Species adaptations to
+global change—a comprehensive risk analysis’ 2014 and 2015. This work was supported
+by funds from: European Research Council (ERC-2013-StG-337365-SHE to A.Ch., ERC-
+2013 -AdG-339092-E-Response to M.E.V., ERC-2014-StG-639192-ALH to T.R.), Min-
+istry of Economy and Competitivity, Swedish Research Council (621-2014-5222 to B.H.),
+Spanish Research Council (CGL-2016-79568-C3-3-P to J.C.S.), US National Science
+Foundation (DEB-1242510 to F.J., DEB-0089473 to F.S.D.), the Academy of Finland
+(project 265859 to T.E.) and the US Department of Energy (Award Number DE-FC09-
+07SR22506 to the University of Georgia Research Foundation to D.S.).
+Author contributions
+V.R., A.Co. and S.K.-S. designed the study; V.R. conducted literature search and gathered
+the data; V.R. and A.Co. analysed the data with signiﬁcant inputs from F.R.; V.R., A.Co.
+and T.R. conducted numerical analysis based on a theoretical model; T.R., C.T., M.v.d.P.,
+A.Ch., A.W., C.H., P.Ad., F.A., M.P.A., P.Ar., J.M.A., J.B., A.B., S.B., S.J.G.H., J.C., N.D.,
+F.d.L., A.A.D., N.J.D., H.D., T.E., J.J., J.M., J.F., F.F., A.E.G., B.H., M.H., D.H., H.K., I.F.,
+J.G.M., J.-B.M., J.A.M., K.S.B., M.M.-M., M.-O.R., A.P.M., A.M., A.O., D.P., T.K., M.P.,
+D.S., J.C.S., C.S., B.G.S., T.H., K.T., M.T., C.E.T., J.T., P.P., P.T., B.S., E.M., F.J., F.S.D.,
+M.E.V. and S.R.B. contributed data or input at the LVB workshops; V.R. wrote the
+manuscript; all authors edited the manuscript and made valuable scientiﬁc contributions
+throughout the writing process.
+Additional information
+Supplementary Information accompanies this paper at https://doi.org/10.1038/s41467-
+019-10924-4.
+Competing interests: The authors declare no competing interests.
+Reprints and permission information is available online at http://npg.nature.com/
+reprintsandpermissions/
+Peer review information: Nature Communications thanks Lauren B. Buckley and the
+other, anonymous reviewers for their contribution to the peer review of this work. Peer
+reviewer reports are available.
+Publisher’s note: Springer Nature remains neutral with regard to jurisdictional claims in
+published maps and institutional afﬁliations.
+Open Access This article is licensed under a Creative Commons
+Attribution 4.0 International License, which permits use, sharing,
+adaptation, distribution and reproduction in any medium or format, as long as you give
+appropriate credit to the original author(s) and the source, provide a link to the Creative
+Commons license, and indicate if changes were made. The images or other third party
+material in this article are included in the article’s Creative Commons license, unless
+indicated otherwise in a credit line to the material. If material is not included in the
+article’s Creative Commons license and your intended use is not permitted by statutory
+regulation or exceeds the permitted use, you will need to obtain permission directly from
+the copyright holder. To view a copy of this license, visit http://creativecommons.org/
+licenses/by/4.0/.
+© The Author(s) 2019
+Viktoriia Radchuk
+1, Thomas Reed
+2, Céline Teplitsky3, Martijn van de Pol4, Anne Charmantier3,
+Christopher Hassall
+5, Peter Adamík
+6, Frank Adriaensen7, Markus P. Ahola8, Peter Arcese9,
+Jesús Miguel Avilés10, Javier Balbontin11, Karl S. Berg
+12, Antoni Borras13, Sarah Burthe14, Jean Clobert15,
+Nina Dehnhard16, Florentino de Lope17, André A. Dhondt18, Niels J. Dingemanse
+19, Hideyuki Doi
+20,
+Tapio Eeva21, Joerns Fickel
+1,22, Iolanda Filella23,24, Frode Fossøy
+25,26, Anne E. Goodenough27,
+Stephen J.G. Hall
+28, Bengt Hansson
+29, Michael Harris14, Dennis Hasselquist29, Thomas Hickler30,
+Jasmin Joshi
+31,32, Heather Kharouba33, Juan Gabriel Martínez34, Jean-Baptiste Mihoub35, James A. Mills36,37,
+Mercedes Molina-Morales17, Arne Moksnes24, Arpat Ozgul38, Deseada Parejo17, Philippe Pilard39,
+Maud Poisbleau16, Francois Rousset
+40, Mark-Oliver Rödel41, David Scott
+42, Juan Carlos Senar13,
+Constanti Stefanescu23,43, Bård G. Stokke24,25, Tamotsu Kusano44, Maja Tarka29, Corey E. Tarwater45,
+Kirsten Thonicke
+46, Jack Thorley
+47,48, Andreas Wilting
+1, Piotr Tryjanowski49, Juha Merilä
+50,
+Ben C. Sheldon51, Anders Pape Møller
+52, Erik Matthysen7, Fredric Janzen
+53, F. Stephen Dobson54,
+Marcel E. Visser
+4, Steven R. Beissinger55, Alexandre Courtiol
+1,57 & Stephanie Kramer-Schadt
+1,56,57
+1Leibniz Institute for Zoo and Wildlife Research (IZW), Alfred-Kowalke-Straße 17, 10315 Berlin, Germany. 2School of Biological, Earth and
+Environmental Sciences, University College Cork, Cork T23 N73K, Ireland. 3CEFE UMR 5175, CNRS – Université de Montpellier – Université Paul-
+Valéry Montpellier – EPHE, 1919 route de Mende, 34293 Montpellier Cedex 5, France. 4Department of Animal Ecology, Netherlands Institute of
+Ecology (NIOO-KNAW), P.O. Box 506700 AB Wageningen, The Netherlands. 5School of Biology, Faculty of Biological Sciences, University of
+Leeds, Leeds LS2 9JT, UK. 6Department of Zoology, Palacký University, tř. 17. listopadu 50, 771 46 Olomouc, Czech Republic. 7Evolutionary Ecology
+Group, University of Antwerp, Universiteitsplein 1, 2610 Wilrijk, Belgium. 8Swedish Museum of Natural History, P.O. Box 5000710405 Stockholm,
+Sweden. 9Department of Forest and Conservation Sciences, 2424 Main Mall, Vancouver V6T 1Z4 BC, Canada. 10Department of Functional and
+Evolutionary Ecology, Experimental Station of Arid Zones (EEZA-CSIC), Ctra de Sacramento s/n, 04120 Almería, Spain. 11Department of Zoology,
+Faculty of Biology, University of Seville, Avenue Reina Mercedes, 41012 Seville, Spain. 12Department of Biological Sciences, University of Texas Rio
+Grande Valley, Brownsville 78520 TX, USA. 13Museu de Ciències Naturals de Barcelona, P° Picasso s/n, Parc Ciutadella, 08003 Barcelona, Spain.
+14Centre for Ecology and Hydrology, Bush Estate, Penicuik EH26 0QB, UK. 15Station of Experimental and Theoretical Ecology (SETE), UMR 5321,
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+ARTICLE
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications
+13
+
+CNRS and University Paul Sabatier, 2 route du CNRS, 09200 Moulis, France. 16Behavioural Ecology and Ecophysiology Group, University of
+Antwerp, Universiteitsplein 1, 2610 Wilrijk (Antwerp), Belgium. 17Department of Anatomy, Cellular Biology and Zoology, University of Extremadura,
+06006 Badajoz, Spain. 18Lab of Ornithology, Cornell University, Ithaca, NY 14850, USA. 19Behavioural Ecology, Department of Biology, Ludwig-
+Maximilians University of Munich, Großhaderner Str. 2, Planegg-Martinsried 82152, Germany. 20Graduate School of Simulation Studies, University
+of Hyogo, 7-1-28 Minatojima-minamimachi, Kobe 650-0047, Japan. 21Department of Biology, University of Turku, Turku FI-20014, Finland.
+22Institute for Biochemistry and Biology, Potsdam University, Karl-Liebknecht-Strasse 24-25, 14476 Potsdam, Germany. 23CREAF, 08193
+Cerdanyola del Vallès, Spain. 24CSIC, Global Ecology Unit CREAF-CSIC-UAB, Bellaterra 08193, Spain. 25Norwegian Institute for Nature Research
+(NINA), P.O. Box 5685 Torgarden, 7485 Trondheim, Norway. 26Department of Biology, Norwegian University of Science and Technology (NTNU),
+Høgskoleringen 5, 7491 Trondheim, Norway. 27School of Natural and Social Sciences, University of Gloucestershire, Swindon Road, Cheltenham
+GL50 4AZ, UK. 28Estonian University of Life Sciences, Kreutzwaldi 5, 51014 Tartu, Estonia. 29Department of Biology, Lund University, 22362 Lund,
+Sweden. 30Senckenberg Biodiversity and Climate Research Center (BiK-F), Senckenberganlage 25, 60325 Frankfurt/Main, Germany. 31Biodiversity
+research/Systematic Botany, University of Potsdam, Maulbeerallee 1, Berlin 14469, Germany. 32Institute for Landscape and Open Space, HSR
+Hochschule für Technik, Oberseestrasse 10, Rapperswil 8640, Switzerland. 33Department of Biology, University of Ottawa, Ontario K1N 6N5,
+Canada. 34Departamento de Zoologia, Facultad de Ciencias, Universidad de Granada, 18071 Granada, Spain. 35Sorbonne Université, Muséum
+National d’Histoire Naturelle, CNRS, CESCO, UMR 7204, 61 rue Buffon, 75005 Paris, France. 3610527A Skyline Drive, Corning, NY 14830, USA. 373
+Miromiro Drive, Kaikoura 7300, New Zealand. 38Department of Evolutionary Biology and Environmental Studies, University of Zurich, Zurich 8057,
+Switzerland. 39LPO Mission Rapaces, 26 avenue Alain Guigue, 13104 Mas-Thibert, France. 40ISEM, Université de Montpellier, CNRS, IRD, EPHE,
+Montpellier 34095, France. 41Leibniz Institute for Evolution and Biodiversity Science, Museum für Naturkunde, Invalidenstrasse 43, 10115 Berlin,
+Germany. 42Savannah River Ecology Laboratory, University of Georgia, Aiken, SC 29802, USA. 43Natural History Museum of Granollers, Francesc
+Macià, 52, 08401 Granollers, Spain. 44Department of Biological Sciences, Tokyo Metropolitan University, 1-1 Minami-Osawa, Hachioji-shi, Tokyo
+192-0397, Japan. 45Department of Zoology and Physiology, University of Wyoming, 1000 E University Avenue, Laramie, WY 82071, USA.
+46Research Domain 1 ‘Earth System Analysis’, Potsdam Institute for Climate Impact Research (PIK), P.O. Box 60 12 03, Telegrafenberg A31,
+Potsdam D-14412, Germany. 47Imperial College London, Silwood Park Campus, Buckurst Road, Ascot SL5 7PY, UK. 48Department of Zoology,
+University of Cambridge, Downing Street, Cambridge CB2 3EJ, UK. 49Institute of Zoology, Poznan University of Life Sciences, Wojska Polskiego 71C,
+60-625 Poznań, Poland. 50Organismal and Evolutionary Biology Research Programme, Ecological Genetics Research Unit, Faculty Biological and
+Environmental Sciences, University of Helsinki, 00014 Helsinki, Finland. 51Edward Grey Institute, Department of Zoology, University of Oxford,
+Oxford OX1 3PS, UK. 52Ecologie Systématique Evolution, Université Paris-Sud, CNRS, AgroParisTech, Université Paris-Saclay, 91405 Orsay Cedex,
+France. 53Department of Ecology, Evolution, and Organismal Biology, Iowa State University, Ames, IA 50011, USA. 54Department of Biological
+Sciences, Auburn University, Auburn, AL 36849, USA. 55Department of Environmental Science, Policy and Management and Museum of
+Vertebrate Zoology, University of California, Berkeley 94720 CA, USA. 56Department of Ecology, Technische Universität Berlin, 12165 Berlin,
+Germany. 57These authors jointly supervised this work: Alexandre Courtiol, Stephanie Kramer-Schadt.
+ARTICLE
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-019-10924-4
+14
+NATURE COMMUNICATIONS | (2019) 10:3109 | https://doi.org/10.1038/s41467-019-10924-4 | www.nature.com/naturecommunications

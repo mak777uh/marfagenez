@@ -1,0 +1,1675 @@
+The effects of sex on extinction dynamics and evolutionary rescue of 
+1 
+Chlamydomonas reinhardtii depend on the rate of environmental change 
+2 
+Nikola Petkovic1 and Nick Colegrave2 
+3 
+1Koç University, College of Sciences, Department of Molecular Biology and Genetics, „               
+4 
+İstanbul, Turkey 
+5 
+   2University of Edinburgh, Institute of Evolutionary Biology, Edinburgh, UK 
+6 
+Corresponding author: Nikola Petkovic, Koç University, Rumeli Feneri Yolu, Sarıyer, 
+7 
+33450, İstanbul, Turkey; email address: nikolapetkovic777@gmail.com 
+8 
+ 
+9 
+Abstract 
+10 
+The continued existence of sex despite many costs it entails still lacks an adequate 
+11 
+explanation. Previous experimental studies demonstrated that sex enhances the rate of 
+12 
+adaptation in changing environments. To the best of our knowledge, no experimental study 
+13 
+that investigated the effects of sex on adaptation has manipulated the rate of environmental 
+14 
+change, which is negatively correlated with the probability of population survival. Since the 
+15 
+patterns of adaptation (adaptive walk) depend on the rate of environmental change, the 
+16 
+overall effects of sex may also be altered by this factor. 
+17 
+To investigate the interplay of sex and the rate of environmental deterioration, we 
+18 
+carried out a long-term selection experiment with a unicellular alga (Chlamydomonas 
+19 
+reinhardtii), by manipulating mode of reproduction (asexual or sexual populations) and the 
+20 
+rate of environmental deterioration (an increase of salt concentration). We monitored both 
+21 
+the population size and extinction dynamics and estimated the probability of evolutionary 
+22 
+rescue.  
+23 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+We detected a faster decline of population size in the asexual group relative to both 
+24 
+the obligate sexual and facultative sexual group, irrespective of the rate of environmental 
+25 
+deterioration. The results revealed significant interaction between mode of reproduction and 
+26 
+the rate of environmental deterioration on extinction rate of experimental populations. 
+27 
+Obligate sexual reproduction was advantageous under the intermediate rate of 
+28 
+environmental deterioration, while facultative sexuality was favoured under the high rate of 
+29 
+environmental deterioration. The populations within the obligate sexual group were most 
+30 
+likely to adapt to grow in conditions lethal for the ancestral populations, irrespective of the 
+31 
+rate of environmental deterioration.  
+32 
+To the best of our knowledge, this is the first study which indicates that different 
+33 
+modes of sexual reproduction will be beneficial (slower extinction rate) at different rates of 
+34 
+environmental deterioration and that obligate sexuality maximizes the probability of 
+35 
+adaptation irrespective of the rate of environmental deterioration. 
+36 
+ 
+37 
+1. Introduction 
+38 
+Despite the fact that the great majority of extant eukaryotes are sexual, sex still 
+39 
+remains one of the most intriguing puzzles in evolutionary biology (Otto and Lenormand, 
+40 
+2002). The reason for this reflects in the numerous disadvantages and costs of sex (Lewis, 
+41 
+1987; Lehtonen et al., 2012). These costs can be significant and hence the continued 
+42 
+existence of sex implies large potential benefits. Unexpected difficulty to provide an 
+43 
+explanation for such a widespread phenomenon brought sex the title of “the Queen of 
+44 
+problems in evolutionary biology” (Bell, 1982). 
+45 
+Most contemporary hypotheses explaining the maintenance of sex by natural 
+46 
+selection are based on the idea that sex increases genetic variability of the progeny 
+47 
+(Kondrashov, 1993). This effect, in turn, increases the response of selection and thus, 
+48 
+facilitates the rate of adaptation to novel environments (Weismann, 1889; Fisher, 1930; 
+49 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+Muller, 1932; Burt, 2000). The advantageous effect of sex based on this concept is 
+50 
+manifested through faster accumulation of mutations beneficial in changing conditions in 
+51 
+sexual populations, which increases the rate of adaptation relative to asexual populations. In 
+52 
+asexual populations, which may fix novel mutations at a slower rate (one at the time), 
+53 
+adaptation proceeds at a lower rate or can be limited by competition of individuals carrying 
+54 
+different mutations (termed clonal interference) (Muller 1932; Gerrish and Lenski, 1998). 
+55 
+A substantial body of experimental evidence indicates that sex increases the rate of 
+56 
+adaptation to changing environments (Hartfield and Keightley, 2012). The advantageous 
+57 
+effect of sex is manifested through faster assembling of mutations beneficial in novel 
+58 
+environments (Kaltz and Bell, 2002), reduction of clonal interference in large populations 
+59 
+(Colegrave, 2002), an increase in fitness of the progeny (Becks and Agrawal, 2012) and 
+60 
+more efficient adaptation to the presence of pathogenic species (Morran et al., 2009). 
+61 
+Furthermore, sex increases the rate of adaptation in a deteriorating environment (Goddard et 
+62 
+al., 2005) and the probability of survival in conditions lethal for the ancestral population 
+63 
+(Lachapelle and Bell, 2012), termed evolutionary rescue (Gomulkiewicz and Holt, 1995). 
+64 
+ 
+65 
+While the benefits of sex in novel and deteriorating environments are relatively well 
+66 
+understood, to the best of our knowledge, no experimental studies which investigated the 
+67 
+effects of sex have manipulated the rate of environmental change, which is negatively 
+68 
+correlated with the probability of population survival in stressful environments (Perron et al., 
+69 
+2007; Bell and Gonzales, 2011; Ramsayer et al., 2013; Lindsey et al., 2013). Adaptation 
+70 
+occurs through sequential fixation of beneficial mutations (adaptive walk) (Collins et al., 
+71 
+2007), a process which patterns depend on the rate of environmental change (Collins and de 
+72 
+Meaux, 2009). Since sex directly impacts the adaptive walk through accumulation of 
+73 
+beneficial mutations, the overall effects of it may be altered by different rates of 
+74 
+environmental change. 
+75 
+ 
+76 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+The higher rates of environmental deterioration imply a larger initial maladaptedness 
+77 
+of a population and adaptation may occur through strong selection, which causes a 
+78 
+demographic pressure manifested through higher proportion of selective deaths (Haldane, 
+79 
+1957; Burger and Lynch, 1995). Furthermore, adaptation to the higher rates of environmental 
+80 
+change occurs through fixation of few mutations of larger fitness effects (Collins and de 
+81 
+Meaux, 2009), which are less frequent in the distribution of beneficial mutations (Kassen and 
+82 
+Bataillon, 2006; Eyre-Walker and Keightley, 2007). Consequently, if population size 
+83 
+substantially declines, the mutations which increase the fitness under the higher rates of 
+84 
+environmental deterioration may appear in disadvantageous genetic background (with 
+85 
+deleterious alleles) due to genetic drift (Otto and Lenormand, 2002). As a result, adaptation 
+86 
+of an asexual population may become impeded and the population may face extinction. The 
+87 
+potential beneficial effect of sex under these conditions is the release of these mutations 
+88 
+from disadvantageous genetic background, which may restore the adaptive walk of the 
+89 
+population. However, since demographic cost of adaptation imposes the limit for the rate of 
+90 
+environmental change that a population can sustain (Lynch and Lande, 1993), the beneficial 
+91 
+effect of sex may diminish if the magnitude of environmental change outweighs the 
+92 
+reproductive capacity of a species to compensate for the demographic loss. 
+93 
+Adaptation to a gradual rate of environmental change occurs through fixation of 
+94 
+mutations of smaller fitness effects, which are more frequent in the distribution of beneficial 
+95 
+mutations (Eyre-Walker and Keightley, 2007). In addition, a population subjected to the 
+96 
+gradual rate of environmental deterioration will likely suffer a less pronounced population size 
+97 
+decline than a population subjected to the higher rate of environmental change and hence 
+98 
+the supply of beneficial mutations will be proportionally higher. However, due to weaker 
+99 
+selection operating under the gradual environmental change, these mutations may not reach 
+100 
+fixation, or otherwise fix in less predictable intervals (a process termed periodic fixation) 
+101 
+(Collins and de Meaux, 2009). If two or more mutations, which are beneficial under the 
+102 
+gradual rates of environmental deterioration, segregate in an asexual population, adaptation 
+103 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+may slow down due to clonal interference (Muller, 1932). The potential advantage of sex 
+104 
+under the gradual rate of environmental deterioration may manifest through alleviation of 
+105 
+clonal interference and thereby a higher rate of adaptation of sexual populations, as 
+106 
+demonstrated during adaptation to novel environments (Colegrave, 2002). 
+107 
+In order to investigate the interplay of sex and the rate of environmental deterioration 
+108 
+on adaptation to changing conditions, we carried out a selection experiment by subjecting the 
+109 
+experimental populations of a unicellular alga Chlamydomonas reinhardtii to the environment 
+110 
+which progressively deteriorated and ultimately became lethal for the ancestral populations. 
+111 
+We manipulated both their mode of reproduction and the rate of environmental deterioration 
+112 
+in a fully factorial design and monitored the extinction dynamics and the occurrence of 
+113 
+evolutionary rescue events within the treatment groups.  
+114 
+We predicted that the sign of the effect of sex (slower extinction rate and a 
+115 
+higher probability of evolutionary rescue of the sexual populations) will not depend on the 
+116 
+rate of environmental deterioration, despite the potential differences in the patterns of the 
+117 
+effects of sex under different rates of environmental change. Furthermore, we predicted that 
+118 
+the asexual populations will adapt less efficiently under the higher rates of environmental 
+119 
+change, hence the magnitude of the effect of sex (the relative advantage of sexual 
+120 
+populations) will be positively correlated with the rate of environmental deterioration.  
+121 
+ 
+122 
+2. 
+Materials and methods  
+123 
+2.1. 
+Base populations of C. reinhardtii 
+124 
+To establish genetically variable experimental populations of C. reinhardtii, the mass 
+125 
+mating of 10 different wild type isolates was carried out. The zygotes obtained were 
+126 
+transferred to the agar plates by sterile loops and allowed to germinate by producing 
+127 
+zoospores. The zoospores differentiated into adult vegetative cells, which were allowed to 
+128 
+undergo several rounds of mitotic divisions (for 3-4 days) until visible colonies appeared on 
+129 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+the agar plates. Each colony represents a unique genotype derived from an individual cell. C. 
+130 
+reinhardtii is an isogamous species with two mating types (mt): mt- or mt+. A library of 
+131 
+genotypes was established by random selection of 20 colonies of each mating type, collected 
+132 
+from the agar plates by sterile loops. The mating type was determined by crossing the culture 
+133 
+derived from each genotype with tester isolates. 
+134 
+The experimental populations were constructed by random selection of 10 different 
+135 
+genotypes from the library. Each experimental population comprises a unique combination of 
+136 
+10 genotypes. The sexual populations were established by combining 5 mt- and 5 mt+ 
+137 
+isolates, while the asexual populations were constructed by combining either 10 mt+ or 10 
+138 
+mt- isolates (with an equal proportion of populations comprising either mating type).  
+139 
+2.2.   Selection experiment 
+140 
+Treatments 
+141 
+ 
+142 
+The experimental populations were subjected to a deteriorating environment, which 
+143 
+comprised an increase of NaCl (hereafter referred to as salt) level in the medium in regular 
+144 
+intervals, at three different rates. The salt was chosen as a stressor since previous 
+145 
+experiments (Lachapelle and Bell, 2012; Lachapelle et al., 2015) demonstrated the 
+146 
+detrimental effect of elevated salt concentration on C. reinhardtii populations, manifested 
+147 
+through osmotic and ionic disbalance in cells (Lachapelle et al., 2015).  
+148 
+We manipulated the life cycle of C. reinhardtii by shifting between a stage during 
+149 
+which all the populations were reproducing mitotically (hereafter referred to as the asexual 
+150 
+stage) and a stage of sexual reproduction. The asexual stage consisted of 4 growth cycles 
+151 
+(3-4 days each), during which the populations underwent approximately 4-6 rounds of mitotic 
+152 
+divisions per growth cycle (9-12 doublings of cells). During this stage, salt level remained 
+153 
+constant. After completion of the asexual stage, a sexual cycle has been initiated in all the 
+154 
+populations, but completed only in the sexual populations, due to presence of both mating 
+155 
+types (see „Sexual cycle‟ section below for details). After completion of each sexual cycle, 
+156 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+the asexual stage has been reinitiated, during which the experimental populations 
+157 
+experienced an increased level of salt.  
+158 
+The three treatment groups were established depending on the rate of salt increase 
+159 
+which the populations experienced: the populations in the gradual rate treatment group 
+160 
+experienced a relatively slow increase of salt concentration (1 g/l per each asexual stage); 
+161 
+the populations in the high rate treatment group experienced a relatively abrupt increase of 
+162 
+salt concentration (3 g/l per each asexual stage); the moderate rate treatment group was 
+163 
+subjected to an intermediate level of salt increase (2 g/l per each asexual stage). Each 
+164 
+treatment group consisted of 72 populations. 
+165 
+The three treatment groups were established with respect to mode of reproduction: 
+166 
+the asexual, obligate sexual and facultative sexual. The populations within both the obligate 
+167 
+sexual and facultative sexual treatment groups were allowed to complete a number of rounds 
+168 
+of sexual reproduction during the experiment. In the populations of the obligate sexual group, 
+169 
+the gametes which failed to mate during the sexual cycle were eliminated by freezing. Thus, 
+170 
+only sexually derived progeny were allowed the subsequent asexual stage. In the facultative 
+171 
+sexual group, this step was omitted, resulting in mixed progeny derived from both the 
+172 
+zygotes and unmated gametes. The asexual populations were reproducing entirely 
+173 
+mitotically throughout the course of the experiment. Within each treatment group (72 
+174 
+populations each), 24 populations were subjected to one of the three rates of environmental 
+175 
+deterioration. However, one of the genotypes sampled from the library was incorrectly 
+176 
+assigned as a plus mating type, which was noted after the experiment had already 
+177 
+commenced. Since the presence of two mating types may have resulted in zygote production 
+178 
+in 14 asexual populations containing that genotype, these have been withdrawn from the 
+179 
+subsequent analysis of the experiment, which included seven gradual rate populations, one 
+180 
+moderate rate population and six high rate populations. 
+181 
+ 
+182 
+ 
+183 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+Cultivation and Transfer Procedure  
+184 
+All experimental populations were cultivated in 24-well microtiter plates in Bold‟s 
+185 
+basal medium (2 ml per culture), widely used for algal cultivation (Harris, 2009), under 
+186 
+standard conditions (26°C, 100 μE illumination, constantly shaken at 180 rpm (3-mm rotation 
+187 
+diameter), covered with sterile breathable membranes to prevent uneven evaporation across 
+188 
+the plates and cross-contamination). A serial passage was performed after completion of 
+189 
+each growth cycle by transferring 5 % of each population to a fresh medium.  
+190 
+Sexual Cycle   
+191 
+After completion of the asexual stage, sexual populations were allowed to undergo a 
+192 
+sexual cycle, using the following protocol. All the populations were centrifuged at 5000 rpm 
+193 
+for 10 minutes and re-suspended in nitrogen-free medium to initiate gametogenesis. The 
+194 
+populations were then incubated in standard conditions (without shaking) under bright light 
+195 
+for 24 hours to allow for mating of gametes and formation of zygotes. After given period, the 
+196 
+microtiter plates containing the experimental populations were wrapped in aluminium foil and 
+197 
+incubated in the darkness for additional 4-5 days to allow the zygotes to mature. Since sub-
+198 
+lethal stress may affect the mutation rate, the effects of sex may be confounded with the 
+199 
+effects of mutations (Goho and Bell, 2000; Colegrave et al., 2002). Hence, the nitrogen 
+200 
+starvation treatment was also applied to the asexual populations, but since they were made 
+201 
+up of single mating types, no mating took place. After incubation in the darkness, the 
+202 
+microtiter plates with mature zygotes were placed in a freezer for 4 hours at -20˚C in order to 
+203 
+eliminate unmated gametes. The zygotes develop the additional layers of cell wall during 
+204 
+maturation in the darkness, thereby acquiring resistance to stressful conditions (Harris, 
+205 
+2009). The pilot experiments carried out in our laboratory revealed that this characteristic 
+206 
+enables the zygotes to withstand low temperature. Since unmated gametes lack resistance 
+207 
+to freezing, this procedure was omitted for the asexual and facultative sexual groups, and the 
+208 
+transfer of both the produced zygotes and unmated gametes to the next asexual stage was 
+209 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+allowed in the latter group. After the freezing procedure, the zygotes produced by the 
+210 
+obligate sexual populations were transferred to the agar plates by sterile loops and incubated 
+211 
+in bright light for two days to allow for germination and several rounds of mitotic divisions. 
+212 
+The zygotes produced by the facultative sexual populations (if any) were transferred using 
+213 
+the same method as for the obligate sexual populations, along with additional aliquot (of 
+214 
+about 50-100 µl of culture) to prevent the population bottleneck if a low number of zygotes 
+215 
+had been produced. The asexual populations were transferred to the agar plates by pipetting 
+216 
+(an aliquot of 150 µl) and incubated for the same period as the sexual populations. After 
+217 
+given interval of time, all the cultures were flooded with 4-5 ml of Bold‟s basal medium 
+218 
+(containing a higher salt concentration than during the previous asexual stage, depending on 
+219 
+the treatment group) for approximately an hour. Population size of each experimental 
+220 
+population propagated on agar was estimated by spectrophotometer (OD750) and the 
+221 
+populations were diluted to the same optical density as before induction of sexual cycle. This 
+222 
+experimental procedure ensured that the effects of sex were not confounded with a variation 
+223 
+in population size. All experimental populations were then returned to the liquid medium by 
+224 
+pipetting. 
+225 
+The mating of C. reinhardtii requires sufficiently dense populations to ensure the 
+226 
+contact of gametes and thus, production of zygotes. Since different rates of environmental 
+227 
+deterioration caused variation in the rate of mean population size decline (see the ‟Results 
+228 
+„section) and thereby variation in population densities prior to induction of sexual cycles, an 
+229 
+unequal number of sexual cycles were induced for each treatment group. Consequently, the 
+230 
+sexual populations within the gradual rate, moderate rate and high rate treatment groups 
+231 
+underwent ten, four and three rounds of sexual reproduction, respectively. 
+232 
+2.3. 
+Data collection 
+233 
+ 
+We investigated the interplay of mode of reproduction and the rate of environmental 
+234 
+deterioration by measuring the three parameters: a decline of mean population size before 
+235 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+first extinctions occurred, the rate of extinction events and the probability of evolutionary 
+236 
+rescue. 
+237 
+Population size dynamics 
+238 
+After every second growth cycle, each population was sampled (150 µl of the culture) 
+239 
+and population size estimated by measuring optical density (OD750) using spectrophotometer. 
+240 
+The measurements were carried out up to and including the 20th growth cycle of each 
+241 
+population, since optical density of sparse cultures could not have been estimated in a 
+242 
+reliable way using this method. 
+243 
+Extinction dynamics 
+244 
+ 
+Each experimental population was visually inspected under inverted microscope (with 
+245 
+20 X magnification) before each transfer to potentially record an extinction event (absence of 
+246 
+living cells). If no surviving cells were detected after observation under the microscope, a 
+247 
+sample of the population (200 µl, approximately 10% of the culture) was transferred to the 
+248 
+agar plate and incubated for 3-4 days in order to confirm an extinction event. The selection 
+249 
+experiment continued until all experimental populations went extinct. 
+250 
+   Evolutionary rescue  
+251 
+At the point which salt concentration had reached and surpassed the level which 
+252 
+could potentially completely stop the growth of the ancestral populations (8 g/l, as 
+253 
+demonstrated by Reynoso and de Gamboa, 1982; Moser and Bell, 2011), thereby increasing 
+254 
+the risk of extinction, we initiated a parallel experiment, by sub-sampling experimental 
+255 
+populations and continuing to propagate each in a selective medium comprising the same 
+256 
+salt concentration as at the time of sub-sampling, by means of serial passaging. During this 
+257 
+experiment, the salt concentration remained constant. The objective of this experiment was 
+258 
+to evaluate whether evolutionary rescue had occurred, manifested through positive growth in 
+259 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+stressful conditions. Simultaneously, the main selection experiment was continued by 
+260 
+subjecting the main populations to increasing salt concentrations. 
+261 
+ The sub-sampled populations (5% of the culture) were transferred to 24-well plates 
+262 
+with the corresponding selective medium and propagated for 3-4 additional growth cycles. 
+263 
+Population size was estimated spectrophotometrically (OD750) after each growth cycle. After 
+264 
+the second growth cycle, a sample (20 µl) of each population was transferred to the 
+265 
+corresponding selective medium (180 µl) in 96-well plate to estimate the growth rate of the 
+266 
+populations. The optical density (OD750) of the populations propagated in 96-well plates was 
+267 
+measured twice a day (after every 12 h), until the cultures reached a mid-log/stationary 
+268 
+phase (after approximately 3.5 days). The growth rate of each population, estimated by 
+269 
+calculating yield as a function of time, was a measure of fitness in stressful salt 
+270 
+concentrations. 
+271 
+  The growth parameters (population size and growth rate) of these populations were 
+272 
+compared with those of the ancestral isolates, assayed in the medium with the corresponding 
+273 
+salt concentration prior to commencing of the selection experiment (data not shown). The 
+274 
+populations were scored as “rescued” if they showed: 
+275 
+1) 
+clear positive growth between transfers in 24-well plates; 
+276 
+2) 
+positive growth rate when assayed in 96-well plates; 
+277 
+3) 
+significantly faster growth rate than that of the ancestors (compared for the 
+278 
+same salt concentration). 
+279 
+ 
+280 
+ 
+281 
+3. Data analysis  
+282 
+ 
+283 
+The population size dynamics of each treatment group was analysed by fitting Two-
+284 
+way ANOVA with two factors as categorical independent variables: „mode of reproduction‟ 
+285 
+and „the rate of environmental deterioration‟, both treated as fixed factors. The dependent 
+286 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+continuous variable was the slope of the regression line representing mean decline of 
+287 
+population size as a function of time (in growth cycles). The interaction between the factors 
+288 
+was incorporated into the model. 
+289 
+ 
+290 
+The Kaplan-Meier survival curves of each treatment group were analysed by fitting 
+291 
+Weibull regression model with two factors: „mode of reproduction‟ and „the rate of 
+292 
+environmental deterioration„. The extinction dynamics was analysed with respect to time (the 
+293 
+number of growth cycles each population underwent prior to extinction) and salt 
+294 
+concentration. The interaction between the factors was incorporated into the model. 
+295 
+ 
+296 
+The probability of evolutionary rescue within each treatment group was estimated by 
+297 
+fitting a Generalised Linear Mixed Model (GLMM) with two factors as categorical 
+298 
+independent variables: „mode of reproduction‟ and „the rate of environmental deterioration, 
+299 
+both treated as fixed factors. The continuous independent variable „salt concentration‟ was 
+300 
+treated as random factor. The binary response variable was „rescue (positive growth) / death 
+301 
+(negative growth)‟. The interaction between fixed factors was incorporated into the model. 
+302 
+Mean fitness of rescued populations (growth rate) was analysed by fitting a Linear 
+303 
+Mixed Model (LMM) with two factors as categorical independent variables: „mode of 
+304 
+reproduction‟ and „the rate of environmental deterioration, both treated as fixed factors. The 
+305 
+continuous independent variable „salt concentration‟ was treated as random factor.  The 
+306 
+continuous response variable was the slope of the regression line representing mean 
+307 
+increase of population size as a function of time. The interaction between fixed factors was 
+308 
+incorporated into the model. The data was transformed using Box-Cox transformation 
+309 
+method prior to the analysis. 
+310 
+ 
+311 
+All the analyses were carried out using R (R Core Team, 2017). 
+312 
+ 
+313 
+ 
+314 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+4. 
+Results 
+315 
+ 
+316 
+Population size dynamics  
+317 
+ 
+318 
+To estimate the effect of mode of reproduction and the rate of environmental 
+319 
+deterioration on population size dynamics, we regularly monitored population size of 
+320 
+experimental populations by measuring the optical density of the cultures after every second 
+321 
+growth cycle. The measurements were carried out up to and including the 20th growth cycle. 
+322 
+We estimated that experimental populations of C. reinhardtii underwent approximately 100 
+323 
+generations of cell divisions during this interval of time.  
+324 
+Mode of reproduction significantly affected the rate of decline of mean population size 
+325 
+(two-way ANOVA; F2,201 = 102.26, P < 0.00001). The highest decline of mean population size 
+326 
+was recorded in the asexual group, having been by 42 % and 36 % higher than that of the 
+327 
+obligate sexual and facultative sexual group, respectively (Figure 1A). Post-hoc Tukey‟s HSD 
+328 
+analysis revealed statistically significant difference (P < 0.00001) between the asexual group 
+329 
+and both the obligate sexual and facultative sexual group. No significant difference between 
+330 
+the sexual groups of populations was detected (P = 0.07).  
+331 
+ 
+332 
+The rate of environmental deterioration was positively correlated with the rate of 
+333 
+decline of mean population size (two-way ANOVA; F2,201 = 102.99, P < 0.00001) (Figure 1B). 
+334 
+The decline of population size was lowest in the treatment group subjected to the gradual 
+335 
+rate of salt increase, and significantly lower than that of the treatment groups subjected to  
+336 
+the moderate rate and high rate of environmental deterioration (by 39 % and 47 %, 
+337 
+respectively)  (Tukey‟s HSD, P < 0.00001). The treatment group subjected to the moderate 
+338 
+rate of salt increase had significantly lower decline of population size than that of the 
+339 
+treatment group subjected to the high rate of salt increase (by 12 %) (Tukey‟s HSD, P = 
+340 
+0.001). 
+341 
+ 
+342 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+There was a significant interaction between mode of reproduction and the rate of 
+343 
+environmental deterioration (Two-way ANOVA; F4,201 = 10.15, P < 0.00001). While both 
+344 
+sexual groups had a lower decline of population size relative to the asexual group with 
+345 
+respect to all three rates of environmental deterioration (Tukey‟s HSD, P < 0.005 for all 
+346 
+pairwise comparisons) (Figure 1, C and D), the only significant difference between the sexual 
+347 
+groups was detected under the moderate rate of environmental deterioration (Tukey‟s HSD, 
+348 
+P < 0.0001). The decline of mean population size of the moderate rate - obligate sexual 
+349 
+group was lower by 32% than that of the moderate rate - facultative sexual group (Figure 
+350 
+2D). 
+351 
+ 
+352 
+ 
+353 
+ 
+354 
+Figure 1 – The decline of mean population size: per mode of reproduction (A); per rate of 
+355 
+environmental deterioration (B); per mode of reproduction with respect to the rate of 
+356 
+environmental deterioration (C); per rate of environmental deterioration with respect to mode 
+357 
+of reproduction; the bars represent standard error of the mean. 
+358 
+ 
+359 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+Extinction dynamics  
+360 
+ 
+361 
+To investigate the effect of mode of reproduction and the rate of environmental 
+362 
+deterioration on extinction dynamics, we monitored experimental populations after each 
+363 
+growth cycle to record the potential extinction events. An experimental population was 
+364 
+recorded as extinct if no cells were detected after visual inspection under the microscope and 
+365 
+incubation of a culture sample on an agar plate. We fitted two Weibull regression models, to 
+366 
+analyse the extinction dynamics against time (in growth cycles) and salt concentration, 
+367 
+respectively. The best fit was obtained using extreme hazard function (for the model of the 
+368 
+extinction dynamics with respect to time) and logistic hazard function (for the model of the 
+369 
+extinction dynamics with respect to salt concentration), respectively. 
+370 
+ 
+371 
+ 
+The rate of extinctions of experimental populations against time in growth cycles was 
+372 
+positively correlated with the rate of environmental deterioration (Weibull regression; χ2 = 
+373 
+805.81; df = 2; P < 0.00001) (Figure 2A). The extinction rate of the gradual rate group was 
+374 
+significantly slower than that of both the high rate group (z = 56.23, P < 0.00001) and 
+375 
+moderate rate group (z = 49.15, P < 0.00001). The extinction rate of the moderate rate group 
+376 
+was significantly slower than that of the high rate group (z = 10.30, P < 0.00001). First 
+377 
+extinctions were recorded within the moderate and high rate groups (during the 25th growth 
+378 
+cycle). Last experimental populations within the high rate group went extinct by the 48th 
+379 
+growth cycle (after approximately 225 generations) while the last extinctions within the 
+380 
+moderate rate group occurred during the 62nd growth cycle (after approximately 300 
+381 
+generations). First extinctions within the gradual rate group occurred during the 108th growth 
+382 
+cycle, while the last extinctions were recorded during the 130th growth cycle (after at least 
+383 
+600 generations).  
+384 
+ 
+385 
+ 
+The main effect of mode of reproduction on extinction dynamics of experimental 
+386 
+populations was not statistically significant (Weibull regression; χ2 = 3.51; df = 2; P = 0.17). 
+387 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+However, the relative advantage of the individual levels within „mode of reproduction‟ factor 
+388 
+was contingent on the rate of salt increase, given the significant interaction between mode of 
+389 
+reproduction and the rate of environmental deterioration (Weibull regression; χ2 = 10.58; df = 
+390 
+4; P = 0.03). While the Kaplan-Meier survival curves of each treatment group were not 
+391 
+significantly different under the gradual and high rate of salt increase (Figures 2B and 2D, 
+392 
+respectively), the obligate sexual group had significantly slower extinction rate relative to the 
+393 
+asexual group (z = 2.3, P = 0.02) when subjected to the moderate rate of salt increase 
+394 
+(Figure 2C). 
+395 
+ 
+396 
+ 
+397 
+ 
+398 
+Figure 2 – The extinction dynamics of experimental populations: per rate of environmental 
+399 
+deterioration (A); per mode of reproduction under the gradual rate of environmental 
+400 
+deterioration (B); per mode of reproduction under the moderate rate of environmental 
+401 
+deterioration (C); per mode of reproduction under the high rate of environmental deterioration 
+402 
+(D); extinctions are plotted against time (the number of growth cycles that each population underwent 
+403 
+prior to extinction); 95% confidence interval for each Kaplan-Meier survival curve is represented with 
+404 
+the shaded area around the curves (A) or dotted lines (upper and lower boundary; B,C and D). 
+405 
+ 
+406 
+  
+407 
+ 
+The extinction dynamic of experimental populations was also analysed with respect to 
+408 
+salt concentration upon each extinction event. The experimental populations had the highest 
+409 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+probability of extinction under salt concentrations of 28 g/l (22% of all extinctions) and 30 g/l 
+410 
+(29% of all extinctions) (Figure 3A). The rate of environmental deterioration significantly 
+411 
+affected the extinction dynamic of experimental populations with respect to salt concentration 
+412 
+(Weibull regression; χ2 = 18.74; df = 2; P = 0.00008) (Figure 3B). The extinction rate of the 
+413 
+gradual rate group was significantly slower than that of the high rate group (z = 2.79; P = 
+414 
+0.005) and marginally slower than that of the moderate rate group (z = 1.85; P = 0.06); no 
+415 
+significant difference was detected between the extinction dynamics of the moderate rate 
+416 
+and high rate groups (z = 1.26; P = 0.2). First extinctions within the gradual rate group 
+417 
+occurred under salt concentration of 27 g/l, 63% of the populations reached and 31% 
+418 
+survived 30 g/l, while the last populations went extinct while being subjected to 32 g/l of salt 
+419 
+concentration. First populations within the moderate rate group went extinct under 12 g/l of 
+420 
+salt concentration, followed by a long interval (between 12 g/l and 26 g/l) during which only a 
+421 
+single extinction occurred. The majority of populations (96%) went extinct within a relatively 
+422 
+brief interval of time which corresponded to salt concentrations between 26 g/l and 30 g/l; 
+423 
+20% of populations reached, but none survived 30 g/l of salt concentration. First extinctions 
+424 
+within the high rate group occurred under salt concentration of 18 g/l, 32% of the populations 
+425 
+went extinct by the time which corresponded to salt concentration of 24 g/l, 45% of the 
+426 
+populations reached and 20% survived 30 g/l. The last extinctions in this treatment group 
+427 
+occurred under salt concentration of 36 g/l (see Figure 3D for extinction dynamics of all 
+428 
+treatment groups, with respect to salt concentration). 
+429 
+ 
+430 
+Mode of reproduction significantly affected the extinction rate with respect to salt 
+431 
+concentration (Weibull regression; χ2 = 10.87; df = 2; P = 0.004). The extinction rate of the 
+432 
+populations within the obligate sexual group was significantly slower than that of the asexual 
+433 
+group (z = 3.01; P = 0.002) and marginally slower relative to that of the facultative sexual 
+434 
+group (z = 1.78; P = 0.07) (Figure 3C). No difference was detected between the extinction 
+435 
+dynamics of the asexual and facultative sexual groups (z = 1.25; P = 0.21). There was a 
+436 
+significant interaction between mode of reproduction and the rate of environmental 
+437 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+deterioration on the extinction rate with respect to salt concentration (Weibull regression; χ2 = 
+438 
+22.94; df = 4; P =0.0001). The beneficial effect of the facultative sexual group significantly 
+439 
+increased under the high rate of environmental deterioration, as reflected in slower extinction 
+440 
+rate relative to both the asexual and obligate sexual groups (Figure 3D). The magnitude of 
+441 
+the effect of facultative sexual mode of reproduction (on extinction rate) was significantly 
+442 
+different than under both the gradual rate (z = 2.86; P = 0.004) and moderate rate (z =3.34; P 
+443 
+= 0.0008) of salt increase.       
+444 
+ 
+445 
+Figure 3 – The extinction dynamics of experimental populations: total probability of survival of 
+446 
+each salt concentration (A); per rate of environmental deterioration (B); per mode of 
+447 
+reproduction (C); with respect to both mode of reproduction and the rate of environmental 
+448 
+deterioration (D); extinctions are plotted against the salt concentration upon each extinction event; 
+449 
+95% confidence interval for each Kaplan-Meier survival curve is represented with the dotted lines 
+450 
+(upper and lower boundary). 
+451 
+ 
+452 
+ 
+ 
+453 
+Evolutionary rescue 
+454 
+ 
+455 
+In parallel with propagating the main experimental populations in the environment 
+456 
+with increasing concentration of salt, a second parallel study was carried out. Before being 
+457 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+subjected to the next step of salt increase, each experimental population was sub-sampled 
+458 
+and propagated for additional 3-4 growth cycles in the same level of salt as at the time of 
+459 
+sub-sampling, while the growth rate (mean fitness) of these populations was tested against 
+460 
+that of the ancestral populations. The objective of this study was to investigate whether 
+461 
+evolutionary rescue had occurred during the main selection experiment.  
+462 
+We recorded 137 evolutionary rescue events in total, out of 475 assayed populations 
+463 
+(29%). Mode of reproduction significantly affected the probability of evolutionary rescue 
+464 
+(GLMM; χ2 = 8.36; df = 2; P = 0.015). The populations within the obligate sexual group had a 
+465 
+higher probability of evolutionary rescue relative to both the asexual and facultative sexual 
+466 
+groups (z = 2.80 and z = 2.67, respectively; P < 0.008, for both pairwise comparisons) 
+467 
+(Figure 4A). No significant difference between the asexual and facultative sexual groups was 
+468 
+detected. 
+469 
+The probability of evolutionary rescue was significantly affected by the rate of 
+470 
+environmental deterioration (GLMM; χ2 = 22.99; df = 2; P < 0.00001). The populations within 
+471 
+the gradual rate and moderate rate treatment groups had significantly higher probability of 
+472 
+evolutionary rescue relative to the high rate treatment group (z = 3.91 and z = 4.31, 
+473 
+respectively; P < 0.0001, for both pairwise comparisons) (Figure 4B). No significant 
+474 
+difference between the gradual rate and moderate rate groups was detected. Within the 
+475 
+gradual rate group, 17 g/l was the maximal salt concentration for which evolutionary rescue 
+476 
+was recorded. By contrast, the maximal salt concentration survived by any population within 
+477 
+both the moderate and high rate groups was 12 g/l. 
+478 
+No significant interaction was detected between mode of reproduction and the rate of 
+479 
+environmental deterioration (GLMM; χ2 = 1.08; df = 4; P = 0.9). The populations within the 
+480 
+obligate sexual group had the highest probability of evolutionary rescue irrespective of the 
+481 
+rate of salt increase (Figure 4C). 
+482 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+Mean fitness of rescued populations was significantly affected by mode of 
+483 
+reproduction (LMM; F2,134 = 6.29; P = 0.002). Mean growth rate of the obligate sexual 
+484 
+populations was significantly faster than that of the asexual populations (t = 3.43; df =94; P = 
+485 
+0.0009) and marginally faster than that of the facultative sexual populations (t = 1.98; df 
+486 
+=102; P = 0.05) (Figure 4D). There was no significant difference between mean growth rate 
+487 
+of the asexual and facultative sexual populations. No significant interaction between mode of 
+488 
+reproduction and the rate of environmental deterioration on fitness of rescued populations 
+489 
+was detected (LMM; F4,134 = 0.62; P = 0.65) (Figure 4E). 
+490 
+ 
+491 
+ 
+492 
+Figure 4 – The probability of evolutionary rescue of experimental populations: per mode of 
+493 
+reproduction (A); per rate of environmental deterioration (B); per rate of environmental 
+494 
+deterioration with respect to mode of reproduction (C); percentage of rescued experimental 
+495 
+populations per each treatment group is presented above each bar plot, with the number of rescued 
+496 
+populations in brackets; mean fitness of rescued populations (growth rate): per mode of 
+497 
+reproduction (D); per rate of environmental deterioration with respect to mode of reproduction 
+498 
+(E); evolutionary rescue of the populations within the graduate rate group was tested for salt 
+499 
+concentrations of 16 g/l and 17 g/l, respectively; evolutionary rescue of the populations within the 
+500 
+moderate rate group occurred during exposure to salt concentrations of 8 g/l, 10 g/l and 12 g/l, 
+501 
+respectively; evolutionary rescue of the populations within the high rate group was detected during 
+502 
+exposure to salt concentrations of 9 g/l and 12 g/l, respectively; the bars represent standard error of 
+503 
+the mean. 
+504 
+ 
+505 
+ 
+506 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+5. 
+Discussion 
+507 
+The objective of this study was to investigate the interplay of mode of reproduction 
+508 
+and the rate of environmental deterioration on extinction dynamics and the probability of 
+509 
+evolutionary rescue of C. reinhardtii experimental populations, in environment deteriorating at 
+510 
+different rates. The main prediction of the experiment was an increase of relative advantage 
+511 
+of sexual populations under higher rates of environmental deterioration. 
+512 
+Overall, sexual mode of reproduction was beneficial. Sex significantly reduced both 
+513 
+the rate of population size decline and the extinction rate with respect to salt concentration, 
+514 
+and increased the probability of evolutionary rescue. The sexual groups combined had 39% 
+515 
+lower decline of population size relative to the asexual group. The obligate sexual group had 
+516 
+significantly slower extinction rate than that of the asexual group, as reflected in higher 
+517 
+number of surviving populations during exposure to salt concentrations between 12 g/l 
+518 
+(under which first extinctions had occurred) and 30 g/l. Finally, the obligate sexual group had 
+519 
+the highest proportion of evolutionary rescue events and the fastest growth rate of the 
+520 
+rescued populations. 
+521 
+We detected the interaction between mode of reproduction and the rate of 
+522 
+environmental deterioration on both the rate of population size decline and the extinction rate 
+523 
+(with respect to both time in growth cycles and salt concentration). Under the moderate rate 
+524 
+of environmental deterioration, the obligate sexual group had the lowest population size 
+525 
+decline and significantly slower extinction rate (with respect to time in growth cycles) than 
+526 
+that of the asexual group. The facultative sexual group had the slowest extinction rate (with 
+527 
+respect to salt concentration) under the high rate of environmental deterioration. 
+528 
+This experiment demonstrated that the sign of the effect of sex remains constant 
+529 
+irrespective of the rate of environmental deterioration (the advantage of at least one or both 
+530 
+sexual groups relative to the asexual group), as predicted. Furthermore, we detected that the 
+531 
+relative advantage of sex (slower extinction rate) increased with the rate of environmental 
+532 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+deterioration. While no sexual group had significant advantage over the asexual group under 
+533 
+the gradual rate of environmental deterioration, the sexual groups had significantly slower 
+534 
+extinction rate under the moderate rate (obligate sexual) and high rate (facultative sexual) of 
+535 
+environmental deterioration. One of the possible explanations for this result is that the 
+536 
+adaptive walk of the asexual populations in a gradually changing environment was as 
+537 
+efficient as of the sexual populations, hence the relative advantage of sex diminished. The 
+538 
+relative advantage of sex with respect to population size decline and the probability of 
+539 
+evolutionary rescue was relatively constant and did not depend on the rate of environmental 
+540 
+deterioration.  
+541 
+The extinction dynamic of the sexual populations depended on the rate of 
+542 
+environmental deterioration. While the obligate sexual group had marginal relative advantage 
+543 
+over the facultative sexual group under the gradual and moderate rate of environmental 
+544 
+deterioration, facultative sexuality was a more beneficial strategy under the high rate of 
+545 
+environmental deterioration. The potential explanation for this shift of relative advantage 
+546 
+between the sexual groups is a high demographic cost of adaptation imposed by the high 
+547 
+rate of environmental deterioration. The obligate sexuality may have generated higher 
+548 
+diversity of genotypes (genetic variance for fitness increased) relative to facultative sexuality 
+549 
+during this treatment, but at a cost of mean fitness decline. This effect of sexual reproduction 
+550 
+(recombination load) manifested during adaptation to changing environments has been 
+551 
+previously demonstrated in experimental studies (Greig et al., 1998; Colegrave et al., 2002; 
+552 
+Kaltz and Bell, 2002; Becks and Agrawal, 2012). The obligate sexual populations may have 
+553 
+adapted with a simultaneous decline of population size, due to a strong selection which 
+554 
+operated under the high rate of environmental deterioration, coupled with a genetic cost of 
+555 
+sex (recombination load). By contrast, the facultative sexual populations may have been less 
+556 
+well adapted, but suffered less pronounced population size decline. We recorded a lower 
+557 
+population size decline in the facultative sexual group relative to the obligate sexual group 
+558 
+under the high rate of environmental deterioration, though this effect was not statistically 
+559 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+significant. In addition, the populations within the facultative sexual group comprised a 
+560 
+fraction of individuals (derived from unmated gametes) which had not undergone sexual 
+561 
+reproduction. The presence of these individuals may have compensated for recombination 
+562 
+load, arose as a consequence of mating and zygote production of other fraction of the 
+563 
+population, since mean fitness of this fraction remained relatively constant (thereby reducing 
+564 
+recombination load of the population as a whole).  
+565 
+While the relative advantage of the obligate or facultative sexual group with respect to 
+566 
+the extinction rate varied, depending on the rate of salt increase, obligate sexuality was 
+567 
+advantageous with respect to the probability of evolutionary rescue, irrespective of the rate of 
+568 
+environmental deterioration. The obligate sexual populations were more likely to be rescued 
+569 
+than those in other treatment groups, and this effect was consistent under all three rates of 
+570 
+environmental deterioration. Moreover, rescued obligate sexual populations also had the 
+571 
+fastest growth rate. Both the highest occurence of rescue events and highest fitness of 
+572 
+rescued populations within the obligate sexual group could be attributable to higher diversity 
+573 
+of genotypes favourable in stressful environments generated by obligate sex. In addition, 
+574 
+mean population size decline was lowest in this treatment group (though only marginally 
+575 
+significant relative to the facultative sexual group). Since supply of beneficial muations is 
+576 
+higher in larger populations (Samani and Bell, 2010), the obligate sexual populations could 
+577 
+have been more likely to adapt through de novo beneficial mutations. Our study corroborated 
+578 
+the results of Lachapelle and Bell (2012), who found that obligate sexuality (coupled with 
+579 
+high genetic diversity) positively affects the probability of evolutionary rescue and adaptation 
+580 
+to stressful environments (elevated salt concentrations), and demonstrated that this 
+581 
+beneficial effect does not depend on the rate of environmental deterioration.  
+582 
+Taken together, the results of our experiment provide evidence that the probability of 
+583 
+survival of adapting populations may depend on their mode of reproduction and that sex may 
+584 
+prolong survival in stressful (and even lethal) conditions. However, this effect will be less 
+585 
+pronounced in a gradually changing environment, because the asexual populations may 
+586 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+keep up with the pace of environmental change as efficiently as the sexual populations. If 
+587 
+environmental change proceeds at higher rates, different modes of sexuality may be 
+588 
+beneficial under different rates of environmental change: obligate sexuality may be 
+589 
+advantageous under the intermediate rates of change (and moderate strength of selection), 
+590 
+while facultative sexuality will be favoured under higher rates of change (more intense 
+591 
+selection). Furthermore, to the best of our knowledge, our study is the first to demonstrate 
+592 
+that the beneficial effect of sex on adaptation to stressful environments does not depend on 
+593 
+the rate of environmental change and that obligate sexuality maximizes the probability of 
+594 
+evolutionary rescue. 
+595 
+Given the dependence of the effects of sex on the rate of environmental deterioration 
+596 
+and widely the recognized issue of global change (for example, Falkowski et al., 1994; 
+597 
+Chivian and Bernstein, 2008; Barnosky et al., 2012), which may proceed at a rate 
+598 
+unprecedented in the Cenozoic (Barnosky et al., 2012), one of the logical question that our 
+599 
+findings may raise is: will the probability of survival of the extant species be increased by 
+600 
+sex? In nature, many organisms are characterized by obligate sexual reproduction (for 
+601 
+example, birds and mammals). The obligate sexual organisms tend to have longer 
+602 
+generation time and thus, lower reproductive output relative to the organisms that reproduce 
+603 
+mainly asexually. If standing genetic variation of these species declines due to reduction of 
+604 
+population size (a likely consequence of global change), we could predict a slower rate of 
+605 
+adaptation and potentially a higher extinction risk for these organisms. The obligate sex 
+606 
+could increase the response of selection through well-understood mechanisms, and thus 
+607 
+prolong population persistence. However, given that primary response to a long-term 
+608 
+environmental change involves de novo beneficial mutations, which are unlikely to arise fast 
+609 
+enough in slower reproducers, we could predict the relatively modest long-term effects of 
+610 
+obligate sex, and phenotypic plasticity (for example, migration or behavioural change) as the 
+611 
+main adaptive response of the obligate sexual populations. Thus, survival of current 
+612 
+(anthropogenically induced) environmental change may be more likely for small, fast 
+613 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+reproducing, facultative sexual organisms, with larger population sizes and higher supply rate 
+614 
+of beneficial mutations (e.g. microorganisms).  
+615 
+ 
+616 
+Acknowledgements 
+617 
+NP has been funded by the Darwin Trust of Edinburgh. 
+618 
+  Data accessibility  
+619 
+  Data will be available through the Dryad Digital Repository (datadryad.org). 
+620 
+  Conflict of interest   
+621 
+The authors declare no conflict of interest. 
+622 
+References 
+623 
+Barnosky, A. D., Hadly, E. A., Bascompte, J., Berlow, E. L., Brown, J. H., Fortelius, 
+624 
+M., Getz, W. M., Harte, J., Hastings, A., Marquet, P. A., Martinez, N. D., Mooers, A., 
+625 
+Roopnarine, P., Vermeij, G., Williams, J. W., Gillespie, R., Kitzes, J., Marshall, C., 
+626 
+Matzke, N., Mindell, D. P., Revilla, E., and Smith, A. B. 2012. Approaching a state 
+627 
+shift in Earth's biosphere. Nature 486 (7401):52-8. 
+628 
+Becks, L. and Agrawal, A.F. 2012. The Evolution of Sex Is Favoured During 
+629 
+Adaptation to New Environments. PLOS Biology 10(5): e1001317. 
+630 
+Bell, G. 1982. The Masterpiece of Nature: The Evolution and Genetics of Sexuality. 
+631 
+New York, USA: Springer Publishing Company. 
+632 
+Bell, G. and Gonzalez, A. 2011. Adaptation and Evolutionary Rescue in 
+633 
+Metapopulations Experiencing Environmental Deterioration. Science 332 
+634 
+(6035):1327-30. 
+635 
+Burger, R. and Lynch, M. 1995. Evolution and Extinction in a Changing Environment: 
+636 
+A Quantitative-Genetic Analysis. Evolution 49 (1):151-63. 
+637 
+Burt, A. 2000. Sex, recombination, and the efficacy of selection: was Weismann right? 
+638 
+Evolution 54:337-51. 
+639 
+Chivian, E. and Bernstein, A. 2008. Sustaining Life: How Human Health Depends on 
+640 
+Biodiversity. Oxford, UK: Oxford University Press. 
+641 
+Colegrave, N. 2002. Sex releases the speed limit on evolution. Nature 420:664-6. 
+642 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+Colegrave, N., Kaltz, O., and Bell, G. 2002. The Ecology and Genetics of Fitness in 
+643 
+Chlamydomonas. VIII. The Dynamics of Adaptation to Novel Environments after a 
+644 
+Single Episode of Sex. Evolution 56 (1):14-21. 
+645 
+Collins, S. and de Meaux, J. 2009. Adaptation to different rates of environmental 
+646 
+change in Chlamydomonas. Evolution 63 (11):2952-65. 
+647 
+Collins, S., de Meaux, J., and Acquisti, C. 2007. Adaptive walks toward a moving 
+648 
+optimum. Genetics 176 (2):1089-99. 
+649 
+Eyre-Walker, A. and Keightley, P. D. 2007. The distribution of fitness effects of new 
+650 
+mutations. Nat Rev Genet 8 (8):610-8. 
+651 
+Falkowski, P. G. 1994. The role of phytoplankton photosynthesis in global 
+652 
+biogeochemical cycles. Photosynthesis Research 39 (3):235-58. 
+653 
+Fisher, R. A. 1930. The genetical theory of natural selection. Oxford, UK: The 
+654 
+Clarendon Press. 
+655 
+Gerrish, P. J. and Lenski, R. E. 1998. The fate of competing beneficial mutations in 
+656 
+an asexual population. Genetica 102 (0):127-44. 
+657 
+Goddard, M. R., Godfray, H. C. J., and Burt, A. 2005. Sex increases the efficacy of 
+658 
+natural selection in experimental yeast populations. Nature 434 (7033):636-40. 
+659 
+Goho, S. and Bell, G. 2000. Mild environmental stress elicits mutations affecting 
+660 
+fitness in Chlamydomonas. Proc Biol Sci 267 (1439):123-9. 
+661 
+Gomulkiewicz, R. and Holt, R. D. 1995. When does evolution by natural selection 
+662 
+prevent extinction? Evolution 49 (1):201-7. 
+663 
+Greig, D., Borts, R. H., and Louis, E. J. 1998. The effect of sex on adaptation to high 
+664 
+temperature in heterozygous and homozygous yeast. Proc R Soc Lon 265 
+665 
+(1400):1017-23. 
+666 
+Haldane, J. B. S. 1957. The cost of natural selection. Journal of Genetics 55 (3):511. 
+667 
+Harris, E. H. 2009. The Chlamydomonas sourcebook Vol. 1 Vol. 1. Amsterdam, 
+668 
+Netherlands: Elsevier. 
+669 
+Hartfield, M. and Keightley, P. D. 2012. Current hypotheses for the evolution of sex 
+670 
+and recombination. Integr Zool 7 (2):192-209. 
+671 
+Kaltz, O. and Bell, G. 2002. The ecology and genetics of fitness in Chlamydomonas. 
+672 
+XII. Repeated sexual episodes increase rates of adaptation to novel environments. 
+673 
+Evolution 56 (9):1743-53. 
+674 
+Kassen, R. and Bataillon, T. 2006. Distribution of fitness effects among beneficial 
+675 
+mutations before selection in experimental populations of bacteria. Nat Genet 38 
+676 
+(4):484-8. 
+677 
+Kondrashov, A. S. 1993. Classification of Hypotheses on the Advantage of 
+678 
+Amphimixis. Journal of Heredity 84 (5):372-87. 
+679 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+Lachapelle, J. and Bell, G. 2012. Evolutionary rescue of sexual and asexual 
+680 
+populations in a deteriorating environment. Evolution 66 (11):3508-18. 
+681 
+Lachapelle, J., Bell, G., and Colegrave, N. 2015. Experimental adaptation to marine 
+682 
+conditions by a freshwater alga. Evolution 69 (10):2662-75. 
+683 
+Lehtonen J, Jennions, M.D. and Kokko, H. 2012. The many costs of sex. Trends Ecol. 
+684 
+Evol. 27, 172–178.  
+685 
+Lewis, W. M. 1987. The cost of sex. In The Evolution of Sex and its Consequences, 
+686 
+edited by S. C. Stearns. Basel, Switzerland: Birkhäuser. 
+687 
+Lindsey, H. A., Gallie, J., Taylor, S., and Kerr, B. 2013. Evolutionary rescue from 
+688 
+extinction is contingent on a lower rate of environmental change. Nature 494 
+689 
+(7438):463-7. 
+690 
+Lynch, M. and Lande, R. 1993. Evolution and extinction in response to environmental 
+691 
+change. In Biotic Interactions and Global Change, edited by P. M. Kareiva, J. G. 
+692 
+Kingsolver and R. B. Huey. Sunderland, Massachusetts, USA: Sinauer Associates, 
+693 
+Inc. 
+694 
+Morran, L. T., Parmenter, M. D., and Phillips, P. C. 2009. Mutation load and rapid 
+695 
+adaptation favour outcrossing over self-fertilization. Nature 462 (7271):350-2. 
+696 
+Moser, C. and Bell, G. 2011. Genetic correlation in relation to differences in dosage of 
+697 
+a stressor. Journal of Evolutionary Biology 24 (1):219-23. 
+698 
+Muller, H. J. 1932. Some Genetic Aspects of Sex. The American Naturalist 66 
+699 
+(703):118-38. 
+700 
+Otto, S. P. and Lenormand, T. 2002. Resolving the paradox of sex and 
+701 
+recombination. Nat Rev Genet 3 (4):252-61. 
+702 
+Perron, G. G., Gonzalez, A., and Buckling, A. 2007. Source-sink dynamics shape the 
+703 
+evolution of antibiotic resistance and its pleiotropic fitness cost. Proc Biol Sci 274 
+704 
+(1623):2351-6. 
+705 
+R Core Team. 2017. R: A language and environment for statistical computing. 
+706 
+Vienna, Austria: R Foundation for Statistical Computing. See http://www.R-
+707 
+project.org/. 
+708 
+Ramsayer, J., Kaltz, O., and Hochberg, M. E. 2013. Evolutionary rescue in 
+709 
+populations of Pseudomonas fluorescens across an antibiotic gradient. Evol Appl 6 
+710 
+(4):608-16. 
+711 
+Reynoso, G. T. and de Gamboa, B. A. 1982. Salt tolerance in the freshwater algae 
+712 
+Chlamydomon as reinhardii: Effect of proline and taurine. Comparative Biochemistry 
+713 
+and Physiology Part A: Physiology 73 (1):95-9. 
+714 
+Samani, P. and Bell, G. 2010. Adaptation of experimental yeast populations to 
+715 
+stressful conditions in relation to population size. J Evol Biol 23 (4):791-6. 
+716 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 
+
+Weismann, A. 1889. The significance of sexual reproduction in the theory of natural 
+717 
+selection. 1886. EB Poulton, S. Sch; auonland, and AE Shipley, eds. Essays upon 
+718 
+heredity and kindred biological problems. Clarendon Press, Oxford: 251-332. 
+719 
+was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. 
+The copyright holder for this preprint (which
+this version posted October 28, 2019. 
+; 
+https://doi.org/10.1101/817056
+doi: 
+bioRxiv preprint 

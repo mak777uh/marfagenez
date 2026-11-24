@@ -1,0 +1,1763 @@
+Vol.:(0123456789)
+1 3
+https://doi.org/10.1007/s12080-021-00522-w
+ORIGINAL PAPER
+Evolutionary rescue can prevent rate‑induced tipping
+Anna Vanselow1 · Lukas Halekotte1 · Ulrike Feudel1
+Received: 28 January 2021 / Accepted: 24 October 2021 
+© The Author(s) 2021
+Abstract
+The transformation of ecosystems proceeds at unprecedented rates. Recent studies suggest that high rates of environmental 
+change can cause rate-induced tipping. In ecological models, the associated rate-induced critical transition manifests during 
+transient dynamics in which populations drop to dangerously low densities. In this work, we study how indirect evolution-
+ary rescue—due to the rapid evolution of a predator’s trait—can save a prey population from the rate-induced collapse. 
+Therefore, we explicitly include the time-dependent dynamics of environmental change and evolutionary adaptation in an 
+eco-evolutionary system. We then examine how fast the evolutionary adaptation needs to be to counteract the response to 
+environmental degradation and express this relationship by means of a critical rate. Based on this critical rate, we conclude 
+that indirect evolutionary rescue is more probable if the predator population possesses a high genetic variation and, simul-
+taneously, the environmental change is slow. Hence, our results strongly emphasize that the maintenance of biodiversity 
+requires a deceleration of the anthropogenic degradation of natural habitats.
+Keywords  (Indirect) evolutionary rescue · Rate-induced tipping · Transient dynamics · Eco-evolutionary models · 
+Predator–prey interactions
+Introduction
+Today, the world’s ecosystems are faced with unprecedented 
+rates of climate change, habitat fragmentation and destruc-
+tion (Travis 2003; Teyssèdre and Robert 2014; Oliver et al. 
+2015; Trathan et al. 2015; Frishkoff et al. 2016; Lee et al. 
+2017; Selwood et al. 2015; Parmesan 2006). In many cases, 
+affected species are unable to counter the fast conversion of 
+their living conditions, e.g., due to barriers preventing dis-
+persal to more suitable habitats or insufficient time to adapt 
+via phenotypic plasticity or genetic variations (Williams 
+et al. 2008; Urban et al. 2016). Consequently, correspond-
+ing populations can shrink dramatically or, in the worst case, 
+become extinct (Johnson et al. 2017). Such drastic changes 
+of population densities are called regime shifts (Folke et al. 
+2004; Scheffer et al. 2001; Hastings et al. 2018; Wernberg 
+et al. 2015) or tipping events (Ashwin et al. 2012; Wieczorek 
+et al. 2011; Vanselow et al. 2019; Siteur et al. 2016).
+In ecology, regime shifts have often been associated 
+with the transition of an ecosystem from one stable state 
+to another alternative stable state (Dwomoh and Wimberly 
+2017; van de Leemput et al. 2016; Gårdmark et al. 2015). 
+So far, based on the existence of alternative stable states, 
+three types of regime shifts or tipping events have been for-
+mulated, whose course can best be illustrated using poten-
+tial landscapes (Scheffer et al. 2008) (see Fig. 1A-C): (i) 
+bifurcation-induced tipping (B-tipping) where slowly chang-
+ing environmental conditions alter the potential landscape 
+until a formerly stable state (left valley) vanishes and the 
+system state (ball) proceeds to an alternative stable state 
+(right valley) (Fig. 1A) (Folke et al. 2004; Ashwin et al. 
+2012; ii) noise-induced tipping (N-tipping) where the state 
+of the system (ball) is pushed out of the basin of attraction of 
+one stable state (left valley) by fluctuations (noise, Fig. 1B) 
+(Ashwin et al. 2012; Horsthemke and Lefever 1984); and 
+finally (iii) shock-induced tipping (S-tipping) where a single 
+large perturbation (shock, extreme event) kicks the system 
+out of its current basin of attraction (Fig. 1C) (Halekotte and 
+Feudel 2020).
+However, when the speed of environmental change is 
+sufficiently fast, a fourth critical transition is possible. In 
+fact, in reference to the critical rate of change which has 
+ *	 Anna Vanselow 
+	
+anna.vanselow@uol.de
+1	
+Institute for Chemistry and Biology of the Marine 
+Environment, University of Oldenburg, Oldenburg, 
+Lower Saxony, Germany
+/ Published online: 21 December 2021
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+to be surpassed for this transition to occur, it is called rate-
+induced tipping (R-tipping) (Wieczorek et al. 2011). The 
+mechanism behind rate-induced tipping is not universal. 
+It can appear in the presence of alternative stable states, 
+for instance when, due to the fast environmental change, 
+the system state crosses a moving basin boundary (Ashwin 
+et al. 2012; Neijnens et al. 2021) or drifts through a cata-
+strophic bifurcation (Chaparro-Pedraza 2021; Ritchie et al. 
+Fig. 1   Illustrating B-tipping (A), N-tipping (B), S-tipping (C) using 
+a sketch of a two-dimensional potential landscape. (D, E) Tracking if 
+environmental change is slow ( rP low): the state of the system (light 
+blue trajectory) remains close to the moving stable state (minimum 
+of the potential (D) and grey dashed line (E)). (F, G) R-tipping if 
+environmental change is fast ( rP high): the system (magenta trajec-
+tory) shows a deviation from the moving stable state (minimum of 
+the potential (D) and grey dashed line (E)). If the state of the system 
+represents the density of a population, rate-induced tipping can cause 
+a temporarily collapse below the extinction threshold xe (grey dotted 
+line)
+30
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+2021; Alkhayuon et al. 2019). However, and this is essential 
+for this work, R-tipping does not necessarily require the 
+presence of alternative stable states—in contrast to the other 
+three tipping mechanisms. We will exclusively consider this 
+latter case in which the tipping ’only’ manifests in a tempo-
+rarily exceptional behavior—e.g., a large unexpected excur-
+sion in the transient dynamics (Hastings et al. 2018)—while 
+its long-term behavior is always determined by a unique 
+stable state. Such transient excursions can nevertheless 
+embrace dangerously, unexpected states as, for instance, a 
+temporarily increase in CO2-concentrations in the atmos-
+phere (Wieczorek et al. 2011) or a rapid population collapse 
+(Vanselow et al. 2019; Siteur et al. 2016). Accordingly, 
+R-tipping does indeed denote a critical transition.
+In order to demonstrate how R-tipping can manifest in 
+unexpected—possibly dramatic—transient dynamics, we 
+exemplary study the potential landscape of a two-dimensional 
+system which is subjected to a gradual but comparatively fast 
+environmental change (Fig. 1D–G). The change is realized 
+by a parameter p(t) which drifts from an upper to a lower 
+bound ( pmax and pmin , respectively) at the constant rate rp . 
+Importantly, the system holds a unique stable state for all 
+values within [pmin, pmax] . At t = 0 , the system is in equilib-
+rium. Hence, the ball resides in the minimum of the potential 
+(Fig. 1D, F). As soon as p(t) starts to change, due to the ’reac-
+tion time’ of the system, the potential slides beneath the ball 
+creating a gap between the current system state (ball) and 
+the stable state (the moving minimum of the potential). The 
+size of this gap naturally depends on the rate rp . If rp is low 
+(D), the actual system state (ball and cyan trajectory) remains 
+close to the moving stable state (minimum of potential and 
+grey dashed line in Fig. 1D and E, respectively). We call this 
+behavior tracking. By contrast, if the rate rp is high (Fig. 1F, 
+G), the system (magenta trajectory) reveals a temporarily large 
+excursion from the moving stable state (minimum and grey 
+dashed line). Hence, between the low and high rates rp , the 
+transient dynamics has switched from tracking to a temporar-
+ily large rate-induced deviation from the moving stable state.
+Despite the fact that the system inevitably settles on the 
+unique stable state, such a temporary deviation can be sig-
+nificant or even dangerous. If, for instance, the system state 
+represents the density of a population, a transient excursion 
+can put the system below a critical extinction threshold xe 
+(grey dotted line). Such a threshold can be seen as a roughly 
+estimated value below which it is no longer reasonable to 
+ignore demographic stochasticity (Gomulkiewicz and Holt 
+1995) and thus a population whose density falls below xe is 
+severely endangered of becoming extinct. We use an extinc-
+tion threshold to distinguish whether some system dynam-
+ics has shown tracking or tipping behavior: Whenever the 
+system state (aka a population density) drops below the 
+extinction threshold for any time interval, we say that the 
+system has tipped. Since the rate of environmental change 
+has to exceed a critical rate to cause R-tipping, the relation 
+between different time scales—in particular between the 
+time scale of environmental change and the time scale of 
+the intrinsic ecosystem dynamics (the ’reaction time’)—is a 
+crucial determinant for this transition to occur (Wieczorek 
+et al. 2011).
+The relation between different time scales is also key 
+to another ecological phenomenon, called evolutionary 
+rescue, where populations are able to rescue themselves 
+from extinction by rapid evolution (Gomulkiewicz and Holt 
+1995; Bell 2013; Gonzalez et al. 2013; Bell and Gonzalez 
+2009; Gomulkiewicz and Shaw 2013; Carlson et al. 2014). 
+Naturally, whether populations are able to adapt sufficiently 
+fast to rapid environmental change depends on their inter-
+actions with other species (Lavergne et al. 2010; Lawrence 
+et al. 2012; Van der Putten et al. 2010; Schoener et al. 2001; 
+Bastille-Rousseau et al. 2018) and some studies have in 
+fact treated evolutionary rescue in a multi-species context 
+(Henriques and Osmond 2020; De Mazancourt et al. 2008; 
+Petkovic and Colegrave 2019; Northfield and Ives 2013; 
+Norberg et al. 2012; Kovach-Orr and Fussmann 2013; 
+Osmond and de Mazancourt 2013), e.g., in predator–prey 
+systems (Osmond et al. 2017; Yamamichi and Miner 2015; 
+Yamamichi et al. 2019; Cortez and Yamamichi 2019). In 
+one of these works, Yamamichi and Miner (2015) dem-
+onstrate that rapid evolution of a prey species alone can 
+rescue its non-evolving predator from extinction. They call 
+this mechanism indirect evolutionary rescue. The reverse 
+situation—adaptive predators that are able to support 
+prey persistence—is examined by Osmond et al. (2017). 
+However, neither of the two does explicitly model envi-
+ronmental change by means of time-dependent parameters. 
+Hence, both miss an essential point, namely that evolution-
+ary rescue is the outcome of a race between rapid evolu-
+tion and environmental change, as suggested by (Gonzalez 
+et al. 2013; Bell and Gonzalez 2009; Uecker et al. 2014; 
+Alexander et al. 2014; Svensson and Connallon 2019; 
+Ferriere and Legendre 2013; Carlson et al. 2014).
+In our work, we model this race against extinction by 
+taking into account the dynamics of environmental change 
+and the dynamics of evolution. To this end, we expose a 
+prey population to a sufficiently fast environmental change 
+at which it experiences a rate-induced collapse. Then we test 
+whether a predator population, that is enabled to adapt to 
+the declining prey population, can prevent this rate-induced 
+collapse. Hence, our ultimate aim is to bring together rate-
+induced-tipping and indirect evolutionary rescue. Both pro-
+cesses are determined by a critical rate, when considered 
+separately. Combining both processes will lead to an expres-
+sion which relates the critical rate of environmental change 
+to the speed of evolution.
+Furthermore, just like rate-induced tipping, (indi-
+rect) evolutionary rescue occurs on time scales which are 
+31
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+comparable to the intrinsic dynamics of ecosystems. Hence, 
+it can only be observed in the transients of eco-evolutionary 
+systems. However, most theoretical studies analyzing eco-
+evolutionary systems solely focus on changes of the long-
+term behavior (Yoshida et al. 2003; Cortez and Patel 2017; 
+Cortez and Ellner 2010; Yamamichi et al. 2011). Conse-
+quently, these studies neglect low population densities dur-
+ing the transient dynamics due to rate-induced tipping and 
+therefore also miss out on recognizing counteracting pro-
+cesses such as evolutionary rescue (Vanselow et al. 2019; 
+Hastings 2001; Hastings 2004; Hastings et al. 2018). Our 
+study overcomes this problem by focusing on the part of a 
+time series which is essential for studying rate-induced tip-
+ping and evolutionary rescue, the transient dynamics.
+The scope of our work can be outlined as follows: First, 
+we sketch the idea of how rapid evolution of a predator’s trait 
+can prevent a rate-induced prey collapse. We then introduce 
+the complete eco-evolutionary predator–prey model. Based 
+on this model, we demonstrate the occurrence of R-tipping in 
+a scenario without evolution in which the trait is fixed to its 
+minimum value. Afterwards, we show that rapid evolution of 
+the predator’s trait can prevent this rate-induced collapse. In 
+the following section, we demonstrate that the probability of 
+rate-induced tipping decreases with increasing genetic varia-
+tion. Finally, we consider the sensitivity of our results depend-
+ing on the initial state of the system. In the last section, we 
+discuss our results.
+How indirect evolutionary rescue can 
+prevent rate‑induced tipping
+In this section, we study under which premises indirect 
+evolutionary rescue is able to prevent the rate-induced col-
+lapse of the prey. Therefore, we study a three-dimensional 
+eco-evolutionary predator–prey system including rapid 
+evolution of the predator’s trait 훼 . We model the trait 
+dynamics (3) in accordance with the quantitative genet-
+ics approach derived in Lande (1982) and Abrams et al. 
+(1993). In this framework, the rate of change of the mean 
+trait value d훼
+d훼 is proportional to the additive genetic vari-
+ance of the predator population rVA(훼) and the fitness gra-
+dient 휕g(x,y,K(t),훼,휖)
+휕훼
+ . The three-dimensional eco-evolutionary 
+system is given by:
+(1)
+휖dx
+dx = f(x, y, K(t), 훼, 휖)
+(2)
+dy
+dy = g(x, y, K(t), 훼, 휖)
+(3)
+d훼
+d훼= rVA(훼)휕g(x, y, K(t), 훼, 휖)
+휕훼
+.
+In the following, this predator–prey system is exposed 
+to a gradual environmental change which we model by the 
+time-dependent parameter K(t):
+According to (4), K(t) decreases at the constant rate rK 
+until a prescribed minimum Kmin > 0 is reached (the envi-
+ronmental change is temporary, see also Fig. 3C). Fur-
+thermore, we assume that the system (1)–(3) possesses a 
+unique stable equilibrium state e(K, 휖) = (ex(K, 휖), ey(K, 휖)) 
+for all fixed values K(t) = K ∈[K0 Kmin] resulting from 
+f(x, y, K, 휖) = g(x, y, K, 휖) = 0 . Since we study the system for 
+environmental conditions K(t) that change in time, e(K(t), 휖) 
+changes its position in phase space over time as well. For this 
+reason, the equilibrium e(K(t), 휖) is called a moving equilib-
+rium (Wieczorek et al. 2011) (moving minimum in Fig. 1D 
+and F). Such equilibria are also often referred to as quasi-
+static which stems from the assumption that they would be 
+adopted if the ecosystem dynamics evolved much faster 
+than the environmental conditions (Ashwin et al. 2012). 
+Ultimately, as K(t) = Kmin is reached, the system inevitably 
+approaches the sole stable long-term state e(Kmin, 휖) . We 
+choose Kmin in such a way that the equilibrium prey densities 
+ex(K(t), 휖) and ex(Kmin, 휖) remain above a defined extinction 
+threshold xe for all times (see fig. 3).
+If the system (1)–(3) is able to stay close to the moving 
+stable state during the transient, we say that it is tracking. 
+For the eco-evolutionary system, this tracking means that 
+the predator adjusts its trait 훼 to the moving equilibrium 
+value e훼(K(t), 휖) sufficiently fast to enable the coexistence of 
+predator and prey x, y ≈ex,y(K, 휖) . In the light of the gradual 
+environmental degradation, we consider the case of perfect 
+tracking ( x, y = ex,y(K, 휖) ) as the optimal course of the eco-
+evolutionary system. Therefore, from now on, we refer to the 
+moving stable equilibrium state e(K(t), 휖) as the optimum 
+state eopt(K(t), 휖).
+Whether the eco-evolutionary system can track the mov-
+ing optimum state during the environmental change depends 
+crucially on how fast 훼 evolves in relation to the speed of 
+environmental change rK . The trait 훼 changes fast when the 
+additive genetic variance rVA(훼) is high (Cortez 2016; Cortez 
+2018). Notice that the additive genetic variance is the product 
+of phenotypic variation A(훼) and the genotypic or genetic 
+variation expressed by the rate rV . However, in the following, 
+we assume that the speed of evolution is mainly determined 
+by genetic variation rV (Carlson et al. 2014).
+In the following, we sketch how gradual environmental 
+change of K(t) at different rates can reveal in dangerously 
+low densities of the prey population and how this collapse 
+can be prevented by rapid evolution of the predator’s trait. 
+In the beginning, we assume that the eco-evolutionary 
+(4)
+K(t) =
+{ K0 −rKt if K(t) > Kmin
+Kmin
+else.
+32
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+system is situated in the optimum state eopt(K(t), 휖) : 
+x0 = eopt,x(K0, 휖), y0 = eopt,y(K0, 휖) and 훼0 = eopt,훼(K0, 휖).
+If the predator can only respond slowly to changing 
+conditions ( rV is low in Fig. 2A and B), we can observe 
+tracking if the rate of environmental change rK is low and 
+R-tipping if rK is high. In the case of tracking (Fig. 2A), 
+the U-shaped curve remains above the extinction threshold 
+x > xe (cyan curve) while it temporarily drops below the 
+extinction threshold x < xe between te and tr when R-tipping 
+occurs (magenta dashed line in Fig. 2B).
+The rate-induced collapse of the prey can be explained 
+by the emerging deviation of the mean trait value of the 
+predator population 훼(t) from the optimum mean trait value 
+eopt,훼(K(t), 휖) . This deviation, which is called lag-load 
+휏훼(K(t), 휖) = |훼(t) −eopt,훼(K(t), 휖)| (Maynard Smith 1976; 
+Kopp and Matuszewski 2014), quantifies the goodness of 
+adaptation of the predator population: The smaller the lag-
+load 휏훼(K(t), 휖) , the better suited is the predator population 
+to the current environmental conditions K(t).
+In case of tracking, the lag-load 휏훼,track(K(t), 휖) is much 
+smaller than in the case of R-tipping 휏훼,tip(K(t), 휖) (compare 
+the length of the doubled-headed arrows in Fig. 2C and 
+D). Such a maladaption of the predator provides a possi-
+ble explanation of the rate-induced collapse of the prey. 
+For instance, when the maladaption manifests in a predator 
+population that is much more aggressive than it would be 
+in the optimum 𝛼(t) > eopt,𝛼(K(t), 𝜖) , then the prey is con-
+fronted with a correspondingly high predation pressure. 
+This can ultimately push the prey density below the extinc-
+tion threshold xe (Fig. 2B). If, however, the predator is able 
+Fig. 2   (A) The eco-evolutionary system (1)–(3) tracks: the prey popu-
+lation x declines but remains above the extinction threshold x > xe . 
+(B) R-tipping: the prey density x drops below the extinction thresh-
+old x < xe between te and tr due to fast environmental changes. (C, 
+D) Slow/fast decline of the prey causes a small/large lag-load 휏훼,track
+/휏훼,tip . (E) Distance between the minimum prey density and the 
+extinction threshold xe reduces if predator evolution is fast. (F) The 
+formerly collapsed prey population is rescued by rapid evolution of 
+its predator (D): indirect evolutionary rescue occurs
+33
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+to adapt sufficiently fast to the shrinking prey population 
+( rV is high), the lag-load is reduced to a value 𝜏𝛼,res < 𝜏𝛼,tip 
+(green curve in Fig. 2D). In our example, this lowers the 
+predation pressure on the prey which prevents its rate-
+induced collapse.
+The eco‑evolutionary predator–prey model
+In the following, we demonstrate the interplay between 
+rate-induced tipping and rapid evolution in a multi-species 
+context using a paradigmatic ecosystem model. For this pur-
+pose, we replace the general equations (1)–(3) by the clas-
+sical predator–prey system developed by Rosenzweig and 
+MacArthur (Rosenzweig and MacArthur 1963). In accord-
+ance with (Cortez and Ellner 2010; Yamamichi et al. 2019), 
+we neglect units and treat the eco-evolutionary system as a 
+purely mathematical model:
+Here, the prey x grows logistically with maximum per-
+capita growth rate r and time-dependent carrying capacity 
+K(t). Predator growth follows a Holling-Type II functional 
+response with maximum predation rate 훼∕훽 , half-saturation 
+constant 1∕훽 and conversion efficiency 훾 . The predator’s 
+mortality is assumed to be proportional to the mortality 
+rate m(훼) and the density of the predator y. The time scale 
+separation between prey and predator 휖 is determined by 
+the ratio between the predator’s mortality rate m(훼) and the 
+prey’s reproduction rate r: 휖= m(훼)
+r  . Because 휖 describes a 
+ratio and is assumed to be 0 < 𝜖< 1 , the prey population 
+always reproduces 휖−1 times faster than its predator whose 
+time scale is then given by 1.0.
+In contrast to most other eco-evolutionary models, we 
+explicitly model the temporal change of the environment 
+by means of a continuously declining carrying capacity K(t) 
+(Eq. (4)). The carrying capacity K is a suitable quantity as it 
+defines the maximum prey density that the environment can 
+’carry’. Accordingly, K is strongly linked to environmental 
+conditions such as the availability of food sources, breeding 
+sites or the suitability of climatic conditions. As discussed 
+in the previous section, K is diminished at a rate rK until a 
+(5)
+dx
+dx = rx
+(
+1 −
+x
+K(t)
+)
+−
+훼xy
+1 + 훽x
+(6)
+dy
+dy = 훾훼xy
+1 + 훽x −m(훼)y
+(7)
+d훼
+d훼= rV(훼−훼min)(훼max −훼)
+(
+훾x
+1 + 훽x −2훼
+)
+.
+prescribed minimum Kmin is reached. This minimum ensures 
+that the prey does not go extinct due to the optimum fall-
+ing below the extinction threshold. The realized scenario is 
+comparable to a time-dependent degradation of the habi-
+tat due to climate variations, land use change or landscape 
+fragmentation where the prey population loses access to 
+essential resources.
+In the eco-evolutionary model, the dynamical (evolution-
+ary) trait of the predator is represented by its attack rate 훼 . 
+We assume that the attack rate 훼 affects both predation 훾훼xy
+1+훽x 
+and mortality m(훼) = (훼2 + c)y of the predator. Therefore, an 
+adaptation of 훼 is associated with a trade-off: If the predator 
+invests in its attack rate 훼 , the predatory success will increase 
+at the expense of a higher death rate (Abrams 2000; Cortez 
+and Ellner 2010). In fact, it is this trade-off which enables a 
+constructive adaptation of the predators attack rate depending 
+on the available prey. Note that the trade-off crucially 
+depends on how the attack rate 훼 is incorporated into the 
+mortality rate of the predator (see Appendix 12 for more 
+details).
+The dynamical equation for the attack rate 훼 is derived 
+according to Eq. (3). It is important to note that 훼 depicts 
+the mean trait within the predator population. Accordingly, 
+the formulation of Eq. (7) is based on the assumption that 
+the evolution of the mean trait is not significantly affected 
+by the specific form of the frequency distribution of trait 
+values within the predator population. By setting the pheno-
+typic variance to A(훼) = (훼−훼min)(훼max −훼) , we restrict the 
+adaptation of 훼 to an interval bounded by the lowest 훼min and 
+highest 훼max reasonable value. The genetic variation rV deter-
+mines how fast the predator population is able to respond 
+to changes (Cortez and Weitz 2014; Cortez 2018). Since 
+evolutionary dynamics faster than the ecological dynamics 
+are exceptional in natural systems (Cortez 2018), we only 
+consider evolutionary dynamics which are similar to or 
+slower than the slowest time scale in the ecosystem—here 
+predator reproduction. Therefore, we restrict our analysis 
+to 0 < rV ≤1.0.
+Overall, the four-dimensional eco-evolutionary system 
+(5)–(7) contains four different time scales: the time scale of 
+the prey’s life cycle, the time scale of the predator’s life cycle 
+expressed by their relationship 휖= m(훼)
+r
+= 훼2+c
+r  , the rate of 
+environmental change rK and the speed of evolution repre-
+sented by the genetic variation rV . The relationship between 
+those time scales determines the dynamics of the system and 
+will be the main focus of our study.
+In the following, we discuss the dynamics of the eco-
+evolutionary system (5)–(7) using the exemplary parameter 
+set given in Table 1. Notice, that the rate of environmen-
+tal change rK and the speed of evolution rV will be varied 
+throughout our study.
+34
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+Dynamics at the extreme trait values: 
+no evolution but R‑tipping
+As has been discussed earlier, rate-induced tipping 
+occurs as a system subjected to environmental change 
+fails to track its moving stable state. In the context of 
+eco-evolutionary dynamics, this moving stable state 
+e(K(t), 휖) represents the evolutionary optimum state 
+eopt(K(t), 휖) = (ex,opt(K(t), 휖), ey,opt(K(t), 휖), e훼,opt(K(t), 휖))) 
+for the given environmental condition K(t). Accordingly, in 
+order to examine how R-tipping occurs in the eco-evolutionary 
+system (5)–(7), we first need to determine its time-dependent 
+optimum state eopt(K(t), 휖).
+We start by determining the optimum attack rate 
+eopt,훼(K(t), 휖) . Setting d훼
+d훼= 0 (7) reveals three different opti-
+mum attack rates eopt,훼(K(t), 휖) : two given by the extreme 
+trait values (i) 훼= 훼min and (ii) 훼= 훼max and one by the 
+attack rate 훼=
+√
+c for which the fitness gradient vanishes 
+(iii) 
+(
+훾x
+1+훽x −2훼
+)
+= 0 . In this section, we concentrate on 
+the two extreme cases which can only be maintained 
+within the eco-evolutionary system if 훼(0) = 훼0 = 훼min or 
+훼(0) = 훼0 = 훼max , respectively. Consequently, the trait 훼(t) 
+remains constant for all time which ultimately excludes 
+evolutionary adaptation. Though we are mainly interested 
+in the case where evolution is active, it is quite instructive 
+to demonstrate R-tipping without evolution first as it pro-
+vides a benchmark for the following analyses.
+As already stated, we only consider the dynamics for 
+0 < 𝜖< 1.0 . However, for 훼= 훼max , the time scale separa-
+tion between predator and prey is given by 𝜖=
+𝛼2
+max+c
+r
+> 1 
+and thus the predator would reproduce faster than its prey. 
+Consequently, we neglect this case and focus only on the 
+case 훼= e훼,opt(K(t), 휖) = 훼min . In this scenario, the moving 
+optimum eopt(K(t), 휖) can be written as:
+with e1,opt(K(t), 휖) = (nx(훼min), ny(K(t), 훼min), K(t), 훼min) and 
+e2,opt(K(t), 휖) = (K(t), 0, K(t), 훼min) , where nx and ny ful-
+fil ̇x = 0 and ̇y = 0 respectively (for nx , ny , KT and KH see 
+Table 1). For large values of K(t), a Hopf bifurcation occurs 
+at K(t) = KH . However, in order to avoid long-term oscilla-
+tions, we choose K0 ≪KH . The critical value KT marks the 
+transcritical bifurcation at which e1,opt(K(t), 휖) loses stability, 
+while e2,opt(K(t), 휖) becomes stable.
+In Fig. 3, we illustrate how the optimum prey eopt,x(K(t), 휖) 
+(A) and predator densities eopt,y(K(t), 휖) (B) change in time 
+(gray dashed lines) due to their dependence on the time-
+varying parameter K(t). We find a constant optimum prey 
+and a decreasing optimum predator population density as 
+long as K(t) > KT (vertical dotted magenta line). Beyond 
+the transcritical bifurcation KT the predator is extinct in 
+the moving optimum state, while the optimum prey density 
+decreases linearly in time as eopt,x(K(t), 휖) = K(t) until Kmin 
+is reached (horizontal magenta dotted line). Afterwards, the 
+optimum prey density remains constant at the long-term state 
+eopt,x(Kmin, 휖) = Kmin . As K(t) decreases linearly in time, we 
+expect the prey population to persist and the predator to go 
+extinct if the eco-evolutionary system (5)–(7) is able to track 
+the moving optimum state eopt(K(t), 휖) during the transient.
+As depicted in Fig. 4, we now study the transient dynam-
+ics of the eco-evolutionary system (5)–(7) for the same ini-
+tial condition eopt(K0 = 10, 훼0 = 훼min) (8) but different rates 
+of environmental change rK . For a small rate of environmen-
+tal change rK = 0.05 (A), we obtain the expected behavior, 
+namely that the system is able to track the moving optimum 
+(gray dashed line). As a consequence, the prey density x 
+always remains above the extinction threshold xe while the 
+predator population goes extinct in the long run. Interest-
+ingly, its extinction occurs much later than expected from the 
+optimum predator density eopt,y(K(t), 휖) (gray dashed line).
+For a higher rate rK = 1.0 (Fig. 4B), we observe the 
+rate-induced collapse of the prey. This collapse occurs 
+because a small prey population, which constantly holds 
+densities below its optimum x < eopt,x(K(t), 𝜖) , is con-
+fronted with a predator whose density is above its opti-
+mum y > eopt,y(K(t), 𝜖) . The resulting overwhelming 
+(8)
+eopt(K(t), 𝜖) =
+{ e1,opt(K(t), 𝜖) KT < K(t) ≪KH
+e2,opt(K(t), 𝜖) Kmin ≤K(t) ≤KT
+Table 1   Parameters and initial conditions of the eco-evolutionary sys-
+tem (5)–(7). Furthermore, important bifurcations and terms
+parameter
+value
+rate of environmental change rK
+varies
+speed of evolution rV
+varies
+growth rate r
+0.9
+conversion efficiency 훾
+0.7
+handling efficiency 훽
+0.4
+mortality c
+0.1
+minimum attack rate 훼min
+0.1
+maximum attack rate 훼max
+1.3
+minimum carrying capacity Kmin
+1.0
+extinction threshold xe
+1∕3 ⋅nx(훼0)
+initial conditions
+value
+x(0) = x0
+nx(훼0)
+y(0) = y0
+ny(K0, 훼0)
+K(0) = K0
+KT < K0 < KH
+bifurcations and terms
+value
+KT(훼) (transcritical)
+훼2+c
+훾훼−훼2훽−c훽
+KH(훼) (Hopf)
+2KT + 1
+훽
+nx(훼)
+훼2+c
+훾훼−훼2훽−c훽
+ny(K(t), 훼)
+r
+훼
+(
+1 −
+nx
+K(t)
+)(1 + 훽nx
+)
+35
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+predation pressure ultimately forces the prey population 
+to drop below the extinction threshold xe.
+To clearly separate tracking rK < rcrit from R-tipping 
+rK > rcrit , we define the critical rate rcrit as the lowest rate 
+rK at which x ≤xe during the transient dynamics. It should 
+be noted that this definition is fundamentally different 
+from the mathematical definition of R-tipping as outlined 
+in (Ashwin et al. 2012; Wieczorek et al. 2011; Vanselow 
+et al. 2019).
+In the next section, we study whether we still find a 
+rate-induced collapse of the prey if the predator popula-
+tion is capable of evolutionary adaptation. In such a case, 
+the predator might be able to reduce the distance to the 
+optimum state which would lower the predation pressure 
+on the prey population and thereby possibly prevent the 
+collapse.
+Indirect evolutionary rescue prevents 
+rate‑induced tipping
+In the following, we study whether a sufficiently fast evo-
+lutionary adaptation of the predator population can prevent 
+the rate-induced collapse of the prey. Therefore, we choose 
+an initial attack rate 훼0 between the two extreme values 훼min 
+and 훼max and study the dynamics of the eco-evolutionary 
+system (5)–(7) depending on the rate of environmental 
+change rK and the genetic variation rV . In this case, the 
+Fig. 3   How optimum prey 퐞opt,x(K(t), 휖) (A) and predator density 
+eopt,y(K(t), 휖) (B) (gray dashed line) change in time. For K(t) > KT , 
+e1,opt(K(t), 휖) represents the moving optimum state. At KT (vertical 
+magenta dotted line), e1,opt(K(t), 휖) and e2,opt(K(t), 휖) exchange sta-
+bility in a transcritical bifurcation. For K(t) < KT , e2,opt(K(t), 휖) is 
+the moving optimum state. (C) Linear decline of the carrying capac-
+ity K(t) at the rate rK according to (4). Parameter: x0 = nx(훼min) , 
+y0 = ny(K(t), 훼min) , K0 = 10.0 , 훼0 = 훼min , rK = 0.05 , rV = 0 . Other 
+parameters can be seen in Table 1
+36
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+Fig. 4   (A, B) The eco-evolutionary system (5)–(7) shows tracking 
+(cyan) of the optimum state eopt(K(t), 휖) (gray dashed line) at low rate 
+rK = 0.05 : prey density remains above extinction threshold xe (gray 
+dotted line). (C, D) System shows R-tipping (magenta) at higher rate 
+rK = 1.0 : prey density drops below extinction threshold xe . (E) The 
+critical rate r = rcrit (black) is defined as the lowest rate rK at which 
+x ≤xe during the transient dynamics. The system tracks/tips for 
+rK < rcrit/rK > rcrit . Parameter: x0 = nx(훼min) , ny(K0, 훼min) , K0 = 10.0 , 
+훼0 = 훼min and Table 1
+37
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+eco-evolutionary system (5)–(7) possesses the moving 
+optimum state eopt(K(t), 휖):
+with e1,opt(K(t), 휖) = (nx, ny, K(t),
+√
+c) , e2,opt(K(t), 휖) =
+(
+K(t), 0, K(t),
+훾K(t)
+2+2훽K(t)
+)
+ and KT =
+2c
+훾
+√
+c−2c훽 respectively 
+KH =
+4c
+훾
+√
+c−2c훽+ 1
+훽 (see Table 1 for nx , ny and other parame-
+ters). At K(t) = KT , the system passes a transcritical bifurca-
+tion where e1,opt(K(t), 휖) and e2,opt(K(t), 휖) exchange stability 
+(see Fig. 3).
+When rV = 0.1 , as expected, increasing the rate of envi-
+ronmental change from rK = 0.05 (Fig. 5A) to rK = 1.0 
+(Fig. 5B) causes the rate-induced collapse of the prey. In 
+the latter case the prey population is confronted with an 
+extraordinary predation pressure because the attack rate 
+very quickly becomes much higher than the optimum attack 
+rate: 𝛼> eopt,𝛼(K(t), 𝜖) (Fig. 5K). As a consequence, the 
+signed lag-load ̃𝜏𝛼(K(t), 𝜖) = 𝛼(t) −eopt,𝛼(K(t), 𝜖) is large and 
+positive (Fig. 5K). Note that we show the signed lag-load ̃
+𝜏𝛼(K(t), 𝜖)—instead of the usually applied absolute lag-load 
+휏훼 (Gomulkiewicz and Holt 1995)—to emphasize the impor-
+tance of the direction of maladaptation which is reflected 
+by the sign of ̃𝜏𝛼(K(t), 𝜖) . But as shown in figure 5C, this 
+rate-induced collapse can be prevented if the genetic varia-
+tion is high enough, here rV = 0.9 instead of rV = 0.1 . The 
+faster adaptation of the predator population suppresses the 
+high initial attack rates. Instead, the attack rate 훼 drops 
+rather rapidly and attains rather low values—compared to 
+the optimum and the scenarios representing tracking and 
+R-tipping—before it approaches slowly the optimum. The 
+mostly negative signed lag-load ̃𝜏𝛼(K(t), 𝜖) (Fig. 5) means 
+that predators are less aggressive than in the optimum for 
+most of the time which lowers the predation pressure on 
+the prey and prevents its rate-induced collapse. As it is the 
+predator whose adaptation secures the prey’s survival, it is 
+a case of indirect evolutionary rescue.
+In summary, we find three different transient dynamics: 
+tracking, R-tipping and indirect evolutionary rescue depend-
+ing on the relation of the rate of environmental change rK 
+and the genetic variation rV . In the next section, we evaluate 
+this relationship in more detail.
+The probability of rate‑induced tipping 
+decreases with increasing genetic variation
+To obtain a comprehensive picture of rate-induced tipping 
+and its prevention by indirect evolutionary rescue, we esti-
+mate the critical rate of environmental change rcrit which 
+(9)
+eopt(K(t), 𝜖) =
+{ e1,opt(K(t), 𝜖) KT < K(t) ≪KH
+e2,opt(K(t), 𝜖) Kmin ≤K(t) ≤KT
+has to be surpassed for R-tipping to occur depending on 
+the rate of evolutionary adaptation based on genetic varia-
+tion rV . To start with, we evaluate whether solutions of the 
+eco-evolutionary system (5)–(7) track ( x(t) > xe for t →∞ ) 
+or tip ( x(t) < xe between te and tr ) for rates of environmen-
+tal change rK ∈[0 1.5] and without rapid evolution rV = 0 . 
+We find that the two possible outcomes are separated by a 
+unique critical rate r0
+crit (see left limit in Fig. 6). Following 
+this, we evaluate for all rates rK ≥r0
+crit whether the system 
+can change its behavior—from R-tipping to tracking—when 
+the rate of evolution rV is increased ( rV ∈[0 1] ). If this is 
+the case, indirect evolutionary rescue occurs. Note that for 
+rK < r0
+crit , evolutionary rescue is not necessary to obtain 
+tracking (cyan region Fig. 6).
+As for rV = 0 , for each rV , a unique critical rate rcrit can be 
+determined which separates tipping (magenta) and tracking 
+(green) behavior (Fig. 6). The corresponding curve (solid 
+black line) portrays the expected relationship: the higher the 
+genetic variation rV , the lower the probability of R-tipping. 
+Accordingly, a predator population with higher genetic vari-
+ation is able to reduce its attack rate sufficiently fast to bal-
+ance the gradual degradation of the prey’s carrying capacity 
+(decrease of K(t)) and thus prevent its rate-induced collapse.
+The occurrence of indirect evolutionary 
+rescue varies with initial conditions
+Hereinafter, we examine if the appearance of R-tipping or 
+indirect evolutionary rescue depends on the initial condi-
+tions of the eco-evolutionary system (5)–(7). So far, we 
+have assumed that the system is always situated in the 
+optimum state in the beginning. As a result, the predator 
+population is optimally adapted before the carrying capac-
+ity starts to change. Consequently, the initial lag-load 
+is given by 휏훼(K0, 휖) = 0 as illustrated in figure 2. In the 
+following, we vary the initial attack rate 훼0 and the initial 
+value of the carrying capacity K0 independently of one 
+another. Hence, the predator population becomes less well 
+adapted to the initial environmental condition K0 . To fur-
+ther ensure a reasonable relation between the initial prey 
+and predator density x0 and y0 , we set x0 and y0 to the opti-
+mum equilibrium densities x0 = e1,opt,x(K0, 휖) = nx(훼0) 
+and y0 = e1,opt,y(K0, 휖) = ny(K0, 훼0) (see Table  1 for 
+nx(훼) and ny(K(t), 훼) ). Hence, the initial conditions 
+( nx(훼0), ny(K0, 훼0), K0, 훼0 ) are fully determined by setting 
+the initial attack rate 훼0 and the initial carrying capacity K0.
+At first, we study exemplary initial conditions with 
+different initial attack rates 𝛼0 ≷eopt,𝛼(K0, 𝜖) (Fig. 7). For 
+𝛼0 < eopt,𝛼(K0, 𝜖) , the higher the initial carrying capacity 
+K0 = 4.5 and the genetic variation rV = 0.9 , the closer is 
+the minimum of the prey density to the extinction thresh-
+old xe (Fig. 7A). For 𝛼0 > eopt,𝛼(K0, 𝜖) , the prey density 
+38
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+shows the opposite behavior: instead of dropping, it 
+increases in the beginning and reveals the highest distance 
+to the extinction threshold for high values of K0 and rV , 
+K0 = 4.5 and rV = 0.9 (Fig. 7B). This contradiction can be 
+explained by studying the initial densities of the predator 
+population (Fig. 7C, D) and the change of the attack rate 
+훼 (Fig. 7E, F). For 𝛼0 < eopt,𝛼(K0, 𝜖) , initial predator densi-
+ties are consistently high while the attack rate increases. 
+Fig. 5   (A, B, C) Prey density x, (D, E, F) predator density y, (G, H, 
+I) attack rate 훼 of the eco-evolutionary system (5)–(7) and (J, K, L) 
+signed lag-load ̃𝜏𝛼(K(t), 𝜖) = 𝛼(t) −eopt,𝛼(K(t), 𝜖) for different combi-
+nation of the rate of environmental change rK and the rate of evolu-
+tion rV . The left column shows tracking (cyan), the middle column 
+depicts R-tipping (magenta), and the right column demonstrates 
+indirect evolutionary rescue (green). Parameters: x0 = eopt,x(K0, 휖) , 
+y0 = eopt,y(K0, 휖) , K0 = 5.0 , 훼0 = eopt,훼(K0, 휖) ; other parameters can be 
+seen in Table 1
+39
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+Consequently, the predation pressure increases leading to 
+the early drop of the prey population density (Fig. 7G). 
+Conversely for 𝛼0 > eopt,𝛼(K0, 𝜖) , initial densities of the 
+predator population are much lower and the attack rate 
+decreases. This reduces the predation pressure (Fig. 7H) 
+causing the temporary increase of the prey density in 
+the beginning. Hence, we expect prey populations with 
+higher initial carrying capacity K0 exposed to predators 
+with 𝛼0 > eopt,𝛼(K0, 𝜖) and higher genetic variation rV to 
+be most likely to experience indirect evolutionary rescue.
+In Fig. 8, we now study the occurrence of evolution-
+ary rescue for low (A, rV = 0.2 ) and high genetic vari-
+ation (B, rV = 0.9 ) for initial conditions K0 ∈[3, 5] and 
+훼0 ∈[0.1, 0.5] . We choose these intervals to ensure the 
+presence of the predator population and the absence of 
+long-term oscillations. Therefore, initial conditions 
+located in the gray regions are not taken into account.
+In Fig. 8, the critical rate rcrit of environmental change 
+increases as the initial attack rate 훼0 achieves higher val-
+ues. Accordingly, initial conditions with 𝛼0 > eopt,𝛼(K0, 𝜖) 
+are less prone to exhibit R-tipping. In this case, the prey 
+population experiences lower predation pressure because (i) 
+initial predator densities are lower and (ii) the attack rate 
+decreases sufficiently fast (see Fig. 7F). As expected, these 
+initial conditions experience indirect evolutionary rescue 
+when the genetic variation is increased from rV = 0.2 (A) 
+to rV = 0.9 (B). In the latter case, the already low predation 
+pressure can be reduced even further due to a faster decreas-
+ing attack rate 훼.
+Interestingly, some initial conditions which are located 
+in the tracking region for rV = 0.2 exhibit R-tipping as rV 
+is increased to 0.9 (region I in Fig. 8B). This means that 
+they tip precisely because of the evolutionary adaptation 
+(increasing attack rate) being too fast which ultimately 
+causes a higher predation pressure than for rV = 0.2 (com-
+pare Fig. 7G). A rather extreme case of this mechanism can 
+be found in region II where the prey density has already 
+dropped to densities below xe during the transient oscilla-
+tion when rK = 0 (see Fig. 7 for the transient oscillation).
+Furthermore, Fig. 8 demonstrates that the same initial 
+lag-load 휏훼(K0, 휖) = |훼0 −e1,opt,훼(K0, 휖)| can result in two 
+completely different and contrasting outcomes: the occur-
+rence of indirect evolutionary rescue or the rate-induced 
+collapse of the prey population. This again emphasizes 
+that aside from the magnitude of maladaptation, the 
+direction of initial maladaptation—the signed lag-load ̃
+𝜏𝛼(K0, 𝜖) = 𝛼0 −e1,opt,𝛼(K0, 𝜖)—can be a guiding quantity 
+Fig. 6   Critical rate rcrit (black curve) increases with rate of evolution 
+rV . It separates the (rK, rV)-parameter space into the R-tipping region 
+(magenta) and the tracking-region (green/cyan). The black dotted line 
+further divides the tracking-region into the area where evolutionary 
+rescue is not necessary to obtain tracking (cyan) and the area where 
+indirect evolutionary rescue enables tracking (green). Parameter 
+K0 = 5.0 , 훼0 = 0.6 , x0 = nx(훼0) , y0 = ny(훼0, K0) . Other parameters 
+can be seen in Table 1
+40
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+Fig. 7   (A, B) Prey density x, (C, D) predator density y, (E, F) attack rate 훼 and (G, H) predation pressure pred =
+훼xy
+1+훽x for 𝛼0 < eopt,𝛼 (left col-
+umn) and 𝛼0 > eopt,𝛼 (right column). Parameters: 훼0 = e1,opt,훼± 0.1, x0 = nx(훼0), y0 = ny(K0, 훼0) , rK = 0.1 . Other parameters Table 1
+41
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+when studying the sensitivity of populations to the sudden 
+onset of fast environmental changes.
+Discussion
+The relation of environmental and evolutionary 
+time scale
+We have demonstrated that rapid evolution of a predator’s 
+trait can prevent a rate-induced collapse of its prey. Whether 
+this indirect evolutionary rescue is put into effect depends 
+crucially on the relation between the rate of environmental 
+change and the rate of evolutionary adaptation. We high-
+lighted this relationship by deriving a critical rate of envi-
+ronmental change, above which R-tipping can be expected, 
+depending on the genetic variation which determines the 
+rate of evolution (see Fig. 6). We found that R-tipping is 
+less and thus indirect evolutionary rescue is more likely 
+when the genetic variation is high. This finding aligns well 
+with former studies. For instance, Yamamichi and Miner 
+(2015) who, however, did not explicitly consider rates of 
+environmental change found that a higher genetic variation 
+of a prey population shortens the vulnerable period of its 
+non-evolving predator. Further theoretical (Gomulkiewicz 
+and Holt 1995; Vander Wal et al. 2013; Barrett and Schluter 
+2008) and empirical studies (Ramsayer et al. 2013) show 
+that high genetic variation increases the probability of evo-
+lutionary rescue of isolated populations.
+As the rates of environmental change and evolutionary 
+adaptation are of paramount importance for the outcome 
+environmental changes, it is useful to consider under which 
+circumstances they might be altered. For instance, popula-
+tions might become more prone to R-tipping in the future 
+as the speed of environmental change will increase due to 
+climate change (Nadeau and Urban 2019; Shefferson et al. 
+2017; Jezkova and Wiens 2016). As suggested by the tem-
+porary change of the carrying capacity (Fig. 3C), even short-
+term changes of environmental conditions can potentially 
+provide an adequate explanation for an observed popula-
+tion collapse. On the contrary, recent studies suggest that 
+this trend could be counteracted by the dispersal of sub-
+populations between different patches (Bourne et al. 2014; 
+Arumugam et al. 2020). As shown by Bourne et al. (2014), 
+the underlying mechanism is that dispersal can increase the 
+genetic variation of populations when beneficial mutations 
+are spread across sub-populations. Furthermore, the recent 
+study by Arumugam et al. (2020) demonstrates that even 
+when evolutionary adaptation is neglected, the dispersal 
+between predator–prey populations reduces the probability 
+of R-tipping. However, this mechanism requires the exist-
+ence of patches as well as a rather large overall population 
+size. Furthermore, a loss of genetic variation occurs natu-
+rally if a population suddenly shrinks (Fountain et al. 2016; 
+Fig. 8   (K0, 훼0)-parameter space for rV = 0.2 (A) and rV = 0.9 (B). Ini-
+tial conditions in the colored region show R-tipping above the critical 
+rate rcrit (yellow: high, magenta: low). Initial conditions in the white 
+non-colored region track. Initial conditions showing long-term oscil-
+lations or negative initial predator densities are not considered (gray 
+regions). Initial conditions determined by higher initial attack rates 
+experience indirect evolutionary rescue while initial conditions with 
+lower initial attack rates change its behavior from tracking to R-tipping 
+(colored region I). Initial conditions in II already achieve prey densi-
+ties x < xe due to transient oscillations if rK = 0 . Other parameters can 
+be seen in Table 1
+42
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+Baden et al. 2019). Even though, if this decline was tran-
+sient, such populations would be more susceptible to rate-
+induced tipping in the following as its genetic variability 
+would have already been degraded. Such maladaptations can 
+ultimately lead to the extinction of a population but can also 
+affect other populations which they interact with (i.e., their 
+prey) (Yamamichi and Miner 2015; Osmond et al. 2017; 
+Yamamichi et al. 2019).
+Finally it should be noted that the specific relation 
+between the rate of environmental change and the genetic 
+variation is strongly linked to the choice of the extinction 
+threshold. We introduced the extinction threshold in order to 
+portray a population’s high endangerment when it undergoes 
+stages of low density during its transient. One possibility 
+to transfer this into the long-term behavior of the model 
+would be the inclusion of the Allee effect in the dynamics 
+of the prey (Allee et al. 1949). The Allee effect is useful in 
+the context of eco-evolutionary systems because it incor-
+porates a correlation between fitness and population size 
+(Courchamp et al. 1999; Stephens et al. 1999; Stephens and 
+Sutherland 1999).
+Rapid evolution can stabilize or destabilize 
+the transient dynamics
+Furthermore, we have found that a sufficiently fast increase 
+of the predator’s attack rate can cause indirect evolution-
+ary rescue whereas its fast decline can lead to R-tipping 
+(Fig. 7 and Fig. 8). Hence, rapid evolution of the preda-
+tor’s trait can stabilize (by preventing low densities) or 
+destabilize (by causing low densities) the transient state 
+of the prey. Stabilizing and destabilizing evolution have 
+so far been associated with the replacement of long-term 
+oscillations by long-term stationary coexistence of popula-
+tions and vice versa (Mougi and Iwasa 2010; Abrams 2000; 
+Cortez and Patel 2017; Cortez et al. 2020). In this context, 
+(indirect) evolutionary rescue and R-tipping can be seen 
+as additional mechanisms which are able to stabilize or 
+destabilize, respectively, the state of populations on eco-
+logically relevant (short) time scales (during the transient). 
+Interestingly, this stabilizing (destabilizing) effect of rapid 
+evolution is independent of the long-term persistence of 
+the predator population (compare Fig. 5 and Fig. 12). This 
+again underlines the importance of considering transient 
+states of populations instead of analyzing exclusively their 
+long-term behavior, as has already been emphasized by 
+Hastings et al. (2018).
+The study of rate‑induced tipping and evolutionary 
+rescue in real ecosystems
+So far, rate-induced tipping has not been observed or 
+identified in nature. One reason is that determining 
+whether a past tipping event was caused exclusively 
+by too fast changing environmental conditions is quite 
+challenging, especially since few empirical studies have 
+a focus on the effect of rates of change in ecosystems 
+(Chaparro-Pedraza 2021; Pinek et al. 2020). Due to this 
+lack of data, the observation of its prevention by evo-
+lutionary rescue constitutes an even greater challenge. 
+Additionally, most studies devoted to tipping in ecosys-
+tems rarely include information about trait changes of the 
+organisms involved (Dakos et al. 2019). Hence, future 
+empirical studies or experiments should consider rates 
+of environmental change and, if possible, measure trait 
+changes of the organisms involved. Moreover, there is a 
+strong tendency in the literature to ascribe observed tip-
+ping to bifurcation-induced tipping based on the coexist-
+ence of alternative stable states, though a meta-analysis 
+has revealed only weak evidence for that (Hillebrand 
+et al. 2020).
+In cases where empirical data is not available, simple 
+mathematical models represent an appropriate tool for cap-
+turing the most relevant dynamics of ecosystems. Even if 
+the eco-evolutionary system, as (5)–(7), is not based on 
+real observations, it enables to analyze, at least qualita-
+tively, the relationship between the rate of environmental 
+change and the rate of evolution. Hence, the model which 
+we have studied throughout this work can constitute the 
+basis towards more realistic data-driven models which can 
+be employed for examining the race between environmen-
+tal change and evolution. So far, there only exist data-
+driven models or models with more realistic parameters 
+that study R-tipping and which do not consider evolution-
+ary processes on relevant time scales (Gil et al. 2020; van 
+Nes et al. 2007; Neijnens et al. 2021). Hence, including 
+the rate of evolution in these models represents a neces-
+sary next step for studying R-tipping in a more realistic 
+framework.
+Conclusion
+All of our findings become solely visible in the transient 
+dynamics of an eco-evolutionary model. Clearly, com-
+monly applied models are an oversimplification of reality 
+but as shown here, they can give valuable insights into 
+the interaction of counteracting processes on ecologically 
+relevant time scales. Our results show that we have to 
+explicitly include rates of environmental change when 
+modelling the race between evolutionary adaptation 
+and extinction. Moreover, we suggest that besides the 
+degree of maladaption (lag-load), its direction (signed 
+lag-load)—trait lower/higher than optimum—is a deci-
+sive factor in inducing R-tipping or indirect evolutionary 
+43
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+rescue. Finally, we once again emphasize the necessity 
+of considering the transient dynamics because solely the 
+transient reveals important processes on short time scales 
+such as R-tipping or evolutionary rescue. Unraveling the 
+mechanisms behind these processes will help us to under-
+stand the response of populations to habitat destruction 
+or fragmentation and recent as well as future climate 
+change.
+Time scale separation
+To study the time scale separation between predator and 
+prey, we rewrite the predator–prey system (10)–(11) in 
+dimensionless prey density u, predator density v and 
+dimensionless time ̂t:
+With x = um(훼)
+훼훾 , y = r
+훼v and t = r̂t , the predator–prey sys-
+tem can be written as:
+By setting 휖= m(훼)
+r as time scale parameter, we can 
+write the dimensionless predator–prey system in slow 
+time 𝜏= 𝜖̂t:
+For m(훼) = 훼2 + c , the separation between the prey’s and 
+predator’s time scale is given by 휖= (훼2+c)
+r
+ . When 훼2 + c = r , 
+prey and predator evolve on the same time scale, otherwise 
+when 𝛼2 + c ≷r , the prey reproduces slower/faster than the 
+predator does Fig. 9.
+(10)
+dx
+dx = rx
+(
+1 −x
+K
+)
+−
+훼xy
+1 + 훽x
+(11)
+dy
+dy = 훾훼xy
+1 + 훽x −m(훼)y.
+(12)
+du
+du = u
+(
+1 −um(훼)
+훾훼K
+)
+−
+uv
+1 + 훽um(훼)
+훼훾
+(13)
+dv
+dv = m(훼)
+r
+⎛
+⎜
+⎜⎝
+uv
+1 + 훽um(훼)
+훼훾
+−v
+⎞
+⎟
+⎟⎠
+.
+(14)
+휖dx
+dx = u
+(
+1 −um(훼)
+훾훼K
+)
+−
+uv
+1 + 훽um(훼)
+훼훾
+(15)
+dy
+dy =
+⎛
+⎜
+⎜⎝
+uv
+1 + 훽um(훼)
+훼훾
+−v
+⎞
+⎟
+⎟⎠
+.
+The Eco‑evolutionary system
+In this section, we study the stability of the long-term states 
+of the eco-evolutionary predator–prey system (16)–(18):
+with time-dependent parameter K(t): K(t) = max
+(K0 −rKt, Kmin) . Equation (18) is zero if (i) 훼= 훼min , (ii) 
+훼= 훼max or (iii) 
+(
+훾x
+1+훽x −dm(훼)
+dm(훼)
+)
+= 0 . With m(훼) = 훼2 + c , the 
+eight equilibria e1(K(t), 휖) −e8(K(t), 휖) (19)–(26) are given 
+by:
+(16)
+dx
+dx = rx
+(
+1 −
+x
+K(t)
+)
+−
+훼xy
+1 + 훽x
+(17)
+dy
+dy = 훾훼xy
+1 + 훽x −m(훼)y
+(18)
+d훼
+d훼= rV(훼−훼min)(훼max −훼)
+(
+훾x
+1 + 훽x −dm(훼)
+dm(훼)
+)
+,
+(19)
+e1(K(t), 휖) = (e1x(K(t), 휖), e1y(K(t), 휖), e1훼(K(t), 휖)) = (0, 0, 훼min)
+(20)
+e2(K(t), 휖) = (K(t), 0, 훼min)
+(21)
+e3(K(t), 휖) =
+(
+훼2
+min + c
+훾훼min −(훼2
+min + c)훽
+,
+r
+훼min
+(
+1 −e3x
+K(t)
+)(1 −훽e3x
+), 훼min
+)
+.
+(22)
+e4(K(t), 휖) = (0, 0, 훼max)
+Fig. 9   For mortality rate m(훼) = 훼2 + c , the time scale separation 휖 
+increases with increasing attack rate 훼 . For 𝛼≷0.9 , the predator 
+evolves faster/slower than its prey. For 훼≈0.9 , predator and prey 
+evolve on the same time scale
+44
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+Figure 10 shows the stability of all eight equilibria 
+e1(K(t), 휖) −e8(K(t), 휖) (19)–(26) depending on the time-
+dependent carrying capacity K(t) and the genetic varia-
+tion rV . The equilibria e1(K(t), 휖)–e6(K(t), 휖) are unstable 
+((u), orange) for all values of K and rV . Hence, the seventh 
+e7(K(t), 휖) or eighth equilibrium e8(K(t), 휖) represents the 
+globally stable equilibrium of the system depending on K(t). 
+For higher genetic variation rV , the stability range of the 
+seventh equilibrium e7(K(t), 휖) extends even to higher values 
+of K(t) (see Fig. 10g).
+(23)
+e5(K(t), 휖) = (K(t), 0, 훼max)
+(24)
+e6(K(t), 휖) =
+(
+훼2
+max + c
+훾훼max −(훼2
+max + c)훽,
+r
+훼max
+(
+1 −e6x
+K(t)
+)(1 −훽e6x
+), 훼max
+)
+(25)
+e7(K(t), 휖) =
+
+2c
+훾
+√
+c −2c훽
+, r
+√
+c
+
+1 −e7x
+K(t)
+1 −훽e7x
+,
+√
+c
+
+(26)
+e8(K(t), 휖) =
+(
+K(t), 0,
+훾K(t)
+2 + 2훽K(t)
+)
+Eco‑evolutionary dynamics for different 
+trade‑offs
+In this section, we study if R-tipping and indirect evolu-
+tionary rescue still occurs for different trade-offs between 
+predation 훾훼xy
+1+훽x and the mortality of the predator m(훼)y . 
+Therefore, we introduce the trade-off parameter k: 
+m(훼) = 훼k + c with k ∈퐑ퟎ
++ . The eco-evolutionary system 
+becomes:
+with time-dependent parameter K(t): K(t) = max
+(K0 −rKt, Kmin) . As shown by Eq. (28) and Eq. (29), the 
+trade-off parameter k affects directly (i) the mortality of the 
+(27)
+dx
+dx = rx
+(
+1 −
+x
+K(t)
+)
+−
+훼xy
+1 + 훽x
+(28)
+dy
+dy = 훾훼xy
+1 + 훽x −m(훼)y
+(29)
+d훼
+d훼= rV(훼−훼min)(훼max −훼)
+(
+훾x
+1 + 훽x −dm(훼)
+dm(훼)
+)
+,
+Fig. 10   Stability of the eight 
+equilibria e1(K(t), 휖)–e8(K(t), 휖) 
+(19)–(26) depending on the 
+genetic variance rV and the 
+time-dependent carrying capac-
+ity K(t). Blue: stable (s), orange: 
+unstable (u). Parameter: Table 1
+45
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+predator m(훼) and especially, (ii) the fitness gradient 
+(
+훾x
+1+훽x −dm(훼)
+dm(훼)
+)
+ . Hence, the parameter k influences the equi-
+librium (optimum) state eopt(K(t), 휖) of the eco-evolutionary 
+system (27)–(29) for which the fitness gradient vanishes 
+(
+훾x
+1+훽x −dm(훼)
+dm(훼)
+)
+= 0.
+Setting Eqs. (27)–(29) to zero and solving for the state 
+variables x, y and 훼 leads to the following eight equilibria 
+e1(K(t), 휖)–e8(K(t), 휖) (30)–(37):
+(30)
+e1(K(t), 휖) = (e1,x(K(t), 휖), e1,y(K(t), 휖), e1훼(K(t), 휖)) = (0, 0, 훼min)
+(31)
+e2(K(t), 휖) = (K(t), 0, 훼min)
+(32)
+e3(K(t), 휖) =
+(
+훼k
+min + c
+훾훼min −(훼k
+min + c)훽
+,
+r
+훼min
+(
+1 −
+e3,x
+K(t)
+)(1 −훽e3,x
+), 훼min
+)
+(33)
+e4(K(t), 휖) = (0, 0, 훼max)
+(34)
+e5(K(t), 휖) = (K(t), 0, 훼max)
+Notice setting k = 2 leads to the optimum state 
+eopt(K(t), 휖) (9) introduced in the section: Indirect evolution-
+ary rescue prevents rate-induced tipping. There, the opti-
+mum state was represented by one of the two stable moving 
+equilibria e7(K(t), 휖) and e8(K(t), 휖) depending on the value 
+of K(t). Interestingly, for k ≥3 , e7(K(t), 휖) (36) represents 
+the unique stable moving equilibrium for all values of the 
+time-dependent carrying capacity K(t) because e8(K(t), 휖) 
+(35)
+e6(K(t), 휖) =
+(
+훼k
+max + c
+훾훼max −(훼k
+max + c)훽,
+r
+훼max
+(
+1 −
+e6,x
+K(t)
+)(1 −훽e6,x
+), 훼max
+)
+(36)
+e7(K(t), 휖) =
+(
+kc(k −1)−1
+훾c(k −1)−1 −kc(k −1)−1훽,
+r
+(
+c
+k−1
+)k−1
+(
+1 −
+e7,x
+K(t)
+)(1 −훽e7,x
+),
+(
+c
+k −1
+)k−1)
+(37)
+e8(K(t), 휖) =
+(
+K(t), 0,
+훾K(t)
+2 + 2훽K(t)
+)
+.
+Fig. 11   Stability of e1(K(t), 휖) 
+(36) and e8(K(t), 휖) (37) depend-
+ing on the trade-off parameter 
+k and the ti0me-dependent 
+carrying capacity K(t). Blue: 
+stable (s), orange: unstable (u). 
+Parameters: Table 1
+46
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+(37) is unstable (compare the colored regions above k ≥3 in 
+Fig. 11). Hence, the predator population is not extinct in the 
+long-term e7(Kmin, 휖) (36) ( e7,y(K(t), 휖) ≠0 ). Figure 12 dem-
+onstrates that we still find the rate-induced collapse of the 
+prey and its prevention by indirect evolutionary rescue even 
+though the predator persists in the long-term state e7(Kmin, 휖) 
+(magenta dotted lines) for k = 3.
+Author Contributions  AV and UF conceived and designed the research. 
+AV set up the model and the simulations. At last, AV analyzed the 
+model results. AV, LK and UF designed the storyline and the concept 
+of the manuscript. All authors read and approved the manuscript.
+Funding  Open Access funding enabled and organized by Projekt 
+DEAL.
+Data availability statement  Not applicable
+Code availability  Not applicable
+Declarations 
+Ethics approval  Not applicable
+Consent for publication  Not applicable
+Conflicts of interest/Competing interests  Not applicable
+Fig. 12   Prey density x, predator 
+density y, attack rate 훼 and 
+predation pressure pred =
+훼xy
+1+훽x 
+of the eco-evolutionary system 
+(27)–(29) for rV = 0.1 (left 
+column) and rV = 0.9 (right) 
+column. The optimum state 
+e7(K(t), 휖) (36) is marked as 
+magenta dashed line. Parameter: 
+x0 = nx(e7,훼) , ny(K0 = 5.0, e7,훼) , 
+훼0 = e7,훼(K(t), 휖) . Other 
+parameters can be seen in 
+Table 1
+47
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+Open Access  This article is licensed under a Creative Commons Attri-
+bution 4.0 International License, which permits use, sharing, adapta-
+tion, distribution and reproduction in any medium or format, as long 
+as you give appropriate credit to the original author(s) and the source, 
+provide a link to the Creative Commons licence, and indicate if changes 
+were made. The images or other third party material in this article are 
+included in the article's Creative Commons licence, unless indicated 
+otherwise in a credit line to the material. If material is not included in 
+the article's Creative Commons licence and your intended use is not 
+permitted by statutory regulation or exceeds the permitted use, you will 
+need to obtain permission directly from the copyright holder. To view a 
+copy of this licence, visit http://​creat​iveco​mmons.​org/​licen​ses/​by/4.​0/.
+References
+Abrams PA (2000) The Evolution of predator-prey interactions: 
+theory and evidence. Annu Rev Ecol Syst 31:79–105
+Abrams PA, Matsuda H, Harada Y (1993) Evolutionary unstable 
+fitness maxima and stable fitness minima of continuous traits. 
+Evol Ecol 7:465–487
+Alexander HK, Martin G, Martin OY, Bonhoeffer S (2014) Evolu-
+tionary rescue: linking theory for conservation and medicine. 
+Evol Appl 7(10):1161–1179
+Alkhayuon H, Ashwin P, Jackson LC, Quinn C, Wood RA (2019) 
+Basin bifurcations, oscillatory instability and rate-induced 
+thresholds for Atlantic meridional overturning circulation in 
+a global oceanic box model. Proceedings of the Royal Society 
+A 475:20190051
+Allee WC, Emerson AE, Park O, Park T, Schmidt KP (1949) Princi-
+ples of animal ecology. W.B. Saunders, Philadelphia and London
+Arumugam R, Guichard F, Lutscher F (2020) Persistence and extinc-
+tion dynamics driven by the rate of environmental change in a 
+predator prey metacommunity. Theoretical Ecology
+Ashwin P, Wieczorek S, Vitolo R, Cox P (2012) Tipping points in 
+open systems: bifurcation, noise-induced and rate-dependent 
+examples. Phil Trans R Soc A 370:1166–1184
+Baden AL, Mancini AN, Federman S, Holmes SM, Johnson SE, 
+Kamilar J, Louis EE, Bradley BJ (2019) Anthropogenic pres-
+sures drive population genetic structuring across a Critically 
+Endangered lemur species range. Sci Rep 9(1):1–11
+Barrett RD, Schluter D (2008) Adaptation from standing genetic 
+variation. Trends Ecol Evol 23(1):38–44
+Bastille-Rousseau G, Schaefer JA, Peers MJ, Ellington EH, Mumma 
+MA, Rayl ND, Mahoney SP, Murray DL (2018) Climate change 
+can alter predator prey dynamics and population viability of 
+prey. Oecologia 186(1):141–150
+Bell G (2013) Evolutionary rescue and the limits of adaptation. 
+Philos Trans R Soc B 368(1610):1–6
+Bell G, Gonzalez A (2009) Evolutionary rescue can prevent extinc-
+tion following environmental change. Ecol Lett 12(9):942–948
+Bourne EC, Bocedi G, Travis JM, Pakeman RJ, Brooker RW, 
+Schiffers K (2014) Between migration load and evolutionary 
+rescue: Dispersal, adaptation and the response of spatially 
+structured populations to environmental change. Proc R Soc 
+B 281:20132795
+Carlson SM, Cunningham CJ, Westley PA (2014) Evolutionary rescue 
+in a changing world. Trends Ecol Evol 29(9):521–530
+Chaparro-Pedraza PC (2021) Fast environmental change and eco-
+evolutionary feedbacks can drive regime shifts in ecosystems 
+before tipping points are crossed. Proc R Soc B 288:20211192
+Cortez MH (2016) How the magnitude of prey genetic varia-
+tion alters predator-prey eco-evolutionary dynamics. Am Nat 
+188(3):329–341
+Cortez MH (2018) Genetic variation determines which feedbacks drive 
+and alter predator prey eco-evolutionary cycles. Ecological Mono-
+graphs 88(3):353–371
+Cortez MH, Ellner SP (2010) Understanding rapid evolution in predator-
+prey interactions using the theory of fast-slow dynamical systems. 
+Am Nat 176(5):109–127
+Cortez MH, Patel S (2017) The effects of predator evolution and 
+genetic variation on predator-prey population-level dynamics. 
+Bull Math Biol 79:1510–1538
+Cortez MH, Patel S, Schreiber SJ (2020) Destabilizing evolutionary 
+and eco-evolutionary feedbacks drive empirical eco-evolutionary 
+cycles. Proc R Soc B 287:20192298
+Cortez MH, Weitz JS (2014) Coevolution can reverse predator-prey 
+cycles. Proc Natl Acad Sci USA 111(20):7486–7491
+Cortez MH, Yamamichi M (2019) How (co)evolution alters predator 
+responses to increased mortality: extinction thresholds and hydra 
+effects. Ecology 100(10):1–17
+Courchamp F, Clutton-Brock T, Grenfell B (1999) Inverse den-
+sity dependence and the Allee effect. Trends Ecol Evol 
+14(10):405–410
+Dakos V, Matthews B, Hendry AP, Levine J, Loeuille N, Norberg 
+J, Nosil P, Scheffer M, De Meester L (2019) Ecosystem tip-
+ping points in an evolving world. Nature Ecology & Evolution 
+3:355–362
+De Mazancourt C, Johnson E, Barraclough TG (2008) Biodiversity 
+inhibits species’ evolutionary responses to changing environ-
+ments. Ecol Lett 11(4):380–388
+Dwomoh FK, Wimberly MC (2017) Fire regimes and forest resilience: 
+alternative vegetation states in the West African tropics. Land-
+scape Ecol 32(9):1849–1865
+Ferriere R, Legendre S (2013) Eco-evolutionary feedbacks, adaptive 
+dynamics and evolutionary rescue theory. Philos Trans R Soc 
+B 368:20120081
+Folke C, Carpenter S, Walker B, Scheffer M, Elmqvist T, Gunderson 
+L, Holling CS (2004) Regime Shifts, Resilience, and Biodi-
+versity in Ecosystem Management. Annu Rev Ecol Evol Syst 
+35:557–581
+Fountain T, Nieminen M, Sirén J, Wong SC, Hanski I (2016) Pre-
+dictable allele frequency changes due to habitat fragmentation 
+in the Glanville fritillary butterfly. Proc Natl Acad Sci USA 
+113(10):2678–2683
+Frishkoff LO, Karp DS, Flanders JR, Zook J, Hadly EA, Daily GC, 
+M’Gonigle LK (2016) Climate change and habitat conversion 
+favour the same species. Ecol Lett 19(9):1081–1090
+Gårdmark A, Casini M, Huss M, Van Leeuwen A, Hjelm J, Persson 
+L, de Roos AM (2015) Regime shifts in exploited marine food 
+webs: Detecting mechanisms underlying alternative stable states 
+using sizestructured community dynamics theory. Philosophi-
+cal Transactions of the Royal Society B: Biological Sciences 
+370(1659):1–10
+Gil MA, Baskett ML, Munch SB, Hein AM (2020) Fast behavio-
+ral feedbacks make ecosystems sensitive to pace and not just 
+magnitude of anthropogenic environmental change. PNAS 
+117:25580–25589
+Gomulkiewicz R, Holt RD (1995) When does evolution by natural 
+selection prevent extinction? Evolution 49(1):201–207
+Gomulkiewicz R, Shaw RG (2013) Evolutionary rescue beyond the 
+models. Philos Trans R Soc B 368:20120093
+Gonzalez A, Ronce O, Ferriere R, Hochberg ME (2013) Evolutionary 
+rescue: An emerging focus at the intersection between ecology 
+and evolution. Philos Trans R Soc B 368:20120404
+Halekotte L, Feudel U (2020) Minimal fatal shocks in multistable net-
+works. Sci Rep 10:11783
+Hastings A (2001) Transient dynamics and persistence of ecological 
+systems. Ecological Letters 4:215–220
+48
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+Hastings A (2004) Transients: the key to long-term ecological under-
+standing? Trends Ecol Evol 19(1):39–45
+Hastings A, Abbott KC, Cuddington K, Francis T, Gellner G, Lai YC, 
+Morozov A, Petrovskii S, Scranton K, Zeeman ML (2018) Tran-
+sient phenomena in ecology. Science 361:990
+Henriques GJ, Osmond MM (2020) Cooperation can promote rescue or 
+lead to evolutionary suicide during environmental change. Evolu-
+tion 74(7):1255–1273
+Hillebrand H, Donohue I, Harpole WS, Hodapp D, Kucera M, 
+Lewandowska AM, Merder J, Montoya JM, Freund JA (2020) 
+Thresholds for ecological responses to global change do not 
+emerge from empirical data. Nat Ecol Evol 4(11):1502+
+Horsthemke W, Lefever R (1984) Noise-Induced Transitions: Theory 
+and Applications in Physics, Chemistry, and Biology. Springer, 
+Berlin
+Jezkova T, Wiens JJ (2016) Rates of change in climatic niches in plant 
+and animal populations are much slower than projected climate 
+change. Proceedings of the Royal Society B: Biological Sciences 
+283:1843
+Johnson CN, Balmford A, Brook BW, Buettel JC, Galetti M, Guangchun 
+L, Wilmshurst JM (2017) Biodiversity losses and conservation 
+responses in the Anthropocene. Science 356(6335):270–275
+Kopp M, Matuszewski S (2014) Rapid evolution of quantitative traits: 
+theoretical perspectives. Evol Appl 7(1):169–191
+Kovach-Orr C, Fussmann GF (2013) Evolutionary and plastic res-
+cue in multitrophic model communities. Philos Trans R Soc B 
+368:20120084
+Lande R (1982) A quantitative genetic theory of life history evolution. 
+Ecology 63(3):607–615
+Lavergne S, Mouquet N, Thuiller W, Ronce O (2010) Biodiversity 
+and Climate Change: Integrating Evolutionary and Ecological 
+Responses of Species and Communities. Annu Rev Ecol Evol 
+Syst 41:321–350
+Lawrence D, Fiegna F, Behrends V, Bundy JG, Phillimore AB, Bell 
+T, Barraclough TG (2012) Species interactions alter evolution-
+ary responses to a novel environment. PLoS Biol 10(5)
+Lee JR, Raymond B, Bracegirdle TJ, Chadès I, Fuller RA, Shaw JD, 
+Terauds A (2017) Climate change drives expansion of Antarctic 
+ice-free habitat. Nature 547(7661):49–54
+Maynard Smith J (1976) What determines the rate of evolution? Am 
+Nat 110:331–338
+Mougi A, Iwasa Y (2010) Evolution towards oscillation or stability 
+in a predator-prey system. Proceedings of the Royal Society B: 
+Biological Sciences 277:3163–3171
+Nadeau CP, Urban MC (2019) Eco-evolution on the edge during 
+climate change. Ecography 42(7):1280–1297
+Neijnens FK, Siteur K, van de Koppel J, Rietkerk M (2021) Early 
+Warning Signals for Rate-induced Critical Transitions in Salt 
+Marsh Ecosystems. Ecosystems
+Norberg J, Urban MC, Vellend M, Klausmeier CA, Loeuille N (2012) 
+Eco-evolutionary responses of biodiversity to climate change. 
+Nat Clim Chang 2(10):747–751
+Northfield TD, Ives AR (2013) Coevolution and the Effects of Cli-
+mate Change on Interacting Species. PLoS Biol 11(10)
+Oliver TH, Marshall HH, Morecroft MD, Brereton T, Prudhomme 
+C, Huntingford C (2015) Interacting effects of climate change 
+and habitat fragmentation on drought-sensitive butterflies. Nat 
+Clim Chang 5(10):941–946
+Osmond MM, de Mazancourt C (2013) How competition affects 
+evolutionary rescue. Philos Trans R Soc B 368:20120085
+Osmond MM, Otto SP, Klausmeier CA (2017) When predators help 
+prey adapt and persist in a changing environment. Am Nat 
+190(1):83–98
+Parmesan C (2006) Ecological and Evolutionary Responses to 
+Recent Climate Change. The Annual Review of Ecology, Evo-
+lution and Systematics 37:637–669
+Petkovic N, Colegrave N (2019) Sex increases the probability of 
+evolutionary rescue in the presence of a competitor. J Evol Biol 
+32(11):1252–1261
+Pinek L, Mansour I, Lakovic M, Ryo M, Rillig MC (2020) Rate 
+of environmental change across scales in ecology. Biol Rev 
+95:1798–1811
+Ramsayer J, Kaltz O, Hochberg ME (2013) Evolutionary rescue in 
+populations of Pseudomonas fluorescens across an antibiotic 
+gradient. Evol Appl 6(4):608–616
+Ritchie PD, Clarke JJ, Cox PM, Huntingford C (2021) Overshoot-
+ing tipping point thresholds in a changing climate. Nature 
+592:517–523
+Rosenzweig ML, MacArthur RH (1963) Graphical representation 
+and stability conditions of predator-prey interactions. Am Nat 
+97:895
+Scheffer M, Carpenter S, Foley JA, Folke C, Walker B (2001) Cata-
+strophic shifts in ecosystems. Nature 413:591–596
+Scheffer M, Nes EHV, Holmgren M, Hughes T (2008) Pulse-Driven 
+Loss of Top-Down Control : The Critical-Rate Hypothesis. Eco-
+systems 11:226–237
+Schoener TW, Spiller DA, Losos JB (2001) Predators increase the 
+risk of catastrophic extinction of prey populations. Nature 
+412(6843):183–186
+Selwood K, McGeoch M, MacNally R (2015) The effects of climate 
+change and land-use change on demographic rates and popula-
+tion viability. Biol Rev 90(3):837–853
+Shefferson RP, Mizuta R, Hutchings MJ (2017) Predicting evolution 
+in response to climate change: the example of sprouting proba-
+bility in three dormancy-prone orchid species. R Soc Open Sci 4
+Siteur K, Eppinga MB, Doelman A, Siero E, Rietkerk M (2016) Eco-
+systems off track: rate-induced critical transitions in ecological 
+models. Oikos 125:1689–1699
+Stephens PA, Sutherland WJ (1999) Consequences of the Allee effect 
+for behaviour, ecology and conservation. Trends Ecol Evol 
+14(10):401–405
+Stephens PA, Sutherland WJ, Freckleton RP (1999) What Is the Allee 
+Effect? Oikos 87(1):185–190
+Svensson EI, Connallon T (2019) How frequency-dependent selection 
+affects population fitness, maladaptation and evolutionary rescue. 
+Evol Appl 12(7):1243–1258
+Teyssèdre A, Robert A (2014) Contrasting effects of habitat reduction, 
+conversion and alteration on neutral and non neutral biological 
+communities. Oikos 123(7):857–865
+Trathan PN, García-Borboroglu P, Boersma D, Bost CA, Crawford 
+RJ, Crossin GT, Cuthbert RJ, Dann P, Davis LS, De La Puente S, 
+Ellenberg U, Lynch HJ, Mattern T, Pütz K, Seddon PJ, Trivelpiece 
+W, Wienecke B (2015) Pollution, habitat loss, fishing, and climate 
+change as critical threats to penguins. Conserv Biol 29(1):31–41
+Travis JM (2003) Climate change and habitat destruction: a deadly 
+anthropogenic cocktail. Proceedings of the Royal Society B: B 
+270:467–473
+Uecker H, Otto SP, Hermisson J (2014) Evolutionary rescue in struc-
+tured populations. Am Nat 183(1):E17–E35
+Urban M, Bocedi G, Hendry A, Mihoub JB, Pe’er G, Singer A, Bridle 
+J, Crozier L, De Meester L, Godsoe W, Gonzalez A, Hellmann J, 
+Holt R, Huth A, Johst K, Krug C, Leadley P, Palmer S, Pantel J, 
+Schmitz A, Zollner P, Travis J (2016) Improving the forecast for 
+biodiversity under climate change. Science 353:6304, aad8466
+van de Leemput IA, Hughes TP, van Nes EH, Scheffer M (2016) Multi-
+ple feedbacks and the prevalence of alternate stable states on coral 
+reefs. Coral Reefs 35(3):857–865
+Van der Putten WH, Macel M, Visser ME (2010) Predicting species 
+distribution and abundance responses to climate change: why it 
+is essential to include biotic interactions across trophic levels. 
+Philosophical Transactions of the Royal Society B: Biological 
+Sciences 365(1549):2025–2034
+49
+Theoretical Ecology (2022) 15:29–50
+
+1 3
+van Nes EH, Amaro T, Scheffer M, Duineveld GCA (2007) Possible 
+mechanisms for a marine benthic regime shift in the North Sea. 
+Mar Ecol Prog Ser 330:39–47
+Vander Wal E, Garant D, Festa-Bianchet M, Pelletier F (2013) Evolu-
+tionary rescue in vertebrates: Evidence, applications and uncer-
+tainty. Philosophical Transactions of the Royal Society B: Biologi-
+cal Sciences 368:20120090
+Vanselow A, Wieczorek S, Feudel U (2019) When very slow is too 
+fast - collapse of a predator-prey system. J Theor Biol 479:64–72
+Wernberg T, Bennett S, Babcock RC, Bettignies TD, Cure K, Depczynski 
+M, Dufois F0, Fromont J, Fulton CJ, Hovey RK, Harvey ES, Holmes 
+TH., Kendrick GA, Radford B, Santana-Garcon J, Saunders BJ, Smale 
+DA, Thomsen MS, Tuckett CA, Tuya F (2015) Climate-driven regime 
+shift of a temperate Marine Ecosystem. Science 353, 6295, 169–172
+Wieczorek S, Ashwin P, Luke CM, Cox PM (2011) Excitability in 
+ramped systems: The compost-bomb instability. Proceedings of 
+the Royal Society A: Mathematical, Physical and Engineering 
+Sciences 467(2129):1243–1269
+Williams SE, Shoo LP, Isaac JL, Hoffmann AA, Langham G (2008) 
+Towards an integrated framework for assessing the vulnerability 
+of species to climate change. PLoS Biol 6:12
+Yamamichi M, Klauschies T, Miner BE, van Velzen E (2019) Model-
+ling inducible defences in predator prey interactions: assumptions 
+and dynamical consequences of three distinct approaches. Ecol-
+ogy Letters 22(2):390–404
+Yamamichi M, Miner BE (2015) Indirect evolutionary rescue: Prey 
+adapts, predator avoids extinction. Evol Appl 8(8):787–795
+Yamamichi M, Yoshida T, Sasaki A (2011) Comparing the effects of 
+rapid evolution and phenotypic plasticity on predator-prey dynam-
+ics. Am Nat 178(3):287–304
+Yoshida T, Jones L, Ellner SP, Fussmann G, Hairston N Jr (2003) 
+Rapid evolution drives ecological dynamics in a predator-prey 
+system. Nature 424:303–306
+Publisher’s Note  Springer Nature remains neutral with regard to 
+jurisdictional claims in published maps and institutional affiliations.
+50
+Theoretical Ecology (2022) 15:29–50

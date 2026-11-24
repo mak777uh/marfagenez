@@ -1,0 +1,1413 @@
+Essay
+Adaptation, Plasticity, and Extinction in a Changing
+Environment: Towards a Predictive Theory
+Luis-Miguel Chevin1*, Russell Lande1, Georgina M. Mace2
+1 Division of Biology, Imperial College London, Silwood Park, United Kingdom, 2 Centre for Population Biology, Imperial College London, Silwood Park, United Kingdom
+Summary
+Many species are experiencing sus-
+tained environmental change mainly due
+to human activities. The unusual rate and
+extent of anthropogenic alterations of the
+environment may exceed the capacity of
+developmental, genetic, and demographic
+mechanisms that populations have evolved
+to deal with environmental change. To
+begin to understand the limits to popula-
+tion persistence, we present a simple
+evolutionary model for the critical rate of
+environmental change beyond which a
+population must decline and go extinct.
+We use this model to highlight the major
+determinants
+of
+extinction
+risk
+in
+a
+changing environment, and identify re-
+search needs for improved predictions
+based on projected changes in environ-
+mental variables. Two key parameters
+relating the environment to population
+biology have not yet received sufficient
+attention. Phenotypic plasticity, the direct
+influence of environment on the develop-
+ment of individual phenotypes, is increas-
+ingly considered an important component
+of phenotypic change in the wild and
+should be incorporated in models of
+population
+persistence.
+Environmental
+sensitivity of selection, the change in the
+optimum phenotype with the environ-
+ment, still crucially needs empirical assess-
+ment. We use environmental tolerance
+curves and other examples of ecological
+and evolutionary responses to climate
+change to illustrate how these mechanistic
+approaches can be developed for predic-
+tive purposes.
+Introduction
+Global climate change, over-exploita-
+tion, and habitat alteration are causing
+sustained and consistent pressures on wild
+populations [1]. Because of habitat frag-
+mentation, many species will not be able
+to track their preferred environment in
+space, and must therefore adapt in situ to
+avoid extinction. What determines the
+maximum rate of environmental change
+that populations can cope with? Under-
+standing this will inform both models and
+management plans about where critical
+thresholds lie or what might affect the
+potential resilience of particular species or
+ecological communities.
+Two main approaches exist for studying
+the impact of environmental change on
+species persistence—niche modelling and
+mechanistic population modelling. On the
+one hand, ‘‘climate envelope models’’ (or
+‘‘niche models’’) are correlative and fo-
+cused on the environment. Their concep-
+tual background traces to Hutchinson’s
+multidimensional representation of the
+niche [2]. They use measurements of
+environmental variables and records of
+species presence and absence to infer
+abiotic correlates of the realized niche of
+a species. By projecting this niche on a
+map with environmental data, the spatial
+locations that satisfy the basic require-
+ments of the species are identified. Niche
+models have been combined with climate
+projections to predict range shifts and
+extinction
+rates
+[3].
+Aside
+from
+the
+methodological caveats of this approach
+(changing covariance of environmental
+variables [4], population demography not
+in equilibrium with changing climate [5],
+spatial scale of the analysis [6,7], and
+source-sink dynamics allowing individuals
+to exist outside their niche [8]), its major
+drawback is that it does not account for
+the biological processes underlying adap-
+tation of a species to its environment. It
+cannot identify or incorporate the biolog-
+ical differences among species that deter-
+mine whether or not they can persist in
+situ. While a new generation of ‘‘process-
+based’’ (or ‘‘mechanistic’’) niche models is
+being developed to overcome these limi-
+tations [9–11], they currently rely on
+simplified
+demographic
+processes
+and
+generally overlook evolution in response
+to climate change (but see [12]). Niche
+modelling is thus currently more suited to
+understand changes in the distribution of
+suitable environments for a species at a
+continental scale than to predict popula-
+tion persistence or guide conservation
+plans.
+On the other hand, mechanistic popu-
+lation modelling focuses on the biological
+processes that underlie population persis-
+tence. By combining evolutionary genetics
+and
+demography,
+the
+conditions
+that
+allow a population to maintain a positive
+intrinsic
+growth
+rate
+in
+the
+face
+of
+environmental change can be predicted
+theoretically [13,14] and studied empiri-
+cally [15]. The main focus of mechanistic
+population studies is not environmental
+variables, but ecologically important phe-
+notypic traits (morphology, physiology,
+phenology, or behaviour) that affect pop-
+ulation growth through their influence on
+life history. In contrast to niche modelling,
+this
+approach
+allows
+identification
+of
+Essays articulate a specific perspective on a topic of
+broad interest to scientists.
+Citation: Chevin L-M, Lande R, Mace GM (2010) Adaptation, Plasticity, and Extinction in a Changing
+Environment: Towards a Predictive Theory. PLoS Biol 8(4): e1000357. doi:10.1371/journal.pbio.1000357
+Academic Editor: Joel G. Kingsolver, The University of North Carolina, United States of America
+Published April 27, 2010
+Copyright:  2010 Chevin et al. This is an open-access article distributed under the terms of the Creative
+Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium,
+provided the original author and source are credited.
+Funding: L-MC is supported by a Newton International Fellowship (http://www.newtonfellowships.org/the-
+fellowships.html) and RL by a Research Professorship (http://royalsociety.org/Research-Professorships/), both
+from the Royal Society of London. GM acknowledges support from Natural Environment Research Council
+(http://www.nerc.ac.uk/funding/) and the Grantham Institute for Climate Change (http://www3.imperial.ac.uk/
+climatechange), Imperial College London. The funders had no role in study design, data collection and analysis,
+decision to publish, or preparation of the manuscript.
+Competing Interests: The authors have declared that no competing interests exist.
+* E-mail: l.chevin@imperial.ac.uk
+PLoS Biology | www.plosbiology.org
+1
+April 2010 | Volume 8 | Issue 4 | e1000357
+
+factors that potentially limit population
+persistence in a changing environment.
+However, unless environmental variables
+are included, as well as phenotypic traits,
+this approach cannot be used to project
+the fate of populations.
+Here, we propose a model of evolution
+and population growth to address how
+demographic and evolutionary constraints
+limit the persistence of a geographically
+isolated population under sustained envi-
+ronmental change. This model generaliz-
+es an earlier one by Lynch and Lande
+[13] by including phenotypic plasticity
+(see Box 1–Glossary) and an explicit
+environmental variable such as tempera-
+ture. We use it to highlight the determi-
+nants of extinction risk and to identify
+research needs for a more predictive
+approach to population persistence in a
+changing environment. Research directed
+towards key determinants of extinction
+risk that are often overlooked in current
+empirical work may allow population
+biologists to take advantage of abundant
+environmental data in order to begin
+developing predictions about population
+persistence under alternative scenarios of
+climate change [16], which can help to
+guide conservation policies and manage-
+ment plans.
+Extinction Risk under Sustained
+Environmental Change
+There are three mechanisms by which a
+population can persist when its local
+environment changes: dispersal to track
+its preferred environment in space, genetic
+evolution to the new local conditions, or
+phenotypic plasticity [17,18]. Using the
+model in Box 2 and Text S1, we give an
+overview of the determinants of extinction
+risk for an isolated population with a
+restricted geographic range under sus-
+tained environmental change, assuming
+dispersal is not possible. We consider cases
+where all other possible factors influencing
+extinction risk (demographic and environ-
+mental stochasticity, inbreeding depres-
+sion, genetic drift [19]) can be ignored
+relative to the impact of sustained envi-
+ronmental change. The determinants of
+extinction risk then belong to three main
+classes.
+(1) Demographic properties of the population.
+These are components of the population
+growth rate that are not affected by
+adaptation to the changing environment.
+They include the generation time, T, and
+the maximum intrinsic rate of increase rmax
+(per unit time) of a population with
+optimum mean phenotype. Even if these
+parameters are not affected by the envi-
+ronmental change, they do constrain the
+rate of adaptation. Populations with longer
+generations must evolve faster per gener-
+ation to adapt to a given rate of environ-
+mental change, and populations with a
+low rmax will reach extinction before they
+can adapt to rapid environmental change
+[13–15,20]. The specific influence of each
+of these variables on extinction risk across
+taxa also depends on their covariation.
+Broad-scale studies of life-history traits
+indicate that the per-generation intrinsic
+rate of increase is of the same order of
+magnitude across several taxa, whereas
+rmax per unit time is roughly inversely
+proportional
+to
+the
+generation
+time
+[21–23]. As a consequence, the critical
+rate of environmental change should be
+generally lower for species with longer
+generation times, which will be at greater
+extinction risk.
+(2) Evolutionary potential. This measures
+how fast genetic evolution occurs for a
+given deviation of the mean phenotype
+from
+the
+optimum.
+The
+strength
+of
+stabilizing selection c measures how the
+mean fitness decreases with the squared
+deviation from the optimum and also
+determines the strength of directional
+selection for a given deviation from the
+optimum. Stronger stabilizing selection
+(larger
+c),
+although
+causing
+increased
+mortality,
+allows
+faster
+environmental
+change to be tolerated by causing faster
+evolution [13]. The genetic variance, the
+product of phenotypic variance s2 and
+heritability
+h2,
+determines
+how
+much
+genetic evolution is caused by a given
+strength of selection. Higher genetic var-
+iance allows persistence under stronger
+environmental change, because it allows
+the population to track its phenotypic
+optimum more closely. Although we focus
+on a single trait for simplicity, this may
+actually
+be
+a
+linear
+combination
+of
+measurable traits. In this case, the genetic
+variances of the original traits and their
+genetic covariances affect the magnitude
+Box 1. Glossary
+critical
+rate
+of
+environmental
+change:
+maximum
+rate
+of
+sustained
+environmental change that allows long-term persistence of a population,
+denoted as gc.
+environmental sensitivity of selection: change in the optimum phenotype
+with the environment. For a linear relationship, it is measured by the slope B.
+generation time: the average age of parents of a cohort of newborn individuals,
+denoted as T. With discrete non-overlapping generations, T is the mean time
+between successive reproductive episodes in the population.
+genetic variance: the genetic component of phenotypic variance s2, or more
+precisely, ‘‘additive genetic variance’’ h2s2, the statistically additive component of
+phenotypic variance determining the resemblance between offspring and
+parents, and the genetic response to selection.
+heritability: the proportion of phenotypic variance in a trait due to additive
+genetic effects, denoted as h2.
+intrinsic rate of increase: population growth rate in the absence of intra- or
+inter-specific competition. For a perfectly adapted population with mean
+phenotype at the optimum, the intrinsic rate of increase is denoted as rmax.
+norm of reaction: the expected phenotype of a given genotype as a function of
+the environment.
+phenotypic plasticity: direct influence of the environment on individual
+phenotypes through developmental mechanisms. For a linear norm of reaction
+plasticity is measured by the slope b.
+quantitative
+trait:
+continuously
+distributed
+phenotypic
+character,
+with
+phenotypic variance in a population determined by multiple polymorphic genes
+and environmental effects.
+stabilizing selection: natural selection such that individual fitness decreases
+with increasing phenotypic deviation from an optimum. Its strength is measured
+by c.
+tolerance curve: fitness or performance as a function of the environment.
+PLoS Biology | www.plosbiology.org
+2
+April 2010 | Volume 8 | Issue 4 | e1000357
+
+of the genetic response to selection in any
+phenotypic direction [24,25].
+(3) Biological impact of the environment. This
+links the environment to the biology of
+individuals
+in
+the
+species.
+Phenotypic
+plasticity describes the direct impact of
+the environment on the development of
+individual phenotypes. It may involve
+morphological, physiological or behav-
+ioural responses, which can occur on
+different
+time
+scales.
+For
+continuous
+environmental variables, plasticity usually
+is modelled using reaction norms, where
+the phenotype of a given genotype is
+plotted as a function of the environment
+[26]. We focus on linear reaction norms
+for simplicity, although reaction norms
+can be non-linear [27,28] (see below).
+With linear reaction norms, the slope b
+quantifies the degree of plasticity. The
+environmental sensitivity of selection, B,
+measures how the optimum phenotype
+changes with the environment, which for
+simplicity we also assume is a linear
+relationship. With no cost of plasticity,
+populations with b closer to B are likely to
+persist under higher rates of environmen-
+tal change.
+A Research Program
+This model can be combined with
+environmental projections to ask whether
+future rates of environmental change will
+threaten
+the
+persistence
+of
+particular
+populations or species. Application of the
+model
+requires
+multiple
+steps,
+which
+previously have been undertaken in isola-
+tion or in combination, although all have
+rarely been completed together.
+Identify Ecologically Important Traits
+Affecting Population Growth
+Ecological investigation in the field is
+needed to identify traits that potentially
+determine adaptation to a specific envi-
+ronment. For instance, for ectotherms
+such
+as
+insects
+and
+reptiles,
+thermal
+adaptation may occur not only through
+physiological traits governing energy me-
+tabolism, but also through behavioural
+and
+morphological
+traits
+involved
+in
+movement between shaded and sunny
+patches [29]. For many bird species,
+adaptation to global warming involves
+adjusting their breeding date so that
+reproduction coincides with a peak in
+prey density [30].
+The strength (and direction) of natural
+selection c has been estimated in many
+plant and animal taxa by regressing the
+fitness of individuals on their phenotypes
+[31,32]. Most of these studies focus on
+relative fitness, which determines the evo-
+lutionary dynamics. However, absolute
+fitness and rmax are needed to understand
+how phenotypic traits influence population
+dynamics. Analysis of natural selection has
+been extended to age- or stage-structured
+populations, allowing identification of parts
+of the life cycle where phenotypes most
+strongly influence demography [33–36].
+Box 2. A Model of Phenotypic Evolution and Persistence under
+Sustained Environmental Change
+We assume that a continuous environmental parameter e (e.g., temperature or
+precipitation) changes at a constant rate g in time. Adaptation to this changing
+environment is mediated by a quantitative trait z that determines fitness. Selection
+on multiple correlated traits also can be incorporated [20], but for simplicity we focus
+on single trait. Population growth is assumed to be density-independent, which can
+be a good approximation even with density dependence, if the population remains
+well below the carrying capacity because of maladaptation. In contrast to the original
+model and its recent extensions [13,20], we include phenotypic plasticity in the trait z,
+such that a given change in the environment directly modifies the phenotype of each
+individual by a constant amount. The rate of environmental change is expressed per
+unit time (e.g., uC per year) instead of per generation.
+Under
+sustained
+environmental
+change,
+assuming
+constant
+genetic
+and
+phenotypic variance and strength of stabilizing selection, the rate of phenotypic
+evolution eventually reaches a steady state where the mean phenotype lags a
+constant distance behind the changing optimum phenotype (Text S1). If this
+distance is such that the population has a negative growth rate, extinction occurs.
+The maximum rate of environmental change that allows long-term persistence of
+the population (or critical rate of environmental change) is
+gc~
+ﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+2rmaxc
+T
+r
+h2s2
+B{b
+j
+j :
+ð1Þ
+The original model [13] revealed how the phenotypic variance s2 and heritability
+h2 of the trait, the strength of stabilizing selection c, and the maximum intrinsic
+rate of population growth rmax determined the critical rate of environmental
+change in the absence of phenotypic plasticity.
+Three other parameters included here emphasize important factors affecting
+persistence
+when
+the
+directional
+environmental
+change
+is
+expressed
+in
+environmental units per unit time. First is the generation time T. The remaining
+two parameters are the environmental sensitivity of selection B, which measures
+how changes in the environment influence the optimum phenotype, and
+phenotypic plasticity b, which quantifies the direct impact of the environment on
+development of individual phenotypes. The critical rate of environmental change
+for long-term persistence increases with decreasing absolute difference between
+the environmental sensitivity of selection and phenotypic plasticity. Although
+plasticity causes weaker natural selection on the trait and smaller genetic
+response to selection, this is more than compensated by the plastic phenotypic
+change that brings the mean phenotype closer to the optimum (Text S1).
+Plasticity may also entail a fitness cost [59]. The cost of plasticity decreases rmax,
+which can then be formulated as
+rmax~ r0{b2
+2v2
+b
+
+
+T
+ð2Þ
+where r0 is the per-generation growth rate of a population with optimum
+phenotype and no plasticity, and 1
+
+v2
+b quantifies the magnitude of the cost for a
+given plasticity b. By decreasing rmax, the cost of plasticity decreases the critical
+rate of environmental change, thus opposing the beneficial effect of plasticity on
+gc. The overall effect of phenotypic plasticity on the critical rate of environmental
+change is shown in Figure 2 for several values of the cost of plasticity. When the
+cost of plasticity is above a threshold (v2
+bvv2
+lim), there is an intermediate value of
+plasticity that maximizes the critical rate of environmental change.
+PLoS Biology | www.plosbiology.org
+3
+April 2010 | Volume 8 | Issue 4 | e1000357
+
+Estimate Genetic Variance and
+Plasticity
+The question of whether genetic varia-
+tion (h2s2) along the direction of natural
+selection limits the rate of evolution has
+motivated many studies. For instance, in
+the North American prairie plant Chamae-
+crista fasciculate, small genetic variance for a
+linear combination of traits has been
+predicted to limit the response to selection
+caused by climate change [25]. Similarly,
+it was suggested that lack of genetic
+variation for desiccation and cold resis-
+tance restricts the geographic range of
+several Drosophila species [37] and would
+limit the response to projected climate
+change in one of them [38]. Changes in
+the genetic and phenotypic variation with
+the environment may also be important.
+For example, the response to selection on
+body weight in wild Soay sheep is reduced
+because of lower heritability in environ-
+ments where selection is stronger [39].
+The importance of phenotypic plasticity
+for rapid evolution in response to direc-
+tional environmental change has only
+recently been fully appreciated. Many
+authors have observed adaptive phenotyp-
+ic evolution without being able to firmly
+attribute it to genetic change (reviewed in
+[40]), but relatively
+few studies have
+progressed from considering plasticity as
+a nuisance parameter to measuring norms
+of reaction, and their slopes b, in the
+context of climate change [41]. This was
+done recently for reproductive timing in
+mammals [42] and birds [43,44].
+Measure the Environmental
+Sensitivity of Selection
+Few investigators have measured the
+environmental sensitivity of phenotypic
+selection as described by parameter B in
+Box 2. The most relevant studies have
+measured selection in a small number of
+discrete environments. This approach has
+been applied to birds to describe the
+influence of changing seasonality on selec-
+tion on breeding date [45], and in plants
+to examine the impact of drought on
+selection on physiological traits [46,47]. It
+has also been combined with experimental
+manipulation of the environment, mainly
+in plants, using either abiotic [48] or biotic
+factors,
+such
+as
+crowding
+[49,50]
+or
+natural enemies [51,52]. Other studies
+have employed ecological criteria to iden-
+tify changes in the optimum phenotype
+without actually measuring selection. For
+instance, the optimum egg-laying date for
+birds can be deduced from the temporal
+peak in food availability determined by the
+population dynamics of insects on which
+they feed [53].
+What emerges from this brief outline is
+that two key areas of study are lacking: the
+quantification of the environmental sensi-
+tivity of selection across continuous envi-
+ronments and the detailed investigation of
+phenotypic plasticity, including its costs
+and limits under sustained environmental
+change.
+Further
+work,
+such
+as
+that
+outlined below, would begin to make
+predictive approaches possible.
+Phenotypic Selection along an
+Environmental Gradient
+A relationship between an environmen-
+tal variable and a measure of selection,
+either observed in the wild or derived from
+an experiment, has been argued to be the
+strongest evidence for the cause of natural
+selection [54]. Quantification of this rela-
+tionship is required to predict population
+evolution and persistence in a changing
+environment. Most of the studies high-
+lighted above compared selective pressures
+among discrete environmental states, often
+interpreted
+as
+stresses
+(but
+see
+[39]).
+environment 
+trait
+environment 
+fitness
+Reaction 
+norms
+Adaptive 
+landscape
+Tolerance 
+curves
+fitness
+environment 
+trait
+Figure 1. Tolerance curves and phenotypic plasticity. First row: norms of reaction for three genotypes (colored lines); second row: generalized
+adaptive landscape depicting fitness as a function of the phenotype and the environment, with the reaction norms projected up onto the fitness
+surface from the lower plane; third row: environmental tolerance curves representing slices through the adaptive landscape along the lines defined
+by the reaction norms. The three columns represent alternative scenarios described in the text. In the lower left panel, the dashed green and dashed
+red tolerance curves include costs of plasticity.
+doi:10.1371/journal.pbio.1000357.g001
+PLoS Biology | www.plosbiology.org
+4
+April 2010 | Volume 8 | Issue 4 | e1000357
+
+Current global change, however, mainly
+involves continuous environmental vari-
+ables for which precise time series and
+projections are available. The environ-
+mental
+sensitivity
+of
+selection
+should
+therefore
+be
+estimated
+by
+measuring
+phenotypic selection along a continuous
+environmental gradient. Apart from mea-
+suring a fundamental parameter of the
+model, this would also allow its basic
+assumptions to be tested. In particular, our
+model (like previous ones) assumes that
+environmental change primarily alters the
+optimum phenotype with little impact on
+the width of the fitness function (Figure 1),
+but this assumption has hardly ever been
+tested empirically.
+Measurement of selection in several
+environments may be difficult to carry
+out in the field because of lack of con-
+trol over environmental parameters. For
+some species such measurements could be
+performed in controlled laboratory con-
+ditions, provided the relationship between
+fitness in the laboratory and in the wild
+can be established. Alternatively, perfor-
+mance can be measured in the laboratory
+and
+the
+relationship
+between
+perfor-
+mance and fitness assessed in the wild
+[55].
+Studies of thermal tolerance curves in
+ectotherms commonly measure fitness in
+continuous environments. However, these
+studies generally relate fitness (or perfor-
+mance)
+directly
+to
+the
+environment,
+which
+makes
+it
+difficult
+to
+produce
+evolutionary predictions and to test them
+experimentally [56]. Modelling tolerance
+curves with an underlying phenotypic
+trait subject to natural selection and
+phenotypic plasticity may prove more
+fruitful, since it should allow predictions
+about the dynamics of tolerance curve
+evolution (Box 3).
+Costs and Limits of Plasticity in
+a Changing Environment
+Plasticity in Extreme Environments
+The model in Box 2 assumes a linear
+reaction norm, implying that a given
+amount of environmental change always
+produces
+the same plastic phenotypic
+change. Plasticity is generally studied in
+the context of environments that vary in
+space or fluctuate in time with a stationary
+distribution, but little is known about
+plastic responses outside the usual range
+of variation. Extreme environments may
+disrupt the plastic response, such that the
+reaction norm may take any shape in
+environments that were rarely encoun-
+tered before [57]. This argument is based
+on the theory of the evolution of reaction
+norm
+in
+heterogeneous
+environments,
+assuming little genetic constraint on reac-
+tion norm shape. However, reaction norm
+shapes are likely to be genetically con-
+strained. For many traits, plastic pheno-
+typic responses should reach a physiolog-
+ical
+limit
+and
+‘‘saturate’’
+in
+extreme
+environments [58]. For instance, body size
+or metabolic rate obviously cannot in-
+crease
+or
+decrease
+indefinitely
+under
+sustained environmental change. For oth-
+er traits, disruption of homeostasis may
+cause the plastic response to be amplified
+in extreme environments. Both of these
+mechanisms could generate skewed toler-
+ance curves like those observed for re-
+sponse to temperature, even when pheno-
+typic selection is symmetric (Box 3).
+Costs of Plasticity and the Generalist
+versus Specialist Trade-Off
+Phenotypic plasticity may entail several
+types of fitness costs to the organism
+independent of the expressed phenotype
+[59]. Here, we shall only distinguish two
+kinds of costs of plasticity: constitutive and
+induced. A constitutive cost reduces indi-
+vidual
+fitness depending only on the
+degree of plasticity. This includes the cost
+of maintaining physiological machinery
+that allows phenotypic plasticity or acquir-
+ing information about the environment
+[59]. The model in Box 2 focuses on such
+costs. In contrast an induced cost is a
+reduction in fitness that depends on the
+amount of plastic phenotypic change. This
+kind of cost is physiological and can be
+Box 3. Tolerance Curves and Phenotypic Plasticity
+Environmental tolerance curves relating fitness (or performance) to abiotic
+environmental variables such as temperature [56] or salinity [77] have been
+studied for a wide variety of organisms, ranging from reptiles and amphibians to
+insects and plants [56]. They are generally characterized by a few descriptive
+variables, such as critical environments (where fitness or performance vanishes),
+optimum environment (where fitness is maximized), and skewness. Previous
+models investigated the benefits of broad versus narrow tolerance curves under
+several forms of environmental change [61,62,78], but they failed to produce
+predictions about the dynamics of and constrains on tolerance curve evolution.
+Recently there have been calls for new theoretical developments with clearer
+empirically testable outcomes [56].
+We propose that incorporating phenotypically plastic traits, which are under
+stabilizing selection through their influence on lifetime fitness [33,34,79], can
+clarify how tolerance curves emerge and evolve (Figure 1). With linear reaction
+norms and constant strength of stabilizing selection across environments (ridge
+with constant width in the adaptive landscape), the reaction norm slope
+determines tolerance breadth, while the reaction norm intercept (or elevation)
+determines the optimum environment (first column in Figure 1). With genetic
+variation in the slope of reaction norms, the tolerance breadth may evolve as a
+consequence of evolving phenotypic plasticity in the underlying trait. Including a
+cost of plasticity, where fitness decreases with reaction norm slope regardless of
+the trait value [80,81], produces a generalist–specialist trade-off between
+tolerance breadth and maximum fitness, corresponding to the intuitive idea that
+a ‘‘Jack-of-all-trades is a master of none.’’ This is illustrated in the bottom left
+panel of Figure 1—with cost an increasing function of plasticity (dashed lines), the
+red dashed tolerance curve has a lower maximum fitness than the green dashed
+curve, because the former reaction norm has greater plasticity. This approach can
+be used to make testable predictions in specific cases based on measures of the
+variability, inheritance, and plasticity of phenotypic traits.
+Thermal tolerance curves generally are strongly skewed, with fitness decreasing
+steeply as temperature approaches the critical thermal maximum [56]. This could
+be caused by non-linear reaction norms for underlying traits, as illustrated by the
+second column in Figure 1. Plastic phenotypic responses that saturate (yellow
+genotype) or increase exponentially (green genotype) in extreme environments
+could both induce skewed tolerance curves. Alternatively, skewed tolerance
+curves could be caused by the strength of stabilizing selection (width of the
+fitness ridge) changing with the environment (third column in Figure 1). Finally,
+the fitness function acting on the trait may itself be skewed in all environments,
+the height of the fitness ridge may depend on the environment, or the optimum
+phenotype may change non-linearly with the environment (not shown). These
+five possible causes of skewness have different implications for the evolution of
+thermal tolerance in a changing environment, and need to be tested empirically.
+PLoS Biology | www.plosbiology.org
+5
+April 2010 | Volume 8 | Issue 4 | e1000357
+
+understood in terms of constraints on
+energy allocation. It applies mainly to
+labile traits that may change repeatedly
+during the lifetime of an individual, such
+as breeding date for birds [60].
+In the literature on tolerance curves, the
+cost of plasticity is generally expressed as a
+trade-off between tolerance breadth and
+fitness
+in
+the
+optimum
+environment,
+corresponding to the intuitive idea that
+the
+‘‘Jack-of-all-trades
+is
+a
+master
+of
+none.’’ This has been modelled [61,62],
+but the empirical evidence is still contro-
+versial
+[56,63]
+and
+based
+mainly
+on
+comparative data among taxa rather than
+on within-species variation (but see [64]).
+We propose that this trade-off may be a
+consequence of the cost of plasticity for an
+underlying
+phenotypic
+trait
+(Box
+3,
+Figure 1).
+In the model of Box 2 and Figure 2, we
+show how a constitutive cost of plasticity
+can limit the critical rate of environmental
+change for population persistence. An
+induced cost would yield a similar result
+in
+this
+model
+since
+the
+environment
+changes at a constant rate. The cost of
+plasticity may thus limit population per-
+sistence in a changing environment, yet
+little is known about its importance in
+natural
+populations.
+A
+recent
+review
+showed that such costs may be widespread
+but weak [65]. Further research is needed
+to measure costs of plasticity for organisms
+with
+long
+generations
+(such
+as
+large
+mammals and trees) or with life cycles
+that depend on seasonal timing (e.g.,
+interaction of temperature and photoperi-
+od [66]), which rely most on plasticity to
+persist in a rapidly changing environment.
+Limitations of the Model
+Our
+model
+includes
+a
+number
+of
+simplifying assumptions. We assume a
+constant shape of the fitness function
+across environments, allowing only the
+optimum phenotype to change with the
+environment. However, the strength of
+stabilizing selection around the optimum
+phenotype c may depend on the environ-
+ment (Figure 1, third column, second row).
+Furthermore the maximum fitness rmax
+may generally be lower in more extreme
+environments
+because
+of
+physiological
+constraints,
+such
+that
+the
+ridge
+in
+Figure 1 would have an intermediate
+maximum. This was shown to occur in a
+recent
+comparative
+study
+of
+thermal
+tolerance curves among several insect
+taxa, where the maximum fitness was
+lower for species that had their optimum
+at
+a
+lower
+temperature
+[67].
+Other
+demographic parameters including the
+generation time T may change with the
+environment. Genotype 6 environment
+interaction (or genetic variance in plastic-
+ity) can cause the genetic variance (h2s2) to
+depend
+on
+the
+environment
+[68–71].
+Although these mechanisms are not in-
+cluded in our simple model, they all can be
+analyzed theoretically and studied empir-
+ically, and should be included where they
+are suspected to be important.
+Plasticity itself may evolve if it varies
+genetically, and new environments can
+cause directional selection on plasticity
+[72,73]. However, more information is
+needed about plasticity and its inheritance
+in extreme environments before the evo-
+lution of plasticity can be included in the
+analysis of persistence under sustained
+environmental change.
+Finally, we considered a population that
+cannot disperse nor receive migrants from
+other populations experiencing different
+environments. We focused on this situa-
+tion
+because
+it
+is
+one
+that
+is
+most
+commonly overlooked in niche modelling
+studies. Our model thus applies best to
+species with habitats restricted by dispersal
+barriers or species which disperse slowly
+relative to the rate of environmental
+change [74]. At the other extreme, a
+population may be able to persist by
+following its preferred environment in
+space without any evolution, as assumed
+in niche modelling, but this is very unlikely
+for species occupying fragmented habitats.
+For populations that can both disperse and
+evolve in response to a changing environ-
+ment, gene flow among populations with
+different environments may limit local
+adaptation and restrict the geographic
+range of the population or even cause
+extinction [74,75].
+Conclusion
+Our aim was to describe an approach
+based on evolutionary and demographic
+mechanisms that can be used to make
+predictions on population persistence in a
+changing environment and to highlight
+the most important variables to measure.
+While this approach is obviously more
+costly and time-consuming than niche
+modelling, its results are also likely to be
+more useful for specific purposes because it
+explicitly incorporates the factors that limit
+population
+response
+to
+environmental
+change.
+The feasibility of such a mechanistic
+approach has been demonstrated by a few
+recent studies. Deutsch et al. [76] used
+thermal tolerance curves to predict the
+fitness consequence of climate change for
+many species of terrestrial insects across
+latitudes, but without explicitly consider-
+ing phenotypic plasticity or genetic evolu-
+tion.
+Kearney
+et
+al.
+[12]
+combined
+biophysical models of energy transfers
+with
+measures
+of
+heritability
+of
+egg
+desiccation to predict how climate change
+Figure 2. Critical rate of environmental change with costly phenotypic plasticity. The
+maximum rate of environmental change allowing long-term persistence of a population, gc, is
+plotted against plasticity b, for several values of the cost of plasticity. For a given plasticity b, the
+cost increases with decreasing vb. For each vb, rates of environmental change higher than the
+corresponding line cause population extinction. Parameters: rmax = 0.140, T = 1, c = 1/51, B = 2,
+s2 = 1, and h2 = 0.5.
+doi:10.1371/journal.pbio.1000357.g002
+PLoS Biology | www.plosbiology.org
+6
+April 2010 | Volume 8 | Issue 4 | e1000357
+
+would affect the distribution of the mos-
+quito
+Aedes
+aegiptii
+in
+Australia.
+Egg
+desiccation was treated as a threshold
+trait, but the possibility of phenotypic
+plasticity or evolution of the threshold
+was not considered. These encouraging
+efforts call for more empirical studies
+where genetic evolution and phenotypic
+plasticity are combined with demography
+to make predictions about population
+persistence in a changing environment.
+The simple approach we have outlined is a
+necessary step towards a more specific and
+comprehensive understanding of the influ-
+ence of environmental change on popula-
+tion extinction.
+Supporting Information
+Text S1
+A model of plasticity, evo-
+lution, and extinction in a changing
+environment.
+Found
+at:
+doi:10.1371/journal.pbio.
+1000357.s001 (0.48 MB PDF)
+Acknowledgments
+We thank A.P. Hendry and M.A. Olalla-
+Tarraga for discussions.
+References
+1. Peters RL, Lovejoy TE (1994) Global warming
+and biological diversity. New HavenCT: Yale
+University Press.
+2. Hutchinson G (1957) Concluding remarks. Cold
+Springs Harbor Symp Quant Biol 22: 415–427.
+3. Thomas
+CD,
+Cameron
+A,
+Green
+RE,
+Bakkenes M, Beaumont LJ, et al. (2004) Extinc-
+tion risk from climate change. Nature 427:
+145–148.
+4. Jackson S, Betancourt J, Booth R, Gray S (2009)
+Ecology and the ratchet of events: climate
+variability, niche dimensions, and species distri-
+butions. Proc Natl Acad Sci U S A 106:
+19685–19692.
+5. Araujo M, Pearson R (2005) Equilibrium of
+species’ distributions with climate. Ecography
+28: 693–695.
+6. Guisan A, Thuiller W (2005) Predicting species
+distribution: offering more than simple habitat
+models. Ecol Lett 8: 993–1009.
+7. Randin CF, Engler R, Normand S, Zappa M,
+Zimmermann NE, et al. (2009) Climate change
+and plant distribution: local models predict high-
+elevation persistence. Glob Change Biol 15:
+1557–1569.
+8. Pulliam HR (2000) On the relationship between
+niche and distribution. Ecology Letters 3:
+349–361.
+9. Crozier L, Dwyer G (2006) Combining popula-
+tion-dynamic and ecophysiological models to
+predict climate-induced insect range shifts. Am
+Nat 167: 853–866.
+10. Kearney M, Porter W (2009) Mechanistic niche
+modelling: combining physiological and spatial
+data to predict species’ ranges. Ecol Lett 12:
+334–350.
+11. Morin X, Viner D, Chuine I (2008) Tree species
+range shifts at a continental scale: new predictive
+insights from a process-based model. J Ecol 96:
+784–794.
+12. Kearney M, Porter WP, Williams C, Ritchie S,
+Hoffmann AA (2009) Integrating biophysical
+models and evolutionary theory to predict
+climatic impacts on species’ ranges: the dengue
+mosquito Aedes aegypti in Australia. Funct Ecol 23:
+528–538.
+13. Lynch M, Lande R (1993) Evolution and
+extinction in response to environmental change.
+In: Kareiva P, Kingsolver J, Huey R, eds. Biotic
+interactions and global change. Sunderland, MA:
+Sinauer. pp 234–250.
+14. Burger R, Lynch M (1995) Evolution and
+extinction in a changing environment - a
+quantitative-genetic analysis. Evolution 49:
+151–163.
+15. Willi Y, Hoffmann AA (2009) Demographic
+factors and genetic variation influence population
+persistence under environmental change. J Evol
+Biol 22: 124–133.
+16. Solomon S, Qin D, Manning M, Chen Z,
+Marquis M, et al. (2008) Climate change 2007:
+the physical science basis. Cambridge, UK:
+Cambridge University Press.
+17. Davis MB, Shaw RG, Etterson JR (2005)
+Evolutionary responses to changing climate.
+Ecology 86: 1704–1714.
+18. Jump A, Penuelas J (2005) Running to stand still:
+adaptation and the response of plants to rapid
+climate change. Ecol Lett 8: 1010–1020.
+19. Lande R (1988) Genetics and demography in
+biological conservation. Science 241: 1455–1460.
+20. Gomulkiewicz R, Houle D (2009) Demographic
+and genetic constraints on evolution. Am Nat
+174: E218–E229.
+21. Blueweiss L, Fox H, Kudzma V, Nakashima D,
+Peters R, et al. (1978) Relationships between body
+size and some life history parameters. Oecologia
+37: 257–272.
+22. Charnov E (1993) Life history invariants: some
+explorations of symmetry in evolutionary ecology.
+Oxford, UK: Oxford University Press.
+23. Fenchel T (1974) Intrinsic rate of natural
+increase: the relationship with body size. Oeco-
+logia 14: 317–326.
+24. Hansen TF, Houle D (2008) Measuring and
+comparing evolvability and constraint in multi-
+variate characters. J Evol Biol 21: 1201–1219.
+25. Etterson JR, Shaw RG (2001) Constraint to
+adaptive evolution in response to global warming.
+Science 294: 151–154.
+26. Scheiner S (1993) Genetics and evolution of
+phenotypic plasticity. Annu Rev Ecol Syst 24:
+35–68.
+27. Gomulkiewicz R, Kirkpatrick M (1992) Quanti-
+tative genetics and the evolution of reaction
+norms. Evolution 46: 390–411.
+28. Kingsolver JG, Ragland GJ, Shlichta JG (2004)
+Quantitative genetics of continuous reaction
+norms: thermal sensitivity of caterpillar growth
+rates. Evolution 58: 1521–1529.
+29. Kearney M, Shine R, Porter WP (2009) The
+potential for behavioral thermoregulation to
+buffer ‘‘cold-blooded’’ animals against climate
+warming. Proc Natl Acad Sci U S A 106:
+3835–3840.
+30. Visser ME (2008) Keeping up with a warming
+world; assessing the rate of adaptation to climate
+change. Proc R Soc Lond B Biol Sci 275:
+649–659.
+31. Lande R, Arnold SJ (1983) The measurement of
+selection on correlated characters. Evolution 37:
+1210–1226.
+32. Kingsolver JG, Hoekstra HE, Hoekstra JM,
+Berrigan D, Vignieri SN, et al. (2001) The
+strength of phenotypic selection in natural
+populations. Am Nat 157: 245–261.
+33. Lande R (1982) A quantitative genetic theory of
+life-history evolution. Ecology 63: 607–615.
+34. van Tienderen P (2000) Elasticities and the link
+between demographic and evolutionary dynam-
+ics. Ecology 81: 666–679.
+35. Coulson T, Tuljapurkar S (2008) The dynamics
+of a quantitative trait in an age-structured
+population living in a variable environment. Am
+Nat 172: 599–612.
+36. Ozgul
+A,
+Tuljapurkar
+S,
+Benton
+TG,
+Pemberton JM, Clutton-Brock TH, et al. (2009)
+The dynamics of phenotypic change and the
+shrinking sheep of St. Kilda. Science 325:
+464–467.
+37. Kellermann V, van Heerwaarden B, Sgro CM,
+Hoffmann AA (2009) Fundamental evolutionary
+limits in ecological traits drive Drosophila species
+distributions. Science 325: 1244–1246.
+38. Hoffmann AA, Hallas RJ, Dean JA, Schiffer M
+(2003) Low potential for climatic stress adaptation
+in a rainforest Drosophila species. Science 301:
+100–102.
+39. Wilson AJ, Pemberton JM, Pilkington JG,
+Coltman DW, Mifsud DV, et al. (2006) Environ-
+mental coupling of selection and heritability limits
+evolution. PLoS Biol 4: e216. doi:10.1371/
+journal.pbio.0040216.
+40. Hendry AP, Farrugia TJ, Kinnison MT (2008)
+Human influences on rates of phenotypic change
+in wild animal populations. Mol Ecol 17: 20–29.
+41. Gienapp P, Teplitsky C, Alho JS, Mills JA,
+Merila J (2008) Climate change and evolution:
+disentangling environmental and genetic respons-
+es. Mol Ecol 17: 167–178.
+42. Reale D, McAdam AG, Boutin S, Berteaux D
+(2003) Genetic and plastic responses of a northern
+mammal to climate change. Proc R Soc
+Lond B Biol Sci 270: 591–596.
+43. Charmantier A, McCleery RH, Cole LR,
+Perrins C, Kruuk LE, et al. (2008) Adaptive
+phenotypic plasticity in response to climate
+change in a wild bird population. Science 320:
+800–803.
+44. Nussey DH, Postma E, Gienapp P, Visser ME
+(2005) Selection on heritable phenotypic plasticity
+in a wild bird population. Science 310: 304–
+306.
+45. Both C, Visser ME (2001) Adjustment to climate
+change is constrained by arrival date in a long-
+distance migrant bird. Nature 411: 296–298.
+46. Dudley SA (1996) Differing selection on plant
+physiological traits in response to environmental
+water availability: a test of adaptive hypotheses.
+Evolution 50: 92–102.
+47. Franke DM, Ellis AG, Dharjwa M, Freshwater M,
+Fujikawa M, et al. (2006) A steep cline in
+flowering time for Brassica rapa in southern
+California: population-level variation in the field
+and the greenhouse. Int J Plant Sci 167: 83–92.
+48. Stanton ML, Roy BA, Thiede DA (2000)
+Evolution in stressful environments. I. Phenotypic
+variability, phenotypic selection, and response to
+selection in five distinct environmental stresses.
+Evolution 54: 93–111.
+49. Weinig C (2000) Differing selection in alternative
+competitive environments: shade-avoidance re-
+sponses and germination timing. Evolution 54:
+124–136.
+50. Donohue K, Messiqua D, Pyle EH, Heschel MS,
+Schmitt J (2000) Evidence of adaptive divergence
+in plasticity: density- and site-dependent selection
+on shade-avoidance responses in Impatiens capensis.
+Evolution 54: 1956–1968.
+51. Gomez JM (2003) Herbivory reduces the strength
+of pollinator-mediated selection in the Mediter-
+ranean herb Erysimum mediohispanicum: conse-
+quences for plant specialization. Am Nat 162:
+242–256.
+52. Mauricio R, Rausher MD (1997) Experimental
+manipulation of putative selective agents provides
+evidence for the role of natural enemies in the
+PLoS Biology | www.plosbiology.org
+7
+April 2010 | Volume 8 | Issue 4 | e1000357
+
+evolution of plant defense. Evolution 51:
+1435–1444.
+53. van Asch M, van Tienderen PH, Holleman LJM,
+Visser ME (2007) Predicting adaptation of
+phenology in response to climate change, an
+insect herbivore example. Glob Change Biol 13:
+1596–1604.
+54. Wade MJ, Kalisz S (1990) The causes of natural
+selection. Evolution 44: 1947–1955.
+55. Arnold S (1983) Morphology, performance and
+fitness. Integr Compar Biol 23: 347–361.
+56. Angilletta M (2009) Thermal adaptation: a
+theoretical and empirical synthesis. Oxford, UK:
+Oxford University Press.
+57. Ghalambor C, McKay J, Carroll S, Reznick D
+(2007) Adaptive versus non-adaptive phenotypic
+plasticity and the potential for contemporary
+adaptation in new environments. Funct Ecol 21:
+394–407.
+58. Rocha F, Medeiros HF, Klaczko LB (2009) The
+reaction norm for abdominal pigmentation and
+its curve in Drosophila mediopunctata depend on the
+mean phenotypic value. Evolution 63: 280–287.
+59. Dewitt TJ, Sih A, Wilson DS (1998) Costs and
+limits of phenotypic plasticity. Trends Ecol Evol
+13: 77–81.
+60. Nussey DH, Wilson AJ, Brommer JE (2007) The
+evolutionary ecology of individual phenotypic
+plasticity in wild populations. J Evol Biol 20:
+831–844.
+61. Gilchrist GW (1995) Specialists and generalists in
+changing environments .1. Fitness landscapes of
+thermal sensitivity. Am Nat 146: 252–270.
+62. Lynch M, Gabriel W (1987) Environmental
+tolerance. Am Nat 129: 283–303.
+63. Huey R, Hertz P (1984) Is a Jack-of-all-temper-
+atures a master of none? Evolution 38: 441–444.
+64. Gilchrist GW (1996) A quantitative genetic
+analysis of thermal sensitivity in the locomotor
+performance curve of Aphidius ervi. Evolution 50:
+1560–1572.
+65. Van Buskirk J, Steiner UK (2009) The fitness
+costs of developmental canalization and plasticity.
+J Evol Biol 22: 852–860.
+66. Bradshaw WE, Holzapfel CM (2008) Genetic
+response to rapid climate change: it’s seasonal
+timing that matters. Mol Ecol 17: 157–166.
+67. Frazier MR, Huey RB, Berrigan D (2006)
+Thermodynamics constrains the evolution of
+insect population growth rates: ‘‘warmer is
+better’’. Am Nat 168: 512–520.
+68. Via S, Lande R (1985) Genotype-environment
+interaction and the evolution of phenotypic
+plasticity. Evolution 39: 505–522.
+69. Falconer DS, Mackay TF (1996) Introduction to
+quantitative genetics. Harlow, UK: Longman
+Group.
+70. Hoffmann AA, Merila J (1999) Heritable varia-
+tion and evolution under favourable and unfa-
+vourable conditions. Trends Ecol Evol 14:
+96–101.
+71. Charmantier A, Garant D (2005) Environmental
+quality and evolutionary potential: lessons from
+wild populations. Proc R Soc Lond B Biol Sci
+272: 1415–1425.
+72. Gavrilets S, Scheiner SM (1993) The genetics of
+phenotypic plasticity .6. Theoretical predictions
+for directional selection. J Evol Biol 6: 49–68.
+73. Lande R (2009) Adaptation to an extraordinary
+environment by evolution of phenotypic plasticity
+and genetic assimilation. J Evol Biol 22:
+1435–1446.
+74. Polechova J, Barton N, Marion G (2009) Species’
+range: adaptation in space and time. Am Nat 174:
+E186–204.
+75. Pease CM, Lande R, Bull JJ (1989) A model of
+population-growth, dispersal and evolution in a
+changing environment. Ecology 70: 1657–1664.
+76. Deutsch
+CA,
+Tewksbury
+JJ, Huey
+RB,
+Sheldon KS, Ghalambor CK, et al. (2008)
+Impacts of climate warming on terrestrial
+ectotherms across latitude. Proc Natl Acad
+Sci U S A 105: 6668–6672.
+77. Browne RA, Wanigasekera G (2000) Combined
+effects of salinity and temperature on survival and
+reproduction of five species of Artemia. J Exp
+Mar Biol Ecol 244: 29–44.
+78. Huey RB, Kingsolver JG (1993) Evolution of
+resistance to high temperature in ectotherms. Am
+Nat 142: S21–S46.
+79. Charlesworth B (1994) Evolution in age-struc-
+tured populations. Cambridge, UK: Cambridge
+University Press.
+80. Van Tienderen P (1991) Evolution of generalists
+and specialists in spatially heterogeneous environ-
+ments. Evolution 45: 1317–1331.
+81. Chevin LM, Lande R (2010) When do adaptive
+plasticity and genetic evolution prevent extinction
+of a density-regulated population? Evolution 64:
+1143–1150.
+PLoS Biology | www.plosbiology.org
+8
+April 2010 | Volume 8 | Issue 4 | e1000357

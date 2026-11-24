@@ -1,0 +1,3034 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            Predicting evolutionary rescue via evolving plasticity in stochastic environments - PMC
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      Skip to main content
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Official websites use .gov
+
+
+
+                            A
+                            
+.gov
+ website belongs to an official
+                            government organization in the United States.
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Secure .gov websites use HTTPS
+
+
+
+                            A 
+lock
+ (
+                            
+
+
+
+
+Lock
+
+
+
+                                    Locked padlock icon
+                                    
+
+
+
+
+
+
+) or 
+https://
+ means you've safely
+                                connected to the .gov website. Share sensitive
+                                information only on official, secure websites.
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search PMC Full-Text Archive
+
+
+
+
+
+
+
+
+
+
+Search in PMC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                Journal List
+                            
+
+
+
+
+
+
+
+                                User Guide
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PERMALINK
+
+
+
+
+
+
+
+
+
+
+Copy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    As a library, NLM provides access to scientific literature. Inclusion in an NLM database does not imply endorsement of, or agreement with,
+    the contents by NLM or the National Institutes of Health.
+
+    Learn more:
+    
+PMC Disclaimer
+
+    |
+    
+
+        PMC Copyright Notice
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Proc Biol Sci
+. 2016 Sep 28;283(1839):20161690. doi: 
+10.1098/rspb.2016.1690
+
+
+
+
+
+
+Predicting evolutionary rescue via evolving plasticity in stochastic environments
+
+
+Jaime Ashander
+
+
+Jaime Ashander
+
+
+
+
+1
+Department of Environmental Science and Policy, UC Davis, One Shields Ave, Davis, CA 95616, USA
+
+
+
+
+2
+Center for Population Biology, UC Davis, One Shields Ave, Davis, CA 95616, USA
+
+
+Find articles by 
+Jaime Ashander
+
+
+
+
+
+
+1,
+2,
+✉
+, 
+Luis-Miguel Chevin
+
+
+Luis-Miguel Chevin
+
+
+
+
+3
+Centre d'Ecologie Fonctionnelle & Evolutive (CEFE), CNRS, Montpellier, Cedex 5, France
+
+
+Find articles by 
+Luis-Miguel Chevin
+
+
+
+
+
+
+3
+, 
+Marissa L Baskett
+
+
+Marissa L Baskett
+
+
+
+
+1
+Department of Environmental Science and Policy, UC Davis, One Shields Ave, Davis, CA 95616, USA
+
+
+
+
+2
+Center for Population Biology, UC Davis, One Shields Ave, Davis, CA 95616, USA
+
+
+Find articles by 
+Marissa L Baskett
+
+
+
+
+
+
+1,
+2
+
+
+
+
+
+
+Author information
+
+
+Article notes
+
+
+Copyright and License information
+
+
+
+
+
+
+
+
+
+
+1
+Department of Environmental Science and Policy, UC Davis, One Shields Ave, Davis, CA 95616, USA
+
+
+
+
+2
+Center for Population Biology, UC Davis, One Shields Ave, Davis, CA 95616, USA
+
+
+
+
+3
+Centre d'Ecologie Fonctionnelle & Evolutive (CEFE), CNRS, Montpellier, Cedex 5, France
+
+
+
+
+
+
+✉
+e-mail: 
+jashander@ucdavis.edu
+
+
+
+
+Electronic supplementary material is available online at 
+https://dx.doi.org/10.6084/m9.figshare.c.3464613
+.
+
+
+
+
+
+
+Received 2016 Aug 2; Accepted 2016 Aug 24.
+
+
+
+
+© 2016 The Author(s)
+
+
+Published by the Royal Society. All rights reserved.
+
+
+PMC Copyright notice
+
+
+
+
+
+
+PMCID: PMC5046909  PMID: 
+27655762
+
+
+
+
+Abstract
+
+
+Phenotypic plasticity and its evolution may help evolutionary rescue in a novel and stressful environment, especially if environmental novelty reveals cryptic genetic variation that enables the evolution of increased plasticity. However, the environmental stochasticity ubiquitous in natural systems may alter these predictions, because high plasticity may amplify phenotype–environment mismatches. Although previous studies have highlighted this potential detrimental effect of plasticity in stochastic environments, they have not investigated how it affects extinction risk in the context of evolutionary rescue and with evolving plasticity. We investigate this question here by integrating stochastic demography with quantitative genetic theory in a model with simultaneous change in the mean and predictability (temporal autocorrelation) of the environment. We develop an approximate prediction of long-term persistence under the new pattern of environmental fluctuations, and compare it with numerical simulations for short- and long-term extinction risk. We find that reduced predictability increases extinction risk and reduces persistence because it increases stochastic load during rescue. This understanding of how stochastic demography, phenotypic plasticity, and evolution interact when evolution acts on cryptic genetic variation revealed in a novel environment can inform expectations for invasions, extinctions, or the emergence of chemical resistance in pests.
+
+
+Keywords:
+ evolutionary rescue, phenotypic plasticity, Baldwin effect, environmental predictability, environmental stochasticity, cryptic genetic variation
+1. Introduction
+
+
+Abrupt environmental change beyond species' tolerance boundaries occurs both naturally and owing to human-driven global change [
+1
+]. Change affecting an entire population (or one unable to disperse) leaves two possibilities for persistence: adapt or acclimate, that is, genetic evolution or phenotypic plasticity [
+2
+]. Adaptive responses after a shift in the environment can prevent extinction if there is sufficient additive genetic variation [
+3
+]. Such evolutionary rescue takes time, however, and a declining population may go extinct before evolutionary response leads to positive growth and recovery of population size [
+4
+]. Response via phenotypic plasticity may be faster, while also permitting survival in novel environments and time for further evolution.
+
+
+Evolution and plasticity thus inevitably interact. On the one hand, perfectly adaptive plasticity prevents selection on fixed genetic characters [
+5
+] and more generally may reduce the strength of selection on a trait in predictable environments. On the other hand, partially adaptive plasticity, simply by increasing survival in the new environment, results in more time for selection, and thus evolution, before extinction [
+6
+,
+7
+]. Furthermore, plasticity may itself evolve if it varies genetically (G×E interaction, [
+8
+]). Plasticity, when quantified as the slope of a linear reaction norm, can theoretically evolve to become transiently higher in new environments [
+9
+]. This greater plasticity among surviving lineages requires that the environmental shift causes increased additive genetic variance (
+V
+A
+) of the trait under stabilizing selection owing to plasticity (i.e. that stress reveals ‘cryptic’ 
+V
+A
+, which occurs in some cases (reviewed by [
+10
+–
+12
+]) although the opposite pattern is also frequently found). Furthermore, empirical observations of heightened plasticity in lineages surviving anthropogenic disturbances such as climate change [
+13
+,
+14
+] or transcontinental introductions [
+15
+] agree with suggestions from the deterministic theory that plasticity facilitates evolutionary rescue [
+16
+].
+
+
+Both the evolution of plasticity [
+17
+,
+18
+] and extinction risk [
+19
+,
+20
+] depend on environmental variation. For plasticity, variation in the environment favours the evolution of plasticity if an environmental cue reliably correlates with the environment that imposes selection [
+17
+,
+18
+]. More precisely, the optimal level of developmental plasticity matches the correlation between the environment of development and that of selection (i.e. environmental predictability), with any mismatch reducing the expected long-term fitness [
+18
+]. For extinction risk, long-run population growth determines long-term persistence, and declines with increasing variance in environmental fluctuations in the growth rate [
+19
+]. When such fluctuations are positively autocorrelated, they increase extinction risk by allowing for many successive generations of negative growth [
+21
+]. In contrast, autocorrelation in phenotypic selection might decrease extinction risk, because it allows closer evolutionary tracking of an optimum phenotype, thus increasing the mean population growth rate [
+22
+]. Importantly, the pattern of environmental stochasticity affects not only the mean, but also the whole distribution of population sizes. In the context of evolutionary rescue, this implies that many populations may go extinct, even when the expected population does not [
+19
+,
+23
+].
+
+
+These separate influences of stochasticity on plasticity's evolution and on extinction suggest the potential for stochasticity to reduce, or possibly reverse, the adaptive role of plasticity during evolutionary rescue. For instance, if predictability is low and plasticity is high, then environmental variation in mean fitness will be large (because excess plasticity causes overshoots of the optimum; [
+24
+]). Such excessive plasticity can lead to extinction [
+25
+]. For example, if the environment undergoes an abrupt change in predictability, which can happen if its temporal autocorrelation rapidly changes, phenotypic plasticity might become transiently maladaptive, which would not only reduce the expected fitness, but also increase the variance in population sizes across replicates, further increasing extinction risk (as shown without plasticity by Ashander & Chevin [
+26
+]). Therefore, consideration of environmental stochasticity is necessary to understand the conditions under which evolving plasticity enhances or impedes evolutionary rescue. Yet previous analytical treatments [
+3
+,
+16
+] have neglected stochastic effects on evolutionary rescue, which has rarely been studied outside of simulation models [
+27
+]. Furthermore, for plasticity to evolve at all requires genotype-by-environment interaction (G×E), which with linear reaction norms may lead to higher phenotypic variance in novel environments [
+7
+,
+9
+,
+18
+]. Large phenotypic variation in a new environment, for a trait under stabilizing selection, results in standing variance load that reduces population growth, which may prevent long-term persistence and thus impede evolutionary rescue (see [
+16
+], 
+figure 1
+c
+ at large 
+t
+) but whether these effects occur in stochastic environments are unknown.
+
+
+
+Figure 1.
+
+
+
+
+Open in a new tab
+
+
+Two-phase adaptation and metrics for extinction avoidance and persistence. (
+a
+) Our scenario: shifting the mean environment (dashed to dotted vertical line) alters the mean optimum trait (from open circle to solid dot), whereas the change in environment autocorrelation changes the optimal plasticity (from the slope of the solid black line to that of the dashed black line). Owing to G×E, additive variance increases in the new environment (by a factor of approx. nine for these parameters, grey band; see 
+Discussion
+ for empirical examples where such inflation may occur). During evolutionary rescue, the mean reaction norm (solid back line with slope initially evolved to match predictability 
+ρ
+) increases transiently (grey line; note the intercept increases a small amount also) and eventually evolves to match the new predictability 
+ρ
+δ
+ (slope of dashed black line). (
+b
+) Change occurs in two phases. Mean relative plasticity (
+; versus time, log scale) increases quickly during phase 1, then decays slowly during phase 2. Over the transition from phase 1 to phase 2 (from 
+t
+bef
+, dash vertical line, to 
+t
+aft
+, dashed-dotted vertical line), plasticity is relatively constant. (
+c
+) Population size versus time in replicate simulations (thin lines) where the mean size across replicates (dotted line) declines during phase 1 of rescue, whereas the variance (spread of the thin lines) increases, heightening extinction risk. We compute the probability of quasi-extinction before rescue at 
+t
+bef
+ and at 
+t
+aft
+ as the proportion of simulated trajectories below 
+N
+C
+ = 100 (horizontal black bar). (
+d
+) The mean population growth rate (versus time, log scale) is initially negative, increases during phase 1 and is relatively stable during phase 2 (grey line). We define persistence as self-replacement after phase 1, using growth rate predicted at the phase's end (solid horizontal line, 
+, equation (2.4); note when accounting for both phases, the growth rate slowly increase during phase 2: grey line). Parameters: shift size 
+δ
+ = 4, predictability before 
+ρ
+ = 0.5 and after the shift 
+ρ
+δ
+ = 0.4, selection strength 
+ω
+2
+ = 20, developmental delay 
+τ
+ = 0.2, additive genetic and environmental variances 
+, 
+, and 
+; initial population size 
+N
+(0) = 10
+4
+ and maximum fitness 
+.
+Here, we investigate whether and how stochastic environmental fluctuations, and the variance load induced by the expression of cryptic genetic variance in a novel environment, constrain evolutionary rescue with evolving plasticity. To do so, we integrate quantitative genetic theory on the evolution of plasticity with stochastic demography. Modelling a large shift in the mean optimum trait, to a value outside the previous range of temporal environmental variation, combined with a change in the environmental predictability of fluctuations in this optimum, we develop an approximation for the population growth rate after the mean trait reaches a stationary distribution around the expected optimum. We also examine, using simulations of the underlying model, the risk of quasi-extinction both in the short term and overall. The approximation predicts whether long-term persistence occurs in the new environment, quantifying the eco-evolutionary dynamics that emerge with evolving plasticity when a major detrimental environmental shift is combined with random environmental fluctuations. We find that for evolutionary rescue to occur in these conditions the environmental predictability after the shift must be above a critical level.
+2. Material and methods
+
+
+(a). Reaction norm, phenotypic selection, and population dynamics
+
+
+We assume random mating in a closed population with discrete generations and environmental stochasticity that is ‘coarse-grained’, so that every individual in a generation experiences the same environment. The environment both determines an optimal value 
+θ
+(
+t
+) for a primary trait 
+z
+(
+t
+), and cues a plastic response from that trait. We assume linear dependence of the optimal trait on the selecting environment 
+ɛ
+s
+(
+t
+), so 
+ (where the environmental sensitivity of selection 
+B
+ defines the change in the optimum phenotype for a unit change in environment 
+ɛ
+s
+(
+t
+)). We model the genotypic reaction norm (i.e. plasticity), a linear response in the trait to the environmental cue 
+ɛ
+c
+(
+t
+) with slope 
+b
+ and intercept 
+a
+, such that the phenotype of an individual is 
+. Here, the residual environmental variation 
+e
+ is independent of the macroenvironment and has mean zero and variance 
+ [
+9
+]. Our model applies to irreversible (non-labile) forms of plasticity such as developmentally plastic traits.
+
+
+We model the reaction norm intercept 
+a
+ and slope 
+b
+ as quantitative traits with means 
+ and 
+ and additive genetic variances 
+ and 
+, respectively [
+9
+,
+18
+], so the intercept 
+a
+ represents the breeding value in a reference environment, 
+ɛ
+c
+(
+t
+) = 0. In addition, we assume that the population has evolved in a range of environments centred around zero, so that phenotypic variance in the reference environment is minimal. Then with linear reaction norms as here the slope and intercept have zero additive genetic covariance [
+9
+], and the additive genetic variance of the expressed trait 
+z
+(
+t
+) increases quadratically away from the reference environment 
+ɛ
+c
+(
+t
+) = 0 (grey band in 
+figure 1
+a
+), which implies strong increases in heritability away from the reference environment. The mean and variance of the expressed trait value 
+z
+(
+t
+) before selection are
+
+
+
+
+
+
+2.1a
+
+
+
+
+and
+
+
+
+
+
+
+2.1b
+
+
+
+
+which assumes the reference additive genetic variances are constant in time. The expressed trait and the slope have covariance 
+ and so, with large 
+ɛ
+c
+(
+t
+), direct selection on the trait results in stronger selection on the reaction norm slope [
+9
+]. (This does not hold with an alternative assumption where the variance decreases away from the reference environment; see the electronic supplementary material.)
+
+
+In each generation, we assume stabilizing selection for an optimum value, which gives an expression for the Malthusian growth rate. Given a fitness function of width 
+ω
+ and optimum 
+θ
+ defined above, the absolute fitness is 
+
+
+. Averaging over the (normal) distribution of phenotypes within a generation, mean maladaptation of the trait from the optimum, 
+, drives mean absolute fitness [
+9
+,
+28
+] 
+
+
+, where 
+ is the strength of stabilizing selection experienced by the population. Because the strength of selection 
+S
+ depends on the phenotypic variance, it changes with the environmental shift according to equation (2.1
+b
+); however, in the new environment, it is approximately constant (if selection is weak as we assume here) with value 
+S
+δ
+ as we show below in 2
+c
+(ii) (assuming a small covariance between the reaction norm intercept and the environment, see [
+29
+]). Trait change in a generation is the product of the additive genetic variance–covariance matrix 
+G
+ and the selection gradient 
+β
+, i.e. 
+, with the vector of reaction norm traits 
+; following Lande [
+28
+], the gradient of log mean fitness 
+ with respect to 
+y
+ gives 
+β
+ (see the electronic supplementary material). The dynamics for population size (assuming very weak density-dependent regulation or a form of density dependence, e.g. a large exponent in a theta-logistic model, where growth trajectories during rescue are similar; see [
+16
+]) are then 
+, and the population's Malthusian growth rate 
+ is
+
+
+
+
+
+
+2.2
+
+
+
+
+Two terms reduce the growth rate from its maximum 
+r
+max
+ = log
+W
+max
+. They correspond to ‘loads’ well known in evolutionary biology. The first is standing variance load owing to phenotypic variability in any generation, the second is the lag load [
+30
+] owing to maladaptation 
+x
+(
+t
+). The latter can be further decomposed into a ‘stochastic load’ caused by fluctuations in the optimum, causing mismatch (with average zero) between the mean trait and the optimum and a deterministic ‘shift load’ caused by mismatch of the mean trait (after accounting for fluctuations) relative to the mean optimum.
+(b). Environmental stochasticity, shift in the optimum, and resulting dynamics
+
+
+We consider an autocorrelated stochastic environment, where noise arises from a stationary process 
+ɛ
+(
+t
+) with variance 
+σ
+2
+ and autocorrelation function 
+ (here, 
+T
+ is the characteristic autocorrelation time and 
+T
+ → 0 implies that the process is white noise). The environment of development determines the trait with a delay of 
+τ
+ less than one generation, so 
+ɛ
+(
+t
+) determines both the environment of selection 
+ɛ
+s
+(
+t
+) = 
+ɛ
+(
+t
+) and that of development 
+, which is the environmental cue [
+9
+]. (In general, the environmental variables acting as cue might differ from the environments causing selection, but this is beyond our present scope.) In the reference environment, the correlation between the cuing environment and the selecting environment represents the environmental predictability of selection (or cue reliability [
+25
+,
+31
+]), which, in our case, is the autocorrelation over time 
+τ
+, given by 
+.
+
+
+A single discrete shift in the environment changes the mean of both the environment of selection and the environmental cue by the same amount 
+δ
+, and also changes the environmental predictability from 
+ρ
+ to 
+ρ
+δ
+. Our analysis assumes that, even accounting for stochastic variance in the environment, the new optimum is very different from the previous one, i.e. 
+. Under this assumption, rescue occurs over two phases at different timescales [
+9
+]. Over the rapid phase 1, the maladaptation of the mean phenotype is reduced to near zero by the evolution of increased plasticity (mean reaction norm slope increases from the solid black line to the grey line in 
+figure 1
+a
+, rapidly as in 
+figure 1
+b
+ left of the dotted lines). During the slower phase 2, the mean reaction norm height and slope evolve to approximately their optimal values (mean reaction norm slope decreases from the solid grey line to the dashed black line in 
+figure 1
+a
+, slowly as in 
+figure 1
+b
+ right of the dotted lines). Lande [
+9
+] showed that the rapid increase of plasticity is controlled by the proportion of additive genetic variance in the new environment owing to variance in reaction norm slopes, 
+, where assuming a large shift implies 
+ϕ
+ is near 1. In the new environment, the maladapted population declines at first (
+figure 1
+c
+) because it has a negative expected growth rate, which increases over time owing to adaptive evolution (equation (2.2); 
+figure 1
+d
+). Because phase 1 occurs much faster than phase 2, the growth rate first increases rapidly during this phase, then effectively stabilizes.
+(c). Simulations and analysis
+
+
+We quantify the risk of extinction before rescue (i.e. before the end of phase 1) by using simulations to compute the proportion of trajectories that experience quasi-extinction. Additionally, we quantify two components of the extinction risk, which reflect the action of differing eco-evolutionary processes. First, the short-term risk reflects both a temporally stochastic environment and deterministic effects of reduced shift load during evolutionary rescue. We compute it by using simulated quasi-extinction during the initial population decline before the end of phase 1. Second, the long-run growth rate reflects effects of stochastic load and standing variance load at stationarity; a negative long-run growth rate implies eventual extinction. We analytically approximate the long-run growth rate at the end of phase 1, and also we compute it from simulations for comparison.
+
+
+(i). Simulations of short-term and total extinction risk
+
+
+For all simulations of extinction risk, we drew initial conditions from a stationary distribution of reaction norm intercept and slope generated after 15 000 generations in an environment with mean 0 and predictability 
+ρ
+ (where theory predicts 
+ and slope 
+; see [
+9
+,
+18
+]). Using mean fitness as the growth rate, we compute population dynamics as 
+
+
+. We also track the reaction norm parameters 
+, and mean fitness 
+, with trait change in a generation given by the product of genetic variance (assumed constant, at an equilibrium between mutation and stabilizing selection) and the selection gradient (see §2a). We computed the means of these quantities at each generation across 250 replicate simulations (except in 
+figure 1
+, where we used 50 replicates to ease visualization). We also performed simulations where we relaxed the assumption of constant variance, assuming instead that the genetic variance reaches an equilibrium at each population size owing to mutation–selection–drift balance (under a modified stochastic house-of-cards approximation [
+23
+]; see the electronic supplementary material). All numerical simulations and plotting of the analytical predictions were performed in R [
+32
+–
+34
+]; further details are in the electronic supplementary material.
+
+
+We define quasi-extinction probability 
+P
+QE
+(
+t
+) as the proportion of population trajectories that fall below a critical population size 
+N
+C
+ before time 
+t
+. From the simulations, we computed quasi-extinction probability for the short term, at a time before the end of phase 1 (
+, with 
+t
+bef
+ as half the characteristic timescale of phase 2). Also from the simulations, we computed the total probability of quasi-extinction, over the whole time period into phase 2 (
+, 
+figure 1
+c
+; we defined 
+t
+aft
+ as the characteristic timescale of phase 2 plus 500 generations).
+(ii). Analysis of the approximate long-run growth rate
+
+
+A positive long-run growth rate (asymptote of the black line in 
+figure 1
+d
+) is necessary for long-term persistence after rescue. The long-run growth rate 
+ depends on the expectations of the standing variance and lag loads, taken over stochastic fluctuations, of log mean absolute fitness [
+19
+,
+22
+,
+23
+]. An analytical formula for growth rate follows from two main assumptions, under which we compute the expected loads (derived in the electronic supplementary material). First, if stabilizing selection is weak, by taking an expectation over stochastic fluctuations the variance load caused by increased phenotypic variance is approximately constant, with value 
+, where 
+
+
+, is the average selection strength in the new environment. Also assuming weak stabilizing selection, the expected lag load is approximately 
+ and is the only quantity that varies in time. Thus, the lag load determines temporal variation in the long-run growth rate, which is 
+.
+
+
+A second assumption is that fluctuations in maladaptation achieve stationarity at the end of phase 1, which permits us to compute the variance in maladaptation 
+. Because the lag load can be decomposed into the mean and variance in maladaptation, 
+ and the mean maladaptation goes to zero by the end of phase 1 (see the electronic supplementary material), the long-run growth rate depends only on the variance in maladaptation 
+, and is 
+. The variance in maladaptation affects not only the spread in trajectories of growth rates, and thus population size, but also long-term persistence, based on the long-run growth rate. After phase 1, change in reaction norm parameters is slow which provides some justification for the assumption, which yields an explicit formula for the variance in maladaptation, and thus the growth rate. The formula depends on the value of plasticity at the end of phase 1 (with value 
+), as well as characteristics of the novel environment (see full derivation in the electronic supplementary material). Persistence occurs when
+
+
+
+
+
+
+2.3
+
+
+
+
+Because 
+ depends on environmental predictability 
+ρ
+δ
+ in the new environment, the size of shift in mean 
+δ
+, and (through the selection strength 
+S
+δ
+) variance in plasticity 
+, equation (2.3) defines critical levels of these that are necessary for a population to persist. For comparison with the analytically predicted critical parameter values (
+ equation (2.3)), we also computed (from the simulations described above) the stochastic population growth rate over the cusp between phases 1 and 2 (i.e. between 
+t
+bef
+ to 
+t
+aft
+
+
+figure 1
+d
+) from its maximum-likelihood estimator, 
+ [
+35
+].
+3. Results
+
+
+We found that with evolving plasticity, the combination of a major environmental shift with stochastic fluctuations in the environment alters the eco-evolutionary outcome, when compared with the effects of each of these factors in isolation. In particular, our analysis reveals the importance of environmental predictability for evolutionary rescue with evolving plasticity.
+
+
+(a). Environmental predictability is critical to evolutionary rescue with evolving plasticity
+
+
+Evolutionary rescue following a shift in the mean optimal trait requires a critical level of final environmental predictability. Predictability below this critical level both reduces long-term persistence (
+figure 2
+a,b
+) and increases extinction risk in the short term (
+figure 2
+c
+,
+d
+). Furthermore, this decreased predictability strongly increases total extinction risk across a range of initial genetic variances in plasticity (
+figure 2
+e
+) and sizes of the environmental shift (
+figure 2
+f
+). None of these effects of predictability can be understood from deterministic models, which predict inaccurate trajectories over rescue in the presence of stochasticity (see dash-dot lines in electronic supplement material, figure S1).
+
+
+
+Figure 2.
+
+
+
+
+Open in a new tab
+
+
+Potential for evolutionary rescue over a range of values for post-shift predictability 
+ρ
+δ
+ versus genetic variance in plasticity in the reference environment 
+ (
+a,c,e
+) and shift size 
+δ
+ (
+b,d,f
+). Within panels, columns show low (
+ρ
+ = 0.3) and high (
+ρ
+ = 0.7) initial predictability. (
+a,b
+) Growth rates at the end of rescue are computed from numerical simulations as the stochastic growth rate 
+λ
+s
+ between 
+t
+bef
+ and 
+t
+aft
+ spanning phase 1 and 2 (diverging heatmap: white 0, blue positive, and red negative). Black lines indicate the threshold between decline (−) and persistence (+) based on the analytical approximation (
+, equation (2.3); solid line) and stochastic simulations (
+λ
+s
+ = 0, dotted black line). (
+c
+−
+f
+) Simulated probability of quasi-extinction at a point during rescue (i.e. at 
+t
+bef
+, (
+c
+,
+d
+) and total (i.e. up to 
+t
+aft
+, (
+e
+,
+f
+) darker colours indicate greater chance of extinction (greyscale heatmap). Quasi-extinction is the proportion of trajectories below a critical size 
+N
+C
+ by a given time (both at 
+t
+bef
+ or 
+t
+aft
+; illustrated in 
+figure 1
+). When variance in plasticity is varied (
+a,c,e
+), shift size is set to 
+δ
+ = 4 (so that additive variance increases by a factor of 9 in the new environment when 
+). When shift size is varied (
+b,d,f)
+, variance is set to 
+. Other parameters: initial population size 
+N
+(0) = 10
+4
+, selection strength 
+ω
+2
+ = 20, developmental delay 
+τ
+ = 0.2, additive genetic 
+ and environmental 
+ variances, maximum fitness 
+, and variance in the environment 
+σ
+2
+ = 1. (Online version in colour.)
+Increases in the stochastic load, owing to increased plasticity during evolutionary rescue, cause this constraint by reducing the long-run growth rate. For any fixed shift size (
+δ
+
+
+figure 2
+b
+) or additive variance in plasticity (
+
+
+figure 2
+a
+), decreasing the final environmental predictability 
+ρ
+δ
+ increases the stochastic load, because plasticity in excess of predictability causes the mean trait to overshoot the mean optimum (see electronic supplementary material, figure S2) resulting in larger mismatch variance and hence decreased expected growth rate after phase 1. It is important to note that a reduction in predictability (i.e. temporal autocorrelation in the optimum) is expected to increase stochastic load even without plasticity, because it will decrease adaptive tracking [
+22
+]. In our case, however, evolved increases in plasticity cause a much higher stochastic load (often more than fourfold greater, electronic supplementary material, figure S2). In simulations where the genetic variance changes with population size owing to drift, there is still a critical predictability (see electronic supplementary material, figure S3) but it increases much faster with shift size 
+δ
+ and the effect of standing variance load disappears.
+(b). Effects of genetic variance in plasticity depend on initial plasticity
+
+
+In populations with low initial plasticity, determined by the environmental predictability 
+ρ
+ with which a lineage has evolved, increasing the genetic variance in plasticity can greatly reduce the short-term risk of quasi-extinction (for 
+ρ
+ = 0.3; 
+figure 2
+c,d
+ left column, 
+ for all 
+ below about 0.025). Effects on the total risk of extinction are similar (
+figure 2
+c
+, left column).
+
+
+On the other hand, in populations with high initial plasticity, the genetic variance in reaction norm slope does not affect extinction very much in the short term (
+ for 
+ below 0.025 with high predictability 
+ρ
+δ
+ in 
+figure 2
+c,e
+ right column). Such populations generally have much lower risk of short-term quasi-extinction consistent with earlier results of Chevin & Lande ([
+16
+], their 
+figure 2
+) on the effect of initial relative plasticity on (deterministic) extinction. However, in these populations when predictability following the shift is intermediate to low, increasing additive variance in reaction norm slopes decreases the long-run growth rate (positively sloped solid lines in 
+figure 2
+a
+ indicate increased variance moves from ‘+’ to ‘−’, with a similar increase in the total risk extinction (
+figure 2
+c
+, right column).
+
+
+In low-plasticity populations transitioning to high predictability environments, the effects of stochastic load are low, and the benefits from increased plasticity during evolutionary rescue can outweigh the negative effects of the standing variance load. In contrast, for populations with initially high plasticity, the change in plasticity during evolutionary rescue is small, and the effects of standing variance load and stochastic load dominate. This can be seen by comparing the analytical persistence threshold (
+figure 2
+a,b
+) to the total extinction probability (
+figure 2
+e,f
+). For high initial plasticity (right columns), the analytical prediction matches the total extinction probability, but this is not the case for low initial plasticity (left columns). The equation predicts the same constraint in both low- and high-plasticity populations (solid lines have similar shape in both columns of 
+figure 2
+(
+a,b
+)). Numerical simulations of long-run growth rate agree (heatmap and dotted line have the same shape in both columns of 
+figure 2
+a,b
+). This occurs, because equation (2.3) depends on plasticity at the end of phase 1, which is influenced very little by initial plasticity. The condition of positive long-term growth, however, is only necessary for evolutionary rescue, not sufficient, and is sensitive only to effects of the variance and stochastic loads. Total extinction risk reflects deterministic reduction of the lag load owing to increased plasticity during evolutionary rescue; such increases are more important for low-plasticity populations, which incur greater maladaptation initially.
+(c). Analytical prediction of the growth rate performs well
+
+
+Across most parameter values agreement between equation (2.3) and simulations is strong (compare solid and dotted lines within 
+figure 2
+a,b
+). The exception is high initial plasticity and small environmental shift (solid and dotted lines mismatch for low predictability in 
+figure 2
+b
+), where changes in 
+ϕ
+ are driven by small shifts 
+δ
+ and large additive variance in plasticity in the reference environment (see electronic supplementary material, figure S4).
+4. Discussion
+
+
+Our analytical results and simulations reveal the eco-evolutionary dynamics that emerge with evolving plasticity when a major detrimental environmental shift is combined with random environmental fluctuations. We find that whether evolving plasticity will enable evolutionary rescue depends on environmental predictability in the new environment. If predictability is moderate to low after an environmental shift, then the transient evolution of high plasticity that occurs in the new environment causes a large stochastic load that reduces the likelihood of evolutionary rescue. Even without plasticity, environmental predictability affects the stochastic load (lower autocorrelation reduces adaptive tracking of the optimum by genetic evolution; [
+22
+]), and thus the probability of evolutionary rescue in a stressful new environment [
+26
+]. When evolutionary rescue causes increased plasticity, these effects are stronger (see electronic supplementary material, figure S2), because frequent mismatches caused by excess plasticity result in large variance in the growth rate and negative population growth, even after mean maladaptation has been reduced to zero (electronic supplementary material, figure S1). This parallels findings that non-evolving plasticity can amplify fluctuations in population mean fitness and thus growth rate without an environmental shift [
+24
+,
+25
+,
+36
+]; here, we demonstrate that this process also constrains evolutionary rescue. On the other hand, if predictability is high in the new environment, evolutionary rescue is relatively likely. Our findings accord with other theories that suggest irreversible developmental plasticity is not useful in low predictability environments, which might instead favour reversible plasticity [see e.g. 37]. In addition, we find that for evolutionary rescue in a stochastic environment, positive effects of increased genetic variance in plasticity are limited to situations where lineages with low evolved plasticity experience shifts to a more predictable environment.
+
+
+Owing to the trade-off between short-term adaptive benefits and long-term stochastic and standing variance loads, large genetic variance in plasticity can sometimes decrease the chance of evolutionary rescue for lineages where plasticity is initially high that experience shifts to environments with low predictability. Chevin & Lande ([
+16
+], their 
+figure 1
+c
+ at large 
+t
+) noted the effect of the standing variance load, but focused on deterministic environments that do not include random noise. We extend this theory to noisy environments and demonstrate, for low predictability, the effects of genetic variance in plasticity: it lessens exposure to small population size in the short term, but may cost increased variance load that slightly reduces long-term persistence (in populations with already-high plasticity that shift to low-predictability environments). (Note, however, that in our model the genetic variance in plasticity is fixed, and so the model cannot produce any direct selection to reduce this load.) The effects of genetic variance just described, however, are weak compared with the constraint imposed by predictability.
+
+
+Our findings extend deterministic theories on evolutionary rescue [
+3
+,
+16
+] by directly quantifying the effect of environmental stochasticity with evolving plasticity on persistence. Although models of evolutionary rescue on quantitative traits have not typically accounted for environmental stochasticity (but see [
+23
+,
+27
+]), demographic stochasticity has been shown to affect evolutionary rescue by de novo mutation or standing variation at a single gene [
+38
+], because population trajectories depend on births and deaths during the initial period when advantageous genes are rare. Environmental stochasticity, our focus here, is arguably more important than demographic stochasticity because it operates with equal strength at all population sizes [
+20
+], and affects the population size distribution during evolutionary rescue or with fluctuating selection on quantitative traits [
+26
+]. The effect of stochasticity on evolutionary rescue with evolving plasticity may be especially strong, as mismatches of increased plasticity with predictability both increase short-term extinction risk and reduce long-run growth. We also showed that lowered predictability can cause the high plasticity that evolved during evolutionary rescue to eventually be maladaptive, unless the new environment is highly predictable.
+
+
+(a). Assumptions and caveats
+
+
+To obtain analytical approximations that predict evolutionary trajectories, we used three main assumptions. We assumed first, that the baseline additive variances in reaction norm parameters remain constant during the shift, second, that the linear shape of reaction norms extend beyond the reference environment where they evolved and where the genetic variance is minimized, and third, that the new environment is far outside the distribution of past environments and causes a density-independent decline in the population size.
+
+
+Constant additive genetic variance, as modelled in our simulations and analytical results, is commonly assumed in models like ours to make analytical progress, and although it is not biologically realistic, it can provide a good approximation to more complex dynamics [
+39
+]. Accounting for evolving genetic variance would require added complexity, such as tracking the full distribution of breeding values [
+40
+] or using an approximation like the stochastic house-of-cards [
+23
+]. More explicit genetics have already been included in some models of evolutionary rescue (e.g. polygenic adaptation, [
+41
+]), but this is more challenging with plasticity and a stochastic environment. With environmental noise in a constant environment, variance in reaction norms is expected to decrease [
+42
+] which could represent the state of the population in the long run after the phenotype has evolved to become canalized around the new mean environment [
+43
+], but theory is lacking for the transient change in genetic variance after the shift in mean environment. It is likely that reductions in population size during evolutionary rescue will reduce genetic variance. We investigated the sensitivity of our results to this possibility (see electronic supplementary material, figure S3) and still found that if predictability in the new environment is below a critical level then evolutionary rescue is unlikely. However, the critical levels in this case are higher than those suggested by our analytical results, which thus can be viewed as a lower bound on extinction risk.
+
+
+The dynamics we show are all derived by assuming that plasticity is partially adaptive with linear reaction norms extending to the novel environment and that variance is minimal in the reference environment. Theory demonstrates that linear reaction norms will evolve within the reference regime over long timescales [
+18
+], but it is the assumption that variance is minimal in the reference environment (and that the reaction norms extend to the novel environment, [
+9
+]) that implies increased heritable variation in the novel environment. Without increased additive genetic variance 
+V
+A
+, there is no strong covariance between reaction norm slope and the trait expressed, which means no strong selection to increase reaction norm slope and so no transient increase in plasticity (see the electronic supplementary material). An environmental shift then increases neither variance load nor, necessarily, plasticity. Because we expect quite different results without assuming 
+V
+A
+ increases in the new environment, we emphasize that our models will only apply when novel or stressful environments reveal cryptic genetic variation [
+7
+]. Although this idea finds support in some systems, in meta-analyses, the opposite trend (of decreasing heritable variation in rare, stressful, or novel environments) is equally frequent (reviews: [
+10
+,
+11
+]). There are relatively few studies that obtain clear results either way, however, in part, owing to the difficulty of replicating an experiment across many environmental values [
+12
+]. In these cases, then, evolution of plasticity should have little influence on evolutionary rescue and we expect dynamics to follow results for non-plastic evolutionary rescue (e.g. classic deterministic theory 3, or its extension to stochastic environments by Ashander & Chevin [
+26
+]). Furthermore, although we assumed partially adaptive plasticity, it can be sometimes be maladaptive [
+44
+]. Developing theory on this may require modelling nonlinear reaction norms (e.g. via function-valued traits, [
+45
+]).
+
+
+Finally, we ignore demographic regulation, effectively assuming that density dependence is very weak. In practice, we assume the novel environment is stressful and initially causes a density-independent population decline, because the environment is far outside the previous range of environments. Introduced by Lande [
+9
+], it is an extreme version of environmental novelty, but one that yields mathematically tractable expressions for the growth rate. As shown previously without stochasticity, the density-independent trajectories we study are close to those under very weak density-dependent regulation or a form of density dependence, e.g. large exponent in a theta-logistic model, where growth trajectories during rescue are similar [
+16
+]. Under stronger density regulation that acts even when the population is far below carrying capacity, we would expect steeper declines in population size.
+
+
+Despite the limitations mentioned above, our assumptions apply nicely to some systems. For example, compare the implied increase in 
+V
+A
+ (≈ninefold; 
+figure 1
+(
+a
+)) to Husby 
+et al.
+ [
+46
+], who showed higher temperature increased genetic variance of breeding time of the great tit 
+Parus major
+ (≈fourfold increase in mean 
+V
+A
+), or to McGuigan 
+et al.
+ [
+47
+], who showed for three-spine stickleback (
+Gasterosteus aculeatus
+) an even stronger increase in genetic variance of body size with low salinity (≈38-fold increase in mean 
+V
+A
+). How frequently such increases in 
+V
+A
+ occur with environmental novelty remains an open question. Furthermore, even if increases occur, they are not sufficient to guarantee rescue. Among other conditions, heritability and evolvability must also increase, and as we show the heritable variance in plasticity may be detrimental for several reasons (standing load and stochastic lag load in unpredictable environments).
+(b). Empirical context and applications
+
+
+We define a long-term persistence criterion by predicting the stochastic growth rate for hundreds to thousands of generations after the population's mean trait has adapted to the new optimum. To apply this theory, either for empirical verification or for prediction, several types of data are needed. First, estimates for parameters governing the genetics of G×E interactions (i.e. additive genetic variances in several environments) and the trait's effect on fitness can be obtained from common garden and other experiments [
+14
+]. Second, information about the environmental sensitivity of selection can be measured using a single episode of selection (e.g. in 
+Parus major
+ [
+48
+–
+50
+]). Third, parameters for environmental predictability can be characterized statistically [
+51
+], but this requires knowledge or assumptions, about the environment of selection.
+
+
+These data requirements are challenging but achievable in several field and laboratory systems. Phenological traits, because they are developmental traits under strong selection and cues are often known, may be the best fit. Furthermore, these traits are among the most observable biological responses to climate change [
+52
+]. Germination timing of high altitude plants is particularly promising: winter temperature and snow melt cue development that is also genetically influenced and under stabilizing selection (with risk of frost-killing if too early, or dessication if too late; [
+53
+]), and optimal timing varies with altitude [
+54
+], so reciprocal transplants shift the optimum. Furthermore, optimal timing is shifting with climate change [
+55
+]. Osmoregulatory traits are another candidate. Studies in the copepod 
+Eurytemora affinis
+ support a role for rapid evolution driven by plasticity in parallel adaptations to freshwater [
+56
+]. For three-spine stickleback, additive genetic variation in body size is higher in stressful low-salinity environments [
+47
+]. Evolutionary rescue has already been studied in several microorganisms (e.g. 
+Pseudomona fluorescens
+ [
+57
+]), some of which display phenotypic plasticity (e.g. 
+Escherichia coli
+, 
+Saccaromyces cerevisiae
+, reviewed in [
+58
+]).
+
+
+Quantitative predictions of persistence for populations currently undergoing evolutionary rescue could aid conservation planning, assessment of invasive species, and management of antibiotic or pesticide resistance. Although many examples of the latter are major gene effects (for analysis of evolutionary rescue via a single gene, see e.g. [
+38
+]), even these cases may include a quantitative contribution from minor genes [
+41
+]. Our theory is relevant for applied contexts where plasticity is thought to aid persistence or invasion, including reintroduction for conservation purposes and invasive species control. For example, invasive species are more plastic in response to added resources [
+15
+], suggesting that more plastic species are better invaders. Our findings imply a more subtle prediction: a ‘filter’ against invaders long adapted to low-reliability cues (where the same cue is maintained from the native to invaded range), and a ‘shield’ for regions where cues used by common invaders are unreliable. Applying this theory to a variety of systems might help resolve observed variation in how plasticity changes following a disturbance [
+59
+].
+(c). Conclusion
+
+
+Overall, evolving plasticity facilitates evolutionary rescue unless the new environment is unpredictable. If it is not, then large variance in plasticity might help lineages long evolved to low-predictability environments adjust to novel environments with high predictability. These findings suggest the role of plasticity in longer-term evolution to changing environments is positive, but limited. The rapid increase in plasticity that occurs in our model is an example of the Baldwin effect [
+9
+] where plasticity increases in species colonizing stressful environments. (Baldwin actually proposed this theory for the evolution of plasticity that is much more general than this [
+6
+,
+60
+].) This effect, and related processes, have often been mentioned as under-appreciated factors in evolution [
+61
+,
+62
+]. In novel environments that fluctuate with low predictability, however, we show that a transient increase in plasticity (
+figure 1
+b
+) can impose a substantial load on average growth, and thus a barrier to evolutionary rescue. For populations whose plasticity evolved in response to low-predictability cues, then, the Baldwin effect (as embodied in the two-phase process studied here where plasticity increases) may have limited importance in adaptation. An implication of these results is that over long timescales where the environment has shifted frequently, we expect phenotypic plasticity (and its genetic variance) to be absent or strongly reduced, unless cues are consistently reliable.
+Supplementary Material
+
+
+Appendices and Supplementary Figures
+
+
+
+
+rspb20161690supp1.pdf
+ (750.4KB, pdf) 
+
+
+Acknowledgements
+
+
+Feedback from Swati Patel, Sebastian Schreiber, and Michael Turelli improved an earlier version of the manuscript. Suggestions from two anonymous reviewers also greatly improved the paper.
+Data accessibility
+
+
+Code: the code used to perform the simulations is available [
+34
+].
+Authors' contributions
+
+
+J.A. designed the study, carried out the analyses, and drafted the manuscript; L.M.C. designed the study, guided the analyses, and helped write the manuscript; M.L.B. designed the study, guided the analyses, and helped write the manuscript. All authors gave final approval for publication.
+Competing interests
+
+
+We have no competing interests.
+Funding
+
+
+Support from the NSF IGERT programme (J.A., DGE-0801430 to P.I. Strauss), the French Agence Nationale de la Recherche (ContempEvol, ANR-11-PDOC-005-01 to L.M.C.), and European Reseach Council (ERC-2015-STG-678140-FluctEvol to L.M.C.).
+References
+
+
+
+
+
+
+1.
+Palumbi S.
+2001. 
+Humans as the world's greatest evolutionary force. Science
+293, 1786–1790. ( 10.1126/science.293.5536.1786)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+2.
+Davis MB, Shaw RG, Etterson JR. 
+2005. 
+Evolutionary responses to changing climate. Ecology
+86, 1704–1714. ( 10.1890/03-0788)
+ [
+DOI
+] [
+Google Scholar
+]
+
+
+
+
+3.
+Gomulkiewicz R, Holt R. 
+1995. 
+When does evolution by natural selection prevent extinction?
+Evolution
+41, 201–207. ( 10.2307/2410305)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+4.
+Carlson SM, Cunningham CJ, Westley PAH. 
+2014. 
+Evolutionary rescue in a changing world. Trends Ecol. Evol. 29, 521–530. ( 10.1016/j.tree.2014.06.005)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+5.
+de Jong G.
+2005. 
+Evolution of phenotypic plasticity: patterns of plasticity and the emergence of ecotypes. New Phytol. 166, 101–117. ( 10.1111/j.1469-8137.2005.01322.x)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+6.
+Crispo E.
+2007. 
+The Baldwin effect and genetic assimilation: revisiting two mechanisms of evolutionary change mediated by phenotypic plasticity. Evolution
+61, 2469–2479. ( 10.1111/j.1558-5646.2007.00203.x)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+7.
+Ghalambor CK, McKay JK, Carroll SP, Reznick DN. 
+2007. 
+Adaptive versus non-adaptive phenotypic plasticity and the potential for contemporary adaptation in new environments. Funct. Ecol. 21, 394–407. ( 10.1111/j.1365-2435.2007.01283.x)
+ [
+DOI
+] [
+Google Scholar
+]
+
+
+
+
+8.
+Via S, Lande R. 
+1985. 
+Genotype–environment interaction and the evolution of phenotypic plasticity. Evolution
+39, 505–522. ( 10.2307/2408649)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+9.
+Lande R.
+2009. 
+Adaptation to an extraordinary environment by evolution of phenotypic plasticity and genetic assimilation. J. Evol. Biol. 22, 1435–1446. ( 10.1111/j.1420-9101.2009.01754.x)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+10.
+Hoffmann A, Merilä J. 
+1999. 
+Heritable variation and evolution under favourable and unfavourable conditions. Trends Ecol. Evol. 14, 96–101. ( 10.1016/S0169-5347(99)01595-5)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+11.
+Charmantier A, Garant D. 
+2005. 
+Environmental quality and evolutionary potential: lessons from wild populations. Proc. R. Soc. B
+272, 1415–1425. ( 10.1098/rspb.2005.3117)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+12.
+McGuigan K, Sgrò CM. 
+2009. 
+Evolutionary consequences of cryptic genetic variation. Trends Ecol. Evol. 24, 305–311. ( 10.1016/j.tree.2009.02.001)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+13.
+Willis CG, Ruhfel B, Primack RB, Miller-Rushing AJ, Davis CC. 
+2008. 
+Phylogenetic patterns of species loss in Thoreau's woods are driven by climate change. Proc. Natl Acad. Sci. USA
+105, 17 029–17 033. ( 10.1073/pnas.0806446105)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+14.
+Merilä J, Hendry AP. 
+2014. 
+Climate change, adaptation, and phenotypic plasticity: the problem and the evidence. Evol. Appl. 7, 1–14. ( 10.1111/eva.12137)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+15.
+Davidson AM, Jennions M, Nicotra AB. 
+2011. 
+Do invasive species show higher phenotypic plasticity than native species and, if so, is it adaptive? A meta-analysis. Ecol. Lett. 14, 419–431. ( 10.1111/j.1461-0248.2011.01596.x)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+16.
+Chevin LM, Lande R. 
+2010. 
+When do adaptive plasticity and genetic evolution prevent extinction of a density-regulated population?
+Evolution
+64, 1143–1150. ( 10.1111/j.1558-5646.2009.00875.x)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+17.
+Moran N.
+1992. 
+The evolutionary maintenance of alternative phenotypes. Am. Nat. 139, 971–989. ( 10.1086/285369)
+ [
+DOI
+] [
+Google Scholar
+]
+
+
+
+
+18.
+Gavrilets S, Scheiner SM. 
+1993. 
+The genetics of phenotypic plasticity. V. Evolution of reaction norm shape. J. Evol. Biol. 6, 31–48. ( 10.1046/j.1420-9101.1993.6010031.x)
+ [
+DOI
+] [
+Google Scholar
+]
+
+
+
+
+19.
+Lewontin RC, Cohen D. 
+1969. 
+On population growth in a randomly varying environment. Proc. Natl Acad. Sci. USA
+62, 1056–1060. ( 10.1073/pnas.62.4.1056)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+20.
+Lande R, Engen S, Sæther BE. 
+2003. 
+Stochastic population dynamics in ecology and conservation. Oxford, UK: Oxford University Press.
+ [
+Google Scholar
+]
+
+
+
+
+21.
+Turelli M.
+1977. 
+Random environments and stochastic calculus. Theor. Popul. Biol. 78, 140–178. ( 10.1016/0040-5809(77)90040-5)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+22.
+Lande R, Shannon S. 
+1996. 
+The role of genetic variation in adaptation and population persistence in a changing environment. Evolution
+50, 434–437. ( 10.2307/2410812)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+23.
+Bürger R, Lynch M. 
+1995. 
+Evolution and extinction in a changing environment: a quantitative-genetic analysis. Evolution
+49, 151–163. ( 10.2307/2410301)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+24.
+Chevin LM, Collins S, Lefèvre F. 
+2013. 
+Phenotypic plasticity and evolutionary demographic responses to climate change: taking theory out to the field. Funct. Ecol. 27, 967–979. ( 10.1111/j.1365-2435.2012.02043.x)
+ [
+DOI
+] [
+Google Scholar
+]
+
+
+
+
+25.
+Reed TE, Waples RS, Schindler DE, Hard JJ, Kinnison MT. 
+2010. 
+Phenotypic plasticity and population viability: the importance of environmental predictability. Proc. R. Soc. B
+227, 3391–3400. ( 10.1098/rspb.2010.0771)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+26.
+Ashander, Chevin 2016 The importance of fluctuating selection during evolutionary rescue. In preparation.
+
+
+
+
+
+
+27.
+Björklund M, Ranta E, Kaitala V, Bach LA, Lundberg P, Stenseth NC. 
+2009. 
+Quantitative trait evolution and environmental change. PLoS ONE
+4, e4521 ( 10.1371/journal.pone.0004521)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+28.
+Lande R.
+1976. 
+Natural selection and random genetic drift in phenotypic evolution. Evolution
+30, 314–334. ( 10.2307/2407703)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+29.
+Tufto J.
+2015. 
+Genetic evolution, plasticity, and bet-hedging as adaptive responses to temporally autocorrelated fluctuating selection: a quantitative genetic model. Evolution
+69, 2034–2049. ( 10.1111/evo.12716)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+30.
+Maynard Smith J.
+1976. 
+What determines the rate of evolution?
+Am. Nat. 110, 331–338. ( 10.1086/283071)
+ [
+DOI
+] [
+Google Scholar
+]
+
+
+
+
+31.
+de Jong G.
+1999. 
+Unpredictable selection in a structured population leads to local genetic differentiation in evolved reaction norms. J. Evol. Biol. 12, 839–851. ( 10.1046/j.1420-9101.1999.00118.x)
+ [
+DOI
+] [
+Google Scholar
+]
+
+
+
+
+32.
+R Core Team. 2014. 
+R: A language and environment for statistical computing. Vienna, Austria: R Foundation for Statistical Computing;  See 
+http://www.r-project.org/
+.
+ [
+Google Scholar
+]
+
+
+
+
+33.
+Eddelbuettel D, Francois R. 
+2011. 
+Rcpp: seamless R and C++ integration. J. Stat Softw. 40, 1–18. ( 10.18637/jss.v040.i08)
+ [
+DOI
+] [
+Google Scholar
+]
+
+
+
+
+34.
+Ashander J, Chevin LM.2015.  Phenoecosim v0.2.4. ZENODO. (idoi:10.5281/zenodo.56416)
+
+
+
+
+
+
+35.
+Caswell H.
+2001. 
+Matrix population models: construction analysis and interpretation, 2nd edn
+Sunderland, MA: Sinauer Associates.
+ [
+Google Scholar
+]
+
+
+
+
+36.
+Michel M, Chevin L, Knouft J. 
+2014. 
+Evolution of phenotype-environment associations by genetic responses to selection and phenotypic plasticity in a temporally autocorrelated environment. Evolution
+68, 1374–1384. ( 10.1111/evo.12371)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+37.
+Botero CA, Weissing FJ, Wright J, Rubenstein DR. 
+2015. 
+Evolutionary tipping points in the capacity to adapt to environmental change. Proc. Natl Acad. Sci. USA
+112, 184–189. ( 10.1073/pnas.1408589111)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+38.
+Martin G, Aguilée R, Ramsayer J, Kaltz O, Ronce O. 
+2013. 
+The probability of evolutionary rescue: towards a quantitative comparison between theory and evolution experiments. Phil. Trans. R. Soc. B
+368, 20120088 ( 10.1098/rstb.2012.0088)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+39.
+Turelli M, Barton NH. 
+1994. 
+Genetic and statistical analyses of strong selection on polygenic traits: what, me normal?
+Genetics
+138, 913–941.
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+40.
+Burgess SC, Waples RS, Baskett ML. 
+2013. 
+Local adaptation when competition depends on phenotypic similarity. Evolution
+67, 3012–3022. ( 10.1111/evo.12176)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+41.
+Gomulkiewicz R, Holt RD, Barfield M, Nuismer SL. 
+2010. 
+Genetics, adaptation, and invasion in harsh environments. Evol. Appl. 3, 97–108. ( 10.1111/j.1752-4571.2009.00117.x)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+42.
+de Jong G, Gavrilets S. 
+2000. 
+Maintenance of genetic variation in phenotypic plasticity: the role of environmental variation. Genet. Res. 76, 295–304. ( 10.1017/S0016672300004729)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+43.
+Kawecki TJ.
+2000. 
+The evolution of genetic canalization under fluctuating selection. Evolution
+54, 1–12. ( 10.1554/0014-3820(2000)054)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+44.
+Duputié A, Rutschmann A, Ronce O, Chuine I. 
+2015. 
+Phenological plasticity will not help all species adapt to climate change. Glob. Change Biol. 21, 3062–3073. ( 10.1111/gcb.12914)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+45.
+Gomulkiewicz R, Kirkpatrick M. 
+1992. 
+Quantitative genetics and the evolution of reaction norms. Evolution
+46, 390–411. ( 10.2307/2409860)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+46.
+Husby A, Visser ME, Kruuk LEB. 
+2011. 
+Speeding up microevolution: the effects of increasing temperature on selection and genetic variance in a wild bird population. PLoS Biol. 9, e1000585 ( 10.1371/journal.pbio.1000585)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+47.
+McGuigan K, Nishimura N, Currey M, Hurwit D, Cresko WA. 
+2011. 
+Cryptic genetic variation and body size evolution in threespine stickleback. Evolution
+65, 1203–1211. ( 10.1111/j.1558-5646.2010.01195.x)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+48.
+Vedder O, Bouwhuis S, Sheldon BC. 
+2013. 
+Quantitative assessment of the importance of phenotypic plasticity in adaptation to climate change in wild bird populations. PLoS Biol. 11, e1001605 ( 10.1371/journal.pbio.1001605)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+49.
+Gienapp P, Lof M. 
+2013. 
+Predicting demographically sustainable rates of adaptation: can great tit breeding time keep pace with climate change?
+Phil. Trans. R. Soc. B
+368, 20120289 ( 10.1098/rstb.2012.0289)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+50.
+Chevin LM, Visser ME, Tufto J. 
+2015. 
+Estimating the variation, autocorrelation, and environmental sensitivity of phenotypic selection. Evolution
+69, 2319–2332. ( 10.1111/evo.12741)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+51.
+Marshall DJ, Burgess SC. 
+2015. 
+Deconstructing environmental predictability: seasonality, environmental colour and the biogeography of marine life histories. Ecol. Lett. 18, 174–181. ( 10.1111/ele.12402)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+52.
+Parmesan C.
+2006. 
+Ecological and evolutionary responses to recent climate change. Annu. Rev. Ecol. Evol. Syst. 37, 637–669. ( 10.1146/annurev.ecolsys.37.091305.110100)
+ [
+DOI
+] [
+Google Scholar
+]
+
+
+
+
+53.
+Inouye DW, Wielgolaski FE. 
+2013. 
+Phenology: an integrative environmental science. In Phenology: an integrative environmental science vol. (ed. Schwartz MD.), pp. 249–272, 2nd edn. New York, NY: Springer.
+ [
+Google Scholar
+]
+
+
+
+
+54.
+Anderson JT, Inouye DW, McKinney AM, Colautti RI, Mitchell-Olds T. 
+2012. 
+Phenotypic plasticity and adaptive evolution contribute to advancing flowering phenology in response to climate change. Proc. R. Soc. B
+1743, 3843–3852. ( 10.1098/rspb.2012.1051)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+55.
+Bradshaw WE, Holzapfel CM. 
+2008. 
+Genetic response to rapid climate change: it's seasonal timing that matters. Mol. Ecol. 17, 157–166. ( 10.1111/j.1365-294X.2007.03509.x)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+56.
+Lee CE, Kiergaard M, Gelembiuk GW, Eads BD, Posavi M. 
+2011. 
+Pumping ions: rapid parallel evolution of ionic regulation following habitat invasions. Evolution
+65, 2229–2244. ( 10.1111/j.1558-5646.2011.01308.x)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+57.
+Hao YQ, Brockhurst MA, Petchey OL, Zhang QG. 
+2015. 
+Evolutionary rescue can be impeded by temporary environmental amelioration. Ecol. Lett. 18, 892–898. ( 10.1111/ele.12465)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+58.
+Chevin L, Gallet R, Gomulkiewicz R, Holt RD, Fellous S. 
+2012. 
+Phenotypic plasticity in evolutionary rescue experiments. Phil. Trans. R. Soc. B
+368, 20120089 ( 10.1098/rstb.2012.0089)
+ [
+DOI
+] [
+PMC free article
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+59.
+Crispo E, DiBattista JD, Correa C, Thibert-Plante X, McKellar AE, Schwartz AK, Berner D, De León LF, Hendry AP. 
+2010. 
+The evolution of phenotypic plasticity in response to anthropogenic disturbance. Evol. Ecol. Res. 12, 47–66.
+ [
+Google Scholar
+]
+
+
+
+
+60.
+Scheiner SM.
+2014. 
+The Baldwin effect: neglected and misunderstood. Am. Nat. 184, 
+i–iii
+. ( 10.1086/677944)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+
+
+61.
+West-Eberhard MJ.
+2003. 
+Developmental plasticity and evolution. New York, NY: Oxford University Press.
+ [
+Google Scholar
+]
+
+
+
+
+62.
+Laland K, et al. 
+2014. 
+Does evolutionary theory need a rethink?
+Nature
+514, 161–164. ( 10.1038/514161a)
+ [
+DOI
+] [
+PubMed
+] [
+Google Scholar
+]
+
+
+Associated Data
+
+
+This section collects any data citations, data availability statements, or supplementary materials included in this article.
+
+
+Supplementary Materials
+
+
+Appendices and Supplementary Figures
+
+
+
+
+rspb20161690supp1.pdf
+ (750.4KB, pdf) 
+
+
+Data Availability Statement
+
+
+Code: the code used to perform the simulations is available [
+34
+].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ACTIONS
+
+
+
+
+
+
+
+
+
+
+View on publisher site
+
+
+
+
+
+
+
+
+
+
+
+
+PDF (545.0 KB)
+
+
+
+
+
+
+
+
+
+
+
+
+Cite
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Collections
+
+
+
+
+
+
+
+
+
+
+
+
+Permalink
+
+
+
+
+
+
+
+
+PERMALINK
+
+
+
+
+
+
+
+
+
+
+Copy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+RESOURCES
+
+
+
+
+
+
+
+                            Similar articles
+                        
+
+
+
+
+
+
+
+
+
+
+
+                             Cited by other articles
+                        
+
+
+
+
+
+
+
+
+
+
+
+                                 Links to NCBI Databases
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cite
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Copy
+
+
+
+
+
+
+
+
+
+
+
+
+Download .nbib
+
+
+.nbib
+
+
+
+
+
+
+
+
+
+
+Format:
+
+
+
+
+
+        AMA
+      
+
+
+
+        APA
+      
+
+
+
+        MLA
+      
+
+
+
+        NLM
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Add to Collections
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Create a new collection
+
+
+
+
+
+
+
+
+Add to an existing collection
+
+
+
+
+
+
+
+
+
+
+
+                Name your collection
+               
+*
+
+
+
+
+
+
+
+
+
+
+
+                Choose a collection
+              
+
+
+
+
+
+
+
+                Unable to load your collection due to an error
+
+
+Please try again
+
+
+
+
+
+
+
+
+
+
+
+          Add
+        
+
+
+
+          Cancel
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Back to Top
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,901 @@
+ORIGINAL ARTICLE
+Swift thermal reaction norm evolution in a key marine
+phytoplankton species
+Luisa Listmann,1,* Maxime LeRoch,1,* Lothar Schl€uter,1 Mridul K. Thomas2 and
+Thorsten B. H. Reusch1
+1 Evolutionary Ecology of Marine Fishes, GEOMAR Helmholtz-Centre for Ocean Research Kiel, Kiel, Germany
+2 Department of Aquatic Ecology, –Eawag, Swiss Federal Institute of Aquatic Science and Technology, D€ubendorf, Switzerland
+Keywords
+adaptation, coccolithophore, experimental
+evolution, global warming, phytoplankton,
+reaction norm, temperature.
+Correspondence
+Thorsten B. H. Reusch, Evolutionary Ecology of
+Marine Fishes, GEOMAR Helmholtz-Centre for
+Ocean Research Kiel, D€usternbrooker Weg 20,
+24105 Kiel, Germany
+Tel.: +49 431 6004550;
+fax: +49 431 6004553;
+e-mail: treusch@geomar.de
+*These authors contributed equally.
+Received: 8 November 2015
+Accepted: 19 January 2016
+doi:10.1111/eva.12362
+Abstract
+Temperature has a profound effect on the species composition and physiology of
+marine phytoplankton, a polyphyletic group of microbes responsible for half of
+global primary production. Here, we ask whether and how thermal reaction
+norms in a key calcifying species, the coccolithophore Emiliania huxleyi, change
+as a result of 2.5 years of experimental evolution to a temperature 2°C below
+its upper thermal limit. Replicate experimental populations derived from a single
+genotype isolated from Norwegian coastal waters were grown at two tempera-
+tures for 2.5 years before assessing thermal responses at 6 temperatures ranging
+from 15 to 26°C, with pCO2 (400/1100/2200 latm) as a fully factorial additional
+factor. The two selection temperatures (15°/26.3°C) led to a marked divergence
+of thermal reaction norms. Optimal growth temperatures were 0.7°C higher in
+experimental populations selected at 26.3°C than those selected at 15.0°C. An
+additional negative effect of high pCO2 on maximal growth rate (8% decrease rel-
+ative to lowest level) was observed. Finally, the maximum persistence tempera-
+ture (Tmax) differed by 1–3°C between experimental treatments, as a result of an
+interaction between pCO2 and the temperature selection. Taken together, we
+demonstrate that several attributes of thermal reaction norms in phytoplankton
+may change faster than the predicted progression of ocean warming.
+Introduction
+Temperature has an overriding effect on species compo-
+sition, photosynthetic performance and growth rates of
+marine phytoplankton (Eppley 1972; Raven and Geider
+1988; Thomas et al. 2012; Boyd et al. 2013). The ther-
+mal physiology of phytoplankton species broadly corre-
+sponds to mean temperature values within their climate
+zone. For example, in tropical species, optimal tempera-
+tures and upper thermal limits are higher compared to
+temperate or polar species (Thomas et al. 2012, 2016;
+Boyd et al. 2013). There is also preliminary evidence
+that temperature niche width is correlated with the
+annual temperature variation, with temperate species dis-
+playing a wider temperature range than both tropical/
+subtropical and polar species (Boyd et al. 2013) although
+this pattern was not observed in a recent literature com-
+pilation (Thomas et al. 2016).
+At the within-species level, there are also appreciable dif-
+ferences in thermal responses on growth and photosynthe-
+sis rates (Brand 1982; Wood and Leatham 1992) that likely
+have a heritable basis (Zhang et al. 2014). In light of global
+change impacting all marine and terrestrial ecosystems
+today, such within-population diversity may provide essen-
+tial standing genetic variation for populations to track cli-
+mate change via genotypic selection and hence adaptive
+evolution at the population level (Reusch and Boyd 2013;
+Collins et al. 2014).
+Although there have been some recent evolution experi-
+ments in the phytoplankton to ocean acidiﬁcation and
+warming (e.g., Lohbeck et al. 2012; Schl€uter et al. 2014;
+Hutchins et al. 2015), we currently do not know the time
+scales over which thermal reaction norms evolve, the
+response in growth and other traits to a range of environ-
+mental temperatures. The question of how rapidly biologi-
+cally meaningful differences in these reaction norms can
+© 2016 The Authors. Evolutionary Applications published by John Wiley & Sons Ltd. This is an open access article under the terms of the Creative
+Commons Attribution License, which permits use, distribution and reproduction in any medium, provided
+the original work is properly cited.
+1156
+Evolutionary Applications ISSN 1752-4571
+
+arise via adaptive evolution is highly important to under-
+standing future ocean biogeochemical cycles, as the envi-
+ronment for phytoplankton is changing on the timescale of
+decades (e.g., Boyd et al. 2010). As a tool relatively new to
+marine science, long-term experiments can directly address
+whether and how organismal responses to global change
+may evolve at the population level (Collins et al. 2014;
+Sunday et al. 2014). Here, fast-dividing marine microbes
+(approx. 1 cell division day1) are prime examples for
+observing evolution in action over timescales of several
+months to years (Reusch and Boyd 2013; Collins et al.
+2014; Hutchins et al. 2015).
+The response of a given phytoplankton species or geno-
+type to temperature is described by a thermal reaction norm,
+which is typically unimodal and left (negatively) skewed
+(Huey and Kingsolver 1989) as above the optimal tempera-
+ture Topt, growth rates decline more rapidly than below it.
+The maximum of the curve depicting the optimal growth
+temperature is correlated with (and generally higher than)
+the mean environmental temperature at the locale from
+which a population or genotype has been isolated for labora-
+tory cultivation, reﬂecting adaptation to local temperature
+conditions (Thomas et al. 2012, 2016). As in other ectother-
+mic species (Huey and Kingsolver 1989), phytoplankton
+thermal reaction norms are evolutionarily constrained by
+thermal trade-offs that prevent any one species from domi-
+nating across all temperatures found in the world’s oceans
+(Boyd et al. 2013). For example, species can be categorized
+as having a narrow or a wide thermal niche (specialist vs.
+generalist), with maximal growth rates that are traded off
+against generalist growth performance and vice versa (Angil-
+letta et al. 2003; Izem and Kingsolver 2005). Other conceiv-
+able trade-offs could be envisaged between maximal
+persistence temperature, thus stress tolerance, and maximal
+growth rates, but experimental data from phytoplankton
+demonstrating such trade-offs are lacking.
+Our model species is the world’s most abundant calcify-
+ing microalgae, the coccolithophore Emiliania huxleyi
+(Paasche 2002), that is one of the most intensely studied
+eukaryotic phytoplankton species with a near-worldwide
+distribution. Recently, this species has also become a model
+for combining experimental evolution and phytoplankton
+ecology (Reusch and Boyd 2013). Selection experiments
+subjecting this important phytoplankton species have
+shown that rapid adaptation to ocean acidiﬁcation is possi-
+ble within the time frame of 1 year either through geno-
+typic sorting or via the occurrence of novel mutations
+within asexually dividing replicate populations (Lohbeck
+et al. 2012). In terms of temperature adaptation, previous
+experiments have shown that this species can adapt to a
+temperature only 1–2°C below the maximal growth tem-
+perature by rapid adaptive evolution within a timeframe of
+1 year (corresponding to 500 asexual generations). Inter-
+estingly, increases in ﬁtness relative to control populations
+were ampliﬁed by simultaneous exposure to ocean acidiﬁ-
+cation levels of 1100 and 2200 latm (Schl€uter et al. 2014).
+The work by Schl€uter et al. (2014) only tested two temper-
+atures in the assay experiment, a control temperature
+(15.0°C) and one a few degrees below the lethal threshold
+(26.3°C). It is thus currently unknown how the entire ther-
+mal reaction norm may have changed upon thermal adap-
+tation in this species, as well as in any other phytoplankton
+species.
+Here, we address whether or not selection for a single
+temperature close to the upper thermal limit (26.3°C)
+resulted in a reconﬁguration of the entire reaction norm
+shape relative to populations evolving at 15°C, the approxi-
+mate isolation temperature of the coccolithophore ecotypes
+at Bergen, Norway (Lohbeck et al. 2012). Note that all
+genotypes/replicate populations had been grown previously
+for 4 years at 15°C such that the warm temperature is a
+novel environment, while we do not deny that there is also
+some long-term adaptation to 15°C still ongoing during
+the experimental phase of this study. This was studied in
+full factorial combination with two levels of ocean acidiﬁ-
+cation (1100 and 2200 latm pCO2) along with ambient
+controls (400 latm pCO2). We were particularly interested
+if adaptation to high temperature also changed the optimal
+growth temperature Topt, maximum persistence tempera-
+ture Tmax (i.e., the temperature above which growth rate
+becomes negative), and maximal growth rates lmax (Boyd
+et al. 2013; Thomas et al. 2016). Moreover, we studied pos-
+sible trade-offs, for example with respect to Tmax Topt, and
+lmax. Evolution experiments are particularly suited to
+address trade-offs because trait correlations, among the
+above three attributes of thermal reaction norms, have to
+evolve within an identical genetic background (Fry 2003).
+Material and methods
+Study species, culturing, and experimental design
+The coccolithophore Emiliania huxleyi is the most abun-
+dant calcifying organisms in the world oceans, distributed
+from subpolar to subtropical waters (Paasche 2002). When
+forming blooms, their areal extent can be seen from outer
+space owing to the calcite platelets that reﬂect a proportion
+of the incoming solar radiation. Previous studies in Emilia-
+nia huxleyi have demonstrated swift evolutionary adapta-
+tion to ocean acidiﬁcation and warming in asexual
+populations within the time frame of 1 year (approx. 500
+asexual divisions) (Schl€uter et al. 2014). Here, we built
+upon a previous CO2 (Lohbeck et al. 2012) and tempera-
+ture selection experiment (Schl€uter et al. 2014) and ask
+whether and how the entire thermal reaction norm differs
+in two sets of asexual experimental populations that
+evolved for 2.5 years under a control and one high temper-
+© 2016 The Authors. Evolutionary Applications published by John Wiley & Sons Ltd 9 (2016) 1156–1164
+1157
+Listmann et al.
+Evolution of thermal reaction norms
+
+ature close to the upper thermal limit. Note that maximal
+water temperatures off Bergen, Norway, are at most 19°C
+(see August maxima at http://www.seatemperature.org/
+europe/norway/bergen-august.htm), thus while the control
+temperature is within the conditions encountered by the
+culture genotypes, this was not the case for the high
+temperature.
+The temperature evolution experiment started in Febru-
+ary 2013 when Emiliania huxleyi semi-continual batch cul-
+tures at three CO2-levels (N = 5) were subdivided into a
+‘cold’ (15.0°C) and a ‘warm’ (26.3°C) treatment, resulting
+in six fully factorial ‘temperature by CO2 treatment’ combi-
+nations (Fig. 1). Phenotypic changes after 1 year (approx.
+500 asexual generations) of temperature selection, tested at
+only two assay conditions, that is, the two selection
+regimes, have already been published elsewhere (Schl€uter
+et al. 2014). The exact level of the ‘high’ temperature was
+determined in pilot experiments because initially, daily
+speciﬁc growth rates were approximately similar at both
+temperatures, thus the elapsed number of generations
+would also be similar across any occurring evolutionary
+adaptation (Schl€uter et al. 2014). The temperature treat-
+ment was run for 1200 asexual generations or 2.5 years,
+thus 700 generations longer than the results reported in
+Schl€uter et al. (2014). The original selection lines were
+founded in 2009 from a single cell isolated from a natural
+phytoplankton assemblage in the coastal waters off Bergen
+(Lohbeck et al. 2012). Emiliania huxleyi cultures were uni-
+algal but not axenic as checked by monthly light micro-
+scopy and ﬂow cytometry.
+Three CO2 levels were combined with the two tempera-
+tures in a full factorial way: along with a control treatment
+at 400 latm, we subjected E. huxleyi to 1100 latm as simu-
+lation of an end-of-the-century levels and 2200 latm as the
+highest possible future level of ocean acidiﬁcation in the
+year 2300 (Caldeira and Wickett 2003). CO2 levels were
+reached by bubbling the medium with CO2-enriched air
+before inoculating the experimental populations at the
+respective temperature treatments for 24 h, see (Schl€uter
+et al. 2014) for details on the seawater chemistry and CO2/
+carbonate measurements.
+For long-term experiments and temperature assays, we
+used artiﬁcial seawater ASW according to Kester et al.
+(1967) with the following nutrient additions: 64 lmol kg1
+of nitrate, 6 lmol kg1 phosphate, trace metals, and vita-
+mins according to f/8 composition, 10 nmol kg1 of sele-
+nium, and 2 mL kg1 ﬁltered North Sea water to avoid
+limitation by micronutrients.
+Cultures
+were
+kept
+under
+continuous
+rotation
+(0.5 min1 in two Sanyo MLR-351 light cabinets) at
+150 lmol m2 s1 photon ﬂux density under a 16:8 light:-
+dark conditions during each 5-day cycle. To start the next
+batch cycle, and renew the medium, every 5 days 105 cells
+were transferred from cultures into fresh medium. The cell
+abundance and diameter were measured in triplicate before
+each transfer, using a Beckman Coulter Z2 Particle and Size
+Analyzer. Daily speciﬁc growth rates (l) were calculated
+from cell abundance as l = (ln Nd–ln N0)/d. All culture
+work, including the ASW preparation, was performed
+under sterile conditions (laminar ﬂow) (Schl€uter et al.
+2014).
+Assay experiment to determine the thermal reaction norm
+The reaction norm of all 30 replicates was determined at six
+assay temperatures after one full cultivation cycle of transfer
+of 100 000 cells to a new culture ﬂask for acclimation (5 days
+=5-8 cell divisions), namely at 15, 18, 22, 24, 26, and 27°C.
+While the two lower temperature values are attained at Ber-
+gen (Norway) coastal waters, the isolation location of the
+tested E. huxleyi genotype, we were particularly interested in
+the possible changes of upper range of temperature toler-
+ance. This also implies that our design inappropriate to
+address correlated responses at low temperatures (i.e.,
+<15°C). Batch cycles to assess growth rates differed in length
+because we needed to maintain approximately similar maxi-
+mal cell numbers in the assays. To accommodate for the dif-
+ferent growth rates, batch cycles lasted 6 days in the 15°C
+treatment, 5 days in the 18°C treatment, 4 days in the 22°C,
+5 days for 24°C, 7 days (15°C) and 5 days (26.3°C) for
+26°C, and 10 days (26.3°C) in the 27°C treatment. Prepara-
+tion of ASW was similar to the long-term culturing phase,
+except that during CO2 manipulation via bubbling the med-
+ium, the seawater was kept at the planned assay temperature
+(15°C, 18°C, 22°C, 24°C, 26°C, and 27°C (3°C)) for 24 h,
+and not at the respective selection temperature (15.0 and
+26.3°C). Nutrients were never limiting given the cell abun-
+dance achieved at the end of the batch cycles. At the end of
+each growth cycle, the cell densities and cell diameter were
+determined triplicate by a Z2 Coulter Particle Count and
+Size Analyzer (Beckman Coulter Counter; Krefeld, Ger-
+many), and speciﬁc daily growth rates (l) were calculated
+from cell abundances as above.
+Statistical analyses
+Where strains exhibited no growth at either 26 or 27°C, we
+removed the 27°C measurement from our calculations. The
+absence of growth can indicate either zero or negative
+growth rate, but we were unable to measure negative
+growth rates. Therefore, zero is almost certainly an overes-
+timate at 27°C in these cases.
+Thermal reaction norm parameter estimation
+Thermal reaction norms are typically left-skewed and have
+been described using a variety of functions. We used the
+1158
+© 2016 The Authors. Evolutionary Applications published by John Wiley & Sons Ltd 9 (2016) 1156–1164
+Evolution of thermal reaction norms
+Listmann et al.
+
+equation and parameter and bootstrap-based uncertainty
+estimation procedures described in Thomas et al. (2012)
+and Boyd et al. (2013).
+f ðTÞ ¼ aebT 1 
+T  z
+w=2
+
+2
+"
+#
+ð1Þ
+where speciﬁc growth rate f depends on temperature, T, as
+well as parameters z, w, a, and b. w is the temperature niche
+width (the range of temperatures over which growth rate is
+positive), while the other three (z,a,b) possess no explicit
+biological meaning but interact to inﬂuence the rate of
+increase in growth rate with temperature, the maximum
+growth rate and the optimum temperature for growth. We
+ﬁt (1) to the growth data for each strain using maximum
+likelihood to obtain estimates for parameters z, w, a, and b.
+In addition, we estimated the optimum temperature for
+growth (Topt) and maximum persistence temperature
+(Tmax) through numerical estimation. For maximum
+growth rate lmax, we instead used the highest growth rate
+measured in our growth assays, as we are less conﬁdent in
+these estimates from our ﬁtted reaction norms.
+Estimating the inﬂuence of temperature selection and pCO2
+levels on traits
+We tested whether the three thermal traits changed as a
+result of selection at different temperatures and pCO2 levels
+while accounting for uncertainty in our estimates of these
+traits using a parametric bootstrapping approach. For each
+replicate, we ﬁtted the thermal reaction norm function to
+CO2-selection 
+CO2 and
+temp-selection
+Assay experiment
+Acclimation
+1 batch cycle
+1,500 generations
+1,200 generations
+Six assay
+temperatures
+Figure 1 Five years of experimental evolution in Emiliania huxleyi in semi-continuous batch cultures. Schematic representation of the experimental
+design and the selection history.
+© 2016 The Authors. Evolutionary Applications published by John Wiley & Sons Ltd 9 (2016) 1156–1164
+1159
+Listmann et al.
+Evolution of thermal reaction norms
+
+the growth rate measurements and extracted the residuals
+from this ﬁt. We then performed 1000 residual bootstraps,
+a procedure in which the residuals are randomly ‘reas-
+signed’ to the predicted values (each of which corresponds
+to a growth rate measurement) and added to them, thereby
+generating a slightly different thermal reaction norm. For
+each iteration, we reﬁtted the function and estimated the
+parameters (z, w, a, b) and also two of the derived traits,
+Topt and Tmax.
+Examining the distribution of the traits (Topt and Tmax)
+over the 1000 bootstraps allowed us to quantify the uncer-
+tainty in our trait estimates, which we then incorporated in
+models seeking to explain how selection temperature and
+pCO2 inﬂuenced them. For each set of bootstraps of all 30
+experimental units, we ﬁtted a linear model explaining each
+trait as a function of selection temperature (coded as a cat-
+egorical variable), pCO2 level and their interaction. pCO2
+level was standardized by subtracting the mean and divid-
+ing by two standard deviations to improve ﬁtting proce-
+dures and generate readily comparable model parameter
+values (Gelman 2008; Gelman and Su 2015. We then exam-
+ined the distribution of linear model parameter estimates
+over the 1000 bootstraps to determine whether temperature
+selection, pCO2 or their interaction signiﬁcantly inﬂuenced
+the traits. If the 95% conﬁdence interval of a linear model
+parameter did not overlap zero, we concluded that the
+model parameter had a signiﬁcant inﬂuence on the trait. If
+the interaction between selection temperature and pCO2
+was an important predictor, we did not draw conclusions
+about signiﬁcance of the main effects.
+In the case of lmax, we ﬁtted the linear model only the
+highest measured growth rate of each strain (no boot-
+straps), using selection temperature (coded as a categorical
+variable), pCO2 level and their interaction as explanatory
+variables. As with the other two traits, we standardized
+pCO2 level by subtracting the mean and dividing by two
+standard deviations. After this, we estimated the 95% conﬁ-
+dence intervals on the ﬁtted model parameters.
+Parameter estimation and bootstrapping was performed
+in the R Statistical Environment 3.2.2. (R Core Team
+2015).
+Results
+Fitted reaction norms of all ﬁve replicates within the two
+selection treatments are depicted in Fig. 2, grouped by
+selection treatment and CO2 condition. 2.5 years of selec-
+tion at 15 and 26.3°C and three CO2 levels resulted in
+marked differences in reaction norm shape, which we cap-
+ture in important temperature traits (Fig. 3). The effect
+sizes of the selection conditions (i.e., the regression coefﬁ-
+cients of the parameters) on Topt, Tmax, and lmax are pre-
+sented in Fig. 4. The variance explained (adjusted R2) by
+the models for these three traits was 0.37, 0.74, and 0.65,
+16
+18
+20
+22
+24
+26
+0.0
+0.5
+1.0
+1.5
+pCO2
+400
+1100
+2200
+16
+18
+20
+22
+24
+26
+0.0
+0.5
+1.0
+1.5
+pCO2
+400
+1100
+2200
+Temperature (°C)
+Specific growth rate (per day)
+15°C
+26.3°C
+Figure 2 Fitted temperature reaction norms for individual replicate asexual populations according to eqn (1) in Emiliania huxleyi. Curves are grouped
+according to two different selection temperatures, 15.0 (left) and 26.3°C (right panel) fully crossed with three CO2 environments, depicted by color
+(orange = 400 latm, black = 1100 latm, blue = 2200 latm). Note that the CO2 environment was similar during selection and temperature assay.
+1160
+© 2016 The Authors. Evolutionary Applications published by John Wiley & Sons Ltd 9 (2016) 1156–1164
+Evolution of thermal reaction norms
+Listmann et al.
+
+respectively. Temperature had a strong effect on Topt and
+Tmax, while CO2 was important for determining the maxi-
+mal growth rate Gmax and for Tmax. Both lmax and Tmax
+were inﬂuenced by interactions between CO2 and selection
+temperature. We discuss the changes in the three traits
+below. We do not interpret our estimates of thermal niche
+width as we lack critical values at the lower temperature
+threshold to characterize them accurately.
+Optimum temperature for growth (Topt)
+Topt differed by 0.7°C on average between the low- and
+high-temperature selection treatments (Fig. 3), being 21–
+21.5°C in the former and 22°C in the latter (Fig. 4). pCO2
+did not have a detectable inﬂuence on Topt either directly
+or as part of an interaction with temperature selection
+(Figs. 3 and 4).
+Maximum persistence temperature (Tmax)
+Tmax varied substantially between treatments and was inﬂu-
+enced by an interaction between temperature selection and
+pCO2 level (Fig. 4). In the high-temperature selection
+treatments, Tmax reached 28.5–29°C regardless of pCO2
+level (Fig. 3). However, in the low-temperature selection
+treatments, Tmax varied by 2°C depending on pCO2 level
+(Fig. 4). At 400 latm (control), Tmax was nearly 28°C, but
+this decreased by 1°C at 1100 latm and 2°C at 2200 latm
+(Fig. 3).
+Maximum growth rate (lmax)
+lmax was reduced strongly at higher pCO2 levels, but the
+extent of the reduction was inﬂuenced by an interaction
+with temperature (Figs. 3 and 4). lmax decreased more
+strongly with increasing pCO2 at 15°C (by nearly 0.2 per
+day at 2200 latm relative to 400 latm) than at 26.3°C (by
+approximately 0.09 per day).
+Discussion
+As a response to climate forcing via emission of greenhouse
+gasses, in particular CO2, atmospheric warming has already
+produced pronounced ocean warming during the past few
+decades in the world’s oceans, and even down to depths of
+2000 m (Roemmich et al. 2015). As a result, among diverse
+plankton species, observed range shifts have been attributed
+to mean ocean warming (or increased variability) and
+concomitant
+poleward
+shifts
+of
+distributional
+ranges
+(Poloczanska et al. 2013). Adaptive evolution is a nonmu-
+tually exclusive process to range shifts that allows popula-
+tions to ‘stay’ within their geographical range and has
+●
+●
+●
+●
+●
+●
+21.0
+21.5
+22.0
+22.5
+26
+27
+28
+29
+30
+1.3
+1.4
+1.5
+Topt (° C)
+(° C)
+µmax (day−1)
+15
+26.3
+Selection temperature (°C)
+Mean trait values (trait units)
+pCO2
+●400
+1100
+2200
+Tmax
+Figure 3 Mean temperature traits (Topt, Tmax, and lmax) in the different
+treatments. Topt and Tmax were estimated from reaction norm ﬁts
+depicted in Fig. 2, while lmax was calculated from the measured growth
+rates. Conﬁdence intervals (95%) are based on residual bootstraps of
+the ﬁtted reaction norms for the ﬁrst two traits; for lmax, calculations
+were based on the empirically measured growth rates and assumed
+normality of the data.
+●
+●
+●
+●
+●
+●
+●
+●
+●
+−0.5
+0.0
+0.5
+1.0
+−1
+0
+1
+2
+−0.15
+−0.10
+−0.05
+0.00
+Topt (° C)
+Tmax (° C)
+µmax (day−1)
+Selection temperature
+pCO2
+Interaction
+Change in trait (trait units)
+Figure 4 Changes in Emiliania huxleyi temperature traits Topt, Tmax
+[based on the nonlinear curve ﬁt according to eqn (1)] and lmax (based
+on measured growth rates) as a function of selection temperature,
+pCO2, and their interaction. Standardized trait coefﬁcients and their
+interaction are depicted; if conﬁdence intervals do not overlap with
+zero, effects are statistically signiﬁcant.
+© 2016 The Authors. Evolutionary Applications published by John Wiley & Sons Ltd 9 (2016) 1156–1164
+1161
+Listmann et al.
+Evolution of thermal reaction norms
+
+recently come into the research focus (Hoffmann and Sgro
+2011).
+Here, we have addressed how the rate at which adaptive
+evolution will produce different thermal reaction norms in
+a genetically near-uniform base population. We started our
+experimental evolution with a single isolate from Bergen,
+Norway. Thus, due to the lack of standing genetic varia-
+tion, evolutionary adaptation most likely occurred via
+novel mutations. Mutant genotypes with under positive
+selection displayed higher Darwinian ﬁtness and rose to
+(near) ﬁxation in the asexually dividing population. Our
+scenario thus simulates that sexual reproduction and
+recombination is rare or absent (Reusch and Boyd 2013),
+which may actually be the case in some E. huxleyi popula-
+tions (von Dassow et al. 2015). For our isolates, popula-
+tion-level data indicate that they are composed of many
+genotypes (unpublished data), which mirror results from
+the English channel that even in bloom situations geno-
+types are in Hardy–Weinberg equilibrium (Krueger-Had-
+ﬁeld et al. 2014) suggesting frequent sexual reproduction.
+Although we started with one single genotype, we never-
+theless found marked divergence among the two tempera-
+ture
+selection
+treatments
+in
+several
+reaction
+norm
+parameters such as Topt, Tmax, and lmax. These effects of
+temperature selection interacted with the CO2 environ-
+ment. Speciﬁcally, effects on Tmax, in particular, were
+markedly negatively affected by medium and high ocean
+acidiﬁcation levels but only in high-temperature selection
+treatments. This highlights how important interactions of
+major projected ocean perturbations are not only to under-
+stand future physiology, but also the evolutionary trajecto-
+ries in plankton populations (Collins 2011; Schl€uter et al.
+2014). Note that our design cannot strictly test for tempo-
+ral changes in reaction norms, because we cannot retest our
+initial base population or genotype as is possible in model
+systems such as E.coli or yeast with the help of cryopreser-
+vation (Elena and Lenski 2003). The salient experimental
+test is therefore the synchronic test of different evolution
+treatments at the same time, which also provides the neces-
+sary control for laboratory adaptation.
+We cannot exclude that the genotype #62, originally iso-
+lated in 2009 off Bergen, Norwegian coastal waters, is spe-
+cial in terms of adaptation rates or magnitudes toward
+ocean warming and acidiﬁcation. In other words, it is
+highly desirable to compare different genetic backgrounds
+with respect to their rates and magnitudes of adaptation,
+including associated phenotypic traits.
+Our data support results of a shorter (1 year = 500 gen-
+erations) evolution experiment reported in Schl€uter et al.
+(2014). He tested thermal adaptation only at the two selec-
+tion temperatures, 15.0°C and 26.3° over 1 year and found
+pronounced adaptation of growth rates to the long-term
+selection temperature in reciprocal exposure assays. The
+relative
+ﬁtness
+of
+high-temperature-adapted
+replicates
+compared to low-temperature-adapted ones (as quotient of
+exponential growth rates) was 1.08–1.25, when tested at
+26.3°C. The higher the CO2 level in the experiment of
+Schl€uter et al. (2014), the greater were the ﬁtness gains of
+adapted populations, relative to the control populations
+evolving at today’s pCO2 and at a temperature of 15°C.
+When focusing on the rather similar assay temperature
+26°C assessed here, the present data reveal an even stronger
+thermal adaptation after about 700 additional generations
+of evolution. Depending on CO2, we ﬁnd a relative ﬁtness
+of 1.22 and 2.05 in ambient and medium (1100 latm)
+pCO2. Note that at the highest CO2 level (2200 latm), no
+growth was observed in the 15°C adapted populations at
+an assay temperature of 26°C. We also found a pronounced
+correlated response at 15°C – low-temperature-adapted
+populations grew faster at 15°C than high-temperature-
+adapted ones (Fig. 2).
+Contrary to Schl€uter et al. (2014), at an assay tempera-
+ture of 26°C, we now ﬁnd zero growth in some 15°C
+adapted replicate populations, which may be due to further
+adaptive evolution toward low-temperature specialization.
+However, this may have been inﬂuenced by differences in
+assay methods. In the present study, the initiation of the
+assay experiment (which started with a 1-week acclimation
+phase in all cases) was abrupt (i.e., within one single day),
+while the assay temperature was reached at a rate of 1°C
+per day in the earlier experiment by Schl€uter et al. (2014).
+The concomitant carry-over effects may have negatively
+affected growth rates in the 2nd assay cycle where the
+growth rates presented in this paper were measured.
+In the ideal case, we would have started the thermal evo-
+lution experiment with identical genetic material at the
+onset. However, replicate lines had already 3 years time
+(about 1500 generations) to accumulate slightly favorable
+and concomitant hitchhiking mutations (Lang et al. 2013)
+under long-term CO2 selection before thermal selection
+had started. Thus, the starting genetic diversity was likely
+higher than a pure uni-clonal inoculum derived immedi-
+ately from a single cell directly before the thermal selection
+started. This may explain the relatively fast pace and extent
+of reaction norm evolution compared to previous assess-
+ments of adaptation to ocean acidiﬁcation (Lohbeck et al.
+2012). Note, however, that also the CO2-ambient control
+lines (at 400 latm) always evolving under ambient CO2
+levels had also changed their thermal reaction norm relative
+to the 26.3°C selected replicates, thus previous high-CO2
+selection was apparently not prerequisite for adaptive
+responses.
+In any case, the standing genetic variation in natural
+phytoplankton populations is much higher: ample standing
+genetic variation in coccolithophores has often been
+observed in genetic marker studies (Iglesias-Rodriguez
+1162
+© 2016 The Authors. Evolutionary Applications published by John Wiley & Sons Ltd 9 (2016) 1156–1164
+Evolution of thermal reaction norms
+Listmann et al.
+
+et al. 2006; Krueger-Hadﬁeld et al. 2014) or physiological
+assessments (Brand 1982; Wood and Leatham 1992; Kremp
+et al. 2012; Zhang et al. 2014), which provide abundant
+possibilities for selection to operate.
+The major result of evolution at different temperatures
+was that the optimal growth temperature Topt shifted
+upwards, which was expected. As growth rates increased
+only
+little
+during
+the
+5 years
+of
+selection
+at
+15°C
+(Schl€uter and Reusch, unpublished data), we attribute
+most of the divergence in reaction norm shape to
+changes at high temperature. This may reﬂect a trade-off
+with between low- and high-temperature performance. A
+second major ﬁnding is that Tmax shifted upwards very
+strongly relative to the low-temperature-adapted popula-
+tions, indicating that adaptation to lethal temperatures is
+possible over monthly-to-yearly timescales even in very
+small populations (relative to natural populations). While
+this upward shift was present in all high-temperature
+selection replicates, pCO2 had a negative effect on Tmax
+in the low-temperature selection treatments. Currently,
+we have no explanation for this interaction, but it clearly
+deserves further testing in this and other phytoplankton
+species. In contrast to these two traits, lmax was only
+weakly affected by temperature selection but strongly
+decreased
+with
+increasing
+pCO2,
+especially
+at
+15°C.
+Unfortunately, since we could not assess the niche width,
+our ﬁndings cannot be interpreted within a generalist–
+specialist trade-off scenario (Angilletta et al. 2003; Izem
+and Kingsolver 2005), However, it suggests that a general
+‘ﬂattening’ and broadening of the reaction norm may
+have occurred, superimposed onto a right-hand shift of
+the entire reaction norm curve.
+Although our upper thermal selection temperature was
+very unrealistic with respect to the temperatures E. huxleyi
+may experience throughout the North Atlantic (maximal
+temperatures at Bergen, the isolation site 19°C in August),
+our results nevertheless provide a proof-of-principle of
+swift evolution of reaction norms and provide ﬁrst insights
+into trade-offs of important traits associated with phyto-
+plankton temperature reaction norms. Biogeochemical
+models of future ocean productivity contain thermal sensi-
+tivities of major phytoplankton groups as key parameters
+(Taucher and Oschlies 2011). Our results show that these
+thermal traits are parameters that can change by evolution
+and may to some extent track the expected increases in sea
+surface temperatures. A big open question is whether in the
+ocean, thermally sensitive species will be replaced by taxa
+possessing higher optimal growth temperatures and upper
+tolerances
+(i.e.,
+ecological
+compositional
+change),
+or
+whether in situ evolution of thermal reaction norms will
+occur as a nonexclusive additional response, favouring the
+persistence of existing species and communities (Collins
+and Gardner 2009).
+Acknowledgements
+We thank Renate Ebbinghaus and Katrin Beining for labo-
+ratory assistance and Kai T. Lohbeck for his advice. This
+work was partly funded through the Kiel Excellence Cluster
+The Future Ocean. Maxime LeRoch was funded through a
+stipend of the University du Bretagne-Sud. Comments by
+P.W. Boyd and one anonymous referee greatly improved
+the manuscript.
+Data archiving statement
+Primary data are available through the data repository Pan-
+gaea (http://doi.pangaea.de/10.1594/PANGAEA.856736).
+References
+Angilletta, M. J. Jr, R. S. Wilson, C. A. Navas, and R. S. James 2003.
+Tradeoffs and the evolution of thermal reaction norms. Trends Ecol-
+ogy Evolution 18:234–240.
+Boyd, P. W., R. Strzepek, F. U. Feixue, and D. A. Hutchins 2010. Envir-
+onmental control of open-ocean phytoplankton groups: Now and in
+the future. Limnology & Oceanography 55:1353–1376.
+Boyd, P. W., T. A. Rynearson, E. A. Armstrong, F. Fu, K. Hayashi, Z.
+Hu, D. A. Hutchins et al. 2013. Marine phytoplankton temperature
+versus growth responses from polar to tropical waters – outcome of a
+scientiﬁc community-wide study. PLoS One 8:e63091.
+Brand, L. E. 1982. Genetic variability and spatial patterns of genetic dif-
+ferentiation in the reproductive rates of the marine coccolithophores
+Emiliania huxleyi and Gephyrocapsa oceanica. Limnology & Oceanog-
+raphy 27:236–245.
+Caldeira, K., and M. E. Wickett 2003. Oceanography: anthropogenic car-
+bon and ocean pH. Nature 425:365–365.
+Collins, S. 2011. Many possible worlds: expanding the ecological scenar-
+ios in experimental evolution. Evolutionary Biology 38:3–14.
+Collins, S., and A. Gardner 2009. Integrating physiological, ecological
+and evolutionary change: a Price equation approach. Ecology Letters
+12:744–757.
+Collins, S., B. Rost, and T. A. Rynearson 2014. Evolutionary potential of
+marine phytoplankton under ocean acidiﬁcation. Evolutionary Appli-
+cations 7:140–155.
+von Dassow, P., U. John, H. Ogata, I. Probert, E. M. Bendif, J. U. Kegel,
+S. Audic et al. 2015. Life-cycle modiﬁcation in open oceans accounts
+for genome variability in a cosmopolitan phytoplankton. ISME Jour-
+nal 9:1365–1377.
+Elena, S. F., and R. E. Lenski 2003. Evolution experiments with microor-
+ganisms: the dynamics and genetic bases of adaptation. Nat Rev Genet
+4:457–469.
+Eppley, R. W. 1972. Temperature and phytoplankton growth in the sea.
+Fisheries Bulletin 70:1063–1085.
+Fry, J. D. 2003. Detecting ecological trade-offs using selection experi-
+ments. Ecology 84:1672–1678.
+Gelman, A. 2008. Scaling regression inputs by dividing by two standard
+deviations. Statistics in Medicine 27:2865–2873.
+Gelman, A., and Y.-S. Su (2015). arm: Data Analysis Using Regres-
+sion and Multilevel/Hierarchical Models. R package version 1.8-6.
+http://CRAN.R-project.org/package=arm (accessed on 1 November
+2015).
+© 2016 The Authors. Evolutionary Applications published by John Wiley & Sons Ltd 9 (2016) 1156–1164
+1163
+Listmann et al.
+Evolution of thermal reaction norms
+
+Hoffmann, A. A., and C. M. Sgro 2011. Climate change and evolutionary
+adaptation. Nature 470:479–485.
+Huey, R. B., and J. G. Kingsolver 1989. Evolution of thermal sensi-
+tivity of ectotherm performance. Trends in Ecology & Evolution
+4:131–135.
+Hutchins, D. A., N. G. Walworth, E. A. Webb, M. A. Saito, D. Moran,
+M. R. McIlvin, J. Gale et al. 2015. Irreversibly increased nitrogen ﬁxa-
+tion in Trichodesmium experimentally adapted to elevated carbon
+dioxide. Nature Communications 6:8155.
+Iglesias-Rodriguez, M. D., O. M. Schoﬁeld, J. Batley, L. K. Medlin, and
+P. K. Hayes 2006. Intraspeciﬁc genetic diversity in the marine coccol-
+ithophore Emiliania huxleyi (Prymnesiophyceae): the use of
+microsatellite analysis in marine phytoplankton population studies.
+Journal of Phycology 42:526–536.
+Izem, R., and J. G. Kingsolver 2005. Variation in continuous reaction
+norms: quantifying directions of biological interest. The American
+Naturalist 166:277–289.
+Kester, D. R., I. W. Duedall, D. N. Connors, and R. M. Pytkowicz 1967.
+Preparation of artiﬁcial seawater. Limnology & Oceanography
+12:176–179.
+Kremp, A., A. Godhe, J. Egardt, S. Dupont, S. Suikkanen, S. Casabianca,
+and A. Penna 2012. Intraspeciﬁc variability in the response of bloom-
+forming marine microalgae to changed climate conditions. Ecology &
+Evolution 2:1195–1207.
+Krueger-Hadﬁeld, S. A., C. Balestreri, J. Schroeder, A. Highﬁeld, K. T.
+Lohbeck, U. Riebesell, T. B. H. Reusch et al. 2014. Genotyping an
+Emiliania huxleyi (Prymnesiophyceae) bloom event in the North Sea
+reveals evidence of asexual reproduction. Biogeosciences 11:5215–
+5234.
+Lang, G. I., D. P. Rice, M. J. Hickman, E. Sodergren, G. M. Weinstock,
+D. Botstein, and M. M. Desai 2013. Pervasive genetic hitchhiking and
+clonal interference in forty evolving yeast populations. Nature
+500:571–574.
+Lohbeck, K. T., U. Riebesell, and T. B. H. Reusch 2012. Adaptive evolu-
+tion of a key phytoplankton species to ocean acidiﬁcation. Nature
+Geoscience 5:346–351.
+Paasche, E. 2002. A review of the coccolithophorid Emiliania huxleyi
+(Prymnesiophyceae), with particular reference to growth, coccolith
+formation, and calciﬁcation-photosynthesis interactions. Phycologia
+40:503–529.
+Poloczanska, E. S., C. J. Brown, W. J. Sydeman, W. Kiessling, D. S.
+Schoeman, P. J. Moore, K. Brander et al. 2013. Global imprint of cli-
+mate change on marine life. Nature Climate Change 3:919–925.
+Raven, J., and R. Geider 1988. Temperature and algal growth. New Phy-
+tologist 110:441–461.
+R Core Team. 2015. R: A language and environment for statistical com-
+puting. R Foundation for Statistical Computing, Vienna, Austria.
+Available from: https://www.R-project.org/.
+Reusch, T. B. H., and P. W. Boyd 2013. Experimental evolution meets
+marine phytoplankton. Evolution 67:1849–1859.
+Roemmich, D., J. Church, J. Gilson, D. Monselesan, P. Sutton, and S.
+Wijffels 2015. Unabated planetary warming and its ocean structure
+since 2006. Nature climate change 5:240–245.
+Schl€uter, L., K. T. Lohbeck, M. A. Gutowska, J. P. Gr€oger, U. Riebesell,
+and T. B. H. Reusch 2014. Adaptation of a globally important coccol-
+ithophore to ocean warming and acidiﬁcation. Nature Climate
+Change 4:1024–1030.
+Sunday, J. M., P. Calosi, S. Dupont, P. L. Munday, J. H. Stillman, and T.
+B. H. Reusch 2014. Evolution in an acidifying ocean. Trends in Ecol-
+ogy & Evolution 29:117–125.
+Taucher, J., and A. Oschlies 2011. Can we predict the direction of marine
+primary production change under global warming? Geophysical
+Research Letters 38:L02603.
+Thomas, M. K., C. T. Kremer, C. A. Klausmeier, and E. Litchman 2012.
+A global pattern of thermal adaptation in marine phytoplankton.
+Science 338:1085–1088.
+Thomas, M. K., C. T. Kremer, and E. Litchman 2016. Environment and
+evolutionary history determine the global biogeography of phyto-
+plankton temperature traits. Global Ecology and Biogeography.
+25:75–86.
+Wood, A. M., and T. Leatham 1992. The species concept in phytoplank-
+ton ecology. Journal of Phycology 28:723–729.
+Zhang, Y., R. Klapper, K. T. Lohbeck, L. T. Bach, K. G. Schulz, T. B. H.
+Reusch, and U. Riebesell 2014. Between- and within-population varia-
+tions in thermal reaction norms of the coccolithophore Emiliania hux-
+leyi. Limnology & Oceanography 59:1570–1580.
+1164
+© 2016 The Authors. Evolutionary Applications published by John Wiley & Sons Ltd 9 (2016) 1156–1164
+Evolution of thermal reaction norms
+Listmann et al.
