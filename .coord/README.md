@@ -128,16 +128,18 @@ python3 tools/coord.py release ID --agent fast --reason "…"
 
 ## Текущие задачи (25.11)
 
-| ID | что | приоритет |
-|---|---|---|
-| `P11-redteam-coverage` | Red Team сшивки: пары на совпадении формулировки | 12 |
-| `P1-identity-122` | сшивка по тождеству источника для остатка | 10 |
-| `P4-redteam-formula` | опровержение v2 и двух осей | 15 |
-| `P2-dcap-number` | `D_cap` до числа | 20 |
-| `P5-dissolution-split` | развести излом/скачок/необратимость | 25 |
-| `P3-v2-pairs` | пары `(D, R(D))` | 30 |
-| `P6-units-kg` | единицы в `kg/` | 35 |
-| `P7-kernel-text-code` | текст `KERNEL-TEST` против кода | 40 |
-| `P8-artifacts-request` | заявка: три бинарных артефакта | 45 |
-| `P9-experiment-families` | 407 прогонов → ~100 семей | 50 |
-| `P10-synthesis-09` | черновик обзора | 60 |
+| ID | что |
+|---|---|
+| `P1-identity-122` | сшивка по тождеству источника для остатка |
+| `P11-redteam-coverage` | Red Team сшивки: пары на совпадении формулировки |
+| `P4-redteam-formula` | опровержение v2 и двух осей |
+| `P2-dcap-number` | `D_cap` до числа |
+| `P5-dissolution-split` | развести излом/скачок/необратимость |
+| `P3-v2-pairs` | пары `(D, R(D))` |
+| `P6-units-kg` | единицы в `kg/` |
+| `P7-kernel-text-code` | текст `KERNEL-TEST` против кода |
+| `P8-artifacts-request` | заявка: три бинарных артефакта |
+| `P9-experiment-families` | прогоны → семьи |
+| `P10-synthesis-09` | черновик обзора |
+
+Порядок в таблице и есть порядок приоритета: сверху — то, что даёт больше всего на единицу времени.
