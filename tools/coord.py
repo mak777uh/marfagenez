@@ -66,12 +66,14 @@ def sha(p: pathlib.Path) -> str:
 
 
 def task_card(task_id: str, title: str, area: str, accept: list[str], priority: int,
-              author: str, note: str = "", kind: str = "research") -> str:
+              author: str, note: str = "", kind: str = "research",
+              standing: bool = False) -> str:
     lines = [
         f"# {task_id} — {title}",
         "",
         f"- автор: `{author}`",
         f"- вид: `{kind}`",
+        f"- постоянная: {'да — не исчезает после закрытия' if standing else 'нет'}",
         f"- приоритет: {priority}",
         f"- создана: {now()}",
         "",
@@ -104,7 +106,8 @@ def cmd_add(a) -> int:
         return 1
     d.mkdir(parents=True)
     (d / "TASK.md").write_text(
-        task_card(a.id, a.title, a.area, a.accept, a.priority, a.agent, a.note, a.kind),
+        task_card(a.id, a.title, a.area, a.accept, a.priority, a.agent, a.note, a.kind,
+                  a.standing),
         encoding="utf-8")
     event(a.agent, f"создана задача `{a.id}` — {a.title}")
     print(f"добавлено: {a.id}")
@@ -192,6 +195,25 @@ def cmd_take(a) -> int:
     if prot and a.agent != "main":
         print(f"ошибка: защищённые зоны правит только main: {prot}")
         return 1
+    txt = (src / "TASK.md").read_text(encoding="utf-8")
+    standing = "- постоянная: да" in txt
+    if standing:
+        # Постоянная задача остаётся в pending: каждое взятие — отдельный раунд со своим каталогом.
+        round_id = f"{a.id}-{time.strftime('%Y%m%dT%H%M%S')}"
+        dst = ACTIVE / round_id
+        try:
+            dst.mkdir(parents=True)
+        except FileExistsError:
+            print(f"ошибка: раунд {round_id} уже существует")
+            return 1
+        shutil.copy2(src / "TASK.md", dst / "TASK.md")
+        (dst / ".claim.json").write_text(json.dumps({
+            "agent": a.agent, "taken_at": now(), "task_sha256": sha(dst / "TASK.md"),
+            "area": _area_of(dst / "TASK.md"), "standing": True, "parent": a.id,
+        }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        event(a.agent, f"взят раунд постоянной задачи `{a.id}` → `{round_id}`")
+        print(f"взято: раунд {round_id} (постоянная задача {a.id} осталась в pending)")
+        return 0
     try:
         dst.mkdir(parents=True)  # атомарно: второму агенту достанется FileExistsError
     except FileExistsError:
@@ -340,6 +362,16 @@ def cmd_release(a) -> int:
     if claim.get("agent") != a.agent and not a.force:
         print("ошибка: отпустить может только исполнитель (или с --force)")
         return 1
+    if claim.get("standing"):
+        # Раунд постоянной задачи: карточка живёт в pending всегда, её не надо создавать заново.
+        for extra in ("RESULT.md", "DONE.json"):
+            if (d / extra).exists():
+                (d / extra).rename(d / (extra + ".abandoned"))
+        (d / ".claim.json").unlink()
+        d.rmdir()
+        event(a.agent, f"отпущен раунд `{a.id}`: {a.reason}")
+        print(f"отпущен раунд: {a.id} (постоянная карточка `{claim.get('parent')}` не тронута)")
+        return 0
     dst = PENDING / a.id
     dst.mkdir(parents=True, exist_ok=True)
     shutil.move(str(d / "TASK.md"), str(dst / "TASK.md"))
@@ -379,6 +411,7 @@ def main(argv: list[str]) -> int:
     p.add_argument("--area", required=True); p.add_argument("--accept", action="append", default=[])
     p.add_argument("--priority", type=int, default=50); p.add_argument("--agent", default="main")
     p.add_argument("--note", default=""); p.add_argument("--kind", default="research")
+    p.add_argument("--standing", action="store_true")
     p.set_defaults(fn=cmd_add)
 
     p = sub.add_parser("list"); p.set_defaults(fn=cmd_list)
