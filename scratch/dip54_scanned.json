@@ -1151,5 +1151,1118 @@
   "src": "epmc",
   "status": "no-hits",
   "hits": []
+ },
+ "10.1038/s41598-025-19148-7": {
+  "title": "CFD analysis of heat and mass transfer in hollow fiber DCMD enhanced by metal foam.",
+  "pmcid": "PMC12508070",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "Reynolds number effect",
+    "sent": "Figure 9 b illustrates the variation of the Sherwood number as a function of Reynolds number."
+   },
+   {
+    "kind": "Sh",
+    "section": "Reynolds number effect",
+    "sent": "For Models 1 and 2, the Sherwood number increases from approximately 28 at Re = 50 to 42 at Re = 200."
+   },
+   {
+    "kind": "Sh",
+    "section": "Reynolds number effect",
+    "sent": "Models 1 and 2 exhibit nearly identical Sherwood numbers, as the permeate flow (tube side) has limited influence on the salt concentration in the feed (shell) side."
+   },
+   {
+    "kind": "Sh",
+    "section": "Reynolds number effect",
+    "sent": "In contrast, Models 3 and 4 show significantly higher Sherwood numbers due to the presence of external metal foam in the shell side, which promotes more uniform velocity profiles and better mass transfer performance."
+   },
+   {
+    "kind": "Sh",
+    "section": "Reynolds number effect",
+    "sent": "On average, the Sherwood numbers for Models 3 and 4 are approximately 38% higher than those for Models 1 and 2."
+   },
+   {
+    "kind": "Sh",
+    "section": "Effect of metal foam porosity",
+    "sent": "Effect of metal foam porosity Figure 10 a, b and c, and 10 d examine the effect of metal foam porosity (ranging from 0.90 to 0.99) on flux, Sherwood number, shell-side friction factor, and tube-side friction factor, respectively, for the three models that incorporate metal foam."
+   },
+   {
+    "kind": "Sh",
+    "section": "Effect of metal foam porosity",
+    "sent": "However, as previously discussed, Model 4 demonstrates higher flux and Sherwood number compared to the other models due to its dual-sided metal foam configuration (in both shell and tube sides), which enhances performance."
+   },
+   {
+    "kind": "Sh",
+    "section": "PPI effect",
+    "sent": "PPI effect Figure 11 illustrates the effect of metal foam pore density (PPI, ranging from 0 to 60) on flux, Sherwood number, shell-side friction factor, and tube-side friction factor for Models 2, 3, and 4."
+   },
+   {
+    "kind": "Sh",
+    "section": "PPI effect",
+    "sent": "Figure 11 b presents the Sherwood number as a function of PPI."
+   },
+   {
+    "kind": "Sh",
+    "section": "PPI effect",
+    "sent": "Model 4 demonstrates the highest Sherwood number, increasing marginally from 47 at PPI = 30 to 49 at PPI = 50, a 4.3% increase."
+   },
+   {
+    "kind": "Sh",
+    "section": "PPI effect",
+    "sent": "On average, Model 4’s Sherwood number is 36.1% higher than Model 2’s and 4.2% higher than Model 3’s, reflecting its superior mass transfer performance due to the dual-sided metal foam configuration."
+   },
+   {
+    "kind": "Sh",
+    "section": "PPI effect",
+    "sent": "The minimal effect of PPI on Sherwood number Aligns with the velocity distribution analysis, where Model 4’s flattened velocity profiles minimize concentration boundary layers, ensuring effective mixing and mass transfer regardless of pore density."
+   },
+   {
+    "kind": "Sh",
+    "section": "PPI effect",
+    "sent": "Similarly, the Sherwood number shows negligible variation with PPI, with Model 4’s value being 36.1% higher than Model 2’s and 4.2% higher than Model 3’s, reflecting superior mass transfer driven by reduced concentration boundary layers."
+   },
+   {
+    "kind": "Sh",
+    "section": "Future direction",
+    "sent": "Integrating Marangoni terms into CFD models (via stress tensors in momentum equations) could synergize with metal foam in Model 4, augmenting Sherwood numbers and anti-fouling, paving the way for hybrid designs validated experimentally for scalable, sustainable desalination."
+   }
+  ]
+ },
+ "10.3390/membranes16050162": {
+  "title": "Effects of Hydraulic Diameters on CO&lt;sub&gt;2&lt;/sub&gt; Absorption in Flat-Plate Membrane Contactors with Inserted S-Ribbed Carbon Fiber Turbulence Promoters.",
+  "pmcid": "PMC13208148",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "1. Introduction",
+    "sent": "To support the design and evaluation of S-ribbed carbon fiber channels in flat-plate membrane contactors, a generalized (and intentionally simplified) Sherwood number correlation was established for predicting the CO 2 mass transfer coefficient, offering a practical metric for performance screening."
+   },
+   {
+    "kind": "Sh",
+    "section": "4.3. Correlated Sherwood Numbers",
+    "sent": "Correlated Sherwood Numbers The mass transfer coefficients used to estimate CO 2 absorption flux for S-ribbed carbon fiber-filled modules operated in both ascending and descending modes were cast in Sherwood number form, consistent with the definition in Equation (11)."
+   },
+   {
+    "kind": "Sh",
+    "section": "4.3. Correlated Sherwood Numbers",
+    "sent": "For the empty-channel module, the Sherwood number shows a linear correspondence with experimental measurements, as described by Equation (13) and corroborated in Figures S4 and S5 of the section of Supplementary Materials ."
+   },
+   {
+    "kind": "Sh",
+    "section": "4.3. Correlated Sherwood Numbers",
+    "sent": "As anticipated, insertion of the S-ribbed carbon fiber structures produced larger convective mass transfer coefficients, which is manifested as Sherwood numbers exceeding those of the empty-channel case and summarized in Equations (26) and (27) and illustrated in Figure S4 for a 35% inlet CO 2 feed concentration."
+   },
+   {
+    "kind": "Sh",
+    "section": "4.3. Correlated Sherwood Numbers",
+    "sent": "The resulting squared correlation coefficients ( R 2 ) ranged from 0.94 to 0.97 for the S-ribbed carbon fiber-filled modules, with deviations between correlated and experimental Sherwood numbers remaining within 10%, as illustrated in Figure S5 ."
+   },
+   {
+    "kind": "Sh",
+    "section": "4.4. Power Consumption Increment by Inserting S-Ribbed Carbon Fiber Turbulence Promoters",
+    "sent": "The comparison reveals that, although a higher Sherwood number was obtained for the constant 3 mm carbon fiber width module than for the descending carbon fiber width modules ( Figure S4 ), the corresponding I E / I P ratios for the various carbon fiber width configurations exhibit an inverse ranking in Figure 16 when evaluated from an economic perspective."
+   }
+  ]
+ },
+ "10.3390/membranes16030108": {
+  "title": "Fundamentals of Transport in Polymers and Membranes-Honorary Issue for Professor Giulio C. Sarti.",
+  "pmcid": "PMC13027583",
+  "year": "2026",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.1021/acsomega.6c01501": {
+  "title": "Mathematical Modeling of 6‑APA Production by Enzymatic Hydrolysis of Penicillin G in a Batch Reactor.",
+  "pmcid": "PMC13689278",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Bi",
+    "section": "Comparative Analysis of the Adopted Numerical Approaches",
+    "sent": "Figure illustrates the temporal evolution of the volume-averaged dimensionless concentrations of the substrate and products inside the particle for different values of the mass Biot number ( Bi m = 0.01; 0.1; 1; 10), highlighting the influence of intraparticle diffusion on the reaction performance."
+   }
+  ]
+ },
+ "10.1186/s11671-026-04851-9": {
+  "title": "Study of nanoparticle morphology effect on fluid flow between two active parallel plates.",
+  "pmcid": "PMC13469271",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Bi",
+    "section": "Results and discussion",
+    "sent": "Fig. 5 Effect of Rd on Fig. 6 Effect of S on Fig. 7 Effect of on The relation of temperature with the Biot number Bi is illustrated in Fig. 8 ."
+   }
+  ]
+ },
+ "10.3390/e28050552": {
+  "title": "Coupling the Diffusive Transport and Langmuir-Hinshelwood Reaction Kinetics for Kinetic Model Discrimination: A New Insight from an Old Concept.",
+  "pmcid": "PMC13206072",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "2.4. External Effectiveness",
+    "sent": "Consider the dimensionless variables U = C As / C Ab , β = ( K × C Ab ) −1 , γ = k f × a m × ( k × K ) −1 , and the second Damköhler number Da II expressed as:"
+   },
+   {
+    "kind": "Da",
+    "section": "2.4. External Effectiveness",
+    "sent": "Regarding the dimensionless variables, Equation (11) will be used to analyze the dependence of the external efficiency on the second Damköhler number."
+   },
+   {
+    "kind": "Bi",
+    "section": "2.5. Overall Effectiveness",
+    "sent": "Equation (14) represents the relationship between the mass transfer Biot number and the overall effectiveness factor."
+   },
+   {
+    "kind": "Da",
+    "section": "3.2.2. External Effectiveness",
+    "sent": "The effect of the second Damköhler number on the external effectiveness factor is investigated by plotting the corresponding profiles ( Figure 7 )."
+   },
+   {
+    "kind": "Bi",
+    "section": "3.2.3. Overall Effectiveness",
+    "sent": "To this end, the overall efficiency is analyzed with respect to the mass transfer Biot number ( Figure 9 )."
+   },
+   {
+    "kind": "Bi",
+    "section": "3.4. Discrimination Approach",
+    "sent": "However, the situation is different for the dependence of the overall effectiveness factor on the mass transfer Biot number. η O ( Bi m ) plots are markedly unequal for diverse rate equations even at identical reactant concentrations ( Figure 9 )."
+   }
+  ]
+ },
+ "10.1021/acs.jpcc.6c00582": {
+  "title": "Geometrically Induced Acceleration for Charging Dynamics of Electrical Double-Layers in a Nanopore with Sloped Walls.",
+  "pmcid": "PMC13007040",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Bi",
+    "section": "Pore Descriptions",
+    "sent": "As a result, the Biot numbers are set at Bi = 4 for the wide entrances and Bi = 16 for narrow ones."
+   },
+   {
+    "kind": "Bi",
+    "section": "Direct Numerical Simulation Comparison",
+    "sent": "Therefore, the resulting Biot numbers are Bi ≈ 31.81 for the diverging pore and Bi ≈ 7.95 for all other pores, in Figure ."
+   },
+   {
+    "kind": "Bi",
+    "section": "Direct Numerical Simulation Comparison",
+    "sent": "The single diverging case tested had an entrance radius of 2 nm and a final radius of 20 nm; because its entrance size differs, the corresponding Biot number is Bi ≈ 795. 4 Electrochemical potential μ̂(Z,τ) and the electric potential Φ̂(Z,R,τ) plotted at various timesearly (a,c) and intermediate times (b,d)against direct numerical simulations with larger changes in slope."
+   }
+  ]
+ },
+ "10.1038/s44172-025-00526-y": {
+  "title": "Computational modelling of hollow fibre haemodialysers: current status and future directions.",
+  "pmcid": "PMC12635279",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Solute transport in haemodialysers",
+    "sent": "The dimensionless Sherwood ( Sh ), Péclet ( Pe ), Schmidt ( Sc ), and Graetz ( Gz ) numbers (see Table 1 ) often appear in semi-empirical simplified models 75 , 76 ."
+   },
+   {
+    "kind": "Sh",
+    "section": "Solute transport in haemodialysers",
+    "sent": "The dimensionless Sherwood ( Sh ), Péclet ( Pe ), Schmidt ( Sc ), and Graetz ( Gz ) numbers (see Table 1 ) often appear in semi-empirical simplified models 75 , 76 ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Solute transport in haemodialysers",
+    "sent": "(2017) 23 , 24 introduced two non-dimensional parameters —'membrane pressure modulus ( α )' and 'maximal reduced Peclet number ( Pe r,max )' in dialysers."
+   }
+  ]
+ },
+ "10.3390/membranes16010015": {
+  "title": "Ammonia Recovery from Animal Manure via Hollow Fibre Membrane Contactors: Impact of Filtration Pre-Treatment and Organic Foulants on Mass Transfer and Performance.",
+  "pmcid": "PMC12843982",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "2.6. Theoretical Model Development",
+    "sent": "(3) 1 K o v = 1 k m + 1 k s The shell-side mass transfer coefficient ( k s ) can be predicted by Sherwood correlations in the general form [ 35 ]:"
+   },
+   {
+    "kind": "Sh",
+    "section": "2.6. Theoretical Model Development",
+    "sent": "There are more than 30 Sherwood correlations in the literature to predict the mass transfer coefficient on the shell side [ 35 , 36 ]."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.6. Theoretical Model Development",
+    "sent": "Table 5 shows the five chosen Sherwood correlations which align with the experimental process conditions."
+   },
+   {
+    "kind": "Sh",
+    "section": "3. Results and Discussion",
+    "sent": "(16) S h c l e a n = 12.42 d e L R e 0.86 S c 0.33 Figure 3 Comparison of experimentally measured shell-side mass transfer coefficient with chosen empirical Sherwood correlations in Table 4 ."
+   },
+   {
+    "kind": "Sh",
+    "section": "3.2. Effect of Solids Concentration on Mass Transfer",
+    "sent": "Figure 4 plots the Sherwood and Reynolds number for experiments carried out with increasing TSS concentrations."
+   },
+   {
+    "kind": "Sh",
+    "section": "3.2. Effect of Solids Concentration on Mass Transfer",
+    "sent": "Figure 5 Plot of Sherwood and Reynolds numbers from experiments carried out at different TSS concentrations."
+   }
+  ]
+ },
+ "10.3390/membranes16030112": {
+  "title": "Membrane Separation Techniques: Advances, Challenges, and Future Avenues.",
+  "pmcid": "PMC13027592",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "2. An Overview of Published Articles",
+    "sent": "A generalized and simplified expression of the average Sherwood number was correlated to calculate the mass transfer coefficient of the CO 2 absorption in the new design of membrane contactors using turbulence promoter channels."
+   }
+  ]
+ },
+ "10.3390/membranes12020118": {
+  "title": "Performance Comparison of Alternative Hollow-Fiber Modules for Hemodialysis by Means of a CFD-Based Model.",
+  "pmcid": "PMC8876872",
+  "year": "2022",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "3.2. Comparison of Model Predictions",
+    "sent": "However, in regular fiber arrays, the shell-side Sherwood number Sh D is a sensitive function of the transverse Reynolds number (see Equation (9)) and, thus, may significantly increase in cross-flow, also making U increase."
+   },
+   {
+    "kind": "Sh",
+    "section": "3.2. Comparison of Model Predictions",
+    "sent": "With regard to the shell-side Sherwood number, the values obtained are less scattered, ranging from ~13 to ~25."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Conclusions",
+    "sent": "Although the Sherwood number increased in almost all the alternative configurations investigated (from ~14 in Case 1A to ~25 in Case 3B), this did not result in an increase in the amount of solute clearance compared to the commercial hemodialyzer module (Case 1A)."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Conclusions",
+    "sent": "Despite some alternative configurations, e.g., the “rectangular” cross-flow Cases 3A and 3B, exhibited Sherwood numbers much higher than that of the standard Case 1A, they were characterized by lower values of clearance (235–240 mL/min for Cases 3A and 3B vs. 257 mL/min for Case 1A) due to the significant deviation from the counter-flow design."
+   }
+  ]
+ },
+ "10.3390/membranes11040239": {
+  "title": "The Roles of Membrane Technology in Artificial Organs: Current Challenges and Perspectives.",
+  "pmcid": "PMC8065507",
+  "year": "2021",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "2. Membrane-Based Artificial Organs",
+    "sent": "The Sherwood number for hollow fiber membrane module can be expressed as follows [ 36 ]:"
+   },
+   {
+    "kind": "Sh",
+    "section": "2. Membrane-Based Artificial Organs",
+    "sent": "(5) S h = f ( R e , S c ) = a R e b S c c The Sherwood number can be also written as:"
+   },
+   {
+    "kind": "Sh",
+    "section": "2. Membrane-Based Artificial Organs",
+    "sent": "The Sherwood numberdepends on the number of hollow fiber in a bundle or the fiber orientation in the device ( Table 2 )."
+   }
+  ]
+ },
+ "10.3390/membranes12101021": {
+  "title": "Two-Dimensional Conjugated Mass Transfer of Carbon Dioxide Absorption in a Hollow-Fiber Gas-Liquid Membrane Contactor.",
+  "pmcid": "PMC9607326",
+  "year": "2022",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "1. Introduction",
+    "sent": "The effects of the MEA absorbent flow rate and inlet CO 2 concentration on the averaged Sherwood number, absorption flux, and absorption efficiency were investigated theoretically and experimentally."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Results and Discussion",
+    "sent": "Figure 8 presents the dependence of the Sherwood number S h b ¯ on the absorbent Graetz number G z b ."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Results and Discussion",
+    "sent": "The averaged Sherwood number S h b ¯ plays a significant role in determining the CO 2 absorption rate when considering mass transfer behavior."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Results and Discussion",
+    "sent": "The theoretical average Sherwood numbers with the absorbent Graetz number G z b in MEA absorbent as a parameter, as shown in Figure 8 ."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Results and Discussion",
+    "sent": "Figure 8 Effects of fiber number, flow pattern and G z b on theoretical averaged Sherwood number."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Results and Discussion",
+    "sent": "Notably, the implementing fibers significantly increased the averaged Sherwood number S h b ¯ and the absorption rate for both modules with implementing N = 7 fiber cells and N = 19 fiber cells, respectively."
+   },
+   {
+    "kind": "Sh",
+    "section": "5. Conclusions",
+    "sent": "The theoretical predictions of the averaged Sherwood number and absorption efficiency accomplished in the present study were predicted analytically without the aid of experimental runs, as shown in Equations (56) and (58), respectively."
+   }
+  ]
+ },
+ "10.3390/membranes13020249": {
+  "title": "Investigation on the Performance of CO<sub>2</sub> Absorption in Ceramic Hollow-Fiber Gas/Liquid Membrane Contactors.",
+  "pmcid": "PMC9963623",
+  "year": "2023",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "4. Enhancement Factor",
+    "sent": "(17) S h E = k b d h , M E A D b = α E S h l a m The Sherwood number of embedding multiple-fiber cells can be incorporated into four dimensionless groups using Buckingham’s π theorem [ 48 ]:"
+   },
+   {
+    "kind": "Sh",
+    "section": "7. Conclusions",
+    "sent": "The theoretical predictions of the CO 2 absorption rate improvement were calculated and validated by experimental data, which led to the correlated expression of the Sherwood number for the module by embedding multiple-fiber cells."
+   }
+  ]
+ },
+ "10.3390/membranes15030088": {
+  "title": "Analysis of CO&lt;sub&gt;2&lt;/sub&gt; Absorption in Gas/Liquid Membrane Contactors with Inserted Descending Hydraulic Diameters of 3D-Printed Turbulence Promoters.",
+  "pmcid": "PMC11944136",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "4. Results and Discussions",
+    "sent": "This results in enhanced convective mass-transfer efficiency, reflected in a higher Sherwood number compared to the empty channel, as shown in Equation (14) with the use of Equations (26) and (27), and Figure 14 ."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Results and Discussions",
+    "sent": "The correlated Sherwood numbers in Equation (27) indicate that the mass-transfer coefficient of the module with descending promoter widths achieves a higher mass-transfer rate than that of the uniform promoter widths and the empty channel."
+   },
+   {
+    "kind": "Sh",
+    "section": "4.2. CO2 Absorption Flux Improvement by Embedding Various Turbulence Promoters",
+    "sent": "The predictive capability for absorption flux can be extended to various geometric promoters and array configurations by following the same regression procedure applied to Sherwood numbers for both modules with an empty channel and those with inserted 3D-printed turbulence promoters."
+   }
+  ]
+ },
+ "10.3390/membranes10070139": {
+  "title": "Computational Fluid Dynamics (CFD) Modeling and Simulation of Flow Regulatory Mechanism in Artificial Kidney Using Finite Element Method.",
+  "pmcid": "PMC7407372",
+  "year": "2020",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/bioengineering9100568": {
+  "title": "Improvement of a Mathematical Model to Predict CO&lt;sub&gt;2&lt;/sub&gt; Removal in Hollow Fiber Membrane Oxygenators.",
+  "pmcid": "PMC9598873",
+  "year": "2022",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "1. Introduction",
+    "sent": "Within the Sherwood number, facilitated diffusivity accounts for the diffusion of bicarbonate in addition to CO 2 dissolved in the plasma."
+   },
+   {
+    "kind": "Sh",
+    "section": "1. Introduction",
+    "sent": "The effect of protonated hemoglobin and bicarbonate on the solubility of CO 2 into the blood was accounted for using the slope of the CO 2 dissociation curve in both the Sherwood and Schmidt numbers."
+   },
+   {
+    "kind": "Sh",
+    "section": "2. Materials and Methods",
+    "sent": "(4) S h = a R e b S c 1 3 , The Sherwood number, S h , relates the ratio of convective mass transfer to the rate of diffusive mass transport [ 12 ]."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.2. Steady State Mass Balance of Oxygen",
+    "sent": "Equation (4) can also be used to derive the mass transport coefficient of O 2 , however the appropriate values for oxygen must be substituted into the general dimensionless values of the Reynolds, Sherwood, and Schmidt numbers [ 4 ]."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.2. Steady State Mass Balance of Oxygen",
+    "sent": "For the flux of O 2 into blood, the mass transport coefficient in the Sherwood number is unknown and equal to k O 2 , the characteristic length remains as d f , and the solubility of O 2 in blood is known and represented as α O 2 ."
+   }
+  ]
+ },
+ "10.3390/membranes13060557": {
+  "title": "Modeling and Optimal Operating Conditions of Hollow Fiber Membrane for CO<sub>2</sub>/CH<sub>4</sub> Separation.",
+  "pmcid": "PMC10302311",
+  "year": "2023",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "2.3. Mass Transfer Coefficients",
+    "sent": "(11) S h g = 0.662 S c g 1 3 R e g 1 2 , S h g , S c g , a n d R e g are the Sherwood, Schmidt, and Reynolds numbers, respectively."
+   },
+   {
+    "kind": "Sh",
+    "section": "5.2. Effect of Temperature and Pressure on Mass Transfer Coefficients",
+    "sent": "Effect of Temperature and Pressure on Mass Transfer Coefficients The mass transfer coefficient at both the feed side and permeate side depends on the hydrodynamic of the fluid, calculated from the Reynolds, diffusivity of gas, and Sherwood and Schmidt’s numbers using Equations (11)–(13)."
+   },
+   {
+    "kind": "Sh",
+    "section": "5.2. Effect of Temperature and Pressure on Mass Transfer Coefficients",
+    "sent": "When the temperature changes from 293 K to 318 K, the value of the parameters changes in different proportions, and the Reynolds number and Sherwood number decrease by 14.1% and 7.35%, respectively."
+   }
+  ]
+ },
+ "10.3390/membranes11050374": {
+  "title": "Microstructured Hollow Fiber Membranes: Potential Fiber Shapes for Extracorporeal Membrane Oxygenators.",
+  "pmcid": "PMC8161047",
+  "year": "2021",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "1. Introduction",
+    "sent": "[ 15 ] to calculate the local Sherwood number on a membrane surface as a qualitative measure of mass transfer."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.4. Computational Fluid Dynamics",
+    "sent": "A mesh dependence study evaluating the influence of cell size on the mean Sherwood number was performed, resulting in about 500,000 cells for all geometries (see Appendix B )."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.4. Computational Fluid Dynamics",
+    "sent": "Special care was taken with the membrane patches to ensure uniform boundary layers along the surface ( Figure 4 b), as the calculation of the Sherwood number is reliant on the gradient in this area."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.4. Computational Fluid Dynamics",
+    "sent": "In contrast, Sherwood number simulations applied cyclic boundary conditions at the top and bottom wall, i.e., were treated as neighboring patches [ 20 ]."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.4.2. Sherwood Number Simulations",
+    "sent": "Sherwood Number Simulations After convergence for pressure and velocity was achieved, the resulting velocity field was mapped to the computational domain and a second, transient solver comprising Equations (6)–(8) (modified version of scalarTransportFoam) was used to calculate the local Sherwood number on the membrane patches."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.4.2. Sherwood Number Simulations",
+    "sent": "(7) k c = − D T T b ∂ T ∂ y | y = 0 Finally, the local Sherwood number of each membrane face was calculated (Equation (8)), where d is the average fiber diameter of the structure."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.4.2. Sherwood Number Simulations",
+    "sent": "Termination was done after no significant change in the Sherwood number was observed (~3000 time steps)."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.5. Evaluation of Results",
+    "sent": "To assess the CFD results, the area-weighted averaged Sherwood number was calculated by the total membrane area of the computational domain A , the local Sherwood number of a cell Sh i and face area of that cell a i (Equation (9))."
+   },
+   {
+    "kind": "Sh",
+    "section": "3.2. Computational Fluid Dynamics Results",
+    "sent": "Computational Fluid Dynamics Results The mean Sherwood number as calculated by (Equation (9)) in relation to the Reynolds number is given in Figure 6 ."
+   },
+   {
+    "kind": "Sh",
+    "section": "3.2. Computational Fluid Dynamics Results",
+    "sent": "All geometries show a clear linear increase in the mean Sherwood number with increasing Re (R 2 &gt; 0.98), however, the slope of this function varies."
+   },
+   {
+    "kind": "Sh",
+    "section": "3.2. Computational Fluid Dynamics Results",
+    "sent": "Ranking the geometries, we observe the best results, i.e., highest Sherwood number, in Sinus 6 50 µm, circular staggered and Sinus 6 25 µm options."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Discussion",
+    "sent": "Looking at Figure 6 , we find that the slope ( k ) of the Sherwood number in relation to the Reynolds number varies between the geometries."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Discussion",
+    "sent": "Additionally, we found that the Sherwood number does not increase with an increasing number of periods (Sinus 6 &gt;"
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Discussion",
+    "sent": "For Sinus 6, both the 25 and 50 µm variants result in similar Sherwood numbers."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Discussion",
+    "sent": "Using the local Sherwood number calculated on the membrane surface, we can visualize this observation by plotting along the circumference of a single fiber ( Figure 9 )."
+   },
+   {
+    "kind": "Sh",
+    "section": "4. Discussion",
+    "sent": "The influence of these low Sherwood number regions is apparent when comparing expected and actual calculated increases in component flux ( Table 4 )."
+   }
+  ]
+ },
+ "10.3390/membranes12101022": {
+  "title": "Modelling Analysis of a Membrane-Based Fresh Air Processing System.",
+  "pmcid": "PMC9607411",
+  "year": "2022",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/membranes13010009": {
+  "title": "Treatment of Spent Pickling Solutions by Diffusion Dialysis Using Anion-Exchange Membrane Neosepta-AFN.",
+  "pmcid": "PMC9864578",
+  "year": "2022",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/membranes12101007": {
+  "title": "PEBA/PDMS Composite Multilayer Hollow Fiber Membranes for the Selective Separation of Butanol by Pervaporation.",
+  "pmcid": "PMC9610642",
+  "year": "2022",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/membranes14040086": {
+  "title": "3D-CFD Modeling of Hollow-Fiber Membrane Contactor for CO<sub>2</sub> Absorption Using MEA Solution.",
+  "pmcid": "PMC11052018",
+  "year": "2024",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/membranes11080593": {
+  "title": "Numerical Simulation of the Water Vapor Separation of a Moisture-Selective Hollow-Fiber Membrane for the Application in Wood Drying Processes.",
+  "pmcid": "PMC8397961",
+  "year": "2021",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/membranes11120918": {
+  "title": "The Effect of Flow-Induced Vibration on Heat and Mass Transfer Performance of Hollow Fiber Membranes in the Humidification/Dehumidification Process.",
+  "pmcid": "PMC8707744",
+  "year": "2021",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/polym14183783": {
+  "title": "Modeling and Simulation of the Impact of Feed Gas Perturbation on CO<sub>2</sub> Removal in a Polymeric Hollow Fiber Membrane.",
+  "pmcid": "PMC9503869",
+  "year": "2022",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/membranes15120379": {
+  "title": "Effects of Metal Foam Insertion on the Performance of a Vacuum Membrane Distillation Unit.",
+  "pmcid": "PMC12734810",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "1. Introduction",
+    "sent": "They demonstrated that DCMD with metal foam on both sides led to an increase in water production by up to 32% and Sherwood number by 48% compared to the typical one."
+   }
+  ]
+ },
+ "10.1002/smtd.71044": {
+  "title": "Peptide Fingerprinting of Single Protein Molecules Using In-Plane Nanopore Sensors Integrated to an Extended Immobilized Nanoscale Enzymatic Reactor (eINER).",
+  "pmcid": "PMC13706642",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Reaction‐Limited Digestion Under Occupancy‐Controlled Nanofluidic Transport",
+    "sent": "Damköhler analysis (Da ≪ 1; see SI, Section 8 ) indicated that intrinsic trypsin turnover is reaction‐limited rather than diffusion‐limited under the applied electrokinetic transport conditions [ 50 ]."
+   },
+   {
+    "kind": "Da",
+    "section": "References",
+    "sent": "G., “Damköhler Number Input to Transport‐Limited Chemical Weathering Calculations,” ACS Earth and Space Chemistry 1 (2017): 30–38, 10.1021/acsearthspacechem.6b00007. 51."
+   }
+  ]
+ },
+ "10.3390/nano16171124": {
+  "title": "A Perspective on Multiscale Electrodiffusion and Model Selection for Ion Transport in Energy-Storage Nanomaterials.",
+  "pmcid": "PMC13567424",
+  "year": "2026",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.1038/s44335-026-00105-0": {
+  "title": "Multimodal training in reconfigurable brain-inspired iontronic networks.",
+  "pmcid": "PMC13727673",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Methods",
+    "sent": "Thus, we consider only the pressure and potential contributions to the total fluid flow, Q = Q P + Q V , which we characterise below by the dimensionless Péclet number Pe = Q L / D π r 2 that quantifies the importance of advection over diffusion 36 ."
+   }
+  ]
+ },
+ "10.1038/s41467-025-63481-4": {
+  "title": "Visualizing nexus of porous architecture and reactive transport in heterogeneous catalysis by deep learning computer vision and transfer learning.",
+  "pmcid": "PMC12397282",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Results",
+    "sent": "Each model included two operating variables (Damköhler number, Da, and Péclet number, Pe) and four constant parameters [anisotropy factor g i , viscosity μ (Pa s), fluid density ρ (g cm −3 ) and diffusion coefficient D (cm 2 s −1 )]."
+   },
+   {
+    "kind": "Da",
+    "section": "Results",
+    "sent": "Each model included two operating variables (Damköhler number, Da, and Péclet number, Pe) and four constant parameters [anisotropy factor g i , viscosity μ (Pa s), fluid density ρ (g cm −3 ) and diffusion coefficient D (cm 2 s −1 )]."
+   },
+   {
+    "kind": "Pe",
+    "section": "Results",
+    "sent": "The reactive information was described by dimensionless Damköhler number (Da) and Péclet number (Pe), which represented the ratio of fluid-solid reaction rate to solute diffusion rate, and convective transport rate to diffusive rate, respectively 34 ."
+   },
+   {
+    "kind": "Da",
+    "section": "Results",
+    "sent": "The reactive information was described by dimensionless Damköhler number (Da) and Péclet number (Pe), which represented the ratio of fluid-solid reaction rate to solute diffusion rate, and convective transport rate to diffusive rate, respectively 34 ."
+   },
+   {
+    "kind": "Pe",
+    "section": "Discussion",
+    "sent": "This can be achieved by combining a two-steps cGAN with feature representation transfer learning (cGAN-FRT) to reconstruct 3D pore network and predict local reaction rates from MSFs, directional and reaction features from pixel-scale images, Péclet number, and Damköhler number."
+   },
+   {
+    "kind": "Da",
+    "section": "Discussion",
+    "sent": "This can be achieved by combining a two-steps cGAN with feature representation transfer learning (cGAN-FRT) to reconstruct 3D pore network and predict local reaction rates from MSFs, directional and reaction features from pixel-scale images, Péclet number, and Damköhler number."
+   },
+   {
+    "kind": "Pe",
+    "section": "Methods",
+    "sent": "Input data for Generator 2 included Damköhler number (Da), Péclet number (Pe) and structure slices."
+   },
+   {
+    "kind": "Da",
+    "section": "Methods",
+    "sent": "Input data for Generator 2 included Damköhler number (Da), Péclet number (Pe) and structure slices."
+   },
+   {
+    "kind": "Da",
+    "section": "Output data generation by fluid dynamic-concentration coupled modeling",
+    "sent": "Then the internal concentration boundary could be rewritten as 11 ∂ c ∂ n = Da L c where Da denoted the Damköhler number calculated by Da = k r /( D / L )."
+   }
+  ]
+ },
+ "10.1098/rsos.260883": {
+  "title": "Coupled CFD-DEM analysis of soil cavity formation and gas diffusion during buried pipeline leakage.",
+  "pmcid": "PMC13682432",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Soil cavity formation process and methane concentration distribution",
+    "sent": "To further verify this process, extract the velocity on monitoring line 1 and estimate the Péclet number."
+   },
+   {
+    "kind": "Pe",
+    "section": "Soil cavity formation process and methane concentration distribution",
+    "sent": "The results show that at a distance of 0.05 m near the leakage hole, the Péclet number is much greater than 1, indicating that convection dominates absolutely at this time;"
+   },
+   {
+    "kind": "Pe",
+    "section": "Soil cavity formation process and methane concentration distribution",
+    "sent": "At a distance of 0.2 m above the leakage hole, the flow velocity drops to 8 m s −1 , and at this point, the Péclet number is about 8 × 10 4 , still exhibiting convective-dominant characteristics."
+   },
+   {
+    "kind": "Pe",
+    "section": "Soil cavity formation process and methane concentration distribution",
+    "sent": "When the distance further increases to 0.5 m, the flow velocity has dropped to the order of 10 −3 m s −1 , and the Péclet number is about 20."
+   }
+  ]
+ },
+ "10.1039/d5ra02724a": {
+  "title": "A method based on &lt;sup&gt;10&lt;/sup&gt;B isotope tracer for seepage detection in salt lakes.",
+  "pmcid": "PMC12378772",
+  "year": "2025",
+  "src": "ncbi",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Spatial heterogeneity of seepage systems in field experiments",
+    "sent": "The Peclet number was calculated using formula (2) , yielding Pe &gt;1."
+   },
+   {
+    "kind": "Pe",
+    "section": "Conclusions",
+    "sent": "For well 3, Peclet number calculation yielded Pe &gt;1, with absent 10 B tracer inflow primarily caused by an auxiliary plugging mechanism."
+   }
+  ]
+ },
+ "10.1038/s41598-025-30476-6": {
+  "title": "Microplastic-induced alterations in water flow and solute transport dynamics in soil.",
+  "pmcid": "PMC12673110",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "Influence of MPs on transport of solutes in soil",
+    "sent": "Specifically, increased flow path tortuosity delays solute transport and slows advective flow, as reflected in the lower Peclet numbers in Fig. 5 d."
+   },
+   {
+    "kind": "Pe",
+    "section": "Influence of MPs on transport of solutes in soil",
+    "sent": "Fig. 5 The impact of PE and PVC concentration on the variation of diffusion-dispersion coefficient ( a ), longitudinal dispersivity ( b ), retardation factor ( c ), and Peclet number ( d ) across all sandy soils (fine, medium, and coarse)."
+   },
+   {
+    "kind": "Pe",
+    "section": "Influence of MPs on transport of solutes in soil",
+    "sent": "Table 3 Variation of retardation factor (R), diffusion-dispersion coefficient (D), pore velocity ( v ), Peclet number (Pe), and longitudinal dispersivity (λ) with various concentrations of PE and PVC, along with the corresponding ADE model performance metrics (R 2 and RMSE)."
+   }
+  ]
+ },
+ "10.1093/ismeco/ycag029": {
+  "title": "Microbiome Damköhler number predicts lotic microbial community succession in river networks.",
+  "pmcid": "PMC12978645",
+  "year": "2026",
+  "src": "ncbi",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Introduction",
+    "sent": "To model these controls on lotic microbiomes, we employed the Damköhler concept, which has become a useful framework for evaluating spatial and temporal variability in river biogeochemistry [ 14 , 15 ]."
+   },
+   {
+    "kind": "Da",
+    "section": "Introduction",
+    "sent": "Damköhler number Da 1 is a unitless ratio defined as the transport time scale divided by the reaction time scale."
+   },
+   {
+    "kind": "Da",
+    "section": "Introduction",
+    "sent": "[ 15 ] found that this Damköhler number representing DOM reactivity was a strong predictor of DOM diversity including the fraction of nitrogenous compounds and the putative number of biogeochemical transformations."
+   },
+   {
+    "kind": "Da",
+    "section": "Materials and methods",
+    "sent": "The microbiome Damköhler number was estimated as: \\documentclass[12pt]{minimal} \\usepackage{amsmath} \\usepackage{wasysym} \\usepackage{amsfonts} \\usepackage{amssymb} \\usepackage{amsbsy} \\usepackage{upgreek} \\usepackage{mathrsfs} \\setlength{\\oddsidemargin}{-69pt} \\begin{document} $$ {Da}_{{m}}=\\frac{TT}{t_d} $$\\end{document} where Da m is the microbiome Damköhler number (unitless), TT is microbial community travel time (d), and t d is the microbial doubling time (d)."
+   },
+   {
+    "kind": "Da",
+    "section": "Results and discussion",
+    "sent": "Figure 3 (a) PCoA diagram of weighted UniFrac distances among microbial communities in four watersheds with symbols colored by microbiome Damköhler number."
+   },
+   {
+    "kind": "Da",
+    "section": "Nearest taxon index",
+    "sent": "Figure 4 Regressions of alpha diversity metrics with logarithmic regression models for (a) NTI and (b) Faith’s PD against microbiome Damköhler number presented on a logarithmic scale."
+   }
+  ]
+ },
+ "10.1002/adma.202508875": {
+  "title": "Design Principles for Air Tolerance in Pyridinium-Based Flow Batteries.",
+  "pmcid": "PMC12822527",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Validation and Compatibility with Long Duration Energy Storage Scaling Requirements",
+    "sent": "Figure 4 System requirements for low conversion of oxygen at scale. a) Second Damköhler number sensitivity to electrolyte volume at different electrode areas."
+   }
+  ]
+ },
+ "10.3390/polym18111387": {
+  "title": "Reactive Polymeric Membranes for Advanced Water Treatment: Bridging Mechanisms, Kinetics and Scalable Deployment.",
+  "pmcid": "PMC13259071",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "4.2. Dimensionless Mapping for Cross-Study Comparison",
+    "sent": "For a permeating membrane system, a permeation Damköhler number can be defined as Equation (7)."
+   },
+   {
+    "kind": "Pe",
+    "section": "4.2. Dimensionless Mapping for Cross-Study Comparison",
+    "sent": "The relative importance of convection and diffusion can be expressed using the Péclet number as shown in Equation (10) [ 60 ]."
+   },
+   {
+    "kind": "Da",
+    "section": "9.1.3. New Descriptors and Benchmark Datasets for Oxidative Filtration",
+    "sent": "Dimensionless reaction-transport measures, such as effective Damköhler numbers per membrane layer, ROS-selectivity indicators, and aging-resistance factors obtained from accelerated-oxidation studies, should be useful descriptors [ 191 ]."
+   },
+   {
+    "kind": "Pe",
+    "section": "9.2. Digital Twins in Water Systems",
+    "sent": "[ 197 ] demonstrated this logic by combining neural networks with high-accuracy numerical simulations of electroconvection, employing dimensionless similarity criteria such as Reynolds and Péclet numbers to develop rapid surrogate models for membrane design and operating optimization, which is directly relevant to adaptive membrane control."
+   }
+  ]
+ },
+ "10.1126/sciadv.adx0289": {
+  "title": "Highly textured metal anodes for stable aqueous batteries: Fabrication and characterization.",
+  "pmcid": "PMC12239945",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "INTRODUCTION",
+    "sent": "Using a three-electrode rotating disk electrode (RDE) cell, we show that the relative kinetic parameters are strongly influenced by texturing and that a commercial zinc electrode not only exhibits a much larger corrosion current but also manifests a higher effective Damköhler number (Da*) than a (002) textured Zn electrode."
+   },
+   {
+    "kind": "Da",
+    "section": "RESULTS",
+    "sent": "It is apparent that both materials exhibit comparable, very high limiting current densities ( Fig. 4D ), and the second Damköhler numbers are consequently both well below the unity threshold as shown in fig."
+   },
+   {
+    "kind": "Da",
+    "section": "RESULTS",
+    "sent": "( F ) Calculated effective Damköhler number (Da*) of commercial Zn and (002) textured Zn."
+   }
+  ]
+ },
+ "10.1021/acsomega.6c05799": {
+  "title": "Experimental Study on Methane Explosion Suppression in Pipelines by Mixed Systems of Inert Gases (CO&lt;sub&gt;2&lt;/sub&gt;/N&lt;sub&gt;2&lt;/sub&gt;) and HFC-227ea.",
+  "pmcid": "PMC13689158",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Results and Discussion",
+    "sent": "This behavior can be interpreted through variation in the Damköhler number ( Da ): as CO 2 concentration rises, the methane oxidation reaction rate decreases markedly, shifting the system from the chemical reaction-controlled regime ( Da &gt; 1) to the turbulent mixing-controlled regime ( Da &lt; 1)."
+   }
+  ]
+ },
+ "10.1016/j.jmccpl.2025.100464": {
+  "title": "Pericellular oxygen dynamics in human cardiac fibroblasts and iPSC-cardiomyocytes in high-throughput plates: insights from experiments and modeling.",
+  "pmcid": "PMC12212277",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Da",
+    "section": "Summary of results and analytical solution for steady-state pericellular oxygen in static culture in glass-bottom HT plates",
+    "sent": "The system pericellular oxygen may be understood from the Damkohler number where values near 1 indicate normoxic conditions and parameters such as solution volume, cell density, and ambient oxygen concentration may be adjusted to achieve a desired steady-state regime."
+   },
+   {
+    "kind": "Da",
+    "section": "Summary of results and analytical solution for steady-state pericellular oxygen in static culture in glass-bottom HT plates",
+    "sent": "(6) can also be presented in a dimensionless form, by using the Damkohler number Da (defined in Eq."
+   }
+  ]
+ },
+ "10.3390/mi17091100": {
+  "title": "Advances in Morphology Control of Through-Glass via Wet Etching for High-Performance Glass-Based Packaging.",
+  "pmcid": "PMC13609663",
+  "year": "2026",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/membranes16010041": {
+  "title": "Application of Artificial Intelligence in Mathematical Modeling and Numerical Investigation of Transport Processes in Electromembrane Systems.",
+  "pmcid": "PMC12843659",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "1. Introduction",
+    "sent": "Besides, Re —Reynolds number, Pe —Peclet number, ε —this is the ratio of the square of the thickness of the equilibrium space charge region to the square of the distance between the membranes [ 12 , 13 ], and K e l —this is the ratio of the electrical force to the inertial force."
+   },
+   {
+    "kind": "Pe",
+    "section": "2.2. Similarity Method for Transport Processes in a Flat Channel",
+    "sent": "An assessment of the dimensionless parameters reveals that for typical values of dimensional quantities relevant to electrodialysis, the Peclet and Reynolds numbers fall within the orders of magnitude of approximately 10 2 ÷ 10 4 and 1 ÷ 100 , respectively."
+   }
+  ]
+ },
+ "10.1021/acsomega.6c07030": {
+  "title": "A Comparative Study of Forward Osmosis Systems: An Integrated Experimental, Modeling, and Techno-Economic Analysis.",
+  "pmcid": "PMC13629018",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "FO Modeling",
+    "sent": "The mass transfer coefficient, on each side of the membrane, is determined using the following equation 15 k = Sh × D ∝ d h Where Sh (−), d h (m), and D ∝ (m 2 s –1 ) are the Sherwood number, the hydraulic diameter, and the bulk diffusion coefficient, respectively."
+   },
+   {
+    "kind": "Pe",
+    "section": "FO Modeling",
+    "sent": "Assuming a maximum water flux of 5 L m –2 h –1 , the resulting Péclet number was estimated to be 0.0025 ≪ 1."
+   }
+  ]
+ },
+ "10.1002/smtd.70976": {
+  "title": "A Microfluidic Dialysis Chip for Continuous Purification of Lipid Nanoparticles.",
+  "pmcid": "PMC13599676",
+  "year": "2026",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
+ },
+ "10.3390/jcm15051921": {
+  "title": "Advances in Membrane, Dialyzer Design, and Related Monitoring Technologies for Hemodiafiltration: Translating Bench-Side Innovations to Bedside Applications.",
+  "pmcid": "PMC12986064",
+  "year": "2026",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "2.4.2. Solute Transfer Associated with Back Transfer (Diffusion and Filtration) Mechanisms: Benefits and Risks",
+    "sent": "The Peclet number determines whether diffusion or convection dominates the transfer of endotoxins in the high-flux dialyzer FX60."
+   }
+  ]
+ },
+ "10.3390/membranes14010026": {
+  "title": "Bovine Serum Albumin Rejection by an Open Ultrafiltration Membrane: Characterization and Modeling.",
+  "pmcid": "PMC11154442",
+  "year": "2024",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Sh",
+    "section": "2.2. Mass Transfer Coefficient in the Polarization Layer",
+    "sent": "The traditional approach for estimating k d b l , i is to use a Sherwood equation (Equation ( 10 )):"
+   },
+   {
+    "kind": "Sh",
+    "section": "4.3. Mass Transfer Coefficient in the Polarization Layer",
+    "sent": "The most recent studies on Sherwood relations were performed by Bandini and Morelli [ 26 ] and Shi et al."
+   },
+   {
+    "kind": "Sh",
+    "section": "4.3. Mass Transfer Coefficient in the Polarization Layer",
+    "sent": "In addition, it is difficult to quantify the suction effect with the value from the Sherwood number relation because they are not derived with the same module geometry and we did not vary k d b l , i with the volumetric flux in our models. membranes-14-00026-t004_Table 4 Table 4 Sherwood relation comparison with the average fitted mass transfer coefficient."
+   },
+   {
+    "kind": "Sh",
+    "section": "4.3. Mass Transfer Coefficient in the Polarization Layer",
+    "sent": "The value of σ i fitted for each Sherwood relations and their adj- r 2 is reported in Table 6 ."
+   },
+   {
+    "kind": "Sh",
+    "section": "5. Conclusions",
+    "sent": "Estimations from Sherwood relations underestimate the value of the mass transfer coefficient and result in inaccurate rejection prediction (adj- r 2 ≤ 0.5)."
+   }
+  ]
+ },
+ "10.3390/membranes13060596": {
+  "title": "Modelling the Performance of Electrically Conductive Nanofiltration Membranes.",
+  "pmcid": "PMC10305182",
+  "year": "2023",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "2.4. Concentration Polarization",
+    "sent": "Here, S h is the Sherwood number, which follows the correlation (25) S h = 1.85 ( R P e ) 1 / 3 , where R = H / L m and P e = u H / D is the Peclet number."
+   },
+   {
+    "kind": "Sh",
+    "section": "2.4. Concentration Polarization",
+    "sent": "Here, S h is the Sherwood number, which follows the correlation (25) S h = 1.85 ( R P e ) 1 / 3 , where R = H / L m and P e = u H / D is the Peclet number."
+   }
+  ]
+ },
+ "10.3390/membranes16010006": {
+  "title": "Visualizing the Effect of Process Pause on Virus Entrapment During Constant Flux Virus Filtration.",
+  "pmcid": "PMC12844474",
+  "year": "2025",
+  "src": "epmc",
+  "status": "ok",
+  "hits": [
+   {
+    "kind": "Pe",
+    "section": "1. Introduction",
+    "sent": "When the Peclet number is ≪ 1, and diffusion of virus particles becomes significant, virus breakthrough and reduced LRVs can occur."
+   },
+   {
+    "kind": "Pe",
+    "section": "1. Introduction",
+    "sent": "This again suggests that diffusion can also play an important role even at flux ranges when the Peclet number is more than 1."
+   }
+  ]
+ },
+ "10.3390/membranes12040400": {
+  "title": "Influence of Surface Forces on Membrane Separations.",
+  "pmcid": "PMC9031292",
+  "year": "2022",
+  "src": "epmc",
+  "status": "no-hits",
+  "hits": []
  }
 }
