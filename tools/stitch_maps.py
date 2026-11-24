@@ -156,9 +156,15 @@ def main(argv: list[str]) -> int:
                 touched += 1
 
     lit_refs = {}
+    # 1) пары, заданные списком выше
     for cell, ks, why in PAIRS:
         for k in ks:
             lit_refs.setdefault(k, []).append(cell)
+    # 2) пары, уже записанные в сами ячейки полем `kg_ref` (например, из внешних партий):
+    #    иначе `lit-refs.json` знает только про список PAIRS и теряет их.
+    for a in atoms:
+        for k in a.get("kg_ref") or []:
+            lit_refs.setdefault(k, []).append(a["atom"])
 
     print(f"пар: {len(PAIRS)}, ячеек изменено: {touched}, узлов kg/ затронуто: {len(lit_refs)}")
     print()

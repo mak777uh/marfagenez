@@ -42,6 +42,7 @@
       "kind": "claim",
       "data": {
         "lit_ref": [
+          "B26-01-0001",
           "DIP56-0004",
           "DIP56-0007"
         ]
@@ -96,6 +97,7 @@
       "kind": "claim",
       "data": {
         "lit_ref": [
+          "B26-01-0001",
           "DIP56-0003",
           "DIP57-0002",
           "DIP57-0006",
@@ -149,7 +151,12 @@
       "lines": [
         "svoi-usloviya"
       ],
-      "kind": "claim"
+      "kind": "claim",
+      "data": {
+        "lit_ref": [
+          "B26-01-0004"
+        ]
+      }
     },
     {
       "id": "C-004",
@@ -229,7 +236,9 @@
       "kind": "claim",
       "data": {
         "lit_ref": [
-          "B22-01-0001"
+          "B22-01-0001",
+          "B26-01-0003",
+          "B26-01-0007"
         ]
       }
     },
@@ -1302,6 +1311,7 @@
         "lit_ref": [
           "B18-01-0003",
           "B21-01-0004",
+          "B26-01-0008",
           "DIP49-0001",
           "DIP49-0002",
           "DIP49-0006",
@@ -18223,6 +18233,11 @@
     },
     {
       "from": "C-001",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
@@ -18230,11 +18245,6 @@
       "from": "C-001",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
-    },
-    {
-      "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -18293,13 +18303,13 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -18418,13 +18428,13 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "F-022",
@@ -18578,6 +18588,11 @@
     },
     {
       "from": "CORR-02",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
@@ -18585,11 +18600,6 @@
       "from": "CORR-02",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
     },
     {
       "from": "CORR-02",
