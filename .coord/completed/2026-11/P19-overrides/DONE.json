@@ -1,0 +1,25 @@
+{
+  "task": "P19-overrides",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:44:21Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "75e8dbc65844fdaedfb4c0c13fa7700d107014039a889801ecedb723b0c381e0",
+      "bytes": 2217
+    },
+    {
+      "path": "docs/STITCH-AUDIT.md",
+      "sha256": "9d9705f0b6b879e096cbd2f11ac17c3db7840e4d59d02c0570f43843820bfe17",
+      "bytes": 4713
+    },
+    {
+      "path": "tools/stitch_audit.py",
+      "sha256": "b67ba9b20098716b20ed86ea3e518ddba3f588c9fa867d816b077f02adb4c91f",
+      "bytes": 6470
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

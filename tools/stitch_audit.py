@@ -19,6 +19,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 NODES = ROOT / "kg" / "nodes.jsonl"
 VERDICTS = ROOT / "docs" / "REDTEAM-STITCH-VERDICTS.json"
+OVERRIDES = ROOT / "docs" / "STITCH-OVERRIDES.json"
 OUT = ROOT / "docs" / "STITCH-AUDIT.md"
 
 NAMES = {"S": "величина совпадает", "Ch": "частично", "N": "несравнимо"}
@@ -31,6 +32,14 @@ def load_nodes() -> list[dict]:
 def main(argv: list[str]) -> int:
     write = "--write" in argv
     verdicts = json.loads(VERDICTS.read_text(encoding="utf-8"))
+    overrides = {}
+    if OVERRIDES.exists():
+        overrides = json.loads(OVERRIDES.read_text(encoding="utf-8"))
+    applied = 0
+    for key, o in overrides.items():
+        if key in verdicts and o.get("verdict"):
+            verdicts[key] = o["verdict"]
+            applied += 1
     nodes = load_nodes()
 
     by_node: dict[str, list[tuple[str, str]]] = collections.defaultdict(list)
@@ -69,6 +78,7 @@ def main(argv: list[str]) -> int:
     a("## Числа")
     a("")
     a(f"- пар проверено: **{pairs_total}**")
+    a(f"- из них переклассифицировано вручную (арбитраж, `docs/STITCH-OVERRIDES.json`): **{applied}**")
     for k in ("S", "Ch", "N"):
         a(f"  - `{k}` ({NAMES[k]}): **{pair_counts.get(k, 0)}**")
     a(f"- узлов с `lit_ref`: **{len(with_ref)}**")
@@ -101,6 +111,14 @@ def main(argv: list[str]) -> int:
         a("")
         for nid in unaudited:
             a(f"- `{nid}`")
+        a("")
+    if applied:
+        a("## Ручной арбитраж")
+        a("")
+        a("| пара | вердикт | почему |")
+        a("|---|---|---|")
+        for key, o in sorted(overrides.items()):
+            a(f"| `{key}` | `{o.get('verdict')}` | {o.get('reason', '')} |")
         a("")
     a("## Ограничение")
     a("")
