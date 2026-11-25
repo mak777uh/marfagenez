@@ -1,0 +1,20 @@
+{
+  "task": "P113-fast-proposals",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T10:38:52Z",
+  "artifacts": [
+    {
+      "path": "docs/FAST-PROPOSALS.md",
+      "sha256": "fcedcce483ced3bfb00a026b0d4bccc6c6b9aeabd67e258391b91e66b6d577c6",
+      "bytes": 3229
+    },
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "482881b89dbd274e787a499ba626c3cecbe6ec3b1dd9e5dccc1c3955c7001206",
+      "bytes": 32597
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

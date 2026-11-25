@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "f7f46bc18a8a59e3164f668851ee1f89be853c252046a2b34721efc4be5a8a98",
+  "done_sha256": "3be78a6b6069c33bb0486cbdbe1602acaa71c89b9684014c3de661d29c2a56b5",
+  "gen": 1,
+  "verified_at": "2026-11-25T10:38:52Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/stitch_coverage_floor.py",
+      "rc": 0,
+      "tail": "ОПОРА-ПОЛ: пар S = 25 (пол 25), узлов S = 18 (пол 18) — уровень не упал"
+    }
+  ],
+  "bad_artifacts": []
+}
