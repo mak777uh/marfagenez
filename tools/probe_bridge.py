@@ -42,7 +42,7 @@ DEFAULT_BRIDGE = pathlib.Path("/mnt/c/111/probe-bridge")
 
 KINDS = {"units", "numbers", "order", "gap-as-support", "no-locator"}
 REQUEST_KINDS = {"cells", "orphans", "nodes", "standing", "audit"}
-MAX_PER_FILE = 24
+MAX_PER_FILE = 120
 
 
 def load_atoms() -> dict[str, dict]:
