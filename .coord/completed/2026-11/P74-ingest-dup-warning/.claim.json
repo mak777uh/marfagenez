@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T05:02:09Z",
+  "task_sha256": "6b408867f9d09fb821be4c9bab56374986da349eb42c7aa913bda57ff767fbc0",
+  "area": [
+    "tools/ingest_safe.py",
+    "docs/MAP-DUPLICATES.json"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

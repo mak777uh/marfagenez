@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "6b408867f9d09fb821be4c9bab56374986da349eb42c7aa913bda57ff767fbc0",
+  "done_sha256": "91c8ef87aa290f4b6cd088cc9290fb5025d889240a69ba084a1b1b1eaac1f43d",
+  "gen": 1,
+  "verified_at": "2026-11-25T05:02:09Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 tools/map_duplicates.py --strict",
+      "rc": 0,
+      "tail": "  [объявлен] B18-01-0004 ~ B18-02-0001 | doi 10.7554/elife.23971 | сходство текста 0.50 | совпавшие дробные: 4.4, 8.8\n\nнеобъявленных дублей нет"
+    }
+  ],
+  "bad_artifacts": []
+}

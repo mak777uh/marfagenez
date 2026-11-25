@@ -86,6 +86,63 @@ def run(cmd: list[str]) -> tuple[int, str]:
     return r.returncode, out.strip()
 
 
+def duplicate_warnings(atoms_file: pathlib.Path, registry: pathlib.Path) -> list[str]:
+    """Предупреждения «этот факт уже есть в карте» до приёма.
+
+    Повод (25.11.2026): партия принесла `FAST-S2M-02`, дублирующий `DIP21B-0003` — приём этого не видел,
+    дубль заметил человек. Признак тот же, что в `tools/map_duplicates.py`: тот же DOI и не меньше двух
+    общих ДРОБНЫХ чисел (целые совпадают у чего угодно, а пересказ одного факта даёт сходство текста 0,1).
+    """
+    import json as _json
+    import re as _re
+
+    def fracs(text: str) -> set[str]:
+        out = set()
+        for m in _re.finditer(r"\d+(?:[.,]\d+)?", text or ""):
+            tok = m.group(0).replace(",", ".")
+            if "." in tok:
+                out.add(tok)
+        return out
+
+    try:
+        incoming = [_json.loads(l) for l in atoms_file.read_text(encoding="utf-8").splitlines() if l.strip()]
+    except Exception:
+        return []
+    existing = {}
+    atoms_path = ROOT / "literature" / "map" / "atoms.jsonl"
+    if atoms_path.exists():
+        for l in atoms_path.read_text(encoding="utf-8").splitlines():
+            if l.strip():
+                a = _json.loads(l)
+                existing[a["atom"]] = a
+    known = {}
+    if registry.exists():
+        try:
+            known = _json.loads(registry.read_text(encoding="utf-8"))
+        except Exception:
+            known = {}
+
+    warnings: list[str] = []
+    for a in incoming:
+        dois = {(w.get("doi") or "").lower() for w in (a.get("works") or [])}
+        dois.discard("")
+        mine = fracs(a.get("statement") or "")
+        for aid, b in existing.items():
+            if aid == a.get("atom"):
+                continue
+            theirs = {(w.get("doi") or "").lower() for w in (b.get("works") or [])}
+            if not (dois & theirs):
+                continue
+            shared = mine & fracs(b.get("statement") or "")
+            if len(shared) < 2:
+                continue
+            key1, key2 = f"{aid}|{a.get('atom')}", f"{a.get('atom')}|{aid}"
+            if key1 in known or key2 in known:
+                continue
+            warnings.append(f"  {a.get('atom')} похож на {aid} (общие дробные: {', '.join(sorted(shared))})")
+    return warnings
+
+
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(prog="ingest_safe")
     ap.add_argument("atoms_file")
@@ -125,6 +182,12 @@ def main(argv: list[str]) -> int:
         if rc != 0:
             print("ошибка: пробный прогон не прошёл — карта не изменена")
             return rc
+        warns = duplicate_warnings(atoms_file, ROOT / "docs" / "MAP-DUPLICATES.json")
+        if warns:
+            print("внимание: возможно, эти факты уже есть в карте (сверка по DOI и дробным числам):")
+            for w in warns:
+                print(w)
+            print("  если это осознанный повтор — внесите пару в docs/MAP-DUPLICATES.json")
         if "принято 0 из" in out:
             print("нечего принимать: 0 новых ячеек — карта не изменена")
             return 0

@@ -1,0 +1,15 @@
+{
+  "task": "P74-ingest-dup-warning",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T05:02:09Z",
+  "artifacts": [
+    {
+      "path": "tools/ingest_safe.py",
+      "sha256": "7db27b55937af188f6883233e79fcf53024de1ddefb5db06c67c2de522997a0d",
+      "bytes": 9606
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
