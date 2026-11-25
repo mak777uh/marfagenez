@@ -1642,7 +1642,7 @@
         }
       ],
       "math": {
-        "latex": "правило:            s_d = a·s_b + b        (a = 0 sizer, 1 adder, 2 timer)\nadder в числах:     CV²_s = ln 4 − 1 ≈ 0.386      (при beta = 1/2)\nнаблюдаемое:        CV_h ≈ 0.07…0.09              (малая стохастика деления)\n\nлиния родства:      forward  — среднее НЕ зависит от CV ошибки деления\n                    backward — среднее РАСТЁТ с CV",
+        "latex": "правило:            s_d = a·s_b + b        (a = 0 sizer, 1 adder, 2 timer)\nadder в числах:     CV²_s = ln 4 − 1 ≈ 0.386      (при beta = 1/2)\n                    ВНИМАНИЕ: это свойство МОДЕЛИ С ШУМОМ добавки ≈ 0,5, а не правила s_d = a·s_b + b;\n                    при нулевом шуме CV_s = 0, а наблюдаемое CV_h ≈ 0,07…0,09 в 4–5 раз ниже (FORMULA-ADDER.md)\nнаблюдаемое:        CV_h ≈ 0.07…0.09              (малая стохастика деления)\n\nлиния родства:      forward  — среднее НЕ зависит от CV ошибки деления\n                    backward — среднее РАСТЁТ с CV",
         "structure": "",
         "units": {
           "s_d": "мкм",
@@ -18534,7 +18534,7 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
@@ -18544,7 +18544,7 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -18569,17 +18569,17 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-002",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
     },
     {
       "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-002",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18774,17 +18774,17 @@
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-023",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
     },
     {
       "from": "F-023",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
+    },
+    {
+      "from": "F-023",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18974,7 +18974,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
@@ -18984,7 +18984,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -19009,17 +19009,17 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
