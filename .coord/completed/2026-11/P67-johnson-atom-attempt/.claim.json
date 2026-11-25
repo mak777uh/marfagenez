@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T04:17:23Z",
+  "task_sha256": "0dde1ae79ecf1333296dfeab41fa948e3ab307dbc042a1a489d9e9f7cdfc63c2",
+  "area": [
+    "docs/FORMULA-SWITCH.md",
+    "docs/FINDING-451.md"
+  ],
+  "kind": "research",
+  "priority": 6,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

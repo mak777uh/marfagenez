@@ -1,0 +1,15 @@
+{
+  "task": "P63-area-broad",
+  "agent": "fast",
+  "gen": 1,
+  "finished_at": "2026-11-25T04:14:15Z",
+  "artifacts": [
+    {
+      "path": "docs/FINDING-357.md",
+      "sha256": "a73f781d4dbbe6b7d749fa119980f4e5c91d79c0fe1882768ed182884b40b599",
+      "bytes": 3725
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
