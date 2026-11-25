@@ -1,0 +1,20 @@
+{
+  "task": "P23-support-check",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:53:32Z",
+  "artifacts": [
+    {
+      "path": "checks/support_sources.py",
+      "sha256": "b626c9c6a536bc5fbb07e149f224b647606581501e69214a00c79a2d4e3c7882",
+      "bytes": 3354
+    },
+    {
+      "path": "run.sh",
+      "sha256": "72bd3bb42230c209d4d967048c5d7e24ceb3dab6f0e7ea952c32e114510cc43b",
+      "bytes": 31243
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

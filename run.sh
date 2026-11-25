@@ -173,6 +173,10 @@ do_exp() {
   python3 checks/protocol_checks.py || rc=$?
   echo "--- doc_numbers.py ---"
   python3 checks/doc_numbers.py || rc=$?
+  echo "--- support_sources.py ---"
+  # Опора = evidence ∪ math.checked ∪ lit_ref ∪ пары сшивки. Три раза подряд вывод «нет опоры» был
+  # неверным из-за проверки одного поля; теперь это ловит гейт.
+  python3 checks/support_sources.py || rc=$?
   echo "--- rng_seed_noise.py ---"
   python3 checks/rng_seed_noise.py || rc=$?
   echo "--- cli_refuses.py ---"
