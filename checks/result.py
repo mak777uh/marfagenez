@@ -316,6 +316,10 @@ def add_limitation(result: dict[str, Any], text: str) -> None:
 #: The fields that differ between two runs of the *same* measurement, or that
 #: record re-runs of it. They are stripped before comparing, because none of
 #: them says anything about the numbers.
+#: Сколько последних коммитов хранить в `reproduced_at`. Хвост важнее начала: он
+#: показывает, что результат воспроизводится и сейчас.
+REPRODUCED_CAP = 20
+
 _VOLATILE = ("run_id", "created_at", "model_commit", "reproduced_at")
 
 #: Record metadata that is **not part of the measurement**. `hash_version`
@@ -397,7 +401,9 @@ def save(result: dict[str, Any]) -> Path:
         seen = list(old.get("reproduced_at") or [])
         if commit in seen:
             return old_path
-        old["reproduced_at"] = seen + [commit]
+        # Список ограничен: без предела каждый прогон гейта добавлял строку, и файлы результатов
+        # копили историю коммитов бесконечно (8 файлов в дереве грязными после каждого прогона).
+        old["reproduced_at"] = (seen + [commit])[-REPRODUCED_CAP:]
         old_path.write_text(
             json.dumps(old, indent=2, ensure_ascii=False), encoding="utf-8"
         )

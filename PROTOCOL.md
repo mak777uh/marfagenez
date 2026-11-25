@@ -221,6 +221,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/litsearch_contract.py` | снимок поиска воспроизводим: дедуп и RRF пересчитываются из рангов; `degraded` и sha сырых ответов согласованы |
 | `checks/doc_links.py` | относительные ссылки в документации разрешаются (известные мёртвые — в allowlist) |
 | `checks/bridge_price_derivative.py` | цена = производная функции значения: конечная разность против двойственной переменной |
+| `checks/result.py` | повторный прогон не создаёт новый файл: он дописывает коммит в `reproduced_at` (не больше 20 последних) |
 | `checks/doc_numbers.py` | числа в документах (тесты, находки, фигуры, проверки) совпадают с деревом |
 | `checks/support_sources.py` | у `claim`/`formula` в статусе `established` есть хотя бы один источник опоры: `evidence`, `math.checked`, `lit_ref` или пара сшивки |
 | `checks/embeddings_fresh.py` (E0) | после `kg/kg.py build` остаётся маркер `kg/.embeddings_dirty`; пока он есть, индекс считается устаревшим |
