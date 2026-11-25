@@ -1,0 +1,25 @@
+{
+  "task": "P100-symbol-gaps",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T07:18:41Z",
+  "artifacts": [
+    {
+      "path": "kg/migrate.py",
+      "sha256": "3bace00a293efc8febfc1fae1bd02b6fe6e4f4dd81b41f81c41ca6f6db984331",
+      "bytes": 24135
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "4e8655caebdd759210f6a40af5f4f5ae0059b5358bbab10c9656721c9c381aed",
+      "bytes": 43139
+    },
+    {
+      "path": "tools/units_symbol_audit.py",
+      "sha256": "7462aeac0e9ffa878bbb355b081e55bff584a3a26997e227614237b973bebd7d",
+      "bytes": 3920
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

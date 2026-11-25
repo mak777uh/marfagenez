@@ -640,7 +640,11 @@
           "Pi": "с",
           "lambda": "1/с",
           "a": "1",
-          "Pi_lambda": "1"
+          "Pi_lambda": "1",
+          "h_c": "1",
+          "T_senescence": "год",
+          "D_star": "1",
+          "dD_dh": "1"
         },
         "checked": {
           "kind": "none",
@@ -1387,7 +1391,8 @@
           "V": "множество состояний",
           "F": "отображение шага, 1",
           "alpha": "доля дохода, 1",
-          "band": "доля дохода, 1"
+          "band": "доля дохода, 1",
+          "q_min": "единицы состояния"
         },
         "checked": {
           "kind": "none",
@@ -1517,7 +1522,8 @@
           "k_inc": "м²/(с·концентрация)",
           "gamma": "1/с",
           "P": "1",
-          "c": "1"
+          "c": "1",
+          "cvc": "концентрация"
         },
         "checked": {
           "kind": "none",
@@ -18424,6 +18430,11 @@
     },
     {
       "from": "C-001",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
+    },
+    {
+      "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
@@ -18431,11 +18442,6 @@
       "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
-    },
-    {
-      "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
     },
     {
       "from": "C-001",
@@ -18459,8 +18465,8 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -18469,8 +18475,8 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -18494,17 +18500,17 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-003",
       "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
     },
     {
       "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-003",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
@@ -18619,11 +18625,6 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-022",
       "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
     },
@@ -18633,9 +18634,14 @@
       "type": "tested_in"
     },
     {
+      "from": "F-022",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "type": "tested_in"
+    },
+    {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
     },
     {
       "from": "F-023",
@@ -18644,8 +18650,8 @@
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "GAP-01",
@@ -18779,6 +18785,11 @@
     },
     {
       "from": "CORR-02",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
@@ -18786,11 +18797,6 @@
       "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
     },
     {
       "from": "CORR-02",
@@ -18814,7 +18820,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18824,7 +18830,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
