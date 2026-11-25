@@ -1,0 +1,15 @@
+{
+  "task": "P61-rd-vs-rif",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T03:47:01Z",
+  "artifacts": [
+    {
+      "path": "tools/rd_model_check.py",
+      "sha256": "c823641b927b253c5a00b081d8330f34a688fc4fc5f38725d4960fb904f70061",
+      "bytes": 4224
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
