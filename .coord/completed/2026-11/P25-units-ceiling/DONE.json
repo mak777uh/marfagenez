@@ -1,0 +1,20 @@
+{
+  "task": "P25-units-ceiling",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:57:19Z",
+  "artifacts": [
+    {
+      "path": "checks/formula_units_ceiling.py",
+      "sha256": "f17d121a11094142f8090da2f5d729e0343cda0940a20eee54179c8a129de75b",
+      "bytes": 3057
+    },
+    {
+      "path": "run.sh",
+      "sha256": "f66316517458e12e7934908ca2ac0edc49bc446a12e8e2bb3f0e94ee01a1b0ae",
+      "bytes": 31621
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

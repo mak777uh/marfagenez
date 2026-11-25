@@ -1,0 +1,20 @@
+{
+  "task": "P24-units-f004-f005",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:55:21Z",
+  "artifacts": [
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "73dd75db5bf139083d0c5a4f693b956d066580b765965bd9656112181df1cf60",
+      "bytes": 13374
+    },
+    {
+      "path": "kg/migrate.py",
+      "sha256": "8de3d48a64641f5fbcad0fe3e696fa97792b834bd8b9965852f098b861647396",
+      "bytes": 18531
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

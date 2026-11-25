@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T00:54:58Z",
+  "task_sha256": "86cb926b510a9d131a172ffa549096f25f3f259d661551417624c394e4df1db4",
+  "area": [
+    "docs/UNITS-AUDIT.md",
+    "kg/migrate.py"
+  ],
+  "kind": "research",
+  "priority": 8,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

@@ -173,6 +173,10 @@ do_exp() {
   python3 checks/protocol_checks.py || rc=$?
   echo "--- doc_numbers.py ---"
   python3 checks/doc_numbers.py || rc=$?
+  echo "--- formula_units_ceiling.py ---"
+  # Исторический долг: 22 формулы из 31 без единиц. Порог не даёт долгу вырасти; ноль требовать нельзя —
+  # гейт станет красным на истории и его начнут обходить.
+  python3 checks/formula_units_ceiling.py || rc=$?
   echo "--- support_sources.py ---"
   # Опора = evidence ∪ math.checked ∪ lit_ref ∪ пары сшивки. Три раза подряд вывод «нет опоры» был
   # неверным из-за проверки одного поля; теперь это ловит гейт.
