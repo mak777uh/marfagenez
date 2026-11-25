@@ -26,7 +26,9 @@ import time
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-RANGES = {"main": (300, 349), "fast": (350, 399), "third": (400, 449)}
+# 300–349 для main исчерпан 25.11.2026 (см. AGENT_LOG, цикл 628): диапазон продлён блоком
+# 450–549. Диапазоны fast (350–399) и third (400–449) не тронуты.
+RANGES = {"main": (300, 349), "main-2": (450, 549), "fast": (350, 399), "third": (400, 449)}
 
 
 def main(argv: list[str]) -> int:
