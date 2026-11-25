@@ -1,0 +1,15 @@
+{
+  "task": "P93-pal-zero",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T06:20:03Z",
+  "artifacts": [
+    {
+      "path": "docs/FINDING-350.md",
+      "sha256": "5c62fb4b870f9d38940eee53e6fe40a8750f3f211faa7804b270b0ca48cb83cd",
+      "bytes": 8203
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
