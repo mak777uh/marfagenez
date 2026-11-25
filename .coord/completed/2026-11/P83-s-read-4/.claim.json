@@ -1,0 +1,17 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T05:38:10Z",
+  "task_sha256": "4478c68828221dfdc91bebf14d02c70a945cb4d80efa76c86bf616a3b5be5091",
+  "area": [
+    "docs/STITCH-S-READ.md",
+    "docs/STITCH-*.json",
+    "checks/stitch_coverage_floor.py",
+    "docs/STITCH-COVERAGE-FLOOR.json"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
