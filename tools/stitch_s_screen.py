@@ -21,12 +21,22 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 NUM = re.compile(r"\d+(?:[.,]\d+)?")
 
 
+ID_RE = re.compile(r"\b[A-Z][A-Z0-9]*(?:-[A-Za-z0-9]+)+\b")
+
+
 def nums(text: str) -> set[str]:
     out = set()
-    for m in NUM.finditer(text or ""):
+    # Идентификаторы узлов и атомов (F-029, L-073, B26-01-0003) — не числа: их цифры попадали в сравнение
+    # и давали ложные «расхождения» (например, «029» из ссылки «см. F-029»).
+    text = ID_RE.sub(" ", text or "")
+    for m in NUM.finditer(text):
         tok = m.group(0).replace(",", ".")
         # годы (1900-2099) — это ссылки на работы, а не измеренные величины
         if len(tok) == 4 and tok.isdigit() and 1900 <= int(tok) <= 2099:
+            continue
+        # «1», «2», «3» встречаются в любой формуле (одна ось, два класса, три условия) и совпадением
+        # величины не являются — иначе признак «числа совпали» ничего не значит.
+        if tok in ("1", "2", "3", "0"):
             continue
         out.add(tok)
     return out
