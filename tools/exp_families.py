@@ -51,11 +51,18 @@ def params_key(node: dict) -> str:
 
 
 def verdict(node: dict) -> str:
+    """Вердикт — только passed/failed; `void` и `not applicable` вердиктами НЕ являются.
+
+    Раньше они попадали в «unknown» и считались расхождением, из-за чего число «конфликтных»
+    семейств было завышено. Это была ошибка нашего же подсчёта, а не свойство данных.
+    """
     text = node.get("text", "")
     if text.endswith("passed"):
         return "passed"
     if text.endswith("failed"):
         return "failed"
+    if text.endswith("void") or text.endswith("not applicable"):
+        return "no-verdict"
     return "unknown"
 
 
@@ -77,7 +84,11 @@ def main(argv: list[str]) -> int:
     groups = collect(nodes)
 
     sizes = collections.Counter(len(v) for v in groups.values())
-    mixed = {k: v for k, v in groups.items() if len({verdict(n) for n in v}) > 1}
+    def is_conflict(runs: list[dict]) -> bool:
+        kinds = {verdict(n) for n in runs}
+        return "passed" in kinds and "failed" in kinds
+
+    mixed = {k: v for k, v in groups.items() if is_conflict(v)}
     singles = [k for k, v in groups.items() if len(v) == 1]
     top = sorted(groups.items(), key=lambda kv: -len(kv[1]))[:5]
 
@@ -94,7 +105,9 @@ def main(argv: list[str]) -> int:
     a(f"- разных имён экспериментов: **{len({exp_name(n) for n in nodes})}**")
     a(f"- семейств (имя + параметры): **{len(groups)}**")
     a(f"- семейств из одного прогона: **{len(singles)}**")
-    a(f"- семейств с разными вердиктами при одинаковых параметрах: **{len(mixed)}**")
+    a(f"- семейств, где РАЗНЫЕ вердикты (passed и failed) при одинаковых параметрах: **{len(mixed)}**")
+    a(f"- семейств без вердикта (void / not applicable) — не конфликт: "
+      f"**{len({k for k, v in groups.items() if any(verdict(n) == 'no-verdict' for n in v)})}**")
     a("")
     a("### Размеры семейств")
     a("")

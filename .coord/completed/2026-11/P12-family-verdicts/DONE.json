@@ -1,0 +1,20 @@
+{
+  "task": "P12-family-verdicts",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:28:26Z",
+  "artifacts": [
+    {
+      "path": "docs/FAMILY-VERDICTS.md",
+      "sha256": "e71259ad57f1628ed63af81193fcc2a3d74af1c641536ae96b0a993ac99f9bcb",
+      "bytes": 4102
+    },
+    {
+      "path": "tools/family_verdicts.py",
+      "sha256": "a6f189e5823c9d8e70c90a32b086f9287e7f6659da668871b7a888655377ac75",
+      "bytes": 8678
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

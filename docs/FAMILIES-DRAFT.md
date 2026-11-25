@@ -9,7 +9,8 @@
 - разных имён экспериментов: **110**
 - семейств (имя + параметры): **117**
 - семейств из одного прогона: **75**
-- семейств с разными вердиктами при одинаковых параметрах: **10**
+- семейств, где РАЗНЫЕ вердикты (passed и failed) при одинаковых параметрах: **8**
+- семейств без вердикта (void / not applicable) — не конфликт: **20**
 
 ### Размеры семейств
 
@@ -45,10 +46,8 @@
 | `moving-in-uniform-field` | 4 | failed×3, passed×1 | `X-moving-in-uniform-field-run-2026-11-12T15-56-11` |
 | `EXP-88` | 3 | failed×2, passed×1 | `X-EXP-88-run-2026-11-13T02-25-56` |
 | `EXP-24` | 2 | failed×1, passed×1 | `X-EXP-24-run-2026-11-12T13-01-44` |
-| `EXP-52` | 2 | passed×1, unknown×1 | `X-EXP-52-run-2026-11-12T22-03-53` |
 | `EXP-61` | 2 | failed×1, passed×1 | `X-EXP-61-run-2026-11-13T01-43-39` |
 | `EXP-62` | 2 | failed×1, passed×1 | `X-EXP-62-run-2026-11-13T01-49-13` |
-| `capacity-edge` | 2 | passed×1, unknown×1 | `X-capacity-edge-run-2026-11-16T01-17-33` |
 | `exp21-feed-collapse` | 2 | failed×1, passed×1 | `X-exp21-feed-collapse-run-2026-11-12T12-38-39` |
 | `exp31_capacity_was_forty` | 2 | failed×1, passed×1 | `X-exp31_capacity_was_forty-run-2026-11-12T21-50-52` |
 
