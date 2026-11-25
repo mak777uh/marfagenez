@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T10:07:34Z",
+  "task_sha256": "5e60b00bb20b9e5127f06b069044c2915bc2c655d44964b61b83723f10f0994f",
+  "area": [
+    "docs/FORMULA-KAPPA.md",
+    "tools/kappa_limit.py"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

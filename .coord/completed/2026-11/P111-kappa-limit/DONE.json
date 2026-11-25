@@ -1,0 +1,20 @@
+{
+  "task": "P111-kappa-limit",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T10:08:16Z",
+  "artifacts": [
+    {
+      "path": "tools/kappa_limit.py",
+      "sha256": "398dfe43f03cb8c6407754acc9a9da8cf10ef49950b043e366acaee212315f93",
+      "bytes": 3541
+    },
+    {
+      "path": "docs/FORMULA-KAPPA.md",
+      "sha256": "0400ac9b16d0c31ac3947649056d0705be4073b01c561688fd50b25e9550d905",
+      "bytes": 3884
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
