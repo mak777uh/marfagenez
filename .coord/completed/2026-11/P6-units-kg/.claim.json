@@ -1,0 +1,16 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T00:08:15Z",
+  "task_sha256": "969bf092ff6ea660d2ca8050001c0d7deb3d75dd0a866b28f7367263023d270e",
+  "area": [
+    "docs/UNITS-AUDIT.md",
+    "docs/FORMULA-*.md",
+    "docs/FINDING-*.md"
+  ],
+  "kind": "research",
+  "priority": 35,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
