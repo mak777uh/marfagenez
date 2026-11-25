@@ -129,7 +129,6 @@
   "command": "python3 checks/exp05_frozen.py",
   "created_at": "2026-11-15T19:29:24.060284+00:00",
   "reproduced_at": [
-    "5fd2c7d9",
     "653315c9",
     "26bb87ee",
     "ee722d36",
@@ -148,6 +147,7 @@
     "25d1a576",
     "f2ae0adb",
     "53e949e6",
-    "189af84e"
+    "189af84e",
+    "5825ac25"
   ]
 }

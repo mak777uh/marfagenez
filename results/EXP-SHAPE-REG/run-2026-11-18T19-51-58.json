@@ -98,7 +98,6 @@
   "command": "core/target/release/examples/shape_cell_target_fair",
   "created_at": "2026-11-18T19:51:58.158531+00:00",
   "reproduced_at": [
-    "6ea0f777",
     "23157a38",
     "456f0cc3",
     "5fd2c7d9",
@@ -117,6 +116,7 @@
     "25d1a576",
     "f2ae0adb",
     "53e949e6",
-    "2f36f7f1"
+    "2f36f7f1",
+    "5825ac25"
   ]
 }
