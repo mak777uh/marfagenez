@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T03:39:53Z",
+  "task_sha256": "6b08525eddfd3d277ca308843a34c14a361f29f73a90f7d24c61dae792679d5a",
+  "area": [
+    "tools/v3_motivation_check.py",
+    "literature/map/ingest-p59-note.md"
+  ],
+  "kind": "research",
+  "priority": 4,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
