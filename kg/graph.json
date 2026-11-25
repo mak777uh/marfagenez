@@ -18444,6 +18444,11 @@
     },
     {
       "from": "C-001",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
+    },
+    {
+      "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
@@ -18451,11 +18456,6 @@
       "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
-    },
-    {
-      "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
     },
     {
       "from": "C-001",
@@ -18514,6 +18514,11 @@
     },
     {
       "from": "C-003",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -18521,11 +18526,6 @@
       "from": "C-003",
       "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
-    },
-    {
-      "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
     },
     {
       "from": "C-003",
@@ -18639,6 +18639,11 @@
     },
     {
       "from": "F-022",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
+    },
+    {
+      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -18646,11 +18651,6 @@
       "from": "F-022",
       "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
-    },
-    {
-      "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
     },
     {
       "from": "F-023",
@@ -18799,6 +18799,11 @@
     },
     {
       "from": "CORR-02",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
@@ -18806,11 +18811,6 @@
       "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
     },
     {
       "from": "CORR-02",

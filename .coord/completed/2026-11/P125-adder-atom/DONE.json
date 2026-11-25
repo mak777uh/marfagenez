@@ -1,0 +1,20 @@
+{
+  "task": "P125-adder-atom",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:52:34Z",
+  "artifacts": [
+    {
+      "path": "literature/map/inbox/main-p125-atoms-20261125.jsonl",
+      "sha256": "2373e544123849dc64a349aad7bd32716191770871d41b7f9bb60d7b8283b582",
+      "bytes": 2936
+    },
+    {
+      "path": "docs/STITCH-S-READ.md",
+      "sha256": "99a3d5bbf51ca028e8d5e137d0839d550c5a879d48756172b43da5a56b27fb3a",
+      "bytes": 35700
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
