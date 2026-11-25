@@ -855,7 +855,7 @@
         }
       ],
       "math": {
-        "latex": "ΔR = R_original − R_modified          эко-подпись (ecosystem signature)",
+        "latex": "ΔR = R_original − R_modified          эко-подпись (ecosystem signature)\nНАБРОСОК, А НЕ ФОРМУЛА: R не определена (вектор откликов? набор признаков? индекс?), опоры в карте\nнет (0 из 1125 ячеек), единицы «1» верны только для безразмерной R. Проверено и записано:\nFORMULA-NICHE.md. До определения R формулу нельзя ни посчитать, ни опровергнуть.",
         "structure": "",
         "units": {
           "Delta_R": "1",
@@ -18539,13 +18539,13 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -18574,13 +18574,13 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -18609,12 +18609,12 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
@@ -18764,12 +18764,12 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
@@ -18779,13 +18779,13 @@
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-025",
@@ -18979,13 +18979,13 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
@@ -19014,12 +19014,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
