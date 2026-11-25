@@ -1,0 +1,25 @@
+{
+  "task": "P28-reznik-dataset",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T01:04:47Z",
+  "artifacts": [
+    {
+      "path": "docs/artifacts/reznik2013-dataset-s1.xlsx",
+      "sha256": "ea56272fe502f627de8408b9789442559acfa197e3bb956873a33983bb278d14",
+      "bytes": 35198
+    },
+    {
+      "path": "tools/reznik_dataset.py",
+      "sha256": "1e8e4ecc5cf044777e66ce1c9a3f04e591014276c233f419ab2e1ea3efe9b74c",
+      "bytes": 4887
+    },
+    {
+      "path": "docs/FINDING-344.md",
+      "sha256": "76f917e0c7caf47dd70c1f9c73cf385f4a520bb00c8727d6a12a61580bf1e1fe",
+      "bytes": 3636
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

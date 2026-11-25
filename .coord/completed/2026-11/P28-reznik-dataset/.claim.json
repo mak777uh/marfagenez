@@ -1,0 +1,16 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T01:03:54Z",
+  "task_sha256": "ed8fadc0cf4680848dbc686bb2514f266e734a1f99d3553be16234ef1a4adc9b",
+  "area": [
+    "docs/artifacts",
+    "tools/reznik_dataset.py",
+    "docs/FINDING-344.md"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
