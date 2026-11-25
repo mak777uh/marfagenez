@@ -1,0 +1,25 @@
+{
+  "task": "P40-identifiability",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:15:14Z",
+  "artifacts": [
+    {
+      "path": "tools/identifiability.py",
+      "sha256": "3ce45583874e175f4d5e6acff965fe6f0d250dad85dc747535af1e49b6b7aaae",
+      "bytes": 5610
+    },
+    {
+      "path": "docs/IDENTIFIABILITY.md",
+      "sha256": "b36c6a644bf4063d8801d422567a9b2dbd3e35c8b56f34a1e6ecac779f840fb2",
+      "bytes": 2307
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "0e076338c7e42564d617c521c27eb9c424e60567f197d4c77343c9fe0e6bb86a",
+      "bytes": 29652
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
