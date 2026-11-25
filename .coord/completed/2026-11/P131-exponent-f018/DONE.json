@@ -1,0 +1,20 @@
+{
+  "task": "P131-exponent-f018",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T12:45:36Z",
+  "artifacts": [
+    {
+      "path": "docs/FORMULA-EXPONENT.md",
+      "sha256": "1c9adb4e0c3dc62da52fee3e90d9a17baaf79991afb74dd9432fb7912f8d12e2",
+      "bytes": 4316
+    },
+    {
+      "path": "tools/exponent_order.py",
+      "sha256": "e072cab02cf67a242301afdeddda6d1bc4786859e4fefe811f5058fc05e267ff",
+      "bytes": 5523
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
