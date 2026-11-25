@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T03:31:55Z",
+  "task_sha256": "8a371336bcb762add357ba9a150ef069d97ebaf7afc2e5f5f4dea103a2deb0b4",
+  "area": [
+    "checks/formula_units_ceiling.py",
+    "docs/FORMULA-UNITS-BASELINE.json"
+  ],
+  "kind": "research",
+  "priority": 6,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

@@ -22,20 +22,21 @@ NODES = ROOT / "kg" / "nodes.jsonl"
 BASELINE_FILE = ROOT / "docs" / "FORMULA-UNITS-BASELINE.json"
 
 
-def current() -> tuple[int, int, list[str]]:
+def current() -> tuple[int, int, list[str], list[str]]:
     nodes = [json.loads(l) for l in NODES.read_text(encoding="utf-8").splitlines() if l.strip()]
     fs = [n for n in nodes if n.get("kind") == "formula"]
-    no_units = [n["id"] for n in fs if not ((n.get("math") or {}).get("units") or {})]
-    return len(fs), len(no_units), sorted(no_units)
+    no_units = sorted(n["id"] for n in fs if not ((n.get("math") or {}).get("units") or {}))
+    with_units = sorted(n["id"] for n in fs if ((n.get("math") or {}).get("units") or {}))
+    return len(fs), len(no_units), no_units, with_units
 
 
 def main(argv: list[str]) -> int:
-    total, without, ids = current()
+    total, without, ids, with_units = current()
     if "--update" in argv:
         BASELINE_FILE.write_text(json.dumps({"without_units": without, "total": total,
-                                             "date": "2026-11-25"}, ensure_ascii=False,
-                                            indent=2) + "\n", encoding="utf-8")
-        print(f"порог обновлён: без единиц {without} из {total}")
+                                             "with_units": with_units, "date": "2026-11-25"},
+                                            ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"порог обновлён: без единиц {without} из {total}; с единицами записано {len(with_units)}")
         return 0
 
     if not BASELINE_FILE.exists():
@@ -43,6 +44,15 @@ def main(argv: list[str]) -> int:
         return 1
     base = json.loads(BASELINE_FILE.read_text(encoding="utf-8"))
     limit = int(base.get("without_units", 0))
+
+    # Список важнее числа: раньше запись F-005 «потеряла» единицы, и это прошло как сокращение долга.
+    recorded = base.get("with_units") or []
+    lost = [fid for fid in recorded if fid in ids]
+    if lost:
+        print(f"ЕДИНИЦЫ: формулы потеряли единицы, хотя они были записаны: {', '.join(lost)}")
+        print("Это не сокращение долга, а исчезновение записи. Восстановите math.units или объясните")
+        print("в docs/UNITS-AUDIT.md и пересоберите порог с --update.")
+        return 1
 
     if without > limit:
         print(f"ЕДИНИЦЫ: формул без единиц стало {without} против порога {limit} — долг вырос.")

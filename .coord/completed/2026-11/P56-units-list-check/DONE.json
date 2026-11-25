@@ -1,0 +1,20 @@
+{
+  "task": "P56-units-list-check",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T03:32:20Z",
+  "artifacts": [
+    {
+      "path": "checks/formula_units_ceiling.py",
+      "sha256": "21d3f3738490231fe9938a01e647b3a0466e480bc5f53950c9ca668b05ad4bf0",
+      "bytes": 3968
+    },
+    {
+      "path": "docs/FORMULA-UNITS-BASELINE.json",
+      "sha256": "a6c5f4f811a23d9d71e1a3653385517da8bd0a4e4178a28c29782623a6bedf31",
+      "bytes": 360
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
