@@ -18568,8 +18568,8 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -18578,8 +18578,8 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -18773,8 +18773,8 @@
     },
     {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-023",
@@ -18783,8 +18783,8 @@
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-025",
@@ -19008,7 +19008,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
@@ -19018,7 +19018,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
