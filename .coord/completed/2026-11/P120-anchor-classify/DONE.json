@@ -1,0 +1,15 @@
+{
+  "task": "P120-anchor-classify",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:24:14Z",
+  "artifacts": [
+    {
+      "path": "docs/ANCHOR-AUDIT.md",
+      "sha256": "14f1d26c9efd23289605fb45e2f3203cfa86a66f255d5836a7768980c0f8c189",
+      "bytes": 5128
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
