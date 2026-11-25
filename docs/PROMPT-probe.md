@@ -89,7 +89,11 @@ python3 tools/coord.py finish <каталог-раунда> --agent probe --arti
 | `pip install`, менять окружение | воспроизводимость |
 | создавать `FINDING-*` | номера выдаёт `tools/new_finding.py` |
 
-## 7. Где правила целиком
+## 7. Подробный план
+
+Подробный план работы (где что лежит, пять проверок, формат, ошибки): `docs/PROBE-PLAN.md`.
+
+## 8. Где правила целиком
 
 `.coord/README.md`, `.coord/standing/S8-data-questions.md`, `docs/PERFORMANCE.md` (почему не Windows),
 `PROTOCOL.md` (что проверяет гейт).
