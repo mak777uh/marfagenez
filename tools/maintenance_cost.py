@@ -19,6 +19,10 @@
 
 from __future__ import annotations
 
+import json
+import pathlib
+import re
+
 # Единицы в СИ: Дж, с, г. Проверяем размерность формально, как произведение степеней.
 DIM = {"Дж": (1, 2, -2), "с": (0, 0, 1), "г": (0, 1, 0)}   # (масса, длина, время)
 
@@ -27,12 +31,13 @@ def mul(*factors):
     """Перемножить размерности: каждая запись — (имя, показатель) или просто имя."""
     total = [0, 0, 0]
     for f in factors:
+        if isinstance(f, tuple) and len(f) == 3 and not isinstance(f[0], str):
+            # уже размерность: (масса, длина, время) в показателях
+            for i, v in enumerate(f):
+                total[i] += v
+            continue
         if isinstance(f, tuple):
             name, power = f[0], f[1]
-            if len(f) == 3:                      # сразу размерность, а не имя
-                for i, v in enumerate(f):
-                    total[i] += v * power
-                continue
         else:
             name, power = f, 1
         for i, v in enumerate(DIM[name]):
@@ -47,14 +52,61 @@ def fmt(d):
     return " · ".join(parts) if parts else "безразмерно"
 
 
+SUP = {"²": 2, "³": 3, "⁻¹": -1, "⁻²": -2, "⁻³": -3}
+
+
+def parse_units(text: str) -> tuple[int, int, int] | None:
+    """Простейший разбор единиц вида «Дж·с/г²» или «Дж/(с·г²)» в показатели (масса, длина, время).
+
+    Возвращает None, если в записи есть символы, которых нет в DIM (например «концентрация»).
+    """
+    t = (text or "").replace(" ", "")
+    if not t or t == "1":
+        return (0, 0, 0)
+    num, _, den = t.partition("/")
+    den = den.strip("()")
+    total = [0, 0, 0]
+    for part, sign in ((num, 1), (den, -1)):
+        if not part:
+            continue
+        for tok in re.findall(r"[А-Яа-яA-Za-z]+[²³]?|[⁻⁺]?[0-9]+", part.replace("·", "*").replace("*", " ")):
+            m = re.fullmatch(r"([А-Яа-яA-Za-z]+)([²³]?)", tok)
+            if not m:
+                continue
+            name, sup = m.group(1), m.group(2)
+            if name not in DIM:
+                return None
+            power = SUP.get(sup, 1) * sign
+            for i, v in enumerate(DIM[name]):
+                total[i] += v * power
+    return tuple(total)
+
+
+def recorded_kappa_units() -> str:
+    """Единица κ, записанная в kg/nodes.jsonl для F-004 (из kg/migrate.py UNITS)."""
+    nodes = pathlib.Path(__file__).resolve().parent.parent / "kg" / "nodes.jsonl"
+    if not nodes.exists():
+        return "Дж/(с·г²)"
+    for line in nodes.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        n = json.loads(line)
+        if n.get("id") == "F-004":
+            return ((n.get("math") or {}).get("units") or {}).get("kappa") or "Дж/(с·г²)"
+    return "Дж/(с·г²)"
+
+
 def main() -> int:
     power = mul("Дж", ("с", -1))
     print(f"цель: все слагаемые расхода должны иметь {fmt(power)} (мощность)\n")
 
+    kappa_units = recorded_kappa_units()
+    print(f"κ записан в kg/ как: {kappa_units}")
+
     # слагаемые
     f0 = mul("Дж", ("с", -1))
     mu_n = mul(("Дж", 1), ("с", -1), ("г", -1), "г")          # μ·n
-    kappa_table = mul("Дж", "с", ("г", -2))                    # то, что записано в таблице единиц
+    kappa_table = parse_units(kappa_units) or mul("Дж", "с", ("г", -2))  # то, что записано в таблице
     kappa_term = mul(kappa_table, ("г", 2))                    # κ·n²/p при [p]=1
     kappa_needed = mul("Дж", ("с", -1), ("г", -2))             # что нужно, чтобы вышла мощность
 
