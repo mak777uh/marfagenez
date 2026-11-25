@@ -1,0 +1,20 @@
+{
+  "task": "P119-anchor-pairs",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:19:24Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-S-READ.md",
+      "sha256": "b5190c5ed6784f2c6270e3928578d7b095a16c634e8a95e9dfff17901d83f65a",
+      "bytes": 32698
+    },
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "4cf06ae95e2148e401fd0f33d26d62c8a78f9f3b58e547e455722bd80e04ceb9",
+      "bytes": 42204
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
