@@ -154,12 +154,16 @@ def norm_num(text: str) -> set[str]:
     out: set[str] = set()
     text = text or ""
     # сначала научная запись: 1,0·10⁻³ и 8×10⁻⁴
-    for m in _re.finditer(r"(\d+(?:[.,]\d+)?)\s*[·×x]\s*10\s*([⁻⁺]?[⁰¹²³⁴⁵⁶⁷⁸⁹]+)", text):
+    for m in _re.finditer(r"(\d+(?:[.,]\d+)?)\s*[·×x]\s*10\s*(?:\^\s*([-+]?\d+)|([⁻⁺]?[⁰¹²³⁴⁵⁶⁷⁸⁹]+))", text):
         mant = float(m.group(1).replace(",", "."))
-        exp = int("".join(SUP.get(c, "") for c in m.group(2)) or 0)
+        if m.group(2) is not None:
+            exp = int(m.group(2))
+        else:
+            exp = int("".join(SUP.get(c, "") for c in (m.group(3) or "")) or 0)
         val = mant * 10 ** exp
         out.add(f"{val:g}")
         out.add(f"{mant:g}e{exp}")
+        out.add(m.group(0).replace(" ", ""))      # как записано в тексте: 1.67×10^-1
     # остальные числа
     for m in _re.finditer(r"\d+(?:[.,]\d+)?", text):
         raw = m.group(0).replace(",", ".")
