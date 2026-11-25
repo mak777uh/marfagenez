@@ -238,6 +238,22 @@ def main(argv: list[str]) -> int:
 
     if not dry:
         MAP.mkdir(parents=True, exist_ok=True)
+    # Правило цеттелькастена — ДО записи атомов и независимо от того, пришли ли рёбра отдельным файлом:
+    # если новая ячейка осталась без связи, партия не принимается вовсе.
+    new_ids_pre = [a["atom"] for a in accepted]
+    if new_ids_pre:
+        deg_pre = collections.Counter()
+        for e in edges_new:
+            deg_pre[e.get("from")] += 1
+            deg_pre[e.get("to")] += 1
+        lonely_pre = [i for i in new_ids_pre if deg_pre[i] == 0]
+        if lonely_pre and not allow_orphans:
+            print(f"ОТКАЗ: {len(lonely_pre)} новых ячеек без единой связи: "
+                  f"{', '.join(lonely_pre[:8])}{' …' if len(lonely_pre) > 8 else ''}")
+            print("  правило: новая ячейка должна иметь хотя бы одну связь с существующей")
+            print("  карта не изменена; обход — --allow-orphans (осознанный случай)")
+            return 1
+
     if not dry:
         ATOMS.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in existing), encoding="utf-8")
 
