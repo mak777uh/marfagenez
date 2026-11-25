@@ -1,0 +1,15 @@
+{
+  "task": "P91-fulltext-check-1",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T06:13:31Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-S-READ.md",
+      "sha256": "3c2d2de0ae944375e8f72a072b6a6cffabac18635caadffddc17a534007a8a33",
+      "bytes": 24326
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
