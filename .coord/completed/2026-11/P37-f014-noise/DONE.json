@@ -1,0 +1,25 @@
+{
+  "task": "P37-f014-noise",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:11:03Z",
+  "artifacts": [
+    {
+      "path": "tools/noise_threshold.py",
+      "sha256": "aa0dd889901e723a9c6451d9ef8545c6690c24e540f992b533a846a41387f685",
+      "bytes": 3248
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "8ee6520552f3bf50ace897d2955598d7dea0ebb76ea1fef2e3fe486cd4b9bb1a",
+      "bytes": 22320
+    },
+    {
+      "path": "kg/migrate.py",
+      "sha256": "6682907a27e25c4750ace5380d3bd803af6b7fb5664f8bca084ea7cfaa036b6a",
+      "bytes": 19848
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
