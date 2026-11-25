@@ -184,6 +184,26 @@ def lock(timeout: float = 60.0):
 
 # ---------------------------------------------------------------- области
 
+def area_warning(areas: list[str]) -> str | None:
+    """Предупреждение, если область объявлена слишком узко.
+
+    День 25.11.2026: шесть задач пришлось перезаключать, потому что область перечисляла отдельные файлы и
+    не покрывала каталог, в котором они лежат. Область — контракт «что не тронется чужое», а не список
+    угаданных файлов.
+    """
+    if not areas:
+        return "пустая рабочая область"
+    broad = [a for a in areas if "*" in a or a.endswith("/") or a.count("/") == 0]
+    if broad:
+        return None
+    if len(areas) <= 3:
+        return ("область из отдельных файлов без шаблона или каталога: "
+                + ", ".join(areas[:3])
+                + ". Если работа исследовательская, объявите каталог или шаблон "
+                  "(например, docs/FINDING-*.md вместо одного файла).")
+    return None
+
+
 def norm_area(area: str) -> str:
     a = area.strip().replace("\\", "/")
     if not a or a.startswith("/") or a.startswith("~"):
@@ -413,6 +433,9 @@ def cmd_add(a) -> int:
                                               a.priority, a.agent, a.note, a.kind, a.standing))
     event(a.agent, f"создана задача `{a.id}` ({a.kind}, приоритет {a.priority})")
     print(f"добавлено: {a.id}")
+    warn = area_warning(areas)
+    if warn:
+        print(f"внимание: {warn}")
     return 0
 
 
