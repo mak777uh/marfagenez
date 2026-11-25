@@ -1,0 +1,23 @@
+{
+  "ok": false,
+  "task_sha256": "10873f062b0031147a04c455da9308d7190021d1d56ebd52a4f9436fe4230eb6",
+  "done_sha256": "7fdebec9169be8e0395db6a5441f8833b456b85a5be94bdac2a8d97e1dd269b6",
+  "gen": 4,
+  "verified_at": "2026-11-25T03:43:04Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/doc_links.py",
+      "rc": 0,
+      "tail": "ссылки в документации: все относительные .md разрешаются (известных мёртвых: 4)"
+    },
+    {
+      "cmd": "python3 checks/log_check.py",
+      "rc": 1,
+      "tail": "ЖУРНАЛ: 2 проблем\n  docs/agent/AGENT_LOG.md: 1 коммитов после последней записи цикла не названы ни одной записью -- журнал отстал\n      1900dee3 P59: finish with in-area artifact after area mismatch"
+    }
+  ],
+  "bad_artifacts": [
+    "docs/FINDING-355.md"
+  ]
+}
