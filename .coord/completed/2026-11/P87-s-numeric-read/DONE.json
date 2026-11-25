@@ -1,0 +1,20 @@
+{
+  "task": "P87-s-numeric-read",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T05:56:49Z",
+  "artifacts": [
+    {
+      "path": "tools/stitch_s_screen.py",
+      "sha256": "49cd0d80c07b8449feccacf130aad3ead6cb830109583694078456e849dd57df",
+      "bytes": 3931
+    },
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "a83ae98b35a8e5b4e4e2a3eb2fee440956148b9be4ed846f02174fb8e5b9e64c",
+      "bytes": 30220
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

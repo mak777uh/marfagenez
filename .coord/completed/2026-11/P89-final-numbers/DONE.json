@@ -1,0 +1,15 @@
+{
+  "task": "P89-final-numbers",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T05:56:49Z",
+  "artifacts": [
+    {
+      "path": "docs/SYNTHESIS-10.md",
+      "sha256": "094942da8f7d0f097b71ae051c3d616c5c3962d144c2436a475e691f4e7ce568",
+      "bytes": 14996
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
