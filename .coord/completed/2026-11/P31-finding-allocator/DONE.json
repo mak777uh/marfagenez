@@ -1,0 +1,20 @@
+{
+  "task": "P31-finding-allocator",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T01:18:55Z",
+  "artifacts": [
+    {
+      "path": "tools/new_finding.py",
+      "sha256": "230a568e89563ba5f690238828ceafe2f5bde3f0b2f554c6d97b350d6a7f6626",
+      "bytes": 3574
+    },
+    {
+      "path": ".coord/README.md",
+      "sha256": "92716989412a578b4c4ef00fc3081eaa944778dd79689840f4dd898dd4495d34",
+      "bytes": 25513
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

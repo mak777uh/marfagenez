@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "f32b1967b97c7f6c70ac208bcb6e58827d21ef86a03f49556cbe1b411dbdf76b",
+  "done_sha256": "01a37c341a8ba9415fffac01bb73cf85a7bea50d572f07b8fde2cb3f52944473",
+  "gen": 1,
+  "verified_at": "2026-11-25T01:19:04Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/tree_contract.py",
+      "rc": 0,
+      "tail": "дерево проверок: согласовано (записей прошлого: 180)"
+    }
+  ],
+  "bad_artifacts": []
+}

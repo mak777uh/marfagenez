@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T01:18:08Z",
+  "task_sha256": "f32b1967b97c7f6c70ac208bcb6e58827d21ef86a03f49556cbe1b411dbdf76b",
+  "area": [
+    "tools/new_finding.py",
+    ".coord/README.md"
+  ],
+  "kind": "research",
+  "priority": 7,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
