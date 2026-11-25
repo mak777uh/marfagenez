@@ -13,8 +13,9 @@ M7 `contradiction` требует минимум двух работ;
 M8 рёбра ссылаются на существующие ячейки;
 M9 доля `analogous` среди рёбер не больше трети (иначе карта становится метафорами);
 M10 `high` требует формулы или цитаты, и локатор должен быть `verified`;
-M11 необязательное `kg_ref` (сшивка с `kg/`) — список непустых id вида `C-*`, `F-*`, `L-*`, `GAP-*`,
-    `CORR-*`, `DEF-*`; поле может отсутствовать, но если есть — обязано быть корректным.
+M11 необязательное `kg_ref` (сшивка с `kg/`): поле может отсутствовать **или быть пустым списком**
+    (`[]` = «связей нет»); если в списке есть записи — каждая обязана быть непустым id вида
+    `C-*`, `F-*`, `L-*`, `GAP-*`, `CORR-*`, `DEF-*`.
 
 Usage:
     python3 checks/map_contract.py
@@ -105,8 +106,11 @@ def check(atoms_path: pathlib.Path, edges_path: pathlib.Path) -> list[str]:
         refs = a.get("kg_ref")
         if refs is None:
             continue
-        if not isinstance(refs, list) or not refs:
-            errs.append(f"M11 {a.get('atom')}: kg_ref должен быть непустым списком")
+        # Пустой список — законное «связей нет»; ошибка только если это не список.
+        if not isinstance(refs, list):
+            errs.append(f"M11 {a.get('atom')}: kg_ref должен быть списком")
+            continue
+        if not refs:
             continue
         for r in refs:
             if not isinstance(r, str) or not r.strip():
