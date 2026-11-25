@@ -41,7 +41,7 @@ DEFAULT_BRIDGE = pathlib.Path("/mnt/c/111/probe-bridge")
 
 KINDS = {"units", "numbers", "order", "gap-as-support", "no-locator"}
 REQUEST_KINDS = {"cells", "orphans", "nodes", "standing", "audit"}
-MAX_PER_FILE = 8
+MAX_PER_FILE = 24
 
 
 def load_atoms() -> dict[str, dict]:
@@ -145,8 +145,53 @@ def answer_request(req: dict, atoms: dict[str, dict], nodes: dict[str, dict],
     return head + f"\nнеизвестный вид запроса: {kind}"
 
 
-def validate_submission(path: pathlib.Path, atoms: dict[str, dict]) -> tuple[list[dict], list[str]]:
+def norm_num(text: str) -> set[str]:
+    """Числа из текста в нормализованном виде, включая научную запись с надстрочными цифрами."""
+    import re as _re
+    SUP = {"⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9",
+           "⁻": "-", "⁺": "+"}
+    out: set[str] = set()
+    text = text or ""
+    # сначала научная запись: 1,0·10⁻³ и 8×10⁻⁴
+    for m in _re.finditer(r"(\d+(?:[.,]\d+)?)\s*[·×x]\s*10\s*([⁻⁺]?[⁰¹²³⁴⁵⁶⁷⁸⁹]+)", text):
+        mant = float(m.group(1).replace(",", "."))
+        exp = int("".join(SUP.get(c, "") for c in m.group(2)) or 0)
+        val = mant * 10 ** exp
+        out.add(f"{val:g}")
+        out.add(f"{mant:g}e{exp}")
+    # остальные числа
+    for m in _re.finditer(r"\d+(?:[.,]\d+)?", text):
+        raw = m.group(0).replace(",", ".")
+        out.add(raw)
+        try:
+            out.add(f"{float(raw):g}")
+        except ValueError:
+            pass
+    return out
+
+
+def numbers_present(q: dict, atoms: dict[str, dict]) -> str | None:
+    """Каждое число вопроса должно встречаться в тексте своих ячеек (иначе оно придумано)."""
+    text = " ".join(
+        " ".join(str((atoms[a].get(k) or "")) for k in ("statement", "formula", "notes"))
+        + " " + " ".join(str(w.get("quote") or "") for w in (atoms[a].get("works") or []))
+        for a in q.get("atoms") or [] if a in atoms)
+    pool = norm_num(text)
+    for n in q.get("numbers") or []:
+        key = str(n).replace(",", ".").replace(" ", "")
+        try:
+            key = f"{float(key):g}"
+        except ValueError:
+            pass
+        if key not in pool:
+            return f"число {n!r} не встречается в тексте ячеек {q.get('atoms')}"
+    return None
+
+
+def validate_submission(path: pathlib.Path, atoms: dict[str, dict],
+                        seen: set[tuple[str, tuple[str, ...]]] | None = None) -> tuple[list[dict], list[str]]:
     good, bad = [], []
+    seen = seen if seen is not None else set()
     if path.suffix != ".jsonl":
         return good, [f"{path.name}: не .jsonl"]
     lines = [l for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
@@ -171,6 +216,14 @@ def validate_submission(path: pathlib.Path, atoms: dict[str, dict]) -> tuple[lis
             problem = "нет поля verifiable: как проверить ответ"
         elif q.get("kind") in ("units", "order") and not q.get("recalc"):
             problem = "для units/order обязателен recalc — пересчёт"
+        if not problem:
+            problem = numbers_present(q, atoms)
+        if not problem:
+            sig = (str(q.get("kind")), tuple(sorted(q.get("atoms") or [])))
+            if sig in seen:
+                problem = "такой вопрос уже принимался (тот же вид и те же ячейки)"
+            else:
+                seen.add(sig)
         if problem:
             bad.append(f"{path.name}:{i}: {problem}")
         else:
@@ -205,11 +258,22 @@ def serve(bridge: pathlib.Path) -> int:
         done += 1
         print(f"запрос {req_path.stem}: готово -> data/{req_path.stem}.md")
 
+    state = bridge / "state" / "probe-seen.json"
+    seen: set[tuple[str, tuple[str, ...]]] = set()
+    if state.exists():
+        try:
+            seen = {(k, tuple(v)) for k, v in json.loads(state.read_text(encoding="utf-8"))}
+        except Exception:
+            seen = set()
+
     stamp = dt.datetime.now().strftime("%Y%m%dT%H%M")
     inbox = ROOT / "literature" / "map" / "inbox"
     inbox.mkdir(parents=True, exist_ok=True)
+    triage_rows = []
     for sub in sorted(out_dir.glob("*.jsonl")):
-        good, bad = validate_submission(sub, atoms)
+        good, bad = validate_submission(sub, atoms, seen)
+        for q in good:
+            triage_rows.append(q)
         ack = {"file": sub.name, "accepted": len(good), "rejected": len(bad), "reasons": bad}
         if good:
             out_file = inbox / f"probe-{stamp}-{sub.stem}.jsonl"
@@ -222,6 +286,22 @@ def serve(bridge: pathlib.Path) -> int:
         (ack_dir / f"{sub.stem}.json").write_text(json.dumps(ack, ensure_ascii=False, indent=2) + "\n",
                                                   encoding="utf-8")
         sub.rename(bridge / "done" / sub.name)
+
+    state.write_text(json.dumps(sorted([[k, list(v)] for k, v in seen]), ensure_ascii=False),
+                     encoding="utf-8")
+    if triage_rows:
+        triage = ROOT / "docs" / "PROBE-TRIAGE.md"
+        by_kind = collections.Counter(q.get("kind") for q in triage_rows)
+        lines = ["# Очередь вопросов `probe` на проверку", "",
+                 f"Обновлено: {dt.datetime.now():%Y-%m-%d %H:%M}. Принято мостом: {len(triage_rows)}.", "",
+                 "| вид | сколько |", "|---|---|"]
+        lines += [f"| {k} | {v} |" for k, v in sorted(by_kind.items())]
+        lines += ["", "## Вопросы", ""]
+        for q in triage_rows:
+            lines.append(f"- **[{q.get('kind')}]** {q.get('question')}")
+            lines.append(f"  - ячейки: {', '.join(q.get('atoms') or [])}; числа: {', '.join(map(str, q.get('numbers') or []))}")
+        triage.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        print(f"триаж записан: docs/PROBE-TRIAGE.md ({len(triage_rows)} вопросов)")
 
     if not done and not any(out_dir.glob("*.jsonl")):
         print("очередь пуста: ни запросов, ни посылок")
