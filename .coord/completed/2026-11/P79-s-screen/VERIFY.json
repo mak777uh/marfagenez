@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "9f1c590777297ae2b391dc01bcac782674525a7d5a0d965ba0c906e3e3ca1b7d",
+  "done_sha256": "6c6069c784b8897a52cd4989b3742d0d10f8f1d33058c83ec79d3cb5e2845fbb",
+  "gen": 1,
+  "verified_at": "2026-11-25T05:32:09Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 tools/stitch_s_screen.py",
+      "rc": 0,
+      "tail": "S-пар: 36\nчисел нет с одной стороны: 28 — проверяются только чтением\nчисла есть с обеих сторон, но не совпадают: 0"
+    }
+  ],
+  "bad_artifacts": []
+}
