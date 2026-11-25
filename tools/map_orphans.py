@@ -43,6 +43,17 @@ def orphans(atoms, edges):
 def main(argv: list[str]) -> int:
     atoms, edges = load()
     missing, deg = orphans(atoms, edges)
+
+    group = None
+    for i, a in enumerate(argv):
+        if a == "--group" and i + 1 < len(argv):
+            group = argv[i + 1]
+    if group:
+        picked = [i for i in missing if i.startswith(group)]
+        print(f"группа {group}: сирот {len(picked)}")
+        for i in picked:
+            print(f"  {i}")
+        return 0
     share = len(missing) / max(len(atoms), 1) * 100
     print(f"ячеек: {len(atoms)}; рёбер: {len(edges)}")
     print(f"ячеек без единой связи: {len(missing)} ({share:.0f} %)")
@@ -50,6 +61,11 @@ def main(argv: list[str]) -> int:
         print("первые:", ", ".join(missing[:10]))
         pref = collections.Counter(i.split("-")[0] for i in missing)
         print("по префиксам:", dict(pref.most_common(6)))
+
+    group = None
+    for i, a in enumerate(argv):
+        if a == "--group" and i + 1 < len(argv):
+            group = argv[i + 1]
 
     if "--update" in argv:
         BASE.write_text(json.dumps({"orphans": len(missing), "date": "2026-11-25"}, ensure_ascii=False,
