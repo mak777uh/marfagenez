@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T16:54:27Z",
+  "task_sha256": "86f9ab497c078c31d70ab530968b87170a84855af3e8940f5a114651f6430827",
+  "area": [
+    "docs/THREE-CRITERIA.md",
+    "docs/SYNTHESIS-*.md"
+  ],
+  "kind": "research",
+  "priority": 6,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
