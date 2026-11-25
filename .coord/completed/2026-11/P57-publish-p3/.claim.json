@@ -1,0 +1,17 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T03:33:34Z",
+  "task_sha256": "366528a3c74db702f9cdecbd1b8b790147b97e5e258da6e8794b27685817858a",
+  "area": [
+    "literature/map/inbox/fast-p3-atoms-20261125.jsonl",
+    "literature/map/inbox/fast-p3-edges-20261125.jsonl",
+    "kg",
+    "docs/agent/AGENT_LOG.md"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

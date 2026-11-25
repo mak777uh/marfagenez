@@ -1,0 +1,20 @@
+{
+  "task": "P57-publish-p3",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T03:36:36Z",
+  "artifacts": [
+    {
+      "path": "literature/map/inbox/fast-p3-atoms-20261125.jsonl",
+      "sha256": "0f1809abea1adcdb6c2579707d88b469d9254248d45cc03680f4195c058ad041",
+      "bytes": 14653
+    },
+    {
+      "path": "literature/map/inbox/fast-p3-edges-20261125.jsonl",
+      "sha256": "624c34187e53b4f0c38a9953213dd933c9d3bfd394525a47c9c0ee9e70d855bf",
+      "bytes": 1594
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
