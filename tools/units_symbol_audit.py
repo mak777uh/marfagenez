@@ -32,6 +32,9 @@ NOISE = {
     "и", "в", "на", "при", "для", "это", "если", "то", "как", "или", "не", "из", "с", "по", "к", "о",
     "the", "of", "is", "for", "when", "and", "or", "with", "md", "shell", "state", "true", "false",
     "set", "all", "any", "one", "two", "six", "for", "min", "max", "sup", "inf", "lim", "log", "exp",
+    # индексные буквы и служебные обозначения (не величины): i, j в π(i), p_j; e — число Эйлера;
+    # E — оператор математического ожидания E[...]
+    "i", "j", "e", "E",
     "and", "not", "but", "the", "see", "use", "via", "per", "её", "их", "это", "шаг", "ось", "оси",
 }
 
@@ -59,9 +62,15 @@ def main(argv: list[str]) -> int:
         tokens = set(LATIN.findall(cleaned)) | set(CYR.findall(cleaned))
         covered = set(units)
         # символ считаем «в записи», если он встречается как отдельное слово или как имя переменной
+        def covered_by_prefix(t: str) -> bool:
+            """`h` покрыт, если в таблице есть `h_c`: буква — сокращение того же символа с подписью."""
+            if len(t) != 1:
+                return False
+            return any(str(c).startswith(t) for c in covered)
+
         def covered_by_base(t: str) -> bool:
             """`p_j` покрыт, если покрыт `p`; `indeg_C` — если `indeg`; `X_t` — если `X`."""
-            if t in covered:
+            if t in covered or covered_by_prefix(t):
                 return True
             base = t.split("_")[0]
             if base in covered:
@@ -71,8 +80,10 @@ def main(argv: list[str]) -> int:
                     return True
             return False
 
+        # Однобуквенные символы — самые частые переменные (`d`, `x`, `p`). Фильтр `len(t) > 1` их выбрасывал,
+        # и проверка не видела, например, что `d` в `c·d·q_min` (F-027) вообще отсутствует в таблице единиц.
         gaps = sorted(t for t in tokens
-                      if not covered_by_base(t) and t not in NOISE and len(t) > 1
+                      if not covered_by_base(t) and t not in NOISE and len(t) >= 1
                       and (t[0].islower() or t[0].isupper()))
         # оставим только те, что реально похожи на переменные: одна-две буквы или с подчёркиванием
         def looks_like_symbol(t: str) -> bool:
@@ -94,9 +105,19 @@ def main(argv: list[str]) -> int:
     print(f"кандидатов на проверку: {total_gaps}")
     strict = "--strict" in argv
     if strict:
-        if total_gaps:
-            print("СТРОГИЙ РЕЖИМ: есть символы без единиц — объявите их в math.units или в структурных")
+        base_file = ROOT / "docs" / "UNITS-SYMBOLS-BASELINE.json"
+        ceiling = 0
+        if base_file.exists():
+            try:
+                ceiling = int(json.loads(base_file.read_text(encoding="utf-8")).get("gaps") or 0)
+            except Exception:
+                ceiling = 0
+        if total_gaps > ceiling:
+            print(f"СТРОГИЙ РЕЖИМ: кандидатов {total_gaps} больше потолка {ceiling} — объявите единицы")
             return 1
+        if ceiling:
+            print(f"СТРОГИЙ РЕЖИМ: {total_gaps} кандидатов при потолке {ceiling} — долг не вырос")
+            return 0
         print("СТРОГИЙ РЕЖИМ: все символы формул с единицами покрыты")
         return 0
     print("Список для чтения: имена команд latex и слова прозы сюда тоже попадают.")

@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "243fde5478155822ca5df1bfb579d1f783e4270a92b7101428843049878e593d",
+  "done_sha256": "e82ae6fdee330501e0039cda8625e2bee171a6415295e69ba6ab909e2cfc40e2",
+  "gen": 1,
+  "verified_at": "2026-11-25T12:56:12Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 tools/units_symbol_audit.py --strict",
+      "rc": 0,
+      "tail": "\nкандидатов на проверку: 17\nСТРОГИЙ РЕЖИМ: 17 кандидатов при потолке 17 — долг не вырос"
+    }
+  ],
+  "bad_artifacts": []
+}

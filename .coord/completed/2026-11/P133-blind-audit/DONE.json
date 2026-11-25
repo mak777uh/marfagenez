@@ -1,0 +1,20 @@
+{
+  "task": "P133-blind-audit",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T12:56:12Z",
+  "artifacts": [
+    {
+      "path": "tools/units_symbol_audit.py",
+      "sha256": "4e516cacc7d4d8c9bd01e739fbc510f83707799d001c2336c084582e0e80a5b7",
+      "bytes": 7813
+    },
+    {
+      "path": "docs/UNITS-SYMBOLS-BASELINE.json",
+      "sha256": "bf193061c0beb48ac3ebc27363f6bc59724a19f7097a3bf0b1e4a26f985a7d96",
+      "bytes": 439
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
