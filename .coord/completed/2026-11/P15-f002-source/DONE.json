@@ -1,0 +1,20 @@
+{
+  "task": "P15-f002-source",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:36:25Z",
+  "artifacts": [
+    {
+      "path": "docs/ELEPHANT-LITERATURE.md",
+      "sha256": "3fc23f41dcadf6ad10218114a2014f4fc4d6c6d9dac0a288389def708cbfbab7",
+      "bytes": 242078
+    },
+    {
+      "path": "docs/FINDING-343.md",
+      "sha256": "d7c6334c9da0fdb23282cfd51df04374ffc4e493202b65a3d7e40d7a0a1e871e",
+      "bytes": 2536
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
