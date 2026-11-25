@@ -1,0 +1,20 @@
+{
+  "task": "P20-adjudicate-rest",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:46:47Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "5fd1e40e81d4765ec4557bd5f4898e2f404aae69a8105221ba24db945a99f7d6",
+      "bytes": 4459
+    },
+    {
+      "path": "docs/STITCH-AUDIT.md",
+      "sha256": "6b59060f200f3c238d515f1f9eeb0ae72bdb8b54326441db454ed90626cf5e03",
+      "bytes": 6993
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
