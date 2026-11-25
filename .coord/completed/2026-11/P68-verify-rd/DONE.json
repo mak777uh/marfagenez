@@ -1,0 +1,25 @@
+{
+  "task": "P68-verify-rd",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T04:20:50Z",
+  "artifacts": [
+    {
+      "path": "tools/verify_rd_numbers.py",
+      "sha256": "060af8c8602f65f46d725f248f8d1e0c148639d48d52a31f6e4a7f485b9dcc75",
+      "bytes": 2707
+    },
+    {
+      "path": "docs/FORMULA-DCRITICAL.md",
+      "sha256": "62ff1bb0a55de51df8961a742e11e8af08b83380d20e93408f02048042c1ea0e",
+      "bytes": 13686
+    },
+    {
+      "path": "docs/RD-VS-V3.md",
+      "sha256": "ac47d226d95e0d4b02f75d16c9af713a43d701f57fbf84ba2ea6280b163ded78",
+      "bytes": 6950
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
