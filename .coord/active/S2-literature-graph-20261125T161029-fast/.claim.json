@@ -1,0 +1,16 @@
+{
+  "agent": "fast",
+  "taken_at": "2026-11-25T13:10:29Z",
+  "task_sha256": "0b908c4da9805c18103b55b59c019c0b78e7d95f64c895593f9933cc07b036bf",
+  "area": [
+    "literature/map/inbox/fast-*.jsonl",
+    "literature/dips/reports/fast-*.jsonl",
+    "docs/FINDING-*.md"
+  ],
+  "kind": "research",
+  "priority": 6,
+  "gen": 8,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": "S2-literature-graph",
+  "standing": true
+}

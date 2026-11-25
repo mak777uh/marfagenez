@@ -1,0 +1,15 @@
+{
+  "task": "P90-fulltext-s-audit",
+  "agent": "fast",
+  "gen": 1,
+  "finished_at": "2026-11-25T13:05:35Z",
+  "artifacts": [
+    {
+      "path": "docs/FULLTEXT-S-AUDIT.md",
+      "sha256": "b9e0f2bcea84921397431ec7fb7031219e4e707a4d66004aa63c0b9323490b92",
+      "bytes": 5855
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

@@ -453,6 +453,21 @@ def _active_claims() -> dict:
     return out
 
 
+def _blocking_claims() -> dict:
+    """Активные задачи, которые действительно занимают область.
+
+    Сданная задача (`DONE.json` есть, `VERIFY.json` ещё нет) остаётся в `active/`, потому что её нужно
+    верифицировать, но **область она больше не держит**: иначе каждый сданный раунд создаёт принудительную
+    паузу на всё время чужой верификации. Именно так `fast` простоял ~40 минут дважды за день.
+    """
+    out = {}
+    for name, claim in _active_claims().items():
+        if (ACTIVE / name / "DONE.json").exists():
+            continue
+        out[name] = claim
+    return out
+
+
 def cmd_list(_a) -> int:
     for name, base in (("pending", PENDING), ("active", ACTIVE), ("completed", DONE)):
         if not base.exists():
@@ -508,7 +523,7 @@ def cmd_take(a) -> int:
         except ValueError as e:
             print(f"ошибка: {e}")
             return 1
-        for other, claim in _active_claims().items():
+        for other, claim in _blocking_claims().items():
             bad = overlap(areas, claim.get("area") or [])
             if bad:
                 print(f"ошибка: область пересекается с активной {other} "
@@ -522,7 +537,7 @@ def cmd_take(a) -> int:
             return 1
         standing = card["standing"]
         if standing:
-            running = [r for r, c in _active_claims().items()
+            running = [r for r, c in _blocking_claims().items()
                        if c.get("parent") == a.id and not (ACTIVE / r / "DONE.json").exists()]
             if running:
                 print(f"ошибка: раунд постоянной задачи уже идёт: {running[0]}")
