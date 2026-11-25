@@ -1,4 +1,4 @@
-# Статус координации — 2026-11-25T04:50:35Z
+# Статус координации — 2026-11-25T04:53:51Z
 
 ## Свободные задачи: 4
 
@@ -7,9 +7,10 @@
 - `S2-literature-graph` (research, приоритет 6): S2-literature-graph — Литература и граф: ячейки, связи, сшивка
 - `S3-formulas-lean` (research, приоритет 7): S3-formulas-lean — Формулы и Lean: вывод, проверка, единицы
 
-## Активные: 1
+## Активные: 2
 
-- `S2-literature-graph-20261125T074231-fast`: агент fast, gen 3, возраст 8м, heartbeat 0м, DONE=True, VERIFY=False
+- `P72-c006-zero`: агент main, gen 1, возраст 1м, heartbeat 1м, DONE=False, VERIFY=False
+- `S2-literature-graph-20261125T074231-fast`: агент fast, gen 3, возраст 11м, heartbeat 1м, DONE=True, VERIFY=False
 
 ## Непрочитанная почта
 
