@@ -709,6 +709,30 @@ def cmd_close(a) -> int:
     return 0
 
 
+def cmd_drop(a) -> int:
+    """Убрать НЕВЗЯТУЮ задачу из очереди (карточка сохраняется в graveyard).
+
+    Зачем: задача иногда теряет смысл — работа сделана в другом раунде, или карточка была тестовой.
+    `close` требует DONE.json и не годится; без `drop` такая карточка висит вечно и её подхватывает другой
+    агент: ровно это случилось с тестовой `P63-area-broad`, которую выполнил `fast` (цикл 636).
+    """
+    with lock():
+        d = PENDING / a.id
+        if not d.exists():
+            print(f"ошибка: нет задачи {a.id} в pending (взятые задачи не удаляются)")
+            return 1
+        card = d / "TASK.md"
+        text = card.read_text(encoding="utf-8") if card.exists() else ""
+        save = GRAVEYARD / (time.strftime("%Y%m%dT%H%M%S") + f"-{a.id}.md")
+        save.parent.mkdir(parents=True, exist_ok=True)
+        save.write_text(text + f"\n\n---\nубрана: {time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}"
+                              f"\nпричина: {a.reason}\n", encoding="utf-8")
+        shutil.rmtree(d)
+    event(a.agent, f"задача `{a.id}` убрана из очереди: {a.reason}")
+    print(f"убрано: {a.id} → {save.relative_to(ROOT)}")
+    return 0
+
+
 def cmd_release(a) -> int:
     with lock():
         return _release_locked(a)
@@ -990,6 +1014,7 @@ def main(argv: list[str]) -> int:
     p = sub.add_parser("close"); p.add_argument("id"); p.add_argument("--agent", default="main")
     p.set_defaults(fn=cmd_close)
     p = sub.add_parser("release"); p.add_argument("id"); p.add_argument("--agent", required=True)
+    pd = sub.add_parser("drop"); pd.add_argument("id"); pd.add_argument("--agent", required=True); pd.add_argument("--reason", required=True); pd.set_defaults(fn=cmd_drop)
     p.add_argument("--reason", default=""); p.add_argument("--force", action="store_true")
     p.set_defaults(fn=cmd_release)
     p = sub.add_parser("stale"); p.set_defaults(fn=cmd_stale)
