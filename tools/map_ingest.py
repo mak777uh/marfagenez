@@ -245,9 +245,12 @@ def main(argv: list[str]) -> int:
     verified_dois = sum(1 for meta in resolved.values() if meta)
     print(f"принято {len(accepted)} из {len(incoming)}; рёбер +{len(edges_new)}")
     print(f"DOI проверено {verified_dois} из {len(resolved)}; в карте всего {len(existing)} ячеек")
+    dup_only = bool(rejected) and all("дубль" in str(reason) for _, reason in rejected)
     if rejected:
         print(f"отклонено {len(rejected)} — см. отчёт")
-        if not accepted:
+        if dup_only and not accepted:
+            print("все строки уже есть в карте — повторный приём, это не ошибка")
+        if not accepted and not dup_only:
             # Тихий успех при полном отклонении — ловушка: публикующий видит «rc=0» и считает, что всё принято.
             # Именно так 29 рёбер из партий fast не попали в карту.
             print("ВЕСЬ ВХОД ОТКЛОНЁН: проверьте формат (рёбра передаются через --edges, не как atoms)")
@@ -255,7 +258,7 @@ def main(argv: list[str]) -> int:
 
     if dry:
         print("dry-run: файлы не записаны")
-        return 1 if (rejected and not accepted) else 0
+        return 1 if (rejected and not accepted and not dup_only) else 0
     if report_path:
         lines = [
             "# Приём партий в карту",
@@ -279,7 +282,7 @@ def main(argv: list[str]) -> int:
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         print(f"отчёт: {report_path}")
-    return 1 if (rejected and not accepted) else 0
+    return 1 if (rejected and not accepted and not dup_only) else 0
 
 
 if __name__ == "__main__":

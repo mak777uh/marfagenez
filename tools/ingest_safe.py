@@ -172,6 +172,10 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--no-contract", action="store_true", help="пропустить проверку контракта (только main)")
     a = ap.parse_args(argv)
 
+    if looks_like_edges(a.atoms_file):
+        print("ошибка: это файл РЁБЕР, а не атомов — передайте его через --edges")
+        return 1
+
     atoms_file = pathlib.Path(a.atoms_file)
     if not atoms_file.is_absolute():
         atoms_file = ROOT / atoms_file
