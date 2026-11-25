@@ -136,10 +136,11 @@ def quote_found(quote: str | None, abstract: str | None) -> bool | None:
     return norm(quote) in norm(abstract)
 
 
-KNOWN_FLAGS = ("--report", "--edges", "--dry-run")
+KNOWN_FLAGS = ("--report", "--edges", "--dry-run", "--allow-orphans")
 
 
 def main(argv: list[str]) -> int:
+    allow_orphans = "--allow-orphans" in argv
     if not argv:
         print(__doc__.strip().splitlines()[0])
         return 2
@@ -240,6 +241,25 @@ def main(argv: list[str]) -> int:
     if not dry:
         ATOMS.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in existing), encoding="utf-8")
 
+    # Правило цеттелькастена: каждая НОВАЯ ячейка должна получить хотя бы одну связь.
+    # Считаем степень только по свежим ячейкам и только по рёбрам, попавшим в карту.
+    new_ids = [a["atom"] for a in accepted]
+    if new_ids:
+        deg = collections.Counter()
+        for e in (edges_new or []):
+            deg[e.get("from")] += 1
+            deg[e.get("to")] += 1
+        lonely = [i for i in new_ids if deg[i] == 0]
+        if lonely:
+            print(f"ВНИМАНИЕ: {len(lonely)} новых ячеек без единой связи: {', '.join(lonely[:8])}"
+                  f"{' …' if len(lonely) > 8 else ''}")
+            print("  правило: новая ячейка должна иметь хотя бы одну связь с существующей")
+            orphan_new = lonely
+        else:
+            orphan_new = []
+    else:
+        orphan_new = []
+
     by_domain = collections.Counter(a["domain"] for a in accepted)
     by_kind = collections.Counter(a["kind"] for a in accepted)
     verified_dois = sum(1 for meta in resolved.values() if meta)
@@ -259,6 +279,11 @@ def main(argv: list[str]) -> int:
     if dry:
         print("dry-run: файлы не записаны")
         return 1 if (rejected and not accepted and not dup_only) else 0
+
+    if orphan_new and not allow_orphans:
+        print("ПРАВИЛО: новые ячейки должны иметь связь; приём считается неуспешным")
+        return 1
+
     if report_path:
         lines = [
             "# Приём партий в карту",
@@ -282,6 +307,8 @@ def main(argv: list[str]) -> int:
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         print(f"отчёт: {report_path}")
+    if orphan_new and not allow_orphans:
+        return 1
     return 1 if (rejected and not accepted and not dup_only) else 0
 
 

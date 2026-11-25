@@ -230,6 +230,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `docs/ANCHOR-EXEMPTIONS.json` | узлы, объявленные **собственными конструкциями**: опоры нет по построению, исключение датировано и с указанием, что поиск делался |
 | `tools/unanchored_nodes.py --strict` | узлов без опоры (lit_ref / evidence / relations / math.checked / S-пара) не больше потолка в `docs/ANCHOR-BASELINE.json` |
 | `tools/wiring_audit.py --strict` | каждый инструмент-аудит либо вызывается в `run.sh`, либо объяснён в `docs/WIRING-EXEMPTIONS.json` |
+| `tools/map_orphans.py --strict` | **правило цеттелькастена**: каждая новая ячейка обязана иметь хотя бы одну связь с существующей; потолок исторического долга — `docs/MAP-ORPHANS-BASELINE.json` |
 | `tools/map_duplicates.py --strict` | нет необъявленных дублей: атомы с тем же DOI и двумя общими дробными числами должны быть в `docs/MAP-DUPLICATES.json` |
 | `docs/UNITS-SYMBOLS-BASELINE.json` | потолок для аудита символов: кандидатов без единиц не больше 17 (долг виден, но не растёт) |
 | `tools/units_symbol_audit.py --strict` | все символы формул, у которых есть `math.units`, покрыты таблицей; структурные формулы (без единиц по смыслу) пропускаются |
