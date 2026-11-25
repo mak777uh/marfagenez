@@ -143,6 +143,26 @@ def duplicate_warnings(atoms_file: pathlib.Path, registry: pathlib.Path) -> list
     return warnings
 
 
+def looks_like_edges(path: str) -> bool:
+    """Файл рёбер (`from`/`to`/`type`) в роли файла атомов — частая ошибка публикации.
+
+    Именно так рёбра партий fast были «приняты» с кодом 0 и не попали в карту: каждая строка отклонялась
+    валидатором атомов, а инструмент возвращал успех.
+    """
+    try:
+        with open(path, encoding="utf-8") as fh:
+            for line in fh:
+                line = line.strip()
+                if not line:
+                    continue
+                import json as _json
+                row = _json.loads(line)
+                return all(k in row for k in ("from", "to", "type")) and "atom" not in row
+    except Exception:
+        return False
+    return False
+
+
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(prog="ingest_safe")
     ap.add_argument("atoms_file")
