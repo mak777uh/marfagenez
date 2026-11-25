@@ -1,0 +1,17 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T06:37:26Z",
+  "task_sha256": "79b8075114fce1a7c8a0d8e7cec0135c44729d4f3f4e077e1211860103644d51",
+  "area": [
+    "kg/migrate.py",
+    "docs/UNITS-AUDIT.md",
+    "docs/FORMULA-UNITS-BASELINE.json",
+    "checks/formula_units_ceiling.py"
+  ],
+  "kind": "research",
+  "priority": 6,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

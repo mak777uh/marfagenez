@@ -1,0 +1,30 @@
+{
+  "task": "P98-units-f030",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T06:39:35Z",
+  "artifacts": [
+    {
+      "path": "kg/migrate.py",
+      "sha256": "c0b3ebd081ac1e91100eb8b482d77f589d3d823a17452b7dc927c9eda0d9b719",
+      "bytes": 23596
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "97db96b3568c8c42804c4c8f14a008ea572cada9aea5b2f4f5403883667af58e",
+      "bytes": 39189
+    },
+    {
+      "path": "checks/formula_units_ceiling.py",
+      "sha256": "1bd477e44c0be617ec8e84faee57cd12f370dd0e4a846cd7d62cf807e050a7f3",
+      "bytes": 5666
+    },
+    {
+      "path": "docs/FORMULA-UNITS-BASELINE.json",
+      "sha256": "178beb0736635493f666f430729b4f5ccbb0f378fbea6100a1db671d1e0a212b",
+      "bytes": 865
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

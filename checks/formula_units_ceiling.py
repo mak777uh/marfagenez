@@ -33,9 +33,21 @@ def current() -> tuple[int, int, list[str], list[str]]:
 def main(argv: list[str]) -> int:
     total, without, ids, with_units = current()
     if "--update" in argv:
-        BASELINE_FILE.write_text(json.dumps({"without_units": without, "total": total,
-                                             "with_units": with_units, "date": "2026-11-25"},
-                                            ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        # --update НЕ должен стирать объявленный структурный список: иначе причина «почему без единиц»
+        # пропадает при первом же обновлении порога (это случилось сразу после добавления списка).
+        prev = {}
+        if BASELINE_FILE.exists():
+            try:
+                prev = json.loads(BASELINE_FILE.read_text(encoding="utf-8"))
+            except Exception:
+                prev = {}
+        data = {"without_units": without, "total": total, "with_units": with_units,
+                "date": "2026-11-25"}
+        for k in ("structural", "structural_reason"):
+            if k in prev:
+                data[k] = prev[k]
+        BASELINE_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+                                 encoding="utf-8")
         print(f"порог обновлён: без единиц {without} из {total}; с единицами записано {len(with_units)}")
         return 0
 
@@ -44,6 +56,20 @@ def main(argv: list[str]) -> int:
         return 1
     base = json.loads(BASELINE_FILE.read_text(encoding="utf-8"))
     limit = int(base.get("without_units", 0))
+
+    # Формулы без единиц должны быть перечислены как СТРУКТУРНЫЕ, иначе долг растёт незаметно: новая
+    # формула без единиц просто увеличит счётчик, а он уже на пороге.
+    structural = sorted(base.get("structural") or [])
+    if structural and sorted(ids) != structural:
+        missing = sorted(set(ids) - set(structural))
+        extra = sorted(set(structural) - set(ids))
+        print("ЕДИНИЦЫ: список структурных формул разошёлся с деревом")
+        if missing:
+            print(f"  без единиц, но не объявлены структурными: {', '.join(missing)}")
+        if extra:
+            print(f"  объявлены структурными, но единицы есть: {', '.join(extra)}")
+        print("  объявите формулу структурной в docs/FORMULA-UNITS-BASELINE.json с причиной")
+        return 1
 
     # Список важнее числа: раньше запись F-005 «потеряла» единицы, и это прошло как сокращение долга.
     recorded = base.get("with_units") or []
