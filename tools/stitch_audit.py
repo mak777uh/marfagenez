@@ -58,6 +58,10 @@ def main(argv: list[str]) -> int:
         best[node] = "S" if "S" in vs else ("Ch" if "Ch" in vs else "N")
 
     with_ref = {n["id"]: n for n in nodes if ((n.get("data") or {}).get("lit_ref") or [])}
+    # Знаменатель покрытия — узлы, несущие утверждение: claims + formulas + gaps + correspondences.
+    # definitions/experiments/evidence в него не входят.
+    STATED = ("claim", "formula", "gap", "correspondence")
+    stated = {n["id"]: n for n in nodes if n.get("kind") in STATED}
     pairs_total = len(verdicts)
     pair_counts = collections.Counter(verdicts.values())
 
@@ -98,6 +102,19 @@ def main(argv: list[str]) -> int:
     a("")
     a("| метрика | значение | что значит |")
     a("|---|---|---|")
+    a("## Покрытие в двух счётах (25.11.2026)")
+    a("")
+    a("Раньше печаталось одно число — по узлам с `lit_ref`. Оно **занижало** результат: узел может иметь")
+    a("`S`-пару в таблице сшивки и не иметь `lit_ref` в самом узле (`F-007`, `L-009`).")
+    a("")
+    a(f"| счёт | значение | что значит |")
+    a(f"|---|---|---|")
+    a(f"| по всем узлам с утверждением | **{len(all_s)} / {len(stated)}** | есть `S`-пара, величина совпала |")
+    a(f"| по узлам с `lit_ref` | `{len(supported_s)} / {len(stated)}` | то же, но узел ещё и ссылается на литературу сам |")
+    a("")
+    a("Знаменатель — `claims + formulas + gaps + correspondences`; `definitions`, `experiments`, `evidence`")
+    a("в него не входят.")
+    a("")
     a(f"| прежняя | `{len(with_ref)} / 152` | есть хоть одна пара |")
     a(f"| строгая | `{len(supported_s)} / 152` | есть пара, где измеряемая величина совпадает |")
     a(f"| промежуточная | `{len(supported_s) + len(supported_ch)} / 152` | считая частичные |")

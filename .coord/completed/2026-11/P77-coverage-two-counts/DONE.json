@@ -1,0 +1,20 @@
+{
+  "task": "P77-coverage-two-counts",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T05:26:29Z",
+  "artifacts": [
+    {
+      "path": "tools/stitch_audit.py",
+      "sha256": "4e3275b1e1b7db9878cb1f34a42d1d627afd020bcddbda1fd67a01620517af25",
+      "bytes": 11485
+    },
+    {
+      "path": "docs/agent/AGENT_STATE.md",
+      "sha256": "5eb4e8d3bb6b14e0ea5e3cfd49c36180559aca3b23b68657a4c45fd383da4b5b",
+      "bytes": 67827
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
