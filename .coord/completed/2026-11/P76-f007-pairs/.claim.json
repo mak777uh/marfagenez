@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T05:23:51Z",
+  "task_sha256": "47f7589e3fc2628ac8503409dbe198ad1e58faa231fa4b5ed65f21fb7128fdd6",
+  "area": [
+    "docs/STITCH-*.json",
+    "docs/STITCH-ADJUDICATION.md"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

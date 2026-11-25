@@ -1,0 +1,15 @@
+{
+  "task": "P76-f007-pairs",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T05:24:43Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "7b46ca44b8f60f31748b12195e04fd8b849c50fd7147eec1b4d13783de07fd57",
+      "bytes": 22137
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
