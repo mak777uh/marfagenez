@@ -1,0 +1,20 @@
+{
+  "task": "P21-support-basis",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:48:49Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-AUDIT.md",
+      "sha256": "72e37453022a865768ceba98bf0c99c1b4ff4154065d15c80fdb6f94d52324d2",
+      "bytes": 8662
+    },
+    {
+      "path": "tools/stitch_audit.py",
+      "sha256": "f5921ec00c56b27595b94550683b3e43231158d3bec21422d9abd78ff1eb8d09",
+      "bytes": 8689
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

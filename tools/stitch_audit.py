@@ -120,6 +120,38 @@ def main(argv: list[str]) -> int:
         for key, o in sorted(overrides.items()):
             a(f"| `{key}` | `{o.get('verdict')}` | {o.get('reason', '')} |")
         a("")
+
+    # --- чем опёрты established-записи: прогоном или литературой ---
+    a("## Чем опёрты `established`-записи")
+    a("")
+    a("Литературная сшивка — не единственный вид опоры: у прогонов опора — сам прогон. Поэтому здесь")
+    a("отдельно: как `established`-записи соотносятся со строгой литературной опорой (`S`).")
+    a("")
+    a("| вид | `established` | из них с парой `S` | без пары `S` |")
+    a("|---|---|---|---|")
+    for kind in ("claim", "formula", "experiment", "definition", "evidence", "gap", "correspondence"):
+        sel = [n for n in nodes if n.get("kind") == kind and n.get("epistemic") == "established"]
+        if not sel:
+            continue
+        with_s = [n for n in sel if best.get(n["id"]) == "S"]
+        a(f"| `{kind}` | {len(sel)} | {len(with_s)} | {len(sel) - len(with_s)} |")
+    a("")
+    a("У прогонов опора — прогон, а не литература, поэтому «без пары `S`» для них нормально. Для `claim`")
+    a("и `formula` отсутствие `S` означает, что строгой литературной опоры нет: либо она держится на")
+    a("прогоне (`math.checked`), либо её нет вовсе.")
+    a("")
+    claims_no_s = [n["id"] for n in nodes
+                   if n.get("kind") in ("claim", "formula") and n.get("epistemic") == "established"
+                   and best.get(n["id"]) != "S"]
+    if claims_no_s:
+        a("### `claim`/`formula` со статусом `established` без строгой литературной опоры")
+        a("")
+        for nid in sorted(claims_no_s):
+            node = next(n for n in nodes if n["id"] == nid)
+            checked = ((node.get("math") or {}).get("checked") or {}).get("kind", "—")
+            verdict = best.get(nid, "нет пары")
+            a(f"- `{nid}`: лучший вердикт литературы — `{verdict}`; проверка прогоном — `{checked}`")
+        a("")
     a("## Ограничение")
     a("")
     a("Вердикты — суждение Red Team по тексту и переменным, а не измерение. Спорную пару можно")
