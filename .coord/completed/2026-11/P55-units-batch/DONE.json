@@ -1,0 +1,25 @@
+{
+  "task": "P55-units-batch",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T03:31:25Z",
+  "artifacts": [
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "6fb6013a0421aa0cc6f8eddeb96e5b0beff07464e5f460198a70ae0eeeb1a684",
+      "bytes": 32144
+    },
+    {
+      "path": "kg/migrate.py",
+      "sha256": "245655f2503fa569c3ee510abbd89098805722df8446fcf26398e28893458ce7",
+      "bytes": 21593
+    },
+    {
+      "path": "docs/FINDING-354.md",
+      "sha256": "fbe4449109e8986ab5f2e4e2216449bc2956d240dbf775d997ab11c076bcc076",
+      "bytes": 2641
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
