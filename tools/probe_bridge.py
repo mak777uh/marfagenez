@@ -128,8 +128,8 @@ def answer_request(req: dict, atoms: dict[str, dict], nodes: dict[str, dict],
         return head + "\n" + "\n".join(lines)
     if kind == "standing":
         out = []
-        for rel in (".coord/standing/S8-data-questions.md", "docs/PROBE-PLAN.md",
-                    "docs/PROMPT-probe.md"):
+        for rel in (".coord/standing/S8-data-questions.md", "docs/PROBE-INSTRUCTION.md",
+                    "docs/PROBE-PLAN.md", "docs/PROMPT-probe.md", "docs/PROBE-BRIDGE.md"):
             p = ROOT / rel
             if p.exists():
                 out.append(f"## {rel}\n\n" + p.read_text(encoding="utf-8"))
