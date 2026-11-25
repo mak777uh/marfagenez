@@ -364,6 +364,8 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--bridge", default=str(DEFAULT_BRIDGE))
     ap.add_argument("--serve", action="store_true", help="один проход: запросы и посылки")
     ap.add_argument("--status", action="store_true", help="состояние каталогов моста")
+    ap.add_argument("--watch", type=int, default=0, metavar="СЕК",
+                    help="крутить мост в цикле: проход, пауза СЕК, снова проход")
     args = ap.parse_args(argv)
     bridge = pathlib.Path(args.bridge)
     if not bridge.exists():
@@ -371,7 +373,22 @@ def main(argv: list[str]) -> int:
         return 1
     if args.status:
         return status(bridge)
-    return serve(bridge)
+
+    if not args.watch:
+        return serve(bridge)
+
+    # Цикл: агенты кладут файлы в любое время, мост подхватывает их сам.
+    import time
+    print(f"мост в режиме наблюдения: проход каждые {args.watch} с (Ctrl+C — стоп)")
+    while True:
+        try:
+            serve(bridge)
+        except KeyboardInterrupt:
+            print("остановлено")
+            return 0
+        except Exception as exc:                     # проход не должен убивать цикл
+            print(f"проход упал: {exc}")
+        time.sleep(args.watch)
 
 
 if __name__ == "__main__":
