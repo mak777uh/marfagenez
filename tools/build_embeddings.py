@@ -56,7 +56,11 @@ def main(argv: list[str]) -> int:
 
     from fastembed import TextEmbedding  # noqa: PLC0415
 
-    model = TextEmbedding(model_name=model_name)
+    # Постоянный кэш модели. Без него fastembed каждый раз качает веса заново: сборка индекса занимала
+    # 2–22 минуты вместо секунд, и это была самая дорогая часть публикации партий.
+    cache_dir = root / ".cache" / "fastembed"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    model = TextEmbedding(model_name=model_name, cache_dir=str(cache_dir))
     prefixed = [E5_PASSAGE + t for t in texts] if "e5-" in model_name.lower() else texts
     vectors = list(model.embed(prefixed))
 
