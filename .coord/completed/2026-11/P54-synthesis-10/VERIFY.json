@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "53fa63e8be4ec4963a622fe1a9b95a61d86c2d8e9a81c49e1e09ecb734690905",
+  "done_sha256": "006ad691b989aa30cbe95e0dedbc674462f75d9565036bcfb46681662be5f86a",
+  "gen": 1,
+  "verified_at": "2026-11-25T03:29:42Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/doc_links.py",
+      "rc": 0,
+      "tail": "ссылки в документации: все относительные .md разрешаются (известных мёртвых: 4)"
+    }
+  ],
+  "bad_artifacts": []
+}
