@@ -1,0 +1,15 @@
+{
+  "task": "P160-composite-criterion",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T17:43:24Z",
+  "artifacts": [
+    {
+      "path": "docs/THREE-CRITERIA.md",
+      "sha256": "de6c4bd853fdc1c4ca994f24260d7be67e10a203383bede465c99419ed5ace3e",
+      "bytes": 6539
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
