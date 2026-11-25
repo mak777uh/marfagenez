@@ -7,8 +7,9 @@
 
 ## Рабочая область (файлы, которые задача вправе менять/создавать)
 
-- `docs/KERNEL-TEXT-AUDIT.md`
-- `docs/FINDING-*.md`
+- `docs/KERNEL-TEST.md`
+- `tools/kernel_viab.py`
+
 
 ## Что нужно сделать
 
