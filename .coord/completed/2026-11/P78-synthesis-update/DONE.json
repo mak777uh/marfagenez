@@ -1,0 +1,15 @@
+{
+  "task": "P78-synthesis-update",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T05:28:37Z",
+  "artifacts": [
+    {
+      "path": "docs/SYNTHESIS-10.md",
+      "sha256": "4e95aa4afe8bf2e94270c3059b13a570fd0395421f4b6caf1a3de62318e4d1c1",
+      "bytes": 12213
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
