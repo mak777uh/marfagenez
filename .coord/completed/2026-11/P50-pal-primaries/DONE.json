@@ -1,0 +1,15 @@
+{
+  "task": "P50-pal-primaries",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:30:33Z",
+  "artifacts": [
+    {
+      "path": "docs/FINDING-350.md",
+      "sha256": "69465b0b0582e3fc31c5deb224eb8e7784925d2281208aa7fa6526831c4a6dfd",
+      "bytes": 5231
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

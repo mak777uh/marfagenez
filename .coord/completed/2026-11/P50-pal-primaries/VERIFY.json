@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "f238d5325b8ae2bedf039c9c24c8ff5e5325269a482f3953bdb00875855a9c4b",
+  "done_sha256": "601660ac5d2b07f93977a97930e0d7167417fd2e71971b5180efc2f987b275eb",
+  "gen": 1,
+  "verified_at": "2026-11-25T02:30:34Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/doc_numbers.py",
+      "rc": 0,
+      "tail": "      lean: 64 files in Medium+Legacy (56+8), 63 with theorems\n\nЧисла в документах совпадают с деревом."
+    }
+  ],
+  "bad_artifacts": []
+}
