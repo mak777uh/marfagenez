@@ -1,0 +1,20 @@
+{
+  "task": "P97-units-f013",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T06:36:24Z",
+  "artifacts": [
+    {
+      "path": "kg/migrate.py",
+      "sha256": "983814b5cdb3e1ba2aab31ef38d26911f0019a01f538fa690e6ab572f68d3c23",
+      "bytes": 23112
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "66428af954c47ea82fc8e9cd9bb6b152280d750cd496849e88a8e1f89b611832",
+      "bytes": 36289
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

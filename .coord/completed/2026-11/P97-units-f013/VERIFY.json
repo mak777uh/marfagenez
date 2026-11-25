@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "384f47609c2788b9f113a26638c4786ddc85a12b2e7e5b216e2f826fc78e3886",
+  "done_sha256": "82a556017bccfa784cc62617ead5d9b767c9e7e7ece74f61b4eebcc575c95e0a",
+  "gen": 1,
+  "verified_at": "2026-11-25T06:36:24Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/formula_units_ceiling.py",
+      "rc": 0,
+      "tail": "ЕДИНИЦЫ: без единиц 6 из 31 (порог 6) — долг не вырос"
+    }
+  ],
+  "bad_artifacts": []
+}
