@@ -1,0 +1,20 @@
+{
+  "task": "P41-adjudicate-pairs-ident",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:16:20Z",
+  "artifacts": [
+    {
+      "path": "tools/identifiability.py",
+      "sha256": "64f379067f3551bb3d75ae159dda3da193d249a6144886dea403b11bbaaf6645",
+      "bytes": 9581
+    },
+    {
+      "path": "docs/IDENTIFIABILITY.md",
+      "sha256": "547e8360a54a62f96b1c087008abd86155bc62d3fa956abb2143dba427983ffe",
+      "bytes": 4933
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
