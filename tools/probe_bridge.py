@@ -194,10 +194,33 @@ def validate_submission(path: pathlib.Path, atoms: dict[str, dict],
     seen = seen if seen is not None else set()
     if path.suffix != ".jsonl":
         return good, [f"{path.name}: не .jsonl"]
-    lines = [l for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
-    if len(lines) > MAX_PER_FILE:
-        bad.append(f"{path.name}: {len(lines)} вопросов, потолок {MAX_PER_FILE}")
-    for i, line in enumerate(lines, 1):
+    raw = path.read_text(encoding="utf-8")
+    # сначала пробуем весь файл как JSON: массив объектов или один объект
+    items: list[tuple[int, str]] = []
+    try:
+        whole = json.loads(raw)
+        if isinstance(whole, list):
+            items = [(i, json.dumps(x, ensure_ascii=False)) for i, x in enumerate(whole, 1)]
+        elif isinstance(whole, dict):
+            items = [(1, json.dumps(whole, ensure_ascii=False))]
+    except json.JSONDecodeError:
+        pass
+    if not items:
+        # иначе — построчно, но собираем многострочные объекты по балансу скобок
+        buf, depth, start = [], 0, 0
+        for no, line in enumerate(raw.splitlines(), 1):
+            if not line.strip() and not buf:
+                continue
+            buf.append(line)
+            depth += line.count("{") - line.count("}")
+            if depth <= 0:
+                items.append((start or no, "\n".join(buf)))
+                buf, depth, start = [], 0, 0
+        if buf:
+            items.append((start or 1, "\n".join(buf)))
+    if len(items) > MAX_PER_FILE:
+        bad.append(f"{path.name}: {len(items)} вопросов, потолок {MAX_PER_FILE}")
+    for i, line in items:
         try:
             q = json.loads(line)
         except json.JSONDecodeError as exc:
