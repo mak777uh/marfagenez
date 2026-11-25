@@ -1,0 +1,25 @@
+{
+  "task": "P86-s-read-7",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T05:47:46Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-S-READ.md",
+      "sha256": "b1293081fd27667aa37cfd1dc9149fbc704e3df0f1290205fa5715ece756661e",
+      "bytes": 18765
+    },
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "ea8a740f7b0374fcf12c8e802a5cba536e8a8b7a866ebaa7713422252e26d24c",
+      "bytes": 29567
+    },
+    {
+      "path": "docs/agent/AGENT_STATE.md",
+      "sha256": "130a284a5bb599f5ffd6457602a786a2b4c3ed00f90cae419d677440a5beeb44",
+      "bytes": 67827
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
