@@ -632,7 +632,12 @@
       "math": {
         "latex": "порог:            Πλ = 1/6            (Π — время повреждения, λ — темп)\nасимметрия a:     сдвигает порог в [1/6, 1/2]\nпри h → h_c:      D*  конечно\n                  dD*/dh ~ (h_c − h)^(−1/2)\n                  T_senescence ~ (h_c − h)^(−1/2)\n                  N(ε)·√ε → 1.706",
         "structure": "",
-        "units": {},
+        "units": {
+          "Pi": "с",
+          "lambda": "1/с",
+          "a": "1",
+          "Pi_lambda": "1"
+        },
         "checked": {
           "kind": "none",
           "ref": ""
@@ -1113,7 +1118,12 @@
       "math": {
         "latex": "симметричное деление (a = 1):   Πλ ≤ 1/6      критерий существования равновесия\nΠλ = 0.10  →  равновесие есть (пример из статьи)\nΠλ > 1/6   →  уравнение не имеет вещественного решения\nасимметрия a сдвигает границу",
         "structure": "",
-        "units": {},
+        "units": {
+          "Pi": "с",
+          "lambda": "1/с",
+          "a": "1",
+          "Pi_lambda": "1"
+        },
         "checked": {
           "kind": "none",
           "ref": ""
@@ -18347,13 +18357,13 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -18377,17 +18387,17 @@
     },
     {
       "from": "C-002",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-002",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
     },
     {
       "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18412,13 +18422,13 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -18537,17 +18547,22 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
-      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
       "from": "F-022",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
+    },
+    {
+      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "type": "tested_in"
+    },
+    {
+      "from": "F-023",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18558,11 +18573,6 @@
     {
       "from": "F-023",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18702,13 +18712,13 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
@@ -18732,17 +18742,17 @@
     },
     {
       "from": "CORR-02",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {

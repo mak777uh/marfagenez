@@ -1,0 +1,25 @@
+{
+  "task": "P36-chao-units",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:09:42Z",
+  "artifacts": [
+    {
+      "path": "tools/chao_threshold.py",
+      "sha256": "db713a31425b44641bee5d99278d0ab0fec322f9f9adacf92df5948c7f3c438d",
+      "bytes": 2514
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "b2cb1cde16dbd280e59f80689b862a6a3b3713537a014417daa66af068c2f977",
+      "bytes": 19836
+    },
+    {
+      "path": "kg/migrate.py",
+      "sha256": "a9507491923d49df9ce71f5cf9df4e6a4939d4fa33fc69c81fd7edf051f8c29c",
+      "bytes": 19510
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
