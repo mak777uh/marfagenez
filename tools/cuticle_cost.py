@@ -48,6 +48,19 @@ def main() -> int:
     print(f"порядок: от 10^{len(str(int(lo))) - 1} до 10^{len(str(int(hi))) - 1}")
     print()
 
+    # --- побочная проверка самой мембранной величины по порядку величины
+    # Площадь липидной головы ~0,5 нм², два слоя, 1 ATP на липид = 8,3e-20 Дж (50 кДж/моль).
+    atp_j = 50e3 / 6.022e23
+    head_nm2 = 0.5
+    lipids_per_m2 = 2 * (1e18 / head_nm2)     # два слоя
+    membrane_est = lipids_per_m2 * atp_j      # Дж/м² при 1 ATP на липид
+    print("проверка мембранной величины по порядку:")
+    print(f"  липидов на м² (два слоя, {head_nm2} нм² на голову): {lipids_per_m2:.2e}")
+    print(f"  1 ATP = {atp_j:.2e} Дж; при 1 ATP на липид: {membrane_est:.2f} Дж/м²")
+    print(f"  измерено: {lipid} Дж/м² → отношение {membrane_est / lipid:.1f} "
+          f"(порядок {'совпадает' if 0.1 < membrane_est / lipid < 10 else 'НЕ совпадает'})")
+    print()
+
     same = max(lo, hi) < 10
     if same:
         print("ВЫВОД: величины одного порядка — тип `refines` допустим.")
