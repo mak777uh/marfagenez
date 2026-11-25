@@ -1,0 +1,30 @@
+{
+  "task": "P42-f029-pairs",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:17:47Z",
+  "artifacts": [
+    {
+      "path": "literature/map/atoms.jsonl",
+      "sha256": "704390769b2f8277e87fdfbd0e1237fd0b70b5f6052588de83bb670cc720ff20",
+      "bytes": 2214977
+    },
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "40971c4273d2e66f28f2b51437053282db3c3337040dd8ae41b85f3663748ff1",
+      "bytes": 9599
+    },
+    {
+      "path": "docs/FINDING-347.md",
+      "sha256": "8f00243ffa76b6bb2950a69fe7c6e4160a0a83d57bab3e6583b3c662abe3349e",
+      "bytes": 3672
+    },
+    {
+      "path": "docs/STITCH-COVERAGE-FLOOR.json",
+      "sha256": "807d83c5ff88ac2a45cc18f2d37494d8da52e7d6490b19dfbb201c1f6be34e89",
+      "bytes": 61
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
