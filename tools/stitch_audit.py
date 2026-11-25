@@ -140,17 +140,32 @@ def main(argv: list[str]) -> int:
     a("и `formula` отсутствие `S` означает, что строгой литературной опоры нет: либо она держится на")
     a("прогоне (`math.checked`), либо её нет вовсе.")
     a("")
+    def evidence_kinds(node: dict) -> list[str]:
+        return sorted({(e or {}).get("kind", "?") for e in (node.get("evidence") or [])})
+
     claims_no_s = [n["id"] for n in nodes
                    if n.get("kind") in ("claim", "formula") and n.get("epistemic") == "established"
                    and best.get(n["id"]) != "S"]
     if claims_no_s:
         a("### `claim`/`formula` со статусом `established` без строгой литературной опоры")
         a("")
+        a("Важно: отсутствие пары `S` **не** значит «нет опоры». Опору надо смотреть в `evidence`:")
+        a("прогон (`experiment`), находка (`result`), литературный узел (`literature`) или формула.")
+        a("")
+        a("| запись | лучший вердикт литературы | виды `evidence` |")
+        a("|---|---|---|")
         for nid in sorted(claims_no_s):
             node = next(n for n in nodes if n["id"] == nid)
-            checked = ((node.get("math") or {}).get("checked") or {}).get("kind", "—")
             verdict = best.get(nid, "нет пары")
-            a(f"- `{nid}`: лучший вердикт литературы — `{verdict}`; проверка прогоном — `{checked}`")
+            kinds = ", ".join(evidence_kinds(node)) or "**нет**"
+            a(f"| `{nid}` | `{verdict}` | {kinds} |")
+        a("")
+        naked = [nid for nid in claims_no_s
+                 if not (next(n for n in nodes if n["id"] == nid).get("evidence") or [])]
+        if naked:
+            a("**Без `evidence` вообще:** " + ", ".join(f"`{x}`" for x in sorted(naked)))
+        else:
+            a("**Без `evidence` вообще нет ни одной** — у всех пяти есть хотя бы один вид опоры.")
         a("")
     a("## Ограничение")
     a("")

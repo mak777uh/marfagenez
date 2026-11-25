@@ -1,0 +1,20 @@
+{
+  "task": "P22-evidence-basis",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:51:00Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-AUDIT.md",
+      "sha256": "641209a0c2ce71dba9bafd791e9e1a701c3051aeb620dc810b9e7219e1f06ca1",
+      "bytes": 8759
+    },
+    {
+      "path": "tools/stitch_audit.py",
+      "sha256": "97bf4ad0cd2cef090d0fbfda65f9c4d259110686d2a55014d97858962499b074",
+      "bytes": 9588
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
