@@ -1,0 +1,1267 @@
+
+===PAGE 1===
+Modeling cell size regulation: From single-cell level statistics to molecular mechanisms
+and population level eﬀects
+Po-Yi Ho, Jie Lin, and Ariel Amir*
+John A. Paulson School of Engineering and Applied Sciences,
+Harvard University, Cambridge, MA, USA, 02138∗
+Most microorganisms regulate their cell size. We review here some of the mathematical formula-
+tions of the problem of cell size regulation. We focus on coarse-grained stochastic models and the
+statistics they generate. We review the biologically relevant insights obtained from these models.
+We then describe cell cycle regulation and their molecular implementations, protein number regu-
+lation, and population growth, all in relation to size regulation. Finally, we discuss several future
+directions for developing understanding beyond phenomenological models of cell size regulation.
+INTRODUCTION
+Most microorganisms regulate their cell size, as evi-
+denced by their narrow cell size distributions. In partic-
+ular, all known species of bacteria have cell size distribu-
+tions with small coeﬃcient of variations (CV, standard
+deviation divided by the mean), which can be as low as
+0.1 [1]. For cells that grow exponentially, a small CV
+for size implies a small CV for interdivision times. How-
+ever, a small CV for interdivision times is not suﬃcient
+to regulate cell size, as we will show that a simple “timer”
+strategy cannot regulate cell size in face of ﬂuctuations.
+Cells must therefore have a way to eﬀectively measure
+size.
+The physiological implications of cell size remain un-
+der debate. In the context of bacteria, this is discussed in
+detail in a recent, excellent review [2], which also stresses
+the intimate connection between the problem of cell size
+regulation and that of cell cycle regulation. For instance,
+cell division, which mechanistically determines cell size,
+is coupled to DNA replication. In this review, we will
+not focus on the rich biology behind this problem, but
+instead will elaborate on the various phenomenological
+models developed to study this problem over the last sev-
+eral decades. These are typically coarse-grained models,
+which consider the cell as a whole and describe cell vol-
+ume at various stages of the cell cycle. They often seek
+to capture the statistics of the random process underly-
+ing cell size regulation. For example, what is the relation
+between cell size and interdivision time, and what distri-
+butions characterize the ﬂuctuations in these variables?
+A devil’s advocate or a biologist may ask why one
+would care about these questions. Quantitatively de-
+scribing the distributions and ﬁnding scaling relations
+between variables are worthy goals from a physicist’s
+statistical mechanical point of view, but can such phe-
+nomenological modeling shed light on the biology? Three
+distinct examples support that the answer to this ques-
+tion is aﬃrmative.
+First, for several bacterial model species, including E.
+coli and B. subtilis, cell volume scales exponentially with
+growth rate, and proportionally with, loosely speaking,
+chromosome copy number [3–5]. The scaling constant is
+in fact equal to the time from the initiation of DNA repli-
+cation to cell division. It was shown ﬁfty years ago that
+this observation can be rationalized within a model in
+which the regulation of cell size does not occur via con-
+trolling the timing of cell divisions, but rather via control-
+ling the timing of the initiation of DNA replication [6].
+In this way, a quantitative pattern on the phenomenolog-
+ical level, with the aid of mathematical modeling, led to
+an important insight regarding bacterial physiology. The
+same empirical observation helped to address whether
+cell size regulation occurs over cell volume, surface area,
+or other dimensions. Experiments in rod-shaped bacte-
+ria often measure cell length, which cannot distinguish
+between these possibilities since cell width in these bac-
+teria is very narrowly distributed (CV < 0.05) [5]. As a
+result, in addition to cell volume, both cell surface area
+and length have been proposed to set cell size [7, 8]. How-
+ever, recent experiments in E. coli showed that the same
+scaling relation holds, but only for cell volume and not
+surface area or width, under genetic perturbations to cell
+dimensions [9]. This result supports that volume is the
+key phenomenological variable controlling cell size. Be-
+low, we use the term cell size for generality while keeping
+the above discussion in mind.
+Second, a naive proposal for cell size regulation is a
+timer strategy, in which cells control the timing of their
+cell cycles so that, on average, cell size doubles from birth
+to division. However, it can be shown by theoretical argu-
+ments alone that this mode of regulation is incompatible
+with the small CVs of cell size distributions if cell vol-
+ume grows exponentially in time at the single-cell level,
+as seen in experiments [10]. This is because the cumula-
+tive eﬀect of noise will cause the variance in cell size to
+diverge. Explicitly, consider exponentially growing cells
+with a constant growth rate λ and stochastic interdivision
+time td. A cell born at size vb will generate a progeny of
+size v′ b = vbeλtd /2, assuming perfect symmetric division.
+Let x = ln (vb/v0) be the log-size, where v0 is a constant
+that sets the mean cell size, and x′ the log-size at the
+next generation, then
+x′ = x + λtd − ln 2. (1)
+arXiv:1801.00494v1  [q-bio.CB]  1 Jan 2018
+===PAGE 2===
+2
+Uncorrelated ﬂuctuations in td will then lead to a ran-
+dom walk in log-sizes with ﬂuctuations accumulating as
+the square root of the number of divisions. Thus, the cell
+size distribution in a growing population will not reach
+stationarity via a timer strategy (Fig. 1a), and a dif-
+ferent strategy is needed to achieve narrow distributions
+(Fig. 1b). Note that without ﬂuctuations, Eq. 1 becomes
+x′ = x if td = ln 2/λ, so that cell size is maintained. This
+example therefore shows that it is necessary to introduce
+stochasticity to models of cell size regulation as the fail-
+ure of a timer strategy cannot be revealed otherwise.
+As a third example, some of us recently investigated
+the properties of the resulting size regulation strategy
+from models of molecular mechanisms that do not spec-
+ify the identity of the molecular players, but nonetheless
+propose concrete molecular network architectures. Two
+models were considered, one proposing that cell division
+is triggered by the accumulation to a threshold number
+of an initiator protein [11], and another that the dilution
+of an inhibitor triggers an event in cell cycle progres-
+sion [12]. It was shown theoretically that in the context
+of budding yeast S. cerevisiae, both of these seemingly
+reasonable size regulation strategies fail to regulate cell
+size in the case of symmetric division [13]. While there
+could be other explanations, this appears to be a strong
+constraint that may have contributed to the evolution of
+asymmetric division in budding yeast.
+These very diﬀerent examples show how phenomeno-
+logical modeling, in combination with single-cell or bulk-
+level level experiments quantifying cell growth, can lead
+to biologically relevant conclusions and constrain biolog-
+ical mechanisms. Furthermore, this approach allows to
+construct a theoretical “phase diagram” (e.g. [14]), show-
+ing not where biology lies, but where biology may exist.
+In this vein, we proceed with the following aphorism in
+mind, “All models are wrong; some models are useful.”
+[15]
+In this review, we describe various existing phe-
+nomenological models for cell size regulation, some dat-
+ing decades back and many very recent, and also present
+several novel results. First, we introduce discrete stochas-
+tic maps (DSM) to model cell size regulation and the
+various, approximate methods of solving for the distri-
+butions and correlations they generate. We discuss the
+connection between the problem of cell size regulation
+and that of diﬀusion in a conﬁning potential and autore-
+gressive modeling in time-series analysis. We system-
+atically show, for the ﬁrst time to our knowledge, that
+cell size regulation in E. coli can be approximated well
+by a stochastic model where the cell size at the next
+generation depends only on the cell size at the present
+generation. Next, we review continuous rate models and
+their mapping to DSMs. We then review recent works
+that analyzed DSMs at higher precision. They revealed
+that while the qualitative stability regions can be found
+via approximate methods, detailed statistical results are
+more nuanced, and speciﬁcally, power-law tails may often
+be generated by DSMs. Finally, we review recent results
+beyond the phenomenological level, including molecular
+implementations of diﬀerent strategies for cell size reg-
+ulation, the problem of protein number regulation, and
+the eﬀects of cell size regulation on population growth.
+MODELS FOR CELL SIZE REGULATION
+To resolve the problem of an unconﬁned random walk
+in log-sizes in Eq. 1, feedback must be introduced so that
+larger cells divide sooner than average. Some intuition
+for the problem of cell size regulation can be gained by
+considering the familiar scenario of overdamped Brown-
+ian motion in a conﬁning potential. This scenario can be
+described by the Langevin equation describing the dy-
+namics of position x [16],
+dx
+dt = − 1 γV′ (x) + σξ. (2)
+Here, γ is a drag coeﬃcient that relates the force to
+the velocity in the overdamped limit, V (x) is the con-
+ﬁning potential, and σ is the magnitude of the ﬂuctua-
+tions described by the stochastic variable ξ, which has
+correlations ⟨ξ (t′) ξ (t′ + t)⟩ = δ (t). In this review, ⟨·⟩
+denotes the ensemble average. In the absence of a po-
+tential V (x) = 0, Eq. 2 reduces to unconﬁned diﬀusion,
+whose hallmark is the linear dependence of the mean-
+squared-displacement
+⟨
+x2⟩ on time. In a quadratic po-
+tential V (x) = kx2/2, Eq. 2 corresponds to diﬀusion
+conﬁned by a linear restoring force. In this case, Eq. 2
+is known as an Ornstein-Uhlenbeck (OU) process and is
+useful in describing a plethora of physical phenomena. It
+can be written as
+dx
+dt = −k γx + σξ, (3)
+where k is the strength of the restoring force.
+The probability density p (x,t) corresponding to Eq.
+3 satisﬁes the Fokker-Planck equation that describes its
+temporal dynamics [16],
+∂p
+∂t = k γ ∂ ∂x (xp) + σ2 2 ∂2p ∂x2 . (4)
+The stationary ∂p/∂t = 0 solution is a Gaussian distri-
+bution
+p (x) =
+√
+k
+πγσ2 exp
+(
+−kx2
+γσ2
+)
+. (5)
+Indeed, Eq. 5 is equal to the Boltzmann distribution
+p (x) ∝ exp (−V (x) /kBT ), where kB is the Boltzmann
+constant and T is the temperature, since σ2 = 2D =
+===PAGE 3===
+3
+2kBT/γ by the Einstein relation for the diﬀusion coef-
+ﬁcient D. As k → 0, the strength of the conﬁning po-
+tential weakens. At k = 0, the variance of x diverges.
+However, for any k > 0, the variance of x will be ﬁnite.
+The autocovariance ⟨x (t′) x (t′ + t)⟩ can be obtained via
+integration of Eq. 3. At stationarity, the autocovariance
+is exponentially decaying [16],
+⟨x (t′) x (t′ + t)⟩ = γσ2
+2k exp
+(
+−k γ |t| ) . (6)
+The familiar example of an OU process turns out to
+be similar to the problem of cell size regulation, but with
+the variable x now representing cell size. We now review
+the formulation of the problem of cell size regulation as
+a discrete analogue of an OU process.
+Discrete stochastic maps
+Fig. 1c shows single-cell data obtained via microﬂuidic
+devices that trap single cells in micro-channels to allow
+measurements of physiological properties such as cell size
+for many generations [17–19]. The problem of cell size
+regulation may be investigated initially by considering
+only division events. The data in this case consist of cell
+size at birth, division, and interdivision time over many
+generations. What are the distribution and correlations
+of cell size at birth and division, and what size regulation
+strategies lead to such statistics?
+At a phenomenological, coarse-grained level, a size reg-
+ulation strategy can be speciﬁed as a map that takes cell
+size at birth vb to a targeted cell size at division va with
+a deterministic strategy f (vb) [20],
+va = f (vb) . (7)
+In face of biological stochasticity, the actual cell size at di-
+vision vd is va subject to some coarse-grained noise term.
+For example, the noise term can be size-additive, so that
+vd = va + ξv, where ξv is uncorrelated between genera-
+tions. The noise term can also be time-additive. In this
+case, the stochastic interdivision time td can be written
+as td = ta + ξt, where ξt is the noise term. The deter-
+ministic component ta can be determined by assuming a
+constant exponential growth rate λ. The deterministic
+size regulation strategy in Eq. 7 then leads to
+ta = ln (f (vb) /vb) /λ. (8)
+In the case of time-additive noise, if division is perfectly
+symmetric so that v′ b = vd/2, then the cell size at birth
+at the next generation is
+v′ b = f (vb) eλξt /2. (9)
+The two forms of noise lead to distributions of diﬀerent
+shapes. Experiments have shown that distributions of
+cell sizes at birth are skewed and can be approximated as
+a log-normal but that interdivision time distributions can
+be approximated as normal [8, 21]. These are consistent
+with a normally distributed time-additive noise, which
+we use below.
+Approximate solution via ﬁrst order expansion
+The DSM described in Section is in general diﬃ-
+cult to solve for an arbitrary size regulation strategy
+f (vb). One method makes the approximation to fo-
+cus on the behavior of f near the mean size ⟨vb⟩, since
+the size distribution has a small CV. A size regula-
+tion strategy can be linearized by expanding about ⟨vb⟩,
+f (vb) ≈ f (⟨vb⟩) + f′ (⟨vb⟩) (vb −⟨vb⟩) . In this approxi-
+mation, all regulation strategies that agree to ﬁrst order
+will lead to similar distributions near ⟨vb⟩. The following
+is a convenient choice [20],
+f (vb) = 2v1−α b vα 0 , (10)
+where v0 is an arbitrary constant. As shown below,
+⟨vb⟩ ≈ v0, and hence, the slope has value f′ (⟨vb⟩) =
+2 (1 −α). The value of α therefore determines the
+strength of regulation. α = 1 corresponds to the
+strongest regulation, a “sizer” strategy where cells at-
+tempt to divide upon reaching f (vb) = 2v0. α = 0 repre-
+sents no regulation and corresponds to the timer strategy
+where cells attempt to divide upon reaching f (vb) = 2vb.
+Recent works have shown that the statistics of cell size
+can be generated by a regulation strength α = 1/2 that is
+between the two extremes [5, 8, 21, 22]. In this case, the
+slope has value f′ (⟨vb⟩) = 1 and so is an approximation
+to the “adder” strategy (also known as the incremental
+model [23, 24]) where cells attempt to divide upon reach-
+ing f (vb) = vb + v0. Several microorganisms in all three
+domains of life have been shown to approximately fol-
+low an adder strategy, or less prescriptively, to exhibit
+adder correlations. We discuss the prevalence of adder
+correlations later.
+Let x = ln (vb/v0) be the log-size and x′ denote x at
+the next generation. Eqs. 9-10 then lead to the simple
+stochastic equation
+x′ = (1 −α) x + λξt. (11)
+At the n-th generation,
+xn = (1 −α)nx0 +
+n−1∑
+j=0
+(1 −α)n−1−jλξ(j) t , (12)
+where xi and ξ(i) t respectively denote the value of x and
+ξt at the i-th generation. The ﬁrst term approaches zero
+as n→∞ if 0 <α< 2. If ξt is normally distributed with
+===PAGE 4===
+4
+FIG. 1. Cell size at birth in simulations (a,b) and in experiments (c) as a discrete time-series, with insets showing a zoomed in
+view of one particular trial of simulation (b) and the data (c). (a,b) Multiple trials (diﬀerent colors) of numerical simulations
+of the DSM in Eq. 9 with the simple, one-line pseudo-code: vi+1 = (2 (1 −α) vi + v0) 2ξt /2, where vi denote cell size at birth
+in the i-th generation, ξt is a normally distributed random variable with zero mean and variance σ2 t , and v0 is a constant that
+sets the mean cell size. Here, σt = 0.22 and ⟨vb⟩ = 1. (a) α = 0 leads to unconﬁned diﬀusion and a divergent distribution. (b)
+Any 0 < α < 2, here α = 0.5, has the necessary feedback to achieve a stationary distribution. (c) Data from Ref. [17]. vb in
+this case represents cell length at birth and is normalized so that ⟨vb⟩ = 1.
+variance σ2 t , then the variance σ2 x of x will be the sum
+of the variances in the series in the second term. The
+geometric series converges for 0 <α< 2, and can readily
+be evaluated to give the variance σ2 x as
+σ2 x = λ2σ2 t α (2 −α). (13)
+Furthermore, since xn is a sum of normal variables, it
+will also be normally distributed. If α≤ 0 or α≥ 2, the
+sum of the series diverges, and hence there is no station-
+ary distribution. The case α = 0 produces unconﬁned
+diﬀusion and is analogous to the case where the strength
+of the restoring force is zero (k = 0) in an OU process, as
+seen in Eq. 5. Fig. 1ab demonstrates the diﬀerence be-
+tween time-series generated by α = 0 and by 0 <α< 2.
+The variance of td can be obtained similarly.
+It is not obvious a priori whether the widths of the dis-
+tributions of interdivision time and cell size are related.
+It turns out that the two CVs (denoted by CV (·)) are
+related by a dimensionless quantity [20]. The log-size is
+related to the actual size by x = ln (vb/v0) ≡ ln (1 + δvb).
+Since δvb = vb/v0 − 1 is small, x ≈ δvb = vb/v0 − 1.
+Therefore, CV (vb) ≈σx. Calculating CV (td) in a simi-
+lar manner leads to
+CV (vb)
+CV (td) ≈ ln 2√ 2α. (14)
+Eq. 14 allows to extract the parameter α from CVs that
+can be accurately measured. Since x and td are both
+distributed normally, the model predicts that these dis-
+tributions can be collapsed after normalizing by the mean
+and scaling according to Eq. 14, as seen in experiments
+[5, 25].
+The Pearson correlation coeﬃcients (CC) between two
+variables (denoted by C (·,·)) can also be obtained. Since
+CCs are not aﬀected by addition or multiplication by a
+constant, vb can be replaced by x in the following calcu-
+lations. The CC between cell size at birth of a mother
+cell and that of the daughter cell is therefore [20]
+C (vb,v′ b) = C (x,x′) = ⟨xx′⟩−⟨x⟩2 σ2x . (15)
+Substituting in Eq. 11,
+C (vb,v′ b) = 1 −α. (16)
+Importantly, the value of α≈ 1/2 extracted via the ratio
+of CVs in Eq. 14 also predicts the CC between size at
+birth and at division, in agreement with experiments [5,
+8, 26].
+Similarly, using Eq. 8 and 10, the interdivision time
+can be written as
+td = ln 2 −αx λ + ξt. (17)
+The CC between the interdivision times of a mother-
+daughter pair can then be shown to be [5, 27]
+C (td,t′ d) = −α/2. (18)
+That this CC is non-zero has implications for the popu-
+lation growth rate, which we review later.
+Autoregressive models and extensions to
+incorporate biological details
+Eq. 11, obtained after linearization of the generi-
+cally nonlinear DSM Eq. 9, is mathematically known
+as an autoregressive (AR) model, often used in time-
+series analysis and economics forecasting [28]. An AR
+model of order m (denoted by AR(m)) takes the form
+xi = b + ∑m j=1 cjxi−j + ξi, where b and cj are constants
+and ξi is a noise term uncorrelated for diﬀerent i. The
+===PAGE 5===
+5
+FIG. 2. Cell size at birth in E. coli can be described by an AR(1) model. Data is the same as that in Fig. 1 [17]. (a-b)
+Single-cell data of cell size at birth vi at the i-th generation and the resulting CCs between parent and children (a) and parent
+and grand-children (b). (c) The residuals ei after linear regression with vi+1 and the resulting CC, C (ei,ei+2). See text for
+details. Gray dots show data, with color representing the density of points. Blue circles show average values binned according
+to values on the x-axis. Error bars show one SEM. Blue lines show the best linear regression of raw data.
+model describes how previous values of the stochastic
+variable x inﬂuence linearly the next value. Eq. 11 is
+an AR(1) model, which is also a discrete analogue of an
+OU process.
+In the problem of cell size regulation, it is not obvi-
+ous a priori if an AR(1) model is suﬃcient to describe
+data. One method to determine the appropriate order
+of an AR model is to investigate the partial correlation
+coeﬃcients. The partial CC between xi and xi+2 given
+an intermediate variable xi+1 is deﬁned as the CC be-
+tween the residuals ei = xi − ˆxi and ei+2 = xi+2 − ˆxi+2.
+ˆxi = p1xi+1 + p0 and ˆxi+2 = q1xi+1 + q0 denote the pre-
+dicted value after linear regression with xi+1 to determine
+the coeﬃcients. The resulting partial CC between xi and
+xi+2, with the intermediate variable xi+1, is [28]
+Cxi+1 (xi,xi+2) = C (ei,ei+2)
+= C (xi,xi+2) −C (xi,xi+1) C (xi+1,xi+2)√
+(1 −C 2 (xi,xi+1)) (1 −C 2 (xi+1,xi+2)) . (19)
+In an AR(1) model, the CC C (xi,xi+2) is non-zero
+because they are related via the intermediate variable
+xi+1. However, the partial CC Cxi+1 (xi,xi+2) removes
+the eﬀects of the intermediate variable and is zero. Ex-
+perimentally determined values of C (vi,vi+1) is as pre-
+dicted by Eq. 16 (Fig. 2a) [17]. In the same data set,
+C (vi,vi+2) is non-zero but Cvi+1 (vi,vi+2) is zero (Fig.
+2bc). Indeed, a vanishing Cvi+1 (vi,vi+2) implies that
+C (vi,vi+2) = C 2 (vi,vi+1), which is the case here. This
+novel check systematically shows that cell size at birth
+in E. coli can be described by an AR(1) model. This
+result is a fortunate simpliﬁcation, since for example,
+in certain mammalian cells, the CCs in the interdivi-
+sion times between cousin cells (Ccc) cannot be deter-
+mined from those between sister cells (Css) and between
+mother-daughter pairs (Cmd). Instead, experiments ob-
+serve that Ccc >Cmd , contrary to the expected relation
+Ccc = C 2 mdCss in an AR(1) model [29, 30].
+Extracting the regulation strength α via Eq. 16 is anal-
+ogous to estimating the parameters in AR models via
+the Yule-Walker equations that relate theoretical values
+of the parameters to theoretical values of the autocor-
+relation function (ACF) [28]. The ACF ρ (t) is the CC
+between variables separated by t time points,
+ρ (t) = C (xi,xi+t) . (20)
+As can be seen by Eq. 12, the ACF for the AR(1) model
+of Eq. 11 is simply
+ρ (t) = (1 −α)|t|. (21)
+In this case, the ACF decays exponentially as in an OU
+process as seen in Eq. 6. The ACF of cell size at birth
+indeed decays exponentially (Fig. 3a) [31]. Importantly,
+the estimated ACF is only meaningful after suﬃcient av-
+eraging to eliminate spurious ﬂuctuations. This can be
+done most clearly by computing the power spectral den-
+sity (PSD)
+S (f) = lim
+T→∞
+1
+T
+⏐⏐⏐⏐⏐⏐ T∑ j=1 xje−i2πfj ⏐⏐⏐⏐⏐⏐ 2 , (22)
+where T is the total number of observations in the time-
+series with data points xj. The PSD can also be calcu-
+lated as the Fourier transform of the ACF according to
+the Wiener-Khinchin theorem. For the AR(1) model of
+Eq. 11, the PSD turns out to be [28]
+S (f) = α (2 −α)
+1 − 2 (1 −α) cos (2πf) + (1 −α)2 σ2 x. (23)
+This is again analogous to an OU process, since
+the Fourier transform of an exponential function is a
+===PAGE 6===
+6
+Lorentzian function. There are signiﬁcant oscillations
+only in the case α <∼ 2, for which the PSD peaks at
+high frequencies (Fig. 3cd). The case of E. coli, where
+α ≈ 1/2, is far from this regime (Fig. 3ab). Therefore,
+experimentally observed ﬂuctuations should not be con-
+fused for oscillations [31].
+The AR(1) model in Eq. 11 can be extended to incor-
+porate details that are relevant to a variety of microor-
+ganisms. These include asymmetric and noisy divisions
+(e.g. in mycobacteria [32, 33]), noisy growth rates (e.g.
+in slow growing E. coli [21] and in the archaeon H. sali-
+narum [34]), and diverse growth morphologies (e.g. the
+budding mode of growth of S. cerevisiae [25]). First,
+noisy divisions and noisy growth rates can be incorpo-
+rated by modeling the division ratio (daughter cell size at
+birth divided by mother cell size at division) and growth
+rate as 1/2 + ξr and λ + ξλ, respectively, at each gener-
+ation. If the ﬂuctuations ξr and ξλ are small and uncor-
+related, Eq. 11 becomes to ﬁrst order in small variables
+x′≈ (1 −α) x + λξt + 2ξr. (24)
+The ﬂuctuation ξλ enters as a ﬁrst order correction to
+interdivision time td. The CVs and CCs can be calcu-
+lated as before for Eq. 24 to show that the diﬀerent
+ﬂuctuations typically aﬀect the CVs and CCs in diﬀer-
+ent ways. For example, the CC between cell size at birth
+and at division, C (vb,vd), is sensitive to ﬂuctuations in
+division ratios, and is increased by large ﬂuctuations in
+division ratios. However, the CC in cell size at birth
+between mother-daughter pairs, C (vb,v′ b), remains the
+same as in Eq. 16, and is independent of all noise terms.
+It is thus a robust detector of the underlying regulation
+strategy even in face of multiple sources of complicating
+stochasticity [34]. We discuss later several models that
+incorporate other biological details and move beyond AR
+models.
+Continuous rate models and higher order eﬀects
+Cell size regulation can also be modeled using con-
+tinuous rate models (CRM) [5, 35–37]. In contrast to
+DSMs, CRMs consider not just discrete division events,
+but the continuous cell cycle. They specify the instan-
+taneous division rate h, or the probability to divide per
+unit size increment, as a function of physiological param-
+eters such as the current size v, size at birth vb, growth
+rate λ, or the time t since division. A simple choice of
+parametrization is the sloppy sizer model, h = h (v).
+In this case, the probability for a cell of size v to di-
+vide between the size interval v and v + dv is h (v) dv.
+Hence if F (vd|vb) is the cumulative probability to have
+not divided at size vd given vb, then F (vd|vb) satisﬁes
+F (vd + dv|vb) = F (vd|vb) (1 −h (vd) dv). In the contin-
+uum limit, dF (vd|vb) /dv = −h (vd) F (vd|vb), so that
+F (vd|vb) = exp
+(
+−
+∫ vd
+vb
+h (v) dv
+)
+. (25)
+Eq. 25 can be written as
+h (v) = − d dv ln F (v|vb) , (26)
+allowing to extract h (v) via single-cell experiments that
+measure F (vd|vb). The division rate can be formulated
+as a probability to divide per unit time increment as
+well, using the change of variables between size and time
+given by exponential growth. Analyses using CRMs have
+demonstrated that the current size is not the only de-
+terminant of the division rate because the sloppy sizer
+model fails to capture measured distributions of interdi-
+vision time and size increment from birth to division [37].
+This implies that there exists a feedback on the time since
+birth, or equivalently the size at birth [37]. Speciﬁcally,
+a division rate in the form h = h (v−vb) can simulta-
+neously describe measured distributions of size at birth,
+interdivision time, and size increment from birth to divi-
+sion [5].
+A CRM can be approximately reduced to a DSM with
+the target size at division equal to the expectation value
+of the size at division given the size at birth [36],
+f (vb) =
+∫ ∞
+0
+p (v|vb) vdv, (27)
+where p (v|vb) = −dF (v|vb) /dv is the probability density
+for a cell born at size vb to divide at size v. The nature
+and magnitude of the noise term can be determined by
+inverting the steps described below to map a DSM to a
+corresponding CRM. To do so, p (v|vb) can be calculated
+from f (vb) and a speciﬁed coarse-grained noise, then the
+division rate can be obtained using Eq. 26. For example,
+for a time-additive, normally distributed noise with vari-
+ance σ2 t , the division probability density for log-size x =
+ln (v/v0) is p (x|xb) ∝ exp
+(
+− (x−g (xb))2 / ( 2λ2σ2 t )) ,
+where g (xb) = ln (f (v0exb ) /v0). Since the typical xb
+is much smaller than g (xb), integration leads to the di-
+vision rate [36]
+h (v,vb) ≈
+√
+2
+v√πλσt H
+( 1√
+2λσt
+ln
+( v
+f (vb)
+))
+, (28)
+where H (z) = exp
+(
+−z2) / (1 − Erf (z)) and Erf (·) is the
+error function. For the regulatory function Eq. 10, the
+division rate Eq. 28 becomes a function of only the in-
+stantaneous size when α = 1, corresponding to a sizer
+strategy.
+Although the CRM is generic and may capture com-
+plex behavior such as ﬁlamentation [37], it is not obvi-
+ous a priori how to parametrize the division rate. On
+===PAGE 7===
+7
+FIG. 3. Fluctuations versus oscillations. The ACF ρ (t) (a,c) and the PSD S (f) (estimated via the Welch method) (b,d)
+of cell size at birth in E. coli (a,b) and a simulated AR(1) model described by Eq. 11 with α = 1.9 (c,d). Blue lines show
+experimentally determined ACF and PSD from the same data set as that in Fig. 1 [17]. Green lines show simulation results.
+Dashed red lines show Eq. 21 (a,c) and Eq. 23 (b,d), for α = 0.49 (a,b) and α = 1.9 (c,d).
+the other hand, the DSM has only a few parameters, is
+amenable to analytical treatment in several cases, and
+describes existing measurements well. The complexity
+sacriﬁced by DSMs and their ﬁrst order approximate so-
+lutions may become important, for instance, when sec-
+ond and higher order terms become signiﬁcant. How-
+ever, higher order eﬀects are diﬃcult to detect unless the
+number of cells measured is large enough to suppress the
+confounding eﬀects of ﬂuctuations in the cell cycle. No
+existing experiments have achieved this regime, perhaps
+justifying the success of DSMs as models of cell size reg-
+ulation [36].
+More precise analyses of DSMs
+The approximate ﬁrst order solution in Section pre-
+dicts a log-normal size distribution for a regulatory func-
+tion f (vb) = 2 (1 −α) vb + v0 and a time-additive, nor-
+mally distributed noise. However, closer inspection re-
+veals that the size distribution has a power-law tail in-
+stead. This can be seen by analyzing which moments ex-
+ist for a given regulation strength α. Calculations similar
+to those in Section show that if the j-th moment exists,
+so too do all the lower moments, but that for any α> 0,
+there always exists an integer j∗ past which all moments
+cease to exist. This suggests that the size distribution has
+a power-law tail p (vb) ∼ 1/v1+β b with j∗ < β ≤ j∗ + 1,
+as conﬁrmed by numerical simulations [14].
+The value of β can be obtained precisely. The
+evolution of size distributions from one generation
+to the next can be written as an integral equa-
+tion p (v′ b) = ∫∞ 0 K (v′ b,vb) p (vb) dvb, where the kernel
+K (v′ b,vb) can be derived from the regulatory strategy
+f (vb). For a regulatory function in the form f (vb) =
+2 (1 −α) v0 (vb/v0)η + v0, it can be shown via an asymp-
+totic analysis of the integral equation that a distribution
+with a power-law tail 1/v1+β b evolves to one with a power-
+law tail 1/v1+β/η2 b [14]. This implies that for η = 1, the
+stable size distribution indeed has a power-law tail, with
+β = −2 ln (1 −α) λ2σ2 t , (29)
+where σ2 t is the variance of the time-additive noise.
+===PAGE 8===
+8
+An alternative approach also led to the same power-
+law tail [38]. In this approach, a DSM is approximated
+as a Langevin equation continuous in generations. Let
+x = ln (vb/v0) be the log-size at birth and let n denote
+the generation number, then Eq. 9 can be written
+xn+1 = xn + ˜g (xn) + λξt, (30)
+where ˜g (xn) = ln (f (exp (xn) v0) /v0)−xn. To lowest or-
+der, Eq. 30 can be approximated by a Langevin equation
+continuous in n as
+dx
+dn = ˜g (x) + λξt. (31)
+As seen before in the context of an OU process described
+by Eq. 3, Eq. 31 leads to an equilibrium distribu-
+tion of log-sizes p (x) ∝ exp
+(
+−2V (x) /
+(
+λ2σ2 t )) , where
+V (x) =
+∫
+˜g (x′) dx′ is the eﬀective potential. For the
+same regulatory function as above, the eﬀective potential
+diverges linearly as V (x) ∼−2x ln (1 −α). The equilib-
+rium distribution therefore has a power-law tail 1/v1+β b
+with the same β as in Eq. 29 [38]. Even further precision
+can be obtained via a second order approximation which
+modiﬁes the eﬀective potential, but leaves the behavior
+of the power-tail unchanged [38].
+BEYOND PHENOMENOLOGICAL MODELS OF
+CELL SIZE REGULATION
+As we previously alluded, the formalism of DSMs de-
+veloped for the problem of cell size regulation can lead
+to insights on related problems at the molecular, single-
+cell, and the population level. Below, we discuss these in
+turn.
+Molecular mechanisms to implement cell size
+regulation
+How does a bacterial cell molecularly implement a size
+regulation strategy? The initiator accumulation model is
+a network architecture proposing that an initiator protein
+accumulates during cell growth to trigger cell division
+upon reaching a threshold copy number θ [11]. While
+experiments have suggested that the upstream control
+occurs over initiation of DNA replication rather than cell
+division in various microorganisms [6, 9, 25, 39], we ﬁrst
+review a simpler model where the accumulation of initia-
+tors triggers cell division. The model leads to the adder
+correlations observed in several species of bacteria and
+other microorganisms [13, 20, 40].
+One possible molecular implementation of the initiator
+accumulation model is as follows [41]. If the transcription
+rate of the initiator is assumed to be proportional to the
+cell volume, which grows exponentially in time, and if
+each transcript leads to a burst of protein production
+with mean burst size b, then the distribution of added
+cell size ∆v = vd −vb from birth to division has width
+[41]
+CV 2 (∆v) = b2 + 2bθ + θ
+(b + θ)2 . (32)
+Furthermore, the resulting distribution has only one
+characteristic size, the mean added cell size ⟨∆v⟩, and
+therefore can be written as
+p (∆v) = 1 ⟨∆v⟩ ˜p ( ∆v ⟨∆v⟩ ) . (33)
+Indeed, experiments showed that distributions of cell
+sizes with diﬀerent means collapse after normalizing by
+the mean [5, 35, 42, 43]. The collapse suggests that b
+and θ are constant within the implementation here. The
+same experiments also saw that the distributions of in-
+terdivision times collapse after normalizing by the mean
+doubling time, which is again captured by this model
+[41]. There are also additional models that show such
+scaling collapse, such as an autocatalytic network subject
+to a threshold criterion for division [44], and the coarse-
+grained “adder-per-origin” model described below.
+As discussed in the Introduction, control at other cell
+cycle events may lie upstream of cell division in vari-
+ous microorganisms. DSMs similar to those reviewed
+so far can be extended to describe cell cycle regulation.
+These models can not only produce emergent strategies
+of cell size regulation identical to those described by the
+division-centric models reviewed so far, but also describe
+additional statistics such as the correlations between cell
+size and various cell cycle timings [45, 46].
+As an example, we review below a model of cell cycle
+regulation in E. coli, whose cell divisions appear to follow
+a constant time T after the initiation of DNA replication
+for a broad range of mean growth rates [2, 47]. The time
+T can be larger than the mean doubling time τ, in which
+case the cells maintain multiple ongoing rounds of DNA
+replication. The tight coupling between initiation and
+division implies that the cell size at birth vd is
+vd = vieλ(T +ξT ), (34)
+where vi is the cell size at initiation, λ = ln 2/τ is the
+growth rate, and ξT describes ﬂuctuations with magni-
+tude σT in the time between initiation and division. At
+a coarse-grained level, the initiator accumulation model
+can be described as [11, 20, 40]
+˜v′ i = (vi + Ov0) eλξt , (35)
+where ˜v′ i is the total cell size of the daughter cells (typ-
+ically two) at the next initiation, O is the number of
+origins of replication (i.e. the site along the chromosome
+at which DNA replication initiates), and v0 is a constant.
+As in the division-centric model, regulation is subject to
+a time-additive noise ξt with magnitude σt.
+===PAGE 9===
+9
+Analysis and simulations of the initiation-centric
+model of Eqs. 34-35 show that it produces emergent
+adder correlations at division [13, 40], as long as the mag-
+nitude of the ﬂuctuations in the coordination between ini-
+tiation and division is much less than that in the control
+of initiation (σt ≫ σT ). This is indeed the case in ex-
+periments for fast-growing bacteria, although the picture
+appears diﬀerent for slow-growing bacteria [21], which we
+discuss later. The model also generates cell size and in-
+terdivision time distributions whose CVs only depend on
+the magnitudes λσt and λσT of the ﬂuctuations, and the
+regulation strength α. The distributions therefore col-
+lapse after scaling by the mean if these parameters are
+constant across growth conditions. At the bulk-level, the
+initiation-centric model produces the observed exponen-
+tial scaling of mean cell size with mean growth rate, as
+discussed in the Introduction, without requiring param-
+eters to depend on mean growth rate [40]. These results,
+together with previous results regarding the universality
+of cell size distributions, suggest that the initiator accu-
+mulation model may be a robust molecular mechanism
+that produces adder correlations, and that models of cell
+cycle regulation can continue to shed light on the under-
+lying biology.
+Regulation of protein numbers
+Recent works have begun investigating the statistics
+of the copy numbers of proteins at the single-cell level
+in the same spirit as the problem of cell size regulation
+[31, 48–50]. In fact, for a constitutively expressed pro-
+tein, the distributions of protein numbers at birth can
+be described by a DSM [49]. Analysis analogous to that
+in Fig. 2, but for the copy number of a constitutively
+expressed protein in E. coli in the same data set [17],
+reveals that the partial CC is also zero in this case. How-
+ever, it is unclear how protein number and cell size are
+simultaneously regulated.
+One way to investigate this question is via a multi-
+dimensional, or vector, AR model. An AR(1) vector
+model in M dimensions can be written as
+⃗x′ = A⃗x +⃗b + ⃗ξ, (36)
+where ⃗x is a vector of the abundances at birth of the
+M cellular components, which can include cell size, and
+⃗x′ is the vector at the next generation. A is a M ×M
+matrix representing the regulatory interactions between
+components, ⃗b is a vector representing the basal syn-
+thesis level between generations, and ⃗ξ is a vector of
+noise terms uncorrelated between generations but may
+be cross-correlated at the same generation.
+For the one-dimensional case, the condition for station-
+arity is that 2 > α > 0 so that the variance of x in Eq.
+13 is ﬁnite. This condition is equivalent to that the zero
+of 1 − (1 −α) z lie outside the unit circle. In the multi-
+dimensional case, the condition is similarly that all the
+zeros of det (I−Az) lie outside the unit circle [28]. Given
+a stable AR(1) vector model, the multi-dimensional ana-
+logue of the Yule-Walker equations can be used to es-
+timate by maximum likelihood the regulatory matrix A
+from measurements [51]. For the data set discussed above
+[17], this method results in
+A =
+( 0.50 ± 0.02 −0.02 ± 0.01
+−0.16 ± 0.02 0.60 ± 0.02
+)
+,
+where the ﬁrst and second components are respectively
+cell size and protein number at birth (both normalized
+by their means), and plus-minus shows the standard error
+in the estimate. This novel result suggests that the copy
+number of this constitutively expressed protein does not
+aﬀect cell size regulation, while cell size does aﬀect the
+regulation of this protein number. It is unknown whether
+this result holds for all constitutively expressed proteins,
+and how this result will change for proteins that are not
+constitutively expressed.
+To better understand cross-correlations between cell
+size and protein numbers from a mechanistic perspective,
+recent works have investigated a dynamical model in the
+form d⃗x/dt = A⃗x, where ⃗x is now the abundances of
+the cellular components during the cell cycle, and A now
+describes the regulatory interactions in time [50]. This
+model leads to the components growing as a sum of expo-
+nentials that can be approximated as a single exponential
+function during one generation, in agreement with exper-
+imentally observed exponential growth [48]. Describing
+the statistics generated by dynamical models, and relat-
+ing a dynamical model to a DSM and vice versa remain
+important open questions.
+Eﬀects of cell size regulation on population growth
+rate
+At the single-cell level, genetically identical cells in the
+same clonal populations may have diﬀerent interdivision
+times and growth rates. How does such variability at
+the single-cell level aﬀect population growth? Models
+often assume that the interdivision times td are uncorre-
+lated between generations and independent of other vari-
+ables [52–54]. In this case, a simple relation connects
+the asymptotic population growth rate Λ = (dN/dt) /N,
+where N is the number of cells in the population, to the
+interdivision time distribution p (td),
+2
+∫ ∞
+0
+p (td) exp (−Λtd) = 1. (37)
+Importantly, given a ﬁxed mean interdivision time, a
+larger variability in td increases Λ. However, cell size
+===PAGE 10===
+10
+regulation leads to negative correlations in td between
+generations, as seen in Eq. 18. In this case, recent re-
+sults obtained by some of us showed that in an asyn-
+chronous, exponentially growing population - in which
+each cell is subject to variability in its single-cell growth
+rate, as well as to time-additive and size-additive noise in
+its cell size regulation by the regulatory function f (vb) =
+2 (1 −α) vb +2αv0 - the population growth rate is depen-
+dent only on the distribution of single-cell growth rates.
+In the limit of small correlations in growth rates between
+generations, variability in single-cell growth rates does
+not increase, but rather decreases the population growth
+rate [27],
+Λ/⟨λ⟩ = 1 −
+(
+1 − ln 2 2 ) CV 2 (λ) , (38)
+Eq. 38 predicts that a population can enhance its popula-
+tion growth rate by suppressing the variability in single-
+cell growth rates given a ﬁxed mean, which is consistent
+with the smaller CV of single-cell growth rates than that
+of interdivision times observed in experiments (Fig. 4ab)
+[5, 21]. Eq. 38 holds for any size regulation strategy
+1 > α > 0, implying that cell size regulation, as long as
+it exists (in particular, α ⁄= 0 leads instead to Eq. 37),
+does not aﬀect population growth rate within the models
+studied here (Fig. 4a).
+DISCUSSION
+In this review, we summarized the mathematical for-
+mulations of the problem of cell size regulation, with a
+focus on coarse-grained, discrete models. As an example,
+we showed that a ﬁrst order autoregressive model can de-
+scribe the statistics of cell size in E. coli. We discussed
+how detailed analyses of such models led to several bi-
+ologically relevant insights at the molecular, single-cell,
+and population level. The same approach may shed light
+on several outstanding questions.
+First, the prevalence of adder correlations in all three
+domains of life (e.g. the prokaryote E. coli [5, 8, 21], the
+eukaryote S. cerevisiae [25], and the archaeon H. sali-
+narum [34]) suggest that it may be simpler to imple-
+ment or may be evolutionarily advantageous compared
+to other size regulation strategies. An explanation of the
+prevalence of adder correlations remains missing, how-
+ever, since cell size regulation was found not to aﬀect
+population growth rate within the class of phenomeno-
+logical growth models reviewed here [27].
+In contrast, the mean single-cell growth rate aﬀects cell
+size regulation, since E. coli in slow growth conditions
+no longer exhibits adder correlations [21]. This obser-
+vation may be explained by introducing stochasticity in
+single-cell growth rates into the initiation-centric model
+discussed in Section , which can lead to a size regula-
+tion strategy that varies with mean growth rates [21].
+Indeed, cell size regulation may potentially be an emer-
+gent property of cell cycle regulation [39]. This view is
+further supported by several models that describe cell di-
+vision as a downstream eﬀect of another cell cycle event
+(e.g. initiation of DNA replication in M. smegmatis [33],
+the onset of budding in S. cerevisiae [13, 25], and sep-
+tum constriction in C. crescentus [56]), and nonetheless
+reproduces the observed statistics at divisions.
+Models of cell size regulation may also incorporate di-
+verse growth morphologies. For example in S. cerevisiae,
+division asymmetry depends on the duration of the bud-
+ded phase, during which all cell growth occurs for the
+budded daughter cell [25]. In M. smegmatis, cell growth
+occurs at the two poles of the cell: the old pole grows
+faster than the new pole, and on average, the daughter
+that inherits the old pole is larger [32]. In both cases, the
+subpopulations formed by the larger and smaller daugh-
+ter cells exhibit diﬀerent emergent size regulation strate-
+gies [25, 33]. Models incorporating these details move
+beyond AR models but remain straightforward to sim-
+ulate numerically, allowing the statistics they generate
+to be compared to experiments to distinguish between
+competing models.
+At the molecular level, the behavior of molecular net-
+work architectures require further analysis. The partic-
+ular implementation of an initiator accumulation model
+discussed in Section made the strong assumption that
+transcription rate is proportional to cell volume [41]. It
+would be interesting to study more detailed network ar-
+chitectures, where this would be a result rather than a
+model assumption. Models at the molecular level may
+also begin to investigate the problem of protein number
+regulation. Since proteins are made by ribosomes, an im-
+portant problem is how ribosomes are allocated towards
+translating diﬀerent types of proteins. Quantitative pat-
+terns at the bulk level have emerged regarding ribosome
+allocation [57, 58], but the picture at the dynamical, cell
+cycle level is less clear. Models of stochastic gene expres-
+sion that extend existing ones, which often consider a
+ﬁxed cell volume [59], to incorporate cell cycle regulation
+could shed light in this aspect.
+Incorporating cell cycle regulation can in turn help un-
+derstand cell size regulation in organisms with a circadian
+clock, such as mammalian cells and cyanobacteria. Re-
+cent works have begun to examine cell size regulation in
+these organisms [29, 30, 60, 61], and some have suggested
+that the circadian clock may aﬀect cell size regulation
+in these organisms. How to model these processes at a
+molecular, coarse-grained, and population level remain
+intriguing questions.
+Which model should we use?
+Since the various classes of models of cell size regula-
+tion reviewed here are quite diﬀerent fundamentally, we
+===PAGE 11===
+11
+0.022 0.023 0.024 0.025 0.026 0.027 0.028
+0.02
+0.021
+0.022
+0.023
+0.024
+0.025
+0.026
+0.027
+0.028
+0.029
+0 0.05 0.1 0.15
+0.98
+0.985
+0.99
+0.995
+1
+0.2 0.4 0.6 0.8 1
+0.98
+0.985
+0.99
+0.995
+1
+a b
+FIG. 4. Cell size regulation, as long as it exists, does not aﬀect population growth rate. (a) Population growth rates obtained
+from simulations (symbols) of an exponentially growing population subject to variability in single-cell growth rates agree with
+Eq. 38 (dashed line). Inset shows population growth rates do not vary with the regulation strength as long as 1 >α> 0. (b)
+Variability in single-cell growth rates decreases population growth rate. Blue squares show data from [55] (details of the error
+bars can be found in [27]). Red dashed line shows Eq. 38 for CV (λ) measured by experiments. Black solid line shows Λ = ⟨λ⟩
+as a guide. Both axes have units min−1. Adapted from [27].
+conclude by discussing the question of which model to use
+to analyze what data or to elucidate what phenomenon.
+First, as discussed in Section , continuous rate models
+(CRMs) diﬀer from discrete stochastic maps (DSMs) in
+that CRMs take as parameter an entire function that
+describes the instantaneous division rate, whereas DSMs
+take, for example, only the strength of regulation and the
+magnitude of the coarse-grained stochasticity (although
+the form of the stochasticity must be assumed). More-
+over, CRMs assume a priori whether regulation depends
+only on the current size or also on the size at birth,
+whereas DSMs can be used to determine the mode of
+regulation. These could be reasons for the increasing
+visibility of DSMs as models of cell size regulation.
+Another fundamental distinction is the diﬀerence be-
+tween division-centric models and models that place con-
+trol at an upstream event. Division-centric models, such
+as those described by Eq. 9, makes the strong assump-
+tion that all information relevant for determining division
+timing is stored in the current size and the size at birth.
+This does not have to be the case. For example, it is
+widely accepted that in S. cerevisiae, control occurs over
+the Start transition and the duration of the budded phase
+is uncorrelated with size [25]. As reviewed brieﬂy in Sec-
+tion , Eq. 9 can be adapted to place control at various cell
+cycle events, which may then lead to additional predic-
+tions that can illuminate the coupling between diﬀerent
+cell cycle events.
+The above distinction does not imply that we should
+always use the most detailed description. To cite Levins,
+“All models leave out a lot and are in that sense false,
+incomplete, inadequate. The validation of a model is
+not that it is ’true’ but that it generates good testable
+hypotheses relevant to important problems [62].” It is
+often helpful to sacriﬁce details not pertinent to the phe-
+nomenon under consideration. For example, the initiator
+accumulation model can be considered to trigger division
+rather than initiation. Yet the simpliﬁed model may still
+provide mechanistic insights into the statistical proper-
+ties, as discussed in Section . These mechanistic models
+are altogether diﬀerent from the phenomenological DSMs
+and CRMs.
+In summary, the appropriate model to use depends not
+only on the organism or system in question, but also
+on the phenomena explored within the model. We have
+sketched here a map of the existing models. Techno-
+logical advances now enable collection of more accurate
+and larger data sets. These will likely stimulate further
+development of models, which in turn will inﬂuence ex-
+perimental directions.
+SUMMARY POINTS
+1. Studying quantitative patterns associated with cell
+size, and modeling them using stochastic models,
+can shed light on the underlying biological mecha-
+nisms.
+2. Cell size in E. coli can be described by a ﬁrst order
+autoregressive model in which the present value de-
+pends only on the value in the previous generation.
+3. The initiator accumulation model is a molecular
+network architecture of cell size regulation that ap-
+===PAGE 12===
+12
+pears to be consistent with existing experimental
+results in bacteria.
+4. Cell size regulation, as long as it is present, does
+not aﬀect population growth rate within existing
+models.
+FUTURE ISSUES
+1. What is the reason for the prevalence of adder cor-
+relations for cell size regulation?
+2. What are molecular implementations that regulate
+the cell cycle in changing environments, and what
+are the limits of biological stochasticity they can
+sustain?
+3. How are the copy number of proteins and cell size
+simultaneously regulated, and how can the result-
+ing statistics be described?
+4. What are the couplings between cell size and cell
+cycle regulation to other cellular processes such as
+circadian clocks, and what models should we use to
+describe them?
+ACKNOWLEDGMENTS
+This manuscript has been submitted to the Annual Re-
+view of Biophysics. We thank Lingchong You for the per-
+mission to use the data from Ref. [17]. PH was supported
+by the Harvard MRSEC program of the National Science
+Foundation under award number DMR 14-20570. JL was
+supported by the Carrier Fellowship. AA thank the Al-
+fred P. Sloan Foundation Research Fellowship, Harvard
+Dean’s Competitive Fund for Promising Scholarship, the
+Milton Fund, the Kavli Foundation, and the Volkswagen
+Foundation for their support.
+∗ arielamir@seas.harvard.edu
+[1] A Koch. Bacterial growth and form. Springer, 2001.
+[2] L Willis and KC Huang. Sizing up the bacterial cell cycle.
+Nat. Rev. Microbiol., 15(10):606–20, 2017.
+[3] M Schaechter, O Maaloe, and NO Kjeldgaard. Depen-
+dency on medium and temperature of cell size and chem-
+ical composition during balanced growth of Salmonella
+typhimurium. J. Gen. Microbiol., 19:592–606, 1958.
+[4] NS Hill, R Kadoya, DK Chattoraj, and PA Levin. Cell
+size and the initiation of dna replication in bacteria. PLos
+Genet., 8(3):e1002549, 2012.
+[5] S Taheri-Araghi, S Bradde, JT Sauls, NS Hill, PA Levin,
+J Paulsson, M Vergassola, and S Jun. Cell-size control
+and homeostasis in bacteria. Curr. Biol., 25(3):385–91,
+2015.
+[6] WD Donachie. Relationship between cell size and time of
+initiation of dna replication. Nature, 219(5158):1077–79,
+1968.
+[7] L Harris and J Theriot. Relative rates of surface and
+volume synthesis set bacterial cell size. Cell, 165(6):1479–
+1492, 2016.
+[8] M Campos, IV Surotsev, S Kato, A Paintdakhi, B Bel-
+tran, SE Ebmeier, and C Jacobs-Wagner. A constant
+size extension drives bacterial cell size homeostasis. Cell,
+159(6):1433–46, 2014.
+[9] H Zheng, P Ho, M Jiang, B Tang, W Liu, D Li, X Yu,
+NE Kleckner, A Amir, and C Liu. Interrogating the Es-
+cherichia coli cell cycle by cell dimension perturbations.
+Proc. Natl. Acad. Sci., 113(52):15000–5, 2016.
+[10] M Godin, FF Delgado, S Son, WH Grover, AK Bryan,
+A Tzur, P Jorgensen, K Payer, AD Grossman,
+MW Kirschner, and SR Manalis. Using buoyant mass
+to measure the growth of single cells. Nat. Methods,
+7(5):387–90, 2010.
+[11] L Sompayrac and O Maaloe. Autorepressor model for
+control of dna replication. Nat. New. Biol., 241(109):133–
+5, 1973.
+[12] PA Fantes. Control of cell size and cycle time in
+Schizosaccharomyces pombe. J. Cell. Sci., 24:51–67, 1977.
+[13] F Barber, P Ho, A Murray, and A Amir. Details matter:
+noise and model structure set the relationship between
+cell size and cell cycle timing. Front. Cell Dev. Biol., in
+press.
+[14] A Marantan and A Amir. Stochastic modeling of cell
+growth with symmetric or asymmetric division. Phys.
+Rev. E, 94:012405, 2016.
+[15] GEP Box, JS Hunter, and WG Hunter. Statistics for
+Experimenters. John Wiley and Sons, 2005.
+[16] C Gardiner. Stochastic methods: A handbook for the nat-
+ural and social sciences. Springer, 2009.
+[17] Y Tanouchi, A Pai, H Park, S Huang, NE Buchler, and
+L You. Long-term growth data of Escherichia coli at a
+single-cell level. Sci Data, 4:170036, 2017.
+[18] P Wang, L Robert, J Pelletier, WL Dang, F Taddei,
+A Wright, and S Jun. Robust growth of Escherichia coli.
+Curr. Biol., 20(12):1099–103, 2010.
+[19] S Taheri-Araghi, SD Brown, JT Sauls, DB McIntosh,
+and S Jun. Single-cell physiology. Annu. Rev. Biophys.,
+44:123–42, 2015.
+[20] A Amir. Cell size regulation in bacteria. Phys. Rev. Lett.,
+112(20):208102, 2014.
+[21] M Wallden, D Fange, EG Lundius, O Baltekin, and J Elf.
+The synchronization of replication and division cycles in
+individual E. coli cells. Cell, 166(3):729–39, 2016.
+[22] JT Sauls, D Li, and S Jun. Adder and a coarse-grained
+approach to cell size homeostasis in bacteria. Curr. Opin.
+Cell Biol., 38:38–44, 2016.
+[23] WJ Voorn, LJ Koppes, and NB Grover. Mathemat-
+ics of cell division in Escherichia coli : comparison be-
+tween sloppy-size and incremental-size kinetics. Curr.
+Top. Mol. Gen., 1:187–194, 1993.
+[24] WJ Voorn and LJ Koppes. Skew or third moment of
+bacterial generation times. Arch. Microbiol., 169(1):43–
+51, 1997.
+[25] I Soifer, L Robert, and A Amir. Single-cell analysis of
+growth in budding yeast and bacteria reveals a common
+size regulation strategy. Curr. Biol., 26(3):356–361, 2016.
+[26] LJ Koppes, M Meyer, HB Oonk, MA de Jong, and
+N Nanninga. Correlation between size and age at dif-
+===PAGE 13===
+13
+ferent events in the cell division cycle of Escherichia coli.
+J. Bacteriol., 143(3):1241–52, 1980.
+[27] J Lin and A Amir. The eﬀects of stochasticity at the
+single-cell level and cell size control on the population
+growth. Cell Systems, 5:1–10, 2017.
+[28] MB Priestley. Spectral analysis and time series. Aca-
+demic Press, 1981.
+[29] O Sandler, S Pearl-Mizrahi, N Weiss, O Agam, I Simon,
+and NQ Balaban. Lineage correlations of single cell di-
+vision time as a probe of cell-cycle dynamics. Nature,
+519(7544):468–71, 2015.
+[30] N Mosheiﬀ, BMC Martins, S Pearl-Mizrahi, A Gruen-
+berger, S Helfrich, I Mihalcescu, D Kohlheyer, JCW
+Locke, L Glass, and NQ Balaban. Correlations of single-
+cell division times with and without periodic forcing.
+arXiv, page 1710.00349, 2017.
+[31] Y Tanouchi, A Pai, H Park, S Huang, R Stamatov,
+N Buchler, and L You. A noisy linear map underlies
+oscillations in cell size and gene expression in bacteria.
+Nature, 523(7560):357–60, 2015.
+[32] BB Aldridge, M Fernandez-Suarez, D Heller, V Am-
+bravaneswaran, D Irimia, M Toner, and SM Fortune.
+Asymmetry and aging of mycobacterial cells lead to
+variable growth and antibiotic susceptibility. Science,
+335(6064):100–4, 2012.
+[33] MM Logsdon, P Ho, K Papavinasasundaram, M Cokol,
+K Richardson, CM Sassetti, A Amir, and BB Aldridge.
+Coordination of cell cycle progression in mycobacteria.
+Curr. Biol., in press.
+[34] Y Eun, P Ho, M Kim, L Renner, S LaRussa, L Robert,
+A Schmid, E Garner, and A Amir. Archaeal cells share
+common size control with bacteria despite noisier growth
+and division. under review.
+[35] AS Kennard, M Osella, A Javer, J Grilli, P Nghe, S Tans,
+P Cicuta, and MC Lagomarsino. Individuality and uni-
+versality in the growth-division laws of single E. coli cells.
+Phys. Rev. E, 93:012408, 2016.
+[36] J Grilli, M Osella, AS Kennard, and MC Lagomarsino.
+Relevant parameters in models of cell division control.
+Phys. Rev. E, 95(3):032411, 2017.
+[37] M Osella, E Nugent, and MC Lagomarsino. Concerted
+control of Escherichia coli cell division. Proc. Natl. Acad.
+Sci., 111(9):3431–5, 2014.
+[38] DA Kessler and S Burov. Eﬀective potential for cellular
+size control. arXiv, page 1701.01725, 2017.
+[39] A Amir. Is cell size a spandrel? eLife, 6:e22186, 2017.
+[40] P Ho and A Amir. Simultaneous regulation of cell size
+and chromosome replication in bacteria. Front. Micro-
+biol., 6:662, 2015.
+[41] KR Ghusinga, C Vargas-Garcia, and A Singh. A mech-
+anistic stochastic framework for regulating bacterial cell
+division. Sci. Rep., 6:30229, 2016.
+[42] FJ Trueba, OM Neijssel, and CL Woldringh. Generality
+of the growth kinetics of the average individual cell in dif-
+ferent bacterial populations. J. Bacteriol., 150(3):1048–
+55, 1982.
+[43] A Giometto, F Altermatt, F Carrara, A Maritan, and
+A Rinaldo. Scaling body size ﬂuctuations. Proc. Natl.
+Acad. Sci., 110(12):4646–50, 2012.
+[44] S Iyer-Biswas, GE Crooks, NF Scherer, and AR Dinner.
+Universality in stochastic exponential growth. Phys. Rev.
+Lett., 113:028101, 2014.
+[45] M Osella, SJ Tans, and MC Lagomarsino. Step by step,
+cell by cell: quantiﬁcation of the bacterial cell cycle.
+Trends. Microbiol., 25(4):250–6, 2017.
+[46] A Adiciptaningrum, M Osella, MC Moolman, MC Lago-
+marsino, and S Tans. Stochasticity and homeostasis in
+the E. coli replication and division cycle. Sci. Rep.,
+5:18261, 2015.
+[47] S Cooper and CE Helmstetter. Chromosome replication
+and the division cycle of Escherichia coli b/r. J. Mol.
+Biol., 31(3):519–40, 1968.
+[48] N Brenner, E Braun, A Yoney, L Susman, J Rotella,
+and H Salman. Single-cell protein dynamics reproduce
+universal ﬂuctuations in cell populations. Eur. Phys. J.
+E, 38:102, 2015.
+[49] N Brenner, CM Newman, D Osmanovic, Y Rabin,
+H Salman, and DL Stein. Universal protein distributions
+in a model of cell growth and division. Phys. Rev. E,
+92(4):042713, 2015.
+[50] L Susman, M Kohram, H Vashistha, JT Nechleba,
+H Salman, and N Brenner. Statistical properties and dy-
+namics of phenotype components in individual bacteria.
+arXiv, page 1609.05513, 2017.
+[51] GEP Box, GM Jenkins, and GC Reinsel. Time series
+analysis: Forecasting and control. Prentice Hall, 1994.
+[52] EO Powell. Growth rate and generation time of bacte-
+ria, with special reference to continuous culture. J. Gen.
+Microbiol., 15:492–511, 1956.
+[53] M Hashimoto, T Nozoe, H Nakaoka, R Okura,
+S Akiyoshi, K Kaneko, E Kussell, and Y Wakamoto.
+Noise-driven growth rate gain in clonal cellular popula-
+tions. Proc. Natl. Acad. Sci., 113(12):3251–6, 2016.
+[54] S Iyer-Biswas, H Gudjonson, CS Wright, J Riebling,
+E Dawson, K Lo, A Fiebig, S Crosson, and AR Dinner.
+Bridging the time scales of single-cell and population dy-
+namics. arXiv, page 1611.05149, 2016.
+[55] EJ Stewart, R Madden, G Paul, and F Taddei. Aging and
+death in an organism that reproduces by morphologically
+symmetric division. PLoS Biol., 3(2):e45, 2005.
+[56] S Banerjee, K Lo, MK Daddysman, A Selewa, T Kuntz,
+AR Dinner, and NF Scherer. Biphasic growth dynam-
+ics control cell division in Caulobacter crescentus. Nat.
+Microbiol., 2:17116, 2017.
+[57] M Scott, CW Gunderson, EM Mateescu, Z Zhang, and
+T Hwa. Interdependence of cell growth and gene expres-
+sion: origins and consequences. Science, 330(6007):1099–
+102, 2010.
+[58] E Metzl-Raz, M Kafri, G Yaakov, I Soifer, Y Gurvich,
+and N Barkai. Principles of cellular resource allocation re-
+vealed by condition-dependent proteome proﬁling. eLife,
+6:e28034, 2017.
+[59] J Paulsson. Models of stochastic gene expression. Phys.
+Life Rev., 2:157–175, 2005.
+[60] FB Yu, L Willis, RMW Chau, A Zambon, M Horowitz,
+D Bhaya, KC Huang, and SR Quake. Long-term mi-
+croﬂuidic tracking of coccoid cyanobacterial cells reveals
+robust control of division timing. BMC Biol., 15:11, 2017.
+[61] BMC Martins, AK Tooke, P Thomas, and JCW Locke.
+Cell size control driven by the circadian clock and envi-
+ronment in cyanobacteria. bioRxiv, page 183558, 2017.
+[62] R Levins. The strategy of model building in population
+biology. Amer. Sci., 54(4):421–31, 1966.

@@ -1,0 +1,710 @@
+
+===PAGE 1===
+arXiv:q-bio/0501016v1  [q-bio.MN]  12 Jan 2005
+Chemical organization theory: towards a theory of
+constructive dynamical systems
+Peter Dittrich, and Pietro Speroni di Fenizio1
+Bio Systems Analysis Group, Jena Centre for Bioinformatics & Department
+of Mathematics and Computer Science, Friedrich-Schiller-University Jena, D-
+07737 Jena
+November 12, 2021
+Complex dynamical networks consisting of many components that
+interact and produce each other are diﬃcult to understand, espe-
+cially, when new components may appear. In this paper we outline
+a theory to deal with such systems. The theory consists of two parts.
+The ﬁrst part introduces the concept of a chemical organization as
+a closed and mass-maintaining set of components. This concept al-
+lows to map a complex (reaction) network to the set of organizations,
+providing a new view on the system’s structure. The second part
+connects dynamics with the set of organizations, which allows to
+map a movement of the system in state space to a movement in the
+set of organizations.
+Our world is changing, qualitatively and quantitatively. The characteristics
+of its dynamics can be as simple as in the case of a friction-less swinging
+pendulum, or as complex as the dynamical process that results in the creative
+apparition of novel ideas or entities. We might characterize the nature of a
+dynamical process according to its level of novelty production. For example,
+the friction-less swinging pendulum implies a process where the novelty is only
+quantitative. Whereas the process of biological evolution is highly creative and
+generates qualitative novelties, which then spread in a quantitative way.
+Fontana and Buss [1] called processes and systems that display the produc-
+tion of novelty, constructive (dynamical) processes and constructive (dynami-
+cal) systems, respectively. Constructive systems can be found on all levels of
+scientiﬁc abstraction: in nuclear physics, where the collision of atoms or sub-
+atomic particles leads to the creation of new particles; in molecular chemistry,
+where molecules can react to form new molecules; or in social systems, where
+communication can lead to new communication [2]. As a result of a combina-
+torial explosion, it is easy to create something that is new, e.g., a molecule or
+a poem that is unique in the whole known universe. Nevertheless, it should be
+noted that novelty is relative. Whether something is considered to be new or
+not, depends on what is already there. Thence it follows that whether a system
+1Both authors contributed equally.
+1
+===PAGE 2===
+appears as a constructive dynamical system is usually context dependent.
+Despite the fact that a large amount of interesting dynamical processes are
+constructive, classical systems theory does not, conveniently, take novelty into
+account. Classical systems theory assumes a given static set of components.
+For example, a classical systems analysis would ﬁrst identify all components
+and their relations; then would identify a state space with ﬁxed dimensionality,
+e.g., the state of our pendulum could be described by a two-dimensional vector
+specifying angle and angular velocity.
+The lack of a theory for constructive dynamical systems has been identi-
+ﬁed and discussed in detail by Fontana and Buss [1] in the context of a theory
+for biological organization. As a solution, they suggested the important con-
+cept of a (biological) organization as an operationally closed and dynamically
+self-maintaining system. Taking this idea further, we suggested to divide the
+theoretical approach in a static and a dynamic analysis [3]. Here, we present
+the results of our study for general reactions systems, integrating stoichiom-
+etry and the concept of mass-maintenance in the deﬁnition of organizations,
+which is a prerequisite for a broad applicability.
+Reaction Systems. The theory described herein aims at understanding re-
+action systems. A reaction system consists of reactants, which we refer to as
+molecules. An interaction among molecules that lead to the appearance or
+disappearance of molecules is called a reaction. In particular, reaction systems
+are used to model chemical processes, but in general, they can be applied to
+virtually any domain where elements interact to inﬂuence the production of
+other elements, e.g., population dynamics, evolution of language, economy, or
+social dynamics.
+We have to distinguish between a reaction system as an abstract descrip-
+tion of all possible molecules (and their reactions), and a reaction vessel, which
+contains concrete instances of molecules from the set of all possible molecules.
+In general, the description of a reaction system can be subdivided into three
+parts: (1) the set of all possible molecules M, (2) the set of all possible
+reactions among all the possible molecules R, and (3) the dynamics, which
+describes how the reactions are applied to a collection of molecules inside a
+reaction vessel.
+Static Analysis
+Algebraic Chemistry. In the ﬁrst part of the paper, we are only concerned
+with the static structure of a reaction system, that is, the molecules and the
+reactions. And instead of considering a state (e.g., a concentration vector), we
+limit ourself to the analysis of the set of molecules present in that state. We
+introduce the concept of an algebraic chemistry, which is a reaction network,
+2
+===PAGE 3===
+including stoichiometric information, from which we will derive the organiza-
+tional structure of the system.
+Deﬁnition 1 Given a set M of elements (called molecules) and a set of reaction
+rules given by the relation R : PM (M) × PM (M). We call the pair ⟨M, R⟩
+an algebraic chemistry.
+PM (C) is the set of all multisets with elements from C. A multiset diﬀers
+from a set in the fact that the same element can appear more than one time.
+The frequency of occurrence of an element a in a multiset A is denoted by
+#(a ∈ A). For simplicity, we adopt a notion from chemistry to write reaction
+rules. Instead of writing ({s1, s2, . . . , sn}, {s′ 1, s′ 2, . . . , s′ n′ }) ∈ R we write: s1 +
+s2 + · · · + sn → s′ 1 + s′ 2 + · · · + s′ n′ . Given the left hand side molecules
+A = {s1, s2, . . . , sn} and the right hand side molecules B = {s′ 1, s′ 2, . . . , s′ n′ },
+we write (A → B) ∈ R instead of (A, B) ∈ R. A → B represents a chemical
+reaction equation where A is the multiset of molecules on the left hand side
+(also called reactants) and B the multiset of molecules on the right hand side
+(also called products).
+Input and Output. There are many processes that give rise to an inﬂow and
+outﬂow, such as, incident sunlight, decaying molecules, or a general dilution
+ﬂow. In this paper we handle input simply by adding a reaction rule ∅ → a
+to the reaction rules R for every molecule a that is in the inﬂow. ∅ denotes
+the empty set. Equivalently, for an output molecule a (e.g., a molecule that is
+decaying) we add the rule a → ∅ to the reaction rules R.
+Semi-Organization. In classical analysis, we study the movement of the
+system in state space. Instead, here, we consider the movement from one
+set of molecules to another. As in the classical analysis of the dynamic of
+the system, where ﬁxed points and attractors are considered more important
+than other states, some sets of molecules are more important than others.
+In order to ﬁnd those sets, we introduce some properties that deﬁne them,
+namely: closure, self-maintenance, semi-organization, mass-maintenance, and
+ﬁnally the organization.
+All deﬁnitions herein refer to an algebraic chemistry ⟨M, R⟩. The ﬁrst re-
+quirement, called closure, assures that a set of molecules contains all molecules
+that can be produced by reactions among those molecules.
+Deﬁnition 2 A set C ⊆ M is closed, if for all reactions (A → B) ∈ R, with A
+a multiset of elements in C (A ∈ PM (C)), B is also a multiset of elements in
+C (B ∈ PM (C)).
+Given a set S ⊆ M, we can always generate its closure GCL(S) according
+to the following deﬁnition:
+Deﬁnition 3 Given a set of molecules S ⊆ M, we deﬁne GCL(S) as the smallest
+closed set C containing S. We say that S generates the closed set C = GCL(S)
+and we call C the closure of S.
+3
+===PAGE 4===
+The closure implies a union and an intersection operator on the closed sets
+OCL of an algebraic chemistry. Given two closed sets U and V , the closed set
+generated by their union (U ⊔CL V ) and intersection (U ⊓CL V ) is deﬁned as:
+U ⊔CL V ≡ GCL(U ∪ V ), and U ⊓CL V ≡ GCL(U ∩ V ), respectively. Triv-
+ially, closed sets form a lattice ⟨OCL, ⊔CL, ⊓CL⟩, which is a common algebraic
+structure (a poset in which any two elements have a greatest lower bound and
+a least upper bound, see supl. mat.). The property of closure is important,
+because the closed set represents the largest possible set that can be reached
+from a given set of molecules. Furthermore a set that is closed cannot generate
+new molecules and is in that sense more stable than a set that is not closed.
+The next important property, called self-maintenance, assures that every
+molecule that is used-up within a set, is produced within that set.
+Deﬁnition 4 A set of molecules S ⊆ M is called self-maintaining, if all molecules
+s ∈ S that are used-up within S are also produced within that set S.
+More precisely, we say that a molecule k ∈ M is produced within a set C ⊆ M,
+if there exists a reaction (A → B), with A ∈ PM (C), and #(k ∈ A) < #(k ∈
+B). In the same way, we say that a molecule k ∈ C is used-up within the set
+C, if, within the set C, there is a reaction (A → B) with A ∈ PM (C), and
+#(k ∈ A) > #(k ∈ B).
+Taking closure and self-maintenance together, we arrive at the important
+concept of a semi-organization.
+Deﬁnition 5 A semi-organization. O ⊆ M is a set of molecules that is closed
+and self-maintaining.
+Organization. In a semi-organization, all molecules that are used-up are
+produced; but, this does not guarantee that the total amount of mass can be
+maintained. A small, but important example is the reversible reaction in a
+ﬂow reactor: M = {a, b}, R = {a → b, b → a, a → ∅, b → ∅}, where both
+molecules also decay. O = {a, b} is a semi-organization, because the set is
+closed, a is produced by the reaction b → a, and b is produced by the reaction
+a → b. But, obviously, the system {a, b} is not stable, because both molecules
+decay and are not suﬃciently reproduced, so that they will ﬁnally vanish. The
+solution to this problem is to consider the overall ability of a set to maintain
+its total mass. We call such sets mass-maintaining:
+Deﬁnition 6 Given an algebraic chemistry ⟨M, R⟩ with m = |M| molecules
+and n = |R| reactions, and let M = (mi,j ) be the (m × n) stoichiometric
+matrix implied by the reaction rules R, where mi,j denotes the number of
+molecules of type i produced in reaction j. A set of molecules C ⊆ M is called
+mass-maintaining, if there exists a ﬂux vector v ∈ Rn such that the three
+following condition apply: (1) for all reactions (A → B) with A ∈ PM (C) the
+ﬂux v(A→B) > 0; (2) for all reactions (A → B) with A /∈ PM (C), v(A→B) = 0;
+and (3) for all molecules i ∈ C, fi ≥ 0 with (f1, . . . , fm) = Mv.
+4
+===PAGE 5===
+v(A→B) denotes the element of v describing the ﬂux of reaction A → B. For
+the example above, the stoichiometric matrix becomes M = ((−1, 1), (1, −1),
+(−1, 0), (0, −1)), and we can see that there is no positive ﬂux vector v ∈ R4,
+such that Mv ≥ 0. In fact, only the empty semi-organization {} is mass-
+maintaining. In case a and b would not decay, R = {a → b, b → a}, the set
+{a, b} would be (as desired) mass-mainatining, because threre is a ﬂux vector,
+e.g., v = (1.0, 1.0), such that Mv = 0 ≥ 0 with M = ((−1, 1), (1, −1)). Now,
+closure and mass-maintenance together lead to the central deﬁnition of this
+work:
+Deﬁnition 7 A set of molecules O ⊆ M that is closed and mass-maintaining
+is called an organization.
+An organization represents an important combination of molecular species,
+which are likely to be observed in a reaction vessel on the long run. A set
+of molecules that is not closed or not mass-maintaining would not exists for
+long, because new molecules can appear or some molecules would vanish, re-
+spectively. The condition “mass-maintaining” is stronger and more diﬃcult to
+compute than the condition “self-maintaining”. In fact, the former implies the
+latter, because in a mass-maintaing set, a molecule i that is used-up within that
+set must also be produced within that set in order to achieve a non-negative
+production rate fi. Thus we can say:
+Lemma 1 Every organization is a semi-organization.
+Example 1 In order to illustrate the new concepts, we consider a small exam-
+ple where there are just four molecular species M = {a, b, c, d}, which react
+according to the following reaction rules R = {a + b → a + 2b, a + d →
+a + 2d, b + c → 2c, c → b, b + d → c, b → ∅, c → ∅, d → ∅}, where b, c, d decay
+spontaneously and a is a permanent catalyst. Although the reaction system is
+small, its organizational structure is already diﬃcult to see when looking at the
+rules or their graphical representation (Fig. 1). In Fig. 1, all 16 possible sets
+of molecules are shown as a lattice. There are 9 closed sets, 8 self-maintaining
+sets, 7 mass-maintaining sets, and 7 semi-organizations, 6 of which are orga-
+nizations. The organizations are the only combination of molecules that can
+reside in a reaction vessel for a long time. We can also see immediately that
+a reactor containing {b, c, d} must have a transient dynamics “down” where
+molecular species are lost, and that a reactor containing {a, b, d} will have a
+transient where a new molecular species will appear, and so on...
+Diﬀerent reaction systems
+Finding all organizations of a general reaction system appears to be compu-
+tationally diﬃcult. One approach is to ﬁnd the semi-organizations ﬁrst, and
+then check, which of them are also mass-maintaining. The property of the
+set of organizations and semi-organizations depends strongly on the type of
+5
+===PAGE 6===
+system studied. We will present here four types of systems and analyze their
+properties with respect to the newly introduced concepts.
+Catalytic Flow System . In a catalytic ﬂow system all molecules are used-
+up by ﬁrst-order reactions of the form {k} → ∅ (dilution) and there is no
+molecule used-up by any other reaction. So, each molecule k decays sponta-
+neously, or equivalently, is removed by a dilution ﬂow. Apart from this, each
+molecule can appear only as a catalyst (without being used-up). Examples
+of catalytic ﬂow system are the replicator equation[4], the hypercycle [5], the
+more general catalytic network equation [6], or AlChemy [7]. Furthermore some
+models of genetic regulatory networks and social system [8] are catalytic ﬂow
+systems .
+Lemma 2 In a catalytic ﬂow system , every semin-organization is an organiza-
+tion.
+In a catalytic ﬂow system we can easily check, whether a set O is an organi-
+zation by just checking whether it is closed and whether each molecule in that
+set is produced by that set. Furthermore, given a set A, we can always gen-
+erate an organization by adding all molecules produced by A until A is closed
+and than removing molecules that are not produced until A is self-maintaining.
+With respect to the intersection and union of (semi-)organizations the set of
+all (semi-) organizations of a catalytic ﬂow system forms an algebraic lattice
+(see below), which has already been noted by Fontana and Buss [1].
+Reactive Flow System . In a reactive ﬂow system all molecules are used-
+up by ﬁrst-order reactions of the form {k} → ∅ (dilution). But as opposed
+to the previous system, we allow arbitrary additional reactions in R. This
+is a typical situation for chemical ﬂow reactors or bacteria that grow [9]. In
+a reactive ﬂow system , semi-organizations are not necessarily organizations,
+as in the reversible reaction example shown before. Nevertheless, both, the
+semi-organizations and the organizations form a lattice ⟨O, ⊔, ⊓⟩, Moreover,
+the union (⊔) and intersection (⊓) of any two organizations is an organization
+(see below).
+Consistent Reaction System . In a consistent reaction system there are
+two types of molecules: persistent molecules P and non-persistent molecules.
+All non-persistent molecules k ∈ M \ P are used-up (as in the two systems
+before) by ﬁrst-order reactions of the form {k} → B with k /∈ B; whereas a
+persistent molecule p ∈ P is not used-up by any reaction at all. An example
+of a consistent reaction system is Example 2, where a is a persistent molecule.
+The consistent reaction system is the most general of the four systems where
+the semi-organizations and organizations always form a lattice, and where the
+generate organization operator can properly be deﬁned (see below). As in a
+reactive ﬂow system , not all semi-organizations are organizations.
+6
+===PAGE 7===
+General Reaction System . A general reaction system consists of arbi-
+trary reactions. Examples are planetary atmosphere chemistries [10]. In a
+general reaction system , neither the set of organization nor the set of semi-
+organizations necessarily form a lattice. Because of the lack of properties there
+is an actual diﬃculty in studying those systems. The analysis gets much easier,
+if we are able to transform the system into something else, e.g., a consistent
+reaction system . This could be done by introducing a small outﬂow for each
+molecule.
+Common Properties of Consistent Reaction System Consistent reac-
+tion systems (including reactive ﬂow system and catalytic ﬂow system ) possess
+some comfortable properties that allow us to present a series of useful deﬁni-
+tions and lemmas. In a consistent reaction system , given a set of molecules C,
+we can uniquely generate a self-maintaining set, a semi-organization, a mass-
+maintaining set, and an organization in a similar way as we have generated
+a closed set. And like for closed sets, we can deﬁne the union and intersec-
+tion on self-maintaining sets, semi-organizations, mass-maintaining sets, and
+organizations, respectively. Furthermore, each, the self-maintaining sets, semi-
+organizations, mass-maintaining sets, and organizations form a lattice together
+with their respective union and intersection operators. This does not gener-
+alize to general reaction system , because for a general reaction system we
+cannot uniquely generate a self-maintaining set, a semi-organization, a mass-
+maintaining set, nor an organization as in the case of a consistent reaction
+system .
+Deﬁnition 8 Given a set of molecules C ⊆ M, we deﬁne GSM (C) as the biggest
+self-maintaining set S contained in C. We say that C generates the self-
+maintaining set S = GSM (C).
+In order to calculate the self-maintaining set generated by C, we remove those
+molecules that are used-up and not produced within C, until all molecules used-
+up are also produced, and thus reaching a self-maintaining set. The operator
+GSM (generate self-maintaining set) implies the union ⊔SM and intersection
+⊓SM on self-maintaining sets: Given two self maintaining sets S1 and S2, the
+self-maintaining sets generated by their union (S1 ⊔CL S2) and intersection
+(S1 ⊓CL S2) are deﬁned as: S1 ⊔SM S2 ≡ GSM (S1 ∪ S2), and S1 ⊓SM S2 ≡
+GSM (S1 ∩ S2), respectively. And as already mentioned, in a consistent reaction
+system , ⟨OSM , ⊔SM , ⊓SM ⟩ forms a lattice, where OSM is the set of all self-
+maintaining sets of an algebraic chemistry. Finally note that, if S is self-
+maintaining, its closure GCL(S) is self-maintaining, too (in consistent reaction
+systems ).
+There are many ways in which we can generate a semi-organization from
+a set. We will present here the simplest one, which implicitly assumes that
+molecules are produced quickly and vanish slowly. This assumption leads to
+the largest possible semi-organization generated by a set:
+7
+===PAGE 8===
+Deﬁnition 9 Given a set of molecules C ⊆ M, we deﬁne GSO(C) as GSM (GCL(S)).
+We say that C generates the semi-organization O = GSO(C).
+In the same way as before, the generate semi-organization operator GSO(C)
+implies the union ⊔SO and intersection ⊓SO on semi-organizations, namely
+O1 ⊔SO O2 ≡ GSO(O1 ∪ O2), and O1 ⊓SO O2 ≡ GSO(O1 ∩ O2), respectively,
+which implies the lattice of semi-organizations.
+Deﬁnition 10 Given a set of molecules C ⊆ M, we deﬁne GM M (C) as the
+biggest mass-maintaining set S contained in C. We say that C generates the
+mass-maintaining set S = GM M (C).
+For consistent reaction systems , GM M (C) is always deﬁned, because the union
+(∪) of two mass-maintaining sets is mass-maintaining; and further, every set is
+either mass-maintaining, or it contains a unique biggest mass-maintaining set.
+Thus from every set we can generate a mass-maintaining set. Note that mass-
+maintaining sets are also self-maintaining, GM M (GSM (S)) ≡ GM M (S), which
+is a useful property, because GSM (S) is easier to compute. As usual, the union
+⊔M M and intersection ⊓M M of mass-maintaining sets S1, S2 are deﬁned as
+S1⊔M M S2 ≡ GM M (S1∪S2), S1⊓M M S2 ≡ GM M (S1∩S2), respectively. Thus also
+the set of all mass-maintaining sets OM M forms a lattice ⟨OM M , ⊔M M , ⊓M M ⟩.
+If S is mass-maintaining, its closure GCL(S) is mass-maintaining, too (again,
+not valid for general reaction systems ).
+Finally, in consistent reaction systems , we can also generate uniquely an
+organization, (here, again, the largest organization that can be generated from
+a set) according to the following deﬁnition:
+Deﬁnition 11 Given a set of molecules C ⊆ M, we deﬁne G(C) as GM M (GCL(C)).
+We say that C generates the organization O = G(C).
+Equivalently G(C) = GM M (GSM (GCL(C))), which allows to compute the
+organization generated by a set more easily in three steps. Following the same
+scheme as before, the union ⊔ and intersection ⊓ of two organizations U and V
+is deﬁned as the organization generated by their set-union and set-intersection:
+U ⊔ V ≡ G(U ∪ V ), U ⊓ V ≡ G(U ∩ V ), respectively. Thus, for consistent
+reaction system , also the set of all organizations O forms a lattice ⟨O, ⊔, ⊓⟩.
+This important fact should be emphasized by the following lemma:
+Lemma 3 Given an algebraic chemistry ⟨M, R⟩ of a consistent reaction system
+and all its organizations O, then ⟨O, ⊔, ⊓⟩ is a lattice.
+Knowing that the semi-organizations and organizations form a lattice, and
+that we can uniquely generate an organization for every set, is a useful infor-
+mation. In order to ﬁnd the whole set of organizations, it is impractical just
+to check all the possible sets of molecules. Instead, we can start by comput-
+ing the lattice of semi-organizations, and then test only those sets for mass-
+maintenance. Furthermore, if the semi-organizations form a lattice, we can
+start with small sets of molecules and generate their semi-organizations, while
+the ⊔SO operator can lead us to the more complex semi-organizations.
+8
+===PAGE 9===
+As a summary, from a practical point of view, we calculate ﬁrst the set
+of semi-organizations. If our system is a catalytic ﬂow system , we automati-
+cally obtain the lattice of organizations. Otherwise we have to check for each
+semi-organization whether it is mass-maintaining or not. If we have a con-
+sistent reaction system , then we are assured to obtain a lattice, where there
+is a unique smallest and largest organization, and where we can easily obtain
+the intersection and union of two organizations from the graphical represen-
+tation of the lattice (see examples). For a general reaction system , the set of
+organizations does not necessarily form a lattice. Nevertheless, this set of orga-
+nizations represent the organizational structure of the reaction network, which
+can be visualized and which can provide a new view on the dynamics of the
+system by mapping the movement of the system in state space to a movement
+in the set of organizations, as will be shown in the following section.
+Dynamic Analysis
+The static theory deals with molecules M and their reaction rules R, but not
+with the evolution of the system in time. To add dynamics to the theory, we
+have to formalize the dynamics of a system. In a very general approach, the
+dynamics is given by a state space X and a formal deﬁnition (mathematical
+or algorithmical) that describes all possible movements in X. Given an initial
+state x0 ∈ X, the formal deﬁnition describes how the state changes over time.
+For simplicity, we assume a deterministic dynamical process, which can be
+formalized by a phase ﬂow (X, (Tt)t∈R) where (Tt)t∈R is a one-parametric group
+of transformations from X. Tt(x0) denotes the state at time t of a system that
+has been in state x0 at t = 0.
+Connecting to the Static Theory A state x ∈ X represents the state of
+a reaction vessel that contains molecules from M. In the static part of the
+theory we consider just the set of molecular species present in the reaction
+vessel, but not their concentrations, spatial distributions, velocities, and so
+on.
+Now, given the state x of the reaction vessel, we need a function that maps
+uniquely this state to the set of molecules present. Vice versa, given a set of
+molecules A ⊆ M, we need to know, which states from X correspond to this
+set of molecules. For this reason we introduce a mapping φ called abstraction,
+from X to M, which maps a state of the system to the set of molecules that
+are present in the system being in that state. We require this mapping to be
+monotonically increasing on the number of molecules. In other words, if we
+have two states x1 and x2, and the concentration of the molecule m1 is higher
+in x2 than in x1; and if m1 ∈ φ(x1) then m1 ∈ φ(x2). The exact mapping can
+be deﬁned precisely later, depending on the state space, on the dynamics, and
+on the actual application.
+9
+===PAGE 10===
+The concept of instance is the opposite of the concept of abstraction. While
+φ(x) denotes the molecules represented by the state x, an instance x of a set
+A is a state where exactly the molecules from A are present according to the
+function φ.
+Deﬁnition 12 We say that a state x ∈ X is an instance of A ⊆ M, iﬀ φ(x) = A
+In particular, we can deﬁne an instance of an organization O (if φ(x) = O)
+and an instance of a generator of O (if G(φ(x)) = O). Loosely speaking we
+can say that x generates organization O. Note that a state x of a consistent
+reaction system , reactive ﬂow system , and catalytic ﬂow system is always an
+instance of a generator of one and only one organization O. This leads to the
+important observation that a lattice of organizations partitions the state space
+X, where a partition XO implied by organization O is deﬁned as the set of all
+instance of all generators of O: XO = {x ∈ X|G(φ(x)) = O}. Note that as
+the system state evolves over time, the organization G(φ(x(t))) generated by
+x(t) might change (see below, Fig. 2 and 3).
+Fixed Points are Instances of Organizations. Now we describe a the-
+orem that relates ﬁxed points to organizations, and by doing so, underlining
+the relevancy of organizations. We will show that, given an ODE of a form
+that is commonly used to describe the dynamics of reaction systems, every
+ﬁxed point of this ODE is an instance of an organization. We therefore as-
+sume in this section that x is a concentration vector x = (x1, x2, . . . , x|M|),
+X = R|M|, xi ≥ 0 where xi denotes the concentration of molecular species i
+in the reaction vessel, and M is ﬁnite. The dynamics is given by an ODE
+of the form ˙x = Mv(x) where M is the stoichiometric matrix implied by the
+algebraic chemistry ⟨M, R⟩ (reaction rules). v(x) = (v1(x), . . . , vn(x)) ∈ R|R|
+is a ﬂux vector depending on the current concentration x, where |R| denotes
+the number of reaction rules. A ﬂux vj (x) describes the rate of a particular
+reaction j. For the function vj we require only that vj (x) is positive, if and
+only if the molecules on the left hand side of the reaction j are present in the
+state x, and otherwise it must be zero. Often it is also assumed that vj (x)
+increases monotonously, but this is not required here. Given the dynamical
+system as ˙x = Mv(x), we can deﬁne the abstraction of a state x formally
+by using a (small) threshold Θ ≥ 0 such that all ﬁxed points have positive
+coordinates greater than Θ.
+Deﬁnition 13 Given a dynamical system ˙x = f (x) and let x be a state in X,
+then the abstraction φ(x) is deﬁned by
+φ(x) = {i|xi > Θ, i ∈ M}, φ : X → P(M), Θ ≥ 0 (1)
+where xi is the concentration of molecular species i in state x, and Θ is a
+threshold chosen such that it is smaller than any positive coordinate of any
+ﬁxed point of ˙x = f (x), xi ≥ 0.
+10
+===PAGE 11===
+Setting Θ = 0 is a safe choice, because in this case φ always meets the
+deﬁnition above. But for practical reasons, it makes often sense to apply a
+positive threshold greater zero, e.g., when we take into consideration that the
+number of molecules in a reaction vessel is ﬁnite.
+Theorem 1 Hypothesis: Let us consider a general reaction system whose re-
+action network is given by the algebraic chemistry ⟨M, R⟩ and whose dynamics
+is given by ˙x = Mv(x) = f (x) as deﬁned before. Let x′ ∈ X be a ﬁxed point,
+that is, f (x′) = 0, and let us consider a mapping φ as given by Def. 13, which
+assigns a set of molecules to each state x. Thesis: φ(x′) is an organization.
+Proof: We need to prove that φ(x′) is closed and mass-maintaining: (a)
+Closure: Let us assume that φ(x′) is not closed, then there exist a molecule k
+such that k /∈ φ(x′) and k is generated by molecules contained in φ(x′). Since,
+x′ is a ﬁxed point, f (x′) = Mv(x′) = 0. Now we decompose the stoichiometric
+matrix M into two matrices M+ and M− separating all positive from the
+negative coeﬃcients, respectively, such that M = M+ +M− and M+v(x′) ≥ 0,
+and M−v(x′) ≤ 0 (note that v(x′) is always non-negative by deﬁnition). Let
+˙x+ k and ˙x− k be the k-th row of M+v′(x) and M−v′(x), respectively, which
+represent the inﬂow (production) and outﬂow (destruction) of molecules of
+type k. Note that ˙x+ k + ˙x− k = ˙x′ k = 0 (ﬁxed point condition). Since we assumed
+that k is produced by molecules from φ(x′), ˙x+ k must be positive, ˙x+ k > 0 and
+thus ˙x− k < 0. But this leads to a contradiction. In order to show this we
+have to diﬀerentiate the following two cases: (i) Assume that x′ k = 0, then
+˙x− k must be zero, too (by deﬁnition; and intuitively, because a molecule not
+present cannot vanish). (ii) Assume that 0 < x′ k ≤ Θ (x′ k > Θ needs not to be
+considered, because in that case k would be contained in φ(x).). Because we
+assumed that x′ k is a coordinate of a ﬁxed point, Θ must be smaller than x′ k,
+which is again a contradiction.
+(b) Mass-maintaining: We have to show that φ(x′) is mass-maintaining.
+Since x′ is a ﬁxed point Mv(x′) = 0, which fulﬁlls condition (3) of the deﬁni-
+tion of mass-maintaining (Def. 6). From the requirements for the ﬂux vector
+v, it follows directly that v(A→B)(x′) > 0 for all A ∈ PM (φ(x′)), which ful-
+ﬁlls condition (1) of Def. 6. Following the same contradictory argument as
+before in (ii), x′ k must be zero for k /∈ φ(x), and therefore v(A→B)(x′) = 0 for
+A /∈ PM (φ(x)), which fulﬁlls the remaining condition (2) of mass-maintaining.
+q.e.d.
+From this theorem it follows immediately that a ﬁxed point is an instance
+of a closed set, a self-maintaining set, and of a semi-organization. Let us
+ﬁnally mention that even if each ﬁxed point is an instance of an organization,
+an organization does not necessarily possess a ﬁxed point. Further note that
+given an attractor A ⊆ X, there exists an organization O such that all points
+of A are instances of a generator of O. In fact, it might be natural to suppose
+that all points of an attractor are actually instances of O, yet it is not clear if
+11
+===PAGE 12===
+this is true for all systems or just for some.
+Movement from Organization to Organization
+ODEs and Movement in the Set of Organizations Not all system can
+be studied using ODEs. In particular a discrete system is usually only approx-
+imated by an ODE. In a discrete dynamical system, the molecular species that
+are present in the reaction vessel can change in time, e.g, as the last molecule
+of a certain type vanishes. In an ODE instead, this does not generally happen,
+where molecules can tend to zero as time tends to inﬁnity. So, even if in reality
+a molecule disappears, in an ODE model it might still be present in a tiny
+quantity. The fact that every molecule ends up being present in (at least)
+a tiny quantity, generally precludes us to notice that the system is actually
+moving from a state where some molecules are present, to another state where
+a diﬀerent set of molecules is present. Yet this is what happens in reality,
+and in this respect, an ODE is a poor approximation of reality. A common
+approach to overcome this problem is to introduce a concentration threshold
+Θ, below which a molecular species is considered not to be present. We use
+this threshold in order to deﬁne the abstraction φ, which just returns the set of
+molecules present in a certain state. Additionally, we might use the threshold
+to manipulate the numerical integration of an ODE by setting a concentra-
+tion to zero, when it falls below the threshold. In this case, a constructive
+perturbation has to be greater than this threshold.
+Downward Movement Not all organizations are stable. The fact that
+there exits a ﬂux vector, such that no molecule of that organization vanishes,
+does not imply that this ﬂux vector can be realized when taking dynamics into
+account. As a result a molecular species can disappear. Each molecular species
+that disappears simpliﬁes the system. Some molecules can be generated back.
+But eventually the system can move from a state that generates organization
+O1 into a state that generates organization O2, with O2 always below O1
+(O2 ⊂ O1). We call this spontaneous movement a downward movement.
+Upward Movement Moving up to an organization above requires that a
+new molecular species appears in the system. This new molecular species can-
+not be produced by a reaction among present molecules (condition of closure).
+Thus moving to an organization above is more complicated then the movement
+down and requires a couple of speciﬁcations that describe how new molecular
+species enter the system. Here we assume that new molecular species appear
+by some sort of random perturbations or purposeful interference. We assume
+that a small quantity of molecules of that new molecular species (or a set
+of molecular species) suddenly appears. Often, in practice, the perturbation
+12
+===PAGE 13===
+(appearance of new molecular species) has a much slower time scale than the
+internal dynamics (e.g., chemical reaction kinetics) of the system.
+Example 2 Assume a system with two molecular species M = {a, b} and the
+reactions R = {a → 2a, b → 2b, a + b → a, a →, b →}. All combinations of
+molecules are organizations, thus there are four organizations (Fig. 2). Assume
+further that the dynamics is governed by the ODE ˙x1 = x1 − x2 1, ˙x2 = x2 − x2 2 −
+x1x2 where x1 and x2 denote the concentration of species a and b, respectively.
+We map a state to a set of molecules by using a small, positive threshold Θ =
+0.1 > 0 (Def. 13). Now, assume that the system is in state x0 = (0, 1) thus in
+organization {b}. If a small quantity of a appears (constructive perturbation),
+the amount of a will grow and b will tend to zero. The system will move
+upward to organization {a, b} in a transient phase, while ﬁnally moving down
+and converging to a ﬁxed point in organization {a}. This movement can now
+be visualized in the lattice of organizations as shown in Fig. 2.
+Visualizing Possible Movements in the Set of Organizations In order
+to display potential movements in the lattice or set of organizations, we can
+draw links between organizations. As exempliﬁed in Fig. 2 and Fig. 3, these
+links can indicate possible downward movements (down-link, blue) or upward
+movements (up-link, red). A neutral link (black line) denotes that neither the
+system can move spontaneously down, nor can a constructive perturbation
+move the system up. Whether the latter is true depends on the deﬁnition of
+“constructive perturbation” applied. For the example of Fig. 3 we deﬁned a
+constructive perturbation as inserting a small quantity of one new molecular
+species.
+The dynamics in between organizations is more complex than this intuitive
+presentation might suggest, for example in some cases it is possible to move
+from one organization O1 to an organization O2, with O2 above (or below) O1
+without passing through the organizations in between O1 and O2. In Fig. 3
+this is the case for an upward movement from organization {a} to organization
+{a, b, c} caused by a constructive perturbation where a small quantity of c has
+been inserted.
+Organizations in Real Systems In preliminary studies [11] we have shown
+that artiﬁcial chemical reaction networks that are based on a structure-to-
+function mapping (e.g., ref. [1, 12]) possess a more complex lattice of orga-
+nization than networks created randomly. From this observation we can al-
+ready expect that natural networks possess non-trivial organization structures.
+Our investigation of planetary photo-chemistries [10] and bacterial metabolism
+(which will be published elsewhere), revealed lattices of organizations that van-
+ish when the networks are randomized, indicating a non-trivial structure. Here,
+in order to give an impression, we show a lattice of organizations obtained from
+13
+===PAGE 14===
+a model of the central sugar metabolism of E.coli by Puchalka and Kierzek [9].
+The model consists of 92 species and 197 reactions, including gene expression,
+signal transduction, transport, and enzymatic activities. Figure 4 shows the
+lattice of organizations resulting from the original model, ignoring inhibiting
+interactions. The smallest organization, O1, contains 76 molecules including
+the glucose metabolism and all input molecules. The input molecules, chosen
+according to ref. [9], include the external food set (Glcex, Glyex, Lacex) and
+all promoters (see suppl. material). Two other organizations, O3 and O4, con-
+tain the Lactose and Glycerol metabolism, respectively. Their union results in
+the largest organization O5 that contains all molecules. In summary, we can
+conclude, that the organizations found are biological meaningful, indicating a
+promising potential for future applications of this theory.
+Conclusion We presented a general way to deﬁne organizations in reaction
+systems, and proved a theorem that showed that ﬁxed points are instances of
+those organizations. We also investigated the relative structure of the orga-
+nizations, opening up the door to visualize the dynamical movement of the
+system through organizations. Much work still needs to be done, and we be-
+lieve that this line of research is just in its infancy. Reaction systems with
+inhibiting interactions need to be investigated, as well as the structure inside
+organizations (i.e. the relation between attractive states and organizations).
+In fact the whole issue of movement among sets of molecules could only be
+introduced here. The concepts of attractive and stable organizations, which
+play a fundamental role in dynamical systems, has still to be formally deﬁned.
+Yet we believe that our work represents a step forward towards a formal study
+of constructive dynamical system.
+We thank Florian Centler for providing the E. Coli. analysis. This work was supported by
+Federal Ministry of Education and Research (BMBF) Grant 0312704A to Friedrich-Schiller-
+University Jena.
+References
+[1] Fontana, W & Buss, L. W. (1994) Bull. Math. Biol. 56, 1–64.
+[2] Luhmann, N. (1984) Soziale Systeme. (Suhrkamp, Frankfurt a.M.).
+[3] Speroni di Fenizio, P & Dittrich, P. (2002) J. of Three Dimensional
+Images 16, 160–163.
+[4] Schuster, P & Sigmund, K. (1983) J. Theor. Biol. 100, 533–8.
+[5] Eigen, M & Schuster, P. (1977) Naturwissenschaften 64, 541–565.
+[6] Stadler, P. F, Fontana, W, & Miller, J. H. (1993) Physica D 63, 378–392.
+14
+===PAGE 15===
+[7] Fontana, W. (1992) in Artiﬁcial Life II eds. Langton, C. G, Taylor, C,
+Farmer, J. D, & Rasmussen, S. (Addison-Wesley, Redwood City, CA),
+pp. 159–210.
+[8] Dittrich, P, Kron, T, & Banzhaf, W. (2003) JASSS 6.
+[9] Puchalka, J & Kierzek, A. (2004) Biophys. J. 86, 1357–1372.
+[10] Yung, Y. L & DeMore, W. B. (1999) Photochemistry of Planetary Ath-
+mospheres. (Oxford University Press, New York).
+[11] Speroni di Fenizio, P, Dittrich, P, Ziegler, J, & Banzhaf, W. (2000) To-
+wards a Theory of Organizations. (GWAL 4, Bayreuth, 5.-7. April, 2000).
+[12] Banzhaf, W. (1993) Biol. Cybern. 69, 269–281.
+15
+===PAGE 16===
+FIGURE CAPTION
+Figure 1: Example with four species. Reaction network (a “2” means that
+two molecules are produced) and graphical representation of the lattice of all
+sets. The vertical position is determined by the set size. The solid lines depict
+the lattice of organizations.
+Figure 2: Example of an up-movement caused by a constructive perturba-
+tion, followed by a down-movement. (a) reaction network, (b) concentration
+vs. time plot of a trajectory, (c) lattice of organizations including trajectory.
+Figure 3: Lattice of organizations of Example 1, including up-links and
+down-links. Furthermore a trajectory is shown starting in organization {a, b, c, d}
+moving down to organization {a, b}.
+Figure 4: Lattice of organizations of a model of the central sugar metabolism
+of E.coli. [9]. In an organization, only names of new molecular species are
+printed that are not present in an organization below.
+16
+===PAGE 17===
+{b, c, d}{a, b, d}
+{a, b} {b, c}
+closed set
+self−maintaining set
+organization
+semi−organization
+mass−maintaining set
+a
+c
+b d
+2
+2
+2
+{a, b, c, d}
+{a, b, c} {a, c, d}
+{b}{a} {c} {d}
+{}
+{a, c} {a, d} {b, d} {c, d}
+Figure 1: Example with four species. Reaction network (a “2” means that two
+molecules are produced) and graphical representation of the lattice of all sets.
+The vertical position is determined by the set size. The solid lines depict the
+lattice of organizations.
+17
+===PAGE 18===
+a  b
+a b
+ba
+ 0.01
+ 0.1
+ 1
+ 1  10  100
+concentration (arbitrary unit)
+time (arbitrary unit)
+[a]
+[b]
+Phi=0.1
+{a}{b} {a, b}
+(b)(a)
+(c)
+2 2
+Figure 2: Example of an up-movement caused by a constructive perturbation,
+followed by a down-movement. (a) reaction network, (b) concentration vs.
+time plot of a trajectory, (c) lattice of organizations including trajectory.
+18
+===PAGE 19===
+{a}
+{a, b}
+{}
+{a, b, c, d}
+{a, d}
+{a, b, c}
+trajectory
+up−link
+down−link
+ [a] > 1
+ [a] > 1  [a] > 1
+[a] <= 1
+[a] < 1
+ [a] > 1
+ 0.001
+ 0.01
+ 0.1
+ 1
+ 1  10  100
+concentration (arbitrary unit)
+time (arbitrary unit)
+[a]
+[b]
+Phi=0.1
+[c][d]
+Figure 3: Lattice of organizations of Example 1, including up-links and down-
+links. Furthermore a trajectory is shown starting in organization {a, b, c, d}
+moving down to organization {a, b}.
+19
+===PAGE 20===
+CrpmRNA  Crp
+GlpFKmRNA  GlpF  GlpK  Gly
+ G3P  GlpDmRNA  GlpD  GlpFKmRNA1
+LacZYmRNA LacZ LacY
+Allo  Lac  LacZYmRNA1 
+Glk PromCya ....
+Glcex Glyex Lacex Glc6P Glc
+organization O3
+organization O5
+organization O4
+organization O2
+organization O1
+[76 species total]
+Figure 4: Lattice of organizations of a model of the central sugar metabolism
+of E.coli. [9]. In an organization, only names of new molecular species are
+printed that are not present in an organization below.
+20
