@@ -76,3 +76,6 @@ literature/fulltext/
 .coord/mail/
 .coord/board.md
 .coord/backups/
+
+# Логи прогонов гейта: вывод проверки, а не результат
+scratch/*.log
