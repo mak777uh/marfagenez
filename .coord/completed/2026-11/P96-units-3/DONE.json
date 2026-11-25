@@ -1,0 +1,20 @@
+{
+  "task": "P96-units-3",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T06:34:29Z",
+  "artifacts": [
+    {
+      "path": "kg/migrate.py",
+      "sha256": "55283a87193bf474c075ab84b415cbbbc6c04d73f4a6aa9d1795a83016695bb5",
+      "bytes": 22604
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "9bcdd4bd9175376e0f82eb92713ee88dda2de2cb126ef15a8fe467602a58b3ee",
+      "bytes": 34539
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
