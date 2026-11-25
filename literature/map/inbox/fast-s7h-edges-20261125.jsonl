@@ -1,0 +1,7 @@
+{"from": "FAST-S7H-04", "to": "FAST-S7H-03", "type": "refines", "note": "CRPS — интеграл Brier-скоров по всем порогам: непрерывный аналог бинарной метрики."}
+{"from": "FAST-S7H-05", "to": "FAST-S7H-04", "type": "refines", "note": "Energy score обобщает CRPS: β=1, m=1 даёт CRPS; добавляет многомерность и показатель β."}
+{"from": "FAST-S7H-03", "to": "FAST-S7H-01", "type": "supports", "note": "Brier score — конкретная строго proper метрика, иллюстрирующая общее определение."}
+{"from": "FAST-S7H-04", "to": "FAST-S7H-01", "type": "supports", "note": "CRPS доказан proper/строго proper — выполнено общее требование к честной метрике."}
+{"from": "FAST-S7H-02", "to": "FAST-S7H-01", "type": "supports", "note": "Разделение calibration/sharpness — содержательная причина, по которой proper scoring rules предпочитают ad hoc метрикам."}
+{"from": "FAST-S7H-03", "to": "FAST-S7H-02", "type": "supports", "note": "Brier score штрафует и за смещение калибровки, и за размытие прогноза — одна метрика для двух требований."}
+{"from": "FAST-S7H-05", "to": "W4-0020", "type": "analogous", "note": "Как и в задаче оценки качества модели по прошлым отказам, выбор строго proper метрики определяет, что именно поощряется."}

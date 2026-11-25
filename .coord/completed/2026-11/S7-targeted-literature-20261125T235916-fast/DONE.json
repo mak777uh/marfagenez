@@ -1,0 +1,20 @@
+{
+  "task": "S7-targeted-literature-20261125T235916-fast",
+  "agent": "fast",
+  "gen": 9,
+  "finished_at": "2026-11-25T21:01:10Z",
+  "artifacts": [
+    {
+      "path": "literature/map/inbox/fast-s7i-atoms-20261125.jsonl",
+      "sha256": "3d51539d3155ecc4608935460ac1130ced4ba82f3bd473071b4a27fff68a92c6",
+      "bytes": 8957
+    },
+    {
+      "path": "literature/map/inbox/fast-s7i-edges-20261125.jsonl",
+      "sha256": "1ca078796d5b51bf6460de0212d82051aac2747fc6e2fd3814ffe9f843937ebf",
+      "bytes": 2130
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
