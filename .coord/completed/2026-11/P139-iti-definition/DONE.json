@@ -1,0 +1,20 @@
+{
+  "task": "P139-iti-definition",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T14:29:52Z",
+  "artifacts": [
+    {
+      "path": "docs/FORMULA-ITI.md",
+      "sha256": "d67390e19d81e6a6bf1e93d30a30100ea3915cd7a15a326f38895e791d19e578",
+      "bytes": 4116
+    },
+    {
+      "path": "tools/iti_decomposition.py",
+      "sha256": "980e6b121c9e7b52897976fbd566b0a2cdc3c3a9d5fac0aa823a8f564cb0356e",
+      "bytes": 7171
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
