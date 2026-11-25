@@ -1,0 +1,21 @@
+{
+  "ok": false,
+  "task_sha256": "0b908c4da9805c18103b55b59c019c0b78e7d95f64c895593f9933cc07b036bf",
+  "done_sha256": "d493e8b7aad1c6fb5d7db2707546f42bc6ace04cfc9c0db9a499b34a31576e47",
+  "gen": 16,
+  "verified_at": "2026-11-25T15:17:55Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/doc_links.py",
+      "rc": 0,
+      "tail": "ссылки в документации: все относительные .md разрешаются (известных мёртвых: 4)"
+    },
+    {
+      "cmd": "python3 checks/log_check.py",
+      "rc": 1,
+      "tail": "ЖУРНАЛ: 2 проблем\n  docs/agent/AGENT_LOG.md: 1 коммитов после последней записи цикла не названы ни одной записью -- журнал отстал\n      3e2b8058 results and task state after the gate run"
+    }
+  ],
+  "bad_artifacts": []
+}
