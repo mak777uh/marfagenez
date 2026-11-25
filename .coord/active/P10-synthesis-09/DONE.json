@@ -1,0 +1,15 @@
+{
+  "task": "P10-synthesis-09",
+  "agent": "fast",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:05:35Z",
+  "artifacts": [
+    {
+      "path": "docs/SYNTHESIS-09-DRAFT.md",
+      "sha256": "e70d4750aaf5cad83426c851bd25c754369080d712cdd0295b7d2e8644932aff",
+      "bytes": 9370
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

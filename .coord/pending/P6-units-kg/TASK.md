@@ -7,8 +7,9 @@
 
 ## Рабочая область (файлы, которые задача вправе менять/создавать)
 
-- `literature/map/inbox/fast-*.jsonl`
 - `docs/UNITS-AUDIT.md`
+- `docs/FORMULA-*.md`
+- `docs/FINDING-*.md`
 
 ## Что нужно сделать
 

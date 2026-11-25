@@ -8,7 +8,7 @@
 ## Рабочая область (файлы, которые задача вправе менять/создавать)
 
 - `docs/FORMULA-DISSOLUTION.md`
-- `literature/map/inbox/fast-*.jsonl`
+- `docs/FINDING-*.md`
 
 ## Что нужно сделать
 

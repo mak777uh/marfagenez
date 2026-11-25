@@ -10,7 +10,7 @@
 
 - `docs/FORMULA-*.md`
 - `docs/FINDING-*.md`
-- `literature/map/inbox/fast-*.jsonl`
+- `docs/UNITS-AUDIT.md`
 
 ## Что нужно сделать
 

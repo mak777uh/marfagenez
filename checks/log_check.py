@@ -614,7 +614,15 @@ def main() -> int:
         if is_frozen(rel):
             skipped += 1
             continue
-        lines = path.read_text(encoding="utf-8").splitlines()
+        # Карточки очереди (`.coord/{pending,active,completed}`) отслеживаются git и законно
+        # переезжают между состояниями при взятии задачи. `git ls-files` ещё какое-то время
+        # перечисляет старый путь, и чтение падало с FileNotFoundError — проверка ломалась не
+        # из-за расхождения чисел, а из-за нормального хода работы. Пропускаем исчезнувший путь.
+        try:
+            lines = path.read_text(encoding="utf-8").splitlines()
+        except FileNotFoundError:
+            skipped += 1
+            continue
         dated = dated_sections(lines)
         for n, line in enumerate(lines, 1):
             # The marker may sit on the line itself or up to two lines above:

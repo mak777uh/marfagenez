@@ -1,0 +1,15 @@
+{
+  "task": "S3-formulas-lean-20261125T025958-main",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:05:11Z",
+  "artifacts": [
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "19008527d1a3f4ef9ab761f1069ce6084a8696c28b14e67c7c2b039a4c078bbb",
+      "bytes": 8488
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

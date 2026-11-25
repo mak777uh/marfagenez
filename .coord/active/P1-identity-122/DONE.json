@@ -1,0 +1,15 @@
+{
+  "task": "P1-identity-122",
+  "agent": "fast",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:02:04Z",
+  "artifacts": [
+    {
+      "path": "docs/SUPPORT-WORKLIST-2.md",
+      "sha256": "da1eddc42d4bc4e68cfd72e4bcac730bd052a07e6020a7a9073b15e9dc81f3cc",
+      "bytes": 2895
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

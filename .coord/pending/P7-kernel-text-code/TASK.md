@@ -7,8 +7,8 @@
 
 ## Рабочая область (файлы, которые задача вправе менять/создавать)
 
-- `literature/map/inbox/fast-*.jsonl`
 - `docs/KERNEL-TEXT-AUDIT.md`
+- `docs/FINDING-*.md`
 
 ## Что нужно сделать
 
