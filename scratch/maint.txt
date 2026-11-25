@@ -1,0 +1,775 @@
+ 
+ 
+1 
+ 
+Microbial maintenance energy quantified and modeled with 1 
+microcalorimetry  2 
+Kristopher A. Hunt1*, Frederick von Netzer1, Drew Gorman-Lewis2 and David A. Stahl1 3 
+1 Department of Civil and Environmental Engineering, University of Washington, Seattle, WA 4 
+98105 5 
+2 Department of Earth and Space Sciences, University of Washington, Seattle, WA 98105 6 
+* Corresponding author: Kristopher A. Hunt 7 
+616 NE Northlake Pl. 8 
+Box 355014 9 
+Seattle, WA 98105 10 
+206-616-6985 11 
+Email:  hunt0362@uw.edu 12 
+Keywords: maintenance energy, microcalorimetry, growth thermodynamics, sulfate reduction, 13 
+growth temperature, growth yield, energy consumption 14 
+Running title: Quantifying microbial growth efficiency and maintenance 15 
+  16 
+ 
+ 
+2 
+ 
+Abstract 1 
+Refining the energetic costs of cellular maintenance is essential for predicting microbial growth 2 
+and survival in the environment.  Here, we evaluate a simple batch culture method to quantify 3 
+energy partitioning between growth and maintenance using microcalorimetry and thermodynamic 4 
+modeling.  The constants derived from the batch culture system were comparable to those that 5 
+have been reported from meta-analyses of data derived from chemostat studies.  The model 6 
+accurately predicted temperature dependent biomass yield and the upper temperature limit of 7 
+growth for Desulfovibrio alaskensis G20, suggesting the method may have broad application.  An 8 
+Arrhenius temperature dependence for the specific energy consumption rate, inferred from 9 
+substrate consumption and heat evolution, was observed over the entire viable temperature 10 
+range.  By combining this relationship for specific energy consumption rate and observed specific 11 
+growth rates, the model describes an increase in non-growth associated maintenance at higher 12 
+temperatures and the corresponding decrease in energy available for growth.  This analytical and 13 
+thermodynamic formulation suggests that simply monitoring heat evolution in batch culture could 14 
+be a useful complement to the recognized limitations of estimating maintenance using 15 
+extrapolation to zero growth in chemostats. 16 
+ 17 
+Introduction 18 
+Processes governed by the activities of microorganisms in environmental and engineered 19 
+systems are determined by their capacity to extract sufficient energy and nutrients for both 20 
+synthesis of new cellular material (growth) and preservation of cellular viability.  It has been 21 
+generally assumed that organisms adapt to suboptimal environmental conditions by increasing 22 
+their investment in maintaining viability at the cost of reduced growth  (Tijhuis, Van Loosdrecht, & 23 
+Heijnen, 1993; Turkarslan et al., 2017; Varela, Baez, & Agosin, 2004).  Therefore, cellular viability 24 
+is bounded by the physical and chemical conditions where the energetic costs needed to remain 25 
+viable do not exceed a critical threshold of energy recovery.  That range of conditions permissive 26 
+to viability in the absence of biotic competition, as represented by the pure culture in 27 
+ 
+ 
+3 
+ 
+microbiology, define an organism’s fundamental niche.  Thus, an overarching goal in microbial 1 
+ecology and biotechnology has been to develop a predictive understanding of how individual cells 2 
+and systems of interacting cells balance the partitioning of biologically available energy between 3 
+growth and viability as environmental conditions vary (Hoehler & Jorgensen, 2013). 4 
+Microbial nutrient consumption and growth has been described using a variety of models detailing 5 
+growth rate, biomass yield on a substrate, decay rate, and substrate costs to maintain viability 6 
+(hereafter maintenance costs) (Beeftink, van der Heijden, & Heijnen, 1990; Marr, Nilson, & Clark, 7 
+1963; Pirt, 1965, 1982).  While numerous studies have evaluated the utility of these models 8 
+(LaRowe, Dale, Amend, & Van Cappellen, 2012; van Bodegom, 2007; Wang & Post, 2012), the 9 
+Pirt model (Pirt, 1965) is used here due to its simplicity and application across a variety of isolates 10 
+and conditions.   11 
+Equation 1 12 
+𝑞𝑠 = μ 𝑌 + 𝑚 13 
+Briefly, the Pirt model describes microbial substrate consumption (qs) as increasing with the 14 
+specific growth rate (µ) while the growth associated biomass yield (Y; hereafter growth 15 
+associated cost, GAC) and maintenance costs (m; hereafter non-growth associated maintenance, 16 
+NGAM) remain constant. Furthermore, this model has been widely applied to traditional methods 17 
+for physiological estimation, such as growth rates quantified using chemostats (Harder, 1997; 18 
+Muller et al., 2021) and “zero growth” metabolic states established in retentostats (Lin, 19 
+Westerhoff, & Röling, 2009; Müller & Babel, 1996).  This breadth of applications has generated a 20 
+data set against which to benchmark new approaches for parameter estimation (Tijhuis et al., 21 
+1993).   22 
+Here, we propose a simple experimental approach to infer energy partitioning between growth 23 
+and maintenance for microorganisms growing under conventional conditions in batch culture 24 
+(Figure 1).   We used microcalorimetric measurements of heat evolution during early batch 25 
+ 
+ 
+4 
+ 
+culture growth to quantify energy expenditures of a sulfate-reducing microorganism growing 1 
+under increasing thermal stress.  Heat evolution aggregates all growth and non-growth processes 2 
+contributing to Gibbs energy dissipation (Gustafsson, 1991).  In addition, we quantified both the 3 
+heat evolution and the changes in chemical and biological state associated with microbial activity 4 
+(von Stockar & Liu, 1999) to assess not only enthalpy measured as heat but also the contribution 5 
+of metabolic product and biomass formation to an increase in system entropy.  These data were 6 
+then used to model energy partitioning as a function of thermal stress for Desulfovibrio alaskensis 7 
+G20, a well-characterized sulfate-reducing microorganism (Wall, Rapp-Giles, & Rousset, 1993).   8 
+The model accurately predicted the impact of thermal stress on yield and the maximum growth 9 
+temperature of the organism.  In addition, we compared our observations and parameters to 10 
+those reported previously (Figure 2) and found close agreement between both the range and 11 
+trends (Calabrese, Chakrawal, Manzoni, & Van Cappellen, 2021; Smeaton & Van Cappellen, 12 
+2018).   Given the consistency between modeled and quantified growth, and agreement with 13 
+parameters determined using independent methods, we anticipate this simple experimental 14 
+approach could complement current chemostat-based models by 1) incorporating 15 
+microcalorimetric measurement of heat evolution to provide a real-time assessment of metabolic 16 
+activity, 2) demonstrating an Arrhenius dependence of specific energy consumption rate over the 17 
+entire physiological temperature range, 3) defining the temperature dimension of the fundamental 18 
+niche using maximum growth rates as opposed to the inferred maxima of chemostat-based 19 
+approaches, and 4) predicting yield and growth rate behavior at lower growth rates than can be 20 
+imposed by nutrient availability in chemostats. 21 
+ 22 
+Materials and Methods 23 
+General experimental approach.  Desulfovibrio alaskensis G20 was grown in precultures and 24 
+transferred into duplicate microcalorimetry vials from a seeding culture inoculated immediately 25 
+before transfer to the microcalorimetry vials.  Samples from the seeding culture were used to 26 
+measure starting point conditions.  Endpoint conditions were determined after growth in the 27 
+ 
+ 
+5 
+ 
+duplicate microcalorimetry vials.  The change in chemical composition and biomass was used to 1 
+calculate the consumed energy, while the total heat curves from microcalorimeter cultures 2 
+provided the time series data for calculating the energy consumption rate.  3 
+ 4 
+Strain, medium, culturing and microcalorimetry.  D. alaskensis G20 was maintained as freezer 5 
+stock originating from Meyer et al. (Meyer et al., 2013).  Cultures of D. alaskensis G20 were 6 
+grown at 37 °C in a CCMA-based medium (Hillesland & Stahl, 2010) with the following 7 
+composition: 30 mM Na2SO4 (electron acceptor), 30 mM sodium DL-lactate (electron donor, 8 
+limiting nutrient), 39 mM NaCl, 27 mM MgCl2·6H2O, 0.95 mM CaCl2·2H2O, 9.3 mM NH4Cl, 1.3 9 
+mM KCl, 1.1 mM of K2HPO4 and 25 mM NaHCO3.  The medium included 1 ml l-1 of a trace 10 
+element solution, 1 ml l-1 of a vitamin solution, 1 mM sodium sulfide as reductant and 4.0 µM 11 
+sodium resazurin as redox indicator as described by Hillesland and Stahl (Hillesland & Stahl, 12 
+2010).  The growth experiments were conducted at 20, 30, 35, 37, 40, 45 and 50 °C and pH ~7.2. 13 
+ 14 
+The TAM III Nanocalorimeter (TA instruments) was operated as described elsewhere (Turkarslan 15 
+et al., 2017).  D. alaskensis G20 was grown at 37 °C and 300 rpm shaking on an orbital table to 16 
+early stationary phase.  All subsequent manipulations were done in a glovebox flushed with a N2-17 
+CO2-H2 atmosphere (90-5-5 %) that maintained H2 levels between 1-3 %.  A 1 % inoculum of 18 
+culture was transferred to the microcalorimetry seeding culture from which a 3 ml aliquot was 19 
+then added to 4 ml Hastelloy microcalorimetry vials for immersion in the TAM III Nanocalorimeter 20 
+equilibrated at the selected temperatures described above.  Simulated contributions to the 21 
+measured heats from protonation and complexation reactions based on the change in the 22 
+chemical speciation of the media were calculated with PHREEQC and the enthalpies of the 23 
+relevant reactions were within the error of the experimental replicates.  The remainder of the 24 
+seeding culture was used for analyte sampling (metabolites, cell counts, and sulfide 25 
+measurement, as described below).  The seeding culture was further incubated without shaking 26 
+ 
+ 
+6 
+ 
+to match the conditions of the microcalorimeter culture and to serve as a growth reference for the 1 
+microcalorimetry cultures. 2 
+ 3 
+Analytical methods.  Dissolved hydrogen sulfide was measured as described by Cline (Cline, 4 
+1969).  Sulfate consumption was measured with a ready-made photometric assay (No. 984648) 5 
+based on the barium chloride reaction for the DA Gallery (Automated Chemistry Analyzer Type 6 
+861, Thermo Fisher Scientific).  Lactate and acetate were measured on a Dionex ICS 5000+ 7 
+system with an AS-DV autosampler (Thermo Fisher Dionex).  Samples were centrifuged for 10 8 
+min at maximum speed in a tabletop centrifuge (Centrifuge 5414D, Eppendorf) before 1:10 9 
+dilution and transfer to 500 µl PolyVials with filter caps (Thermo Fisher Dionex).  The compounds 10 
+were separated on an ion-exclusion column IonPac ICE AS6 (Thermo Fisher Dionex) with 0.5 11 
+mM heptafluorobutyric acid (MP Biomedicals) as eluent at 30 °C.  The isocratic flow was set to 1 12 
+ml min-1, the injection loop had a delay volume of 125 µl which was flushed with sample once.  13 
+Ion suppression was performed with 5 mM tetrabutyl ammonium hydroxide (Thermo Fisher 14 
+Dionex) and a built-in CRS ACRS ICE 500 suppressor (Thermo Fisher Dionex).  The conductivity 15 
+detector temperature was set at 35 °C with a 5 hz data collection rate.  Between samples, there 16 
+was a rinse step with 450 µl milliQ water.  Compound peaks were identified via retention time and 17 
+quantified within Chromeleon 7.2.2.6668 (Thermo Fisher Dionex). 18 
+ 19 
+Cell counts were performed at the start and end of a batch growth experiment as described by 20 
+Qin et al. (Qin et al., 2014).  At the start of the batch growth experiment, 1 ml of culture was 21 
+filtered on 0.02 µm Anodisc 25 Whatman filters (GE Healthcare Life Sciences) to determine initial 22 
+biomass.  At the end, the culture was diluted to 1:100 (1:20 for growth experiment at 45 °C due to 23 
+low density) in 1 ml growth medium lacking electron donor and acceptor.  Filters were stored at -24 
+20 °C prior to counting.  The average dry weight of D. alaskensis G20 was assumed to be the 25 
+same as reported by Fagerbakke et al. (Fagerbakke, Heldal, & Norland, 1996) for stationary 26 
+ 
+ 
+7 
+ 
+phase E.coli (1.8·10-13g) for converting cell counts into biomass having the cellular composition of 1 
+the formula as described by Heijnen and Kleerebezem (Heijnen & Kleerebezem, 2009). 2 
+ 3 
+Calculation of microbial growth rate and duration of the exponential phase was performed in R 4 
+with the package grofit (Kahm, Hasenbrink, Lichtenberg-Frate, Ludwig, & Kschischo, 2010) based 5 
+on total heat evolution.  Estimation of steady-state parameters from end point extrapolation was 6 
+assessed using an exponential growth model and found to give similar estimates (see 7 
+supplementary material).  The growth rate at 30 °C determined by heat flow (0.241 ± 0.008 h-1 8 
+(n=2)) was also independently confirmed (0.23 ± 0.06 h-1 (n=38)) using a Balch tube based 9 
+optical density method and the growth conditions described above (Hunt et al., 2021). 10 
+ 11 
+Results 12 
+Determination of Gibbs energy consumption.  Microbial metabolism can be represented by 13 
+simplified chemical equations to determine Gibbs energy consumption during growth.  Two 14 
+approaches were used to represent microbial growth with chemical equations: 1) representing 15 
+growth implicitly with only the catabolic reaction (Reaction 1, lactate oxidation with sulfate 16 
+reduction) and 2) representing growth explicitly with a simplified anabolic reaction (see 17 
+supplementary material, Reaction S1) combined with the catabolic reaction (see supplementary 18 
+material, Reaction S2) following the method of Heijnen et al. (Heijnen & Kleerebezem, 2009; 19 
+Heijnen & Van Dijken, 1992).  Growth represented with only the catabolic equation is described 20 
+below while the combined anabolic and catabolic approach is described in the supplementary 21 
+material.  Growth was conducted under lactate limited conditions to minimize possible 22 
+accumulation of reduced intermediates, including hydrogen and formate, and constrain the overall 23 
+catabolic reaction. 24 
+Reaction 1 25 
+ 
+ 
+8 
+ 
+𝐶𝐻3𝐶𝐻(𝑂𝐻)𝐶𝑂2 − + 0.5 𝑆𝑂4 2− → 𝐶𝐻3𝐶𝑂𝑂− + 𝐻𝐶𝑂3 − + 0.5 𝐻𝑆− 1 
+For each experiment, the chemical energy consumed during growth was calculated based on 2 
+chemical affinities following the method of Smith and Shock (Smith & Shock, 2007).  Briefly, the 3 
+standard state Gibbs energy of reaction (𝛥𝐺𝑟 °) for the defined catabolic reaction (Reaction 1) was 4 
+calculated from standard state Gibbs energies of formation of each chemical species at the 5 
+experimental temperature and pressure (293K – 318K, 1 bar) using SUPCRT92 (Johnson, 6 
+Oelkers, & Helgeson, 1992) with thermodynamic data from prior work (Shock, 1995; Shock, 7 
+Helgeson, & Sverjensky, 1989; Shock, Sassani, Willis, & Sverjensky, 1997).  Standard states 8 
+assumed for this work under our experimental temperatures and pressure are unit activity of the 9 
+pure solvent, unit activity of aqueous species in a hypothetical 1 molal solution referenced to 10 
+infinite dilution, unit activity of the pure minerals or other crystalline solids, and unit fugacity of a 11 
+pure gas at 1 bar.  The resulting Gibbs energies of reaction were then converted to equilibrium 12 
+constants (K, Equation 2).  13 
+Equation 2 14 
+𝛥𝐺𝑟 ° = −𝑅 × 𝑇 × 𝑙𝑛𝐾 15 
+Two separate reaction quotients (Q) were then calculated for each experiment using the initial 16 
+and final activities (𝑎𝑖) of the ith chemical species for each experiment calculated using their 17 
+respective concentrations (Equation 3).  The stoichiometric coefficients (𝜈𝑖) were defined by the 18 
+catabolic reaction (Reaction 1). 19 
+Equation 3 20 
+𝑄 = ∏ 𝑎𝑖 𝜈𝑖
+𝑖
+ 21 
+Activities of the aqueous species were calculated using PHREEQC (Parkhurst & Appelo, 1999), 22 
+which uses a Debye-Hückel equation extended with parameters from Truesdell and Jones 23 
+ 
+ 
+9 
+ 
+(Truesdell & Jones, 1974).  However, the extended Debye-Hückel parameters in the SUPCRT92 1 
+(Johnson et al., 1992) database are from Helgeson (Helgeson, 1969).  Activities of species 2 
+involved in Reactions 1 and S1 calculated using the SUPCRT92 (Johnson et al., 1992) database 3 
+in EQ3/6 (Wolery & Jarek, 2003) resulted in less than 5 % difference in activities produced by 4 
+PHREEQC (see Supplementary Tables S4-S5).  Initial and final chemical affinities (A) were 5 
+calculated for each experiment from the corresponding reaction quotients and equilibrium 6 
+constants (Equation 4). 7 
+Equation 4 8 
+𝐴 = 𝑅 × 𝑇 × 𝑙𝑛 (𝐾 𝑄) 9 
+Gibbs energy consumption per lactate (YJ/L, hereafter energy consumption) for each experiment 10 
+was calculated as the difference between initial and final chemical affinities (see supplementary 11 
+material).  The calculated energy consumption, YJ/L, represents the change in Gibbs energy for 12 
+the system due to microbial activity, as opposed to the change in Gibbs energy if the reaction 13 
+went to equilibrium represented by the standard state Gibbs energy of the reaction (𝛥𝐺𝑟 °).   14 
+The calculated energy consumption (YJ/L) increased with temperature from -34.4 at 20 °C to -43.8 15 
+kJ mole-1 of lactate oxidized at 45 °C.  In comparison, the heat evolved per lactate (YH/L) was 16 
+relatively constant at -38.2 ± 1.7 kJ mole-1, which implies more heat was released during lactate 17 
+oxidation than the calculated energy consumption for the system at the lower temperatures.  18 
+However, the affinity calculations are sensitive to low concentrations such as the measured final 19 
+concentration of lactate, which ranged from below detection (<0.01 mM) to 0.5 mM (0.08 ± 0.17 20 
+mM).  The final lactate concentrations required for equal heat dissipation and energy 21 
+consumption ranged from 0.01 – 0.2 mM.  The contribution of biomass growth to the calculated 22 
+energy consumption, as assessed by incorporating an anabolic reaction into the overall reaction, 23 
+was negligible and within the range of experimental error (see supplementary material).  24 
+Furthermore, biomass yields on substrate, substrate uptake rates, and thermodynamic 25 
+ 
+ 
+10 
+ 
+parameters were within the range determined in previous studies (Calabrese et al., 2021; 1 
+Smeaton & Van Cappellen, 2018) (Figure 2A and B).  Systematic bias may be introduced in the 2 
+heat flow measurements for reactions and processes not associated with cell growth.  Some 3 
+processes that have the potential to influence the heat flow signal include cells settling out of 4 
+solution or adhering to the reaction vessel.  These non-growth associated processes, which could 5 
+introduce additional minor errors in the calorimetric measurements, were not evaluated in this 6 
+analysis. 7 
+Arrhenius temperature dependence of specific lactate consumption, specific heat evolution, and 8 
+specific energy consumption rate.  Most biotic and abiotic rates follow the Arrhenius relationship 9 
+for temperature; therefore, it follows that the rate limiting process in a cell would similarly follow 10 
+that relationship.  Previous work has proposed an Arrhenius relationship for growth rate up to the 11 
+maximum growth rate of the organism (Knoblauch & Jørgensen, 1999; Price & Sowers, 2004; 12 
+Sagemann, Jørgensen, & Greeff, 1998).  Here the relationship is extended to the specific energy 13 
+consumption rate (qJ, kJ C-mole-1 h-1) of a cell over the entire physiologically relevant temperature 14 
+range under the hypothesis that obtaining energy is the growth rate limiting step for organisms 15 
+growing in nutrient replete conditions (Knoblauch & Jørgensen, 1999; Price & Sowers, 2004; 16 
+Sagemann et al., 1998).  Furthermore, the specific energy consumption rate is related to the 17 
+specific growth rate (µ) through the biomass yield per energy consumed (YX/J, Equation 5).  18 
+Equation 5 19 
+𝑞𝐽 = µ 𝑌𝑋
+𝐽
+ 20 
+The Arrhenius temperature dependence of specific energy consumption rate is thereby 21 
+represented by the specific energy consumption rate at a reference temperature (qJ’ at 298 K) 22 
+corrected for temperature (T) by the specific activation energy for energy consumption (EJ) and 23 
+the gas constant (R, Equation 6).  24 
+ 
+ 
+11 
+ 
+Equation 6 1 
+𝑞𝐽 =  𝑞𝐽’ ∗ exp [− 𝐸𝐽 𝑅 (1 𝑇 − 1 298)] 2 
+While the specific energy consumption rate is calculable via thermodynamic relations described 3 
+above, it may also be inferred from proxies, such as specific rates of substrate and product 4 
+consumption and production, respectively.  For example, specific lactate consumption rate (qL, 5 
+Equation 7) and specific heat evolution rate (qH, Equation 8) can be related to the specific energy 6 
+consumption rate through the energy consumed per mole of lactate (YJ/L) or heat evolved per 7 
+energy consumed (YH/J), respectively. 8 
+Equation 7 9 
+𝑞𝐿 =  𝑞𝐽’ 𝑌𝐽
+𝐿
+∗ exp [− 𝐸𝐽
+𝑅 (1 𝑇 − 1 298)] 10 
+Equation 8 11 
+𝑞𝐻 = 𝑌𝐻
+𝐽
+∗  𝑞𝐽’ ∗ exp [− 𝐸𝐽 𝑅 (1 𝑇 − 1 298)] 12 
+The temperature independence of the YJ/L was supported by the calculated energy consumed per 13 
+lactate based on the combined reaction approach (see supplementary material).  The total heat 14 
+evolved, as integrated from the heat flow measured via microcalorimetry, was also consistently in 15 
+the range of 3.4 ± 0.15 J and did not show any temperature-dependent pattern (see 16 
+supplementary material and Figure 3A).  These trends support the observed linear relationship 17 
+between the lactate required to produce biomass (1/𝑌𝑋
+𝐿
+) and heat evolved per biomass (𝑆𝐻 
+𝑋
+) 18 
+(Equation 9, Figure 3B, and supplementary material). 19 
+Equation 9 20 
+ 
+ 
+12 
+ 
+𝑆𝐻
+𝑋
+ =  
+𝑌𝐻
+𝐽
+𝑌𝐿
+𝐽
+∗ 1 𝑌𝑋
+𝐿
+ 1 
+To further assess the temperature dependence of these parameters, specific lactate consumption 2 
+rates (qL), specific heat evolution rates (qH), as well as the biomass yield on lactate (1/𝑌𝑋
+𝐿
+) and 3 
+heat evolved per biomass (SH/X) were simultaneously fitted, holding the energy consumed per 4 
+lactate (YJ/L) and heat dissipation per energy consumed (YH/J) constant but undefined (Figure 3B, 5 
+Equation 5-9).  The resulting estimates of heat dissipation per energy consumed and energy 6 
+consumed per lactate from the model fit (0.87 kJ kJ-1 and -43.0 kJ mole-1 of lactate, respectively) 7 
+agreed with the thermodynamics-based calculations.  The specific energy consumption rate can 8 
+then be solved for using Equation 7 or Equation 8 in terms of the activation energy (EJ = 64 kJ 9 
+mole-1), the gas constant, and a specific energy consumption rate at 298 K (qJ’ = 60 kJ C-mole-1 10 
+h-1) (Figure 4A, Equation 6).  11 
+The quantification of Gibbs free energy from metabolic processes can be highly subject to the 12 
+parameters and concentrations used and measured from a system.  Previous analyses of 13 
+multiple studies described a metric for the anabolic substrate demands versus the catabolic 14 
+substrate demands (η, see citation for derivation) and even inferred a relationship with both 15 
+specific substrate uptake rate (µED) and biomass yield (Y) (Figure 2).  We compared our 16 
+observations and parameters to those reported previously (Figure 2) and found close agreement 17 
+between both the range and trends.  The calculated η was determined using a range of anabolic 18 
+Gibbs free energy costs reported for other sulfate reducing bacteria (Figure 2C). 19 
+Observed growth behavior, modeled energy partitioning in D. alaskensis G20, and the prediction 20 
+of a maximum growth temperature.  D. alaskensis G20 displayed an increase in growth rate from 21 
+20 to 40 °C, with a sharp decrease at 45 °C (Figure 4B).  Growth did not occur at 50 °C and was 22 
+not observed following transfer to a lower temperature.  No growth was detected 15 days after 23 
+transfer from 50 °C to 37 °C, indicating loss of viability.  The highest growth rate was recorded at 24 
+ 
+ 
+13 
+ 
+40 °C.  Substrate and metabolite concentrations for lactate, sulfate, and acetate followed the 1 
+expected general catabolic stoichiometric distribution for all temperatures (see Supplementary 2 
+Table S1-3).  The total heat released, as integrated from the heat flow, was always in the range of 3 
+3.4 ± 0.15 J and did not show any temperature-dependent pattern (Figure 3A).  Changes in 4 
+biomass yield on lactate did not correlate directly with changes in growth rate, with the lowest 5 
+yield observed at 45 °C, similar yields at 20, 35-40 °C and highest yield at 30 °C (see 6 
+supplementary material).  Thus, as has been reported previously, the temperature supporting the 7 
+maximum growth rate did not correspond to the temperature of maximum yield. 8 
+The impact of increasing thermal stress was examined using the model for steady state growth in 9 
+chemostats developed by Pirt (Pirt, 1982) as amended by Tijhuis et al. (Tijhuis et al., 1993).  In 10 
+their model, Tijhuis et al. describe specific energy consumption as the product of specific growth 11 
+rate (µ, hour-1) and growth associated costs (GAC, kJ per C-mole of biomass) with a temperature 12 
+dependent non-growth associated maintenance (NGAM, kJ per C-mol biomass per hour, 13 
+Equation 10).  14 
+Equation 10 15 
+𝑞𝐽 = 𝐺𝐴𝐶 ∗  𝜇 + [𝑁𝐺𝐴𝑀 ∗ exp (− 𝐸𝑁𝐺𝐴𝑀 𝑅 ∗ (1 𝑇 − 1 298))] 16 
+Since the specific energy consumption rate was shown above to increase across the entire viable 17 
+temperature range (Figure 4A), Equation 10 was rearranged to describe specific growth rate as a 18 
+function of energy partitioning.  All parameters were then estimated by simultaneously fitting 19 
+specific lactate consumption rates, specific heat evolution rates, heat evolved per biomass, 20 
+biomass yield on lactate, and specific growth rate to Equation 7- 10 (Figure 4 and Supplementary 21 
+Table S7).  22 
+The parameterized model described above then provided a basis for predicting growth behavior 23 
+for the entire range of physiologically relevant temperatures and growth rates for D. alaskensis 24 
+ 
+ 
+14 
+ 
+G20.  Using Equation 5, 6 and 10, the model predicted the biomass yield per lactate consumed 1 
+and specific lactate consumption rate based on temperature and growth rate under energy 2 
+limiting conditions (Figure 5).  Quantifying the mass of cells can be a challenging parameter to 3 
+constrain based on cell counts since cell volume and mass have been shown to vary with growth 4 
+rate.  An analysis of the sensitivity of parameters to cell mass indicated direct proportionality with 5 
+biomass dependent parameters, such that the ratio of growth and non-growth associated costs 6 
+remained constant (see supplementary material).  This modeling framework, experimentally 7 
+based on batch culture growth, can be used for more general studies of impact of chemical and 8 
+physical environment on growth behavior and to also model behavior in continuous culture where 9 
+control of dilution rate can achieve defined growth rates.  10 
+ 11 
+Discussion  12 
+Adaptive energy partitioning by an organism governs both the ability of that organism to respond 13 
+to stresses and to sustain viability.  Previous reports of growth rate dependence on temperature 14 
+have shown a similar Arrhenius temperature dependence up to the maximum growth rate for an 15 
+organism (Knoblauch & Jørgensen, 1999; Price & Sowers, 2004; Sagemann et al., 1998).  Here 16 
+we develop a general model formulation that describes and predicts the increase in maintenance 17 
+energy demand as our model organism adapts to higher growth temperatures (Figure 4A).  The 18 
+model infers an increase in maintenance costs with temperature that accurately predicted the 19 
+temperature at which viability is lost as the maintenance demand overwhelms the capacity for 20 
+adaptive response (Figure 4C).  Although previous studies suggesting that maintenance 21 
+requirements increase with an Arrhenius relationship are generally in line with our analysis, those 22 
+studies reported a much lower temperature dependence (ENGAM = 69-110 kJ mole-1) than our 23 
+determination of 234 kJ mole-1.   However, the nonlinear response of maintenance energy costs 24 
+to temperature makes determination and subsequent comparisons of ENGAM numerically and 25 
+technically difficult beyond “order of magnitude” (see Supplementary Table S7).  By further 26 
+developing a model of energy partitioning, these analyses thus provide an improved analytical 27 
+ 
+ 
+15 
+ 
+framework for defining the temperature dimension of an organism’s fundamental niche, here 1 
+predicting a maximum growth temperature of 47 °C for Desulfovibrio alaskensis G20.  2 
+Furthermore, batch culturing directly determines the boundary conditions reaching maximum 3 
+growth rates whereas chemostats only approximate this condition due to washout (Figure 5). 4 
+The model presented here combined the principles of temperature-dependent kinetics and 5 
+microbial energy partitioning to describe batch growth using principles established for chemostat 6 
+growth (Heijnen & Van Dijken, 1992; Tijhuis et al., 1993).  While growth conditions differ between 7 
+chemostat and batch cultures, the energy requirements and responses to temperature reported 8 
+here are similar to those reported for chemostat analyses of other organisms.  For example, the 9 
+Gibbs energy consumption calculated by the empirical formula of Heijnen and Van Dijken 10 
+(Heijnen & Van Dijken, 1992) and employed in the model of Tijhuis et al. (Tijhuis et al., 1993) for 11 
+chemostat growth (there, Gibbs energy dissipated is originally abbreviated as (𝐷𝑆 01/𝑟𝑎𝑥)𝑔𝑟 in 12 
+formula 1a and interpreted as the energy required for growth (Tijhuis et al., 1993)) is in the same 13 
+order of magnitude as the energy consumption requirements for growth (GAC) calculated by our 14 
+batch-based approach (347 kJ mole-1 vs 372 kJ mole-1, Supplementary Table S7).  Meta-15 
+analyses presented by Tijhuis et al. 1993 and Calabrese et al. 2021 aggregated and normalized 16 
+data derived from a variety of organisms and metabolisms.  Metabolic types were normalized by 17 
+Calabrese et al. by collapsing the energy requirements to a “thermodynamic efficiency” 18 
+comparable across metabolisms and organisms.  However, Tijhuis et al. also suggested that a 19 
+more refined analysis should consider a separate relationship for cultures grown aerobically and 20 
+anaerobically, since the electron donor and acceptor can change the energy requirements of a 21 
+cell.  Although our analysis of a specific metabolic type indicated only a minimal impact of 22 
+anabolic processes on the maintenance term, additional observations are warranted for 23 
+organisms and metabolisms that invest a larger fraction of energy in anabolic processes.  24 
+The principle of using heat evolved per biomass formed to characterize microbial yield in a 25 
+defined growth environment extends classical yield-based analyses of microbial growth, since it 26 
+ 
+ 
+16 
+ 
+relies on the direct measurement of heat evolution and biomass formation.  As such, we and 1 
+others have demonstrated the utility of this proxy to evaluate the impact of different environmental 2 
+stresses on yield, such as metal toxicity (Gibbons et al., 2011; McTee et al., 2013), nutrient 3 
+limitation (Robador, LaRowe, Finkel, Amend, & Nealson, 2018), osmotic stress (Zhou et al., 4 
+2017), and simulated environmental dynamics (Turkarslan et al., 2017).  In particular, heat 5 
+evolved per biomass was successfully used to demonstrate the fitness trade-offs associated with 6 
+maintaining regulation in a varying resource environment (Turkarslan et al., 2017) as well as the 7 
+reduction of maintenance costs of D. vulgaris Hildenborough adapted to higher salinities through 8 
+experimental evolution (Zhou et al., 2017).  All these experiments illustrate that in comparison to 9 
+more favorable conditions, additional energy expenditures are required under stressed conditions 10 
+and that the accompanying heat production reflects the underlying adaptive metabolism, instead 11 
+of heat being solely proportional to the number of actively growing cells (Robador et al., 2018). 12 
+We acknowledge that although our modeled and quantified growth and energy expenditures are 13 
+consistent, our model assumes that growth costs are independent of temperature and that 14 
+maintenance costs vary with an Arrhenius relationship.  These assumptions and the 15 
+generalization of method require further testing, including response to different classes of stress 16 
+(e.g., salinity and pH) and further comparisons to alternative approaches used to infer 17 
+maintenance costs and energy partitioning as shown in Figure 2 (Calabrese et al., 2021; van 18 
+Bodegom, 2007).  However, considering the relatively simple experimental format, we anticipate 19 
+this approach could be of general utility for advancing predictive modeling of biotic and abiotic 20 
+factors controlling the distribution and activity of microbes in the environment. 21 
+Author Contributions: FvN, DAS, and DGL designed laboratory experiments conducted by FvN 22 
+and DGL.  FvN, DGL and KAH contributed to in silico analyses and preparation of the manuscript.  23 
+FvN, DGL, KAH and DAS reviewed and edited the manuscript. 24 
+Competing Interest Statement: The authors declare no competing interests. 25 
+Acknowledgments 26 
+ 
+ 
+17 
+ 
+This research was funded by ENIGMA - Ecosystems and Networks Integrated with Genes and 1 
+Molecular Assemblies (http://enigma.lbl.gov), a Scientific Focus Area Program at Lawrence 2 
+Berkeley National Laboratory is based upon work supported by the U.S. Department of Energy, 3 
+Office of Science, Office of Biological & Environmental Research under contract number DE-4 
+AC02-05CH11231.  We also thank JeanMarie Calvillo, Anne E. Otwell, Thomas J. Lie, and 5 
+Everett L. Shock for comments and suggestions on an earlier version of this manuscript. 6 
+ 7 
+References 8 
+Beeftink, H. H., van der Heijden, R. T. J. M., & Heijnen, J. J. (1990). Maintenance requirements: 9 
+energy supply from simultaneous endogenous respiration and substrate consumption. 10 
+FEMS Microbiology Letters, 73(3), 203-209. doi:10.1016/0378-1097(90)90731-5 11 
+Calabrese, S., Chakrawal, A., Manzoni, S., & Van Cappellen, P. (2021). Energetic scaling in microbial 12 
+growth. Proc Natl Acad Sci U S A, 118(47). doi:10.1073/pnas.2107668118 13 
+Cline, J. D. (1969). Spectrophotometric determination of hydrogen sulfide in natural waters. 14 
+Limnology and Oceanography, 14(3), 454-458.  15 
+Fagerbakke, K. M., Heldal, M., & Norland, S. (1996). Content of carbon, nitrogen, oxygen, sulfur 16 
+and phosphorus in native aquatic and cultured bacteria. Aquatic Microbial Ecology, 10(1), 17 
+15-27. doi:10.3354/ame010015 18 
+Gibbons, S. M., Feris, K., McGuirl, M. A., Morales, S. E., Hynninen, A., Ramsey, P. W., & Gannon, J. 19 
+E. (2011). Use of microcalorimetry to determine the costs and benefits to Pseudomonas 20 
+putida strain KT2440 of harboring cadmium efflux genes. Applied and Environmental 21 
+Microbiology, 77(1), 108-113. doi:10.1128/AEM.01187-10 22 
+Gustafsson, L. (1991). Microbiological calorimetry. Thermochimica Acta, 193(0), 145-171. 23 
+doi:10.1016/0040-6031(91)80181-H 24 
+Harder, J. (1997). Species-independent maintenance energy and natural population sizes. FEMS 25 
+Microbiology Ecology, 23(1), 39-44. doi:10.1111/j.1574-6941.1997.tb00389.x 26 
+Heijnen, J. J., & Kleerebezem, R. (2009). Bioenergetics of microbial growth Encyclopedia of 27 
+Industrial Biotechnology: John Wiley & Sons, Inc. 28 
+Heijnen, J. J., & Van Dijken, J. P. (1992). In search of a thermodynamic description of biomass 29 
+yields for the chemotrophic growth of microorganisms. Biotechnology and 30 
+Bioengineering, 39(8), 833-858. doi:10.1002/bit.260390806 31 
+Helgeson, H. C. (1969). Thermodynamics of hydrothermal systems at elevated temperatures and 32 
+pressures. American Journal of Science, 267(7), 729-804. doi:10.2475/ajs.267.7.729 33 
+Hillesland, K. L., & Stahl, D. A. (2010). Rapid evolution of stability and productivity at the origin of 34 
+a microbial mutualism. Proceedings of the National Academy of Sciences, 107(5), 2124-35 
+2129. doi:10.1073/pnas.0908456107 36 
+Hoehler, T. M., & Jorgensen, B. B. (2013). Microbial life under extreme energy limitation. Nature 37 
+Reviews Microbiology, 11(2), 83-94. doi:10.1038/nrmicro2939 38 
+Hunt, K. A., Forbes, J., Taub, F., Elliott, N., Hardwicke, J., Petersen, R., . . . Stahl, D. A. (2021). An 39 
+automated multiplexed turbidometric and data collection system for measuring growth 40 
+ 
+ 
+18 
+ 
+kinetics of anaerobes dependent on gaseous substrates. J Microbiol Methods, 188, 1 
+106294. doi:10.1016/j.mimet.2021.106294 2 
+Johnson, J. W., Oelkers, E. H., & Helgeson, H. C. (1992). SUPCRT92: A software package for 3 
+calculating the standard molal thermodynamic properties of minerals, gases, aqueous 4 
+species, and reactions from 1 to 5000 bar and 0 to 1000 C. Computers & Geosciences, 5 
+18(7), 899-947.  6 
+Kahm, M., Hasenbrink, G., Lichtenberg-Frate, H., Ludwig, J., & Kschischo, M. (2010). grofit: Fitting 7 
+Biological Growth Curves with R. Journal of Statistical Software, 33(7), 1-21.  8 
+Knoblauch, C., & Jørgensen, B. B. (1999). Effect of temperature on sulphate reduction, growth 9 
+rate and growth yield in five psychrophilic sulphate-reducing bacteria from Arctic 10 
+sediments. Environmental Microbiololgy, 1(5), 457-467.  11 
+LaRowe, D. E., Dale, A. W., Amend, J. P., & Van Cappellen, P. (2012). Thermodynamic limitations 12 
+on microbially catalyzed reaction rates. Geochimica et Cosmochimica Acta, 90, 96-109. 13 
+doi:10.1016/j.gca.2012.05.011 14 
+Lin, B., Westerhoff, H. V., & Röling, W. F. M. (2009). How Geobacteraceae may dominate 15 
+subsurface biodegradation: physiology of Geobacter metallireducens in slow-growth 16 
+habitat-simulating retentostats. Environmental Microbiology, 11(9), 2425-2433. 17 
+doi:10.1111/j.1462-2920.2009.01971.x 18 
+Marr, A. G., Nilson, E. H., & Clark, D. J. (1963). The maintenance requirement of Escherichia coli. 19 
+Annals of the New York Academy of Sciences, 102(3), 536-548. doi:10.1111/j.1749-20 
+6632.1963.tb13659.x 21 
+McTee, M. R., Gibbons, S. M., Feris, K., Gordon, N. S., Gannon, J. E., & Ramsey, P. W. (2013). Heavy 22 
+metal tolerance genes alter cellular thermodynamics in Pseudomonas putida and river 23 
+Pseudomonas spp. and influence amebal predation. FEMS Microbiology Letters, 347(2), 24 
+97-106. doi:10.1111/1574-6968.12226 25 
+Meyer, B., Kuehl, J., Deutschbauer, A. M., Price, M. N., Arkin, A. P., & Stahl, D. A. (2013). Variation 26 
+among Desulfovibrio species in electron transfer systems used for syntrophic growth. 27 
+Journal of Bacteriology, 195(5), 990-1004. doi:10.1128/jb.01959-12 28 
+Muller, A. L., Gu, W., Patsalo, V., Deutzmann, J. S., Williamson, J. R., & Spormann, A. M. (2021). 29 
+An alternative resource allocation strategy in the chemolithoautotrophic archaeon 30 
+Methanococcus maripaludis. Proc Natl Acad Sci U S A, 118(16). 31 
+doi:10.1073/pnas.2025854118 32 
+Müller, R. H., & Babel, W. (1996). Measurement of growth at very low rates (µ ≥ 0), an approach 33 
+to study the energy requirement for the survival of Alcaligenes eutrophus JMP 134. 34 
+Applied and Environmental Microbiology, 62(1), 147-151.  35 
+Parkhurst, D. L., & Appelo, C. (1999). User's guide to PHREEQC (Version 2): A computer program 36 
+for speciation, batch-reaction, one-dimensional transport, and inverse geochemical 37 
+calculations. U.S. Geological Survey Water-Resources Investigations, Report 99–4259.  38 
+Pirt, S. J. (1965). The maintenance energy of bacteria in growing cultures. Proceedings of the Royal 39 
+Society of London. Series B, Biological Sciences, 163(991), 224-231. 40 
+doi:10.1098/rspb.1965.0069 41 
+Pirt, S. J. (1982). Maintenance energy: A general model for energy-limited and energy-sufficient 42 
+growth. Archives of Microbiology, 133(4), 300-302. doi:10.1007/bf00521294 43 
+Price, P. B., & Sowers, T. (2004). Temperature dependence of metabolic rates for microbial 44 
+growth, maintenance, and survival. Proceedings of the National Academy of Sciences of 45 
+the United States of America, 101(13), 4631-4636. doi:10.1073/pnas.0400522101 46 
+ 
+ 
+19 
+ 
+Qin, W., Amin, S. A., Martens-Habbena, W., Walker, C. B., Urakawa, H., Devol, A. H., . . . Stahl, D. 1 
+A. (2014). Marine ammonia-oxidizing archaeal isolates display obligate mixotrophy and 2 
+wide ecotypic variation. Proceedings of the National Academy of Sciences, 111(34), 3 
+12504-12509. doi:10.1073/pnas.1324115111 4 
+Robador, A., LaRowe, D. E., Finkel, S. E., Amend, J. P., & Nealson, K. H. (2018). Changes in microbial 5 
+energy metabolism measured by nanocalorimetry during growth phase transitions. 6 
+Frontiers in Microbiology, 9(109). doi:10.3389/fmicb.2018.00109 7 
+Sagemann, J., Jørgensen, B. B., & Greeff, O. (1998). Temperature dependence and rates of sulfate 8 
+reduction in cold sediments of Svalbard, Arctic Ocean. Geomicrobiology Journal, 15(2), 9 
+85-100. doi:10.1080/01490459809378067 10 
+Shock, E. L. (1995). Organic acids in hydrothermal solutions; standard molal thermodynamic 11 
+properties of carboxylic acids and estimates of dissociation constants at high 12 
+temperatures and pressures. American Journal of Science, 295(5), 496-580. 13 
+doi:10.2475/ajs.295.5.496 14 
+Shock, E. L., Helgeson, H. C., & Sverjensky, D. A. (1989). Calculation of the thermodynamic and 15 
+transport properties of aqueous species at high pressures and temperatures: Standard 16 
+partial molal properties of inorganic neutral species. Geochimica et Cosmochimica Acta, 17 
+53(9), 2157-2183. doi:10.1016/0016-7037(89)90341-4 18 
+Shock, E. L., Sassani, D. C., Willis, M., & Sverjensky, D. A. (1997). Inorganic species in geologic 19 
+fluids: Correlations among standard molal thermodynamic properties of aqueous ions 20 
+and hydroxide complexes. Geochimica et Cosmochimica Acta, 61(5), 907-950. 21 
+doi:10.1016/S0016-7037(96)00339-0 22 
+Smeaton, C. M., & Van Cappellen, P. (2018). Gibbs Energy Dynamic Yield Method (GEDYM): 23 
+Predicting microbial growth yields under energy-limiting conditions. Geochimica et 24 
+Cosmochimica Acta, 241, 1-16. doi:10.1016/j.gca.2018.08.023 25 
+Smith, J. N., & Shock, E. L. (2007). A thermodynamic analysis of microbial growth experiments. 26 
+Astrobiology, 7(6), 891-904. doi:10.1089/ast.2006.0118 27 
+Tijhuis, L., Van Loosdrecht, M. C. M., & Heijnen, J. J. (1993). A thermodynamically based 28 
+correlation for maintenance gibbs energy requirements in aerobic and anaerobic 29 
+chemotrophic growth. Biotechnology and Bioengineering, 42(4), 509-519. 30 
+doi:10.1002/bit.260420415 31 
+Truesdell, A. H., & Jones, B. F. (1974). WATEQ, a computer program for calculating chemical 32 
+equilibria of natural waters. Journal of Research of the U.S. Geological Survey, 2(2), 233-33 
+248.  34 
+Turkarslan, S., Raman, A. V., Thompson, A. W., Arens, C. E., Gillespie, M. A., von Netzer, F., . . . 35 
+Baliga, N. S. (2017). Mechanism for microbial population collapse in a fluctuating resource 36 
+environment. Molecular Systems Biology, 13(3), 919. doi:10.15252/msb.20167058 37 
+van Bodegom, P. (2007). Microbial maintenance: a critical review on its quantification. Microb 38 
+Ecol, 53(4), 513-523. doi:10.1007/s00248-006-9049-5 39 
+Varela, C. A., Baez, M. E., & Agosin, E. (2004). Osmotic Stress Response: Quantification of Cell 40 
+Maintenance and Metabolic Fluxes in a Lysine-Overproducing Strain of Corynebacterium 41 
+glutamicum. Applied and Environmental Microbiology, 70(7), 4222-4229. 42 
+doi:doi:10.1128/AEM.70.7.4222-4229.2004 43 
+von Stockar, U., & Liu, J. S. (1999). Does microbial life always feed on negative entropy? 44 
+Thermodynamic analysis of microbial growth. Biochimica et Biophysica Acta (BBA) - 45 
+Bioenergetics, 1412(3), 191-211. doi:10.1016/S0005-2728(99)00065-1 46 
+ 
+ 
+20 
+ 
+Wall, J. D., Rapp-Giles, B. J., & Rousset, M. (1993). Characterization of a small plasmid from 1 
+Desulfovibrio desulfuricans and its use for shuttle vector construction. Journal of 2 
+Bacteriology, 175(13), 4121-4128.  3 
+Wang, G., & Post, W. M. (2012). A theoretical reassessment of microbial maintenance and 4 
+implications for microbial ecology modeling. FEMS Microbiol Ecol, 81(3), 610-617. 5 
+doi:10.1111/j.1574-6941.2012.01389.x 6 
+Wolery, T. J., & Jarek, R. (2003). EQ3/6 Version 8.0 Retrieved from Las Vegas, NV:  7 
+Zhou, A., Lau, R., Baran, R. B., Ma, J., von Netzer, F., Shi, W., . . . Zhou, J. (2017). Key metabolites 8 
+and mechanistic changes for salt tolerance in an experimentally evolved sulfate-reducing 9 
+bacterium, Desulfovibrio vulgaris. mBio, 8(6). doi:10.1128/mBio.01780-17 10 
+ 11 
+  12 
+ 
+ 
+21 
+ 
+ 1 
+ 2 
+Figures and Tables 3 
+ 4 
+ 5 
+ 6 
+Figure 1.  Cellular energy partitioning.  Growth is represented as a steady state balance where 7 
+the energy conserved from substrate consumption is allocated to biomass production and to the 8 
+maintenance of viable cellular functions. Energy conserved from substrate consumption is 9 
+governed by specific substrate consumption rate (qs, mole substrate per C-mole biomass per 10 
+hour). Biomass production has growth associated costs (GAC, kJ of energy consumed per C-mol 11 
+of biomass) to account for the resource costs at a growth rate (µ, h-1) and yield (YS/J, kJ of energy 12 
+consumed per mole of substrate consumed). Maintenance of cellular function is accounted for in 13 
+maintenance costs (Maintenance, kJ energy consumed per C-mole biomass per hour). 14 
+ 15 
+  16 
+
+ 
+ 
+22 
+ 
+ 1 
+ 2 
+Figure 2.  Comparison of the microcalorimetric analysis to previously published 3 
+observations.  The observed a) specific substrate uptake rates (qs) and b) biomass yields (Y) as 4 
+well as calculated energy efficiencies (η) from our batch culture analyses (squares and circles) 5 
+are within the reported range from previous studies (dots (Calabrese et al., 2021; Smeaton & Van 6 
+Cappellen, 2018)).  The previously reported slopes of -0.48 (-0.72, -0.27; 95 % confidence 7 
+interval (CI)) and 0.80 (0.49, 1.26; 95 % CI) were within error of those determined for the present 8 
+study, -0.50 (-1.15, -0.08; 95 % CI) and 1.03 (1.02, 1.03; 95 % CI).  Slopes are determined using 9 
+a major axis regression (MAR).  Symbol size and shade increases with temperature for 20, 30, 10 
+35, 37, 40, and 45 °C.  c) The anabolic energy requirements (ΔGAn) used to calculate η were 11 
+constrained by the reported values from previous studies for sulfate reducing bacteria.  The lower 12 
+values of ΔGAn reported in previous studies better centered on our data and were closer to our 13 
+calculated values (See supplementary material). 14 
+  15 
+
+ 
+ 
+23 
+ 
+ 1 
+ 2 
+Figure 3.  Microcalorimetric quantification of heat dissipation.  Energy conservation and heat 3 
+dissipation are constant across the temperatures examined. The total heat evolved (circles) and 4 
+total energy consumed based on thermodynamic calculation of the total growth reaction (crosses) 5 
+and using only the catabolic reaction (diamonds) according to Smith and Shock (Smith & Shock, 6 
+2007). Both methods were relatively constant over the range of temperatures examined (a).  7 
+Panel b supports this temperature independence through comparison of lactate consumed per 8 
+biomass and heat evolved per biomass indicating a constant heat evolved per lactate consumed 9 
+(slope of dotted line), supplementary material. 10 
+  11 
+
+ 
+ 
+24 
+ 
+ 1 
+ 2 
+Figure 4.  Model fit to measured energy and growth parameters.  The specific heat evolution 3 
+rate (qH), a) continues to increase with temperature beyond the temperature where the maximum 4 
+growth rate is observed (b).  The proposed model infers this is due to the initially lower 5 
+maintenance requirements (dashed line in panel c) at lower temperatures increasing more quickly 6 
+than the supply of energy directed to cell growth (solid black line in panel c).  This energy 7 
+consumption reduces the energy available for growth associated costs (dot-dashed line in panel 8 
+c), ultimately overcoming the supply and preventing growth at higher temperatures.  Standard 9 
+deviations of parameters were used to show the error of the model (dotted lines in panel a – c). 10 
+ 11 
+  12 
+
+ 
+ 
+25 
+ 
+ 1 
+ 2 
+Figure 5.  Quality evaluations and extrapolations of model fit.  The model describes a) 3 
+biomass yield and b) specific lactate consumption rate in Desulfovibrio alaskensis G20 in 4 
+response to temperature and specific growth rate.  The observed growth rates and biomass 5 
+yields (circles in panel a are colored by observed biomass yield) or specific lactate consumption 6 
+rates (circles in panel b are colored by observed specific lactate consumption rate) define the 7 
+maximum specific growth rates with respect to temperature.  This allows for an assessment of 8 
+additional influences on specific growth rate, including substrate concentration, and validation of 9 
+continuous culturing approaches by changing dilution rate at a given temperature. 10 
+  11 
+
+ 
+ 
+26 
+ 
+Formula glossary 1 
+ 2 
+ 3 
+Parameter Units Description 
+η Unitless Ratio of anabolic and catabolic energy consumption 
+NGAM kJ C-mol-1 h-1 Non-growth associated maintenance 
+GAC kJ C-mol-1 Growth associated costs 
+fcat mol mol-1 
+Multiplicative factor describing how often the catabolic reaction 
+needs to turn over to provide sufficient energy for the anabolic 
+reaction 
+𝑌𝑋
+𝐿
+ C-mol mol-1 Biomass yield on lactate (biomass per lactate) 
+a mol mol-1 Stoichiometric coefficient of the electron donor in the anabolic reaction 
+A kJ mol-1 Chemical affinity 
+K Unitless Equilibrium constant 
+𝛥𝐺𝑟 ∘ kJ mol-1 Standard state Gibbs energy of reaction 
+𝛥𝐺𝐴𝑛 kJ Cmol-1 Energy consumed for anabolic processes defined in (citation) 
+R J mol-1 K-1 Gas constant, 8.314 J mole K-1 
+T K Temperature in Kelvin 
+Q Unitless Reaction quotient 
+ai Unitless Thermodynamic activity of the ith chemical species 
+νi mol mol-1 Stoichiometric reaction coefficient of the ith species 
+qJ kJ C-mol-1 h-1 Specific energy consumption rate, adjusted for temperature 
+EJ kJ mol-1 Activation energy analog for adjusting specific energy consumption rate 
+qJ’ kJ C-mol-1 h-1 Specific energy consumption rate at 298 K 
+qL mol C-mol-1 h-1 Specific lactate consumption rate 
+𝑌𝐻
+𝐽
+  kJ kJ-1 kJ of heat evolved per kJ of energy consumed  
+𝑆𝐻
+𝑋
+ kJ C-mol-1 kJ of heat evolved per C-mole of biomass formed 
+𝑌𝐽
+𝐿
+ kJ mol-1 kJ of energy consumed per lactate consumed  
+qH kJ C-mol-1 h-1 Specific heat dissipation rate 
+µ h-1 Specific growth rate 
+ENGAM kJ C-mol-1 h-1 Activation energy analog for adjusting NGAM 
+(𝐷𝑆 01/𝑟𝑎𝑥)𝑔𝑟 kJ C-mol-1 Gibbs energy consumed as described by Heijnen and Van Dijken(Heijnen & Van Dijken, 1992) 
+qS mol C-mol-1 h-1 Specific substrate consumption rate  

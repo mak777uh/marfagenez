@@ -1,0 +1,1067 @@
+Heredity (2020) 124:50–61
+https://doi.org/10.1038/s41437-019-0267-2
+ARTICLE
+The ﬁtness cost of mismatch repair mutators in Saccharomyces
+cerevisiae: partitioning the mutational load
+Benjamin Galeota-Sprung1 ● Breanna Guindon1 ● Paul Sniegowski1
+Received: 26 April 2019 / Revised: 30 July 2019 / Accepted: 12 August 2019 / Published online: 12 September 2019
+© The Author(s), under exclusive licence to The Genetics Society 2019
+Abstract
+Mutational load is the depression in a population’s mean ﬁtness that results from the continual inﬂux of deleterious
+mutations. Here, we directly estimate the mutational load in a population of haploid Saccharomyces cerevisiae that are
+deﬁcient for mismatch repair. We partition the load in haploids into two components. To estimate the load due to nonlethal
+mutations, we measure the competitive ﬁtness of hundreds of randomly selected clones from both mismatch-repair-deﬁcient
+and -proﬁcient populations. Computation of the mean clone ﬁtness for the mismatch-repair-deﬁcient strain permits an
+estimation of the nonlethal load, and the histogram of ﬁtness provides an interesting visualization of a loaded population. In
+a separate experiment, in order to estimate the load due to lethal mutations (i.e. the lethal mutation rate), we manipulate
+thousands of individual pairs of mother and daughter cells and track their fates. These two approaches yield point estimates
+for the two contributors to load, and the addition of these estimates is nearly equal to the separately measured short-term
+competitive ﬁtness deﬁcit for the mismatch-repair-deﬁcient strain. This correspondence suggests that there is no need to
+invoke direct ﬁtness effects to explain the ﬁtness difference between mismatch-repair-deﬁcient and -proﬁcient strains.
+Assays in diploids are consistent with deleterious mutations in diploids tending towards recessivity. These results enhance
+our understanding of mutational load, a central population genetics concept, and we discuss their implications for the
+evolution of mutation rates.
+Introduction
+An evolving population experiences a continual inﬂux of
+mutations, the vast majority of which, excluding neutral
+mutations, are likely to be deleterious (Fisher 1930). A
+deleterious allele in a haploid population will attain an
+equilibrium frequency that is the quotient of the mutation
+rate to that allele and the selection coefﬁcient against it
+(Danforth 1923). The inﬂux of deleterious mutations causes
+a depression in the population’s mean ﬁtness that is termed
+the mutational load (Muller 1950), and the load at equili-
+brium is equal to the deleterious mutation rate (Haldane
+1937). Because all populations experience mutation, all
+populations experience load, and a substantial proportion of
+the genetic variance for ﬁtness in natural populations is due
+to mutational load (Charlesworth 2015).
+Mutational load is closely connected to the evolution of
+mutation rates. Consider an asexual population in which
+there is genetic variation for the mutation rate: within such a
+population, distinct lineages with differing mutation rates
+experience differing loads and therefore possess differing
+mean ﬁtnesses. In this way a downward selective pressure
+on the mutation rate is realized. This pressure is indirect in
+the sense that modiﬁers of the mutation rate are subject to
+selection without affecting any physiological property
+immediately related to ﬁtness. The existence of ancient and
+highly conserved systems for replication ﬁdelity (including
+proofreading, mismatch repair, and nucleotide excision
+repair) attests to the persistence of this selective pressure
+(Raynes and Sniegowski 2014).
+In evolving populations, lineages with higher mutation
+rates (“mutators”) are continually produced by mutation to
+any of numerous mutation-rate-affecting loci. In the absence
+of beneﬁcial mutations, the expected frequency of mutators
+within a population depends on the increase in the
+* Benjamin Galeota-Sprung
+bsprung@gmail.com
+1 University of Pennsylvania, Philadelphia, PA, USA
+Supplementary information The online version of this article (https://
+doi.org/10.1038/s41437-019-0267-2) contains supplementary
+material, which is available to authorized users.
+deleterious mutation rate caused by the mutator allele, the
+rate of mutation from wild type to mutator, and the mean
+selective effect of newly arising deleterious mutations
+(Johnson 1999; Desai and Fisher 2011). Investigations of
+natural and clinical isolates of Escherichia coli and other
+bacteria have shown that mutators of one to two orders of
+magnitude in strength, often defective in mismatch repair,
+are present at low but notable frequencies in many popu-
+lations (Jyssum 1960; Gross and Siegel 1981; LeClerc et al.
+1996; Matic et al. 1997; Oliver et al. 2000; Denamur et al.
+2002; Richardson et al. 2002; Trong et al. 2005; Denamur
+and Matic 2006; Gould et al. 2007; reviewed in Raynes and
+Sniegowski 2014). Evolution experiments conducted with
+E. coli have demonstrated that mutators can displace wild
+types by virtue of their increased access to beneﬁcial
+mutations (Cox and Gibson 1974; Chao and Cox 1983;
+Sniegowski et al. 1997; Giraud et al. 2001; Shaver et al.
+2002; de Visser and Rozen 2006). Similar ﬁndings have
+been reported for Saccharomyces cerevisiae (Thompson
+et al. 2006; Raynes et al. 2011, 2018). However, in contrast
+to ﬁndings in prokaryotes, mismatch-repair-deﬁcient (hen-
+ceforth mmr) or other types of strong mutators have not
+been found in natural S. cerevisiae populations (but see Bui
+et al. 2017; Raghavan et al. 2018), though weaker variation
+for the mutation rate has been detected (Gou et al. 2019).
+One explanation for this difference could be that mmr
+mutators experience higher load, compared with the wild
+type, in S. cerevisiae than they do in E. coli. Indeed, it has
+been observed by several investigators that haploid mmr S.
+cerevisiae strains decline in frequency in the short term
+when co-cultured with wild-type strains (Thompson et al.
+2006; Raynes et al. 2011, 2018; Bui et al. 2017), even if
+they eventually out-adapt the wild type. While this short-
+term deﬁcit of the ﬁtness of mmr mutators relative to the
+wild type has been attributed to increased mutational load in
+the mmr strain, the evidence that this is the case has been
+mostly circumstantial (but see Wloch et al. 2001) because it
+is generally difﬁcult to rule out an additional direct ﬁtness
+effect of any allele thought to cause an indirect ﬁtness effect
+(Raynes and Sniegowski 2014).
+In this work, we establish, by short-term competitive
+ﬁtness assays and in agreement with prior studies, that an
+mmr haploid S. cerevisiae strain is substantially less ﬁt than
+an otherwise isogenic MMR+ (i.e. wild-type) strain. This
+ﬁtness difference could be caused solely by load, solely by
+some direct ﬁtness effect of the mmr phenotype, or some
+combination of the two. We develop separate assays to
+measure the components of load due to nonlethal and lethal
+deleterious mutations. To estimate the load caused by
+nonlethal deleterious mutations, we randomly sampled
+hundreds of clones from mmr and wild-type populations
+and measured the competitive ﬁtness of each. The resulting
+histogram of the distribution of ﬁtness of the mmr
+population provides an illustration of the effect of a high
+mutation rate on population mean ﬁtness. We ﬁnd that the
+means of these distributions differ, indicating substantial
+load for the mmr strain, but not fully accounting for the total
+observed ﬁtness difference between mmr and wild-type
+strains. To estimate the lethal mutation rate under the two
+different mutational regimes, we manipulate single cells to
+track the fate of mother/daughter duos. We show that these
+two separately measured components of load—due to
+nonlethal and lethal mutations—approximately sum to the
+measured ﬁtness difference between the strains; hence we
+ﬁnd no reason to suppose a direct ﬁtness effect for mmr.
+Investigations with diploid versions of our strains provide
+support for this conclusion. We discuss some implications
+of these ﬁndings for continued experimental and theoretical
+investigations into the evolution of mutation rates.
+Materials and methods
+Data analysis and ﬁgure production
+Data processing and analysis were performed in R (R Core
+Team 2019) and RStudio (RStudio Team 2015). Graphical
+output was produced using the package ggplot2 (Wickham
+2016).
+Strains
+yJHK112, a haploid, prototrophic, heterothallic, MATa,
+BUD4-corrected, and ymCherry-labeled W303 strain was
+used as the haploid wild type in all work described in this
+paper. yJHK111, labeled with ymCitrine (a variant of YFP)
+and otherwise isogenic to yJHK112, was used as the
+“reference strain” in all haploid ﬁtness competitions. These
+strains have been previously described (Koschwanez et al.
+2013) and were generously provided by the laboratory of
+Andrew Murray, Harvard University, Cambridge, MA. An
+msh2Δ derivative of yJHK112, in which the wild-type
+MSH2 allele was replaced with a kanMX geneticin (G418)
+resistance cassette (Wach et al. 1994), was used as the
+haploid mmr mutator strain in all work described in this
+paper. This strain was generously provided by Yevgeniy
+Raynes of the laboratory of Dan Weinreich, Brown Uni-
+versity, Providence, RI and has been previously described
+(Raynes et al. 2018). The kanMX cassette has been shown
+to not have a negative effect on growth (Baganz et al. 1997;
+Goldstein and McCusker 1999).
+We constructed diploid versions of each of the three
+above strains by transforming (Gietz and Schiestl 2007)
+each with plasmid pRY003, temporarily providing a func-
+tional HO locus allowing mating type switching and sub-
+sequent mating. pRY003 was a gift from John McCusker
+The ﬁtness cost of mismatch repair mutators in Saccharomyces cerevisiae: partitioning the mutational. . . 51
+(Addgene plasmid #81043; http://n2t.net/addgene:81043;
+RRID:Addgene_81043). The diploid state of resulting iso-
+lates was conﬁrmed by (1) ability to produce tetrads after
+plating to sporulation media; (2) by ﬂow cytometry for total
+genomic content (following Gerstein et al. 2006); and (3) by
+the presence of a PCR product for both the MATα and
+MATα loci. The mmr diploids would not sporulate, but were
+conﬁrmed to be diploids by the other two methods.
+Growth conditions
+The liquid medium for all ﬁtness competitions was synthetic
+dextrose (SD) minimal medium containing yeast nitrogen
+base at a concentration of 6.7 g/L and glucose at a con-
+centration of 1.5 g/L (0.15%), supplemented with tetra-
+cycline (15 mg/L) and ampicillin (100 mg/L). Fitness
+competitions were conducted in volumes of 200 µL in deep
+polypropylene 96-well plates (Nunc 260251) sealed with
+ﬂexible caps (Nunc 276002) and shaken at 1000 rpm with
+an orbit of 3 mm (Corning LSE 6780-4) at a temperature of
+30 °C.
+Initial growth in liquid for the lethal event assays was
+performed in SD as described above but without antibiotics,
+in ﬂasks shaken at 200 rpm at 30 °C. Growth on agar SD
+(2% glucose, no antibiotics) plates for the lethal assays took
+place at room temperature, ~24 °C.
+Competitive ﬁtness assays and isolation of clones
+Yeast, when grown by batch transfer with glucose as the
+carbon source, follow a relatively complex cycle of lag,
+fermentation, and respiration, and ﬁtness beneﬁts “accrued”
+in one phase (e.g. respiration) may not be “realized” until
+the next (e.g. the lag following the next transfer) (Li et al.
+2018). Therefore we conducted short-term competitive ﬁt-
+ness assays between wild-type and mmr genotypes in which
+strains were mixed for one growth cycle prior to measuring
+frequencies (essentially, following Gallet et al. (2012)). The
+ﬁtness assays were conducted as follows, with the interval
+between each consecutive day spanning 24 h. Day 1: wild-
+type, mmr, and the YFP+ reference strain were inoculated
+from frozen stock into single wells. Day 2: each strain was
+transferred to a new well with fresh medium, diluting 1/100.
+Day 3: competing strains were mixed 1:1 by volume and
+transferred to new wells with fresh medium, diluting 1/100,
+to create 6 or 8 replicate competitions. Day 4: competitions
+were transferred to new wells with fresh medium, diluting
+1/100, and the frequencies of the competitor and reference
+strain were assayed by ﬂow cytometry (Guava EasyCyte).
+Discrimination between strains was performed on the SSC/
+GRN scatter plot. Day 5: the frequencies of the competitor
+and reference strain were again assayed by ﬂow cytometry.
+The population density at the end of a 24-h cycle was
+~2 × 107 cells/mL; the census population size was thus ~4 ×
+106 at transfer and ~4 × 104 just after transfer.
+The change in frequencies between Days 4 and 5 was
+used to calculate a selection coefﬁcient s. Under a con-
+tinuous model of growth (Crow and Kimura 1970, p. 193)
+s ¼ 1 t ln pt 1 /C0 p0ðÞ p0 1 /C0 ptðÞ;
+from which a relative ﬁtness w = 1 + s follows. The number
+of generations, t, was assumed to be log2100, or ~6.64. p0
+and pt are the starting and ending frequencies of the
+genotype being tested (i.e. the frequencies at Days 4 and 5
+in the above procedure). The resulting selection coefﬁcients
+represent differences in Malthusian parameter (that is, the
+log of Wrightian ﬁtness) scaled per generation of growth.
+We conducted ﬁtness competitions using this procedure
+in eight separate blocks, each with multiple replicates as
+described above. Each block was begun on a different date.
+For each block, we computed the ﬁtness of the mmr strain
+relative to the ﬁtness of the wild-type strain by subtracting
+their mutual relative ﬁtnesses to the reference strain. Each
+block included competitions in both haploid and diploid
+genotypes. Our ﬁnal point estimate of the ﬁtness difference
+between mmr and wild-type strains is the mean difference
+across all blocks, and the 95% conﬁdence intervals (as
+shown in Fig. 2) were computed from the set of point
+estimates according to the t-distribution.
+In two of the eight ﬁtness competition blocks, we ran-
+domly sampled individual clones. To do so, we additionally
+propagated the haploid wild-type and mmr strains on Day 3
+in addition to mixing them 1:1 with the reference strain.
+Then, on Day 4, we plated these cultures, diluting appro-
+priately, to YPD agar plates. After sufﬁcient incubation, the
+resulting colonies were picked by pipet tip into wells con-
+taining 200 µL YPD, grown for 24 h, and frozen down by
+mixing 1:1 with 30% glycerol and storing at −80 °C until
+needed for ﬁtness assays. The random selection of colonies
+was ensured by either (1) picking all colonies on a given
+plate or (2) picking colonies concentrically from a randomly
+placed point.
+Fitness assays for sets of isolated clones were conducted
+on a single 96-well plate, which allowed us to assay the
+ﬁtnesses of 88 clones (some wells being reserved for var-
+ious purposes) or fewer per run. We followed essentially the
+same procedure as the 5-day competition described above,
+except that frequencies were estimated at Day 3 and Day 4
+instead of Day 4 and Day 5. This modiﬁcation was made
+because some clones had such reduced ﬁtnesses that an
+extra day of growth after mixing 1:1 with the reference
+strain caused the starting frequency of the clone to depart
+too greatly from 50%.
+The expected variance in measured selection coefﬁcient
+due to random sampling effects during ﬂow cytometry was
+52 B. Galeota-Sprung et al.
+computed by means of a simple simulation in which the true
+frequency of each genotype at the start and end of the ﬁtness
+competition was replaced by a random binomial variable.
+Ten thousand replicates of this simulation were run.
+Calculation of nonlethal load
+Mutational load is classically deﬁned (Bürger 1998)as
+L ¼ wmax /C0 w wmax ;
+where w is the mean ﬁtness of the population and wmax is
+the ﬁtness of the ﬁttest genotype.
+We measured all ﬁtnesses relative to a common ﬂuor-
+escent strain, as described above. We deﬁne the unloaded
+ﬁtness of each genotype as equal to 1 and we expect no
+beneﬁcial mutations to rise to appreciable frequency in the
+short course of these experiments. Hence, wmax = 1 and thus
+L ¼ 1 /C0 w:
+We expect measured selection coefﬁcients to be dis-
+tributed approximately normally around the true value,
+because of various sources of error including binomial
+sampling error, drift, instrument noise, environmental per-
+turbations to individual wells (within-batch effects), and
+among 96-well plates (across-batch effects). To eliminate
+across-batch effects, for each run we adjusted all measured
+ﬁtnesses by a constant c such that the mode ﬁtness is 1
+(equivalently, such that the mode selection coefﬁcient is
+zero). Once this adjustment has been made,
+L ¼ 1 /C0 mean WðÞ
+where W is the vector of all sampled clone ﬁtnesses, or
+equivalently
+L ¼ mean SðÞ
+where S is the vector of all sampled clone selection
+coefﬁcients. A 95% conﬁdence interval for the nonlethal
+load was computed by bootstrapping from the measured
+ﬁtnesses of all sampled clones: for 10,000 replicates,
+ﬁtnesses were sampled randomly with replacement and
+the mean computed; from this empirical distribution, the
+0.025 and 0.975 quantiles formed the bounds of the
+conﬁdence interval.
+Lethal event assay
+Strains were inoculated from frozen stock into 6 mL SD in a
+ﬂask, and transferred to fresh media after 24 h, diluting
+1/100. After an overnight of growth, a streak from the
+culture was made onto an SD agar plate and ﬁve single cells
+with nascent buds were physically isolated by means of a
+Zeiss (West Germany) micromanipulating microscope ﬁtted
+with a Singer Instruments (Somerset, UK) dissecting nee-
+dle. These cells were periodically checked over the next few
+hours and the daughters physically separated once devel-
+oped. These daughters became the founders of micro-
+colonies that were allowed to grow at room temperature for
+~20 h, reaching an average size of 23.3 cells (22.8 for the
+wild type, 23.8 for mmr, difference not signiﬁcant at p >
+0.6). These microcolonies were then dissected into a grid-
+like arrangement of single cells (step 1 in Fig. 1). These
+cells were then checked at intervals of 1–2 h and daughters
+separated as soon as possible (step 2 in Fig. 1). The colonies
+resulting from these mother/daughter duos were checked at
+~24, ~48, and in some cases ~72 and ~96 h after separation.
+A lethal event was recorded when the growth of a mother or
+daughter lineage ceased. In such cases cessation of growth
+was sometimes immediate and sometimes occurred after a
+few generations. In the latter cases the growth was generally
+markedly slowed by the ﬁrst observation. In a few cases,
+slow but unceasing growth was noted: these are presumed
+to be cases in which a strongly deleterious mutation
+Fig. 1 Schematic of lethal assay. The arraying in step 1 and separation in step 2 were performed by micromanipulation. Microcolonies in step 1
+comprised on average 23 cells, and were founded by new daughter cells that had themselves been isolated by micromanipulation
+The ﬁtness cost of mismatch repair mutators in Saccharomyces cerevisiae: partitioning the mutational. . . 53
+occurred, though we stress that this assay was not designed
+to detect nonlethal deleterious mutations.
+As described in the “Discussion” section, the difference
+in the rate of lethal events between the wild type and mmr
+strains was used as the estimate for the lethal mutation rate
+for the mmr strain. A 95% conﬁdence interval for this dif-
+ference in rates was computed by the prop.test function in R
+(Newcombe 1998).
+Fluctuation assays
+To measure the mutation rate to 5-ﬂuoroorotic acid (5-FOA)
+resistance, we employed the following procedure. Strains of
+interest were inoculated into 10 mL YPD, grown in ﬂasks
+with shaking at 30 °C for ~24 h, and then transferred to
+30 mL fresh YPD diluting such that ~200 cells were pas-
+saged, in replicates of 5. After ~48 h of growth, each
+replicate was plated without dilution to SD + 5-FOA (1 g/L)
+agar plates to estimate density and absolute number of
+resistants, and plated with a 10−5 dilution to YPD agar
+plates to estimate total population density and absolute
+number. Plates were counted after ~48 h of growth and
+mutation rates were estimated using the maximum like-
+lihood method of Gerrish (2008). For each round of ﬂuc-
+tuation tests, we estimated mutation rates for both wild-type
+and mmr strains simultaneously in order to minimize the
+inﬂuence of any uncontrolled sources of variation.
+Homopolymers per gene
+The per-base rate of homopolymeric runs of various lengths
+in S. cerevisiae coding regions were computed by a custom
+Python script. The S. cerevisiae S288C reference genome
+was downloaded from www.yeastgenome.org.
+Results
+Mutation rate elevation in mmr strain
+To conﬁrm that the mmr (msh2Δ) strain is a mutator, we
+conducted ﬂuctuation tests using resistance to 5-FOA as the
+selectable phenotype. Averaged across replicate ﬂuctuation
+tests, we found a 20.8-fold increase (95% CI: 13.4- to 28.3-
+fold) in the mutation rate for the mmr strain relative to the
+wild type (Fig. S1). This is likely an underestimate of the
+effective genome-wide increase in the mutation rate because
+mmr mutators have a greatly elevated indel rate for homo-
+polymeric runs (Lang et al. 2013), of which URA3, the main
+locus involved in this ﬂuctuation test, is relatively devoid
+(Fig. S4).
+Fitness disadvantage of mmr compared with wild-
+type
+We competed mmr and wild-type strains against a common
+YFP+ reference strain. Averaged across eight separate
+blocks of ﬁtness competitions, we found the mutator to be
+less ﬁt than the wild-type, with an average ﬁtness deﬁcit,
+expressed as a selection coefﬁcient per generation, of
+~2.25% (95% CI: 1.98–2.53%) (Fig. 2).
+Estimation of nonlethal load
+We randomly sampled individual clones from both mmr and
+wild-type populations and measured the competitive ﬁtness
+of each clone. The sampled ﬁtness distributions are shown
+in Fig. 3. The mmr strain’s ﬁtness distribution has a pro-
+minent left tail of less-ﬁt individuals. We calculated the load
+as the difference between the mode and the mean ﬁtness;
+this is ~0 for the wild-type strain and ~1.65% (95% CI:
+2.19–1.08%) for the mmr strain. The difference in load
+between the two strains is signiﬁcant (p <10−8). The ﬁtness
+distributions for the mmr and wild type are signiﬁcantly
+different in shape (Kolmogorov–Smirnov test; p <10−8),
+while the ﬁtness distribution for the wild-type strain is not
+signiﬁcantly different from a normal distribution with the
+same mean and variance (Kolmogorov–Smirnov test;
+p > 0.05).
+Fig. 2 The average competitive ﬁtness deﬁcit (in black, error bars are
+95% conﬁdence intervals) of the mutator strain relative to the wild
+type, expressed as selection coefﬁcient, is 2.3%. Fitness competitions
+were conducted in a series of eight blocks, shown in gray. The two
+strains were not competed directly against each other; within each
+block, each was competed separately against an otherwise isogenic
+MMR+ YFP+ strain. Each block contained between 6 and 8 replicate
+competitions
+54 B. Galeota-Sprung et al.
+Estimation of lethal mutation rate
+To assay lethal mutation rates, we manipulated single S.
+cerevisiae cells, separating mother/daughter duos and track-
+ing events in which one member of the duo failed to found a
+colony. The procedure is shown in Fig. 1 and explicated
+more fully in the “Methods” section. Assaying over 2200
+duos for each strain, we found a rate of lethal events per
+newly replicated genome of 0.31% (95% CI: 0.018–0.055%)
+in the wild-type strain and 0.76% (95% CI: 0.53–1.07%) in
+the mmr strain (Table 1). The difference between these rates
+is 0.44% (95% CI: 0.12%–0.77%). Because the observed rate
+of lethal events in the wild type is much higher than the
+expected lethal mutation rate, we take this difference as our
+estimate of the lethal mutation rate in the mmr strain (see the
+“Discussion” section for elaboration on this point). Photo-
+graphs of representative lethal events are shown in Fig. S3.
+In our assay we followed separated duos that contained a
+suspected lethal until growth ceased. In some cases growth
+never ceased, but doubling times were very slow compared
+with the usual growth rate; such cases were not counted as
+lethal events but are tallied separately in Table 1. We also
+detected cases in which both members of a duo were lethal,
+or both showed strongly reduced growth, and also cases in
+which the mother cell never divided. Because such events
+probably stemmed from a mutation that occurred prior to
+the division that created the duo under observation, we
+excluded these events from our analysis.
+Results in diploids
+From the haploid strains, we constructed diploid mmr and
+wild-type strains. We calculate the nonlethal load in the
+mmr diploid strain as ~0 for the wild-type diploid strain and
+0.30% (95% CI: −0.02 to 0.55%) (Fig. S2) for the mmr
+strain—substantially less, by about 80%, than the equiva-
+lent load in the mmr haploid strain (difference signiﬁcant at
+p <10−4). The diploid wild-type and mmr distributions
+differ signiﬁcantly in shape (Kolmogorov–Smirnov test; p
+<10−4) but do not differ signiﬁcantly in mean (p > 0.05).
+We also measured the difference in population ﬁtness
+between wild-type and mmr diploid strains via short-term
+competitive ﬁtness assays. We found that the mmr diploid is
+less ﬁt than the wild-type diploid by a selection coefﬁcient
+of ~1.69% (95% CI: 1.40–1.94%) (Fig. 4). This difference,
+though larger than expected, is smaller than the ﬁtness
+Fig. 3 Distributions of ﬁtness in haploid wild types (a) and mmr
+mutators (b). We measured the ﬁtnesses of 327 wild type and 313 mmr
+clones. Fitnesses were measured in competition with an MMR+ YFP+
+reference strain otherwise isogenic to the wild type, as described in
+“Methods” section. Dashed vertical lines indicate the mean. The load
+is ~0 for wild types; for mmr mutators it is ~1.7%. QQ plots of the
+ﬁtness distributions are shown as insets. The two distributions differ
+signiﬁcantly (Kolmogorov–Smirnov test, p <10−8)
+Table 1 Counts and frequencies of events of interest in the
+lethal assay.
+Wild type mmr
+Event Count Rate Count Rate p-value
+Both OK 2235 0.9967 2145 0.9908 0.0006
+One lethal 14 0.0031 33 0.0076 0.0049
+One strongly
+reduced growth
+1 0.0002 7 0.0016 0.0363
+“One lethal” means that the lineage founded by either the mother or
+daughter cell ceased to grow within the observation period. “One
+strongly reduced growth” means that either the mother or daughter
+lineage was observed to grow noticeably slowly. Other events—both
+members of the duo lethal or strongly reduced growth, or the mother
+never budding—were not included in the analysis and are not
+displayed here. The p-values reﬂect the statistical signiﬁcance of the
+difference in rates between wild type and mmr strains and were
+obtained by Fisher’s exact test. Note that events are displayed per duo
+while rates are calculated per individual. “Both OK” means that both
+mother and daughter cell grew into normal colonies
+The ﬁtness cost of mismatch repair mutators in Saccharomyces cerevisiae: partitioning the mutational. . . 55
+difference between wild-type and mmr haploid strains by
+26% (haploid-to-diploid difference signiﬁcant at p < 0.004).
+Discussion
+Prior work has shown that, over the short term, haploid mmr
+S. cerevisiae strains decline in frequency when competed
+with a strain that is wild-type for the mutation rate
+(Thompson et al. 2006; Raynes et al. 2011, 2018; Bui et al.
+2017). Consistent with these ﬁndings, we ﬁnd a ﬁtness
+disadvantage, expressed as a selection coefﬁcient per gen-
+eration, of ~2.3% for mmr haploids in short-term ﬁtness
+competitions (Fig. 2). The magnitude of this selective dis-
+advantage is similar to that in other reports, including
+Raynes et al. (2011) (2.4% cost), Raynes et al. (2018) (3.3%
+cost), and Wloch et al. (2001) (4.6% cost, though this is a
+noncompetitive measure of absolute growth rate).
+The deleterious mutations that cause load include both
+lethal and nonlethal mutations. There is no fundamental
+theoretical distinction between these two classes of muta-
+tion insofar as their contribution to load is concerned: in
+many population genetic models, all members of an asexual
+population who are not of the least-loaded class are con-
+sidered to be doomed (Rice 2002). However, their different
+manifestations require different experimental techniques.
+We therefore developed separate approaches to measure
+these two components of load.
+Load due to nonlethal mutations
+We measured the short-term competitive ﬁtnesses of 640
+randomly selected haploid clones. The histogram and QQ
+plot for the haploid wild-type populations (Fig. 3a) suggest
+that, apart from one less-ﬁt clone, the distribution of ﬁtness
+for the wild-type strain is essentially normal. The normality
+of the distribution is consistent with nearly all wild-type
+clones having the same genotype and thus the same
+expected ﬁtness, along with many small sources of error in
+estimation of ﬁtness. One such source of error is drift over
+the course of the short-term ﬁtness competition. The for-
+mula derived by Gallet et al. (2012) suggests that the
+expected variance in ﬁtness measurement due to drift given
+our experimental parameters is ~2 × 10−6. A larger source
+of variance is due to sampling error: in the ﬁtness compe-
+titions, we estimate the relative frequencies of the compe-
+titors at two time points, sampling ~8000 cells per time
+point. We carried out simulations that suggest that the
+expected variance due to sampling error is ~2.3 × 10−5.
+These two sources of variance, summed, make up about
+20% of the observed variance in selection coefﬁcient. The
+remainder of the variance probably stems from small-scale
+environmental variation and other unknown sources
+of error.
+In contrast to the results in wild types, the ﬁtness histo-
+gram and QQ plot for the haploid mmr strain (Fig. 3b) are
+not reﬂective of a normal distribution. Instead, a prominent
+left tail of less-ﬁt clones demonstrates the effect of muta-
+tional load. The mean selection coefﬁcient is approximately
+−1.7%, which is the quantiﬁcation of the reduction in
+population mean ﬁtness due to nonlethal load. This reduc-
+tion accounts for a substantial portion (~75%) of the mea-
+sured competitive ﬁtness difference (Fig. 2) between the
+two strains.
+Our estimate of the nonlethal load (~1.7%) reﬂects the
+average per-generation growth deﬁcit of the mutator sub-
+population due to the accumulation of deleterious mutations
+up to the point of random sampling of clones. We note that
+this is an estimate of the load at a nonequilibrium state, and
+is expected to be less than the full load achieved when
+mutation-selection balance is reached for all loci. Direct
+observation of mutation-selection equilibrium in a labora-
+tory setting would be challenging because experimental
+populations rapidly generate adaptive mutations. Our strain-
+to-strain ﬁtness assays, which found (Fig. 2)aﬁtness deﬁcit
+of ~2.3% for the mmr strain relative to the wild type, are
+likewise reﬂective of a nonequilibrium state. Since both
+estimates are derived from the same nonequilibrium popu-
+lations, they are directly comparable.
+Selection coefﬁcients of about the magnitude we observe
+here cause changes in relative frequency that are extremely
+rapid in evolutionary terms. For example, a selective deﬁcit
+of 2% would cause a decline from 50% to 20% frequency in
+70 generations. Observing a rapid initial decline of haploid
+mmr S. cerevisiae strains in competition with wild types,
+some investigators (e.g. Grimberg and Zeyl 2005) have
+attributed the observed ﬁtness difference to an unknown
+Fig. 4 Change in mmr ﬁtness disadvantage with ploidy. The ﬁtness
+deﬁcit, relative to the wild type, is 26% lower in diploids than in
+haploids (p < 0.004)
+56 B. Galeota-Sprung et al.
+direct cost (i.e. a pleiotropic effect) while others (e.g.
+Raynes et al. 2018) have assumed that mutational load fully
+explains the dynamics. The question has remained open, in
+part because it has been nearly impossible to deﬁnitively
+rule out a direct ﬁtness effect of being mmr—any attempt to
+measure such an effect will be confounded by the indirect
+ﬁtness effects. By quantifying the indirect ﬁtness effects
+(i.e. load) we seek to determine if a direct effect need be
+invoked to explain the observed experimental dynamics.
+It is not surprising that the nonlethal load accounts for
+only a portion of the observed ﬁtness difference. The non-
+lethal load assay relies on the growth of deleterious mutants
+in order to measure their ﬁtness and thus cannot detect
+mutants that do not grow, i.e. lethal mutations. In order to
+measure this portion of the load, we designed an assay in
+which lethal events are directly observed.
+Load due to lethal mutations
+The lethal mutation rate has long been a matter of interest
+(e.g. Dobzhansky and Wright 1941). By observing 4435
+mother–daughter pairs (duos), we found a rate of lethal
+events of 0.0076 and 0.0031 for the mmr and wild-type
+strain, respectively.
+Our observed wild-type lethal event rate, 0.0031, is on
+the order of estimates for the genomic mutation rate itself
+(Drake 1991; Lynch et al. 2008; Zhu et al. 2014;Sharp
+et al. 2018) and therefore cannot plausibly reﬂect the rate of
+lethal mutations. Our interpretation is that, for the wild
+type, all or most observed lethal events were not caused by
+genomic mutations and are instead best considered to be
+nonmutational deaths, perhaps caused by ﬁne-scale envir-
+onmental ﬂuctuations, experimental manipulation, or other
+stochastic sources of insult and stress. Observations of
+relatively high rates of cell death, too high to be due to
+lethal mutation, are not uncommon. Replicative aging
+studies of S. cerevisiae often observe low but substantial
+rates of cell death even in very young mother cells (e.g.
+Chiocchetti et al. 2007; Shcheprova et al. 2008). Rates of
+cell death on the order of our observed rate for the wild-
+type strain have also been observed in young bacterial cells
+(Wang et al. 2010), suggesting that relatively high rates of
+nonmutational, non-age-related deaths are common among
+microbes. Our assay design ensured that colonies were
+young (the oldest cell in a microcolony was on average
+~4.3 generations old) and we did not observe a bias in
+lethal events towards mothers (Table S1), so we do not
+attribute the observed lethal events to senescence. In fact,
+we observed, across both strains, a bias towards the lethal
+event occurring in the daughter cell. This difference was
+not statistically signiﬁcant (p = 0.14), although within the
+mmr strain only we observed 10 lethal events in mothers
+and 23 in daughters (p = 0.04). The observed bias towards
+daughters dying, if not a sampling effect, could be attri-
+butable to smaller daughter cells being relatively more
+vulnerable to stress. Indeed, increased vulnerability of
+daughters to environmental sources of stress has been
+previously reported (Knorre et al. 2010).
+An a priori estimation of the wild-type lethal mutation
+rate can be made as follows. Lang and Murray (2008)
+conducted careful estimations of the rate of loss-of-function
+mutations to the CAN1 locus in a similar background
+(W303) as the strains used in this work. Multiplying this
+rate, 1.5 × 10−7, by the number of genes thought to be
+essential for viability, ~1100 (Giaever et al. 2002), and
+accounting for the fact that CAN1 is longer than the average
+essential gene gives an expected lethal rate in wild-type
+haploids of 1.5 × 10−4. This estimate is on the upper end but
+within the range of observed rates of accumulation of
+recessive lethals in several experiments conducted with
+diploids (Wloch et al. 2001; Hall and Joseph 2010; Nishant
+et al. 2010; Zhu et al. 2014; Jasmin and Lenormand 2016).
+Such a rate would suggest that we expected to observe
+about 0.3 lethal mutations in the wild-type strain in our
+experiment; we actually observed 14. Therefore, we con-
+sider the observed rate of lethal events in the wild type to be
+an estimate of the rate of nonmutational deaths. The cor-
+responding rate for the mmr strain is 0.0076 (difference
+signiﬁcant at p < 0.001). Making the assumption that non-
+mutational deaths equally affect both strains, we take the
+difference between the wild-type and mmr lethal event rates,
+0.0044 (95% CI: 0.0012–0.0077), as the estimate of the
+lethal mutation rate in the mmr strain. We note that our
+empirical result is fairly close to the ﬁgure obtained by
+multiplying the wild-type a priori estimate, 1.5 × 10−4,by
+the average fold increase in CAN1 loss-of-function mutation
+rate for mmr strains in a collection of published reports (44-
+fold; see Table S4). A slightly different methodology, tak-
+ing the average CAN1 loss-of-function rate of mmr strains
+from published reports (1.5 × 10−5; Table S4) and multi-
+plying by 1100 essential genes yields a somewhat higher
+expected lethal mutation rate of ~0.015.
+In many of the lethal events that we observed, growth
+did not immediately cease but continued for a few gen-
+erations (Table S2) before halting. Limited growth for a
+few generations after an ultimately lethal mutation occurs
+has previously been observed (Mortimer 1955). We also
+observed morphological defects in several lethal events;
+one such instance is shown in the bottom panel of Fig. S3.
+We note that some lethal mutations that we observed could
+be due to chromosomal losses during mitosis (aneu-
+ploidies), but that knocking out MSH2 has not been
+observed to greatly increase the rate of such events in
+haploids (Serero et al. 2014).
+The ﬁtness cost of mismatch repair mutators in Saccharomyces cerevisiae: partitioning the mutational. . . 57
+Diploid ﬁndings
+We measured the short-term competitive ﬁtnesses of 573
+randomly selected diploid clones. The distribution of ﬁtness
+for mmr diploids (Fig. S2) suggests that they are sub-
+stantially less loaded than mmr haploids, as would be
+expected if dominance attenuates the deleterious effects of
+new mutations. We calculate the nonlethal load in mmr
+diploids as ~0.3%, as opposed to ~1.7% in mmr haploids:
+that is, ~80% of the load has gone away following diploi-
+dization. One interpretation of this ﬁnding is that deleterious
+mutations tend to be recessive in diploids. Thus, compar-
+ison of the ﬁtness distributions of mmr diploids and mmr
+haploids is consistent with a high mutuation rate and
+diploidy shielding the effects of deleterious mutations.
+The sampled wild-type diploid clones included more
+low-ﬁtness individuals than the wild-type haploids (com-
+pare Fig. S2A with Fig. 3a). We cannot fully explain this
+observation; one possible explanation is that diploids are
+more prone than haploids to nondisjuctions causing aneu-
+ploid chromosomes, a notion for which there is some
+experimental support (Sharp et al. 2018).
+The relative difference in short-term competitive ﬁtness
+between wild-type and mmr strains is narrowed by 26% in
+diploids (Fig. 4). It is somewhat surprising, given that the
+nonlethal loads are not very different between wild-type and
+mmr diploids, that this ﬁgure is not larger. One possibility is
+that the diploid mutator ﬁxed a deleterious mutation during
+the process of diploidization, which would account for the
+discrepancy between the reduction in nonlethal load (82%)
+and the reduction in total ﬁtness difference (26%) in
+diploids compared with haploids. Another formal possibi-
+lity is that diploid mutators have a higher lethal mutation
+rate than haploid mutators, but we cannot posit a causative
+mechanism for such an effect.
+Considering the two loads together
+The total ﬁtness difference between the haploid wild-type
+and mmr strains could be a consequence of greater muta-
+tional load for the mmr strain, a direct effect of the msh2Δ
+deletion, or a combination of the two. The addition of the
+lethal and nonlethal loads (0.0166 + 0.0044 = 0.0210) is
+~7% smaller than the measured ﬁtness difference (0.0225),
+and the difference is not signiﬁcant (Fig. S5). The difference
+may simply be due to sampling error, or due to systematic
+underestimation of one or the other of the loads. The non-
+lethal load may be slightly underestimated because clones
+were isolated by plating at the beginning of the growth
+cycle during which competitive ﬁtness was measured. The
+load may have continued to increase somewhat during this
+growth cycle.
+The broad equivalence of the sum of the loads, on the
+one hand, and the strain-to-strain competitive ﬁtness, on the
+other, is consistent with the hypothesis that the total ﬁtness
+difference is solely due to mutational load. Hence, although
+we cannot rule out the existence of a small direct ﬁtness
+effect, these ﬁndings suggest that there is no need to invoke
+direct effects in explaining the ﬁtness difference between
+the mmr and wild-type haploid strains.
+The load is equal to the deleterious mutation rate only
+when the population is in mutation-selection balance. This
+equilibrium is reached instantly for lethal mutations, quickly
+for deleterious mutations of large effect, and very slowly for
+deleterious mutations of slight effect (Johnson 1999). The
+mmr populations in our assays experienced, including the
+initial process of transformation and growth before frozen
+storage, about 60 generations of growth, which is enough
+time to achieve mutation-selection balance for deleterious
+mutations of relatively large effect, but not for deleterious
+mutations of slight effect. Hence, our estimate of the total
+load (2.1–2.3%) should be considered an estimate of the
+lower limit for the deleterious mutation rate for mmr
+haploids.
+Comparison with results in bacteria
+Insofar as S. cerevisiae and E. coli are two model organ-
+isms, from different domains of life, with which many
+evolution experiments have been performed, it is interesting
+to compare the loads of mismatch repair mutators in both. It
+appears that in E. coli the relative ﬁtness deﬁcit for mmr
+strains is smaller than it is in haploid S. cerevisiae. For
+instance, Shaver et al. (2002) did not detect a ﬁtness dif-
+ference between mmr and wild-type strains, de Visser and
+Rozen (2006) did not observe an initial decline in mutS
+frequency when that genotype was competed with the wild
+type at different starting ratios, and Boe et al. (2000) esti-
+mated at most a 1% selective disadvantage for mmr muta-
+tors. In this context it is relevant to note that there are
+several reports of mmr genotypes in natural E. coli isolates
+(LeClerc et al. 1996; Matic et al. 1997; Denamur et al.
+2002), as well as in other types of bacteria (Oliver et al.
+2000; Richardson et al. 2002; Trong et al. 2005; Gould
+et al. 2007). In S. cerevisiae, in contrast, no functionally
+mmr natural isolates have yet been found (though see
+Raghavan et al. 2018). Such observations suggest that
+E. coli may be relatively more robust than S. cerevisiae to
+the lack of a functional mismatch repair system. One reason
+for this difference could be that the genomic mutation rate
+in E. coli is lower than that of S. cerevisiae by a factor of
+about 4 (Lee et al. 2012, Lynch et al. (2008); Zhu et al.
+2014; Sharp et al. 2018). If there is a similar absolute dif-
+ference in deleterious mutation rate, then even if the relative
+58 B. Galeota-Sprung et al.
+fold increase in the deleterious mutation rate caused by the
+lack of mismatch repair is also equal in both organisms, the
+absolute difference in load, which is what controls the
+evolutionary dynamics, will be larger in S. cerevisiae than
+in E. coli. Another possible factor is differences in the
+spectrum and genomic substrate of mutations. In both E.
+coli and S. cerevisiae, the indel rate is greatly increased in
+mmr lineages, and the rate of indels is strongly elevated in
+homopolymeric repeats (HPRs). Both the relative increase
+from wild-type to mmr and the absolute indel rate in mmr
+are higher, and scale upwards faster with HPR length, in S.
+cerevisiae than in E. coli (Schaaper and Dunn 1991; Tran
+et al. 1997; Gragg et al. 2002; Lee et al. 2012; Lang et al.
+2013). Examining all coding sequences in the E. coli and S.
+cerevisiae genomes, we ﬁnd that there are signiﬁcantly
+more HPRs per coding genome, per gene, and per coding
+base in S. cerevisiae than in E. coli (Table S5). S. cerevisiae
+that are mmr are therefore relatively more burdened by
+indels than are mmr E. coli which could account for both the
+apparent larger ﬁtness difference between MMR+ and mmr
+and the corresponding apparent contrast in occurrence in
+natural isolates. We caution that this particular analysis is
+speculative in nature at this time: one important caveat is
+that, while this study and others have found large ﬁtness
+differences between wild-type and mmr haploids, S. cere-
+visiae spend most of their time in nature as diploids, in
+which the ﬁtness deﬁcit of mmr lineages might be less
+severe: classically, equilibrium mutational load is halved in
+the recessive case compared with the additive, or haploid,
+case (Kimura et al. 1963). However, while estimates of the
+rate of outcrossing in S. cerevisiae are very low (Ruderfer
+et al. 2006), the rate of sporulation, which entails a haploid
+stage, is not known, and evidence of extensive inbreeding
+and loss of heterozygosity (Peter et al. 2018) suggest that it
+is relatively frequent. Recessive deleterious mutations may
+thus be frequently exposed to selection in natural S. cere-
+visiae populations by both the haploid life cycle stage and
+loss of heterozygosity from inbreeding, suggesting that
+diploidy may not be as much of a shield for mmr lineages as
+it otherwise would be. A second caveat is that, even if there
+is no direct ﬁtness effect of mmr in haploids, there could be
+such an effect in diploids, perhaps due to misregulation of
+the frequency of recombination events (reviewed in Surtees
+et al. 2004; George and Alani 2012).
+Conclusions and future directions
+We have found that the indirect ﬁtness effects of strong
+modiﬁers for mutation rates are substantial in haploid S.
+cerevisiae, and that it is not necessary to postulate direct
+ﬁtness effects in order to explain the selective disadvantage
+of the lack of a functional mismatch repair pathway. This
+ﬁnding is probably most relevant to experimental inquiries
+of the dynamics of mutation rate evolution in which S.
+cerevisiae is the model organism.
+We have also reported ﬁndings relevant to fundamental
+questions about mutational dynamics, including the lethal
+mutation rate and the relative ratio of lethal and nonlethal
+deleterious mutations. By sampling the ﬁtnesses of many
+individuals we have clearly demonstrated mutational load in
+an mmr population, and from the load we are able to esti-
+mate a lower limit for the deleterious mutation rate. We
+sampled hundreds of clones and were able to obtain a clear
+picture of the left tail of the ﬁtness distribution for the mmr
+strain, but not for the wild-type strain. If the ﬁtnesses of tens
+of thousands of clones could be measured, much could be
+learned about load and other evolutionary dynamics at wild-
+type mutation rates; such experiments may become possible
+as methods for high-throughput measurements continue to
+advance.
+A limitation of this study is that we captured a snapshot
+of mutational load at a particular point in time in an evol-
+ving population. It would be interesting to observe, at a ﬁne
+scale, how the distribution of ﬁtnesses changes over time as
+a population approaches mutation-selection balance, adapts,
+and experiences other population genetic processes.
+Acknowledgements This research was facilitated by a National
+Aeronautics and Space Administration grant (NNA15BB04A) to PDS
+and a National Science Foundation Graduate Research Fellowship to
+BGS. We thank the laboratories of Andrew Murray (Harvard Uni-
+versity, Cambridge, MA) and Dan Weinreich (Brown University,
+Providence, RI) for their generous sharing of yeast strains.
+Data availability Data available from the Dryad Digital Repository:
+https://doi.org/10.5061/dryad.4b10j7q.
+Compliance with ethical standards
+Conﬂict of interest The authors declare that they have no conﬂict of
+interest.
+Publisher’s note Springer Nature remains neutral with regard to
+jurisdictional claims in published maps and institutional afﬁliations.
+References
+Baganz F, Hayes A, Marren D, Gardner DCJ, Oliver SG (1997)
+Suitability of replacement markers for functional analysis studies
+in Saccharomyces cerevisiae. Yeast 13:1563–1573
+Boe L, Danielsen M, Knudsen S, Petersen JB, Maymann J, Jensen PR
+(2000) The frequency of mutators in populations of Escherichia
+coli. Mutat Res 448:47–55
+Bui DT, Friedrich A, Al-Sweel N, Liti G, Schacherer J, Aquadro CF
+et al. (2017) Mismatch repair incompatibilities in diverse yeast
+populations. Genetics 205:1459–1471
+Bürger R (1998) Mathematical properties of mutation-selection mod-
+els. Genetica 102:279
+Chao L, Cox EC (1983) Competition between high and low mutating
+strains of Escherichia coli. Evolution 37:125
+The ﬁtness cost of mismatch repair mutators in Saccharomyces cerevisiae: partitioning the mutational. . . 59
+Charlesworth B (2015) Causes of natural variation in ﬁtness: evidence
+from studies of Drosophila populations. PNAS 112:1662–1669
+Chiocchetti A, Zhou J, Zhu H, Karl T, Haubenreisser O, Rinnerthaler
+M et al. (2007) Ribosomal proteins Rpl10 and Rps6 are potent
+regulators of yeast replicative life span. Exp Gerontol 42:275–286
+Cox EC, Gibson TC (1974) Selection for high mutation rates in che-
+mostats. Genetics 77:169–184
+Crow JF, Kimura M (1970) An introduction to population genetics
+theory. Harper & Row, New York, NY
+Danforth CH (1923) Eugenics, genetics and the family. In: Scientiﬁc
+papers of the Second International Congress of Eugenics,
+American Museum of Natural History, New York, 22–28 Sept
+1921. Williams & Wilkins Company.
+de Visser JAGM, Rozen DE (2006) Clonal interference and the peri-
+odic selection of new beneﬁcial mutations in Escherichia coli.
+Genetics 172:2093–2100
+Denamur E, Matic I (2006) Evolution of mutation rates in bacteria.
+Mol Microbiol 60:820–827
+Denamur E, Bonacorsi S, Giraud A, Duriez P, Hilali F, Amorin C et al.
+(2002) High frequency of mutator strains among human uro-
+pathogenic Escherichia coli isolates. J Bacteriol 184:605–609
+Desai MM, Fisher DS (2011) The balance between mutators and
+nonmutators in asexual populations. Genetics 188:997–1014
+Dobzhansky T, Wright S (1941) Genetics of natural populations. V.
+Relations between mutation rate and accumulation of lethals in
+populations of Drosophila pseudoobscura. Genetics 26:23
+Drake JW (1991) A constant rate of spontaneous mutation in DNA-
+based microbes. Proc Natl Acad Sci USA 88: 7160–7164
+Fisher R (1930) The genetical theory of natural selection. Clarendon
+Press, Oxford
+Gallet R, Cooper TF, Elena SF, Lenormand T (2012) Measuring
+selection coefﬁcients below 10–3: method, questions, and pro-
+spects. Genetics 190:175–186
+George CM, Alani E (2012) Multiple cellular mechanisms prevent
+chromosomal rearrangements involving repetitive DNA. Crit Rev
+Biochem Mol Biol 47:297–313
+Gerrish P (2008) A simple formula for obtaining markedly improved
+mutation rate estimates. Genetics 180:1773–1778
+Gerstein AC, Chun H-JE, Grant A, Otto SP (2006) Genomic con-
+vergence toward diploidy in Saccharomyces cerevisiae. PLOS
+Genet 2:e145
+Giaever G, Chu AM, Ni L, Connelly C, Riles L, Véronneau S et al.
+(2002) Functional proﬁling of the Saccharomyces cerevisiae
+genome. Nature 418:387–391
+Gietz R, Schiestl R (2007) Quick and easy yeast transformation using
+the LiAc/SS carrier DNA/PEG method. Nat Protoc 2:35–7
+Giraud A, Matic I, Tenaillon O, Clara A, Radman M, Fons M et al.
+(2001) Costs and beneﬁts of high mutation rates: adaptive evo-
+lution of bacteria in the mouse gut. Science 291:2606–2608
+Goldstein AL, McCusker JH (1999) Three new dominant drug resis-
+tance cassettes for gene disruption in Saccharomyces cerevisiae.
+Yeast 15:1541–1553
+Gou L, Bloom JS, Kruglyak L (2019) The genetic basis of mutation
+rate variation in yeast. Genetics 211:731–740
+Gould CV, Sniegowski PD, Shchepetov M, Metlay JP, Weiser JN
+(2007) Identifying mutator phenotypes among ﬂuoroquinolone-
+resistant strains of Streptococcus pneumoniae using ﬂuctuation
+analysis. Antimicrob Agents Chemother 51:3225–3229
+Gragg H, Harfe BD, Jinks-Robertson S (2002) Base composition of
+mononucleotide runs affects DNA polymerase slippage and
+removal of frameshift intermediates by mismatch repair in Sac-
+charomyces cerevisiae. Mol Cell Biol 22:8756–8762
+Grimberg B, Zeyl C (2005) The effects of sex and mutation rate on
+adaptation in test tubes and to mouse hosts by Saccharomyces
+cerevisiae. Evolution 59:431–438
+Gross MD, Siegel EC (1981) Incidence of mutator strains in Escher-
+ichia coli and coliforms in nature. Mutat Res Lett 91:107–110
+Haldane JBS (1937) The effect of variation of ﬁtness. Am Nat
+71:337–349
+Hall DW, Joseph SB (2010) A high frequency of beneﬁcial mutations
+across multiple ﬁtness components in Saccharomyces cerevisiae.
+Genetics 185:1397–1409
+Jasmin J-N, Lenormand T (2016) Accelerating mutational load is not
+due to synergistic epistasis or mutator alleles in mutation accu-
+mulation lines of yeast. Genetics 202:751–763
+Johnson T (1999) The approach to mutation-selection balance in an
+inﬁnite asexual population, and the evolution of mutation rates.
+Proc Biol Sci 266: 2389–2397
+Jyssum K (1960) Observations on two types of genetic instability in
+Escherichia coli. Acta Pathol Microbiol Scand 48:113–120
+Kimura M, Maruyama T, Crow JF (1963) The mutation load in small
+populations. Genetics 48:1303–1312
+Knorre DA, Kulemzina IA, Sorokin MI, Kochmak SA, Bocharova
+NA, Sokolov SS et al. (2010) Sir2-dependent daughter-to-mother
+transport of the damaged proteins in yeast is required to prevent
+high stress sensitivity of the daughters. Cell Cycle 9:4501–4505
+Koschwanez JH, Foster KR, Murray AW (2013) Improved use of a
+public good selects for the evolution of undifferentiated multi-
+cellularity. eLife 2:e00367
+Lang GI, Murray AW (2008) Estimating the per-base-pair mutation
+rate in the yeast Saccharomyces cerevisiae. Genetics 178:67–82
+Lang GI, Parsons L, Gammie AE (2013) Mutation rates, spectra, and
+genome-wide distribution of spontaneous mutations in mismatch
+repair deﬁcient yeast. G3: Genes, Genomes. Genetics 3:1453–1465
+LeClerc JE, Li B, Payne WL, Cebula TA (1996) High mutation fre-
+quencies among Escherichia coli and Salmonella pathogens.
+Science 274:1208–1211
+Lee H, Popodi E, Tang H, Foster PL (2012) Rate and molecular
+spectrum of spontaneous mutations in the bacterium Escherichia
+coli as determined by whole-genome sequencing. Proce Natl
+Acad Sci USA 109: E2774–E2783
+Li Y, Venkataram S, Agarwala A, Dunn B, Petrov DA, Sherlock G
+et al. (2018) Hidden complexity of yeast adaptation under simple
+evolutionary conditions. Curr Biol 28:515–525.e6
+Lynch M, Sung W, Morris K, Coffey N, Landry CR, Dopman EB
+et al. (2008) A genome-wide view of the spectrum of spontaneous
+mutations in yeast. PNAS 105:9272–9277
+Matic I, Radman M, Taddei F, Picard B, Doit C, Bingen E et al. (1997)
+Highly variable mutation rates in commensal and pathogenic
+Escherichia coli. Science 277:1833–1834
+Mortimer RK (1955) Evidence for two types of x-ray-induced lethal
+damage in Saccharomyces cerevisiae. Radiat Res 2:361–368
+Muller HJ (1950) Our load of mutations. Am J Hum Genet 2:111–176
+Newcombe RG (1998) Interval estimation for the difference between
+independent proportions: comparison of eleven methods. Stat
+Med 17:873–890
+Nishant KT, Wei W, Mancera E, Argueso JL, Schlattl A, Delhomme N
+et al. (2010) The baker’s yeast diploid genome is remarkably
+stable in vegetative growth and meiosis. PLOS Genet 6:e1001109
+Oliver A, Cantón R, Campo P, Baquero F, Blázquez J (2000) High
+frequency of hypermutable Pseudomonas aeruginosa in cystic
+ﬁbrosis lung infection. Science 288:1251–1253
+Peter J, Chiara MD, Friedrich A, Yue J-X, Pﬂieger D, Bergström A
+et al. (2018) Genome evolution across 1,011 Saccharomyces
+cerevisiae isolates. Nature 556:339
+R Core Team (2019) R: a language and environment for statistical
+computing. R Foundation for Statistical Computing, Vienna,
+Austria
+Raghavan V, Bui DT, Al-Sweel N, Friedrich A, Schacherer J, Aquadro
+CF et al. (2018) Incompatibilities in mismatch repair genes
+60 B. Galeota-Sprung et al.
+MLH1-PMS1 contribute to a wide range of mutation rates in
+human isolates of baker’s yeast. Genetics 210:1253–1266
+Raynes Y, Sniegowski PD (2014) Experimental evolution and the
+dynamics of genomic mutation rate modiﬁers. Heredity
+113:375–380
+Raynes Y, Gazzara MR, Sniegowski PD (2011) Mutator dynamics in
+sexual and asexual experimental populations of yeast. BMC Evol
+Biol 11:158
+Raynes Y, Wylie CS, Sniegowski PD, Weinreich DM (2018) Sign of
+selection on mutation rate modiﬁers depends on population size.
+PNAS 115:3422–3427
+Rice WR (2002) Experimental tests of the adaptive signiﬁcance of
+sexual recombination. Nat Rev Genet 3:241
+Richardson AR, Yu Z, Popovic T, Stojiljkovic I (2002) Mutator clones
+of Neisseria meningitidis in epidemic serogroup A disease. PNAS
+99:6103–6107
+RStudio Team (2015) RStudio: integrated development environment
+for R. RStudio, Inc., Boston, MA
+Ruderfer DM, Pratt SC, Seidel HS, Kruglyak L (2006) Population
+genomic analysis of outcrossing and recombination in yeast. Nat
+Genet 38:1077–1081
+Schaaper RM, Dunn RL (1991) Spontaneous mutation in the
+Escherichia coli lacI gene. Genetics 129:317–326
+Serero A, Jubin C, Loeillet S, Legoix-Né P, Nicolas AG (2014) Muta-
+tional landscape of yeast mutator strains. PNAS 111:1897–1902
+Sharp NP, Sandell L, James CG, Otto SP (2018) The genome-wide
+rate and spectrum of spontaneous mutations differ between hap-
+loid and diploid yeast. PNAS 115:E5046–E5055
+Shaver AC, Dombrowski PG, Sweeney JY, Treis T, Zappala RM,
+Sniegowski PD (2002) Fitness evolution and the rise of mutator
+alleles in experimental Escherichia coli populations. Genetics
+162:557–566
+Shcheprova Z, Baldi S, Frei SB, Gonnet G, Barral Y (2008) A
+mechanism for asymmetric segregation of age during yeast
+budding. Nature 454:728–734
+Sniegowski PD, Gerrish PJ, Lenski RE (1997) Evolution of high mutation
+rates in experimental populations of E. coli. Nature 387:703–705
+Surtees JA, Argueso JL, Alani E (2004) Mismatch repair proteins: key
+regulators of genetic recombination. Cytogenet Genome Res
+107:146–159
+Thompson DA, Desai MM, Murray AW (2006) Ploidy controls the
+success of mutators and nature of mutations during budding yeast
+evolution. Curr Biol 16:1581–1590
+Tran HT, Keen JD, Kricker M, Resnick MA, Gordenin DA (1997)
+Hypermutability of homonucleotide runs in mismatch repair and
+DNA polymerase proofreading yeast mutants. Mol Cell Biol
+17:2859–2865
+Trong HN, Prunier A-L, Leclercq R (2005) Hypermutable and
+ﬂuoroquinolone-resistant clinical isolates of Staphylococcus
+aureus. Antimicrob Agents Chemother 49:2098–2101
+Wach A, Brachat A, Pöhlmann R, Philippsen P (1994) New hetero-
+logous modules for classical or PCR-based gene disruptions in
+Saccharomyces cerevisiae. Yeast 10:1793–1808
+Wang P, Robert L, Pelletier J, Dang WL, Taddei F, Wright A et al.
+(2010) Robust growth of Escherichia coli. Curr Biol
+20:1099–1103
+Wickham H (2016) Ggplot2: elegant graphics for data analysis.
+Springer, Houston, Texas
+Wloch DM, Szafraniec K, Borts RH, Korona R (2001) Direct estimate
+of the mutation rate and the distribution of ﬁtness effects in the
+yeast Saccharomyces cerevisiae. Genetics 159:441–452
+Zhu YO, Siegal ML, Hall DW, Petrov DA (2014) Precise estimates of
+mutation rate and spectrum in yeast. Proc Natl Acad Sci USA
+111: E2310–E2318
+The ﬁtness cost of mismatch repair mutators in Saccharomyces cerevisiae: partitioning the mutational. . . 61
