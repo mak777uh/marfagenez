@@ -1,0 +1,20 @@
+{
+  "task": "P114-coverage-from-fast",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T10:58:31Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-S-READ.md",
+      "sha256": "19b734147bd3561d22275e82f54fac97a32e615e5e67c6428e7dd7b8b1b6f228",
+      "bytes": 28283
+    },
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "bde233ec72ca5edfae4df60e8992b673d56d4ad499a3d633f8f67fb668310d67",
+      "bytes": 36157
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
