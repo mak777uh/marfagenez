@@ -1,0 +1,20 @@
+{
+  "task": "P128-schema-gap",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T12:31:23Z",
+  "artifacts": [
+    {
+      "path": "docs/ANCHOR-AUDIT.md",
+      "sha256": "61012eeed31a556c5fcdbf69473651893c1aa4d7aa48515121ebaf68518264e3",
+      "bytes": 10414
+    },
+    {
+      "path": "docs/FINDING-456.md",
+      "sha256": "cba33b9c9d028d6d5c53c55d7a68e245278b98a2f446395ac8990aafe10a56fe",
+      "bytes": 3573
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
