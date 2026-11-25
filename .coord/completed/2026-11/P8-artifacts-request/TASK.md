@@ -7,7 +7,9 @@
 
 ## Рабочая область (файлы, которые задача вправе менять/создавать)
 
-- `literature/map/inbox/fast-*.jsonl`
+- `docs/ARTIFACTS-ACCESS.md`
+- `tools/reznik_dataset.py`
+
 
 ## Что нужно сделать
 

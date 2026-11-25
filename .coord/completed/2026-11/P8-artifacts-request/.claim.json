@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T01:08:20Z",
+  "task_sha256": "54eff280db536827fe0ee09099220c89ee4a60d26313f1ab63f9bfd04fd078de",
+  "area": [
+    "docs/ARTIFACTS-ACCESS.md",
+    "tools/reznik_dataset.py"
+  ],
+  "kind": "request",
+  "priority": 45,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

@@ -1,0 +1,20 @@
+{
+  "task": "P2-dcap-number",
+  "agent": "fast",
+  "gen": 1,
+  "finished_at": "2026-11-25T01:08:07Z",
+  "artifacts": [
+    {
+      "path": "literature/map/inbox/fast-p2-atoms-20261125.jsonl",
+      "sha256": "ee6de391b3aac5c4fa61052e8c1d7af9ba0a1ecbce2f0de04f97158ee3ae810e",
+      "bytes": 13667
+    },
+    {
+      "path": "literature/map/inbox/fast-p2-edges-20261125.jsonl",
+      "sha256": "651ba11d61f491b74b6053de7c0d41685bb471a2ec791d774a1942d1c5b6f58e",
+      "bytes": 2075
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

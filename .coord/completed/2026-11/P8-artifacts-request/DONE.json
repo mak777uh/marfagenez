@@ -1,0 +1,15 @@
+{
+  "task": "P8-artifacts-request",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T01:08:20Z",
+  "artifacts": [
+    {
+      "path": "docs/ARTIFACTS-ACCESS.md",
+      "sha256": "7768111e6a163b201b9a22b5c56239186f8689a2c79f359dbfafa2a070faa091",
+      "bytes": 3004
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
