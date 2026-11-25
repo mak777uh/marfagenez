@@ -1,0 +1,30 @@
+{
+  "task": "P45-audit-s-batch2",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:22:17Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "f0527f52ce207ac6dfda3cb3174272df0828665c61fe30b680318916e3891fce",
+      "bytes": 13260
+    },
+    {
+      "path": "docs/STITCH-ADJUDICATION.md",
+      "sha256": "9b8e01af7cb55ef5f0f148fb39f77b748f1cdea8ef1b6718a0493bb87d3e0dd0",
+      "bytes": 9225
+    },
+    {
+      "path": "docs/STITCH-AUDIT.md",
+      "sha256": "13be0b123ba4b9597c7dfbd8c21f6024266b6c72e63fa5aed63345b12b69739a",
+      "bytes": 15453
+    },
+    {
+      "path": "docs/STITCH-COVERAGE-FLOOR.json",
+      "sha256": "8f4640aa3876aaeb9d0459b8afb484b13dd49d0abeb19b09e59970dc083d4719",
+      "bytes": 61
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
