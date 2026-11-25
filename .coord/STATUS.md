@@ -1,4 +1,4 @@
-# Статус координации — 2026-11-25T01:08:39Z
+# Статус координации — 2026-11-25T01:13:09Z
 
 ## Свободные задачи: 6
 
@@ -11,7 +11,7 @@
 
 ## Активные: 1
 
-- `P2-dcap-number`: агент fast, gen 1, возраст 25м, heartbeat 1м, DONE=True, VERIFY=False
+- `P2-dcap-number`: агент fast, gen 1, возраст 30м, heartbeat 5м, DONE=True, VERIFY=False
 
 ## Непрочитанная почта
 
