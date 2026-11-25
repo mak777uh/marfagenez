@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import pathlib
 import re
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 NODES = ROOT / "kg" / "nodes.jsonl"
@@ -30,13 +31,15 @@ NOISE = {
     "psi", "omega", "theta", "Delta", "Pi", "Sigma", "Phi", "Psi", "Omega", "Theta", "Lambda", "Xi",
     "и", "в", "на", "при", "для", "это", "если", "то", "как", "или", "не", "из", "с", "по", "к", "о",
     "the", "of", "is", "for", "when", "and", "or", "with", "md", "shell", "state", "true", "false",
+    "set", "all", "any", "one", "two", "six", "for", "min", "max", "sup", "inf", "lim", "log", "exp",
+    "and", "not", "but", "the", "see", "use", "via", "per", "её", "их", "это", "шаг", "ось", "оси",
 }
 
 LATIN = re.compile(r"\b([A-Za-z][A-Za-z0-9_]{0,11})\b")
 CYR = re.compile(r"\b([а-яА-ЯёЁ]{3,})")
 
 
-def main() -> int:
+def main(argv: list[str]) -> int:
     nodes = [json.loads(l) for l in NODES.read_text(encoding="utf-8").splitlines()]
     formulas = [n for n in nodes if n.get("kind") == "formula"]
     total_gaps = 0
@@ -75,7 +78,9 @@ def main() -> int:
         def looks_like_symbol(t: str) -> bool:
             if "_" in t and t[0].isascii():
                 return True
-            if t.isascii() and len(t) <= 2:
+            # `cvc`, `scc`, `RAF`, `CV` — настоящие символы, их длина 2–3. Раньше отсекались трёхбуквенные,
+            # и самопроверка не покраснела, когда я убрал `cvc` из единиц: фильтр его выбрасывал.
+            if t.isascii() and len(t) <= 3:
                 return True
             return False
 
@@ -87,9 +92,16 @@ def main() -> int:
                 print(f"    покрыто: {', '.join(sorted(units))}")
     print()
     print(f"кандидатов на проверку: {total_gaps}")
+    strict = "--strict" in argv
+    if strict:
+        if total_gaps:
+            print("СТРОГИЙ РЕЖИМ: есть символы без единиц — объявите их в math.units или в структурных")
+            return 1
+        print("СТРОГИЙ РЕЖИМ: все символы формул с единицами покрыты")
+        return 0
     print("Список для чтения: имена команд latex и слова прозы сюда тоже попадают.")
     return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(main(sys.argv[1:]))

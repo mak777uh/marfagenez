@@ -224,6 +224,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/doc_numbers.py` | числа в документах (тесты, находки, фигуры, проверки) совпадают с деревом |
 | `checks/support_sources.py` | у `claim`/`formula` в статусе `established` есть хотя бы один источник опоры: `evidence`, `math.checked`, `lit_ref` или пара сшивки |
 | `checks/formula_units_ceiling.py` | число формул без `math.units` не растёт выше порога (`docs/FORMULA-UNITS-BASELINE.json`) |
+| `tools/units_symbol_audit.py --strict` | все символы формул, у которых есть `math.units`, покрыты таблицей; структурные формулы (без единиц по смыслу) пропускаются |
 | `checks/stitch_coverage_floor.py` | строгая литературная опора (пары `S`) не падает ниже пола (`docs/STITCH-COVERAGE-FLOOR.json`) |
 | `checks/rng_seed_noise.py` | первый шум не связан с сидом (критерий B4 плана) |
 | `checks/cli_refuses.py` | CLI отказывается угадывать при опечатке (пункт D-5 плана) |
