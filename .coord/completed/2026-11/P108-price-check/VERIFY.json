@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "d7a8b3c3a5b7c046d8a54647f414cb29e8c41a90853e063b235ebc89731d54f8",
+  "done_sha256": "c3ff2ebad0c7a07d70cec14a3fc2338e0436e3f5620373c8641fbd36e1c3c66a",
+  "gen": 1,
+  "verified_at": "2026-11-25T10:02:19Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 tools/price_check.py",
+      "rc": 0,
+      "tail": "\nВЫВОД: уравнение Прайса — ТОЖДЕСТВО (остаток на машинной точности);\n        «отбор = ковариация» верно только при нулевом передаточном смещении."
+    }
+  ],
+  "bad_artifacts": []
+}

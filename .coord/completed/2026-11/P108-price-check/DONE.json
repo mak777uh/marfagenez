@@ -1,0 +1,20 @@
+{
+  "task": "P108-price-check",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T10:02:19Z",
+  "artifacts": [
+    {
+      "path": "tools/price_check.py",
+      "sha256": "d1f5c35effe4be2345d16edd76278c9ed7e83f157b3775d25c0f87828eccc1c2",
+      "bytes": 4297
+    },
+    {
+      "path": "docs/FORMULA-PRICE.md",
+      "sha256": "e5cf302170d1a51d405303537275e6e41da92ceb94e05fc6e366392bf0249984",
+      "bytes": 3255
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

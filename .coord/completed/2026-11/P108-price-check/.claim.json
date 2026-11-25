@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T10:01:39Z",
+  "task_sha256": "d7a8b3c3a5b7c046d8a54647f414cb29e8c41a90853e063b235ebc89731d54f8",
+  "area": [
+    "docs/FORMULA-PRICE.md",
+    "tools/price_check.py"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
