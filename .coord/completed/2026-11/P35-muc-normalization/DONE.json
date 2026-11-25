@@ -1,0 +1,20 @@
+{
+  "task": "P35-muc-normalization",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:08:22Z",
+  "artifacts": [
+    {
+      "path": "tools/eigen_threshold.py",
+      "sha256": "bb168b2e606d9300a81ddd25c995eaa9c00f40ac850900e3ebd2985cbcc70d1c",
+      "bytes": 4040
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "196a6da3f5f41fd0f181d5a07a00ac9d0a9013eb9a33e304031f5289f1ef1a17",
+      "bytes": 17685
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
