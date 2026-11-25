@@ -1,0 +1,20 @@
+{
+  "task": "P49-athlete-pal",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:28:31Z",
+  "artifacts": [
+    {
+      "path": "literature/map/inbox/main-p49-atoms-20261125.jsonl",
+      "sha256": "85ae6cf020bfe72c179bd560dd9cc15d612551bd4bbcf159e243cb4accf64706",
+      "bytes": 3009
+    },
+    {
+      "path": "docs/FINDING-350.md",
+      "sha256": "ff678e721eefce9574712e9ed4ad5b0d069a581041de8533c7a7df82920ba85b",
+      "bytes": 3316
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
