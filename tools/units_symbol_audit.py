@@ -45,14 +45,41 @@ def main() -> int:
         units = (n.get("math") or {}).get("units") or {}
         if not latex:
             continue
-        tokens = set(LATIN.findall(latex)) | set(CYR.findall(latex))
+        # Формулы без таблицы единиц — структурные (множества, логические условия): у них единиц нет по
+        # смыслу, и сообщать про их символы значит выдавать структурность за дырку.
+        if not units:
+            continue
+        # Дифференциалы: `dA`, `dt`, `dD` — это `d` + переменная, а не новые имена. Иначе каждый
+        # дифференциал попадает в кандидаты и шум растёт (33 кандидата на 3 дырки при первом прогоне).
+        cleaned = re.sub(r"\bd([A-Za-z])", r"\1", latex)
+        cleaned = re.sub(r"\bdt\b", " ", cleaned)
+        tokens = set(LATIN.findall(cleaned)) | set(CYR.findall(cleaned))
         covered = set(units)
         # символ считаем «в записи», если он встречается как отдельное слово или как имя переменной
+        def covered_by_base(t: str) -> bool:
+            """`p_j` покрыт, если покрыт `p`; `indeg_C` — если `indeg`; `X_t` — если `X`."""
+            if t in covered:
+                return True
+            base = t.split("_")[0]
+            if base in covered:
+                return True
+            for c in covered:
+                if t.startswith(c) and len(c) >= 2:
+                    return True
+            return False
+
         gaps = sorted(t for t in tokens
-                      if t not in covered and t not in NOISE and len(t) > 1
+                      if not covered_by_base(t) and t not in NOISE and len(t) > 1
                       and (t[0].islower() or t[0].isupper()))
         # оставим только те, что реально похожи на переменные: одна-две буквы или с подчёркиванием
-        suspicious = [g for g in gaps if len(g) <= 3 or "_" in g]
+        def looks_like_symbol(t: str) -> bool:
+            if "_" in t and t[0].isascii():
+                return True
+            if t.isascii() and len(t) <= 2:
+                return True
+            return False
+
+        suspicious = [g for g in gaps if looks_like_symbol(g)]
         if suspicious:
             total_gaps += len(suspicious)
             print(f"{n['id']}: не в таблице единиц -> {', '.join(suspicious[:12])}")

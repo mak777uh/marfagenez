@@ -1523,7 +1523,8 @@
           "gamma": "1/с",
           "P": "1",
           "c": "1",
-          "cvc": "концентрация"
+          "cvc": "концентрация",
+          "q_min": "единицы состояния"
         },
         "checked": {
           "kind": "none",
@@ -1565,7 +1566,8 @@
           "a": "1",
           "b": "мкм",
           "CV_s": "1",
-          "CV_h": "1"
+          "CV_h": "1",
+          "CV": "1"
         },
         "checked": {
           "kind": "none",
@@ -18435,12 +18437,12 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
@@ -18465,11 +18467,6 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
@@ -18477,6 +18474,11 @@
       "from": "C-002",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
+    },
+    {
+      "from": "C-002",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -18505,12 +18507,12 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
@@ -18630,17 +18632,12 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "from": "F-022",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
@@ -18652,6 +18649,11 @@
       "from": "F-023",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
+    },
+    {
+      "from": "F-023",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
     },
     {
       "from": "GAP-01",
@@ -18790,12 +18792,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
@@ -18820,17 +18822,17 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
       "to": "EV-EXP-PRICE-KINKS",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
