@@ -1,0 +1,20 @@
+{
+  "task": "P138-duality-invariant",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T14:27:45Z",
+  "artifacts": [
+    {
+      "path": "docs/FORMULA-DUALITY.md",
+      "sha256": "422dbf2c63fd5320d9f1f0fd86b1883062ca2a546b0b38ec76a1ae57918f4ac1",
+      "bytes": 3901
+    },
+    {
+      "path": "tools/duality_invariants.py",
+      "sha256": "c68acaa0b7ad67723bec51f9d48ae27544f4be4d74b9423a85b1742fc886fd6e",
+      "bytes": 5487
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

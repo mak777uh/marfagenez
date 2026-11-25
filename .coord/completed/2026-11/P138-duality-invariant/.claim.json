@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T14:27:24Z",
+  "task_sha256": "063b3d987a7f9b6a43e4c611a4e260d085fcd669f896fc5c31d910ca94586a34",
+  "area": [
+    "docs/FORMULA-DUALITY.md",
+    "tools/duality_invariants.py"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

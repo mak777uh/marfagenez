@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "063b3d987a7f9b6a43e4c611a4e260d085fcd669f896fc5c31d910ca94586a34",
+  "done_sha256": "fc61a6976ad7dbe868da443b90ea7307ed83cdf4fd6dc1f6c5bba8e2e890223d",
+  "gen": 1,
+  "verified_at": "2026-11-25T14:27:46Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 tools/duality_invariants.py",
+      "rc": 0,
+      "tail": "ВЫВОД: постоянна величина wᵀx (состояние), а НЕ wᵀv (потоки).\n        Запись узла «wᵀv постоянно» неверна в буквальном смысле: на разных допустимых\n        потоках wᵀv меняется. Сильная двойственность подтверждена."
+    }
+  ],
+  "bad_artifacts": []
+}
