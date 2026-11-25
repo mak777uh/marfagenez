@@ -1,0 +1,20 @@
+{
+  "task": "P121-price-atoms",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:31:39Z",
+  "artifacts": [
+    {
+      "path": "literature/map/inbox/main-p121-atoms-20261125.jsonl",
+      "sha256": "3069c994e14115043bf6ccfc8b916b05fafcc6a1a43bcb610e31d6713b61b742",
+      "bytes": 3700
+    },
+    {
+      "path": "docs/FORMULA-PRICE.md",
+      "sha256": "09520cff1ac70ceeaf498cc68d24afd0dd8fb0077281ecb3075c0f2f42c96503",
+      "bytes": 4651
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
