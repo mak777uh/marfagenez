@@ -1,0 +1,15 @@
+{
+  "task": "P64-fix-general-locators",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T04:08:53Z",
+  "artifacts": [
+    {
+      "path": "docs/FORMULA-GENERAL.md",
+      "sha256": "e82768b59dad98993a000f62e01106f1d05461b57c6b8b13618b42adcf6cd280",
+      "bytes": 6892
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
