@@ -222,6 +222,9 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/doc_links.py` | относительные ссылки в документации разрешаются (известные мёртвые — в allowlist) |
 | `checks/bridge_price_derivative.py` | цена = производная функции значения: конечная разность против двойственной переменной |
 | `checks/doc_numbers.py` | числа в документах (тесты, находки, фигуры, проверки) совпадают с деревом |
+| `checks/support_sources.py` | у `claim`/`formula` в статусе `established` есть хотя бы один источник опоры: `evidence`, `math.checked`, `lit_ref` или пара сшивки |
+| `checks/formula_units_ceiling.py` | число формул без `math.units` не растёт выше порога (`docs/FORMULA-UNITS-BASELINE.json`) |
+| `checks/stitch_coverage_floor.py` | строгая литературная опора (пары `S`) не падает ниже пола (`docs/STITCH-COVERAGE-FLOOR.json`) |
 | `checks/rng_seed_noise.py` | первый шум не связан с сидом (критерий B4 плана) |
 | `checks/cli_refuses.py` | CLI отказывается угадывать при опечатке (пункт D-5 плана) |
 | `checks/no_unseeded_random.py` | в JS-проверках нет `Math.random` (пункт D-4 плана) |
