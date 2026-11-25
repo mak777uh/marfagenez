@@ -1,0 +1,20 @@
+{
+  "task": "P27-f004-interpretation",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T01:00:37Z",
+  "artifacts": [
+    {
+      "path": "docs/ELEPHANT-LITERATURE.md",
+      "sha256": "9835bd824c5f7730c267921442cdb00e3609b5b0f82d7bd50a58333701c57b10",
+      "bytes": 242463
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "73dd75db5bf139083d0c5a4f693b956d066580b765965bd9656112181df1cf60",
+      "bytes": 13374
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
