@@ -1,0 +1,20 @@
+{
+  "task": "P107-f016-limits",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T09:56:43Z",
+  "artifacts": [
+    {
+      "path": "tools/insurance_limit.py",
+      "sha256": "1e86b523aba0d116e2079a5efa1c2bc85b0e771fa6d8a81ffb582e5fa748569d",
+      "bytes": 3153
+    },
+    {
+      "path": "docs/FORMULA-INSURANCE.md",
+      "sha256": "43f18b4ffea7ebbb9aa9580d0f8f47045e34b070ae75827fa975b80a6db32c9a",
+      "bytes": 3880
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
