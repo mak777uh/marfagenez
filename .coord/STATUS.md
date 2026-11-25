@@ -1,4 +1,4 @@
-# Статус координации — 2026-11-25T20:47:22Z
+# Статус координации — 2026-11-25T21:53:38Z
 
 ## Свободные задачи: 8
 
@@ -11,16 +11,13 @@
 - `S7-targeted-literature` (research, приоритет 9): S7-targeted-literature — литература под конкретные узлы kg/
 - `S8-data-questions` (research, приоритет 7): S8-data-questions — вопросы к данным без правок
 
-## Активные: 5
+## Активные: 2
 
-- `S7-targeted-literature-20261125T210621-fast`: агент fast, gen 1, возраст 161м, heartbeat 30м, DONE=True, VERIFY=False
-- `S7-targeted-literature-20261125T223226-fast`: агент fast, gen 2, возраст 75м, heartbeat 30м, DONE=True, VERIFY=False
-- `S7-targeted-literature-20261125T231701-fast`: агент fast, gen 3, возраст 30м, heartbeat 30м, DONE=True, VERIFY=False
-- `S7-targeted-literature-20261125T233300-fast`: агент fast, gen 4, возраст 14м, heartbeat 0м, DONE=True, VERIFY=False
-- `S7-targeted-literature-20261125T234722-fast`: агент fast, gen 5, возраст 0м, heartbeat 0м, DONE=False, VERIFY=False
+- `S7-targeted-literature-20261126T001256-fast`: агент fast, gen 16, возраст 41м, heartbeat 41м, DONE=True, VERIFY=False
+- `S7-targeted-literature-20261126T002443-fast`: агент fast, gen 17, возраст 29м, heartbeat 29м, DONE=False, VERIFY=False
 
 ## Непрочитанная почта
 
-- `fast`: 8
+- `fast`: 9
 - `main`: 12
-- `probe`: 7
+- `probe`: 8

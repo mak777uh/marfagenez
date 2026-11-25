@@ -34,6 +34,7 @@ import time
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BRIDGE = pathlib.Path('/mnt/c/111/graph-bridge')
+PROCESSED = BRIDGE / 'processed'
 LIVE = ROOT / 'literature/map/atoms.jsonl'
 EDGES = ROOT / 'literature/map/edges.jsonl'
 
@@ -194,7 +195,7 @@ def serve() -> int:
                     for g in good:
                         known.add(g['atom'])
         elif '.edges' in path.name:
-            result['note'] = 'связи применяются вместе с atoms того же имени'
+            result['note'] = 'связи применены вместе с atoms того же имени (если atoms были в этой партии)'
         elif '.kg' in path.name:
             r = subprocess.run(['python3', 'tools/kg_inbox.py', '--serve', str(path)],
                                cwd=ROOT, capture_output=True, text=True)
@@ -210,8 +211,19 @@ def serve() -> int:
             shutil.copyfile(path, target)
             result['note'] = f'вопросы положены в {target.relative_to(ROOT)}'
             result['accepted'] = len([l for l in path.read_text(encoding='utf-8').splitlines() if l.strip()])
+        if 'note' not in result:
+            result['note'] = 'тип файла не распознан: нужен .atoms.jsonl / .edges.jsonl / .questions.jsonl / .kg.jsonl'
+            ack.joinpath(f'{stem}.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n',
+                                                    encoding='utf-8')
+            print(f'{path.name}: НЕ РАСПОЗНАН, файл оставлен')
+            continue
         ack.joinpath(f'{stem}.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n',
                                                 encoding='utf-8')
+        PROCESSED.mkdir(parents=True, exist_ok=True)
+        try:
+            shutil.copyfile(path, PROCESSED / path.name)
+        except Exception:
+            pass
         path.unlink(missing_ok=True)
         (outbox / f'{stem}.edges.jsonl').unlink(missing_ok=True)
         print(f'{path.name}: принято {result["accepted"]}, отклонено {result["rejected"]}')
