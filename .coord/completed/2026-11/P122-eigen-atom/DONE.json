@@ -1,0 +1,20 @@
+{
+  "task": "P122-eigen-atom",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:37:20Z",
+  "artifacts": [
+    {
+      "path": "literature/map/inbox/main-p122-atoms-20261125.jsonl",
+      "sha256": "6b0131621bc899eccfe9081ef00f20d9692b961638af81a460ed92b84e8756ca",
+      "bytes": 3009
+    },
+    {
+      "path": "docs/STITCH-S-READ.md",
+      "sha256": "eb4316c1f2218fa5b628dd7b8f775cb695ca9ae3ef66f2ecb6b4039f1232276b",
+      "bytes": 33851
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
