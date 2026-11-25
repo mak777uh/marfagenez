@@ -1,0 +1,16 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T11:40:21Z",
+  "task_sha256": "eed6c5aaea69bdc196106b5484a82d3a5025b5fc53f9c98d1e8011af234142ff",
+  "area": [
+    "literature/map/inbox/main-p123-atoms-20261125.jsonl",
+    "docs/STITCH-*.json",
+    "docs/FORMULA-INSURANCE.md"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

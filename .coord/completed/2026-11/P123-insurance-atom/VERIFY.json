@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "eed6c5aaea69bdc196106b5484a82d3a5025b5fc53f9c98d1e8011af234142ff",
+  "done_sha256": "c87a6a6ed3cf0d0783e8db512598cd7ea556cb2027173f15639bc87b2b32872d",
+  "gen": 1,
+  "verified_at": "2026-11-25T11:42:07Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/map_contract.py",
+      "rc": 0,
+      "tail": "карта: 1029 ячеек, 601 рёбер, нарушений нет"
+    }
+  ],
+  "bad_artifacts": []
+}

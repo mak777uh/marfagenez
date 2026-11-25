@@ -1,0 +1,20 @@
+{
+  "task": "P123-insurance-atom",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:42:07Z",
+  "artifacts": [
+    {
+      "path": "literature/map/inbox/main-p123-atoms-20261125.jsonl",
+      "sha256": "84e5cf644b97a0818b01d2da18173fb74ac4862994fb01b7ef49af9c76d83fa4",
+      "bytes": 3295
+    },
+    {
+      "path": "docs/FORMULA-INSURANCE.md",
+      "sha256": "c7af448a57d969889ea31a1c7d09090307bbdc185d5536eb961224b0371bb9c0",
+      "bytes": 5597
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
