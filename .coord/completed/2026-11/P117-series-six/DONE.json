@@ -1,0 +1,15 @@
+{
+  "task": "P117-series-six",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:06:01Z",
+  "artifacts": [
+    {
+      "path": "docs/SYNTHESIS-10.md",
+      "sha256": "a6477a08a1665620a41c266dc7471ff82a92691036bd4ad3c4af8700fbc12429",
+      "bytes": 22465
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
