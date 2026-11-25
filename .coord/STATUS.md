@@ -1,4 +1,4 @@
-# Статус координации — 2026-11-25T16:52:49Z
+# Статус координации — 2026-11-25T17:38:49Z
 
 ## Свободные задачи: 7
 
@@ -10,11 +10,13 @@
 - `S7-targeted-literature` (research, приоритет 9): S7-targeted-literature — литература под конкретные узлы kg/
 - `S8-data-questions` (research, приоритет 7): S8-data-questions — вопросы к данным без правок
 
-## Активные: 1
+## Активные: 2
 
-- `S2-literature-graph-20261125T192720-fast`: агент fast, gen 20, возраст 25м, heartbeat 25м, DONE=True, VERIFY=False
+- `P160-composite-criterion`: агент main, gen 1, возраст 44м, heartbeat 44м, DONE=False, VERIFY=False
+- `S2-literature-graph-20261125T195249-fast`: агент fast, gen 21, возраст 46м, heartbeat 0м, DONE=False, VERIFY=False
 
 ## Непрочитанная почта
 
 - `fast`: 5
 - `main`: 12
+- `probe`: 4
