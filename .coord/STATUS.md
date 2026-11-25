@@ -1,4 +1,4 @@
-# Статус координации — 2026-11-25T01:08:20Z
+# Статус координации — 2026-11-25T01:08:39Z
 
 ## Свободные задачи: 6
 
@@ -9,10 +9,9 @@
 - `S2-literature-graph` (research, приоритет 6): S2-literature-graph — Литература и граф: ячейки, связи, сшивка
 - `S3-formulas-lean` (research, приоритет 7): S3-formulas-lean — Формулы и Lean: вывод, проверка, единицы
 
-## Активные: 2
+## Активные: 1
 
 - `P2-dcap-number`: агент fast, gen 1, возраст 25м, heartbeat 1м, DONE=True, VERIFY=False
-- `P8-artifacts-request`: агент main, gen 1, возраст 0м, heartbeat 0м, DONE=True, VERIFY=False
 
 ## Непрочитанная почта
 

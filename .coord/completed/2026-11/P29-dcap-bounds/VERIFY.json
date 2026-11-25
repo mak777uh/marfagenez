@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "2268a628969c87a842eeb0025e3ab45fb58185b62100c95a31d519316587e524",
+  "done_sha256": "b0bcd4239576e9b30b4061c5abc34fa2f1969ad8890c748c26c968c563d9f376",
+  "gen": 1,
+  "verified_at": "2026-11-25T01:10:11Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/support_sources.py",
+      "rc": 0,
+      "tail": "ОПОРА: у всех 9 записей claim/formula со статусом established есть хотя бы один источник (evidence / math.checked / lit_ref / сшивка)"
+    }
+  ],
+  "bad_artifacts": []
+}

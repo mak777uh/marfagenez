@@ -1,0 +1,20 @@
+{
+  "task": "P29-dcap-bounds",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T01:10:11Z",
+  "artifacts": [
+    {
+      "path": "tools/dcap_bounds.py",
+      "sha256": "70eb6dc0594e91e2e1d52492124bcbac2eb39d6a8fca642fd9d50860736bff39",
+      "bytes": 3254
+    },
+    {
+      "path": "docs/FINDING-345.md",
+      "sha256": "6eec879bd35a5bee54b35fde2d82239fce6ae82c1730416eb5014487ea208f5a",
+      "bytes": 4284
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
