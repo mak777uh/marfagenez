@@ -1,0 +1,20 @@
+{
+  "task": "P109-median-def",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T10:04:56Z",
+  "artifacts": [
+    {
+      "path": "tools/birth_death_median.py",
+      "sha256": "164e903637f8b5724ab070a90baa5ba4bb7eb46eb119e4bd3ea38b0f74d55661",
+      "bytes": 4167
+    },
+    {
+      "path": "docs/FORMULA-MEDIAN.md",
+      "sha256": "92eedf575c63c0b705a0d00b7a22544b1d6c9779bef58a8c3085581d16ed5729",
+      "bytes": 2943
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
