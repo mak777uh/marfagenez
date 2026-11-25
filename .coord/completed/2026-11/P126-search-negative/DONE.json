@@ -1,0 +1,15 @@
+{
+  "task": "P126-search-negative",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T12:14:20Z",
+  "artifacts": [
+    {
+      "path": "docs/ANCHOR-AUDIT.md",
+      "sha256": "e527e8324ca382c42ccee67d510fc4b2ae03e3ff820e9ddd0748a08a2be65cf6",
+      "bytes": 8517
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
