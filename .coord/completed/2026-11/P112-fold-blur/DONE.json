@@ -1,0 +1,20 @@
+{
+  "task": "P112-fold-blur",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T10:31:41Z",
+  "artifacts": [
+    {
+      "path": "docs/FORMULA-FOLD.md",
+      "sha256": "af5dbebec2e57eccf418911ae1343e85288047c02e3e7766385b4cc696aaeb0b",
+      "bytes": 4194
+    },
+    {
+      "path": "tools/fold_delay.py",
+      "sha256": "25201cfc04d2e042233096cb515d699a24ceae90b75cd364fe59862501bcb1ed",
+      "bytes": 3844
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

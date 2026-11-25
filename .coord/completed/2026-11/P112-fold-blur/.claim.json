@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T10:31:04Z",
+  "task_sha256": "c956790f348bc1c967c6f41786e50ab8802b2d593219a989f4054a4fadfbf059",
+  "area": [
+    "docs/FORMULA-FOLD.md",
+    "tools/fold_delay.py"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
