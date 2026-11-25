@@ -1,0 +1,16 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T11:14:47Z",
+  "task_sha256": "53bfd3cd6345b278f740e402e0cebedca7a06aa5d33548746a870910791c7b5c",
+  "area": [
+    "kg/lit-refs.json",
+    "docs/ANCHOR-BASELINE.json",
+    "docs/FINDING-*.md"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

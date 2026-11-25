@@ -1,0 +1,20 @@
+{
+  "task": "P118-anchor-3",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:16:32Z",
+  "artifacts": [
+    {
+      "path": "kg/lit-refs.json",
+      "sha256": "919061f346ec512801f8551e641d5b26d7eef1e8661cd12c5dec8763dd34619e",
+      "bytes": 4386
+    },
+    {
+      "path": "docs/ANCHOR-BASELINE.json",
+      "sha256": "5aac3817c60fc80cb969b11a13690d6a5d2b1d84a79373efd0ecd3d567124883",
+      "bytes": 77
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

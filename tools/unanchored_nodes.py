@@ -46,7 +46,11 @@ def main(argv: list[str]) -> int:
     for n in nodes:
         if n.get("kind") not in KINDS:
             continue
-        has_lit = bool(n.get("lit_ref"))
+        # `lit_ref` живёт в `data` (так его кладёт `apply_lit_refs` в kg/migrate.py), а не в корне узла.
+        # Первая версия смотрела `n.get("lit_ref")` и не видела ни одной ссылки — счёт оставался 20 даже
+        # после проставления refs.
+        data = n.get("data") or {}
+        has_lit = bool(n.get("lit_ref") or data.get("lit_ref"))
         has_ev = bool(n.get("evidence"))
         has_rel = bool(n.get("relations"))
         checked = (n.get("math") or {}).get("checked") or {}
