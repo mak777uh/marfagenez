@@ -1,0 +1,15 @@
+{
+  "task": "S3-formulas-lean-20261125T055221-fast",
+  "agent": "fast",
+  "gen": 2,
+  "finished_at": "2026-11-25T02:56:34Z",
+  "artifacts": [
+    {
+      "path": "docs/FINDING-351.md",
+      "sha256": "8cdf5ca0a01403b883a74695c59e9ecd3a21b19d772a61912d8b0c57c9afab83",
+      "bytes": 4420
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
