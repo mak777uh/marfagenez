@@ -1,0 +1,20 @@
+{
+  "task": "P48-kappa-identity",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:27:02Z",
+  "artifacts": [
+    {
+      "path": "docs/FINDING-349.md",
+      "sha256": "d67e522434cf29348f1620619116c5819e3a1ea6e5ea1a2fb9180da172fa2e40",
+      "bytes": 4092
+    },
+    {
+      "path": "docs/FINDING-348.md",
+      "sha256": "433359f3c99b2526b649fa08c3b883e2d577805f02965f72155f84765962a53c",
+      "bytes": 4057
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
