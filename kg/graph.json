@@ -402,7 +402,8 @@
           "lambda": "1/с",
           "delta": "1/с",
           "mu0": "1/s",
-          "alpha": "1/с²"
+          "alpha": "1/с²",
+          "t": "s"
         },
         "checked": {
           "kind": "run",
@@ -653,7 +654,8 @@
           "h_c": "1",
           "T_senescence": "год",
           "D_star": "1",
-          "dD_dh": "1"
+          "dD_dh": "1",
+          "N": "шт (число)"
         },
         "checked": {
           "kind": "none",
@@ -949,7 +951,8 @@
           "q": "1",
           "rho": "1",
           "pi": "1",
-          "m": "шт"
+          "m": "шт",
+          "n": "шт (номер состояния)"
         },
         "checked": {
           "kind": "none",
@@ -1165,7 +1168,8 @@
           "eps": "1",
           "x": "1",
           "a": "1",
-          "k": "1"
+          "k": "1",
+          "b": "1 (тот же масштаб, что a)"
         },
         "checked": {
           "kind": "none",
@@ -1343,7 +1347,8 @@
           "C": "множество вершин, шт",
           "indeg": "шт",
           "outdeg": "шт",
-          "scc": "доля вершин, 1"
+          "scc": "доля вершин, 1",
+          "c": "вершина (шт)"
         },
         "checked": {
           "kind": "run",
@@ -1390,7 +1395,9 @@
           "v": "1",
           "c": "1",
           "y": "1",
-          "w": "1"
+          "w": "1",
+          "l": "единицы потока",
+          "u": "единицы потока"
         },
         "checked": {
           "kind": "run",
@@ -1432,7 +1439,10 @@
           "F": "отображение шага, 1",
           "alpha": "доля дохода, 1",
           "band": "доля дохода, 1",
-          "q_min": "единицы состояния"
+          "q_min": "единицы состояния",
+          "t": "с",
+          "w": "единицы состояния",
+          "x": "единицы состояния"
         },
         "checked": {
           "kind": "none",
@@ -1494,7 +1504,8 @@
           "X": "1",
           "I_env": "bit",
           "I_ind": "bit",
-          "I_col": "bit"
+          "I_col": "bit",
+          "t": "шаг (шт)"
         },
         "checked": {
           "kind": "none",
@@ -1582,7 +1593,8 @@
           "P": "1",
           "c": "1",
           "cvc": "концентрация",
-          "q_min": "единицы состояния"
+          "q_min": "единицы состояния",
+          "V": "м³"
         },
         "checked": {
           "kind": "none",
@@ -18521,17 +18533,17 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-001",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
     },
     {
       "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-001",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -18556,8 +18568,8 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -18566,8 +18578,8 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -18596,12 +18608,12 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
@@ -18751,18 +18763,18 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "from": "F-022",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
+    },
+    {
+      "from": "F-023",
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
@@ -18771,8 +18783,8 @@
     },
     {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-025",
@@ -18961,17 +18973,17 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
     },
     {
       "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -18996,7 +19008,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
@@ -19006,7 +19018,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {

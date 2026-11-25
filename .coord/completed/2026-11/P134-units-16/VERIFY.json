@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "3698fd64c4726ab38ce3bdde3f781c44e929a5cd28afa2e9b36ed1366fb1e039",
+  "done_sha256": "35ee605e853898d03f5b65ab19b00a2c48966afbc2c7adb5976a9f322c3a433a",
+  "gen": 1,
+  "verified_at": "2026-11-25T13:00:59Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 tools/units_symbol_audit.py --strict",
+      "rc": 0,
+      "tail": "\nкандидатов на проверку: 1\nСТРОГИЙ РЕЖИМ: 1 кандидатов при потолке 1 — долг не вырос"
+    }
+  ],
+  "bad_artifacts": []
+}

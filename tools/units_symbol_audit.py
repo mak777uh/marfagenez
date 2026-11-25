@@ -57,7 +57,10 @@ def main(argv: list[str]) -> int:
             continue
         # Дифференциалы: `dA`, `dt`, `dD` — это `d` + переменная, а не новые имена. Иначе каждый
         # дифференциал попадает в кандидаты и шум растёт (33 кандидата на 3 дырки при первом прогоне).
-        cleaned = re.sub(r"\bd([A-Za-z])", r"\1", latex)
+        # Ссылки на клетки карты (`L-061`, `F-029`) — не символы величины. Без этого `L` попадал в кандидаты
+        # у каждой формулы, которая цитирует клетку.
+        cleaned = re.sub(r"\b[A-Z][A-Z0-9]*(?:-[A-Za-z0-9]+)+\b", " ", latex)
+        cleaned = re.sub(r"\bd([A-Za-z])", r"\1", cleaned)
         cleaned = re.sub(r"\bdt\b", " ", cleaned)
         tokens = set(LATIN.findall(cleaned)) | set(CYR.findall(cleaned))
         covered = set(units)
