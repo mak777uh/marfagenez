@@ -1,0 +1,15 @@
+{
+  "task": "P92-kappa-range",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T06:16:45Z",
+  "artifacts": [
+    {
+      "path": "docs/FINDING-350.md",
+      "sha256": "673553d32a8f39c6e590b5154727fc79c0345cd1a579c6e734c73bb9a98f3667",
+      "bytes": 6977
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
