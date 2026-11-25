@@ -77,7 +77,6 @@
   "command": "python3 checks/exp_look_order.py",
   "created_at": "2026-11-15T19:29:27.733929+00:00",
   "reproduced_at": [
-    "653315c9",
     "26bb87ee",
     "ee722d36",
     "c3ab074c",
@@ -96,6 +95,7 @@
     "f2ae0adb",
     "53e949e6",
     "189af84e",
-    "5825ac25"
+    "5825ac25",
+    "8cc03924"
   ]
 }
