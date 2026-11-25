@@ -1,0 +1,30 @@
+{
+  "task": "P33-classify-batch1",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:04:42Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "5214a95b51039c51c4d2749844d7d547f4e595042d57b3729213f1a6d0309087",
+      "bytes": 8804
+    },
+    {
+      "path": "docs/STITCH-AUDIT.md",
+      "sha256": "cbbde8c541b4faaef965cfa9ee0f367c381f894a6f20b609a26b0074d37f9a7e",
+      "bytes": 12061
+    },
+    {
+      "path": "docs/STITCH-COVERAGE-FLOOR.json",
+      "sha256": "a638fb6f3aa1b37e1d44424edcca251cc1f3c9aa4ada16c800ee1a0f75b399b8",
+      "bytes": 61
+    },
+    {
+      "path": "docs/STITCH-TABLE.md",
+      "sha256": "9b72824732464863f1ed7b2a4f50b979f5eb5563fc84bc6e9a7d59359a525cbe",
+      "bytes": 12233
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

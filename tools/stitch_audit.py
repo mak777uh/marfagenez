@@ -37,7 +37,10 @@ def main(argv: list[str]) -> int:
         overrides = json.loads(OVERRIDES.read_text(encoding="utf-8"))
     applied = 0
     for key, o in overrides.items():
-        if key in verdicts and o.get("verdict"):
+        if o.get("verdict"):
+            # пара может отсутствовать в списке Red Team: это классификация пар, которые
+            # Red Team не проверял (57 «не задан»). Их тоже надо учитывать, иначе метрика
+            # не видит роста покрытия.
             verdicts[key] = o["verdict"]
             applied += 1
     nodes = load_nodes()
