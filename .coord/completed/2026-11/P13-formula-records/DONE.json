@@ -1,0 +1,20 @@
+{
+  "task": "P13-formula-records",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:31:21Z",
+  "artifacts": [
+    {
+      "path": "docs/FORMULA-RECORDS-AUDIT.md",
+      "sha256": "9b9dc3c8debab926f9ecbce77ade57bf136e250aaea5ec64689883041ab2f276",
+      "bytes": 5177
+    },
+    {
+      "path": "tools/formula_records.py",
+      "sha256": "1703d1b20e4348b2265be1578561e91fcdff172d9a254e86c2e6a0222c1d9993",
+      "bytes": 5128
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

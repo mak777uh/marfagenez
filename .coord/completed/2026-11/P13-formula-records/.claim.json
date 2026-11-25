@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T00:31:03Z",
+  "task_sha256": "86f8f53abe3070d71ece35ee44c433541fdce3b9ee79902bdc8bb8f28e5015cb",
+  "area": [
+    "docs/FORMULA-RECORDS-AUDIT.md",
+    "tools/formula_records.py"
+  ],
+  "kind": "research",
+  "priority": 9,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
