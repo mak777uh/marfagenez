@@ -1,0 +1,15 @@
+{
+  "task": "P4-redteam-formula",
+  "agent": "fast",
+  "gen": 1,
+  "finished_at": "2026-11-25T03:12:06Z",
+  "artifacts": [
+    {
+      "path": "docs/REDTEAM-v2.md",
+      "sha256": "53aea9d2fdfeabb5ed0acba4b44dd672250e952aa445b7fa6652dafe521c34ec",
+      "bytes": 9695
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

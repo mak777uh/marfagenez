@@ -1,0 +1,16 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T03:24:22Z",
+  "task_sha256": "07e7bd5636994881c15fff8bf579c53c3b4de2be0b59defad92eb23e86ae10d1",
+  "area": [
+    "tools/v3_two_datasets.py",
+    "docs/FINDING-353.md",
+    "docs/FORMULA-DCRITICAL.md"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
