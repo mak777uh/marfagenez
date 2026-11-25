@@ -1,0 +1,14 @@
+{
+  "agent": "fast",
+  "taken_at": "2026-11-25T19:32:26Z",
+  "task_sha256": "26e314315e1e3a6943cd275615f0cd14180a2de941eed7348ae064237f6677db",
+  "area": [
+    "literature/map/inbox/fast-*.jsonl"
+  ],
+  "kind": "research",
+  "priority": 9,
+  "gen": 2,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": "S7-targeted-literature",
+  "standing": true
+}

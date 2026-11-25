@@ -1,0 +1,1570 @@
+Academic Editor: James R. Lyons
+Received: 5 April 2025
+Revised: 25 April 2025
+Accepted: 27 April 2025
+Published: 29 April 2025
+Citation: Taneja, J.; Higgs, P.G.
+Protocell Dynamics: Modelling
+Growth and Division of Lipid Vesicles
+Driven by an Autocatalytic Reaction.
+Life 2025, 15, 724. https://doi.org/
+10.3390/life15050724
+Copyright: © 2025 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license
+(https://creativecommons.org/
+licenses/by/4.0/).
+Article
+Protocell Dynamics: Modelling Growth and Division of Lipid
+Vesicles Driven by an Autocatalytic Reaction
+Japraj Taneja 1 and Paul G. Higgs 2,*
+1 Department of Biochemistry and Biochemical Sciences, McMaster University, Hamilton, ON L8S 4K1, Canada;
+tanejj1@mcmaster.ca
+2 Department of Physics and Astronomy, McMaster University, Hamilton, ON L8S 4K1, Canada
+* Correspondence: higgsp@mcmaster.ca
+Abstract: We study a computational model of a protocell, in which an autocatalytic reaction
+sustains itself inside a lipid vesicle. The autocatalytic reaction drives volume growth via
+osmosis. Membrane area grows due to addition of lipids from the environment. The
+membrane growth rate depends on the external lipid concentration and on the tension
+in the membrane. In the absence of division, a cell either reaches a state of homeostasis
+or grows to a point where the internal reaction collapses. If a cell becomes elongated,
+it can divide into two smaller spherical vesicles, conserving the total volume and area.
+We determine when it is energetically favorable for a large vesicle to divide. Division
+requires the buildup of a difference between the lipid areas on the outer and inner leaflets
+of the membrane. Division occurs most easily when the rate of flipping of lipids between
+leaflets is relatively slow. If the flipping is too fast, the parent cell grows large without
+dividing. There is a typical size at which division occurs, producing two daughter cells of
+unequal sizes. The smaller and larger daughters regrow to the same typical size before the
+next division. Protocells with an active metabolism reach a stable state where the internal
+autocatalytic reaction and the membrane growth are well balanced. Active protocells can
+grow and divide in conditions where an inactive vesicle without an internal reaction cannot.
+Keywords: protocells; metabolism; lipid vesicles; cell division
+1. Introduction
+A protocell is a simple cell-like structure that may represent the earliest forms of life
+and the precursors to modern cells. Ganti’s chemoton is often seen as a description of how
+a protocell must have operated [1]. The chemoton consists of three parts—a metabolism,
+a replicating genetic system, and a membrane system. In modern cells, these three parts
+are all mutually dependent. Here, we are interested in how the first protocells might have
+functioned, and it seems too improbable to require these three systems to be mutually
+dependent from the beginning.
+The question is simpler if we assume that a supply of membrane-forming lipids was
+available from prebiotic chemistry. In this case, the first protocells could use lipids from
+the environment without synthesizing them internally. Simple lipids such as fatty acids
+are likely to have been available on prebiotic Earth [2–4]. These can spontaneously form
+membranes in certain conditions of pH and temperature [5–7]. Hence, it is likely that early
+protocells were housed in vesicles made of simple lipids [8,9]
+In order to make a vesicle into a protocell, there must be an autocatalytic reaction
+inside. We envisage a supply of food molecules from the environment that enter through
+the lipid membrane. Catalysts inside the cell convert food molecules into more catalysts.
+Life 2025, 15, 724 https://doi.org/10.3390/life15050724
+Life 2025, 15, 724 2 of 24
+Side reactions create waste products that exit the cell. The inside of the cell is in an active
+non-equilibrium state with a continual turnover of material—a metabolism. When an active
+state exists in the cell, the total concentration of reagents may be higher inside than outside,
+in which case osmotic pressure drives the increase in cell volume. If there is a sufficient
+influx of food through the membrane, the internal reaction is maintained as the cell grows.
+If lipids are available in the environment, the cell membrane area also grows, and if the
+area grows sufficiently, the cell can divide into two daughter cells. We wish to determine
+under which conditions the continued growth and division of a protocell are possible.
+We recently considered reaction systems in vesicles and asked which properties they
+must have to constitute a metabolism [10]. An obvious but non-trivial requirement is
+that the metabolism must happen in the cell but it must not happen in the environ-
+ment, otherwise the food molecules would be consumed in the environment and there
+would be no difference between the inside and outside of the cell. We call this property
+inside–outside stability (IO-stability). When the reaction system is second-order in the
+catalyst concentration, there are active and inactive stable states of the same reaction system,
+and the cell can be IO-stable. When the reaction system is first-order, there is only one
+stable state; hence, the inside can only be in an active state when the outside is also active,
+which is not what we need for a protocell.
+We have given theoretical examples of reaction networks of types that are IO-stable
+and types that are not [10]. Metabolism-first theories for the origin of life argue that a
+small-molecule autocatalytic system existed prior to the origins of replicating molecules
+such as nucleic acids. However, there are very few examples of real chemical reaction
+systems that have the required properties. The formose reaction is relevant for the prebiotic
+synthesis of sugars and is autocatalytic. It has been proposed as a means of sustaining
+protocells [11] and has also been studied in droplet experiments [12]. However, we have
+argued that it is unlikely to be a good system for supporting a protocell, as it is first-
+order, and catalysts from inside a cell are likely to escape and initiate the reaction in
+the environment, thereby destroying the necessary difference between the inside and
+outside. Another candidate for an autocatalytic reaction is the reverse TCA cycle, which
+appeared very early in evolutionary history. Although some of the reaction steps have been
+observed to occur without enzymes [13], there is still no demonstration of a complete cycle
+in a protocell without enzymes. In contrast, there are several demonstrations that non-
+enzymatic RNA replication can occur inside protocells if driven by a supply of activated
+nucleotides [14–16]. We have shown that as non-enzymatic replication is autocatalytic, this
+can itself constitute a metabolism, in which case oligomer templating leads to the origin of
+both metabolism and replication [10].
+However, we will leave aside these questions of metabolism versus replication because
+the focus of the current paper is on the growth and division of the lipid membrane and not
+on the nature of the metabolic reaction. As we assume that lipids are synthesized chemically
+outside the cell, the membrane behavior is largely independent of the metabolism. We,
+therefore, use the simplest possible model of an IO-stable autocatalytic reaction in this
+paper, without specifying the chemistry it represents.
+We now consider processes that allow vesicle growth and division. For a solution
+of amphiphilic lipids, there is a critical aggregation concentration (or critical vesicle con-
+centration) above which membranes spontaneously form [17–19]. We denote this as C∗.
+If the total concentration is initially greater than C∗, we expect vesicles to form until the
+remaining concentration of dissolved molecules falls to C∗. At this point, the membranes
+are in equilibrium with the solution, with equal rates of molecules entering and leaving the
+membranes. If additional lipids are added to a solution containing vesicles, the existing
+Life 2025, 15, 724 3 of 24
+vesicles increase in membrane area. This can result in elongated, non-spherical vesicles, or
+sometimes in division into smaller daughter vesicles [20–23].
+Whether division occurs when the membrane area increases depends on the elasticity
+and curvature energies of the membrane, which we consider carefully in this paper. The
+area difference elasticity model has been used to calculate the minimum energy shapes
+of a vesicle and to determine when it is energetically favorable for a large vesicle to
+divide [24–28]. This includes terms for the curvature energy and for the elastic energy,
+which depends on the small difference in lipid areas ∆Alip between the inner and outer
+leaflets of the bilayer. Division usually increases the curvature energy because smaller
+vesicles have a smaller radius of curvature. However, division can decrease the elastic
+energy in cases where a large ∆Alip has built up in the parent cell. Lipids from the solution
+will enter the outer leaflet of a growing vesicle and gradually flip across to the inner leaflet.
+The area difference ∆Alip is sensitive to the rate of lipid addition and the rate of flipping
+between leaflets. We show that vesicle division occurs most easily when the flipping is
+slow. The ratio of sizes of the two daughter vesicles is also sensitive to the flipping rate.
+In this paper, we assume that vesicle division occurs when the change in energy
+occurring during vesicle division is negative. From a theoretical point of view, the energy
+change depends on the area difference; therefore, it is necessary to use a model that keeps
+track of the areas of both the inner and outer leaflets. There is also a lot of experimental
+evidence that shows that the difference between the leaflets is important. For example,
+the area difference is an essential parameter to interpret observed changes in vesicle
+shape [9,29]. The addition of lipids does not always cause division. One study observed
+that unilamellar vesicles grow to elongated shapes without division but multilamellar
+vesicles form tubular projections that subsequently divide [30]. Other studies showed
+that the osmotic deswelling of vesicles (which also increases the surface area-to-volume
+ratio, as with lipid addition) only leads to division if it is accompanied by a pH increase
+inside the vesicle [31,32], and that either of these factors alone is not sufficient. It appears
+that raising the internal pH increases the degree of ionization of the fatty acids, and that
+ionized fatty acids pass from the inner leaflet to the internal solution, which creates a larger
+area difference and favors division. Vesicle division can also be induced by a temperature
+increase, which causes membrane area expansion [33,34]. This can only be explained if the
+thermal expansivity of the outer leaflet is higher than that of the inner leaflet, so that the area
+difference increases after the temperature increase. In a similar way, vesicles composed of
+mixtures of cylindrical and inverse cone-shaped lipids can divide after osmotic deswelling
+if there is an excess of the inverse cone-shaped lipids on the inner leaflet [35,36]. All of these
+experiments point to the need for taking account of the asymmetry between the leaflets.
+Another important point is that when membranes are under tension (as they will be if
+the vesicles are swollen by osmotic pressure), they have an increased tendency to absorb
+lipids. This is presumably because lipid addition decreases the elastic energy of a stretched
+membrane. It was shown [37] that vesicles swollen by an osmotic pressure can increase
+the lipid area while relaxed vesicles in the same solution decrease in area. This implies
+that active protocells can outcompete empty vesicles when there is a limited supply of
+lipids. Other studies have confirmed that membrane tension promotes the addition of new
+lipids [38,39]. In the model used here, a membrane under tension can gain lipids when
+the solution concentration is C∗, whereas a relaxed vesicle has a fixed area. If C is slightly
+below C∗, a membrane under tension can gain lipids while a relaxed vesicle shrinks, as
+in [37].
+If osmotic pressure exists in a vesicle but the addition of extra lipids is too slow to keep
+up with the volume increase, then the membrane is under elastic tension. Lipid membranes
+can be stretched only to a limited degree and will burst if the tension is too high. Repeated
+Life 2025, 15, 724 4 of 24
+bursting and re-sealing of vesicles has been observed, which gradually releases the internal
+pressure [40,41].
+The aim of the current paper is to produce a simple computational model of a protocell
+that considers how membrane growth and division are related to osmotically driven
+volume growth. We want to determine when repeated cycles of growth and division can
+occur while the internal metabolism is sustained. Previous protocell models [42–44] have
+emphasized the need for synchronization between the reproduction of the cell’s contents
+and the membrane. There have also been more detailed stochastic simulations of protocells
+incorporating metabolic networks and membrane growth [45–49]. Our approach is to
+keep the model simple enough to be described by a relatively small number of differential
+equations. We focus particularly on the physics of membrane growth and division, as we
+expect these things to be generally applicable regardless of the nature of the autocatalytic
+system that is driving cell growth.
+2. Methods
+2.1. Fixed-Volume Compartment
+Before considering cell growth, we need a model for an autocatalytic reaction in a
+compartment of a fixed volume. We use a model from our previous work [10], which is
+the simplest example that maintains a stable difference between the inside and outside of
+the cell. There are three kinds of molecules in the compartment, the food, catalyst, and
+waste, with respective concentrations of C1, C2, and CW. In the environment, there is a fixed
+concentration E1 of the food, and the catalyst and waste have concentrations of zero. Each
+catalyst is formed from two food molecules. The rate of the uncatalyzed reaction 2C1 → C2
+is assumed to be negligible, and the catalyst is formed by an autocatalytic process, which
+can be written as 2C1 + 2C2 → 3C2 . This mechanism requires two molecules of the catalyst
+to make a third. The two catalyst molecules are not consumed by the reaction but the
+two food molecules are converted into a third catalyst. The rate of this reaction is kC2 2C2 1,
+i.e., it is second-order in the catalyst concentration. In addition, the catalyst decays into
+two molecules of waste, C2 → 2CW , at a rate of wC2. The food molecule can enter and
+exit the cell with permeability µ1 and the waste molecule can exit the cell with perme-
+ability µW, while the membrane is impermeable to the catalyst. This gives the following
+differential equations.
+dC1
+dt = µ1(E1 − C1) − 2kC2 1C2 2 (1a)
+dC2
+dt = kC2 1C2 2 − wC2, (1b)
+dCW
+dt = 2wC2 − µW CW, (1c)
+Appendix A.1 gives the solution to Equations (1a)–(1c). There is a critical reac-
+tion rate kc, such that for k > kc, an active state is maintained inside the cell, with
+the non-zero catalyst concentration C2, while for k < kc, the reaction collapses inside
+the cell and the internal concentrations become the same as the external concentrations:
+C1 = E1, C2 = 0, CW = 0. The behavior of the system (1a)–(1c) is generic for IO-stable
+systems. Many other examples have been discussed in [10]. In the current paper, we use
+the simplest generic model for autocatalysis. The main object of this paper is to extend the
+model of a fixed-volume compartment to a growing protocell.
+2.2. Vesicle Area, Volume, and Shape
+We consider a vesicle with different numbers of molecules N+ and N− in the outer and
+inner leaflets of the bilayer. If a is the preferred area per lipid molecule, the natural areas of
+Life 2025, 15, 724 5 of 24
+the leaflets when the membrane is relaxed are A+ lip = N+ a and A− lip = N− a, and the natural
+area measured at the midpoint of the membrane is Alip = (A+ lip + A− lip)/2. The actual area
+of the vesicle is a function of its shape and volume. The minimum possible surface area of
+a vesicle with volume V is the area of a sphere with that volume: Asph(V) = (36π)1/3V2/3.
+The actual area of the vesicle is A = max
+
+Asph(V), Alip
+
+. If Asph(V) > Alip, the vesicle is
+a swollen sphere, and the membrane is under tension (the area per lipid is greater than
+the preferred area a). If Alip > Asph(V), the membrane is relaxed, and the vesicle has an
+elongated, non-spherical shape.
+The radius of the curvature of the membrane, R, is defined at the midpoint of the
+bilayer. The length of a lipid molecule is defined as 2d, so the total membrane thickness is 4d.
+Following [24], the actual areas of the outer and inner leaflets are determined at radii R + d
+and R − d, which are the midpoints of the two leaflets. These areas depend on the shape.
+We can write A+ shape = A + ∆Ashape 2 and A− shape = A − ∆Ashape 2 , where the shape-dependent
+area difference ∆Ashape is calculated in Appendix A.4. When the vesicle is non-spherical,
+we describe its shape as a capsule consisting of two hemispheres and a cylinder. If V and A
+are given, the shape of the capsule is determined (see Appendix A.3). There are many more
+complex shapes possible for a non-spherical vesicle [24–26]. We have chosen the capsule
+shape because the areas and energies can be determined rapidly without complex integrals.
+We need to know the shape area difference ∆Ashape and the membrane energy continuously
+at each point in time when we solve the differential equations. Therefore, we require a
+simple, rapid method of determining the changing shape.
+The lipid area difference is determined by the numbers of lipids in the two leaflets:
+∆Alip = A+ lip − A− lip. This can change due to the exchange of lipids between the membrane
+and solution, and the flipping of lipids between the leaflets. If the shape difference were
+fixed, then ∆Alip would tend to ∆Ashape, which would minimize the elastic energy of the
+membrane. However, these two area differences are not always equal. According to the
+area difference energy model, the elastic energy of a vesicle depends on the difference
+between ∆Alip and ∆Ashape. Below, we will use this model to determine the conditions
+under which it is energetically favorable for a vesicle to divide.
+2.3. Model for a Growing Protocell
+We need to modify Equations (1a)–(1c) to account for changes in vesicle size. We define
+a reference vesicle of radius R0, with an area and volume A0 = 4πR2 0 and V0 = 4πR3 0/3.
+The volumes and areas are measured as multiples of this. The differential equations for the
+growing vesicle are:
+d
+dt
+ V
+V0
+
+= λ
+ A
+A0
+
+∆C, (2a)
+d
+dt
+ A+ lip
+A0
+!
+= rmem
+ 
+Elip
+C∗
+A+ shape
+A0
+−
+A+ lip
+A0
+!
+− r f lip
+ A− shape
+A
+A+ lip
+A0
+−
+A+ shape
+A
+A− lip
+A0
+!
+(2b)
+d
+dt
+ A− lip
+A0
+!
+= rmem
+ 
+Clip
+C∗
+A− shape
+A0
+−
+A− lip
+A0
+!
++ r f lip
+ A− shape
+A
+A+ lip
+A0
+−
+A+ shape
+A
+A− lip
+A0
+!
+(2c)
+dC1
+dt = µ1s(E1 − C1) − 2kC2 1C2 2 − C1λs∆C (2d)
+dC2
+dt = kC2 1C2 2 − wC2 − C2λs∆C (2e)
+dCW
+dt = 2wC2 − µW sCW − CW λs∆C (2f)
+Life 2025, 15, 724 6 of 24
+dClip
+dt = −rmemQ
+ V0
+V
+ Clip
+C∗
+A− shape
+A0
+−
+A− lip
+A0
+!
+− Clipλs∆C (2g)
+Equation (2a) assumes that the rate of volume growth due to osmosis is proportional to
+the surface area and the difference in concentration ∆C = C1 + C2 + CW + Clip − E1 − Elip.
+The external food and lipid concentrations are fixed at E1 and Elip. The internal concentra-
+tions are variable. Here, λ is the rate constant for volume growth by osmosis.
+Equations (2b) and (2c) for the membrane areas depend on the rates rmem for the
+exchange of lipids between the membrane and the solution and r f lip for the flipping of
+lipids between the leaflets. If we assume that the flipping is always very fast, it would be
+possible to reduce these two equations to a single equation that ignores the area difference
+between the leaflets. However, the asymmetry between the leaflets seems to be an important
+feature that influences division (as discussed in the Introduction). In our view, treating the
+leaflets separately is an important novel feature of this model. If the outside concentration
+is maintained at Elip > C∗ due to the continued input of new lipids to the environment,
+then the membrane will be relaxed, with A+ shape = A+ lip, and the first term in Equation (2b)
+gives an increase in membrane area at a rate proportional to the excess lipid concentration
+(Elip/C∗ − 1). If Elip < C∗, a relaxed membrane will shrink. However, if the membrane
+is under tension (which is the case when the there is a positive osmotic pressure), then
+A+ shape > A+ lip, so it is possible for a swollen vesicle to increase in lipid area even when
+Elip < C∗.
+The second term in (2b) describes the flipping of lipids between leaflets. For a flat
+membrane, A+ shape = A− shape; therefore, the steady state has A+ lip = A− lip. However, for a
+curved membrane the shape areas are not equal, and the steady state has
+A+ lip
+A+ shape =
+A− lip
+A− shape ,
+which means that the densities of lipids in the two leaflets are equal.
+The permeability term µ1(E1 − C1) from (1a) is multiplied by a factor s in (2d). This is
+the dimensionless surface area-to-volume ratio: s = (A/ A0) (V/ V0) . The factor of s arises because
+the flux of the molecules through the membrane is proportional to the area, although
+the change in concentration is inversely proportional to the volume. The internal lipid
+concentration Clip also changes as a result of the exchange of lipids with the inner leaflet.
+If the inner area A− lip changes by δA, then the number of molecules exchanged is δA/a
+and the change in molar concentration of the lipids is δClip = −δA/(anAvV), where nAv is
+Avogadro’s number and V is the volume in litres. Expressing areas and volumes relative to
+the standard vesicle, δClip = −Q V0 V δA A0 , where the constant Q = A0 anAvV0 , which appears in
+the first term of (2g).
+The concentrations also change due to dilution when the volume increases. This
+gives a term − C V dV dt in each of the equations for the concentrations ((2d)–(2g)). Using
+Equation (2a), this can be written as −Cλs∆C.
+Through the numerical solution of (2a)–(2g), we can follow the changes in the internal
+concentrations of the reagents at the same time as the volume and area are changing.
+When using these equations, it should be remembered that A+ lip and A− lip are independent
+variables, although the shape areas A+ shape = A + ∆Ashape 2 and A− shape = A − ∆Ashape 2 are
+determined by assuming a capsule shape, as in Appendices A.3 and A.4.
+2.4. Vesicle Division and Bursting
+A relaxed vesicle has an actual area of Alip. The radius of a sphere that has this area
+is Rsph =
+ Alip
+4π
+1/2
+. The volume of a sphere with this area is Vsph = 4π 3 R3 sph = 1 6√π A3/2 lip .
+The reduced volume is defined as v = V/Vsph. When v = 1, the vesicle is a relaxed
+sphere. When v < 1, the vesicle is a capsule, which becomes longer and thinner as v
+Life 2025, 15, 724 7 of 24
+decreases. When v > 1, the vesicle is a swollen sphere. In terms of the standard vesicle
+volume and area, we can write
+Vsph
+V0 =
+ Alip
+A0
+3/2
+, so v = (V/ V0)
+(Alip/A0) 3/2 . For a swollen
+sphere, V V0 = Vsph V0 =  Asph A0 3/2 and v =  Asph Alip 3/2 . We suppose that the membrane can
+only be stretched by a limited factor and that bursting occurs when A Alip = 1.1, or when
+v = 1.13/2 ≈ 1.15. Bursting forms a temporary pore through which some of the vesicle
+contents are released, although it does not destroy the vesicle. We suppose that 10%
+of the internal volume is lost on bursting, after which the membrane recloses, as was
+observed in experiments with pulsatile vesicles [40]. We suppose that no lipids are lost
+from the membrane during bursting, and that no external solution enters through the pore.
+Therefore, the lipid area remains constant and the internal concentrations are unchanged
+by bursting.
+We now consider vesicle division. We assume that the combined areas and volumes
+of the two daughter cells after division are equal to those of the parent. A spherical cell
+with a reduced volume v = 1 cannot divide because the parental area is insufficient to
+enclose two smaller cells. When 1√ 2 < v < 1, it is possible for the elongated parent cell
+to divide into two daughter cells that are spheres of unequal size (as shown in Figure 1).
+When v = 1√ 2 , the parent can form two equal-sized spheres. When v < 1√ 2 , it is possible to
+form one sphere and one elongated daughter cell.
+ 
+ 
+ 
+ 
+Life 2025, 15, x https://doi.org/10.3390/xxxxx 
+ 1 
+Figure 1. Possible means of cell division that conserve both the volume and area.
+When we follow the growth of a vesicle with Equations (2a)–(2g), we know the reduced
+volume v at any point. The simplest rule for division, which we call the “equal division
+rule”, is that the cell divides into two equal-sized spheres whenever v reaches 1√ 2 . We also
+use an “energy decrease rule”, which takes account of the energy of the membranes. Using
+the area difference energy model, the combined curvature and elasticity energy can be
+calculated as a function of the volume and area parameters (as described in Appendix A.4).
+We suppose that there is an attempted division rate rdiv, so that in each time step δt there is
+a probability rdivδt of an attempted division. When this occurs, we calculate the energy of
+the parent vesicle before division, Epar, and the energies E1 and E2 of the daughter vesicles.
+The change in energy is ∆E = E1 + E2 − Epar. We allow the attempted division if ∆E ≤ 0,
+otherwise the attempt is unsuccessful, and the parental vesicle remains unchanged.
+Life 2025, 15, 724 8 of 24
+Here, ∆E is a function of two parameters—the reduced volume v and the area dif-
+ference parameter ϕ = ∆Alip/∆Ashape. For a given value of v, there is a minimum value
+ϕmin(v), such that ∆E ≤ 0 only when ϕ ≥ ϕmin(v) (see Appendix A.5). This is shown in
+Figure 2a. The cusp of this curve occurs at v = 1/
+√
+2. This is the point at which divi-
+sion into two equal spheres is energetically favorable. The right branch of the curve for
+1√
+2 ≤ v < 1 is the point at which it becomes favorable to divide into two spheres of unequal
+size, and the left branch of the curve for v < 1√ 2 is the point at which it becomes favorable
+to divide into one sphere and one capsule. Figure 2b shows the optimal ratio of volume
+x = xopt of the two daughters for which the elastic energy is minimized. This is 0.5 for
+v = 1√ 2 , and otherwise is less than 0.5 (see Appendix A.5).
+Life 2025, 15, 724 8 of 24 
+ 
+ 
+Here, ∆𝐸  is a function of two pa rameters—the reduced volume 𝑣  and the area 
+diﬀerence parameter 𝜙=∆𝐴௟௜௣/∆𝐴௦௛௔௣௘. For a given value of 𝑣, there is a minimum value 
+𝜙௠௜௡(𝑣), such that ∆𝐸 ≤ 0 only when 𝜙≥𝜙௠௜௡(𝑣) (see Appendix A.5). This is shown in 
+Figure 2a. The cusp of this curve occurs at 𝑣=1/√2. This is the point at which division 
+into two equal spheres is energetically favo rable. The right branch of the curve for 
+ଵ
+√ଶ ≤
+𝑣<1 is the point at which it becomes favorable to divide into two spheres of unequal 
+size, and the left branch of the curve for 𝑣<
+ଵ
+√ଶ is the point at which it becomes favorable 
+to divide into one sphere and one capsule. Fi gure 2b shows the optimal ratio of volume 
+𝑥=𝑥௢௣௧ of the two daughters for which the elasti c energy is minimized. This is 0.5 for 
+𝑣=
+ଵ
+√ଶ, and otherwise is less than 0.5 (see Appendix A.5). 
+ 
+Figure 2. (a) Phase diagram for the area di ﬀerence energy model. When 𝑣=1 , the vesicle is a 
+relaxed sphere. For 1<𝑣<1.15, the vesicle is a swollen sphere. Bursting occurs at 𝑣=1.1ଷ/ଶ ൎ
+1.15. For 𝑣<1, the vesicle is elongated (modelled as a capsule shape). The red line is 𝜙௠௜௡(𝑣), the 
+point at which ∆𝐸 = 0. Division is energetically favorable for 𝜙> 𝜙௠௜௡(𝑣). (b) The optimal ratio 
+of sizes of the daughter vesicles 𝑥௢௣௧, which minimizes their elastic energy. 
+2.5. Parameter Values and Simulation Methods 
+It is convenient to measure the vesicle si ze relative to a reference vesicle with 𝑅଴ =
+1 μm . The sizes of experimental vesicles vary considerably from >10 μm  for giant 
+unilamellar vesicles [26,29,40,41] to around radius 50 nm for fa tty acid vesicles [30,37], so 
+this is in the right range. However, the be havior of the model does not depend on the 
+choice of 𝑅଴. We choose 𝑑=1 nm, so the membrane thickness is 4 nm. The area per lipid 
+is 𝑎=2ൈ10ିଵଽ mଶ . The critical aggregation concentration is 𝐶∗ =0.01 M . These 
+parameters are approximately correct for fa tty acid membranes [17,18], although for 
+modern phospholipids, 𝑑  is somewhat larger and 𝐶∗  is signiﬁcantly smaller. The 
+parameter 𝑄=
+஺బ
+௔௡ಲೡ௏బ
+  is then 0.0249. The external lipid concentration 𝐸௟௜௣  may be 
+slightly higher or lower than 𝐶∗, and varies in the examples below. The external food 
+concentration is 𝐸ଵ =1.0 M , which is much higher than 𝐶∗ , so the osmotic pressure is 
+mostly controlled by the reactants 𝐶ଵ,𝐶ଶ,and 𝐶ௐ and not by the lipid. 
+The standard parameter set for the reaction rates and permeabilities is: 𝑘 = 1.0, 𝑤 =
+0.01, 𝜇ଵ =0.01,𝜇ௐ = 0.015. We do not give units here because the time scale is arbitrary 
+for this idealized reaction. The volume expansion rate is 𝜆=1, and the rates for lipid 
+dynamics are expressed as 𝑟௠௘௠ =𝑟௙௟௜௣ =0.1. These parameters allow successful growth 
+in volume and area without bursting. When parameters are varied relative to this 
+standard set, we will state so below. 
+Figure 2. (a) Phase diagram for the area difference energy model. When v = 1, the vesicle is a relaxed
+sphere. For 1 < v < 1.15, the vesicle is a swollen sphere. Bursting occurs at v = 1.13/2 ≈ 1.15. For
+v < 1, the vesicle is elongated (modelled as a capsule shape). The red line is ϕmin(v), the point at
+which ∆E = 0. Division is energetically favorable for ϕ > ϕmin(v). (b) The optimal ratio of sizes of
+the daughter vesicles xopt, which minimizes their elastic energy.
+2.5. Parameter Values and Simulation Methods
+It is convenient to measure the vesicle size relative to a reference vesicle with
+R0 = 1 µm. The sizes of experimental vesicles vary considerably from > 10 µm for
+giant unilamellar vesicles [26,29,40,41] to around radius 50 nm for fatty acid vesicles [30,37],
+so this is in the right range. However, the behavior of the model does not depend on the
+choice of R0. We choose d = 1 nm, so the membrane thickness is 4 nm. The area per lipid is
+a = 2 × 10−19m2. The critical aggregation concentration is C∗ = 0.01 M. These parameters
+are approximately correct for fatty acid membranes [17,18], although for modern phos-
+pholipids, d is somewhat larger and C∗ is significantly smaller. The parameter Q = A0 anAvV0
+is then 0.0249. The external lipid concentration Elip may be slightly higher or lower than
+C∗, and varies in the examples below. The external food concentration is E1 = 1.0 M,
+which is much higher than C∗, so the osmotic pressure is mostly controlled by the reactants
+C1, C2, and CW and not by the lipid.
+The standard parameter set for the reaction rates and permeabilities is:
+k = 1.0, w = 0.01, µ1 = 0.01, µW = 0.015. We do not give units here because the
+time scale is arbitrary for this idealized reaction. The volume expansion rate is λ = 1,
+and the rates for lipid dynamics are expressed as rmem = r f lip = 0.1. These parameters
+allow successful growth in volume and area without bursting. When parameters are varied
+relative to this standard set, we will state so below.
+Life 2025, 15, 724 9 of 24
+We use the fourth-order Runge–Kutta method for the ODEs (2a)–(2g), with a time step
+of δt = 0.001. Initially, the vesicle size is set to the reference vesicle size, V = V0, Alip = A0;
+the internal lipid concentration is Clip = C∗; and the concentrations C1, C2, and CW are
+set to the steady-state concentrations for the fixed-volume compartment discussed in
+Section 2.1 and Appendix A.1.
+3. Results
+3.1. Protocell Growth Without Division
+Figure 3 considers growth driven by the autocatalytic reaction when division does
+not occur. Figure 3a uses the standard rate parameters (Section 2.5). The volume increases
+initially because the reaction creates a positive ∆C. The external lipid concentration is
+Elip = C∗, so a relaxed membrane cannot grow. However, the membrane is under tension,
+and it is able to grow because A+ shape > A+ lip. In Figure 3a, the vesicle stops growing when it
+reaches a steady state of homeostasis in which the internal reaction is maintained but there
+is no further change in volume. Figure 3b shows that the internal concentrations C1, C2,
+and CW all remain stable in the steady state.
+Life 2025, 15, 724 9 of 24 
+ 
+ 
+We use the fourth-order Runge–Ku tta method for the ODEs (2a)–(2g), with a time 
+step of 𝛿𝑡 = 0.001 . Initially, the vesicle size is set to the reference vesicle size, 𝑉=
+𝑉଴,𝐴௟௜௣ =𝐴଴ ; the internal lipid concentration is 𝐶௟௜௣ =𝐶∗ ; and the concentrations 
+𝐶ଵ,𝐶ଶ,and 𝐶ௐ are set to the steady-state concentrations for the ﬁxed-volume compartment 
+discussed in Section 2.1 and Appendix A.1. 
+3. Results 
+3.1. Protocell Growth Without Division 
+Figure 3 considers growth driven by the au tocatalytic reaction when division does 
+not occur. Figure 3a uses the standard rate parameters (Section 2.5). The volume increases 
+initially because the reaction creates a positive ∆𝐶 . The external lipid concentration is 
+𝐸௟௜௣ =𝐶∗, so a relaxed membrane cannot grow. However, the membrane is under tension, 
+and it is able to grow because 𝐴௦௛௔௣௘ ା >𝐴௟௜௣ ା . In Figure 3a, the vesicle stops growing when 
+it reaches a steady state of homeostasis in which the internal reaction is maintained but 
+there is no further change in volume. Figure 3b shows that the internal concentrations 
+𝐶ଵ,𝐶ଶ, and 𝐶ௐ all remain stable in the steady state. 
+ 
+Figure 3. Growth of a lipid vesicle with the external lipid concentration 𝐸௟௜௣ =𝐶∗. (a,b) An example 
+leading to a homeostatic state where the internal reactions are maintained but there is no further 
+growth. Standard rate parameters. ( c,d) An example showing growth to a very large size, after 
+which the internal reaction collapses and growth stops. Standard parameters except 𝜇ௐ =0.1. 
+The homeostatic state does not always exist in our model. In Figure 3c, the 
+permeability of the waste is changed to 𝜇ௐ =0.01, whereas it was 0.015 in Figure 3a. In 
+Figure 3. Growth of a lipid vesicle with the external lipid concentration Elip = C∗. (a,b) An example
+leading to a homeostatic state where the internal reactions are maintained but there is no further
+growth. Standard rate parameters. (c,d) An example showing growth to a very large size, after which
+the internal reaction collapses and growth stops. Standard parameters except µW = 0.1.
+Life 2025, 15, 724 10 of 24
+The homeostatic state does not always exist in our model. In Figure 3c, the permeability
+of the waste is changed to µW = 0.01, whereas it was 0.015 in Figure 3a. In this case, both
+the volume and area become extremely large but the internal concentrations do not reach a
+stable state, and eventually the autocatalytic reaction collapses, as shown in Figure 3d. After
+the collapse, the internal concentrations become the same as the external concentrations.
+The cell dies because it becomes too big to sustain itself. When a cell grows, the surface
+area-to-volume ratio decreases. The reaction cannot be maintained if the cell is too large
+because the food supply rate is proportional to the area and the food consumption rate is
+proportional to the volume. In Appendix A.2, we give an analytical solution determining
+when the homeostatic state occurs.
+In both cases in Figure 3, the external lipid concentration is Elip = C∗, so the cell only
+grows because the internal reaction creates an osmotic pressure that places the membrane
+under tension. If an inactive cell is initiated with internal concentrations equal to external
+concentrations, then there is no osmotic pressure and no tension in the membrane. In
+this case, the inactive cell does not grow in either area or volume. This is consistent
+with the experiments in [37], which found that vesicles containing a positive osmotic
+pressure increase in lipid area relative to those with no osmotic pressure. This is relevant
+for competition between active cells and empty vesicles. However, as the active cells are
+growing with v ≥ 1, they never reach the region where division is possible in Figure 2a.
+Thus, this theory predicts that when Elip = C∗, an active cell can grow but cannot divide.
+3.2. Protocell Growth with Division
+For a cell to divide it must become elongated, so it has to be possible for the area to
+increase when the membrane is relaxed. Therefore, the external lipid concentration must
+be greater than C∗. In this section, we consider examples where Elip = 1.01C∗, and we
+show that even this slight increase above C∗ is sufficient to allow division. In Figure 4,
+beginning with a spherical vesicle, there is a short period of growth as a swollen sphere,
+after which it becomes a capsule shape in which the volume and area grow exponentially at
+the same rate (V and A are parallel on a log scale in Figure 4a). This means that the surface
+area-to-volume ratio s becomes constant while v decreases (Figure 4b).
+We use the equal division rule, in which division occurs when v = 1√ 2 . At this
+point, the volume V and the membrane areas A+ lip and A− lip are halved. This creates two
+equal-sized spheres, and the program continues to follow one of these after division.
+Since division forms spheres, v is reset to 1 during division but it then decreases again
+until another division point is reached. Figure 4c shows the area difference parameter ϕ,
+(although the equal division rule does not depend on ϕ). Figure 4d shows that the internal
+concentrations become constant. As the surface area-to-volume ratio is constant, the food
+supply is balanced by consumption at constant concentrations as the cell grows.
+Figure 5 shows an example with the same parameters as Figure 4 using the energy
+decrease rule instead of equal division. In this case, when division occurs, the two daughter
+cells are different sizes, and we follow either the larger or the smaller daughter at random.
+When the smaller cell is followed, it takes longer to grow back to the next division point
+than when the larger cell is followed. However, the sizes of the cells at the next division
+point are approximately the same in both cases. The attempted division rate is kept high,
+rdiv = 10, so successful divisions occur very soon after the vesicle crosses the boundary line
+in Figure 2a. The values of v and ϕ at which division occurs are almost the same each time.
+Figure 5d shows that the internal concentrations are disrupted after each division event but
+they trend fairly rapidly towards stable values prior to the next division event.
+Life 2025, 15, 724 11 of 24
+Life 2025, 15, 724 11 of 24 
+ 
+ 
+ 
+Figure 4. Time course of a cell using the equal divi sion rule. Standard rate parameters with 𝐸௟௜௣ =
+1.01𝐶∗. (a) Volume and area quickly reach a state where they grow in proportion to one another and 
+halve at each division point. (b) Surface area-to-volume ratio 𝑠 reaches a constant value. Reduced 
+volume v descends to 1/√2 at each division point. ( c) Area di ﬀerence parameter 𝜙 is relatively 
+stable over cycles. (d) Internal reactant concentrations reach a steady state. 
+We use the equal division rule, in which division occurs when 𝑣=
+ଵ
+√ଶ. At this point, 
+the volume 𝑉 and the membrane areas 𝐴௟௜௣ ା  and 𝐴௟௜௣ ି  are halved. This creates two equal-
+sized spheres, and the program continues to follow one of these after division. Since 
+division forms spheres, 𝑣 is reset to 1 during division but it then decreases again until 
+another division point is reached. Figure 4c shows the area di ﬀerence parameter 𝜙 , 
+(although the equal division rule does not depend on 𝜙 ). Figure 4d shows that the 
+internal concentrations become constant. As the surface area-to-volume ratio is constant, 
+the food supply is balanced by consumption at constant concentrations as the cell grows. 
+Figure 5 shows an example with the same parameters as Figure 4 using the energy 
+decrease rule instead of equal division. In this case, when division occurs, the two 
+daughter cells are diﬀerent sizes, and we follow either the larger or the smaller daughter 
+at random. When the smaller cell is followed, it takes longer to grow back to the next 
+division point than when the larger cell is followed. However, the sizes of the cells at the 
+next division point are approximately the same in both cases. The attempted division rate 
+is kept high, 𝑟ௗ௜௩ =10, so successful divisions occur very soon after the vesicle crosses the 
+boundary line in Figure 2a. The values of 𝑣 and 𝜙 at which division occurs are almost 
+the same each time. Figure 5d shows that th e internal concentrations are disrupted after 
+Figure 4. Time course of a cell using the equal division rule. Standard rate parameters with
+Elip = 1.01C*. (a) Volume and area quickly reach a state where they grow in proportion to one
+another and halve at each division point. (b) Surface area-to-volume ratio s reaches a constant value.
+Reduced volume v descends to 1/
+√
+2 at each division point. (c) Area difference parameter ϕ is
+relatively stable over cycles. (d) Internal reactant concentrations reach a steady state.
+As ∆E depends on the area difference parameter ϕ, the cell division process is sensitive
+to the rate of flipping of the lipids between the two leaflets of the bilayer, r f lip. We ran
+several simulations with different values of r f lip, keeping all the other parameters the same
+as those in Figures 4 and 5. We followed either the larger or the smaller daughter at random
+each time division occurred. The mean properties of the cells at the point of the division
+(Figure 6) were found by averaging them over many division events. Vlarge and Vsmall are
+the mean sizes of the larger and smaller daughter vesicles immediately after division. Vdiv
+is the mean size of the parent vesicle at the point of division. For smaller values of r f lip, the
+division is very unequal, Vsmall ≪ Vlarge, and these sizes become more even as the flipping
+rate increases. The parent vesicle size becomes slightly larger as r f lip increases because
+it takes slightly longer for ϕ to reach the point where division becomes favorable. The
+reduced volume v of the parent vesicle at the division point is also shown in Figure 6a. This
+is close to 1 for the small r f lip value and decreases to 1√ 2 as r f lip increases.
+Life 2025, 15, 724 12 of 24
+Life 2025, 15, 724 12 of 24 
+ 
+ 
+each division event but they tr end fairly rapidly towards stable values prior to the next 
+division event. 
+ 
+Figure 5. Time course of a cell using the energy decrease rule. The parameters are as in Figure 4. (a) 
+At each division point, we randomly follow either the larger or smaller of the two daughter vesicles, 
+which is visible by either small or large drops in volume. (b–d) The other vesicle properties ﬂuctuate 
+somewhat after each division but return to the same typical values before the next division occurs. 
+As ∆𝐸  depends on the area difference parameter 𝜙 , the cell division process is 
+sensitive to the rate of flipping of the lipids between the two leaflets of the bilayer, 𝑟௙௟௜௣. We 
+ran several simulations with different values of 𝑟௙௟௜௣, keeping all the other parameters the 
+same as those in Figures 4 and 5. We followed either the larger or the smaller daughter at 
+random each time division occurred. The mean properties of the cells at the point of the 
+division (Figure 6) were found by aver aging them over many division events. 𝑉௟௔௥௚௘ and 
+𝑉௦௠௔௟௟  are the mean sizes of the larger and sm aller daughter vesicles immediately after 
+division. 𝑉ௗ௜௩ is the mean size of the parent vesicle at the point of division. For smaller 
+values of 𝑟௙௟௜௣, the division is very unequal, 𝑉௦௠௔௟௟ ≪𝑉௟௔௥௚௘, and these sizes become more 
+even as the flipping rate increases. The pare nt vesicle size becomes slightly larger as 𝑟௙௟௜௣ 
+increases because it takes slightly longer for 𝜙 to reach the point where division becomes 
+favorable. The reduced volume 𝑣 of the parent vesicle at the division point is also shown 
+in Figure 6a. This is close to 1 for the small 𝑟௙௟௜௣ value and decreases to 
+ଵ
+√ଶ as 𝑟௙௟௜௣ increases. 
+Figure 5. Time course of a cell using the energy decrease rule. The parameters are as in Figure 4.
+(a) At each division point, we randomly follow either the larger or smaller of the two daughter
+vesicles, which is visible by either small or large drops in volume. (b–d) The other vesicle prop-
+erties fluctuate somewhat after each division but return to the same typical values before the next
+division occurs.
+Life 2025, 15, 724 13 of 24 
+ 
+ 
+ 
+Figure 6. (a) Mean properties of cells at the division point as a function of 𝑟௙௟௜௣, with 𝑟௠௘௠ =0.1. 
+The other parameters are standard. (b) Mean values of (𝑣, 𝜙) at which divisions occur. Black points 
+are for the energy decrease rule, with 𝑟௙௟௜௣ varying from 0.01 to 0.18. The yellow point is for the 
+equal division rule, with 𝑟௙௟௜௣ =𝑟௠௘௠ =0.1, as in Figure 4. 
+Figure 6b shows the mean values of (𝑣, 𝜙) for dividing cells on the phase diagram. 
+The mean division points are all very close to the boundary line 𝜙௠௜௡(𝑣), meaning that 
+division occurs almost as soon as it becomes energetically favorable. The division ratio 𝑥 
+is always close to 𝑥௢௣௧ because ∆𝐸 is negative only when 𝑥 is close to 𝑥௢௣௧. Therefore, 
+there is a well-de ﬁned division ratio for each value of 𝑟௙௟௜௣ . The smallest ﬂipping rate 
+considered is 𝑟௙௟௜௣ =0.01, which corresponds to the point on Figure 6b with the highest 
+𝜙  and the largest 𝑣 . The points move down the boundary line as 𝑟௙௟௜௣  increases and 
+reach the cusp at 𝑟௙௟௜௣ =0.18 . If 𝑟௙௟௜௣ >0.18 , the trajectory of the vesicle on the phase 
+diagram never crosses the boundary line, so division never occurs when 𝑟௙௟௜௣ is too large. 
+The division point for the equal division rule is also shown as a yellow point in Figure 
+6b. This is well inside the boundary line. This means that the equal division rule is not 
+forbidden by energetic considerations but division is unlikely to occur in this way, because 
+if the attempted division rate 𝑟ௗ௜௩ is high, division is more likely to occur as soon as the 
+trajectory crosses the boundary line. The point at which the boundary is crossed will not, 
+in general, be at 𝑣=
+ଵ
+√ଶ, so division will usually produce daughters of unequal sizes. 
+3.3. Examples Where Division Is Diﬃcult or Not Sustained 
+Figure 7 shows the behavior of inactive vesicles in which there is no catalytic reaction. 
+These simulations were initiated with the internal food concentration equal to that 
+outside, and with no catalyst. There is no os motic pressure to drive growth. In Figure 7a, 
+𝑟௙௟௜௣ =𝑟௠௘௠ =0.1, 𝐸௟௜௣ = 1.01𝐶∗, and all other parameters are as in Figures 4 and 5. The 
+area increases exponentially but the volume stays ﬁxed. The vesicle never reaches the 
+boundary line for division, so it becomes very long and narrow without dividing. 
+However, it is not true that an inactive cell can never divide. In Figure 7b, we increase the 
+external lipid concentration to 𝐸௟௜௣ = 1.02𝐶∗, with the rate constants remaining the same. 
+This leads to several division events but the volume gets progressively smaller each time, 
+until it reaches a stage of continued area growth without division. Thus, inactive cells do 
+not reach a stable cycle of growth and division in the way that active cells do. 
+Figure 6. (a) Mean properties of cells at the division point as a function of r f lip, with rmem = 0.1. The
+other parameters are standard. (b) Mean values of (v, ϕ) at which divisions occur. Black points are
+for the energy decrease rule, with r f lip varying from 0.01 to 0.18. The yellow point is for the equal
+division rule, with r f lip = rmem = 0.1, as in Figure 4.
+Figure 6b shows the mean values of (v, ϕ) for dividing cells on the phase diagram.
+The mean division points are all very close to the boundary line ϕmin(v), meaning that
+division occurs almost as soon as it becomes energetically favorable. The division ratio x is
+Life 2025, 15, 724 13 of 24
+always close to xopt because ∆E is negative only when x is close to xopt. Therefore, there is
+a well-defined division ratio for each value of r f lip. The smallest flipping rate considered
+is r f lip = 0.01, which corresponds to the point on Figure 6b with the highest ϕ and the
+largest v. The points move down the boundary line as r f lip increases and reach the cusp at
+r f lip = 0.18. If r f lip > 0.18, the trajectory of the vesicle on the phase diagram never crosses
+the boundary line, so division never occurs when r f lip is too large.
+The division point for the equal division rule is also shown as a yellow point in
+Figure 6b. This is well inside the boundary line. This means that the equal division rule
+is not forbidden by energetic considerations but division is unlikely to occur in this way,
+because if the attempted division rate rdiv is high, division is more likely to occur as soon
+as the trajectory crosses the boundary line. The point at which the boundary is crossed will
+not, in general, be at v = 1√ 2 , so division will usually produce daughters of unequal sizes.
+3.3. Examples Where Division Is Difficult or Not Sustained
+Figure 7 shows the behavior of inactive vesicles in which there is no catalytic reac-
+tion. These simulations were initiated with the internal food concentration equal to that
+outside, and with no catalyst. There is no osmotic pressure to drive growth. In Figure 7a,
+r f lip = rmem = 0.1, Elip = 1.01C∗, and all other parameters are as in Figures 4 and 5. The
+area increases exponentially but the volume stays fixed. The vesicle never reaches the
+boundary line for division, so it becomes very long and narrow without dividing. However,
+it is not true that an inactive cell can never divide. In Figure 7b, we increase the external
+lipid concentration to Elip = 1.02C∗, with the rate constants remaining the same. This leads
+to several division events but the volume gets progressively smaller each time, until it
+reaches a stage of continued area growth without division. Thus, inactive cells do not reach
+a stable cycle of growth and division in the way that active cells do.
+Life 2025, 15, 724 14 of 24 
+ 
+ 
+ 
+Figure 7. Inactive cells with no internal catalytic reaction may increase in membrane area if 𝐸௟௜௣ >
+𝐶∗ but do not increase in volume. ( a) When 𝐸௟௜௣ =1.01𝐶∗, the vesicle increases in area at a ﬁxed 
+volume and never divides. ( b) When 𝐸௟௜௣ =1.02𝐶∗, the vesicle divides a few times, after which it 
+increases in area without further division. 
+If a vesicle is to reach the division point, it must also avoid bursting. In Figure 8a, we 
+show an example of a vesicle with an active reaction inside where there is no exchange of 
+lipids with the solution ( 𝑟௠௘௠ =𝑟௙௟௜௣ =0). The membrane area is ﬁxed but the osmotic 
+pressure drives the volume up to bursting point. The vesicle is trapped in repeated rapid 
+cycles of bursting but it can never divide. 
+ 
+Figure 8. Cases where frequent bursting of vesicles occurs. ( a) If 𝑟௠௘௠ = 𝑟௙௟௜௣ =0.0 , there is no 
+exchange of lipids with the solution, so the membrane area is ﬁxed. The vesicle grows repeatedly to 
+the bursting point but can never divide. (b) If 𝐸௟௜௣ =1.01𝐶∗,𝑟௠௘௠ = 𝑟௙௟௜௣ =0.01, division produces 
+small daughter cells that are subject to repeated rapid bursting events (periods indicated by arrows), 
+although these eventually grow large enough for division. 
+In Figure 8b, we consider a very slow lipid exchange, with 𝑟௠௘௠ =𝑟௙௟௜௣ =0.01, which 
+is ten times less than in Figures 4 and 5. In this case, the cell grows to division much more 
+slowly than in Figures 4 and 5. Small daughter cells that are vulnerable to bursting form. 
+Frequent rapid bursts occur in the periods in dicated by the arrows in Figure 8b but the 
+cell manages to grow slightly larger each time until it escapes the bursting cycle and 
+slowly regrows to the division point.  
+Figure 7. Inactive cells with no internal catalytic reaction may increase in membrane area if Elip > C∗
+but do not increase in volume. (a) When Elip = 1.01C∗, the vesicle increases in area at a fixed volume
+and never divides. (b) When Elip = 1.02C∗, the vesicle divides a few times, after which it increases in
+area without further division.
+If a vesicle is to reach the division point, it must also avoid bursting. In Figure 8a, we
+show an example of a vesicle with an active reaction inside where there is no exchange of
+lipids with the solution (rmem = r f lip = 0). The membrane area is fixed but the osmotic
+pressure drives the volume up to bursting point. The vesicle is trapped in repeated rapid
+cycles of bursting but it can never divide.
+Life 2025, 15, 724 14 of 24
+Life 2025, 15, 724 14 of 24 
+ 
+ 
+ 
+Figure 7. Inactive cells with no internal catalytic reaction may increase in membrane area if 𝐸௟௜௣ >
+𝐶∗ but do not increase in volume. ( a) When 𝐸௟௜௣ =1.01𝐶∗, the vesicle increases in area at a ﬁxed 
+volume and never divides. ( b) When 𝐸௟௜௣ =1.02𝐶∗, the vesicle divides a few times, after which it 
+increases in area without further division. 
+If a vesicle is to reach the division point, it must also avoid bursting. In Figure 8a, we 
+show an example of a vesicle with an active reaction inside where there is no exchange of 
+lipids with the solution ( 𝑟௠௘௠ =𝑟௙௟௜௣ =0). The membrane area is ﬁxed but the osmotic 
+pressure drives the volume up to bursting point. The vesicle is trapped in repeated rapid 
+cycles of bursting but it can never divide. 
+ 
+Figure 8. Cases where frequent bursting of vesicles occurs. ( a) If 𝑟௠௘௠ = 𝑟௙௟௜௣ =0.0 , there is no 
+exchange of lipids with the solution, so the membrane area is ﬁxed. The vesicle grows repeatedly to 
+the bursting point but can never divide. (b) If 𝐸௟௜௣ =1.01𝐶∗,𝑟௠௘௠ = 𝑟௙௟௜௣ =0.01, division produces 
+small daughter cells that are subject to repeated rapid bursting events (periods indicated by arrows), 
+although these eventually grow large enough for division. 
+In Figure 8b, we consider a very slow lipid exchange, with 𝑟௠௘௠ =𝑟௙௟௜௣ =0.01, which 
+is ten times less than in Figures 4 and 5. In this case, the cell grows to division much more 
+slowly than in Figures 4 and 5. Small daughter cells that are vulnerable to bursting form. 
+Frequent rapid bursts occur in the periods in dicated by the arrows in Figure 8b but the 
+cell manages to grow slightly larger each time until it escapes the bursting cycle and 
+slowly regrows to the division point.  
+Figure 8. Cases where frequent bursting of vesicles occurs. (a) If rmem = r f lip = 0.0, there is no
+exchange of lipids with the solution, so the membrane area is fixed. The vesicle grows repeatedly to
+the bursting point but can never divide. (b) If Elip = 1.01C∗, rmem = r f lip = 0.01, division produces
+small daughter cells that are subject to repeated rapid bursting events (periods indicated by arrows),
+although these eventually grow large enough for division.
+In Figure 8b, we consider a very slow lipid exchange, with rmem = r f lip = 0.01, which
+is ten times less than in Figures 4 and 5. In this case, the cell grows to division much more
+slowly than in Figures 4 and 5. Small daughter cells that are vulnerable to bursting form.
+Frequent rapid bursts occur in the periods indicated by the arrows in Figure 8b but the cell
+manages to grow slightly larger each time until it escapes the bursting cycle and slowly
+regrows to the division point.
+4. Discussion
+We have presented a model that unifies a minimal autocatalytic reaction network
+with a fatty acid vesicle incorporating lipids from the environment in order to explain
+the lifecycles of primitive protocells. The model shows that protocell division is not an
+inevitable consequence of membrane growth but instead emerges from a balance between
+lipid dynamics, osmotic stress, and membrane asymmetry. Our model emphasizes several
+requirements for a continued cycle of growth and division:
+1. The cell must contain an active autocatalytic reaction. Cells with an active internal
+reaction reach a sustainable reproductive cycle with a constant mean size at the point
+of division (as in Figures 4–6), whereas inactive vesicles with no internal reaction
+show membrane growth without volume growth. Inactive cells either divide into
+increasingly smaller vesicles or reach a state where division does not occur (as in
+Figure 7).
+2. The rate parameters for the autocatalytic reaction and for the permeability of food
+and waste molecules must be such that the reaction is maintained inside the cell as it
+grows (as in Figure 3a,b), rather than collapsing when the cell becomes too large (as
+in Figure 3c,d).
+3. The rate of entry of new lipids to the membrane must be sufficiently high relative to
+the rate of volume increase to avoid frequent bursting of the membrane and loss of
+cell contents (as in Figure 8).
+4. Division only occurs if the area difference parameter ϕ becomes sufficiently large,
+which means that the division is sensitive to the flipping of lipids between outer and
+inner leaflets. It is necessary to have some degree of flipping for both leaflets to grow.
+However, if the flipping is too fast, ϕ remains close to 1, and vesicle division is not
+Life 2025, 15, 724 15 of 24
+energetically favorable. Therefore, the reproductive cycle is facilitated by relatively
+slow flipping of lipids.
+5. Division only occurs if the cell becomes sufficiently elongated (the reduced volume v
+becomes sufficiently small). This means that the external lipid concentration Elip must
+be above the critical aggregation concentration C∗, so that a relaxed membrane can
+increase in area. If the membrane is under tension due to an internal osmotic pressure,
+then the membrane can increase in area when Elip ≤ C∗. However, in this case, the
+cell remains spherical, so division is not possible.
+The results presented here assume that Elip remains fixed. In order to maintain
+Elip higher than C∗, there must be a continued supply of new lipids to the environment,
+otherwise the concentration will reach an equilibrium at C∗. We intend to extend this model
+to consider a finite volume pond containing a population of many competing vesicles. In
+this case, the concentrations of lipid and food molecules in the pond will vary. It was shown
+experimentally [37] that active cells can outcompete inactive cells because active cells gain
+lipids under conditions where the inactive cells lose lipids. However, this mechanism only
+works when Elip ≤ C∗, i.e., competition for lipids only works in conditions where division
+cannot occur. We suggest that it is possible to achieve both competition for lipids and cell
+division if the supply of lipids comes in irregular batches, rather than a slow steady supply.
+If a batch of new lipids is added to the pond, there will be a short period where Elip > C∗,
+so growth and division can occur. After this, Elip will fall quickly to C∗ or just less, in which
+case lipids will continue to be added to the stretched membranes of active cells and will be
+removed from inactive relaxed membranes. Over multiple batches of lipid addition, we
+expect active cells to outcompete inactive ones.
+Another way to introduce fluctuations of lipid concentration is by wetting and drying
+the pond. If the pond partially dries out, the external concentration of food molecules (and
+any other solutes) will increase, creating a negative osmotic pressure, causing the vesicle to
+de-swell. De-swelling may sometimes induce division, although this will depend on the
+value of ϕ prior to de-swelling and on whether lipid flipping occurs during the period of
+de-swelling. It may also depend on other factors such as the internal pH [31,32] and shape
+of the lipid [35,36].
+It is also known that de-swelling can cause division when the membrane is made of a
+mixture of lipids and phase separation occurs in the membrane. Division then happens
+along the boundary between the phases [50–53]. Our model applies either to a single kind
+of lipid or to a mixture of several lipids that does not separate. We have not considered
+the possibility of phase separation; however, if the division were dependent on phase
+separation, the composition of the two vesicles would be different, and these would not
+necessarily be able to divide a second time. Thus, phase separation does not seem ideal for
+achieving a sustainable cycle in protocells.
+Another possibility that has been studied experimentally is that the new lipids that
+enter the membrane are synthesized by a mechanism that is catalyzed by the existing
+membrane [54–56]. This could be relevant for protocells but it does not seem an essential
+requirement for lipid synthesis to be autocatalytic in the simplest case. We have looked at
+the case where pre-formed lipids simply enter the membrane, which seems the simplest
+case to start with. The later evolutionary stages could involve switching to a mechanism of
+lipid synthesis on the membrane or inside the vesicle. The later stages could also involve
+the synthesis of different forms of lipids that improve the stability relative to simple fatty
+acid membranes [57].
+Some of our results resemble those of Mavelli and Ruiz-Mirazo [45]. In their paper, only
+the equal division rule was used, whereas we have considered the role of the membrane
+curvature and elasticity energy in controlling division. The dependence of the lipid area
+Life 2025, 15, 724 16 of 24
+growth on membrane tension is also a novel feature of our model, which seems to be
+important in real vesicles. Scheme 1 in [45], where an external lipid is synthesized from a
+precursor at a constant rate, is similar to the case with Elip > C∗ considered here. However,
+in [45], there was no internal reaction with Scheme 1, so the cells divided and decreased in
+volume, similarly to the inactive cells in our Figure 7b. A state with reproducing cells that
+regrow to the same size was only found in [45] for Scheme 2 (membrane-catalyzed lipid
+synthesis) and Scheme 3 (internal lipid synthesis). In a subsequent paper [47], for the case
+of internal lipid synthesis, a stationary division regime was found in which the volume and
+area grow at the same rate, and in which the cell size during division remains constant over
+generations. This is also what happens in our model (Figures 4a and 5a); however, we show
+here that reproducing cells of a steady size can exist even if the lipid supply is provided
+by the environment. Hence, the first protocells do not need to synthesize their own lipids,
+which is one fewer problem that needs to be dealt with by the earliest cells. It will obviously
+be an advantage if cells evolve to make their own lipids at a later state because this will
+make the cell less dependent on the environment. We also note an interesting model of
+autocatalytic formation of coacervate droplets [58], which has several similar properties to
+our model of lipid vesicles.
+In summary, we have given a computational model of protocells powered by an
+internal autocatalytic reaction that drives cell growth and division. It has been kept
+intentionally simple so as to investigate the physics of membrane growth and division,
+allowing us to define the criteria necessary for division to occur. Cell division depends on
+a balance between lipid incorporation and lipid flipping. Our model hints at what needs
+to be achieved experimentally if a fully working protocell system is to be made in the
+laboratory. We plan to extend this model to study populations of protocells competing for
+resources under prebiotic conditions.
+Author Contributions: Conceptualization, P.G.H.; methodology and software, J.T. and P.G.H.; writing,
+J.T. and P.G.H.; funding acquisition, P.G.H. All authors have read and agreed to the published version
+of the manuscript.
+Funding: This research was funded by the Natural Sciences and Engineering Research Council of
+Canada, grant number 2023-04770.
+Institutional Review Board Statement: Not applicable.
+Informed Consent Statement: Note applicable.
+Data Availability Statement: The program used for the modelling work in this paper is available at
+https://zenodo.org/records/15157714 (accessed on 1 April 2025).
+Conflicts of Interest: The authors declare no conflicts of interest.
+Appendix A. Mathematical Details
+Appendix A.1. Solution for the Fixed-Volume Compartment
+Figure A1 shows the steady-state concentrations for Equations (1a)–(1c) as a func-
+tion of the catalytic rate k. If k is less than the critical rate kc, the reaction collapses
+inside the cell, and the internal concentrations are the same as the external concentrations:
+C1 = E1, C2 = 0, CW = 0. For k > kc, an active state is maintained inside the cell, with a
+non-zero catalyst concentration C2.
+Life 2025, 15, 724 17 of 24
+Life 2025, 15, 724 17 of 24 
+ 
+ 
+Author Contributions: Conceptualization, P.G.H.; methodol ogy and software, J.T. and P.G.H.; 
+writing, J.T. and P.G.H.; funding acquisition, P. G.H. All authors have read and agreed to the 
+published version of the manuscript. 
+Funding: This research was funded by the Natural Sc iences and Engineering Research Council of 
+Canada, grant number 2023-04770. 
+Institutional Review Board Statement: Not applicable. 
+Informed Consent Statement: Note applicable. 
+Data Availability Statement: The program used for the modelling work in this paper is available 
+at https://zenodo.org/records/15157714 (accessed on 1 April 2025). 
+Conﬂicts of Interest: The authors declare no conﬂicts of interest. 
+Appendix A. Mathematical Details 
+Appendix A.1. Solution for the Fixed-Volume Compartment 
+Figure A1 shows the steady-state concentrations for Equations (1a)–(1c) as a function 
+of the catalytic rate 𝑘. If 𝑘 is less than the critical rate 𝑘௖, the reaction collapses inside the 
+cell, and the internal concentrations are the same as the external concentrations: 𝐶ଵ =
+𝐸ଵ,𝐶ଶ =0,𝐶ௐ =0. For 𝑘>𝑘௖, an active state is maintained inside the cell, with a non-zero 
+catalyst concentration 𝐶ଶ. 
+ 
+Figure A1. Steady-state concentrations for an autocatalytic reaction in a ﬁxed-volume compartment. 
+𝐸ଵ = 1, 𝑤 = 0.01, 𝜇ଵ =0.01,𝜇ௐ = 0.015. 
+From (1b), in the steady state, we have either an active state with 𝐶ଶ =
+௪
+௞஼భమ  or an 
+inactive state with 𝐶ଶ =0 . In the active state, from (1c), we have 𝐶ௐ =
+ଶ௪
+ఓೈ
+𝐶ଶ =
+ଶ௪మ
+௞ఓೈ஼భమ . 
+From (1a) and (1b), we have 2𝑤𝐶ଶ =𝜇ଵ(𝐸ଵ −𝐶ଵ), which can be written as 
+𝐸ଵ = 𝑓(𝐶ଵ) =𝐶ଵ + ଶ௪మ ௞ఓభ஼భమ  
+The required solution for 𝐶ଵ is the smaller of the roots of 𝑓(𝐶ଵ) =𝐸ଵ. A solution only 
+exists if the minimum of 𝑓(𝐶ଵ) is less than 𝐸ଵ. The minimum occurs when 𝐶ଵ = ቀ
+ସ௪మ
+௞ఓభ
+ቁ
+ଵ/ଷ
+ 
+and 𝑓=
+ଷ
+ଶ ቀ
+ସ௪మ
+௞ఓభ
+ቁ
+ଵ/ଷ
+. Hence, for an active state to exist, we need 𝑘>𝑘௖, where the critical 
+rate is 
+𝑘௖ =
+ଶ଻௪మ
+ଶఓభாభయ . 
+A discontinuous step transition occurs at the critical point (Figure A1). This step 
+transition is characteristic of reaction systems with second-order autocatalysis, as we have 
+Figure A1. Steady-state concentrations for an autocatalytic reaction in a fixed-volume compartment.
+E1 = 1, w = 0.01, µ1 = 0.01, µW = 0.015.
+From (1b), in the steady state, we have either an active state with C2 = w kC2 1 or an
+inactive state with C2 = 0. In the active state, from (1c), we have CW = 2w µW C2 = 2w2 kµW C2 1 .
+From (1a) and (1b), we have 2wC2 = µ1(E1 − C1), which can be written as
+E1 = f (C1) = C1 + 2w2 kµ1C2 1
+The required solution for C1 is the smaller of the roots of f (C1) = E1. A solution only
+exists if the minimum of f (C1) is less than E1. The minimum occurs when C1 =
+
+4w2
+kµ1
+1/3
+and f = 3 2
+
+4w2
+kµ1
+1/3
+. Hence, for an active state to exist, we need k > kc, where the critical
+rate is
+kc = 27w2
+2µ1E3 1 .
+A discontinuous step transition occurs at the critical point (Figure A1). This step
+transition is characteristic of reaction systems with second-order autocatalysis, as we have
+shown [10]. Here, we assumed the external food concentration to be fixed at E1 and
+that there is no catalyst outside the cell. We previously considered cases where external
+concentrations are variable and where there are additional reactions for spontaneous non-
+catalyzed synthesis of the catalyst and for direct decay of the food molecule to waste. These
+things do not change the essential result of a step transition above which an active state
+is maintained in the cell while the environment is inactive. IO-stability only occurs if the
+autocatalytic mechanism is second-order in the catalyst concentration. In this case, the
+inside and outside of the cell can be in different states. In contrast, if the reaction mechanism
+is first-order, there is only one stable state of the differential equations, and the cell can only
+be in an active state if the environment is also active. In the context of a protocell, it does
+not make sense for the metabolism to be occurring in the environment as well as the cell;
+therefore, first-order autocatalytic systems are not good models for protocells.
+Appendix A.2. Solution for the Homeostatic State
+In Figure 3a, we found a homeostatic state in which the internal reaction continues
+but the size of the vesicle is constant. If the volume is not changing, ∆C must be zero, so all
+the terms in Equations (2a)–(2g) involving ∆C are zero. If the area is not changing, then
+A+ shape = A+ lip, A− shape = A− lip, and Clip = Elip = C∗. Now, from (2e), we have C2 = w kC2 1 (or
+Life 2025, 15, 724 18 of 24
+else C2 = 0), and from (2f), we have CW = 2w µW C2 = 2w2 kµW C2 1 . From (2d) and (2e) together, we
+have µ1s(E1 − C1) − 2vC2 = 0, which can be written as
+E1 = C1 + 2w2 µ1skC2 1 .
+Using the fact that ∆C = 0, we have E1 = C1 + C2 + CW = C1 + w kC2 1 + 2w2 µW skC2 1 .
+Equating these two gives s = 2w(µW −µ1) µW µ1 . This shows that there is a particular surface area-
+to-volume ratio that must exist if this stationary solution exists. There is only a positive
+solution for s if µW > µ1. This explains why Figure 3a, in which µW = 1.5µ1, reaches a
+stationary state, although there is no stationary state in Figure 3c, in which µW = µ1. When
+the stationary state exists, the volume and area are V V0 = 1/s3 and A A0 = 1/s2. For the
+parameters of Figure 3a, s = 2 3 , A A0 = 9 4 , V V0 = 27 8 , which agrees with the results in the figure.
+Appendix A.3. The Capsule Shape
+When the natural area of the lipids in the membrane Alip is greater than the area
+of the sphere Asph(V) required to enclose the volume V, the membrane is relaxed and
+the vesicle has an elongated shape with an actual area A = Alip. The radius of a
+sphere that has this area is Rsph =
+ Alip
+4π
+1/2
+. The volume of a sphere with this area is
+Vsph = 4π 3 R3 sph = 1 6√π A3/2 lip . In terms of the standard vesicle volume and area,
+Vsph
+V0 =
+ Alip
+A0
+3/2
+. The reduced volume is defined as v = V Vsph , which can also be writ-
+ten v = (V/ V0)
+(Alip/A0) 3/2 . We treat the shape as a capsule, consisting of two hemispheres with a
+radius R linked by a cylinder of length L. The values of R and L must satisfy
+4πR2 + 2πRL = Alip, 4π 3 R3 + πR2L = V,
+or equivalently
+R2
+R2 sph + RL 2R2 sph = 1, R3 R3 sph + 3R2L 4R3 sph = v.
+Solving these two equations gives R/Rsph and L/Rsph as a function of v.
+A capsule can divide into two spheres whose sizes depend on v. The reduced volume is
+v = V/(
+4πR3 sph
+3 ). Now, suppose the daughter vesicles are spheres with radii of R1 = r1Rsph
+and R2 = r2Rsph. Conservation of the area implies r2 1 + r2 2 = 1. Conservation of the
+volume implies r3 1 + r3 2 = v. Therefore, to satisfy both constraints, r1 must be the solution
+of r3 1 +   1 − r2 1 3/2 = v. When r1 = r2 = 1/ √ 2, both vesicles are of an equal size. This is
+only possible when v = 1/
+√
+2.
+Appendix A.4. The Area Difference Energy Model
+This model has been widely used previously to determine minimum energy shapes
+of vesicles under various conditions [24–28]. For a surface with a general shape, there
+are two radii of curvature R1 and R2 at any point, and the mean curvature is defined as
+H = 1 2 ( 1 R1 + 1 R2 ). The total energy of the vesicle is written as the sum of the curvature
+energies and elastic energies: Etot = Ecurv + Eel. The mean curvature energy is defined as
+Ecurv = κ 2 Z dA(2H)2
+Life 2025, 15, 724 19 of 24
+where κ is the bending modulus. The curvature energy for a sphere is
+Ecurv = κ 2   4πR2 4 R2 = 8πκ. An additional term for Gaussian curvature can also be
+added, although this is constant when the topology does not change.
+The elastic energy of the two leaflets depends on the difference between the actual
+areas of the leaflets (determined by the shape) and the preferred areas (determined by the
+number of lipids):
+Eel = kel 2
+
+A+ shape − A+ lip
+2
+Alip
++ kel
+2
+
+A− shape − A− lip
+2
+Alip
+,
+where k is the elasticity modulus for the area expansion of a monolayer.
+The integrated mean curvature over the surface is M = R dA 1 2 ( 1 R1 + 1 R2 ). The shape
+areas of the outer and inner leaflets are determined at radii R + d and R − d, which are the
+midpoints of the two leaflets. We can write A+ shape = A + ∆Ashape 2 and A− shape = A − ∆Ashape 2 ,
+where the shape-dependent area difference is ∆Ashape = 4dM.
+The mean lipid area of the two leaflets is Alip = 1 2 (A+ lip + A− lip), and the difference
+in lipid areas is ∆Alip = A+ lip − A− lip; hence, A+ lip = Alip + ∆Alip 2 and A− lip = Alip − ∆Alip 2 .
+Substituting these into the formula for the elastic energy, we can rewrite it as
+Eel =
+kel
+
+A − Alip
+2
+Alip
++
+kel
+
+∆Ashape − ∆Alip
+2
+4Alip
+.
+The first of these terms is the area expansion term. This is zero for a relaxed vesicle but
+becomes high for a swollen vesicle with A > Alip. The second term is the area difference
+energy, which depends on the shape of the vesicle and the distribution of lipids between
+the leaflets.
+The elasticity modulus kel that appears in Eel is related to the bending modulus for
+the bilayer, κ, kel = βκ/d2, where β is a constant of order 1, as shown by the following
+argument (see also [24]). For a monolayer that expands from area A to A + δA, the elastic
+energy is Eel = kel (δA)2 2A = kel 2 Aε2, where the strain is ε = δA/A; kel has units of energy per
+unit area. If the monolayer has a thickness of 2d and is made of a uniform elastic material,
+the modulus of the material (energy per unit volume) must be k/2d. Integrating this over
+the membrane with uniform strain gives
+Eel =
+Z 2d
+0
+1
+2
+ kel
+2d
+
+Aε2dz = kel
+2 Aε2,
+as we expect. Now, if the membrane is curved into a sphere of radius R, the area
+at the midpoint is A0 = 4πR2. The area at a distance z from the midpoint is
+A(z) = 4πR2(1 + 2z R . . .). The curvature energy for the bilayer is
+Ecurv = 1 2  kel 2d Z 2d −2d 4πR2  2z R 2 dz = 64π 3 keld2.
+However, when written in terms of the bending modulus, we already know that
+the curvature energy for a sphere is Ecurv = 8πκ. Equating these gives kel = 3κ/8d2, or
+β = 3/8.
+Putting all of the energy terms together, the total energy of the membrane is
+Life 2025, 15, 724 20 of 24
+Etot = κ 2 Z dA  1 R1 + 1 R2 2 + βκ  A − Alip 2 d2 Alip + βκ  ∆Ashape − ∆Alip 2 4d2 Alip
+This equation ignores the Gaussian curvature term because it is constant for shape
+changes that preserve the topology. For a capsule shape, the mean curvature is H = 1/R in
+the hemispheres, and H = 1 2R in the cylinder. Therefore, the curvature energy is
+Ecurv = κ 2  4πR2 4 R2 + 2πRL 1 R2  = πκ(8 + L R ).
+The curvature energy depends only on the ratio L/R, which is a function of v. The
+shape-dependent area difference is ∆Ashape = 4dM.
+∆Ashape = 4d
+
+4πR2 1 R + 2πRL 1 2R  = 16πd  R + 1 4 L  = 16πdRsph( R Rsph + L 4Rsph )
+The area difference parameter is ϕ =
+∆Alip
+∆Ashape , so the area difference energy can be
+written as
+βκ
+
+∆Ashape − ∆Alip
+2
+4d2 Alip =
+βκ∆A2 shape
+4d2 Alip (1 − ϕ)2 = 16πβκ
+ 
+R
+Rsph
++ L 4Rsph
+!2
+(1 − ϕ)2
+As the ratios R/Rsph and L/Rsph are simply functions of v, the area difference energy
+is a function of v and ϕ. In summary, to determine Etot for a given vesicle, we need to
+specify the volume V and the two lipid areas A+ lip and A− lip. From this, the reduced volume
+v and the area difference parameter ϕ can be calculated, and the value of Etot depends on
+only v and ϕ.
+Appendix A.5. Energy Change During Division
+When using the energy decrease rule for division, we attempt to divide the parent
+vesicle of volume V into daughter vesicles with volumes V1 = xV and V2 = (1 − x)V,
+where x is chosen randomly between 0 and 1. We allow an attempted division if the change
+in energy ∆E ≤ 0. This ∆E depends on v and ϕ for the parent vesicle, and on x. It is also
+necessary to determine the lipid areas Alip−1, Alip−2 for the two daughters from the parent
+lipid area Alip. We assume that vesicle 1 is a relaxed spherical bud with the necessary lipid
+area for the sphere, and that the remaining area is given to vesicle 2; therefore,
+Alip−1
+A0
+=
+ V1
+V0
+2/3
+,
+Alip−2
+A0
+=
+Alip
+A0
+−
+Alip−1
+A0
+.
+This rule for area distribution is asymmetric, as it treats vesicle 1 as a sphere, while
+any excess membrane area is given to vesicle 2. We also consider a symmetric area division
+rule below and show that this is less favorable than the asymmetric rule.
+Figure A2 shows ∆E as a function of x for two values of v. For each v, three curves
+are shown for different ϕ values. The middle curve (red) is for ϕ = ϕmin(v), at which
+point ∆E = 0 for the optimum division ratio x = xopt. The upper curve (black) is for
+ϕ ≤ 0.9ϕmin(v), where ∆E > 0 for all x. The lower curve (blue) is for ϕ = 1.1ϕmin(v), where
+there is a range of x for which ∆E < 0. Figure A2a shows the case of v = 0.75, which is
+greater than 1√ 2 . In this case, the optimal division is to form two spheres. The radius of
+vesicle 1 is r1 (obtained in Appendix A.3), and the volume fraction is xopt = r3 1/v. When
+Life 2025, 15, 724 21 of 24
+x = xopt, the second vesicle is also a sphere, i.e.,
+Alip−2
+A0 =
+
+V2
+V0
+2/3
+. There are two points,
+x = xopt and x = 1 − xopt, at which ∆E is the minimum. At ϕ = ϕmin(v), ∆E = 0 at these
+two points.
+Figure A2b shows the case with v = 0.6. Here, the area constraint is always satisfied
+for any choice of x; however, there is still an optimum division ratio xopt at which the ∆E
+curve just touches the zero line. The calculated function ϕmin(v) is shown in Figure 2a, and
+the value of xopt is shown as a function of v in Figure 2b. Although the model predicts the
+position of the division boundary for v < 1√ 2 , in fact we find that the trajectories of the
+vesicles never cross the division boundary when v < 1√ 2 (see Figures 7b and 8).
+Life 2025, 15, 724 21 of 24 
+ 
+ 
+greater than 
+ଵ
+√ଶ. In this case, the optimal division is to form two spheres. The radius of vesicle 
+1 is 𝑟ଵ (obtained in Appendix A.3), and the volume fraction is 𝑥௢௣௧ =𝑟ଵ ଷ/𝑣. When 𝑥=𝑥௢௣௧, 
+the second vesicle is also a sphere, i.e.,  
+஺೗೔೛షమ
+஺బ
+= ቀ
+௏మ
+௏బ
+ቁ
+ଶ/ଷ
+. There are two points, 𝑥=𝑥௢௣௧ and 
+𝑥=1−𝑥௢௣௧, at which ∆𝐸 is the minimum. At 𝜙=𝜙௠௜௡(𝑣), ∆𝐸 = 0 at these two points. 
+Figure A2b shows the case with 𝑣=0.6. Here, the area constraint is always satisfied for 
+any choice of 𝑥; however, there is still an optimum division ratio 𝑥௢௣௧ at which the ∆𝐸 curve 
+just touches the zero line . The calculated function 𝜙௠௜௡(𝑣) is shown in Figure 2a, and the 
+value of 𝑥௢௣௧  is shown as a function of 𝑣 in Figure 2b. Although the model predicts the 
+position of the division boundary for 𝑣<
+ଵ
+√ଶ, in fact we find that the trajectories of the vesicles 
+never cross the division boundary when 𝑣<
+ଵ
+√ଶ (see Figures 7b and 8). 
+ 
+Figure A2. Changes in the curvature and elasticity energy ∆𝐸 as a function of the division ratio 𝑥 
+for two diﬀerent reduced volumes. In each case, the middle (red) curve is 𝜙=𝜙௠௜௡(𝑣), the upper 
+curve is 𝜙 = 0.9𝜙௠௜௡(𝑣), and the lower (blue) curve is 𝜙 = 1.1𝜙௠௜௡(𝑣): (a) 𝑣=0.75; (b) 𝑣=0.6. 
+The division boundary line also depends on the asymmetric area distribution rule 
+used above, which assumed that vesicle 1 wa s a sphere and that the excess area was 
+assigned to vesicle 2. We also considered a symmetric area distribution rule, in which the 
+excess area is distributed evenly. After assigning volumes, 𝑉ଵ =𝑥𝑉 and 𝑉ଶ = (1−𝑥)𝑉, 
+the minimum possible area for vesicle 1 (when vesicle 1 is a sphere) is 
+஺೗೔೛షభ
+஺బ
+= ቀ
+௏భ
+௏బ
+ቁ
+ଶ/ଷ
+. The 
+maximum possible area for vesicle 1 (when vesicle 2 is a sphere) is 
+஺೗೔೛షభ
+஺బ
+=
+஺೗೔೛
+஺బ
+− ቀ
+௏మ
+௏బ
+ቁ
+ଶ/ଷ
+. 
+The midpoint of the mini mum and maximum areas is 
+஺೗೔೛షభ
+஺బ
+=
+஺೗೔೛
+஺బ
++
+ଵ
+ଶ ቀ
+௏భ
+௏బ
+ቁ
+ଶ/ଷ
+−
+ଵ
+ଶ ቀ
+௏మ
+௏బ
+ቁ
+ଶ/ଷ
+. 
+In this case, 
+஺೗೔೛షమ
+஺బ
+=
+஺೗೔೛
+஺బ
++
+ଵ
+ଶ ቀ
+௏మ
+௏బ
+ቁ
+ଶ/ଷ
+−
+ଵ
+ଶ ቀ
+ଵ
+௏బ
+ቁ
+ଶ/ଷ
+ , in which case both daughter vesicles are 
+capsule shapes. We calculated 𝜙௠௜௡(𝑣) again, with the areas set to the midpoint values. 
+If 𝑣≥
+ଵ
+√ଶ, the optimum division is to form two spheres, in which case 𝜙௠௜௡(𝑣) is the same 
+for the midpoint and the asymmetric area rules. If 𝑣<
+ଵ
+√ଶ, the manner of distributing the 
+area makes a di ﬀerence, although 𝜙௠௜௡(𝑣) for the midpoint rule is higher than for the 
+asymmetric rule. Hence, we used the asymmetric rule in all cases. 
+So far, we have ignore d the Gaussian curvature  𝜅ீ in the calculation of ∆𝐸. This is 
+valid up to the point where a single vesicle produces a bud with a narrow neck. Thus, the 
+point ∆𝐸 = 0 is the point where it is favorable to form a bud with a narrow neck. If the 
+neck is broken to form two separate vesicles, there is an additional contribution to the 
+curvature energy and the change in energy becomes ∆𝐸 + 4𝜋𝜅ீ. It is known that 𝜅ீ is 
+negative for many real lipids [59–61] with 
+఑ಸ
+఑ ൎ−1. Thus, if we set the division criterion 
+Figure A2. Changes in the curvature and elasticity energy ∆E as a function of the division ratio x for
+two different reduced volumes. In each case, the middle (red) curve is ϕ = ϕmin(v), the upper curve
+is ϕ = 0.9ϕmin(v), and the lower (blue) curve is ϕ = 1.1ϕmin(v): (a) v = 0.75; (b) v = 0.6.
+The division boundary line also depends on the asymmetric area distribution rule used
+above, which assumed that vesicle 1 was a sphere and that the excess area was assigned to
+vesicle 2. We also considered a symmetric area distribution rule, in which the excess area is
+distributed evenly. After assigning volumes, V1 = xV and V2 = (1 − x)V, the minimum
+possible area for vesicle 1 (when vesicle 1 is a sphere) is
+Alip−1
+A0 =
+
+V1
+V0
+2/3
+. The maximum
+possible area for vesicle 1 (when vesicle 2 is a sphere) is
+Alip−1
+A0 =
+Alip
+A0 −
+
+V2
+V0
+2/3
+. The
+midpoint of the minimum and maximum areas is
+Alip−1
+A0 =
+Alip
+A0 + 1 2
+
+V1
+V0
+2/3
+− 1 2
+
+V2
+V0
+2/3
+. In
+this case,
+Alip−2
+A0 =
+Alip
+A0 + 1 2
+
+V2
+V0
+2/3
+− 1 2
+
+1
+V0
+2/3
+, in which case both daughter vesicles are
+capsule shapes. We calculated ϕmin(v) again, with the areas set to the midpoint values. If
+v ≥ 1√ 2 , the optimum division is to form two spheres, in which case ϕmin(v) is the same
+for the midpoint and the asymmetric area rules. If v < 1√ 2 , the manner of distributing
+the area makes a difference, although ϕmin(v) for the midpoint rule is higher than for the
+asymmetric rule. Hence, we used the asymmetric rule in all cases.
+So far, we have ignored the Gaussian curvature κG in the calculation of ∆E. This is
+valid up to the point where a single vesicle produces a bud with a narrow neck. Thus, the
+point ∆E = 0 is the point where it is favorable to form a bud with a narrow neck. If the neck
+is broken to form two separate vesicles, there is an additional contribution to the curvature
+energy and the change in energy becomes ∆E + 4πκG. It is known that κG is negative for
+many real lipids [59–61] with κG κ ≈ −1. Thus, if we set the division criterion as ∆E ≤ 0, the
+Gaussian curvature term is always favorable when the neck is broken. Alternatively, we
+could argue that division is favorable when ∆E + 4πκG ≤ 0. If we repeat the calculation of
+ϕmin(v) using this criterion, the division boundary line is shifted downwards (to lower ϕ)
+Life 2025, 15, 724 22 of 24
+from that shown in Figure 2a, making division slightly easier to occur. However, if we do
+this, then the state with the bud connected by a narrow neck would have positive energy
+with respect to the single vesicle, so the narrow neck would not form spontaneously at
+this point, and vesicle division would require passing over an energy barrier. Therefore,
+we argue that setting the division criterion as ∆E ≤ 0 and simply ignoring the Gaussian
+curvature, as we have done in this paper, is a more reasonable prediction of the point at
+which spontaneous division will occur.
+References
+1. Gánti, T. Organization of Chemical Reactions into Dividing and Metabolizing Units: The Chemotons. Biosystems 1975, 7, 15–21.
+[CrossRef] [PubMed]
+2. Deamer, D.W.; Pashley, R.M. Amphiphilic Components of the Murchison Carbonaceous Chondrite: Surface Properties and
+Membrane Formation. Orig. Life Evol. Biosph. J. Int. Soc. Study Orig. Life 1989, 19, 21–38. [CrossRef] [PubMed]
+3. Deamer, D.; Dworkin, J.P.; Sandford, S.A.; Bernstein, M.P.; Allamandola, L.J. The First Cell Membranes. Astrobiology 2002, 2,
+371–381. [CrossRef] [PubMed]
+4. McCollum, T.M.; Ritter, G.; Simoneit, B.R.T. Lipid Synthesis under Hydrothermal Conditions by Fischer-Tropsch-Type Reactions.
+Orig. Life Evol. Biosph. 1999, 29, 153–166. [CrossRef]
+5. Apel, C.L.; Deamer, D.W.; Mautner, M.N. Self-Assembled Vesicles of Monocarboxylic Acids and Alcohols: Conditions for Stability
+and for the Encapsulation of Biopolymers. Biochim. Biophys. Acta BBA-Biomembr. 2002, 1559, 1–9. [CrossRef]
+6. Kindt, J.T.; Szostak, J.W.; Wang, A. Bulk Self-Assembly of Giant, Unilamellar Vesicles. ACS Nano 2020, 14, 14627–14634. [CrossRef]
+7. Walde, P.; Ichikawa, S. Lipid Vesicles and Other Polymolecular Aggregates–From Basic Studies of Polar Lipids to Innovative
+Applications. Appl. Sci. 2021, 11, 10345. [CrossRef]
+8. Sarkar, S.; Das, S.; Dagar, S.; Joshi, M.P.; Mungi, C.V.; Sawant, A.A.; Patki, G.M.; Rajamani, S. Prebiological Membranes and Their
+Role in the Emergence of Early Cellular Life. J. Membr. Biol. 2020, 253, 589–608. [CrossRef]
+9. Imai, M.; Sakuma, Y.; Kurisu, M.; Walde, P. From vesicles toward protocells and minimal cells. Soft Matter 2022, 18, 4823.
+[CrossRef]
+10. Sanders, Q.C.C.; Verbeem, A.; Higgs, P.G. Maintaining an autocatalytic reaction system in a protocell: Nonenzymatic RNA
+templating and the link between replication and metabolism. Phys. Rev. E 2025, 111, 014424. [CrossRef] [PubMed]
+11. Tran, Q.P.; Yi, R.; Fahrenbach, A.C. Towards a prebiotic chemoton–nucleotide precursor synthesis driven by the autocatalytic
+formose reaction. Chem. Sci. 2023, 14, 9589–9599. [CrossRef] [PubMed]
+12. Lu, H.; Blokhuis, A.; Turk-MacLeod, R.; Karuppusamy, J.; Franconi, A.; Woronoff, G.; Jeancolas, C.; Abrishamkar, A.; Loire, E.;
+Ferrage, F.; et al. Small-molecule autocatalysis drives compartment growth, competition and reproduction. Nat. Chem. 2023,
+16, 70. [CrossRef]
+13. Muchowska, K.B.; Varma, S.J.; Moran, J. Nonenzymatic metabolic reactions and life’s origins. Chem. Rev. 2020, 120, 7708–7744.
+[CrossRef]
+14. Mansy, S.S.; Schrum, J.P.; Krishnamurthy, M.; Tobé, S.; Treco, D.A.; Szostak, J.W. Template-directed synthesis of a genetic polymer
+in a model protocell. Nature 2008, 454, 122–125. [CrossRef]
+15. O’Flaherty, D.K.; Zhou, L.; Szostak, J.W. Nonenzymatic template-directed synthesis of mixed-sequence 3′-NP-DNA up to
+25 nucleotides long inside model protocells. J. Am. Chem. Soc. 2019, 141, 10481–10488. [CrossRef] [PubMed]
+16. Toparlak, O.D.; Sebastianelli, L.; Ortuno, V.E.; Karki, M.; Xing, Y.; Szostak, J.W.; Krishnamurthy, R.; Mansy, S.S. Cyclophospholipids
+enable a protocellular life cycle. ACS Nano 2023, 17, 23772–23783. [CrossRef]
+17. Cape, J.L.; Monnard, P.A.; Boncella, J.M. Prebiotically relevant mixed fatty acid vesicles support anionic solute encapsulation and
+photochemically catalyzed trans-membrane charge transport. Chem. Sci. 2011, 2, 661. [CrossRef]
+18. Sarkar, S.; Dagar, S.; Verma, A.; Rajamani, S. Compositional heterogeneity confers selective advantage to model protocellular
+membranes during the origins of cellular life. Sci. Rep. 2020, 10, 4483. [CrossRef]
+19. Pulletikurti, S.; Veena, K.S.; Yadav, M.; Deniz, A.A.; Krishnamurthy, R. Experimentally modeling the emergence of prebiotically
+plausible phospholipid vesicles. Chem 2024, 10, 1839–1867. [CrossRef]
+20. Berclaz, N.; Blöchliger, E.; Müller, M.; Luisi, P.L. Matrix Effect of Vesicle Formation As Investigated by Cryotransmission Electron
+Microscopy. J. Phys. Chem. B 2001, 105, 1065–1071. [CrossRef]
+21. Dervaux, J.; Noireaux, V.; Libchaber, A.J. Growth and instability of a phospholipid vesicle in a bath of fatty acids. Eur. Phys. J.
+Plus 2017, 132, 284. [CrossRef]
+22. Chang, M.Y.; Ariyama, H.; Huck, W.T.H.; Deng, N.N. Division in synthetic cells. Chem. Soc. Rev. 2023, 52, 3307. [CrossRef]
+[PubMed]
+Life 2025, 15, 724 23 of 24
+23. Miele, Y.; Hollo, G.; Lagzi, I.; Rossi, F. Shape Deformation, Budding and Division of Giant Vesicles and Artificial Cells: A Review.
+Life 2022, 12, 841. [CrossRef]
+24. Seifert, U.; Lipowski, R. Morphology of Vesicles. In Handbook of Biological Physics; Lipowski, R., Sackmann, E., Eds.; Elsevier:
+Amsterdam, The Netherlands, 1995; Volume 1, pp. 403–461.
+25. Miao, L.; Seifert, U.; Wortis, M.; Döbereinert, H.G. Budding transitions of fluid-bilayer vesicles: The effect of area-difference
+elasticity. Phys. Rev. E 1994, 49, 5389–5407. [CrossRef]
+26. Döbereiner, H.G.; Evans, E.; Kraus, M.; Seifert, U.; Wortis, M. Mapping vesicle shapes into the phase diagram: A comparison of
+experiment and theory. Phys. Rev. E 1997, 55, 4458–4474. [CrossRef]
+27. Lim, G.H.W.; Wortis, M.; Mukhopadhyay, R. Stomatocyte–discocyte–echinocyte sequence of the human red blood cell: Evidence
+for the bilayer–couple hypothesis from membrane mechanics. Proc. Natl. Acad. Sci. USA 2002, 99, 16766–16769. [CrossRef]
+[PubMed]
+28. Bozic, B.; Svetina, S. A Relationship between Membrane Properties Forms the Basis of a Selectivity Mechanism for Vesicle
+Self-Reproduction. Eur. Biophys. J. 2004, 33, 565–571. [CrossRef]
+29. Malhenc, J.; Bozic, B.; Svetina, A.; Zeks, B. Phospholipid membrane bending as assessed by the shape sequence of giant oblate
+phospholipid vesicles. Biochim. Biophys. Acta 2004, 1664, 257–266. [CrossRef]
+30. Zhu, T.F.; Szostak, J.W. Coupled Growth and Division of Model Protocell Membranes. J. Am. Chem. Soc. 2009, 131, 5705–5713.
+[CrossRef]
+31. Miele, Y.; Medveczky, Z.; Holló, G.; Tegze, B.; Derényi, I.; Hórvölgyi, Z.; Altamura, E.; Lagzi, I.; Rossi, F. Self-Division of Giant
+Vesicles Driven by an Internal Enzymatic Reaction. Chem. Sci. 2020, 11, 3228–3235. [CrossRef]
+32. Hollo, G.; Miele, Y.; Rossi, F.; Lagzi, I. Shape changes and budding of giant vesicles induced by an internal chemical trigger: An
+interplay between osmosis and pH change. Phys. Chem. Chem. Phys. 2021, 23, 4262. [CrossRef]
+33. Berndl, K.; Kas, J.; Lipowski, R.; Sackmann, E.; Seifert, U. Shape Transformations of Giant Vesicles: Extreme Sensitivity to Bilayer
+Asymmetry. Europhys. Lett. 1990, 13, 659–664.
+34. Kas, J.; Sackmann, E. Shape transitions and shape stability of giant phospholipid vesicles in pure water induced by area-to-volume
+changes. Biophys. J. 1991, 60, 825–844.
+35. Jimbo, T.; Sakuma, Y.; Urakami, N.; Ziherl, P.; Imai, M. Role of Inverse-Cone-Shape Lipids in Temperature-Controlled Self-
+Reproduction of Binary Vesicles. Biophys. J. 2016, 110, 1551–1562. [CrossRef] [PubMed]
+36. Urakami, N.; Sakuma, Y.; Chibab, T.; Imai, M. Vesicle deformation and division induced by flip-flops of lipid molecules. Soft
+Matter 2021, 17, 8434. [CrossRef]
+37. Chen, I.A.; Roberts, R.W.; Szostak, J.W. The Emergence of Competition between Model Protocells. Science 2004, 305, 1474–1476.
+[CrossRef] [PubMed]
+38. Boyd, M.A.; Kama, N.P. Visualizing Tension and Growth in Model Membranes Using Optical Dyes. Biophys. J. 2018, 115,
+1307–1315. [PubMed]
+39. Deshpande, S.; Wunnava, S.; Hueting, D.; Dekker, C. Membrane Tension–Mediated Growth of Liposomes. Small 2019, 15, 1902898.
+[CrossRef]
+40. Chabanon, M.; Ho, J.C.S.; Liedberg, B.; Parikh, A.N.; Rangamani, P. Pulsatile Lipid Vesicles under Osmotic Stress. Biophys. J. 2017,
+112, 1682–1691. [CrossRef]
+41. Mally, M.; Peterlin, P.; Svetina, S. Partitioning of Oleic Acid into Phosphatidylcholine Membranes Is Amplified by Strain. J. Phys.
+Chem. B 2013, 117, 12086–12094. [CrossRef]
+42. Serra, R.; Carletti, T.; Filisetti, A.; Poli, I. Synchronization phenomena in internal reaction models of protocells. In Artificial Life and
+Evolutionary Computation; Serra, R., Villani, M.P.I., Eds.; World Scientific: Singapore, 2009; pp. 303–312.
+43. Serra, R.; Villani, M. Modelling Protocells–The Emergent Synchronization of Reproduction and Molecular Replication;
+Springer–Understanding Complex Systems: Cham, Switzerland, 2017.
+44. Villani, M.; Alboresi, E.; Serra, R. Models of Protocells Undergoing Asymmetrical Division. Entropy 2024, 26, 281. [CrossRef]
+[PubMed]
+45. Mavelli, F.; Ruiz-Mirazo, K. Stochastic simulations of minimal self-reproducing cellular systems. Philos. Trans. R. Soc. B 2007, 362,
+1789–1802. [CrossRef]
+46. Mavelli, F.; Ruiz-Mirazo, K. ENVIRONMENT: A computational platform to stochastically simulate reacting and self-reproducing
+lipid compartments. Phys. Biol. 2010, 7, 036002. [CrossRef] [PubMed]
+47. Mavelli, F.; Ruiz-Mirazo, K. Theoretical conditions for the stationary reproduction of model protocells. Integr. Biol. 2013, 5, 324.
+[CrossRef]
+48. Piedrafita, G.; Monnard, P.A.; Mavelli, F.; Ruiz-Mirazo, K. Permeability-driven selection in a semi-empirical protocell model: The
+roots of prebiotic systems evolution. Sci. Rep. 2017, 7, 3141. [CrossRef]
+49. Mavelli, F.; Stano, P. Kinetic models for autopoietic chemical systems: The role of fluctuations in a homeostatic regime. Phys. Biol.
+2010, 7, 016010. [CrossRef]
+Life 2025, 15, 724 24 of 24
+50. Baumgart, T.; Das, S.; Webb, W.W.; Jenkins, J.T. Membrane Elasticity in Giant Vesicles with Fluid Phase Coexistence. Biophys. J.
+2005, 89, 1067–1080. [CrossRef]
+51. Andes-Koback, M.; Keating, C.D. Complete Budding and Asymmetric Division of Primitive Model Cells To Produce Daughter
+Vesicles with Different Interior and Membrane Compositions. J. Am. Chem. Soc. 2011, 133, 9545–9555. [CrossRef]
+52. Dreher, Y.; Jahnke, K.; Bobkova, E.; Spatz, J.P.; Göpfrich, K. Division and Regrowth of Phase-Separated Giant Unilamellar Vesicles.
+Angew. Chem. Int. Ed. 2021, 60, 10661–10669. [CrossRef]
+53. Toparlak, O.D.; Wang, A.; Mansy, S.S. Population-Level Membrane Diversity Triggers Growth and Division of Protocells. JACS
+Au 2021, 1, 560–568. [CrossRef]
+54. Bachmann, P.A.; Luisi, P.L.; Lang, J. Autocatalytic Self-Replicating Micelles as Models for Prebiotic Structures. Nature 1992, 357,
+57–59. [CrossRef]
+55. Engwerda, A.H.J.; Southworth, J.; Lebedeva, M.A.; Scanes, R.J.H.; Kukura, P.; Fletcher, S.P. Coupled Metabolic Cycles Allow
+Out-of-Equilibrium Autopoietic Vesicle Replication. Angew. Chem. Int. Ed. 2020, 59, 20361–20366. [CrossRef] [PubMed]
+56. Hardy, M.D.; Yanga, J.; Selimkhanov, J.; Cole, C.M.; Tsimring, L.S.; Devaraja, N.K. Self-reproducing catalyst drives repeated
+phospholipid synthesis and membrane growth. Proc. Natl. Acad. Sci. USA 2015, 112, 8187–8192. [CrossRef] [PubMed]
+57. Budin, I.; Szostaka, J.W. Physical effects underlying the transition from primitive to modern cell membranes. Proc. Natl. Acad. Sci.
+USA 2011, 108, 5249–5254. [CrossRef] [PubMed]
+58. Zwicker, D.; Seyboldt, R.; Weber, C.A.; Hyman, A.A.; Jülicher, F. Growth and division of active droplets provides a model for
+protocells. Nat. Phys. 2017, 13, 408–413. [CrossRef]
+59. Siegel, D.P.; Kozlov, M.M. The Gaussian Curvature Elastic Modulus of N-Monomethylated Dioleoylphosphatidylethanolamine:
+Relevance to Membrane Fusion and Lipid Phase Behavior. Biophys. J. 2004, 87, 366–374. [CrossRef] [PubMed]
+60. Marsh, D. Elastic curvature constants of lipid monolayers and bilayers. Chem. Phys. Lipids 2006, 144, 146–159. [CrossRef]
+[PubMed]
+61. Hu, M.; Briguglio, J.J.; Deserno, M. Determining the Gaussian Curvature Modulus of Lipid Membranes in Simulations. Biophys. J.
+2012, 102, 1403–1410. [CrossRef] [PubMed]
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.
