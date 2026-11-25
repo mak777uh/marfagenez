@@ -9,7 +9,7 @@
 ## Рабочая область (файлы, которые задача вправе менять/создавать)
 
 - `literature/map/inbox/main-p58-fix-atoms-20261125.jsonl`
-- `docs/FINDING-355.md`
+- `literature/map/ingest-p58-fix.md`
 
 ## Что нужно сделать
 

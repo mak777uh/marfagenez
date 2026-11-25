@@ -1,0 +1,20 @@
+{
+  "task": "P58-fix-rejected-atom",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T03:39:17Z",
+  "artifacts": [
+    {
+      "path": "literature/map/inbox/main-p58-fix-atoms-20261125.jsonl",
+      "sha256": "7a6301f46a3b89cf048bb649987795fc627f037962b2e9aa42a5ca40c53e52e7",
+      "bytes": 3277
+    },
+    {
+      "path": "literature/map/ingest-p58-fix.md",
+      "sha256": "0bec53b2d4618bc86cfaa79e1925588a88b023f6345fa2ae501eac375c5f46af",
+      "bytes": 434
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
