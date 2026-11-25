@@ -1,0 +1,25 @@
+{
+  "task": "P51-state-refresh",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:51:12Z",
+  "artifacts": [
+    {
+      "path": "docs/agent/AGENT_STATE.md",
+      "sha256": "ca22e70b28687280146e10c5ad0aa339650125b9372f31fbbaa98bc6e74b7a14",
+      "bytes": 67283
+    },
+    {
+      "path": "kg/embeddings.bin",
+      "sha256": "86d4d48082454e8814335e4443f022f68029c0cec7801b41bcdd7d084e325ce1",
+      "bytes": 890880
+    },
+    {
+      "path": "kg/embeddings.meta.json",
+      "sha256": "9e80e0eae528752eca5b5510c077447c90cef047b74fd3a181466118d0bd00e4",
+      "bytes": 20330
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

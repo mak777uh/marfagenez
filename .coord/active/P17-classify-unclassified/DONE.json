@@ -1,0 +1,20 @@
+{
+  "task": "P17-classify-unclassified",
+  "agent": "fast",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:39:14Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-UNCLASSIFIED.md",
+      "sha256": "407bd3efc2106f4c65bbe39017a704210e6ce07285c5ac2f40b8f930de559e28",
+      "bytes": 8735
+    },
+    {
+      "path": "docs/STITCH-UNCLASSIFIED-VERDICTS.json",
+      "sha256": "ddbd1ef1de55f6fc32ea61d04722948a2a6df466d2699ae8893ed8b298ec4f7f",
+      "bytes": 41679
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

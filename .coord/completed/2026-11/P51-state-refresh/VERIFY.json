@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "9311bba60ee99392940a92c57b361236aed470dce41dd31d2640a92f872c18ca",
+  "done_sha256": "f6b7c5ae95a24a6a7edcf0012f3e0b4a06c69b2147866dcd4dccd48167f617dd",
+  "gen": 1,
+  "verified_at": "2026-11-25T02:51:12Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/embeddings_fresh.py",
+      "rc": 0,
+      "tail": "индекс эмбеддингов свежий: 580 узлов, 384 измерений, модель sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    }
+  ],
+  "bad_artifacts": []
+}
