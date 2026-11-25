@@ -1,0 +1,15 @@
+{
+  "task": "P5-dissolution-split",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:11:53Z",
+  "artifacts": [
+    {
+      "path": "docs/FORMULA-DISSOLUTION.md",
+      "sha256": "ee25790f7bea343d2ed16e6cd9a33d5149e697af9839297dfe9f2703d25ecf3e",
+      "bytes": 5461
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
