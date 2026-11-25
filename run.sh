@@ -173,6 +173,9 @@ do_exp() {
   python3 checks/protocol_checks.py || rc=$?
   echo "--- doc_numbers.py ---"
   python3 checks/doc_numbers.py || rc=$?
+  echo "--- stitch_coverage_floor.py ---"
+  # Строгая литературная опора (пары S) не должна уменьшаться: переклассификация в N без замены — красный.
+  python3 checks/stitch_coverage_floor.py || rc=$?
   echo "--- formula_units_ceiling.py ---"
   # Исторический долг: 22 формулы из 31 без единиц. Порог не даёт долгу вырасти; ноль требовать нельзя —
   # гейт станет красным на истории и его начнут обходить.

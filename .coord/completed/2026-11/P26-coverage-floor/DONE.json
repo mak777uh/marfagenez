@@ -1,0 +1,25 @@
+{
+  "task": "P26-coverage-floor",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:58:50Z",
+  "artifacts": [
+    {
+      "path": "checks/stitch_coverage_floor.py",
+      "sha256": "e23acd305afaf9a7c58705fcf76714bcf16844cd4d886cac008ba9c7fea4374c",
+      "bytes": 3658
+    },
+    {
+      "path": "docs/STITCH-COVERAGE-FLOOR.json",
+      "sha256": "86c03fd5c96d3691414c07514455ca05fab984e6cc65de781e155efbd3a67231",
+      "bytes": 61
+    },
+    {
+      "path": "run.sh",
+      "sha256": "05ea2c77374500fb6356feab65e5ba3d2d9715fbbf34e35af55159ee9e84add0",
+      "bytes": 31904
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
