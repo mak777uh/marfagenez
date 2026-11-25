@@ -7,8 +7,9 @@
 
 ## Рабочая область (файлы, которые задача вправе менять/создавать)
 
-- `literature/map/inbox/fast-*.jsonl`
 - `docs/FAMILIES-DRAFT.md`
+- `tools/exp_families.py`
+
 
 ## Что нужно сделать
 

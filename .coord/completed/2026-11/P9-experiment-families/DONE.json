@@ -1,0 +1,20 @@
+{
+  "task": "P9-experiment-families",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:18:34Z",
+  "artifacts": [
+    {
+      "path": "docs/FAMILIES-DRAFT.md",
+      "sha256": "560d6de14ee6830063c5a817e407ca162ee02199dcaa52b1c1f96e2839399b47",
+      "bytes": 4605
+    },
+    {
+      "path": "tools/exp_families.py",
+      "sha256": "d84d1751c1386953891a73420692cb01c7879eef29591ac8d01a6826268ed342",
+      "bytes": 6931
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
