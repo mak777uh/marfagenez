@@ -1,0 +1,21 @@
+{
+  "ok": false,
+  "task_sha256": "0b908c4da9805c18103b55b59c019c0b78e7d95f64c895593f9933cc07b036bf",
+  "done_sha256": "3a4a378546e893b42791e067cd4b13bfbfb27748cdc40748753ddc8943e4f960",
+  "gen": 6,
+  "verified_at": "2026-11-25T13:25:07Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 checks/doc_links.py",
+      "rc": 0,
+      "tail": "ссылки в документации: все относительные .md разрешаются (известных мёртвых: 4)"
+    },
+    {
+      "cmd": "python3 checks/log_check.py",
+      "rc": 1,
+      "tail": "ЖУРНАЛ: 2 проблем\n  docs/agent/AGENT_LOG.md: 1 коммитов после последней записи цикла не названы ни одной записью -- журнал отстал\n      83c11189 coord: reply to fast (P90 verified, area released on finish) + status"
+    }
+  ],
+  "bad_artifacts": []
+}

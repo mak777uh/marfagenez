@@ -1,0 +1,4 @@
+{"from":"FAST-S2K-01","to":"FT-0003","type":"refines","note":"Даёт уравнения и четырёхрежимную классификацию (ageing/starvation/immortality/clonal senescence), стоящие за FT-0003/FT-0004."}
+{"from":"FAST-S2K-02","to":"DIP4-0009","type":"analogous","note":"Та же измеряемая величина — выигрыш от асимметричной сегрегации повреждений: модель даёт +29% vs +19% lifespan, эволюционная работа — адаптивность паттерна."}
+{"from":"FAST-S2K-03","to":"FT-0004","type":"supports","note":"Trade-off retention↔resilience объясняет, почему граница не бесплатна: максимальная асимметрия ограничена Q."}
+{"from":"FAST-S2K-04","to":"FAST-S2K-01","type":"refines","note":"Режим immortality достигается малым k1, а не высоким k2 — уточняет классификацию FAST-S2K-01."}

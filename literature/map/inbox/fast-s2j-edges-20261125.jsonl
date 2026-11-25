@@ -1,0 +1,3 @@
+{"from":"FAST-S2J-05","to":"FAST-S2J-02","type":"refines","note":"S. pombe (контроль на G2/M, sizer) — конкретный природный инстанс правила «инвертированная структура цикла → sizer» из FAST-S2J-02."}
+{"from":"FAST-S2J-03","to":"FAST-S2J-01","type":"refines","note":"Анализ устойчивости response curve (FAST-S2J-03) даёт механистическое объяснение, почему adder из FAST-S2J-01 обеспечивает homeostasis, а timer — нет: критерий T'(V_eq) уточняет эмпирический Δ=const."}
+{"from":"FAST-S2J-04","to":"FAST-S2J-02","type":"requires","note":"Парадокс «sizer лучше по CV, но adder чаще» (FAST-S2J-04) разрешим только через результат эволюционной канализации FAST-S2J-02 — без учёта структуры цикла парадокс не объясняется."}

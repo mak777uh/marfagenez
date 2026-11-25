@@ -247,10 +247,15 @@ def main(argv: list[str]) -> int:
     print(f"DOI проверено {verified_dois} из {len(resolved)}; в карте всего {len(existing)} ячеек")
     if rejected:
         print(f"отклонено {len(rejected)} — см. отчёт")
+        if not accepted:
+            # Тихий успех при полном отклонении — ловушка: публикующий видит «rc=0» и считает, что всё принято.
+            # Именно так 29 рёбер из партий fast не попали в карту.
+            print("ВЕСЬ ВХОД ОТКЛОНЁН: проверьте формат (рёбра передаются через --edges, не как atoms)")
+            all_rejected = True
 
     if dry:
         print("dry-run: файлы не записаны")
-        return 0
+        return 1 if (rejected and not accepted) else 0
     if report_path:
         lines = [
             "# Приём партий в карту",
@@ -274,7 +279,7 @@ def main(argv: list[str]) -> int:
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         print(f"отчёт: {report_path}")
-    return 0
+    return 1 if (rejected and not accepted) else 0
 
 
 if __name__ == "__main__":
