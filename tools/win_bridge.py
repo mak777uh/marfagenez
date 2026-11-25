@@ -195,6 +195,16 @@ def serve() -> int:
                         known.add(g['atom'])
         elif '.edges' in path.name:
             result['note'] = 'связи применяются вместе с atoms того же имени'
+        elif '.kg' in path.name:
+            r = subprocess.run(['python3', 'tools/kg_inbox.py', '--serve', str(path)],
+                               cwd=ROOT, capture_output=True, text=True)
+            out = ((r.stdout or '') + (r.stderr or '')).strip()
+            m = out.splitlines()[0] if out else ''
+            result['note'] = f'kg-инбокс: {m}'
+            result['accepted'] = 0
+            for line in out.splitlines()[1:]:
+                if line.strip().startswith('test'):
+                    result.setdefault('reasons', []).append(line.strip()[:160])
         elif '.questions' in path.name:
             target = ROOT / 'literature/map/inbox' / f'win-{stem}.jsonl'
             shutil.copyfile(path, target)

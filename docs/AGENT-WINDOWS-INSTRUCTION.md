@@ -214,3 +214,55 @@ outbox\L-041-nemoto.txt.questions.jsonl   ← (необязательно) во�
 
 **Один DOI за партию. 3–5 ячеек. У каждой — число, единица, локатор, дословная цитата, `kg_ref` и связь.
 Положил → прочитал `ack` → взял следующий.**
+
+---
+
+## 12. Второй канал: предложения для графа знаний (`kg/`)
+
+Кроме ячеек литературной карты, ты можешь присылать **предложения для графа знаний**. Файл —
+`outbox\<имя>.kg.jsonl`, **три типа строк**, ничего больше:
+
+```json
+{"kind":"node","tmp":"n1","type":"literature","text":"...","quote":"дословно",
+ "source":{"doi":"...","level":"abstract_read"},"lines":["vybor"],"context":{"scope":"..."}}
+{"kind":"edge","from":"n1","to":"F-016","type":"extends","note":"почему именно так"}
+{"kind":"check","id":"F-006","quote":"дословно","verdict":"supported",
+ "source":{"url":"...","level":"fragment_read"}}
+```
+
+| поле | допустимые значения |
+|---|---|
+| `type` узла | `literature` / `claim` / `formula` / `definition` / `gap` / `correspondence` |
+| `lines` | `granica, obmen, svoi-usloviya, organizaciya, proshloe, smert, porog, vybor, individualnost, agentnost` |
+| `type` ребра | `qualifies, tested_in, stated_in, extends, analogous_to, normalizes_to, refutes, refuted_by, supports, derived_from, bridges, maps_to` |
+| `source.level` | `metadata_only` / `abstract_read` / `fragment_read` / `full_text_examined` / `secondary_only` |
+| `verdict` | `supported` / `contradicted` / `not_found` |
+
+**Идентификаторы назначаю я.** В строке пиши `tmp` (`n1`, `n2`…), в `edge` ссылайся на `tmp` того же файла
+или на существующий id (`F-016`, `C-005`, `L-023`).
+
+**Лимит: 50 строк в файле.**
+
+### С чего начинать — цикл A (самое ценное)
+
+В графе **136 узлов «только извлечено»**: им не хватает **цитаты и вердикта**. Это самый дешёвый вклад:
+
+```
+{"kind":"check","id":"F-006",
+ "quote":"If Πλ>1/6, the doubling time of a lineage never attains equilibrium",
+ "verdict":"supported",
+ "source":{"doi":"10.1371/journal.pgen.1001076","level":"abstract_read"},
+ "note":"порог подтверждён аннотацией"}
+```
+
+Список целей — в `STATE.md`, разделе про `kg`. **Порядок работы: сначала `check`, потом `edge`, потом `node`.**
+
+### Что произойдёт с принятым
+
+- `check` → `docs/KG-CHECKS.jsonl`: я проверяю цитату и двигаю фронтир; `not_found` уходит в `LITERATURE-GAPS`;
+- `node`/`edge` → `docs/KG-INBOX.jsonl`: очередь предложений, сливаю я;
+- отчёт — `ack\<имя>-kg.json` с причинами отказа по каждой строке.
+
+**`epistemic` ты не ставишь никогда** — это правило графа: `established` получается только через наши
+проверки, и агент не может его выставить даже случайно.
+
