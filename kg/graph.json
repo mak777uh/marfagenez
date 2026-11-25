@@ -1162,7 +1162,14 @@
       "math": {
         "latex": "Гомпертц:      μ(x) = R · e^(αx)          удвоение примерно каждые 8 лет взрослой жизни\nМакегам:       μ(x) = μ₀ + R · e^(αx)     начальная смертность + возрастная компонента\nПлато:         при исчерпании избыточности число работоспособных элементов падает,\n               и μ выходит на уровень, заданный архитектурой (не экспонента)",
         "structure": "",
-        "units": {},
+        "units": {
+          "mu": "1/год",
+          "R": "1/год",
+          "mu0": "1/год",
+          "alpha": "1/год",
+          "x": "год",
+          "t_d": "год"
+        },
         "checked": {
           "kind": "none",
           "ref": ""
@@ -18361,12 +18368,12 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
@@ -18396,13 +18403,13 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -18426,8 +18433,8 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
@@ -18436,8 +18443,8 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -18551,8 +18558,8 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "F-022",
@@ -18561,8 +18568,8 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
@@ -18571,13 +18578,13 @@
     },
     {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "GAP-01",
@@ -18716,12 +18723,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
@@ -18751,12 +18758,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {

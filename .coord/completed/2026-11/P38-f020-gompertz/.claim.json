@@ -1,0 +1,16 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T02:11:53Z",
+  "task_sha256": "8d2193238b0e868bea9b9166baa3535794fdd2f9f27e72a0a76e187789bdee49",
+  "area": [
+    "tools/gompertz_check.py",
+    "docs/UNITS-AUDIT.md",
+    "kg/migrate.py"
+  ],
+  "kind": "research",
+  "priority": 7,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

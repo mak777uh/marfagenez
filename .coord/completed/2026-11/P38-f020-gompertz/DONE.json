@@ -1,0 +1,25 @@
+{
+  "task": "P38-f020-gompertz",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:12:42Z",
+  "artifacts": [
+    {
+      "path": "tools/gompertz_check.py",
+      "sha256": "c0502b76fa4958b75acce7c0efcf3ea7e08b8e0949ea19a59b8313dbe1c0d025",
+      "bytes": 3320
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "a72fb4a6e31f960e2cb1271884577148755fcbe15e457c6dd80b621286e4874a",
+      "bytes": 24926
+    },
+    {
+      "path": "kg/migrate.py",
+      "sha256": "81a1bd90f45245b6e350baba20b585e2e8729738f83b40638f73de89a6b50a2d",
+      "bytes": 20230
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
