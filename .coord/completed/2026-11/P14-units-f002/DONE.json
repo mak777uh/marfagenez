@@ -1,0 +1,25 @@
+{
+  "task": "P14-units-f002",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:34:49Z",
+  "artifacts": [
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "bac567bc18dbc8d3701fa5cbbc61513357b0b67eb9c3721aaf01c56d85d6d2e1",
+      "bytes": 11108
+    },
+    {
+      "path": "docs/FINDING-343.md",
+      "sha256": "836475f88fd62ff1b7e00e7144b4504468f04955a00f72f820b2a00aaa73aff7",
+      "bytes": 2120
+    },
+    {
+      "path": "kg/migrate.py",
+      "sha256": "c055fc41b43ca12e3f794dd964dcbb3022695e4e9c914f80dd9b36949cf538fc",
+      "bytes": 18049
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
