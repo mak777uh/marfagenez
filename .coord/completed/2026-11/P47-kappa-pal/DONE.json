@@ -1,0 +1,20 @@
+{
+  "task": "P47-kappa-pal",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:25:36Z",
+  "artifacts": [
+    {
+      "path": "tools/kappa_pal.py",
+      "sha256": "04acebaf4b2174482dcc38be23faa9b4bbacc40f66a5fd37a7e6c59a40ceb31a",
+      "bytes": 3165
+    },
+    {
+      "path": "docs/FINDING-348.md",
+      "sha256": "6ba858a6b1baf911bc8f525073eea285aff0b2aa9619a0fe1074a2346ecca3af",
+      "bytes": 3504
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

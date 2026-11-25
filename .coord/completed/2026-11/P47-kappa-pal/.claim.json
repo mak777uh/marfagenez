@@ -1,0 +1,15 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T02:25:02Z",
+  "task_sha256": "0925015e536c2d3b2e9bc4427068bd9d6033b379c3095e904202aaf80ed28222",
+  "area": [
+    "tools/kappa_pal.py",
+    "docs/FINDING-348.md"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}
