@@ -1,0 +1,20 @@
+{
+  "task": "P116-grain-formula",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:04:34Z",
+  "artifacts": [
+    {
+      "path": "tools/grain_bet_hedging.py",
+      "sha256": "b409a885865da0f9b9fdaaaf9ced2d22682b10acb8b1f53a7a97f7e52de4880a",
+      "bytes": 3795
+    },
+    {
+      "path": "docs/FORMULA-GRAIN.md",
+      "sha256": "2c7dd07cedc90806e7088b90ae8cc759468c21f52a62a4affd54347bd45d8df6",
+      "bytes": 4404
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
