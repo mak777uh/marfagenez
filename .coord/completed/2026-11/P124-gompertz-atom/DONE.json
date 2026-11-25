@@ -1,0 +1,20 @@
+{
+  "task": "P124-gompertz-atom",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:47:39Z",
+  "artifacts": [
+    {
+      "path": "literature/map/inbox/main-p124-atoms-20261125.jsonl",
+      "sha256": "9e80fbc100e739b6fbdfadca2e6e7c7af2fa0c267ccf52d770a4d616e93811a2",
+      "bytes": 3031
+    },
+    {
+      "path": "docs/STITCH-S-READ.md",
+      "sha256": "3f2c51bf6eed4ec504e823a4896ff4e3a7c4bc8ee669ff3e43aa3ef2b24eb7bd",
+      "bytes": 34943
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
