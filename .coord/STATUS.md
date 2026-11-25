@@ -1,4 +1,4 @@
-# Статус координации — 2026-11-25T03:45:19Z
+# Статус координации — 2026-11-25T03:46:23Z
 
 ## Свободные задачи: 4
 
@@ -9,8 +9,8 @@
 
 ## Активные: 2
 
-- `P61-rd-vs-rif`: агент main, gen 1, возраст 0м, heartbeat 0м, DONE=False, VERIFY=False
-- `S3-formulas-lean-20261125T063752-fast`: агент fast, gen 4, возраст 7м, heartbeat 4м, DONE=True, VERIFY=True
+- `P61-rd-vs-rif`: агент main, gen 1, возраст 1м, heartbeat 1м, DONE=False, VERIFY=True
+- `S3-formulas-lean-20261125T063752-fast`: агент fast, gen 4, возраст 9м, heartbeat 1м, DONE=True, VERIFY=True
 
 ## Непрочитанная почта
 
