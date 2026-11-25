@@ -1,0 +1,20 @@
+{
+  "task": "P115-candidates-rest",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T11:00:59Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-S-READ.md",
+      "sha256": "6488b4446c360f39863179584f1e4448632142611946eae00a06714843365662",
+      "bytes": 30529
+    },
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "ad249c877511d6ea7286426387688acd46629b2dfe970a3725af6cc4fd2fba7f",
+      "bytes": 38774
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
