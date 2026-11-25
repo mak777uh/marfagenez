@@ -316,7 +316,10 @@ def markdown_files() -> list[Path]:
     # ("... (2014, Testing Turing's theory ...)") that are not claims about the tree. Scanning them
     # produced false drift twice, and silencing the report instead would mean editing someone else's
     # record. The same goes for `probes/`, which is scratch work by definition.
-    skip = ("literature/", "probes/")
+    # `.coord/` — операционный слой: карточки задач, RESULT и письма агентов. Там числа относятся к
+    # процессу («10 файлов», «областей с *»), а не к дереву, и попытка сверять их с миром дала ложный
+    # дрейф сразу после того, как эти файлы попали в git (цикл 635).
+    skip = ("literature/", "probes/", ".coord/")
     return [ROOT / p for p in names if p and not p.startswith(skip)]
 
 
