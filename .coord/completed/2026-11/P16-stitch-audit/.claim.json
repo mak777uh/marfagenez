@@ -1,0 +1,16 @@
+{
+  "agent": "main",
+  "taken_at": "2026-11-25T00:39:29Z",
+  "task_sha256": "30a71ee9272386addc4b190426faad2e26898043832fc8c5abe36dbe4746077e",
+  "area": [
+    "docs/STITCH-AUDIT.md",
+    "docs/STITCH-COVERAGE.md",
+    "tools/stitch_audit.py"
+  ],
+  "kind": "research",
+  "priority": 7,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

@@ -1,0 +1,25 @@
+{
+  "task": "P16-stitch-audit",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:39:56Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-AUDIT.md",
+      "sha256": "8b0f6b6dda892a95c8ba2081ec7ba962c0f2e281e4c106bbf30010d599fe0041",
+      "bytes": 2750
+    },
+    {
+      "path": "docs/STITCH-COVERAGE.md",
+      "sha256": "235e4f62175b7a1ad41f3e9a7f2a44e6868d650c082016714231c2e4875e06f5",
+      "bytes": 25838
+    },
+    {
+      "path": "tools/stitch_audit.py",
+      "sha256": "246dcabef4bce0ed63f94a408965c0cfcfa60f97aefc326fafd462bbd8121e7d",
+      "bytes": 5689
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
