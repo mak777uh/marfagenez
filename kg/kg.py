@@ -46,6 +46,7 @@ MODES = {"formal", "literature", "experiment"}   # three kinds of research, not 
 EXPAND_THRESHOLD = 8   # degree at which one hop is already a full screen
 EXPAND_CAP = 60        # nodes printed before the "+K ещё" marker
 RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as",
+             "derived_from",
              "predicted_by", "analogous_to", "candidate_supports", "tested_in", "stated_in", "normalizes_to",
              "refuted_by", "bridges", "maps_to"}
 # relations that carry epistemic weight; mechanical ones do not, by construction (D-07)

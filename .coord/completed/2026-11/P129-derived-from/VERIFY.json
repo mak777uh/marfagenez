@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "a62cdb526870971e1f50e7195dd7e20c02f4de98b7c7b33db874b4071ff3effc",
+  "done_sha256": "26d36325715de4b0f0049f1ed526eb29b006b621e0e9e59a0e4667e239a28e88",
+  "gen": 1,
+  "verified_at": "2026-11-25T12:37:51Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 tools/unanchored_nodes.py --strict",
+      "rc": 0,
+      "tail": "\nЧто делать: найти источник (lit_ref/evidence), связать с деревом (relations) или объявить пробел.\nСТРОГИЙ РЕЖИМ: потолок не превышен (долг не вырос)"
+    }
+  ],
+  "bad_artifacts": []
+}

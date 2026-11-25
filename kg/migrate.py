@@ -389,6 +389,32 @@ def apply_lit_refs(nodes):
     return nodes
 
 
+def apply_node_refs(nodes):
+    """Связи «выведено из» между узлами графа знаний: `kg/node-refs.json`.
+
+    Почему не `lit_ref`: тот по контракту принимает только ячейки `literature/map/`, а «Откуда» у части формул
+    ссылается на литературные СВОДКИ (`L-012`, `L-034`), которые сами являются узлами этого графа. Смешивать
+    два вида ссылок в одном поле значило бы менять смысл метрики покрытия, поэтому связь выражена явно —
+    типом `derived_from` в `relations`.
+    """
+    path = ROOT / "kg" / "node-refs.json"
+    if not path.exists():
+        return nodes
+    refs = json.loads(path.read_text(encoding="utf-8")).get("map", {})
+    ids = {n["id"] for n in nodes}
+    for node in nodes:
+        targets = [t for t in refs.get(node["id"], []) if t in ids]
+        if not targets:
+            continue
+        have = {(r.get("type"), r.get("target")) for r in node.get("relations") or []}
+        rels = list(node.get("relations") or [])
+        for t in targets:
+            if ("derived_from", t) not in have:
+                rels.append({"type": "derived_from", "target": t})
+        node["relations"] = rels
+    return nodes
+
+
 def literature_overrides():
     path = ROOT / "kg" / "literature-overrides.json"
     if not path.exists():
@@ -455,6 +481,7 @@ def evidence_nodes(base):
 def main():
     base = claims() + formulas() + experiments() + literature() + definitions() + bridges()
     base = apply_lit_refs(base)
+    base = apply_node_refs(base)
     nodes = base + evidence_nodes(base)
     seen = set()
     unique = []

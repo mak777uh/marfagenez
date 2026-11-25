@@ -1,0 +1,20 @@
+{
+  "task": "P129-derived-from",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T12:37:51Z",
+  "artifacts": [
+    {
+      "path": "kg/node-refs.json",
+      "sha256": "a57e04e131a503a3c56067a2b1f81ed3f3ae2593e9f20a543e61b5934e9f57c4",
+      "bytes": 927
+    },
+    {
+      "path": "docs/ANCHOR-AUDIT.md",
+      "sha256": "db12cdf6137dc4bd893ca3691fb46b55abfebec0ba608d10df5c714fdc89e4b4",
+      "bytes": 11838
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

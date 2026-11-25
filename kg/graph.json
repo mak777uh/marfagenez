@@ -544,7 +544,16 @@
       "epistemic": "hypothesis",
       "provenance": "extracted",
       "evidence": [],
-      "relations": [],
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "L-012"
+        },
+        {
+          "type": "derived_from",
+          "target": "L-013"
+        }
+      ],
       "math": {
         "latex": "приход = c_y·σ·p·f̄            доход формы\nрасход = f₀ + μ·n + κ·n²/p     поддержание + починка + издержки\nжива ⟺ приход ≥ расход",
         "structure": "",
@@ -837,7 +846,12 @@
       "epistemic": "hypothesis",
       "provenance": "extracted",
       "evidence": [],
-      "relations": [],
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "L-034"
+        }
+      ],
       "math": {
         "latex": "ΔR = R_original − R_modified          эко-подпись (ecosystem signature)",
         "structure": "",
@@ -917,7 +931,16 @@
       "epistemic": "hypothesis",
       "provenance": "extracted",
       "evidence": [],
-      "relations": [],
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "L-049"
+        },
+        {
+          "type": "derived_from",
+          "target": "L-013"
+        }
+      ],
       "math": {
         "latex": "π(i) = π(0) · Π_{j<i} p_j / Π_{j≤i} q_j          стационарное распределение\n±1 шаг, ρ = p/q < 1, стенка снизу:  π(n) = (1−ρ)ρⁿ\nмедиана m  ⇒  ρ ≈ 2^(−1/(m+1)),   p* = ρ/(1+ρ)\n\nm = 4/10/16  →  p* = 0.4654 / 0.4843 / 0.4898\nвремя релаксации ~ (√q − √p)^(−2) ≈ 5·10³ шагов при p ≈ 0.49",
         "structure": "",
@@ -1129,7 +1152,12 @@
       "epistemic": "hypothesis",
       "provenance": "extracted",
       "evidence": [],
-      "relations": [],
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "L-050"
+        }
+      ],
       "math": {
         "latex": "ε = a·x^k  ⇒  x ~ ε^(1/k)     показатель = 1/(порядок ведущего члена)\nдва линейных канала:  ε = (a+b)x  ⇒  показатель 1  (НЕ 1/2)\nдва квадратичных:     ε = (Σb)x²  ⇒  показатель 1/2",
         "structure": "",
@@ -1449,7 +1477,16 @@
       "epistemic": "hypothesis",
       "provenance": "extracted",
       "evidence": [],
-      "relations": [],
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "L-067"
+        },
+        {
+          "type": "derived_from",
+          "target": "L-069"
+        }
+      ],
       "math": {
         "latex": "временная целостность:   I(X_t ; X_{t+1})\nразложение (схема):       I(X_t ; X_{t+1}) = I_env  + I_ind  + I_col\n  I_env — вклад среды (детерминизм извне),\n  I_ind — «индивидуальная» память/инерция (система предсказывает себя),\n  I_col — коллективная компонента (части предсказывают целое)\n\nиндивидуальность  ~  доля I_ind + I_col  в общей временной информации",
         "structure": "",
@@ -1524,7 +1561,16 @@
       "epistemic": "hypothesis",
       "provenance": "extracted",
       "evidence": [],
-      "relations": [],
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "L-073"
+        },
+        {
+          "type": "derived_from",
+          "target": "L-074"
+        }
+      ],
       "math": {
         "latex": "рост площади:      dA/dt = k_inc · [липид]_вне − γ · A          (L-073)\nрост объёма:       осмос, движим автокаталитической реакцией\nделение:           при достижении соотношения A/V (или критического размера)\nпроницаемость:     P = P(состав),  есть порог cvc                 (L-074)\n\nнаше:   цена УДЕРЖАНИЯ целости  c·d·q_min   ≠   цена РОСТА площади k_inc·[липид]",
         "structure": "",
@@ -1568,7 +1614,20 @@
       "epistemic": "hypothesis",
       "provenance": "extracted",
       "evidence": [],
-      "relations": [],
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "L-077"
+        },
+        {
+          "type": "derived_from",
+          "target": "L-078"
+        },
+        {
+          "type": "derived_from",
+          "target": "L-079"
+        }
+      ],
       "math": {
         "latex": "правило:            s_d = a·s_b + b        (a = 0 sizer, 1 adder, 2 timer)\nadder в числах:     CV²_s = ln 4 − 1 ≈ 0.386      (при beta = 1/2)\nнаблюдаемое:        CV_h ≈ 0.07…0.09              (малая стохастика деления)\n\nлиния родства:      forward  — среднее НЕ зависит от CV ошибки деления\n                    backward — среднее РАСТЁТ с CV",
         "structure": "",
@@ -1662,7 +1721,16 @@
       "epistemic": "hypothesis",
       "provenance": "extracted",
       "evidence": [],
-      "relations": [],
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "L-084"
+        },
+        {
+          "type": "derived_from",
+          "target": "L-085"
+        }
+      ],
       "math": {
         "latex": "изменение (novelty):     расстояние Левенштейна между поколениями\nразнообразие:            энтропия Шеннона по типам\nсложность:               колмогоровская (аппроксимация сжатием)\nMODES:                   набор из нескольких метрик динамики",
         "structure": "",
@@ -1705,7 +1773,16 @@
       "epistemic": "hypothesis",
       "provenance": "extracted",
       "evidence": [],
-      "relations": [],
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "L-086"
+        },
+        {
+          "type": "derived_from",
+          "target": "F-022"
+        }
+      ],
       "math": {
         "latex": "граф процессов:      вершины P (процессы), рёбра — зависимости; |P| = 352, рёбер 5912 (пример L-086)\nвнутреннее ограничение выживания:  множество конфигураций, при которых\n      граф зависимостей остаётся самоподдерживающимся\n\nнаше:  q ≥ q_min, w ≥ 0 — грубая проекция этого множества на две оси",
         "structure": "",
@@ -18444,17 +18521,17 @@
     },
     {
       "from": "C-001",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-001",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
     },
     {
       "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -18484,13 +18561,13 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -18514,6 +18591,11 @@
     },
     {
       "from": "C-003",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
+    },
+    {
+      "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -18521,11 +18603,6 @@
       "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
-    },
-    {
-      "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -18638,6 +18715,41 @@
       "type": "stated_in"
     },
     {
+      "from": "F-004",
+      "to": "L-012",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-004",
+      "to": "L-013",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-011",
+      "to": "L-034",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-013",
+      "to": "L-049",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-013",
+      "to": "L-013",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-018",
+      "to": "L-050",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-022",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
+    },
+    {
       "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
@@ -18648,13 +18760,13 @@
       "type": "tested_in"
     },
     {
-      "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "from": "F-023",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18663,9 +18775,59 @@
       "type": "stated_in"
     },
     {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
+      "from": "F-025",
+      "to": "L-067",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-025",
+      "to": "L-069",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-027",
+      "to": "L-073",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-027",
+      "to": "L-074",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-028",
+      "to": "L-077",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-028",
+      "to": "L-078",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-028",
+      "to": "L-079",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-030",
+      "to": "L-084",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-030",
+      "to": "L-085",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-031",
+      "to": "L-086",
+      "type": "derived_from"
+    },
+    {
+      "from": "F-031",
+      "to": "F-022",
+      "type": "derived_from"
     },
     {
       "from": "GAP-01",
@@ -18799,17 +18961,17 @@
     },
     {
       "from": "CORR-02",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
     },
     {
       "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -18839,12 +19001,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {

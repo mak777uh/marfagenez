@@ -34,6 +34,9 @@ def rebuilt():
             + migrate.literature() + migrate.definitions() + migrate.bridges())
     # the same second pass `migrate.main` does: evidence objects are derived from the corpus too
     nodes = migrate.apply_lit_refs(base + migrate.evidence_nodes(base))
+    # Связи «выведено из» между узлами: тот же второй проход, что и для lit_ref, иначе сверка
+    # «корпус → nodes.jsonl» видит расхождение по relations, которого в корпусе нет.
+    nodes = migrate.apply_node_refs(nodes)
     return {n["id"]: n for n in nodes}
 
 

@@ -1,7 +1,7 @@
 {
   "schema": "kg/2",
   "human_confirmed": [],
-  "built_at": "2026-11-25T12:19:52+00:00",
+  "built_at": "2026-11-25T12:33:54+00:00",
   "counts": {
     "total": 580,
     "by_kind": {
@@ -23,17 +23,18 @@
       "verified_agent": 444,
       "extracted": 136
     },
-    "edges": 84,
+    "edges": 101,
     "edges_by_type": {
       "qualifies": 3,
-      "stated_in": 34,
       "tested_in": 28,
+      "stated_in": 34,
       "extends": 2,
       "analogous_to": 3,
       "normalizes_to": 1,
       "refutes": 1,
       "refuted_by": 1,
       "supports": 1,
+      "derived_from": 17,
       "bridges": 6,
       "maps_to": 4
     },
@@ -409,6 +410,6 @@
     "check"
   ],
   "hashes": {
-    "graph": "f28d9bfa233e0ee1"
+    "graph": "49f092b872b658b6"
   }
 }
