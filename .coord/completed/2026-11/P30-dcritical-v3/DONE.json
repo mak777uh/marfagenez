@@ -1,0 +1,25 @@
+{
+  "task": "P30-dcritical-v3",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T01:17:16Z",
+  "artifacts": [
+    {
+      "path": "docs/FINDING-346.md",
+      "sha256": "403e46d52de673975d483d28efaf53b9ce406cefc1f393790d0f7d37e143d2fe",
+      "bytes": 3550
+    },
+    {
+      "path": "docs/FORMULA-DCRITICAL.md",
+      "sha256": "1a78ec00b280159ce8f5ff6b3fcd0827897a04ed6b6bdd105d97bf99d9ebe3e5",
+      "bytes": 10827
+    },
+    {
+      "path": "tools/dcritical2.py",
+      "sha256": "b621952e874fb9dc7a33d565bbce45d6ad3064c5a7e847306d594282e97c4809",
+      "bytes": 14639
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
