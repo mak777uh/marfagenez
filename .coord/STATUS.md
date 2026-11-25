@@ -1,4 +1,4 @@
-# Статус координации — 2026-11-25T05:02:04Z
+# Статус координации — 2026-11-25T05:14:12Z
 
 ## Свободные задачи: 3
 
@@ -8,9 +8,9 @@
 
 ## Активные: 1
 
-- `S2-literature-graph-20261125T074231-fast`: агент fast, gen 3, возраст 20м, heartbeat 9м, DONE=True, VERIFY=False
+- `S2-literature-graph-20261125T074231-fast`: агент fast, gen 3, возраст 32м, heartbeat 5м, DONE=True, VERIFY=False
 
 ## Непрочитанная почта
 
 - `fast`: 1
-- `main`: 8
+- `main`: 11

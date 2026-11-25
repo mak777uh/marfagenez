@@ -86,7 +86,10 @@ def main(argv: list[str]) -> int:
         a(f"  - `{k}` ({NAMES[k]}): **{pair_counts.get(k, 0)}**")
     a(f"- узлов с `lit_ref`: **{len(with_ref)}**")
     a(f"- узлов, у которых есть хотя бы одна пара: **{len(best)}**")
-    a(f"- **опора «величина совпадает» (`S`): {len(supported_s)}**")
+    all_s = sorted(n for n, v in best.items() if v == "S")
+    a(f"- **опора «величина совпадает» (`S`): {len(supported_s)}** "
+      f"(всего узлов с `S`-парой: {len(all_s)}; разница — узлы без `lit_ref`: "
+      f"{', '.join(sorted(set(all_s) - set(supported_s))) or 'нет'})")
     a(f"- только частичная (`Ch`): {len(supported_ch)}")
     a(f"- **только несравнимые пары (`N`): {len(unsupported)}**")
     a(f"- узлов с `lit_ref`, которых Red Team не покрыл: {len(unaudited)}")

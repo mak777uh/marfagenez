@@ -2,12 +2,12 @@
   "task": "S2-literature-graph-20261125T074231-fast",
   "agent": "fast",
   "gen": 3,
-  "finished_at": "2026-11-25T04:42:45Z",
+  "finished_at": "2026-11-25T05:10:51Z",
   "artifacts": [
     {
       "path": "literature/map/inbox/fast-s2e-atoms-20261125.jsonl",
-      "sha256": "ec735650d5414bcdf2da838a166d32e4759e1dfdbe6344b31eefd4141e2379fe",
-      "bytes": 8009
+      "sha256": "3efdf63b20aff3fe2709f9ef2f71cadaecb63f3e6148e37a941aed5bebcdb3f4",
+      "bytes": 8574
     },
     {
       "path": "literature/map/inbox/fast-s2e-edges-20261125.jsonl",
