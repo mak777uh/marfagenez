@@ -31,6 +31,7 @@ from __future__ import annotations
 import argparse
 import collections
 import datetime as dt
+import hashlib
 import json
 import pathlib
 import re
@@ -188,8 +189,14 @@ def numbers_present(q: dict, atoms: dict[str, dict]) -> str | None:
     return None
 
 
+def q_hash(q: dict) -> str:
+    """Отпечаток ТЕКСТА вопроса: один и тот же вопрос не повторяем, разные — принимаем."""
+    norm = re.sub(r"\s+", " ", str(q.get("question") or "").strip().lower())
+    return hashlib.sha1(norm.encode("utf-8")).hexdigest()[:16]
+
+
 def validate_submission(path: pathlib.Path, atoms: dict[str, dict],
-                        seen: set[tuple[str, tuple[str, ...]]] | None = None) -> tuple[list[dict], list[str]]:
+                        seen: set[tuple[str, tuple[str, ...], str]] | None = None) -> tuple[list[dict], list[str]]:
     good, bad = [], []
     seen = seen if seen is not None else set()
     if path.suffix != ".jsonl":
@@ -242,9 +249,9 @@ def validate_submission(path: pathlib.Path, atoms: dict[str, dict],
         if not problem:
             problem = numbers_present(q, atoms)
         if not problem:
-            sig = (str(q.get("kind")), tuple(sorted(q.get("atoms") or [])))
+            sig = (str(q.get("kind")), tuple(sorted(q.get("atoms") or [])), q_hash(q))
             if sig in seen:
-                problem = "такой вопрос уже принимался (тот же вид и те же ячейки)"
+                problem = "этот же вопрос уже принимался (совпал текст)"
             else:
                 seen.add(sig)
         if problem:
@@ -285,7 +292,13 @@ def serve(bridge: pathlib.Path) -> int:
     seen: set[tuple[str, tuple[str, ...]]] = set()
     if state.exists():
         try:
-            seen = {(k, tuple(v)) for k, v in json.loads(state.read_text(encoding="utf-8"))}
+            raw = json.loads(state.read_text(encoding="utf-8"))
+            seen = set()
+            for item in raw:
+                if len(item) == 3:
+                    seen.add((item[0], tuple(item[1]), item[2]))
+                elif len(item) == 2:
+                    seen.add((item[0], tuple(item[1]), "old"))
         except Exception:
             seen = set()
 
@@ -310,7 +323,7 @@ def serve(bridge: pathlib.Path) -> int:
                                                   encoding="utf-8")
         sub.rename(bridge / "done" / sub.name)
 
-    state.write_text(json.dumps(sorted([[k, list(v)] for k, v in seen]), ensure_ascii=False),
+    state.write_text(json.dumps(sorted([[k, list(v), h] for k, v, h in seen]), ensure_ascii=False),
                      encoding="utf-8")
     if triage_rows:
         triage = ROOT / "docs" / "PROBE-TRIAGE.md"
