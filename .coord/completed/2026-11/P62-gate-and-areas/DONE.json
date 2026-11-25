@@ -1,0 +1,20 @@
+{
+  "task": "P62-gate-and-areas",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T04:04:28Z",
+  "artifacts": [
+    {
+      "path": ".coord/README.md",
+      "sha256": "096cd6140951c17dbd546b890d418d5e92d7d140d1c748cbd98364d3228a2a2c",
+      "bytes": 26814
+    },
+    {
+      "path": "NOT-CLAIMED.md",
+      "sha256": "6ab0adc0d12757e946cecb7d0952be73058d82b148b4205110fccbe7c38f33bf",
+      "bytes": 8165
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
