@@ -58,7 +58,7 @@ def check(meta_path: pathlib.Path, bin_path: pathlib.Path, nodes_path: pathlib.P
     digest = hashlib.sha256(nodes_path.read_bytes()).hexdigest() if nodes_path.exists() else ""
     if meta.get("nodes_sha256") != digest:
         errs.append("E2 индекс собран из другой версии графа: пересоберите "
-                    "(python.exe tools/build_embeddings.py)")
+                    "(python3 tools/build_embeddings.py)")
 
     ids = node_ids(nodes_path)
     if count != len(ids):
