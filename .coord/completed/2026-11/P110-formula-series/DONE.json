@@ -1,0 +1,15 @@
+{
+  "task": "P110-formula-series",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T10:05:56Z",
+  "artifacts": [
+    {
+      "path": "docs/SYNTHESIS-10.md",
+      "sha256": "33b0505ca6702805c01f2345d2709b89911fe6441626203d486caecd9ae47374",
+      "bytes": 18644
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
