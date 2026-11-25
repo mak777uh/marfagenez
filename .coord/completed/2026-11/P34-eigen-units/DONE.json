@@ -1,0 +1,25 @@
+{
+  "task": "P34-eigen-units",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:07:24Z",
+  "artifacts": [
+    {
+      "path": "tools/eigen_threshold.py",
+      "sha256": "0d35c58c0d8072350b4682d0455695c5b1933d2b07964ea44258bdc78e59393a",
+      "bytes": 3066
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "c425dfcd47c4ee5d2768615514a1b2de1d31659362a6ccffcf56ce350ec47e60",
+      "bytes": 15993
+    },
+    {
+      "path": "kg/migrate.py",
+      "sha256": "03dd7439bcba702d5b4f3e7e4a262e0e21831da7cd84c9ac1ef650d4a6faa572",
+      "bytes": 19116
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
