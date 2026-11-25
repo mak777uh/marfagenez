@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "task_sha256": "5cfe0cc7b0e1b983e457264d9b2593619d1e64778efacea7edaa2a777c73747c",
+  "done_sha256": "1205f7ef01fe04031423921d35fcdb7e7ec18fc0f386a90374ccd7420a09930f",
+  "gen": 1,
+  "verified_at": "2026-11-25T14:25:01Z",
+  "by": "main",
+  "results": [
+    {
+      "cmd": "python3 tools/survival_kernel.py",
+      "rc": 0,
+      "tail": "x* = 0,5 выживает 1000 шагов: True\n\nВЫВОД: аппроксимация K_i сходится к V(K) и останавливается по неизменности множества."
+    }
+  ],
+  "bad_artifacts": []
+}

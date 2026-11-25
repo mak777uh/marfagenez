@@ -1,0 +1,20 @@
+{
+  "task": "P137-survival-kernel",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T14:25:01Z",
+  "artifacts": [
+    {
+      "path": "docs/FORMULA-SURVIVAL-KERNEL.md",
+      "sha256": "5eb878aa376de418a2884110f172506f6b90f0e0410e971387f9cd9d055df13d",
+      "bytes": 4018
+    },
+    {
+      "path": "tools/survival_kernel.py",
+      "sha256": "4971986187816bbe201506f58d3e6736477ce33f5d6ea7223b2378b4e11e2867",
+      "bytes": 4538
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
