@@ -1,0 +1,20 @@
+{
+  "task": "P132-kappa-switch",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T12:50:00Z",
+  "artifacts": [
+    {
+      "path": "docs/FORMULA-KAPPA-SWITCH.md",
+      "sha256": "c70b03b949dd0b88164d95c4d9008d215ff4ffd934b4e2377d4f30ea9847c6d4",
+      "bytes": 4816
+    },
+    {
+      "path": "tools/kappa_switch.py",
+      "sha256": "f9656903a287708829c3e5d4ec0a6413ce1d843d17c2dffe598a1b6100d2a711",
+      "bytes": 5029
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
