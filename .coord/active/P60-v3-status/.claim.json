@@ -1,0 +1,16 @@
+{
+  "agent": "fast",
+  "taken_at": "2026-11-25T04:11:39Z",
+  "task_sha256": "a0d5522245132e3741146b740aa5bf82f2fdfcbc51f50365cf3de297a37bdc8a",
+  "area": [
+    "tools/dcritical2.py",
+    "docs/FORMULA-DCRITICAL.md",
+    "docs/agent/AGENT_STATE.md"
+  ],
+  "kind": "research",
+  "priority": 5,
+  "gen": 1,
+  "boot_id": "5f328b2e-ad97-4746-8d2f-6d85bf63c207",
+  "parent": null,
+  "standing": false
+}

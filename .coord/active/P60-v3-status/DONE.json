@@ -1,0 +1,25 @@
+{
+  "task": "P60-v3-status",
+  "agent": "fast",
+  "gen": 1,
+  "finished_at": "2026-11-25T04:12:31Z",
+  "artifacts": [
+    {
+      "path": "tools/dcritical2.py",
+      "sha256": "368ebc5ec638bf3528044f5c8aa59fbeb1e40fdca6d971d55f572ea6872e39fa",
+      "bytes": 16096
+    },
+    {
+      "path": "docs/FORMULA-DCRITICAL.md",
+      "sha256": "51729366c06d34f1798318d31535f37dfb0a8b779115db72bfa8daac06cf1d60",
+      "bytes": 12131
+    },
+    {
+      "path": "docs/agent/AGENT_STATE.md",
+      "sha256": "5f5b78449fcab9a368c439187832c773f8a0b20fb74cd51ac48b2994bb05ccec",
+      "bytes": 67706
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

@@ -1,0 +1,20 @@
+{
+  "task": "P66-locator-audit",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T04:12:44Z",
+  "artifacts": [
+    {
+      "path": "tools/locator_audit.py",
+      "sha256": "bf247738955bd036f79b135bea0a0e2279cc132f253d544b895aa2bc283f0a05",
+      "bytes": 4296
+    },
+    {
+      "path": "docs/FORMULA-SWITCH.md",
+      "sha256": "e28827c797d642aafd7e020631b466d9952f702de99fc425380ee980e623a0df",
+      "bytes": 12856
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
