@@ -192,6 +192,10 @@ do_exp() {
   echo "--- wiring_audit.py --strict ---"
   # Инструмент-аудит, который не вызывается в run.sh, — мёртвый: два таких нашлись 25.11.2026.
   python3 tools/wiring_audit.py --strict || rc=$?
+  echo "--- unanchored_nodes.py --strict ---"
+  # Узлы без единой формы опоры (lit_ref / evidence / relations / math.checked / S-пара). Потолок в
+  # docs/ANCHOR-BASELINE.json: 20 из 159. Новый узел без опоры — красный, старый долг не мешает.
+  python3 tools/unanchored_nodes.py --strict || rc=$?
   echo "--- support_sources.py ---"
   # Опора = evidence ∪ math.checked ∪ lit_ref ∪ пары сшивки. Три раза подряд вывод «нет опоры» был
   # неверным из-за проверки одного поля; теперь это ловит гейт.

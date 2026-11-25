@@ -226,6 +226,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/support_sources.py` | у `claim`/`formula` в статусе `established` есть хотя бы один источник опоры: `evidence`, `math.checked`, `lit_ref` или пара сшивки |
 | `checks/embeddings_fresh.py` (E0) | после `kg/kg.py build` остаётся маркер `kg/.embeddings_dirty`; пока он есть, индекс считается устаревшим |
 | `checks/formula_units_ceiling.py` | число формул без `math.units` не растёт выше порога (`docs/FORMULA-UNITS-BASELINE.json`) |
+| `tools/unanchored_nodes.py --strict` | узлов без опоры (lit_ref / evidence / relations / math.checked / S-пара) не больше потолка в `docs/ANCHOR-BASELINE.json` |
 | `tools/wiring_audit.py --strict` | каждый инструмент-аудит либо вызывается в `run.sh`, либо объяснён в `docs/WIRING-EXEMPTIONS.json` |
 | `tools/map_duplicates.py --strict` | нет необъявленных дублей: атомы с тем же DOI и двумя общими дробными числами должны быть в `docs/MAP-DUPLICATES.json` |
 | `tools/units_symbol_audit.py --strict` | все символы формул, у которых есть `math.units`, покрыты таблицей; структурные формулы (без единиц по смыслу) пропускаются |
