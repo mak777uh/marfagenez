@@ -1,0 +1,20 @@
+{
+  "task": "P39-makeham-ident",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T02:13:54Z",
+  "artifacts": [
+    {
+      "path": "tools/gompertz_check.py",
+      "sha256": "99ab6c36a965a4457e1c009e251261b6082e3e440383727f050ff12ee7a3116c",
+      "bytes": 4916
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "28d1cc16542a2b8789b2a536af9c71ded1b3763049210557b9d835fb0c0d3cf3",
+      "bytes": 27045
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
