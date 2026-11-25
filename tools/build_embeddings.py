@@ -81,6 +81,10 @@ def main(argv: list[str]) -> int:
     (out / "embeddings.meta.json").write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
     print(f"модель: {model_name}; узлов: {meta['count']}; размерность: {meta['dim']}")
     print(f"файлы: {out / 'embeddings.bin'}, {out / 'embeddings.meta.json'}")
+    marker = out / ".embeddings_dirty"
+    if marker.exists():
+        marker.unlink()
+        print("маркер устаревания снят")
     return 0
 
 

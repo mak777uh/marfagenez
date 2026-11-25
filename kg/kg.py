@@ -319,11 +319,15 @@ def build(nodes):
               "", "## Глаголы", "",
               ", ".join(meta["verbs"]), ""]
     INDEX.write_text("\n".join(lines), encoding="utf-8")
+    # Индекс эмбеддингов после пересборки графа заведомо построен по другой версии. Маркер
+    # делает это видимым сразу, а не на гейте: за день забывали четыре раза.
+    (ROOT / "kg" / ".embeddings_dirty").write_text(
+        "граф пересобран; индекс эмбеддингов надо пересобрать\n", encoding="utf-8")
+    print("внимание: индекс эмбеддингов устарел — пересоберите: python3 tools/build_embeddings.py")
     print(f"built: {len(nodes)} nodes, {len(edges)} edges")
     print("by kind:", dict(kinds))
     print("frontier:", {k: len(v) for k, v in frontier.items()})
     return 0
-
 
 def warnings(nodes):
     """Known-open inconsistencies, reported instead of silently tolerated."""

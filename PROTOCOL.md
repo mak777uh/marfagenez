@@ -223,6 +223,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/bridge_price_derivative.py` | цена = производная функции значения: конечная разность против двойственной переменной |
 | `checks/doc_numbers.py` | числа в документах (тесты, находки, фигуры, проверки) совпадают с деревом |
 | `checks/support_sources.py` | у `claim`/`formula` в статусе `established` есть хотя бы один источник опоры: `evidence`, `math.checked`, `lit_ref` или пара сшивки |
+| `checks/embeddings_fresh.py` (E0) | после `kg/kg.py build` остаётся маркер `kg/.embeddings_dirty`; пока он есть, индекс считается устаревшим |
 | `checks/formula_units_ceiling.py` | число формул без `math.units` не растёт выше порога (`docs/FORMULA-UNITS-BASELINE.json`) |
 | `tools/units_symbol_audit.py --strict` | все символы формул, у которых есть `math.units`, покрыты таблицей; структурные формулы (без единиц по смыслу) пропускаются |
 | `checks/stitch_coverage_floor.py` | строгая литературная опора (пары `S`) не падает ниже пола (`docs/STITCH-COVERAGE-FLOOR.json`) |

@@ -648,3 +648,8 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 
 **Мелочь, исправленная заодно:** `checks/embeddings_fresh.py` подсказывала `python.exe tools/build_embeddings.py`
 — в WSL это неверно и вводит в заблуждение; заменено на `python3`.
+
+**Механизм против «забыл индекс» (2026-11-25):** `kg/kg.py build` теперь оставляет маркер
+`kg/.embeddings_dirty` и печатает напоминание. `checks/embeddings_fresh.py` даёт `E0`, пока маркер есть;
+`tools/build_embeddings.py` снимает его только после успешной записи файлов. Проверено: `build` → маркер есть
+→ `E0`; пересборка → маркер снят → зелено.

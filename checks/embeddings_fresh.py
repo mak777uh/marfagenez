@@ -37,6 +37,11 @@ def node_ids(path: pathlib.Path) -> list[str]:
 
 def check(meta_path: pathlib.Path, bin_path: pathlib.Path, nodes_path: pathlib.Path) -> list[str]:
     errs: list[str] = []
+    dirty = meta_path.parent / ".embeddings_dirty"
+    if dirty.exists():
+        return [f"E0 граф пересобран после сборки индекса ({dirty.name}): "
+                f"пересоберите `python3 tools/build_embeddings.py`"]
+
     if not meta_path.exists():
         return [f"E1 нет {meta_path.name}: индекс не собран (см. tools/build_embeddings.py)"]
     try:
