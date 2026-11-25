@@ -1,0 +1,20 @@
+{
+  "task": "P99-f030-modes",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T06:41:48Z",
+  "artifacts": [
+    {
+      "path": "kg/migrate.py",
+      "sha256": "d4c00da3f9360085b101f5013855de993193ee22e44f89d8e9855af53f21c0e1",
+      "bytes": 23664
+    },
+    {
+      "path": "docs/UNITS-AUDIT.md",
+      "sha256": "94ac8f1a1cbbac141ab8a44af328007859961379fa551d128e55c263b5cd4d3a",
+      "bytes": 40659
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
