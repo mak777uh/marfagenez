@@ -1,0 +1,15 @@
+{
+  "task": "P18-adjudicate-pairs",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T00:41:37Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-ADJUDICATION.md",
+      "sha256": "de338f865bfc3e315bd5edf0caabda35d110b0cdd9269e7b338573f0915de2ac",
+      "bytes": 5339
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
