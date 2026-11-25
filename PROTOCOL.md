@@ -227,6 +227,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/embeddings_fresh.py` (E0) | после `kg/kg.py build` остаётся маркер `kg/.embeddings_dirty`; пока он есть, индекс считается устаревшим |
 | `checks/formula_units_ceiling.py` | число формул без `math.units` не растёт выше порога (`docs/FORMULA-UNITS-BASELINE.json`) |
 | `kg/node-refs.json` | связи «выведено из» между узлами графа (`derived_from`): формулы, чьё «Откуда» указывает на литературные сводки `L-*`, а не на ячейки карты |
+| `docs/ANCHOR-EXEMPTIONS.json` | узлы, объявленные **собственными конструкциями**: опоры нет по построению, исключение датировано и с указанием, что поиск делался |
 | `tools/unanchored_nodes.py --strict` | узлов без опоры (lit_ref / evidence / relations / math.checked / S-пара) не больше потолка в `docs/ANCHOR-BASELINE.json` |
 | `tools/wiring_audit.py --strict` | каждый инструмент-аудит либо вызывается в `run.sh`, либо объяснён в `docs/WIRING-EXEMPTIONS.json` |
 | `tools/map_duplicates.py --strict` | нет необъявленных дублей: атомы с тем же DOI и двумя общими дробными числами должны быть в `docs/MAP-DUPLICATES.json` |

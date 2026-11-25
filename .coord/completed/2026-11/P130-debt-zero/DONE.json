@@ -1,0 +1,20 @@
+{
+  "task": "P130-debt-zero",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T12:41:36Z",
+  "artifacts": [
+    {
+      "path": "docs/ANCHOR-EXEMPTIONS.json",
+      "sha256": "5c83336b94531112c503a36e13c6e6a59a297965d1d6f1afd0d6b55e25b4cc21",
+      "bytes": 583
+    },
+    {
+      "path": "docs/ANCHOR-AUDIT.md",
+      "sha256": "9083a3b436ba2514f8c14aba958c57da7056602ecbea5d5ff17478b9870ba5a3",
+      "bytes": 13812
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}

@@ -60,6 +60,20 @@ def main(argv: list[str]) -> int:
             rows.append(n)
 
     print(f"узлов утверждающего типа: {sum(1 for n in nodes if n.get('kind') in KINDS)}")
+    exempt = {}
+    ef = ROOT / "docs" / "ANCHOR-EXEMPTIONS.json"
+    if ef.exists():
+        try:
+            exempt = {k: v for k, v in json.loads(ef.read_text(encoding="utf-8")).items()
+                      if not k.startswith("_")}
+        except Exception:
+            exempt = {}
+    if exempt:
+        before = len(rows)
+        rows = [r for r in rows if r["id"] not in exempt]
+        print(f"объявлены собственными конструкциями: {before - len(rows)} "
+              f"(осталось без опоры: {len(rows)})")
+
     base_file = ROOT / "docs" / "ANCHOR-BASELINE.json"
     base = {}
     if base_file.exists():
