@@ -1,0 +1,15 @@
+{
+  "task": "P72-c006-zero",
+  "agent": "main",
+  "gen": 1,
+  "finished_at": "2026-11-25T04:54:12Z",
+  "artifacts": [
+    {
+      "path": "docs/STITCH-OVERRIDES.json",
+      "sha256": "c9b2abf602f679de10856093e6f7c328c773960a7121d2a342693b4443a81020",
+      "bytes": 19974
+    }
+  ],
+  "self_report": "RESULT.md",
+  "checks": []
+}
