@@ -399,3 +399,8 @@ Self-check grand-circle: в заметке DIP39-0010 единица перес�
 ## 2026-11-26 — формализация I-019: два режима смерти (цикл 843)
 
 Новый файл laws/Medium/TwoDeaths.lean: 3 теоремы — точный порог доступности afford_threshold (cR ≤ E·(1+τγd)/C0), голод при нулевом подавлении starvation_at_zero_suppression (цена выше E/C0), двухрежимный порог two_death_modes (гомеостаз = выше пола коллапса I-018 И доступно). Теорем 338 (Medium 311 в 61 файле, файлов с теоремами 68, всего 71 .lean); живые числа docs синхронизированы полностью (включая корневые GOAL/NOT-CLAIMED/PROTOCOL/README и BRIEF-NOTES). Карта без изменений (1271/1026). Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}}. devin: SUB-DEVIN-S7ZO/S7ZP/S7ZQ-001 зарегистрированы. Состояние синхронизировано с текущим HEAD.
+
+
+## 2026-11-26 — правила контура: доска ready и приёмка по департаментам (цикл 844)
+
+lab/MAIN.md дополнен §11 (протокол пополнения доски ready: публикация standing-шаблонов при ready < 2, уведомление message-send, запрет петель со sleep в fast/) и §12 (контур приёмки: formulas/experiments/knowledge). Правка контурная, Lean и карта без изменений (338 теорем; 1271/1026). Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Состояние синхронизировано с текущим HEAD.
