@@ -429,3 +429,8 @@ lab/MAIN.md дополнен §11 (протокол пополнения дос�
 ## 2026-11-26 — карта слона синхронизирована (цикл 849)
 
 docs/ELEPHANT-MAP.md дополнен §5 (состояние на 26.11: Lean-формализация ремонта/двухосевости, план прогонов, карта 1291/1060). Правка только документации; данные не тронуты. Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 4, "submitted": 19}} Состояние синхронизировано с текущим HEAD.
+
+
+## 2026-11-26 — Compartment: ремонт как состояние в core (цикл 850)
+
+Новый модуль core/src/compartment.rs (бин core/src/bin/compartment.rs): C как состояние (I-018), три режима смерти по механизму (Collapse/Starved/FellApart), фазовая диаграмма (gamma, cR) с границами, совпадающими с Lean RepairCapacity/TwoDeaths. Rust-тестов 387 (+5); 14 живых строк docs синхронизированы. Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 4, "submitted": 20}} Состояние синхронизировано с текущим HEAD.
