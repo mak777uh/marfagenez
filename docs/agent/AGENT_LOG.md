@@ -10345,3 +10345,11 @@ eproduced_at из полного прогона гейта (8 файлов ре�
 - Карта: 1256 ячеек (+4), 996 рёбер (+10). Сироты: по map_orphans --strict (сироты считать из вывода секции 2), потолок не превышен.
 - Контракты: map_contract / map_orphans --strict / unanchored_nodes --strict зелёные. Submission остаётся `received` (метода integrate нет, gap в аудите владельца).
 - Очередь на момент записи: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 4, "submitted": 13}}. Контроль: log_check до коммита; полный `run.sh all` после коммита; исход и пуш при зелёном фиксируются следующей записью.
+
+### Цикл 837 — 2026-11-26 — `53f271295311e6d1c793fa698289a578bf56d9c4`: интеграция s7zi (SUB-DEVIN-S7ZI-001); фикс исхода 836
+
+- **Исход 836:** гейт зелёный, 53f27129 запушен (карта 1256/996, сироты 218).
+- **Партия devin s7zi встроена в карту** (5 атомов + 9 рёбер, base 00f7bc09 — свежий HEAD на момент сабмита, до интеграции s7zh; дрейф один структурный коммит (s7zh), ingest принял партию на текущую карту; контент — по result-заметке devin SUB-DEVIN-S7ZI-001).
+- Карта: 1261 ячеек (+5), 1005 рёбер (+9). Сироты: по map_orphans --strict, потолок не превышен.
+- Контракты: map_contract / map_orphans --strict / unanchored_nodes --strict зелёные. Submission остаётся `received` (метода integrate нет).
+- Очередь на момент записи: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 4, "submitted": 13}}. Контроль: log_check до коммита; полный `run.sh all` после коммита; исход и пуш при зелёном фиксируются следующей записью.

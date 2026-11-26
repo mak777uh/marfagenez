@@ -371,3 +371,7 @@ Self-check grand-circle: в заметке DIP39-0010 единица перес�
 ## 2026-11-26 — интеграция s7zh (цикл 836)
 
 Партия devin s7zh (4 атома + 10 рёбер, SUB-DEVIN-S7ZH-001) встроена: карта 1256 ячеек / 996 рёбер, сироты по strict-чеку; контракты зелёные. Submission остаётся `received` (метода integrate нет). Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 4, "submitted": 13}}. Состояние синхронизировано с текущим HEAD.
+
+## 2026-11-26 — интеграция s7zi (цикл 837)
+
+Партия devin s7zi (5 атомов + 9 рёбер, SUB-DEVIN-S7ZI-001) встроена: карта 1261 ячейка / 1005 рёбер, сироты по strict-чеку; контракты зелёные. Submission остаётся `received`. Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 4, "submitted": 13}}. Состояние синхронизировано с текущим HEAD.
