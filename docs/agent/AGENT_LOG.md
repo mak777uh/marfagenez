@@ -10489,3 +10489,19 @@ eproduced_at из полного прогона гейта (8 файлов ре�
 - **Проверено (4 теста):** плато при h=0.9 (рост <=5% на второй половине); h=1.0 обгоняет h=0.9 более чем вдвое к концу; детерминизм по seed; reset-события есть, Dbar не убегает. Смоук-граблей нет: первая попытка зелёная.
 - **Числа:** Rust-тестов 396->400 (+4); живые строки — автопочинка по отчётам чеков. Lean без изменений. Карта не менялась.
 - Контракты: чеки до журнала fail-safe; AGENT_STATE-секция 853 в этом же коммите. Контроль: полный `run.sh all` после коммита.
+
+### Цикл 854 — 2026-11-27 — `4efb1dc3`: контроли D-Q4 в драйвере; фикс исхода 853
+
+**Исход 853:** гейт зелёный (GATE_RC=0, PUSH_STATUS=0), драйвер D-Q6 в core,
+Rust-тестов 400, коммит `4efb1dc3` запушен; EXP-2026-4103 опубликована (base 4efb1dc35337),
+MSG-...-12 exper'у отправлен.
+
+- Proposal exper PROP-EXPER-DQ4-UNBLOCK-20261127-01 rev4 принят к исполнению: exp_dq4.rs
+  получил `--control repair|r-clock|sham`, cost-matched sham (энергия want*COST без d/R),
+  R_CLOCK=100 в r-clock, фактические seed в CSV вместо zero-based индекса.
+- 3 новых теста: r_clock_pair_is_identical, sham_pair_is_identical,
+  sham_costs_energy_but_never_repairs. Rust 400->403 (PASSED=403).
+- Грабли попыток 1-4 (подробно в AGENT_STATE): детерминизм тестов к моменту смерти
+  руки; rustdoc вне PATH watcher'а (Doc-tests); WRONG-строки doc_numbers с отступом,
+  файл во втором поле.
+- Доска: EXP-0002-0002 cancelled (286), EXP-2026-4103 published (287).

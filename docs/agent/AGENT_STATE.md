@@ -446,3 +446,20 @@ docs/ELEPHANT-MAP.md дополнен §5 (состояние на 26.11: Lean-�
 ## 2026-11-27 — D-Q6: drift-sweep драйвер в core (цикл 853)
 
 Бин core/src/bin/exp_dq6.rs (дизайн exper rev2, ревью main: published): параметризованный sweep полюса death-reset (h_fit + контроли, семплы Dbar + счётчик reset-событий для T_life). 4 юнит-теста; Rust-тестов 400. Очередь: {"audit_chain_ok": true, "leases_active": 0, "tasks": {"cancelled": 1, "integrated": 168, "ready": 5, "submitted": 21}} Состояние синхронизировано с текущим HEAD.
+
+## 2026-11-27 — контроли D-Q4 в драйвере (цикл 854)
+
+По proposal exper PROP-EXPER-DQ4-UNBLOCK-20261127-01 rev4 в exp_dq4.rs добавлены три
+контроля процедуры: `--control repair|r-clock|sham` (repair -- default), CSV получил
+колонку control и фактические seed (4101+), r-clock подаёт R_CLOCK=100 обеим рукам,
+sham -- cost-matched списание энергии (want*COST за событие, в пределах бюджета 0.1)
+без восстановления d и роста R; при r-clock и sham hazard даёт попарно идентичные
+исходы при k>0 (тесты). 3 новых теста, Rust 400->403 (юнит-тесты зелёные, PASSED=403).
+
+Грабли цикла: (1) тесты через challenge обязаны быть детерминированы к моменту смерти
+руки; (2) plain `cargo test` из watcher-окружения падает на Doc-tests (rustdoc не в
+PATH watcher'а) -- счетчик тестов брать из doc_numbers/gate; (3) WRONG-строки
+doc_numbers пишутся с отступом в 2 пробела -- grep без якоря '^', файл во втором
+поле ($2) с обрезкой ':'.
+
+status: цикл 854 — автопочинка зелёная, дальше журнал + гейт + пуш.
