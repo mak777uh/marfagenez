@@ -10361,3 +10361,11 @@ eproduced_at из полного прогона гейта (8 файлов ре�
 - Карта: 1266 ячеек (+5), 1016 рёбер (+10). Сироты: по map_orphans --strict, потолок не превышен.
 - Контракты: map_contract / map_orphans --strict / unanchored_nodes --strict зелёные. Submission остаётся `received` (метода integrate нет).
 - Очередь на момент записи: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Контроль: log_check до коммита; полный `run.sh all` после коммита; исход и пуш при зелёном фиксируются следующей записью.
+
+### Цикл 839 — 2026-11-26 — `fb92c88d9011cf94b04f8189d6cb49f88c4e320e`: формализация двухосевого порога I-039 (laws/Medium/TwoAxes.lean); фикс исхода 838
+
+- **Исход 838:** гейт зелёный, fb92c88d запушен (карта 1266/1016, сироты 218).
+- **Lean:** новый файл laws/Medium/TwoAxes.lean — условие I-039 (L/L*) + (v/v*)² ≤ 1 формализовано (abbrev twoAxes) с четырьмя теоремами арифметики условия: twoAxes_static_limit (нулевая скорость покупает статический предел L*), twoAxes_rate_limit (нулевая нагрузка покупает предел по скорости), twoAxes_mono_load (область безопасных пар замкнута вниз по нагрузке), twoAxes_rate_budget (бюджет 1 − L/L* даёт v² ≤ бюджет·v*² — квадратичный член, масштаб складки FINDING-316). Статус I-039 остаётся open: формализация фиксирует структуру условия, а не его эмпирическую верификацию (см. I-040). Доказательства: field_simp/nlinarith на 0 < L*, 0 < v*; две неудачные попытки (старые имена div_le_iff/div_le_div_iff/div_le_one отсутствуют в текущем Mathlib) откачены до журнала.
+- **Числа:** теорем теперь 322 (Medium 295 в 57 файлах, Legacy 27 в 7; 64 файла с теоремами, 67 `.lean` всего). Живые упоминания синхронизированы по log_check: GOAL, NOT-CLAIMED (x2), PROTOCOL, README, CLAIMS (x2), BRIEF-for-models, AUTONOMY-PLAN, LAWS (x6), UNREPRODUCIBLE, AGENT_STATE, archive/BRIEF-NOTES, laws/README (x2) — 21 строка 318→322/63→64/56→57/64→67 .lean. lake build зелёный до коммита.
+- Контракты: map_contract / map_orphans --strict / unanchored_nodes --strict зелёные (карта не менялась: 1266/1016). log_check зелёный.
+- Очередь на момент записи: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Контроль: полный `run.sh all` после коммита; исход и пуш при зелёном фиксируются следующей записью.

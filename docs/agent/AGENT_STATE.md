@@ -196,7 +196,7 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 - **Экзамен базы:** `python3 kg/eval/score.py runs-<дата>.json`; спека заморожена, hash в `kg/eval/questions.json`.
 - **Регресс импорта:** `python3 kg/regress.py` — сверяет корпус (`claims.jsonl`, литература, `results/`) с `nodes.jsonl` и запрещает смену статуса при импорте; входит в раздел `kg` гейта.
 - **Свидетельство — объект:** 11 узлов `EV-*` для находок и алиасов; `ref_targets()` — единый резолвер для `check` и `expand`; `expand C-001 1` доходит до прогонов и находок.
-- **Точка измерения в DeathLaw названа:** `steadyEnergyAtCap` — энергия между платежами и зажимом; `cap_is_last_measurement` — значение после зажима (Medium 291, всего 318 теорем).
+- **Точка измерения в DeathLaw названа:** `steadyEnergyAtCap` — энергия между платежами и зажимом; `cap_is_last_measurement` — значение после зажима (Medium 295, всего 322 теорем).
 - **Порядок меняет имена, не счёт:** сетка 3×3 под тремя порядками — 8 расхождений из 9 по слотам выживших и 0 по числу; `core/tests/order_sensitivity.rs`, `FINDING-335`.
 - **Граница восстановимого:** `damage * repair_cost < energy`; `core/tests/damage_recovery.rs` (3 теста) и карта 4×5; `FINDING-334`. Повреждение формы в форме-мире не моделируется.
 - **Фазовая карта:** `core/tests/phase_diagram.rs` — 4×4 по `damage×repair`; граница между repair 1.5 и 4.0 при damage 0.2; повреждение 0.05 не убивает даже при починке 4.0; `FINDING-333`.
@@ -379,3 +379,7 @@ Self-check grand-circle: в заметке DIP39-0010 единица перес�
 ## 2026-11-26 — интеграция s7zk (цикл 838)
 
 Партия devin s7zk (5 атомов + 10 рёбер, SUB-DEVIN-S7ZK-001) встроена: карта 1266 ячеек / 1016 рёбер, сироты по strict-чеку; контракты зелёные. Submission остаётся `received`. Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Состояние синхронизировано с текущим HEAD.
+
+## 2026-11-26 — формализация I-039 в Lean (цикл 839)
+
+Новый файл laws/Medium/TwoAxes.lean (abbrev twoAxes + 4 теоремы: static_limit, rate_limit, mono_load, rate_budget — масштаб FINDING-316). Импорт добавлен в laws/Medium.lean. Теорем 322 (Medium 295 в 57 файлах); 21 живая строка docs синхронизирована по log_check (318→322, 63→64, 56→57, 64→67 `.lean`). lake build зелёный. Карта без изменений (1266/1016). Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Состояние синхронизировано с текущим HEAD.
