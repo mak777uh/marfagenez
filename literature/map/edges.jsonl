@@ -974,3 +974,13 @@
 {"from": "FAST-S7ZD-05", "to": "FAST-S2O-01", "type": "analogous", "note": "Θ-индекс замыкания (скаляр) vs геометрическая область viability: оба — попытки сделать границу жизни/смерти измеримой."}
 {"from": "FAST-S7ZD-02", "to": "FAST-S7ZD-03", "type": "supports", "note": "Первенство заявки опирается на конкретную процедуру вывода."}
 {"from": "FAST-S7ZD-04", "to": "FAST-S7ZD-02", "type": "supports", "note": "Масштаб графа — аргумент «выведено из первых принципов, а не постулировано»."}
+{"from": "FAST-S7ZE-01", "to": "V-0001", "type": "analogous", "note": "Viability region (геометрическая граница в state space) vs viability kernel (множество допустимых траекторий): дополнительная структура поверх классики."}
+{"from": "FAST-S7ZE-03", "to": "V-0004", "type": "extends", "note": "Бассейны аттракторов + mortality/ordering/collapse многообразия — обобщение «единственных замкнутых множеств» на случай гибридной границы."}
+{"from": "FAST-S7ZE-05", "to": "V-0005", "type": "supports", "note": "V-0005 фиксирует отсутствие биологических моделей в viability theory — S7ZE-05 даёт именно биологическую интерпретацию (сеть регенеративных процессов)."}
+{"from": "FAST-S7ZE-04", "to": "DIP2-0009", "type": "analogous", "note": "Viability kernel нелинейной экосистемной модели на граничных ограничениях — тот же геометрический объект в другой области."}
+{"from": "FAST-S7ZE-06", "to": "DIP11-0003", "type": "analogous", "note": "Граф зависимостей процессов глайдера как носитель идентичности — параллель process-enablement graphs."}
+{"from": "FAST-S7ZE-07", "to": "FAST-S2O-01", "type": "analogous", "note": "Вероятностная viability (p%-границы) vs скалярный Θ-индекс замыкания: оба — попытки квантифицировать «насколько живо»."}
+{"from": "FAST-S7ZE-02", "to": "FAST-S7ZE-01", "type": "supports", "note": "Критика ad hoc-смертей — мотивация ввести viability region как первоклассный объект."}
+{"from": "FAST-S7ZE-04", "to": "FAST-S7ZE-03", "type": "supports", "note": "Касательная конструкция — конкретная реализация mortality manifolds."}
+{"from": "FAST-S7ZE-06", "to": "FAST-S7ZE-05", "type": "supports", "note": "Глайдер —toy-реализация интринзитной viability из определения."}
+{"from": "FAST-S7ZE-07", "to": "FAST-S7ZE-03", "type": "extends", "note": "Шум/неавтономность/вероятность — расширение декомпозиции за пределы автономных ODE."}

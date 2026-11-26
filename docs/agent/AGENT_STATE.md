@@ -359,3 +359,7 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 ## 2026-11-26 — интеграция s7zd (цикл 833)
 
 Партия devin s7zd (5 атомов + 8 рёбер, SUB-DEVIN-S7ZD-001) встроена: карта 1245 ячеек / 976 рёбер, сирот 219; контракты зелёные. Submission остаётся `received` (метода integrate нет). Очередь: {"audit_chain_ok": true, "leases_active": 0, "tasks": {"integrated": 168, "ready": 11, "submitted": 7}}. Следующий цикл: зафиксировать исход гейта/пуша записи 833.
+
+## 2026-11-26 — интеграция s7ze (цикл 834)
+
+Партия devin s7ze (7 атомов + 10 рёбер, SUB-DEVIN-S7ZE-001) встроена: карта 1252 ячеек / 986 рёбер, сирот 218; контракты зелёные. Submission остаётся `received` (метода integrate нет). Очередь: {"audit_chain_ok": true, "leases_active": 0, "tasks": {"integrated": 168, "ready": 10, "submitted": 8}}. Следующий цикл: зафиксировать исход гейта/пуша записи 834.
