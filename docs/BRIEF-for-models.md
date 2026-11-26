@@ -49,7 +49,7 @@ Mathlib** и **Verus**, и **Python/баш-гейт** (`checks/`, `run.sh`), к�
 | [`docs/FINDING-*.md`](/root/marfagenez/docs) | **321 находок**: число, вердикт, ограничения. Именно здесь считались числа |
 | [`docs/*-CLOSED.md`](/root/marfagenez/docs) | **7 закрытий линий**: обмен, организация, структуры, кожа, прошлое, выбор, … |
 | [`docs/MODEL-CEILINGS.md`](/root/marfagenez/docs/MODEL-CEILINGS.md) | три **потолка формулировки** и порядок их снятия (два сняты) |
-| [`docs/SESSION-2026-11-19.md`](/root/marfagenez/docs/SESSION-2026-11-19.md) | итог сессии: что стало твёрдым, что было ошибкой, что делать первым |
+| [`docs/SESSION-2026-11-19.md`](/root/marfagenez/docs/archive/SESSION-2026-11-19.md) | итог сессии: что стало твёрдым, что было ошибкой, что делать первым |
 | [`docs/ELEPHANT-LITERATURE.md`](/root/marfagenez/docs/ELEPHANT-LITERATURE.md) | **реестр литературы**: что наука уже нашла про слона — 22 записи L-NNN, банк формул F-NNN, соответствия |
 | [`docs/QUESTIONS.md`](/root/marfagenez/docs/QUESTIONS.md) | очередь вопросов (Q-001…Q-022); **Q-016–Q-022 открыты** |
 | [`docs/ELIMINATED.md`](/root/marfagenez/docs/ELIMINATED.md), [`NOT-CLAIMED.md`](/root/marfagenez/NOT-CLAIMED.md) | что опровергнуто и чего мы не утверждаем |
