@@ -154,7 +154,7 @@ $$\text{время ответа} \approx \left(\frac{B}{\sigma}\right)^2$$
 
 | что | как | результат |
 |---|---|---|
-| Rust тестов: 400 | `cargo test --release` | все проходят |
+| Rust тестов: 403 | `cargo test --release` | все проходят |
 | 338 теорем Lean | `lake build` | собираются, 0 живых `sorry` |
 | 10 численных проверок | `checks/verify_all.js` | 10/10 |
 | 7 утверждений | `checks/audit.js` | 7/7 |
