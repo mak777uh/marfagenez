@@ -199,13 +199,21 @@ def serve() -> int:
         elif '.kg' in path.name:
             r = subprocess.run(['python3', 'tools/kg_inbox.py', '--serve', str(path)],
                                cwd=ROOT, capture_output=True, text=True)
-            out = ((r.stdout or '') + (r.stderr or '')).strip()
-            m = out.splitlines()[0] if out else ''
-            result['note'] = f'kg-инбокс: {m}'
-            result['accepted'] = 0
-            for line in out.splitlines()[1:]:
-                if line.strip().startswith('test'):
-                    result.setdefault('reasons', []).append(line.strip()[:160])
+            out = ((r.stdout or '') + (r.stderr or '')).strip().splitlines()
+            head = out[0] if out else ''
+            result['note'] = f'kg-инбокс: {head}'
+            import re as _re
+            m = _re.search(r'принято (\d+), отклонено (\d+)', head)
+            if m:
+                result['accepted'] = int(m.group(1))
+                result['rejected'] = int(m.group(2))
+            bm = _re.search(r'(\{.*\})', head)
+            if bm:
+                try:
+                    result['by_kind'] = json.loads(bm.group(1))
+                except Exception:
+                    pass
+            result['reasons'] = [l.strip()[:160] for l in out[1:] if l.strip()][:8]
         elif '.questions' in path.name:
             target = ROOT / 'literature/map/inbox' / f'win-{stem}.jsonl'
             shutil.copyfile(path, target)
