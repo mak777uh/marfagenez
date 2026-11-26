@@ -196,7 +196,7 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 - **Экзамен базы:** `python3 kg/eval/score.py runs-<дата>.json`; спека заморожена, hash в `kg/eval/questions.json`.
 - **Регресс импорта:** `python3 kg/regress.py` — сверяет корпус (`claims.jsonl`, литература, `results/`) с `nodes.jsonl` и запрещает смену статуса при импорте; входит в раздел `kg` гейта.
 - **Свидетельство — объект:** 11 узлов `EV-*` для находок и алиасов; `ref_targets()` — единый резолвер для `check` и `expand`; `expand C-001 1` доходит до прогонов и находок.
-- **Точка измерения в DeathLaw названа:** `steadyEnergyAtCap` — энергия между платежами и зажимом; `cap_is_last_measurement` — значение после зажима (Medium 308, всего 335 теорем).
+- **Точка измерения в DeathLaw названа:** `steadyEnergyAtCap` — энергия между платежами и зажимом; `cap_is_last_measurement` — значение после зажима (Medium 311, всего 338 теорем).
 - **Порядок меняет имена, не счёт:** сетка 3×3 под тремя порядками — 8 расхождений из 9 по слотам выживших и 0 по числу; `core/tests/order_sensitivity.rs`, `FINDING-335`.
 - **Граница восстановимого:** `damage * repair_cost < energy`; `core/tests/damage_recovery.rs` (3 теста) и карта 4×5; `FINDING-334`. Повреждение формы в форме-мире не моделируется.
 - **Фазовая карта:** `core/tests/phase_diagram.rs` — 4×4 по `damage×repair`; граница между repair 1.5 и 4.0 при damage 0.2; повреждение 0.05 не убивает даже при починке 4.0; `FINDING-333`.
@@ -395,3 +395,7 @@ Self-check grand-circle: в заметке DIP39-0010 единица перес�
 ## 2026-11-26 — C-007: опровержение в Lean (цикл 842)
 
 Новый файл laws/Medium/ChannelExponents.lean: 4 теоремы — свидетели отношений (линейная пара 8:1 при растяжке 8; квадратичная пара 8:1 при растяжке 64) и два опровержения закона 1/(m+1) (требуемый куб отношения 8/64 против фактического 512). Теорем 335 (Medium 308 в 60 файлах); живые числа docs синхронизированы. Карта без изменений (1271/1026). Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Состояние синхронизировано с текущим HEAD.
+
+## 2026-11-26 — формализация I-019: два режима смерти (цикл 843)
+
+Новый файл laws/Medium/TwoDeaths.lean: 3 теоремы — точный порог доступности afford_threshold (cR ≤ E·(1+τγd)/C0), голод при нулевом подавлении starvation_at_zero_suppression (цена выше E/C0), двухрежимный порог two_death_modes (гомеостаз = выше пола коллапса I-018 И доступно). Теорем 338 (Medium 311 в 61 файле, файлов с теоремами 68, всего 71 .lean); живые числа docs синхронизированы полностью (включая корневые GOAL/NOT-CLAIMED/PROTOCOL/README и BRIEF-NOTES). Карта без изменений (1271/1026). Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}}. devin: SUB-DEVIN-S7ZO/S7ZP/S7ZQ-001 зарегистрированы. Состояние синхронизировано с текущим HEAD.

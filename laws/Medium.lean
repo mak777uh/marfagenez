@@ -64,5 +64,6 @@ import Medium.TwoAxes
 import Medium.RepairRecords
 import Medium.RepairCapacity
 import Medium.ChannelExponents
+import Medium.TwoDeaths
 import Medium.TwoD
 import Medium.Walls
