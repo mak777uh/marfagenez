@@ -1,0 +1,12 @@
+{"from": "FAST-S7ZDU-01", "to": "WIN-L009-01", "type": "extends", "note": "WIN-L009-01 — SnC turnover замедляется с возрастом (days→weeks); здесь та же работа на полном тексте с параметрами SR-модели."}
+{"from": "FAST-S7ZDU-01", "to": "WIN-L009-02", "type": "extends", "note": "WIN-L009-02 — выбор 16 комбинаций механизмов; здесь ΔBIC>44.3 против моделей без насыщения."}
+{"from": "FAST-S7ZDU-02", "to": "WIN-L009-04", "type": "extends", "note": "WIN-L009-04 — смерть как first-passage порога; здесь X_C=17 и аналитический Gompertz."}
+{"from": "FAST-S7ZDU-02", "to": "WIN-L009-05", "type": "extends", "note": "WIN-L009-05 — SR-модель воспроизводит Гомпертца у мышей; здесь полный набор параметров и human/Drosophila/C.elegans."}
+{"from": "FAST-S7ZDU-02", "to": "L-024", "type": "contrasts", "note": "L-024 — у нас смертность-проток превращает складку в дивергенцию; здесь first-passage внешний порог, дивергенции нет."}
+{"from": "FAST-S7ZDU-02", "to": "L-023", "type": "contrasts", "note": "L-023 — Chao: складка Πλ=1/6; здесь гладкая saturating-кинетика без фолда по параметру."}
+{"from": "FAST-S7ZDU-03", "to": "DIP4-0004", "type": "extends", "note": "DIP4-0004 — надёжностная/фрагильная рамка; здесь проверяемое предсказание: интервенции масштабируют η, не удаление."}
+{"from": "FAST-S7ZDU-03", "to": "DIP4-0008", "type": "related", "note": "DIP4-0008 — frailty; ось η vs β — разные ручки вмешательства, чем в нашей модели repair."}
+{"from": "FAST-S7ZDU-04", "to": "MAIN-P127-01", "type": "contrasts", "note": "MAIN-P127-01 (Chao): порог Πλ; здесь X_C — импозированный порог смерти, не точка бифуркации состояния."}
+{"from": "FAST-S7ZDU-04", "to": "L-051", "type": "contrasts", "note": "L-051 — порог симметричного деления Πλ≤1/6; здесь насыщение удаления κ — параметр плато, не порог."}
+{"from": "FAST-S7ZDU-04", "to": "A-0006", "type": "supports", "note": "A-0006 — тройное пересечение пусто; здесь damage=SnC-маркер, границы и её цены нет."}
+{"from": "FAST-S7ZDU-04", "to": "L-037", "type": "supports", "note": "L-037 — 13-е подтверждение: нет damage+division+boundary-price."}
