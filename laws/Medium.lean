@@ -61,5 +61,7 @@ import Medium.Threshold
 import Medium.Threshold3
 import Medium.Timescale
 import Medium.TwoAxes
+import Medium.RepairRecords
+import Medium.RepairCapacity
 import Medium.TwoD
 import Medium.Walls

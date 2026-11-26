@@ -196,7 +196,7 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 - **Экзамен базы:** `python3 kg/eval/score.py runs-<дата>.json`; спека заморожена, hash в `kg/eval/questions.json`.
 - **Регресс импорта:** `python3 kg/regress.py` — сверяет корпус (`claims.jsonl`, литература, `results/`) с `nodes.jsonl` и запрещает смену статуса при импорте; входит в раздел `kg` гейта.
 - **Свидетельство — объект:** 11 узлов `EV-*` для находок и алиасов; `ref_targets()` — единый резолвер для `check` и `expand`; `expand C-001 1` доходит до прогонов и находок.
-- **Точка измерения в DeathLaw названа:** `steadyEnergyAtCap` — энергия между платежами и зажимом; `cap_is_last_measurement` — значение после зажима (Medium 295, всего 322 теорем).
+- **Точка измерения в DeathLaw названа:** `steadyEnergyAtCap` — энергия между платежами и зажимом; `cap_is_last_measurement` — значение после зажима (Medium 304, всего 331 теорем).
 - **Порядок меняет имена, не счёт:** сетка 3×3 под тремя порядками — 8 расхождений из 9 по слотам выживших и 0 по числу; `core/tests/order_sensitivity.rs`, `FINDING-335`.
 - **Граница восстановимого:** `damage * repair_cost < energy`; `core/tests/damage_recovery.rs` (3 теста) и карта 4×5; `FINDING-334`. Повреждение формы в форме-мире не моделируется.
 - **Фазовая карта:** `core/tests/phase_diagram.rs` — 4×4 по `damage×repair`; граница между repair 1.5 и 4.0 при damage 0.2; повреждение 0.05 не убивает даже при починке 4.0; `FINDING-333`.
@@ -387,3 +387,7 @@ Self-check grand-circle: в заметке DIP39-0010 единица перес�
 ## 2026-11-26 — интеграция s7zl (цикл 840)
 
 Партия SUB-DEVIN-S7ZL-001 принята: 5 атомов + 10 рёбер (computational autopoiesis, L-104). карта: 1271 ячеек, 1026 рёбер, нарушений нет. Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Состояние синхронизировано с текущим HEAD.
+
+## 2026-11-26 — формализация I-034 + I-018 в Lean (цикл 841)
+
+Два новых файла: RepairRecords.lean (4 теоремы — записи эффективности ремонта) и RepairCapacity.lean (5 теорем — порог коллапса, критический γ* = (C0−Cmin)/(τdCmin)). Импорты в laws/Medium.lean. Теорем 331 (Medium 304 в 59 файлах); живые числа docs синхронизированы по log_check. Карта без изменений (1271/1026). Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Состояние синхронизировано с текущим HEAD.
