@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lab/schemas/v1/task.schema.json",
+  "title": "Задача task/v1",
+  "description": "Опубликованная неизменяемая версия задачи. Любое изменение постановки — новая TaskVersion с version+1 и новым task_version_sha256. PROTECTED-зоны наследуются из политики и не отменяются write_scope.",
+  "type": "object",
+  "required": [
+    "schema", "id", "department", "version", "task_version_sha256",
+    "title", "created_by", "published_by", "published_at",
+    "base_commit", "write_scope", "spec", "validators",
+    "dependencies", "budget", "network_profile", "lease", "created_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "task/v1" },
+    "id": { "$ref": "common.schema.json#/$defs/task_id" },
+    "department": { "$ref": "common.schema.json#/$defs/department" },
+    "version": { "type": "integer", "minimum": 1 },
+    "task_version_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "supersedes_version": { "type": "integer", "minimum": 1 },
+    "change_reason": { "type": "string" },
+    "title": { "type": "string", "minLength": 1 },
+    "created_by": { "type": "string", "minLength": 1 },
+    "published_by": { "type": "string", "minLength": 1 },
+    "published_at": { "$ref": "common.schema.json#/$defs/rfc3339" },
+    "base_commit": { "$ref": "common.schema.json#/$defs/git_sha" },
+    "write_scope": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "common.schema.json#/$defs/scope_glob" },
+      "description": "Точные пути/globs, которые результат вправе предложить изменить. Проверяется на intake и integration; пересечение областей — на claim."
+    },
+    "inputs": {
+      "type": "object",
+      "description": "Content-addressed снапшоты входов: snapshot_sha256, атомы, kg_nodes, источники. Ключи свободные, значения обязаны включать хэши, где речь о содержимом.",
+      "additionalProperties": true
+    },
+    "spec": {
+      "oneOf": [
+        { "$ref": "#/$defs/spec_experiments" },
+        { "$ref": "#/$defs/spec_formulas" },
+        { "$ref": "#/$defs/spec_knowledge" }
+      ]
+    },
+    "validators": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["profile", "version"],
+        "additionalProperties": false,
+        "properties": {
+          "profile": { "type": "string", "minLength": 1 },
+          "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+        }
+      },
+      "description": "Ссылки на зарегистрированные validator profiles (lab/validators/profiles/), не команды исполнителя. Свободный массив accept-команд удалён."
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["task_id", "required_task_version", "required_state", "required_artifact_sha256"],
+        "additionalProperties": false,
+        "properties": {
+          "task_id": { "$ref": "common.schema.json#/$defs/task_id" },
+          "required_task_version": { "type": "integer", "minimum": 1 },
+          "required_state": { "$ref": "common.schema.json#/$defs/required_state" },
+          "required_artifact_sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "required": ["cpu_seconds", "ram_bytes", "disk_bytes", "network_allowlist"],
+      "additionalProperties": false,
+      "properties": {
+        "cpu_seconds": { "type": "integer", "minimum": 1 },
+        "ram_bytes": { "type": "integer", "minimum": 1 },
+        "disk_bytes": { "type": "integer", "minimum": 1 },
+        "network_allowlist": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "network_profile": { "$ref": "common.schema.json#/$defs/network_profile" },
+    "lease": {
+      "type": "object",
+      "required": ["ttl_seconds", "heartbeat_seconds", "max_attempts", "max_lease_seconds"],
+      "additionalProperties": false,
+      "properties": {
+        "ttl_seconds": { "type": "integer", "minimum": 1 },
+        "heartbeat_seconds": { "type": "integer", "minimum": 1 },
+        "max_attempts": { "type": "integer", "minimum": 1 },
+        "max_lease_seconds": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "tags": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "created_at": { "$ref": "common.schema.json#/$defs/rfc3339" }
+  },
+  "$defs": {
+    "spec_experiments": {
+      "type": "object",
+      "required": ["mode", "hypothesis", "controls"],
+      "additionalProperties": true,
+      "properties": {
+        "mode": { "const": "experiment" },
+        "hypothesis": { "type": "string", "minLength": 1 },
+        "target_setup": { "type": "string" },
+        "expected_effect": { "type": "string" },
+        "parameters": { "type": "object" },
+        "axes": { "type": "array", "items": { "type": "object" } },
+        "seeds": { "type": "array", "items": { "type": "integer" } },
+        "controls": {
+          "type": "object",
+          "required": ["fires", "silent", "specific"],
+          "properties": {
+            "fires": { "type": "string", "minLength": 1 },
+            "silent": { "type": "string", "minLength": 1 },
+            "specific": { "type": "string", "minLength": 1 }
+          }
+        },
+        "prior_results": { "type": "array", "items": { "type": "string" } },
+        "kg_refs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "spec_formulas": {
+      "type": "object",
+      "required": ["mode", "statement", "required_status", "acceptance_criteria"],
+      "additionalProperties": true,
+      "properties": {
+        "mode": { "const": "formalize" },
+        "statement": { "type": "string", "minLength": 1 },
+        "statement_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "known_definitions": { "type": "array", "items": { "type": "string" } },
+        "target": { "type": "string", "description": "Целевой Lean-файл, Verus-модуль или новый модуль." },
+        "required_status": {
+          "enum": ["derived", "formalized", "checked", "refuted"]
+        },
+        "sources": { "type": "array", "items": { "type": "object" } },
+        "acceptance_criteria": { "type": "string", "minLength": 1 },
+        "uses_verus": { "type": "boolean" }
+      }
+    },
+    "spec_knowledge": {
+      "type": "object",
+      "required": ["mode", "required_evidence"],
+      "additionalProperties": true,
+      "properties": {
+        "mode": {
+          "enum": ["expand_source", "verify_value", "verify_locator", "resolve_gap", "propose_edge", "audit_contradiction", "verify"],
+          "description": "Виды задач контура по плану §17.1; verify — общий случай (пример §11.2), при уточнении использовать verify_value/verify_locator."
+        },
+        "questions": { "type": "array", "items": { "type": "string" } },
+        "required_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "atoms": { "type": "array", "items": { "type": "string" } },
+        "kg_nodes": { "type": "array", "items": { "type": "string" } },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "doi": { "type": "string" },
+              "url": { "type": "string" },
+              "locator": { "type": "string" },
+              "snapshot_sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

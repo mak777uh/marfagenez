@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lab/schemas/v1/proposal.schema.json",
+  "title": "Предложение proposal/v1",
+  "description": "Proposal — единственный канал влияния внешнего планировщика/агента на очередь. Редактирование использует revision (optimistic concurrency): устаревшая ревизия получает 409. Дополнительного статуса draft нет: submitted уже черновик. Опубликованную или взятую задачу proposal не меняет.",
+  "type": "object",
+  "required": [
+    "schema", "id", "author", "revision", "status", "payload", "created_at", "updated_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "proposal/v1" },
+    "id": { "type": "string", "minLength": 1, "pattern": "^PROP-" },
+    "author": { "type": "string", "minLength": 1 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "status": { "enum": ["submitted", "changes_requested", "rejected", "published"] },
+    "payload": {
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": true,
+      "properties": {
+        "kind": {
+          "enum": ["new_task", "task_change", "priority", "dependency", "comment", "cutover_plan"],
+          "description": "new_task — предложить новую постановку (draft версии task/v1 payload в поле draft); task_change — предложить TaskVersion для существующей задачи; priority/dependency — предложить изменение; comment — замечание без прямой постановки."
+        },
+        "task_id": { "$ref": "common.schema.json#/$defs/task_id" },
+        "draft": {
+          "type": "object",
+          "description": "Черновик задачи/версии. main публикует его самостоятельно и несёт ответственность за публикацию."
+        },
+        "change_reason": { "type": "string" },
+        "comment": { "type": "string" }
+      }
+    },
+    "review_note": {
+      "type": "string",
+      "description": "Ответ main: причины changes_requested/rejected."
+    },
+    "created_at": { "$ref": "common.schema.json#/$defs/rfc3339" },
+    "updated_at": { "$ref": "common.schema.json#/$defs/rfc3339" }
+  }
+}

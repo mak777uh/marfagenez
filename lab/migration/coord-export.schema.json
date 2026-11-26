@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lab/migration/coord-export.schema.json",
+  "title": "Экспорт .coord/ — coord-export/v1",
+  "description": "Формат полного снимка .coord/ (включая ignored runtime-состояние: pending/, active/, standing/, gens/, mail/, graveyard/, locks/, backups/, events/, agents/, STATUS). Экспорт делает мигратор с --dry-run; повторный импорт идемпотентен и не создаёт дублей. Legacy ID (P*, S*, раунды, имена агентов) сохраняются как есть. Неизвестные или непарсящиеся сущности попадают в unresolved и требуют решения main — молча не теряются.",
+  "type": "object",
+  "required": [
+    "schema", "exported_at", "repo_head", "coord_snapshot_sha256",
+    "tasks", "standing_templates", "agents", "events", "messages", "unresolved"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "coord-export/v1" },
+    "exported_at": { "$ref": "../schemas/v1/common.schema.json#/$defs/rfc3339" },
+    "repo_head": { "$ref": "../schemas/v1/common.schema.json#/$defs/git_sha" },
+    "coord_snapshot_sha256": { "$ref": "../schemas/v1/common.schema.json#/$defs/sha256" },
+    "counts": {
+      "type": "object",
+      "additionalProperties": { "type": "integer" },
+      "description": "Счётчики по типам сущностей для сверки старое/новое после импорта."
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "state", "department", "title"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "../schemas/v1/common.schema.json#/$defs/legacy_task_id" },
+          "state": { "enum": ["pending", "active", "completed", "graveyard"] },
+          "department": { "$ref": "../schemas/v1/common.schema.json#/$defs/department" },
+          "department_rationale": {
+            "type": "string",
+            "description": "Основание эвристики контура (область/заголовок/по умолчанию) — для ревью main при импорте."
+          },
+          "title": { "type": "string" },
+          "area": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Legacy-область как была. Отсутствующая область не превращается в неограниченный доступ."
+          },
+          "write_scope": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Отображение area в write_scope, выполненное мигратором. Оба поля хранятся для сверки."
+          },
+          "accept": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Legacy accept-команды. В lab/ не исполняются: переводятся в validator profiles решением main."
+          },
+          "priority": { "type": ["integer", "null"] },
+          "task_md_sha256": {
+            "oneOf": [{ "type": "null" }, { "$ref": "../schemas/v1/common.schema.json#/$defs/sha256" }]
+          },
+          "max_gen": {
+            "type": ["integer", "null"],
+            "description": "Максимальный исторический gen/поколение задачи — база lease_epoch в lab/ (не с нуля)."
+          },
+          "claim": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Активный legacy-claim. Переносится только при сохранении agent_id, instance_id, оставшегося TTL и связи с попыткой; иначе lease помечается expired, attempt — void, задача возвращается в ready. Исторический max_gen переносится как lease_epoch-база: следующий claim выдаёт epoch = max_gen + 1.",
+            "properties": {
+              "round_id": { "type": "string" },
+              "agent": { "type": "string" },
+              "gen": { "type": "integer" },
+              "taken_at": { "$ref": "../schemas/v1/common.schema.json#/$defs/rfc3339" },
+              "ttl_remaining_seconds": { "type": "integer" },
+              "transferable": { "type": "boolean" }
+            }
+          },
+          "has_result": { "type": "boolean" },
+          "done_json": { "type": ["object", "null"] },
+          "completed_at": {
+            "oneOf": [{ "type": "null" }, { "$ref": "../schemas/v1/common.schema.json#/$defs/rfc3339" }]
+          },
+          "raw_paths": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Пути исходных файлов (.coord/active/<ID>/*) для verify-сверки содержимого."
+          }
+        }
+      }
+    },
+    "standing_templates": {
+      "type": "array",
+      "description": "Standing-задачи S* становятся recurring template/round.",
+      "items": {
+        "type": "object",
+        "required": ["id", "department"],
+        "properties": {
+          "id": { "$ref": "../schemas/v1/common.schema.json#/$defs/legacy_task_id" },
+          "department": { "$ref": "../schemas/v1/common.schema.json#/$defs/department" },
+          "card_sha256": { "oneOf": [{ "type": "null" }, { "$ref": "../schemas/v1/common.schema.json#/$defs/sha256" }] },
+          "latest_round": { "oneOf": [{ "type": "null" }, { "type": "string" }] },
+          "history": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["agent_id"],
+        "properties": {
+          "agent_id": { "type": "string" },
+          "role_md_sha256": { "$ref": "../schemas/v1/common.schema.json#/$defs/sha256" },
+          "boot_id": { "type": "string" }
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "description": "Append-only журнал .coord/events/ переносится в AuditEvent без изменений порядка.",
+      "items": { "type": "object" }
+    },
+    "messages": {
+      "type": "array",
+      "description": "Почта .coord/mail/ и её read/ack-состояние; unverifiable read/ack переносятся как unknown и требуют решения main.",
+      "items": {
+        "type": "object",
+        "required": ["id", "from", "to", "body_sha256"],
+        "properties": {
+          "id": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "body_sha256": { "$ref": "../schemas/v1/common.schema.json#/$defs/sha256" },
+          "body": {
+            "type": "string",
+            "description": "Текст сообщения опционален: expireный снимок хранит body_sha256 и raw_path; импорт сверяет хэш."
+          },
+          "raw_path": { "type": "string" },
+          "read_at": { "oneOf": [{ "type": "null" }, { "$ref": "../schemas/v1/common.schema.json#/$defs/rfc3339" }] },
+          "ack_at": { "oneOf": [{ "type": "null" }, { "$ref": "../schemas/v1/common.schema.json#/$defs/rfc3339" }] }
+        }
+      }
+    },
+    "unresolved": {
+      "type": "array",
+      "description": "Unknown/непарсящиеся сущности: тип, путь, sha256, причина. Импорт не молчит о них; решение за main.",
+      "items": {
+        "type": "object",
+        "required": ["type", "path", "reason"],
+        "properties": {
+          "type": { "type": "string" },
+          "path": { "type": "string" },
+          "sha256": { "$ref": "../schemas/v1/common.schema.json#/$defs/sha256" },
+          "reason": { "type": "string" }
+        }
+      }
+    }
+  }
+}

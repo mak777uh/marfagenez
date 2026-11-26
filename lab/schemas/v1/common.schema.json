@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lab/schemas/v1/common.schema.json",
+  "title": "Общие определения lab/v1",
+  "description": "Переиспользуемые типы всех схем lab/. Схема самих документов не описывает: это библиотека $defs.",
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 в hex, нижний регистр."
+    },
+    "rfc3339": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC RFC 3339, например 2026-11-26T01:00:00Z."
+    },
+    "git_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,40}$",
+      "description": "Git-хэш коммита (полный 40-символьный или короткий)."
+    },
+    "department": {
+      "enum": ["experiments", "formulas", "knowledge"],
+      "description": "Рабочий контур: эксперименты, формулы (Lean/Verus), научный граф."
+    },
+    "scientific_outcome": {
+      "enum": ["passed", "failed", "void", "not_applicable", "insensitive_by_construction"],
+      "description": "Научный исход. failed — отрицательный, но корректно полученный результат; он не равен отклонению submission."
+    },
+    "recommendation": {
+      "enum": ["accepted", "needs_work", "rejected"],
+      "description": "Рекомендация валидатора. Не решение: Decision принимает main."
+    },
+    "decision": {
+      "enum": ["accepted", "needs_work", "rejected"],
+      "description": "Научное решение main по submission."
+    },
+    "network_profile": {
+      "enum": ["none", "research_readonly", "restricted_sources"],
+      "description": "Сетевой профиль: без сети / открытые исследовательские источники / явный allowlist хостов."
+    },
+    "required_state": {
+      "enum": ["accepted", "integrated"],
+      "description": "Требуемое состояние зависимости."
+    },
+    "new_task_id": {
+      "type": "string",
+      "pattern": "^(EXP|MATH|KG)-[0-9]{4}-[0-9]{4}$",
+      "description": "ID новых задач: EXP-YYYY-NNNN, MATH-YYYY-NNNN, KG-YYYY-NNNN."
+    },
+    "legacy_task_id": {
+      "type": "string",
+      "pattern": "^(P|S)[0-9]+",
+      "description": "Импортированный legacy ID .coord/ (P*, S*, включая раунды вида S1-20261126T...-main). Сохраняется как есть, не переименовывается."
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "ID задачи: новый (new_task_id) или импортированный legacy (legacy_task_id). Новые публикации обязаны использовать new_task_id."
+    },
+    "agent_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Идентичность из токена, не из payload. Заявленный agent_id сверяется с токеном на сервисе."
+    },
+    "instance_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Идентификатор экземпляра, например fast-03@wsl-01."
+    },
+    "scope_glob": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Точный путь или glob. Каталог заканчивается на '/'. Не допускаются '..' и абсолютные пути (проверяется на intake)."
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Idempotency-Key для claim и submit. Область действия: (agent_id, endpoint, key)."
+    }
+  }
+}

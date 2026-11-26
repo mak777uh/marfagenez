@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lab/schemas/v1/submission.schema.json",
+  "title": "Результат submission/v1",
+  "description": "Заявленный исполнителем результат. Вердикт исполнителя не является решением приёмки: scientific_outcome, Validation.recommendation, Decision.decision и Integration.status — независимые поля. Поздний submit (истёкший lease) уходит в карантин и не меняет текущую попытку.",
+  "type": "object",
+  "required": [
+    "schema", "id", "task_id", "task_version", "task_version_sha256",
+    "attempt_id", "lease_id", "lease_epoch",
+    "agent_id", "instance_id", "base_commit",
+    "bundle_sha256", "artifacts",
+    "summary", "scientific_outcome", "limitations",
+    "environment", "toolchain", "reproduce",
+    "complied_messages", "submitted_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "submission/v1" },
+    "id": { "type": "string", "minLength": 1, "pattern": "^SUB-" },
+    "task_id": { "$ref": "common.schema.json#/$defs/task_id" },
+    "task_version": { "type": "integer", "minimum": 1 },
+    "task_version_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "attempt_id": { "type": "string", "minLength": 1 },
+    "lease_id": { "type": "string", "minLength": 1 },
+    "lease_epoch": { "type": "integer", "minimum": 1 },
+    "agent_id": { "$ref": "common.schema.json#/$defs/agent_id" },
+    "instance_id": { "$ref": "common.schema.json#/$defs/instance_id" },
+    "base_commit": { "$ref": "common.schema.json#/$defs/git_sha" },
+    "bundle_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "media_type", "bytes"],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string", "minLength": 1,
+            "description": "Относительный путь внутри bundle. Запрещены '..', абсолютные пути и симлинки (проверяется safety-этапом)."
+          },
+          "sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+          "media_type": { "type": "string", "minLength": 1 },
+          "bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "summary": { "type": "string", "minLength": 1 },
+    "scientific_outcome": { "$ref": "common.schema.json#/$defs/scientific_outcome" },
+    "limitations": { "type": "string", "minLength": 1 },
+    "environment": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "os": { "type": "string" },
+        "sandbox_image_digest": { "type": "string" },
+        "cpu": { "type": "string" }
+      }
+    },
+    "toolchain": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "rust": { "type": "string" },
+        "lean": { "type": "string" },
+        "verus": { "type": "string" },
+        "python": { "type": "string" }
+      }
+    },
+    "reproduce": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Команды для аудита. Не исполняются напрямую; валидация идёт по зарегистрированным validator profiles из trusted gate tree."
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Новые научные связи: атомы карты, kg_nodes, источники (DOI)."
+    },
+    "parent_submission_id": {
+      "oneOf": [{ "type": "null" }, { "type": "string", "minLength": 1 }],
+      "description": "Связь с предыдущей попыткой (needs_work-цепочка)."
+    },
+    "complied_messages": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "ID учтённых корректировок. Обязательны в следующей посылке после ack блокирующего сообщения."
+    },
+    "submitted_at": { "$ref": "common.schema.json#/$defs/rfc3339" }
+  }
+}

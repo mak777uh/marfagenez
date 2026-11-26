@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lab/schemas/v1/message.schema.json",
+  "title": "Сообщение message/v1",
+  "description": "Сообщение в ledger. read, ack и halt — разные понятия. Heartbeat живого lease не блокируется сообщением никогда. requires_ack=true и blocks_claim=true блокируют получение новых задач в области до ack/expiry/supersede; submit блокируется только blocks_submit=true или halt=true. Сообщение не меняет задачу: изменение постановки — отдельная TaskVersion.",
+  "type": "object",
+  "required": [
+    "schema", "id", "from", "to", "kind", "severity", "scope",
+    "requires_read", "requires_ack", "blocks_claim", "blocks_submit", "halt",
+    "body", "created_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "message/v1" },
+    "id": { "type": "string", "minLength": 1, "pattern": "^MSG-" },
+    "from": { "type": "string", "minLength": 1 },
+    "to": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Адресат: agent_id (например fast-03) или department:knowledge — всем исполнителям контура."
+    },
+    "kind": {
+      "enum": ["info", "correction", "question", "answer", "halt", "cutover"],
+      "description": "cutover — объявление перехода .coord/ -> lab/; уведомление, а не механизм заморозки."
+    },
+    "severity": { "enum": ["normal", "urgent", "critical"] },
+    "scope": { "enum": ["agent", "department", "all"] },
+    "thread_id": { "type": "string" },
+    "requires_read": { "type": "boolean" },
+    "requires_ack": {
+      "type": "boolean",
+      "default": false,
+      "description": "По умолчанию false: обязательный ack задаётся явно."
+    },
+    "blocks_claim": {
+      "type": "boolean",
+      "default": false,
+      "description": "Блокирует новые claim в своей области до ack, expiry или supersede."
+    },
+    "blocks_submit": {
+      "type": "boolean",
+      "default": false,
+      "description": "Блокирует submit уже начатой работы. Обычное информационное сообщение полезную работу не уничтожает."
+    },
+    "halt": {
+      "type": "boolean",
+      "default": false,
+      "description": "Контролируемая приостановка с checkpoint и фиксацией промежуточного состояния."
+    },
+    "body": { "type": "string", "minLength": 1 },
+    "ref": {
+      "type": "string",
+      "description": "Ссылка на задачу/proposal, к которым относится сообщение."
+    },
+    "expires_at": {
+      "oneOf": [{ "type": "null" }, { "$ref": "common.schema.json#/$defs/rfc3339" }]
+    },
+    "superseded_by": {
+      "oneOf": [{ "type": "null" }, { "type": "string", "minLength": 1 }],
+      "description": "ID сообщения, заменившего это. Supersede снимает блокировки старого."
+    },
+    "ack_deadline": {
+      "oneOf": [{ "type": "null" }, { "$ref": "common.schema.json#/$defs/rfc3339" }]
+    },
+    "created_at": { "$ref": "common.schema.json#/$defs/rfc3339" }
+  }
+}
