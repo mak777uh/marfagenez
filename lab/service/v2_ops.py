@@ -48,6 +48,22 @@ CREATE TABLE IF NOT EXISTS proposals (
 PRAGMA user_version=2;
 """
 
+SCHEMA_V3 = """
+-- standing-задачи legacy S* — recurring template (план v0.3 §22, Фаза 3.5):
+-- раунды main создаёт при активации; шаблон неизменяем, история append-only.
+CREATE TABLE IF NOT EXISTS standing_templates (
+  id TEXT PRIMARY KEY,
+  department TEXT NOT NULL
+    CHECK (department IN ('experiments','formulas','knowledge')),
+  card_json TEXT NOT NULL,
+  history_json TEXT NOT NULL,
+  latest_round TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL);
+
+PRAGMA user_version=3;
+"""
+
 
 class V2OpsMixin:
     """Фаза 2, вторая серия: proposals/CAS, cancellation, projections, GC."""
@@ -65,14 +81,21 @@ class V2OpsMixin:
         v = c.execute("PRAGMA user_version").fetchone()[0]
         if v < 2:
             c.executescript(SCHEMA_V2)
-            c.execute("BEGIN IMMEDIATE")
-            try:
-                self._audit(c, "schema", "schema.migrate", "db", str(self.db_path),
-                             {"from": v, "to": 2})
-                c.execute("COMMIT")
-            except Exception:
-                self._safe_rollback(c)
-                raise
+            self._audit_migration(c, v, 2)
+        v = c.execute("PRAGMA user_version").fetchone()[0]
+        if v < 3:
+            c.executescript(SCHEMA_V3)
+            self._audit_migration(c, v, 3)
+
+    def _audit_migration(self, c, from_v: int, to_v: int) -> None:
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            self._audit(c, "schema", "schema.migrate", "db", str(self.db_path),
+                        {"from": from_v, "to": to_v})
+            c.execute("COMMIT")
+        except Exception:
+            self._safe_rollback(c)
+            raise
 
     # -------------------------------------------------------- proposals
     def create_proposal(self, payload: dict) -> dict:

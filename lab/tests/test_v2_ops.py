@@ -90,13 +90,14 @@ class Base(unittest.TestCase):
 
 class TestSchemaMigration(Base):
     def test_user_version_and_idempotent_init(self):
-        self.assertEqual(self.cp.user_version(), 2)
+        self.assertEqual(self.cp.user_version(), 3)
         tables = {r[0] for r in self.db().execute(
             "SELECT name FROM sqlite_master WHERE type='table'")}
         self.assertIn("proposals", tables)
+        self.assertIn("standing_templates", tables)
         # повторный init идемпотентен и не роняет версию
         self.cp.init()
-        self.assertEqual(self.cp.user_version(), 2)
+        self.assertEqual(self.cp.user_version(), 3)
         self.assertInvariants()
 
 
