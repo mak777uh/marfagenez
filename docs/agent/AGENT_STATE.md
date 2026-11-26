@@ -463,3 +463,12 @@ doc_numbers пишутся с отступом в 2 пробела -- grep бе�
 поле ($2) с обрезкой ':'.
 
 status: цикл 854 — автопочинка зелёная, дальше журнал + гейт + пуш.
+
+## 2026-11-27 — reported_r CSV-контракт (цикл 855)
+
+Proposal exper PROP-EXPER-DQ4-UNBLOCK rev5 (БД rev6): CSV RA/RB обязан показывать
+R, фактически поданный в hazard (repair a/0, r-clock 100/100, sham 0/0, do_r0 0/0),
+иначе dq4_analyze корректно останавливается. Добавлена fn reported_r + тест
+reported_r_matches_control_contract. Rust 403->404.
+
+status: цикл 855 — автопочинка зелёная, дальше журнал + гейт + пуш.

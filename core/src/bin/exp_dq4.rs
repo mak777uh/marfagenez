@@ -133,6 +133,19 @@ fn run_pair(a: f64, k_repair: f64, do_r0: bool, control: Control, seed: u64, pai
     (la, ca, lb, cb)
 }
 
+/// Фактически поданный в hazard R для CSV (контракт dq4_analyze): repair a/0,
+/// r-clock 100/100, sham 0/0, do_r0 0/0.
+fn reported_r(a: f64, do_r0: bool, control: Control) -> (f64, f64) {
+    if do_r0 {
+        return (0.0, 0.0);
+    }
+    match control {
+        Control::Repair => (a, 0.0),
+        Control::RClock => (R_CLOCK, R_CLOCK),
+        Control::Sham => (0.0, 0.0),
+    }
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
     let mut a_list = vec![0.1_f64, 0.2, 0.3];
@@ -167,9 +180,10 @@ fn main() {
         for &k in &k_list {
             for s in 0..seeds {
                 let seed = seed_base + s as u64;
+                let (ra_rep, rb_rep) = reported_r(a, do_r0, control);
                 for p in 0..pairs {
                     let (la, ca, lb, cb) = run_pair(a, k, do_r0, control, seed, p as u64);
-                    println!("{},{},{},{},{},{},{},{},{},{},{},{}", a, k, do_r0, control.label(), seed, p, a, 0.0, la, ca, lb, cb);
+                    println!("{},{},{},{},{},{},{},{},{},{},{},{}", a, k, do_r0, control.label(), seed, p, ra_rep, rb_rep, la, ca, lb, cb);
                 }
             }
         }
@@ -250,6 +264,15 @@ mod tests {
             if spent > 1e-12 { any_spent = true; }
         }
         assert!(any_spent, "sham never spent energy in 4 seeds");
+    }
+
+    #[test]
+    fn reported_r_matches_control_contract() {
+        // CSV обязан репортить R, фактически поданный в hazard (dq4_analyze contract).
+        assert_eq!(reported_r(0.2, false, Control::Repair), (0.2, 0.0));
+        assert_eq!(reported_r(0.2, false, Control::RClock), (R_CLOCK, R_CLOCK));
+        assert_eq!(reported_r(0.2, false, Control::Sham), (0.0, 0.0));
+        assert_eq!(reported_r(0.2, true, Control::Repair), (0.0, 0.0));
     }
 
     #[test]

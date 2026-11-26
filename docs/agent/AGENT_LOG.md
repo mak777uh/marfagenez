@@ -10531,3 +10531,16 @@ log_check; авторство devin, интеграционная проверк
   doc_numbers их не видит — автопочинка обязана парсить ОБА отчёта; 7 строк
   400->403 (вкл. archive/SESSION, MODEL-CEILINGS, CLAIMS-таблицу).
 - Коммит docs-ресинхронизации: `02e89ea2`.
+
+### Цикл 855 — 2026-11-27 — `46b4c182`: reported_r CSV-контракт D-Q4; фикс исхода 854
+
+**Исход 854:** гейт зелёный, коммит `46b4c182` запушен: контроли D-Q4 в драйвере
+(repair|r-clock|sham, cost-matched sham, фактические seed), Rust 403; EXP-2026-4101 v3
+(base 46b4c1828f8b...) опубликована, S1-experiments cancelled, MSG-...-13 exper'у;
+DQ5/DQ6 DRIVER-FIX proposals приняты (циклы 856/857).
+
+- Proposal exper UNBLOCK rev5: CSV RA/RB = фактически поданный в hazard R
+  (fn reported_r; repair a/0, r-clock 100/100, sham 0/0, do_r0 0/0) + тест.
+- Rust 403->404; автопочинка парсит оба отчёта (doc_numbers + log_check: второй
+  сверяет и замороженные строки).
+- Грабли 854 (в AGENT_STATE): heredoc с бэктиками требует quoted delimiter.
