@@ -419,3 +419,8 @@ lab/MAIN.md дополнен §11 (протокол пополнения дос�
 ## 2026-11-26 — интеграция s7zq (цикл 847)
 
 Партия s7zq (SUB-DEVIN-S7ZQ-001): узел L-075 (критерии метаболизма протоклетки, критика RAF). Контракты зелёные, coverage.json синхронизирован. Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Состояние синхронизировано с текущим HEAD.
+
+
+## 2026-11-26 — интеграция s7zm (цикл 848)
+
+Партия s7zm (SUB-DEVIN-S7ZM-001): узел L-102 (сетевая теория старения, двух-timescale error loop). Контракты зелёные, coverage.json синхронизирован. Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Состояние синхронизировано с текущим HEAD.

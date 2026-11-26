@@ -10436,3 +10436,11 @@ eproduced_at из полного прогона гейта (8 файлов ре�
 - **Партия s7zq:** узел L-075 закрыт: три критерия метаболизма протоклетки (градиент/осмос/поток), бистабильность как механизм, механика везикулы, критика RAF. SUB-DEVIN-S7ZQ-001 (received, base a58c8d5c). Ingest: принято 5 из 5; рёбер +8; DOI проверено 1 из 1; в карте всего 1286 ячеек; status: accepted
 - Контракты: map stats / map_orphans --strict / unanchored_nodes --strict зелёные; log_check зелёный до и после журнала; coverage.json регенерирован.
 - Очередь на момент записи: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Следом интеграция s7zm; s7zo ждёт повторного submit (late). Контроль: полный `run.sh all` после коммита.
+
+
+### Цикл 848 — 2026-11-26 — `125bf946a1bd803bd5737cecae769513f69e57c2`: интеграция s7zm (SUB-DEVIN-S7ZM-001); фикс исхода 847
+
+- **Исход 847:** гейт зелёный, s7zq (L-075) в карте и запушен.
+- **Партия s7zm:** узел L-102 закрыт: сетевая теория старения — митохондрии/белки/радикалы/scavengers; двух-timescale error loop; 4 валидированных тренда. SUB-DEVIN-S7ZM-001 (received, base cd610901 — дрейф неструктурный). Ingest: принято 5 из 5; рёбер +10; DOI проверено 1 из 1; в карте всего 1291 ячеек; status: accepted
+- Контракты: map stats / map_orphans --strict / unanchored_nodes --strict зелёные; log_check зелёный до и после журнала; coverage.json регенерирован.
+- Очередь на момент записи: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Все received-партии devin интегрированы; s7zo остаётся late до повторного submit. Контроль: полный `run.sh all` после коммита.
