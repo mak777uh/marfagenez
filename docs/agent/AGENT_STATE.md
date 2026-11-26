@@ -434,3 +434,7 @@ docs/ELEPHANT-MAP.md дополнен §5 (состояние на 26.11: Lean-�
 ## 2026-11-26 — Compartment: ремонт как состояние в core (цикл 850)
 
 Новый модуль core/src/compartment.rs (бин core/src/bin/compartment.rs): C как состояние (I-018), три режима смерти по механизму (Collapse/Starved/FellApart), фазовая диаграмма (gamma, cR) с границами, совпадающими с Lean RepairCapacity/TwoDeaths. Rust-тестов 387 (+5); 14 живых строк docs синхронизированы. Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 4, "submitted": 20}} Состояние синхронизировано с текущим HEAD.
+
+## 2026-11-27 — D-Q4: repair-counter драйвер в core (цикл 851)
+
+Бин core/src/bin/exp_dq4.rs (задача EXP-2026-4101, дизайн exper rev2, ревью main: published): standalone-драйвер скрытой памяти ремонтного износа — детерминированный matching до (q=0.5, D=0.2, energy=0.8), R+=done только за выполненные ремонты, paired RNG (контроли k=0 и do(R=0) дают попарно идентичные исходы), challenge по расписанию с бюджетом 0.1. 5 юнит-тестов, Rust-тестов 392; строки-беглецы docs синхронизированы автопочинкой по отчётам чеков. Очередь: {"audit_chain_ok": true, "leases_active": 0, "tasks": {"cancelled": 1, "integrated": 168, "ready": 4, "submitted": 21}} Состояние синхронизировано с текущим HEAD.
