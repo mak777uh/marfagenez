@@ -1,0 +1,10 @@
+{"from": "FAST-S7ZL-01", "to": "DIP5-0006", "type": "supports", "note": "f(f)=f — формальное ядро autopoiesis, которое обзор ставит в центр 30-летней традиции."}
+{"from": "FAST-S7ZL-01", "to": "DIP11-0003", "type": "supports", "note": "Process-enablement graphs — современная формализация той же «замкнутой сети процессов»."}
+{"from": "FAST-S7ZL-05", "to": "FAST-S7ZD-01", "type": "analogous", "note": "Autopoiesis (граница производится изнутри) vs intrinsic viability constraint (граница выводится из замыкания) — родственные, но разные критерии."}
+{"from": "FAST-S7ZL-05", "to": "DIP3-0004", "type": "analogous", "note": "Инвариантная подсеть организации vs топологическая граница autopoiesis — два способа формализовать «целостность»."}
+{"from": "FAST-S7ZL-03", "to": "R-0001", "type": "analogous", "note": "Self-repair/self-maintenance в autopoiesis vs несовершенный ремонт в наших R-моделях — та же ось."}
+{"from": "FAST-S7ZL-04", "to": "FAST-S7ZE-05", "type": "analogous", "note": "Линия autopoiesis-реализаций vs интринзитная viability Beer et al. — параллельные программы «жизни из первых принципов»."}
+{"from": "FAST-S7ZL-02", "to": "DIP11-0010", "type": "supports", "note": "DIP11-0010: organizational closure не измерена на реальных системах — обзор подтверждает, что это центральная нерешённая проблема."}
+{"from": "FAST-S7ZL-05", "to": "FAST-S7ZL-01", "type": "refines", "note": "Позиционирование уточняет: autopoiesis vs viability — не синонимы."}
+{"from": "FAST-S7ZL-03", "to": "FAST-S7ZL-01", "type": "supports", "note": "Ключевые слова обзора — словарь для различения понятий."}
+{"from": "FAST-S7ZL-05", "to": "C-0006", "type": "analogous", "note": "C-0006: нет единой количественной формулы организационного замыкания — autopoiesis остаётся качественным критерием."}

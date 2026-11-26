@@ -10369,3 +10369,11 @@ eproduced_at из полного прогона гейта (8 файлов ре�
 - **Числа:** теорем теперь 322 (Medium 295 в 57 файлах, Legacy 27 в 7; 64 файла с теоремами, 67 `.lean` всего). Живые упоминания синхронизированы по log_check: GOAL, NOT-CLAIMED (x2), PROTOCOL, README, CLAIMS (x2), BRIEF-for-models, AUTONOMY-PLAN, LAWS (x6), UNREPRODUCIBLE, AGENT_STATE, archive/BRIEF-NOTES, laws/README (x2) — 21 строка 318→322/63→64/56→57/64→67 .lean. lake build зелёный до коммита.
 - Контракты: map_contract / map_orphans --strict / unanchored_nodes --strict зелёные (карта не менялась: 1266/1016). log_check зелёный.
 - Очередь на момент записи: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Контроль: полный `run.sh all` после коммита; исход и пуш при зелёном фиксируются следующей записью.
+
+### Цикл 840 — 2026-11-26 — `a636acc55ade340eff0b4ed28bbd1b734a8c575e`: интеграция s7zl (SUB-DEVIN-S7ZL-001); фикс исхода 839
+
+- **Исход 839:** гейт зелёный, a636acc5 запушен: TwoAxes.lean (abbrev twoAxes + 4 теоремы), 322 теорем, 21 живая строка docs синхронизирована.
+- **Партия s7zl:** 5 атомов + 10 рёбер — computational autopoiesis (McMullin 2004, DOI 10.1162/1064546041255548, kg_ref L-104): обзор 30 лет традиции, программная оценка обзора, словарь self-maintenance/self-repair/individuality как мост к нашему boundary+damage бюджету. DOI проверен 1/1, локаторы verified. Честная заметка: base партии d3b81a93 (был HEAD на момент submit), дрейф — мои коммиты 838/839, неструктурный для карты. Мелочь: «Вarelа» латиницей в атоме FAST-S7ZL-01 (не чиню — правки ячеек только через map_correct по вердикту).
+- **Числа:** карта: 1271 ячеек, 1026 рёбер, нарушений нет. Сироты и потолок — см. strict-чек выше; принимать только при нулевом росте долга.
+- Контракты: map_contract / map_orphans --strict / unanchored_nodes --strict зелёные. log_check зелёный (проверяется ниже до коммита).
+- Очередь на момент записи: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Контроль: полный `run.sh all` после коммита; исход и пуш при зелёном фиксируются следующей записью.

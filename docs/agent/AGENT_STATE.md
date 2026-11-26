@@ -383,3 +383,7 @@ Self-check grand-circle: в заметке DIP39-0010 единица перес�
 ## 2026-11-26 — формализация I-039 в Lean (цикл 839)
 
 Новый файл laws/Medium/TwoAxes.lean (abbrev twoAxes + 4 теоремы: static_limit, rate_limit, mono_load, rate_budget — масштаб FINDING-316). Импорт добавлен в laws/Medium.lean. Теорем 322 (Medium 295 в 57 файлах); 21 живая строка docs синхронизирована по log_check (318→322, 63→64, 56→57, 64→67 `.lean`). lake build зелёный. Карта без изменений (1266/1016). Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Состояние синхронизировано с текущим HEAD.
+
+## 2026-11-26 — интеграция s7zl (цикл 840)
+
+Партия SUB-DEVIN-S7ZL-001 принята: 5 атомов + 10 рёбер (computational autopoiesis, L-104). карта: 1271 ячеек, 1026 рёбер, нарушений нет. Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 2, "submitted": 15}}. Состояние синхронизировано с текущим HEAD.
