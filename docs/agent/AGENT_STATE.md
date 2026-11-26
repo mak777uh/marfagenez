@@ -404,3 +404,8 @@ Self-check grand-circle: в заметке DIP39-0010 единица перес�
 ## 2026-11-26 — правила контура: доска ready и приёмка по департаментам (цикл 844)
 
 lab/MAIN.md дополнен §11 (протокол пополнения доски ready: публикация standing-шаблонов при ready < 2, уведомление message-send, запрет петель со sleep в fast/) и §12 (контур приёмки: formulas/experiments/knowledge). Правка контурная, Lean и карта без изменений (338 теорем; 1271/1026). Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Состояние синхронизировано с текущим HEAD.
+
+
+## 2026-11-26 — интеграция s7zn + синхронизация coverage.json (цикл 845)
+
+Партия s7zn (SUB-DEVIN-S7ZN-001): 5 атомов + 9 рёбер, узел L-001 (queue-модель damage accumulation). literature/map/coverage.json регенерирован сервисом map.py coverage (был отсталым: 606/442). Контракты зелёные, log_check зелёный. Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Состояние синхронизировано с текущим HEAD.
