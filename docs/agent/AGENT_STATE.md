@@ -409,3 +409,8 @@ lab/MAIN.md дополнен §11 (протокол пополнения дос�
 ## 2026-11-26 — интеграция s7zn + синхронизация coverage.json (цикл 845)
 
 Партия s7zn (SUB-DEVIN-S7ZN-001): 5 атомов + 9 рёбер, узел L-001 (queue-модель damage accumulation). literature/map/coverage.json регенерирован сервисом map.py coverage (был отсталым: 606/442). Контракты зелёные, log_check зелёный. Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Состояние синхронизировано с текущим HEAD.
+
+
+## 2026-11-26 — интеграция s7zp (цикл 846)
+
+Партия s7zp (SUB-DEVIN-S7ZP-001): узел L-098 (стохастическая модель aging-клеток, условие полезности сегрегации). Контракты зелёные, coverage.json синхронизирован. Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Состояние синхронизировано с текущим HEAD.

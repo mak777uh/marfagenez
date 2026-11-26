@@ -10420,3 +10420,11 @@ eproduced_at из полного прогона гейта (8 файлов ре�
 - **coverage.json:** владелец заметил отставание метаданных (606 атомов / 442 работы при фактических 1271/1026 до интеграции). Регенерирован сервисом map.py coverage: {  "atoms": 1276,  "domains": 51,  "works": 815,  "high_without_formula_or_quote": 0 } — теперь синхронен с данными.
 - Контракты: map stats / map_orphans --strict / unanchored_nodes --strict зелёные; log_check зелёный до и после журнала.
 - Очередь на момент записи: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Замечание: SUB-DEVIN-S7ZO-001 в статусе late (lease истёк) — жду повторный submit devin (S7ZO-002) перед интеграцией s7zo; s7zp/s7zq/s7zm received — интеграция следующими циклами. Попытка 1 (cmd/238) упала чисто: --report вне репо отклонён мостом («выход не может быть корнем»), откат не потребовался. Контроль: полный `run.sh all` после коммита.
+
+
+### Цикл 846 — 2026-11-26 — `83af9024d06f35ca6f896b41fa33e20fac1fb5ee`: интеграция s7zp (SUB-DEVIN-S7ZP-001); фикс исхода 845
+
+- **Исход 845:** гейт зелёный, 83af9024 запушен: s7zn (L-001) в карте, coverage.json синхронизирован (1276/51/815).
+- **Партия s7zp:** узел L-098 закрыт: стохастическая модель aging-клеток — rdmg/vmax доминируют; segregation/asymmetry context-dependent и часто вредны; найдено условие полезности сегрегации. SUB-DEVIN-S7ZP-001 (received, base a58c8d5c). Ingest: принято 5 из 5; рёбер +7; DOI проверено 1 из 1; в карте всего 1281 ячеек; status: accepted
+- Контракты: map stats / map_orphans --strict / unanchored_nodes --strict зелёные; log_check зелёный до и после журнала; coverage.json регенерирован.
+- Очередь на момент записи: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 2, "submitted": 19}} Следом интеграция s7zq, s7zm; s7zo ждёт повторного submit (late). План экспериментов валидирован владельцем: прогоны разрешены, импактный порядок в DESIGN-QUEUE (D-Q4 первый прогон). Контроль: полный `run.sh all` после коммита.
