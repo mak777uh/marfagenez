@@ -10095,3 +10095,18 @@ eproduced_at из полного прогона гейта (8 файлов ре�
   - валидатор `confidence`/`kind` был **вложен в блок `kg_ref`** и не работал — исправлено.
 - **`map_correct` расширен** законными полями `confidence` и `conditions`.
 - **Состояние:** карта **1215 ячеек, 884 ребра**, сирот 266, контракт и дубли зелёные, `kg/regress` ок.
+
+### Цикл 816 — 2026-11-26 — `6a9fa461`: Фаза 0 миграции — долговременные сделки приёма и интегрити-чеки в гейте
+
+- **Фаза 0 плана `LAB-MULTIAGENT-MIGRATION-PLAN.md` (v0.3) закрыта** в ветке `fix/handover-integrity-20261126` по хендоверу `HANDOVER-MIGRATION-2026-11-26.md`.
+- **`map_ingest` + `ingest_safe`:** пакетные сделки с journal/recovery (roll-forward: сбой второй записи оставляет партию pending до retry), dry-run, backup, откат только при доказанном отсутствии изменений; multi-value `--edges`, нормализация CLI порядка аргументов; не-main отчёты ограничены согласованными именами (JSON/JSONL операционных файлов защищены); symlink-escape отклоняется.
+- **`kg_inbox`:** append-only journal с fsync и checksum, request-hash идемпотентность, recovery committed-проекций, backup не копится после подтверждённых projection+receipt; commit_error не выдаёт `processed` при отсутствующих проекциях.
+- **`win_bridge`:** изоляция группы процессов с таймаутом (SIGTERM → SIGKILL), durable intent/receipt до copy/archive для всех терминальных путей, `unknown` без утверждения rollback (safe repeat), сверки atoms/edges и KG после повторного запуска, recovery после смерти моста между этапами; `conditions` обязателен при confidence high/medium (контракт, вшит из master дж. 814–815).
+- **`probe_bridge`:** детерминированные inbox-артефакты (temp → fsync → atomic rename), SHA-256 identity событий (разные kind/recalc при том же тексте — разные события), журнал логически append-only, триаж пересобирается с сохранением legacy-записей.
+- **`coord`:** recover не забирает живую задачу по возрасту при совпадающем boot и свежем heartbeat; закрыт crash-window `take` (fence: задача не остаётся одновременно в active и pending); read-only `status` без гонок.
+- **`run.sh`:** `do_dispatcher` исполняет четыре интегрити-чека — `ingest_integrity` (29 сценариев), `runtime_integrity` (19), `kg_transaction_integrity` (5), `bridge_integrity` (9); первый провал не затирается последующими.
+- **Аудит из 13 дефектов (7 высоких + 6 средних) закрыт построчно**, каждому минимуму соответствует зелёный тест.
+- **Конфликт rebase c `6a9fa461` разрешён единственным файлом `tools/win_bridge.py`:** архитектура Фазы 0 + валидации master (conditions при high/medium; ack-парсинг кг-партий `принято N, отклонено M` + by_kind сохранён).
+- **`AGENTS.md`:** урок — в новом git-worktree Lean-кэш подключается симлинком `.lake/packages`, иначе Mathlib пересобирается часами.
+- **`checks/stub_links.sh`:** устранено падение `set -u` при незаданном `HOME` (запуск гейта из systemd/relay-окружения): fallback `${HOME:-/root}` при поиске `RUSTUP_HOME` + fail-closed проверка наличия каталога тулчейна; чек больше не зависит от оболочки запускающего.
+- Zone.Identifier-мусор (3 трекнутых файла) удалён, в коммит не попадает.

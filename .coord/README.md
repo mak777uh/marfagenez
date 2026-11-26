@@ -28,16 +28,17 @@ events/                  журнал событий, только добавл�
 ```
 python3 tools/coord.py list
 python3 tools/coord.py add --id ID --title "…" --area "glob1,glob2" --accept "команда" --priority N --agent main
-python3 tools/coord.py take ID --agent fast       # атомарно: mkdir в active/
+python3 tools/coord.py take ID --agent fast       # атомарно: temp → rename в active/
 python3 tools/coord.py finish ID --agent fast     # заявка о завершении (RESULT.md + DONE.json)
 python3 tools/coord.py verify ID                  # main: прогнать accept-команды
 python3 tools/coord.py close ID                   # main: active → completed
-python3 tools/coord.py stale                      # задачи, просроченные по TTL (180 мин)
+python3 tools/coord.py stale                      # смерть по boot/heartbeat; возраст — диагностика
+python3 tools/coord.py status                    # read-only; --write явно обновляет STATUS.md
 python3 tools/coord.py release ID --agent fast --reason "…"
 ```
 
-**Взятие атомарно:** `os.mkdir(.coord/active/<ID>)`; из двух одновременных попыток успешна ровно одна,
-второй достаётся `FileExistsError`.
+**Взятие атомарно:** карточка и claim сначала собираются в скрытом temp-каталоге, затем один
+`os.rename` делает commit-точку. `recover` завершает обрыв между rename и удалением pending-дубликата.
 
 ## Правила
 
@@ -58,8 +59,9 @@ python3 tools/coord.py release ID --agent fast --reason "…"
 3. **Завершение проверяется, а не заявляется.** `finish` — только заявка. `main` прогоняет
    `accept`-команды из карточки и лишь потом делает `close`.
 4. **Очередь меняют все, активную задачу не трогает никто** (кроме исполнителя в рамках работы).
-5. **TTL 180 минут.** Просроченную задачу `main` может вернуть в `pending` через `release --force`
-   с записью в `events/`.
+5. **Просрочка доказывается смертью исполнителя.** `recover`/`release --force` используют смену `boot_id`
+   или отсутствие heartbeat дольше 30 минут. Возраст больше 180 минут при живом heartbeat — только
+   предупреждение: по возрасту живую задачу нельзя забрать.
 
 ## Защищённые зоны (fast НЕ правит)
 
@@ -73,7 +75,7 @@ python3 tools/coord.py release ID --agent fast --reason "…"
 записи). Поэтому:
 
 - каждый агент пишет **свой** файл `literature/map/inbox/<agent>-<task>.jsonl` (атомы и/или рёбра);
-- `main` импортирует их штатным `tools/map_ingest.py` и пересобирает `kg/`;
+- приём идёт через `tools/ingest_safe.py` (flock, backup, rollback, contract), который вызывает `tools/map_ingest.py`; затем `main` пересобирает `kg/`;
 - `main` — единственный, кто запускает `tools/build_embeddings.py`.
 
 ## Журнал циклов
@@ -191,7 +193,7 @@ python3 tools/coord.py release ID --agent fast --reason "…"
 | `release --force` | `release` | только `main` |
 | закрытие без проверки | `close` | отказ, если нет зелёного `VERIFY.json` с совпадающим sha256 карточки |
 | `accept: true`, `echo …`, команда без `/` | `add` | отказ при заведении задачи |
-| возраст задачи | `stale` | считается по UTC (`calendar.timegm`); раньше при `TZ=+3` любая задача была «просрочена» на TTL |
+| возраст задачи | `stale` | диагностика по UTC (`calendar.timegm`); сам по себе не даёт `recover` забрать claim при живом heartbeat |
 | события | `event` | уникальное имя (`ts-pid-N-agent`); два события в одну секунду больше не затирают друг друга |
 
 
@@ -232,7 +234,7 @@ python3 tools/coord.py heartbeat <ID> --agent <имя>
 - автоматическая привязка «вопрос раунда ↔ задачи плана» (`question_key`) — сейчас проверяется
   пересечением областей и глазами `main`;
 - месячные каталоги `completed/` не чистим — история не удаляется;
-- `status` — производный `STATUS.md`, перезаписывается любым агентом (это снапшот, не истина).
+- `status` по умолчанию только читает состояние и ничего не записывает; `status --write` явно обновляет производный `STATUS.md` (это снапшот, не истина).
 
 ## Что добавлено по итогам аудита 25.11 (вторая волна)
 

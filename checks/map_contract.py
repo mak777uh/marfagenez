@@ -35,7 +35,7 @@ ATOMS = ROOT / "literature" / "map" / "atoms.jsonl"
 EDGES = ROOT / "literature" / "map" / "edges.jsonl"
 
 REQUIRED = ("atom", "statement", "domain", "kind", "works", "confidence")
-KINDS = {"mechanism", "formula", "condition", "contradiction", "gap", "definition", "measurement"}
+KINDS = {"mechanism", "formula", "condition", "contradiction", "gap", "definition", "measurement", "claim"}
 CONFIDENCE = {"high", "medium", "low"}
 
 
@@ -145,6 +145,7 @@ def selftest() -> int:
 
     cases = [
         ("чистая карта", write([atom()], [{"from": "A-1", "to": "A-1", "type": "requires"}]), []),
+        ("claim принимается", write([atom(kind="claim")], [{"from": "A-1", "to": "A-1", "type": "requires"}]), []),
         ("дубль идентификатора", write([atom(), atom()]), ["M2"]),
         ("фрагмент без цитаты", write([atom(works=[{"doi": "10.1/x", "access": "fragment"}])]), ["M3"]),
         ("medium без условий", write([atom(confidence="medium")]), ["M4"]),

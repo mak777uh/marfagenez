@@ -191,7 +191,7 @@ cargo run --release --bin trace -- --policy stay --steps 500 --every 10
 wsl -e bash /root/marfagenez/run.sh all
 ```
 
-Гейт запускает **сорок** `checks/*.py` плюс Rust и Lean. Их два разных рода, и путать
+Гейт запускает **сорок четыре** `checks/*.py` плюс Rust и Lean. Их два разных рода, и путать
 их нельзя: **судящие** проверки решают, зелёный ли прогон, а **экспериментальные** перепроверяют
 свои числа и падают, если модель сдвинулась.
 
@@ -216,6 +216,10 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/insights_contract.py` | инсайты: обязательные поля, существование опор, опровержение, дизайн опыта с предсказанием и условием провала |
 | `checks/dip_reports.py` | отчёты дип-ресерчера: md-описание с разделами, лимит ячеек задачи, `high` только с проверенным локатором |
 | `checks/map_contract.py` | карта атомарных ячеек: обязательные поля, цитаты при `fragment`, условия при medium/high, `searched`/`scope` у пустот, доля аналогий, рёбра в существующие ячейки |
+| `checks/ingest_integrity.py` | долговременный приём карты: dry-run, backup/restore, откат только при доказанном отсутствии изменений, flock, multi-value `--edges`, два `--serve` не применяют партию дважды (29 сценариев) |
+| `checks/runtime_integrity.py` | рантайм координации и гейта: recover не забирает живую задачу, crash-window `take` закрыт, `status` read-only, первый провал не затирается (19 сценариев) |
+| `checks/kg_transaction_integrity.py` | kg-транзакции: committed-nonzero даёт unknown, recovery проекций один раз, backup хранится до retry (5 сценариев) |
+| `checks/bridge_integrity.py` | мосты win/probe: durable receipt до архива, unknown без утверждения rollback, попытка без pgid не повторяется (9 сценариев) |
 | `checks/candidates_quarantine.py` | кандидаты литературы живут в карантине: уникальные ключи, нет дублей реестра, допуск ссылается на claim + `L-NNN` + событие журнала, кандидаты не в графе |
 | `checks/budget_ledger.py` | леджер бюджета OpenAlex: формат, монотонность остатка, отсутствие секретов в коммитимом файле |
 | `checks/litsearch_contract.py` | снимок поиска воспроизводим: дедуп и RRF пересчитываются из рангов; `degraded` и sha сырых ответов согласованы |

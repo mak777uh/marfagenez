@@ -21,7 +21,7 @@ recover для мусора после kill -9, статус-снапшот, с�
   finish ID --agent X --artifacts path1 path2
   verify ID --agent main | close ID --agent main
   release ID --agent X --reason "…" [--force]
-  stale | recover | status
+  stale | recover | status [--write]
 """
 
 from __future__ import annotations
@@ -55,7 +55,7 @@ MAIL = COORD / "mail"
 BOARD = COORD / "board.md"
 MAIL_KINDS = ("note", "bug", "instruction", "question", "reply")
 
-TTL_MIN = 180            # абсолютный предел жизни задачи
+TTL_MIN = 180            # возраст старше — только диагностика, не основание recovery
 HEARTBEAT_TTL_MIN = 30   # без heartbeat столько минут — исполнитель считается мёртвым
 LOCK_TTL_S = 120         # замок старше — ломаем (держится миллисекунды)
 ACCEPT_TIMEOUT = 600     # точечные проверки, не гейт
@@ -130,6 +130,31 @@ def read_json(path: pathlib.Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def pid_alive(pid) -> bool:
+    """Живой ли процесс: PermissionError тоже означает «процесс есть»."""
+    if isinstance(pid, bool) or not isinstance(pid, int) or pid <= 0:
+        return False
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    except OSError:
+        return False
+    return True
+
+
+def lock_owner_alive(path: pathlib.Path) -> bool:
+    try:
+        owner = read_json(path / "owner.json")
+    except (OSError, json.JSONDecodeError, TypeError):
+        return False
+    if not isinstance(owner, dict):
+        return False
+    return pid_alive(owner.get("pid"))
+
+
 def event(agent: str, text: str) -> None:
     EVENTS.mkdir(parents=True, exist_ok=True)
     base = time.strftime("%Y%m%dT%H%M%S")
@@ -155,7 +180,7 @@ def lock(timeout: float = 60.0):
             break
         except FileExistsError:
             try:
-                if time.time() - path.stat().st_mtime > LOCK_TTL_S:
+                if time.time() - path.stat().st_mtime > LOCK_TTL_S and not lock_owner_alive(path):
                     staled = path.with_name(f"coord.lock.stale-{os.getpid()}-{time.time_ns()}")
                     try:
                         os.rename(path, staled)   # ровно один ломатель
@@ -770,15 +795,15 @@ def _release_locked(a) -> int:
     if a.force and same_boot and hb_min < HEARTBEAT_TTL_MIN:
         print(f"ошибка: исполнитель жив (heartbeat {hb_min:.0f} мин назад) — force запрещён")
         return 1
-    with lock():
-        standing = bool(claim.get("standing"))
-        GRAVEYARD.mkdir(parents=True, exist_ok=True)
-        grave = GRAVEYARD / f"{d.name}-gen{claim.get('gen')}-{time.strftime('%Y%m%dT%H%M%S')}"
-        if not standing:
-            src_pending = PENDING / (claim.get("parent") or a.id)
-            src_pending.mkdir(parents=True, exist_ok=True)
-            atomic_write(src_pending / "TASK.md", (d / "TASK.md").read_text(encoding="utf-8"))
-        os.rename(d, grave)
+    # cmd_release уже держит coord lock; вложенный lock здесь давал deadlock.
+    standing = bool(claim.get("standing"))
+    GRAVEYARD.mkdir(parents=True, exist_ok=True)
+    grave = GRAVEYARD / f"{d.name}-gen{claim.get('gen')}-{time.strftime('%Y%m%dT%H%M%S')}"
+    if not standing:
+        src_pending = PENDING / (claim.get("parent") or a.id)
+        src_pending.mkdir(parents=True, exist_ok=True)
+        atomic_write(src_pending / "TASK.md", (d / "TASK.md").read_text(encoding="utf-8"))
+    os.rename(d, grave)
     event(a.agent, f"отпущена `{a.id}`: {a.reason} (heartbeat {hb_min:.0f} мин, boot совпал: {same_boot})")
     print(f"отпущено: {a.id} → graveyard; карточка "
           f"{'не тронута (постоянная)' if claim.get('standing') else 'возвращена в pending'}")
@@ -797,70 +822,175 @@ def cmd_stale(_a) -> int:
             flags.append("boot сменился — исполнитель мёртв")
         if hb > HEARTBEAT_TTL_MIN:
             flags.append(f"нет heartbeat {hb:.0f} мин")
-        if a > TTL_MIN:
-            flags.append(f"возраст {a:.0f} мин")
         if flags:
+            if a > TTL_MIN:
+                flags.append(f"возраст {a:.0f} мин")
             bad += 1
             print(f"просрочена: {task} (агент {c.get('agent')}, gen {c.get('gen')}): " + "; ".join(flags))
+        elif a > TTL_MIN:
+            # Возраст — диагностика, а не доказательство смерти: свежий heartbeat
+            # и тот же boot означают, что recover не имеет права забрать claim.
+            print(f"предупреждение: {task} (агент {c.get('agent')}, gen {c.get('gen')}): "
+                  f"возраст {a:.0f} мин, heartbeat жив — recover не переносит")
     if ACTIVE.exists():
         for p in ACTIVE.iterdir():
             if p.is_dir() and not p.name.startswith(".") and not (p / ".claim.json").exists():
                 bad += 1
                 print(f"сирота без .claim.json: {p.name} (лечится `recover`)")
     if bad == 0:
-        print(f"просроченных нет (heartbeat TTL {HEARTBEAT_TTL_MIN} мин, предельный возраст {TTL_MIN} мин)")
+        print(f"просроченных нет (heartbeat TTL {HEARTBEAT_TTL_MIN} мин; возраст только диагностический)")
     return 0
+
+
+def _stale_claim_reasons(d: pathlib.Path, claim: dict) -> list[str]:
+    """Только смерть исполнителя; возраст старой карточки сам по себе не повод recover."""
+    reasons = []
+    if claim.get("boot_id") != boot_id():
+        reasons.append("boot сменился — исполнитель мёртв")
+    hb = (time.time() - (d / ".claim.json").stat().st_mtime) / 60
+    if hb > HEARTBEAT_TTL_MIN:
+        reasons.append(f"нет heartbeat {hb:.0f} мин")
+    return reasons
 
 
 def cmd_recover(a) -> int:
     if a.agent != "main":
         print("ошибка: recover выполняет только main")
         return 1
-    GRAVEYARD.mkdir(parents=True, exist_ok=True)
     moved = 0
-    if ACTIVE.exists():
-        for p in list(ACTIVE.glob(".take-*")):
-            if time.time() - p.stat().st_mtime > 300:
-                shutil.rmtree(p, ignore_errors=True)
-                print(f"удалён мусор взятия: {p.name}")
-        for p in list(ACTIVE.iterdir()):
-            if p.is_dir() and not p.name.startswith(".") and not (p / ".claim.json").exists():
-                target = GRAVEYARD / f"crashed-{time.strftime('%Y%m%dT%H%M%S')}-{p.name}"
-                os.rename(p, target)
+    with lock():
+        GRAVEYARD.mkdir(parents=True, exist_ok=True)
+        if ACTIVE.exists():
+            for p in list(ACTIVE.glob(".take-*")):
+                if time.time() - p.stat().st_mtime > 300:
+                    shutil.rmtree(p, ignore_errors=True)
+                    print(f"удалён мусор взятия: {p.name}")
+            for p in list(ACTIVE.iterdir()):
+                if not p.is_dir() or p.name.startswith("."):
+                    continue
+                claim_path = p / ".claim.json"
+                if not claim_path.exists():
+                    target = GRAVEYARD / f"crashed-{time.strftime('%Y%m%dT%H%M%S')}-{time.time_ns()}-{p.name}"
+                    os.rename(p, target)
+                    moved += 1
+                    print(f"сирота убрана в graveyard: {p.name}")
+                    continue
+                try:
+                    claim = read_json(claim_path)
+                except (OSError, json.JSONDecodeError, TypeError):
+                    print(f"не тронут: {p.name} (нечитаемый .claim.json)")
+                    continue
+                # Заявка или протокол верификации — история раунда, не мусор.
+                if (p / "DONE.json").exists() or (p / "VERIFY.json").exists():
+                    continue
+                standing = bool(claim.get("standing"))
+                pending_id = claim.get("parent") or p.name
+                pending = PENDING / pending_id
+                pending_task = pending / "TASK.md"
+                task_path = p / "TASK.md"
+                if pending_task.is_file() and not standing:
+                    # take уже сделал rename в active: pending с той же карточкой —
+                    # незавершённое удаление второго имени, а не новый claim.
+                    # Проверяем байты и claim независимо от freshness.
+                    try:
+                        matches = (pending_task.read_bytes() == task_path.read_bytes()
+                                   and sha(task_path) == claim.get("task_sha256"))
+                    except OSError:
+                        matches = False
+                    if not matches:
+                        print(f"не тронут: {p.name} (active и pending {pending_id} "
+                              "не совпадают или claim не подтверждает TASK.md)")
+                        continue
+                    try:
+                        shutil.rmtree(pending)
+                    except FileNotFoundError:
+                        pass
+                    print(f"завершено взятие: {p.name} (дубликат {pending_id} удалён, active сохранён)")
+                    continue
+
+                reasons = _stale_claim_reasons(p, claim)
+                if not reasons:
+                    continue
+                created_pending = False
+                if not pending_task.exists():
+                    atomic_write(pending_task, task_path.read_text(encoding="utf-8"))
+                    created_pending = not standing
+                target = GRAVEYARD / (f"recovered-{time.strftime('%Y%m%dT%H%M%S')}-"
+                                      f"{time.time_ns()}-{p.name}")
+                try:
+                    os.rename(p, target)
+                except OSError as exc:
+                    # Карточка создана раньше rename и уже fsync'нута. При
+                    # обычной ошибке можно откатить созданный pending; SIGKILL
+                    # сюда не попадает, а повторный recover сверит хэш и завершит
+                    # начатое перемещение, не создавая второй pending.
+                    if created_pending:
+                        pending_task.unlink(missing_ok=True)
+                        try:
+                            pending.rmdir()
+                        except OSError:
+                            pass
+                    print(f"не тронут: {p.name} (ошибка переноса: {exc})")
+                    continue
                 moved += 1
-                print(f"сирота убрана в graveyard: {p.name}")
-    if LOCKS.exists():
-        for l in list(LOCKS.iterdir()):
-            if time.time() - l.stat().st_mtime > 600:
-                shutil.rmtree(l, ignore_errors=True)
-                print(f"снят замок-сирота: {l.name}")
-    print(f"recover: сирот перенесено {moved}")
+                print(f"просроченный claim убран в graveyard: {p.name} ({'; '.join(reasons)}); "
+                      f"карточка {'осталась' if standing else 'возвращена'} в pending")
+
+        if LOCKS.exists():
+            for stale_lock in list(LOCKS.iterdir()):
+                if not stale_lock.is_dir() or time.time() - stale_lock.stat().st_mtime <= 600:
+                    continue
+                if lock_owner_alive(stale_lock):
+                    print(f"не тронут живой замок: {stale_lock.name}")
+                    continue
+                shutil.rmtree(stale_lock, ignore_errors=True)
+                print(f"снят замок-сирота: {stale_lock.name}")
+    print(f"recover: раундов перенесено {moved}")
     return 0
 
 
-def cmd_status(_a) -> int:
+def _status_text() -> str:
     lines = [f"# Статус координации — {now()}", ""]
     pend = sorted([p for p in PENDING.iterdir() if p.is_dir()], key=lambda p: p.name) \
         if PENDING.exists() else []
     lines += [f"## Свободные задачи: {len(pend)}", ""]
     for p in pend:
-        c = card_of(p / "TASK.md")
+        c = card_of(p / "TASK.md") if (p / "TASK.md").exists() else {
+            "kind": "?", "priority": 50, "title": p.name}
         lines.append(f"- `{p.name}` ({c['kind']}, приоритет {c['priority']}): {c['title']}")
     claims = _active_claims()
     lines += ["", f"## Активные: {len(claims)}", ""]
     for task, c in sorted(claims.items()):
         d = ACTIVE / task
-        hb = (time.time() - (d / ".claim.json").stat().st_mtime) / 60
+        try:
+            hb = (time.time() - (d / ".claim.json").stat().st_mtime) / 60
+        except FileNotFoundError:
+            # Read-only status не держит lock: claim мог исчезнуть после
+            # snapshot. Это гонка, а не повреждение данных.
+            continue
+        try:
+            age = f"{age_min(c.get('taken_at')):.0f}м"
+        except (ValueError, TypeError):
+            age = "?"
         lines.append(f"- `{task}`: агент {c.get('agent')}, gen {c.get('gen')}, "
-                     f"возраст {age_min(c.get('taken_at')):.0f}м, heartbeat {hb:.0f}м, "
+                     f"возраст {age}, heartbeat {hb:.0f}м, "
                      f"DONE={(d / 'DONE.json').exists()}, VERIFY={(d / 'VERIFY.json').exists()}")
     if MAIL.exists():
         lines += ["", "## Непрочитанная почта", ""]
         for d in sorted(MAIL.iterdir()):
             if d.is_dir():
                 lines.append(f"- `{d.name}`: {len(_iter_mail(d.name, 'new'))}")
-    out = "\n".join(lines) + "\n"
-    atomic_write(COORD / "STATUS.md", out)
+    return "\n".join(lines) + "\n"
+
+
+def cmd_status(a) -> int:
+    # Обычный status — только чтение. --write явно разрешает lock и snapshot.
+    if a.write:
+        with lock():
+            out = _status_text()
+            atomic_write(COORD / "STATUS.md", out)
+    else:
+        out = _status_text()
     print(out)
     return 0
 
@@ -1001,8 +1131,8 @@ def cmd_unread(_a) -> int:
 # ---------------------------------------------------------------- CLI
 
 def main(argv: list[str]) -> int:
-    for d in (PENDING, ACTIVE, DONE, EVENTS, AGENTS, STANDING, LOCKS, GRAVEYARD, GENS):
-        d.mkdir(parents=True, exist_ok=True)
+    # Каталоги создают только команды, которым нужна запись. Без этого status
+    # даже на пустом дереве оставлял после себя .coord/.
     ap = argparse.ArgumentParser(prog="coord")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
@@ -1034,7 +1164,9 @@ def main(argv: list[str]) -> int:
     p.set_defaults(fn=cmd_release)
     p = sub.add_parser("stale"); p.set_defaults(fn=cmd_stale)
     p = sub.add_parser("recover"); p.add_argument("--agent", default="main"); p.set_defaults(fn=cmd_recover)
-    p = sub.add_parser("status"); p.set_defaults(fn=cmd_status)
+    p = sub.add_parser("status")
+    p.add_argument("--write", action="store_true", help="обновить .coord/STATUS.md (иначе только чтение)")
+    p.set_defaults(fn=cmd_status)
 
     p = sub.add_parser("note")
     p.add_argument("--agent", required=True, help="кто пишет")

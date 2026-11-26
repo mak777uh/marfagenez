@@ -44,7 +44,7 @@
   `https://github.com/mak777uh/marfagenez/blob/master/tools/coord.py`
 - `.coord/README.md` — правила, таблица «что проверяется кодом», heartbeat:
   `https://github.com/mak777uh/marfagenez/blob/master/.coord/README.md`
-- `.coord/STATUS.md` — производный снапшот состояния (создаётся `coord.py status`).
+- `.coord/STATUS.md` — производный снапшот состояния (создаётся только `coord.py status --write`; обычный `status` read-only).
 
 **Постоянные задачи (три инструкции для агента без контекста):**
 
@@ -100,7 +100,7 @@
   Достаточно ли `boot_id` + heartbeat, или нужен fencing на уровне файлов?
 - `heartbeat` делает `os.utime` на `.claim.json` — а если два процесса пишут claim одновременно
   (зомби и новый владелец)? Что произойдёт с `gen`?
-- `status` пишется любым агентом без замка (last-writer-wins). Допустимо ли это?
+- `status` пишется любым агентом без замка (last-writer-wins). Допустимо ли это? **Снято:** обычный `status` теперь read-only; запись `STATUS.md` разрешена только явным `status --write` под замком.
 
 ### A.3.4. Производительность
 

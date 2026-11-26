@@ -8,6 +8,10 @@
 #   wsl -e bash /root/marfagenez/run.sh lean     # только Lean
 #   wsl -e bash /root/marfagenez/run.sh reach    # только достижимость файлов
 #
+# `all` — ровно 11 разделов, в этом порядке:
+#   1 test, 2 lean, 3 reach, 4 dispatcher, 5 verus, 6 exp,
+#   7 kg, 8 claims, 9 audit, 10 export, 11 agents.
+#
 # Почему только WSL: Windows-линковка Rust сломана
 # (`undefined reference to GetHostNameW`), поэтому `cargo build` на Windows
 # падает. Всё собирается и запускается здесь.
@@ -21,9 +25,13 @@
 set -uo pipefail
 
 export PATH=/root/.elan/bin:/root/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
-cd /root/marfagenez || { echo "нет /root/marfagenez"; exit 1; }
+ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd) || exit 1
+cd "$ROOT" || { echo "нет каталога скрипта: $ROOT"; exit 1; }
 
 WHAT="${1:-all}"
+if [ "$WHAT" = all ]; then
+  echo "all: 11 разделов — test, lean, reach, dispatcher, verus, exp, kg, claims, audit, export, agents"
+fi
 
 # `FAILED` и функция `run()` удалены: `FAILED=1` присваивался, но нигде не
 # читался, а `run()` не вызывалась ни разу. Проверка, которая не может
@@ -531,8 +539,14 @@ do_agents() {
 # пару (баннер, код), поэтому ловит регрессию в самом `case`, а не только
 # в функциях.
 do_dispatcher() {
-  echo "=== диспетчер: провал не теряется ==="
-  python3 checks/dispatcher.py
+  echo "=== диспетчер и integrity: первый провал не теряется ==="
+  local rc=0 code
+  python3 checks/dispatcher.py || rc=$?
+  python3 checks/ingest_integrity.py || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
+  python3 checks/runtime_integrity.py || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
+  python3 checks/kg_transaction_integrity.py || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
+  python3 checks/bridge_integrity.py || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
+  return "$rc"
 }
 
 # ---------------------------------------------------------------------------
@@ -555,23 +569,35 @@ FAILED=""
 # шагов, и красный прогон показывает только «провалился exp». Один раз это
 # стоило часа догадок (`FINDING-197`), а ответ дала одна трассировка.
 #
-# Трассировка пишется в файл всегда — на экран её никто не выводит, — и при
-# ненулевом коде последняя строка `+ rc=` называет шаг.
-TRACE=/tmp/marfagenez-run-trace.log
-: > "$TRACE"
+# У каждого запуска своя трасса (включая вложенные копии run.sh): родительский
+# файл никогда не обрезается дочерним диспетчером.
+TRACE="/tmp/marfagenez-run-trace-$(date -u +%Y%m%dT%H%M%S.%NZ)-$$.log"
+: > "$TRACE" || { echo "не создать трассировку: $TRACE"; exit 1; }
+echo ">>> трассировка: $TRACE"
+
+# Два `all` не идут одновременно. Внутри all маркер наследуется копиями
+# run.sh, поэтому вложенный диспетчер не пытается повторно взять тот же lock.
+if [ "$WHAT" = all ] && [ "${MARFAGENEZ_GATE_LOCK_HELD:-0}" != 1 ]; then
+  mkdir -p "$ROOT/.coord/locks"
+  exec 8>"$ROOT/.coord/locks/run-all.lock"
+  if ! flock -n 8; then
+    echo "FAIL: другой run.sh all уже держит gate lock"
+    exit 1
+  fi
+  export MARFAGENEZ_GATE_LOCK_HELD=1
+fi
+
 exec 9>"$TRACE"
 BASH_XTRACEFD=9
 set -x
 
-last_failed_step() {
-  # Строка трассы перед присваиванием `rc=` и есть провалившийся шаг.
-  grep -B1 '^+ rc=' "$TRACE" 2>/dev/null | grep -v '^+ rc=' | grep -v '^--$' | tail -1
-}
-keep_q() {
-  # exit code of the previous command, captured in a function body
-  local rc
-  rc=$?
-  keep "$rc" kg
+first_failed_step() {
+  # Первый ненулевой числовой rc= в трассе, а не последний. Строка перед ним
+  # называет команду, которая этот код вернула.
+  awk '
+    /^\+ (local )?rc=[1-9][0-9]*([ ]|$)/ { print previous; exit }
+    { previous = $0 }
+  ' "$TRACE"
 }
 keep() {
   local rc=$1 name=$2
@@ -590,7 +616,7 @@ case "$WHAT" in
   reach)  do_reach;  keep $? reach ;;
   dispatcher) do_dispatcher; keep $? dispatcher ;;
   exp)    do_exp;    keep $? exp ;;
-  kg)     do_kg;     keep_q kg ;;
+  kg)     do_kg;     keep $? kg ;;
   models) do_models; keep $? models ;;
   verus)  do_verus;  keep $? verus ;;
   claims) do_claims; keep $? claims ;;
@@ -620,9 +646,9 @@ echo
 set +x
 if [ "$RC" -ne 0 ]; then
   echo "ЕСТЬ ПРОВАЛЫ (код $RC): провалились разделы:$FAILED"
-  step=$(last_failed_step)
+  step=$(first_failed_step)
   if [ -n "$step" ]; then
-    echo ">>> последний провалившийся шаг: $step"
+    echo ">>> первый провалившийся шаг: $step"
   fi
   echo ">>> трассировка: $TRACE"
   exit 1

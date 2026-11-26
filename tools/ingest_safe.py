@@ -1,13 +1,13 @@
-"""Безопасный приём партии в литературную карту: замок, резервная копия, проверка, откат.
+"""Безопасный приём партии в литературную карту: flock, резервная копия, проверка, откат.
 
-Зачем: `tools/map_ingest.py` перезаписывает `atoms.jsonl` и `edges.jsonl` целиком. Два агента,
+Зачем: `tools/map_ingest.py` перезаписывает `atoms.jsonl` и `edges.jsonl`. Два агента,
 запустившие его одновременно, потеряют записи друг друга; партия, ломающая контракт, сломает карту
 для всех. Поэтому приём идёт через этот файл:
 
-  1. замок `.coord/locks/map-ingest.lock` (mkdir; протухший ломается по возрасту);
-  2. резервная копия `atoms.jsonl` и `edges.jsonl` в `.coord/backups/`;
-  3. пробный прогон `map_ingest --dry-run` — если ничего не принято, дальше не идём;
-  4. настоящий приём с отчётом;
+  1. Linux `fcntl.flock` на `.coord/locks/map-ingest.lock` с ожиданием и таймаутом;
+  2. пробный прогон `map_ingest --dry-run` под тем же замком;
+  3. уникальная резервная копия `atoms.jsonl`, `edges.jsonl` и отчёта во временном каталоге;
+  4. настоящий приём с отчётом; при исключении или ненулевом коде — восстановление всех трёх файлов;
   5. `checks/map_contract.py`; если красный — откат из резервной копии и повторная проверка.
 
 Права: не-`main` может принимать только свои файлы `literature/map/inbox/<агент>-*`.
@@ -20,11 +20,18 @@
 from __future__ import annotations
 
 import argparse
+import ast
+import contextlib
+import errno
+import fcntl
+import json
 import os
 import pathlib
+import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -34,50 +41,113 @@ BACKUPS = COORD / "backups"
 MAP = ROOT / "literature" / "map"
 ATOMS = MAP / "atoms.jsonl"
 EDGES = MAP / "edges.jsonl"
-LOCK_TTL_S = 300
+LOCK_TIMEOUT_S = 300
+# Согласованные Markdown-имена: docs/DIP-*.md и literature/map/ingest-*.md.
+NON_MAIN_REPORTS = ((ROOT / "docs", "DIP-", ".md"), (MAP, "ingest-", ".md"))
 
 
-def now_stamp() -> str:
-    return time.strftime("%Y%m%dT%H%M%S")
+def _load_protected() -> tuple[str, ...]:
+    """Прочитать PROTECTED из tools/coord.py, не выполняя его и не создавая pyc."""
+    path = ROOT / "tools" / "coord.py"
+    tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and any(
+                isinstance(target, ast.Name) and target.id == "PROTECTED" for target in node.targets):
+            return tuple(ast.literal_eval(node.value))
+    raise RuntimeError("в tools/coord.py не найдена константа PROTECTED")
 
 
-def lock():
+PROTECTED = _load_protected()
+
+
+@contextlib.contextmanager
+def lock(timeout: float = LOCK_TIMEOUT_S):
+    """Взаимоисключение на открытом файле; TTL и удаление lock-файла не используются."""
     LOCKS.mkdir(parents=True, exist_ok=True)
     path = LOCKS / "map-ingest.lock"
-    t0 = time.time()
-    while True:
-        try:
-            path.mkdir()
-            return path
-        except FileExistsError:
+    fh = path.open("a+b")
+    deadline = time.monotonic() + timeout
+    try:
+        while True:
             try:
-                if time.time() - path.stat().st_mtime > LOCK_TTL_S:
-                    stale = path.with_name(f"map-ingest.stale-{os.getpid()}-{time.time_ns()}")
-                    os.rename(path, stale)
-                    shutil.rmtree(stale, ignore_errors=True)
-                    continue
-            except OSError:
-                pass
-            if time.time() - t0 > LOCK_TTL_S:
-                raise TimeoutError("приём занят слишком долго")
-            time.sleep(0.2)
+                fcntl.flock(fh.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except BlockingIOError:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise TimeoutError("приём занят слишком долго")
+                time.sleep(min(0.05, remaining))
+        yield
+    finally:
+        try:
+            fcntl.flock(fh.fileno(), fcntl.LOCK_UN)
+        finally:
+            fh.close()
 
 
-def backup() -> dict[str, pathlib.Path]:
-    BACKUPS.mkdir(parents=True, exist_ok=True)
-    stamp = now_stamp()
-    out = {}
-    for src in (ATOMS, EDGES):
+def fsync_dir(path: pathlib.Path) -> None:
+    fd = os.open(path, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
+    try:
+        try:
+            os.fsync(fd)
+        except OSError as exc:
+            if exc.errno not in (errno.EINVAL, errno.ENOTSUP):
+                raise
+    finally:
+        os.close(fd)
+
+
+def atomic_restore(path: pathlib.Path, saved: pathlib.Path | None) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if saved is None:
+        path.unlink(missing_ok=True)
+        fsync_dir(path.parent)
+        return
+    mode = path.stat().st_mode & 0o777 if path.exists() else 0o644
+    fd, name = tempfile.mkstemp(prefix=f".{path.name}.restore-", suffix=".tmp", dir=path.parent)
+    tmp = pathlib.Path(name)
+    try:
+        with os.fdopen(fd, "wb") as fh:
+            os.fchmod(fh.fileno(), mode)
+            fh.write(saved.read_bytes())
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, path)
+        fsync_dir(path.parent)
+    except BaseException:
+        try:
+            tmp.unlink(missing_ok=True)
+        except OSError:
+            pass
+        raise
+
+
+def backup(container: pathlib.Path, report_path: pathlib.Path | None = None) -> dict[pathlib.Path, pathlib.Path | None]:
+    """Точные байты таблиц и отчёта; None означает, что файла до приёма не было."""
+    saved: dict[pathlib.Path, pathlib.Path | None] = {}
+    paths = [ATOMS, EDGES]
+    if report_path is not None:
+        paths.append(report_path)
+    for index, src in enumerate(dict.fromkeys(paths)):
         if src.exists():
-            dst = BACKUPS / f"{stamp}-{src.name}"
+            dst = container / f"{index}-{src.name}"
             shutil.copy2(src, dst)
-            out[str(src)] = dst
-    return out
+            saved[src] = dst
+        else:
+            saved[src] = None
+    return saved
 
 
-def restore(saved: dict[str, pathlib.Path]) -> None:
+def restore(saved: dict[pathlib.Path, pathlib.Path | None]) -> None:
+    failures = []
     for src, dst in saved.items():
-        shutil.copy2(dst, src)
+        try:
+            atomic_restore(src, dst)
+        except BaseException as exc:
+            # Даже повторный KeyboardInterrupt не должен прервать откат остальных файлов.
+            failures.append(f"{src}: {exc}")
+    if failures:
+        raise RuntimeError("ОТКАТ НЕ ВЫПОЛНЕН: " + "; ".join(failures))
 
 
 def run(cmd: list[str]) -> tuple[int, str]:
@@ -93,47 +163,50 @@ def duplicate_warnings(atoms_file: pathlib.Path, registry: pathlib.Path) -> list
     дубль заметил человек. Признак тот же, что в `tools/map_duplicates.py`: тот же DOI и не меньше двух
     общих ДРОБНЫХ чисел (целые совпадают у чего угодно, а пересказ одного факта даёт сходство текста 0,1).
     """
-    import json as _json
-    import re as _re
-
     def fracs(text: str) -> set[str]:
         out = set()
-        for m in _re.finditer(r"\d+(?:[.,]\d+)?", text or ""):
+        for m in re.finditer(r"\d+(?:[.,]\d+)?", text or ""):
             tok = m.group(0).replace(",", ".")
             if "." in tok:
                 out.add(tok)
         return out
 
     try:
-        incoming = [_json.loads(l) for l in atoms_file.read_text(encoding="utf-8").splitlines() if l.strip()]
+        incoming = [json.loads(line) for line in atoms_file.read_text(encoding="utf-8").splitlines() if line.strip()]
     except Exception:
         return []
     existing = {}
     atoms_path = ROOT / "literature" / "map" / "atoms.jsonl"
     if atoms_path.exists():
-        for l in atoms_path.read_text(encoding="utf-8").splitlines():
-            if l.strip():
-                a = _json.loads(l)
+        for line in atoms_path.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                a = json.loads(line)
                 existing[a["atom"]] = a
     known = {}
     if registry.exists():
         try:
-            known = _json.loads(registry.read_text(encoding="utf-8"))
+            known = json.loads(registry.read_text(encoding="utf-8"))
         except Exception:
             known = {}
 
     warnings: list[str] = []
     for a in incoming:
-        dois = {(w.get("doi") or "").lower() for w in (a.get("works") or [])}
+        if not isinstance(a, dict):
+            continue
+        works = a.get("works") if isinstance(a.get("works"), list) else []
+        dois = {(w.get("doi") or "").lower() for w in works
+                if isinstance(w, dict) and isinstance(w.get("doi"), str)}
         dois.discard("")
-        mine = fracs(a.get("statement") or "")
+        mine = fracs(str(a.get("statement") or ""))
         for aid, b in existing.items():
             if aid == a.get("atom"):
                 continue
-            theirs = {(w.get("doi") or "").lower() for w in (b.get("works") or [])}
+            theirs_works = b.get("works") if isinstance(b.get("works"), list) else []
+            theirs = {(w.get("doi") or "").lower() for w in theirs_works
+                      if isinstance(w, dict) and isinstance(w.get("doi"), str)}
             if not (dois & theirs):
                 continue
-            shared = mine & fracs(b.get("statement") or "")
+            shared = mine & fracs(str(b.get("statement") or ""))
             if len(shared) < 2:
                 continue
             key1, key2 = f"{aid}|{a.get('atom')}", f"{a.get('atom')}|{aid}"
@@ -144,23 +217,63 @@ def duplicate_warnings(atoms_file: pathlib.Path, registry: pathlib.Path) -> list
 
 
 def looks_like_edges(path: str) -> bool:
-    """Файл рёбер (`from`/`to`/`type`) в роли файла атомов — частая ошибка публикации.
-
-    Именно так рёбра партий fast были «приняты» с кодом 0 и не попали в карту: каждая строка отклонялась
-    валидатором атомов, а инструмент возвращал успех.
-    """
+    """Файл рёбер (`from`/`to`/`type`) в роли файла атомов — частая ошибка публикации."""
     try:
         with open(path, encoding="utf-8") as fh:
             for line in fh:
                 line = line.strip()
                 if not line:
                     continue
-                import json as _json
-                row = _json.loads(line)
-                return all(k in row for k in ("from", "to", "type")) and "atom" not in row
+                row = json.loads(line)
+                return isinstance(row, dict) and all(k in row for k in ("from", "to", "type")) and "atom" not in row
     except Exception:
         return False
     return False
+
+
+def _is_protected(path: pathlib.Path) -> bool:
+    try:
+        rel = path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return False
+    for entry in PROTECTED:
+        protected = entry.rstrip("/")
+        if rel == protected or rel.startswith(protected + "/"):
+            return True
+    return False
+
+
+def resolve_report(value: str, agent: str, inputs: tuple[pathlib.Path | None, ...]) -> pathlib.Path:
+    """Проверить лексический путь; dirfd/O_NOFOLLOW проверяются снова при записи."""
+    requested = pathlib.Path(value)
+    if not requested.is_absolute():
+        requested = ROOT / requested
+    path = pathlib.Path(os.path.abspath(requested))
+    if path in (ATOMS, EDGES):
+        raise ValueError("--report не может указывать на atoms.jsonl или edges.jsonl")
+    if path.name in {ATOMS.name, EDGES.name}:
+        raise ValueError("--report не может указывать на atoms.jsonl или edges.jsonl")
+    if _is_protected(path):
+        raise ValueError("--report не может указывать на PROTECTED-файл")
+    if path in inputs:
+        raise ValueError("--report не может перезаписать входной atoms/edges-файл")
+    if path.exists() and not path.is_file():
+        raise ValueError("--report должен быть файлом, а не каталогом")
+    if agent != "main":
+        if not path.is_relative_to(ROOT):
+            raise ValueError("не-main может писать отчёт только внутри репозитория")
+        allowed = False
+        for directory, prefix, suffix in NON_MAIN_REPORTS:
+            if path.parent == directory and path.name.startswith(prefix) and path.name.endswith(suffix):
+                allowed = True
+                break
+        if not allowed:
+            names = ", ".join(
+                (directory.relative_to(ROOT).as_posix() + "/" + prefix + "*" + suffix)
+                for directory, prefix, suffix in NON_MAIN_REPORTS
+            )
+            raise ValueError(f"не-main может писать отчёт только в: {names}")
+    return path
 
 
 def main(argv: list[str]) -> int:
@@ -172,82 +285,154 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--no-contract", action="store_true", help="пропустить проверку контракта (только main)")
     a = ap.parse_args(argv)
 
-    if looks_like_edges(a.atoms_file):
-        print("ошибка: это файл РЁБЕР, а не атомов — передайте его через --edges")
-        return 1
-
-    atoms_file = pathlib.Path(a.atoms_file)
-    if not atoms_file.is_absolute():
-        atoms_file = ROOT / atoms_file
-    if not atoms_file.exists():
-        print(f"ошибка: нет файла {atoms_file}")
-        return 1
-
-    rel = atoms_file.relative_to(ROOT).as_posix() if atoms_file.is_relative_to(ROOT) else str(atoms_file)
-    if a.agent != "main":
-        allowed = pathlib.PurePosixPath(rel)
-        if allowed.parts[:3] != ("literature", "map", "inbox") or not allowed.name.startswith(f"{a.agent}-"):
-            print(f"ошибка: агент {a.agent} может принимать только свои файлы "
-                  f"literature/map/inbox/{a.agent}-*; получено: {rel}")
-            return 1
-    if a.no_contract and a.agent != "main":
-        print("ошибка: --no-contract разрешён только main")
-        return 1
-
-    base_cmd = [sys.executable, "tools/map_ingest.py", rel]
-    if a.edges:
-        base_cmd += ["--edges", a.edges]
-
-    lock_path = lock()
+    saved = None
+    backup_dir = None
+    preserve_backup = False
     try:
-        print("1/4 пробный прогон…")
-        rc, out = run(base_cmd + ["--dry-run"])
-        print(out)
-        if rc != 0:
-            print("ошибка: пробный прогон не прошёл — карта не изменена")
-            return rc
-        warns = duplicate_warnings(atoms_file, ROOT / "docs" / "MAP-DUPLICATES.json")
-        if warns:
-            print("внимание: возможно, эти факты уже есть в карте (сверка по DOI и дробным числам):")
-            for w in warns:
-                print(w)
-            print("  если это осознанный повтор — внесите пару в docs/MAP-DUPLICATES.json")
-        if "принято 0 из" in out:
-            print("нечего принимать: 0 новых ячеек — карта не изменена")
-            return 0
-
-        saved = backup() if not a.no_contract else {}
-        print(f"2/4 резервная копия: {', '.join(p.name for p in saved.values()) or 'не нужна'}")
-
-        print("3/4 приём…")
-        cmd = base_cmd + (["--report", a.report] if a.report else [])
-        rc, out = run(cmd)
-        print(out)
-        if rc != 0:
-            if saved:
-                restore(saved)
-                print("ОТКАТ: приём не прошёл, карта восстановлена")
-            return rc
-
-        if a.no_contract:
-            print("4/4 проверка контракта пропущена (--no-contract)")
-            return 0
-
-        print("4/4 контракт…")
-        rc, out = run([sys.executable, "checks/map_contract.py"])
-        if rc != 0:
-            print(out[-2000:])
-            restore(saved)
-            rc2, out2 = run([sys.executable, "checks/map_contract.py"])
-            print("ОТКАТ выполнен; контракт после отката:", "зелёный" if rc2 == 0 else "КРАСНЫЙ — нужен main")
-            if rc2 != 0:
-                print(out2[-1000:])
+        atoms_file = pathlib.Path(a.atoms_file)
+        if not atoms_file.is_absolute():
+            atoms_file = ROOT / atoms_file
+        atoms_file = atoms_file.resolve()
+        if not atoms_file.is_file():
+            print(f"ошибка: нет файла {atoms_file}")
             return 1
-        print("контракт зелёный; карта принята")
-        print("дальше (только main): пересборка kg/ и эмбеддингов")
-        return 0
+        if looks_like_edges(str(atoms_file)):
+            print("ошибка: это файл РЁБЕР, а не атомов — передайте его через --edges")
+            return 1
+
+        rel = atoms_file.relative_to(ROOT).as_posix() if atoms_file.is_relative_to(ROOT) else str(atoms_file)
+        if a.agent != "main":
+            allowed = pathlib.PurePosixPath(rel)
+            if allowed.parts[:3] != ("literature", "map", "inbox") or not allowed.name.startswith(f"{a.agent}-"):
+                print(f"ошибка: агент {a.agent} может принимать только свои файлы "
+                      f"literature/map/inbox/{a.agent}-*; получено: {rel}")
+                return 1
+        if a.no_contract and a.agent != "main":
+            print("ошибка: --no-contract разрешён только main")
+            return 1
+
+        edges_input = None
+        if a.edges:
+            edges_input = pathlib.Path(a.edges)
+            if not edges_input.is_absolute():
+                edges_input = ROOT / edges_input
+            edges_input = edges_input.resolve()
+
+        report_path = None
+        report_requested = None
+        if a.report:
+            try:
+                report_path = resolve_report(a.report, a.agent, (atoms_file, edges_input))
+                report_requested = a.report
+            except (OSError, RuntimeError, ValueError) as exc:
+                print(f"ошибка: {exc}", file=sys.stderr)
+                return 2
+
+        base_cmd = [sys.executable, "tools/map_ingest.py", rel]
+        if edges_input is not None:
+            base_cmd += ["--edges", str(edges_input)]
+
+        with lock():
+            result = 1
+            check_after_rollback = False
+            try:
+                print("1/4 пробный прогон…")
+                rc, out = run(base_cmd + ["--dry-run"])
+                print(out)
+                if rc != 0:
+                    print("ошибка: пробный прогон не прошёл — карта не изменена")
+                    return rc
+                if re.search(r"^принято 0 из \d+", out, re.M):
+                    if "status: duplicate-only" in out:
+                        print("нечего принимать: все строки уже есть в карте — успешный повтор, не новый приём")
+                        return 0
+                    if "status: empty" in out:
+                        print("вход пуст — приём не выполнен, карта не изменена")
+                        return 0
+                    print("ошибка: новых ячеек нет, но это не объявленный дубль — приём не выполнен")
+                    return 1
+
+                warns = duplicate_warnings(atoms_file, ROOT / "docs" / "MAP-DUPLICATES.json")
+                if warns:
+                    print("внимание: возможно, эти факты уже есть в карте (сверка по DOI и дробным числам):")
+                    for w in warns:
+                        print(w)
+                    print("  если это осознанный повтор — внесите пару в docs/MAP-DUPLICATES.json")
+
+                BACKUPS.mkdir(parents=True, exist_ok=True)
+                backup_dir = pathlib.Path(tempfile.mkdtemp(
+                    prefix=f"map-ingest-{os.getpid()}-{time.time_ns()}-", dir=BACKUPS,
+                ))
+                try:
+                    saved = backup(backup_dir, report_path)
+                except BaseException:
+                    shutil.rmtree(backup_dir, ignore_errors=True)
+                    backup_dir = None
+                    raise
+                print(f"2/4 резервная копия: {', '.join(p.name for p in saved.values() if p) or 'таблиц не было'}")
+
+                # С этого места любое прерывание требует отката; backup нельзя удалять до его успеха.
+                preserve_backup = True
+                print("3/4 приём…")
+                cmd = base_cmd + (["--report", str(report_requested)] if report_requested is not None else [])
+                rc, out = run(cmd)
+                print(out)
+                if rc != 0:
+                    result = rc
+                elif a.no_contract:
+                    print("4/4 проверка контракта пропущена (--no-contract)")
+                    result = 0
+                else:
+                    print("4/4 контракт…")
+                    rc, out = run([sys.executable, "checks/map_contract.py"])
+                    if rc != 0:
+                        print(out[-2000:])
+                        result = 1
+                        check_after_rollback = True
+                    else:
+                        print("контракт зелёный; карта принята")
+                        print("дальше (только main): пересборка kg/ и эмбеддингов")
+                        result = 0
+                if result == 0:
+                    preserve_backup = False
+            except KeyboardInterrupt:
+                result = 130
+                print("ОТКАТ: приём прерван", file=sys.stderr)
+            except Exception as exc:
+                result = 1
+                print(f"ошибка приёма: {exc}", file=sys.stderr)
+            finally:
+                if saved is not None and preserve_backup:
+                    try:
+                        restore(saved)
+                    except BaseException as rollback_exc:
+                        preserve_backup = True
+                        print(f"КРИТИЧНО: {rollback_exc}", file=sys.stderr)
+                        print(f"Резервная копия сохранена: {backup_dir}", file=sys.stderr)
+                        for src, dst in saved.items():
+                            if dst is not None:
+                                print(f"  {src} <- {dst}", file=sys.stderr)
+                        if result == 0:
+                            result = 1
+                    else:
+                        preserve_backup = False
+                        print("ОТКАТ: исходные таблицы и отчёт восстановлены", file=sys.stderr)
+
+            if check_after_rollback and not preserve_backup:
+                rc2, out2 = run([sys.executable, "checks/map_contract.py"])
+                print("ОТКАТ выполнен; контракт после отката:", "зелёный" if rc2 == 0 else "КРАСНЫЙ — нужен main")
+                if rc2 != 0:
+                    print(out2[-1000:])
+            return result
+    except KeyboardInterrupt:
+        print("ОТКАТ: приём прерван до изменения карты", file=sys.stderr)
+        return 130
+    except Exception as exc:
+        print(f"ошибка приёма: {exc}", file=sys.stderr)
+        return 1
     finally:
-        shutil.rmtree(lock_path, ignore_errors=True)
+        if backup_dir is not None and not preserve_backup:
+            shutil.rmtree(backup_dir, ignore_errors=True)
 
 
 if __name__ == "__main__":

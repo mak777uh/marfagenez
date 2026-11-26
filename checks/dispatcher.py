@@ -42,30 +42,33 @@ STUBS = """do_test(){{ :; }}; do_lean(){{ :; }}; do_reach(){{ :; }}
 do_dispatcher(){{ :; }}; do_verus(){{ :; }}
 do_audit(){{ :; }}
 do_exp(){{ return {exp_rc}; }}
-do_claims(){{ return {claims_rc}; }}; do_export(){{ :; }}; do_models(){{ :; }}; do_kg(){{ :; }}
+do_claims(){{ return {claims_rc}; }}; do_export(){{ :; }}; do_models(){{ :; }}
+do_kg(){{ return {kg_rc}; }}
 do_agents(){{ return {agents_rc}; }}
 """
 
 
-def build(directory: Path, exp_rc: int, agents_rc: int, claims_rc: int = 0) -> Path:
+def build(directory: Path, exp_rc: int, agents_rc: int, claims_rc: int = 0,
+          kg_rc: int = 0) -> Path:
     """A copy of run.sh whose do_* are stubs with the given exit codes."""
     text = RUN.read_text(encoding="utf-8")
     if MARKER not in text:
         raise SystemExit(f"нет маркера «{MARKER}» в run.sh -- проверка устарела")
     head, tail = text.split(MARKER, 1)
-    path = directory / f"run-{exp_rc}-{agents_rc}-{claims_rc}.sh"
+    path = directory / f"run-{exp_rc}-{agents_rc}-{claims_rc}-{kg_rc}.sh"
     path.write_text(
         head
-        + STUBS.format(exp_rc=exp_rc, agents_rc=agents_rc, claims_rc=claims_rc)
+        + STUBS.format(exp_rc=exp_rc, agents_rc=agents_rc, claims_rc=claims_rc,
+                       kg_rc=kg_rc)
         + MARKER
         + tail,
         encoding="utf-8",
     )
     # Заглушки обязаны перекрыть настоящие do_*: проверяем это, а не надеемся.
     body = path.read_text(encoding="utf-8")
-    for fn in ("do_exp", "do_agents", "do_claims"):
+    for fn in ("do_exp", "do_agents", "do_claims", "do_kg"):
         last = body.rfind(f"\n{fn}()")
-        stub = body.rfind(f"\n{fn}(){{ return")
+        stub = body.rfind(f"\n{fn}(){{")
         if stub < last or stub < 0:
             raise SystemExit(
                 f"заглушка {fn} перекрыта настоящей функцией -- проверка тавтологична"
@@ -74,8 +77,8 @@ def build(directory: Path, exp_rc: int, agents_rc: int, claims_rc: int = 0) -> P
 
 
 def run(script: Path, target: str) -> tuple[int, str]:
-    # `cd` не нужен: run.sh сам делает `cd /root/marfagenez`, а заглушки
-    # ничего не читают. Код возврата берётся от процесса, не от конвейера.
+    # `cd` не нужен: run.sh сам переходит в каталог своего расположения,
+    # а заглушки ничего не читают. Код возврата берётся от процесса, не от конвейера.
     # Таймаут -- не исключение, а результат: иначе один медленный случай
     # роняет весь прогон трейсбеком, и остальные случаи не проверяются вовсе.
     # Так и случилось, когда в `all` добавили `audit`: заглушки для него не
@@ -99,23 +102,27 @@ TIMEOUT = 120
 TIMEOUT_RC = -9
 
 CASES = [
-    # (имя, exp_rc, agents_rc, claims_rc, цель, ожидаемый код, ожидаемый баннер)
+    # (имя, exp_rc, agents_rc, claims_rc, kg_rc, цель, ожидаемый код, ожидаемый баннер)
     #
     # Баннер сверяется ЦЕЛИКОМ, вместе с кодом. Раньше проверялось только
     # вхождение подстроки «ЕСТЬ ПРОВАЛЫ», и `(код 1)` от `(код 2)` было
     # неотличимо: диспетчер, затирающий первый провал вторым, печатал
     # «ЕСТЬ ПРОВАЛЫ (код 2)» и проходил проверку -- хотя именно потеря
     # исходной причины и есть дефект.
-    ("exp падает, agents проходит", 1, 0, 0, "all", 1, "ЕСТЬ ПРОВАЛЫ (код 1)"),
-    ("agents падает последним", 0, 1, 0, "all", 1, "ЕСТЬ ПРОВАЛЫ (код 1)"),
-    ("оба падают", 1, 1, 0, "all", 1, "ЕСТЬ ПРОВАЛЫ (код 1)"),
-    ("всё проходит", 0, 0, 0, "all", 0, "ВСЁ ЗЕЛЁНОЕ"),
-    ("одиночная цель падает", 1, 0, 0, "exp", 1, "ЕСТЬ ПРОВАЛЫ (код 1)"),
-    ("одиночная цель проходит", 0, 0, 0, "agents", 0, "ВСЁ ЗЕЛЁНОЕ"),
+    ("exp падает, agents проходит", 1, 0, 0, 0, "all", 1, "ЕСТЬ ПРОВАЛЫ (код 1)"),
+    ("agents падает последним", 0, 1, 0, 0, "all", 1, "ЕСТЬ ПРОВАЛЫ (код 1)"),
+    ("оба падают", 1, 1, 0, 0, "all", 1, "ЕСТЬ ПРОВАЛЫ (код 1)"),
+    ("всё проходит", 0, 0, 0, 0, "all", 0, "ВСЁ ЗЕЛЁНОЕ"),
+    ("одиночная цель падает", 1, 0, 0, 0, "exp", 1, "ЕСТЬ ПРОВАЛЫ (код 1)"),
+    ("одиночная цель проходит", 0, 0, 0, 0, "agents", 0, "ВСЁ ЗЕЛЁНОЕ"),
     # Провал `exp` (код 1) и более поздний провал `claims` (код 2): диспетчер
     # обязан сохранить ПЕРВЫЙ код. `do_exp || RC=$?` в этой паре даёт 2,
     # `do_exp; keep $?` -- 1, и различие видно только по коду в баннере.
-    ("первый провал не затирается вторым", 1, 0, 2, "all", 1, "ЕСТЬ ПРОВАЛЫ (код 1)"),
+    ("первый провал не затирается вторым", 1, 0, 2, 0, "all", 1, "ЕСТЬ ПРОВАЛЫ (код 1)"),
+    # keep_q захватывал $? после local rc, поэтому ошибка kg превращалась в 0.
+    # В run.sh ненулевой код раздела сохраняется в RC, но процесс завершается
+    # кодом 1; баннер обязан назвать исходные 7, а не 0 или 1.
+    ("kg возвращает свой код ошибки", 0, 0, 0, 7, "kg", 1, "ЕСТЬ ПРОВАЛЫ (код 7)"),
 ]
 
 
@@ -145,11 +152,11 @@ def main() -> int:
 
     failures = 0
     with tempfile.TemporaryDirectory() as tmp:
-        built: dict[tuple[int, int, int], Path] = {}
-        for name, exp_rc, agents_rc, claims_rc, target, want_rc, want_banner in CASES:
-            key = (exp_rc, agents_rc, claims_rc)
+        built: dict[tuple[int, int, int, int], Path] = {}
+        for name, exp_rc, agents_rc, claims_rc, kg_rc, target, want_rc, want_banner in CASES:
+            key = (exp_rc, agents_rc, claims_rc, kg_rc)
             if key not in built:
-                built[key] = build(Path(tmp), exp_rc, agents_rc, claims_rc)
+                built[key] = build(Path(tmp), exp_rc, agents_rc, claims_rc, kg_rc)
             rc, out = run(built[key], target)
             problems = []
             if rc != want_rc:
@@ -175,10 +182,43 @@ def main() -> int:
             else:
                 print(f"  ok   {name} (код {rc}, «{banner[0]}»)")
 
+        # Отдельно проверяем внутренний do_dispatcher: обычные STUBS выше
+        # подменяют всю функцию и потому не видят потерю первого кода между
+        # несколькими integrity-проверками. Здесь оставляем настоящую функцию,
+        # а python3 возвращает 3 для dispatcher.py и 4 для следующей проверки.
+        text = RUN.read_text(encoding="utf-8")
+        head, tail = text.split(MARKER, 1)
+        special = Path(tmp) / "run-dispatcher-integrity.sh"
+        special.write_text(
+            head
+            + """
+python3() {
+  case "$1" in
+    checks/dispatcher.py) return 3 ;;
+    checks/ingest_integrity.py) return 4 ;;
+    *) return 0 ;;
+  esac
+}
+"""
+            + MARKER
+            + tail,
+            encoding="utf-8",
+        )
+        rc, out = run(special, "dispatcher")
+        banner = "ЕСТЬ ПРОВАЛЫ (код 3): провалились разделы: dispatcher"
+        if rc != 1 or not any(line.startswith(banner) for line in out.splitlines()):
+            failures += 1
+            print("  FAIL integrity сохраняет первый провал: "
+                  f"код {rc}, ожидался 1 и «{banner}»")
+            print("       " + "\n       ".join(out.strip().splitlines()[-3:]))
+        else:
+            print("  ok   integrity сохраняет первый провал (код 3, «dispatcher»)")
+
+    total = len(CASES) + 1
     if failures:
-        print(f"    FAIL: диспетчер теряет провал в {failures} из {len(CASES)} случаев")
+        print(f"    FAIL: диспетчер теряет провал в {failures} из {total} случаев")
         return 1
-    print(f"    диспетчер сохраняет провал: {len(CASES)}/{len(CASES)}")
+    print(f"    диспетчер сохраняет провал: {total}/{total}")
     return 0
 
 

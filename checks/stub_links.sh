@@ -58,7 +58,8 @@ CLEAN_PATH=$(printf '%s' "$PATH" | tr ':' '\n' | grep -v '\.elan/bin' | paste -s
 # `cargo` here is a rustup shim and finds its toolchains through `RUSTUP_HOME`,
 # which defaults to `$HOME/.rustup`. Hiding HOME would hide the Rust toolchain
 # too, and the build would fail for the wrong reason.
-REAL_RUSTUP_HOME=${RUSTUP_HOME:-$HOME/.rustup}
+REAL_RUSTUP_HOME=${RUSTUP_HOME:-${HOME:-/root}/.rustup}
+[ -d "$REAL_RUSTUP_HOME" ] || { echo "  FAIL RUSTUP_HOME (toolchain) not found: $REAL_RUSTUP_HOME"; exit 1; }
 STUB_ENV=(env "HOME=$HIDDEN_HOME" "RUSTUP_HOME=$REAL_RUSTUP_HOME" "PATH=$CLEAN_PATH")
 
 # The real crate is not touched: `cargo build` would overwrite `build.rs`'s

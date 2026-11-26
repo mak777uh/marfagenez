@@ -99,9 +99,9 @@ python3 tools/win_bridge.py   --watch 30     # внешний агент: кар
 | `python3 tools/probe_bridge.py --serve` | один проход |
 | `python3 tools/win_bridge.py --state` | пересобрать `STATE.md` для внешнего агента |
 | `python3 tools/kg_inbox.py --state` | фронтир `kg`: 136 «только извлечено», 38 без свидетельств |
-| `python3 tools/coord.py status` | задачи и активные раунды агентов |
-| `python3 tools/coord.py stale` | просроченные раунды (нет heartbeat) |
-| `python3 tools/coord.py recover` | освободить просроченные |
+| `python3 tools/coord.py status` | read-only: задачи и активные раунды агентов; `--write` явно обновляет `STATUS.md` |
+| `python3 tools/coord.py stale` | просроченные раунды (смена boot/нет heartbeat); старость при живом heartbeat — только предупреждение |
+| `python3 tools/coord.py recover` | освободить доказанно просроченные и завершить прерванный `take` |
 
 **Чего не делать:** не запускать второй watcher того же моста (два процесса подерутся за файлы).
 

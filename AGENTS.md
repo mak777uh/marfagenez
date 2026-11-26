@@ -155,6 +155,17 @@ cp /mnt/c/Users/Admin/Documents/Qoder/2026-10-18/82ab86cd/.dsh-switchman/<name>.
 cd /root/marfagenez/core && cargo build --release --bin trace
 ```
 
+**В новом git worktree Lean-кэш подключается симлинком, иначе mathlib
+собирается с нуля часами.** `.lake/` в `.gitignore` и в worktree не
+переносится; packages — общие для всех checkout'ов:
+
+```bash
+cd <worktree>/laws && rm -rf .lake && mkdir -p .lake \
+  && ln -s /root/lean/medium/.lake/packages .lake/packages
+# build/config можно скопировать из /root/marfagenez/laws/.lake/ — сэкономит
+# и сборку самого проекта, не только mathlib
+```
+
 ---
 
 ## Чего здесь нет
