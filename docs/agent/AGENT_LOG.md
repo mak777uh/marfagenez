@@ -10544,3 +10544,17 @@ DQ5/DQ6 DRIVER-FIX proposals приняты (циклы 856/857).
 - Rust 403->404; автопочинка парсит оба отчёта (doc_numbers + log_check: второй
   сверяет и замороженные строки).
 - Грабли 854 (в AGENT_STATE): heredoc с бэктиками требует quoted delimiter.
+
+### Цикл 856 — 2026-11-27 — `749e1fed`: контракты процедуры D-Q5 в драйвере; фикс исхода 855
+
+**Исход 855:** гейт зелёный, коммит `749e1fed` запушен: reported_r CSV-контракт D-Q4
+(RA/RB = hazard-fed R), Rust 404; EXP-2026-4101 v4 (base 749e1fedc9f8...) опубликована,
+MSG-...-14 exper'у (claim v4, dev-прогон D-Q4); proposals DQ5/DQ6-DRIVER-FIX published.
+
+- Proposal exper PROP-EXPER-DQ5-DRIVER-FIX исполнен: `--mode ramp|constant`
+  (specific: constant подаёт D=dose/H, аналитический dose сохранён), `--sham`
+  (placebo: q0=0.5 с потреблением того же draw), `--details` (reproduce-поля
+  organism,q0,death_step,censored), фактические seed в CSV, mode/sham в summary.
+- +3 теста: constant_mode_keeps_analytic_dose_per_step,
+  sham_fixes_q0_and_consumes_the_same_draw, details_capture_q0_death_step_and_censoring.
+- Rust 404->407. После гейта: EXP-2026-4102 переиздана v2 с новым base_commit.

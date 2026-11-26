@@ -472,3 +472,12 @@ R, фактически поданный в hazard (repair a/0, r-clock 100/100,
 reported_r_matches_control_contract. Rust 403->404.
 
 status: цикл 855 — автопочинка зелёная, дальше журнал + гейт + пуш.
+
+## 2026-11-27 — контракты процедуры D-Q5 в драйвере (цикл 856)
+
+Proposal exper PROP-EXPER-DQ5-DRIVER-FIX (published): exp_dq5.rs получил
+`--mode ramp|constant` (constant = D(t)=dose/H, тот же аналитический dose),
+`--sham` (q0=0.5 тем же RNG-draw), `--details` (organism,q0,death_step,censored),
+фактические seed 4201+ в CSV, колонки mode/sham в summary. +3 теста, Rust 404->407.
+
+status: цикл 856 — автопочинка зелёная, дальше журнал + гейт + пуш.

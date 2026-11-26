@@ -260,7 +260,7 @@ python3 checks/transition3.py
 # alpha сходится к 2mu/sigma^2
 python3 checks/alpha_fit.py
 
-# 404 теста
+# 407 теста
 cd core && cargo test --release --tests -- --test-threads=1
 
 # 41 verified
