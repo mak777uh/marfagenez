@@ -1,0 +1,5 @@
+{"from": "FAST-S7ZZ-01", "to": "W4-0020", "type": "supports", "note": "W4-0020: соответствие прошлым отказам ≠ точные прогнозы — proper scoring rule формализует, что честный прогноз максимизирует ожидаемый скор."}
+{"from": "FAST-S7ZZ-02", "to": "DIP34-0011", "type": "supports", "note": "Калибровка AMOC-модели по FAMOUS — пример joint property: прогнозы согласованы с наблюдениями на всей области."}
+{"from": "FAST-S7ZZ-03", "to": "DIP30-0007", "type": "supports", "note": "MLE-оценка eps — частный случай strictly proper scoring → consistent estimation; теорема объясняет, почему MLE работает."}
+{"from": "FAST-S7ZZ-04", "to": "FAST-S2O-02", "type": "qualifies", "note": "CRPS в единицах наблюдений — альтернатива сравнению с аддитивными оценками; proper score штрафует за недокалиброванность."}
+{"from": "FAST-S7ZZ-05", "to": "DIP15-0003", "type": "supports", "note": "Прогноз ветра как «окно» для ремонта — прикладной вероятностный прогноз; proper scores — критерий его качества."}

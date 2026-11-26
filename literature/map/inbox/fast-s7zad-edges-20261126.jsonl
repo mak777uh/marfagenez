@@ -1,0 +1,6 @@
+{"from": "FAST-S7ZAD-01", "to": "DIP3-0004", "type": "qualifies", "note": "COT-организация (closed+mass-maintaining) vs RAF-организация (рефлексивно автокаталитическая+food-generated) — две формализации одного понятия, не эквивалентны."}
+{"from": "FAST-S7ZAD-02", "to": "DIP3-0003", "type": "supports", "note": "Иерархия closed/self-maintaining/mass-maintaining зеркалит соотношение RAF⊂COT: более сильное условие отсекает часть множеств."}
+{"from": "FAST-S7ZAD-03", "to": "DIP3-0002", "type": "supports", "note": "Theorem 1: fixed point — инстанс организации; RAF без границы (нет food-set) — структурный аналог неполной организации."}
+{"from": "FAST-S7ZAD-04", "to": "P-0009", "type": "supports", "note": "Организации E.coli (O1..O5) — конкретная реализация food-generated RAF-подобных режимов метаболизма."}
+{"from": "FAST-S7ZAD-05", "to": "DIP5-0010", "type": "supports", "note": "Открытые границы COT-2007 (inhibition, stable organizations) — та же линия пробелов, что в graph-теоретической формализации замыкания."}
+{"from": "FAST-S7ZAD-02", "to": "FAST-S7ZAC-02", "type": "supports", "note": "Mass-maintenance Mv≥0 — тот же LP-объект, что dual CBM Warren-Jones: стехиометрия+потоки уже были в COT-2007."}

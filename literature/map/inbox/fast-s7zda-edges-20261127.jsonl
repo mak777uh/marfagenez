@@ -1,0 +1,11 @@
+{"from": "FAST-S7ZDA-01", "to": "A-0003", "type": "supports", "note": "A-0003: асимметричное распределение повреждений — здесь эволюционное обоснование через fitness variance."}
+{"from": "FAST-S7ZDA-02", "to": "L-096", "type": "supports", "note": "L-096 (Lindner old-pole): anchored damage у старого полюса — формальный механизм полюсного старения."}
+{"from": "FAST-S7ZDA-03", "to": "W2-0021", "type": "supports", "note": "W2-0021: disposable soma — здесь repair-тайминг (early vs late) как бюджетное решение."}
+{"from": "FAST-S7ZDA-03", "to": "FT-0002", "type": "supports", "note": "FT-0002: цена ремонта есть, границы нет — здесь repair capacity как параметр без цены границы."}
+{"from": "FAST-S7ZDA-04", "to": "FT-0003", "type": "supports", "note": "FT-0003: асимметричное деление помогает — здесь second-degree rejuvenation как эмерджентное следствие."}
+{"from": "FAST-S7ZDA-05", "to": "A-0006", "type": "supports", "note": "A-0006: нет модели «цена границы + ремонт + повреждение» — обе работы без бюджетной границы."}
+{"from": "FAST-S7ZDA-05", "to": "L-037", "type": "refines", "note": "L-037: ось «ремонт+повреждение+деление» теперь покрыта ещё двумя моделями; пустой остаётся только ось цены границы."}
+{"from": "FAST-S7ZDA-02", "to": "L-054", "type": "supports", "note": "L-054 (Ackermann origin of aging): продолжение — genetic assimilation детерминированной асимметрии."}
+{"from": "FAST-S7ZDA-03", "to": "L-051", "type": "supports", "note": "L-051 (Chao threshold): retention vs repair — та же ось damage management, другой уровень описания."}
+{"from": "FAST-S7ZDA-01", "to": "DIP29-0010", "type": "analogous", "note": "DIP29-0010: repair heterogeneity — здесь stochastic vs deterministic partitioning как гетерогенность стратегии."}
+{"from": "FAST-S7ZDA-02", "to": "A-0004", "type": "supports", "note": "A-0004: динамика накопления/удаления повреждений в E. coli — здесь anchored damage у старого полюса как механизм поляризации."}

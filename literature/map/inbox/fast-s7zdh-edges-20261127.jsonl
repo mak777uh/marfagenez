@@ -1,0 +1,11 @@
+{"from": "FAST-S7ZDH-01", "to": "DIP3-0004", "type": "supports", "note": "DIP3-0004: organization = замкнутая+инвариантная подсеть — первоисточник даёт точные определения closed/self/mass-maintaining."}
+{"from": "FAST-S7ZDH-01", "to": "DIP11-0001", "type": "supports", "note": "DIP11-0001: ≥7 несовпадающих определений замыкания — COT-иерархия (closed⊂self⊂mass) один из них."}
+{"from": "FAST-S7ZDH-01", "to": "A-0005", "type": "supports", "note": "A-0005: замыкание ограничений — organization как формальный кандидат."}
+{"from": "FAST-S7ZDH-02", "to": "P-0009", "type": "supports", "note": "P-0009: RAF food-generated — та же стехиометрическая матричная постановка Mv."}
+{"from": "FAST-S7ZDH-02", "to": "DIP3-0002", "type": "supports", "note": "DIP3-0002: RAF без границы — mass-maintenance тоже без граничной цены."}
+{"from": "FAST-S7ZDH-03", "to": "C-0004", "type": "supports", "note": "C-0004: строгое орг. замыкание — организация как инвариантное множество."}
+{"from": "FAST-S7ZDH-03", "to": "DIP5-0009", "type": "supports", "note": "DIP5-0009: клетка как (M,R)-система — COT даёт альтернативную формализацию."}
+{"from": "FAST-S7ZDH-04", "to": "DIP3-0003", "type": "supports", "note": "DIP3-0003: RAF⊂organization — здесь первоисточник: для catalytic flow systems semi-org=org."}
+{"from": "FAST-S7ZDH-04", "to": "DIP3-0009", "type": "supports", "note": "DIP3-0009: RAF стехиометрически автокаталитичен — связь с catalytic flow class."}
+{"from": "FAST-S7ZDH-05", "to": "A-0006", "type": "supports", "note": "A-0006: нет модели с ценой границы — COT подтверждает: mass-maintenance без энергетики."}
+{"from": "FAST-S7ZDH-05", "to": "C-0006", "type": "supports", "note": "C-0006: нет единой количественной формулы орг. замыкания — COT даёт структурную, не количественную."}

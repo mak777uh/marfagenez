@@ -1,0 +1,9 @@
+{"from": "FAST-S7ZDJ-01", "to": "DIP4-0004", "type": "supports", "note": "DIP4-0004: DST optimal allocation — здесь альтернативный механизм той же экспоненциальной формы."}
+{"from": "FAST-S7ZDJ-01", "to": "B15-01-0001", "type": "supports", "note": "B15-01-0001: DP оптимизация repair — reliability theory: форма из архитектуры, не из оптимума."}
+{"from": "FAST-S7ZDJ-01", "to": "W4-0029", "type": "supports", "note": "W4-0029: нет единой динамической модели износа — Gavrilov даёт статическую архитектурную."}
+{"from": "FAST-S7ZDJ-02", "to": "DIP4-0008", "type": "supports", "note": "DIP4-0008: agelessness возможно — здесь условие: свободный от начальных дефектов (Weibull-режим)."}
+{"from": "FAST-S7ZDJ-02", "to": "DIP10-0007", "type": "supports", "note": "DIP10-0007: избыточность не монотонна — у Gavrilov избыточность и создаёт, и исчерпывает старение."}
+{"from": "FAST-S7ZDJ-03", "to": "DIP29-0010", "type": "supports", "note": "DIP29-0010: repair heterogeneity — здесь repair = протеолитическая сеть, не один канал."}
+{"from": "FAST-S7ZDJ-03", "to": "W4-0020", "type": "supports", "note": "W4-0020: fit ≠ точность — network theory: взаимодействия не наблюдаемы по одиночным каналам."}
+{"from": "FAST-S7ZDJ-04", "to": "A-0006", "type": "supports", "note": "A-0006: meta.gap — μ остаётся входным параметром и в reliability theory."}
+{"from": "FAST-S7ZDJ-04", "to": "DIP11-0010", "type": "supports", "note": "DIP11-0010: repair-asymmetry — одноканальная repair не покрывает сетевую self-reference."}

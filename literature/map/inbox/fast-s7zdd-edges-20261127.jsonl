@@ -1,0 +1,8 @@
+{"from": "FAST-S7ZDD-01", "to": "FAST-S7Z-04", "type": "supports", "note": "FAST-S7Z-04: дискриминация CBH от variance aversion — diversified bet-hedging это именно снижение дисперсии приспособленности через фенотипическую вариабельность."}
+{"from": "FAST-S7ZDD-01", "to": "FAST-S2U-02", "type": "supports", "note": "FAST-S2U-02: правило λ_s<λ_d — bet-hedging в семенах реализует диверсификацию как стратегию против неизвестной среды."}
+{"from": "FAST-S7ZDD-02", "to": "FAST-S7Z-04", "type": "supports", "note": "FAST-S7Z-04: эмпирический CV-критерий (низко/высоковариативные линии) — операционализация того же различителя."}
+{"from": "FAST-S7ZDD-03", "to": "W2-0001", "type": "supports", "note": "W2-0001: сохранение master sequence в quasispecies — здесь error threshold как верхний предел mutation rate, согласовано."}
+{"from": "FAST-S7ZDD-03", "to": "MAIN-P122-01", "type": "supports", "note": "MAIN-P122-01: порог ошибок в двухпопуляционной модели — подтверждён обзором как общий предел скорости мутаций."}
+{"from": "FAST-S7ZDD-04", "to": "W3-0006", "type": "supports", "note": "W3-0006: условие сохранения master sequence — survival of the flattest показывает, что порог сдвигается при плоском fitness landscape."}
+{"from": "FAST-S7ZDD-04", "to": "W3-0007", "type": "supports", "note": "W3-0007: селективное превосходство master sequence — нейтральная сеть flat quasispecies размывает это превосходство."}
+{"from": "FAST-S7ZDD-05", "to": "DIP56-0007", "type": "supports", "note": "DIP56-0007: цена границы отсутствует в литературе — оба обзора феноменологичны, бюджетной статьи нет."}

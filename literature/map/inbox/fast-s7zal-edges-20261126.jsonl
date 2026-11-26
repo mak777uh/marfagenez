@@ -1,0 +1,9 @@
+{"from": "FAST-S7ZAL-01", "to": "C-0001", "type": "supports", "note": "C-0001 пересказывает closure; здесь — формальные определения ограничений/процессов и no-flow свойство."}
+{"from": "FAST-S7ZAL-02", "to": "C-0002", "type": "supports", "note": "C-0002 = краткая версия Def.1; здесь полные условия I/II и примеры (васкулярность, ферменты)."}
+{"from": "FAST-S7ZAL-03", "to": "C-0003", "type": "supports", "note": "C-0003: ограничения поддерживаются процессами — здесь Def.2/3: repair = dependence between constraints."}
+{"from": "FAST-S7ZAL-04", "to": "C-0004", "type": "supports", "note": "C-0004 = gist Def.4; здесь полная формулировка с strict closure (нельзя разбить) и ≥2 зависимостями."}
+{"from": "FAST-S7ZAL-05", "to": "A-0005", "type": "supports", "note": "A-0005: организация = замыкание ограничений — здесь операциональные следствия (граница, стабилизация, time-scales)."}
+{"from": "FAST-S7ZAL-04", "to": "W2-0009", "type": "analogous", "note": "W2-0009: статистическая граница ≠ автономия — здесь closure даёт операционный критерий границы, сильнее Markov blanket."}
+{"from": "FAST-S7ZAL-03", "to": "C-0005", "type": "analogous", "note": "C-0005: (M,R)-системы через уравнение неподвижной точки — здесь dependence between constraints как графовый критерий того же замыкания."}
+{"from": "FAST-S7ZAL-05", "to": "V-0005", "type": "qualifies", "note": "V-0005: viability theory без биологической модели — closure of constraints как кандидат на содержательную область viable set."}
+{"from": "FAST-S7ZAL-01", "to": "L-094", "type": "supports", "note": "L-094 = та же работа Montévil & Mossio JTB (DOI 10.1016/j.jtbi.2015.02.029): узел цитирует её через главу; здесь первоисточник."}

@@ -1,0 +1,9 @@
+{"from": "FAST-S7ZCA-01", "to": "DIP11-0008", "type": "supports", "note": "DIP11-0008: перенос замыкания на уровень экосистем требует эволюционно-экологических дополнений — здесь готовые критерии для такого переноса."}
+{"from": "FAST-S7ZCA-02", "to": "W2-0009", "type": "supports", "note": "W2-0009: статистическая граница ≠ автономия — та же каузальная строгость: петля без причинной цепочки не считается."}
+{"from": "FAST-S7ZCA-03", "to": "FAST-S7ZBV-04", "type": "supports", "note": "FAST-S7ZBV-04: Cov=β·Var — здесь β (selection gradient) и Haldane-единицы как готовый измерительный аппарат для критерия 3."}
+{"from": "FAST-S7ZCA-04", "to": "FAST-S7ZBY-05", "type": "supports", "note": "Оба gap-атома об одном: концепт есть, скалярной метрики нет — ниша и niche construction соответственно."}
+{"from": "FAST-S7ZCA-05", "to": "FAST-S7ZBY-01", "type": "supports", "note": "Связка ниша↔niche construction: определение ниши (s7zby-01) + механизм её изменения (s7zca)."}
+{"from": "FAST-S7ZCA-05", "to": "FAST-S7ZBY-03", "type": "supports", "note": "niche construction feedback из Holt-обзора получает операциональные критерии Matthews — 'обратная связь' стала проверяемой."}
+{"from": "FAST-S7ZCA-03", "to": "DIP13-0004", "type": "supports", "note": "DIP13-0004: селективный коэффициент против аллеля — selection gradient β в Haldane-единицах это его генерализация."}
+{"from": "FAST-S7ZCA-04", "to": "A-0006", "type": "analogous", "note": "A-0006: 'не найдено модели, где...' — тот же жанр честного gap-атома: концепт есть, измерения нет."}
+{"from": "FAST-S7ZCA-05", "to": "W2-0010", "type": "analogous", "note": "W2-0010: аллостаз — система меняет условия, от которых зависит; niche construction — эволюционная версия того же Feedback."}

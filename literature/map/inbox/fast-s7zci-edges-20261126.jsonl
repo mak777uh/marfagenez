@@ -1,0 +1,11 @@
+{"from": "FAST-S7ZCI-01", "to": "C-0006", "type": "supports", "note": "C-0006: нет единой количественной формулы замыкания — pe-графы дают графовую формализацию организационного замыкания."}
+{"from": "FAST-S7ZCI-02", "to": "DIP1-0008", "type": "supports", "note": "DIP1-0008: ППР снижает повреждение — замкнутый pe-граф (цикл) = минимальное условие самоподдержания процессов."}
+{"from": "FAST-S7ZCI-03", "to": "L-021", "type": "supports", "note": "L-021: (M,R)-система — здесь она выражена как pe-граф с organizational closure."}
+{"from": "FAST-S7ZCI-03", "to": "L-042", "type": "supports", "note": "L-042: COT формальное замыкание — constraint closure Монтивиля-Моссио тоже в pe-графах."}
+{"from": "FAST-S7ZCI-03", "to": "L-093", "type": "supports", "note": "L-093: autopoiesis — Varela-определение разобрано как pe-граф в §4.1."}
+{"from": "FAST-S7ZCI-03", "to": "DIP11-0001", "type": "supports", "note": "DIP11-0001: семь несовпадающих экспликаций замыкания — pe-графы дают единый язык сравнения именно этих экспликаций."}
+{"from": "FAST-S7ZCI-03", "to": "DIP11-0002", "type": "supports", "note": "DIP11-0002: замыкание как взаимная зависимость constraints — Montévil-Mossio constraint closure включён в сравнение pe-графов."}
+{"from": "FAST-S7ZCI-04", "to": "L-031", "type": "supports", "note": "L-031: индивидуальность без единого теста — perspectival realism: разные pe-графы = разные перспективы одной системы."}
+{"from": "FAST-S7ZCI-04", "to": "L-060", "type": "supports", "note": "L-060 — сама эта работа; атом фиксирует её границу применимости."}
+{"from": "FAST-S7ZCI-04", "to": "DIP11-0010", "type": "supports", "note": "DIP11-0010: нет меры closure на реальных данных — pe-графы пока тоже только формализм, не измерение."}
+{"from": "FAST-S7ZCI-04", "to": "DIP19-0008", "type": "supports", "note": "DIP19-0008: closure of constraints — теоретическая конструкция; perspectival realism не снимает этого статуса."}

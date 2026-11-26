@@ -1,0 +1,10 @@
+{"from": "FAST-S7ZCE-01", "to": "W3-0036", "type": "supports", "note": "W3-0036: не найдено модели, объединяющей циклы роста/деления с повреждением — здесь единая валидированная single-cell модель всех пяти процессов."}
+{"from": "FAST-S7ZCE-01", "to": "P-0010", "type": "supports", "note": "P-0010: нет единой модели протоклетки с ростом+делением+ремонтом — здесь полный набор для эукариотической клетки (не протоклетки)."}
+{"from": "FAST-S7ZCE-02", "to": "MAIN-P124-01", "type": "supports", "note": "Q=D_death/P_div → RLS в делениях — параметрическая связь повреждение↔продолжительность жизни для моделей Гомпертца."}
+{"from": "FAST-S7ZCE-03", "to": "A-0003", "type": "supports", "note": "A-0003: асимметрия агрегатов↔старение/омоложение — модель даёт механизм: retention в матери + trade-off с resilience."}
+{"from": "FAST-S7ZCE-03", "to": "FT-0003", "type": "supports", "note": "FT-0003: способность удерживать повреждение падает с возрастом — здесь 'capacity to retain deteriorates with high age' дословно."}
+{"from": "FAST-S7ZCE-03", "to": "W2-0021", "type": "supports", "note": "W2-0021: disposable soma — мать как расходуемый компартмент, дочь как обновлённая — явная сегрегация цены старения."}
+{"from": "FAST-S7ZCE-04", "to": "A-0006", "type": "supports", "note": "A-0006/L-037: retention = функциональная компартментализация; третий парный мост к пересечению."}
+{"from": "FAST-S7ZCE-04", "to": "FAST-S7ZCB-02", "type": "analogous", "note": "ZCB-02: repair growth-costly vs asymmetry; ZCE-03: retention vs resilience trade-off — та же дилемма в эукариотической клетке."}
+{"from": "FAST-S7ZCE-04", "to": "L-037", "type": "supports", "note": "L-037: пересечение сужено — удержание повреждений матерью функционально = цена границы, но неявная."}
+{"from": "FAST-S7ZCE-04", "to": "L-091", "type": "supports", "note": "L-091 — сама эта работа (Sci Rep 2020); атом фиксирует связь с L-037."}

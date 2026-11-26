@@ -1,0 +1,8 @@
+{"from": "FAST-S7ZAR-01", "to": "FAST-S7B-01", "type": "supports", "note": "FAST-S7B-01: SR-модель фитится к ~20 видам — здесь первичные данные E. coli для того же класса модели."}
+{"from": "FAST-S7ZAR-02", "to": "FAST-S7B-02", "type": "supports", "note": "FAST-S7B-02: ballistic vs saturating режимы — здесь экспериментальное подтверждение saturating-режима на E. coli."}
+{"from": "FAST-S7ZAR-03", "to": "FAST-S2G-05", "type": "supports", "note": "FAST-S2G-05: Gompertz-экспонента не вечна (плато 105+) — здесь микробный аналог: hazard экспоненциален пока ремонт насыщен."}
+{"from": "FAST-S7ZAR-03", "to": "FAST-S2G-01", "type": "supports", "note": "FAST-S2G-01: MRDT = ln2/γ — здесь тот же параметр для E. coli hazard."}
+{"from": "FAST-S7ZAR-04", "to": "WIN-L053-01", "type": "analogous", "note": "WIN-L053-01: стареющая клетка, регенерируемое повреждение + Михаэлис-Ментен ремонт — здесь тот же saturating-removal, но с измеренной динамикой CV."}
+{"from": "FAST-S7ZAR-05", "to": "W3-0020", "type": "analogous", "note": "W3-0020: repair/apoptosis/mutation исходы повреждения — здесь PI-uptake как живой маркер повреждения до смерти."}
+{"from": "FAST-S7ZAR-02", "to": "L-001", "type": "supports", "note": "L-001: накопление повреждения → экспоненциальная смертность — здесь механизм (saturating removal) для того же закона."}
+{"from": "FAST-S7ZAR-03", "to": "L-055", "type": "supports", "note": "L-055: Гомпертц + плато — здесь микробный Гомпертц из damage dynamics."}

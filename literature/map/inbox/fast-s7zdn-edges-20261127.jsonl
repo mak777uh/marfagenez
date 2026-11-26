@@ -1,0 +1,10 @@
+{"from": "FAST-S7ZDN-01", "to": "DIP29-0010", "type": "supports", "note": "DIP29-0010: repair heterogeneity — здесь стохастика от saturable removal, не начальных условий."}
+{"from": "FAST-S7ZDN-01", "to": "B20-02-0003", "type": "supports", "note": "B20-02-0003: Weibull mixture — экспоненциальный рост риска смерти (Гомпертц-форма)."}
+{"from": "FAST-S7ZDN-01", "to": "DIP11-0010", "type": "supports", "note": "DIP11-0010: damage+repair модель — прямое измерение damage dynamics."}
+{"from": "FAST-S7ZDN-02", "to": "DIP4-0008", "type": "supports", "note": "DIP4-0008: agelessness в DST — здесь saturable removal = механизм, делающий бессмертие невозможным."}
+{"from": "FAST-S7ZDN-02", "to": "C-002", "type": "supports", "note": "C-002: breakpoint m_S — насыщение удаления как нелинейность."}
+{"from": "FAST-S7ZDN-02", "to": "B15-01-0001", "type": "supports", "note": "B15-01-0001: DP resource allocation — здесь emergent mortality law без постулата."}
+{"from": "FAST-S7ZDN-03", "to": "DIP8-0011", "type": "supports", "note": "DIP8-0011: damage-inheritance — стохастика стирает начальные условия."}
+{"from": "FAST-S7ZDN-03", "to": "W2-0028", "type": "supports", "note": "W2-0028: rapamycin mortality — детерминированный поздний режим."}
+{"from": "FAST-S7ZDN-04", "to": "A-0006", "type": "supports", "note": "A-0006: meta.gap — измеренная мембранная повреждаемость без бюджета."}
+{"from": "FAST-S7ZDN-04", "to": "B6-01-0001", "type": "supports", "note": "B6-01-0001: compartment — damage на мембране = наша q-ось, но без цены."}

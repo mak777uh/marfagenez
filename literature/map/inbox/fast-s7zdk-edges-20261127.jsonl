@@ -1,0 +1,13 @@
+{"from": "FAST-S7ZDK-01", "to": "C-0004", "type": "supports", "note": "C-0004: строгое орг. замыкание — closure of constraints как точная формулировка."}
+{"from": "FAST-S7ZDK-01", "to": "C-0005", "type": "supports", "note": "C-0005: (M,R) функц. уравнение — здесь каузальный режим ограничений vs термодинамика."}
+{"from": "FAST-S7ZDK-01", "to": "A-0005", "type": "supports", "note": "A-0005: замыкание ограничений — первоисточник самой концепции."}
+{"from": "FAST-S7ZDK-01", "to": "DIP19-0008", "type": "supports", "note": "DIP19-0008: closure-экспликации — Montévil-Mossio центральный текст."}
+{"from": "FAST-S7ZDK-02", "to": "DIP29-0010", "type": "supports", "note": "DIP29-0010: repair-asymmetry — здесь статистическая теория ADS: фрактальные распределения."}
+{"from": "FAST-S7ZDK-02", "to": "B20-02-0001", "type": "supports", "note": "B20-02-0001: смена направления — хаотические траектории повреждения в линиях."}
+{"from": "FAST-S7ZDK-03", "to": "DIP11-0010", "type": "supports", "note": "DIP11-0010: damage+repair модель — здесь lifetime nonlinear через 1−sD."}
+{"from": "FAST-S7ZDK-03", "to": "DIP8-0011", "type": "supports", "note": "DIP8-0011: damage-inheritance — ADS: популяция омолаживается, линия — нет."}
+{"from": "FAST-S7ZDK-04", "to": "DIP5-0001", "type": "supports", "note": "DIP5-0001: (M,R) Розена — здесь точный разбор closure to efficient causation."}
+{"from": "FAST-S7ZDK-04", "to": "DIP5-0005", "type": "supports", "note": "DIP5-0005: орг. инвариантность — chemoton как более общий формализм."}
+{"from": "FAST-S7ZDK-04", "to": "DIP11-0001", "type": "supports", "note": "DIP11-0001: 7 определений замыкания — chemoton vs (M,R) vs COT."}
+{"from": "FAST-S7ZDK-05", "to": "A-0006", "type": "supports", "note": "A-0006: meta.gap — очередное подтверждение пустоты L-037."}
+{"from": "FAST-S7ZDK-05", "to": "C-0006", "type": "supports", "note": "C-0006: нет единой количественной формулы — три теории, ни одна не ценит границу."}

@@ -1,0 +1,9 @@
+{"from": "FAST-S7ZCT-01", "to": "W2-0008", "type": "supports", "note": "W2-0008: Markov blanket = статистическая граница — Bruineberg формализует именно это различие (Pearl vs Friston)."}
+{"from": "FAST-S7ZCT-02", "to": "W2-0009", "type": "supports", "note": "W2-0009: наличие статистической границы ≠ автономия — в терминах Bruineberg: Pearl blanket не влечёт Friston blanket."}
+{"from": "FAST-S7ZCT-04", "to": "P-0010", "type": "supports", "note": "P-0010: нет единой модели граница+ремонт+наследование — физическая оболочка с ценой сильнее любой статистической границы."}
+{"from": "FAST-S7ZCT-04", "to": "V-0005", "type": "supports", "note": "V-0005: нет биологической модели viability — viability region тоже не физическая оболочка, а условие на траекториях."}
+{"from": "FAST-S7ZCT-02", "to": "DIP11-0001", "type": "supports", "note": "DIP11-0001: семь экспликаций closure — Markov blanket это ещё одна (статистическая) экспликация границы."}
+{"from": "FAST-S7ZCT-03", "to": "W2-0037", "type": "supports", "note": "W2-0037: Markov blanket и allostasis описывают статистическую границу — критика Bruineberg бьёт по обоим: статистика ≠ биология."}
+{"from": "FAST-S7ZCT-03", "to": "L-018", "type": "supports", "note": "L-018 — сам узел; первоисточник критики."}
+{"from": "FAST-S7ZCT-04", "to": "L-066", "type": "supports", "note": "L-066: viability region V_alpha — динамическое условие, слабее физической оболочки."}
+{"from": "FAST-S7ZCT-01", "to": "L-018", "type": "supports", "note": "L-018 — сам узел."}

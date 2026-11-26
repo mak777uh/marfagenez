@@ -1,0 +1,10 @@
+{"from": "FAST-S7ZDI-01", "to": "B20-02-0003", "type": "supports", "note": "B20-02-0003: Weibull mixture — DST-оптимум repair-vs-repro."}
+{"from": "FAST-S7ZDI-01", "to": "DIP29-0010", "type": "supports", "note": "DIP29-0010: repair heterogeneity — здесь условие agelessness в DST."}
+{"from": "FAST-S7ZDI-01", "to": "C-002", "type": "supports", "note": "C-002: breakpoint m_S — DST: agelessness при дешёвом ремонте."}
+{"from": "FAST-S7ZDI-02", "to": "DIP8-0011", "type": "supports", "note": "DIP8-0011: gap damage+boundary — два источника повреждения делают agelessness unlikely."}
+{"from": "FAST-S7ZDI-02", "to": "DIP11-0010", "type": "supports", "note": "DIP11-0010: repair-asymmetry модель PNAS 2024 — та же ось extrinsic mortality."}
+{"from": "FAST-S7ZDI-02", "to": "A-0006", "type": "supports", "note": "A-0006: пустое пересечение — pleiotropic repair при делении близок к нашей конструкции."}
+{"from": "FAST-S7ZDI-03", "to": "DIP29-0010", "type": "supports", "note": "DIP29-0010: repair heterogeneity — extrinsic mortality задаёт оптимум."}
+{"from": "FAST-S7ZDI-03", "to": "C-003", "type": "supports", "note": "C-003: SCC-fraction — density-dependent регуляция как модулятор."}
+{"from": "FAST-S7ZDI-04", "to": "A-0006", "type": "supports", "note": "A-0006: meta.gap — формальное сравнение c↔rmax остаётся открытым."}
+{"from": "FAST-S7ZDI-04", "to": "F-004", "type": "supports", "note": "F-004: цена поддержания — c≤1 vs cost→0 в DST."}

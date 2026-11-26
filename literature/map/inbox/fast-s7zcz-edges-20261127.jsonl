@@ -1,0 +1,6 @@
+{"from": "FAST-S7ZCZ-01", "to": "B26-01-0008", "type": "supports", "note": "B26-01-0008: viability kernel вычислен на lake-модели — Aubin 1990 это формальный первоисточник определения V(K)."}
+{"from": "FAST-S7ZCZ-02", "to": "DIP14-0002", "type": "supports", "note": "DIP14-0002: viability kernel как объект — здесь теорема существования при общих условиях."}
+{"from": "FAST-S7ZCZ-04", "to": "A-0006", "type": "qualifies", "note": "A-0006: нет единой формулы замыкания — viability theory даёт формализм «удержания в K», но не биологическую меру замыкания."}
+{"from": "FAST-S7ZCZ-03", "to": "DIP8-0006", "type": "analogous", "note": "DIP8-0006: 11 мер биовозраста согласуются плохо — Lyapunov-функции viability как ещё одна «мера устойчивости» требует калибровки."}
+{"from": "FAST-S7ZCZ-01", "to": "F-024", "type": "supports", "note": "F-024 (viability kernel узел) — первоисточник."}
+{"from": "FAST-S7ZCZ-04", "to": "L-066", "type": "supports", "note": "L-066 (McShaffrey & Beer): viability space decomposition — прикладное вычисление того же аппарата Aubin."}

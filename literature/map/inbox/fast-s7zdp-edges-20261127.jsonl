@@ -1,0 +1,17 @@
+{"from": "FAST-S7ZDP-01", "to": "FAST-S7ZH-02", "type": "extends", "note": "Тот же источник Оргеля 1963; S7ZH-02 давал вывод, здесь — полный текст и механика двух классов белков."}
+{"from": "FAST-S7ZDP-01", "to": "FAST-S7ZH-04", "type": "extends", "note": "S7ZH-04 отметил damage→repair feedback; здесь кумулятивность information-enzymes — тот же класс."}
+{"from": "FAST-S7ZDP-01", "to": "W2-0004", "type": "supports", "note": "W2-0004: критика классической error-catastrophe — Оргел сам ограничивает область (нет оценки шкалы)."}
+{"from": "FAST-S7ZDP-01", "to": "DIP13-0005", "type": "supports", "note": "DIP13-0005: порог ошибки при конечной популяции — Оргел: отбор на клеточном уровне обязателен."}
+{"from": "FAST-S7ZDP-02", "to": "B6-02-0003", "type": "supports", "note": "B6-02-0003: два типа отказов — здесь экспоненциальная дивергенция частоты ошибок."}
+{"from": "FAST-S7ZDP-02", "to": "DIP13-0006", "type": "supports", "note": "DIP13-0006: порог ошибки ВИЧ — тот же g=1-формализм, что dp/dt=ap."}
+{"from": "FAST-S7ZDP-03", "to": "DIP2-0008", "type": "supports", "note": "DIP2-0008: ранние warning signals могут отсутствовать — serial dilution даёт медленную деградацию."}
+{"from": "FAST-S7ZDP-03", "to": "FAST-S7ZH-04", "type": "supports", "note": "Связь с нашей асимметрией: сегрегация аппарата не наблюдается — контекст для деления."}
+{"from": "FAST-S7ZDP-04", "to": "DIP4-0008", "type": "supports", "note": "DIP4-0008: maintenance/redundancy — гермлайн и эмбриональный отбор как механизмы защиты."}
+{"from": "FAST-S7ZDP-04", "to": "W4-0029", "type": "supports", "note": "W4-0029: эволюция старения — disposable soma связь (Kirkwood 1977 уже в s7zi)."}
+{"from": "FAST-S7ZDP-05", "to": "A-0001", "type": "supports", "note": "A-0001: липофусцин снижает активность протеасомы — здесь механизм (surface motifs, протеаза K)."}
+{"from": "FAST-S7ZDP-05", "to": "B7-01-0001", "type": "supports", "note": "B7-01-0001: прямое снижение специфической активности — подтверждено механизмом."}
+{"from": "FAST-S7ZDP-05", "to": "B7-01-0002", "type": "supports", "note": "B7-01-0002: связь с поверхностными мотивами — первоисточник."}
+{"from": "FAST-S7ZDP-05", "to": "B8-01-0001", "type": "supports", "note": "B8-01-0001: IC50 не найден — здесь механизм вместо числа."}
+{"from": "FAST-S7ZDP-05", "to": "DIP8-0003", "type": "supports", "note": "DIP8-0003: повреждённые белки снижают протеостаз — липофусцин как агрегат-ингибитор."}
+{"from": "FAST-S7ZDP-06", "to": "A-0006", "type": "supports", "note": "A-0006: meta.gap — очередное подтверждение."}
+{"from": "FAST-S7ZDP-06", "to": "B6-01-0001", "type": "supports", "note": "B6-01-0001: compartment — ни error catastrophe, ни lipofuscin не трогают границу."}

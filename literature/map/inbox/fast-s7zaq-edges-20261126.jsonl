@@ -1,0 +1,8 @@
+{"from": "FAST-S7ZAQ-01", "to": "L-100", "type": "supports", "note": "L-100 закрыт полным текстом Eigen 1971: selfinstructive vs autocatalytic."}
+{"from": "FAST-S7ZAQ-02", "to": "L-048", "type": "supports", "note": "L-048: порог σ·q^ν>1 — здесь исходная формулировка Q_i в кинетическом уравнении."}
+{"from": "FAST-S7ZAQ-03", "to": "L-046", "type": "supports", "note": "L-046: error catastrophe — здесь первоисточник: дрейф информации вместо стабильной репликации."}
+{"from": "FAST-S7ZAQ-03", "to": "W3-0007", "type": "supports", "note": "W3-0007: quasispecies селективное превосходство — здесь мастер-последовательность и её порог."}
+{"from": "FAST-S7ZAQ-04", "to": "DIP13-0005", "type": "supports", "note": "DIP13-0005: порог при конечной популяции — здесь стохастический порог Table 11 того же эффекта."}
+{"from": "FAST-S7ZAQ-05", "to": "W3-0009", "type": "analogous", "note": "W3-0009: energy-relay proofreading — здесь explore-exploit: Q vs скорость эволюции."}
+{"from": "FAST-S7ZAQ-01", "to": "W3-0007", "type": "supports", "note": "W3-0007: quasispecies мастер-последовательность — здесь первоисточник различия selfinstructive/autocatalytic."}
+{"from": "FAST-S7ZAQ-02", "to": "W3-0002", "type": "supports", "note": "W3-0002: минимальная ошибка без proofreading — здесь Q_i как явный параметр точности в кинетике."}

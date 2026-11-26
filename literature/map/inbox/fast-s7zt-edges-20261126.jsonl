@@ -1,0 +1,12 @@
+{"from": "FAST-S7ZT-01", "to": "L-041", "type": "supports", "note": "L-041 sizer/adder/timer — здесь эмпирическое подтверждение перехода adder→sizer-like в slow growth."}
+{"from": "FAST-S7ZT-01", "to": "L-077", "type": "supports", "note": "L-077 Thomas 2018 cell size homeostasis — продолжение линии: механизм зависит от режима роста."}
+{"from": "FAST-S7ZT-02", "to": "R-0001", "type": "supports", "note": "AIC-дискриминация по распределениям — метод для наших R-моделей несовершенного ремонта."}
+{"from": "FAST-S7ZT-03", "to": "W2-0045", "type": "analogous", "note": "W2-0045: критерии permanence/stability — здесь AIC/relative likelihood как структурный фильтр моделей."}
+{"from": "FAST-S7ZT-04", "to": "C-0001", "type": "analogous", "note": "C-0001: ограничения на разных масштабах — два механизма деления = два временных режима."}
+{"from": "FAST-S7ZT-05", "to": "R-0002", "type": "analogous", "note": "R-0002: шум/дисперсия в моделях ремонта — noise signature CV² как критерий выбора."}
+{"from": "FAST-S7ZT-01", "to": "FAST-S7ZT-02", "type": "supports", "note": "Три механизма — кандидаты; AIC-метод — способ их различить."}
+{"from": "FAST-S7ZT-03", "to": "FAST-S7ZT-02", "type": "supports", "note": "Результат дискриминации — прямой выход AIC-анализа."}
+{"from": "FAST-S7ZT-04", "to": "FAST-S7ZT-03", "type": "supports", "note": "Двухмеханизмная интерпретация объясняет условную применимость из FAST-S7ZT-03."}
+{"from": "FAST-S7ZT-05", "to": "A-0006", "type": "supports", "note": "A-0006 gap: нет модели со всеми компонентами — noise-signature метод может закрыть часть пробела."}
+{"from": "FAST-S7ZT-01", "to": "DIP4-0009", "type": "supports", "note": "DIP4-0009: детерминированная асимметрия повреждения при делении бактерий — контекст клеточного деления, где работает sizer-like."}
+{"from": "FAST-S7ZT-05", "to": "DIP4-0001", "type": "supports", "note": "DIP4-0001: при симметричном делении оптимум — активный ремонт; noise-signature подход применим к выбору стратегий."}

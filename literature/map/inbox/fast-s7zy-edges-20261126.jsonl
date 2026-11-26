@@ -1,0 +1,6 @@
+{"from": "FAST-S7ZY-01", "to": "FAST-S7Z-04", "type": "extends", "note": "L-072 Haaland: grain×n решает какой bet-hedging; здесь — σ²_i vs ρ_i как два канала снижения genotypic variance."}
+{"from": "FAST-S7ZY-01", "to": "FAST-S7Y-05", "type": "supports", "note": "Demographic buffering (L-070) — частный случай: отбор на форму распределения, здесь формально через Var=ρσ²."}
+{"from": "FAST-S7ZY-02", "to": "FAST-S7Z-04", "type": "supports", "note": "Conservative vs diversiﬁed как концы континуума — уточняет критерий CBH Haaland (оба механизма могут работать вместе)."}
+{"from": "FAST-S7ZY-03", "to": "FAST-S7Z-05", "type": "qualifies", "note": "Область применимости Haaland: в больших популяциях σ²-эффект ~1/N — bet-hedging вне форажинга требует иных механизмов."}
+{"from": "FAST-S7ZY-04", "to": "FAST-S7Z-04", "type": "supports", "note": "L-072 grain среды × n решений — здесь grain как предел корреляции ρ=1/(qN); согласовано."}
+{"from": "FAST-S7ZY-05", "to": "W2-0022", "type": "supports", "note": "Bet-hedging de novo в экспериментальных популяциях (W2-0022) — теоретическая база: оптимум по d, не по среднему."}

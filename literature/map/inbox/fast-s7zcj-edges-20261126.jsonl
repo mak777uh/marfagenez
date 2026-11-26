@@ -1,0 +1,8 @@
+{"from": "FAST-S7ZCJ-01", "to": "W2-0020", "type": "supports", "note": "W2-0020: disposable soma = компромисс репродукция/соматическое обслуживание — Abrams-Ludwig формализует именно этот trade-off через DP."}
+{"from": "FAST-S7ZCJ-02", "to": "MAIN-P124-01", "type": "supports", "note": "MAIN-P124-01: закон Гомпертца μ=R·e^(αx) — Abrams-Ludwig показывают, что экспонента лишь один из режимов trade-off."}
+{"from": "FAST-S7ZCJ-02", "to": "FAST-S2G-05", "type": "supports", "note": "FAST-S2G-05: hazard становится константой после 105+ — согласуется с «mortality may approach a linear rate as mortality becomes very high»."}
+{"from": "FAST-S7ZCJ-03", "to": "FAST-S2G-05", "type": "supports", "note": "Отклонения от Gompertz' Law наблюдаемы — мёртвое плато 105+ это одно из исключений."}
+{"from": "FAST-S7ZCJ-04", "to": "DIP4-0005", "type": "supports", "note": "DIP4-0005: внешняя смертность влияет на скорость старения — в DP-модели extrinsic mortality задаёт оптимальную стратегию repair."}
+{"from": "FAST-S7ZCJ-04", "to": "W2-0021", "type": "supports", "note": "W2-0021: отбор полного удаления повреждений — у Abrams-Ludwig это предельный случай оптимального diversion от repair."}
+{"from": "FAST-S7ZCJ-04", "to": "L-001", "type": "supports", "note": "L-001: наша линейная по damage смертность — легитимный режим рамки disposable soma."}
+{"from": "FAST-S7ZCJ-04", "to": "L-004", "type": "supports", "note": "L-004 — сам узел; атом фиксирует уровень доступа и границу (нет потомства в нашей модели)."}

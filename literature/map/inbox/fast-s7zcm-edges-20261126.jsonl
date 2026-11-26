@@ -1,0 +1,9 @@
+{"from": "FAST-S7ZCM-01", "to": "V-0001", "type": "supports", "note": "V-0001: viability kernel = IC, из которых есть допустимая траектория — VSD даёт полное разложение этого множества на регионы."}
+{"from": "FAST-S7ZCM-02", "to": "V-0002", "type": "supports", "note": "V-0002: в каждой точке допустимого множества есть направление — robust/transiently/asymptotically viable классифицирует именно это."}
+{"from": "FAST-S7ZCM-03", "to": "V-0004", "type": "supports", "note": "V-0004: viability kernel и basins of attraction как замкнутые множества — mortality/ordering/collapse manifolds это формальные границы таких множеств."}
+{"from": "FAST-S7ZCM-03", "to": "DIP2-0009", "type": "supports", "note": "DIP2-0009: viability kernel в экосистемной модели — VSD обобщает метод на multi-agent с collapse manifolds."}
+{"from": "FAST-S7ZCM-04", "to": "P-0010", "type": "supports", "note": "P-0010: нет единой модели граница+ремонт+наследование — VSD показывает, что viability boundary можно разложить, но не объединяет с repair-cost."}
+{"from": "FAST-S7ZCM-05", "to": "A-0006", "type": "supports", "note": "A-0006: нет модели цены границы+ремонт+наследование — VSD даёт геометрию границы, но не её цену."}
+{"from": "FAST-S7ZCM-05", "to": "FT-0004", "type": "supports", "note": "FT-0004: нет статьи расходов на границу — viability constraints в VSD заданы, не оценены."}
+{"from": "FAST-S7ZCM-01", "to": "W2-0008", "type": "supports", "note": "W2-0008: Markov blanket как статистическая граница — viability boundary ∂V_α геометрический аналог той же идеи."}
+{"from": "FAST-S7ZCM-05", "to": "L-066", "type": "supports", "note": "L-066 — сам узел; атом фиксирует применимость и вычислительную границу."}

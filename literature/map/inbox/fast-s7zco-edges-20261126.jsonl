@@ -1,0 +1,6 @@
+{"from": "FAST-S7ZCO-01", "to": "W2-0008", "type": "supports", "note": "W2-0008: Markov blanket как статистическая граница — APS viability как организационная граница: разные понятия одной оси."}
+{"from": "FAST-S7ZCO-02", "to": "DIP2-0012", "type": "supports", "note": "DIP2-0012: нет безразмерного критерия потери управляемости — различение survival/viability это именно такая качественная граница."}
+{"from": "FAST-S7ZCO-03", "to": "DIP11-0001", "type": "supports", "note": "DIP11-0001: семь экспликаций organizational closure — APS добавляет viability как связанную, но отдельную экспликацию."}
+{"from": "FAST-S7ZCO-04", "to": "V-0005", "type": "supports", "note": "V-0005: нет биологической модели viability — APS даёт нормативную рамку, VSD — математическую, но эмпирической модели всё ещё нет."}
+{"from": "FAST-S7ZCO-04", "to": "L-066", "type": "supports", "note": "L-066: viability space decomposition — математическая реализация того, что APS называет viability."}
+{"from": "FAST-S7ZCO-01", "to": "L-088", "type": "supports", "note": "L-088 — сам узел; фиксирует статус canonical-дефиниции."}

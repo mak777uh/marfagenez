@@ -1,0 +1,12 @@
+{"from": "FAST-S7ZDO-01", "to": "DIP5-0001", "type": "supports", "note": "DIP5-0001: (M,R) Розена — минимальная реализация с тремя циклами и порогом."}
+{"from": "FAST-S7ZDO-01", "to": "DIP5-0005", "type": "supports", "note": "DIP5-0005: орг. инвариантность — steady state при деградации."}
+{"from": "FAST-S7ZDO-01", "to": "DIP19-0008", "type": "supports", "note": "DIP19-0008: closure-экспликации — bistability как цена самоподдержания."}
+{"from": "FAST-S7ZDO-02", "to": "A-0005", "type": "supports", "note": "A-0005: замыкание ограничений — maintenance при деградации компонентов."}
+{"from": "FAST-S7ZDO-02", "to": "C-0006", "type": "supports", "note": "C-0006: нет количественной формулы — здесь минимальная количественная (три цикла)."}
+{"from": "FAST-S7ZDO-03", "to": "DIP9-0003", "type": "supports", "note": "DIP9-0003: диссипативная самосборка — здесь осмотический рост везикул."}
+{"from": "FAST-S7ZDO-03", "to": "DIP9-0006", "type": "supports", "note": "DIP9-0006: коарсценция vs метастабильные — конкуренция по пермеабельности."}
+{"from": "FAST-S7ZDO-03", "to": "W2-0025", "type": "supports", "note": "W2-0025: самосборная мембрана — здесь липиды производятся внутренней химией."}
+{"from": "FAST-S7ZDO-04", "to": "DIP48-0010", "type": "supports", "note": "DIP48-0010: adder-измерение — здесь adder ломается в плохой среде → sizer."}
+{"from": "FAST-S7ZDO-04", "to": "B24-01-0003", "type": "supports", "note": "B24-01-0003: F-006 складка Chao — дискриминация по распределению, не среднему."}
+{"from": "FAST-S7ZDO-05", "to": "A-0006", "type": "supports", "note": "A-0006: meta.gap — очередное подтверждение."}
+{"from": "FAST-S7ZDO-05", "to": "B6-01-0001", "type": "supports", "note": "B6-01-0001: compartment — ни один кандидат не закрывает три оси."}

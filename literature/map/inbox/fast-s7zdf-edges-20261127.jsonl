@@ -1,0 +1,9 @@
+{"from": "FAST-S7ZDF-01", "to": "W2-0008", "type": "supports", "note": "W2-0008: MB задаёт статистическую границу — здесь формальное определение с sensory/active декомпозицией."}
+{"from": "FAST-S7ZDF-01", "to": "DIP7-0004", "type": "supports", "note": "DIP7-0004: MB как статистическая граница — подтверждено первоисточником (conditional independence)."}
+{"from": "FAST-S7ZDF-02", "to": "DIP7-0005", "type": "supports", "note": "DIP7-0005: FEP смешивает эпистемический и онтологический MB — здесь явно: граница НЕ обязана совпадать с биофизической."}
+{"from": "FAST-S7ZDF-02", "to": "W2-0009", "type": "supports", "note": "W2-0009: MB ≠ достаточный критерий автономии — self-evidencing даёт динамику, но не физическую самоподдержку."}
+{"from": "FAST-S7ZDF-03", "to": "FAST-S7O-04", "type": "supports", "note": "FAST-S7O-04: индивидуальность через автономию — nested MBs дают многоуровневую альтернативу."}
+{"from": "FAST-S7ZDF-03", "to": "DIP11-0002", "type": "supports", "note": "DIP11-0002: замыкание как взаимная зависимость — nested blankets как вложенные constraint-системы."}
+{"from": "FAST-S7ZDF-04", "to": "W2-0037", "type": "supports", "note": "W2-0037: MB и allostasis описывают статистическую границу — FEP-2012 даёт механизм поддержания через active inference."}
+{"from": "FAST-S7ZDF-05", "to": "A-0006", "type": "supports", "note": "A-0006: нет модели с ценой границы — FEP/MB фреймворк подтверждает: статистическая граница без материального бюджета."}
+{"from": "FAST-S7ZDF-05", "to": "B6-01-0001", "type": "supports", "note": "B6-01-0001: пустое пересечение — FEP даёт ещё один фреймворк без цены границы."}

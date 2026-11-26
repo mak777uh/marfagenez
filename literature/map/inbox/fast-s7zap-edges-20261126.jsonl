@@ -1,0 +1,10 @@
+{"from": "FAST-S7ZAP-01", "to": "L-041", "type": "supports", "note": "L-041: вторая параметризация (a vs α) того же sizer/adder/timer — показывает, что 'канон' зависит от соглашения."}
+{"from": "FAST-S7ZAP-01", "to": "FAST-S7ZAK-05", "type": "supports", "note": "Тот же λ-результат (1−ln²2·CV²) у Ho/Amir и Genthon — независимое подтверждение Eq.38."}
+{"from": "FAST-S7ZAP-02", "to": "L-077", "type": "supports", "note": "L-077 forward/backward: формально tree vs forward статистики с весом 2^{−D_l}."}
+{"from": "FAST-S7ZAP-03", "to": "L-079", "type": "supports", "note": "L-079 CV²=ln4−1: стационарное распределение ψ_fw — тот же объект, здесь интегральное уравнение."}
+{"from": "FAST-S7ZAP-04", "to": "L-041", "type": "analogous", "note": "Q-013: четвёртый механизм (feedback на скорость роста) — за пределами sizer/adder/timer классификации."}
+{"from": "FAST-S7ZAP-05", "to": "W2-0022", "type": "analogous", "note": "W2-0022 bet-hedging de novo: beneficial noise — родственный эффект на уровне размера."}
+{"from": "FAST-S7ZAP-01", "to": "A-0003", "type": "analogous", "note": "A-0003: асимметрия при делении — здесь формальная параметризация sizer/adder/timer через a."}
+{"from": "FAST-S7ZAP-02", "to": "A-0003", "type": "supports", "note": "A-0003: распределение при делении — здесь формальное различие tree vs forward статистик."}
+{"from": "FAST-S7ZAP-03", "to": "DIP4-0009", "type": "supports", "note": "DIP4-0009: асимметрия деления и дисперсия — здесь E[p]=1/2 при асимметрии + стационарное ψ_fw."}
+{"from": "FAST-S7ZAP-04", "to": "DIP4-0012", "type": "analogous", "note": "DIP4-0012: градиентная стратегия r/K — здесь feedback на скорость роста как четвёртый механизм контроля размера."}

@@ -1,0 +1,9 @@
+{"from": "FAST-S7ZAO-01", "to": "L-037", "type": "supports", "note": "L-037 проверен: асимметричное деление протоклеток существует, но наследует груз, не повреждения."}
+{"from": "FAST-S7ZAO-01", "to": "L-090", "type": "supports", "note": "L-090 protocell self-maintenance → здесь asymmetric division расширение: ω-фракции, homogeneous growth."}
+{"from": "FAST-S7ZAO-01", "to": "P-0006", "type": "analogous", "note": "P-0006: рекурсивная везикулярная модель — здесь SRM/IRM с популяционной динамикой и N_max."}
+{"from": "FAST-S7ZAO-02", "to": "L-077", "type": "supports", "note": "L-077 (forward/backward lineage разные средние): здесь бимодальное распределение X_fin — lineage-эффекты в протоклетках."}
+{"from": "FAST-S7ZAO-03", "to": "L-076", "type": "supports", "note": "L-076 (наследование размера везикул без генов): здесь ATPS/DDAB — химически разные дочери, наследование состава."}
+{"from": "FAST-S7ZAO-04", "to": "P-0002", "type": "supports", "note": "P-0002: протоклетка перестаёт поддерживать реакцию — здесь физический self-repair мембраны (pores), но без бюджета."}
+{"from": "FAST-S7ZAO-05", "to": "C-0006", "type": "qualifies", "note": "C-0006: нет единой формулы замыкания — gap-вердикт L-037 подтверждает: damage×boundary бюджета нет."}
+{"from": "FAST-S7ZAO-02", "to": "P-0006", "type": "supports", "note": "P-0006: цикл поглощение-репликация-деление — здесь IRM-динамика с V∝C^{3/2} и бимодальным наследованием."}
+{"from": "FAST-S7ZAO-03", "to": "W2-0015", "type": "analogous", "note": "W2-0015: фазовая кинетика везикул — здесь ATPS двухфазная система даёт химически разных дочерей."}

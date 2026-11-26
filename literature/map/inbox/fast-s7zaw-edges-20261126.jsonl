@@ -1,0 +1,9 @@
+{"from": "FAST-S7ZAW-01", "to": "DIP10-0009", "type": "supports", "note": "DIP10-0009: автопоэтические вычисления — здесь формальная RAF-рамка для тех же сетей."}
+{"from": "FAST-S7ZAW-02", "to": "W2-0045", "type": "supports", "note": "W2-0045: критерии permanence/stability — здесь полиномиальный алгоритм проверки существования RAF."}
+{"from": "FAST-S7ZAW-03", "to": "DIP2-0012", "type": "supports", "note": "DIP2-0012: рамочно-зависимые критерии — здесь f(n)=p·|R| как явный критерий вместо 'достаточно большой n'."}
+{"from": "FAST-S7ZAW-04", "to": "L-083", "type": "analogous", "note": "L-083: симуляция vs реализация (ECAL'99) — здесь 'high probability' Kauffman vs точный порог f(n)."}
+{"from": "FAST-S7ZAW-05", "to": "FAST-S7ZAL-01", "type": "supports", "note": "FAST-S7ZAL-01: closure of constraints — здесь RAF как родственная формализация организации (если s7zal интегрирован)."}
+{"from": "FAST-S7ZAW-01", "to": "L-095", "type": "supports", "note": "L-095 повышен partial→full: определения RAF верифицированы из первоисточника."}
+{"from": "FAST-S7ZAW-03", "to": "L-037", "type": "analogous", "note": "L-037: пустое пересечение — здесь food-source sustainment как ещё один элемент минимальной жизни."}
+{"from": "FAST-S7ZAW-04", "to": "DIP3-0007", "type": "supports", "note": "DIP3-0007: при фиксированной вероятности катализиса существует порог возникновения — здесь точный ответ Kauffman/Lifson/Steel."}
+{"from": "FAST-S7ZAW-05", "to": "DIP3-0003", "type": "supports", "note": "DIP3-0003: RAF является организацией, но не наоборот — здесь первоисточник Hordijk-Steel с формальными определениями обеих."}

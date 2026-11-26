@@ -1,0 +1,6 @@
+{"from": "FAST-S7ZCQ-01", "to": "MAIN-P124-01", "type": "supports", "note": "MAIN-P124-01: закон Гомпертца — Cichoń-Kozłowski выводят формы survivorship curves из оптимума, включая типичные (вероятно gompertz-like) режимы."}
+{"from": "FAST-S7ZCQ-01", "to": "W2-0020", "type": "supports", "note": "W2-0020: disposable soma компромисс — та же ось «ресурс → ремонт/размножение → смертность»."}
+{"from": "FAST-S7ZCQ-02", "to": "DIP4-0005", "type": "supports", "note": "DIP4-0005: внешняя смертность влияет на старение — оптимальное распределение зависит от фоновой смертности."}
+{"from": "FAST-S7ZCQ-03", "to": "L-058", "type": "supports", "note": "L-058 — сам узел; фиксирует metadata-only статус доступа."}
+{"from": "FAST-S7ZCQ-03", "to": "DIP11-0010", "type": "supports", "note": "DIP11-0010: нет замеров на реальных данных — metadata-only запись это предельный случай «есть ссылка, нет содержания»."}
+{"from": "FAST-S7ZCQ-02", "to": "L-004", "type": "supports", "note": "L-004: Abrams-Ludwig 1995 — соседняя работа той же линии (оптимум→mortality curve)."}

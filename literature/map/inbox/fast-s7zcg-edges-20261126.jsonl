@@ -1,0 +1,7 @@
+{"from": "FAST-S7ZCG-01", "to": "FAST-S7Z-01", "type": "supports", "note": "S7Z-01: межпоколенное bet-hedging vs внутрипоколенная дисперсия — здесь геометрическое среднее как формальная причина."}
+{"from": "FAST-S7ZCG-01", "to": "FAST-S7Z-04", "type": "supports", "note": "S7Z-04: CBH vs variance aversion — geometric mean sensitivity to variance — тот же критерий."}
+{"from": "FAST-S7ZCG-02", "to": "W2-0022", "type": "supports", "note": "W2-0022: bet-hedging возник de novo в 2/12 линий — здесь условие: широкий пространственный риск + малые популяции."}
+{"from": "FAST-S7ZCG-03", "to": "FAST-S7Z-02", "type": "supports", "note": "S7Z-02: зерно среды и число решений выбирают тип стратегии — здесь зерно риска по времени → скорость диверсификации."}
+{"from": "FAST-S7ZCG-04", "to": "W2-0041", "type": "supports", "note": "W2-0041: цена ремонта и bet-hedging без общего критерия — здесь явный trade-off: скорость диверсификации vs adaptive tracking."}
+{"from": "FAST-S7ZCG-04", "to": "L-038", "type": "supports", "note": "L-038: критерий bet-hedging — здесь конкретная ось (скорость) и её селективные условия."}
+{"from": "FAST-S7ZCG-04", "to": "L-071", "type": "supports", "note": "L-071 — сама эта работа (Evolution 2015)."}

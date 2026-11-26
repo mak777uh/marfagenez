@@ -1,0 +1,11 @@
+{"from": "FAST-S7ZDM-01", "to": "DIP9-0003", "type": "supports", "note": "DIP9-0003: диссипативная самосборка — здесь протоклетка с явной границей."}
+{"from": "FAST-S7ZDM-01", "to": "DIP9-0004", "type": "supports", "note": "DIP9-0004: везикулы после прекращения потока — здесь граница динамическая (Stefan)."}
+{"from": "FAST-S7ZDM-01", "to": "A-0006", "type": "supports", "note": "A-0006: meta.gap — нет цены границы."}
+{"from": "FAST-S7ZDM-02", "to": "B6-01-0001", "type": "supports", "note": "B6-01-0001: compartment — урок Gánti: среда за границей не должна быть существенна."}
+{"from": "FAST-S7ZDM-02", "to": "DIP9-0009", "type": "supports", "note": "DIP9-0009: термодинамическая эффективность — здесь self-maintenance как строгий критерий."}
+{"from": "FAST-S7ZDM-03", "to": "DIP3-0002", "type": "supports", "note": "DIP3-0002: RAF без границы — здесь полиномиальный алгоритм существования."}
+{"from": "FAST-S7ZDM-03", "to": "P-0009", "type": "supports", "note": "P-0009: RAF food-generated — алгоритм Hordijk-Steel его вычисляет."}
+{"from": "FAST-S7ZDM-04", "to": "W2-0025", "type": "supports", "note": "W2-0025: самосборная мембрана из осадка — здесь мембрана производится метаболизмом."}
+{"from": "FAST-S7ZDM-04", "to": "DIP9-0006", "type": "supports", "note": "DIP9-0006: коарсценция vs метастабильные — два режима деления клетки."}
+{"from": "FAST-S7ZDM-05", "to": "A-0006", "type": "supports", "note": "A-0006: meta.gap — шестое подтверждение."}
+{"from": "FAST-S7ZDM-05", "to": "B6-01-0001", "type": "supports", "note": "B6-01-0001: compartment — ни один кандидат не закрывает все три оси."}

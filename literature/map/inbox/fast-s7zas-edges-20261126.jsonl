@@ -1,0 +1,12 @@
+{"from": "FAST-S7ZAS-01", "to": "WIN-L053-01", "type": "supports", "note": "WIN-L053-01: стареющая клетка, повреждение + Михаэлис-Ментен ремонт — здесь липофусцин как конечный продукт того же цикла."}
+{"from": "FAST-S7ZAS-02", "to": "FAST-S7ZAR-02", "type": "analogous", "note": "FAST-S7ZAR-02: saturating removal повреждений — здесь конкретный молекулярный механизм насыщения (липофусцин ингибирует протеасому)."}
+{"from": "FAST-S7ZAS-04", "to": "W2-0020", "type": "analogous", "note": "W2-0020: repair/apoptosis/mutation исходы — здесь четвёртый исход 'sequestration без деградации'."}
+{"from": "FAST-S7ZAS-05", "to": "L-108", "type": "supports", "note": "L-108: damage dynamics E. coli — здесь тот же цикл для млекопитающих клеток (mitophagy↓ → липофусцин↑ → протеасома↓)."}
+{"from": "FAST-S7ZAS-02", "to": "L-106", "type": "supports", "note": "L-106 закрыт на secondary-уровне: Sitte 2000 цитируется обзором 2026."}
+{"from": "FAST-S7ZAS-03", "to": "L-107", "type": "supports", "note": "L-107 закрыт на secondary-уровне: эффект подтверждён, механизм surface-motifs помечен unverified."}
+{"from": "FAST-S7ZAS-02", "to": "FAST-S2-01", "type": "supports", "note": "FAST-S2-01: убиквитинированные агрегаты ингибируют 26S-протеасому in vitro — здесь липофусцин как конкретный природный ингибитор того же класса."}
+{"from": "FAST-S7ZAS-02", "to": "FAST-P2-03", "type": "supports", "note": "FAST-P2-03: искусственный липофусцин на кардиомиоцитах — здесь то же вещество в реальном aging-контексте фибробластов."}
+{"from": "FAST-S7ZAS-03", "to": "FAST-S2-01", "type": "analogous", "note": "FAST-S2-01: неспецифическое ингибирование агрегатами — здесь заявленный механизм surface-motifs (unverified) как альтернатива неспецифичности."}
+{"from": "FAST-S7ZAS-05", "to": "DIP8-0003", "type": "supports", "note": "DIP8-0003: повреждённые белки снижают функциональность протеостаза — здесь конкретный молекулярный механизм этой петли."}
+{"from": "FAST-S7ZAS-04", "to": "DIP23-0010", "type": "analogous", "note": "DIP23-0010: misfolded → aggresomes bag3-зависимо — здесь митохондриальный вариант sequestration без аггрефагии."}
+{"from": "FAST-S7ZAS-04", "to": "DIP23-0002", "type": "analogous", "note": "DIP23-0002: убиквитинированные субстраты секвестируются в hsp42-агресомы при стрессе — здесь терминальный слой того же паттерна."}
