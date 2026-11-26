@@ -152,10 +152,12 @@ def validate_atoms(path: pathlib.Path, known: set[str]) -> tuple[list[dict], lis
                 problems.append(f'works[0].{field} обязателен')
         if not a.get('kg_ref'):
             problems.append('kg_ref обязателен')
-            if a.get("confidence") is None:
-                problems.append("confidence обязателен (число 0..1)")
-            if not a.get("kind"):
-                problems.append("kind обязателен (measurement/claim/definition/gap)")
+        if a.get('confidence') not in ('high', 'medium', 'low'):
+            problems.append('confidence должен быть high / medium / low')
+        if not a.get('kind'):
+            problems.append('kind обязателен')
+        if a.get('confidence') in ('high', 'medium') and not a.get('conditions'):
+            problems.append('conditions обязателен при confidence high/medium (контракт карты)')
         if problems:
             bad.append(f'{path.name}:{i}: ' + '; '.join(problems))
         else:

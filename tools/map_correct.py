@@ -24,7 +24,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ATOMS = ROOT / "literature" / "map" / "atoms.jsonl"
 ERRATA = ROOT / "docs" / "MAP-ERRATA.md"
-FIELDS = {"statement", "formula", "notes", "kind", "domain"}
+FIELDS = {"statement", "formula", "notes", "kind", "domain", "confidence", "conditions"}
 
 
 def main(argv: list[str]) -> int:
