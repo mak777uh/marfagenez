@@ -882,3 +882,65 @@
 {"from": "WIN-L009-04", "to": "FAST-S7B-01", "type": "supports", "note": "Первоисточник first-passage-подхода через порог повреждения; обобщение на 20 видов в FAST-S7B-01 (Nat Aging 2026) подтверждает продуктивность конструкции."}
 {"from": "WIN-L009-05", "to": "WIN-L009-01", "type": "requires", "note": "Фит смертности требует параметров, независимо измеренных в опыте с полупериодами: согласование, а не свободная подгонка."}
 {"from": "WIN-L009-03", "to": "WIN-L009-05", "type": "condition", "note": "Гомпертц-репродукция условна на персистентных флуктуациях: именно они превращают замедление оборота в экспоненциальный рост риска."}
+{"from": "FAST-S7Y-02", "to": "FAST-S7Y-01", "type": "supports", "note": "Буферирование — эволюционное следствие члена −σ²: отбор давит на дисперсию по весу sensitivity."}
+{"from": "FAST-S7Y-04", "to": "FAST-S7Y-01", "type": "qualifies", "note": "Границы приближения: автокорреляция и ковариации вне формулы."}
+{"from": "FAST-S7Y-05", "to": "FAST-S7Y-02", "type": "extends", "note": "Demographic lability — дополнение: не все параметры буферируются."}
+{"from": "FAST-S7Y-03", "to": "FAST-S7Y-02", "type": "supports", "note": "Обзор подтверждает гипотезу с оговорками о методах."}
+{"from": "FAST-S7Y-01", "to": "DIP4-0003", "type": "analogous", "note": "Оба сводят долгосрочную приспособленность к геометрическому среднему: −σ²/(2λ̄²) у Тулджапурака — та же «цена дисперсии», что GMF-критерий бет-хеджинга; у DIP4-0003 она решает выбор сегрегация↔ремонт."}
+{"from": "FAST-S7Y-02", "to": "DIP4-0003", "type": "analogous", "note": "Отбор на дисперсию vital rates vs отбор на режим среды при GMF — два механизма снижения ценой вариабельности."}
+{"from": "FAST-S7Y-03", "to": "DIP4-0003", "type": "supports", "note": "Обзор буферирования — эмпирическая опора того, что дисперсия vital rates имеет цену в λ_s (член −σ²), на котором стоит GMF-критерий."}
+{"from": "FAST-S7Y-05", "to": "W2-0022", "type": "analogous", "note": "Demographic lability (отбор может увеличить дисперсию малочувствительных параметров) vs bet-hedging de novo — отбор действует на распределение, а не только на среднее."}
+{"from": "FAST-S7Z-02", "to": "FAST-S7Z-01", "type": "supports", "note": "Условия зерна/числа решений — механизм, реализующий выбор между CBH и variance-prone."}
+{"from": "FAST-S7Z-03", "to": "FAST-S7Z-02", "type": "supports", "note": "Уравнение 2.2 — аналитическое условие того же баланса, что даёт симуляция зерна/n."}
+{"from": "FAST-S7Z-04", "to": "FAST-S7Z-01", "type": "qualifies", "note": "Критерий CBH уточняет определение: обязательна цена в среднем."}
+{"from": "FAST-S7Z-05", "to": "FAST-S7Z-04", "type": "extends", "note": "Применимость критерия за пределы форажинга."}
+{"from": "FAST-S7Z-01", "to": "DIP4-0003", "type": "analogous", "note": "Геометрическое среднее как критерий линии и цена дисперсии — тот же каркас, что GMF в модели сегрегация↔ремонт."}
+{"from": "FAST-S7Z-02", "to": "W2-0022", "type": "supports", "note": "Bet-hedging de novo в бактериях — эмпирический случай эволюции CBH-подобной стратегии."}
+{"from": "FAST-S7Z-04", "to": "DIP4-0003", "type": "supports", "note": "Критерий «цена в среднем обязательна» — тест для нашей GMF-постановки: там дисперсия покупается только если среднее не падает?"}
+{"from": "FAST-S7Z-03", "to": "DIP4-0003", "type": "analogous", "note": "Порог a(n,b) для выбора безопасного варианта vs V_crit=1.52 для перехода сегрегация→ремонт — оба порога по дисперсии среды."}
+{"from": "A-0011", "to": "A-0001", "type": "refines", "note": "same DOI; orphan A-0011 (gap) linked to A-0001 (measurement) by shared source"}
+{"from": "R-0004", "to": "R-0001", "type": "refines", "note": "same DOI; orphan R-0004 (mechanism) linked to R-0001 (definition) by shared source"}
+{"from": "V-0005", "to": "V-0002", "type": "refines", "note": "same DOI; orphan V-0005 (gap) linked to V-0002 (formula) by shared source"}
+{"from": "W4-0006", "to": "W4-0007", "type": "derives", "note": "same DOI; orphan W4-0006 (formula) linked to W4-0007 (formula) by shared source"}
+{"from": "W4-0013", "to": "W4-0001", "type": "refines", "note": "same DOI; orphan W4-0013 (gap) linked to W4-0001 (formula) by shared source"}
+{"from": "W4-0014", "to": "W4-0004", "type": "refines", "note": "same DOI; orphan W4-0014 (gap) linked to W4-0004 (formula) by shared source"}
+{"from": "W4-0023", "to": "W4-0024", "type": "refines", "note": "same DOI; orphan W4-0023 (mechanism) linked to W4-0024 (mechanism) by shared source"}
+{"from": "DIP2-0003", "to": "B6-09-0002", "type": "refines", "note": "same DOI; orphan DIP2-0003 (condition) linked to B6-09-0002 (formula) by shared source"}
+{"from": "DIP2-0005", "to": "B16-01-0001", "type": "refines", "note": "same DOI; orphan DIP2-0005 (condition) linked to B16-01-0001 (definition) by shared source"}
+{"from": "DIP4-0008", "to": "W2-0021", "type": "refines", "note": "same DOI; orphan DIP4-0008 (condition) linked to W2-0021 (mechanism) by shared source"}
+{"from": "DIP5-0003", "to": "DIP5-0001", "type": "contradicts", "note": "same DOI; orphan DIP5-0003 (contradiction) linked to DIP5-0001 (definition) by shared source"}
+{"from": "DIP5-0010", "to": "A-0006", "type": "refines", "note": "same DOI; orphan DIP5-0010 (gap) linked to A-0006 (gap) by shared source"}
+{"from": "DIP8-0001", "to": "DIP8-0002", "type": "refines", "note": "same DOI; orphan DIP8-0001 (definition) linked to DIP8-0002 (mechanism) by shared source"}
+{"from": "DIP8-0011", "to": "DIP8-0006", "type": "refines", "note": "same DOI; orphan DIP8-0011 (gap) linked to DIP8-0006 (measurement) by shared source"}
+{"from": "DIP9-0004", "to": "DIP9-0003", "type": "measures", "note": "same DOI; orphan DIP9-0004 (measurement) linked to DIP9-0003 (mechanism) by shared source"}
+{"from": "DIP11-0002", "to": "DIP19-0009", "type": "refines", "note": "same DOI; orphan DIP11-0002 (definition) linked to DIP19-0009 (definition) by shared source"}
+{"from": "DIP16-0003", "to": "DIP16-0002", "type": "measures", "note": "same DOI; orphan DIP16-0003 (measurement) linked to DIP16-0002 (condition) by shared source"}
+{"from": "DIP23-0003", "to": "B14-01-0004", "type": "measures", "note": "same DOI; orphan DIP23-0003 (measurement) linked to B14-01-0004 (measurement) by shared source"}
+{"from": "DIP26-0003", "to": "DIP26-0001", "type": "measures", "note": "same DOI; orphan DIP26-0003 (measurement) linked to DIP26-0001 (formula) by shared source"}
+{"from": "DIP26-0007", "to": "DIP26-0006", "type": "refines", "note": "same DOI; orphan DIP26-0007 (condition) linked to DIP26-0006 (formula) by shared source"}
+{"from": "DIP28-0002", "to": "DIP28-0004", "type": "derives", "note": "same DOI; orphan DIP28-0002 (formula) linked to DIP28-0004 (formula) by shared source"}
+{"from": "DIP28-0003", "to": "DIP28-0004", "type": "derives", "note": "same DOI; orphan DIP28-0003 (formula) linked to DIP28-0004 (formula) by shared source"}
+{"from": "DIP29-0009", "to": "DIP29-0010", "type": "measures", "note": "same DOI; orphan DIP29-0009 (measurement) linked to DIP29-0010 (measurement) by shared source"}
+{"from": "DIP29-0011", "to": "DIP29-0005", "type": "measures", "note": "same DOI; orphan DIP29-0011 (measurement) linked to DIP29-0005 (measurement) by shared source"}
+{"from": "DIP31-0004", "to": "DIP31-0003", "type": "measures", "note": "same DOI; orphan DIP31-0004 (measurement) linked to DIP31-0003 (mechanism) by shared source"}
+{"from": "DIP31-0006", "to": "DIP31-0007", "type": "measures", "note": "same DOI; orphan DIP31-0006 (measurement) linked to DIP31-0007 (condition) by shared source"}
+{"from": "DIP34-0007", "to": "B16-01-0001", "type": "refines", "note": "same DOI; orphan DIP34-0007 (condition) linked to B16-01-0001 (definition) by shared source"}
+{"from": "DIP34-0011", "to": "B16-01-0002", "type": "measures", "note": "same DOI; orphan DIP34-0011 (measurement) linked to B16-01-0002 (condition) by shared source"}
+{"from": "DIP35-0009", "to": "DIP35-0008", "type": "measures", "note": "same DOI; orphan DIP35-0009 (measurement) linked to DIP35-0008 (measurement) by shared source"}
+{"from": "DIP38-0002", "to": "B18-02-0006", "type": "measures", "note": "same DOI; orphan DIP38-0002 (measurement) linked to B18-02-0006 (measurement) by shared source"}
+{"from": "DIP38-0003", "to": "DIP38-0004", "type": "measures", "note": "same DOI; orphan DIP38-0003 (measurement) linked to DIP38-0004 (measurement) by shared source"}
+{"from": "DIP38-0007", "to": "DIP38-0006", "type": "measures", "note": "same DOI; orphan DIP38-0007 (measurement) linked to DIP38-0006 (measurement) by shared source"}
+{"from": "DIP42-0006", "to": "DIP42-0005", "type": "measures", "note": "same DOI; orphan DIP42-0006 (measurement) linked to DIP42-0005 (measurement) by shared source"}
+{"from": "DIP43-0006", "to": "DIP43-0005", "type": "measures", "note": "same DOI; orphan DIP43-0006 (measurement) linked to DIP43-0005 (condition) by shared source"}
+{"from": "DIP45-0002", "to": "DIP45-0001", "type": "measures", "note": "same DOI; orphan DIP45-0002 (measurement) linked to DIP45-0001 (measurement) by shared source"}
+{"from": "DIP45-0006", "to": "DIP45-0003", "type": "measures", "note": "same DOI; orphan DIP45-0006 (measurement) linked to DIP45-0003 (measurement) by shared source"}
+{"from": "DIP48-0006", "to": "DIP48-0005", "type": "measures", "note": "same DOI; orphan DIP48-0006 (measurement) linked to DIP48-0005 (measurement) by shared source"}
+{"from": "DIP50-0005", "to": "DIP50-0006", "type": "measures", "note": "same DOI; orphan DIP50-0005 (measurement) linked to DIP50-0006 (measurement) by shared source"}
+{"from": "DIP51-0009", "to": "DIP51-0008", "type": "measures", "note": "same DOI; orphan DIP51-0009 (measurement) linked to DIP51-0008 (formula) by shared source"}
+{"from": "DIP52-0007", "to": "DIP52-0006", "type": "refines", "note": "same DOI; orphan DIP52-0007 (gap) linked to DIP52-0006 (measurement) by shared source"}
+{"from": "DIP56-0008", "to": "DIP35-0001", "type": "measures", "note": "same DOI; orphan DIP56-0008 (measurement) linked to DIP35-0001 (measurement) by shared source"}
+{"from": "DIP56-0009", "to": "DIP35-0001", "type": "measures", "note": "same DOI; orphan DIP56-0009 (measurement) linked to DIP35-0001 (measurement) by shared source"}
+{"from": "DIP56-0011", "to": "DIP28-0009", "type": "measures", "note": "same DOI; orphan DIP56-0011 (measurement) linked to DIP28-0009 (measurement) by shared source"}
+{"from": "B26-01-0009", "to": "B26-01-0001", "type": "refines", "note": "same DOI; orphan B26-01-0009 (gap) linked to B26-01-0001 (measurement) by shared source"}
+{"from": "DIP58-0011", "to": "DIP58-0008", "type": "measures", "note": "same DOI; orphan DIP58-0011 (measurement) linked to DIP58-0008 (measurement) by shared source"}
+{"from": "DIP59-0002", "to": "DIP59-0001", "type": "measures", "note": "same DOI; orphan DIP59-0002 (measurement) linked to DIP59-0001 (measurement) by shared source"}

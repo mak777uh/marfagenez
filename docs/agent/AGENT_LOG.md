@@ -10286,10 +10286,19 @@ eproduced_at из полного прогона гейта (8 файлов ре�
 - Поправка по красному гейту (раздел agents, битые ссылки): исправлены 10 ссылок после переезда файлов в docs/archive/ — абсолютный путь в BRIEF-for-models, ссылки в skills/owner-questions/SKILL.md, AGENT-HISTORY (блок §2, перенесённый после прохода автофикса), исходящие ../-ссылки архивных BRIEF (PROTOCOL, AGENT_LOG, literature). Ссылки проверены резолвером по всем tracked .md до коммита.
 - Гейт полным прогоном; пуш по постоянной лицензии владельца.
 
-### Цикл 829 — 2026-11-26 — `PENDING`: S5 orphan-cure — 46 консервативных same-DOI рёбер для сирот карты (P3)
+### Цикл 829 — 2026-11-26 — `a67675bf`: S5 orphan-cure — 46 консервативных same-DOI рёбер для сирот карты (P3)
 
 - **Задача:** `S5-orphan-cure` (knowledge, legacy), claim `LEASE-00935fccd693` epoch 1 attempt `S5-orphan-cure-a1`, task_version_sha256 `47d2c59b1f5b09902c72ca6801925497ba3f81d909b026b5bd0197dbf9f0a08e`. Привязка: P3 долг сирот карты (план KNOWLEDGE-AGENT-PLAN.md) / узлы без связей по `tools/map_orphans.py --strict`.
 - **Факт до работы:** 1215 ячеек, 884 ребра, 266 сирот (22%), потолок `docs/MAP-ORPHANS-BASELINE.json` = 280 — строгий режим проходит, долг не вырос. P0 проверен: `tools/unanchored_nodes.py --strict` = 0 узлов без опоры из 159.
 - **Артефакт:** `literature/map/inbox/lit-s5-glyph-001.jsonl` (46 рёбер, NDJSON). Подбор только по общему DOI с уже связанным атомом; типы `measures/refines/derives/contradicts`; без автоподбора по словам/общему locator; кандидаты с неоднозначным `kg_ref` не включались. Проверки: `checks/map_contract.py` — нарушений нет; `map_orphans --strict` — 266/280 без ухудшения. Уменьшение сирот **не заявляется**: inbox не ingested main’ом.
 - **Сдача:** bundle sha256 `ff18c401db24dd282c3a82ac5b0811d0e046369571783f0b020b477b07dfa69c`, artifact `57b13c4ce035052a9783d4786fddd23784fbec44c1c8e082f31b95ef85926825` (7430 bytes), `submission SUB-S5-orphan-cure-a1-57b13c4c` received через `lab/service/control.py`.
 - **Ограничения/честность:** legacy task, write_scope `literature/map/inbox/lit-*.jsonl`; рёбра требуют валидации/ingest main. Формулировка статуса C/D по сути: измеренный факт сирот/контракт — C (инструментальная проверка), эффект на сирот после ingest — неизвестен до приёмки.
+
+
+### Цикл 830 — 2026-11-26 — `0fd6798e`: интеграция литературных партий в карту (S7Y, S7Z, S5-glyph)
+
+- Интегрированы три партии очереди настоящим ingest'ом: атомы/рёбра s7y (L-070, Tuljapurkar: ln λ_s ≈ ln λ_0 − Var(λ_t)/(2λ_0²) при малой вариации и IID-среде; плюс реестровый дефект, найденный devin'ом: DOI узла L-070 ведёт на обзор Hilde 2020 вместо первоисточника — кандидруат на правку реестра после решения владельца), атомы/рёбра s7z (L-072, bet-hedging vs variance-prone, Haaland et al. 2019) и 46 консервативных same-DOI рёбер S5-glyph (SUB-S5-orphan-cure-a1-57b13c4c, knowledge-glyph). Submission-ID: SUB-DEVIN-S7Y-001, SUB-DEVIN-S7Z-001, SUB-S5-orphan-cure-a1-57b13c4c; inbox-файлы s7y/s7z закоммичены как записи партий.
+- Карта после ingest: 1225 ячеек, 946 рёбер (было 1215/884); checks/map_contract — нарушений нет; сироты 220/280 strict (долг не вырос); tools/unanchored_nodes --strict — узлов без опоры нет.
+- Починен хэш-заголовок записи 829: `PENDING` → `a67675bf` (фикс-скрипт knowledge-агента упал после его коммита 0fd6798e; сам коммит интегрирован в этот цикл).
+- Замечание knowledge-glyph отправлено через очередь (message/v1 MSG-MAIN-830-FASTLANE): git-коммит через fast-полосу моста нарушает контракт (fast — только короткие очередные команды и чтение, без git-мутаций); репо-правки — обычной полосой, safe-git-паттерн.
+- Гейт полным прогоном; пуш по постоянной лицензии владельца.
