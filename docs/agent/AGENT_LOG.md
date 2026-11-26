@@ -10198,3 +10198,13 @@ eproduced_at из полного прогона гейта (8 файлов ре�
 - **Автопуш-хук отключён** (`chmod -x .githooks/post-commit`): политика «push только по явному „отправляй“»; попытка автопуша при коммите Фазы 0 упала без кредов, на remote ничего не уходило.
 - **Мосты рестартованы на коде Фазы 0**, несистемные дубли watcher'ов убиты: по одному probe/win-экземпляру в systemd.
 - **Параллельная нумерация:** сообщение коммита `1eec2f2f` упоминает «journal 817» — цикл перенумерован в 818 из-за одновременного цикла kg-верификатора; параллельный агент近视ковал заголовки в `e3f3d13c`.
+### Цикл 819 — 2026-11-26 — `1eec2f2f`: Фаза 2, вторая серия — proposals/CAS, отмена, проекции, CLI
+
+- **Proposals по контракту `proposal/v1`:** таблица + операции create (идемпотентно по id+payload), CAS-обновление и review main (published/rejected/changes_requested) с ревизиями: любая мутация только при точном совпадении revision, иначе 409; ревизии монотонны, published/rejected терминальны. Внешний планировщик влияет на очередь только через proposal — draft публикует main (см. схему §14).
+- **Миграции схемы:** `PRAGMA user_version` (v2 = proposals), `init()` идемпотентен, миграция пишется в audit chain.
+- **Cancellation graceful:** ready → cancelled сразу; claimed/waiting_main → cancellation_requested, исполнитель подтверждает fencing-safe `acknowledge_cancel` (чужой agent/epoch → 410), lease released, attempt void; submit в контуре отмены запрещён до подтверждения (400), поздний submit уходит в карантин `late`; submitted и дальше — решение main-review (409).
+- **Файловые проекции:** детерминированный снимок БД (tasks/task_versions/submissions/messages/audit_head), байт-в-байт идентичен при повторе, восстановление из БД после удаления, атомарная подмена каталога.
+- **GC blobs:** mark-and-sweep, ссылочность по `artifacts`, grace-период на wall-mtime (`time.time()`, не инъекция mono — осознанно: mtime файловой системы), свежие сироты переживают sweep.
+- **CLI через сервис:** `lab/cli/main.py` (init/status/publish/claim/heartbeat/release/submit/waiting-main/cancel/acknowledge-cancel/proposal-*/message-*/projections/gc/backup) вызывает тот же сервисный слой `ControlPlane2`; CtlError → JSON в stderr и код 1.
+- **21 зелёный тест** (12 ядра + 9 второй серии, 2 прогона подряд); hash chain аудита цела во всех сценариях, включая подделку ревизий и отмен.
+- **Гигиена:** CRLF нормализован по всему `lab/`; журнал миграционного цикла перенумерован 817 → 818 из-за одновременного цикла kg-верификатора (`e3f3d13c`, параллельный агент).
