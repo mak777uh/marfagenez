@@ -551,6 +551,29 @@ do_dispatcher() {
 
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Параллельный планировщик `all` (цикл 822). Секции независимы, кроме двух
+# зависимостей сборки: `reach` ждёт olean от do_lean, `exp` — trace-бинарник
+# от do_test. Группа 1 (сборки + проверки без зависимостей) идёт параллельно,
+# группа 2 — после полного завершения группы 1. Лог каждой секции — свой файл,
+# печатается после её ожидания: вывод не перемешивается, первый провал
+# сохраняется `keep`, имя провалившейся секции видно сразу.
+gate_group() {
+  local logs n
+  local -A pidx=()
+  logs=$(mktemp -d /tmp/marfagenez-gate-XXXXXX) || { echo "нет tmp для гейта"; exit 1; }
+  for n in "$@"; do
+    ( set +x; "do_$n" ) >"$logs/$n.log" 2>&1 &
+    pidx[$n]=$!
+  done
+  for n in "$@"; do
+    wait "${pidx[$n]}"
+    keep $? "$n"
+    cat "$logs/$n.log"
+  done
+  rm -rf "$logs"
+}
+
 # Каждая проверка записывается в RC, если он ещё ноль. Голый `|| RC=$?`
 # затирал предыдущий провал следующим успехом: `exp` падал, `agents`
 # проходил, и `all` печатал «ВСЁ ЗЕЛЁНОЕ» с кодом 0. Тот же дефект, что уже
@@ -578,8 +601,10 @@ echo ">>> трассировка: $TRACE"
 # Два `all` не идут одновременно. Внутри all маркер наследуется копиями
 # run.sh, поэтому вложенный диспетчер не пытается повторно взять тот же lock.
 if [ "$WHAT" = all ] && [ "${MARFAGENEZ_GATE_LOCK_HELD:-0}" != 1 ]; then
-  mkdir -p "$ROOT/.coord/locks"
-  exec 8>"$ROOT/.coord/locks/run-all.lock"
+  # lock — runtime-состояние лаборатории, а не старой очереди: .coord/
+  # заморожена как read-only архив (cutover, журнал 821)
+  mkdir -p "$ROOT/lab/state/locks"
+  exec 8>"$ROOT/lab/state/locks/run-all.lock"
   if ! flock -n 8; then
     echo "FAIL: другой run.sh all уже держит gate lock"
     exit 1
@@ -624,17 +649,8 @@ case "$WHAT" in
   export) do_export; keep $? export ;;
   agents) do_agents; keep $? agents ;;
   all)
-    do_test;   keep $? test
-    do_lean;   keep $? lean
-    do_reach;  keep $? reach
-    do_dispatcher; keep $? dispatcher
-    do_verus;  keep $? verus
-    do_exp;    keep $? exp
-    do_kg;     keep $? kg
-    do_claims; keep $? claims
-    do_audit;  keep $? audit
-    do_export; keep $? export
-    do_agents; keep $? agents
+    gate_group test lean dispatcher verus claims audit kg export agents
+    gate_group reach exp
     ;;
   *)
     echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|kg|claims|audit|export|agents]"
