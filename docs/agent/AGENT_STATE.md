@@ -367,3 +367,7 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 ## 2026-11-26 — корректура DIP39-0010, единица пересчёта (цикл 835)
 
 Self-check grand-circle: в заметке DIP39-0010 единица пересчёта «16,7 моль·м⁻³·с⁻¹» была завышена в 1000 раз; исправлено штатным map_correct на «16,7 ммоль·м⁻³·с⁻¹ (= 1/60 ≈ 0,0167 моль·м⁻³·с⁻¹)», прежний текст зафиксирован в docs/MAP-ERRATA.md. Карта 1252 ячеек / 986 рёбер, сироты 218, контракты зелёные. Очередь: {"audit_chain_ok": true, "leases_active": 2, "tasks": {"claimed": 2, "integrated": 168, "ready": 5, "submitted": 11}}. Состояние синхронизировано с текущим HEAD.
+
+## 2026-11-26 — интеграция s7zh (цикл 836)
+
+Партия devin s7zh (4 атома + 10 рёбер, SUB-DEVIN-S7ZH-001) встроена: карта 1256 ячеек / 996 рёбер, сироты по strict-чеку; контракты зелёные. Submission остаётся `received` (метода integrate нет). Очередь: {"audit_chain_ok": true, "leases_active": 1, "tasks": {"claimed": 1, "integrated": 168, "ready": 4, "submitted": 13}}. Состояние синхронизировано с текущим HEAD.
