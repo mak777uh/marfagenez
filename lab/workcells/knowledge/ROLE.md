@@ -7,6 +7,8 @@
 
 Расширение и проверка литературной карты (`literature/map/atoms.jsonl`, `edges.jsonl`, формат MAP-FORMAT) и графа знаний (`kg/`, сшивка `kg/lit-refs.json` + `tools/stitch_maps.py`). Канонический граф меняет только main; исполнитель поставляет bundle.
 
+Границы записи: канон (`kg/`, `literature/map/`, сшивка) — только bundle -> validation -> интеграция main; вне bundle исполнитель меняет только реестр/журнал по правилам своего онбординга (таблица «какой файл чем меняется» — `docs/ONBOARDING-KNOWLEDGE-AGENT.md`).
+
 ## Виды задач (`spec.mode`)
 
 - `expand_source` — добавить источник, ячейки и связи;
