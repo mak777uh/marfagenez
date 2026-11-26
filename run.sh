@@ -558,20 +558,52 @@ do_dispatcher() {
 # группа 2 — после полного завершения группы 1. Лог каждой секции — свой файл,
 # печатается после её ожидания: вывод не перемешивается, первый провал
 # сохраняется `keep`, имя провалившейся секции видно сразу.
+# Параллельные группы пишут каждую секцию в её собственный файл общего
+# временного каталога; итоговый отчёт по всем группам печатает gate_report.
+# Порядок ВЫЗОВОВ групп разрешает зависимости сборки (reach после lean,
+# exp после test) и на отчёт не влияет.
+gate_logs() {
+  if [ -z "${GATE_LOG_DIR:-}" ]; then
+    GATE_LOG_DIR=$(mktemp -d /tmp/marfagenez-gate-XXXXXX) || { echo "нет tmp для гейта"; exit 1; }
+  fi
+}
+
 gate_group() {
-  local logs n
+  gate_logs
+  local n
   local -A pidx=()
-  logs=$(mktemp -d /tmp/marfagenez-gate-XXXXXX) || { echo "нет tmp для гейта"; exit 1; }
   for n in "$@"; do
-    ( set +x; "do_$n" ) >"$logs/$n.log" 2>&1 &
+    # Родительская трасса обязана называть каждую секцию (вложенные копии
+    # run.sh и проверки трасс читают её именно так), но внутренности секции
+    # идут в её собственную трассу: иначе параллельные выводы перемешиваются
+    # и «первый провалившийся шаг» зависит от порядка завершения.
+    : "gate: запуск секции do_$n"
+    ( exec 9>"$GATE_LOG_DIR/$n.trace"; BASH_XTRACEFD=9; set -x; "do_$n" ) \
+      >"$GATE_LOG_DIR/$n.log" 2>&1 &
     pidx[$n]=$!
   done
   for n in "$@"; do
     wait "${pidx[$n]}"
-    keep $? "$n"
-    cat "$logs/$n.log"
+    GATE_RC[$n]=$?
   done
-  rm -rf "$logs"
+}
+
+gate_report() {
+  # Отчёт — строго в каноническом порядке `all` (шапка: 11 разделов), не по
+  # времени завершения и не по группам запуска: RC и «первый провалившийся
+  # шаг» даёт первый провал по порядку, как в последовательном диспетчере;
+  # поздний код его не затирает.
+  gate_logs
+  local n
+  for n in test lean reach dispatcher verus exp kg claims audit export agents; do
+    [ -n "${GATE_RC[$n]:-}" ] || continue
+    keep "${GATE_RC[$n]}" "$n"
+    cat "$GATE_LOG_DIR/$n.log"
+    if [ "${GATE_RC[$n]}" -ne 0 ] && [ -z "${FIRST_FAIL_STEP:-}" ]; then
+      FIRST_FAIL_STEP=$(first_failed_step "$GATE_LOG_DIR/$n.trace")
+    fi
+  done
+  rm -rf "$GATE_LOG_DIR"
 }
 
 # Каждая проверка записывается в RC, если он ещё ноль. Голый `|| RC=$?`
@@ -586,6 +618,11 @@ gate_group() {
 # `all` кончался на «ЕСТЬ ПРОВАЛЫ (код 1)» без единой подсказки, какой из
 # девяти разделов дал код. `FAILED` копится, чтобы итог назвал все.
 FAILED=""
+declare -A GATE_RC=()
+GATE_LOG_DIR=""
+# «первый провалившийся шаг» параллельного `all`: шаг первой по порядку
+# провалившейся секции; ищет gate_report по трассе этой секции.
+FIRST_FAIL_STEP=""
 # Виновник провала должен быть назван, а не выведен из лога.
 #
 # `keep` копит код, но не говорит, ЧЕЙ он: раздел `exp` состоит из сорока
@@ -618,11 +655,12 @@ set -x
 
 first_failed_step() {
   # Первый ненулевой числовой rc= в трассе, а не последний. Строка перед ним
-  # называет команду, которая этот код вернула.
+  # называет команду, которая этот код вернула. Аргумент — трасса секции
+  # (параллельный `all`), без аргумента — трасса запуска (одиночная цель).
   awk '
     /^\+ (local )?rc=[1-9][0-9]*([ ]|$)/ { print previous; exit }
     { previous = $0 }
-  ' "$TRACE"
+  ' "${1:-$TRACE}"
 }
 keep() {
   local rc=$1 name=$2
@@ -651,6 +689,7 @@ case "$WHAT" in
   all)
     gate_group test lean dispatcher verus claims audit kg export agents
     gate_group reach exp
+    gate_report
     ;;
   *)
     echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|kg|claims|audit|export|agents]"
@@ -663,6 +702,9 @@ set +x
 if [ "$RC" -ne 0 ]; then
   echo "ЕСТЬ ПРОВАЛЫ (код $RC): провалились разделы:$FAILED"
   step=$(first_failed_step)
+  if [ -n "${FIRST_FAIL_STEP:-}" ]; then
+    step="$FIRST_FAIL_STEP"
+  fi
   if [ -n "$step" ]; then
     echo ">>> первый провалившийся шаг: $step"
   fi
