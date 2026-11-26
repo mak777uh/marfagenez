@@ -2,7 +2,7 @@
 
 **Версия:** 1.0 (Фаза 1 миграции, план v0.3)
 **Источник истины о науке:** репозиторий `marfagenez` (Git). `lab/` — управляющий слой, не новый проект.
-**Источник истины о control state:** `lab/state/control.sqlite3` (SQLite WAL, только ext4 WSL `/root`; никогда `/mnt/c`, UNC, SMB/9p). Файловые проекции (`inbox/`, `outbox/`, `accepted/`, `messages/`) восстановимы из БД и не являются хранилищем состояния.
+**Источник истины о control state:** `lab/state/control.db` (SQLite WAL, только ext4 WSL `/root`; никогда `/mnt/c`, UNC, SMB/9p). Файловые проекции (`inbox/`, `outbox/`, `accepted/`, `messages/`) восстановимы из БД и не являются хранилищем состояния.
 
 ## 1. Назначение
 
