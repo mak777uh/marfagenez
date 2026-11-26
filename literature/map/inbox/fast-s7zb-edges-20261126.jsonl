@@ -1,0 +1,8 @@
+{"from": "FAST-S7ZB-02", "to": "FAST-S7ZB-01", "type": "supports", "note": "Критерий касания — вывод нормальной формы saddle-node."}
+{"from": "FAST-S7ZB-03", "to": "FAST-S7ZB-01", "type": "extends", "note": "KCC-инварианты — слой поверх нормальных форм: различают динамику внутри класса."}
+{"from": "FAST-S7ZB-04", "to": "FAST-S7ZB-03", "type": "supports", "note": "Различение гистерезисных скачков — пример силы deviation curvature."}
+{"from": "FAST-S7ZB-05", "to": "FAST-S7ZB-02", "type": "supports", "note": "Наш «полюс» проверен критерием касания — согласие с каноном."}
+{"from": "FAST-S7ZB-01", "to": "FAST-S7X-01", "type": "analogous", "note": "Нормальные формы трёх бифуркаций — та же тройка, что в таблице классов универсальности Leonel 2016."}
+{"from": "FAST-S7ZB-03", "to": "FAST-S7X-03", "type": "analogous", "note": "KCC-инварианты vs скейлинг-показатели (α,β,z,δ): два разных набора классификаторов одних бифуркаций."}
+{"from": "FAST-S7ZB-05", "to": "DIP2-0006", "type": "supports", "note": "Критерий бифуркации (смена неподвижных точек) — контекст для rate-induced tipping: там потеря трекинга без бифуркации."}
+{"from": "FAST-S7ZB-01", "to": "DIP2-0007", "type": "analogous", "note": "t_d~(ε−εc)^(−1/2) — saddle-node-подобная сигнатура в rate-induced tipping."}

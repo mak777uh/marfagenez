@@ -944,3 +944,17 @@
 {"from": "B26-01-0009", "to": "B26-01-0001", "type": "refines", "note": "same DOI; orphan B26-01-0009 (gap) linked to B26-01-0001 (measurement) by shared source"}
 {"from": "DIP58-0011", "to": "DIP58-0008", "type": "measures", "note": "same DOI; orphan DIP58-0011 (measurement) linked to DIP58-0008 (measurement) by shared source"}
 {"from": "DIP59-0002", "to": "DIP59-0001", "type": "measures", "note": "same DOI; orphan DIP59-0002 (measurement) linked to DIP59-0001 (measurement) by shared source"}
+{"from": "FAST-S7ZA-02", "to": "FAST-S7ZA-01", "type": "supports", "note": "Порядок backward>tree>forward — количественное содержание трёх статистик."}
+{"from": "FAST-S7ZA-03", "to": "FAST-S7ZA-02", "type": "supports", "note": "Size-biased sampling — механизм наблюдаемого порядка."}
+{"from": "FAST-S7ZA-04", "to": "FAST-S7ZA-01", "type": "supports", "note": "Необходимость контроля размера — предпосылка всей схемы."}
+{"from": "FAST-S7ZA-05", "to": "FAST-S7ZA-03", "type": "extends", "note": "Популяционная фильтрация как более общий эффект того же сэмплирования."}
+{"from": "FAST-S7ZA-01", "to": "DIP4-0009", "type": "analogous", "note": "Асимметричное распределение повреждений vs видимая асимметрия π_bw — обе «асимметрии» могут быть артефактом весов линии."}
+{"from": "FAST-S7ZA-03", "to": "DIP4-0009", "type": "analogous", "note": "Прямая пара: реальная асимметрия деления (DIP4-0009) vs кажущаяся из backward-статистики (здесь) — метод контроля."}
+{"from": "FAST-S7ZA-04", "to": "DIP4-0003", "type": "analogous", "note": "Sizer/adder/timer — механизмы гомеостаза размера; связь с bet-hedging: размер как trait под давлением дисперсии."}
+{"from": "FAST-S7ZA-05", "to": "DIP8-0006", "type": "analogous", "note": "Меры старения согласуются плохо ↔ size distributions зависят от способа наблюдения — контекст наблюдения меняет измеряемое."}
+{"from": "FAST-S7ZB-02", "to": "FAST-S7ZB-01", "type": "supports", "note": "Критерий касания — вывод нормальной формы saddle-node."}
+{"from": "FAST-S7ZB-03", "to": "FAST-S7ZB-01", "type": "extends", "note": "KCC-инварианты — слой поверх нормальных форм: различают динамику внутри класса."}
+{"from": "FAST-S7ZB-04", "to": "FAST-S7ZB-03", "type": "supports", "note": "Различение гистерезисных скачков — пример силы deviation curvature."}
+{"from": "FAST-S7ZB-05", "to": "FAST-S7ZB-02", "type": "supports", "note": "Наш «полюс» проверен критерием касания — согласие с каноном."}
+{"from": "FAST-S7ZB-05", "to": "DIP2-0006", "type": "supports", "note": "Критерий бифуркации (смена неподвижных точек) — контекст для rate-induced tipping: там потеря трекинга без бифуркации."}
+{"from": "FAST-S7ZB-01", "to": "DIP2-0007", "type": "analogous", "note": "t_d~(ε−εc)^(−1/2) — saddle-node-подобная сигнатура в rate-induced tipping."}

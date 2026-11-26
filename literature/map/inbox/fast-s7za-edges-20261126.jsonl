@@ -1,0 +1,8 @@
+{"from": "FAST-S7ZA-02", "to": "FAST-S7ZA-01", "type": "supports", "note": "Порядок backward>tree>forward — количественное содержание трёх статистик."}
+{"from": "FAST-S7ZA-03", "to": "FAST-S7ZA-02", "type": "supports", "note": "Size-biased sampling — механизм наблюдаемого порядка."}
+{"from": "FAST-S7ZA-04", "to": "FAST-S7ZA-01", "type": "supports", "note": "Необходимость контроля размера — предпосылка всей схемы."}
+{"from": "FAST-S7ZA-05", "to": "FAST-S7ZA-03", "type": "extends", "note": "Популяционная фильтрация как более общий эффект того же сэмплирования."}
+{"from": "FAST-S7ZA-01", "to": "DIP4-0009", "type": "analogous", "note": "Асимметричное распределение повреждений vs видимая асимметрия π_bw — обе «асимметрии» могут быть артефактом весов линии."}
+{"from": "FAST-S7ZA-03", "to": "DIP4-0009", "type": "analogous", "note": "Прямая пара: реальная асимметрия деления (DIP4-0009) vs кажущаяся из backward-статистики (здесь) — метод контроля."}
+{"from": "FAST-S7ZA-04", "to": "DIP4-0003", "type": "analogous", "note": "Sizer/adder/timer — механизмы гомеостаза размера; связь с bet-hedging: размер как trait под давлением дисперсии."}
+{"from": "FAST-S7ZA-05", "to": "DIP8-0006", "type": "analogous", "note": "Меры старения согласуются плохо ↔ size distributions зависят от способа наблюдения — контекст наблюдения меняет измеряемое."}
