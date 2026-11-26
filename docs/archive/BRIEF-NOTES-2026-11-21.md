@@ -285,7 +285,7 @@ repair closure perturbation test.
 ## 13. Ответ на БРИФ-2: проверка по коду и поправки
 
 Рецензент клонировал `master` (`cbbb976`), прогнал `kg/regress.py`, `log_check --no-test-count`,
-`protocol_checks.py`, `kg.py check|map|unconfirmed` — зелёное (560 узлов, 331 теорем). `run.sh all` не
+`protocol_checks.py`, `kg.py check|map|unconfirmed` — зелёное (560 узлов, 335 теорем). `run.sh all` не
 запускал (в песочнице нет Rust/Lean/node).
 
 ### 13.1 Наши ошибки, признанные
