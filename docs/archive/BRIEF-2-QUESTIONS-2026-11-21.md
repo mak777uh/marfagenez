@@ -25,7 +25,7 @@
 
 Код: [`kg/migrate.py`](../kg/migrate.py) — `PAPERS = ROOT / "papers"` (строка 126),
 `literature_artifact(body)` (129), вызов (173), `chosen = ... if artifact else "extracted"` (174).
-Находка: [`FINDING-336-provenance-by-label.md`](FINDING-336-provenance-by-label.md).
+Находка: [`FINDING-336-provenance-by-label.md`](../FINDING-336-provenance-by-label.md).
 
 ### 1.2 Что проверено о коде (сабагент, с номерами строк)
 
@@ -54,7 +54,7 @@ WSL-питон — 3.14. Значит добыча — на Windows, вериф�
 
 ### В1. Где живёт структурированная запись литературы?
 
-**Контекст.** 88 записей `L-NNN` в [`docs/ELEPHANT-LITERATURE.md`](ELEPHANT-LITERATURE.md) — человеческий
+**Контекст.** 88 записей `L-NNN` в [`docs/ELEPHANT-LITERATURE.md`](../ELEPHANT-LITERATURE.md) — человеческий
 markdown: «Кто / Ссылка / Проверено / Утверждение». Машина читает его регулярками в
 [`kg/migrate.py:129`](../kg/migrate.py) и только что научилась проверять наличие файла. Для контракта нужны
 поля: локатор, артефакт, sha256, дата, `via`, исследованные диапазоны.
@@ -264,11 +264,11 @@ MRR — тогда (б) достаточно.
 | [`kg/nodes.jsonl`](../kg/nodes.jsonl) | 560 узлов, поля без `lifecycle` | схема для В4 |
 | [`checks/protocol_checks.py`](../checks/protocol_checks.py) | правило «проверка названа в PROTOCOL» 40–49 | предмет В7 |
 | [`run.sh`](../run.sh) | 12 разделов; `do_audit` 358 (офлайн) | куда встраиваются проверки |
-| [`docs/ELEPHANT-LITERATURE.md`](ELEPHANT-LITERATURE.md) | 88 записей `L-NNN` | предмет В1, В6 |
+| [`docs/ELEPHANT-LITERATURE.md`](../ELEPHANT-LITERATURE.md) | 88 записей `L-NNN` | предмет В1, В6 |
 | [`docs/BRIEF-NOTES-2026-11-21.md`](BRIEF-NOTES-2026-11-21.md) | сводка двух разборов первого брифа | контекст решений |
-| [`docs/FINDING-336-provenance-by-label.md`](FINDING-336-provenance-by-label.md) | P0: метка делала узел свидетельством | почему В1 и В2 такие |
+| [`docs/FINDING-336-provenance-by-label.md`](../FINDING-336-provenance-by-label.md) | P0: метка делала узел свидетельством | почему В1 и В2 такие |
 | [`tools/semantic_search.py`](../tools/semantic_search.py) | локальные эмбеддинги, модель `bge-small-en` | предмет В3 |
-| [`docs/SCIENCE-STACK.md`](SCIENCE-STACK.md) | шесть каналов, правило seeds, что отвергнуто | фактическая база |
+| [`docs/SCIENCE-STACK.md`](../SCIENCE-STACK.md) | шесть каналов, правило seeds, что отвергнуто | фактическая база |
 | [`papers/`](../papers) | один текст: arXiv 2411.17012 | артефакт для L-060 |
 
 **Проверить наши утверждения:**

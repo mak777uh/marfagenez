@@ -19,9 +19,9 @@
 | [`docs/OWNER-PROFILE-2026-11-22.md`](OWNER-PROFILE-2026-11-22.md) | цель и десять правил владельца | **читать первым**: он решает, что считается результатом |
 | [`literature/external/2026-11-22-two-answers.md`](../literature/external/2026-11-22-two-answers.md) | протокол двух внешних ответов: формулы, числа, что сверено | чтобы не повторять уже сказанное и спорить по существу |
 | [`literature/verify/2026-11-22-dois.jsonl`](../literature/verify/2026-11-22-dois.jsonl) | сверка одиннадцати DOI | факт: один DOI был чужим |
-| [`docs/ELEPHANT-LITERATURE.md`](ELEPHANT-LITERATURE.md) | реестр: **101 запись** `L-NNN`, проза + машинный блок | источник фактов о литературе |
-| [`docs/SEARCH-METHOD.md`](SEARCH-METHOD.md) | очередь поисковых линий, критерий остановки | что искать дальше |
-| [`docs/REVIEW-BACKLOG.md`](REVIEW-BACKLOG.md) | что внедрено (U1–U8, U10–U12, U14) и что осталось | не предлагать сделанное |
+| [`docs/ELEPHANT-LITERATURE.md`](../ELEPHANT-LITERATURE.md) | реестр: **101 запись** `L-NNN`, проза + машинный блок | источник фактов о литературе |
+| [`docs/SEARCH-METHOD.md`](../SEARCH-METHOD.md) | очередь поисковых линий, критерий остановки | что искать дальше |
+| [`docs/REVIEW-BACKLOG.md`](../REVIEW-BACKLOG.md) | что внедрено (U1–U8, U10–U12, U14) и что осталось | не предлагать сделанное |
 | [`kg/migrate.py`](../kg/migrate.py) | сборка узлов; `literature_level`, `literature_block` | контракт уровня доступа |
 | [`kg/kg.py`](../kg/kg.py) | граф: `similar`, `admit`, `admissions`, инварианты | навигация и журнал допуска |
 | [`kg/nodes.jsonl`](../kg/nodes.jsonl) | 564 узла | состояние карты |

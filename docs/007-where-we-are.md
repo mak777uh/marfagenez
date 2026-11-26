@@ -7,7 +7,7 @@
 
 ## Состояние — один короткий файл
 
-[`agent/AGENT_STATE.md`](agent/AGENT_STATE.md) — «сейчас» (сотни строк; читать последние разделы). История — [`agent/AGENT-HISTORY.md`](agent/AGENT-HISTORY.md),
+[`agent/AGENT_STATE.md`](agent/AGENT_STATE.md) — «сейчас» (около 344 строк; читать последние разделы). История — [`agent/AGENT-HISTORY.md`](agent/AGENT-HISTORY.md),
 её читать не нужно.
 
 ## Весь путь

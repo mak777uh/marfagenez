@@ -14,10 +14,10 @@
 
 - [`BRIEF-NOTES-2026-11-21.md`](BRIEF-NOTES-2026-11-21.md) — сводка трёх внешних разборов: подтверждённый
   P0, научные аналоги, схемы, три опасности.
-- [`REVIEW-BACKLOG.md`](REVIEW-BACKLOG.md) — что уже внедрено (U1–U8, U10–U12, U14) и что осталось.
-- [`SEARCH-METHOD.md`](SEARCH-METHOD.md) — очередь поисковых линий, критерий остановки.
-- [`ELEPHANT-LITERATURE.md`](ELEPHANT-LITERATURE.md) — реестр записей `L-NNN` с машинными блоками.
-- [`SCIENCE-STACK.md`](SCIENCE-STACK.md) — каналы поиска и измеренные результаты.
+- [`REVIEW-BACKLOG.md`](../REVIEW-BACKLOG.md) — что уже внедрено (U1–U8, U10–U12, U14) и что осталось.
+- [`SEARCH-METHOD.md`](../SEARCH-METHOD.md) — очередь поисковых линий, критерий остановки.
+- [`ELEPHANT-LITERATURE.md`](../ELEPHANT-LITERATURE.md) — реестр записей `L-NNN` с машинными блоками.
+- [`SCIENCE-STACK.md`](../SCIENCE-STACK.md) — каналы поиска и измеренные результаты.
 - `tools/litsearch.py`, `tools/lit_ingest.py`, `tools/lit_new.py`, `kg/kg.py similar` — инструменты.
 - Гейт: `bash run.sh all` → «ВСЁ ЗЕЛЁНОЕ»; сейчас в нём пятьдесят с лишним проверок.
 
@@ -32,7 +32,7 @@
 **наследуется через воспроизводство**. Найдены близкие работы: Schwegler & Tarumi 1986 (`L-090`,
 самоподдержание протоклетки как динамика), Bigan et al. 2015 (`L-089`, топологические условия роста),
 Sci Rep 2020 (`L-091`, ремонт/устойчивость/удержание повреждения), PNAS 2024 (`L-092`, асимметрия против
-ремонта). Наш реестр — [`ELEPHANT-LITERATURE.md`](ELEPHANT-LITERATURE.md).
+ремонта). Наш реестр — [`ELEPHANT-LITERATURE.md`](../ELEPHANT-LITERATURE.md).
 
 **Вопрос.** Существует ли работа (или явно сформулированная открытая задача), где **все три** элемента
 встречаются в одной минимальной модели? Если да — DOI и что именно перекрывается. Если нет — какая из
