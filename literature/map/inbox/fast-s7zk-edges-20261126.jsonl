@@ -1,0 +1,10 @@
+{"from": "FAST-S7ZK-01", "to": "DIP5-0006", "type": "analogous", "note": "(M,R)-замыкание Розена vs f(f)=f Матураны-Варелы: оба — самовоспроизводство через внутреннее производство средств."}
+{"from": "FAST-S7ZK-01", "to": "DIP11-0003", "type": "analogous", "note": "Process-enablement graph замыкания vs efficient-cause closure: оба формализуют «каждый нужный процесс производится сетью»."}
+{"from": "FAST-S7ZK-03", "to": "FAST-S7ZC-01", "type": "analogous", "note": "Rosen's anti-simulation thesis vs дебаты ALife discipline/method (L-083) и Pattee simulation/realization — одна проблема в трёх словарях."}
+{"from": "FAST-S7ZK-03", "to": "DIP11-0010", "type": "supports", "note": "DIP11-0010: organizational closure не измерена на реальных системах — Rosen's тезис остаётся метафизически нагруженным."}
+{"from": "FAST-S7ZK-04", "to": "FAST-S7ZK-01", "type": "supports", "note": "Асимметрия material causation — уточнение условий, при которых closure имеет физический смысл."}
+{"from": "FAST-S7ZK-05", "to": "DIP3-0002", "type": "analogous", "note": "RAF (self-sustaining catalytic set) — частный вычислимый случай (M,R)-замыкания: пища снаружи vs полная замкнутость."}
+{"from": "FAST-S7ZK-02", "to": "DIP3-0004", "type": "analogous", "note": "Impredicativity как способ свернуть регресс vs инвариантная подсеть организации — два ответа на «что поддерживает замыкание»."}
+{"from": "FAST-S7ZK-05", "to": "FAST-S7ZI-05", "type": "analogous", "note": "(M,R)-замкнутость vs disposable soma: ремонт как внутреннее производство vs ремонт как опция — разные вопросы одной границы."}
+{"from": "FAST-S7ZK-01", "to": "FAST-S7ZK-05", "type": "supports", "note": "Тезис замыкания — основание для нашего чек-листа."}
+{"from": "FAST-S7ZK-03", "to": "FAST-S7ZK-04", "type": "refines", "note": "Условия замыкания уточняются через термодинамическую асимметрию — anti-simulation тезис не автоматически следует."}
