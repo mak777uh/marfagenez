@@ -33,7 +33,7 @@
 | явных рёбер в графе | 12 | `python3 kg/kg.py check --refs` |
 | прогонов `results/` | 128 каталогов | `ls -d results/*/ \| wc -l` |
 | полных текстов `papers/` | 1 (arXiv 2411.17012) | `ls papers/` |
-| Rust-тестов | 407 | `cd core && cargo test` |
+| Rust-тестов | 410 | `cd core && cargo test` |
 
 **Три измеренных перекоса — это и есть предмет брифа:**
 

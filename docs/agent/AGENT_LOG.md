@@ -10558,3 +10558,25 @@ MSG-...-14 exper'у (claim v4, dev-прогон D-Q4); proposals DQ5/DQ6-DRIVER-
 - +3 теста: constant_mode_keeps_analytic_dose_per_step,
   sham_fixes_q0_and_consumes_the_same_draw, details_capture_q0_death_step_and_censoring.
 - Rust 404->407. После гейта: EXP-2026-4102 переиздана v2 с новым base_commit.
+
+### Дополнение (цикл 857, подготовка) — 2026-11-27 — `04e0911d` : параллельный литературный поток devin назван
+
+devin простейвил партии s7zdq-s7zdu в inbox (protocell energetics x2, metabolic
+heredity, constraint closure, Karin-Alon SR model) и обновил уровни верификации
+ELEPHANT-LITERATURE для L-009/010/011/014/015. Коммиты названы по правилу log_check.
+
+### Цикл 857 — 2026-11-27 — `466ae934`: контракты процедуры D-Q6 в драйвере; фикс исхода 856
+
+**Исход 856:** гейт зелёный, коммит `466ae934` запушен: контракты D-Q5 в драйвере
+(--mode constant, --sham q0, --details, фактические seed), Rust 407; EXP-2026-4102
+переиздана v2 (base 466ae9344968...), MSG-...-15 exper'у; exper прошёл preflight
+D-Q4 v4 (555).
+
+- Proposal exper PROP-EXPER-DQ6-DRIVER-FIX исполнен: расписание семплов
+  {steps/8,/4,/2,steps} по спеке (грабель старой версии: без steps/8), фактические
+  seed в CSV, `--details` (журнал событий event,...,ordinal,step -- T_life
+  восстановим), `--control none|cap|sham` (cap: клэмп 1.0; sham: экзогенные reset-ы
+  по baseline-смертности).
+- +3 теста: sample_schedule_matches_spec, cap_clamps_damage,
+  sham_resets_are_exogenous_and_deterministic. Rust 407->410.
+- После гейта: EXP-2026-4103 переиздана v2 с новым base_commit.

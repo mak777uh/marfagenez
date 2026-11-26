@@ -2,7 +2,7 @@
 
 > **Поправка 2026-11-21.** Файл датирован 2026-11-20 и `checks/log_check.py` его намеренно не сверяет с деревом
 > (датированная запись). Числа ниже — снимки прошлых прогонов, а не живые. Живые числа: `bash run.sh test` (тесты),
-> `bash run.sh lean` (теоремы), `python3 checks/doc_numbers.py` (сверка дерева). В частности, строка «Rust — 407 теста»
+> `bash run.sh lean` (теоремы), `python3 checks/doc_numbers.py` (сверка дерева). В частности, строка «Rust — 410 теста»
 > соответствует дереву на 2026-11-21, а строки «223 passed» и «189 passed» ниже — исторические снимки.
 >
 
@@ -121,7 +121,7 @@ verus verus/integer_laws.rs
 
 ## Что проверено на входах (уровень B)
 
-### Rust — 407 теста
+### Rust — 410 теста
 
 | группа | что проверяет |
 |---|---|
@@ -233,7 +233,7 @@ cd core && cargo test --release --tests -- --test-threads=1
 | Lean теорем и лемм (`Legacy`) | **27** | `grep -h '^theorem \|^lemma ' laws/Legacy/*.lean \| wc -l` |
 | Lean файлов | **56** `Medium` + 8 `Legacy` | `ls laws/Medium/*.lean \| wc -l` |
 | Lean `sorry` как тактика | **0** | `grep -rnE '^\s*(·\s*)?sorry\s*$' laws/ \| wc -l` |
-| Rust тестов | **407** | `cd core && cargo test --release --tests -- --test-threads=1` |
+| Rust тестов | **410** | `cd core && cargo test --release --tests -- --test-threads=1` |
 | Verus | **41 verified** | `verus verus/integer_laws.rs` |
 | docs FINDING | **148** | `ls docs/FINDING-*.md \| wc -l` |
 | checks (эксперименты) | **110** | `ls checks/exp*.py \| wc -l` |

@@ -481,3 +481,15 @@ Proposal exper PROP-EXPER-DQ5-DRIVER-FIX (published): exp_dq5.rs получил
 фактические seed 4201+ в CSV, колонки mode/sham в summary. +3 теста, Rust 404->407.
 
 status: цикл 856 — автопочинка зелёная, дальше журнал + гейт + пуш.
+
+## 2026-11-27 — контракты процедуры D-Q6 в драйвере (цикл 857)
+
+Proposal exper PROP-EXPER-DQ6-DRIVER-FIX (published): exp_dq6.rs получил
+build_sample_steps {steps/8,/4,/2,steps} (грабель прошлой версии: двойной steps,
+нет steps/8), фактические seed 4301+ в CSV, --details (event,h,seed,ordinal,step --
+seed-level T_life по интервалам), --control none|cap|sham (cap: клэмп damage 1.0;
+sham: экзогенные reset-ы по baseline-смертности без damage-вклада). +3 теста
+(schedule/cap/sham), Rust 407->410. Грабель попытки 1: tail -N не поддержан в
+watcher-окружении (только tail -n N).
+
+status: цикл 857 — автопочинка зелёная, дальше журнал + гейт + пуш.
