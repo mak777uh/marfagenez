@@ -160,4 +160,14 @@ def main(argv: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+    result = main(sys.argv)
+    import subprocess
+    root = pathlib.Path(__file__).resolve().parents[1]
+    live_check = subprocess.run(
+        [sys.executable, str(root / "tools" / "live_numbers.py"), "--check"],
+        cwd=root,
+        check=False,
+    )
+    if result == 0:
+        result = live_check.returncode
+    sys.exit(result)
