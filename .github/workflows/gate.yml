@@ -1,0 +1,69 @@
+# NOT RUN ON A RUNNER: contract file only; no GitHub Actions execution has validated it yet.
+name: gate
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    name: Rust + Lean + Verus + local gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Verus
+        env:
+          VERUS_VERSION: "0.2026.11.22.1ce6a59"
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 \
+            "https://github.com/verus-lang/verus/releases/download/release%2F${VERUS_VERSION}/verus-${VERUS_VERSION}-x86-linux.zip" \
+            --output "${RUNNER_TEMP}/verus.zip"
+          unzip -q "${RUNNER_TEMP}/verus.zip" -d "${RUNNER_TEMP}"
+          test -x "${RUNNER_TEMP}/verus-x86-linux/verus"
+          echo "${RUNNER_TEMP}/verus-x86-linux" >> "${GITHUB_PATH}"
+          # Verus binary releases document a dedicated rustup toolchain; the
+          # verifier reports this exact version when it is absent.
+          rustup toolchain install 1.99.1-x86_64-unknown-linux-gnu --profile minimal
+
+      - name: Install Lean toolchain
+        run: |
+          set -euo pipefail
+          curl --proto '=https' --tlsv1.2 -sSf \
+            https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "${HOME}/.elan/bin" >> "${GITHUB_PATH}"
+
+      - name: Python YAML dependency
+        run: python3 -m pip install --disable-pip-version-check pyyaml
+
+      - name: Validate workflow contract
+        run: python3 checks/ci_workflow.py
+
+      - name: Rust tests without default features
+        working-directory: core
+        run: cargo test --release --no-default-features --tests -- --test-threads=1
+
+      - name: Lean build
+        working-directory: laws
+        run: lake build
+
+      - name: Full repository gate
+        run: bash run.sh all
