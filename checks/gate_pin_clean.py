@@ -14,7 +14,7 @@ RUN = ROOT / "run.sh"
 
 def extract_function(source: str, name: str) -> str:
     match = re.search(
-        rf"(?ms)^{re.escape(name)}\(\) \{\n.*?^\}",
+        rf"(?ms)^{re.escape(name)}\(\) {{\n.*?^}}",
         source,
     )
     if not match:
