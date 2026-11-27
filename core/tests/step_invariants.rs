@@ -22,6 +22,7 @@ fn income_spending_energy_delta_and_spill_balance_on_rng2_traces() {
     // Every generated resource is greater than maintenance, so this test
     // exercises the conservation ledger rather than starvation/negative debt.
     for seed in 0..64_u64 {
+        // Fixed seed family: failures replay exactly without adding a test dependency.
         let mut rng = Rng2::new(0xBA1A_ACE0_0000_0000_u64.wrapping_add(seed));
         let world = World {
             income: 2.0,
