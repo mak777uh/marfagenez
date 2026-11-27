@@ -316,26 +316,26 @@ threshold**… the lineage becomes mortal above the threshold».
 {
  "L": "L-006",
  "locator": {
-  "doi": null,
+  "doi": "10.1038/nature16550",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://www.nature.com/articles/nature16550",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/stroustrup16-nature16550.pdf",
+  "bytes": 1892642,
+  "sha256": "6b16e76081d97e4ffc5ca42bb59c2660bf62f3f894d0904108f309707fe8fdde",
+  "retrieved_at": "2026-11-27T08:55:00Z",
+  "via": "pmc-author-manuscript",
+  "via_detail": "author manuscript PDF (UNC Carolina Digital Repository, PMCID PMC4828198), 28 стр., текстовый слой; цитаты верифицированы"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "page", "from": "1", "to": "28", "note": "manuscript incl. supp."}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -353,8 +353,8 @@ threshold**… the lineage becomes mortal above the threshold».
 
 **Кто.** Stroustrup et al. (2016). *The temporal scaling of Caenorhabditis elegans ageing.* Nature 530, 103–107.
 **Ссылка.** **вторые руки** — из отзыва 2026-11-20; ссылку не открывал.
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Кривые выживания при разных вмешательствах совпадают после растяжения времени — то есть
+**Проверено.** **полный текст** papers/stroustrup16-nature16550.pdf (author manuscript, PMCID PMC4828198, sha256 6b16e760…), 2026-11-27; «all alter lifespan distributions by an apparent stretching or shrinking of time», «a single effective rate constant of ageing, k_r», «transiently alter k_r … a permanent effect on remaining lifespan» — сверено с текстом.
+**Утверждение (по полному тексту).** Кривые выживания при разных вмешательствах совпадают после растяжения времени — то есть
 старение масштабируется.
 **Что даёт нам.** Внешний якорь для «жизнь как скорость»: если у нас `S(T)` тоже масштабируется, это **одно** число
 сравнения с реальными данными.
@@ -1806,26 +1806,26 @@ Odling-Smee et al. (2013) Am Nat; Mitteroecker et al. (2016) PNAS.
 {
  "L": "L-035",
  "locator": {
-  "doi": null,
+  "doi": "10.1371/journal.pone.0034889",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1371/journal.pone.0034889",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/vercken12-plosone-e34889.pdf",
+  "bytes": 450630,
+  "sha256": "54ded2570019d12ab64e5c951f45ad59fbe2776d04a2773c862d7f3c0a7f48f7",
+  "retrieved_at": "2026-11-27T08:55:00Z",
+  "via": "publisher-pdf",
+  "via_detail": "journals.plos.org printable PDF (PLoS ONE 7(4):e34889), 9 стр.; Jensen’s inequality, phenotypic variance, genotype fitness — сверено с текстом; Stephens-Charnov 1982 и Kussell-Leibler 2005 остаются вторыми руками (paywall)"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "page", "from": "1", "to": "9"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1843,8 +1843,8 @@ Odling-Smee et al. (2013) Am Nat; Mitteroecker et al. (2016) PNAS.
 
 **Кто.** Vercken et al. (2012) PLoS ONE 7:e34889; Stephens & Charnov (1982); Kussell & Leibler (2005) Science 309:2075;
 Haaland et al. (2019) Proc R Soc B 286:20192070.
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** У обрыва оптимум сдвигается; риск-чувствительные стратегии количественно описаны;
+**Проверено.** **частично первый источник**: Vercken et al. 2012 PLoS ONE 7:e34889 — полный текст papers/vercken12-plosone-e34889.pdf (sha256 54ded257…), 2026-11-27; асимметричная fitness-функция + фенотипическая дисперсия → ESS ниже фенотипического оптимума через Jensen’s inequality, «genotype fitness» = reproductive value по распределению — сверено. Stephens & Charnov (1982) и Kussell & Leibler (2005) — по-прежнему вторые руки.
+**Утверждение (по тексту Vercken 2012; остальные — пересказ).** У обрыва оптимум сдвигается; риск-чувствительные стратегии количественно описаны;
 bet-hedging оптимален, когда критерий **геометрический**.
 **Что меняет.** Q-019 остаётся ключевым: наш критерий аддитивный → «bet-hedging» не наше слово.
 
@@ -2402,26 +2402,26 @@ doi:10.3390/systems12040111.
 {
  "L": "L-047",
  "locator": {
-  "doi": null,
-  "arxiv": null,
+  "doi": "10.1016/j.cels.2016.01.004",
+  "arxiv": "1410.6064",
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://arxiv.org/abs/1410.6064",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/briat16-arxiv-1410.6064.pdf",
+  "bytes": 2350616,
+  "sha256": "5036d32176bcde430b4bb3cfe3891ac7c657898ad828cd3827786ebac3538b82",
+  "retrieved_at": "2026-11-27T08:55:00Z",
+  "via": "arxiv-pdf",
+  "via_detail": "arXiv:1410.6064v7 PDF (Cell Systems 2(6):624-640), 19 стр., текстовый слой; antithetic integral feedback, perfect adaptation, шум — сверено; Lindner et al. 2008 остаётся вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "page", "from": "1", "to": "19"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2438,8 +2438,8 @@ doi:10.3390/systems12040111.
 
 
 **Кто.** Briat, Gupta & Khammash (2016) antithetic integral feedback; Lindner et al. (2008).
-**Проверено.** **частично первый источник**: Briat, Gupta & Khammash 2016 Cell Systems (arXiv:1410.6064) — abstract-уровень (staged s7zdx); Lindner et al. 2008 — вторые руки.
-**Утверждение (пересказ).** Интегральная связь даёт robust perfect adaptation (среднее закреплено), но **ценой роста
+**Проверено.** **полный текст (arXiv)**: Briat, Gupta & Khammash 2016, arXiv:1410.6064v7 = Cell Systems 2(6):624-640, papers/briat16-arxiv-1410.6064.pdf (sha256 5036d321…), 2026-11-27; antithetic integral feedback → robust perfect adaptation, эксплуатация шума, малый метаболический груз — сверено с текстом. Lindner et al. 2008 — по-прежнему вторые руки.
+**Утверждение (по полному тексту arXiv; Lindner — пересказ).** Интегральная связь даёт robust perfect adaptation (среднее закреплено), но **ценой роста
 дисперсии**; полоса с отражающими границами даёт усечённое распределение и **робастна** к сдвигу вероятностей.
 **Что меняет.** `Q-013`: то, что у нас выжила только полоса, **согласуется с теорией**; различать по форме
 распределения.
