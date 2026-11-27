@@ -10580,3 +10580,15 @@ D-Q4 v4 (555).
 - +3 теста: sample_schedule_matches_spec, cap_clamps_damage,
   sham_resets_are_exogenous_and_deterministic. Rust 407->410.
 - После гейта: EXP-2026-4103 переиздана v2 с новым base_commit.
+
+### Дополнение 2 (цикл 857, литературный контракт) — 2026-11-27 — откат prose-уровней
+
+Диагноз точнее: devin в `04e0911d` поднял ПРОЗУ «Проверено» (вторые руки -> полный
+текст) для L-009/010/011/014/015, но машинный уровень R8 в реестре остался
+`secondary_only` (порядок уровней: metadata_only < abstract_read < fragment_read
+< full_text_examined < secondary_only) -- prose опустилась ниже машинного уровня,
+literature_contract срезал гейт. Коммит 857 (`84ccd332`) втянул правку devin через
+git add -u docs (урок: в циклах точечный add, а не add -u docs, когда параллельный
+поток активен). Откат prose к состоянию `466ae934` (до `04e0911d`): уровни снова
+согласованы. devin поднимет пару (prose + машинный уровень) вместе через свою
+интеграцию/партию с батчами s7zdq-s7zdu.
