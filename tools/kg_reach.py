@@ -42,14 +42,18 @@ def reachability(nodes, edges, legacy_ids=()):
         queue = deque([(start, [start], False, initial_experiment)])
         seen_states = {(start, False, initial_experiment)}
         found = None
+        unversioned_path = None
         while queue:
             current, path, has_measurement, has_experiment = queue.popleft()
-            artifact_type = (by_id[current].get("data") or {}).get("artifact_type")
+            current_data = by_id[current].get("data") or {}
+            artifact_type = current_data.get("artifact_type")
             has_measurement = has_measurement or artifact_type == "result_record"
             has_experiment = has_experiment or by_id[current].get("kind") == "experiment"
             if artifact_type == "code_locator" and has_measurement and has_experiment:
-                found = path
-                break
+                if current_data.get("version_pinned") is True:
+                    found = path
+                    break
+                unversioned_path = unversioned_path or path
             for edge_type, target in outgoing.get(current, []):
                 state = (
                     target,
@@ -61,6 +65,8 @@ def reachability(nodes, edges, legacy_ids=()):
                     queue.append((target, path + [target], state[1], state[2]))
         if found:
             status = "reachable"
+        elif unversioned_path:
+            status = "unversioned-code"
         elif degree.get(start, 0) == 0:
             status = "new-isolated" if start not in legacy else "isolated"
         elif not has_source(node):
@@ -72,7 +78,7 @@ def reachability(nodes, edges, legacy_ids=()):
             "text": node.get("text", ""),
             "epistemic": node.get("epistemic"),
             "status": status,
-            "path": found or [],
+            "path": found or unversioned_path or [],
             "degree": degree.get(start, 0),
         })
 
