@@ -1211,17 +1211,17 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
   "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://doi.org/10.1371/journal.pgen.1001076"
+  "level": "full_text_examined",
+  "artifact": "papers/chao10-plosgenet.pdf",
+  "bytes": 344646,
+  "sha256": "28a06c1eef3c6e33f22a8a6dc71e942ebf26fe7d4a283d47a027456b305402f9",
+  "retrieved_at": "2026-11-27T08:45:00Z",
+  "via": "publisher-pdf",
+  "via_detail": "journals.plos.org printable PDF (PLoS Genetics 6(8):e1001076), 10 стр., текстовый слой; цитаты верифицированы как подстроки"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "page", "from": "1", "to": "10"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1241,8 +1241,8 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 **Кто.** Chao, L. (2010). PLOS Genetics 6(8): e1001076. Реконструкция — внешнее ревью 2026-11-20 (второй документ),
 с сверкой по двум опубликованным числам.
 **Ссылка.** https://doi.org/10.1371/journal.pgen.1001076 ; полный текст https://pmc.ncbi.nlm.nih.gov/articles/PMC2928801/
-**Проверено.** **вторые руки** (реконструкция обзора, сам статью не открывал).
-**Утверждение (пересказ реконструкции).** У Чао асимметрия деления `a`; порог — **складка** (saddle-node); груз
+**Проверено.** **полный текст** papers/chao10-plosgenet.pdf (PLoS printable PDF, sha256 28a06c1e…), 2026-11-27; ключевые места сверены с текстом: «If Pl.1/6, the doubling time of a lineage never attains an equilibrium and it increases over generations until it is infinitely long», «At the threshold of Pl = 1/6…», условия вещественности равновесий (ур. 9a/9b) — согласуется со складкой из реконструкции.
+**Утверждение (по полному тексту).** У Чао асимметрия деления `a`; порог — **складка** (saddle-node); груз
 повреждения в пороге **конечен**; обратный корень расходится у **производной** и у **времени до сенесценции**;
 асимметрия **сдвигает** порог в диапазон `[1/6, 1/2]`.
 **Что даёт нам.** **Огромное.** Это снимает наш последний кандидат на новизну: `√` у порога — **универсальный масштаб
@@ -2159,21 +2159,21 @@ doi:10.1146/annurev-biophys-070317-032955.
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://home.pietrosperoni.it/wp-content/uploads/2006/11/Chapter-11.pdf",
   "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/cot07-df.pdf",
+  "bytes": 450196,
+  "sha256": "c011aa0b2f0fdb2f8ed1cd0537e3353bfd3036f66d7ab10e18be1b6c93c37c22",
+  "retrieved_at": "2026-11-27T08:45:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "Chapter-11.pdf с home.pietrosperoni.it (Springer Systems Biology ch.11, 33 стр.), текстовый слой; цитаты верифицированы как подстроки"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "page", "from": "361", "to": "393"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2191,8 +2191,8 @@ doi:10.1146/annurev-biophys-070317-032955.
 
 **Кто.** Dittrich & Speroni di Fenizio (2007), Bull. Math. Biol., doi:10.1007/s11538-006-9130-8; обзор 2024,
 doi:10.3390/systems12040111.
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Организация — множество видов, **замкнутое** по реакциям и **самоподдерживающееся**;
+**Проверено.** **полный текст** papers/cot07-df.pdf (глава 11, Dittrich & Speroni di Fenizio, Systems Biology/Springer 2007, sha256 c011aa0b…), 2026-11-27; определения closure/self-maintenance, теорема «стационарное состояние = организация», решётка организаций и food set сверены с текстом посимвольно (батч s7zeu).
+**Утверждение (по полному тексту).** Организация — множество видов, **замкнутое** по реакциям и **самоподдерживающееся**;
 организации образуют **решётку**. Границы, мембраны, цены и наследования в базовом формализме **нет**.
 **Что меняет.** `Q-028`: кандидат в третий потолок; бюджет добавляется руками (левое ядро стехиометрии + потоки = LP).
 
