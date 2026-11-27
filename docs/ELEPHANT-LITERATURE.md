@@ -769,7 +769,7 @@ decreasing side** of the fitness function». Пример там же: птиц�
 **Кто.** Gavrilov? нет — **Tomasik et al. (2024), JTB** — «Agelessness is possible under the disposable soma theory but
 system complexity makes it unlikely».
 **Ссылка.** **вторые руки** — из отзыва 2026-11-20.
-**Проверено.** **вторые руки.**
+**Проверено.** **вторые руки.** ⚠ **2026-11-27, MSG-DEVIN-S7-Q020-1:** «Tomasik et al. (2024), JTB» не существует — Brian Tomasik философ-эссеист, такой статьи нет; цитата «Agelessness is possible...» вероятно пересказ/выдумка. Запись оставлена как есть до решения main: утверждение §4.14 опирается на фантомный источник.
 **Утверждение (пересказ отзыва, с цитатой из статьи).** «evolution could select for its complete removal if the
 mortality risk it poses is severe enough and its repair does not pose too large of a penalty to reproduction»; при
 **нескольких типах повреждения** полное устранение старения редко выгодно.
