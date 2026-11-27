@@ -891,13 +891,13 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 {
  "L": "L-017",
  "locator": {
-  "doi": "10.1007/s12064-020-00313-7",
+  "doi": null,
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": "https://doi.org/10.1007/s12064-020-00313-7",
-  "none": false
+  "url": null,
+  "none": true
  },
  "access": {
   "level": "full_text_examined",
@@ -910,7 +910,13 @@ mortality risk it poses is severe enough and its repair does not pose too large 
  },
  "inspection": {
   "scope": "full",
-  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
+  "reviewed_ranges": [
+   {
+    "type": "article",
+    "from": "1",
+    "to": "full"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1620,18 +1626,22 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
  },
  "access": {
   "level": "abstract_read",
-  "artifact": "papers/schenkel25-abstract.txt",
-  "bytes": 1952,
-  "sha256": "9b1b9827958823c46adda58d9eeb36586cdaa29a2ccb7eaf62980ab47af66f19",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
   "retrieved_at": "2026-11-27T21:30:00Z",
   "via": "openalex-abstract",
   "via_detail": "Schenkel, Patten & Agren, Biol Philos (2025), DOI 10.1007/s10539-025-10001-9; полный текст Springer заблокирован — только аннотация; метрики fitness unity / trait unity, коллектив = индивидуум в степени aligned fitness interests; Queller & Strassmann 2009 остаётся вторыми руками"
  },
  "inspection": {
-  "scope": "abstract",
-  "reviewed_ranges": []
+  "scope": "partial",
+  "reviewed_ranges": [
+   {
+    "type": "abstract"
+   }
+  ]
  },
- "abstract_sha256": null,
+ "abstract_sha256": "9b1b9827958823c46adda58d9eeb36586cdaa29a2ccb7eaf62980ab47af66f19",
  "bibliographic": {
   "title": "Индивидуальность: единого теста нет",
   "year": 2009,
@@ -1716,18 +1726,22 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
  },
  "access": {
   "level": "abstract_read",
-  "artifact": "papers/budin11-abstract.txt",
-  "bytes": 1650,
-  "sha256": "58035fd8539cd2db0caaa65ec4748e4a2a0b4e8bc105bc7f5cdc3bc507267ef9",
+  "artifact": null,
+  "bytes": null,
+  "sha256": null,
   "retrieved_at": "2026-11-27T10:15:00Z",
   "via": "pubmed-abstract",
   "via_detail": "PNAS 108(13):5249-5254, PMID 21402937, DOI 10.1073/pnas.1100498108; fullTextXML недоступен (не OA-подмножество), PDF PNAS блокирует — только аннотация; Zhu & Szostak 2009 и Budin et al. 2012 остаются вторыми руками"
  },
  "inspection": {
-  "scope": "abstract",
-  "reviewed_ranges": []
+  "scope": "partial",
+  "reviewed_ranges": [
+   {
+    "type": "abstract"
+   }
+  ]
  },
- "abstract_sha256": null,
+ "abstract_sha256": "58035fd8539cd2db0caaa65ec4748e4a2a0b4e8bc105bc7f5cdc3bc507267ef9",
  "bibliographic": {
   "title": "Протоклетки: числа по проницаемости и делению",
   "year": 2009,
@@ -1856,13 +1870,13 @@ bet-hedging оптимален, когда критерий **геометрич
 {
  "L": "L-036",
  "locator": {
-  "doi": "10.1159/000369011",
+  "doi": null,
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": "https://doi.org/10.1159/000369011",
-  "none": false
+  "url": null,
+  "none": true
  },
  "access": {
   "level": "full_text_examined",
@@ -1875,7 +1889,13 @@ bet-hedging оптимален, когда критерий **геометрич
  },
  "inspection": {
   "scope": "full",
-  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
+  "reviewed_ranges": [
+   {
+    "type": "article",
+    "from": "1",
+    "to": "full"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2309,13 +2329,13 @@ doi:10.3390/systems12040111.
 {
  "L": "L-045",
  "locator": {
-  "doi": "10.1159/000369011",
+  "doi": null,
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": "https://doi.org/10.1159/000369011",
-  "none": false
+  "url": null,
+  "none": true
  },
  "access": {
   "level": "full_text_examined",
@@ -2328,7 +2348,13 @@ doi:10.3390/systems12040111.
  },
  "inspection": {
   "scope": "full",
-  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
+  "reviewed_ranges": [
+   {
+    "type": "article",
+    "from": "1",
+    "to": "full"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
