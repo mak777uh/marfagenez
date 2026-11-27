@@ -127,8 +127,9 @@
 ## Как это проверяется
 
 ```bash
+bash run.sh preflight # дешёвые проверки до запуска сборок и экспериментов
 bash run.sh exp      # прогоны + контракт результатов
-bash run.sh all      # всё, включая Verus и агентский гейт
+bash run.sh all      # полный pinned DAG: preflight, Rust/Lean/Verus, эксперименты
 ```
 
 `run.sh` возвращает ненулевой код, если хоть одна проверка провалилась.
