@@ -560,47 +560,47 @@ def artifact_nodes(base):
 
         command_path = _command_script(data.get("command"))
         commit = data.get("model_commit")
-        if command_path:
-            code_key = "path:" + command_path + "@commit:" + str(commit or "unknown")
-            code_source = command_path
-            code_kind = "source_file"
-        elif isinstance(commit, str) and commit.strip() and commit.lower() not in {"unknown", "none", "null"}:
-            code_key = "commit:" + commit.strip()
-            code_source = "git:" + commit.strip()
-            code_kind = "model_commit"
-        else:
+        has_commit = (
+            isinstance(commit, str)
+            and bool(commit.strip())
+            and commit.lower() not in {"unknown", "none", "null"}
+        )
+        if not command_path and not has_commit:
             continue
 
+        # This is a locator, not a claim that the current checkout bytes equal
+        # the historical source. Pair the command path with the recorded model
+        # commit; do not hash a possibly newer working-tree file as run provenance.
+        code_key = "commit:" + (commit.strip() if has_commit else "unversioned")
+        code_key += "@path:" + (command_path or "not-recorded")
         code_id = "CODE-" + hashlib.sha256(code_key.encode("utf-8")).hexdigest()[:16]
         artifacts[data_id]["relations"].append({"type": "generated_by", "target": code_id})
         if code_id not in code_nodes:
-            code_metadata = {}
-            if command_path:
-                code_file = ROOT / command_path
-                code_bytes = code_file.read_bytes()
-                code_metadata = {
-                    "bytes": len(code_bytes),
-                    "sha256": hashlib.sha256(code_bytes).hexdigest(),
-                }
+            code_source = (
+                "git:" + commit.strip() + ":" + command_path
+                if has_commit and command_path
+                else ("git:" + commit.strip() if has_commit else "path:" + command_path)
+            )
             code_nodes[code_id] = {
                 "id": code_id,
                 "kind": "evidence",
-                "text": "model source " + code_source,
+                "text": "recorded model source locator " + code_source,
                 "context": {
-                    "scope": "recorded model source locator",
+                    "scope": "recorded model source locator, not copied source bytes",
                     "parameters": code_source,
-                    "conditions": "locator taken from the result command or model_commit field",
+                    "conditions": "path comes from command; revision comes from model_commit",
                 },
                 "epistemic": "hypothesis",
                 "provenance": "verified_agent",
                 "evidence": [],
                 "relations": [],
                 "data": {
-                    "artifact_type": code_kind,
+                    "artifact_type": "code_locator",
                     "source": code_source,
                     "model_commit": commit,
+                    "command_path": command_path,
                     "command": data.get("command"),
-                    **code_metadata,
+                    "version_pinned": has_commit,
                 },
                 "created_at": node.get("created_at", "2026-11-27"),
                 "updated_at": "2026-11-27",
