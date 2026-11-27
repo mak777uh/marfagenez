@@ -1,5 +1,5 @@
-import hashlib
 #!/usr/bin/env python3
+import hashlib
 """migrate.py — collect nodes for the knowledge graph.
 
 Sources:
