@@ -97,7 +97,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CORE = ROOT / "core"
 
 #: Where the Rust crate lives inside WSL.
-WSL_CORE = "/root/marfagenez/core"
+WSL_CORE = str(CORE)
 WSL_BIN = f"{WSL_CORE}/target/release/trace"
 
 sys.path.insert(0, str(ROOT))

@@ -69,7 +69,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from experiment import Experiment
 
-ROOT = "/root/marfagenez"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRACE = os.path.join(ROOT, "core", "target", "release", "trace")
 OUT = os.path.join(ROOT, "results", "kmax-law")
 

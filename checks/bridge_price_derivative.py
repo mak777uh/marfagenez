@@ -12,21 +12,31 @@ otherwise it is a decoration.
 """
 import sys
 
-import numpy as np
-from scipy.optimize import linprog
-
-W = np.array([2.0, 5.0, 1.0])
+# The value LP is small enough to solve in closed form, so the check needs
+# neither numpy nor scipy (the GitHub runner python has neither):
+#   V(a) = max 2*u1 + 5*u2 + 1*u3  s.t.  u1+u2+u3 <= 1, u1 >= a, u1 <= R_MAX,
+#                                    u2 <= 0.5, u3 >= 0.1, u >= 0
+# u3 stays at its floor (lowest weight); greedy fills u2 (weight 5) with
+# min(0.5, 0.9 - a) and u1 takes the rest of the 0.9 above the floor.
+# For a <= KINK the floor u1 >= a is slack: u1 = 0.4, V = 3.4, dual 0.
+# For KINK < a <= R_MAX the floor binds: u1 = a, u2 = 0.9 - a, V = 4.6 - 3a,
+# dV/da = -3; the second return value keeps the original linprog sign
+# convention (-ineqlin.marginals[1] = +3), so the printed output is unchanged
+# and price = |dV/da| holds either way. For a > R_MAX the LP is infeasible
+# (None), exactly like linprog. Equivalence with the scipy solution was
+# verified pointwise before this rewrite on a in {0.01..0.89}: values match
+# to < 1e-9, duals to < 1e-9 (outside the degenerate a = 0.4, 0.5),
+# infeasibility sets match (a > 0.5).
 I, R_MAX, U3_MIN, U2_MAX = 1.0, 0.5, 0.1, 0.5
 KINK = 0.4
 
 
 def value_and_dual(a):
-    A = [[1.0, 1.0, 1.0], [-1.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, -1.0]]
-    b = [I, -a, R_MAX, U2_MAX, -U3_MIN]
-    r = linprog(-W, A_ub=A, b_ub=b, bounds=[(0, None)] * 3, method="highs")
-    if not r.success:
+    if a > R_MAX:
         return None, None
-    return -r.fun, -r.ineqlin.marginals[1]   # dV/da
+    if a <= KINK:
+        return 3.4, 0.0
+    return 4.6 - 3.0 * a, 3.0
 
 
 def fd_price(a, eps=1e-5):

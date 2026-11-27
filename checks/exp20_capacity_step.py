@@ -24,9 +24,10 @@ field absorbs the jump smoothly because organisms already there keep living.
 """
 import subprocess, json, os, glob
 
-TRACE = "/root/marfagenez/core/target/release/trace"
-COREDIR = "/root/marfagenez/core"
-OUT = "/root/marfagenez/results/capacity-step"
+ROOTDIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TRACE = os.path.join(ROOTDIR, "core", "target", "release", "trace")
+COREDIR = os.path.join(ROOTDIR, "core")
+OUT = os.path.join(ROOTDIR, "results", "capacity-step")
 
 RS = [0.70, 0.75, 0.78, 0.79, 0.795, 0.80, 0.805, 0.81, 0.85, 0.90]
 CELLS, M, T0 = 40, 2.0, 0.8

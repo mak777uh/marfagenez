@@ -28,9 +28,10 @@ Verdicts (PROTOCOL.md §4): passed / failed / void / insensitive by construction
 """
 import subprocess, json, os, glob, sys, hashlib
 
-TRACE = "/root/marfagenez/core/target/release/trace"
-COREDIR = "/root/marfagenez/core"
-OUT = "/root/marfagenez/results/crowding-law"
+ROOTDIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TRACE = os.path.join(ROOTDIR, "core", "target", "release", "trace")
+COREDIR = os.path.join(ROOTDIR, "core")
+OUT = os.path.join(ROOTDIR, "results", "crowding-law")
 
 CELLS, M, INCOME = 40, 2.0, 0.8
 RICH, POOR = 3.8, 0.2          # (3.8 + 0.2)/2 = 2.0

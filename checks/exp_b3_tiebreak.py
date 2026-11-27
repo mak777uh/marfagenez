@@ -69,7 +69,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-WSL_CORE = "/root/marfagenez/core"
+WSL_CORE = str(ROOT / "core")
 WIN_ROOT = (
     "/mnt/c/Users/Admin/Documents/Qoder/2026-10-18/82ab86cd/marfagenez"
 )

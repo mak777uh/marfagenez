@@ -9,7 +9,7 @@ import shutil
 import subprocess
 import sys
 
-ROOT = pathlib.Path('/root/marfagenez')
+ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
 def run(args, cwd=ROOT):

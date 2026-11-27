@@ -37,8 +37,9 @@ import sys as _sys
 _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 from counts import how_many_fit, k_max  # noqa: E402
 
-TRACE = "/root/marfagenez/core/target/release/trace"
-COREDIR = "/root/marfagenez/core"
+ROOTDIR = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+TRACE = _os.path.join(ROOTDIR, "core", "target", "release", "trace")
+COREDIR = _os.path.join(ROOTDIR, "core")
 
 CELLS, M, INCOME = 40, 2.0, 0.8
 R, MAINT, DAMAGE = 0.8, 0.6, 0.02
@@ -186,8 +187,8 @@ out = {
     ),
 }
 
-os.makedirs("/root/marfagenez/results/shortfall", exist_ok=True)
-path = "/root/marfagenez/results/shortfall/run-exp26.json"
+_os.makedirs(_os.path.join(ROOTDIR, "results", "shortfall"), exist_ok=True)
+path = _os.path.join(ROOTDIR, "results", "shortfall", "run-exp26.json")
 with open(path, "w") as f:
     json.dump(out, f, ensure_ascii=False, indent=1)
 print("written:", path)
