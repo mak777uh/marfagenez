@@ -10770,3 +10770,8 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   Журнал называет коммиты после записи 861i: `fb50e3b8` (fix: conclusion with a named source
   but no path is no-link — kg_reach), `b390ba7b` (s7zeo: Q-013/Q-014 organ-size mechanisms — devin),
   `354c069f` (merge: kg-reach status-priority fix; journal 861i).
+
+- **861k:** журнал называет коммит после записи 861j: `f8ee358a` (s7zep/s7zeq: Orgel-1963 fulltext,
+  error-catastrophe lineage, L-090/099/101/102 abstracts, L-097 full_text_examined, 9 узлов
+  metadata->abstract_read — devin). Граф стабилен после лит-коммитов (migrate идемпотентен,
+  embeddings свежие). Гейт c867 запущен на этом HEAD.
