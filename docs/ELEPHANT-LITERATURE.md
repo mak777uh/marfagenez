@@ -483,17 +483,17 @@ decreasing side** of the fitness function». Пример там же: птиц�
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/karin19-nc.xml",
+  "bytes": 115999,
+  "sha256": "a33bc0fbb13fcf365f0c0271350f6183de66c00404bec34df3568f3ec2c710f9",
+  "retrieved_at": "2026-11-27T10:15:00Z",
+  "via": "europepmc-oa-fulltext",
+  "via_detail": "Nat Commun 10:5495, PMC6889273 fullTextXML; SnC turnover замедляется с возрастом (период полураспада дни→недели), κ = halfway saturation point for removal, пороговая смерть при флуктуациях SnC воспроизводит Гомпертца — сверено по полному тексту"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -511,7 +511,7 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 **Кто.** Karin, Agrawal, Alon (2019), Nature Communications — о насыщаемом удалении сенесцентных клеток.
 **Ссылка.** **вторые руки** — из отзыва 2026-11-20; **высший приоритет проверки**.
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: Karin, Agrawal, Porat, Krizhanovsky & Alon, «Senescent cell turnover slows with age providing an explanation for the Gompertz law», Nat Commun 10:5495 (2019), papers/karin19-nc.xml (PMC6889273), 2026-11-27; removal rate SnC замедляется с возрастом, κ — точка насыщения удаления, пороговая смерть при флуктуациях — сверено по полному тексту.
 **Утверждение (пересказ).** Удаление повреждения насыщается, и из этого следует порог между «держит» и «накапливает».
 **Что даёт нам.** **Прямой аналог нашего `h = 1`**; если у них есть формула расходимости у порога — наш последний
 кандидат на новизну исчезает.
@@ -1715,16 +1715,16 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "abstract_read",
+  "artifact": "papers/budin11-abstract.txt",
+  "bytes": 1650,
+  "sha256": "58035fd8539cd2db0caaa65ec4748e4a2a0b4e8bc105bc7f5cdc3bc507267ef9",
+  "retrieved_at": "2026-11-27T10:15:00Z",
+  "via": "pubmed-abstract",
+  "via_detail": "PNAS 108(13):5249-5254, PMID 21402937, DOI 10.1073/pnas.1100498108; fullTextXML недоступен (не OA-подмножество), PDF PNAS блокирует — только аннотация; Zhu & Szostak 2009 и Budin et al. 2012 остаются вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
+  "scope": "abstract",
   "reviewed_ranges": []
  },
  "abstract_sha256": null,
@@ -1743,7 +1743,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 **Кто.** Zhu & Szostak (2009) JACS 131:5705; Budin & Szostak (2011) PNAS 108:5249; Budin, Debnath & Szostak (2012)
 JACS 134:20812; Breuer et al. (2019) eLife; Pelletier et al. (2021) Cell 184:2430; Thornburg et al. (2022) Cell.
-**Проверено.** **вторые руки.**
+**Проверено.** **аннотация**: Budin & Szostak, «Physical effects underlying the transition from primitive to modern cell membranes», PNAS 108:5249 (2011), PMID 21402937, papers/budin11-abstract.txt, 2026-11-27; низкий уровень фосфолипидов уже драйвит рост протоклеточной мембраны, каскад селективных давлений на метаболизм/транспорт — из аннотации; полный текст недоступен.
 **Утверждение (пересказ).** Есть измеренные проницаемости и условия роста/деления везикул; **цены** поддержания
 границы как функции целости — нет.
 **Что меняет.** Именно здесь наша цена `c·d·q_min` может быть **числом**, которого у них нет.
