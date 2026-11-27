@@ -785,26 +785,26 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 {
  "L": "L-015",
  "locator": {
-  "doi": null,
+  "doi": "10.1007/978-94-017-9837-2",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://hal.science/hal-01151449",
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/moreno15-biological-autonomy-intro-hal01151449.pdf",
+  "bytes": 509205,
+  "sha256": "fa1148aacfc7327e43db7851940e96a26b0dd3d8ba99705ca6db9bb69ebaa070",
+  "retrieved_at": "2026-11-27T21:45:00Z",
+  "via": "hal-author-deposit",
+  "via_detail": "Moreno & Mossio, Biological Autonomy (Springer 2015), HAL hal-01151449 — только глава Introduction (53 стр.), не вся книга; closure of constraints, self-maintenance, autonomy definitions — сверено; Mossio-Saborido-Moreno 2009 и остальные главы — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "chapter", "from": "Introduction", "to": "Introduction"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -822,7 +822,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 **Кто.** Moreno & Mossio (2015) *Biological Autonomy*; Mossio, Saborido & Moreno (2009); Montévil & Mossio (2015).
 **Ссылка.** **вторые руки** — из отзыва 2026-11-20.
-**Проверено.** **вторые руки.**
+**Проверено.** **фрагмент**: Moreno & Mossio, «Biological Autonomy», Springer 2015, HAL hal-01151449 — глава Introduction, papers/moreno15-biological-autonomy-intro-hal01151449.pdf (sha256 fa1148aa…), 2026-11-27; «closure of constraints» как явное определение самоопределения, organization = closed and functional — сверено; книга прочитана только по введению. Mossio, Saborido & Moreno 2009 — вторые руки.
 **Утверждение (пересказ).** Живое — система, части которой **поддерживают ограничения**, делающие возможным
 существование целого; организация = **замкнутость ограничений**.
 **Что даёт нам.** Наш критерий «участие в формировании условий собственного существования» (`GOAL.md` §1a) может быть
