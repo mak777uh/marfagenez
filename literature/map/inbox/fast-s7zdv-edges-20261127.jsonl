@@ -1,0 +1,4 @@
+{"from": "FAST-S7ZDV-01", "to": "FAST-S2K-01", "type": "extends", "note": "FAST-S2K-01 — модель Borgqvist 2020 (рост+повреждения+деление+смерть, 4 режима); здесь PNAS 2024 — наследование повреждения и две стратегии контроля, cell wall defects как вид damage."}
+{"from": "FAST-S7ZDV-02", "to": "FAST-S2K-03", "type": "analogous", "note": "FAST-S2K-03 — trade-off retention↔resilience у Borgqvist; здесь repair↔asymmetric allocation, ось — внешняя смертность, вывод о r/K-селекции."}
+{"from": "FAST-S7ZDV-01", "to": "FT-0004", "type": "analogous", "note": "FT-0004 — gap у Borgqvist: нет статьи расходов на поддержание границы; здесь та же дыра: wall есть как damage, цены её поддержания нет."}
+{"from": "FAST-S7ZDV-03", "to": "FAST-S2K-04", "type": "contrasts", "note": "FAST-S2K-04 — бессмертие линии от малого k1; здесь стратегия выбирается по внешней смертности — дополняющие оси оптимальности."}
