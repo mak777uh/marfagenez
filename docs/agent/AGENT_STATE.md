@@ -757,3 +757,10 @@ status: continue
 - Убран ложный workflow-комментарий `NOT RUN ON A RUNNER`: hosted GitHub Actions действительно выполняет job. Старый run на промежуточном commit `56e61be` падал только на старом CI contract («WRONG it builds Lean»); контракт обновлён в `f0533c7`.
 - На момент записи актуальный hosted run для commit `f0533c7` запущен, но ещё не завершён. Старые runs, начатые до введения concurrency, могут продолжать работу.
 - P8 выполнен частично: кэши, дедупликация и отмена устаревшего запуска добавлены; path-filter с отдельной облегчённой docs/literature CI lane остаётся отложенным.
+
+## 2026-11-28 — merge e5c0648 + publish 4106 v5 / 4107 v2 (цикл 861ai)
+
+- merge f397a9a5 (e5c0648: dispatcher stubs, gate_pin_clean.py, .lake-изоляция, preflight 13, kg selftest 9/9); kg rebuild f7577653 (L-034/L-008); preflight-фиксы 879da017 (rf-скобки, PROTOCOL row, журнал dedupe)
+- валидация в дереве: dispatcher 9/9, kg selftest 9/9, pin selftest OK; c898 подтвердил kg+lab зелёные до мерджа; c899 остановлен владельцем (гнал старый мердж 10733c57 без фиксов)
+- publish: EXP-2026-4106 v5 (sha 5c4128599d35, base 879da017, P1-P6, ledger contract), EXP-2026-4107 v2 (sha a7131e669445, base 879da017)
+- статус: гейт c900 -> при зелёном пуш -> сигнал владельцу: exper может начинать (claim 4106 FIFO, затем 4107)
