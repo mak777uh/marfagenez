@@ -691,3 +691,9 @@ status: continue
 
 - UNREPRODUCIBLE.md:107 422->433 (восьмое место); core/target/debug удалён (переполнение tmpfs в fresh_copy stub_links); PROBE-TRIAGE timestamp закоммичен (дерево чистое)
 - статус: гейт c887 -> пуш при зелёном -> exper claim EXP-2026-4104
+
+## 2026-11-27 — exper confirmatory A-P5 (цикл 861aa)
+
+- EXP-2026-4104 v4 сдана: SUB-EXP-2026-4104-1 received, outcome=passed. AURD free 1.0/0.5/1-3/0: 0.0700/0.1225/0.1817/1.0000; приросты D1=0.0525, D2=0.0592, отношение 1.127 (no-cliff <= 3); v_first = frac*R0 строго убывает (прямое пошаговое измерение); плечи оплаты расходятся только в ledger; 12 контролей зелёные (ledger < 1e-12, yoked == full, target-off заморожен, ration-half кусается, детерминизм 12 сидов); кандидат C бифурцирует по gamma (0 -> 6.4). Анализатор 1.0.1: детермизм ограничен зарегистрированными руками (ration-half — заявленный bottleneck-контроль), window-mean dfdt — артефакт раннего финиша (не мера монотонности).
+- артефакты: SUB bundle_sha256 4bcebaec..., 25 файлов 2.0MB; FINDING-EXP-2026-4104.md в lab-drafts/exper-20261126
+- статус: гейт c888 -> пуш `1a240718` при зелёном -> детерминированный B pilot (порядок DESIGN 13.9 (2))
