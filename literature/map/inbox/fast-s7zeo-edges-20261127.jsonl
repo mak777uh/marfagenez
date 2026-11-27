@@ -1,0 +1,3 @@
+{"from": "FAST-S7ZEO-01", "to": "FAST-S7ZEO-02", "type": "contrasts", "note": "Эукариотический multicellular size control (морфогены/силы) vs микробный timer-sizer-adder спектр — разные носители одного вопроса."}
+{"from": "FAST-S7ZEO-02", "to": "FAST-S7ZEO-03", "type": "extends", "note": "Стратегии α → метрика γ и условия homeostasis."}
+{"from": "FAST-S7ZEO-03", "to": "FAST-S7ZEO-01", "type": "refines", "note": "Стационарность распределения = формальное условие, которое у многоклеточных достигается bottom-up эмерджентностью."}
