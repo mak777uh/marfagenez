@@ -11,11 +11,11 @@
 |---|---|
 | **§1** | есть `arithmetic`, и он не пуст |
 | **§2** | есть все три контроля: `fires`, `silent`, `specific` |
-| **§4** | есть `verdict` из четырёх |
+| **§4** | есть `verdict` из пяти |
 | **§5** | есть `hashes`, и они **не совпадают** (кроме групп, объявленных в `expected_coincident`) |
 | **§6** | есть `limitations` |
 
-## Четыре исхода, не два
+## Пять исходов, не два
 
 Если контроль провален — вердикт обязан быть `void`, не `failed`.
 Если арифметика говорит, что плечи не различаются — `insensitive by construction`.
@@ -33,6 +33,8 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+
+from result_commit_test import run as run_commit_pin_tests
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
@@ -66,7 +68,7 @@ def check_one(path: Path, data: dict) -> list[str]:
     # §4 verdict
     verdict = data.get("verdict")
     if not verdict:
-        problems.append("§4: no verdict (four outcomes, not two)")
+        problems.append("§4: no verdict (five outcomes, not two)")
     else:
         kind = verdict.get("kind")
         if kind not in VERDICTS:
@@ -170,6 +172,12 @@ def check_one(path: Path, data: dict) -> list[str]:
 
 
 def main() -> int:
+    commit_test_problems = run_commit_pin_tests()
+    if commit_test_problems:
+        print("FAIL model_commit provenance selftest")
+        for problem in commit_test_problems:
+            print(f"     {problem}")
+        return 1
     if not RESULTS.exists():
         print("results/ does not exist — nothing to check.")
         return 0
