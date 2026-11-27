@@ -5219,19 +5219,19 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": "2026-11-21T21:55:49Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/0303-2647(86)90008-0"
+  "retrieved_at": "2026-11-27T07:20:00Z",
+  "via": "pubmed-efetch",
+  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=3801605 (abstract text)"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "8809a277f22f6cc9289f6257a8edfc8080e28cf2b2f0e137876e27b73da5aa0b",
  "bibliographic": {
   "title": "The “protocell”: A mathematical model of self-maintenance",
   "year": 1986,
@@ -5245,7 +5245,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** The “protocell”: A mathematical model of self-maintenance (1986). Helmut Schwegler; Kazuaki Tarumi
 **Ссылка.** https://doi.org/10.1016/0303-2647(86)90008-0
-**Проверено.** **метаданные** OpenAlex, 2026-11-21T21:55:49Z, отпечаток нет; фрагмент не читался.
+**Проверено.** **аннотация** PubMed/efetch (PMID 3801605), 2026-11-27, sha256 8809a277f22f…; полный текст не читался.
 **Утверждение.** самоподдержание протоклетки как динамика с подвижной границей и обратной связью, а не арифметическое условие
 **Что даёт нам.** — (суждение не сделано).
 
@@ -5399,19 +5399,19 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": "2026-11-22T00:51:02Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/j.jtbi.2015.02.029"
+  "retrieved_at": "2026-11-27T07:20:00Z",
+  "via": "pubmed-efetch",
+  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=25752259 (abstract text)"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "2875e9cc69fc532b616922ab01f3ee14eeb2b0e61bea88418d089064222d3c0f",
  "bibliographic": {
   "title": "Biological organisation as closure of constraints",
   "year": 2015,
@@ -5425,7 +5425,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Biological organisation as closure of constraints (2015). Maël Montévil; Matteo Mossio
 **Ссылка.** https://doi.org/10.1016/j.jtbi.2015.02.029
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Проверено.** **аннотация** PubMed/efetch (PMID 25752259), 2026-11-27, sha256 2875e9cc69fc…; полный текст не читался.
 **Утверждение.** Montévil & Mossio 2015 — организация как замыкание ограничений; словесная рамка «организация оплачивает свои ограничения»
 **Что даёт нам.** — (суждение не сделано).
 
@@ -5444,19 +5444,19 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": "2026-11-22T00:51:02Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/j.jtbi.2003.11.020"
+  "retrieved_at": "2026-11-27T07:20:00Z",
+  "via": "pubmed-efetch",
+  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=15038982 (abstract text)"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "af58bbfccf244c5807f18ac1617c73c00c5e1099c7a6f7f2846a4fd8f2ae4a71",
  "bibliographic": {
   "title": "Detecting autocatalytic, self-sustaining sets in chemical reaction systems",
   "year": 2003,
@@ -5470,7 +5470,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Detecting autocatalytic, self-sustaining sets in chemical reaction systems (2003). Wim Hordijk; Mike Steel
 **Ссылка.** https://doi.org/10.1016/j.jtbi.2003.11.020
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Проверено.** **аннотация** PubMed/efetch (PMID 15038982), 2026-11-27, sha256 af58bbfccf24…; полный текст не читался.
 **Утверждение.** Hordijk & Steel 2004 — детекция автокаталитических самоподдерживающихся множеств (RAF)
 **Что даёт нам.** — (суждение не сделано).
 
@@ -5534,17 +5534,17 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-22T00:51:02Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1073/pnas.49.4.517"
+  "level": "full_text_examined",
+  "artifact": "orgel63david.pdf",
+  "bytes": 686846,
+  "sha256": "69749f7761e7df721791c0d48d09058f45fae6acfc893b7614f5bd5bddbd1287",
+  "retrieved_at": "2026-11-27T07:05:00Z",
+  "via": "pmc-scanned-pdf",
+  "via_detail": "PMC299893 PDF (pnas00171-0095.pdf) via davidson.edu course mirror; текстовый слой PDF, 5 стр. 517-521"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": ["pp.517-521"]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -5560,9 +5560,9 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** THE MAINTENANCE OF THE ACCURACY OF PROTEIN SYNTHESIS AND ITS RELEVANCE TO AGEING (1963). Leslie Eleazer Orgel
 **Ссылка.** https://doi.org/10.1073/pnas.49.4.517
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
-**Утверждение.** Orgel 1963 — катастрофа ошибок: аппарат точности повреждает сам себя
-**Что даёт нам.** — (суждение не сделано).
+**Проверено.** **полный текст** PMC299893 (PDF-скан с текстовым слоем, зеркало davidson.edu), 2026-11-27, sha256 69749f77…; все 5 страниц прочитаны, цитаты верифицированы посимвольно (батч s7zep).
+**Утверждение.** Оргель 1963 — катастрофа ошибок: аппарат точности повреждает сам себя. Полный текст уточняет: уравнение (1) — непрерывное dp/dt = a·p (p = p₀·e^{at}), катастрофа = частота ошибок, при которой необходимый для жизни процесс становится критически неэффективным; спасает только клеточный отбор — в тканях без деления селекции нет и накопление ошибок особенно опасно; автор ограничивает претензию («один источник прогрессивного ухудшения», не «механизм старения»).
+**Что даёт нам.** Q-021: первоисточник самоссылки прочитан напрямую — она НЕ самоподдерживающаяся без отбора; наш случай (один компартмент, нет популяции с селекцией) — уязвимейший режим Оргеля, но наша граница damage=1 играет роль внешнего ареста, которого у него не было.
 
 ### L-098 · Stochastic modeling of aging cells reveals how damage accumulation, repair, and cell-division asymmetry affect clonal senescence and population fitness
 
@@ -5624,19 +5624,19 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": "2026-11-22T00:51:02Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1038/270301a0"
+  "retrieved_at": "2026-11-27T07:20:00Z",
+  "via": "pubmed-efetch",
+  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=593350 (abstract text)"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "ce70a680cd1f6bd8d3855ff23d46dc75ba771d278ca82e483d7e8195652c71c7",
  "bibliographic": {
   "title": "Evolution of ageing",
   "year": 1977,
@@ -5650,7 +5650,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Evolution of ageing (1977). Thomas B. L. Kirkwood
 **Ссылка.** https://doi.org/10.1038/270301a0
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Проверено.** **аннотация** PubMed/efetch (PMID 593350), 2026-11-27, sha256 ce70a680cd1f…; полный текст не читался.
 **Утверждение.** Kirkwood 1977 — эволюция старения: компромисс ремонта и размножения
 **Что даёт нам.** — (суждение не сделано).
 
@@ -5714,19 +5714,19 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": "2026-11-22T00:51:02Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/j.mbs.2023.108980"
+  "retrieved_at": "2026-11-27T07:20:00Z",
+  "via": "pubmed-efetch",
+  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=36804386 (abstract text)"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "19a77cd8f9276a19512126128eb9b1baecf3c5f8c7ea2fc3ce4dd927878f8078",
  "bibliographic": {
   "title": "Statistical theory of asymmetric damage segregation in clonal cell populations",
   "year": 2023,
@@ -5740,7 +5740,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Statistical theory of asymmetric damage segregation in clonal cell populations (2023). ARKADY S. PIKOVSKY; Lev S. Tsimring
 **Ссылка.** https://doi.org/10.1016/j.mbs.2023.108980
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
+**Проверено.** **аннотация** PubMed/efetch (PMID 36804386), 2026-11-27, sha256 19a77cd8f927…; полный текст не читался.
 **Утверждение.** Найдено при починке чужого DOI (внешний ответ приписал работе Chao 2010 неверный DOI): статистическая теория асимметричной сегрегации повреждения в клональных популяциях, 2023. Сама работа Chao 2010 по-прежнему не подтверждена — её DOI в ответе был ложным.
 **Что даёт нам.** — (суждение не сделано).
 
@@ -5759,19 +5759,19 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": "2026-11-22T02:22:34Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/S0921-8734(96)90005-3"
+  "retrieved_at": "2026-11-27T07:20:00Z",
+  "via": "pubmed-efetch",
+  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=8649456 (abstract text)"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "cffeb61ff0c90b423d29d0482871ef64730ae19cfae1b9555367d1ffa00a5a4c",
  "bibliographic": {
   "title": "A network theory of ageing: the interactions of defective mitochondria, aberrant proteins, free radicals and scavengers in the ageing process",
   "year": 1996,
@@ -5785,7 +5785,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** A network theory of ageing: the interactions of defective mitochondria, aberrant proteins, free radicals and scavengers in the ageing process (1996). Axel Kowald; Thomas B. L. Kirkwood
 **Ссылка.** https://doi.org/10.1016/S0921-8734(96)90005-3
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читался.
+**Проверено.** **аннотация** PubMed/efetch (PMID 8649456), 2026-11-27, sha256 cffeb61ff0c9…; полный текст не читался.
 **Утверждение.** Kowald & Kirkwood 1996 — сетевая теория старения: повреждение бьёт по системе удаления (scavengers), ремонт ремонтирует сам себя
 **Что даёт нам.** — (суждение не сделано).
 
@@ -5804,19 +5804,19 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": "2026-11-22T02:22:34Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1006/jtbi.2000.2121"
+  "retrieved_at": "2026-11-27T07:20:00Z",
+  "via": "pubmed-efetch",
+  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=10966762 (abstract text)"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "86b9b5f7c811481c5a31d275c8dbb094d5a193ddde0e3c4830626369ed0e9daa",
  "bibliographic": {
   "title": "Self-maintenance and Self-reproduction in an Abstract Cell Model",
   "year": 2000,
@@ -5830,7 +5830,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Self-maintenance and Self-reproduction in an Abstract Cell Model (2000). Naoaki Ono; Takashi Ikegami
 **Ссылка.** https://doi.org/10.1006/jtbi.2000.2121
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читался.
+**Проверено.** **аннотация** PubMed/efetch (PMID 10966762), 2026-11-27, sha256 86b9b5f7c811…; полный текст не читался.
 **Утверждение.** Ono & Ikegami 2000 — самоподдержание и граница в минимальной модели (проверить, что именно содержит)
 **Что даёт нам.** — (суждение не сделано).
 
@@ -5894,19 +5894,19 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": "2026-11-22T02:22:34Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/j.jtbi.2009.11.010"
+  "retrieved_at": "2026-11-27T07:20:00Z",
+  "via": "pubmed-efetch",
+  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=19962389 (abstract text)"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "54410c5bf7ced90fa118d38659b635a0aec2b75445df995b2a0b3709594606f5",
  "bibliographic": {
   "title": "Closure to efficient causation, computability and artificial life",
   "year": 2009,
@@ -5920,7 +5920,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Closure to efficient causation, computability and artificial life (2009). María Luz Cárdenas; Juan‐Carlos Letelier; Claudio Gutiérrez; Athel J. Cornish-Bowden; Jorge Antonio Soto-Andrade
 **Ссылка.** https://doi.org/10.1016/j.jtbi.2009.11.010
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читался.
+**Проверено.** **аннотация** PubMed/efetch (PMID 19962389), 2026-11-27, sha256 54410c5bf7ce…; полный текст не читался.
 **Утверждение.** Cárdenas et al. 2010 — замыкание организации в формальной модели (есть corrigendum 2011)
 **Что даёт нам.** — (суждение не сделано).
 
@@ -5984,19 +5984,19 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": "2026-11-22T02:22:34Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/j.freeradbiomed.2010.12.011"
+  "retrieved_at": "2026-11-27T07:20:00Z",
+  "via": "pubmed-efetch",
+  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=21167934 (abstract text)"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "3c0d328dab7fd7e404f10d2d4dfcbb14859cbee4ef45e575bc78697ef456cf8a",
  "bibliographic": {
   "title": "Lipofuscin inhibits the proteasome by binding to surface motifs",
   "year": 2010,
@@ -6010,7 +6010,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Lipofuscin inhibits the proteasome by binding to surface motifs (2010). Annika Höhn; Tobias Jung; Stefanie Grimm; Betül Catalgol; Daniela Weber; Tilman Grune
 **Ссылка.** https://doi.org/10.1016/j.freeradbiomed.2010.12.011
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читался.
+**Проверено.** **аннотация** PubMed/efetch (PMID 21167934), 2026-11-27, sha256 3c0d328dab7f…; полный текст не читался.
 **Утверждение.** Höhn et al. 2011 — титрование протеасомы липофусцином: константа ингибирования как кандидат на ι
 **Что даёт нам.** — (суждение не сделано).
 
