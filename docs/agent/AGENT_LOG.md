@@ -10964,3 +10964,7 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
 
 - **861ai (продолжение):** фикс диска: пин гейта переехал /tmp -> /var/tmp (tmpfs /tmp 4.9G, разыменованная .lake-копия 13G в неё не влезает — c900 честно красный «No space left on device» на секции pin); старые пины вычищены; перезапуск гейта c901.
 
+
+- **861aj:** sparse pin (P9): make_pin не копирует laws/.lake/packages (~13G) — общий symlink на root-кеш (readlink -f; при недоступности PIN_FAIL fail-closed); остальные entry .lake — по-прежнему deref-копия (изоляция cache-записей от tracked laws/.gitignore, laws/Legacy.lean); drop_pin синхронизирует non-packages entry напрямую pin -> root (оба на ext4: mv атомарен), /tmp-tmpfs стейджинг убран (tmpfs 4.9G < 13G — источник хронических PIN_CACHE_SYNC_WARN). Контекст: гейт c902 убит дисковым ватчдогом при копии пина — C: свободно 1.3G, deref-копия .lake росла ~3.5 ГБ/мин, пин в /var/tmp растит VHDX на забитом C:. Пины теперь ~1-2G вместо ~14G. Валидация: bash -n, shellcheck -S error, checks/gate_pin_clean.py PIN_CLEAN_SELFTEST_OK (make_pin/drop_pin извлечены из run.sh и прогнаны в песочнице), checks/dispatcher.py 9/9, ссылок на «.lake isolated copy» вне run.sh нет (только исторический blob в lab/state). Гейт c903 (дисковый ватчдог: /mnt/c free < 1.5G -> kill гейта, как в c902); при зелёном — пуш master и сигнал владельцу «можно начинать эксперименты» (exper claim EXP-2026-4106 v5 первым, FIFO 4106 -> 4107).
+
+Предыдущий коммит ветки: `573d7f3f`.

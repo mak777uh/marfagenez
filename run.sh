@@ -674,18 +674,36 @@ make_pin() {
     drop_pin; return 1
   fi
 
-  # Не symlink-ить laws/.lake внутрь worktree: cache entries могут ссылаться
-  # на tracked files (laws/.gitignore, laws/Legacy.lean). Копируем содержимое
-  # с dereference, чтобы запись в cache не могла менять исходники pinned HEAD.
+  # P9 sparse pin: laws/.lake/packages (Mathlib, ~13G) — общий symlink на
+  # root-кеш; остальные entry .lake — deref-копия, чтобы запись в cache
+  # не могла менять исходники pinned HEAD (laws/.gitignore, laws/Legacy.lean).
+  # Пины ~1-2G вместо ~14G (deref-копия packages больше не выполняется).
   if [ -d "$ROOT/laws/.lake" ]; then
     mkdir -p "$GATE_PIN/laws/.lake" || {
-      echo "PIN_FAIL: не создать изолированный laws/.lake"
+      echo "PIN_FAIL: не создать laws/.lake в pin"
       drop_pin; return 1;
     }
-    if ! cp -aL --reflink=auto "$ROOT/laws/.lake/." "$GATE_PIN/laws/.lake/"; then
-      echo "PIN_FAIL: не скопировать Lean cache в pin"
-      drop_pin; return 1;
+    if [ -e "$ROOT/laws/.lake/packages" ] || [ -L "$ROOT/laws/.lake/packages" ]; then
+      PIN_PKG_REAL=$(readlink -f "$ROOT/laws/.lake/packages" 2>/dev/null) || PIN_PKG_REAL=""
+      if [ -z "$PIN_PKG_REAL" ] || [ ! -e "$PIN_PKG_REAL" ]; then
+        echo "PIN_FAIL: laws/.lake/packages недоступен для sparse-линка"
+        drop_pin; return 1;
+      fi
+      if ! ln -s "$PIN_PKG_REAL" "$GATE_PIN/laws/.lake/packages"; then
+        echo "PIN_FAIL: не создать symlink laws/.lake/packages"
+        drop_pin; return 1;
+      fi
     fi
+    for lake_entry in "$ROOT/laws/.lake"/* "$ROOT/laws/.lake"/.[!.]*; do
+      [ -e "$lake_entry" ] || continue
+      case "${lake_entry##*/}" in
+        packages) continue;;
+      esac
+      if ! cp -aL --reflink=auto "$lake_entry" "$GATE_PIN/laws/.lake/"; then
+        echo "PIN_FAIL: не скопировать Lean cache в pin ($lake_entry)"
+        drop_pin; return 1;
+      fi
+    done
   fi
 
   [ -L "$GATE_PIN/core/target" ] || {
@@ -700,24 +718,25 @@ make_pin() {
     echo "PIN_FAIL: worktree грязный до запуска секций"
     drop_pin; return 1;
   fi
-  echo "гейт: pin HEAD $GATE_HEAD -> $GATE_PIN (секции: $PINNED_SECTIONS; .lake isolated copy)"
+  echo "гейт: pin HEAD $GATE_HEAD -> $GATE_PIN (секции: $PINNED_SECTIONS; .lake sparse: packages общий, rest deref-копия)"
 }
 
 drop_pin() {
   [ -n "${GATE_PIN:-}" ] || return 0
   if [ -d "$GATE_PIN/laws/.lake" ]; then
-    local cache_tmp
-    cache_tmp=$(mktemp -d /tmp/marfagenez-lakecache-XXXXXX) || cache_tmp=""
-    if [ -n "$cache_tmp" ] && cp -aL --reflink=auto "$GATE_PIN/laws/.lake/." "$cache_tmp/"; then
-      rm -rf "$ROOT/laws/.lake"
-      if ! mv "$cache_tmp" "$ROOT/laws/.lake"; then
-        echo "PIN_CACHE_SYNC_WARN: не удалось обновить root laws/.lake"
-        rm -rf "$cache_tmp"
+    # P9: packages общий (не трогаем); остальные entry .lake двигаем напрямую
+    # pin -> root (оба на ext4: mv атомарен, без /tmp-tmpfs стейджинга).
+    mkdir -p "$ROOT/laws/.lake" 2>/dev/null || true
+    for sync_entry in "$GATE_PIN/laws/.lake"/* "$GATE_PIN/laws/.lake"/.[!.]*; do
+      [ -e "$sync_entry" ] || continue
+      case "${sync_entry##*/}" in
+        packages) continue;;
+      esac
+      rm -rf "$ROOT/laws/.lake/${sync_entry##*/}"
+      if ! mv "$sync_entry" "$ROOT/laws/.lake/" 2>/dev/null; then
+        echo "PIN_CACHE_SYNC_WARN: не синхронизировать ${sync_entry##*/} в root"
       fi
-    else
-      [ -z "$cache_tmp" ] || rm -rf "$cache_tmp"
-      echo "PIN_CACHE_SYNC_WARN: не удалось скопировать Lean cache обратно"
-    fi
+    done
   fi
   git worktree remove --force "$GATE_PIN" 2>/dev/null
   GATE_PIN=""

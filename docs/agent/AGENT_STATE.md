@@ -764,3 +764,11 @@ status: continue
 - валидация в дереве: dispatcher 9/9, kg selftest 9/9, pin selftest OK; c898 подтвердил kg+lab зелёные до мерджа; c899 остановлен владельцем (гнал старый мердж 10733c57 без фиксов)
 - publish: EXP-2026-4106 v5 (sha 5c4128599d35, base 879da017, P1-P6, ledger contract), EXP-2026-4107 v2 (sha a7131e669445, base 879da017)
 - статус: гейт c900 -> при зелёном пуш -> сигнал владельцу: exper может начинать (claim 4106 FIFO, затем 4107)
+
+
+## 2026-11-28 — sparse pin P9 (цикл 861aj)
+
+- run.sh make_pin: laws/.lake/packages (~13G) — общий symlink на root-кеш; остальные entry .lake — deref-копия; drop_pin: non-packages entry напрямую pin -> root (ext4, mv атомарен), /tmp-стейджинг убран
+- контекст: c902 убит дисковым ватчдогом (C: free 1.3G; deref-копия .lake 13G росла ~3.5 ГБ/мин); пины ~1-2G вместо ~14G
+- валидация: bash -n, shellcheck -S error, checks/gate_pin_clean.py OK (make_pin/drop_pin в песочнице), checks/dispatcher.py 9/9
+- статус: гейт c903 (ватчдог /mnt/c free < 1.5G -> kill) -> при зелёном пуш master + сигнал владельцу: эксперименты можно начинать (claim EXP-2026-4106 v5 первым, FIFO 4106 -> 4107)
