@@ -191,7 +191,8 @@ class TestCancellation(Base):
         self.assertEqual(out["status"], "cancellation_requested")
         # submit в контуре отмены запрещён до подтверждения
         sub = {"id": "SUB-2021", "task_id": "KG-2026-0021",
-               "task_version": 1, "lease_id": lease["lease_id"],
+               "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
+               "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
                "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
                "artifacts": [], "bundle_sha256": "1" * 64}
         with self.assertRaises(BadRequest):
@@ -231,7 +232,8 @@ class TestCancellation(Base):
         blob = self.cp.put_blob(up, "fast-01", b"data",
                                 "application/x-ndjson")
         sub = {"id": "SUB-2022", "task_id": "KG-2026-0022",
-               "task_version": 1, "lease_id": lease["lease_id"],
+               "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
+               "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
                "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
                "artifacts": [{"sha256": blob["sha256"], "bytes": blob["bytes"],
                               "media_type": "application/x-ndjson"}],

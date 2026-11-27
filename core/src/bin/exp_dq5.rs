@@ -6,8 +6,9 @@
 //! не уступает полной; это проверка идентифицируемости, а не доказательство степени.
 //!
 //! Контракты процедуры (proposal PROP-EXPER-DQ5-DRIVER-FIX-20261127-01, published):
-//! - `--mode ramp|constant` (default ramp): constant-режим подаёт D(t) = dose/H
-//!   константой каждый шаг — тот же аналитический dose (specific control);
+//! - `--mode ramp|constant` (default ramp): constant сохраняет точную сумму
+//!   дискретных воздействий ramp (specific control); CSV dose — фактически поданная
+//!   дискретная доза, continuous_dose — только аналитический ориентир;
 //! - `--sham`: q0 фиксирован 0.5, RNG draw потребляется тем же (placebo control);
 //! - `--details`: по-организменные строки organism,q0,death_step,censored (reproduce);
 //! - CSV summary: L,v,seed,mode,sham,n,survivors,dose; seed — фактический (4201+).
@@ -54,11 +55,33 @@ pub fn dose(l: f64, v: f64, h: usize) -> f64 {
     }
 }
 
-/// D(t) в шаге t по режиму: ramp = min(L, v*t); constant = dose/H на каждом шаге.
+/// Точная сумма воздействий, которые ramp действительно подаёт на дискретных шагах 1..=H.
+pub fn discrete_dose(l: f64, v: f64, h: usize) -> f64 {
+    (1..=h).map(|t| l.min(v * t as f64)).sum()
+}
+
+/// Перевод интенсивности hazard за один шаг в вероятность события за этот шаг.
+/// Шаг времени здесь равен единице; это та же семантика, что survival = exp(-mu)
+/// в organ::sample_life_with_damage и D-Q6.
+fn hazard_to_probability(hazard: f64) -> f64 {
+    -(-hazard.max(0.0)).exp_m1()
+}
+
+/// Независимый воспроизводимый RNG stream для каждого организма.
+/// Один и тот же (seed, organism_id) даёт одинаковые draws в разных плечах;
+/// смерть одного организма не сдвигает поток остальных.
+fn organism_seed(seed: u64, organism_id: usize) -> u64 {
+    let mut z = seed ^ (organism_id as u64).wrapping_add(0x9E3779B97F4A7C15);
+    z = (z ^ (z >> 30)).wrapping_mul(0xBF58476D1CE4E5B9);
+    z = (z ^ (z >> 27)).wrapping_mul(0x94D049BB133111EB);
+    z ^ (z >> 31)
+}
+
+/// D(t) в шаге t: ramp = min(L, v*t); constant = точная дискретная доза / H.
 fn d_at(l: f64, v: f64, t: usize, mode: Mode, h: usize) -> f64 {
     match mode {
         Mode::Ramp => l.min(v * t as f64),
-        Mode::Constant => dose(l, v, h) / h as f64,
+        Mode::Constant => discrete_dose(l, v, h) / h as f64,
     }
 }
 
@@ -80,17 +103,18 @@ fn run_cell(
     sham: bool,
     details: &mut Vec<(usize, f64, usize, bool)>,
 ) -> usize {
-    let mut rng = Rng::new(seed);
     let mut alive = 0;
     for o in 0..N {
+        let mut rng = Rng::new(organism_seed(seed, o));
         let u0 = rng.uniform();
         let q = q0_from(u0, sham);
         let mut ok = true;
         let mut death_step = H;
         for t in 1..=H {
             let d = d_at(l, v, t, mode, H);
-            let mu = mortality_with_floor(q, RATE, P, FLOOR) + LAMBDA * d;
-            if rng.uniform() < mu {
+            let hazard = mortality_with_floor(q, RATE, P, FLOOR) + LAMBDA * d;
+            let probability = hazard_to_probability(hazard);
+            if rng.uniform() < probability {
                 ok = false;
                 death_step = t;
                 break;
@@ -148,15 +172,16 @@ fn main() {
         }
         i += 1;
     }
-    println!("L,v,seed,mode,sham,n,survivors,dose");
+    println!("L,v,seed,mode,sham,n,survivors,dose,continuous_dose");
     for &l in &l_list {
         for &v in &v_list {
-            let d = dose(l, v, H);
+            let d = discrete_dose(l, v, H);
+            let continuous_d = dose(l, v, H);
             for s in 0..seeds {
                 let seed = seed_base + s as u64;
                 let mut det: Vec<(usize, f64, usize, bool)> = Vec::new();
                 let sv = run_cell(l, v, seed, mode, sham, &mut det);
-                println!("{l},{v},{seed},{},{},{N},{sv},{d}", mode.label(), sham);
+                println!("{l},{v},{seed},{},{},{N},{sv},{d},{continuous_d}", mode.label(), sham);
                 if details {
                     for (o, q0, ds, cens) in det {
                         println!("detail,{l},{v},{seed},{},{},{o},{q0},{ds},{cens}", mode.label(), sham);
@@ -200,17 +225,55 @@ mod tests {
     }
 
     #[test]
-    fn constant_mode_keeps_analytic_dose_per_step() {
-        // specific control: constant-режим подаёт ровно dose/H на каждом шаге.
-        for &(l, v) in &[(0.3_f64, 0.001_f64), (0.5_f64, 0.004_f64)] {
-            for t in [1_usize, 500, 1000] {
-                let dc = d_at(l, v, t, Mode::Constant, H);
-                assert!((dc - dose(l, v, H) / H as f64).abs() < 1e-12,
-                    "constant d({t}) = {dc}");
-            }
-            let dr_end = d_at(l, v, H, Mode::Ramp, H);
-            assert!((dr_end - l.min(v * H as f64)).abs() < 1e-12);
+    fn ramp_and_constant_have_identical_discrete_dose() {
+        // specific control: суммируются значения, фактически поданные на шагах симуляции.
+        for &(l, v) in &[(0.3_f64, 0.001_f64), (0.5_f64, 0.004_f64), (0.2, 0.016)] {
+            let ramp_sum: f64 = (1..=H).map(|t| d_at(l, v, t, Mode::Ramp, H)).sum();
+            let constant_sum: f64 = (1..=H).map(|t| d_at(l, v, t, Mode::Constant, H)).sum();
+            let target = discrete_dose(l, v, H);
+            assert!((ramp_sum - target).abs() < 1e-10);
+            assert!((constant_sum - target).abs() < 1e-10);
+            assert!((ramp_sum - constant_sum).abs() < 1e-10);
         }
+    }
+
+    #[test]
+    fn continuous_and_discrete_dose_are_distinguished() {
+        let (l, v) = (0.3_f64, 0.001_f64);
+        let continuous = dose(l, v, H);
+        let discrete = discrete_dose(l, v, H);
+        assert!(continuous.is_finite() && discrete.is_finite());
+        assert!((continuous - discrete).abs() > 0.0);
+    }
+
+    #[test]
+    fn hazard_is_converted_to_probability_consistently() {
+        assert_eq!(hazard_to_probability(0.0), 0.0);
+        let h = 0.1_f64;
+        let p = hazard_to_probability(h);
+        assert!((p - (1.0 - (-h).exp())).abs() < 1e-15);
+        assert!(p > 0.0 && p < h);
+        assert_eq!(hazard_to_probability(1000.0), 1.0);
+    }
+
+    #[test]
+    fn organism_rng_streams_are_independent_and_replayable() {
+        let mut a = Rng::new(organism_seed(42, 0));
+        let mut replay = Rng::new(organism_seed(42, 0));
+        let mut b = Rng::new(organism_seed(42, 1));
+        assert_eq!(a.uniform(), replay.uniform());
+        assert_ne!(a.uniform(), b.uniform());
+    }
+
+    #[test]
+    fn initial_states_are_paired_across_modes() {
+        let mut ramp = Vec::new();
+        let mut constant = Vec::new();
+        run_cell(0.3, 0.002, 4221, Mode::Ramp, false, &mut ramp);
+        run_cell(0.3, 0.002, 4221, Mode::Constant, false, &mut constant);
+        let ramp_q: Vec<f64> = ramp.iter().map(|x| x.1).collect();
+        let constant_q: Vec<f64> = constant.iter().map(|x| x.1).collect();
+        assert_eq!(ramp_q, constant_q);
     }
 
     #[test]
