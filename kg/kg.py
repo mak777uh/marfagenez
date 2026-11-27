@@ -48,7 +48,7 @@ EXPAND_CAP = 60        # nodes printed before the "+K ещё" marker
 RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as",
              "derived_from",
              "predicted_by", "analogous_to", "candidate_supports", "tested_in", "stated_in", "normalizes_to",
-             "refuted_by", "bridges", "maps_to"}
+             "refuted_by", "bridges", "maps_to", "has_data", "generated_by"}
 # relations that carry epistemic weight; mechanical ones do not, by construction (D-07)
 EPISTEMIC_RELATIONS = {"supports", "refutes", "qualifies", "extends", "replicates", "supersedes", "same_as"}
 
@@ -147,6 +147,8 @@ def invariants(nodes):
                 problems.append(f"{nid}: relation {r.get('type')!r}")
             if str(r.get("target", "")).startswith(("C-", "F-")) and r["target"] not in ids:
                 problems.append(f"{nid}: dangling relation -> {r['target']}")
+            if r.get("type") in {"has_data", "generated_by"} and r.get("target") not in ids:
+                problems.append(f"{nid}: dangling artifact relation {r.get('type')} -> {r.get('target')}")
         key = n.get("text", "")[:80]
         if key:
             if key in text_seen and n.get("kind") == "claim":

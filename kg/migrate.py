@@ -13,6 +13,7 @@ import glob
 import json
 import pathlib
 import re
+import shlex
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 KG = ROOT / "kg"
@@ -176,7 +177,15 @@ def experiments():
             "provenance": "verified_agent",
             "evidence": [{"kind": "experiment", "ref": pathlib.Path(path).relative_to(ROOT).as_posix(), "strength": "strong"}],
             "relations": [],
-            "data": {"source": pathlib.Path(path).relative_to(ROOT).as_posix(), "license": "repo", "accessed_at": ""},
+            "data": {
+                "source": pathlib.Path(path).relative_to(ROOT).as_posix(),
+                "license": "repo",
+                "accessed_at": "",
+                "model_commit": d.get("model_commit"),
+                "seed": d.get("seed"),
+                "command": d.get("command"),
+                "rng_version": d.get("rng_version"),
+            },
             "created_at": d.get("created_at", "2026-11-20"),
             "updated_at": "2026-11-20",
         })
@@ -478,11 +487,131 @@ def evidence_nodes(base):
     return out
 
 
+
+
+def _command_script(command):
+    """Return a repository-local script path from a recorded argv string, if present."""
+    if not isinstance(command, str) or not command.strip():
+        return None
+    try:
+        parts = shlex.split(command)
+    except ValueError:
+        return None
+    for part in parts:
+        if part.startswith("-") or "://" in part:
+            continue
+        candidate = pathlib.Path(part)
+        if candidate.suffix.lower() not in {".py", ".rs", ".sh"}:
+            continue
+        full = (ROOT / candidate).resolve()
+        try:
+            full.relative_to(ROOT.resolve())
+        except ValueError:
+            continue
+        if full.is_file():
+            return full.relative_to(ROOT).as_posix()
+    return None
+
+
+def artifact_nodes(base):
+    """Materialize run JSON and source-code locators as non-epistemic graph evidence."""
+    artifacts = {}
+    code_nodes = {}
+    for node in base:
+        if node.get("kind") != "experiment":
+            continue
+        data = node.setdefault("data", {})
+        source = data.get("source")
+        if not isinstance(source, str) or not source:
+            continue
+        source_path = (ROOT / source).resolve()
+        try:
+            source_path.relative_to(ROOT.resolve())
+            raw = source_path.read_bytes()
+        except (ValueError, OSError):
+            continue
+
+        data_id = "DATA-" + hashlib.sha256(source.encode("utf-8")).hexdigest()[:16]
+        node.setdefault("relations", []).append({"type": "has_data", "target": data_id})
+        artifacts.setdefault(data_id, {
+            "id": data_id,
+            "kind": "evidence",
+            "text": "experiment result data " + source,
+            "context": {
+                "scope": "immutable result JSON",
+                "parameters": source,
+                "conditions": "sha256-addressed file artifact",
+            },
+            "epistemic": "hypothesis",
+            "provenance": "verified_agent",
+            "evidence": [],
+            "relations": [],
+            "data": {
+                "artifact_type": "result_record",
+                "source": source,
+                "bytes": len(raw),
+                "sha256": hashlib.sha256(raw).hexdigest(),
+                "seed": data.get("seed"),
+                "rng_version": data.get("rng_version"),
+            },
+            "created_at": node.get("created_at", "2026-11-27"),
+            "updated_at": "2026-11-27",
+        })
+
+        command_path = _command_script(data.get("command"))
+        commit = data.get("model_commit")
+        if command_path:
+            code_key = "path:" + command_path + "@commit:" + str(commit or "unknown")
+            code_source = command_path
+            code_kind = "source_file"
+        elif isinstance(commit, str) and commit.strip() and commit.lower() not in {"unknown", "none", "null"}:
+            code_key = "commit:" + commit.strip()
+            code_source = "git:" + commit.strip()
+            code_kind = "model_commit"
+        else:
+            continue
+
+        code_id = "CODE-" + hashlib.sha256(code_key.encode("utf-8")).hexdigest()[:16]
+        artifacts[data_id]["relations"].append({"type": "generated_by", "target": code_id})
+        if code_id not in code_nodes:
+            code_metadata = {}
+            if command_path:
+                code_file = ROOT / command_path
+                code_bytes = code_file.read_bytes()
+                code_metadata = {
+                    "bytes": len(code_bytes),
+                    "sha256": hashlib.sha256(code_bytes).hexdigest(),
+                }
+            code_nodes[code_id] = {
+                "id": code_id,
+                "kind": "evidence",
+                "text": "model source " + code_source,
+                "context": {
+                    "scope": "recorded model source locator",
+                    "parameters": code_source,
+                    "conditions": "locator taken from the result command or model_commit field",
+                },
+                "epistemic": "hypothesis",
+                "provenance": "verified_agent",
+                "evidence": [],
+                "relations": [],
+                "data": {
+                    "artifact_type": code_kind,
+                    "source": code_source,
+                    "model_commit": commit,
+                    "command": data.get("command"),
+                    **code_metadata,
+                },
+                "created_at": node.get("created_at", "2026-11-27"),
+                "updated_at": "2026-11-27",
+            }
+    return list(artifacts.values()) + list(code_nodes.values())
+
 def main():
     base = claims() + formulas() + experiments() + literature() + definitions() + bridges()
     base = apply_lit_refs(base)
     base = apply_node_refs(base)
-    nodes = base + evidence_nodes(base)
+    nodes = base + evidence_nodes(base) + artifact_nodes(base)
     seen = set()
     unique = []
     for n in nodes:
