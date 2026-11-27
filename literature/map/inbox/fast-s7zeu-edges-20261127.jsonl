@@ -1,0 +1,5 @@
+{"from": "FAST-S7ZEU-02", "to": "FAST-S7ZEU-01", "type": "refines", "note": "От определений — к теореме: стационарные состояния = организации; решётка показывает, что организаций много и они пересекаются."}
+{"from": "FAST-S7ZEU-03", "to": "FAST-S7ZEU-01", "type": "refines", "note": "Формальная семантика: что считается «производством» (катализатор не расходуется); упрощение semi→self для catalytic flow systems."}
+{"from": "FAST-S7ZEU-01", "to": "DIP3-0004", "type": "extends", "note": "Первичный источник определения COT: organization = closed + self-maintaining set (Dittrich-Speroni ch.11, полный текст главы)."}
+{"from": "FAST-S7ZEU-01", "to": "DIP3-0003", "type": "refines", "note": "COT: closed+self-maintaining — шире RAF (RAF требует food-generated+катализ каждую реакцию); union организаций = большая организация (O3+O4=O5)."}
+{"from": "FAST-S7ZEU-02", "to": "DIP3-0008", "type": "extends", "note": "Стационарное состояние = organization (теорема); операциональный критерий самоподдержания через проточный реактор — смежная формализация того же свойства."}
