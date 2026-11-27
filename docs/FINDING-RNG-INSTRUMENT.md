@@ -1,65 +1,125 @@
-# RNG as an instrument: Box–Muller tail probe
+# RNG instrument battery: LCG v1 vs xoshiro256++ v1
 
-**Status:** instrument-validation finding; not evidence about the simulated world.
-**Date:** 2026-11-27.
-**Generators:** historical 64-bit LCG v1 (default) and xoshiro256++ v1 (RNG2).
-**Transform:** the same Box–Muller cosine branch used by `Rng::normal`.
+**Date:** 2026-11-27. **Seed:** `20261127`.
+**Sample:** 1,000,000 Box–Muller normals for each generator and pairing arm.
+**Purpose:** finite-sample instrument diagnostic, not a certification of either RNG.
 
-## Why test the instrument
+## Exact implementation
 
-Henry R. Neave documented a serious interaction between a multiplicative
-congruential generator and the Box–Muller normal transform. In his 1973 example,
-one million generated values were restricted to approximately (-3.3, 3.6),
-with conspicuous local maxima in the tails. This is the reason to measure the
-generator and transform together rather than assuming that a normal transform
-makes its input stream harmless.
+The battery is implemented in `tools/rng_battery.py` and mirrors
+`core/src/lib.rs`:
 
-- Neave, H. R. (1973), *On Using the Box–Müller Transformation with Multiplicative
-  Congruential Pseudo-Random Number Generators*, Journal of the Royal Statistical
-  Society: Series C (Applied Statistics), 22(1), 92–97.
-- DOI: [10.2307/2346308](https://doi.org/10.2307/2346308).
+- LCG v1 starts from `seed*A + 1`, then updates `x' = A*x + C (mod 2^64)`.
+- xoshiro256++ v1 uses SplitMix64 to seed four words, then the xoshiro256++
+  transition.
+- Uniform conversion is exactly `(next_u64 >> 11) / 2^53`.
+- Box–Muller uses `sqrt(-2 ln u1) * cos(2πu2)`.
 
-This is an instrument issue, not a phenomenon in the simulated world. The
-measurement below is not a reproduction of Neave's parameterisation: it tests
-the repository's 64-bit mixed LCG and its currently used cosine branch only.
+Run the full battery:
 
-## One-million-draw deterministic probe
+```bash
+python3 tools/rng_battery.py --samples 1000000 --seed 20261127 --output /tmp/rng-battery.json
+python3 tools/rng_battery.py --selftest
+python3 tools/rng_result_audit.py
+```
 
-A deterministic reimplementation of the exact Rust LCG recurrence and the
-xoshiro256++ v1 transition was run with seed `20261127`. Each generator produced
-one million standard-normal values through the same Box–Muller cosine branch.
+The selftest checks fixed reference vectors against the Rust recurrences and
+determinism of the four pairing arms.
 
-| Tail | Normal expectation | LCG v1 observed | xoshiro256++ v1 observed |
+## Methods
+
+**Bit-frequency χ².** For each block of 8,192 64-bit words, test each bit
+position against a Bernoulli(0.5) split. There are 64 degrees of freedom per
+block. The statistic is diagnostic: bit positions/blocks are not treated as an
+independent certification suite.
+
+**Serial correlation.** Pearson correlation of adjacent 53-bit uniforms at
+lags 1, 2, 8 and 32.
+
+**Pairing arms.** Sequential pairs are the baseline. Pair-reversed swaps the
+two uniforms inside each pair. Shuffled permutes the entire raw stream once.
+Reshuffled-blocks applies independent Fisher–Yates permutations to successive
+4,096-word blocks. The latter two are sensitivity probes, not proposed fixes.
+They do not reproduce the exact historical intervention in every cited RNG
+paper.
+
+**Tail and quantile comparison.** For |Z|, compare empirical p50/p90/p99/p99.9/
+p99.99 against the standard-normal absolute quantile. Also count |Z| > 3, 4, 5
+and compare observed probabilities with the theoretical two-sided normal
+tail. At N=1,000,000, the expected >5σ count is only 0.573.
+
+## Measured output
+
+### Bit balance and serial correlation
+
+| Generator | χ² / df | Maximum block χ² (64 df) | r₁ | r₂ | r₈ | r₃₂ |
+|---|---:|---:|---:|---:|---:|---:|
+| LCG v1 | 0.826 | 90.03 | −0.000298 | −0.000536 | −0.001069 | +0.000022 |
+| xoshiro256++ v1 | 1.000 | 111.32 | −0.001151 | +0.000707 | −0.001164 | −0.000303 |
+
+These aggregate diagnostics do not establish independence. They are a screen
+for gross imbalance/correlation only.
+
+### Empirical |Z| quantiles vs theory
+
+Each cell is observed / theoretical.
+
+| Generator / arm | p50 | p90 | p99 | p99.9 | p99.99 |
+|---|---:|---:|---:|---:|---:|
+| LCG sequential | 0.6755 / 0.6745 | 1.6468 / 1.6449 | 2.5796 / 2.5758 | 3.3026 / 3.2905 | 3.8760 / 3.8906 |
+| LCG pair-reversed | 0.6744 / 0.6745 | 1.6434 / 1.6449 | 2.5777 / 2.5758 | 3.2901 / 3.2905 | 3.8892 / 3.8906 |
+| LCG shuffled | 0.6756 / 0.6745 | 1.6453 / 1.6449 | 2.5758 / 2.5758 | 3.2878 / 3.2905 | 3.9310 / 3.8906 |
+| LCG reshuffled blocks | 0.6755 / 0.6745 | 1.6452 / 1.6449 | 2.5782 / 2.5758 | 3.2948 / 3.2905 | 3.9088 / 3.8906 |
+| xoshiro sequential | 0.6753 / 0.6745 | 1.6459 / 1.6449 | 2.5767 / 2.5758 | 3.2829 / 3.2905 | 3.8694 / 3.8906 |
+| xoshiro pair-reversed | 0.6745 / 0.6745 | 1.6442 / 1.6449 | 2.5786 / 2.5758 | 3.2959 / 3.2905 | 3.8760 / 3.8906 |
+| xoshiro shuffled | 0.6741 / 0.6745 | 1.6460 / 1.6449 | 2.5735 / 2.5758 | 3.2858 / 3.2905 | 3.9051 / 3.8906 |
+| xoshiro reshuffled blocks | 0.6753 / 0.6745 | 1.6469 / 1.6449 | 2.5772 / 2.5758 | 3.2839 / 3.2905 | 3.8759 / 3.8906 |
+
+### Tail counts
+
+| Generator / arm | >3σ | >4σ | >5σ |
 |---|---:|---:|---:|
-| `|Z| > 2` | 45,500.3 | 45,583 | 45,557 |
-| `|Z| > 3` | 2,699.8 | 2,704 | 2,726 |
-| `|Z| > 4` | 63.34 | 64 | 57 |
-| `|Z| > 5` | 0.57 | 0 | 2 |
-| `|Z| > 6` | 0.002 | 0 | 0 |
+| LCG sequential | 2,704 (1.002× theory) | 64 (1.010×) | 0 |
+| LCG pair-reversed | 2,792 (1.034×) | 63 (0.995×) | 0 |
+| LCG shuffled | 2,658 (0.985×) | 78 (1.231×) | 0 |
+| LCG reshuffled blocks | 2,752 (1.019×) | 61 (0.963×) | 1 |
+| xoshiro sequential | 2,726 (1.010×) | 57 (0.900×) | 2 |
+| xoshiro pair-reversed | 2,728 (1.010×) | 56 (0.884×) | 0 |
+| xoshiro shuffled | 2,683 (0.994×) | 66 (1.042×) | 0 |
+| xoshiro reshuffled blocks | 2,701 (1.000×) | 68 (1.074×) | 2 |
 
-Sample moments: LCG mean `−0.00210`, SD `1.00101`; xoshiro mean
-`−0.00106`, SD `1.00052`.
+The >3σ and >4σ counts are close to expectation in this sample. The LCG
+shuffled >4σ count is 1.84 Poisson standard deviations above expectation, a
+single exploratory fluctuation rather than evidence of a stable defect. The
+xoshiro sequential >5σ count of 2 has a Poisson diagnostic z of about 1.88;
+with expected count 0.573, this is not compelling. Zero counts are also
+uninformative: the 95% rule-of-three upper bound is 3×10⁻⁶, above the theoretical
+5σ probability (~5.73×10⁻⁷). This sample cannot resolve the 5σ tail.
 
-For this 64-bit LCG and this one seed, the probe does **not** show Neave's dramatic
-tail truncation. The difference between zero and two observations beyond five
-sigma is not evidence that one generator is superior: the expected count is
-below one. The result is a reproducible instrument check, not a certification
-of either generator.
+## Historical result audit
 
-The Rust regression test re-runs one million values for both versions and uses
-a five-standard-deviation binomial acceptance band at thresholds 2, 3, 4 and 5.
-It does not pin these counts as universal constants.
+The active result tree has 407 `run-*.json` records. The v2 result schema does
+not include an RNG-version field. The checked legacy record examples also do
+not carry a pairing declaration. The current `Life` run path consumes
+uniform draws; the Box–Muller calls are in the separate `Cycle/Child` path
+(`core/src/cycle.rs`, `core/src/child.rs`) and in RNG unit tests. Thus:
 
-## Versioning contract
+- historical runs without an RNG-version field are **unpaired/unversioned** for
+  RNG2 comparison;
+- they are **not automatically labelled Box–Muller runs**;
+- no specific historic result is marked compromised without a result/trace
+  locator proving it used that path.
 
-- `Rng::new` remains the historical LCG, preserving the old stream.
-- `Rng2` is xoshiro256++ v1, seeded via SplitMix64.
-- Indexed streams derive from `(seed, entity_id)`; they do not depend on how
-  many values another entity consumed.
-- `RNG_VERSION` is separate from `HASH_VERSION`. The latter remains
-  `2-prev-cell`.
-- Traces record `rng_version`. The historical LCG default adds no new hash tag,
-  so old LCG hashes remain unchanged; a non-default RNG is tagged in the
-  dynamics hash.
-- This probe is not a replacement for PractRand, TestU01, or multi-seed testing,
-  and makes no claim about model predictions.
+`tools/rng_result_audit.py` generates the per-record list and treats missing
+metadata as unknown rather than assuming an algorithm. Any historic record
+shown to use a Box–Muller path should be rerun with both algorithms and paired
+seeds before it is treated as confirmatory.
+
+## Interpretation
+
+This experiment does not reproduce Neave's specific multiplicative-generator
+construction. Current LCG v1 is a mixed 64-bit LCG with an increment, and the
+pairing arms here are explicit diagnostics. No result here demonstrates that
+LCG v1 is certified or that xoshiro is universally superior. The battery says
+only that these particular samples did not reveal a large 3σ/4σ tail defect;
+5σ remains unresolved.
