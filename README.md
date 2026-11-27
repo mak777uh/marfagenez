@@ -381,7 +381,8 @@ cd marfagenez
 ### Всё сразу
 
 ```bash
-bash run.sh          # все проверки: тесты, Lean, эксперименты, Verus
+bash run.sh preflight # быстрые проверки контрактов и дрейфа, без сборок
+bash run.sh          # полный гейт: preflight, затем pinned DAG
 bash run.sh test     # только тесты Rust
 bash run.sh lean     # только сборка Lean
 bash run.sh exp      # только эксперименты
@@ -395,8 +396,8 @@ bash run.sh reach    # только достижимость файлов Lean
 ### По отдельности
 
 ```bash
-# тесты Rust; --test-threads=1 обязателен: Lean runtime не потокобезопасен
-cargo test --manifest-path core/Cargo.toml --release --tests -- --test-threads=1
+# тесты Rust с default features; Lean-FFI suite отдельно запускается serial в CI
+cargo test --manifest-path core/Cargo.toml --release --tests
 
 # математика
 cd laws && lake build && lake build Legacy && cd ..
