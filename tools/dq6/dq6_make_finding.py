@@ -150,7 +150,9 @@ def main() -> int:
             raise SystemExit(f"{name} version mismatch")
         if name != "environment" and record.get("task_version_sha256") != version_hash:
             raise SystemExit(f"{name} task hash mismatch")
-        if record.get("base_commit") != task["base_commit"]:
+        # base_commit is enforced where the record carries it (manifest,
+        # environment); the leased-runner record never includes it by design.
+        if "base_commit" in record and record["base_commit"] != task["base_commit"]:
             raise SystemExit(f"{name} base commit mismatch")
     if environment.get("task_version_sha256") != version_hash:
         raise SystemExit("environment task hash mismatch")

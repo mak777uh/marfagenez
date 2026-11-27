@@ -646,3 +646,11 @@ status: continue
 - исход: void (silent control: удалённый диапазон воспроизводит все три коридора); endpoints 3/3 CI прошли
 - kg пересобран (L-027/L-030/L-043 devin); c879 красный только по exp-секции (nodes.jsonl)
 - статус: сабмит SUB-EXP-2026-4103-1 -> гейт c880 -> пуш при зелёном -> CI
+
+## 2026-11-27 — literature_contract зелёный + FINDING-EXP-2026-4103 в git (цикл 861v)
+
+- L-043: locator/artifact → J Syst Chem 2015 (10.1186/s13322-014-0006-2, papers/hordijk15-jsystchem.xml); R12 закрыт
+- сироты papers/ (budin11 = тело ошибки 500 Europe PMC; karin19 = валидный JATS без записи) → scratch/unverified-papers/; R9 закрыт
+- kg пересобран: 1191/907, embeddings свежие, check --refs 589/0 (изменение ровно в узле L-043)
+- dq6_make_finding.py: base_commit проверяется только у записей с полем; FINDING-EXP-2026-4103.md закоммичен (void, endpoints 3/3, submission received)
+- статус: гейт c881 на этом HEAD -> пуш d1ef57d7..HEAD при зелёном -> CI-ран

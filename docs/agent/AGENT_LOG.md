@@ -10873,3 +10873,19 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   `fa4cf15e` уже назван в 861s; новых после bc4fa282 нет.
 
 - **861u:** D-Q6 execution chain fixed and completed by main-exec. (1) dq6_analyze.py parser fix: interval=0 (deaths in adjacent steps) is physical near the pole h->1 (T_life ~ x^1/2 -> 0); check relaxed to interval>=0, count>0 (sha 20f147ad91de6655ca528702bdaff357dada9c581cc8e6570b86e09a8f27535c); self-test 12/12 green; this is a parsing contract, scientific gates untouched; exper to be notified. (2) Canonicalization fix: lab service hashes task payloads with ensure_ascii=False (control.py:53) while dq6 tools used ensure_ascii=True default; Russian payload text made tools compute 6f921342... instead of the published a12176d4...; dq6_run.sh (2 sites), dq6_make_finding.py, dq6_submit.py patched to ensure_ascii=False. (3) dq6_submit.py AGENT_ID exper->main-exec (lease EXP-2026-4103-a2 held by main-exec per owner decision). (4) Run a2 fell in pre-analysis validation (interval=0), not in the driver; runs a2c/a2d re-executed the full production plan with the pinned binary (e9e28471...): raw byte-identical across a2/a2c/a2d for all 6 files (determinism proven across two builds); scientific outcome void (silent control: removed range h={0.9,0.95,0.98} reproduces all three exponent corridors), all three endpoint CIs pass (alpha_D 0.525 [0.524,0.526], alpha_Tlife 0.451 [0.451,0.451], alpha_deriv 1.515 [1.509,1.520]); submission SUB-EXP-2026-4103-1 prepared. (5) kg: nodes.jsonl rebuilt for devin L-027/L-030/L-043 upgrades (1191 nodes, 907 edges), c879 exp-section failure fixed. Status: submit -> gate c880 -> push at green.
+
+- **861v:** literature_contract закрыт (4 нарушения c880); домен devin передан main по
+  решению владельца. R12: devin (cd546ff1) вписал DOI 10.3390/e12071733 в обе записи
+  L-027/L-043; фикс: locator L-043 → 10.1186/s13322-014-0006-2 (Hordijk-Steel «Autocatalytic
+  sets and boundaries», J Syst Chem 6:1 (2015), PMC4333308; DOI сверен по front-matter XML),
+  artifact → papers/hordijk15-jsystchem.xml (70137 байт, sha256 c7b303d7…), reviewed_ranges =
+  весь XML (14 строк). R9: hordijk15-jsystchem.xml привязан к L-043; budin11-pnas.xml (тело
+  ошибки 500 Europe PMC, не статья) и karin19-nc.xml (валидный JATS, записей нет) перенесены
+  в scratch/unverified-papers/ — papers/ остаётся каталогом верифицированных артефактов.
+  Контракт локально: нарушений нет. kg пересобран (migrate → build → reach --write →
+  embeddings; check --refs 589/0), nodes.jsonl изменился ровно в узле L-043. Вместе с
+  циклом закоммичены: отложенный фикс dq6_make_finding.py (base_commit проверяется только
+  у записей, несущих поле; leased-runner record не содержит его by design) и
+  docs/FINDING-EXP-2026-4103.md (SUB-EXP-2026-4103-1 received; исход void — silent-контроль
+  провален, endpoints 3/3 в CI; полный provenance; находок 364 → 365, счётчик в NOT-CLAIMED.md (корень) обновлён). Журнал садится на
+  предыдущий HEAD d1ef57d7 (861u). Гейт c881; пуш при зелёном; CI-ран.

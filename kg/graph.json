@@ -19221,9 +19221,9 @@
         },
         {
           "kind": "artifact",
-          "ref": "papers/hordijk10-entropy-e12071733.pdf",
+          "ref": "papers/hordijk15-jsystchem.xml",
           "strength": "moderate",
-          "sha256": "2d3aaa9c0217434b2ca86efd2a7b87d3973c60af5d590ff87b621590328ca10b"
+          "sha256": "c7b303d7511116be9073bff5030b98f9a672c48eb0f2b352013238a4a89ca2fd"
         }
       ],
       "relations": [],
@@ -19233,16 +19233,16 @@
         "accessed_at": "2026-11-20",
         "registry_level": "**фрагмент**: тот же обзор Entropy 2010 + J Syst Chem 2015 (papers/hordijk15-jsy",
         "level_kind": "fragment_read",
-        "artifact": "papers/hordijk10-entropy-e12071733.pdf",
-        "artifact_bytes": 178795,
-        "artifact_sha256": "2d3aaa9c0217434b2ca86efd2a7b87d3973c60af5d590ff87b621590328ca10b",
+        "artifact": "papers/hordijk15-jsystchem.xml",
+        "artifact_bytes": 70137,
+        "artifact_sha256": "c7b303d7511116be9073bff5030b98f9a672c48eb0f2b352013238a4a89ca2fd",
         "locator": {
-          "doi": "10.3390/e12071733",
+          "doi": "10.1186/s13322-014-0006-2",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": "https://doi.org/10.3390/e12071733",
+          "url": "https://doi.org/10.1186/s13322-014-0006-2",
           "none": false
         },
         "lit_ref": [
@@ -40225,13 +40225,13 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -40255,13 +40255,13 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
@@ -40410,13 +40410,13 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "type": "tested_in"
     },
     {
       "from": "F-022",
@@ -40430,13 +40430,13 @@
     },
     {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-025",
@@ -42755,12 +42755,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {

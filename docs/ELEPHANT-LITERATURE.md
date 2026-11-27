@@ -2204,26 +2204,32 @@ doi:10.3390/systems12040111.
 {
  "L": "L-043",
  "locator": {
-  "doi": "10.3390/e12071733",
+  "doi": "10.1186/s13322-014-0006-2",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": "https://doi.org/10.3390/e12071733",
+  "url": "https://doi.org/10.1186/s13322-014-0006-2",
   "none": false
  },
  "access": {
   "level": "fragment_read",
-  "artifact": "papers/hordijk10-entropy-e12071733.pdf",
-  "bytes": 178795,
-  "sha256": "2d3aaa9c0217434b2ca86efd2a7b87d3973c60af5d590ff87b621590328ca10b",
+  "artifact": "papers/hordijk15-jsystchem.xml",
+  "bytes": 70137,
+  "sha256": "c7b303d7511116be9073bff5030b98f9a672c48eb0f2b352013238a4a89ca2fd",
   "retrieved_at": "2026-11-27T09:55:00Z",
-  "via": "publisher-pdf",
-  "via_detail": "mdpi-res Entropy 12(7):1733 (2010), Hordijk-Hein-Steel review, 10 стр.; RAF-определение, polynomial-time алгоритм — сверено; канонические IJMS-2011/2004 работы остаются частично вторыми руками"
+  "via": "europepmc-fulltext-xml",
+  "via_detail": "europepmc PMC4333308, Hordijk-Steel «Autocatalytic sets and boundaries», J Syst Chem 6:1 (2015); polynomial-time алгоритмы RAF/irrRAF — сверено по тексту; NP-полнота минимальной irrRAF — из вторых рук; обзор Entropy 2010 читан отдельно как L-027"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": [{"type": "page", "from": "1733", "to": "1742"}]
+  "reviewed_ranges": [
+   {
+    "type": "lines",
+    "from": 1,
+    "to": 14
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
