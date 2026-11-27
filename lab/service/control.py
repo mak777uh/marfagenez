@@ -794,6 +794,25 @@ class ControlPlane:
             cur = c.execute("SELECT current_version FROM tasks WHERE id=?", (task_id,)).fetchone()
             if cur is None:
                 raise NotFound(f"нет задачи {task_id}")
+
+            # Не полагаемся на heartbeat/reaper/следующий claim: отправка после
+            # monotonic deadline должна попасть в карантин даже если lease.state
+            # ещё "active". Проверка и fencing происходят в этой же транзакции.
+            expired_by_deadline = (
+                row["state"] == "active" and row["expires_at_mono"] < now_mono
+            )
+            if expired_by_deadline:
+                c.execute(
+                    "UPDATE leases SET state='expired', expired_at=?, expired_at_mono=? "
+                    "WHERE lease_id=? AND state='active'",
+                    (now_iso, now_mono, payload["lease_id"]))
+                c.execute(
+                    "UPDATE attempts SET status='expired', ended_at=?, "
+                    "failure_reason='lease expired before submit' "
+                    "WHERE attempt_id=? AND status='claimed'",
+                    (now_iso, row["attempt_id"]))
+                self._audit(c, payload["agent_id"], "lease.expire", "lease",
+                            payload["lease_id"], {"by": "submit", "deadline": row["expires_at_mono"]})
             # дедупликация bundle в рамках попытки — до веток late/stale:
             # одинаковый bundle не создаёт дубль, даже если lease уже закрыт (§14.4)
             dup = c.execute(
@@ -805,9 +824,12 @@ class ControlPlane:
                 c.execute("COMMIT")
                 return response
             stale = cur["current_version"] != dep_version
-            if row["state"] != "active" or stale:
-                reason = ("lease больше не активен" if row["state"] != "active"
-                          else f"постановка обновлена до v{cur['current_version']}")
+            if row["state"] != "active" or expired_by_deadline or stale:
+                reason = (
+                    "lease срок истёк до submit" if expired_by_deadline
+                    else "lease больше не активен" if row["state"] != "active"
+                    else f"постановка обновлена до v{cur['current_version']}"
+                )
                 c.execute(
                     "INSERT INTO submissions (id,task_id,task_version,task_version_sha256,"
                     "attempt_id,lease_id,lease_epoch,agent_id,instance_id,base_commit,"

@@ -342,6 +342,35 @@ class TestSubmitAndIdempotency(Base):
             "SELECT status FROM tasks WHERE id='KG-2026-0004'").fetchone()[0], "submitted")
         self.assertInvariants()
 
+    def test_submit_after_deadline_is_quarantined_without_reaper(self):
+        self.cp.publish_task(make_task("KG-2026-0093"))
+        lease = self.cp.claim("fast-01", "i", "knowledge", idem_key="claim-0093")["claimed"]
+        self.clock.advance(LEASE_SPEC["ttl_seconds"] + 1)
+        sub = {
+            "id": "SUB-2026-0093", "task_id": "KG-2026-0093", "task_version": 1,
+            "task_version_sha256": lease["task_version_sha256"],
+            "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
+            "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
+            "artifacts": [], "bundle_sha256": "8" * 64,
+        }
+        result = self.cp.submit(sub, idem_key="expired-direct-submit")
+        self.assertEqual(result["status"], "late_submission")
+        row = self.db().execute(
+            "SELECT status,status_reason,task_version_sha256 FROM submissions "
+            "WHERE id='SUB-2026-0093'"
+        ).fetchone()
+        self.assertEqual(row["status"], "late")
+        self.assertIn("истёк", row["status_reason"])
+        self.assertEqual(row["task_version_sha256"], lease["task_version_sha256"])
+        state = self.db().execute(
+            "SELECT state FROM leases WHERE lease_id=?", (lease["lease_id"],)
+        ).fetchone()[0]
+        self.assertEqual(state, "expired")
+        attempt = self.db().execute(
+            "SELECT status FROM attempts WHERE attempt_id=?", (lease["attempt_id"],)
+        ).fetchone()[0]
+        self.assertEqual(attempt, "expired")
+
     def test_submit_rejects_wrong_task_version_digest(self):
         self.cp.publish_task(make_task("KG-2026-0092"))
         lease = self.cp.claim("fast-01", "i", "knowledge", idem_key="claim-0092")["claimed"]
