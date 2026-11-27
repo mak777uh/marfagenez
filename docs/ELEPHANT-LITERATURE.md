@@ -1610,25 +1610,25 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 {
  "L": "L-031",
  "locator": {
-  "doi": null,
+  "doi": "10.1007/s10539-025-10001-9",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://doi.org/10.1007/s10539-025-10001-9",
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "abstract_read",
+  "artifact": "papers/schenkel25-abstract.txt",
+  "bytes": 1952,
+  "sha256": "9b1b9827958823c46adda58d9eeb36586cdaa29a2ccb7eaf62980ab47af66f19",
+  "retrieved_at": "2026-11-27T21:30:00Z",
+  "via": "openalex-abstract",
+  "via_detail": "Schenkel, Patten & Agren, Biol Philos (2025), DOI 10.1007/s10539-025-10001-9; полный текст Springer заблокирован — только аннотация; метрики fitness unity / trait unity, коллектив = индивидуум в степени aligned fitness interests; Queller & Strassmann 2009 остаётся вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
+  "scope": "abstract",
   "reviewed_ranges": []
  },
  "abstract_sha256": null,
@@ -1646,7 +1646,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** Queller & Strassmann (2009); Schenkel, Patten & Ågren (2025), Biol Philos 40:29; Clarke (2010); Krakauer 2020.
-**Проверено.** **вторые руки.**
+**Проверено.** **аннотация**: Schenkel, Patten & Ågren, «Internal conflicts and the measurement of evolutionary individuality», Biol Philos (2025), DOI 10.1007/s10539-025-10001-9, papers/schenkel25-abstract.txt, 2026-11-27; количественная мера индивидуальности (fitness unity, trait unity) — из аннотации; «единого теста нет» подтверждается тем, что метрик предложено несколько. Queller & Strassmann 2009 — вторые руки.
 **Утверждение (пересказ).** Списки критериев есть, единого операционального теста нет; тесты зависят от вопроса.
 **Что меняет.** Не искать «тест индивидуальности», а **выбрать** один (Krakauer ITI) и применить к нашим рядам.
 
