@@ -943,26 +943,26 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 {
  "L": "L-018",
  "locator": {
-  "doi": null,
+  "doi": "10.1098/rsif.2013.0475",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://doi.org/10.1098/rsif.2013.0475",
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/friston13-rsif.xml",
+  "bytes": 112821,
+  "sha256": "bee295d43165ce23f90e76441cfdc40e1a7e18b742f93c2fa0bef3e95674684c",
+  "retrieved_at": "2026-11-27T21:15:00Z",
+  "via": "ncbi-efetch-pmc",
+  "via_detail": "Friston, J R Soc Interface 10:20130475, PMC3730701; Markov blanket как необходимое следствие короткодействующих связей, life = emergent property ergodic random dynamical system with Markov blanket, free-energy minimization — сверено по полному тексту; критика Bruineberg et al. 2022 остаётся вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -980,7 +980,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 **Кто.** Friston (2013) — Markov blankets; критика — Bruineberg et al. (2022).
 **Ссылка.** **вторые руки.**
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: Friston, «Life as we know it», J R Soc Interface 10:20130475 (2013), papers/friston13-rsif.xml (PMC3730701, DOI 10.1098/rsif.2013.0475), 2026-11-27; Markov blanket как эмерджентное свойство эргодической системы, homoeostasis/autopoiesis через free-energy — сверено; критика Bruineberg et al. 2022 — вторые руки.
 **Утверждение (пересказ).** Граница системы задаётся статистической независимостью внутреннего от внешнего при
 условии границы; критика: статистическая граница **не** равна биологической.
 **Что даёт нам.** Наша «кожа» — **физическая** граница с ценой. Различие с Friston — готовый аргумент, что мы мерим
