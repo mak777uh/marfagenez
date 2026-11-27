@@ -1959,21 +1959,21 @@ bet-hedging оптимален, когда критерий **геометрич
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://doi.org/10.1111/j.1469-185X.2012.00225.x",
   "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/starrfelt12-biolrev.pdf",
+  "bytes": 838684,
+  "sha256": "623025f8f036624b5e9677fc397789161eefac20d42c74608f738ae252c8bde2",
+  "retrieved_at": "2026-11-27T09:25:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "Starrfelt12.pdf с kokkonuts.org (Biol. Rev. 87:742-755, 14 стр.); variance/correlation decomposition bet-hedging — сверено; Cohen 1966, Lewontin-Cohen 1969, Seger-Brockmann 1987, Frank-Slatkin 1990 остаются вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "page", "from": "742", "to": "755"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1991,8 +1991,8 @@ bet-hedging оптимален, когда критерий **геометрич
 
 **Кто.** Cohen (1966); Lewontin & Cohen (1969); Seger & Brockmann (1987); Frank & Slatkin (1990); Starrfelt & Kokko
 (2012), Biol. Rev., doi:10.1111/j.1469-185X.2012.00225.x.
-**Проверено.** **вторые руки** (внешний разбор 2026-11-20; локаторы не открывались).
-**Утверждение (пересказ).** Bet-hedging — жертва средним ради снижения дисперсии; решающее различие —
+**Проверено.** **полный текст** papers/starrfelt12-biolrev.pdf (Starrfelt & Kokko, Biol. Rev. 87:742-755, sha256 623025f8…), 2026-11-27; декомпозиция genotypic fitness variance на within-individual variance + correlations, консервативные vs диверсифицированные стратегии как концы континуума — сверено. Cohen (1966) и остальные классические работы — вторые руки.
+**Утверждение (по полному тексту Starrfelt-Kokko; классика — пересказ).** Bet-hedging — жертва средним ради снижения дисперсии; решающее различие —
 **коррелированы ли катастрофы между особями**: при общей флуктуации работает геометрическое среднее, при независимых
 исходах в большой популяции — арифметическое. **Ловушка:** смерть делает геометрическое среднее **нулём**.
 **Что меняет.** `Q-019`: дизайн 2×2 {общие / идиосинкратические} × {арифметика / геометрия}.
