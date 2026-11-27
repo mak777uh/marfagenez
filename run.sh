@@ -512,6 +512,39 @@ gate_logs() {
   fi
 }
 
+# Пин состояния гейта (цикл 860). Параллельный поток коммитит в master
+# каждые ~5-10 минут; чеки, читающие git-историю и лит/kg/docs-состояние,
+# видели переходные пары и неописанные коммиты (4 красных гейта 859b-859d).
+# Гейт обязан проверять состояние на момент старта, а не живое дерево:
+# worktree-пин HEAD замораживает историю и файлы; mid-gate коммиты
+# проверяет следующий гейт. Симлинк core/target делит сборку с живым деревом.
+PINNED_SECTIONS="exp kg claims audit"
+GATE_PIN=""
+
+pin_cd() {
+  case " $PINNED_SECTIONS " in *" $1 "*)
+    [ -n "$GATE_PIN" ] && cd "$GATE_PIN" || true;;
+  esac
+}
+
+make_pin() {
+  GATE_PIN=$(mktemp -d /tmp/marfagenez-gatepin-XXXXXX) || { GATE_PIN=""; return 0; }
+  rmdir "$GATE_PIN"
+  if git worktree add --detach "$GATE_PIN" HEAD >/dev/null 2>&1; then
+    ln -s "$ROOT/core/target" "$GATE_PIN/core/target" 2>/dev/null
+    echo "гейт: пин состояния HEAD -> $GATE_PIN (секции: $PINNED_SECTIONS)"
+  else
+    echo "гейт: worktree-пин недоступен, секции идут по живому дереву"
+    GATE_PIN=""
+  fi
+}
+
+drop_pin() {
+  [ -n "$GATE_PIN" ] || return 0
+  git worktree remove --force "$GATE_PIN" 2>/dev/null
+  GATE_PIN=""
+}
+
 gate_group() {
   gate_logs
   local n
@@ -523,7 +556,7 @@ gate_group() {
     # идут в её собственную трассу: иначе параллельные выводы перемешиваются
     # и «первый провалившийся шаг» зависит от порядка завершения.
     : "gate: запуск секции do_$n"
-    ( exec 9>"$GATE_LOG_DIR/$n.trace"; BASH_XTRACEFD=9; set -x; "do_$n" ) \
+    ( exec 9>"$GATE_LOG_DIR/$n.trace"; BASH_XTRACEFD=9; set -x; pin_cd "$n"; "do_$n" ) \
       >"$GATE_LOG_DIR/$n.log" 2>&1 &
     pidx[$n]=$!
   done
@@ -636,6 +669,8 @@ case "$WHAT" in
   export) do_export; keep $? export ;;
   agents) do_agents; keep $? agents ;;
   all)
+    make_pin
+    trap 'drop_pin' EXIT
     gate_group test lean dispatcher verus claims audit kg export agents lab
     gate_group reach exp
     gate_report
