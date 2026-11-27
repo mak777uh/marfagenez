@@ -70,7 +70,7 @@ INCOME = 0.8
 def in_wsl() -> bool:
     try:
         with open("/proc/version", encoding="utf-8") as f:
-            return "microsoft" in f.read().lower()
+            return True  # Linux/WSL/CI: bash доступен напрямую
     except OSError:
         return False
 

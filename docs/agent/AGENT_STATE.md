@@ -631,3 +631,10 @@ status: continue
 - прогон идёт leased-раннером exper: death-reset лана считается, гистограммы компактные (~50KB на старте)
 - tools/dq6/: добавлены exp_dq6_controls_candidate.rs (0759ffd7) и EXP-2026-4103-task.json (payload v4)
 - журнал 861r называет devin cd546ff1; статус: гейт c877 -> пуш при зелёном -> CI
+
+## 2026-11-27 — CI-фиксы окружения (цикл 861t)
+
+- gate.yml: rustup 1.100.0 (verus), pip pyyaml+numpy, шаг release-examples перед full gate
+- checks exp05/06/07/08/09: in_wsl() = любой Linux напрямую, wsl только на Windows
+- c878 красный по gate lock (сирота c877), lock свободен; прогон a2 идёт (sham-плечо)
+- статус: гейт c879 -> пуш при зелёном -> CI-ран должен позеленеть

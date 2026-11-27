@@ -140,7 +140,7 @@ def in_wsl() -> bool:
     """True when we are already inside WSL (no `wsl` wrapper needed)."""
     try:
         with open("/proc/version", encoding="utf-8") as f:
-            return "microsoft" in f.read().lower()
+            return True  # Linux/WSL/CI: bash доступен напрямую
     except OSError:
         return False
 
