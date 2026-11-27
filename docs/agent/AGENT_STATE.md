@@ -600,3 +600,13 @@ status: continue
 - doc_numbers/live_numbers: skip feature-gated lean-ffi блока (bridge.rs)
 - документы: 415 тестов по всем маркерам; log_check зелёный
 - status: гейт c868 на этом HEAD -> пуш merge-пакета аналитика при зелёном
+
+## 2026-11-27 — R5-артефакты + kg-корпус с архивом (цикл 861m)
+
+- papers/: varela74.pdf, orgel63david.pdf, eigen71.pdf скачаны, sha256+bytes совпадают с записями devin;
+  пути артефактов L-093/L-097/L-100 исправлены, reviewed_ranges -> словари; контракт 108/108 зелёный
+- kg: migrate читает results/_archive (6 висячих ссылок свидетельств закрыты: 574/0),
+  DATA-/CODE-узлы получили data.ref, regress сверяет migrate.build_nodes() дословно
+- граф: 1191 узлов, 907 рёбер, 110 изолированных; regress ok; embeddings свежие
+- журнал 861m называет коммиты devin: 3ffa4d4f, a8e90481, dd12324e, 6a6bf553, 7158eb9d
+- status: гейт c870 на этом HEAD -> пуш 52+ коммитов при зелёном -> CI-ран

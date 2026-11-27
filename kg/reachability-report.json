@@ -1,8 +1,8 @@
 {
   "schema": "marfagenez.kg-reachability.v1",
   "scope": "claim, formula and definition nodes; directed path to result data and code",
-  "graph_node_count": 1152,
-  "graph_edge_count": 859,
+  "graph_node_count": 1191,
+  "graph_edge_count": 907,
   "isolated_count": 110,
   "legacy_isolated_still_isolated": 110,
   "new_isolated_count": 0,
@@ -11,33 +11,49 @@
   "conclusion_count": 157,
   "counts": {
     "isolated": 15,
-    "no-link": 130,
-    "no-source": 12
+    "no-link": 125,
+    "no-source": 11,
+    "reachable": 6
   },
   "rows": [
     {
       "id": "C-001",
       "text": "Цена удержания целости — теневая цена ограничения: она равна нулю ровно тогда, когда ограничение не отнимает ресурс у лучшего использования.",
       "epistemic": "established",
-      "status": "no-link",
-      "path": [],
-      "degree": 8
+      "status": "reachable",
+      "path": [
+        "C-001",
+        "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+        "DATA-d89a75d417ab8057",
+        "CODE-6988b7ce7da57b13"
+      ],
+      "degree": 10
     },
     {
       "id": "C-002",
       "text": "Цена удержания кусочно-постоянна и ломается в точке, где перестаёт связывать ёмкость лучшего использования.",
       "epistemic": "established",
-      "status": "no-link",
-      "path": [],
-      "degree": 5
+      "status": "reachable",
+      "path": [
+        "C-002",
+        "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+        "DATA-6e084eaa1734a43c",
+        "CODE-9cb7420907533b86"
+      ],
+      "degree": 7
     },
     {
       "id": "C-003",
       "text": "Мера замыкания (доля вершин в наибольшей сильно связной компоненте) различает цепочку, частичный цикл и замкнутый цикл: 0.25 / 0.75 / 1.0.",
       "epistemic": "established",
-      "status": "no-link",
-      "path": [],
-      "degree": 7
+      "status": "reachable",
+      "path": [
+        "C-003",
+        "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+        "DATA-e5a539c66ffc14b4",
+        "CODE-2086b76f911f8048"
+      ],
+      "degree": 9
     },
     {
       "id": "C-004",
@@ -251,17 +267,27 @@
       "id": "F-022",
       "text": "Замыкание как свойство графа",
       "epistemic": "established",
-      "status": "no-link",
-      "path": [],
-      "degree": 4
+      "status": "reachable",
+      "path": [
+        "F-022",
+        "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+        "DATA-e5a539c66ffc14b4",
+        "CODE-2086b76f911f8048"
+      ],
+      "degree": 6
     },
     {
       "id": "F-023",
       "text": "Двойственная задача и смысл цены",
       "epistemic": "established",
-      "status": "no-link",
-      "path": [],
-      "degree": 3
+      "status": "reachable",
+      "path": [
+        "F-023",
+        "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+        "DATA-6e084eaa1734a43c",
+        "CODE-9cb7420907533b86"
+      ],
+      "degree": 5
     },
     {
       "id": "F-024",
@@ -323,8 +349,14 @@
       "id": "F-031",
       "text": "Внутреннее ограничение выживания из графа",
       "epistemic": "hypothesis",
-      "status": "no-source",
-      "path": [],
+      "status": "reachable",
+      "path": [
+        "F-031",
+        "F-022",
+        "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+        "DATA-e5a539c66ffc14b4",
+        "CODE-2086b76f911f8048"
+      ],
       "degree": 2
     },
     {
@@ -1065,7 +1097,7 @@
     },
     {
       "id": "L-093",
-      "text": "Autopoiesis: The organization of living systems, its characterization and a model — Varela et al. 1974 — организация производит собственные компоненты; граница распадается и восстанавливается сетью",
+      "text": "Autopoiesis: The organization of living systems, its characterization and a model — Varela, Maturana & Uribe 1974 — автопоэтическая организация: единство производится сетью продукций компонентов, участвующих в той же сети; организация не воплощена в свойствах компонентов; граница производится самой динамикой и создаёт условия для неё; самоподдержание первично, воспроизведение — логически и операци",
       "epistemic": "hypothesis",
       "status": "no-link",
       "path": [],
@@ -1121,7 +1153,7 @@
     },
     {
       "id": "L-100",
-      "text": "Selforganization of matter and the evolution of biological macromolecules — Eigen 1971 — самоорганизация материи и порог ошибок",
+      "text": "Selforganization of matter and the evolution of biological macromolecules — Eigen 1971 — самоорганизация требует замкнутого цикла реакций и каталитических связей; ошибка при репликации наследуема; master copy несёт «кометный хвост» error copies; точность держится отбором (член «repair of errors»/«back flow of information» пренебрежим для master copy); максимальная воспроизводимая информация Vmax·l",
       "epistemic": "hypothesis",
       "status": "no-link",
       "path": [],

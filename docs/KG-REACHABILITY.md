@@ -4,8 +4,8 @@ Conclusion nodes checked: 157.
 
 | Graph measure | Count |
 |---|---:|
-| Nodes after rebuild | 1152 |
-| Edges after rebuild | 859 |
+| Nodes after rebuild | 1191 |
+| Edges after rebuild | 907 |
 | Isolated before (frozen baseline) | 511 |
 | Isolated after rebuild | 110 |
 | Baseline isolates still isolated | 110 |
@@ -15,8 +15,9 @@ Conclusion nodes checked: 157.
 | Conclusion-path status | Nodes |
 |---|---:|
 | isolated | 15 |
-| no-link | 130 |
-| no-source | 12 |
+| no-link | 125 |
+| no-source | 11 |
+| reachable | 6 |
 
 A node is reachable only if a directed path reaches an experiment, its result-data
 artifact, and then a code source/commit locator. Literature-only evidence does not

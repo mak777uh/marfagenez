@@ -10782,3 +10782,26 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   научены пропускать feature-gated блок (счёт стал 415 = живому прогону), документы синхронизированы:
   NOT-CLAIMED/PROTOCOL/CLAIMS/LAWS/MODEL/UNREPRODUCIBLE/BRIEF/README = 415 (43 тест-файла, 64 проверки).
   log_check зелёный, журнал отставаний не имеет.
+
+- **861m:** адаптация к лит-коммитам devin и починка двух дыр интеграции аналитика, найденных
+  гейтом c869 (exp: literature_contract, kg: инварианты/regress/kg_edges).
+  (1) R5: L-093/L-097/L-100 объявляли full_text_examined/fragment_read без артефактов в репо.
+  Все три артефакта найдены и скачаны в papers/ с побайтовым совпадением sha256+bytes
+  (varela74.pdf 1195955 байт, monoskop; orgel63david.pdf 686846, web.archive PMC299893;
+  eigen71.pdf 7655752). Пути артефактов исправлены (papers/*), reviewed_ranges конвертированы
+  из строк в словари {type, from, to}. Контракт литературы зелёный: 108/108, нарушений нет.
+  (2) kg: migrate.experiments() не читал results/_archive — 6 ссылок свидетельств
+  (C-001/C-002/C-003/F-022/F-023/CORR-02 на EXP-SHADOW-PRICE/PRICE-KINKS/CLOSURE-MEASURE)
+  висели; архив включён в корпус: цитируемое обязано быть в графе (allowlist: v2-с-пином citable).
+  (3) kg: DATA-/CODE-узлы не имели data.ref — инвариант «evidence without a ref» флагал сотни
+  узлов (гейт tail-20 показывал только последние 5 CODE); билдер пишет ref = source.
+  (4) kg: regress.rebuilt() сверял усечённый конвейер без artifact_nodes — CODE-узлы «не в
+  корпусе» + ложное расхождение relations у X-EXP (нет has_data); выделен migrate.build_nodes(),
+  regress сверяет его дословно.
+  Граф пересобран и зафиксирован: 1191 узлов, 907 рёбер, 110 изолированных; ссылки свидетельств
+  574/0; regress: nodes.jsonl совпадает с корпусом; kg_edges ok; embeddings свежие.
+  Журнал называет коммиты после записи 861l: `3ffa4d4f` (s7zer: Varela-1974 fulltext OCR,
+  Eigen-1971; L-093/L-100 — devin), `a8e90481` (s7zes: Q-011 MiCRM — devin),
+  `dd12324e` (s7zet: Q-010 memory-estimate — devin), `6a6bf553` (s7zeu: Q-028 chemical
+  organization theory — devin), `7158eb9d` (protocol: Q-005 parameter-scope, Q-006 LIT-seen/
+  LIT-reproduced — devin).

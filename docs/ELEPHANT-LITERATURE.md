@@ -5355,7 +5355,7 @@ MODES:                   набор из нескольких метрик ди�
  },
  "access": {
   "level": "full_text_examined",
-  "artifact": "varela74.pdf",
+  "artifact": "papers/varela74.pdf",
   "bytes": 1195955,
   "sha256": "f5b8ae7ff67dd1cc95672455a86979d5c64e592b12941360d41b145f8946ac27",
   "retrieved_at": "2026-11-27T07:35:00Z",
@@ -5364,7 +5364,7 @@ MODES:                   набор из нескольких метрик ди�
  },
  "inspection": {
   "scope": "full",
-  "reviewed_ranges": ["pp.187-196 (OCR)"]
+  "reviewed_ranges": [{"type": "page", "from": "187", "to": "196", "note": "OCR"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -5535,7 +5535,7 @@ MODES:                   набор из нескольких метрик ди�
  },
  "access": {
   "level": "full_text_examined",
-  "artifact": "orgel63david.pdf",
+  "artifact": "papers/orgel63david.pdf",
   "bytes": 686846,
   "sha256": "69749f7761e7df721791c0d48d09058f45fae6acfc893b7614f5bd5bddbd1287",
   "retrieved_at": "2026-11-27T07:05:00Z",
@@ -5544,7 +5544,7 @@ MODES:                   набор из нескольких метрик ди�
  },
  "inspection": {
   "scope": "full",
-  "reviewed_ranges": ["pp.517-521"]
+  "reviewed_ranges": [{"type": "page", "from": "517", "to": "521"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -5670,7 +5670,7 @@ MODES:                   набор из нескольких метрик ди�
  },
  "access": {
   "level": "fragment_read",
-  "artifact": "eigen71.pdf",
+  "artifact": "papers/eigen71.pdf",
   "bytes": 7655752,
   "sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53",
   "retrieved_at": "2026-11-27T07:40:00Z",
@@ -5679,7 +5679,7 @@ MODES:                   набор из нескольких метрик ди�
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": ["§I.1-1.2, §II.1-II.6, Fig.13"]
+  "reviewed_ranges": [{"type": "section", "from": "§I.1-1.2"}, {"type": "section", "from": "§II.1-II.6"}, {"type": "section", "from": "Fig.13"}]
  },
  "abstract_sha256": null,
  "bibliographic": {

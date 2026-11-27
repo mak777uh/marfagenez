@@ -30,14 +30,11 @@ def committed():
 
 
 def rebuilt():
-    base = (migrate.claims() + migrate.formulas() + migrate.experiments()
-            + migrate.literature() + migrate.definitions() + migrate.bridges())
-    # the same second pass `migrate.main` does: evidence objects are derived from the corpus too
-    nodes = migrate.apply_lit_refs(base + migrate.evidence_nodes(base))
-    # Связи «выведено из» между узлами: тот же второй проход, что и для lit_ref, иначе сверка
-    # «корпус → nodes.jsonl» видит расхождение по relations, которого в корпусе нет.
-    nodes = migrate.apply_node_refs(nodes)
-    return {n["id"]: n for n in nodes}
+    # Тот же конвейер, что и migrate.main, дословно: evidence-объекты (EV-), артефактные
+    # узлы (DATA-/CODE-) и порядок проходов. Раньше здесь был усечённый список без
+    # artifact_nodes: сверка видела CODE-узлы, «которых нет в корпусе», и ложное
+    # расхождение relations у X-EXP (нет has_data).
+    return {n["id"]: n for n in migrate.build_nodes()}
 
 
 def canonical(node):

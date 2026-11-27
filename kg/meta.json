@@ -1,31 +1,32 @@
 {
   "schema": "kg/2",
   "human_confirmed": [],
-  "built_at": "2026-11-27T04:27:26+00:00",
+  "built_at": "2026-11-27T05:09:57+00:00",
   "counts": {
-    "total": 1152,
+    "total": 1191,
     "by_kind": {
       "claim": 116,
       "formula": 31,
-      "experiment": 401,
+      "experiment": 418,
       "definition": 10,
       "gap": 3,
       "correspondence": 2,
-      "evidence": 589
+      "evidence": 611
     },
     "by_epistemic": {
-      "established": 318,
-      "hypothesis": 769,
-      "refuted": 64,
+      "established": 321,
+      "hypothesis": 802,
+      "refuted": 67,
       "bounded": 1
     },
     "by_provenance": {
-      "verified_agent": 1016,
-      "extracted": 136
+      "verified_agent": 1057,
+      "extracted": 134
     },
-    "edges": 859,
+    "edges": 907,
     "edges_by_type": {
       "qualifies": 3,
+      "tested_in": 28,
       "stated_in": 34,
       "extends": 2,
       "analogous_to": 3,
@@ -34,11 +35,10 @@
       "refuted_by": 1,
       "supports": 1,
       "derived_from": 17,
-      "has_data": 401,
+      "has_data": 418,
       "bridges": 6,
-      "tested_in": 14,
       "maps_to": 4,
-      "generated_by": 371
+      "generated_by": 388
     },
     "by_epistemic_statements": {
       "established": 9,
@@ -47,9 +47,9 @@
       "bounded": 1
     },
     "by_epistemic_runs": {
-      "established": 309,
-      "refuted": 63,
-      "hypothesis": 29
+      "established": 312,
+      "refuted": 66,
+      "hypothesis": 40
     }
   },
   "invariants": [
@@ -375,11 +375,9 @@
       "L-090",
       "L-091",
       "L-092",
-      "L-093",
       "L-094",
       "L-095",
       "L-096",
-      "L-097",
       "L-098",
       "L-099",
       "L-100",
@@ -412,6 +410,6 @@
     "check"
   ],
   "hashes": {
-    "graph": "dd561c7756181315"
+    "graph": "902649229151cb2e"
   }
 }

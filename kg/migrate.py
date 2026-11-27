@@ -158,7 +158,11 @@ def formulas():
 
 def experiments():
     out = []
-    for path in sorted(glob.glob(str(ROOT / "results" / "*" / "run-*.json"))):
+    # Архив цитаем (allowlist держит v2-с-пином citable), значит и в корпусе он обязан быть:
+    # иначе ссылки свидетельств C-001/F-022/CORR-02 на архивированные EXP висят.
+    paths = sorted(glob.glob(str(ROOT / "results" / "*" / "run-*.json")))
+    paths += sorted(glob.glob(str(ROOT / "results" / "_archive" / "*" / "run-*.json")))
+    for path in paths:
         try:
             d = json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
         except Exception as exc:
@@ -549,6 +553,7 @@ def artifact_nodes(base):
             "data": {
                 "artifact_type": "result_record",
                 "source": source,
+                "ref": source,
                 "bytes": len(raw),
                 "sha256": hashlib.sha256(raw).hexdigest(),
                 "seed": data.get("seed"),
@@ -596,6 +601,7 @@ def artifact_nodes(base):
                 "data": {
                     "artifact_type": "code_locator",
                     "source": code_source,
+                    "ref": code_source,
                     "model_commit": commit,
                     "command_path": command_path,
                     "command": data.get("command"),
@@ -606,7 +612,9 @@ def artifact_nodes(base):
             }
     return list(artifacts.values()) + list(code_nodes.values())
 
-def main():
+def build_nodes():
+    """Единый конвейер сборки: regress.py сверяет ровно этот список проходов,
+    иначе «корпус -- источник истины» мерил бы другой пайплайн, а не реальную сборку."""
     base = claims() + formulas() + experiments() + literature() + definitions() + bridges()
     base = apply_lit_refs(base)
     base = apply_node_refs(base)
@@ -618,6 +626,11 @@ def main():
             raise SystemExit(f"повтор ID {n['id']} при сборке графа")
         seen.add(n["id"])
         unique.append(n)
+    return unique
+
+
+def main():
+    unique = build_nodes()
     out = KG / "nodes.jsonl"
     out.write_text("\n".join(json.dumps(n, ensure_ascii=False) for n in unique) + "\n", encoding="utf-8")
     kinds = {}
