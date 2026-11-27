@@ -1562,25 +1562,25 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
  "L": "L-030",
  "locator": {
   "doi": null,
-  "arxiv": null,
-  "arxiv_version": null,
+  "arxiv": "1209.1179",
+  "arxiv_version": "v1",
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://arxiv.org/abs/1209.1179",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/england13-arxiv-1209.1179.pdf",
+  "bytes": 2751718,
+  "sha256": "ee43b219c742db84edf7f79048bbfa3b63810a165599c44ff112a71fa58de579",
+  "retrieved_at": "2026-11-27T10:05:00Z",
+  "via": "arxiv-pdf",
+  "via_detail": "arXiv:1209.1179v1 (JCP 139:121923), England Statistical physics of self-replication, 5 стр., 22k chars; detailed-balance переходной матрицы, граница точности копирования от теплоотдачи — сверено; Kolchinsky-2024/Fodor-2016/Aguilera-2022 остаются вторыми руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "page", "from": "1", "to": "5"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1597,7 +1597,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** England (2013); Kolchinsky (2024); Fodor et al. (2016), PRL; Aguilera et al. (2022), Phys Life Rev.
-**Проверено.** **вторые руки.**
+**Проверено.** **фрагмент**: England, «Statistical Physics of Self-Replication», arXiv:1209.1179 (JCP 139:121923), papers/england13-arxiv-1209.1179.pdf (sha256 ee43b219…), 2026-11-27; детальное равновесие π(→i|j)π(→j|i)=exp[−β∆Q] и граница точности копирования от диссипации — сверено. Kolchinsky 2024, Fodor 2016, Aguilera 2022 — вторые руки.
 **Утверждение (пересказ).** Работа на поддержание ограничений физически осмысленна, но **универсальной
 термодинамической формулы замыкания нет**; диссипативная адаптация и MEPP — спорные принципы.
 **Что меняет.** Наш `income − maintenance` — **бюджет**, не термодинамика; так и писать.
