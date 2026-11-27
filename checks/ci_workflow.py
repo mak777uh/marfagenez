@@ -50,10 +50,16 @@ def main(argv: list[str]) -> int:
     steps = [s for j in jobs.values() for s in (j.get("steps") or [])]
     runs = " ".join((s.get("run") or "") for s in steps)
 
+    rust_test_steps = [s for s in steps if "cargo test" in (s.get("run") or "")]
+    lean_build_steps = [s for s in steps if "lake build" in (s.get("run") or "")]
+    gate = (root / "run.sh").read_text(encoding="utf-8")
     checks = [
         ("the workflow is valid YAML with at least one job", bool(jobs)),
-        ("it runs the Rust tests", "cargo test" in runs),
-        ("it builds Lean", "lake build" in runs),
+        ("the only direct Rust test step is the serialized lean-ffi suite",
+         len(rust_test_steps) == 1 and "lean-ffi" in (rust_test_steps[0].get("run") or "")),
+        ("Lean build is delegated to the pinned full gate", not lean_build_steps and "lake build" in gate),
+        ("release bins and examples are built inside the pinned full gate",
+         "cargo build --release --bins --examples" in gate),
         ("it runs the local gate", "run.sh all" in runs),
         ("it is triggered on push", "push" in (doc.get("on") or doc.get(True) or {})),
         ("the paths it uses exist",
