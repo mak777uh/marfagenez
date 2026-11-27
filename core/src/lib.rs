@@ -408,30 +408,147 @@ impl Model {
 // Deterministic noise, so runs are reproducible
 // ---------------------------------------------------------------------------
 
-/// A small deterministic generator. Reproducibility is what makes a measurement
-/// repeatable, and a repeatable measurement is what makes replication possible.
-#[derive(Debug, Clone)]
-pub struct Rng(u64);
+/// Version of the historical generator. This value is separate from Trace::HASH_VERSION.
+pub const RNG_VERSION: &str = "lcg64-v1";
+/// Version of the alternative generator added for instrument validation.
+pub const RNG2_VERSION: &str = "xoshiro256++-v1";
 
-impl Rng {
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum RngVersion {
+    LcgV1,
+    Xoshiro256PlusPlusV1,
+}
+
+impl RngVersion {
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::LcgV1 => RNG_VERSION,
+            Self::Xoshiro256PlusPlusV1 => RNG2_VERSION,
+        }
+    }
+}
+
+fn mix64(mut z: u64) -> u64 {
+    z = (z ^ (z >> 30)).wrapping_mul(0xBF58476D1CE4E5B9);
+    z = (z ^ (z >> 27)).wrapping_mul(0x94D049BB133111EB);
+    z ^ (z >> 31)
+}
+
+fn splitmix64_next(state: &mut u64) -> u64 {
+    *state = state.wrapping_add(0x9E3779B97F4A7C15);
+    mix64(*state)
+}
+
+/// xoshiro256++ v1, seeded via SplitMix64.
+#[derive(Debug, Clone)]
+pub struct Rng2 {
+    state: [u64; 4],
+}
+
+impl Rng2 {
     pub fn new(seed: u64) -> Self {
-        Self(seed.wrapping_mul(6364136223846793005).wrapping_add(1))
+        let mut sm = seed;
+        let mut state = [0_u64; 4];
+        for word in &mut state {
+            *word = splitmix64_next(&mut sm);
+        }
+        if state.iter().all(|&x| x == 0) {
+            state[0] = 0x9E3779B97F4A7C15;
+        }
+        Self { state }
+    }
+
+    /// Indexed substream: the same seed/entity_id replays independently of draw order.
+    pub fn for_entity(seed: u64, entity_id: usize) -> Self {
+        let entity_key = mix64((entity_id as u64).wrapping_add(0x9E3779B97F4A7C15));
+        Self::new(mix64(seed ^ entity_key))
     }
 
     pub fn next_u64(&mut self) -> u64 {
-        self.0 = self
-            .0
-            .wrapping_mul(6364136223846793005)
-            .wrapping_add(1442695040888963407);
-        self.0
+        let s = &mut self.state;
+        let result = s[0].wrapping_add(s[3]).rotate_left(23).wrapping_add(s[0]);
+        let t = s[1] << 17;
+        s[2] ^= s[0];
+        s[3] ^= s[1];
+        s[1] ^= s[2];
+        s[0] ^= s[3];
+        s[2] ^= t;
+        s[3] = s[3].rotate_left(45);
+        result
     }
 
-    /// Uniform in `[0, 1)`.
     pub fn uniform(&mut self) -> f64 {
-        (self.next_u64() >> 11) as f64 / (1u64 << 53) as f64
+        (self.next_u64() >> 11) as f64 / (1_u64 << 53) as f64
     }
 
-    /// Standard normal by Box-Muller.
+    pub fn normal(&mut self) -> f64 {
+        let u1 = self.uniform().max(1e-300);
+        let u2 = self.uniform();
+        (-2.0 * u1.ln()).sqrt() * (2.0 * PI * u2).cos()
+    }
+}
+
+#[derive(Debug, Clone)]
+enum RngState {
+    Lcg(u64),
+    Xoshiro256PlusPlus(Rng2),
+}
+
+/// A versioned generator facade. Rng::new remains the historical LCG default.
+#[derive(Debug, Clone)]
+pub struct Rng {
+    state: RngState,
+}
+
+impl Rng {
+    pub fn new(seed: u64) -> Self {
+        Self::with_version(seed, RngVersion::LcgV1)
+    }
+
+    pub fn with_version(seed: u64, version: RngVersion) -> Self {
+        let state = match version {
+            RngVersion::LcgV1 => {
+                RngState::Lcg(seed.wrapping_mul(6364136223846793005).wrapping_add(1))
+            }
+            RngVersion::Xoshiro256PlusPlusV1 => {
+                RngState::Xoshiro256PlusPlus(Rng2::new(seed))
+            }
+        };
+        Self { state }
+    }
+
+    pub fn indexed(seed: u64, entity_id: usize, version: RngVersion) -> Self {
+        match version {
+            RngVersion::LcgV1 => Self::new(Rng2::for_entity(seed, entity_id).next_u64()),
+            RngVersion::Xoshiro256PlusPlusV1 => Self {
+                state: RngState::Xoshiro256PlusPlus(Rng2::for_entity(seed, entity_id)),
+            },
+        }
+    }
+
+    pub fn version(&self) -> RngVersion {
+        match &self.state {
+            RngState::Lcg(_) => RngVersion::LcgV1,
+            RngState::Xoshiro256PlusPlus(_) => RngVersion::Xoshiro256PlusPlusV1,
+        }
+    }
+
+    pub fn next_u64(&mut self) -> u64 {
+        match &mut self.state {
+            RngState::Lcg(state) => {
+                *state = state
+                    .wrapping_mul(6364136223846793005)
+                    .wrapping_add(1442695040888963407);
+                *state
+            }
+            RngState::Xoshiro256PlusPlus(rng) => rng.next_u64(),
+        }
+    }
+
+    pub fn uniform(&mut self) -> f64 {
+        (self.next_u64() >> 11) as f64 / (1_u64 << 53) as f64
+    }
+
     pub fn normal(&mut self) -> f64 {
         let u1 = self.uniform().max(1e-300);
         let u2 = self.uniform();
@@ -562,6 +679,111 @@ mod tests {
             (0..5).map(|_| r.normal()).collect()
         };
         assert_eq!(a, b);
+    }
+
+    #[test]
+    fn explicit_lcg_version_preserves_the_historical_stream() {
+        let mut a = Rng::new(2026);
+        let mut b = Rng::with_version(2026, RngVersion::LcgV1);
+        assert_eq!(a.version(), RngVersion::LcgV1);
+        for _ in 0..10_000 {
+            assert_eq!(a.next_u64(), b.next_u64());
+        }
+    }
+
+    #[test]
+    fn rng2_bit_frequency_chi_square_is_bounded() {
+        const N: usize = 100_000;
+        let mut rng = Rng2::new(0x4E49_5645_2026);
+        let mut ones = [0_u64; 64];
+        for _ in 0..N {
+            let x = rng.next_u64();
+            for bit in 0..64 {
+                ones[bit] += ((x >> bit) & 1) as u64;
+            }
+        }
+        let expected = N as f64 / 2.0;
+        let chi2: f64 = ones.iter().map(|&count| {
+            let one = count as f64;
+            let zero = (N as u64 - count) as f64;
+            (one - expected).powi(2) / expected + (zero - expected).powi(2) / expected
+        }).sum();
+        assert!(chi2 < 130.0, "64-bit balance chi-square={chi2:.2} (64 dof)");
+    }
+
+    #[test]
+    fn rng2_indexed_streams_are_replayable_and_separated() {
+        let mut a = Rng2::for_entity(2026, 11);
+        let mut replay = Rng2::for_entity(2026, 11);
+        let mut b = Rng2::for_entity(2026, 12);
+        let av: Vec<u64> = (0..256).map(|_| a.next_u64()).collect();
+        let replayed: Vec<u64> = (0..256).map(|_| replay.next_u64()).collect();
+        let bv: Vec<u64> = (0..256).map(|_| b.next_u64()).collect();
+        assert_eq!(av, replayed, "same (seed, entity_id) must replay");
+        assert_ne!(av, bv, "different entity ids must use different streams");
+
+        let mut xa = Rng2::for_entity(2026, 101);
+        let mut xb = Rng2::for_entity(2026, 102);
+        let mut sum_x = 0.0;
+        let mut sum_y = 0.0;
+        let mut sum_x2 = 0.0;
+        let mut sum_y2 = 0.0;
+        let mut sum_xy = 0.0;
+        const N: usize = 20_000;
+        for _ in 0..N {
+            let x = xa.uniform();
+            let y = xb.uniform();
+            sum_x += x;
+            sum_y += y;
+            sum_x2 += x * x;
+            sum_y2 += y * y;
+            sum_xy += x * y;
+        }
+        let n = N as f64;
+        let cov = sum_xy - sum_x * sum_y / n;
+        let vx = sum_x2 - sum_x * sum_x / n;
+        let vy = sum_y2 - sum_y * sum_y / n;
+        let correlation = cov / (vx * vy).sqrt();
+        assert!(correlation.abs() < 0.03, "indexed stream correlation={correlation}");
+    }
+
+    #[test]
+    fn box_muller_tails_are_measured_for_both_rng_versions() {
+        const N: usize = 1_000_000;
+        const THRESHOLDS: [f64; 4] = [2.0, 3.0, 4.0, 5.0];
+        const TAIL_P: [f64; 4] = [
+            0.04550026389635842,
+            0.00269979606326019,
+            0.000063342483666239,
+            0.00000057330314375839,
+        ];
+        let counts = |version| {
+            let mut rng = Rng::with_version(20261127, version);
+            let mut out = [0_usize; 4];
+            for _ in 0..N {
+                let z = rng.normal().abs();
+                for i in 0..THRESHOLDS.len() {
+                    if z > THRESHOLDS[i] {
+                        out[i] += 1;
+                    }
+                }
+            }
+            out
+        };
+        for version in [RngVersion::LcgV1, RngVersion::Xoshiro256PlusPlusV1] {
+            let observed = counts(version);
+            for i in 0..TAIL_P.len() {
+                let p = TAIL_P[i];
+                let expected = N as f64 * p;
+                let sigma = (N as f64 * p * (1.0 - p)).sqrt();
+                assert!(
+                    (observed[i] as f64 - expected).abs() <= 5.0 * sigma + 1.0,
+                    "{:?} |Z|>{}: observed {}, expected {:.2} ± {:.2} (5 sigma)",
+                    version, THRESHOLDS[i], observed[i], expected, 5.0 * sigma
+                );
+            }
+            eprintln!("{:?} Box-Muller tails {:?}: {:?}", version, THRESHOLDS, observed);
+        }
     }
 }
 
