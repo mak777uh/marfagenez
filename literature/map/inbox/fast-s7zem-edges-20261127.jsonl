@@ -1,0 +1,4 @@
+{"from": "FAST-S7ZEM-01", "to": "FAST-S7ZEM-02", "type": "extends", "note": "Модель и Λ → оптимальные ставки и вычет I_env."}
+{"from": "FAST-S7ZEM-02", "to": "FAST-S7ZEM-03", "type": "extends", "note": "Оптимум → штраф за субоптимум (KL) и граница сенсор-vs-стохастик."}
+{"from": "FAST-S7ZEM-03", "to": "FAST-S7ZEM-01", "type": "contrasts", "note": "Критерий Λ-рост vs ESS Веринкена (s7zdw): разные целевые функционалы для одного явления."}
+{"from": "FAST-S7ZEM-02", "to": "FAST-S7ZDW-02", "type": "refines", "note": "У Vercken bet-hedging через дисперсию фенотипа; здесь — через ставки переключения и информацию о среде."}
