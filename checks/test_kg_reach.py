@@ -30,6 +30,7 @@ class ReachabilityTests(unittest.TestCase):
             self.node("D-1", "evidence", artifact_type="result_record"),
             self.node("CODE-1", "evidence", artifact_type="code_locator"),
         ]
+        nodes[-1]["data"]["version_pinned"] = True
         edges = [
             {"from": "C-1", "to": "X-1", "type": "tested_in"},
             {"from": "X-1", "to": "D-1", "type": "has_data"},
@@ -38,6 +39,22 @@ class ReachabilityTests(unittest.TestCase):
         report = reach.reachability(nodes, edges)
         self.assertEqual(report["rows"][0]["status"], "reachable")
         self.assertEqual(report["rows"][0]["path"], ["C-1", "X-1", "D-1", "CODE-1"])
+
+    def test_unversioned_command_path_is_not_full_reachability(self):
+        nodes = [
+            self.node("C-1", "claim", [{"kind": "experiment", "ref": "X-1"}]),
+            self.node("X-1", "experiment"),
+            self.node("D-1", "evidence", artifact_type="result_record"),
+            self.node("CODE-1", "evidence", artifact_type="code_locator"),
+        ]
+        nodes[-1]["data"]["version_pinned"] = False
+        edges = [
+            {"from": "C-1", "to": "X-1", "type": "tested_in"},
+            {"from": "X-1", "to": "D-1", "type": "has_data"},
+            {"from": "D-1", "to": "CODE-1", "type": "generated_by"},
+        ]
+        report = reach.reachability(nodes, edges)
+        self.assertEqual(report["rows"][0]["status"], "unversioned-code")
 
     def test_legacy_isolated_node_is_distinguished(self):
         nodes = [self.node("C-legacy", "claim")]
