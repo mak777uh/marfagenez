@@ -525,26 +525,26 @@ decreasing side** of the fitness function». Пример там же: птиц�
 {
  "L": "L-010",
  "locator": {
-  "doi": null,
+  "doi": "10.1159/000369011",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1159/000369011",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/gavrilov14-gerontology-pmc4475490.xml",
+  "bytes": 80772,
+  "sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e",
+  "retrieved_at": "2026-11-27T21:00:00Z",
+  "via": "ncbi-efetch-pmc",
+  "via_detail": "Gavrilov & Gavrilova, Gerontology 61:364-371 (2015), PMC4475490, DOI 10.1159/000369011; обзор их reliability theory: избыточность/резервы, exhaustion redundancy → mortality leveling-off, Gompertz force of mortality — сверено по полному тексту; первичные работы 1991/2001 остаются вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -562,7 +562,7 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 **Кто.** Gavrilov & Gavrilova (1991, 2001) — надёжностная (reliability) теория старения.
 **Ссылка.** **вторые руки** — из отзывов.
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: Gavrilov & Gavrilova, «New Developments in the Biodemography of Aging and Longevity», Gerontology 61:364 (2015), papers/gavrilov14-gerontology-pmc4475490.xml (PMC4475490), 2026-11-27; reliability theory: отказ как выброс нагрузки на избыточность, exhaustion redundancy → leveling-off — сверено по их же обзору; первичные 1991/2001 — вторые руки.
 **Утверждение (пересказ).** Организм — система с отказами; смертность растёт как вероятность выхода нагрузки за
 предел; даёт Гомпертц и объясняет плато.
 **Что даёт нам.** **Язык**, которого нам не хватает: `μ` — интенсивность отказов, `q` — запас прочности, `D` — износ.
@@ -1856,26 +1856,26 @@ bet-hedging оптимален, когда критерий **геометрич
 {
  "L": "L-036",
  "locator": {
-  "doi": null,
+  "doi": "10.1159/000369011",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1159/000369011",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/gavrilov14-gerontology-pmc4475490.xml",
+  "bytes": 80772,
+  "sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e",
+  "retrieved_at": "2026-11-27T21:00:00Z",
+  "via": "ncbi-efetch-pmc",
+  "via_detail": "Gavrilov & Gavrilova, Gerontology 61:364-371 (2015), PMC4475490, DOI 10.1159/000369011; обзор их reliability theory: избыточность/резервы, exhaustion redundancy → mortality leveling-off, Gompertz force of mortality — сверено по полному тексту; первичные работы 1991/2001 остаются вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1892,7 +1892,7 @@ bet-hedging оптимален, когда критерий **геометрич
 
 
 **Кто.** Gavrilov & Gavrilova (2001), JTB; обзор 2024.
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: тот же обзор Gavrilov & Gavrilova 2015 (PMC4475490), 2026-11-27; μ как интенсивность отказов (force/hazard of mortality), Gompertz-закон как геометрическая прогрессия — сверено; первичная JTB 2001 — вторые руки.
 **Утверждение (пересказ).** Смертность — интенсивность отказов системы с запасом прочности; даёт Гомпертца и плато.
 **Что меняет.** Язык §4.12: «время до отказа», «интенсивность отказов».
 
@@ -2309,26 +2309,26 @@ doi:10.3390/systems12040111.
 {
  "L": "L-045",
  "locator": {
-  "doi": null,
+  "doi": "10.1159/000369011",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1159/000369011",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/gavrilov14-gerontology-pmc4475490.xml",
+  "bytes": 80772,
+  "sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e",
+  "retrieved_at": "2026-11-27T21:00:00Z",
+  "via": "ncbi-efetch-pmc",
+  "via_detail": "Gavrilov & Gavrilova, Gerontology 61:364-371 (2015), PMC4475490, DOI 10.1159/000369011; обзор их reliability theory: избыточность/резервы, exhaustion redundancy → mortality leveling-off, Gompertz force of mortality — сверено по полному тексту; первичные работы 1991/2001 остаются вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2345,7 +2345,7 @@ doi:10.3390/systems12040111.
 
 
 **Кто.** Гаврилов и Гаврилова (1991, 2001); Strehler & Mildvan (1960).
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: Gavrilov & Gavrilova 2015 (PMC4475490), 2026-11-27; Gompertz без постулата μ — вытекает из reliability-структуры (резервы + случайные удары), плюс результат DMF: замедление ничтожно до 106 лет — сверено; Strehler & Mildvan 1960 — вторые руки.
 **Утверждение (пересказ).** Избыточность с начальным грузом дефектов и её исчерпание дают гомперцеву смертность
 **без постулата** `μ`; внешние числа — время удвоения смертности, корреляция Стрелера–Милдвана, плато смертности.
 **Что меняет.** `Q-021`: путь надёжнее самоссылки; и структурная проверка — детерминированный порог даёт
