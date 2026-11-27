@@ -67,12 +67,14 @@ def reachability(nodes, edges, legacy_ids=()):
             status = "reachable"
         elif unversioned_path:
             status = "unversioned-code"
+        elif has_source(node):
+            # a conclusion that names a source is a repair job (materialise the
+            # edge), not an orphan; report it as no-link even without edges.
+            status = "no-link"
         elif degree.get(start, 0) == 0:
             status = "new-isolated" if start not in legacy else "isolated"
-        elif not has_source(node):
-            status = "no-source"
         else:
-            status = "no-link"
+            status = "no-source"
         rows.append({
             "id": start,
             "text": node.get("text", ""),
