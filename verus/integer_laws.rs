@@ -4,9 +4,11 @@ verus! {
 
 // The integer laws from `core/src/bridge.rs`, verified.
 //
-// This is the same experiment the Aeneas plan proposes, done with the tool that is
-// actually installed. The point is the same: prove properties of the **real Rust
-// functions**, not of a separate Lean copy.
+// These are Verus-compatible copies of selected integer algorithms, not the
+// functions compiled into the Rust crate. Verus verifies each copy against a
+// mathematical specification. Exact executable-body drift is checked separately
+// for the subset that has a same-named implementation in core/src/bridge.rs.
+// A proof over this file alone does not prove the Rust binary.
 //
 // ## The two levels
 //
@@ -105,27 +107,33 @@ proof fn fraction_at_law(law: int)
 // ---------------------------------------------------------------------------
 
 spec fn fold_shifted_spec(b: int, x: int) -> int {
-    let period = 4 * b;
-    let u = (x + b) % period;
-    if u <= 2 * b { u } else { period - u }
+    if b == 0 {
+        0
+    } else {
+        let period = 4 * b;
+        let u = (x + b) % period;
+        if u <= 2 * b { u } else { period - u }
+    }
 }
 
 fn rust_fold_shifted(b: u64, x: u64) -> (r: u64)
     requires
-        b > 0,
         b <= u64::MAX / 4,
         x <= u64::MAX - b,
     ensures
         r as int <= 2 * (b as int),
         r as int == fold_shifted_spec(b as int, x as int),
 {
+    if b == 0 {
+        return 0;
+    }
     let period = 4 * b;
     let u = (x + b) % period;
     if u <= 2 * b { u } else { period - u }
 }
 
 proof fn fold_stays_in_room(b: int, x: int)
-    requires b > 0, x >= 0,
+    requires b >= 0, x >= 0,
     ensures fold_shifted_spec(b, x) <= 2 * b,
 {
 }
