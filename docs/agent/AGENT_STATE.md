@@ -714,25 +714,35 @@ status: continue
 - exp_wear_vec.rs (8 тестов): скаляр K=0.001 против вектора k_j с 10 профилями, канонический k_eff; c2==scalar побайтово, вырождения mB==mC/mD==mE, 4 нулевых контроля paired-identical, поточечный порядок c3<=scalar<=c1; smoke 1801 строка; счётчики 453 теста / 12 бинов
 - статус: гейт c894 -> пуш при зелёном -> exper claim EXP-2026-4105 (FIFO-порядок 4105 -> 4106 -> 4107) -> leased run + анализ -> submission
 
+## 2026-11-27 — exper EXP-2026-4105: leased run + submission received, outcome=failed (цикл 861af)
+- claim a2 LEASE-c8e2a9639f28; leased run 120000 строк (raw sha 5e77282d), 8 уникальных ячеек + близнецы; analyzer 2.0.0 (N1-N5 + P1-P5, paired bootstrap 2000)
+- Наука: scalar реплицирует 457 (dT90 -66.92 [-85.59,-44.41]); контраст весов scalar-c3 +23.54 [8.91,39.42] — структурная память подтверждена; перестановочный контраст mA-mF +10.47 [-2.00,23.75] — направление верное, 95% CI не достигнут; строгая монотонность dT90 по k_eff нарушена на primary (KM-квантильная нелинейность, mD/mE -67.0 vs mF -64.7), deferred порядок держится
+- SUB-EXP-2026-4105-1 received, outcome=failed (честно подан); N1-N5 instrument все зелёные (c2==scalar и вырождения побайтово, нулевые контроли попарно идентичны, поточечный порядок точен)
+- Статус: гейт c895 -> пуш при зелёном; очередь exper: EXP-2026-4106 (стирание износа в середине жизни) -> EXP-2026-4107 (B pilot, застейжен); интеграция находок 4104/4105 в docs/ — отдельное решение main
 
-## 2026-11-28 — gate correctness and first speedup tranche (independent validation pending)
+## 2026-11-28 — гейт fail-closed (rc + слово-вердикт) + драйвер 4106 v2 + лит-записи + errata (цикл 861ag)
 
-- Рабочая ветка: `audit/gate-speedup-2026-11-28`; база: remote master `bd4a4398`; master не изменён.
-- `run.sh`: fail-closed `do_kg` (rc отдельно для kg check / regress / edges / price + распознавание явного `FAIL:` при ошибочном rc=0); добавлен selftest harness в `checks/gate_kg_fail_closed.py`.
-- Быстрый `preflight`: 12 дешёвых контрактов перед pin и дорогостоящими секциями; те же проверки удалены из поздней exp lane; `log_check` вызывается с `--no-test-count`.
-- Pin: все 13 секций (включая новую `build`) работают из detached worktree по HEAD, зафиксированному перед preflight; отсутствие worktree/обязательных symlink теперь fail-closed. Общие `core/target` и `laws/.lake` используются только как кеши.
-- DAG: `reach` стартует после `lean`, `exp` после `build`; остальные независимые секции запускаются без общего барьера. Длительность и rc секции записываются дочерним процессом в атомарные markers; отсутствие marker красное. Exp checks печатают per-check timing.
-- Rust: default test suite больше не принудительно сериализуется; сериализация Lean-FFI сохранена в выделенном CI шаге.
-- CI: удалены повторные прямые default Rust / Lean build / examples шаги до `run.sh all`; добавлены Rust/Lean caches и ShellCheck; release bins/examples собираются внутри pinned gate; сохранён Lean prebuilt cache fetch внутри `do_lean`.
-- Docs/agent: README и AGENTS обновлены для preflight/DAG; данный state синхронизирован с веткой.
-- Текущая проверка: только статическая сверка исходников через GitHub и структурная проверка замены. Здесь **не** выполнялись `bash -n`, ShellCheck, Python selftests, preflight, полный WSL gate или проверка реального времени. Нужна независимая проверка основным агентом на точном PR HEAD; не мержить до неё.
-- Не включены (оставлены следующими пакетами): P5 section cache, P6 claims/audit parallel + RNG equivalence, P7 background gate service/coalescing, P9 sparse pin/scratch cleanup/counter generator, LTO decision (нужен benchmark).
+- run.sh: do_kg fail-closed в двух контурах — rc всех 4 проверок комбинируется И grep FAIL по выводу (regress.py умеет печатать FAIL с rc=0); полный пин 12/12, make_pin fail-closed, честный GATE_T, шапка 12 разделов; чек gate_kg_fail_closed.py (selftest 5/5)
+- exp_wear_erase.rs v2: intervention ledger, erandom_moment [600,1000) из RNG, тесты 3×64 без паник; smoke LEDGER_OK (120/120, 18/18, 12/12, 240/240)
+- лит-записи L-109/L-110 (fragment_read); `6a4ec81d` лит-потока (git add -A) подхватил часть дерева цикла — kg пересобран заново, regress/check зелёные
+- errata: ERRATA-EXP-2026-4104.md (passed условный, analyzer 1.0.1 после прогона, N_eff=1) и ERRATA-EXP-2026-4105.md (failed честен; скалярный wear; контрасты — bootstrap draws)
+- счётчики: 463 теста / 13 бинов / 65 проверок / 365 находок; doc_numbers зелёный
+- статус: гейт c897 -> пуш при зелёном -> publish EXP-2026-4106 v5 + EXP-2026-4107 v2 (base_commit = коммит 861ag) -> enforcement control.py -> exper claim 4106
+
+## 2026-11-28 — kg-артефакты пина + enforcement (цикл 861ah)
+
+- results/memory-*/run-*.json закоммичены (3 ссылки kg разрешаются в пине); kg пересобран после eabe7fe1; regress/check зелёные
+- c897 пост-мортем: dispatcher (selftest-песочницы без worktree) и exp (dirty pin от симлинков) — фиксы идут внешним агентом в ветке audit/gate-speedup-2026-11-28; мой 604a337f там ещё не влит
+- enforcement: publish write_scope-валидация; claim max_attempts->manual_review + dependency required_task_version + write_scope в response; submit blocks_submit/halt + base_commit + bundle_sha256 пересчёт; test_enforcement.py 9 кейсов, lab suite зелёный
+- статус: гейт c898 -> мердж ветки gate-speedup по готовности внешнего агента -> зелёный гейт -> пуш -> publish 4106 v5 / 4107 v2 (base_commit = мердж) -> exper claim 4106
 
 
-## 2026-11-28 — CI follow-up
+## 2026-11-28 — gate-speedup integrated with fresh master (validation pending)
 
-- Добавлена branch-scoped concurrency group `gate-${{ github.event.pull_request.head.ref || github.ref_name }}` с `cancel-in-progress: true`, чтобы PR run заменял push run той же ветки, а новый commit не конкурировал с устаревшим gate.
-- Обновлён CI contract: ожидается один прямой Rust test step (serialized Lean-FFI), отсутствие дублирующего direct Lean build, pinned `do_lean` build и `do_build`, кэши Rust/Lean и установка ShellCheck.
-- Убран ложный workflow-комментарий `NOT RUN ON A RUNNER`: hosted GitHub Actions действительно выполняет job. Старый run на промежуточном commit `56e61be` падал только на старом CI contract («WRONG it builds Lean»); контракт обновлён в `f0533c7`.
-- На момент записи актуальный hosted run для commit `f0533c7` запущен, но ещё не завершён. Старые runs, начатые до введения concurrency, могут продолжать работу.
-- P8 выполнен частично: кэши, дедупликация и отмена устаревшего запуска добавлены; path-filter с отдельной облегчённой docs/literature CI lane остаётся отложенным.
+- Integration merge is built from audit HEAD 1c414d9 and fresh master ec99eeed; current master changes 861ag/861ah are included as the second parent. This operation updates only the audit branch.
+- KG keeps the current master's dual fail-closed logic: return codes and printed FAIL verdicts are checked independently for kg check, regress, kg_edges and bridge_price_derivative. The branch selftest now also covers false-zero FAIL output for edges and price.
+- Dispatcher fixtures now prove that all-mode sandboxes call fake make_pin and fake pin_assert_clean; they fail if a real git worktree is attempted.
+- Pinned tree: core/target remains an ignored symlink; laws/.lake is an isolated copy with symlink dereferencing. The exact git-status contract used by checks/result.py is checked immediately after pin creation and again before exp. A dirty pin prevents experiment verdict writes.
+- Added checks/gate_pin_clean.py: temporary Git repo with tracked laws/.gitignore and laws/Legacy.lean plus symlink entries inside ignored .lake; it executes the actual pin functions and requires a clean pinned status. Preflight now has 13 checks.
+- Current master research changes and counts preserved: 463 Rust tests, 13 bins, 65 checks, updated KG artifacts, 861ag/861ah and latest literature work.
+- Validation still required on the exact merge HEAD: bash -n, ShellCheck, KG selftest 9/9, dispatcher 9/9, pin selftest, preflight and full WSL run.sh all. No WSL result is claimed by this commit.

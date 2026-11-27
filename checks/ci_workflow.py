@@ -72,6 +72,8 @@ def main(argv: list[str]) -> int:
         ("it caches Rust and Lean build state",
          "Swatinem/rust-cache@v2" in text and "actions/cache@v4" in text),
         ("it installs ShellCheck for the dispatcher gate", "apt-get install --yes shellcheck" in text),
+        ("preflight proves that pin cache cannot dirty tracked Lean files",
+         "gate_pin_clean.py --selftest" in gate and "pin_assert_clean" in gate),
     ]
     for label, ok in checks:
         print(f"  {'ok   ' if ok else 'WRONG'} {label}")

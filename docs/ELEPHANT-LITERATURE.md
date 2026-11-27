@@ -483,17 +483,17 @@ decreasing side** of the fitness function». Пример там же: птиц�
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/karin19-nc.xml",
+  "bytes": 115999,
+  "sha256": "a33bc0fbb13fcf365f0c0271350f6183de66c00404bec34df3568f3ec2c710f9",
+  "retrieved_at": "2026-11-27T10:15:00Z",
+  "via": "europepmc-oa-fulltext",
+  "via_detail": "Nat Commun 10:5495, PMC6889273 fullTextXML; SnC turnover замедляется с возрастом (период полураспада дни→недели), κ = halfway saturation point for removal, пороговая смерть при флуктуациях SnC воспроизводит Гомпертца — сверено по полному тексту"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -511,7 +511,7 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 **Кто.** Karin, Agrawal, Alon (2019), Nature Communications — о насыщаемом удалении сенесцентных клеток.
 **Ссылка.** **вторые руки** — из отзыва 2026-11-20; **высший приоритет проверки**.
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: Karin, Agrawal, Porat, Krizhanovsky & Alon, «Senescent cell turnover slows with age providing an explanation for the Gompertz law», Nat Commun 10:5495 (2019), papers/karin19-nc.xml (PMC6889273), 2026-11-27; removal rate SnC замедляется с возрастом, κ — точка насыщения удаления, пороговая смерть при флуктуациях — сверено по полному тексту.
 **Утверждение (пересказ).** Удаление повреждения насыщается, и из этого следует порог между «держит» и «накапливает».
 **Что даёт нам.** **Прямой аналог нашего `h = 1`**; если у них есть формула расходимости у порога — наш последний
 кандидат на новизну исчезает.
@@ -525,26 +525,26 @@ decreasing side** of the fitness function». Пример там же: птиц�
 {
  "L": "L-010",
  "locator": {
-  "doi": null,
+  "doi": "10.1159/000369011",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1159/000369011",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/gavrilov14-gerontology-pmc4475490.xml",
+  "bytes": 80772,
+  "sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e",
+  "retrieved_at": "2026-11-27T21:00:00Z",
+  "via": "ncbi-efetch-pmc",
+  "via_detail": "Gavrilov & Gavrilova, Gerontology 61:364-371 (2015), PMC4475490, DOI 10.1159/000369011; обзор их reliability theory: избыточность/резервы, exhaustion redundancy → mortality leveling-off, Gompertz force of mortality — сверено по полному тексту; первичные работы 1991/2001 остаются вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -562,7 +562,7 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 **Кто.** Gavrilov & Gavrilova (1991, 2001) — надёжностная (reliability) теория старения.
 **Ссылка.** **вторые руки** — из отзывов.
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: Gavrilov & Gavrilova, «New Developments in the Biodemography of Aging and Longevity», Gerontology 61:364 (2015), papers/gavrilov14-gerontology-pmc4475490.xml (PMC4475490), 2026-11-27; reliability theory: отказ как выброс нагрузки на избыточность, exhaustion redundancy → leveling-off — сверено по их же обзору; первичные 1991/2001 — вторые руки.
 **Утверждение (пересказ).** Организм — система с отказами; смертность растёт как вероятность выхода нагрузки за
 предел; даёт Гомпертц и объясняет плато.
 **Что даёт нам.** **Язык**, которого нам не хватает: `μ` — интенсивность отказов, `q` — запас прочности, `D` — износ.
@@ -769,7 +769,7 @@ decreasing side** of the fitness function». Пример там же: птиц�
 **Кто.** Gavrilov? нет — **Tomasik et al. (2024), JTB** — «Agelessness is possible under the disposable soma theory but
 system complexity makes it unlikely».
 **Ссылка.** **вторые руки** — из отзыва 2026-11-20.
-**Проверено.** **вторые руки.**
+**Проверено.** **вторые руки.** ⚠ **2026-11-27, MSG-DEVIN-S7-Q020-1:** «Tomasik et al. (2024), JTB» не существует — Brian Tomasik философ-эссеист, такой статьи нет; цитата «Agelessness is possible...» вероятно пересказ/выдумка. Запись оставлена как есть до решения main: утверждение §4.14 опирается на фантомный источник.
 **Утверждение (пересказ отзыва, с цитатой из статьи).** «evolution could select for its complete removal if the
 mortality risk it poses is severe enough and its repair does not pose too large of a penalty to reproduction»; при
 **нескольких типах повреждения** полное устранение старения редко выгодно.
@@ -785,26 +785,26 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 {
  "L": "L-015",
  "locator": {
-  "doi": null,
+  "doi": "10.1007/978-94-017-9837-2",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://hal.science/hal-01151449",
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/moreno15-biological-autonomy-intro-hal01151449.pdf",
+  "bytes": 509205,
+  "sha256": "fa1148aacfc7327e43db7851940e96a26b0dd3d8ba99705ca6db9bb69ebaa070",
+  "retrieved_at": "2026-11-27T21:45:00Z",
+  "via": "hal-author-deposit",
+  "via_detail": "Moreno & Mossio, Biological Autonomy (Springer 2015), HAL hal-01151449 — только глава Introduction (53 стр.), не вся книга; closure of constraints, self-maintenance, autonomy definitions — сверено; Mossio-Saborido-Moreno 2009 и остальные главы — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "chapter", "from": "Introduction", "to": "Introduction"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -822,7 +822,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 **Кто.** Moreno & Mossio (2015) *Biological Autonomy*; Mossio, Saborido & Moreno (2009); Montévil & Mossio (2015).
 **Ссылка.** **вторые руки** — из отзыва 2026-11-20.
-**Проверено.** **вторые руки.**
+**Проверено.** **фрагмент**: Moreno & Mossio, «Biological Autonomy», Springer 2015, HAL hal-01151449 — глава Introduction, papers/moreno15-biological-autonomy-intro-hal01151449.pdf (sha256 fa1148aa…), 2026-11-27; «closure of constraints» как явное определение самоопределения, organization = closed and functional — сверено; книга прочитана только по введению. Mossio, Saborido & Moreno 2009 — вторые руки.
 **Утверждение (пересказ).** Живое — система, части которой **поддерживают ограничения**, делающие возможным
 существование целого; организация = **замкнутость ограничений**.
 **Что даёт нам.** Наш критерий «участие в формировании условий собственного существования» (`GOAL.md` §1a) может быть
@@ -900,17 +900,23 @@ mortality risk it poses is severe enough and its repair does not pose too large 
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/krakauer20-iti.xml",
+  "bytes": 417896,
+  "sha256": "0c9c2105544f69e357141d367789b53fb6e7519db5a6fc49779f4ff84a142020",
+  "retrieved_at": "2026-11-27T10:30:00Z",
+  "via": "europepmc-oa-fulltext",
+  "via_detail": "Theory Biosci 139:358-368, PMC7244620 fullTextXML; individuals = aggregates preserving measure of temporal information; unique/shared/complementary information decomposition — сверено по полному тексту"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [
+   {
+    "type": "article",
+    "from": "1",
+    "to": "full"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -928,7 +934,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 **Кто.** Krakauer et al. (2020) — information theory of individuality (ITI).
 **Ссылка.** **вторые руки.**
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: Krakauer, Bertschinger, Olbrich, Flack & Ay, «The information theory of individuality», Theory Biosci 139:358 (2020), papers/krakauer20-iti.xml (PMC7244620, DOI 10.1007/s12064-020-00313-7), 2026-11-27; индивидуум = агрегат, сохраняющий меру темпоральной информации; разложение unique/shared/complementary information — сверено.
 **Утверждение (пересказ).** Индивидуальность — это **мера** (передача информации от частей к целому), а не
 философский статус.
 **Что даёт нам.** Готовый **операциональный** способ мерить «слона» по временным рядам, не зная, какая переменная —
@@ -943,26 +949,26 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 {
  "L": "L-018",
  "locator": {
-  "doi": null,
+  "doi": "10.1098/rsif.2013.0475",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://doi.org/10.1098/rsif.2013.0475",
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/friston13-rsif.xml",
+  "bytes": 112821,
+  "sha256": "bee295d43165ce23f90e76441cfdc40e1a7e18b742f93c2fa0bef3e95674684c",
+  "retrieved_at": "2026-11-27T21:15:00Z",
+  "via": "ncbi-efetch-pmc",
+  "via_detail": "Friston, J R Soc Interface 10:20130475, PMC3730701; Markov blanket как необходимое следствие короткодействующих связей, life = emergent property ergodic random dynamical system with Markov blanket, free-energy minimization — сверено по полному тексту; критика Bruineberg et al. 2022 остаётся вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -980,7 +986,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 **Кто.** Friston (2013) — Markov blankets; критика — Bruineberg et al. (2022).
 **Ссылка.** **вторые руки.**
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: Friston, «Life as we know it», J R Soc Interface 10:20130475 (2013), papers/friston13-rsif.xml (PMC3730701, DOI 10.1098/rsif.2013.0475), 2026-11-27; Markov blanket как эмерджентное свойство эргодической системы, homoeostasis/autopoiesis через free-energy — сверено; критика Bruineberg et al. 2022 — вторые руки.
 **Утверждение (пересказ).** Граница системы задаётся статистической независимостью внутреннего от внешнего при
 условии границы; критика: статистическая граница **не** равна биологической.
 **Что даёт нам.** Наша «кожа» — **физическая** граница с ценой. Различие с Friston — готовый аргумент, что мы мерим
@@ -1363,25 +1369,25 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
  "L": "L-026",
  "locator": {
   "doi": null,
-  "arxiv": null,
-  "arxiv_version": null,
+  "arxiv": "q-bio/0501016",
+  "arxiv_version": "v1",
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://arxiv.org/abs/q-bio/0501016",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/dittrich07-bmb-arxiv-qbio0501016.pdf",
+  "bytes": 192340,
+  "sha256": "729aafad73a495e7dbd8f9b3ef7a18e55b103d80cce60abd44e7f0fcfb629391",
+  "retrieved_at": "2026-11-27T10:45:00Z",
+  "via": "arxiv-pdf",
+  "via_detail": "arXiv:q-bio/0501016v1 (Bull Math Biol 69:1199-1232, 2007), Dittrich & Speroni di Fenizio, 20 стр., 42k chars; closed/self-maintaining/semi-organization/organization определения, решётка union/intersection организаций — сверено; Kaleta et al. 2008 остаётся вторым руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "section", "from": "definitions", "to": "lattice"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1398,7 +1404,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** Dittrich & Speroni di Fenizio (2007), Bull Math Biol; Kaleta et al. (2008).
-**Проверено.** **вторые руки.**
+**Проверено.** **фрагмент**: Dittrich & Speroni di Fenizio, «Chemical organization theory», Bull Math Biol 69:1199 (2007), arXiv:q-bio/0501016, papers/dittrich07-bmb-arxiv-qbio0501016.pdf (sha256 729aafad…), 2026-11-27; organization = closed + self-maintaining, организации образуют решётку с union/intersection — сверено; «две части как два organization-множества с общим food set» — прямое следствие union-операции. Kaleta et al. 2008 — вторые руки.
 **Утверждение (пересказ).** Формальное определение **самоподдерживающегося множества** видов в реакционной сети
 (chemical organization): множество замкнуто по реакциям и не имеет «внешней» подпитки своих видов.
 **Что даёт нам.** Готовый **комбинаторный** язык для «организации» — без энергии, только структура.
@@ -1610,28 +1616,32 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 {
  "L": "L-031",
  "locator": {
-  "doi": null,
+  "doi": "10.1007/s10539-025-10001-9",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://doi.org/10.1007/s10539-025-10001-9",
   "none": true
  },
  "access": {
-  "level": "secondary_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "retrieved_at": "2026-11-27T21:30:00Z",
+  "via": "openalex-abstract",
+  "via_detail": "Schenkel, Patten & Agren, Biol Philos (2025), DOI 10.1007/s10539-025-10001-9; полный текст Springer заблокирован — только аннотация; метрики fitness unity / trait unity, коллектив = индивидуум в степени aligned fitness interests; Queller & Strassmann 2009 остаётся вторыми руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "abstract"
+   }
+  ]
  },
- "abstract_sha256": null,
+ "abstract_sha256": "9b1b9827958823c46adda58d9eeb36586cdaa29a2ccb7eaf62980ab47af66f19",
  "bibliographic": {
   "title": "Индивидуальность: единого теста нет",
   "year": 2009,
@@ -1646,7 +1656,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** Queller & Strassmann (2009); Schenkel, Patten & Ågren (2025), Biol Philos 40:29; Clarke (2010); Krakauer 2020.
-**Проверено.** **вторые руки.**
+**Проверено.** **аннотация**: Schenkel, Patten & Ågren, «Internal conflicts and the measurement of evolutionary individuality», Biol Philos (2025), DOI 10.1007/s10539-025-10001-9, papers/schenkel25-abstract.txt, 2026-11-27; количественная мера индивидуальности (fitness unity, trait unity) — из аннотации; «единого теста нет» подтверждается тем, что метрик предложено несколько. Queller & Strassmann 2009 — вторые руки.
 **Утверждение (пересказ).** Списки критериев есть, единого операционального теста нет; тесты зависят от вопроса.
 **Что меняет.** Не искать «тест индивидуальности», а **выбрать** один (Krakauer ITI) и применить к нашим рядам.
 
@@ -1715,19 +1725,23 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
   "none": true
  },
  "access": {
-  "level": "secondary_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "retrieved_at": "2026-11-27T10:15:00Z",
+  "via": "pubmed-abstract",
+  "via_detail": "PNAS 108(13):5249-5254, PMID 21402937, DOI 10.1073/pnas.1100498108; fullTextXML недоступен (не OA-подмножество), PDF PNAS блокирует — только аннотация; Zhu & Szostak 2009 и Budin et al. 2012 остаются вторыми руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "abstract"
+   }
+  ]
  },
- "abstract_sha256": null,
+ "abstract_sha256": "58035fd8539cd2db0caaa65ec4748e4a2a0b4e8bc105bc7f5cdc3bc507267ef9",
  "bibliographic": {
   "title": "Протоклетки: числа по проницаемости и делению",
   "year": 2009,
@@ -1743,7 +1757,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 **Кто.** Zhu & Szostak (2009) JACS 131:5705; Budin & Szostak (2011) PNAS 108:5249; Budin, Debnath & Szostak (2012)
 JACS 134:20812; Breuer et al. (2019) eLife; Pelletier et al. (2021) Cell 184:2430; Thornburg et al. (2022) Cell.
-**Проверено.** **вторые руки.**
+**Проверено.** **аннотация**: Budin & Szostak, «Physical effects underlying the transition from primitive to modern cell membranes», PNAS 108:5249 (2011), PMID 21402937, papers/budin11-abstract.txt, 2026-11-27; низкий уровень фосфолипидов уже драйвит рост протоклеточной мембраны, каскад селективных давлений на метаболизм/транспорт — из аннотации; полный текст недоступен.
 **Утверждение (пересказ).** Есть измеренные проницаемости и условия роста/деления везикул; **цены** поддержания
 границы как функции целости — нет.
 **Что меняет.** Именно здесь наша цена `c·d·q_min` может быть **числом**, которого у них нет.
@@ -1865,17 +1879,23 @@ bet-hedging оптимален, когда критерий **геометрич
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/gavrilov14-gerontology-pmc4475490.xml",
+  "bytes": 80772,
+  "sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e",
+  "retrieved_at": "2026-11-27T21:00:00Z",
+  "via": "ncbi-efetch-pmc",
+  "via_detail": "Gavrilov & Gavrilova, Gerontology 61:364-371 (2015), PMC4475490, DOI 10.1159/000369011; обзор их reliability theory: избыточность/резервы, exhaustion redundancy → mortality leveling-off, Gompertz force of mortality — сверено по полному тексту; первичные работы 1991/2001 остаются вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [
+   {
+    "type": "article",
+    "from": "1",
+    "to": "full"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1892,7 +1912,7 @@ bet-hedging оптимален, когда критерий **геометрич
 
 
 **Кто.** Gavrilov & Gavrilova (2001), JTB; обзор 2024.
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: тот же обзор Gavrilov & Gavrilova 2015 (PMC4475490), 2026-11-27; μ как интенсивность отказов (force/hazard of mortality), Gompertz-закон как геометрическая прогрессия — сверено; первичная JTB 2001 — вторые руки.
 **Утверждение (пересказ).** Смертность — интенсивность отказов системы с запасом прочности; даёт Гомпертца и плато.
 **Что меняет.** Язык §4.12: «время до отказа», «интенсивность отказов».
 
@@ -2010,21 +2030,27 @@ bet-hedging оптимален, когда критерий **геометрич
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://proceedings.neurips.cc/paper_files/paper/2010/file/091d584fced301b442654dd8c23b3fc9-Paper.pdf",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/vanhasselt10-neurips.pdf",
+  "bytes": 195211,
+  "sha256": "f94cf09e58b6392da4d81504cd6349ae432023f08dc040d11c1b6d23a9a4f542",
+  "retrieved_at": "2026-11-27T10:30:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "van Hasselt 2010 Double Q-learning, NeurIPS 23 proceedings PDF (9 стр., ~33k chars текста); прочитаны §1-2 (overestimation bias, winner's curse, Jensen, double estimator); Auer et al. 2002 и Thrun-Schwartz 1993 остаются вторыми руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "sec1",
+    "to": "sec2.2"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2041,9 +2067,8 @@ bet-hedging оптимален, когда критерий **геометрич
 
 
 **Кто.** Thrun & Schwartz (1993); van Hasselt (2010); Auer, Cesa-Bianchi & Fischer (2002).
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** `E[max]` из `n` шумных чтений строго выше истинного среднего, смещение ≈ `σ·√(2 ln n)` и
-**растёт** с числом чтений. Альтернатива — `mean + k·σ/√n` (UCB): оптимизм, **убывающий** с опытом.
+**Проверено.** **фрагмент** papers/vanhasselt10-neurips.pdf (NeurIPS 2010, sha256 f94cf09e…), 2026-11-27; §1-2 прочитаны, цитаты сверены; Auer et al. 2002 и Thrun-Schwartz 1993 — вторые руки.
+**Утверждение (по первичному тексту van Hasselt 2010; Auer/Thrun-Schwartz — пересказ).** Q-learning завышает action values из-за положительного смещения max по шумным оценкам — winner's curse, следует из неравенства Йенсена; double estimator (разделение выбора и оценки, иногда занижает) сходится там, где Q-learning проваливается. Альтернатива — UCB mean+k*sigma/sqrt(n) (Auer et al., вторые руки).
 **Что меняет.** `Q-010`: четыре плеча — max / mean / UCB / sham.
 
 ---
@@ -2318,17 +2343,23 @@ doi:10.3390/systems12040111.
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/gavrilov14-gerontology-pmc4475490.xml",
+  "bytes": 80772,
+  "sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e",
+  "retrieved_at": "2026-11-27T21:00:00Z",
+  "via": "ncbi-efetch-pmc",
+  "via_detail": "Gavrilov & Gavrilova, Gerontology 61:364-371 (2015), PMC4475490, DOI 10.1159/000369011; обзор их reliability theory: избыточность/резервы, exhaustion redundancy → mortality leveling-off, Gompertz force of mortality — сверено по полному тексту; первичные работы 1991/2001 остаются вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [
+   {
+    "type": "article",
+    "from": "1",
+    "to": "full"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2345,7 +2376,7 @@ doi:10.3390/systems12040111.
 
 
 **Кто.** Гаврилов и Гаврилова (1991, 2001); Strehler & Mildvan (1960).
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: Gavrilov & Gavrilova 2015 (PMC4475490), 2026-11-27; Gompertz без постулата μ — вытекает из reliability-структуры (резервы + случайные удары), плюс результат DMF: замедление ничтожно до 106 лет — сверено; Strehler & Mildvan 1960 — вторые руки.
 **Утверждение (пересказ).** Избыточность с начальным грузом дефектов и её исчерпание дают гомперцеву смертность
 **без постулата** `μ`; внешние числа — время удвоения смертности, корреляция Стрелера–Милдвана, плато смертности.
 **Что меняет.** `Q-021`: путь надёжнее самоссылки; и структурная проверка — детерминированный порог даёт
@@ -2512,21 +2543,27 @@ doi:10.3390/systems12040111.
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/gneiting07-jasa.pdf",
+  "bytes": 556804,
+  "sha256": "d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2",
+  "retrieved_at": "2026-11-27T09:15:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "тот же артефакт, что L-040 (Gneiting & Raftery 2007 JASA, полный PDF); для L-049 использованы разделы о proper scoring rules и log-score; DOI не дублируется, каноническая запись — L-040"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "proper-scoring-rules",
+    "to": "log-score"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2543,11 +2580,9 @@ doi:10.3390/systems12040111.
 
 
 **Кто.** те же, что `L-039` и `L-040`.
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Лог-счёт по strictly proper rule эквивалентен информационному выигрышу; искажением его
-не улучшить.
-**Что меняет.** `Q-022`: прибор — **лог-счёт по предрегистрации** (вероятность до прогона) + **MDL** (число
-независимых постулатов).
+**Проверено.** **фрагмент** papers/gneiting07-jasa.pdf (Gneiting & Raftery 2007, тот же артефакт что L-040, sha256 d31a0c5f…), 2026-11-27.
+**Утверждение (по Gneiting & Raftery 2007; DOI канонически у L-040).** Log-score по strictly proper scoring rule — локально собственная мера точности вероятностных прогнозов; искажение (недооценка/переоценка) строго проигрывает по ожиданию — эквивалент информационному выигрышу по Кульбаку-Лейблеру.
+**Что меняет.** `Q-022`: прибор — **лог-счёт по предрегистрации** (вероятность до прогона) + **MDL** (число независимых постулатов).
 
 ---
 
@@ -6063,4 +6098,94 @@ MODES:                   набор из нескольких метрик ди�
 **Ссылка.** https://doi.org/10.1038/s41467-023-37930-x
 **Проверено.** **аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читался.
 **Утверждение.** Damage dynamics and the role of chance in the timing of E. coli cell death (2023) — измеряемая динамика повреждения и насыщаемый ремонт
+**Что даёт нам.** — (суждение не сделано).
+
+### L-109 · Evolution of Swarm Robotics Systems with Novelty Search
+
+```json
+{
+ "L": "L-109",
+ "locator": {
+  "doi": null,
+  "arxiv": "1304.3362",
+  "arxiv_version": "v1",
+  "openalex": null,
+  "pmid": null,
+  "url": "https://arxiv.org/abs/1304.3362",
+  "none": false
+ },
+ "access": {
+  "level": "fragment_read",
+  "artifact": "papers/gomes16-novelty-swarm-arxiv1304.3362.pdf",
+  "bytes": 1793000,
+  "sha256": "ebd7c28ee96b1a8e5be2d606759f811007340764688e656458887638b32adcb9",
+  "retrieved_at": "2026-11-27T21:02:18Z",
+  "via": "arxiv-pdf",
+  "via_detail": "arXiv:1304.3362v1 (11 Apr 2013, Swarm Intelligence manuscript, 34 стр.); прочитаны abstract+intro+related work; цитаты сверены дословно: «solutions are rewarded based on their novelty, rather than their quality with respect to a predefined objective», «Due to the absence of a static objective, novelty search is unaffected by premature convergence»"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": [{"type": "section", "from": "abstract", "to": "related work"}]
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Evolution of Swarm Robotics Systems with Novelty Search",
+  "year": 2013,
+  "first_author": "Jorge Gomes"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Evolution of Swarm Robotics Systems with Novelty Search (2013). Jorge Gomes; Paulo Urbano; Anders Christensen
+**Ссылка.** https://arxiv.org/abs/1304.3362
+**Проверено.** **фрагмент** arXiv PDF, 2026-11-27T21:02:18Z, abstract+intro+related work; две цитаты сверены дословно.
+**Утверждение.** Evolution of Swarm Robotics Systems with Novelty Search (2013) — novelty search вознаграждает решения за новизну, а не за качество относительно предзаданной цели; отсутствие статической цели защищает от преждевременной сходимости
+**Что даёт нам.** — (суждение не сделано).
+
+### L-110 · A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus
+
+```json
+{
+ "L": "L-110",
+ "locator": {
+  "doi": "10.1371/journal.pone.0104658",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.1371/journal.pone.0104658",
+  "none": false
+ },
+ "access": {
+  "level": "fragment_read",
+  "artifact": "papers/pisaster14-deb.xml",
+  "bytes": 182947,
+  "sha256": "eb6525c309643d2c525c5a2a691d3dbb85775e23aa9d94e5501298c473decfae",
+  "retrieved_at": "2026-11-27T21:12:21Z",
+  "via": "pmc-xml",
+  "via_detail": "PLoS ONE 9(8):e104658, PMC4148243 (Monaco, Wethey & Helmuth 2014); прочитаны abstract+model description+Fig.1+Table 1; κ=0.58±0.07 на соматическую ветвь, shrinkage при голодании; РАСХОЖДЕНИЕ: атом FAST-S8A-01 (literature/map/inbox/fast-s8a-atoms-20261127.jsonl) называет авторов «Hambrook, Menge, Walters, Davis & Washburn (2014)» по тому же DOI — фактические авторы Monaco/Wethey/Helmuth; атом подлежит исправлению лит-потоком"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": [{"type": "section", "from": "abstract", "to": "model description"}]
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus",
+  "year": 2014,
+  "first_author": "Caitlin Monaco"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus (2014). Caitlin Monaco; David Wethey; Brian Helmuth
+**Ссылка.** https://doi.org/10.1371/journal.pone.0104658
+**Проверено.** **фрагмент** PMC XML, 2026-11-27T21:12:21Z, abstract+model description+Fig.1+Table 1.
+**Утверждение.** A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus (2014) — DEB-модель ключевого хищника: κ=0.58±0.07 на соматическую ветвь, shrinkage при голодании
 **Что даёт нам.** — (суждение не сделано).

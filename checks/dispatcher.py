@@ -62,7 +62,9 @@ def build(directory: Path, exp_rc: int, agents_rc: int, claims_rc: int = 0,
         head
         + STUBS.format(exp_rc=exp_rc, agents_rc=agents_rc, claims_rc=claims_rc,
                        kg_rc=kg_rc)
-        + "make_pin() { GATE_PIN=$ROOT; :; }\ndrop_pin() { :; }\n"
+        + "make_pin() { GATE_PIN=$ROOT; echo TEST_PIN_STUB; :; }\n"
+        + "pin_assert_clean() { echo TEST_PIN_CLEAN_STUB; :; }\n"
+        + "drop_pin() { :; }\n"
         + MARKER
         + tail,
         encoding="utf-8",
@@ -165,6 +167,13 @@ def main() -> int:
             problems = []
             if rc != want_rc:
                 problems.append(f"код {rc}, ожидался {want_rc}")
+            if target == "all":
+                if "TEST_PIN_STUB" not in out:
+                    problems.append("all не использовал тестовую заглушку make_pin")
+                if "TEST_PIN_CLEAN_STUB" not in out:
+                    problems.append("all не использовал тестовую заглушку pin_assert_clean")
+                if "PIN_FAIL:" in out or "git worktree add недоступен" in out:
+                    problems.append("песочница попыталась создать настоящий worktree")
             lines = out.splitlines()
             banner = [l for l in lines if l.startswith(want_banner)]
             if not banner:

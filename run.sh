@@ -345,25 +345,27 @@ do_kg() {
   python3 kg/kg.py check --refs >"$out" 2>&1
   rc_check=$?
   tail -20 "$out"
-  if [ "$rc_check" -eq 0 ] && grep -qE '^[[:space:]]*FAIL:' "$out"; then
-    rc_check=1
-  fi
+  grep -q "FAIL" "$out" && rc_check=1
 
   : >"$out"
   python3 kg/regress.py >"$out" 2>&1
   rc_regress=$?
   cat "$out"
-  if [ "$rc_regress" -eq 0 ] && grep -qE '^[[:space:]]*FAIL:' "$out"; then
-    rc_regress=1
-  fi
+  grep -q "FAIL" "$out" && rc_regress=1
 
   echo "--- kg_edges.py ---"
-  python3 checks/kg_edges.py
+  : >"$out"
+  python3 checks/kg_edges.py >"$out" 2>&1
   rc_edges=$?
+  cat "$out"
+  grep -q "FAIL" "$out" && rc_edges=1
 
   # F2: цена обязана быть производной функции значения, а не правилом по флагу.
-  python3 checks/bridge_price_derivative.py
+  : >"$out"
+  python3 checks/bridge_price_derivative.py >"$out" 2>&1
   rc_price=$?
+  cat "$out"
+  grep -q "FAIL" "$out" && rc_price=1
 
   rm -f "$out"
   [ "$rc_check" -eq 0 ] || rc=1
@@ -373,6 +375,9 @@ do_kg() {
   [ "$rc_selftest" -eq 0 ] || rc=1
 
   if [ "$rc" -ne 0 ]; then
+    [ "$rc_edges" -eq 0 ] || echo "KG_FAIL kg_edges.py (rc=$rc_edges)"
+    [ "$rc_price" -eq 0 ] || echo "KG_FAIL bridge_price_derivative.py (rc=$rc_price)"
+    [ "$rc_selftest" -eq 0 ] || echo "KG_FAIL gate_kg_fail_closed.py (rc=$rc_selftest)"
     echo "KG_SECTION_RED rc=$rc (check=$rc_check regress=$rc_regress edges=$rc_edges price=$rc_price selftest=$rc_selftest)"
     return 1
   fi
@@ -585,12 +590,13 @@ run_preflight() {
   preflight_check hash_version python3 checks/hash_version.py
   preflight_check candidates_quarantine python3 checks/candidates_quarantine.py
   preflight_check guard_self_test python3 checks/guard_self_test.py
+  preflight_check gate_pin_clean python3 checks/gate_pin_clean.py --selftest
   preflight_check ci_workflow python3 checks/ci_workflow.py
   if [ -n "$PREFLIGHT_FAILED" ]; then
     echo "PREFLIGHT_RED: провалились:$PREFLIGHT_FAILED"
     return 1
   fi
-  echo "PREFLIGHT_GREEN: 12 проверок"
+  echo "PREFLIGHT_GREEN: 13 проверок"
   return 0
 }
 
@@ -625,41 +631,94 @@ pin_cd() {
   esac
 }
 
+pin_assert_clean() {
+  local where="$1" status
+  [ -n "${GATE_PIN:-}" ] || {
+    echo "PIN_FAIL: нет worktree при проверке чистоты ($where)"
+    return 1
+  }
+  status=$(git -C "$GATE_PIN" status --porcelain --untracked-files=normal -- . ':!results') || {
+    echo "PIN_FAIL: git status недоступен ($where)"
+    return 1
+  }
+  if [ -n "$status" ]; then
+    echo "PIN_DIRTY: pinned worktree не чист ($where)"
+    printf '%s\n' "$status"
+    return 1
+  fi
+  return 0
+}
+
 make_pin() {
   [ -n "$GATE_HEAD" ] || {
     echo "GATE_RED: не удалось зафиксировать HEAD до preflight"
     return 1
   }
   GATE_PIN=$(mktemp -d /tmp/marfagenez-gatepin-XXXXXX) || {
-    GATE_PIN=""; echo "GATE_RED: не создать каталог worktree"; return 1;
+    GATE_PIN=""; echo "PIN_FAIL: mktemp недоступен"; return 1;
   }
   rmdir "$GATE_PIN" || {
-    rm -rf "$GATE_PIN"; GATE_PIN=""; echo "GATE_RED: не подготовить путь worktree"; return 1;
+    rm -rf "$GATE_PIN"; GATE_PIN=""
+    echo "PIN_FAIL: не подготовить путь worktree"; return 1;
   }
-  mkdir -p "$ROOT/core/target" "$ROOT/laws/.lake" || {
-    GATE_PIN=""; echo "GATE_RED: не подготовить общие каталоги target/.lake"; return 1;
+  mkdir -p "$ROOT/core/target" || {
+    GATE_PIN=""; echo "PIN_FAIL: не подготовить core/target"; return 1;
   }
   if ! git worktree add --detach "$GATE_PIN" "$GATE_HEAD" >/dev/null 2>&1; then
     rm -rf "$GATE_PIN"; GATE_PIN=""
-    echo "GATE_RED: git worktree add не создал pin; запуск по живому дереву запрещён"
+    echo "PIN_FAIL: git worktree add недоступен -- гейт без пина не существует"
     return 1
   fi
-  if ! ln -s "$ROOT/core/target" "$GATE_PIN/core/target"; then
-    echo "GATE_RED: не создать core/target symlink"
+  if ! ln -s "$ROOT/core/target" "$GATE_PIN/core/target" 2>/dev/null; then
+    echo "PIN_FAIL: core/target symlink не создан"
     drop_pin; return 1
   fi
-  if ! ln -s "$ROOT/laws/.lake" "$GATE_PIN/laws/.lake"; then
-    echo "GATE_RED: не создать laws/.lake symlink"
-    drop_pin; return 1
+
+  # Не symlink-ить laws/.lake внутрь worktree: cache entries могут ссылаться
+  # на tracked files (laws/.gitignore, laws/Legacy.lean). Копируем содержимое
+  # с dereference, чтобы запись в cache не могла менять исходники pinned HEAD.
+  if [ -d "$ROOT/laws/.lake" ]; then
+    mkdir -p "$GATE_PIN/laws/.lake" || {
+      echo "PIN_FAIL: не создать изолированный laws/.lake"
+      drop_pin; return 1;
+    }
+    if ! cp -aL --reflink=auto "$ROOT/laws/.lake/." "$GATE_PIN/laws/.lake/"; then
+      echo "PIN_FAIL: не скопировать Lean cache в pin"
+      drop_pin; return 1;
+    fi
   fi
-  [ -L "$GATE_PIN/core/target" ] && [ -L "$GATE_PIN/laws/.lake" ] || {
-    echo "GATE_RED: отсутствует обязательный symlink в pin"
+
+  [ -L "$GATE_PIN/core/target" ] || {
+    echo "PIN_FAIL: core/target symlink не создан корректно"
     drop_pin; return 1;
   }
-  echo "гейт: pin HEAD $GATE_HEAD -> $GATE_PIN (секции: $PINNED_SECTIONS)"
+  [ ! -L "$GATE_PIN/laws/.lake" ] || {
+    echo "PIN_FAIL: laws/.lake не должен быть symlink"
+    drop_pin; return 1;
+  }
+  if ! pin_assert_clean "сразу после создания"; then
+    echo "PIN_FAIL: worktree грязный до запуска секций"
+    drop_pin; return 1;
+  fi
+  echo "гейт: pin HEAD $GATE_HEAD -> $GATE_PIN (секции: $PINNED_SECTIONS; .lake isolated copy)"
 }
+
 drop_pin() {
-  [ -n "$GATE_PIN" ] || return 0
+  [ -n "${GATE_PIN:-}" ] || return 0
+  if [ -d "$GATE_PIN/laws/.lake" ]; then
+    local cache_tmp
+    cache_tmp=$(mktemp -d /tmp/marfagenez-lakecache-XXXXXX) || cache_tmp=""
+    if [ -n "$cache_tmp" ] && cp -aL --reflink=auto "$GATE_PIN/laws/.lake/." "$cache_tmp/"; then
+      rm -rf "$ROOT/laws/.lake"
+      if ! mv "$cache_tmp" "$ROOT/laws/.lake"; then
+        echo "PIN_CACHE_SYNC_WARN: не удалось обновить root laws/.lake"
+        rm -rf "$cache_tmp"
+      fi
+    else
+      [ -z "$cache_tmp" ] || rm -rf "$cache_tmp"
+      echo "PIN_CACHE_SYNC_WARN: не удалось скопировать Lean cache обратно"
+    fi
+  fi
   git worktree remove --force "$GATE_PIN" 2>/dev/null
   GATE_PIN=""
 }
@@ -857,7 +916,13 @@ case "$WHAT" in
     gate_wait lean
     gate_start reach
     gate_wait build
-    gate_start exp
+    if pin_assert_clean "перед запуском exp"; then
+      gate_start exp
+    else
+      echo "GATE_RED: exp не запущена — pinned source tree dirty"
+      GATE_RC[exp]=125
+      GATE_T[exp]="dirty"
+    fi
     gate_wait_all
     gate_report
     ;;

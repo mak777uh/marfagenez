@@ -381,7 +381,7 @@ cd marfagenez
 ### Всё сразу
 
 ```bash
-bash run.sh preflight # быстрые проверки контрактов и дрейфа, без сборок
+bash run.sh preflight # быстрые проверки контрактов и чистоты pin, без сборок
 bash run.sh          # полный гейт: preflight, затем pinned DAG
 bash run.sh test     # только тесты Rust
 bash run.sh lean     # только сборка Lean
@@ -546,10 +546,10 @@ marfagenez/
 
 | Показатель | Значение |
 |---|---:|
-| Rust `#[test]`-атрибуты | <!-- live:tests -->453<!-- /live --> |
+| Rust `#[test]`-атрибуты | <!-- live:tests -->463<!-- /live --> |
 | Файлы Rust-тестов | <!-- live:test_files -->43<!-- /live --> |
 | Файлы ядра `core/src/*.rs` | <!-- live:src_files -->19<!-- /live --> |
-| Бинарники `core/src/bin` | <!-- live:bin_files -->12<!-- /live --> |
+| Бинарники `core/src/bin` | <!-- live:bin_files -->13<!-- /live --> |
 | Модули Lean `Medium` | <!-- live:medium_files -->61<!-- /live --> |
 | Теоремы/леммы `Medium` | <!-- live:medium_theorems -->311<!-- /live --> |
 | Теоремы/леммы `Medium + Legacy` | <!-- live:lean_theorems -->338<!-- /live --> |
