@@ -16,7 +16,7 @@ from typing import Any
 
 ROOT = Path("/root/marfagenez")
 TASK_ID = "EXP-2026-4103"
-AGENT_ID = "exper"
+AGENT_ID = "main-exec"  # lease EXP-2026-4103-a2 held by main-exec per owner decision 2026-11-27
 OUTCOME_MAP = {
     "passed": "passed",
     "failed": "failed",
@@ -30,7 +30,7 @@ OUTCOME_MAP = {
 
 
 def canonical(value: Any) -> bytes:
-    return json.dumps(value, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
 
 
 def load_json(path: Path) -> Any:

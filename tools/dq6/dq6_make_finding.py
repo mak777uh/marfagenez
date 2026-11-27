@@ -123,7 +123,7 @@ def main() -> int:
         raise SystemExit("claim task hash is absent")
     if claim.get("task_id") != TASK_ID or int(claim.get("version", -1)) != version:
         raise SystemExit("claim/task mismatch")
-    canonical_task = json.dumps(task, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    canonical_task = json.dumps(task, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
     computed_version_hash = task_doc.get("task_version_sha256") or hashlib.sha256(canonical_task).hexdigest()
     if version_hash != computed_version_hash:
         raise SystemExit("claim task hash does not match the frozen task document")

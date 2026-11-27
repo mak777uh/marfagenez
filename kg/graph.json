@@ -18392,7 +18392,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент**: Hordijk-Hein-Steel, «Autocatalytic Sets and the Origin of Life», E"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18400,7 +18400,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/hordijk10-entropy-e12071733.pdf",
+          "strength": "moderate",
+          "sha256": "2d3aaa9c0217434b2ca86efd2a7b87d3973c60af5d590ff87b621590328ca10b"
         }
       ],
       "relations": [],
@@ -18408,19 +18414,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: Hordijk-Hein-Steel, «Autocatalytic Sets and the Origin of Life», E",
+        "level_kind": "fragment_read",
+        "artifact": "papers/hordijk10-entropy-e12071733.pdf",
+        "artifact_bytes": 178795,
+        "artifact_sha256": "2d3aaa9c0217434b2ca86efd2a7b87d3973c60af5d590ff87b621590328ca10b",
         "locator": {
-          "doi": null,
+          "doi": "10.3390/e12071733",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://doi.org/10.3390/e12071733",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -18549,7 +18555,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент**: England, «Statistical Physics of Self-Replication», arXiv:1209.117"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18557,7 +18563,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/england13-arxiv-1209.1179.pdf",
+          "strength": "moderate",
+          "sha256": "ee43b219c742db84edf7f79048bbfa3b63810a165599c44ff112a71fa58de579"
         }
       ],
       "relations": [],
@@ -18565,19 +18577,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: England, «Statistical Physics of Self-Replication», arXiv:1209.117",
+        "level_kind": "fragment_read",
+        "artifact": "papers/england13-arxiv-1209.1179.pdf",
+        "artifact_bytes": 2751718,
+        "artifact_sha256": "ee43b219c742db84edf7f79048bbfa3b63810a165599c44ff112a71fa58de579",
         "locator": {
           "doi": null,
-          "arxiv": null,
-          "arxiv_version": null,
+          "arxiv": "1209.1179",
+          "arxiv_version": "v1",
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://arxiv.org/abs/1209.1179",
+          "none": false
         },
         "lit_ref": [
           "FAST-S7O-02",
@@ -19197,7 +19209,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент**: тот же обзор Entropy 2010 + J Syst Chem 2015 (papers/hordijk15-jsy"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -19205,7 +19217,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/hordijk10-entropy-e12071733.pdf",
+          "strength": "moderate",
+          "sha256": "2d3aaa9c0217434b2ca86efd2a7b87d3973c60af5d590ff87b621590328ca10b"
         }
       ],
       "relations": [],
@@ -19213,19 +19231,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: тот же обзор Entropy 2010 + J Syst Chem 2015 (papers/hordijk15-jsy",
+        "level_kind": "fragment_read",
+        "artifact": "papers/hordijk10-entropy-e12071733.pdf",
+        "artifact_bytes": 178795,
+        "artifact_sha256": "2d3aaa9c0217434b2ca86efd2a7b87d3973c60af5d590ff87b621590328ca10b",
         "locator": {
-          "doi": null,
+          "doi": "10.3390/e12071733",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://doi.org/10.3390/e12071733",
+          "none": false
         },
         "lit_ref": [
           "FAST-S7A-01",
@@ -40207,13 +40225,13 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -40242,13 +40260,13 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
@@ -40397,13 +40415,13 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "F-023",
@@ -40412,13 +40430,13 @@
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-025",
@@ -42737,12 +42755,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {

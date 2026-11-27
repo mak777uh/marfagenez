@@ -439,8 +439,10 @@ class HistogramParser:
             raise ValueError(f"{context}: interval reset/hash fields must be blank")
         interval = parse_int(raw[7], context, STEPS)
         count = parse_int(raw[8], context, N * STEPS)
-        if interval == 0 or count == 0:
-            raise ValueError(f"{context}: interval and count must be positive")
+        # interval=0 (deaths in adjacent steps) is physical near the pole
+        # (T_life ~ x^1/2 -> 0 as h -> 1) and is accepted; count stays positive.
+        if interval < 0 or count <= 0:
+            raise ValueError(f"{context}: interval must be non-negative and count positive")
         run.interval_record_count += 1
         if raw[5] == "global":
             if raw[6] != "":
