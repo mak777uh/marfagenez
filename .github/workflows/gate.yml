@@ -24,6 +24,11 @@ jobs:
       - name: Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: core -> target
+
       - name: Python
         uses: actions/setup-python@v5
         with:
@@ -52,23 +57,26 @@ jobs:
             | sh -s -- -y --default-toolchain none
           echo "${HOME}/.elan/bin" >> "${GITHUB_PATH}"
 
+      - name: Cache Lean dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.elan/toolchains
+            laws/.lake
+          key: ${{ runner.os }}-lean-${{ hashFiles('laws/lean-toolchain', 'laws/lakefile.toml', 'laws/lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lean-
+
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes shellcheck
+
       - name: Python YAML dependency
         run: python3 -m pip install --disable-pip-version-check pyyaml numpy
 
       - name: Validate workflow contract
         run: python3 checks/ci_workflow.py
-
-      - name: Rust tests without default features
-        working-directory: core
-        run: cargo test --release --no-default-features --tests -- --test-threads=1
-
-      - name: Lean build
-        working-directory: laws
-        run: |
-          set -euo pipefail
-          # Mathlib from source takes hours; fetch the community prebuilt oleans.
-          lake exe cache get || echo "cache get unavailable, building from source"
-          lake build
 
       - name: Verify Lean FFI feature selection
         run: python3 checks/lean_ffi_feature.py
@@ -76,10 +84,6 @@ jobs:
       - name: Lean FFI tests (serialized)
         working-directory: core
         run: cargo test --release --no-default-features --lib --features lean-ffi -- --test-threads=1
-
-      - name: Rust release examples
-        working-directory: core
-        run: cargo build --release --examples
 
       - name: Full repository gate
         run: bash run.sh all
