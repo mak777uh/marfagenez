@@ -2030,21 +2030,27 @@ bet-hedging оптимален, когда критерий **геометрич
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://proceedings.neurips.cc/paper_files/paper/2010/file/091d584fced301b442654dd8c23b3fc9-Paper.pdf",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/vanhasselt10-neurips.pdf",
+  "bytes": 195211,
+  "sha256": "f94cf09e58b6392da4d81504cd6349ae432023f08dc040d11c1b6d23a9a4f542",
+  "retrieved_at": "2026-11-27T10:30:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "van Hasselt 2010 Double Q-learning, NeurIPS 23 proceedings PDF (9 стр., ~33k chars текста); прочитаны §1-2 (overestimation bias, winner's curse, Jensen, double estimator); Auer et al. 2002 и Thrun-Schwartz 1993 остаются вторыми руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "sec1",
+    "to": "sec2.2"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2061,9 +2067,8 @@ bet-hedging оптимален, когда критерий **геометрич
 
 
 **Кто.** Thrun & Schwartz (1993); van Hasselt (2010); Auer, Cesa-Bianchi & Fischer (2002).
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** `E[max]` из `n` шумных чтений строго выше истинного среднего, смещение ≈ `σ·√(2 ln n)` и
-**растёт** с числом чтений. Альтернатива — `mean + k·σ/√n` (UCB): оптимизм, **убывающий** с опытом.
+**Проверено.** **фрагмент** papers/vanhasselt10-neurips.pdf (NeurIPS 2010, sha256 f94cf09e…), 2026-11-27; §1-2 прочитаны, цитаты сверены; Auer et al. 2002 и Thrun-Schwartz 1993 — вторые руки.
+**Утверждение (по первичному тексту van Hasselt 2010; Auer/Thrun-Schwartz — пересказ).** Q-learning завышает action values из-за положительного смещения max по шумным оценкам — winner's curse, следует из неравенства Йенсена; double estimator (разделение выбора и оценки, иногда занижает) сходится там, где Q-learning проваливается. Альтернатива — UCB mean+k*sigma/sqrt(n) (Auer et al., вторые руки).
 **Что меняет.** `Q-010`: четыре плеча — max / mean / UCB / sham.
 
 ---
@@ -2538,21 +2543,27 @@ doi:10.3390/systems12040111.
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/gneiting07-jasa.pdf",
+  "bytes": 556804,
+  "sha256": "d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2",
+  "retrieved_at": "2026-11-27T09:15:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "тот же артефакт, что L-040 (Gneiting & Raftery 2007 JASA, полный PDF); для L-049 использованы разделы о proper scoring rules и log-score; DOI не дублируется, каноническая запись — L-040"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "proper-scoring-rules",
+    "to": "log-score"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2569,11 +2580,9 @@ doi:10.3390/systems12040111.
 
 
 **Кто.** те же, что `L-039` и `L-040`.
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Лог-счёт по strictly proper rule эквивалентен информационному выигрышу; искажением его
-не улучшить.
-**Что меняет.** `Q-022`: прибор — **лог-счёт по предрегистрации** (вероятность до прогона) + **MDL** (число
-независимых постулатов).
+**Проверено.** **фрагмент** papers/gneiting07-jasa.pdf (Gneiting & Raftery 2007, тот же артефакт что L-040, sha256 d31a0c5f…), 2026-11-27.
+**Утверждение (по Gneiting & Raftery 2007; DOI канонически у L-040).** Log-score по strictly proper scoring rule — локально собственная мера точности вероятностных прогнозов; искажение (недооценка/переоценка) строго проигрывает по ожиданию — эквивалент информационному выигрышу по Кульбаку-Лейблеру.
+**Что меняет.** `Q-022`: прибор — **лог-счёт по предрегистрации** (вероятность до прогона) + **MDL** (число независимых постулатов).
 
 ---
 
@@ -6089,4 +6098,94 @@ MODES:                   набор из нескольких метрик ди�
 **Ссылка.** https://doi.org/10.1038/s41467-023-37930-x
 **Проверено.** **аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читался.
 **Утверждение.** Damage dynamics and the role of chance in the timing of E. coli cell death (2023) — измеряемая динамика повреждения и насыщаемый ремонт
+**Что даёт нам.** — (суждение не сделано).
+
+### L-109 · Evolution of Swarm Robotics Systems with Novelty Search
+
+```json
+{
+ "L": "L-109",
+ "locator": {
+  "doi": null,
+  "arxiv": "1304.3362",
+  "arxiv_version": "v1",
+  "openalex": null,
+  "pmid": null,
+  "url": "https://arxiv.org/abs/1304.3362",
+  "none": false
+ },
+ "access": {
+  "level": "fragment_read",
+  "artifact": "papers/gomes16-novelty-swarm-arxiv1304.3362.pdf",
+  "bytes": 1793000,
+  "sha256": "ebd7c28ee96b1a8e5be2d606759f811007340764688e656458887638b32adcb9",
+  "retrieved_at": "2026-11-27T21:02:18Z",
+  "via": "arxiv-pdf",
+  "via_detail": "arXiv:1304.3362v1 (11 Apr 2013, Swarm Intelligence manuscript, 34 стр.); прочитаны abstract+intro+related work; цитаты сверены дословно: «solutions are rewarded based on their novelty, rather than their quality with respect to a predefined objective», «Due to the absence of a static objective, novelty search is unaffected by premature convergence»"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": [{"type": "section", "from": "abstract", "to": "related work"}]
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Evolution of Swarm Robotics Systems with Novelty Search",
+  "year": 2013,
+  "first_author": "Jorge Gomes"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** Evolution of Swarm Robotics Systems with Novelty Search (2013). Jorge Gomes; Paulo Urbano; Anders Christensen
+**Ссылка.** https://arxiv.org/abs/1304.3362
+**Проверено.** **фрагмент** arXiv PDF, 2026-11-27T21:02:18Z, abstract+intro+related work; две цитаты сверены дословно.
+**Утверждение.** Evolution of Swarm Robotics Systems with Novelty Search (2013) — novelty search вознаграждает решения за новизну, а не за качество относительно предзаданной цели; отсутствие статической цели защищает от преждевременной сходимости
+**Что даёт нам.** — (суждение не сделано).
+
+### L-110 · A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus
+
+```json
+{
+ "L": "L-110",
+ "locator": {
+  "doi": "10.1371/journal.pone.0104658",
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://doi.org/10.1371/journal.pone.0104658",
+  "none": false
+ },
+ "access": {
+  "level": "fragment_read",
+  "artifact": "papers/pisaster14-deb.xml",
+  "bytes": 182947,
+  "sha256": "eb6525c309643d2c525c5a2a691d3dbb85775e23aa9d94e5501298c473decfae",
+  "retrieved_at": "2026-11-27T21:12:21Z",
+  "via": "pmc-xml",
+  "via_detail": "PLoS ONE 9(8):e104658, PMC4148243 (Monaco, Wethey & Helmuth 2014); прочитаны abstract+model description+Fig.1+Table 1; κ=0.58±0.07 на соматическую ветвь, shrinkage при голодании; РАСХОЖДЕНИЕ: атом FAST-S8A-01 (literature/map/inbox/fast-s8a-atoms-20261127.jsonl) называет авторов «Hambrook, Menge, Walters, Davis & Washburn (2014)» по тому же DOI — фактические авторы Monaco/Wethey/Helmuth; атом подлежит исправлению лит-потоком"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": [{"type": "section", "from": "abstract", "to": "model description"}]
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus",
+  "year": 2014,
+  "first_author": "Caitlin Monaco"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus (2014). Caitlin Monaco; David Wethey; Brian Helmuth
+**Ссылка.** https://doi.org/10.1371/journal.pone.0104658
+**Проверено.** **фрагмент** PMC XML, 2026-11-27T21:12:21Z, abstract+model description+Fig.1+Table 1.
+**Утверждение.** A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus (2014) — DEB-модель ключевого хищника: κ=0.58±0.07 на соматическую ветвь, shrinkage при голодании
 **Что даёт нам.** — (суждение не сделано).
