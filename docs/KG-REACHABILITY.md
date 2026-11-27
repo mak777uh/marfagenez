@@ -10,7 +10,7 @@ The current migration already turns evidence[] and relations[] into graph edges,
 
 conclusion -> experiment measurement -> DATA result JSON -> CODE source/commit.
 
-An experiment receives has_data to a data-artifact node whose path and SHA-256 are computed from the actual result JSON. That node receives generated_by to a code locator. The locator is taken from the recorded command path when that file exists inside the repository; otherwise the explicit model_commit field is used. No script path is guessed from an experiment name. If neither source is present, the run remains visibly unlinked.
+An experiment receives has_data to a data-artifact node whose path and SHA-256 are computed from the actual result JSON. That node receives generated_by to a code locator. The locator pairs the recorded command path (when present) with the explicit model_commit field. The migration does not hash the current checkout as if it were the historical executed bytes; this would be false provenance when the file has changed since the run. The code node is a locator, not copied source. No script path is guessed from an experiment name. If neither source is present, the run remains visibly unlinked.
 
 The new relations carry no epistemic weight. They describe where the measurement came from, not whether its conclusion is true. Literature nodes continue to link through their separately recorded section and artifact references; this does not merge the literature map with the experiment KG.
 
