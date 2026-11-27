@@ -60,9 +60,10 @@ def build_mapping() -> dict:
         if path.parts[-2] == "_archive":
             continue
         data = json.loads(path.read_text(encoding="utf-8"))
-        exp = str(data.get("experiment_id") or path.parent.name)
-        run = str(data.get("run_id") or path.stem)
-        records[f"{exp}/{run}"] = classify(data)
+        # The path is the stable unique locator; metadata fields can be
+        # absent or inconsistent in old records and must not collapse entries.
+        key = f"{path.parent.name}/{path.stem}"
+        records[key] = classify(data)
     return {
         "schema": "marfagenez.legacy-role-phase.v1",
         "rulebook": {
