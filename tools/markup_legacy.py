@@ -37,7 +37,7 @@ def classify(record: dict) -> dict:
                 confirmatory = datetime.fromisoformat(
                     str(registered).replace("Z", "+00:00")
                 ) <= datetime.fromisoformat(str(created).replace("Z", "+00:00"))
-            except ValueError:
+            except (TypeError, ValueError):
                 confirmatory = False
 
     phase = "confirmatory" if confirmatory and role == "verification" else "exploratory"
