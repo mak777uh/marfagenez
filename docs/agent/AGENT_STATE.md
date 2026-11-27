@@ -713,3 +713,17 @@ status: continue
 
 - exp_wear_vec.rs (8 тестов): скаляр K=0.001 против вектора k_j с 10 профилями, канонический k_eff; c2==scalar побайтово, вырождения mB==mC/mD==mE, 4 нулевых контроля paired-identical, поточечный порядок c3<=scalar<=c1; smoke 1801 строка; счётчики 453 теста / 12 бинов
 - статус: гейт c894 -> пуш при зелёном -> exper claim EXP-2026-4105 (FIFO-порядок 4105 -> 4106 -> 4107) -> leased run + анализ -> submission
+
+
+## 2026-11-28 — gate correctness and first speedup tranche (independent validation pending)
+
+- Рабочая ветка: `audit/gate-speedup-2026-11-28`; база: remote master `bd4a4398`; master не изменён.
+- `run.sh`: fail-closed `do_kg` (rc отдельно для kg check / regress / edges / price + распознавание явного `FAIL:` при ошибочном rc=0); добавлен selftest harness в `checks/gate_kg_fail_closed.py`.
+- Быстрый `preflight`: 12 дешёвых контрактов перед pin и дорогостоящими секциями; те же проверки удалены из поздней exp lane; `log_check` вызывается с `--no-test-count`.
+- Pin: все 13 секций (включая новую `build`) работают из detached worktree по HEAD, зафиксированному перед preflight; отсутствие worktree/обязательных symlink теперь fail-closed. Общие `core/target` и `laws/.lake` используются только как кеши.
+- DAG: `reach` стартует после `lean`, `exp` после `build`; остальные независимые секции запускаются без общего барьера. Длительность и rc секции записываются дочерним процессом в атомарные markers; отсутствие marker красное. Exp checks печатают per-check timing.
+- Rust: default test suite больше не принудительно сериализуется; сериализация Lean-FFI сохранена в выделенном CI шаге.
+- CI: удалены повторные прямые default Rust / Lean build / examples шаги до `run.sh all`; добавлены Rust/Lean caches и ShellCheck; release bins/examples собираются внутри pinned gate; сохранён Lean prebuilt cache fetch внутри `do_lean`.
+- Docs/agent: README и AGENTS обновлены для preflight/DAG; данный state синхронизирован с веткой.
+- Текущая проверка: только статическая сверка исходников через GitHub и структурная проверка замены. Здесь **не** выполнялись `bash -n`, ShellCheck, Python selftests, preflight, полный WSL gate или проверка реального времени. Нужна независимая проверка основным агентом на точном PR HEAD; не мержить до неё.
+- Не включены (оставлены следующими пакетами): P5 section cache, P6 claims/audit parallel + RNG equivalence, P7 background gate service/coalescing, P9 sparse pin/scratch cleanup/counter generator, LTO decision (нужен benchmark).
