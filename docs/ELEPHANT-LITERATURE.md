@@ -1843,7 +1843,7 @@ Odling-Smee et al. (2013) Am Nat; Mitteroecker et al. (2016) PNAS.
 
 **Кто.** Vercken et al. (2012) PLoS ONE 7:e34889; Stephens & Charnov (1982); Kussell & Leibler (2005) Science 309:2075;
 Haaland et al. (2019) Proc R Soc B 286:20192070.
-**Проверено.** **частично первый источник**: Vercken et al. 2012 PLoS ONE 7:e34889 — полный текст (staged s7zdw); Stephens & Charnov 1982 и Kussell & Leibler 2005 — по-прежнему вторые руки (paywall).
+**Проверено.** **вторые руки.**
 **Утверждение (пересказ).** У обрыва оптимум сдвигается; риск-чувствительные стратегии количественно описаны;
 bet-hedging оптимален, когда критерий **геометрический**.
 **Что меняет.** Q-019 остаётся ключевым: наш критерий аддитивный → «bet-hedging» не наше слово.
