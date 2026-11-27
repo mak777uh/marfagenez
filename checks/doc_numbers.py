@@ -89,11 +89,22 @@ def count_theorems(root: pathlib.Path) -> int:
 
 
 def count_tests(root: pathlib.Path) -> int:
+    # Feature-gated tests (lean-ffi bridge) do not compile in the default
+    # mode, so the default `cargo test` run cannot see them; count only the
+    # tests the gate actually runs.
     n = 0
     for p in list((root / "core" / "src").rglob("*.rs")) + list(
         (root / "core" / "tests").rglob("*.rs")
     ):
-        n += p.read_text(encoding="utf-8").count("#[test]")
+        lines = p.read_text(encoding="utf-8").splitlines()
+        gated = next(
+            (i for i, ln in enumerate(lines)
+             if "#[cfg(" in ln and 'feature = "lean-ffi"' in ln),
+            len(lines),
+        )
+        for i, line in enumerate(lines[:gated]):
+            if "#[test]" in line:
+                n += 1
     return n
 
 

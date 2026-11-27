@@ -10775,3 +10775,10 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   error-catastrophe lineage, L-090/099/101/102 abstracts, L-097 full_text_examined, 9 узлов
   metadata->abstract_read — devin). Граф стабилен после лит-коммитов (migrate идемпотентен,
   embeddings свежие). Гейт c867 запущен на этом HEAD.
+
+- **861l:** согласование счёта тестов после merge lean-ffi: живой `cargo test` (default, без
+  feature) видит **415** тестов — 10 bridge-тестов за `#[cfg(all(test, feature = "lean-ffi"))]`
+  в core/src/bridge.rs не компилируются в default-режиме. doc_numbers.py и tools/live_numbers.py
+  научены пропускать feature-gated блок (счёт стал 415 = живому прогону), документы синхронизированы:
+  NOT-CLAIMED/PROTOCOL/CLAIMS/LAWS/MODEL/UNREPRODUCIBLE/BRIEF/README = 415 (43 тест-файла, 64 проверки).
+  log_check зелёный, журнал отставаний не имеет.

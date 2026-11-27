@@ -30,7 +30,15 @@ def _files(path: pathlib.Path, suffix: str) -> list[pathlib.Path]:
 def measure(root: pathlib.Path) -> dict[str, int]:
     core_src = root / "core" / "src"
     test_sources = _files(core_src, ".rs") + _files(root / "core" / "tests", ".rs")
-    tests = sum(p.read_text(encoding="utf-8").count("#[test]") for p in test_sources)
+    def _count_default_tests(p: pathlib.Path) -> int:
+        lines = p.read_text(encoding="utf-8").splitlines()
+        gated = next(
+            (i for i, ln in enumerate(lines)
+             if "#[cfg(" in ln and 'feature = "lean-ffi"' in ln),
+            len(lines),
+        )
+        return sum(1 for line in lines[:gated] if "#[test]" in line)
+    tests = sum(_count_default_tests(p) for p in test_sources)
     test_files = len(_files(root / "core" / "tests", ".rs"))
     src_files = len(list(core_src.glob("*.rs"))) if core_src.exists() else 0
     bin_files = len(list((core_src / "bin").glob("*.rs"))) if (core_src / "bin").exists() else 0

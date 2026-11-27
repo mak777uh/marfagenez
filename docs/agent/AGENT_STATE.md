@@ -594,3 +594,9 @@ status: continue
 - граф пересобран и зафиксирован (migrate/build/embeddings/reach); kg_edges, embeddings_fresh зелёные
 - allowlist: v3 CURRENT, v2-с-пином citable; rng_result_audit в lane3
 - status: префлайт в пине -> гейт c867 -> пуш merge-пакета аналитика
+
+## 2026-11-27 — тест-счёт 415 (lean-ffi excluded), цикл 861l
+
+- doc_numbers/live_numbers: skip feature-gated lean-ffi блока (bridge.rs)
+- документы: 415 тестов по всем маркерам; log_check зелёный
+- status: гейт c868 на этом HEAD -> пуш merge-пакета аналитика при зелёном
