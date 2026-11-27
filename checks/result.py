@@ -68,7 +68,30 @@ from pathlib import Path
 from statistics import NormalDist
 from typing import Any
 
-SCHEMA = "marfagenez.experiment-result.v2"
+SCHEMA_V2 = "marfagenez.experiment-result.v2"
+SCHEMA = "marfagenez.experiment-result.v3"
+
+ROLES = ("verification", "validation")
+PHASES = ("confirmatory", "exploratory")
+
+
+def validate_design_fields(role: str, phase: str) -> None:
+    """Check role/phase semantics for a newly-created record."""
+    if role not in ROLES:
+        raise ValueError(f"unknown role {role!r}; expected one of {ROLES}")
+    if phase not in PHASES:
+        raise ValueError(f"unknown phase {phase!r}; expected one of {PHASES}")
+    if role == "validation" and phase == "confirmatory":
+        raise ValueError(
+            "validation cannot be confirmatory under the current lab policy"
+        )
+
+
+def set_design(result: dict[str, Any], role: str, phase: str) -> None:
+    """Assign the epistemic role and phase to a new result record."""
+    validate_design_fields(role, phase)
+    result["role"] = role
+    result["phase"] = phase
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
 
 #: The Rust source that owns the hash's version.
@@ -152,11 +175,21 @@ def new_result(
     seed: int,
     parameters: dict[str, Any],
     command: str,
+    *,
+    role: str = "verification",
+    phase: str = "exploratory",
 ) -> dict[str, Any]:
-    """Creates an empty result with the required metadata."""
+    """Create a v3 result; default conservatively to exploratory verification.
+
+    Confirmatory status must be opted into explicitly after preregistration.
+    Validation is reserved for independent external empirical comparisons.
+    """
+    validate_design_fields(role, phase)
     now = datetime.now(timezone.utc)
     return {
         "schema": SCHEMA,
+        "role": role,
+        "phase": phase,
         "experiment_id": experiment_id,
         "run_id": f"run-{now.strftime('%Y-%m-%dT%H-%M-%S')}",
         "model_commit": _git_commit(),
