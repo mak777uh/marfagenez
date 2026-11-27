@@ -1363,25 +1363,25 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
  "L": "L-026",
  "locator": {
   "doi": null,
-  "arxiv": null,
-  "arxiv_version": null,
+  "arxiv": "q-bio/0501016",
+  "arxiv_version": "v1",
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://arxiv.org/abs/q-bio/0501016",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/dittrich07-bmb-arxiv-qbio0501016.pdf",
+  "bytes": 192340,
+  "sha256": "729aafad73a495e7dbd8f9b3ef7a18e55b103d80cce60abd44e7f0fcfb629391",
+  "retrieved_at": "2026-11-27T10:45:00Z",
+  "via": "arxiv-pdf",
+  "via_detail": "arXiv:q-bio/0501016v1 (Bull Math Biol 69:1199-1232, 2007), Dittrich & Speroni di Fenizio, 20 стр., 42k chars; closed/self-maintaining/semi-organization/organization определения, решётка union/intersection организаций — сверено; Kaleta et al. 2008 остаётся вторым руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "section", "from": "definitions", "to": "lattice"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1398,7 +1398,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** Dittrich & Speroni di Fenizio (2007), Bull Math Biol; Kaleta et al. (2008).
-**Проверено.** **вторые руки.**
+**Проверено.** **фрагмент**: Dittrich & Speroni di Fenizio, «Chemical organization theory», Bull Math Biol 69:1199 (2007), arXiv:q-bio/0501016, papers/dittrich07-bmb-arxiv-qbio0501016.pdf (sha256 729aafad…), 2026-11-27; organization = closed + self-maintaining, организации образуют решётку с union/intersection — сверено; «две части как два organization-множества с общим food set» — прямое следствие union-операции. Kaleta et al. 2008 — вторые руки.
 **Утверждение (пересказ).** Формальное определение **самоподдерживающегося множества** видов в реакционной сети
 (chemical organization): множество замкнуто по реакциям и не имеет «внешней» подпитки своих видов.
 **Что даёт нам.** Готовый **комбинаторный** язык для «организации» — без энергии, только структура.
