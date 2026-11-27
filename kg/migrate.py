@@ -562,8 +562,7 @@ def artifact_nodes(base):
         commit = data.get("model_commit")
         has_commit = (
             isinstance(commit, str)
-            and bool(commit.strip())
-            and commit.lower() not in {"unknown", "none", "null"}
+            and bool(re.fullmatch(r"[0-9a-fA-F]{7,40}", commit.strip()))
         )
         if not command_path and not has_commit:
             continue
