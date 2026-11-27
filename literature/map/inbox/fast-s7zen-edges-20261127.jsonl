@@ -1,0 +1,6 @@
+{"from": "FAST-S7ZEN-01", "to": "FAST-S7ZEN-02", "type": "extends", "note": "Определение frailty → постоянство и пределы модели."}
+{"from": "FAST-S7ZEN-02", "to": "FAST-S7ZEN-03", "type": "extends", "note": "Гетерогенность → динамика средней frailty выживших (селективная смертность)."}
+{"from": "FAST-S7ZEN-03", "to": "FAST-S7ZEN-01", "type": "refines", "note": "Формула z̄(x)=k/(λ+H(x)) уточняет мультипликативную модель VMS79."}
+{"from": "FAST-S7ZEN-01", "to": "FAST-S7ZEB-01", "type": "refines", "note": "Повышает источник s7zeb-01 с abstract+скан до верифицированных цитат полного текста."}
+{"from": "FAST-S7ZEN-03", "to": "FAST-S7ZEB-02", "type": "extends", "note": "Vaupel 2005 gamma-frailty → VM18 формулы для z̄(x) выживших."}
+{"from": "FAST-S7ZEN-04", "to": "FAST-S7ZEN-03", "type": "extends", "note": "Синтез: популяционная vs индивидуальная hazard, граница L-037."}
