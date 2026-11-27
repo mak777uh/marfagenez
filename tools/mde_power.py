@@ -27,7 +27,7 @@ def proportion_mde(success_a: int, success_b: int, n: int,
                    alpha: float = ALPHA, power: float = POWER) -> float:
     """Normal-approximation MDE for difference of two survival proportions.
 
-    A Jeffreys +1/2 pseudo-count per success and failure avoids zero variance
+    A Laplace +1 pooled success and +1 pooled failure correction avoids zero variance
     when both observed arms are all-alive or all-dead. This is a nominal screen,
     not a substitute for estimating between-seed sigma.
     """
@@ -139,7 +139,7 @@ def analyse() -> dict:
         "alpha_two_sided": ALPHA,
         "target_power": POWER,
         "formula": "MDE = (z_(1-alpha/2) + z_power) * sqrt(2*p_pool*(1-p_pool)/n)",
-        "pooled_proportion": "p_pool=(success_a+success_b+1)/(2*n+2), Jeffreys +1/2 correction per arm",
+        "pooled_proportion": "p_pool=(success_a+success_b+1)/(2*n+2), Laplace +1 pooled success and +1 pooled failure",
         "unit_warning": (
             "MDE rows use organisms within one shared environment and are optimistic. "
             "They are not independent seed-level replications. The lab's formal MDE "
@@ -155,6 +155,18 @@ def analyse() -> dict:
             "protocol_capacity_paired_environments": len(protocol),
             "protocol_confirmed_nominal": sum(r["screen"] == "confirmed" for r in protocol),
             "protocol_questionable_nominal": sum(r["screen"] == "questionable" for r in protocol),
+            "confirmed_mean_abs_delta": (
+                sum(r["observed_abs_delta"] for r in protocol if r["screen"] == "confirmed")
+                / max(1, sum(r["screen"] == "confirmed" for r in protocol))
+            ),
+            "confirmed_min_abs_delta": min(
+                (r["observed_abs_delta"] for r in protocol if r["screen"] == "confirmed"),
+                default=None,
+            ),
+            "confirmed_max_abs_delta": max(
+                (r["observed_abs_delta"] for r in protocol if r["screen"] == "confirmed"),
+                default=None,
+            ),
         },
         "rows": frozen + protocol,
     }
@@ -173,7 +185,7 @@ def markdown(report: dict) -> str:
         r"\[ MDE = (z_{1-\alpha/2}+z_{1-\beta})\sqrt{\frac{2\hat p(1-\hat p)}{n}}. \]",
         "",
         "where n is the recorded number of organisms per arm and",
-        "p-hat = (success_a + success_b + 1)/(2n + 2) uses a Jeffreys +1/2 correction.",
+        "p-hat = (success_a + success_b + 1)/(2n + 2) uses Laplace smoothing: +1 pooled success and +1 pooled failure.",
         "The correction avoids zero estimated variance for all-alive/all-dead pairs.",
         "",
         "**Critical limitation:** this is an optimistic organism-level screen. The organisms",
@@ -233,6 +245,12 @@ def markdown(report: dict) -> str:
         f"Rows: {report['counts']['protocol_capacity_paired_environments']}; nominal screen: "
         f"{report['counts']['protocol_confirmed_nominal']} confirmed, "
         f"{report['counts']['protocol_questionable_nominal']} questionable.",
+        f"Nominally confirmed on {report['counts']['protocol_confirmed_nominal']}/"
+        f"{report['counts']['protocol_capacity_paired_environments']} environments; "
+        f"mean observed delta={report['counts']['confirmed_mean_abs_delta']:.3f}, "
+        f"range={report['counts']['confirmed_min_abs_delta']:.3f}-"
+        f"{report['counts']['confirmed_max_abs_delta']:.3f}. These are descriptive "
+        "within-environment organism contrasts, not independent-seed replication.",
         "",
         "| # | Environment (case, n, r, t, m) | Seq alive | Prop alive | delta survival | MDE | Screen |",
         "|---:|---|---:|---:|---:|---:|---|",
