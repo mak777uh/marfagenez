@@ -10712,3 +10712,14 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   1979 frailty + Vaupel 2005, L-011), `6fcd025b` (s7zec: Kooijman DEB book,
   F-004/F-021), `619b058a` (s7zed: Aubin viability theory, C-006). Журнал
   называет все три коммита devin.
+
+- **861e:** технический хвост 861d: аддендум журнала упал при сборке команды в мосту
+  (IndentationError в heredoc), и коммит dbcceaaa ушёл без записи — log_check честно
+  назвал это в префлайте. Журнал называет теперь все коммиты после записи 861c:
+  `8e0d82e2` (s7zeh+s7zei: novelty search sparseness (F-030); Proenca 2019 damage partition 63% (F-002))
+  `dbcceaaa` (fix: pin gate symlink core/target untracked by target/ gitignore pattern (exp section false-dirty); log_check tails: UNREPRODUCIBLE 410->422, dated markers x3; ingest tasks published; journal 861d)
+  `f4a41953` (s7zeg: k-core/bootstrap percolation — graph-derived survival threshold (F-031))
+  `a564c334` (s7zef: Dittrich-Speroni chemical organization theory — closure/self-maintenance (F-022))
+  Суть 861d: фикс пина гейта (симлинк core/target не матчится паттерном target/)
+  и хвосты log_check (410→422 в UNREPRODUCIBLE, три датированных маркера),
+  ингест-задачи devin опубликованы (s7zn..s7zav, s7zbw..s7zdu).
