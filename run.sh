@@ -654,7 +654,7 @@ make_pin() {
     echo "GATE_RED: не удалось зафиксировать HEAD до preflight"
     return 1
   }
-  GATE_PIN=$(mktemp -d /tmp/marfagenez-gatepin-XXXXXX) || {
+  GATE_PIN=$(mktemp -d /var/tmp/marfagenez-gatepin-XXXXXX) || {
     GATE_PIN=""; echo "PIN_FAIL: mktemp недоступен"; return 1;
   }
   rmdir "$GATE_PIN" || {
