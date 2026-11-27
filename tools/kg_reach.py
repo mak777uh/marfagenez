@@ -38,27 +38,27 @@ def reachability(nodes, edges, legacy_ids=()):
         if node.get("kind") not in CONCLUSIONS:
             continue
         start = node["id"]
-        queue = deque([(start, [start])])
-        seen = {start}
+        initial_experiment = node.get("kind") == "experiment"
+        queue = deque([(start, [start], False, initial_experiment)])
+        seen_states = {(start, False, initial_experiment)}
         found = None
         while queue:
-            current, path = queue.popleft()
+            current, path, has_measurement, has_experiment = queue.popleft()
             artifact_type = (by_id[current].get("data") or {}).get("artifact_type")
-            if artifact_type in {"code_locator"}:
-                has_measurement = any(
-                    (by_id[item].get("data") or {}).get("artifact_type") == "result_record"
-                    for item in path
-                )
-                has_experiment = any(
-                    by_id[item].get("kind") == "experiment" for item in path
-                )
-                if has_measurement and has_experiment:
-                    found = path
-                    break
+            has_measurement = has_measurement or artifact_type == "result_record"
+            has_experiment = has_experiment or by_id[current].get("kind") == "experiment"
+            if artifact_type == "code_locator" and has_measurement and has_experiment:
+                found = path
+                break
             for edge_type, target in outgoing.get(current, []):
-                if target not in seen:
-                    seen.add(target)
-                    queue.append((target, path + [target]))
+                state = (
+                    target,
+                    has_measurement,
+                    has_experiment or by_id[target].get("kind") == "experiment",
+                )
+                if state not in seen_states:
+                    seen_states.add(state)
+                    queue.append((target, path + [target], state[1], state[2]))
         if found:
             status = "reachable"
         elif degree.get(start, 0) == 0:
