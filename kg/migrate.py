@@ -1,5 +1,5 @@
-import hashlib
 #!/usr/bin/env python3
+import hashlib
 """migrate.py — collect nodes for the knowledge graph.
 
 Sources:
@@ -13,6 +13,7 @@ import glob
 import json
 import pathlib
 import re
+import shlex
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 KG = ROOT / "kg"
@@ -176,7 +177,15 @@ def experiments():
             "provenance": "verified_agent",
             "evidence": [{"kind": "experiment", "ref": pathlib.Path(path).relative_to(ROOT).as_posix(), "strength": "strong"}],
             "relations": [],
-            "data": {"source": pathlib.Path(path).relative_to(ROOT).as_posix(), "license": "repo", "accessed_at": ""},
+            "data": {
+                "source": pathlib.Path(path).relative_to(ROOT).as_posix(),
+                "license": "repo",
+                "accessed_at": "",
+                "model_commit": d.get("model_commit"),
+                "seed": d.get("seed"),
+                "command": d.get("command"),
+                "rng_version": d.get("rng_version"),
+            },
             "created_at": d.get("created_at", "2026-11-20"),
             "updated_at": "2026-11-20",
         })
@@ -478,11 +487,130 @@ def evidence_nodes(base):
     return out
 
 
+
+
+def _command_script(command):
+    """Return a repository-local script path from a recorded argv string, if present."""
+    if not isinstance(command, str) or not command.strip():
+        return None
+    try:
+        parts = shlex.split(command)
+    except ValueError:
+        return None
+    for part in parts:
+        if part.startswith("-") or "://" in part:
+            continue
+        candidate = pathlib.Path(part)
+        if candidate.suffix.lower() not in {".py", ".rs", ".sh"}:
+            continue
+        full = (ROOT / candidate).resolve()
+        try:
+            full.relative_to(ROOT.resolve())
+        except ValueError:
+            continue
+        if full.is_file():
+            return full.relative_to(ROOT).as_posix()
+    return None
+
+
+def artifact_nodes(base):
+    """Materialize run JSON and source-code locators as non-epistemic graph evidence."""
+    artifacts = {}
+    code_nodes = {}
+    for node in base:
+        if node.get("kind") != "experiment":
+            continue
+        data = node.setdefault("data", {})
+        source = data.get("source")
+        if not isinstance(source, str) or not source:
+            continue
+        source_path = (ROOT / source).resolve()
+        try:
+            source_path.relative_to(ROOT.resolve())
+            raw = source_path.read_bytes()
+        except (ValueError, OSError):
+            continue
+
+        data_id = "DATA-" + hashlib.sha256(source.encode("utf-8")).hexdigest()[:16]
+        node.setdefault("relations", []).append({"type": "has_data", "target": data_id})
+        artifacts.setdefault(data_id, {
+            "id": data_id,
+            "kind": "evidence",
+            "text": "experiment result data " + source,
+            "context": {
+                "scope": "immutable result JSON",
+                "parameters": source,
+                "conditions": "sha256-addressed file artifact",
+            },
+            "epistemic": "hypothesis",
+            "provenance": "verified_agent",
+            "evidence": [],
+            "relations": [],
+            "data": {
+                "artifact_type": "result_record",
+                "source": source,
+                "bytes": len(raw),
+                "sha256": hashlib.sha256(raw).hexdigest(),
+                "seed": data.get("seed"),
+                "rng_version": data.get("rng_version"),
+            },
+            "created_at": node.get("created_at", "2026-11-27"),
+            "updated_at": "2026-11-27",
+        })
+
+        command_path = _command_script(data.get("command"))
+        commit = data.get("model_commit")
+        has_commit = (
+            isinstance(commit, str)
+            and bool(re.fullmatch(r"[0-9a-fA-F]{7,40}", commit.strip()))
+        )
+        if not command_path and not has_commit:
+            continue
+
+        # This is a locator, not a claim that the current checkout bytes equal
+        # the historical source. Pair the command path with the recorded model
+        # commit; do not hash a possibly newer working-tree file as run provenance.
+        code_key = "commit:" + (commit.strip() if has_commit else "unversioned")
+        code_key += "@path:" + (command_path or "not-recorded")
+        code_id = "CODE-" + hashlib.sha256(code_key.encode("utf-8")).hexdigest()[:16]
+        artifacts[data_id]["relations"].append({"type": "generated_by", "target": code_id})
+        if code_id not in code_nodes:
+            code_source = (
+                "git:" + commit.strip() + ":" + command_path
+                if has_commit and command_path
+                else ("git:" + commit.strip() if has_commit else "path:" + command_path)
+            )
+            code_nodes[code_id] = {
+                "id": code_id,
+                "kind": "evidence",
+                "text": "recorded model source locator " + code_source,
+                "context": {
+                    "scope": "recorded model source locator, not copied source bytes",
+                    "parameters": code_source,
+                    "conditions": "path comes from command; revision comes from model_commit",
+                },
+                "epistemic": "hypothesis",
+                "provenance": "verified_agent",
+                "evidence": [],
+                "relations": [],
+                "data": {
+                    "artifact_type": "code_locator",
+                    "source": code_source,
+                    "model_commit": commit,
+                    "command_path": command_path,
+                    "command": data.get("command"),
+                    "version_pinned": has_commit,
+                },
+                "created_at": node.get("created_at", "2026-11-27"),
+                "updated_at": "2026-11-27",
+            }
+    return list(artifacts.values()) + list(code_nodes.values())
+
 def main():
     base = claims() + formulas() + experiments() + literature() + definitions() + bridges()
     base = apply_lit_refs(base)
     base = apply_node_refs(base)
-    nodes = base + evidence_nodes(base)
+    nodes = base + evidence_nodes(base) + artifact_nodes(base)
     seen = set()
     unique = []
     for n in nodes:
