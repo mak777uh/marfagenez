@@ -1,0 +1,2453 @@
+{
+  "schema": "marfagenez.legacy-role-phase.v1",
+  "rulebook": {
+    "validation": "Only explicit independent external dataset/source metadata qualifies",
+    "confirmatory": "Only timestamped preregistration with primary_outcome and analysis before created_at qualifies; validation-confirmatory is prohibited",
+    "legacy_v2": "Without both proofs, historical v2 records are conservatively classified as verification/exploratory"
+  },
+  "count": 407,
+  "records": {
+    "EXP-22/run-2026-11-12T12-46-12": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-22/run-2026-11-13T12-51-39": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-23/run-2026-11-12T12-55-33": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-24/run-2026-11-12T13-01-44": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-24/run-2026-11-12T13-03-34": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-30/run-2026-11-12T15-49-47": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-32/run-2026-11-12T22-02-09": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-50/run-2026-11-12T16-14-46": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-52/run-2026-11-12T22-03-53": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-52/run-2026-11-13T01-28-51": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-53/run-2026-11-12T22-05-48": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-54/run-2026-11-12T22-08-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-55/run-2026-11-12T22-17-24": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-56/run-2026-11-12T22-23-48": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-56/run-2026-11-12T22-25-47": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-56/run-2026-11-13T12-51-39": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-57/run-2026-11-13T01-31-44": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-58/run-2026-11-12T22-27-30": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-58/run-2026-11-13T01-34-07": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-59/run-2026-11-13T01-37-10": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-60/run-2026-11-12T22-28-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-60/run-2026-11-13T01-42-34": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-61/run-2026-11-12T22-29-09": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-61/run-2026-11-13T01-43-39": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-61/run-2026-11-13T01-43-57": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-62/run-2026-11-13T01-49-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-62/run-2026-11-13T01-49-42": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-63/run-2026-11-13T01-50-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-64/run-2026-11-13T01-51-27": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-65/run-2026-11-13T01-52-33": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-66/run-2026-11-13T01-53-05": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-77/run-2026-11-13T02-04-30": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-78/run-2026-11-13T02-06-17": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-80/run-2026-11-13T02-07-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-81/run-2026-11-13T02-07-55": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-82/run-2026-11-13T02-08-39": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-83/run-2026-11-13T02-09-25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-84/run-2026-11-13T02-09-43": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-85/run-2026-11-13T02-10-48": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-86/run-2026-11-13T02-12-27": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-87/run-2026-11-13T02-16-45": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-87/run-2026-11-13T12-51-31": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-88/run-2026-11-13T02-25-56": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-88/run-2026-11-13T02-26-12": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-88/run-2026-11-13T02-26-24": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-98/run-2026-11-13T09-25-18": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-CLOSURE-MEASURE/run-2026-11-20T12-00-27": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-CLOSURE-MEASURE/run-2026-11-20T12-01-14": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-DIVISION-THRESHOLD/run-2026-11-19T13-52-19": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-PRICE-KINKS/run-2026-11-20T11-02-03": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-PRICE-KINKS/run-2026-11-20T11-04-10": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-SHADOW-PRICE/run-2026-11-20T10-06-53": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-SHADOW-PRICE/run-2026-11-20T10-09-49": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "EXP-SHAPE-REG/run-2026-11-18T19-51-58": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "b3-tiebreak/run-2026-11-15T10-18-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "b3-tiebreak/run-2026-11-15T10-19-05": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "capacity-curve/run-2026-11-11T21-49-27": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "capacity-edge/run-2026-11-16T01-17-33": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "capacity-edge/run-2026-11-16T01-21-26": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "capacity-refined/run-2026-11-11T21-52-09": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "capacity/run-2026-11-11T21-40-11": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "capacity/run-2026-11-13T00-59-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "competition-edge/run-2026-11-16T02-54-51": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "crossing-is-death/run-2026-11-12T16-00-39": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "crossing-is-death/run-2026-11-13T01-06-27": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "crossing-shape/run-2026-11-12T15-59-50": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "crossing-shape/run-2026-11-13T00-58-36": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "crowding-law-law2/run-exp25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "crowding-law-law3/run-exp25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "crowding-law/run-exp21": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "damage-never-accumulates/run-2026-11-12T16-01-38": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "damage-never-accumulates/run-2026-11-13T00-58-38": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "death-budget-closed/run-2026-11-12T16-02-02": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "death-budget-closed/run-2026-11-13T01-05-36": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "death-budget-exact/run-2026-11-12T16-00-57": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "death-budget-exact/run-2026-11-13T00-58-38": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "empty-cell-refused/run-2026-11-12T21-42-08": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "env-map/run-2026-11-16T16-01-17": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "env-prior/run-2026-11-16T12-45-23": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exit-rule/run-2026-11-16T14-08-15": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp21-feed-collapse/run-2026-11-12T12-38-39": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp21-feed-collapse/run-2026-11-13T12-51-30": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp31_capacity_was_forty/run-2026-11-12T21-49-53": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp31_capacity_was_forty/run-2026-11-12T21-50-52": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp31_capacity_was_forty/run-2026-11-12T21-51-00": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp66-second-occupant/run-2026-11-12T22-43-36": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp66-second-occupant/run-2026-11-12T22-43-55": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp66-second-occupant/run-2026-11-12T22-44-54": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp67-where-does-anything-die/run-2026-11-12T22-45-46": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp67-where-does-anything-die/run-2026-11-12T22-46-25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp68-bisect-the-death-threshold/run-2026-11-12T22-46-56": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp69-a-sitter-dies-at-the-same-maintenance/run-2026-11-12T22-49-18": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp70-the-threshold-offset-is-the-window/run-2026-11-12T22-51-10": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp71-does-hunger-feed-back-into-moving/run-2026-11-12T22-57-11": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp72-is-the-move-cost-charged/run-2026-11-12T23-00-26": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp73-is-the-cap-the-whole-explanation/run-2026-11-12T23-01-55": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp75-the-capacity-is-how-many-cells-can-feed/run-2026-11-12T23-11-43": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp76-can-one-cell-hold-two/run-2026-11-12T23-22-18": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "exp77-why-a-poor-cell-feeds-nobody/run-2026-11-12T23-32-19": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "field-stable/run-2026-11-11T22-03-23": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-11T18-38-50": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-11T18-40-10": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-11T19-03-11": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-11T20-00-10": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-11T20-19-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-13T02-41-54": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-13T02-46-00": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-13T02-47-00": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-13T02-48-10": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-13T02-51-46": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-13T03-01-58": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-13T03-27-02": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-13T03-31-07": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-13T06-14-53": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T07-16-56": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T07-20-19": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T07-29-04": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T08-13-36": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T15-48-26": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T16-09-38": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T16-12-56": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T16-27-28": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T17-11-31": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T17-25-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T17-29-34": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T19-47-08": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T19-59-15": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T20-08-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T20-19-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T20-29-59": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T20-40-21": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T20-49-49": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T20-55-49": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T20-55-59": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T20-59-12": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T21-12-52": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T21-30-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T21-39-21": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T21-48-54": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T21-58-02": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T22-07-25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T22-16-29": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T22-25-33": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T22-37-42": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T22-46-49": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T22-56-12": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T23-02-04": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T23-11-12": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T23-17-08": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T23-20-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-14T23-29-48": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-13-18": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-28-31": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-37-50": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-44-29": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-44-44": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-44-57": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-45-28": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-45-39": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-46-16": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-46-27": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-46-40": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-46-53": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-47-06": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T05-51-08": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T06-00-16": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T06-11-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T07-56-19": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T08-29-22": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T08-40-11": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T08-50-16": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T09-00-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T09-10-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T09-21-44": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T09-34-44": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T09-45-25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T10-47-45": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T10-58-19": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-02-29": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-02-43": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-03-29": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-03-48": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-10-01": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-17-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-19-55": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-26-47": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-27-04": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-27-21": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-32-02": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-41-57": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-48-00": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T11-51-56": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T12-32-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T12-47-33": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-33-22": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-44-20": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-55-15": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-55-28": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-55-40": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-55-53": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-56-06": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-56-25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-56-42": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-57-18": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-57-29": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-57-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T13-58-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T14-14-23": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T14-32-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T14-41-31": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T14-41-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T18-17-37": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T18-30-10": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T18-39-27": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T18-39-42": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T18-44-20": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T18-54-04": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T18-58-51": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T19-14-25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T19-23-49": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T19-24-06": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "frozen-ceiling/run-2026-11-15T19-29-24": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "gradient-capacity/run-2026-11-11T21-47-58": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "gradient-loss/run-2026-11-11T22-22-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "income-tracks-stock-not-crowding/run-2026-11-12T16-10-18": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "income-tracks-stock-not-crowding/run-2026-11-13T00-58-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "indifference-point/run-2026-11-12T15-59-14": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "indifference-point/run-2026-11-13T00-58-33": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T14-28-26": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T14-32-38": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T14-41-34": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T14-41-44": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T18-17-40": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T18-30-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T18-39-31": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T18-39-45": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T18-44-24": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T18-54-08": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T18-58-56": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T19-14-29": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T19-23-54": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T19-24-10": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "look-order/run-2026-11-15T19-29-27": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "map-sensitivity/run-2026-11-16T16-23-17": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "memory-cost/run-2026-11-16T10-29-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "memory-cost/run-2026-11-16T19-46-11": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "memory-cost/run-2026-11-17T05-55-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "memory-question/run-2026-11-16T08-32-15": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "memory-question/run-2026-11-16T19-46-07": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "memory-question/run-2026-11-17T05-55-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "memory-sampling/run-2026-11-16T11-11-09": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "memory-sampling/run-2026-11-16T19-46-24": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "memory-sampling/run-2026-11-17T05-55-53": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "memory-vs-remember/run-2026-11-11T21-05-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "moving-in-uniform-field/run-2026-11-12T15-56-11": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "moving-in-uniform-field/run-2026-11-13T00-59-02": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "moving-in-uniform-field/run-2026-11-13T00-59-16": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "moving-in-uniform-field/run-2026-11-13T00-59-51": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "moving-in-uniform-field/run-2026-11-13T01-03-46": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "nomad-two-thirds/run-2026-11-12T16-02-25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "nomad-two-thirds/run-2026-11-13T01-05-36": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "off-by-one-does-not-touch-counts/run-2026-11-12T16-05-01": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "off-by-one-does-not-touch-counts/run-2026-11-13T00-58-39": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "oscillation/run-2026-11-11T22-01-40": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "overcrowding/run-2026-11-11T22-20-40": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "pair-penalty-or-queue/run-2026-11-12T15-57-52": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "pair-penalty-or-queue/run-2026-11-13T00-58-31": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "poor-cells/run-2026-11-11T22-23-34": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T19-59-15": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T20-08-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T20-19-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T20-29-59": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T20-40-21": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T20-49-49": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T20-55-49": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T20-55-59": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T20-59-12": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T21-12-53": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T21-30-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T21-39-21": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T21-48-54": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T21-58-03": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T22-07-25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T22-16-29": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T22-25-34": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T22-37-42": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T22-46-49": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T22-56-12": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T23-02-04": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T23-11-12": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T23-17-08": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T23-20-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-14T23-29-48": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T01-05-00": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-13-18": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-20-33": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-20-42": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-20-51": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-22-38": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-22-47": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-23-10": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-23-26": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-23-29": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-24-28": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-24-54": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-28-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-37-50": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-44-30": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-44-44": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-44-58": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-45-28": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-45-40": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-46-16": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-46-27": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-46-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-46-53": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-47-07": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T05-51-08": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T06-00-16": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T06-11-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T07-56-19": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T08-29-22": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T08-40-11": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T08-50-16": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T09-00-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T09-10-42": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T09-21-44": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T09-34-44": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T09-45-25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T10-47-45": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T10-58-19": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-02-29": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-03-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-03-30": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-03-48": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-04-55": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-10-02": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-17-14": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-19-55": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-26-47": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-27-04": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-27-21": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-32-02": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-41-57": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-48-01": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T11-51-56": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T12-32-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T12-47-34": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-33-23": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-44-20": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-55-15": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-55-28": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-55-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-55-53": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-56-07": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-56-26": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-56-43": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-57-00": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-57-06": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-57-18": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-57-29": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-57-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T13-58-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T14-14-23": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T14-32-35": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T14-41-31": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T14-41-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T18-17-37": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T18-30-10": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T18-39-28": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T18-39-42": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T18-44-20": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T18-54-04": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T18-58-52": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T19-14-25": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T19-23-49": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T19-24-06": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "protocol-capacity/run-2026-11-15T19-29-24": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "random-plateau/run-2026-11-11T20-58-37": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "readout-is-off-by-one-step/run-2026-11-12T16-04-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "readout-is-off-by-one-step/run-2026-11-13T01-05-36": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "refused-move-is-paid/run-2026-11-12T16-02-51": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "refused-move-is-paid/run-2026-11-13T01-05-36": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "regrowth-sets-the-income/run-2026-11-12T16-10-55": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "remember-choice/run-2026-11-11T21-02-22": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "repair-band/run-2026-11-15T23-26-04": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "repair-edge/run-2026-11-16T00-25-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "repair-policy/run-2026-11-15T22-49-36": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "rescue/run-2026-11-16T03-59-51": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "rho-window/run-2026-11-15T21-04-58": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "rho-window/run-2026-11-15T21-30-27": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "shortfall/run-exp26": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "sighted-depletes/run-2026-11-11T21-22-03": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "sighted-depletes/run-2026-11-11T21-23-52": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "standing-is-a-uniform-third/run-2026-11-12T16-09-20": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "standing-is-a-uniform-third/run-2026-11-13T00-58-11": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "standing-is-a-uniform-third/run-2026-11-13T00-58-40": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "standing-is-the-policys-own-branch/run-2026-11-12T16-05-24": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "standing-is-the-policys-own-branch/run-2026-11-13T00-58-40": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "unevenness-or-move-cost/run-2026-11-12T15-58-42": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "unevenness-or-move-cost/run-2026-11-13T00-58-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "unevenness-or-regrowth/run-2026-11-12T15-58-13": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "unevenness-or-regrowth/run-2026-11-13T00-58-32": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "where-the-extra-cost-comes-from/run-2026-11-12T16-03-09": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "where-the-extra-cost-comes-from/run-2026-11-13T01-05-36": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "where-the-sevenfold-gap-goes/run-2026-11-12T16-09-55": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    },
+    "where-the-sevenfold-gap-goes/run-2026-11-13T00-58-41": {
+      "role": "verification",
+      "phase": "exploratory",
+      "rule": "legacy-v2-conservative",
+      "reason": "v2 record contains no explicit independent external validation dataset or preregistered primary outcome and analysis; no historic source record changed"
+    }
+  }
+}

@@ -39,6 +39,11 @@ from result_commit_test import run as run_commit_pin_tests
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
 
+SCHEMA_V2 = "marfagenez.experiment-result.v2"
+SCHEMA_V3 = "marfagenez.experiment-result.v3"
+ROLES = {"verification", "validation"}
+PHASES = {"confirmatory", "exploratory"}
+
 VERDICTS = ("passed", "failed", "void", "insensitive by construction", "not applicable")
 CONTROL_TESTS = ("fires", "silent", "specific")
 
@@ -46,6 +51,21 @@ CONTROL_TESTS = ("fires", "silent", "specific")
 def check_one(path: Path, data: dict) -> list[str]:
     """Returns the list of contract violations for one result."""
     problems: list[str] = []
+
+    # §3 role × phase applies only to new v3 records. Historical v2 records
+    # are not rewritten and are not retroactively assigned guessed metadata.
+    schema = data.get("schema")
+    if schema == SCHEMA_V3:
+        role = data.get("role")
+        phase = data.get("phase")
+        if role not in ROLES:
+            problems.append(f"§3: v3 role must be one of {sorted(ROLES)}, got {role!r}")
+        if phase not in PHASES:
+            problems.append(f"§3: v3 phase must be one of {sorted(PHASES)}, got {phase!r}")
+        if role == "validation" and phase == "confirmatory":
+            problems.append("§3: validation cannot be confirmatory under the current lab policy")
+    elif schema not in (SCHEMA_V2, None):
+        problems.append(f"schema: unsupported result schema {schema!r}")
 
     # §1 arithmetic
     arithmetic = data.get("arithmetic")
