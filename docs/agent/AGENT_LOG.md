@@ -10805,3 +10805,8 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   `dd12324e` (s7zet: Q-010 memory-estimate — devin), `6a6bf553` (s7zeu: Q-028 chemical
   organization theory — devin), `7158eb9d` (protocol: Q-005 parameter-scope, Q-006 LIT-seen/
   LIT-reproduced — devin).
+
+- **861n:** коммит `306995f7` (devin: Q-022 two-gate result definition + consequence-of-setup
+  class в PREDICTIONS.md) вклинился в окно между записью 861m и коммитом 5362c939 — журнал его
+  не назвал, log_check гейта c870 был бы красным. Гейт c870 остановлен до секций, перезапущен
+  как c871 на HEAD с этой записью. Изменений кода нет; doc_numbers/log_check прогнаны заново.

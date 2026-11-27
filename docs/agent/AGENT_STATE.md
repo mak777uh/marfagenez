@@ -609,4 +609,4 @@ status: continue
   DATA-/CODE-узлы получили data.ref, regress сверяет migrate.build_nodes() дословно
 - граф: 1191 узлов, 907 рёбер, 110 изолированных; regress ok; embeddings свежие
 - журнал 861m называет коммиты devin: 3ffa4d4f, a8e90481, dd12324e, 6a6bf553, 7158eb9d
-- status: гейт c870 на этом HEAD -> пуш 52+ коммитов при зелёном -> CI-ран
+- status: гейт c871 на этом HEAD (c870 снят: devin-коммит в окне, назван в 861n) -> пуш 52+ коммитов при зелёном -> CI-ран
