@@ -10,7 +10,7 @@
 ## Формат
 
     {
-      "schema": "marfagenez.experiment-result.v2",
+      "schema": "marfagenez.experiment-result.v3",  # v2 is accepted as legacy input
       "experiment_id": "frozen-ceiling",
       "run_id": "run-2026-11-11T10-00-00",
       "model_commit": "abc1234",
