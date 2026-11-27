@@ -28,7 +28,7 @@ class ReachabilityTests(unittest.TestCase):
             self.node("C-1", "claim", [{"kind": "experiment", "ref": "X-1"}]),
             self.node("X-1", "experiment"),
             self.node("D-1", "evidence", artifact_type="result_record"),
-            self.node("CODE-1", "evidence", artifact_type="source_file"),
+            self.node("CODE-1", "evidence", artifact_type="code_locator"),
         ]
         edges = [
             {"from": "C-1", "to": "X-1", "type": "tested_in"},
