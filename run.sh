@@ -168,6 +168,14 @@ exp_lane3() {
   python3 checks/contract.py || { echo "LANE3_FAIL contract.py"; bad=1; }
   echo "--- mde.py ---"
   python3 checks/mde.py --selftest || { echo "LANE3_FAIL mde.py"; bad=1; }
+  echo "--- lean_ffi_feature.py ---"
+  python3 checks/lean_ffi_feature.py || { echo "LANE3_FAIL lean_ffi_feature.py"; bad=1; }
+  echo "--- test_result_design.py ---"
+  python3 checks/test_result_design.py || { echo "LANE3_FAIL test_result_design.py"; bad=1; }
+  echo "--- test_kg_reach.py ---"
+  python3 checks/test_kg_reach.py || { echo "LANE3_FAIL test_kg_reach.py"; bad=1; }
+  echo "--- test_kg_edges.py ---"
+  python3 checks/test_kg_edges.py || { echo "LANE3_FAIL test_kg_edges.py"; bad=1; }
   echo "--- paper_numbers.py ---"
   python3 checks/paper_numbers.py || { echo "LANE3_FAIL paper_numbers.py"; bad=1; }
   echo "--- paper_claims.py ---"
@@ -325,6 +333,8 @@ do_kg() {
   # Second gate: the corpus, not the generated file, is the source of truth,
   # and import must not move a status by itself (D-07).
   python3 kg/regress.py
+  echo "--- kg_edges.py ---"
+  python3 checks/kg_edges.py || { echo "KG_FAIL kg_edges.py"; bad=1; }
   local rrc=$?
   # F2: цена обязана быть производной функции значения, а не правилом по флагу.
   python3 checks/bridge_price_derivative.py || rrc=1

@@ -10748,3 +10748,12 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   rng selftest/audit OK, result_design unittest OK, markup_legacy OK, mde unittest/selftest OK,
   kg 10/10 OK (после фикса fb50e3b8: статус no-link приоритетнее new-isolated для узла с source-ссылкой),
   lean_ffi_feature OK + cargo 216 passed, step_invariants 3 passed.
+
+- **861i:** адаптация master к merge-пакету аналитика (семь веток): run.sh вызывает новые чеки
+  (kg_edges.py в kg-секции; lean_ffi_feature.py и три юнит-набора test_result_design/test_kg_reach/
+  test_kg_edges в lane3 — tree_contract требует прямых вызовов `python3 checks/...py`);
+  шесть исторических прогонов со схемой experiment/1 (EXP-CLOSURE-MEASURE, EXP-PRICE-KINKS,
+  EXP-SHADOW-PRICE) перенесены в results/_archive/ (contract.py: 401/0 нарушений, 23 в архиве);
+  markup-отчёт перенесён в results/_archive/markup-legacy.json (allowlist: «история»);
+  числа документов: тесты 422->425 (три новых property-теста step_invariants), test_files 42->43,
+  live-маркеры обновлены (README, BRIEF), LAWS/BRIEF/PROTOCOL/NOT-CLAIMED/CLAIMS синхронизированы.

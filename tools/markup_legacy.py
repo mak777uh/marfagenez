@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
-OUTPUT = RESULTS / "_markup-legacy.json"
+OUTPUT = RESULTS / "_archive" / "markup-legacy.json"
 
 
 def classify(record: dict) -> dict:
