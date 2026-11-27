@@ -1,0 +1,3 @@
+{"from": "FAST-S7ZDW-01", "to": "FAST-S2H-02", "type": "extends", "note": "FAST-S2H-02 пересказывает cliff-edge/insurance через Haaland; здесь первичный источник Vercken 2012 PLoS ONE — формулировка ESS и genotype fitness."}
+{"from": "FAST-S7ZDW-02", "to": "W2-0022", "type": "contrasts", "note": "W2-0022 — bet-hedging как переключение фенотипов в fluctuating среде; здесь сдвиг оптимума от дисперсии при статичной функции fitness — разные механизмы выигрыша от вариации."}
+{"from": "FAST-S7ZDW-03", "to": "W2-0041", "type": "analogous", "note": "W2-0041 — gap: нет общего механизма цена ремонта × bet-hedging × наследование; cliff-edge даёт ещё один пример «критерий ≠ механизм»."}
