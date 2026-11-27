@@ -209,7 +209,7 @@ pub fn lean_tilt_zero_iff(mu: u64) -> bool {
 /// the same formula, so that a disagreement points at a real defect rather than at a
 /// difference of style.
 pub fn rust_saturation(free_walk: u64, wall_law: u64) -> u64 {
-    free_walk.min(wall_law)
+    if free_walk < wall_law { free_walk } else { wall_law }
 }
 
 /// The same filling time, computed in Rust.

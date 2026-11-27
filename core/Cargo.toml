@@ -2,9 +2,14 @@
 name = "medium-core"
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.85"
 
 [lib]
 name = "medium_core"
 path = "src/lib.rs"
 
 [dependencies]
+
+[profile.release]
+overflow-checks = true
+lto = true
