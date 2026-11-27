@@ -545,7 +545,7 @@ marfagenez/
 
 | Показатель | Значение |
 |---|---:|
-| Rust `#[test]`-атрибуты | <!-- live:tests -->407<!-- /live --> |
+| Rust `#[test]`-атрибуты | <!-- live:tests -->422<!-- /live --> |
 | Файлы Rust-тестов | <!-- live:test_files -->42<!-- /live --> |
 | Файлы ядра `core/src/*.rs` | <!-- live:src_files -->19<!-- /live --> |
 | Бинарники `core/src/bin` | <!-- live:bin_files -->9<!-- /live --> |
