@@ -89,6 +89,9 @@ do_lean() {
   # ниже -- отдельный критерий провала, а не украшение.
   local out rc=0
   out=$(mktemp)
+  # Fetch the prebuilt Mathlib oleans inside the pinned tree. Without this,
+  # a cold CI runner may rebuild Mathlib from source before the actual gate.
+  ( cd laws && lake exe cache get ) || echo "Lean cache unavailable; build from source"
   ( cd laws && lake build ) >"$out" 2>&1 || rc=$?
   grep -E 'Build completed|error' "$out" | head -5
   ( cd laws && lake build Legacy ) >>"$out" 2>&1 || rc=$?
@@ -610,7 +613,8 @@ gate_logs() {
 # видели переходные пары и неописанные коммиты (4 красных гейта 859b-859d).
 # Гейт обязан проверять состояние на момент старта, а не живое дерево:
 # worktree-пин HEAD замораживает историю и файлы; mid-gate коммиты
-# проверяет следующий гейт. Симлинк core/target делит сборку с живым деревом.
+# проверяет следующий гейт. Симлинки core/target и laws/.lake повторно используют
+# release-артефакты и Mathlib cache, но все исходники читаются из pinned HEAD.
 PINNED_SECTIONS="test lean reach dispatcher verus build exp kg claims audit export agents lab"
 GATE_PIN=""
 
