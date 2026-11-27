@@ -727,3 +727,12 @@ status: continue
 - Docs/agent: README и AGENTS обновлены для preflight/DAG; данный state синхронизирован с веткой.
 - Текущая проверка: только статическая сверка исходников через GitHub и структурная проверка замены. Здесь **не** выполнялись `bash -n`, ShellCheck, Python selftests, preflight, полный WSL gate или проверка реального времени. Нужна независимая проверка основным агентом на точном PR HEAD; не мержить до неё.
 - Не включены (оставлены следующими пакетами): P5 section cache, P6 claims/audit parallel + RNG equivalence, P7 background gate service/coalescing, P9 sparse pin/scratch cleanup/counter generator, LTO decision (нужен benchmark).
+
+
+## 2026-11-28 — CI follow-up
+
+- Добавлена branch-scoped concurrency group `gate-${{ github.event.pull_request.head.ref || github.ref_name }}` с `cancel-in-progress: true`, чтобы PR run заменял push run той же ветки, а новый commit не конкурировал с устаревшим gate.
+- Обновлён CI contract: ожидается один прямой Rust test step (serialized Lean-FFI), отсутствие дублирующего direct Lean build, pinned `do_lean` build и `do_build`, кэши Rust/Lean и установка ShellCheck.
+- Убран ложный workflow-комментарий `NOT RUN ON A RUNNER`: hosted GitHub Actions действительно выполняет job. Старый run на промежуточном commit `56e61be` падал только на старом CI contract («WRONG it builds Lean»); контракт обновлён в `f0533c7`.
+- На момент записи актуальный hosted run для commit `f0533c7` запущен, но ещё не завершён. Старые runs, начатые до введения concurrency, могут продолжать работу.
+- P8 выполнен частично: кэши, дедупликация и отмена устаревшего запуска добавлены; path-filter с отдельной облегчённой docs/literature CI lane остаётся отложенным.
