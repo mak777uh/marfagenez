@@ -813,6 +813,13 @@ class ControlPlane:
                     (now_iso, row["attempt_id"]))
                 self._audit(c, payload["agent_id"], "lease.expire", "lease",
                             payload["lease_id"], {"by": "submit", "deadline": row["expires_at_mono"]})
+                # Та же переочередь, что и при следующем claim/reaper: задача
+                # больше не должна оставаться claimed без активного lease.
+                c.execute(
+                    "UPDATE tasks SET status='ready', claimed_by=NULL, "
+                    "lease_expires_at_mono=NULL, max_expires_at_mono=NULL "
+                    "WHERE id=? AND status='claimed' AND lease_epoch=?",
+                    (task_id, row["lease_epoch"]))
             # дедупликация bundle в рамках попытки — до веток late/stale:
             # одинаковый bundle не создаёт дубль, даже если lease уже закрыт (§14.4)
             dup = c.execute(

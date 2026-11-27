@@ -370,6 +370,13 @@ class TestSubmitAndIdempotency(Base):
             "SELECT status FROM attempts WHERE attempt_id=?", (lease["attempt_id"],)
         ).fetchone()[0]
         self.assertEqual(attempt, "expired")
+        task_state = self.db().execute(
+            "SELECT status,claimed_by,lease_expires_at_mono FROM tasks WHERE id='KG-2026-0093'"
+        ).fetchone()
+        self.assertEqual(task_state["status"], "ready")
+        self.assertIsNone(task_state["claimed_by"])
+        self.assertIsNone(task_state["lease_expires_at_mono"])
+        self.assertInvariants()
 
     def test_submit_rejects_wrong_task_version_digest(self):
         self.cp.publish_task(make_task("KG-2026-0092"))
