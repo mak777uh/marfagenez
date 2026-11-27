@@ -1,7 +1,7 @@
 # BRIEF-for-models.md — всё в одном тексте: проект, вопросы, контекст, ссылки
 
-**Дата:** 2026-11-20. **Репозиторий:** `/root/marfagenez` (WSL Ubuntu). **Ветка:** `master` @ `50d4038`.
-**Проверка:** `wsl -e bash /root/marfagenez/run.sh all` → должно быть «ВСЁ ЗЕЛЁНОЕ».
+**Дата:** 2026-11-20. **Репозиторий:** `..` (WSL Ubuntu). **Ветка:** `master` @ `50d4038`.
+**Проверка:** `bash run.sh all` → должно быть «ВСЁ ЗЕЛЁНОЕ».
 
 Этот файл — самодостаточный бриф: его можно целиком отдать другой модели как контекст. Внутри — что за проект,
 что уже установлено, что сломано, три открытых вопроса с вариантами и четыре направления поиска.
@@ -25,8 +25,8 @@ Mathlib** и **Verus**, и **Python/баш-гейт** (`checks/`, `run.sh`), к�
 
 ## 2. Правила, которые нельзя нарушать (иначе гейт красный)
 
-Источник: [`AGENTS.md`](/root/marfagenez/AGENTS.md), [`PROTOCOL.md`](/root/marfagenez/PROTOCOL.md),
-[`AUTONOMY.md`](/root/marfagenez/AUTONOMY.md), [`LESSONS.md`](/root/marfagenez/LESSONS.md).
+Источник: [`AGENTS.md`](../AGENTS.md), [`PROTOCOL.md`](../PROTOCOL.md),
+[`AUTONOMY.md`](../AUTONOMY.md), [`LESSONS.md`](../LESSONS.md).
 
 1. **Арифметика до прогона.** Поле `arithmetic` обязательно (`checks/experiment.py` откажет без него).
 2. **Три контроля:** `fires` / `silent` / `specific` — контроль, который не может провалиться, не контроль.
@@ -45,14 +45,14 @@ Mathlib** и **Verus**, и **Python/баш-гейт** (`checks/`, `run.sh`), к�
 
 | часть | что внутри |
 |---|---|
-| [`POSITIVE.md`](/root/marfagenez/POSITIVE.md) | **реестр результатов.** 53 раздела; у каждого — уровень, формула, **команда**, граница. Физика слона — §4.1–4.14 |
-| [`docs/FINDING-*.md`](/root/marfagenez/docs) | **321 находок**: число, вердикт, ограничения. Именно здесь считались числа |
-| [`docs/*-CLOSED.md`](/root/marfagenez/docs) | **7 закрытий линий**: обмен, организация, структуры, кожа, прошлое, выбор, … |
-| [`docs/MODEL-CEILINGS.md`](/root/marfagenez/docs/MODEL-CEILINGS.md) | три **потолка формулировки** и порядок их снятия (два сняты) |
-| [`docs/SESSION-2026-11-19.md`](/root/marfagenez/docs/archive/SESSION-2026-11-19.md) | итог сессии: что стало твёрдым, что было ошибкой, что делать первым |
-| [`docs/ELEPHANT-LITERATURE.md`](/root/marfagenez/docs/ELEPHANT-LITERATURE.md) | **реестр литературы**: что наука уже нашла про слона — 22 записи L-NNN, банк формул F-NNN, соответствия |
-| [`docs/QUESTIONS.md`](/root/marfagenez/docs/QUESTIONS.md) | очередь вопросов (Q-001…Q-022); **Q-016–Q-022 открыты** |
-| [`docs/ELIMINATED.md`](/root/marfagenez/docs/ELIMINATED.md), [`NOT-CLAIMED.md`](/root/marfagenez/NOT-CLAIMED.md) | что опровергнуто и чего мы не утверждаем |
+| [`POSITIVE.md`](../POSITIVE.md) | **реестр результатов.** 53 раздела; у каждого — уровень, формула, **команда**, граница. Физика слона — §4.1–4.14 |
+| `FINDING-*.md` | **321 находок**: число, вердикт, ограничения. Именно здесь считались числа |
+| `*-CLOSED.md` | **7 закрытий линий**: обмен, организация, структуры, кожа, прошлое, выбор, … |
+| [`docs/MODEL-CEILINGS.md`](MODEL-CEILINGS.md) | три **потолка формулировки** и порядок их снятия (два сняты) |
+| [`docs/SESSION-2026-11-19.md`](archive/SESSION-2026-11-19.md) | итог сессии: что стало твёрдым, что было ошибкой, что делать первым |
+| [`docs/ELEPHANT-LITERATURE.md`](ELEPHANT-LITERATURE.md) | **реестр литературы**: что наука уже нашла про слона — 22 записи L-NNN, банк формул F-NNN, соответствия |
+| [`docs/QUESTIONS.md`](QUESTIONS.md) | очередь вопросов (Q-001…Q-022); **Q-016–Q-022 открыты** |
+| [`docs/ELIMINATED.md`](ELIMINATED.md), [`NOT-CLAIMED.md`](../NOT-CLAIMED.md) | что опровергнуто и чего мы не утверждаем |
 | `core/src/skin.rs`, `core/src/organ.rs`, `core/src/form.rs`, `core/src/shape_world.rs` | механизмы: кожа, организация, форма, мир форм |
 | `core/examples/*.rs` | прогоны, на которые ссылается реестр |
 | `checks/` | гейт: контракт результатов, числа, формат бумаги, журнал |
@@ -86,9 +86,9 @@ Mathlib** и **Verus**, и **Python/баш-гейт** (`checks/`, `run.sh`), к�
 
 ### Q-016. Бумага: включать новые линии или держать отдельно?
 
-**Контекст.** [`docs/PAPER-draft.md`](/root/marfagenez/docs/PAPER-draft.md) содержит **8 результатов** (§4.1–4.8),
+**Контекст.** [`docs/PAPER-draft.md`](PAPER-draft.md) содержит **8 результатов** (§4.1–4.8),
 написанных **до** текущей сессии. Сессия добавила **14 результатов** в пяти линиях — они описаны в
-[`POSITIVE.md`](/root/marfagenez/POSITIVE.md) §4.9–4.14 и в 7 документах о закрытии линий. Абстракт — ровно 250 слов,
+[`POSITIVE.md`](../POSITIVE.md) §4.9–4.14 и в 7 документах о закрытии линий. Абстракт — ровно 250 слов,
 его проверяет `checks/paper_format.py`; добавление результатов требует переписать абстракт и §6 «что модель не может».
 
 **Варианты.** (a) бумага замерзает как запись первых пяти линий; (b) новые линии входят как §4.9–4.13 с новым
@@ -120,7 +120,7 @@ Mathlib** и **Verus**, и **Python/баш-гейт** (`checks/`, `run.sh`), к�
 
 ### Q-018. Что считать мерой роста понимания — и когда останавливаться?
 
-**Контекст.** [`docs/MODEL-CEILINGS.md`](/root/marfagenez/docs/MODEL-CEILINGS.md): три потолка, **два сняты**
+**Контекст.** [`docs/MODEL-CEILINGS.md`](MODEL-CEILINGS.md): три потолка, **два сняты**
 (прошлое — `FINDING-297`; излишек — `FINDING-311`). Третий — «две независимые величины и обмен». Вопрос не «можно ли»,
 а **надо ли**: каждая линия даёт 4–8 результатов и столько же моих ошибок (за сессию — **44 опровергнутых
 собственных утверждения**), но числовой меры понимания нет.
@@ -134,10 +134,10 @@ Mathlib** и **Verus**, и **Python/баш-гейт** (`checks/`, `run.sh`), к�
 
 | # | что проверить | зачем | наши файлы |
 |---|---|---|---|
-| 1 | **Disposable soma** (Kirkwood 1977 и обзоры) — формальная постановка и оптимальная доля | наша §4.13 почти наверняка его частный случай; надо знать, **что сверх** | [`FINDING-310`](/root/marfagenez/docs/FINDING-310.md), [`FINDING-311`](/root/marfagenez/docs/FINDING-311.md) |
-| 2 | **Gompertz и модели накопления повреждений** (Ledberg 2020; SR-модели с production/removal) | наш `μ = floor + rate·(1−q)² + λ·damage` — сравнить режимы: линейная vs экспоненциальная смертность | [`FINDING-294`](/root/marfagenez/docs/FINDING-294.md), [`FINDING-297`](/root/marfagenez/docs/FINDING-297.md) |
-| 3 | **Bet-hedging / short-term insurance** (Evolution 2019 и обзоры) | «полоса допуска» может быть описанным явлением; тогда интересно, **когда** она возникает | [`FINDING-313`](/root/marfagenez/docs/FINDING-313.md), [`FINDING-314`](/root/marfagenez/docs/FINDING-314.md) |
-| 4 | **Минимальные клеточные модели с явной ценой** (Agmon 2020, Piedrafita 2010, Szostak) | есть ли у них закон цены, как наш `Σ u_i·cost_i`, и **как** они задают смерть | [`POSITIVE.md`](/root/marfagenez/POSITIVE.md) §4.11 |
+| 1 | **Disposable soma** (Kirkwood 1977 и обзоры) — формальная постановка и оптимальная доля | наша §4.13 почти наверняка его частный случай; надо знать, **что сверх** | [`FINDING-310`](FINDING-310.md), [`FINDING-311`](FINDING-311.md) |
+| 2 | **Gompertz и модели накопления повреждений** (Ledberg 2020; SR-модели с production/removal) | наш `μ = floor + rate·(1−q)² + λ·damage` — сравнить режимы: линейная vs экспоненциальная смертность | [`FINDING-294`](FINDING-294.md), [`FINDING-297`](FINDING-297.md) |
+| 3 | **Bet-hedging / short-term insurance** (Evolution 2019 и обзоры) | «полоса допуска» может быть описанным явлением; тогда интересно, **когда** она возникает | [`FINDING-313`](FINDING-313.md), [`FINDING-314`](FINDING-314.md) |
+| 4 | **Минимальные клеточные модели с явной ценой** (Agmon 2020, Piedrafita 2010, Szostak) | есть ли у них закон цены, как наш `Σ u_i·cost_i`, и **как** они задают смерть | [`POSITIVE.md`](../POSITIVE.md) §4.11 |
 
 **Что мне нужнее всего:** (1) и (3). Если наш «выбор» — учебниковый disposable soma, честнее это написать и искать,
 что́ у нас **сверх** него. Кандидаты на «сверх»: вывод порога **`h = 1`** и **корневая расходимость** плато — такой
@@ -148,13 +148,13 @@ Mathlib** и **Verus**, и **Python/баш-гейт** (`checks/`, `run.sh`), к�
 ## 7. Как это проверить, не читая всё
 
 ```bash
-wsl -e bash /root/marfagenez/run.sh all       # ожидается «ВСЁ ЗЕЛЁНОЕ»
+bash run.sh all       # ожидается «ВСЁ ЗЕЛЁНОЕ»
 ```
 
 Отдельные прогоны, на которые ссылается реестр:
 
 ```bash
-cd /root/marfagenez/core
+cd ../core
 cargo run --release --example organ_fading          # жизнь = 1/μ(q)
 cargo run --release --example organ_history         # две равные формы не равны
 cargo run --release --example organ_damage_drift    # плато 2.05 против роста до 181.9

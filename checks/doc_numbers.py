@@ -30,6 +30,7 @@ DOCS = [
     "docs/MODEL.md",
     "docs/WHERE-WE-ARE.md",
     "docs/PAPER-draft.md",
+    "laws/README.md",
 ]
 
 # a claim is "N <unit>" in Russian or English
@@ -48,6 +49,31 @@ UNITS = {
 
 # numbers above this in a document are almost always data, not a count of artefacts
 MAX_ARTEFACT = 5000
+
+# Verdict vocabulary is part of the protocol contract: the current system has
+# five outcomes. Any Markdown statement that it has four is stale, wherever it
+# appears (including archival/status documents).
+OLD_FOUR_OUTCOMES = re.compile(
+    r"(?:\bчетыр(?:е|ё|ех|ёх)\s+исход(?:а|ов)?\b|\bfour\s+outcomes?\b)",
+    re.IGNORECASE,
+)
+
+
+def check_outcome_wording(root: pathlib.Path) -> list[str]:
+    problems = []
+    for path in sorted(root.rglob("*.md")):
+        if any(part in {".git", "target", ".lake"} for part in path.parts):
+            continue
+        try:
+            content = path.read_text(encoding="utf-8")
+        except OSError:
+            problems.append(f"{path}: cannot read Markdown")
+            continue
+        for match in OLD_FOUR_OUTCOMES.finditer(content):
+            line = content.count("\n", 0, match.start()) + 1
+            rel = path.relative_to(root).as_posix()
+            problems.append(f"{rel}:{line}: outdated four-outcome wording")
+    return problems
 
 
 def count_theorems(root: pathlib.Path) -> int:
@@ -88,6 +114,9 @@ def main(argv: list[str]) -> int:
     print()
 
     bad = 0
+    for problem in check_outcome_wording(root):
+        print(f"  WRONG {problem}")
+        bad += 1
     for rel in DOCS:
         path = root / rel
         if not path.exists():
