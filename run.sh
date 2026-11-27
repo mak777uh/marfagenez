@@ -306,6 +306,9 @@ do_verus() {
   rc=$?
   grep -E 'verification results|error' "$out" | tail -5
   rm -f "$out"
+  # Целочисленные законы обязаны совпадать с их Rust-копиями (аналитик, ветка C):
+  # нормализация пробелов и комментариев, только пары с общим исполняемым телом.
+  python3 checks/verus_copies_match.py || rc=1
   return $rc
 }
 

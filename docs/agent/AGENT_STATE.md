@@ -533,3 +533,7 @@ status: цикл 858 — MAIN.md sec.13 + сообщения, дальше жу�
 - Core менялся (trace.rs, bridge.rs, Cargo.toml) — состояние обновлено тем же
   коммитом. Тестов теперь 416 (D добавил шесть).
 - status: пакет уходит фоновым гейтом; пуш с workflow-токеном включает CI.
+
+- 861b: verus_copies_match.py вписан в do_verus (tree_contract T1);
+  эмбеддинги пересобраны tools/build_embeddings.py после пересборки графа.
+- status: пакет 859-861 уходит фоновым гейтом; пуш с workflow-токеном включает CI.
