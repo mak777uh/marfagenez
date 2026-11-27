@@ -26,7 +26,7 @@ or not. They do not upgrade a simulation finding to external validation.
 
 ## Findings 176–178 and 226–229
 
-| Finding | Threshold anchor | Independent seed replicates / point | MDE interpretation |
+| Finding | Threshold anchor | Runs / point reported in source | MDE interpretation |
 |---|---|---:|---|
 | FINDING-176 | income = 1.8211; N = 12, 24, 48, 96 | 1 | not estimable: no between-seed sigma |
 | FINDING-177 | repair-cost edge = 0.4000 vs 0.3333 | 1 | not estimable: no between-seed sigma |
