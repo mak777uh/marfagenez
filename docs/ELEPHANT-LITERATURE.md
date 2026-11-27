@@ -5354,17 +5354,17 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-22T00:51:02Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1016/0303-2647(74)90031-8"
+  "level": "full_text_examined",
+  "artifact": "varela74.pdf",
+  "bytes": 1195955,
+  "sha256": "f5b8ae7ff67dd1cc95672455a86979d5c64e592b12941360d41b145f8946ac27",
+  "retrieved_at": "2026-11-27T07:35:00Z",
+  "via": "monoskop-pdf-scan-ocr",
+  "via_detail": "Varela_Maturana_Uribe_1974_Autopoiesis.pdf (BioSystems 5:187-196), 10 стр., OCR rapidocr_onnxruntime по колонкам; цитаты верифицированы как подстроки OCR-текста"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": ["pp.187-196 (OCR)"]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -5380,9 +5380,9 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Autopoiesis: The organization of living systems, its characterization and a model (1974). Francisco J. Varela; Humberto R. Maturana; R. Uribe
 **Ссылка.** https://doi.org/10.1016/0303-2647(74)90031-8
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
-**Утверждение.** Varela et al. 1974 — организация производит собственные компоненты; граница распадается и восстанавливается сетью
-**Что даёт нам.** — (суждение не сделано).
+**Проверено.** **полный текст** скан PDF (monoskop-зеркало), 2026-11-27, sha256 f5b8ae7f…; все 10 страниц OCR'нуты по колонкам, ключевые разделы прочитаны, цитаты верифицированы (батч s7zer).
+**Утверждение.** Varela, Maturana & Uribe 1974 — автопоэтическая организация: единство производится сетью продукций компонентов, участвующих в той же сети; организация не воплощена в свойствах компонентов; граница производится самой динамикой и создаёт условия для неё; самоподдержание первично, воспроизведение — логически и операционально вторично; аллопоэтические системы неавтономны.
+**Что даёт нам.** «Автономный барьер» слона — это в точности требование VMU-1974: граница, произведённая динамикой, создающая условия для себя; организация (отношения) важнее компонентов; кристалл-подобная фиксация границы без самовоспроизводства = единство, но не автопоэзис — наш damage=1 порог без самовосстанавливающейся границы был бы аллопоэтическим.
 
 ### L-094 · Biological organisation as closure of constraints
 
@@ -5669,17 +5669,17 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "metadata_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-22T00:51:02Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1007/BF00623322"
+  "level": "fragment_read",
+  "artifact": "eigen71.pdf",
+  "bytes": 7655752,
+  "sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53",
+  "retrieved_at": "2026-11-27T07:40:00Z",
+  "via": "evolocus-pdf",
+  "via_detail": "Eigen1971.pdf (Naturwissenschaften 58:465-523, англ. перевод), 59 стр.; прочитаны фрагменты §I-II (предпосылки, отбор, quality factor, error copies, hypercycle), цитаты верифицированы"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": ["§I.1-1.2, §II.1-II.6, Fig.13"]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -5695,9 +5695,9 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Selforganization of matter and the evolution of biological macromolecules (1971). Manfred Eigen
 **Ссылка.** https://doi.org/10.1007/BF00623322
-**Проверено.** **метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читался.
-**Утверждение.** Eigen 1971 — самоорганизация материи и порог ошибок
-**Что даёт нам.** — (суждение не сделано).
+**Проверено.** **фрагменты** полного текста (evolocus-зеркало PDF, 59 стр.), 2026-11-27, sha256 f51e8a99…; прочитаны §I–II и подписи рисунков, цитаты верифицированы (батч s7zer); §III–VI (стохастика, фазы) не читаны.
+**Утверждение.** Eigen 1971 — самоорганизация требует замкнутого цикла реакций и каталитических связей; ошибка при репликации наследуема; master copy несёт «кометный хвост» error copies; точность держится отбором (член «repair of errors»/«back flow of information» пренебрежим для master copy); максимальная воспроизводимая информация Vmax·ln2 привязана к точности распознавания цифр; гиперцикл — связанные циклы стабилизируют, а не конкурируют.
+**Что даёт нам.** Оргелю (L-097) не хватало механизма, удерживающего точность — у Эйгена это селекция по W_i со скользящим порогом; repair-поток в его уравнениях — «обратный поток информации», пренебрежимый для master copy, т.е. у Эйгена починка слабее отбора; наш контур имеет и то и другое — структурно богаче.
 
 ### L-101 · Statistical theory of asymmetric damage segregation in clonal cell populations
 
