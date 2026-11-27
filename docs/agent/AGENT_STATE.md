@@ -728,3 +728,10 @@ status: continue
 - errata: ERRATA-EXP-2026-4104.md (passed условный, analyzer 1.0.1 после прогона, N_eff=1) и ERRATA-EXP-2026-4105.md (failed честен; скалярный wear; контрасты — bootstrap draws)
 - счётчики: 463 теста / 13 бинов / 65 проверок / 365 находок; doc_numbers зелёный
 - статус: гейт c897 -> пуш при зелёном -> publish EXP-2026-4106 v5 + EXP-2026-4107 v2 (base_commit = коммит 861ag) -> enforcement control.py -> exper claim 4106
+
+## 2026-11-28 — kg-артефакты пина + enforcement (цикл 861ah)
+
+- results/memory-*/run-*.json закоммичены (3 ссылки kg разрешаются в пине); kg пересобран после eabe7fe1; regress/check зелёные
+- c897 пост-мортем: dispatcher (selftest-песочницы без worktree) и exp (dirty pin от симлинков) — фиксы идут внешним агентом в ветке audit/gate-speedup-2026-11-28; мой 604a337f там ещё не влит
+- enforcement: publish write_scope-валидация; claim max_attempts->manual_review + dependency required_task_version + write_scope в response; submit blocks_submit/halt + base_commit + bundle_sha256 пересчёт; test_enforcement.py 9 кейсов, lab suite зелёный
+- статус: гейт c898 -> мердж ветки gate-speedup по готовности внешнего агента -> зелёный гейт -> пуш -> publish 4106 v5 / 4107 v2 (base_commit = мердж) -> exper claim 4106

@@ -351,6 +351,15 @@ class ControlPlane:
         for field in ("id", "department", "title", "lease", "spec"):
             if field not in payload:
                 raise BadRequest(f"task missing field: {field}")
+        # Аудит 28.11.2026: write_scope не валидировался (4106 v4 указывала
+        # на пути 4103). Обязателен непустой список относительных путей без ..
+        ws = payload.get("write_scope") or []
+        ws_ok = (isinstance(ws, list) and len(ws) > 0
+                 and all(isinstance(x, str) and x and not x.startswith("/")
+                         and ".." not in x.split("/") for x in ws))
+        if not ws_ok:
+            raise BadRequest(
+                "write_scope: обязателен непустой список относительных путей без ..")
         if not self.TASK_ID_RE.match(payload["id"]):
             raise BadRequest(f"task id не по контракту: {payload['id']}")
         tid, dept = payload["id"], payload["department"]
@@ -409,6 +418,22 @@ class ControlPlane:
         rows = c.execute(
             "SELECT m.id, m.recipient, m.ack_deadline FROM messages m "
             "WHERE m.blocks_claim=1 AND m.requires_ack=1 AND m.superseded_by IS NULL "
+            "AND (m.expires_at_mono IS NULL OR m.expires_at_mono > ?) "
+            "AND m.recipient IN (?, ?, ?) "
+            "AND NOT EXISTS (SELECT 1 FROM message_receipts r WHERE r.message_id=m.id "
+            "AND r.agent_id=? AND r.ack_at IS NOT NULL)",
+            (now_mono, agent_id, f"department:{department}", "all", agent_id)).fetchall()
+        return [dict(r) for r in rows]
+
+    def _blocking_submit_messages(self, c, agent_id: str, department: str | None,
+                                  now_mono: float) -> list[dict]:
+        """Не acked, не expired, не superseded сообщения с blocks_submit=1 или halt=1.
+        Аудит 28.11.2026: submit не проверял blocks_submit/halt (в claim-
+        контуре был только blocks_claim); блокирующее сообщение -- отказ submit."""
+        rows = c.execute(
+            "SELECT m.id, m.recipient, m.ack_deadline FROM messages m "
+            "WHERE (m.blocks_submit=1 OR m.halt=1) AND m.requires_ack=1 "
+            "AND m.superseded_by IS NULL "
             "AND (m.expires_at_mono IS NULL OR m.expires_at_mono > ?) "
             "AND m.recipient IN (?, ?, ?) "
             "AND NOT EXISTS (SELECT 1 FROM message_receipts r WHERE r.message_id=m.id "
@@ -581,6 +606,9 @@ class ControlPlane:
                 "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id AND NOT EXISTS ("
                 "  SELECT 1 FROM artifacts a WHERE a.sha256=d.required_artifact_sha256 "
                 "  AND a.task_id=d.required_task_id)) "
+                "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id AND NOT EXISTS ("
+                "  SELECT 1 FROM submissions s WHERE s.task_id=d.required_task_id "
+                "  AND s.task_version=d.required_task_version AND s.status='received')) "
                 "ORDER BY t.priority DESC, t.created_at ASC LIMIT 1",
                 (department,)).fetchone()
             if not row:
@@ -592,11 +620,31 @@ class ControlPlane:
                 return response
             tid, version = row["id"], row["current_version"]
             tv = c.execute(
-                "SELECT task_version_sha256,lease_json FROM task_versions "
+                "SELECT task_version_sha256,lease_json,payload_json FROM task_versions "
                 "WHERE task_id=? AND version=?", (tid, version)).fetchone()
             lease_spec = json.loads(tv["lease_json"])
             ttl = int(lease_spec.get("ttl_seconds", 5400))
             max_lease = int(lease_spec.get("max_lease_seconds", ttl * 2))
+            # Аудит 28.11.2026: max_attempts нигде не читался (4105 получила a2
+            # при max_attempts=1). Потраченные попытки -- все завершённые
+            # attempts задачи; исчерпаны -- задача в manual_review, не выдаётся.
+            max_attempts = int(lease_spec.get("max_attempts", 1))
+            spent = c.execute(
+                "SELECT COUNT(*) FROM attempts WHERE task_id=? AND status!='claimed'",
+                (tid,)).fetchone()[0]
+            if spent >= max_attempts:
+                c.execute(
+                    "UPDATE tasks SET status='manual_review' WHERE id=? AND status='ready'",
+                    (tid,))
+                self._audit(c, agent_id, "task.manual_review", "task", tid,
+                            {"reason": "max_attempts исчерпаны",
+                             "max_attempts": max_attempts, "spent": spent})
+                response = {"claimed": None,
+                            "reason": (f"задача {tid}: исчерпаны max_attempts "
+                                       f"({spent}/{max_attempts}), manual_review")}
+                self._idem_save(c, agent_id, "claim", idem_key, request, response)
+                c.execute("COMMIT")
+                return response
             # 4. условный UPDATE — изменена ровно одна строка
             epoch_row = c.execute("SELECT lease_epoch FROM tasks WHERE id=?", (tid,)).fetchone()
             new_epoch = epoch_row["lease_epoch"] + 1
@@ -633,6 +681,9 @@ class ControlPlane:
                     "lease_id": lease_id, "lease_epoch": new_epoch,
                     "attempt_id": attempt_id,
                     "expires_at": _utc(self.wall() + ttl),
+                    # Аудит 28.11.2026: write_scope обязан приезжать в
+                    # claim-response -- runner обязан знать границы записи.
+                    "write_scope": json.loads(tv["payload_json"]).get("write_scope", []),
                 },
                 "messages": self._message_counters(c, agent_id, department),
             }
@@ -783,13 +834,20 @@ class ControlPlane:
             if payload["attempt_id"] != row["attempt_id"]:
                 raise BadRequest("submission.attempt_id не соответствует lease")
             version_row = c.execute(
-                "SELECT task_version_sha256 FROM task_versions WHERE task_id=? AND version=?",
+                "SELECT task_version_sha256,payload_json FROM task_versions "
+                "WHERE task_id=? AND version=?",
                 (task_id, dep_version)).fetchone()
             if version_row is None:
                 raise BadRequest("не найдена immutable task version для lease")
             expected_task_sha = version_row["task_version_sha256"]
             if payload["task_version_sha256"] != expected_task_sha:
                 raise BadRequest("submission.task_version_sha256 не соответствует task version")
+            # Аудит 28.11.2026: submit не проверял blocks_submit/halt.
+            blocking = self._blocking_submit_messages(
+                c, payload["agent_id"], None, now_mono)
+            if blocking:
+                raise Blocked("submit заблокирован не-acked сообщениями: "
+                              + ", ".join(m["id"] for m in blocking))
 
             cur = c.execute("SELECT current_version FROM tasks WHERE id=?", (task_id,)).fetchone()
             if cur is None:
@@ -858,6 +916,18 @@ class ControlPlane:
                 self._idem_save(c, payload["agent_id"], "submit", idem_key, request, response)
                 c.execute("COMMIT")
                 return response
+            # Аудит 28.11.2026: base_commit не сверялся со спецификацией,
+            # bundle_sha256 не пересчитывался. Оба -- fail-closed.
+            expected_base = json.loads(version_row["payload_json"]).get("base_commit")
+            if expected_base and payload.get("base_commit") != expected_base:
+                raise BadRequest(
+                    "submission.base_commit не соответствует spec.base_commit: "
+                    f"ожидался {expected_base}, получен {payload.get('base_commit')!r}")
+            expected_bundle = _sha(_canon(
+                {"task": task_id, "batch": task_id, "artifacts": payload["artifacts"]}))
+            if payload["bundle_sha256"] != expected_bundle:
+                raise BadRequest("submission.bundle_sha256 не совпадает с пересчитанным "
+                                 "bundle-хэшем артефактов")
             # сверка blobs — только для живого lease (поздний уже в карантине)
             missing = []
             for art in payload["artifacts"]:

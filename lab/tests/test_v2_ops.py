@@ -24,6 +24,12 @@ from lab.service.v2_ops import (  # noqa: E402
 LEASE_SPEC = {"ttl_seconds": 120, "heartbeat_seconds": 30,
               "max_attempts": 3, "max_lease_seconds": 200}
 
+def bundle_sha(task_id: str, artifacts) -> str:
+    """Канонический bundle-хэш (конвенция аудита 28.11.2026)."""
+    from lab.service.control import _canon, _sha
+    return _sha(_canon({"task": task_id, "batch": task_id,
+                         "artifacts": artifacts}))
+
 
 def make_task(tid: str, dept: str = "knowledge", priority: int = 5, **kw):
     return {
@@ -231,13 +237,15 @@ class TestCancellation(Base):
         up = self.cp.create_upload("fast-01")
         blob = self.cp.put_blob(up, "fast-01", b"data",
                                 "application/x-ndjson")
+        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
+                 "media_type": "application/x-ndjson"}]
         sub = {"id": "SUB-2022", "task_id": "KG-2026-0022",
                "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
                "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
                "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
-               "artifacts": [{"sha256": blob["sha256"], "bytes": blob["bytes"],
-                              "media_type": "application/x-ndjson"}],
-               "bundle_sha256": "2" * 64}
+               "artifacts": arts,
+               "bundle_sha256": bundle_sha("KG-2026-0022", arts),
+               "base_commit": "6a9fa461"}
         self.cp.submit(sub, idem_key="s-22")
         with self.assertRaises(Conflict):
             self.cp.cancel_task("KG-2026-0022", "main")

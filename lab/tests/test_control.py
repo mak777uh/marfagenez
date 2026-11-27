@@ -25,6 +25,12 @@ from lab.service.control import (  # noqa: E402
 LEASE_SPEC = {"ttl_seconds": 120, "heartbeat_seconds": 30,
               "max_attempts": 3, "max_lease_seconds": 200}
 
+def bundle_sha(task_id: str, artifacts) -> str:
+    """Канонический bundle-хэш (конвенция аудита 28.11.2026)."""
+    from lab.service.control import _canon, _sha
+    return _sha(_canon({"task": task_id, "batch": task_id,
+                         "artifacts": artifacts}))
+
 
 def make_task(tid: str, dept: str = "knowledge", priority: int = 5, **kw):
     payload = {
@@ -297,6 +303,15 @@ class TestClaimFencing(Base):
             " VALUES (?,?,?,?,?,?)",
             (digest, 7, "application/x-ndjson", digest, "KG-2026-0100",
              "2026-11-26T00:00:00Z"))
+        # аудит 28.11: зависимость требует received-submission нужной версии
+        c.execute(
+            "INSERT INTO submissions (id,task_id,task_version,task_version_sha256,"
+            "attempt_id,lease_id,lease_epoch,agent_id,instance_id,base_commit,"
+            "bundle_sha256,artifacts_json,environment_json,toolchain_json,"
+            "scientific_outcome,parent_submission_id,complied_messages_json,"
+            "submitted_at,status,status_reason) VALUES ("
+            "'SUB-DEP-1','KG-2026-0100',1,'d','a1','l1',0,'fast-00',NULL,'6a9fa461',"
+            "'b','[]','{}','{}',NULL,NULL,'[]','2026-11-26T00:00:00Z','received',NULL)")
         r3 = self.cp.claim("fast-02", "i2", "knowledge", idem_key="k3")
         self.assertTrue(r3["claimed"])
         self.assertEqual(r3["claimed"]["task_id"], "KG-2026-0101")
@@ -309,14 +324,16 @@ class TestSubmitAndIdempotency(Base):
         blob = self.cp.put_blob(up, "fast-01", b"atoms data", "application/x-ndjson")
         r = self.cp.claim("fast-01", "i", "knowledge", idem_key="c1")
         lease = r["claimed"]
+        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
+                 "media_type": "application/x-ndjson"}]
         sub = {
             "id": "SUB-2026-0002", "task_id": "KG-2026-0004",
             "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
             "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
             "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
-            "artifacts": [{"sha256": blob["sha256"], "bytes": blob["bytes"],
-                           "media_type": "application/x-ndjson"}],
-            "bundle_sha256": "b" * 64, "base_commit": "6a9fa461",
+            "artifacts": arts,
+            "bundle_sha256": bundle_sha("KG-2026-0004", arts),
+            "base_commit": "6a9fa461",
             "scientific_outcome": "passed",
         }
         out = self.cp.submit(sub, idem_key="s1")
@@ -403,7 +420,10 @@ class TestSubmitAndIdempotency(Base):
             "lease_id": lease["lease_id"], "lease_epoch": lease["lease_epoch"],
             "agent_id": "fast-01",
             "artifacts": [{"sha256": "f" * 64, "bytes": 1, "media_type": "x"}],
-            "bundle_sha256": "d" * 64,
+            "base_commit": "6a9fa461",
+            "bundle_sha256": bundle_sha(
+                "KG-2026-0005",
+                [{"sha256": "f" * 64, "bytes": 1, "media_type": "x"}]),
         }
         from lab.service.control import BadRequest
         with self.assertRaises(BadRequest):
