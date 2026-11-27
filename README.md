@@ -381,7 +381,7 @@ cd marfagenez
 ### Всё сразу
 
 ```bash
-bash run.sh preflight # быстрые проверки контрактов и дрейфа, без сборок
+bash run.sh preflight # быстрые проверки контрактов и чистоты pin, без сборок
 bash run.sh          # полный гейт: preflight, затем pinned DAG
 bash run.sh test     # только тесты Rust
 bash run.sh lean     # только сборка Lean

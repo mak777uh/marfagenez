@@ -757,3 +757,11 @@ status: continue
 - Убран ложный workflow-комментарий `NOT RUN ON A RUNNER`: hosted GitHub Actions действительно выполняет job. Старый run на промежуточном commit `56e61be` падал только на старом CI contract («WRONG it builds Lean»); контракт обновлён в `f0533c7`.
 - На момент записи актуальный hosted run для commit `f0533c7` запущен, но ещё не завершён. Старые runs, начатые до введения concurrency, могут продолжать работу.
 - P8 выполнен частично: кэши, дедупликация и отмена устаревшего запуска добавлены; path-filter с отдельной облегчённой docs/literature CI lane остаётся отложенным.
+## 2026-11-28 — gate-speedup integrated with fresh master (validation pending)
+- Integration merge is built from audit HEAD 1c414d9 and fresh master ec99eeed; current master changes 861ag/861ah are included as the second parent. This operation updates only the audit branch.
+- KG keeps the current master's dual fail-closed logic: return codes and printed FAIL verdicts are checked independently for kg check, regress, kg_edges and bridge_price_derivative. The branch selftest now also covers false-zero FAIL output for edges and price.
+- Dispatcher fixtures now prove that all-mode sandboxes call fake make_pin and fake pin_assert_clean; they fail if a real git worktree is attempted.
+- Pinned tree: core/target remains an ignored symlink; laws/.lake is an isolated copy with symlink dereferencing. The exact git-status contract used by checks/result.py is checked immediately after pin creation and again before exp. A dirty pin prevents experiment verdict writes.
+- Added checks/gate_pin_clean.py: temporary Git repo with tracked laws/.gitignore and laws/Legacy.lean plus symlink entries inside ignored .lake; it executes the actual pin functions and requires a clean pinned status. Preflight now has 13 checks.
+- Current master research changes and counts preserved: 463 Rust tests, 13 bins, 65 checks, updated KG artifacts, 861ag/861ah and latest literature work.
+- Validation still required on the exact merge HEAD: bash -n, ShellCheck, KG selftest 9/9, dispatcher 9/9, pin selftest, preflight and full WSL run.sh all. No WSL result is claimed by this commit.

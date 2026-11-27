@@ -20,6 +20,8 @@ CASES = [
     ("KG check nonzero is preserved", {"CHECK_RC": "1"}, 1, "check=1"),
     ("FAIL transcript with rc=0 stays red", {"CHECK_FAIL": "1"}, 1, "check=1"),
     ("regress FAIL transcript with rc=0 stays red", {"REGRESS_FAIL": "1"}, 1, "regress=1"),
+    ("edges FAIL transcript with rc=0 stays red", {"EDGES_FAIL": "1"}, 1, "edges=1"),
+    ("price FAIL transcript with rc=0 stays red", {"PRICE_FAIL": "1"}, 1, "price=1"),
 ]
 
 
@@ -41,8 +43,12 @@ python3() {
     kg/regress.py)
       [ "$REGRESS_FAIL" = 0 ] || echo "  FAIL: fake generated nodes drift"
       return "$REGRESS_RC" ;;
-    checks/kg_edges.py) return "$EDGES_RC" ;;
-    checks/bridge_price_derivative.py) return "$PRICE_RC" ;;
+    checks/kg_edges.py)
+      [ "$EDGES_FAIL" = 0 ] || echo "FAIL: fake KG edge invariant"
+      return "$EDGES_RC" ;;
+    checks/bridge_price_derivative.py)
+      [ "$PRICE_FAIL" = 0 ] || echo "FAIL: fake KG price invariant"
+      return "$PRICE_RC" ;;
     *) echo "unexpected python command: $*" >&2; return 99 ;;
   esac
 }
@@ -55,7 +61,7 @@ export KG_GATE_SELFTEST=1
         path.write_text(script, encoding="utf-8")
         env = os.environ.copy()
         env.update(values)
-        for key in ("CHECK_FAIL", "REGRESS_FAIL", "CHECK_RC", "REGRESS_RC", "EDGES_RC", "PRICE_RC"):
+        for key in ("CHECK_FAIL", "REGRESS_FAIL", "EDGES_FAIL", "PRICE_FAIL", "CHECK_RC", "REGRESS_RC", "EDGES_RC", "PRICE_RC"):
             env.setdefault(key, "0")
         env["KG_GATE_SELFTEST"] = "1"
         proc = subprocess.run(
