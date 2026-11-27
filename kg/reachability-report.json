@@ -1,0 +1,1307 @@
+{
+  "schema": "marfagenez.kg-reachability.v1",
+  "scope": "claim, formula and definition nodes; directed path to result data and code",
+  "graph_node_count": 1167,
+  "graph_edge_count": 885,
+  "isolated_count": 110,
+  "legacy_isolated_still_isolated": 110,
+  "new_isolated_count": 0,
+  "baseline_isolated_count": 511,
+  "isolation_delta_vs_baseline": -401,
+  "conclusion_count": 157,
+  "counts": {
+    "isolated": 15,
+    "no-link": 125,
+    "no-source": 11,
+    "reachable": 6
+  },
+  "rows": [
+    {
+      "id": "C-001",
+      "text": "Цена удержания целости — теневая цена ограничения: она равна нулю ровно тогда, когда ограничение не отнимает ресурс у лучшего использования.",
+      "epistemic": "established",
+      "status": "reachable",
+      "path": [
+        "C-001",
+        "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+        "DATA-18f889cd312c21bb",
+        "CODE-6988b7ce7da57b13"
+      ],
+      "degree": 10
+    },
+    {
+      "id": "C-002",
+      "text": "Цена удержания кусочно-постоянна и ломается в точке, где перестаёт связывать ёмкость лучшего использования.",
+      "epistemic": "established",
+      "status": "reachable",
+      "path": [
+        "C-002",
+        "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+        "DATA-77c424a74a5947df",
+        "CODE-9cb7420907533b86"
+      ],
+      "degree": 7
+    },
+    {
+      "id": "C-003",
+      "text": "Мера замыкания (доля вершин в наибольшей сильно связной компоненте) различает цепочку, частичный цикл и замкнутый цикл: 0.25 / 0.75 / 1.0.",
+      "epistemic": "established",
+      "status": "reachable",
+      "path": [
+        "C-003",
+        "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+        "DATA-d932b0d88aac3ebb",
+        "CODE-2086b76f911f8048"
+      ],
+      "degree": 9
+    },
+    {
+      "id": "C-004",
+      "text": "Порог равновесия при симметричном делении у Chao: Πλ ≤ 1/6.",
+      "epistemic": "established",
+      "status": "no-link",
+      "path": [],
+      "degree": 3
+    },
+    {
+      "id": "C-005",
+      "text": "Корневая расходимость D* ~ (1-h)^(-1/2) у нашего порога — универсальный масштаб у полюса параметра, а не собственный результат; это не обязательно складка (см. F-029).",
+      "epistemic": "established",
+      "status": "no-link",
+      "path": [],
+      "degree": 6
+    },
+    {
+      "id": "C-006",
+      "text": "Полоса допуска — проекция ядра выживания на ось доли дохода, а её ширина — расстояние между границами выживания.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 9
+    },
+    {
+      "id": "C-007",
+      "text": "Показатель расходимости равен 1/(m+1), где m — число каналов удаления.",
+      "epistemic": "refuted",
+      "status": "no-link",
+      "path": [],
+      "degree": 4
+    },
+    {
+      "id": "C-008",
+      "text": "Вина за потерю размера в линии морфологии — отсутствие механизма наследственности формы (эффект матрицы), а не ошибка отбора.",
+      "epistemic": "bounded",
+      "status": "no-link",
+      "path": [],
+      "degree": 4
+    },
+    {
+      "id": "F-001",
+      "text": "Кумулятивная опасность и жизнь",
+      "epistemic": "established",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "F-002",
+      "text": "Порог доли удержания",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-003",
+      "text": "Самоограничение повреждения (корневой закон)",
+      "epistemic": "established",
+      "status": "no-link",
+      "path": [],
+      "degree": 2
+    },
+    {
+      "id": "F-004",
+      "text": "Цена поддержания и замыкание",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 2
+    },
+    {
+      "id": "F-005",
+      "text": "Доля ресурса в поддержание (правило κ)",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-006",
+      "text": "Складка Chao и её универсальный масштаб",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-007",
+      "text": "Порог ошибок",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-008",
+      "text": "Viability kernel",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-009",
+      "text": "Замыкание ограничений (структурное)",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-010",
+      "text": "RAF",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-011",
+      "text": "Ниша и её изменение",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "F-012",
+      "text": "Многоуровневый отбор (Прайс)",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-013",
+      "text": "Цепь рождения–смерти и «честная вероятность» как медиана",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 2
+    },
+    {
+      "id": "F-014",
+      "text": "Порог полосы без возвращающей силы",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-015",
+      "text": "Sizer / adder / timer",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-016",
+      "text": "Цена страховки (Тулджапурак)",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-017",
+      "text": "Порог ошибок Эйгена",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-018",
+      "text": "Показатель и порядок нелинейности",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 3
+    },
+    {
+      "id": "F-019",
+      "text": "Критерий равновесия Chao (подтверждён локатором)",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "F-020",
+      "text": "Надёжность: Гомпертц, Макегам и плато из избыточности",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-021",
+      "text": "Правило κ и приоритет поддержания",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-022",
+      "text": "Замыкание как свойство графа",
+      "epistemic": "established",
+      "status": "reachable",
+      "path": [
+        "F-022",
+        "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+        "DATA-d932b0d88aac3ebb",
+        "CODE-2086b76f911f8048"
+      ],
+      "degree": 6
+    },
+    {
+      "id": "F-023",
+      "text": "Двойственная задача и смысл цены",
+      "epistemic": "established",
+      "status": "reachable",
+      "path": [
+        "F-023",
+        "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+        "DATA-77c424a74a5947df",
+        "CODE-9cb7420907533b86"
+      ],
+      "degree": 5
+    },
+    {
+      "id": "F-024",
+      "text": "Ядро выживания и его граница",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 4
+    },
+    {
+      "id": "F-025",
+      "text": "ITI: разложение временной информации",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 2
+    },
+    {
+      "id": "F-026",
+      "text": "Зерно среды задаёт тип bet-hedging",
+      "epistemic": "hypothesis",
+      "status": "isolated",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "F-027",
+      "text": "Цена роста против цены удержания",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 2
+    },
+    {
+      "id": "F-028",
+      "text": "Adder, sizer и линии родства",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 3
+    },
+    {
+      "id": "F-029",
+      "text": "Нормальные формы и размытие перехода",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "F-030",
+      "text": "Метрики открытости (если понадобятся)",
+      "epistemic": "hypothesis",
+      "status": "no-source",
+      "path": [],
+      "degree": 2
+    },
+    {
+      "id": "F-031",
+      "text": "Внутреннее ограничение выживания из графа",
+      "epistemic": "hypothesis",
+      "status": "reachable",
+      "path": [
+        "F-031",
+        "F-022",
+        "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+        "DATA-d932b0d88aac3ebb",
+        "CODE-2086b76f911f8048"
+      ],
+      "degree": 2
+    },
+    {
+      "id": "L-001",
+      "text": "Накопление повреждения даёт экспоненциальный рост смертности — В простой модели накопления повреждения с ограниченной починкой **экспоненциальный рост",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-002",
+      "text": "Мёртвое плато — то, что модели накопления воспроизводят плохо — Стандартные модели накопления «insufficiently account for a late-life absence of increased",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-003",
+      "text": "Disposable soma: ресурс делится между починкой и потомством, оптимум явно моделируется — «organisms age due to an evolutionary **trade-off between growth, reproduction,",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-004",
+      "text": "Оптимальная доля и закон Гомпертца выводятся вместе — Динамическое программирование даёт **оптимальное соотношение** между репродукцией,",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-005",
+      "text": "Порог доли удержания повреждения известен — «a cell lineage dividing symmetrically is **immortal if lifetime damage rates do not exceed a",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-006",
+      "text": "Все кривые выживания — растяжения одной — Кривые выживания при разных вмешательствах совпадают после растяжения времени — то есть",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-007",
+      "text": "Страховка сдвигает оптимум с пика на пологий склон — «insurance causes the optimal phenotype to **shift from the peak to down the less steeply",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-008",
+      "text": "Bet-hedging и банк семян — При **мультипликативном** критерии приспособленности и стохастической среде оптимум —",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-009",
+      "text": "Насыщаемое удаление и порог: прямой аналог — Удаление повреждения насыщается, и из этого следует порог между «держит» и «накапливает».",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-010",
+      "text": "Теория надёжности: отказ как выброс нагрузки — Организм — система с отказами; смертность растёт как вероятность выхода нагрузки за",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-011",
+      "text": "Frailty и vitality: две системы с равным состоянием не равны — Скрытая переменная (хрупкость/жизненная сила) объясняет, почему смертность падает у",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-012",
+      "text": "DEB: правило κ и приоритет поддержания — Энергия делится: доля κ идёт на соматическое поддержание, остальное — на рост и",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-013",
+      "text": "Pirt и поддержание у микробов — Часть энергии уходит на поддержание, не на рост; есть «коэффициент поддержания».",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 2
+    },
+    {
+      "id": "L-014",
+      "text": "Две независимые опасности и оптимальный ремонт — «evolution could select for its complete removal if the",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-015",
+      "text": "Замкнутость ограничений — возможно, **их** определение нашего критерия — Живое — система, части которой **поддерживают ограничения**, делающие возможным",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-016",
+      "text": "Химотон: три подсистемы и требование замкнутости — Минимальная живая единица — **три** подсистемы (мембрана, метаболизм, информация),",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-017",
+      "text": "Индивидуальность как передача информации — Индивидуальность — это **мера** (передача информации от частей к целому), а не",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-018",
+      "text": "Кожа как Markov blanket — и критика этой аналогии — Граница системы задаётся статистической независимостью внутреннего от внешнего при",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-019",
+      "text": "Автономия как базовая организация — Базовая автономия — способность системы поддерживать себя за счёт обмена с внешней",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-020",
+      "text": "Катастрофа ошибок и порог точности — Есть **порог точности копирования**, ниже которого наследственная информация не",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-021",
+      "text": "Минимальная клетка: ограничение кинетическое, а не энергетическое — Самоподдерживающаяся метаболическая система с автокатализом и бистабильностью; коллапс —",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-022",
+      "text": "Несовместимость с disposable soma — сигнал, а не баг — Если при `c ≤ 1` кожа поддерживается без затрат, то в нашей модели **старение не",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-023",
+      "text": "Модель Chao, восстановленная по тексту: порог `Πλ = 1/6`, и это **складка** — У Чао асимметрия деления `a`; порог — **складка** (saddle-node); груз",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 4
+    },
+    {
+      "id": "L-024",
+      "text": "Смертность как канал удаления превращает складку в непрерывную расходимость — «смертность как канал удаления повреждения превращает складку в непрерывную",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-025",
+      "text": "Замыкание ограничений: структура, а не баланс — Замыкание — **причинная сеть взаимно поддерживающих ограничений**; формальное условие:",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-026",
+      "text": "Химические организации: формальное замыкание множеств — Формальное определение **самоподдерживающегося множества** видов в реакционной сети",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-027",
+      "text": "RAF-множества: замыкание есть, универсальной доли нет — RAF определимо формально (каждая реакция катализируется членом множества; все реагенты",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-028",
+      "text": "Viability: выживание — множество траекторий, а не мгновенный порог — Viability kernel — **наибольшее множество состояний**, из которых существует траектория,",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-029",
+      "text": "Порог ошибок Эйгена: точность против длины — Максимальная длина, удерживаемая отбором, ограничена точностью копирования; порог",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-030",
+      "text": "Термодинамика замыкания: цены есть, универсальной формулы нет — Работа на поддержание ограничений физически осмысленна, но **универсальной",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-031",
+      "text": "Индивидуальность: единого теста нет — Списки критериев есть, единого операционального теста нет; тесты зависят от вопроса.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-032",
+      "text": "Assembly theory: сложность сборки, но не организация — Индекс сборки измеряет **сложность**, не **организацию**; цены поддержания в нём нет.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-033",
+      "text": "Протоклетки: числа по проницаемости и делению — Есть измеренные проницаемости и условия роста/деления везикул; **цены** поддержания",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-034",
+      "text": "Niche construction: обратная связь есть, скалярной меры нет — Записывают **ΔR** (разницу среды до и после), но универсальной меры «силы конструкции»",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-035",
+      "text": "Cliff-edge, риск и оптимальность — У обрыва оптимум сдвигается; риск-чувствительные стратегии количественно описаны;",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-036",
+      "text": "Надёжность: `μ` как интенсивность отказов — Смертность — интенсивность отказов системы с запасом прочности; даёт Гомпертца и плато.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-037",
+      "text": "**Пустое пересечение**: у моделей повреждения нет цены границы — «Модели старения (Chao, Borgqvist) **не имеют цены мембраны**; протоклеточные модели",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-038",
+      "text": "Bet-hedging: критерий и три ловушки — Bet-hedging — жертва средним ради снижения дисперсии; решающее различие —",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-039",
+      "text": "Скалярная память: максимум смещён (winner's curse), стандарт — UCB — `E[max]` из `n` шумных чтений строго выше истинного среднего, смещение ≈ `σ·√(2 ln n)` и",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-040",
+      "text": "Калибровка и sharpness — стандартные метрики — Brier (бинарное), CRPS (непрерывное); калибровка и **sharpness** — раздельно; strictly",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-041",
+      "text": "Sizer / adder / timer: канон регуляции размера — Три механизма; параметризация `s_d = a·s_b + b`, `a = 0 / 1 / 2`. Устойчивость",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-042",
+      "text": "Chemical organization theory: формальное замыкание — Организация — множество видов, **замкнутое** по реакциям и **самоподдерживающееся**;",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-043",
+      "text": "RAF: три разные задачи, и только две полиномиальны — Максимальная RAF — **полиномиально**; любая irrRAF — полиномиально; **минимальная по",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-044",
+      "text": "Экологическая стехиометрия: возврат вещества в среду — Потребители возвращают азот и фосфор; состав организма задаёт соотношение выделяемого —",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-045",
+      "text": "Надёжность и Гомпертц без постулата `μ` — Избыточность с начальным грузом дефектов и её исчерпание дают гомперцеву смертность",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-046",
+      "text": "Error catastrophe: известный отрицательный результат — Наивная самоссылка (ошибки повреждают аппарат синтеза) обычно **не даёт разгона** —",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-047",
+      "text": "Интегральная обратная связь: среднее держится, дисперсия растёт — Интегральная связь даёт robust perfect adaptation (среднее закреплено), но **ценой роста",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-048",
+      "text": "Порог ошибок Эйгена как безразмерная группа — `σ·q^ν > 1`; граница `μ_c = ln σ / ν`.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-049",
+      "text": "Один прибор: калибровка исследователя = калибровка организма — Лог-счёт по strictly proper rule эквивалентен информационному выигрышу; искажением его",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-050",
+      "text": "COT + потоки = LP, и «цена» как двойственная переменная — К организации добавляются ограничения потоков — задача становится **LP**; цена",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-051",
+      "text": "Порог `Πλ = 1/6` **подтверждён локатором** — Порог симметричного деления — `Πλ ≤ 1/6`; при `Πλ > 1/6` уравнение 11 не имеет",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 2
+    },
+    {
+      "id": "L-052",
+      "text": "Асимметричное деление **протоклеток** — ближайший сосед нашего пересечения — Устойчивый рост популяции протоклеток требует **синхронизации** дупликации генетического",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-053",
+      "text": "Стохастическая модель старения: повреждение, починка, асимметрия деления — Детерминированная модель асимметричного распределения повреждения и объёма клетки давала",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-054",
+      "text": "Наследование повреждения: модель «происхождения старения» — «At the start of a generation, each individual contains a certain amount of",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-055",
+      "text": "Надёжность: Гомпертц **и плато** из исчерпания избыточности — «According to the Gompertz law, human mortality rates **double approximately",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-056",
+      "text": "Плато смертности как установленный феномен, а не артефакт — Позднее плато смертности — **наблюдаемый** феномен; вопрос не «есть ли оно», а какая",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-057",
+      "text": "Одноклеточные делят ресурс между **асимметричным распределением** и **починкой** — В модели одноклеточного есть **два способа обращения с повреждением**: передать его",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-058",
+      "text": "Кривые выживания выводятся из **оптимального распределения ресурса** — Интенсивность починки **меняется с возрастом**; стратегия распределения отвечает на",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-059",
+      "text": "DEB: правило κ, приоритет поддержания и голодание — Энергия делится **правилом κ**: доля κ идёт на поддержание сомы, `1−κ` — на рост и",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-060",
+      "text": "Графы «процесс–обеспечение»: замыкание становится вычислимым — Разные теории самоорганизации формулируют «поддержание условий собственного",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 3
+    },
+    {
+      "id": "L-061",
+      "text": "Формальное условие замыкания ограничений (цитата) — «We characterize biological organization as a **closure of constraints**, where",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-062",
+      "text": "Двойственные переменные LP — это **химические потенциалы** — «the dual to the linear programming problem that arises in constraint-based models of",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 5
+    },
+    {
+      "id": "L-063",
+      "text": "COT как **структурная** рамка, независимая от кинетики — COT даёт **структурную и алгебраическую** рамку: организации — **замкнутые и",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-064",
+      "text": "Инвариант из стехиометрии и цена предположения о стационарности — (1) Консервативные потоки можно назначить рёбрам графа, комбинируя потоки с **консервативным",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-065",
+      "text": "Ядро выживания: определение и **алгоритм** — «The subset of evolutions viable in K is denoted by `V(K) := {x(·) | ∀t ≥ 0,",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 5
+    },
+    {
+      "id": "L-066",
+      "text": "Пространство выживания: граница как **геометрическая** величина — В **viability space** набор ограничений создаёт **границу выживания**",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-067",
+      "text": "ITI: индивидуальность как **сохраняемая временная целостность** — «There is little agreement about what individuals are and **few rigorous quantitative",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-068",
+      "text": "Информационная индивидуальность **требует причинности**, а не корреляции — Информационные меры индивидуальности, основанные на взаимной информации, дают **корреляцию**,",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-069",
+      "text": "ΦID: разложение информационной динамики на шесть режимов — ΦID даёт **таксономию** информационной динамики: storage, transfer, copy и др. — шесть",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-070",
+      "text": "Приближение Тулджапурака: цена дисперсии — **число** — При **малой вариации** и **отсутствии временной автокорреляции** долгосрочная стохастическая",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-071",
+      "text": "Диверсификация стоит дорого, и её темп — не универсален — Bet-hedging через диверсификацию фенотипов; **темп диверсификации** меняется на порядки,",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-072",
+      "text": "Зерно среды и число решений решают, **какой** bet-hedging работает — **Мультипликативное** накопление приспособленности (крупное зерно среды, мало независимых",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-073",
+      "text": "Рост мембраны протоклетки: **скорость зависит от внешнего липида** — «The autocatalytic reaction drives volume growth **via osmosis**. Membrane area grows due to",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-074",
+      "text": "Проницаемость как **движущая сила отбора** — Устойчивость везикулы зависит от **состава липидов**: есть **критическая концентрация",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-075",
+      "text": "Критерий «когда реакционная сеть — метаболизм», поддерживающий рост и деление — Сформулированы **критерии**, при которых реакционная сеть является метаболизмом, способным",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-076",
+      "text": "Эффект матрицы: размер потомков **наследуется** без генов — «the size distribution of the newly formed vesicles is strongly **biased toward that of the",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 2
+    },
+    {
+      "id": "L-077",
+      "text": "Прямая и обратная линия родства дают **разные средние** — «the mean cell size in a **forward lineage** is independent of the division error CV while it",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-078",
+      "text": "Adder: клетка добавляет **постоянную** величину, а не тянется к размеру — В устойчивом росте клетки добавляют между рождением и делением **почти постоянный**",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-079",
+      "text": "Предсказание adder в числах: `CV² = ln 4 − 1` — При `β = 1/2` с вероятностью один «`CV²_s = log(4) − 1`»; в линиях измеряют",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-080",
+      "text": "Нормальные формы трёх локальных бифуркаций — «saddle-node: `ṅ = r + n²`; transcritical: `ṅ = rn − n²`; supercritical pitchfork:",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-081",
+      "text": "Классы универсальности и показатели для трёх бифуркаций — Сходимость к неподвижной точке **у бифуркации и около неё** описывается скейлинг-формализмом",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 2
+    },
+    {
+      "id": "L-082",
+      "text": "Несовершенная бифуркация: **шум сглаживает переход** — У реальных систем есть **несовершенства** (шум, конечный размер, асимметрия); теория",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-083",
+      "text": "Симуляция против реализации: что мы вправе утверждать — Различаются **симуляция** (модель, описывающая жизнь) и **реализация** (система, которая",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-084",
+      "text": "Как **мерить** открытость: набор метрик и его критика — Открытость меряют **Levenshtein**, **энтропией Шеннона**, **колмогоровской сложностью** и",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-085",
+      "text": "Оценка открытости **субъективна**, и это признано — Определение открытости «удивительно трудно зафиксировать»; часть трудности — в том, что",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-086",
+      "text": "Ограничение выживания **выводится** из графа процессов — и это уже сделано — Граф включает «a total of **352 processes and 5 912 dependency links**»; «the same process may",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 1
+    },
+    {
+      "id": "L-087",
+      "text": "Теория выживания на границе жизнь–смерть: заявка на недостающее — «Many cell models deal with constraints for life's persistence, yet we lack **principles**",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-088",
+      "text": "Viability ≠ survival: различение, которого нам не хватало — «**Survival** describes an **outcome** — the continued existence of a system — whereas",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-089",
+      "text": "Minimal Conditions for Protocell Stationary Growth — минимальные условия стационарного роста протоклетки: топологическое условие на химическую сеть, а не баланс энергии",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-090",
+      "text": "The “protocell”: A mathematical model of self-maintenance — самоподдержание протоклетки как динамика с подвижной границей и обратной связью, а не арифметическое условие",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-091",
+      "text": "Synergistic effects of repair, resilience and retention of damage determine the conditions for replicative ageing — ремонт, устойчивость и удержание повреждения одновременно определяют условия репликативного старения",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-092",
+      "text": "Balance between asymmetric allocation and repair of somatic damage in unicellular life forms as an ancient form of r/K selection — компромисс между асимметричным распределением повреждения и его ремонтом как стратегия популяции",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-093",
+      "text": "Autopoiesis: The organization of living systems, its characterization and a model — Varela et al. 1974 — организация производит собственные компоненты; граница распадается и восстанавливается сетью",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-094",
+      "text": "Biological organisation as closure of constraints — Montévil & Mossio 2015 — организация как замыкание ограничений; словесная рамка «организация оплачивает свои ограничения»",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-095",
+      "text": "Detecting autocatalytic, self-sustaining sets in chemical reaction systems — Hordijk & Steel 2004 — детекция автокаталитических самоподдерживающихся множеств (RAF)",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-096",
+      "text": "Asymmetric segregation of protein aggregates is associated with cellular aging and rejuvenation — Lindner et al. 2008 — асимметричная сегрегация агрегатов связана со старением и омоложением",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-097",
+      "text": "THE MAINTENANCE OF THE ACCURACY OF PROTEIN SYNTHESIS AND ITS RELEVANCE TO AGEING — Orgel 1963 — катастрофа ошибок: аппарат точности повреждает сам себя",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-098",
+      "text": "Stochastic modeling of aging cells reveals how damage accumulation, repair, and cell-division asymmetry affect clonal senescence and population fitness — Song & Acar 2019 — стохастическая модель старения: повреждение, ремонт, асимметрия деления",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-099",
+      "text": "Evolution of ageing — Kirkwood 1977 — эволюция старения: компромисс ремонта и размножения",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-100",
+      "text": "Selforganization of matter and the evolution of biological macromolecules — Eigen 1971 — самоорганизация материи и порог ошибок",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-101",
+      "text": "Statistical theory of asymmetric damage segregation in clonal cell populations — Найдено при починке чужого DOI (внешний ответ приписал работе Chao 2010 неверный DOI): статистическая теория асимметричной сегрегации повреждения в клональных популяциях, 2023. Сама работа Chao 2010 по-прежнему не подтверждена — её DOI в ответе был ложным.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-102",
+      "text": "A network theory of ageing: the interactions of defective mitochondria, aberrant proteins, free radicals and scavengers in the ageing process — Kowald & Kirkwood 1996 — сетевая теория старения: повреждение бьёт по системе удаления (scavengers), ремонт ремонтирует сам себя",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-103",
+      "text": "Self-maintenance and Self-reproduction in an Abstract Cell Model — Ono & Ikegami 2000 — самоподдержание и граница в минимальной модели (проверить, что именно содержит)",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-104",
+      "text": "Thirty Years of Computational Autopoiesis: A Review — McMullin & Varela 2004 — реимплементация автопоэзиса: вторичный источник уравнений Varela 1974",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-105",
+      "text": "Closure to efficient causation, computability and artificial life — Cárdenas et al. 2010 — замыкание организации в формальной модели (есть corrigendum 2011)",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-106",
+      "text": "Proteasome inhibition by lipofuscin/ceroid during postmitotic aging of fibroblasts — Sitte et al. 2000 — липофусцин ингибирует протеасому: измеряемая связь груза повреждения и способности к удалению",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-107",
+      "text": "Lipofuscin inhibits the proteasome by binding to surface motifs — Höhn et al. 2011 — титрование протеасомы липофусцином: константа ингибирования как кандидат на ι",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "L-108",
+      "text": "Damage dynamics and the role of chance in the timing of E. coli cell death — Damage dynamics and the role of chance in the timing of E. coli cell death (2023) — измеряемая динамика повреждения и насыщаемый ремонт",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "DEF-01",
+      "text": "Граница — Поверхность, которую надо поддерживать, ценой вещества.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "DEF-02",
+      "text": "Обмен — Поток вещества внутрь и наружу, с потерей.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "DEF-03",
+      "text": "Свои условия — Система меняет то, от чего зависит.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "DEF-04",
+      "text": "Организация с разделением — Части делают то, чего целое не может само.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "DEF-05",
+      "text": "Прошлое — Две системы с равным состоянием не равны.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "DEF-06",
+      "text": "Смерть — Отказ как скорость, а не как бит.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "DEF-07",
+      "text": "Порог и критичность — Переход между режимами по параметру.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "DEF-08",
+      "text": "Выбор — Деление ресурса между назначениями.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "DEF-09",
+      "text": "Индивидуальность — Граница «я» как измерение, а не статус.",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    },
+    {
+      "id": "DEF-10",
+      "text": "Агентность — «Что форма делает», а не «чем является».",
+      "epistemic": "hypothesis",
+      "status": "no-link",
+      "path": [],
+      "degree": 0
+    }
+  ]
+}
