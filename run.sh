@@ -530,6 +530,19 @@ do_dispatcher() {
   python3 checks/runtime_integrity.py || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
   python3 checks/kg_transaction_integrity.py || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
   python3 checks/bridge_integrity.py || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
+
+  if ! command -v shellcheck >/dev/null 2>&1; then
+    echo "    FAIL: shellcheck не найден в PATH"
+    [ "$rc" -ne 0 ] || rc=1
+  else
+    local sc_out
+    sc_out=$(shellcheck -f gcc -S warning run.sh 2>&1 || true)
+    if printf '%s\n' "$sc_out" | grep -E 'SC2034|SC2154'; then
+      echo "    FAIL: shellcheck обнаружил неиспользуемую или неинициализированную переменную"
+      [ "$rc" -ne 0 ] || rc=1
+    fi
+    shellcheck -S error run.sh || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
+  fi
   return "$rc"
 }
 
