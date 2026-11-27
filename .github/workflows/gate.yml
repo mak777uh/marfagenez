@@ -1,4 +1,4 @@
-# NOT RUN ON A RUNNER: contract file only; no GitHub Actions execution has validated it yet.
+# GitHub Actions runs the hosted gate; checks/ci_workflow.py validates the workflow contract.
 name: gate
 
 on:
