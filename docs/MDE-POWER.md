@@ -11,7 +11,7 @@ MDE = (z_{1-\alpha/2}+z_{1-\beta})\sqrt{\frac{2\hat p(1-\hat p)}{n}}.
 \]
 
 Here n is the recorded number of organisms per arm and
-p-hat = (success_a + success_b + 1)/(2n + 2) uses a Jeffreys +1/2 correction.
+p-hat = (success_a + success_b + 1)/(2n + 2) uses Laplace smoothing: +1 pooled success and +1 pooled failure.
 This avoids zero estimated variance for all-alive/all-dead pairs.
 
 **Critical limitation:** this is an optimistic organism-level screen. The organisms
@@ -61,7 +61,7 @@ All three pairwise survival contrasts are zero.
 
 Source: results/protocol-capacity/run-2026-11-15T19-29-24.json.
 
-**Rows:** 30; nominal screen: 18 confirmed, 12 questionable.
+**Rows:** 30; nominal screen: 18 confirmed, 12 questionable. Nominally confirmed on **18/30 environments**; mean observed Δ = **0.638**, range = **0.167–1.000**. This is a descriptive within-environment organism contrast, not independent-seed replication.
 
 | # | Environment (case, n, r, t, m) | Seq alive | Prop alive | delta survival | MDE | Screen |
 |---:|---|---:|---:|---:|---:|---|
