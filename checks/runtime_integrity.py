@@ -581,7 +581,7 @@ class RunShIntegrity(unittest.TestCase):
             parent.write_text(text, encoding="utf-8")
             rc, out = dispatcher.run(parent, "all")
             self.assertEqual(rc, 0, out)
-            self.assertIn("all: 12 разделов", out)
+            self.assertIn("all: 13 разделов", out)
             traces = re.findall(r"^>>> трассировка: (.+)$", out, re.MULTILINE)
             self.assertGreaterEqual(len(traces), 2)
             self.assertEqual(len(set(traces)), len(traces))
