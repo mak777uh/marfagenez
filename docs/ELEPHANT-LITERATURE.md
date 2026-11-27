@@ -1055,17 +1055,17 @@ mortality risk it poses is severe enough and its repair does not pose too large 
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/eigen71.pdf",
+  "bytes": 7655752,
+  "sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53",
+  "retrieved_at": "2026-11-27T09:40:00Z",
+  "via": "evolocus-pdf",
+  "via_detail": "Eigen1971.pdf (59 стр.), прочитаны §I-II + фрагменты IV-VI; error copies/master copy/threshold — сверено"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "section", "from": "§I-II"}, {"type": "section", "from": "§IV-VI (фрагменты)"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1083,7 +1083,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 **Кто.** Eigen (1971) — quasispecies и `Q_crit`; Orgel (1963); Kowald & Kirkwood (1994).
 **Ссылка.** **вторые руки.**
-**Проверено.** **вторые руки.**
+**Проверено.** **фрагмент первоисточника**: Eigen 1971 (Naturwissenschaften 58:465-523, англ. перевод, papers/eigen71.pdf, sha256 f51e8a99…), 2026-11-27; прочитаны §I–II и фрагменты §IV–VI — «master copy and its (reproducible) comet tail of error copies», «A minimum threshold of accuracy … is required in order to preserve the information of the selected state», sliding selfadjusting threshold — сверено с текстом. Полный разбор σq^ν-формул — не выполнен (математика OCR-шумная).
 **Утверждение (пересказ).** Есть **порог точности копирования**, ниже которого наследственная информация не
 удерживается; для смертности — возможность вывести угасание из **повреждения аппарата починки**.
 **Что даёт нам.** Формальный аналог нашего `h = 1`: нелинейность порога из-за обратной связи; и путь закрыть Q-021.
@@ -1521,17 +1521,17 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/eigen71.pdf",
+  "bytes": 7655752,
+  "sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53",
+  "retrieved_at": "2026-11-27T09:40:00Z",
+  "via": "evolocus-pdf",
+  "via_detail": "та же копия; точность↔длина в фрагментах IV-VI"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "section", "from": "§I-II"}, {"type": "section", "from": "§IV-VI (фрагменты)"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1548,7 +1548,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** Eigen (1971); Eigen & Schuster (1977).
-**Проверено.** **вторые руки.**
+**Проверено.** **фрагмент первоисточника**: Eigen 1971, papers/eigen71.pdf (sha256 f51e8a99…), 2026-11-27; «length restrictions essentially imposed by the quality factors», порог точности для сохранения информации — сверено. Формула σq^ν явно в прочитанных фрагментах не выписана — остаётся пересказом.
 **Утверждение (пересказ).** Максимальная длина, удерживаемая отбором, ограничена точностью копирования; порог
 записывается через `σ q^ν` (по ревью) — **не** через `h`.
 **Что меняет.** Q-024: без перевода переменных наше `h = 1` **нельзя** сопоставлять с порогом Эйгена.
@@ -2358,23 +2358,23 @@ doi:10.3390/systems12040111.
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://pubmed.ncbi.nlm.nih.gov/8022192/",
   "none": false
  },
  "access": {
-  "level": "secondary_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "retrieved_at": "2026-11-27T09:40:00Z",
+  "via": "pubmed-abstract",
+  "via_detail": "PubMed efetch PMID 8022192, J Theor Biol 168:75-94 (1994); полный текст закрыт (Elsevier)"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "abstract"}]
  },
- "abstract_sha256": null,
+ "abstract_sha256": "0b9ef7f96c02eadfa7ed26c8cd0b2766e43f1e151e0a6a468f7006e62c48d2d2",
  "bibliographic": {
   "title": "Error catastrophe: известный отрицательный результат",
   "year": 1963,
@@ -2389,7 +2389,7 @@ doi:10.3390/systems12040111.
 
 
 **Кто.** Orgel (1963); Kowald & Kirkwood (1994), JTB, doi:10.1006/jtbi.1994.1089.
-**Проверено.** **вторые руки.**
+**Проверено.** **аннотация** PubMed PMID 8022192 (sha256 0b9ef7f9…), 2026-11-27; «increased radical production and/or insufficient radical protection can destabilize an otherwise stable translation system», positive correlation maintenance-energy↔lifespan — сверено с abstract. Полный текст закрыт.
 **Утверждение (пересказ).** Наивная самоссылка (ошибки повреждают аппарат синтеза) обычно **не даёт разгона** —
 система выходит на стационар. Для экспоненциальной смертности нужна **нелинейность** или насыщение.
 **Что меняет.** `Q-021`: ожидание «самоссылка → Гомпертц» литературой **не подтверждено**.
@@ -2461,17 +2461,17 @@ doi:10.3390/systems12040111.
   "none": true
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/eigen71.pdf",
+  "bytes": 7655752,
+  "sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53",
+  "retrieved_at": "2026-11-27T09:40:00Z",
+  "via": "evolocus-pdf",
+  "via_detail": "та же копия; selection equilibrium/optimum value в §II-III"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "section", "from": "§I-II"}, {"type": "section", "from": "§IV-VI (фрагменты)"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2488,7 +2488,7 @@ doi:10.3390/systems12040111.
 
 
 **Кто.** Eigen (1971); Eigen & Schuster (1977); обзоры quasispecies (PMC7105236, PMC3466355).
-**Проверено.** **вторые руки.**
+**Проверено.** **фрагмент первоисточника**: Eigen 1971, papers/eigen71.pdf (sha256 f51e8a99…), 2026-11-27; sliding threshold, selection equilibrium как метастабильное состояние, «evolution is fastest if Q is as small as possible, but … must be above the threshold» — сверено. Граница μ_c = ln σ/ν — вторые руки (в прочитанных фрагментах явно не найдена).
 **Утверждение (пересказ).** `σ·q^ν > 1`; граница `μ_c = ln σ / ν`.
 **Что меняет.** `Q-024`: наш `h = 1` **не** эта граница; перевод — только через безразмерные группы и нормальные
 формы; прямое сопоставление `h` и `Πλ` недействительно.
