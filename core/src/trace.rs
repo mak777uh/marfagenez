@@ -77,6 +77,8 @@ pub struct Trace {
     pub hash: u64,
     pub policy: &'static str,
     pub seed: u64,
+    /// Random generator algorithm/version used by the run.
+    pub rng_version: &'static str,
     /// How many cells each organism could read per step.
     ///
     /// Recorded because it decides what the run *means*: a `memory` organism
@@ -310,12 +312,29 @@ impl Trace {
         h
     }
 
+    /// Fold a non-default RNG version into the dynamics hash.
+    ///
+    /// The historical LCG default is the empty-delta case, preserving its old
+    /// golden hashes. Every alternative RNG receives an explicit version tag.
+    pub fn hash_with_rng_version(base_hash: u64, rng_version: &str) -> u64 {
+        if rng_version == crate::RNG_VERSION {
+            return base_hash;
+        }
+        let mut h = base_hash;
+        for b in format!("rng:{rng_version}").bytes() {
+            h ^= b as u64;
+            h = h.wrapping_mul(0x0000_0100_0000_01b3);
+        }
+        h
+    }
+
     /// The JSON form. Written by hand so the crate keeps zero dependencies.
     pub fn to_json(&self) -> String {
         let mut out = String::new();
         out.push_str("{\n");
         out.push_str(&format!("  \"policy\": \"{}\",\n", self.policy));
         out.push_str(&format!("  \"seed\": {},\n", self.seed));
+        out.push_str(&format!("  \"rng_version\": \"{}\",\n", self.rng_version));
         out.push_str(&format!("  \"read_budget\": {},\n", self.read_budget));
         out.push_str(&format!("  \"share\": \"{}\",\n", self.share));
         out.push_str(&format!("  \"tiebreak\": \"{}\",\n", self.tiebreak));
@@ -401,7 +420,7 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
     let read_cost = life.world().read_cost;
     let read_period = life.world().read_period;
     let look_on_shortfall = life.world().look_on_shortfall;
-    let hash = Trace::hash_with_births(
+    let base_hash = Trace::hash_with_births(
         &frames,
         share,
         tiebreak,
@@ -413,11 +432,14 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         read_period,
         look_on_shortfall,
     );
+    let rng_version = life.rng_version().as_str();
+    let hash = Trace::hash_with_rng_version(base_hash, rng_version);
     Trace {
         frames,
         hash,
         policy: life.policy_name(),
         seed: life.seed(),
+        rng_version,
         read_budget,
         share,
         tiebreak,
@@ -603,6 +625,49 @@ mod tests {
         assert_eq!(watched_census.alive, bare_census.alive);
         assert_eq!(watched_census.moves, bare_census.moves);
         assert_eq!(t.frames.len(), 10);
+    }
+
+    #[test]
+    fn rng2_version_is_recorded_and_fingerprinted() {
+        let mut lcg = setup(Policy::Random, 7);
+        let lcg_trace = record(&mut lcg, 100, 10);
+        assert_eq!(lcg_trace.rng_version, crate::RNG_VERSION);
+
+        let world = World {
+            income: 1.0,
+            maintenance_cost: 0.6,
+            repair_cost: 1.5,
+            damage_rate: 0.01,
+            capacity: 10.0,
+            read_budget: 0,
+            tiebreak: TieBreak::Left,
+            share: Default::default(),
+            look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
+            read_cost: 0.0,
+            read_period: 1,
+            look_on_shortfall: false,
+        };
+        let field = Field::alternating(40, 2.0, 0.2, 0.8).unwrap();
+        let mut rng2 = Life::spawn_even_with_rng_version(
+            world, field, 40, 5.0, 0.1, Policy::Random, 7, 300,
+            crate::RngVersion::Xoshiro256PlusPlusV1,
+        ).unwrap();
+        let rng2_trace = record(&mut rng2, 100, 10);
+        assert_eq!(rng2_trace.rng_version, crate::RNG2_VERSION);
+        assert_ne!(lcg_trace.hash, rng2_trace.hash);
+        assert!(rng2_trace.to_json().contains(
+            "\"rng_version\": \"xoshiro256++-v1\""
+        ));
+    }
+
+    #[test]
+    fn rng_hash_tag_preserves_the_lcg_golden_contract() {
+        let base = Trace::compute_hash(&[]);
+        assert_eq!(Trace::hash_with_rng_version(base, crate::RNG_VERSION), base);
+        assert_ne!(Trace::hash_with_rng_version(base, crate::RNG2_VERSION), base);
     }
 
     #[test]
