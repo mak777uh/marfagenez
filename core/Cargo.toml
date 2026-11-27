@@ -2,6 +2,13 @@
 name = "medium-core"
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.85"
+
+[features]
+default = []
+# Tests that call functions backed by the embedded Lean runtime. Kept off by
+# default so the ordinary Rust suite can execute in parallel.
+lean-ffi = []
 
 [lib]
 name = "medium_core"

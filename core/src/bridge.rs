@@ -247,7 +247,7 @@ pub fn available() -> bool {
     lean_saturation(9, 16) == 9
 }
 
-#[cfg(test)]
+#[cfg(all(test, feature = "lean-ffi"))]
 mod tests {
     use super::*;
 
