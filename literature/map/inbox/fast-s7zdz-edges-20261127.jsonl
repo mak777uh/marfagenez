@@ -1,0 +1,3 @@
+{"from": "FAST-S7ZDZ-01", "to": "FAST-S7ZDZ-02", "type": "extends", "note": "Диагноз (положительное смещение max) → лечение (double estimator с независимыми наборами)."}
+{"from": "FAST-S7ZDZ-02", "to": "FAST-S7ZDZ-03", "type": "extends", "note": "Конкретный оценщик → класс архитектур решений: single/double/UCB — разные ответы на один bias."}
+{"from": "FAST-S7ZDZ-03", "to": "FAST-S7ZDZ-01", "type": "contrasts", "note": "UCB лечит смещение оптимизмом (сохраняя max-структуру), double estimator — разделением выбора и оценки."}
