@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - 'audit/**'
   pull_request:
   workflow_dispatch:
 
@@ -68,6 +69,13 @@ jobs:
           # Mathlib from source takes hours; fetch the community prebuilt oleans.
           lake exe cache get || echo "cache get unavailable, building from source"
           lake build
+
+      - name: Verify Lean FFI feature selection
+        run: python3 checks/lean_ffi_feature.py
+
+      - name: Lean FFI tests (serialized)
+        working-directory: core
+        run: cargo test --release --no-default-features --lib --features lean-ffi -- --test-threads=1
 
       - name: Full repository gate
         run: bash run.sh all

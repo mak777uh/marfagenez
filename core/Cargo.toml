@@ -4,6 +4,11 @@ version = "0.1.0"
 edition = "2021"
 rust-version = "1.85"
 
+[features]
+default = []
+# Calls into the embedded Lean runtime; opt in for serialized FFI tests.
+lean-ffi = []
+
 [lib]
 name = "medium_core"
 path = "src/lib.rs"
