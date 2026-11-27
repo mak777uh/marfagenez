@@ -26,7 +26,7 @@
 | §1 арифметика | `checks/experiment.py` — отказывает без `arithmetic` |
 | §2 три контроля | `checks/contract.py` — требует `fires`, `silent`, `specific` |
 | §3 хэши плеч | `checks/contract.py` — требует `hashes`, запрещает совпадение |
-| §4 четыре исхода | `checks/result.py` — `verdict` из четырёх, не из двух |
+| §4 пять исходов | `checks/result.py` — `verdict` из пяти, не из двух |
 | §5 запись | `checks/result.py` — `save()` пишет `results/<id>/<run_id>.json` |
 | §6 ограничения | `checks/result.py` — отказывает без `limitations` |
 | §7 очередь вопросов *(не раздел этого файла)* | `docs/QUESTIONS.md` — вопрос не задаётся в пустоту, а копится (`AUTONOMY.md` §1.1c) |
@@ -34,7 +34,7 @@
 **Разделов шесть** (§1–§6), и `run.sh agents` требует ровно их: строка вида `## §N` для `N` от 1
 до 6. Число «шесть» в первом абзаце — не стилистика, а то, что проверяется.
 
-Запуск всего: `wsl -e bash /root/marfagenez/run.sh all`.
+Запуск всего: `bash run.sh all` (из корня репозитория).
 
 ---
 
@@ -127,8 +127,8 @@
 ## Как это проверяется
 
 ```bash
-wsl -e bash /root/marfagenez/run.sh exp      # прогоны + контракт результатов
-wsl -e bash /root/marfagenez/run.sh all      # всё, включая Verus и агентский гейт
+bash run.sh exp      # прогоны + контракт результатов
+bash run.sh all      # всё, включая Verus и агентский гейт
 ```
 
 `run.sh` возвращает ненулевой код, если хоть одна проверка провалилась.
@@ -145,14 +145,16 @@ wsl -e bash /root/marfagenez/run.sh all      # всё, включая Verus и �
 ```bash
 # 1. write файла в .dsh-switchman/<name>.py (или .sh)
 # 2. затем:
-cp /mnt/c/Users/Admin/Documents/Qoder/2026-10-18/82ab86cd/.dsh-switchman/<name>.py /tmp/ \
+cp "$DASH_SWITCHMAN_DIR/<name>.py" /tmp/ \
   && bash /tmp/<name>.sh        # или python3 /tmp/<name>.py
+
+# DASH_SWITCHMAN_DIR задаёт владелец: каталог .dsh-switchman на Windows-хосте.
 ```
 
 **Сборка — из `core/`, не из корня.** `Cargo.toml` лежит в `core/`:
 
 ```bash
-cd /root/marfagenez/core && cargo build --release --bin trace
+cd core && cargo build --release --bin trace
 ```
 
 **В новом git worktree Lean-кэш подключается симлинком, иначе mathlib
@@ -161,8 +163,8 @@ cd /root/marfagenez/core && cargo build --release --bin trace
 
 ```bash
 cd <worktree>/laws && rm -rf .lake && mkdir -p .lake \
-  && ln -s /root/lean/medium/.lake/packages .lake/packages
-# build/config можно скопировать из /root/marfagenez/laws/.lake/ — сэкономит
+  && ln -s <shared-mathlib-cache>/packages .lake/packages
+# build/config можно скопировать из <canonical-worktree>/laws/.lake/ — сэкономит
 # и сборку самого проекта, не только mathlib
 ```
 

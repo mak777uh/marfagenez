@@ -60,14 +60,14 @@ lake build
 ## Проверка
 
 ```bash
-# файлов
-ls Medium/*.lean | wc -l                    # 48
+# файлов Medium
+ls Medium/*.lean | wc -l                                # 61
 
-# теорем
-grep -rhcE '^theorem ' Medium/*.lean | paste -sd+ | bc   # 180
+# теоремы и леммы всего: Medium + Legacy
+grep -rhE '^(theorem|lemma) ' Medium/*.lean Legacy/*.lean | wc -l  # 338
 
-# olean
-ls .lake/build/lib/lean/Medium/*.olean | wc -l           # 48
+# olean Medium
+ls .lake/build/lib/lean/Medium/*.olean | wc -l           # 61
 ```
 
 ---

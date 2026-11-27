@@ -114,7 +114,7 @@ death     ⟺  energy ≤ 0  ∨  damage ≥ 1
 
 ```
 ρ = damage_rate · repair_cost / income = 0.01 · 1.5 / 1.0 = 0.015
-ρ_s = damage_rate · repair_cost / (income − maintenance)   ← **правильная мера окна** (2026-11-21)
+ρ_s = damage_rate · repair_cost / (income − maintenance)
 ```
 
 то есть починка стоит 1.5% дохода. **Прогоны на умолчаниях не измеряют
@@ -309,11 +309,11 @@ death     ⟺  energy ≤ 0  ∨  damage ≥ 1
 
 ### Lean 4
 
-`laws/` — две библиотеки, **338 теорем и лемм, 0 живых `sorry`**:
+`laws/` — две библиотеки, **338 теорем и лемм (311 + 27), 0 живых `sorry`**:
 
 | библиотека | файлов | теорем | о чём |
 |---|---|---|---|
-| `Medium` | 56 | 291 | модель клетки, организма, среды |
+| `Medium` | 61 | 311 | модель клетки, организма, среды |
 | `Legacy` | 7 | 27 | стена, гонка, наклон, насыщение |
 
 Файлов `Legacy` на диске 8, но `FFI.lean` — мост через C FFI, теорем в нём нет;
@@ -366,7 +366,8 @@ Lean `4.36.0-rc2`, Mathlib — зафиксированная ревизия в 
 - Lean 4 через Elan;
 - GCC для сборки C FFI;
 - Python 3;
-- Node.js для JavaScript-проверок.
+- Node.js для JavaScript-проверок;
+- Verus и Z3 для формальной проверки `run.sh all`.
 
 Версия Lean фиксирована в `laws/lean-toolchain`.
 
@@ -441,23 +442,32 @@ node checks/audit.js
 ```text
 marfagenez/
 ├── core/                      Исполняемое ядро на Rust
-│   ├── src/
-│   │   ├── organism.rs        Организм и параметры мира
-│   │   ├── field.rs           Ресурсы и забор
-│   │   ├── memory.rs          Память
-│   │   ├── life.rs            Жизненный цикл, политики
-│   │   ├── trace.rs           Трассировка и хэш динамики
-│   │   ├── probes.rs          Наблюдатель вне цикла
-│   │   ├── boundary.rs        Границы пространства
-│   │   ├── room.rs            Геометрия пространства
-│   │   ├── cycle.rs           Первоначальная модель
-│   │   ├── child.rs           Ребёнок: снос, шум, демпфирование
-│   │   └── bridge.rs          Связь с Lean
-│   ├── tests/                 Тесты ядра (22 файла, на эту дату)
-│   └── bin/                   run, trace, ask, occupancy, empty_cell
+│   ├── src/                    19 Rust-файлов ядра
+│   │   ├── lib.rs               Корень crate
+│   │   ├── organism.rs          Организм и параметры мира
+│   │   ├── field.rs             Ресурсы и забор
+│   │   ├── memory.rs            Память
+│   │   ├── life.rs              Жизненный цикл, политики
+│   │   ├── trace.rs             Трассировка и хэш динамики
+│   │   ├── probes.rs            Наблюдатель вне цикла
+│   │   ├── boundary.rs          Границы пространства
+│   │   ├── boundary_probes.rs   Пробы границы
+│   │   ├── room.rs              Геометрия пространства
+│   │   ├── room_probes.rs       Пробы геометрии
+│   │   ├── cycle.rs             Первоначальная модель
+│   │   ├── child.rs             Ребёнок: снос, шум, демпфирование
+│   │   ├── bridge.rs            Связь с Lean
+│   │   ├── compartment.rs       Компартменты
+│   │   ├── form.rs              Форма
+│   │   ├── shape_world.rs       Мир форм
+│   │   ├── skin.rs              Граница/кожа
+│   │   └── organ.rs             Органы и повреждение
+│   ├── tests/                   Тесты ядра (42 файла)
+│   └── bin/                     9 бинарников: run, trace, ask, compartment,
+│                                empty_cell, exp_dq4, exp_dq5, exp_dq6, occupancy
 │
 ├── laws/                      Формализация на Lean 4
-│   ├── Medium/                56 модулей: клетка, организм, среда
+│   ├── Medium/                61 модуль: клетка, организм, среда
 │   ├── Legacy/                Стена, гонка, наклон, FFI
 │   ├── lakefile.toml          Зафиксированные версии
 │   └── lean-toolchain
@@ -476,7 +486,7 @@ marfagenez/
 ├── AUTONOMY.md                Правила автономной работы
 ├── LESSONS.md                 Уроки: что стоило времени и почему
 ├── run.sh                     Все проверки одной командой
-└── viz/, export.py            Визуализация трассировок
+└── checks/export.py           Экспорт результатов
 ```
 
 ---
@@ -496,7 +506,7 @@ marfagenez/
 | [`docs/ELIMINATED.md`](docs/ELIMINATED.md) | отрицательные результаты: что проверяли, что вышло, чем заменили |
 | [`NOT-CLAIMED.md`](NOT-CLAIMED.md) | чего мы не утверждаем, хотя это можно было бы прочитать из текстов |
 | [`docs/CLAIMS.md`](docs/CLAIMS.md) | карта утверждений и их статусов |
-| [`PROTOCOL.md`](PROTOCOL.md) | протокол эксперимента: плечи, контроли, четыре исхода |
+| [`PROTOCOL.md`](PROTOCOL.md) | протокол эксперимента: плечи, контроли, пять исходов |
 | [`docs/QUESTIONS.md`](docs/QUESTIONS.md) | очередь вопросов, ждущих ответа владельца или исследователя |
 | [`AGENTS.md`](AGENTS.md) | правила работы с репозиторием |
 | [`AUTONOMY.md`](AUTONOMY.md) | правила автономной работы |

@@ -29,7 +29,7 @@
         "silent":   {"passed": true, "evidence": "..."},
         "specific": {"passed": true, "evidence": "..."}
       },
-      "verdict": {                // §4: четыре исхода
+      "verdict": {                // §4: пять исходов
         "kind": "passed",
         "reason": "..."
       },
@@ -292,7 +292,7 @@ def add_control(
 
 
 def set_verdict(result: dict[str, Any], kind: str, reason: str) -> None:
-    """Sets the verdict. Four outcomes, not two (AGENTS.md §4)."""
+    """Sets the verdict. Five outcomes, not two (AGENTS.md §4)."""
     if kind not in VERDICTS:
         raise ValueError(f"unknown verdict: {kind!r}; expected one of {VERDICTS}")
     result["verdict"] = {"kind": kind, "reason": reason}
