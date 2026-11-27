@@ -10840,3 +10840,16 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   exp-выводе — штатный задокументированный ответ «нет» (FINDING-157), есть и в зелёном c874,
   не причина провала. Гейт c876; пуш при зелёном -> publish v4 EXP-2026-4103 (base = новый
   HEAD) -> claim a2 -> прогон компактным драйвером.
+
+- **861r:** гейт c876 зелёный. Прогон a2 запущен: publish v4 EXP-2026-4103
+  (task_version_sha256 a12176d4…, base ee68a4b5, supersedes v3; sham переведён на
+  yoked-контракт, события — компактные точные гистограммы), claim a2 от main-exec
+  (LEASE-460020f8b730, epoch 2, до 08:36Z); leased-раннер exper гонит полный дизайн
+  (8 значений h + controls 1.0 + --derivative-neighbors + sham h={0.995,0.999}, сиды
+  4301-4312, 800000 шагов, N=100). Первый запуск упал кодом 2: dq6_run.sh безусловно
+  требует exp_dq6_controls_candidate.rs рядом с собой (байт-в-байт равен
+  core/src/bin/exp_dq6.rs, sha256 0759ffd7…) — скопирован в tools/dq6/, перезапуск
+  успешен (драйвер в работе, гистограмма растёт компактно). В tools/dq6/ также
+  зафиксирован EXP-2026-4103-task.json (зеркало опубликованного payload v4).
+  Журнал называет коммит devin: `cd546ff1` (literature: L-027/L-043 fragment_read,
+  Hordijk RAF reviews verified). Гейт c877; пуш при зелёном.

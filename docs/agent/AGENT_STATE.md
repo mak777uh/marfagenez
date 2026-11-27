@@ -624,3 +624,10 @@ status: continue
 - c875 красный: exp lane3 log_check — 3 док-строки «тестов 415» (обратный порядок слов) + nodes.jsonl отстал от L-апгрейдов devin
 - граф пересобран на актуальном дереве (migrate/build/embeddings/reach); живые числа совпадают; журнал 861q называет 1a4847d4/c93519a0/5bbbb6c4/f96824ad
 - статус: гейт c876 -> пуш -> publish v4 4103 (base = новый HEAD) -> claim a2 -> прогон
+
+## 2026-11-27 — v4 опубликована, прогон a2 идёт (цикл 861r)
+
+- EXP-2026-4103 v4: sha a12176d4…, base ee68a4b5; claim a2 main-exec (LEASE-460020f8b730, до 08:36Z)
+- прогон идёт leased-раннером exper: death-reset лана считается, гистограммы компактные (~50KB на старте)
+- tools/dq6/: добавлены exp_dq6_controls_candidate.rs (0759ffd7) и EXP-2026-4103-task.json (payload v4)
+- журнал 861r называет devin cd546ff1; статус: гейт c877 -> пуш при зелёном -> CI

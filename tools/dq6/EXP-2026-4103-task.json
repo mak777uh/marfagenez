@@ -1,0 +1,164 @@
+{
+  "base_commit": "ee68a4b573aef20560a11e78731541cb8721d605",
+  "budget": {
+    "cpu_seconds": 7200,
+    "disk_bytes": 268435456,
+    "network_allowlist": [],
+    "ram_bytes": 536870912
+  },
+  "change_reason": "Кандидат exper по PROP-EXPER-DQ6-CONTROLS-V3-20261127-02 rev2 интегрирован в base d3bf8d45: компактные точные interval histograms (--event-histogram, production ~0.5MB) вместо построчного журнала (~4.6 GiB на значение h), yoked sham (те же seed, шаги событий, counts и reset values, отбор без использования D), --derivative-neighbors; опер-цепочка в tools/dq6/ (analyzer 1.0.1, runner, leased, environment, plan, finding, submit). Научная гипотеза, seeds 4301-4312, sample_steps, endpoints и gates не меняются.",
+  "created_at": "2026-11-27T05:36:01+03:00",
+  "created_by": "main",
+  "department": "experiments",
+  "dependencies": [],
+  "id": "EXP-2026-4103",
+  "lease": {
+    "heartbeat_seconds": 60,
+    "max_attempts": 1,
+    "max_lease_seconds": 7200,
+    "ttl_seconds": 7200
+  },
+  "network_profile": "none",
+  "published_at": "2026-11-26T23:19:00+03:00",
+  "published_by": "main",
+  "schema": "task/v1",
+  "spec": {
+    "analysis_plan": "Лог-лог OLS по confirmatory seed-level оценкам; bootstrap по seed; отдельный отчёт convergence и horizon dependence. dDbar/dt при фиксированном h<1 стремится к нулю и не подменяет dD*/dh. h=1 исключается из степенной регрессии.",
+    "axes": [
+      {
+        "name": "h",
+        "values": [
+          0.9,
+          0.95,
+          0.98,
+          0.99,
+          0.995,
+          0.998,
+          0.999,
+          0.9995,
+          1.0
+        ]
+      },
+      {
+        "name": "horizon",
+        "values": [
+          100000,
+          200000,
+          400000,
+          800000
+        ]
+      }
+    ],
+    "controls": {
+      "fires": "Интервенция cap(D)=1 должна убрать расходимость и вернуть наклон к конечному плато; h=1 без cap должен расти за весь горизонт.",
+      "sham": "Yoked sham: отдельный death-reset прогон того же h/seed задаёт точные шаги, количества и значения resets; sham применяет их к равномерно выбранным без повторов организмам независимым seeded RNG, отбор не использует D sham-траектории; duty cycle и распределение reset values совпадают с death-reset точно. Yoked sham не должен создавать тот же полюс D*.",
+      "silent": "Подгонка на удалённом от полюса диапазоне h={0.9,0.95,0.98,0.99} не должна устойчиво воспроизводить асимптитические показатели.",
+      "specific": "На h={0.995,0.999} state-dependent death-reset сравнивается с yoked sham (те же seed, шаги событий, counts, распределение reset values; реализовано драйвером). Совпадение полюса операционализировано как median relative difference Dbar <= 15% на горизонтах 400000 и 800000; если совпадает, специфика смертного канала не подтверждена."
+    },
+    "expected_effect": "Лог-лог регрессии дают alpha_D≈0.5, alpha_deriv≈1.5 и alpha_Tlife≈0.5 для T_life~x^alpha. T_life не обязан расходиться: при смертном канале он стремится к нулю. h=1 показывает рост без плато. Численный результат подтверждает или опровергает предсказание, но не меняет его статус на собственную новизну.",
+    "falsification": "Предсказание не подтверждено, если CI не включает 0.5/1.5/0.5 с допуском 0.15, если хватает менее четырёх сходимых h, если наклон меняется с горизонтом систематически или если yoked/sham воспроизводит полюс.",
+    "hypothesis": "Для механизма death-reset с D(t+1)=D(t)+delta при выживании и D←h*mean(D) при событии смерти; при h→1 выполняются D*~x^(-1/2), |dD*/dh|~x^(-3/2), x=1-h, а средний интервал между death-reset событиями T_life~x^(1/2) стремится к нулю. При фиксированном h<1 существует плато; при h=1 плато отсутствует.",
+    "kg_refs": [
+      "Q-023",
+      "Q-027",
+      "C-005",
+      "C-007",
+      "EV-FINDING-316"
+    ],
+    "limitations": [
+      "Это численная проверка аналитического результата, а не новый результат сам по себе.",
+      "T_life определяется как интервал death-reset, а не как senescence time из Chao; равенство показателей не предполагается.",
+      "Близкие к h=1 точки могут не сойтись за 800000 шагов; результат тогда horizon_limited, а не подтверждённый.",
+      "Сравнение с Chao заблокировано отсутствием перевода параметров Q-024."
+    ],
+    "mode": "experiment",
+    "no_unseeded_random": true,
+    "parameters": {
+      "DELTA": 0.001,
+      "FLOOR": 0.0002,
+      "LAMBDA": 0.001,
+      "N": 100,
+      "P": 2,
+      "Q": 0.5,
+      "RATE": 0.01,
+      "STEPS": 800000,
+      "convergence_rule": "плато считается достигнутым, если |Dbar(800000)-Dbar(400000)|/Dbar(800000)<=0.01",
+      "decision_rule": "Каждый показатель принимается, если 95% seed-bootstrap CI включает предсказанное значение с допуском 0.15. Если сходится менее четырёх h, асимптитический наклон не оценивается и результат помечается horizon_limited.",
+      "derivative_step": "min(0.00025, (1-h)/4)",
+      "h_controls": [
+        0.9,
+        0.95,
+        0.98,
+        1.0
+      ],
+      "h_fit": [
+        0.99,
+        0.995,
+        0.998,
+        0.999,
+        0.9995
+      ],
+      "minimum_fit_points": 4,
+      "primary_endpoints": [
+        "alpha_D",
+        "alpha_deriv",
+        "alpha_Tlife"
+      ],
+      "sample_steps": [
+        100000,
+        200000,
+        400000,
+        800000
+      ],
+      "seed_roles": {
+        "confirmatory": "4301-4312; bootstrap по seed, не по шагам"
+      }
+    },
+    "prior_results": [
+      "FINDING-306: h<1 даёт плато, h=1 — рост",
+      "FINDING-316: sqrt-масштаб универсален; остаётся проверить канал удаления",
+      "Q-023: аналитически расходятся D* и dD*/dh с показателями 1/2 и 3/2; DESIGN-QUEUE D-Q6 устарел в части открытости вопроса"
+    ],
+    "publication_prerequisites": [
+      "Main-owned драйвер готов и в base_commit (exp_dq6.rs: компактные гистограммы, yoked sham, 16 тестов).",
+      "Профиль experiments-v1 1.0.0 зарегистрирован.",
+      "base_commit обновлён до d3bf8d45; публикационные поля заполнены."
+    ],
+    "reproduce": "Сохранить task/version/hash, base_commit, toolchain, OS, argv, seed-реестр, summary CSV, histogram CSV, artifact hashes, convergence flags, регрессии, 10000 deterministic bootstrap-репликаций по seed (percentile 95% CI) и контрольные логи. Запуск только leased-раннером tools/dq6/dq6_run_leased.py.",
+    "seeds": [
+      4301,
+      4302,
+      4303,
+      4304,
+      4305,
+      4306,
+      4307,
+      4308,
+      4309,
+      4310,
+      4311,
+      4312
+    ],
+    "target_setup": "Расширенный standalone drift driver (exp_dq6.rs): N=100, те же floor/rate/p/lambda/delta, что в organ_damage_drift.rs; h_fit={0.99,0.995,0.998,0.999,0.9995}; контроли h={0.9,0.95,0.98,1.0}; sham на h={0.995,0.999}. Один запуск на h*seed длиной 800000 шагов с замерами Dbar и dDbar/dt на {100000,200000,400000,800000}. События death-reset сохраняются компактной точной interval histogram (--event-histogram: count, reset sum/sumsq/min/max, schedule fingerprint, точные global interval counts); T_life восстанавливается как средний global interval. Полный построчный журнал (--events) только dev-аудит и взаимно исключён с гистограммой. Производная dD*/dh считается центральной разностью по соседям h+/-min(0.00025,(1-h)/4) (--derivative-neighbors)."
+  },
+  "supersedes_version": 3,
+  "tags": [
+    "D-Q6",
+    "Q-023",
+    "pole",
+    "damage-scaling",
+    "verification"
+  ],
+  "title": "D-Q6: численная проверка полюса D*, dD*/dh и времени жизни при h→1",
+  "validators": [
+    {
+      "profile": "experiments-v1",
+      "version": "1.0.0"
+    }
+  ],
+  "version": 4,
+  "write_scope": [
+    "results/experiments/EXP-2026-4103/**",
+    "docs/FINDING-EXP-2026-4103.md"
+  ]
+}
