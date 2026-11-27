@@ -10826,3 +10826,17 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   (literature: L-006/L-035/L-047 upgraded to full_text_examined (verified PDFs)).
   Гейт c875; пуш при зелёном; после — переиздание EXP-2026-4103 с новым base_commit,
   повторный claim и прогон компактным драйвером.
+
+- **861q:** гейт c875 красный по exp (lane3 log_check), разбор: (1) три док-строки со старым
+  числом тестов в обратном порядке слов («тестов 415», а 861p правил только «415 тестов»)
+  — docs/CLAIMS.md:236, docs/LAWS.md:157, docs/UNREPRODUCIBLE.md:107 — исправлены на 422;
+  doc_numbers-маркеры совпадали, log_check грепает таблицы отдельно; (2) nodes.jsonl отставал
+  от корпуса после L-апгрейдов devin (L-006/L-023/L-035/L-042/L-047 и позднейшие) — граф
+  пересобран целиком (migrate -> kg.py build -> build_embeddings -> kg_reach --write).
+  Журнал называет коммиты devin: `1a4847d4` (literature: L-020/L-029/L-048 fragment_read,
+  Eigen 1971 verified), `c93519a0` (L-038 Starrfelt-Kokko bet-hedging full_text_examined),
+  `5bbbb6c4` (L-040 Gneiting-Raftery full_text_examined), `f96824ad` (L-032 Sharma + L-041
+  cell-size review full_text_examined). Строка «(b) a gain at a positive price: FAILS» в
+  exp-выводе — штатный задокументированный ответ «нет» (FINDING-157), есть и в зелёном c874,
+  не причина провала. Гейт c876; пуш при зелёном -> publish v4 EXP-2026-4103 (base = новый
+  HEAD) -> claim a2 -> прогон компактным драйвером.

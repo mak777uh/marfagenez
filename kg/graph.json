@@ -17275,15 +17275,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст** papers/stroustrup16-nature16550.pdf (author manuscript, PMCID P"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/stroustrup16-nature16550.pdf",
+          "strength": "strong",
+          "sha256": "6b16e76081d97e4ffc5ca42bb59c2660bf62f3f894d0904108f309707fe8fdde"
         }
       ],
       "relations": [],
@@ -17291,19 +17297,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст** papers/stroustrup16-nature16550.pdf (author manuscript, PMCID P",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/stroustrup16-nature16550.pdf",
+        "artifact_bytes": 1892642,
+        "artifact_sha256": "6b16e76081d97e4ffc5ca42bb59c2660bf62f3f894d0904108f309707fe8fdde",
         "locator": {
-          "doi": null,
+          "doi": "10.1038/nature16550",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://www.nature.com/articles/nature16550",
+          "none": false
         },
         "lit_ref": [
           "WIN-L006-01",
@@ -18017,7 +18023,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент первоисточника**: Eigen 1971 (Naturwissenschaften 58:465-523, англ. п"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18025,7 +18031,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/eigen71.pdf",
+          "strength": "moderate",
+          "sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53"
         }
       ],
       "relations": [],
@@ -18033,11 +18045,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент первоисточника**: Eigen 1971 (Naturwissenschaften 58:465-523, англ. п",
+        "level_kind": "fragment_read",
+        "artifact": "papers/eigen71.pdf",
+        "artifact_bytes": 7655752,
+        "artifact_sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53",
         "locator": {
           "doi": null,
           "arxiv": null,
@@ -18161,15 +18173,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки** (реконструкция обзора, сам статью не открывал)."
+        "conditions": "**полный текст** papers/chao10-plosgenet.pdf (PLoS printable PDF, sha256 28a06c1"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/chao10-plosgenet.pdf",
+          "strength": "strong",
+          "sha256": "28a06c1eef3c6e33f22a8a6dc71e942ebf26fe7d4a283d47a027456b305402f9"
         }
       ],
       "relations": [],
@@ -18177,11 +18195,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки** (реконструкция обзора, сам статью не открывал).",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст** papers/chao10-plosgenet.pdf (PLoS printable PDF, sha256 28a06c1",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/chao10-plosgenet.pdf",
+        "artifact_bytes": 344646,
+        "artifact_sha256": "28a06c1eef3c6e33f22a8a6dc71e942ebf26fe7d4a283d47a027456b305402f9",
         "locator": {
           "doi": "10.1371/journal.pgen.1001076",
           "arxiv": null,
@@ -18472,7 +18490,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент первоисточника**: Eigen 1971, papers/eigen71.pdf (sha256 f51e8a99…), "
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18480,7 +18498,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/eigen71.pdf",
+          "strength": "moderate",
+          "sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53"
         }
       ],
       "relations": [],
@@ -18488,11 +18512,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент первоисточника**: Eigen 1971, papers/eigen71.pdf (sha256 f51e8a99…), ",
+        "level_kind": "fragment_read",
+        "artifact": "papers/eigen71.pdf",
+        "artifact_bytes": 7655752,
+        "artifact_sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53",
         "locator": {
           "doi": null,
           "arxiv": null,
@@ -18620,15 +18644,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст (arXiv-версия Nature-статьи)** papers/sharma23-arxiv-2206.02279.p"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/sharma23-arxiv-2206.02279.pdf",
+          "strength": "strong",
+          "sha256": "a4dea5df52c48963ae7bb2eaa166c88a8b331a28fe1c1d886e0c46408d996e8e"
         }
       ],
       "relations": [],
@@ -18636,19 +18666,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст (arXiv-версия Nature-статьи)** papers/sharma23-arxiv-2206.02279.p",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/sharma23-arxiv-2206.02279.pdf",
+        "artifact_bytes": 2082487,
+        "artifact_sha256": "a4dea5df52c48963ae7bb2eaa166c88a8b331a28fe1c1d886e0c46408d996e8e",
         "locator": {
-          "doi": null,
-          "arxiv": null,
+          "doi": "10.1038/s41586-023-06600-9",
+          "arxiv": "2206.02279",
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://arxiv.org/abs/2206.02279",
+          "none": false
         }
       },
       "created_at": "2026-11-20",
@@ -18765,15 +18795,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**частично первый источник**: Vercken et al. 2012 PLoS ONE 7:e34889 — полный тек"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/vercken12-plosone-e34889.pdf",
+          "strength": "strong",
+          "sha256": "54ded2570019d12ab64e5c951f45ad59fbe2776d04a2773c862d7f3c0a7f48f7"
         }
       ],
       "relations": [],
@@ -18781,19 +18817,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**частично первый источник**: Vercken et al. 2012 PLoS ONE 7:e34889 — полный тек",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/vercken12-plosone-e34889.pdf",
+        "artifact_bytes": 450630,
+        "artifact_sha256": "54ded2570019d12ab64e5c951f45ad59fbe2776d04a2773c862d7f3c0a7f48f7",
         "locator": {
-          "doi": null,
+          "doi": "10.1371/journal.pone.0034889",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://doi.org/10.1371/journal.pone.0034889",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -18916,15 +18952,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки** (внешний разбор 2026-11-20; локаторы не открывались)."
+        "conditions": "**полный текст** papers/starrfelt12-biolrev.pdf (Starrfelt & Kokko, Biol. Rev. 8"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/starrfelt12-biolrev.pdf",
+          "strength": "strong",
+          "sha256": "623025f8f036624b5e9677fc397789161eefac20d42c74608f738ae252c8bde2"
         }
       ],
       "relations": [],
@@ -18932,18 +18974,18 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки** (внешний разбор 2026-11-20; локаторы не открывались).",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст** papers/starrfelt12-biolrev.pdf (Starrfelt & Kokko, Biol. Rev. 8",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/starrfelt12-biolrev.pdf",
+        "artifact_bytes": 838684,
+        "artifact_sha256": "623025f8f036624b5e9677fc397789161eefac20d42c74608f738ae252c8bde2",
         "locator": {
           "doi": "10.1111/j.1469-185X.2012.00225.x",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
+          "url": "https://doi.org/10.1111/j.1469-185X.2012.00225.x",
           "none": false
         },
         "lit_ref": [
@@ -19004,15 +19046,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст** papers/gneiting07-jasa.pdf (JASA 102:359-378, sha256 d31a0c5f…)"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/gneiting07-jasa.pdf",
+          "strength": "strong",
+          "sha256": "d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2"
         }
       ],
       "relations": [],
@@ -19020,18 +19068,18 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст** papers/gneiting07-jasa.pdf (JASA 102:359-378, sha256 d31a0c5f…)",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/gneiting07-jasa.pdf",
+        "artifact_bytes": 556804,
+        "artifact_sha256": "d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2",
         "locator": {
           "doi": "10.1198/016214506000001437",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
+          "url": "https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf",
           "none": false
         }
       },
@@ -19045,15 +19093,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст (arXiv-версия обзора)** papers/amir18-arxiv-1801.00494.pdf (sha25"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/amir18-arxiv-1801.00494.pdf",
+          "strength": "strong",
+          "sha256": "5e3dd8ee7067f8ac4bcc1fae30d46c88ae2fff7a846cc5756d3984538376cb08"
         }
       ],
       "relations": [],
@@ -19061,18 +19115,18 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст (arXiv-версия обзора)** papers/amir18-arxiv-1801.00494.pdf (sha25",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/amir18-arxiv-1801.00494.pdf",
+        "artifact_bytes": 3869356,
+        "artifact_sha256": "5e3dd8ee7067f8ac4bcc1fae30d46c88ae2fff7a846cc5756d3984538376cb08",
         "locator": {
           "doi": "10.1146/annurev-biophys-070317-032955",
-          "arxiv": null,
+          "arxiv": "1801.00494",
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
+          "url": "https://arxiv.org/abs/1801.00494",
           "none": false
         },
         "lit_ref": [
@@ -19091,15 +19145,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст** papers/cot07-df.pdf (глава 11, Dittrich & Speroni di Fenizio, S"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/cot07-df.pdf",
+          "strength": "strong",
+          "sha256": "c011aa0b2f0fdb2f8ed1cd0537e3353bfd3036f66d7ab10e18be1b6c93c37c22"
         }
       ],
       "relations": [],
@@ -19107,18 +19167,18 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст** papers/cot07-df.pdf (глава 11, Dittrich & Speroni di Fenizio, S",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/cot07-df.pdf",
+        "artifact_bytes": 450196,
+        "artifact_sha256": "c011aa0b2f0fdb2f8ed1cd0537e3353bfd3036f66d7ab10e18be1b6c93c37c22",
         "locator": {
           "doi": "10.1007/s11538-006-9130-8",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
+          "url": "https://home.pietrosperoni.it/wp-content/uploads/2006/11/Chapter-11.pdf",
           "none": false
         },
         "lit_ref": [
@@ -19271,7 +19331,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**аннотация** PubMed PMID 8022192 (sha256 0b9ef7f9…), 2026-11-27; «increased rad"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -19287,8 +19347,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
+        "registry_level": "**аннотация** PubMed PMID 8022192 (sha256 0b9ef7f9…), 2026-11-27; «increased rad",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -19298,7 +19358,7 @@
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/8022192/",
           "none": false
         },
         "lit_ref": [
@@ -19317,15 +19377,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**частично первый источник**: Briat, Gupta & Khammash 2016 Cell Systems (arXiv:1"
+        "conditions": "**полный текст (arXiv)**: Briat, Gupta & Khammash 2016, arXiv:1410.6064v7 = Cell"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/briat16-arxiv-1410.6064.pdf",
+          "strength": "strong",
+          "sha256": "5036d32176bcde430b4bb3cfe3891ac7c657898ad828cd3827786ebac3538b82"
         }
       ],
       "relations": [],
@@ -19333,19 +19399,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**частично первый источник**: Briat, Gupta & Khammash 2016 Cell Systems (arXiv:1",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст (arXiv)**: Briat, Gupta & Khammash 2016, arXiv:1410.6064v7 = Cell",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/briat16-arxiv-1410.6064.pdf",
+        "artifact_bytes": 2350616,
+        "artifact_sha256": "5036d32176bcde430b4bb3cfe3891ac7c657898ad828cd3827786ebac3538b82",
         "locator": {
-          "doi": null,
-          "arxiv": null,
+          "doi": "10.1016/j.cels.2016.01.004",
+          "arxiv": "1410.6064",
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://arxiv.org/abs/1410.6064",
+          "none": false
         }
       },
       "created_at": "2026-11-20",
@@ -19358,7 +19424,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент первоисточника**: Eigen 1971, papers/eigen71.pdf (sha256 f51e8a99…), "
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -19366,7 +19432,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/eigen71.pdf",
+          "strength": "moderate",
+          "sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53"
         }
       ],
       "relations": [],
@@ -19374,11 +19446,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент первоисточника**: Eigen 1971, papers/eigen71.pdf (sha256 f51e8a99…), ",
+        "level_kind": "fragment_read",
+        "artifact": "papers/eigen71.pdf",
+        "artifact_bytes": 7655752,
+        "artifact_sha256": "f51e8a9954652dc5166daad53acab986b3c8836697ff5f5004d972a927086e53",
         "locator": {
           "doi": null,
           "arxiv": null,
@@ -40100,13 +40172,13 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -40130,12 +40202,12 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
@@ -40170,13 +40242,13 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -40325,22 +40397,22 @@
     },
     {
       "from": "F-022",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
+    },
+    {
+      "from": "F-022",
       "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
     },
     {
-      "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "from": "F-023",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "F-023",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -42630,13 +42702,13 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
@@ -42660,12 +42732,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
