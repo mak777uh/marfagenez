@@ -1770,28 +1770,28 @@ JACS 134:20812; Breuer et al. (2019) eLife; Pelletier et al. (2021) Cell 184:243
 {
  "L": "L-034",
  "locator": {
-  "doi": null,
+  "doi": "10.1073/pnas.96.18.10242",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
-  "pmid": null,
-  "url": null,
-  "none": true
+  "pmid": "10468593",
+  "url": "https://doi.org/10.1073/pnas.96.18.10242",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "retrieved_at": "2026-11-27T22:05:00Z",
+  "via": "pubmed",
+  "via_detail": "PubMed efetch abstract, PMID 10468593; PMCID PMC17873, но EuropePMC fullTextXML отдаёт 500 — только аннотация. Внимание: реальный титул статьи — «Evolutionary consequences of niche construction and their implications for ecology»; «Learning to extend your phenotype» — другое название того же авторского блока 1999 (уточнить при следующем чтении)"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "e74a7f37151fd86719ee98a12a10412a1790eed030f5271f93d25ffb46deac68",
  "bibliographic": {
   "title": "Niche construction: обратная связь есть, скалярной меры нет",
   "year": 1994,
@@ -1807,9 +1807,8 @@ JACS 134:20812; Breuer et al. (2019) eLife; Pelletier et al. (2021) Cell 184:243
 
 **Кто.** Jones, Lawton & Shachak (1994) Oikos 69:373; Laland, Odling-Smee & Feldman (1999) PNAS 96:10242;
 Odling-Smee et al. (2013) Am Nat; Mitteroecker et al. (2016) PNAS.
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Записывают **ΔR** (разницу среды до и после), но универсальной меры «силы конструкции»
-нет; **изменение среды ≠ участие в своих условиях**.
+**Проверено.** **аннотация** PubMed (PMID 10468593, doi:10.1073/pnas.96.18.10242), 2026-11-27; полный текст недоступен (EuropePMC 500), фрагмент не читался.
+**Утверждение (по аннотации Laland, Odling-Smee & Feldman 1999; Jones 1994, Odling-Smee 2013, Mitteroecker 2016 — вторые руки).** Ниша-конструкция — модификация распределения ресурсов организмами; двухлокусная модель показывает: даже слабая конструкция меняет отбор (фиксация deleterious аллелей, стабильные полиморфизмы там, где их не ждали). Записывают ΔR, но универсальной скалярной меры «силы конструкции» нет.
 **Что меняет.** Наш §4.9 (`spent = 0`) — узкий и измеримый случай; назвать его так.
 
 ---
