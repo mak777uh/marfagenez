@@ -1658,26 +1658,26 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 {
  "L": "L-032",
  "locator": {
-  "doi": null,
-  "arxiv": null,
+  "doi": "10.1038/s41586-023-06600-9",
+  "arxiv": "2206.02279",
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://arxiv.org/abs/2206.02279",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/sharma23-arxiv-2206.02279.pdf",
+  "bytes": 2082487,
+  "sha256": "a4dea5df52c48963ae7bb2eaa166c88a8b331a28fe1c1d886e0c46408d996e8e",
+  "retrieved_at": "2026-11-27T09:05:00Z",
+  "via": "arxiv-pdf",
+  "via_detail": "arXiv:2206.02279 PDF (версия Nature 2023, 22 стр.); assembly index, selection, evolution — сверено; ответ Kempes et al. 2025 остаётся вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "page", "from": "1", "to": "22"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1694,8 +1694,8 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** Sharma et al. (2023), Nature; ответ на критику — Kempes et al. (2025).
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Индекс сборки измеряет **сложность**, не **организацию**; цены поддержания в нём нет.
+**Проверено.** **полный текст (arXiv-версия Nature-статьи)** papers/sharma23-arxiv-2206.02279.pdf (sha256 a4dea5df…), 2026-11-27; индекс сборки как мера сложности и его границы сверены с текстом; критика Kempes et al. (2025) — вторые руки.
+**Утверждение (по полному тексту; вторичные источники — пересказ).** Индекс сборки измеряет **сложность**, не **организацию**; цены поддержания в нём нет.
 **Что меняет.** Не использовать как аналог нашей организации.
 
 ---
@@ -2105,25 +2105,25 @@ proper scoring rules — единственные, где честно гово�
  "L": "L-041",
  "locator": {
   "doi": "10.1146/annurev-biophys-070317-032955",
-  "arxiv": null,
+  "arxiv": "1801.00494",
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://arxiv.org/abs/1801.00494",
   "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/amir18-arxiv-1801.00494.pdf",
+  "bytes": 3869356,
+  "sha256": "5e3dd8ee7067f8ac4bcc1fae30d46c88ae2fff7a846cc5756d3984538376cb08",
+  "retrieved_at": "2026-11-27T09:05:00Z",
+  "via": "arxiv-pdf",
+  "via_detail": "arXiv:1801.00494 PDF (= Ann. Rev. Biophys. обзор Ho, Lin & Amir, 13 стр.); sizer/adder/timer, |a|<2 — сверено; Donachie 1968, Campos 2014, Taheri-Araghi 2015 остаются вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "page", "from": "1", "to": "13"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2141,8 +2141,8 @@ proper scoring rules — единственные, где честно гово�
 
 **Кто.** Donachie (1968); Campos et al. (2014); Taheri-Araghi et al. (2015); Ho, Lin & Amir (2018),
 doi:10.1146/annurev-biophys-070317-032955.
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Три механизма; параметризация `s_d = a·s_b + b`, `a = 0 / 1 / 2`. Устойчивость
+**Проверено.** **полный текст (arXiv-версия обзора)** papers/amir18-arxiv-1801.00494.pdf (sha256 5e3dd8ee…), 2026-11-27; три механизма sizer/adder/timer и условие |a|<2 сверены с текстом; Donachie (1968), Campos (2014), Taheri-Araghi (2015) — вторые руки.
+**Утверждение (по полному тексту; вторичные источники — пересказ).** Три механизма; параметризация `s_d = a·s_b + b`, `a = 0 / 1 / 2`. Устойчивость
 распределения ⟺ `|a| < 2`; стационарная дисперсия `σ²/(1 − (a/2)²)`.
 **Что меняет.** `Q-013`: у наших приёмов есть канонические имена; сверять **распределение**, не среднее.
 
