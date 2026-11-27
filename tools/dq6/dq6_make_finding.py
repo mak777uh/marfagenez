@@ -150,10 +150,14 @@ def main() -> int:
             raise SystemExit(f"{name} version mismatch")
         if name != "environment" and record.get("task_version_sha256") != version_hash:
             raise SystemExit(f"{name} task hash mismatch")
-        # base_commit is enforced where the record carries it (manifest,
-        # environment); the leased-runner record never includes it by design.
-        if "base_commit" in record and record["base_commit"] != task["base_commit"]:
-            raise SystemExit(f"{name} base commit mismatch")
+        # Schema-driven base_commit contract (external review 2026-11-27, C3):
+        # required in manifest and environment, forbidden in the lease wrapper.
+        # A missing required field must fail closed, never pass silently.
+        if name in ("manifest", "environment"):
+            if record.get("base_commit") != task["base_commit"]:
+                raise SystemExit(f"{name} base commit mismatch (required by schema)")
+        elif "base_commit" in record:
+            raise SystemExit(f"{name} must not carry base_commit")
     if environment.get("task_version_sha256") != version_hash:
         raise SystemExit("environment task hash mismatch")
     if lease.get("runner_status") != 0 or lease.get("heartbeat_failure") is not None:

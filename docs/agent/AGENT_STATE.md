@@ -654,3 +654,17 @@ status: continue
 - kg пересобран: 1191/907, embeddings свежие, check --refs 589/0 (изменение ровно в узле L-043)
 - dq6_make_finding.py: base_commit проверяется только у записей с полем; FINDING-EXP-2026-4103.md закоммичен (void, endpoints 3/3, submission received)
 - статус: гейт c881 на этом HEAD -> пуш d1ef57d7..HEAD при зелёном -> CI-ран
+
+## 2026-11-27 — внешнее ревью D-Q6/D-Q9 исполнено (цикл 861w)
+
+- C3 закрыт: dq6_make_finding.py base_commit schema-required (manifest/environment обязательно,
+  lease запрещён); негатив-кейсы на копии a2d: 3 reject + 1 pass
+- DESIGN §13 ревизия до кода: capacity min(R_0, r_0 n)1[n>=k]; непрерывный primary f_target;
+  13.9 (B-P1 вогнутость 5/6-13/12-77/60, B-P2 → do/rescue, контроли, кандидат C,
+  non-identifiability, инверсия L&S, порядок A-P5 → B, мост 457 №2/№3)
+- docs/REANALYSIS-EXP-2026-4103.md: exploratory переанализ raw (25 конфигураций, окна не
+  пересекаются, допуск ±0.15 проглотил сигнал 0.128, corrections-to-scaling, zero-share 0.20-0.96);
+  void не меняется
+- lab/MAIN.md §10: консолидация ролей main-exec + побайтовая идентичность raw как компенсирующий
+  контроль
+- статус: гейт c883 → пуш 865533c8..HEAD при зелёном → CI-ран
