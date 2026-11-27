@@ -3607,78 +3607,6 @@
       "updated_at": "2026-11-20"
     },
     {
-      "id": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "kind": "experiment",
-      "text": "EXP-CLOSURE-MEASURE run 2026-11-20T12-00-27: verdict failed",
-      "context": {
-        "scope": "recorded run",
-        "parameters": "{\"parts\": 4, \"configs\": [\"chain\", \"cycle\", \"partial\"]}",
-        "conditions": "commit 25e1ee367ceb"
-      },
-      "epistemic": "refuted",
-      "provenance": "verified_agent",
-      "evidence": [
-        {
-          "kind": "experiment",
-          "ref": "results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-00-27.json",
-          "strength": "strong"
-        }
-      ],
-      "relations": [
-        {
-          "type": "has_data",
-          "target": "DATA-d932b0d88aac3ebb"
-        }
-      ],
-      "data": {
-        "source": "results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-00-27.json",
-        "license": "repo",
-        "accessed_at": "",
-        "model_commit": "25e1ee367cebab235f9f863bd207b175d473343d",
-        "seed": 0,
-        "command": "python3 checks/exp_closure.py",
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T12:00:27Z",
-      "updated_at": "2026-11-20"
-    },
-    {
-      "id": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "kind": "experiment",
-      "text": "EXP-CLOSURE-MEASURE run 2026-11-20T12-01-14: verdict passed",
-      "context": {
-        "scope": "recorded run",
-        "parameters": "{\"parts\": 4, \"configs\": [\"chain\", \"cycle\", \"partial\"]}",
-        "conditions": "commit 25e1ee367ceb"
-      },
-      "epistemic": "established",
-      "provenance": "verified_agent",
-      "evidence": [
-        {
-          "kind": "experiment",
-          "ref": "results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-01-14.json",
-          "strength": "strong"
-        }
-      ],
-      "relations": [
-        {
-          "type": "has_data",
-          "target": "DATA-9035a01ea503a678"
-        }
-      ],
-      "data": {
-        "source": "results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-01-14.json",
-        "license": "repo",
-        "accessed_at": "",
-        "model_commit": "25e1ee367cebab235f9f863bd207b175d473343d",
-        "seed": 0,
-        "command": "python3 checks/exp_closure.py",
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T12:01:14Z",
-      "updated_at": "2026-11-20"
-    },
-    {
       "id": "X-EXP-DIVISION-THRESHOLD-run-2026-11-19T13-52-19",
       "kind": "experiment",
       "text": "EXP-DIVISION-THRESHOLD run run-2026-11-19T13-52-19: verdict passed",
@@ -3712,150 +3640,6 @@
         "rng_version": null
       },
       "created_at": "2026-11-19T13:52:19.399251+00:00",
-      "updated_at": "2026-11-20"
-    },
-    {
-      "id": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "kind": "experiment",
-      "text": "EXP-PRICE-KINKS run 2026-11-20T11-02-03: verdict failed",
-      "context": {
-        "scope": "recorded run",
-        "parameters": "{\"income\": 1.0, \"weights\": [2.0, 5.0, 1.0], \"store_floor\": 0.1, \"a_sweep\": [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9]}",
-        "conditions": "commit 438f256edbba"
-      },
-      "epistemic": "refuted",
-      "provenance": "verified_agent",
-      "evidence": [
-        {
-          "kind": "experiment",
-          "ref": "results/EXP-PRICE-KINKS/run-2026-11-20T11-02-03.json",
-          "strength": "strong"
-        }
-      ],
-      "relations": [
-        {
-          "type": "has_data",
-          "target": "DATA-77c424a74a5947df"
-        }
-      ],
-      "data": {
-        "source": "results/EXP-PRICE-KINKS/run-2026-11-20T11-02-03.json",
-        "license": "repo",
-        "accessed_at": "",
-        "model_commit": "438f256edbbaa04459e3e306f4becb13d494b3a8",
-        "seed": 0,
-        "command": "python3 checks/exp_price_kinks.py",
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T11:02:03Z",
-      "updated_at": "2026-11-20"
-    },
-    {
-      "id": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "kind": "experiment",
-      "text": "EXP-PRICE-KINKS run 2026-11-20T11-04-10: verdict passed",
-      "context": {
-        "scope": "recorded run",
-        "parameters": "{\"income\": 1.0, \"weights\": [2.0, 5.0, 1.0], \"store_floor\": 0.1, \"a_sweep\": [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9]}",
-        "conditions": "commit 438f256edbba"
-      },
-      "epistemic": "established",
-      "provenance": "verified_agent",
-      "evidence": [
-        {
-          "kind": "experiment",
-          "ref": "results/EXP-PRICE-KINKS/run-2026-11-20T11-04-10.json",
-          "strength": "strong"
-        }
-      ],
-      "relations": [
-        {
-          "type": "has_data",
-          "target": "DATA-64624cfa1dca81d3"
-        }
-      ],
-      "data": {
-        "source": "results/EXP-PRICE-KINKS/run-2026-11-20T11-04-10.json",
-        "license": "repo",
-        "accessed_at": "",
-        "model_commit": "438f256edbbaa04459e3e306f4becb13d494b3a8",
-        "seed": 0,
-        "command": "python3 checks/exp_price_kinks.py",
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T11:04:10Z",
-      "updated_at": "2026-11-20"
-    },
-    {
-      "id": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "kind": "experiment",
-      "text": "EXP-SHADOW-PRICE run 2026-11-20T10-06-53: verdict failed",
-      "context": {
-        "scope": "recorded run",
-        "parameters": "{\"income\": 1.0, \"q_min\": 0.5, \"d\": 0.05, \"weights\": [3.0, 2.0, 1.0], \"c_sweep\": [0.0, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99, 1.0, 1.01, 1.05, 1.2, 2.0]}",
-        "conditions": "commit 6b4e16fd175f"
-      },
-      "epistemic": "refuted",
-      "provenance": "verified_agent",
-      "evidence": [
-        {
-          "kind": "experiment",
-          "ref": "results/EXP-SHADOW-PRICE/run-2026-11-20T10-06-53.json",
-          "strength": "strong"
-        }
-      ],
-      "relations": [
-        {
-          "type": "has_data",
-          "target": "DATA-18f889cd312c21bb"
-        }
-      ],
-      "data": {
-        "source": "results/EXP-SHADOW-PRICE/run-2026-11-20T10-06-53.json",
-        "license": "repo",
-        "accessed_at": "",
-        "model_commit": "6b4e16fd175f2fe0f7ee5ceb28cafef58625eee9",
-        "seed": 0,
-        "command": "python3 checks/exp_shadow_price.py",
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T10:06:53Z",
-      "updated_at": "2026-11-20"
-    },
-    {
-      "id": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "kind": "experiment",
-      "text": "EXP-SHADOW-PRICE run 2026-11-20T10-09-49: verdict passed",
-      "context": {
-        "scope": "recorded run",
-        "parameters": "{\"income\": 1.0, \"q_min\": 0.5, \"d\": 0.05, \"weights\": [2.0, 3.0, 1.0], \"c_sweep\": [0.0, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99, 1.0, 1.01, 1.05, 1.2, 2.0]}",
-        "conditions": "commit 6b4e16fd175f"
-      },
-      "epistemic": "established",
-      "provenance": "verified_agent",
-      "evidence": [
-        {
-          "kind": "experiment",
-          "ref": "results/EXP-SHADOW-PRICE/run-2026-11-20T10-09-49.json",
-          "strength": "strong"
-        }
-      ],
-      "relations": [
-        {
-          "type": "has_data",
-          "target": "DATA-28a29d48ba1924ac"
-        }
-      ],
-      "data": {
-        "source": "results/EXP-SHADOW-PRICE/run-2026-11-20T10-09-49.json",
-        "license": "repo",
-        "accessed_at": "",
-        "model_commit": "6b4e16fd175f2fe0f7ee5ceb28cafef58625eee9",
-        "seed": 0,
-        "command": "python3 checks/exp_shadow_price.py",
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T10:09:49Z",
       "updated_at": "2026-11-20"
     },
     {
@@ -21040,7 +20824,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**метаданные** OpenAlex, 2026-11-21T21:55:49Z, отпечаток нет; фрагмент не читалс"
+        "conditions": "**аннотация** PubMed/efetch (PMID 3801605), 2026-11-27, sha256 8809a277f22f…; по"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21056,8 +20840,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**метаданные** OpenAlex, 2026-11-21T21:55:49Z, отпечаток нет; фрагмент не читалс",
-        "level_kind": "metadata_only",
+        "registry_level": "**аннотация** PubMed/efetch (PMID 3801605), 2026-11-27, sha256 8809a277f22f…; по",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -21219,7 +21003,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читалс"
+        "conditions": "**аннотация** PubMed/efetch (PMID 25752259), 2026-11-27, sha256 2875e9cc69fc…; п"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21235,8 +21019,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читалс",
-        "level_kind": "metadata_only",
+        "registry_level": "**аннотация** PubMed/efetch (PMID 25752259), 2026-11-27, sha256 2875e9cc69fc…; п",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -21268,7 +21052,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читалс"
+        "conditions": "**аннотация** PubMed/efetch (PMID 15038982), 2026-11-27, sha256 af58bbfccf24…; п"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21284,8 +21068,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читалс",
-        "level_kind": "metadata_only",
+        "registry_level": "**аннотация** PubMed/efetch (PMID 15038982), 2026-11-27, sha256 af58bbfccf24…; п",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -21351,11 +21135,11 @@
     {
       "id": "L-097",
       "kind": "claim",
-      "text": "THE MAINTENANCE OF THE ACCURACY OF PROTEIN SYNTHESIS AND ITS RELEVANCE TO AGEING — Orgel 1963 — катастрофа ошибок: аппарат точности повреждает сам себя",
+      "text": "THE MAINTENANCE OF THE ACCURACY OF PROTEIN SYNTHESIS AND ITS RELEVANCE TO AGEING — Оргель 1963 — катастрофа ошибок: аппарат точности повреждает сам себя. Полный текст уточняет: уравнение (1) — непрерывное dp/dt = a·p (p = p₀·e^{at}), катастрофа = частота ошибок, при которой необходимый для жизни процесс становится критически неэффективным; спасает только клеточный отбор — в тканях без деления селе",
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читалс"
+        "conditions": "**полный текст** PMC299893 (PDF-скан с текстовым слоем, зеркало davidson.edu), 2"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21371,8 +21155,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читалс",
-        "level_kind": "metadata_only",
+        "registry_level": "**полный текст** PMC299893 (PDF-скан с текстовым слоем, зеркало davidson.edu), 2",
+        "level_kind": "full_text_examined",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -21450,7 +21234,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читалс"
+        "conditions": "**аннотация** PubMed/efetch (PMID 593350), 2026-11-27, sha256 ce70a680cd1f…; пол"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21466,8 +21250,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читалс",
-        "level_kind": "metadata_only",
+        "registry_level": "**аннотация** PubMed/efetch (PMID 593350), 2026-11-27, sha256 ce70a680cd1f…; пол",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -21543,7 +21327,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читалс"
+        "conditions": "**аннотация** PubMed/efetch (PMID 36804386), 2026-11-27, sha256 19a77cd8f927…; п"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21559,8 +21343,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**метаданные** OpenAlex, 2026-11-22T00:51:02Z, отпечаток нет; фрагмент не читалс",
-        "level_kind": "metadata_only",
+        "registry_level": "**аннотация** PubMed/efetch (PMID 36804386), 2026-11-27, sha256 19a77cd8f927…; п",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -21584,7 +21368,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читалс"
+        "conditions": "**аннотация** PubMed/efetch (PMID 8649456), 2026-11-27, sha256 cffeb61ff0c9…; по"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21600,8 +21384,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читалс",
-        "level_kind": "metadata_only",
+        "registry_level": "**аннотация** PubMed/efetch (PMID 8649456), 2026-11-27, sha256 cffeb61ff0c9…; по",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -21633,7 +21417,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читалс"
+        "conditions": "**аннотация** PubMed/efetch (PMID 10966762), 2026-11-27, sha256 86b9b5f7c811…; п"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21649,8 +21433,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читалс",
-        "level_kind": "metadata_only",
+        "registry_level": "**аннотация** PubMed/efetch (PMID 10966762), 2026-11-27, sha256 86b9b5f7c811…; п",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -21722,7 +21506,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читалс"
+        "conditions": "**аннотация** PubMed/efetch (PMID 19962389), 2026-11-27, sha256 54410c5bf7ce…; п"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21738,8 +21522,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читалс",
-        "level_kind": "metadata_only",
+        "registry_level": "**аннотация** PubMed/efetch (PMID 19962389), 2026-11-27, sha256 54410c5bf7ce…; п",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -21817,7 +21601,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читалс"
+        "conditions": "**аннотация** PubMed/efetch (PMID 21167934), 2026-11-27, sha256 3c0d328dab7f…; п"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21833,8 +21617,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**метаданные** OpenAlex, 2026-11-22T02:22:34Z, отпечаток нет; фрагмент не читалс",
-        "level_kind": "metadata_only",
+        "registry_level": "**аннотация** PubMed/efetch (PMID 21167934), 2026-11-27, sha256 3c0d328dab7f…; п",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -23982,64 +23766,6 @@
       "updated_at": "2026-11-27"
     },
     {
-      "id": "DATA-d932b0d88aac3ebb",
-      "kind": "evidence",
-      "text": "experiment result data results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-00-27.json",
-      "context": {
-        "scope": "immutable result JSON",
-        "parameters": "results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-00-27.json",
-        "conditions": "sha256-addressed file artifact"
-      },
-      "epistemic": "hypothesis",
-      "provenance": "verified_agent",
-      "evidence": [],
-      "relations": [
-        {
-          "type": "generated_by",
-          "target": "CODE-2086b76f911f8048"
-        }
-      ],
-      "data": {
-        "artifact_type": "result_record",
-        "source": "results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-00-27.json",
-        "bytes": 2851,
-        "sha256": "f298a282c6f9ef00042483a65041f9fc147f1184461bc58ebc7b197936696fff",
-        "seed": 0,
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T12:00:27Z",
-      "updated_at": "2026-11-27"
-    },
-    {
-      "id": "DATA-9035a01ea503a678",
-      "kind": "evidence",
-      "text": "experiment result data results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-01-14.json",
-      "context": {
-        "scope": "immutable result JSON",
-        "parameters": "results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-01-14.json",
-        "conditions": "sha256-addressed file artifact"
-      },
-      "epistemic": "hypothesis",
-      "provenance": "verified_agent",
-      "evidence": [],
-      "relations": [
-        {
-          "type": "generated_by",
-          "target": "CODE-2086b76f911f8048"
-        }
-      ],
-      "data": {
-        "artifact_type": "result_record",
-        "source": "results/EXP-CLOSURE-MEASURE/run-2026-11-20T12-01-14.json",
-        "bytes": 2850,
-        "sha256": "4f7caf26ca12e9de2d0a84211438a6c59cc9b7b7a46683feb89d74e546744ef3",
-        "seed": 0,
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T12:01:14Z",
-      "updated_at": "2026-11-27"
-    },
-    {
       "id": "DATA-abef76f88dfbe5c8",
       "kind": "evidence",
       "text": "experiment result data results/EXP-DIVISION-THRESHOLD/run-2026-11-19T13-52-19.json",
@@ -24066,122 +23792,6 @@
         "rng_version": null
       },
       "created_at": "2026-11-19T13:52:19.399251+00:00",
-      "updated_at": "2026-11-27"
-    },
-    {
-      "id": "DATA-77c424a74a5947df",
-      "kind": "evidence",
-      "text": "experiment result data results/EXP-PRICE-KINKS/run-2026-11-20T11-02-03.json",
-      "context": {
-        "scope": "immutable result JSON",
-        "parameters": "results/EXP-PRICE-KINKS/run-2026-11-20T11-02-03.json",
-        "conditions": "sha256-addressed file artifact"
-      },
-      "epistemic": "hypothesis",
-      "provenance": "verified_agent",
-      "evidence": [],
-      "relations": [
-        {
-          "type": "generated_by",
-          "target": "CODE-9cb7420907533b86"
-        }
-      ],
-      "data": {
-        "artifact_type": "result_record",
-        "source": "results/EXP-PRICE-KINKS/run-2026-11-20T11-02-03.json",
-        "bytes": 3502,
-        "sha256": "c5378fdbd4e91853d428c5134aa54c719c26666ff5922cb22dcaeaef5eab4ed3",
-        "seed": 0,
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T11:02:03Z",
-      "updated_at": "2026-11-27"
-    },
-    {
-      "id": "DATA-64624cfa1dca81d3",
-      "kind": "evidence",
-      "text": "experiment result data results/EXP-PRICE-KINKS/run-2026-11-20T11-04-10.json",
-      "context": {
-        "scope": "immutable result JSON",
-        "parameters": "results/EXP-PRICE-KINKS/run-2026-11-20T11-04-10.json",
-        "conditions": "sha256-addressed file artifact"
-      },
-      "epistemic": "hypothesis",
-      "provenance": "verified_agent",
-      "evidence": [],
-      "relations": [
-        {
-          "type": "generated_by",
-          "target": "CODE-9cb7420907533b86"
-        }
-      ],
-      "data": {
-        "artifact_type": "result_record",
-        "source": "results/EXP-PRICE-KINKS/run-2026-11-20T11-04-10.json",
-        "bytes": 3722,
-        "sha256": "4b1ac6ed682130cdbf19c2e1ef7f5cd03bbe0e4efc911ffa48a4841b58bf7bcb",
-        "seed": 0,
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T11:04:10Z",
-      "updated_at": "2026-11-27"
-    },
-    {
-      "id": "DATA-18f889cd312c21bb",
-      "kind": "evidence",
-      "text": "experiment result data results/EXP-SHADOW-PRICE/run-2026-11-20T10-06-53.json",
-      "context": {
-        "scope": "immutable result JSON",
-        "parameters": "results/EXP-SHADOW-PRICE/run-2026-11-20T10-06-53.json",
-        "conditions": "sha256-addressed file artifact"
-      },
-      "epistemic": "hypothesis",
-      "provenance": "verified_agent",
-      "evidence": [],
-      "relations": [
-        {
-          "type": "generated_by",
-          "target": "CODE-6988b7ce7da57b13"
-        }
-      ],
-      "data": {
-        "artifact_type": "result_record",
-        "source": "results/EXP-SHADOW-PRICE/run-2026-11-20T10-06-53.json",
-        "bytes": 3269,
-        "sha256": "f39bad3c0cf2bdb734ecfa423f3b5c16bfe4bc82781f67986eaad47f9d909f75",
-        "seed": 0,
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T10:06:53Z",
-      "updated_at": "2026-11-27"
-    },
-    {
-      "id": "DATA-28a29d48ba1924ac",
-      "kind": "evidence",
-      "text": "experiment result data results/EXP-SHADOW-PRICE/run-2026-11-20T10-09-49.json",
-      "context": {
-        "scope": "immutable result JSON",
-        "parameters": "results/EXP-SHADOW-PRICE/run-2026-11-20T10-09-49.json",
-        "conditions": "sha256-addressed file artifact"
-      },
-      "epistemic": "hypothesis",
-      "provenance": "verified_agent",
-      "evidence": [],
-      "relations": [
-        {
-          "type": "generated_by",
-          "target": "CODE-6988b7ce7da57b13"
-        }
-      ],
-      "data": {
-        "artifact_type": "result_record",
-        "source": "results/EXP-SHADOW-PRICE/run-2026-11-20T10-09-49.json",
-        "bytes": 3214,
-        "sha256": "dedac9b0d9f0cfd7bb8ab2ef92b7952703d31b6accb90f5b346e1f051416b077",
-        "seed": 0,
-        "rng_version": null
-      },
-      "created_at": "2026-11-20T10:09:49Z",
       "updated_at": "2026-11-27"
     },
     {
@@ -34986,30 +34596,6 @@
       "updated_at": "2026-11-27"
     },
     {
-      "id": "CODE-2086b76f911f8048",
-      "kind": "evidence",
-      "text": "recorded model source locator git:25e1ee367cebab235f9f863bd207b175d473343d:checks/exp_closure.py",
-      "context": {
-        "scope": "recorded model source locator, not copied source bytes",
-        "parameters": "git:25e1ee367cebab235f9f863bd207b175d473343d:checks/exp_closure.py",
-        "conditions": "path comes from command; revision comes from model_commit"
-      },
-      "epistemic": "hypothesis",
-      "provenance": "verified_agent",
-      "evidence": [],
-      "relations": [],
-      "data": {
-        "artifact_type": "code_locator",
-        "source": "git:25e1ee367cebab235f9f863bd207b175d473343d:checks/exp_closure.py",
-        "model_commit": "25e1ee367cebab235f9f863bd207b175d473343d",
-        "command_path": "checks/exp_closure.py",
-        "command": "python3 checks/exp_closure.py",
-        "version_pinned": true
-      },
-      "created_at": "2026-11-20T12:00:27Z",
-      "updated_at": "2026-11-27"
-    },
-    {
       "id": "CODE-521ecf910437571f",
       "kind": "evidence",
       "text": "recorded model source locator git:84569ef:checks/exp_division_threshold.py",
@@ -35031,54 +34617,6 @@
         "version_pinned": true
       },
       "created_at": "2026-11-19T13:52:19.399251+00:00",
-      "updated_at": "2026-11-27"
-    },
-    {
-      "id": "CODE-9cb7420907533b86",
-      "kind": "evidence",
-      "text": "recorded model source locator git:438f256edbbaa04459e3e306f4becb13d494b3a8:checks/exp_price_kinks.py",
-      "context": {
-        "scope": "recorded model source locator, not copied source bytes",
-        "parameters": "git:438f256edbbaa04459e3e306f4becb13d494b3a8:checks/exp_price_kinks.py",
-        "conditions": "path comes from command; revision comes from model_commit"
-      },
-      "epistemic": "hypothesis",
-      "provenance": "verified_agent",
-      "evidence": [],
-      "relations": [],
-      "data": {
-        "artifact_type": "code_locator",
-        "source": "git:438f256edbbaa04459e3e306f4becb13d494b3a8:checks/exp_price_kinks.py",
-        "model_commit": "438f256edbbaa04459e3e306f4becb13d494b3a8",
-        "command_path": "checks/exp_price_kinks.py",
-        "command": "python3 checks/exp_price_kinks.py",
-        "version_pinned": true
-      },
-      "created_at": "2026-11-20T11:02:03Z",
-      "updated_at": "2026-11-27"
-    },
-    {
-      "id": "CODE-6988b7ce7da57b13",
-      "kind": "evidence",
-      "text": "recorded model source locator git:6b4e16fd175f2fe0f7ee5ceb28cafef58625eee9:checks/exp_shadow_price.py",
-      "context": {
-        "scope": "recorded model source locator, not copied source bytes",
-        "parameters": "git:6b4e16fd175f2fe0f7ee5ceb28cafef58625eee9:checks/exp_shadow_price.py",
-        "conditions": "path comes from command; revision comes from model_commit"
-      },
-      "epistemic": "hypothesis",
-      "provenance": "verified_agent",
-      "evidence": [],
-      "relations": [],
-      "data": {
-        "artifact_type": "code_locator",
-        "source": "git:6b4e16fd175f2fe0f7ee5ceb28cafef58625eee9:checks/exp_shadow_price.py",
-        "model_commit": "6b4e16fd175f2fe0f7ee5ceb28cafef58625eee9",
-        "command_path": "checks/exp_shadow_price.py",
-        "command": "python3 checks/exp_shadow_price.py",
-        "version_pinned": true
-      },
-      "created_at": "2026-11-20T10:06:53Z",
       "updated_at": "2026-11-27"
     },
     {
@@ -38714,16 +38252,6 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-001",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
     },
@@ -38746,16 +38274,6 @@
       "from": "C-002",
       "to": "L-062",
       "type": "extends"
-    },
-    {
-      "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -38784,18 +38302,8 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-003",
       "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
-    },
-    {
-      "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
     },
     {
       "from": "C-003",
@@ -38939,28 +38447,8 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-022",
       "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
-    },
-    {
-      "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
     },
     {
       "from": "F-023",
@@ -39253,38 +38741,8 @@
       "type": "has_data"
     },
     {
-      "from": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "to": "DATA-d932b0d88aac3ebb",
-      "type": "has_data"
-    },
-    {
-      "from": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "to": "DATA-9035a01ea503a678",
-      "type": "has_data"
-    },
-    {
       "from": "X-EXP-DIVISION-THRESHOLD-run-2026-11-19T13-52-19",
       "to": "DATA-abef76f88dfbe5c8",
-      "type": "has_data"
-    },
-    {
-      "from": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "to": "DATA-77c424a74a5947df",
-      "type": "has_data"
-    },
-    {
-      "from": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "to": "DATA-64624cfa1dca81d3",
-      "type": "has_data"
-    },
-    {
-      "from": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "to": "DATA-18f889cd312c21bb",
-      "type": "has_data"
-    },
-    {
-      "from": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "to": "DATA-28a29d48ba1924ac",
       "type": "has_data"
     },
     {
@@ -41189,16 +40647,6 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
     },
@@ -41220,16 +40668,6 @@
     {
       "from": "CORR-02",
       "to": "EV-EXP-SHADOW-PRICE",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -41393,38 +40831,8 @@
       "type": "generated_by"
     },
     {
-      "from": "DATA-d932b0d88aac3ebb",
-      "to": "CODE-2086b76f911f8048",
-      "type": "generated_by"
-    },
-    {
-      "from": "DATA-9035a01ea503a678",
-      "to": "CODE-2086b76f911f8048",
-      "type": "generated_by"
-    },
-    {
       "from": "DATA-abef76f88dfbe5c8",
       "to": "CODE-521ecf910437571f",
-      "type": "generated_by"
-    },
-    {
-      "from": "DATA-77c424a74a5947df",
-      "to": "CODE-9cb7420907533b86",
-      "type": "generated_by"
-    },
-    {
-      "from": "DATA-64624cfa1dca81d3",
-      "to": "CODE-9cb7420907533b86",
-      "type": "generated_by"
-    },
-    {
-      "from": "DATA-18f889cd312c21bb",
-      "to": "CODE-6988b7ce7da57b13",
-      "type": "generated_by"
-    },
-    {
-      "from": "DATA-28a29d48ba1924ac",
-      "to": "CODE-6988b7ce7da57b13",
       "type": "generated_by"
     },
     {

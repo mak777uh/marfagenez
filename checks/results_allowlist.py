@@ -28,7 +28,7 @@ import tempfile
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RESULTS = ROOT / "results"
 
-CURRENT_SCHEMA = "marfagenez.experiment-result.v2"
+CURRENT_SCHEMA = "marfagenez.experiment-result.v3"
 LEGACY_SCHEMAS = {None, "experiment/1", "marfagenez.experiment-result.v1"}
 LEGACY_LABEL = "legacy, не цитировать"
 
@@ -62,7 +62,7 @@ def classify(rel: str, path: pathlib.Path | None = None) -> str | None:
         if not isinstance(data, dict):
             return None
         schema = data.get("schema")
-        if schema == CURRENT_SCHEMA:
+        if schema == CURRENT_SCHEMA or schema == "marfagenez.experiment-result.v2":
             model_commit = data.get("model_commit")
             if not isinstance(model_commit, str) or not model_commit:
                 # A v2 record without a commit pin predates the pinning rule

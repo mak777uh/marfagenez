@@ -170,6 +170,8 @@ exp_lane3() {
   python3 checks/mde.py --selftest || { echo "LANE3_FAIL mde.py"; bad=1; }
   echo "--- lean_ffi_feature.py ---"
   python3 checks/lean_ffi_feature.py || { echo "LANE3_FAIL lean_ffi_feature.py"; bad=1; }
+  echo "--- rng_result_audit.py ---"
+  python3 tools/rng_result_audit.py || { echo "LANE3_FAIL rng_result_audit.py"; bad=1; }
   echo "--- test_result_design.py ---"
   python3 checks/test_result_design.py || { echo "LANE3_FAIL test_result_design.py"; bad=1; }
   echo "--- test_kg_reach.py ---"

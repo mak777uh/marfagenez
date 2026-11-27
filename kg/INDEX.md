@@ -1,14 +1,14 @@
 # kg/INDEX.md — карта графа (генерируется)
 
-узлов: **1167**, рёбер: **885**
+узлов: **1152**, рёбер: **859**
 
 | kind | сколько |
 |---|---|
 | claim | 116 |
 | correspondence | 2 |
 | definition | 10 |
-| evidence | 598 |
-| experiment | 407 |
+| evidence | 589 |
+| experiment | 401 |
 | formula | 31 |
 | gap | 3 |
 

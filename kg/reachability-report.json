@@ -1,8 +1,8 @@
 {
   "schema": "marfagenez.kg-reachability.v1",
   "scope": "claim, formula and definition nodes; directed path to result data and code",
-  "graph_node_count": 1167,
-  "graph_edge_count": 885,
+  "graph_node_count": 1152,
+  "graph_edge_count": 859,
   "isolated_count": 110,
   "legacy_isolated_still_isolated": 110,
   "new_isolated_count": 0,
@@ -11,49 +11,33 @@
   "conclusion_count": 157,
   "counts": {
     "isolated": 15,
-    "no-link": 125,
-    "no-source": 11,
-    "reachable": 6
+    "no-link": 130,
+    "no-source": 12
   },
   "rows": [
     {
       "id": "C-001",
       "text": "Цена удержания целости — теневая цена ограничения: она равна нулю ровно тогда, когда ограничение не отнимает ресурс у лучшего использования.",
       "epistemic": "established",
-      "status": "reachable",
-      "path": [
-        "C-001",
-        "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-        "DATA-18f889cd312c21bb",
-        "CODE-6988b7ce7da57b13"
-      ],
-      "degree": 10
+      "status": "no-link",
+      "path": [],
+      "degree": 8
     },
     {
       "id": "C-002",
       "text": "Цена удержания кусочно-постоянна и ломается в точке, где перестаёт связывать ёмкость лучшего использования.",
       "epistemic": "established",
-      "status": "reachable",
-      "path": [
-        "C-002",
-        "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-        "DATA-77c424a74a5947df",
-        "CODE-9cb7420907533b86"
-      ],
-      "degree": 7
+      "status": "no-link",
+      "path": [],
+      "degree": 5
     },
     {
       "id": "C-003",
       "text": "Мера замыкания (доля вершин в наибольшей сильно связной компоненте) различает цепочку, частичный цикл и замкнутый цикл: 0.25 / 0.75 / 1.0.",
       "epistemic": "established",
-      "status": "reachable",
-      "path": [
-        "C-003",
-        "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-        "DATA-d932b0d88aac3ebb",
-        "CODE-2086b76f911f8048"
-      ],
-      "degree": 9
+      "status": "no-link",
+      "path": [],
+      "degree": 7
     },
     {
       "id": "C-004",
@@ -267,27 +251,17 @@
       "id": "F-022",
       "text": "Замыкание как свойство графа",
       "epistemic": "established",
-      "status": "reachable",
-      "path": [
-        "F-022",
-        "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-        "DATA-d932b0d88aac3ebb",
-        "CODE-2086b76f911f8048"
-      ],
-      "degree": 6
+      "status": "no-link",
+      "path": [],
+      "degree": 4
     },
     {
       "id": "F-023",
       "text": "Двойственная задача и смысл цены",
       "epistemic": "established",
-      "status": "reachable",
-      "path": [
-        "F-023",
-        "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-        "DATA-77c424a74a5947df",
-        "CODE-9cb7420907533b86"
-      ],
-      "degree": 5
+      "status": "no-link",
+      "path": [],
+      "degree": 3
     },
     {
       "id": "F-024",
@@ -349,14 +323,8 @@
       "id": "F-031",
       "text": "Внутреннее ограничение выживания из графа",
       "epistemic": "hypothesis",
-      "status": "reachable",
-      "path": [
-        "F-031",
-        "F-022",
-        "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-        "DATA-d932b0d88aac3ebb",
-        "CODE-2086b76f911f8048"
-      ],
+      "status": "no-source",
+      "path": [],
       "degree": 2
     },
     {
@@ -1129,7 +1097,7 @@
     },
     {
       "id": "L-097",
-      "text": "THE MAINTENANCE OF THE ACCURACY OF PROTEIN SYNTHESIS AND ITS RELEVANCE TO AGEING — Orgel 1963 — катастрофа ошибок: аппарат точности повреждает сам себя",
+      "text": "THE MAINTENANCE OF THE ACCURACY OF PROTEIN SYNTHESIS AND ITS RELEVANCE TO AGEING — Оргель 1963 — катастрофа ошибок: аппарат точности повреждает сам себя. Полный текст уточняет: уравнение (1) — непрерывное dp/dt = a·p (p = p₀·e^{at}), катастрофа = частота ошибок, при которой необходимый для жизни процесс становится критически неэффективным; спасает только клеточный отбор — в тканях без деления селе",
       "epistemic": "hypothesis",
       "status": "no-link",
       "path": [],

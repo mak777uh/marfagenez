@@ -10757,3 +10757,16 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   markup-отчёт перенесён в results/_archive/markup-legacy.json (allowlist: «история»);
   числа документов: тесты 422->425 (три новых property-теста step_invariants), test_files 42->43,
   live-маркеры обновлены (README, BRIEF), LAWS/BRIEF/PROTOCOL/NOT-CLAIMED/CLAIMS синхронизированы.
+
+- **861j:** фикс-цикл после красного гейта c866 (стабилизация графа и схем после merge-пакета).
+  Причины c866: (1) перенос шести experiment/1 прогонов в results/_archive изменил граф —
+  закоммиченный kg/nodes.jsonl (1167 узлов) не воспроизводился migrate (1152), отсюда
+  .embeddings_dirty, dangling-рёбра DATA→CODE в kg_edges и ложный dirty в пине;
+  граф пересобран и зафиксирован: migrate + build_embeddings + kg.py build + kg_reach --write.
+  (2) results_allowlist не знал схему v3 (writers аналитика пишут marfagenez.experiment-result.v3):
+  classify расширен — v3 CURRENT, v2 с commit-пином остаётся citable, v2 без пина и v1 — legacy.
+  (3) tools/rng_result_audit.py (аудит RNG-приписок исторических записей) подключён в lane3 —
+  wiring_audit --strict требовал run.sh или exemptions.
+  Журнал называет коммиты после записи 861i: `fb50e3b8` (fix: conclusion with a named source
+  but no path is no-link — kg_reach), `b390ba7b` (s7zeo: Q-013/Q-014 organ-size mechanisms — devin),
+  `354c069f` (merge: kg-reach status-priority fix; journal 861i).

@@ -588,3 +588,9 @@ status: continue
 - results/_archive: 6 experiment/1 прогонов + markup-отчёт; contract 401/0, allowlist зелёный
 - doc numbers: 425 тестов, 43 тест-файла, 64 проверки; live-маркеры обновлены
 - status: полный префлайт в пине -> гейт c866 -> пуш merge-пакета
+
+## 2026-11-27 — стабилизация после c866 (цикл 861j)
+
+- граф пересобран и зафиксирован (migrate/build/embeddings/reach); kg_edges, embeddings_fresh зелёные
+- allowlist: v3 CURRENT, v2-с-пином citable; rng_result_audit в lane3
+- status: префлайт в пине -> гейт c867 -> пуш merge-пакета аналитика
