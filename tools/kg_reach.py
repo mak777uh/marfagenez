@@ -44,7 +44,7 @@ def reachability(nodes, edges, legacy_ids=()):
         while queue:
             current, path = queue.popleft()
             artifact_type = (by_id[current].get("data") or {}).get("artifact_type")
-            if artifact_type in {"source_file", "model_commit"}:
+            if artifact_type in {"code_locator"}:
                 has_measurement = any(
                     (by_id[item].get("data") or {}).get("artifact_type") == "result_record"
                     for item in path
