@@ -462,7 +462,7 @@ marfagenez/
 │   │   ├── shape_world.rs       Мир форм
 │   │   ├── skin.rs              Граница/кожа
 │   │   └── organ.rs             Органы и повреждение
-│   ├── tests/                   Тесты ядра (42 файла)
+│   ├── tests/                   Тесты ядра
 │   └── bin/                     9 бинарников: run, trace, ask, compartment,
 │                                empty_cell, exp_dq4, exp_dq5, exp_dq6, occupancy
 │

@@ -65,7 +65,9 @@ def classify(rel: str, path: pathlib.Path | None = None) -> str | None:
         if schema == CURRENT_SCHEMA:
             model_commit = data.get("model_commit")
             if not isinstance(model_commit, str) or not model_commit:
-                return None
+                # A v2 record without a commit pin predates the pinning rule
+                # (2026-11-27): readable for history, not citable.
+                return LEGACY_LABEL
             if model_commit.endswith("+dirty"):
                 return LEGACY_LABEL
             return "прогон модели"
@@ -105,6 +107,7 @@ def selftest() -> int:
             "EXP-X/run-experiment-v1.json": {"schema": "experiment/1"},
             "EXP-X/run-v1.json": {"schema": "marfagenez.experiment-result.v1"},
             "EXP-X/run-dirty.json": {"schema": CURRENT_SCHEMA, "model_commit": "abc123+dirty"},
+            "EXP-X/run-v2-nopin.json": {"schema": CURRENT_SCHEMA},
             "EXP-X/summary.json": {},
             "EXP-X/trace-sequential-n40.json": {},
             "capacity/exp99-rows.json": {},
@@ -134,7 +137,7 @@ def selftest() -> int:
         ok_allowed = set(found).isdisjoint(allowed) and "EXP-X/run-unknown-schema.json" in found
         ok_bad = set(found) == set(bad)
         ok_current = counts.get("прогон модели", 0) == 1
-        ok_legacy = counts.get(LEGACY_LABEL, 0) == 5
+        ok_legacy = counts.get(LEGACY_LABEL, 0) == 6
         ok_archived = classify("_archive/old/run-v1.json", archived) == LEGACY_LABEL
         print(f"  {'ok  ' if ok_allowed else 'FAIL'} current and legacy result classes are recognised")
         print(f"  {'ok  ' if ok_bad else 'FAIL'} foreign artifacts and unknown schema fail closed: {found}")

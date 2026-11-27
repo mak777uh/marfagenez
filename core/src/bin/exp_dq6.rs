@@ -248,8 +248,12 @@ mod tests {
             "reset must be h * mean_before_step, got {damage}");
 
         let mut capped = 0.123_f64;
-        transition_damage(&mut capped, true, 2.0, mean_before_step, Control::Cap);
+        transition_damage(&mut capped, true, 2.0, 0.6, Control::Cap);
         assert_eq!(capped, CAP, "cap control must clamp the exact reset target");
+        let mut passthrough = 0.123_f64;
+        transition_damage(&mut passthrough, true, 2.0, mean_before_step, Control::Cap);
+        assert!((passthrough - 0.8).abs() < 1e-15,
+            "cap must not clamp a below-cap reset target, got {passthrough}");
     }
 
     #[test]

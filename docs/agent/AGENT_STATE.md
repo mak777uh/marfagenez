@@ -537,3 +537,11 @@ status: цикл 858 — MAIN.md sec.13 + сообщения, дальше жу�
 - 861b: verus_copies_match.py вписан в do_verus (tree_contract T1);
   эмбеддинги пересобраны tools/build_embeddings.py после пересборки графа.
 - status: пакет 859-861 уходит фоновым гейтом; пуш с workflow-токеном включает CI.
+
+## 2026-11-27 — префлайт-фиксы пакета аналитика (цикл 861c)
+- doc_numbers / log_check / protocol_checks / results_allowlist снова зелёные:
+  пять исходов в 10 местах, 410→422 теста, 362→363 находки,
+  verus_copies_match в PROTOCOL.md, v2-без-пина = legacy (EXP-21/25/26)
+- тест dq6 (ветка P0) чинен: кламп капа проверяется выше CAP, ниже — проход
+- коммиты devin s7zeb / s7zec / s7zed названы в журнале
+- status: после зелёного фонового гейта c862 — пуш стека 859-861c

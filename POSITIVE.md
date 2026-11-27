@@ -864,9 +864,9 @@ $$\text{death} \iff (\text{energy} \le 0) \lor (\text{damage} \ge 1)$$
 
 ## Раздел 7. Метод (то, что подтвердилось о нашем способе работать)
 
-### 7.1. Четыре исхода, не два
+### 7.1. Пять исходов, не два
 
-`passed` / `failed` / `void` / `insensitive by construction`.
+`passed` / `failed` / `void` / `insensitive by construction` / `not applicable`.
 **Уровень:** B (`checks/result.py`, `checks/contract.py`).
 **Граница:** `failed` — мир ответил «нет»; `void` — мы не спросили. Смешение
 двух — дефект, а не строгость.

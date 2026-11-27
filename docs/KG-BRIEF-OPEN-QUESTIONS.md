@@ -24,7 +24,7 @@
 | вопрос проекта и границы | [`GOAL.md`](../GOAL.md), [`NOT-CLAIMED.md`](NOT-CLAIMED.md) | что исследуем и чего не утверждаем |
 | накопленные результаты | [`POSITIVE.md`](../POSITIVE.md), [`docs/CLAIMS.md`](./CLAIMS.md) | что подтвердилось, с командами |
 | отрицательные результаты | [`docs/ELIMINATED.md`](./ELIMINATED.md) | что проверяли и отбросили |
-| протокол эксперимента | [`PROTOCOL.md`](../PROTOCOL.md) | плечи, контроли, четыре исхода |
+| протокол эксперимента | [`PROTOCOL.md`](../PROTOCOL.md) | плечи, контроли, пять исходов |
 | правила работы | [`AGENTS.md`](../AGENTS.md), [`AUTONOMY.md`](../AUTONOMY.md) | шесть правил, автономный цикл |
 | состояние проекта | [`docs/agent/AGENT_STATE.md`](./agent/AGENT_STATE.md) | где мы сейчас, не отстаёт ли от кода |
 | журнал циклов | [`docs/agent/AGENT_LOG.md`](./agent/AGENT_LOG.md) | каждый круг с хешем коммита |

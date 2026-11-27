@@ -102,7 +102,7 @@ def set_hashes(result, hashes):
     result["hashes"] = hashes
 
 def set_verdict(result, kind, reason):
-    """Four outcomes, not two (AGENTS.md §4)."""
+    """Five outcomes, not two (AGENTS.md §4)."""
     if kind not in VERDICTS:
         raise ValueError(f"unknown verdict: {kind}")
     result["verdict"] = {"kind": kind, "reason": reason}

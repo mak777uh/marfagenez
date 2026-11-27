@@ -85,8 +85,8 @@ order) or `Proportional` (by need).
 
 ## 3. Methods of inference
 
-Every experiment is preregistered (Nosek et al. 2018) with four outcomes (`passed`, `failed`, `void`, `not
-applicable`), three controls (`fires` — the effect appears where it must; `silent` —
+Every experiment is preregistered (Nosek et al. 2018) with five outcomes (`passed`, `failed`, `void`,
+`insensitive by construction`, `not applicable`), three controls (`fires` — the effect appears where it must; `silent` —
 it is absent where it must be; `specific` — it comes from the stated mechanism and not
 from an incidental covariate), and a `mde` computed from a **measured** dispersion.
 Three decisions were forced by our own errors and are stated as part of the method:

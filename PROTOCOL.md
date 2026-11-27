@@ -191,13 +191,13 @@ cargo run --release --bin trace -- --policy stay --steps 500 --every 10
 wsl -e bash /root/marfagenez/run.sh all
 ```
 
-Гейт запускает **58** разных python-проверок `checks/*.py` плюс JS/SH, Rust и Lean. Их два разных рода, и путать
+Гейт запускает **59** разных python-проверок `checks/*.py` плюс JS/SH, Rust и Lean. Их два разных рода, и путать
 их нельзя: **судящие** проверки решают, зелёный ли прогон, а **экспериментальные** перепроверяют
 свои числа и падают, если модель сдвинулась.
 
 | судящая проверка | что решает |
 |---|---|
-| `cargo test --release` | 410 теста Rust |
+| `cargo test --release` | 422 теста Rust |
 | `lake build` | 338 теорем в 68 файлах с теоремами (71 `.lean` всего: один — FFI без теорем) |
 | `checks/contract.py` | каждый результат по контракту: `fires`, `silent`, `specific`, `hashes` |
 | `checks/exp_division_threshold.py` | порог разделения через поток: пять плеч, три контроля, объявленные совпадения хэшей |
@@ -212,6 +212,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/protocol_checks.py` | этот список совпадает с тем, что гейт запускает |
 | `checks/results_allowlist.py` | в `results/` только артефакты прогонов модели; поисковые снимки и леджер бюджета живут в `literature/` |
 | `checks/embeddings_fresh.py` | индекс эмбеддингов собран из текущего графа: sha, число и порядок узлов, размер матрицы; после `kg/kg.py build` остаётся маркер `kg/.embeddings_dirty` — пока он есть, индекс считается устаревшим |
+| `checks/verus_copies_match.py` | Rust-копии Verus-функций не расходятся с оригиналами (ветка C аналитика; tree_contract T1) |
 | `checks/tree_contract.py` | `checks/` не растёт без вызова, импорта или записи в `LEGACY.txt`; `probes/` не запускается гейтом и перечислен в `probes/INDEX.md` |
 | `checks/insights_contract.py` | инсайты: обязательные поля, существование опор, опровержение, дизайн опыта с предсказанием и условием провала |
 | `checks/dip_reports.py` | отчёты дип-ресерчера: md-описание с разделами, лимит ячеек задачи, `high` только с проверенным локатором |
