@@ -10853,3 +10853,9 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   зафиксирован EXP-2026-4103-task.json (зеркало опубликованного payload v4).
   Журнал называет коммит devin: `cd546ff1` (literature: L-027/L-043 fragment_read,
   Hordijk RAF reviews verified). Гейт c877; пуш при зелёном.
+
+- **861s:** devin закоммитил `fa4cf15e` (literature: L-030 fragment_read, England 2013
+  self-replication verified) в окне между записью 861r и коммитом c6d77432 — журнал его
+  не назвал, гейт c877 снят до секций, чтобы не жечь 16 минут на гарантированно красный
+  log_check. Ничего, кроме этой записи, не меняется; прогон a2 (LEASE-460020f8b730)
+  не затронут. Гейт c878; пуш при зелёном.
