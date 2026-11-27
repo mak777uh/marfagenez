@@ -10,7 +10,7 @@
 ## Формат
 
     {
-      "schema": "marfagenez.experiment-result.v2",
+      "schema": "marfagenez.experiment-result.v3",
       "experiment_id": "frozen-ceiling",
       "run_id": "run-2026-11-11T10-00-00",
       "model_commit": "abc1234",
@@ -68,7 +68,33 @@ from pathlib import Path
 from statistics import NormalDist
 from typing import Any
 
-SCHEMA = "marfagenez.experiment-result.v2"
+SCHEMA_V2 = "marfagenez.experiment-result.v2"
+SCHEMA = "marfagenez.experiment-result.v3"
+
+ROLES = ("verification", "validation")
+PHASES = ("confirmatory", "exploratory")
+
+
+def validate_design_fields(role: str, phase: str) -> None:
+    """Validate the epistemic role and preregistration phase of a new record."""
+    if role not in ROLES:
+        raise ValueError(f"unknown role {role!r}; expected one of {ROLES}")
+    if phase not in PHASES:
+        raise ValueError(f"unknown phase {phase!r}; expected one of {PHASES}")
+    if role == "validation" and phase == "confirmatory":
+        raise ValueError(
+            "validation cannot be labelled confirmatory under the lab's "
+            "current independent-data rule"
+        )
+
+
+def set_design(result: dict[str, Any], role: str, phase: str) -> None:
+    """Set role/phase explicitly, rejecting inconsistent combinations."""
+    validate_design_fields(role, phase)
+    result["role"] = role
+    result["phase"] = phase
+
+
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
 
 #: The Rust source that owns the hash's version.
@@ -131,11 +157,22 @@ def new_result(
     seed: int,
     parameters: dict[str, Any],
     command: str,
+    *,
+    role: str = "verification",
+    phase: str = "exploratory",
 ) -> dict[str, Any]:
-    """Creates an empty result with the required metadata."""
+    """Create a new v3 result.
+
+    Defaults are deliberately non-confirmatory. Callers must explicitly opt in
+    to a confirmatory verification run after its predictions/analysis are frozen.
+    Validation runs must remain exploratory under the current lab policy.
+    """
+    validate_design_fields(role, phase)
     now = datetime.now(timezone.utc)
     return {
         "schema": SCHEMA,
+        "role": role,
+        "phase": phase,
         "experiment_id": experiment_id,
         "run_id": f"run-{now.strftime('%Y-%m-%dT%H-%M-%S')}",
         "model_commit": _git_commit(),

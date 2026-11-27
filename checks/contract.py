@@ -39,11 +39,33 @@ RESULTS = ROOT / "results"
 
 VERDICTS = ("passed", "failed", "void", "insensitive by construction", "not applicable")
 CONTROL_TESTS = ("fires", "silent", "specific")
+SCHEMA_V2 = "marfagenez.experiment-result.v2"
+SCHEMA_V3 = "marfagenez.experiment-result.v3"
+ROLES = {"verification", "validation"}
+PHASES = {"confirmatory", "exploratory"}
 
 
 def check_one(path: Path, data: dict) -> list[str]:
     """Returns the list of contract violations for one result."""
     problems: list[str] = []
+
+    # §3 epistemic role × study phase. v2 records predate this metadata and
+    # remain unchanged; v3 records must declare both fields explicitly.
+    schema = data.get("schema")
+    if schema == SCHEMA_V3:
+        role = data.get("role")
+        phase = data.get("phase")
+        if role not in ROLES:
+            problems.append(f"§3: v3 role must be one of {sorted(ROLES)}, got {role!r}")
+        if phase not in PHASES:
+            problems.append(f"§3: v3 phase must be one of {sorted(PHASES)}, got {phase!r}")
+        if role == "validation" and phase == "confirmatory":
+            problems.append(
+                "§3: validation cannot be confirmatory; only independently "
+                "pre-registered verification runs may carry confirmatory phase"
+            )
+    elif schema not in (SCHEMA_V2, None):
+        problems.append(f"schema: unsupported result schema {schema!r}")
 
     # §1 arithmetic
     arithmetic = data.get("arithmetic")
@@ -169,7 +191,53 @@ def check_one(path: Path, data: dict) -> list[str]:
     return problems
 
 
+def selftest_design_contract() -> list[str]:
+    """Exercise schema acceptance/rejection without touching historic results."""
+    valid = {
+        "schema": SCHEMA_V3,
+        "role": "verification",
+        "phase": "confirmatory",
+        "arithmetic": {"threshold": 1.0},
+        "controls": {name: {"passed": True} for name in CONTROL_TESTS},
+        "verdict": {"kind": "passed", "reason": "pre-registered verification"},
+        "hashes": {"A": "a", "B": "b", "C": "c"},
+        "limitations": ["synthetic fixture"],
+    }
+    problems = []
+    if check_one(Path("fixture-v3.json"), valid):
+        problems.append("valid verification/confirmatory v3 fixture was rejected")
+
+    invalid = dict(valid, role="validation", phase="confirmatory")
+    if not any("validation cannot be confirmatory" in p
+               for p in check_one(Path("fixture-invalid.json"), invalid)):
+        problems.append("validation/confirmatory invariant did not reject fixture")
+
+    missing = dict(valid)
+    missing.pop("role")
+    if not any("v3 role" in p for p in check_one(Path("fixture-missing.json"), missing)):
+        problems.append("v3 schema accepted a missing role")
+
+    legacy = {
+        "schema": SCHEMA_V2,
+        "arithmetic": {"threshold": 1.0},
+        "controls": {name: {"passed": True} for name in CONTROL_TESTS},
+        "verdict": {"kind": "passed", "reason": "legacy fixture"},
+        "hashes": {"A": "a", "B": "b", "C": "c"},
+        "limitations": ["legacy"],
+    }
+    if any("§3:" in p for p in check_one(Path("fixture-v2.json"), legacy)):
+        problems.append("historical v2 record was forced to acquire role/phase")
+    return problems
+
+
 def main() -> int:
+    design_problems = selftest_design_contract()
+    if design_problems:
+        print("FAIL role/phase contract selftest")
+        for problem in design_problems:
+            print("     " + problem)
+        return 1
+    print("OK   role/phase schema selftest")
     if not RESULTS.exists():
         print("results/ does not exist — nothing to check.")
         return 0
