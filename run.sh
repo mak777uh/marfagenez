@@ -30,7 +30,7 @@ cd "$ROOT" || { echo "нет каталога скрипта: $ROOT"; exit 1; }
 
 WHAT="${1:-all}"
 if [ "$WHAT" = all ]; then
-  echo "all: 11 разделов — test, lean, reach, dispatcher, verus, exp, kg, claims, audit, export, agents"
+  echo "all: 12 разделов — test, lean, reach, dispatcher, verus, exp, kg, claims, audit, export, agents, lab"
 fi
 
 # `FAILED` и функция `run()` удалены: `FAILED=1` присваивался, но нигде не
@@ -117,212 +117,147 @@ do_reach() {
   python3 checks/reach.py --strict
 }
 
-do_exp() {
-  section "Эксперименты"
-  # Раньше `rc` брался только от contract.py, а код exp05_frozen.py
-  # отбрасывался целиком: провал второй проверки был невидим, и прогон с
-  # вердиктом `failed` печатал «ВСЁ ЗЕЛЁНОЕ».
-  local rc=0
+exp_lane1() {
+  # Тяжёлые симуляции, лана 1. bad несёт код; имена провалов печатает LANE1_FAIL.
+  local bad=0
   echo "--- cli_refuses_bad_numbers.sh ---"
-  # Бинарник `trace` должен быть собран: скрипт гоняет
-  # core/target/release/trace. Его собирает do_test, который в `all`
-  # идёт раньше; в `run.sh exp` отдельно -- сначала cargo build.
-  bash checks/cli_refuses_bad_numbers.sh || rc=$?
-  echo
+  bash checks/cli_refuses_bad_numbers.sh || { echo "LANE1_FAIL cli_refuses_bad_numbers.sh"; bad=1; }
   echo "--- cli_refuses_bad_numbers_occupancy.sh ---"
-  # Тот же дефект, что у `trace`, но в позиционных аргументах `occupancy`:
-  # `occupancy 50O` молча прогонял 160 организмов. Бинарник собирает do_test.
-  bash checks/cli_refuses_bad_numbers_occupancy.sh || rc=$?
-  echo
-  echo "--- stub_covers_bridge.py ---"
-  python3 checks/stub_covers_bridge.py || rc=$?
-  echo
-  echo "--- stub_links.sh ---"
-  # Список символов и линковка — разные дефекты. stub_covers_bridge.py
-  # сравнивает имена; он не заметит, что архив не собрался, а write_stub
-  # игнорирует код возврата `ar`. Здесь crate собирается без lean, и
-  # отвечает линкер.
-  bash checks/stub_links.sh || rc=$?
-  echo
-  echo "--- contract.py ---"
-  python3 checks/contract.py || rc=$?
-  echo
-  echo "--- mde.py ---"
-  # Минимально детектируемый эффект: протокол (п. 3) требует поле `mde` рядом
-  # с `arithmetic`. Таблица 3 сигмы × 3 эффекта сверяется с числами разбора
-  # (393/16/4, 6280/252/63, 39245/1570/393); --selftest — это и есть проверка,
-  # что формула в checks/result.py не разошлась с записанным требованием.
-  python3 checks/mde.py --selftest || rc=$?
-  echo
-  echo "--- damage_clock.py ---"
-  # K -- часы урона -- это накопление, а не ceil(1/dr): десять сложений 0.1
-  # не дают 1.0, поэтому при dr = 0.1 K = 11. Три контроля: расхождения на
-  # десятичной сетке (ровно обратные 1/n), тишина на случайных даблах и то,
-  # что причина -- последовательное сложение (fsum и другая ассоциация
-  # расхождение снимают). Скрипт дешёвый, поэтому в `exp`.
-  python3 checks/damage_clock.py || rc=$?
-  echo "--- exp_memory_question.py ---"
-  python3 checks/exp_memory_question.py || rc=$?
-  echo "--- env_prior_tails.py ---"
-  python3 checks/env_prior_tails.py || rc=$?
-  echo "--- paper_numbers.py ---"
-  python3 checks/paper_numbers.py || rc=$?
-  echo "--- life_calibration.py ---"
-  python3 checks/life_calibration.py || rc=$?
-  echo "--- paper_claims.py ---"
-  python3 checks/paper_claims.py || rc=$?
-  echo "--- paper_format.py ---"
-  python3 checks/paper_format.py || rc=$?
-  echo "--- paper_prose.py ---"
-  python3 checks/paper_prose.py || rc=$?
-  echo "--- readme_features.py ---"
-  python3 checks/readme_features.py || rc=$?
-  echo "--- protocol_checks.py ---"
-  python3 checks/protocol_checks.py || rc=$?
-  echo "--- doc_numbers.py ---"
-  python3 checks/doc_numbers.py || rc=$?
-  echo "--- stitch_coverage_floor.py ---"
-  # Строгая литературная опора (пары S) не должна уменьшаться: переклассификация в N без замены — красный.
-  python3 checks/stitch_coverage_floor.py || rc=$?
-  echo "--- formula_units_ceiling.py ---"
-  # Исторический долг: 22 формулы из 31 без единиц. Порог не даёт долгу вырасти; ноль требовать нельзя —
-  # гейт станет красным на истории и его начнут обходить.
-  python3 checks/formula_units_ceiling.py || rc=$?
-  echo "--- units_symbol_audit.py ---"
-  # Таблица единиц покрывает не все символы записи: в F-030 строка MODES не имела единицы, в F-006 не были
-  # покрыты h_c/T_senescence/dD_dh. Инструмент тихий на здоровом дереве (33 -> 0 кандидатов после
-  # калибровки на дифференциалы, подписные варианты и структурные формулы), поэтому в гейте.
-  python3 tools/units_symbol_audit.py --strict || rc=$?
-  echo "--- map_duplicates.py --strict ---"
-  # Дубли в карте: один факт внесён дважды. За день нашлось три (один — мой), и после этого проверка жила
-  # только в ручных вызовах. Теперь в гейте: необъявленный дубль — красный.
-  python3 tools/map_duplicates.py --strict || rc=$?
-  # Правило цеттелькастена: каждая новая ячейка должна иметь хотя бы одну связь.
-  # Потолок исторического долга — docs/MAP-ORPHANS-BASELINE.json; новые сироты не появляются.
-  python3 tools/map_orphans.py --strict || rc=$?
-  echo "--- wiring_audit.py --strict ---"
-  # Инструмент-аудит, который не вызывается в run.sh, — мёртвый: два таких нашлись 25.11.2026.
-  python3 tools/wiring_audit.py --strict || rc=$?
-  echo "--- unanchored_nodes.py --strict ---"
-  # Узлы без единой формы опоры (lit_ref / evidence / relations / math.checked / S-пара). Потолок в
-  # docs/ANCHOR-BASELINE.json: 20 из 159. Новый узел без опоры — красный, старый долг не мешает.
-  python3 tools/unanchored_nodes.py --strict || rc=$?
-  echo "--- support_sources.py ---"
-  # Опора = evidence ∪ math.checked ∪ lit_ref ∪ пары сшивки. Три раза подряд вывод «нет опоры» был
-  # неверным из-за проверки одного поля; теперь это ловит гейт.
-  python3 checks/support_sources.py || rc=$?
-  echo "--- rng_seed_noise.py ---"
-  python3 checks/rng_seed_noise.py || rc=$?
-  echo "--- cli_refuses.py ---"
-  python3 checks/cli_refuses.py || rc=$?
-  echo "--- no_unseeded_random.py ---"
-  python3 checks/no_unseeded_random.py || rc=$?
-  echo "--- ci_workflow.py ---"
-  python3 checks/ci_workflow.py || rc=$?
-  echo "--- exp_shape_regulator.py ---"
-  python3 checks/exp_shape_regulator.py || rc=$?
-  echo "--- exp_division_threshold.py ---"
-  # Порог разделения через поток: пять плеч, три контроля, два объявленных совпадения хэшей
-  # (`FINDING-290`, `FINDING-292`). Совпадения — часть результата: выше порога починка упирается в предел,
-  # а потолок запаса не связывает.
-  python3 checks/exp_division_threshold.py || rc=$?
-  echo "--- goal_features.py ---"
-  python3 checks/goal_features.py || rc=$?
-  echo "--- finding_elephant_line.py ---"
-  python3 checks/finding_elephant_line.py || rc=$?
-  echo "--- embeddings_fresh.py ---"
-  # Индекс эмбеддингов обязан быть собран из текущего графа, иначе similar врёт уверенно.
-  python3 checks/embeddings_fresh.py || rc=$?
-  echo "--- tree_contract.py ---"
-  # checks/ не растёт без вызова или записи в LEGACY.txt; probes/ — не гейт.
-  python3 checks/tree_contract.py || rc=$?
-  echo "--- insights_contract.py ---"
-  # Инсайт без опровержения и без опыта — не инсайт.
-  python3 checks/insights_contract.py || rc=$?
-  echo "--- dip_reports.py ---"
-  # Отчёты дипа: партия без отчёта о покрытии — не работа.
-  python3 checks/dip_reports.py || rc=$?
-  echo "--- map_contract.py ---"
-  # Карта: ячейка без доказательства — не ячейка.
-  python3 checks/map_contract.py || rc=$?
-  echo "--- candidates_quarantine.py ---"
-  # Карантин кандидатов: граф не растёт случайно, допуск идёт через журнал.
-  python3 checks/candidates_quarantine.py || rc=$?
-  echo "--- budget_ledger.py ---"
-  # Леджер бюджета: офлайн, без сети; ключ не должен попасть в коммит.
-  python3 checks/budget_ledger.py || rc=$?
-  echo "--- litsearch_contract.py ---"
-  # Снимок поиска: ранги — истина, дедуп и RRF пересчитываются офлайн.
-  python3 checks/litsearch_contract.py || rc=$?
-  echo "--- results_allowlist.py ---"
-  # results/ восстанавливается `git checkout`, поэтому только артефакты прогонов модели.
-  python3 checks/results_allowlist.py || rc=$?
-  echo "--- literature_contract.py ---"
-  # Литературный контракт: машинный уровень записи не может превышать артефакт. Офлайн, секунды.
-  python3 checks/literature_contract.py || rc=$?
-  echo "--- guard_self_test.py ---"
-  python3 checks/guard_self_test.py || rc=$?
-  echo
+  bash checks/cli_refuses_bad_numbers_occupancy.sh || { echo "LANE1_FAIL cli_refuses_bad_numbers_occupancy.sh"; bad=1; }
   echo "--- exp_memory_cost.py ---"
-  # Цена чтения и поле с пиками: 216 прогонов, 15 с, поэтому в `exp`.
-  # Проверяет не только числа, но и то, что цена действительно давит на
-  # читающего: контроль `specific` держится на том, что при `read_budget=1`
-  # сосед не читается и цена инертна.
-  python3 checks/exp_memory_cost.py || rc=$?
-  echo
+  python3 checks/exp_memory_cost.py || { echo "LANE1_FAIL exp_memory_cost.py"; bad=1; }
   echo "--- exp_memory_sampling.py ---"
-  # Память, которая может не смотреть: read_period > 1 у Memory. 384 прогона,
-  # 26 с. Ось обязана трогать только память: `sighted` не меняет хеш при смене
-  # периода, а при read_cost = 0 контроль silent молчит. Вердикт записи —
-  # void: +33/+37 шагов ниже mde = 250, механизм измерен, размер не подтверждён.
-  python3 checks/exp_memory_sampling.py || rc=$?
-  echo
+  python3 checks/exp_memory_sampling.py || { echo "LANE1_FAIL exp_memory_sampling.py"; bad=1; }
+  echo "--- exp_division_threshold.py ---"
+  python3 checks/exp_division_threshold.py || { echo "LANE1_FAIL exp_division_threshold.py"; bad=1; }
+  echo "--- exp_shape_regulator.py ---"
+  python3 checks/exp_shape_regulator.py || { echo "LANE1_FAIL exp_shape_regulator.py"; bad=1; }
+  return $bad
+}
+exp_lane2() {
+  # Тяжёлые симуляции, лана 2.
+  local bad=0 out
   echo "--- exp05_frozen.py ---"
-  local out
   out=$(mktemp)
-  python3 checks/exp05_frozen.py >"$out" 2>&1
-  local rc_exp=$?
-  tail -12 "$out"
+  if python3 checks/exp05_frozen.py >"$out" 2>&1; then tail -12 "$out"; else tail -12 "$out"; echo "LANE2_FAIL exp05_frozen.py"; bad=1; fi
   rm -f "$out"
-  if [ "$rc_exp" -ne 0 ]; then
-    echo "    FAIL: exp05_frozen.py вернул $rc_exp"
-    rc=1
-  fi
-  echo
   echo "--- exp99_protocol_capacity.py ---"
-  # В отличие от exp05_frozen.py, здесь печатается весь вывод: таблица
-  # лестницы и есть результат, а не только вердикт.
-  python3 checks/exp99_protocol_capacity.py || rc=$?
-  echo
+  python3 checks/exp99_protocol_capacity.py || { echo "LANE2_FAIL exp99_protocol_capacity.py"; bad=1; }
   echo "--- exp_look_order.py ---"
-  # Какой порядок несёт информацию: число выживших или соответствие памяти
-  # факту. Решающее плечо -- однородное поле, где памяти нечего запоминать:
-  # если различие там сохраняется, оно не про точность памяти.
-  python3 checks/exp_look_order.py || rc=$?
-  echo
+  python3 checks/exp_look_order.py || { echo "LANE2_FAIL exp_look_order.py"; bad=1; }
+  echo "--- life_calibration.py ---"
+  python3 checks/life_calibration.py || { echo "LANE2_FAIL life_calibration.py"; bad=1; }
+  echo "--- env_prior_tails.py ---"
+  python3 checks/env_prior_tails.py || { echo "LANE2_FAIL env_prior_tails.py"; bad=1; }
+  echo "--- exp_memory_question.py ---"
+  python3 checks/exp_memory_question.py || { echo "LANE2_FAIL exp_memory_question.py"; bad=1; }
+  echo "--- damage_clock.py ---"
+  python3 checks/damage_clock.py || { echo "LANE2_FAIL damage_clock.py"; bad=1; }
+  echo "--- rng_seed_noise.py ---"
+  python3 checks/rng_seed_noise.py || { echo "LANE2_FAIL rng_seed_noise.py"; bad=1; }
+  return $bad
+}
+exp_lane3() {
+  # Аудиты дерева и контрактов, лана 3.
+  local bad=0
+  echo "--- stub_covers_bridge.py ---"
+  python3 checks/stub_covers_bridge.py || { echo "LANE3_FAIL stub_covers_bridge.py"; bad=1; }
+  echo "--- stub_links.sh ---"
+  bash checks/stub_links.sh || { echo "LANE3_FAIL stub_links.sh"; bad=1; }
+  echo "--- contract.py ---"
+  python3 checks/contract.py || { echo "LANE3_FAIL contract.py"; bad=1; }
+  echo "--- mde.py ---"
+  python3 checks/mde.py --selftest || { echo "LANE3_FAIL mde.py"; bad=1; }
+  echo "--- paper_numbers.py ---"
+  python3 checks/paper_numbers.py || { echo "LANE3_FAIL paper_numbers.py"; bad=1; }
+  echo "--- paper_claims.py ---"
+  python3 checks/paper_claims.py || { echo "LANE3_FAIL paper_claims.py"; bad=1; }
+  echo "--- paper_format.py ---"
+  python3 checks/paper_format.py || { echo "LANE3_FAIL paper_format.py"; bad=1; }
+  echo "--- paper_prose.py ---"
+  python3 checks/paper_prose.py || { echo "LANE3_FAIL paper_prose.py"; bad=1; }
+  echo "--- readme_features.py ---"
+  python3 checks/readme_features.py || { echo "LANE3_FAIL readme_features.py"; bad=1; }
+  echo "--- protocol_checks.py ---"
+  python3 checks/protocol_checks.py || { echo "LANE3_FAIL protocol_checks.py"; bad=1; }
+  echo "--- doc_numbers.py ---"
+  python3 checks/doc_numbers.py || { echo "LANE3_FAIL doc_numbers.py"; bad=1; }
+  echo "--- stitch_coverage_floor.py ---"
+  python3 checks/stitch_coverage_floor.py || { echo "LANE3_FAIL stitch_coverage_floor.py"; bad=1; }
+  echo "--- formula_units_ceiling.py ---"
+  python3 checks/formula_units_ceiling.py || { echo "LANE3_FAIL formula_units_ceiling.py"; bad=1; }
+  echo "--- units_symbol_audit.py ---"
+  python3 tools/units_symbol_audit.py --strict || { echo "LANE3_FAIL units_symbol_audit.py"; bad=1; }
+  echo "--- map_duplicates.py ---"
+  python3 tools/map_duplicates.py --strict || { echo "LANE3_FAIL map_duplicates.py"; bad=1; }
+  echo "--- map_orphans.py ---"
+  python3 tools/map_orphans.py --strict || { echo "LANE3_FAIL map_orphans.py"; bad=1; }
+  echo "--- wiring_audit.py ---"
+  python3 tools/wiring_audit.py --strict || { echo "LANE3_FAIL wiring_audit.py"; bad=1; }
+  echo "--- unanchored_nodes.py ---"
+  python3 tools/unanchored_nodes.py --strict || { echo "LANE3_FAIL unanchored_nodes.py"; bad=1; }
+  echo "--- support_sources.py ---"
+  python3 checks/support_sources.py || { echo "LANE3_FAIL support_sources.py"; bad=1; }
+  echo "--- cli_refuses.py ---"
+  python3 checks/cli_refuses.py || { echo "LANE3_FAIL cli_refuses.py"; bad=1; }
+  echo "--- no_unseeded_random.py ---"
+  python3 checks/no_unseeded_random.py || { echo "LANE3_FAIL no_unseeded_random.py"; bad=1; }
+  echo "--- ci_workflow.py ---"
+  python3 checks/ci_workflow.py || { echo "LANE3_FAIL ci_workflow.py"; bad=1; }
+  echo "--- goal_features.py ---"
+  python3 checks/goal_features.py || { echo "LANE3_FAIL goal_features.py"; bad=1; }
+  echo "--- finding_elephant_line.py ---"
+  python3 checks/finding_elephant_line.py || { echo "LANE3_FAIL finding_elephant_line.py"; bad=1; }
+  echo "--- embeddings_fresh.py ---"
+  python3 checks/embeddings_fresh.py || { echo "LANE3_FAIL embeddings_fresh.py"; bad=1; }
+  echo "--- tree_contract.py ---"
+  python3 checks/tree_contract.py || { echo "LANE3_FAIL tree_contract.py"; bad=1; }
+  echo "--- insights_contract.py ---"
+  python3 checks/insights_contract.py || { echo "LANE3_FAIL insights_contract.py"; bad=1; }
+  echo "--- dip_reports.py ---"
+  python3 checks/dip_reports.py || { echo "LANE3_FAIL dip_reports.py"; bad=1; }
+  echo "--- map_contract.py ---"
+  python3 checks/map_contract.py || { echo "LANE3_FAIL map_contract.py"; bad=1; }
+  echo "--- candidates_quarantine.py ---"
+  python3 checks/candidates_quarantine.py || { echo "LANE3_FAIL candidates_quarantine.py"; bad=1; }
+  echo "--- budget_ledger.py ---"
+  python3 checks/budget_ledger.py || { echo "LANE3_FAIL budget_ledger.py"; bad=1; }
+  echo "--- litsearch_contract.py ---"
+  python3 checks/litsearch_contract.py || { echo "LANE3_FAIL litsearch_contract.py"; bad=1; }
+  echo "--- results_allowlist.py ---"
+  python3 checks/results_allowlist.py || { echo "LANE3_FAIL results_allowlist.py"; bad=1; }
+  echo "--- literature_contract.py ---"
+  python3 checks/literature_contract.py || { echo "LANE3_FAIL literature_contract.py"; bad=1; }
+  echo "--- guard_self_test.py ---"
+  python3 checks/guard_self_test.py || { echo "LANE3_FAIL guard_self_test.py"; bad=1; }
   echo "--- log_check.py ---"
-  # Числа теорем в живой документации против дерева. Датированные записи
-  # (FINDING-*, LESSONS, VISION) не трогаются: это история, а не заявка.
-  python3 checks/log_check.py || rc=$?
-  echo
+  python3 checks/log_check.py || { echo "LANE3_FAIL log_check.py"; bad=1; }
   echo "--- hash_version.py ---"
-  # Хеш динамики -- это определение «одно плечо» (AGENTS.md §5), и оно
-  # верно только внутри одной версии функции. `prev_cell` вошёл в хеш
-  # после того, как часть записей была сделана, поэтому старый хеш
-  # `40bd71fa379e135a` и новый `f94d3b830971a9e8` -- разные величины под
-  # одним именем. Скрипт раскладывает записи на ok/stale/unversioned и
-  # падает, если появляется НОВАЯ запись без версии (иначе дефект растёт
-  # молча) или если путь из замороженного списка исчез из дерева.
-  python3 checks/hash_version.py || rc=$?
-  echo
+  python3 checks/hash_version.py || { echo "LANE3_FAIL hash_version.py"; bad=1; }
   echo "--- capacity_two_answers.py ---"
-  # Две формулы ёмкости в одном репозитории: LAW-capacity.md (жёсткая
-  # граница) и capacity_law.py (среднее по ансамблю). Скрипт печатает
-  # обе и падает, если порядок нарушится.
-  # Скрипт печатает NOTE, когда файлы расходятся, но это не провал:
-  # расхождение уже записано в docs/UNREPRODUCIBLE.md. Красным он станет,
-  # только если порядок нарушится или точка с bill не найдётся.
-  python3 checks/capacity_two_answers.py || rc=$?
+  python3 checks/capacity_two_answers.py || { echo "LANE3_FAIL capacity_two_answers.py"; bad=1; }
+  return $bad
+}
+
+do_exp() {
+  section "Эксперименты (3 параллельных ланы; отчёт в порядке 1-2-3)"
+  # Аудит №4/№3 + владелец: серийный do_exp тянул гейт. Ланы независимы:
+  # каждая проверка — отдельный процесс; тяжёлые симуляции разложены по ланам
+  # 1-2, аудиты дерева — лана 3. Отчёт печатается в фиксированном порядке
+  # 1-2-3, не по времени завершения: имена провалов явные (LANE*_FAIL),
+  # первый провал по порядку сохраняется rc-агрегацией.
+  local rc=0 p1 p2 p3 l1 l2 l3
+  l1=$(mktemp); l2=$(mktemp); l3=$(mktemp)
+  exp_lane1 >"$l1" 2>&1 & p1=$!
+  exp_lane2 >"$l2" 2>&1 & p2=$!
+  exp_lane3 >"$l3" 2>&1 & p3=$!
+  wait "$p1" || rc=1
+  wait "$p2" || rc=1
+  wait "$p3" || rc=1
+  echo "== лана 1 =="; cat "$l1"
+  echo "== лана 2 =="; cat "$l2"
+  echo "== лана 3 =="; cat "$l3"
+  rm -f "$l1" "$l2" "$l3"
   return $rc
 }
 
@@ -342,6 +277,15 @@ do_models() {
   echo "--- room_model.py ---"
   python3 checks/room_model.py 2>&1 | tail -8 || rc=$?
   return $rc
+}
+
+do_lab() {
+  section "Lab: тесты control plane (lab/tests)"
+  # Аудит №3 P0-6: lab/tests не входили в обязательную регрессию — гейт мог
+  # быть зелёным при сломанном control plane (claim/submit/migration).
+  # Секция независима, идёт в группе 1 параллельно остальным.
+  python3 -m unittest discover -s lab/tests -t . 2>&1 | tail -15
+  return "${PIPESTATUS[0]}"
 }
 
 do_verus() {
@@ -572,6 +516,7 @@ gate_group() {
   gate_logs
   local n
   local -A pidx=()
+  local _t0=$SECONDS
   for n in "$@"; do
     # Родительская трасса обязана называть каждую секцию (вложенные копии
     # run.sh и проверки трасс читают её именно так), но внутренности секции
@@ -585,6 +530,7 @@ gate_group() {
   for n in "$@"; do
     wait "${pidx[$n]}"
     GATE_RC[$n]=$?
+    GATE_T[$n]=$((SECONDS-_t0))
   done
 }
 
@@ -595,9 +541,10 @@ gate_report() {
   # поздний код его не затирает.
   gate_logs
   local n
-  for n in test lean reach dispatcher verus exp kg claims audit export agents; do
+  for n in test lean reach dispatcher verus exp kg claims audit export agents lab; do
     [ -n "${GATE_RC[$n]:-}" ] || continue
     keep "${GATE_RC[$n]}" "$n"
+    echo "    [секция $n: ${GATE_T[$n]}с]"
     cat "$GATE_LOG_DIR/$n.log"
     if [ "${GATE_RC[$n]}" -ne 0 ] && [ -z "${FIRST_FAIL_STEP:-}" ]; then
       FIRST_FAIL_STEP=$(first_failed_step "$GATE_LOG_DIR/$n.trace")
@@ -619,6 +566,7 @@ gate_report() {
 # девяти разделов дал код. `FAILED` копится, чтобы итог назвал все.
 FAILED=""
 declare -A GATE_RC=()
+declare -A GATE_T=()
 GATE_LOG_DIR=""
 # «первый провалившийся шаг» параллельного `all`: шаг первой по порядку
 # провалившейся секции; ищет gate_report по трассе этой секции.
@@ -681,18 +629,19 @@ case "$WHAT" in
   exp)    do_exp;    keep $? exp ;;
   kg)     do_kg;     keep $? kg ;;
   models) do_models; keep $? models ;;
+  lab)    do_lab;    keep $? lab ;;
   verus)  do_verus;  keep $? verus ;;
   claims) do_claims; keep $? claims ;;
   audit)  do_audit;  keep $? audit ;;
   export) do_export; keep $? export ;;
   agents) do_agents; keep $? agents ;;
   all)
-    gate_group test lean dispatcher verus claims audit kg export agents
+    gate_group test lean dispatcher verus claims audit kg export agents lab
     gate_group reach exp
     gate_report
     ;;
   *)
-    echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|kg|claims|audit|export|agents]"
+    echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|kg|claims|audit|export|agents|lab]"
     exit 2
     ;;
 esac

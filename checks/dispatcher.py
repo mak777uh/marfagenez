@@ -44,6 +44,7 @@ do_audit(){{ :; }}
 do_exp(){{ return {exp_rc}; }}
 do_claims(){{ return {claims_rc}; }}; do_export(){{ :; }}; do_models(){{ :; }}
 do_kg(){{ return {kg_rc}; }}
+do_lab(){{ :; }}
 do_agents(){{ return {agents_rc}; }}
 """
 
