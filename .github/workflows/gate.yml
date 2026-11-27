@@ -9,6 +9,12 @@ on:
   pull_request:
   workflow_dispatch:
 
+# One authoritative run per branch. A PR run and its preceding push run
+# share the same group; newer commits cancel obsolete full-gate attempts.
+concurrency:
+  group: gate-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
