@@ -1,29 +1,29 @@
 {
   "schema": "kg/2",
   "human_confirmed": [],
-  "built_at": "2026-11-27T07:35:40+00:00",
+  "built_at": "2026-11-27T21:36:06+00:00",
   "counts": {
-    "total": 1191,
+    "total": 1202,
     "by_kind": {
-      "claim": 116,
+      "claim": 118,
       "formula": 31,
-      "experiment": 418,
+      "experiment": 421,
       "definition": 10,
       "gap": 3,
       "correspondence": 2,
-      "evidence": 611
+      "evidence": 617
     },
     "by_epistemic": {
       "established": 321,
-      "hypothesis": 802,
-      "refuted": 67,
+      "hypothesis": 812,
+      "refuted": 68,
       "bounded": 1
     },
     "by_provenance": {
-      "verified_agent": 1066,
-      "extracted": 125
+      "verified_agent": 1081,
+      "extracted": 121
     },
-    "edges": 907,
+    "edges": 913,
     "edges_by_type": {
       "qualifies": 3,
       "tested_in": 28,
@@ -35,21 +35,21 @@
       "refuted_by": 1,
       "supports": 1,
       "derived_from": 17,
-      "has_data": 418,
+      "has_data": 421,
       "bridges": 6,
       "maps_to": 4,
-      "generated_by": 388
+      "generated_by": 391
     },
     "by_epistemic_statements": {
       "established": 9,
-      "hypothesis": 146,
+      "hypothesis": 148,
       "refuted": 1,
       "bounded": 1
     },
     "by_epistemic_runs": {
       "established": 312,
-      "refuted": 66,
-      "hypothesis": 40
+      "refuted": 67,
+      "hypothesis": 42
     }
   },
   "invariants": [
@@ -291,16 +291,12 @@
       "L-005",
       "L-007",
       "L-008",
-      "L-009",
-      "L-010",
       "L-011",
       "L-012",
       "L-013",
       "L-014",
       "L-015",
       "L-016",
-      "L-017",
-      "L-018",
       "L-019",
       "L-020",
       "L-021",
@@ -315,12 +311,10 @@
       "L-031",
       "L-033",
       "L-034",
-      "L-036",
       "L-037",
       "L-039",
       "L-043",
       "L-044",
-      "L-045",
       "L-046",
       "L-048",
       "L-049",
@@ -379,7 +373,9 @@
       "L-105",
       "L-106",
       "L-107",
-      "L-108"
+      "L-108",
+      "L-109",
+      "L-110"
     ],
     "refuted_still_referenced": [],
     "contested": []
@@ -401,6 +397,6 @@
     "check"
   ],
   "hashes": {
-    "graph": "22ae2e977d3211a3"
+    "graph": "b753463947939a2f"
   }
 }

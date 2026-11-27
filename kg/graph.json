@@ -10627,6 +10627,42 @@
       "updated_at": "2026-11-20"
     },
     {
+      "id": "X-memory-cost-run-2026-11-27T10-26-48",
+      "kind": "experiment",
+      "text": "memory-cost run run-2026-11-27T10-26-48: verdict failed",
+      "context": {
+        "scope": "recorded run",
+        "parameters": "{\"m_field\": 2.0, \"regrow\": 0.8, \"repair_cost\": 1.5, \"damage_rate\": 0.02, \"steps\": 20000, \"cells\": 24, \"capacity\": 10.0, \"energy0\": 5.0, \"poor\": 0.2, \"start_cell\": 3, \"read_budgets\": [1, 3], \"read_costs\": [0.0, 0.02, 0.05], \"points\": {\"P_need=1\": 1.0756, \"P_need=2\": 1.7911}, \"fields\": [\"uniform\", \"pe",
+        "conditions": "commit 27a187da616f"
+      },
+      "epistemic": "refuted",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "experiment",
+          "ref": "results/memory-cost/run-2026-11-27T10-26-48.json",
+          "strength": "strong"
+        }
+      ],
+      "relations": [
+        {
+          "type": "has_data",
+          "target": "DATA-5e177af5fb72c3e3"
+        }
+      ],
+      "data": {
+        "source": "results/memory-cost/run-2026-11-27T10-26-48.json",
+        "license": "repo",
+        "accessed_at": "",
+        "model_commit": "27a187da616fc2ac8705d29ec07ef72af4ad083e+dirty",
+        "seed": 3,
+        "command": "python3 checks/exp_memory_cost.py",
+        "rng_version": null
+      },
+      "created_at": "2026-11-27T10:26:48.521881+00:00",
+      "updated_at": "2026-11-20"
+    },
+    {
       "id": "X-memory-question-run-2026-11-16T08-32-15",
       "kind": "experiment",
       "text": "memory-question run run-2026-11-16T08-32-15: verdict not applicable",
@@ -10735,6 +10771,42 @@
       "updated_at": "2026-11-20"
     },
     {
+      "id": "X-memory-question-run-2026-11-27T10-26-53",
+      "kind": "experiment",
+      "text": "memory-question run run-2026-11-27T10-26-53: verdict not applicable",
+      "context": {
+        "scope": "recorded run",
+        "parameters": "{\"m_field\": 2.0, \"regrow\": 0.8, \"repair_cost\": 1.5, \"damage_rate\": 0.02, \"steps\": 20000, \"cells\": 24, \"capacity\": 10.0, \"energy0\": 5.0, \"read_budgets\": [0, 1, 2, 3], \"points\": {\"P_need=1\": 1.0756, \"P_need=2\": 1.7911}, \"arms\": [\"oracle\", \"sighted\", \"intact\", \"sham\", \"erased\", \"stay\", \"random\"]}",
+        "conditions": "commit 27a187da616f"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "experiment",
+          "ref": "results/memory-question/run-2026-11-27T10-26-53.json",
+          "strength": "strong"
+        }
+      ],
+      "relations": [
+        {
+          "type": "has_data",
+          "target": "DATA-c6e54a5e03e241f9"
+        }
+      ],
+      "data": {
+        "source": "results/memory-question/run-2026-11-27T10-26-53.json",
+        "license": "repo",
+        "accessed_at": "",
+        "model_commit": "27a187da616fc2ac8705d29ec07ef72af4ad083e+dirty",
+        "seed": 3,
+        "command": "python3 checks/exp_memory_question.py",
+        "rng_version": null
+      },
+      "created_at": "2026-11-27T10:26:53.405190+00:00",
+      "updated_at": "2026-11-20"
+    },
+    {
       "id": "X-memory-sampling-run-2026-11-16T11-11-09",
       "kind": "experiment",
       "text": "memory-sampling run run-2026-11-16T11-11-09: verdict void",
@@ -10840,6 +10912,42 @@
         "rng_version": null
       },
       "created_at": "2026-11-17T05:55:53.059487+00:00",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "X-memory-sampling-run-2026-11-27T10-27-01",
+      "kind": "experiment",
+      "text": "memory-sampling run run-2026-11-27T10-27-01: verdict void",
+      "context": {
+        "scope": "recorded run",
+        "parameters": "{\"m_field\": 2.0, \"regrow\": 0.8, \"repair_cost\": 1.5, \"damage_rate\": 0.02, \"steps\": 20000, \"cells\": 24, \"capacity\": 10.0, \"energy0\": 5.0, \"poor\": 0.2, \"start_cell\": 3, \"read_budgets\": [1, 3], \"read_costs\": [0.0, 0.02, 0.05], \"read_periods\": [1, 2, 4, 8], \"points\": {\"P_need=1\": 1.0756, \"P_need=2\": 1.79",
+        "conditions": "commit 27a187da616f"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [
+        {
+          "kind": "experiment",
+          "ref": "results/memory-sampling/run-2026-11-27T10-27-01.json",
+          "strength": "strong"
+        }
+      ],
+      "relations": [
+        {
+          "type": "has_data",
+          "target": "DATA-5840bce420fd5b3b"
+        }
+      ],
+      "data": {
+        "source": "results/memory-sampling/run-2026-11-27T10-27-01.json",
+        "license": "repo",
+        "accessed_at": "",
+        "model_commit": "27a187da616fc2ac8705d29ec07ef72af4ad083e+dirty",
+        "seed": 3,
+        "command": "python3 checks/exp_memory_sampling.py",
+        "rng_version": null
+      },
+      "created_at": "2026-11-27T10:27:01.870671+00:00",
       "updated_at": "2026-11-20"
     },
     {
@@ -17436,15 +17544,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст**: Karin, Agrawal, Porat, Krizhanovsky & Alon, «Senescent cell tu"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/karin19-nc.xml",
+          "strength": "strong",
+          "sha256": "a33bc0fbb13fcf365f0c0271350f6183de66c00404bec34df3568f3ec2c710f9"
         }
       ],
       "relations": [],
@@ -17452,11 +17566,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст**: Karin, Agrawal, Porat, Krizhanovsky & Alon, «Senescent cell tu",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/karin19-nc.xml",
+        "artifact_bytes": 115999,
+        "artifact_sha256": "a33bc0fbb13fcf365f0c0271350f6183de66c00404bec34df3568f3ec2c710f9",
         "locator": {
           "doi": null,
           "arxiv": null,
@@ -17485,15 +17599,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст**: Gavrilov & Gavrilova, «New Developments in the Biodemography o"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/gavrilov14-gerontology-pmc4475490.xml",
+          "strength": "strong",
+          "sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e"
         }
       ],
       "relations": [],
@@ -17501,19 +17621,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст**: Gavrilov & Gavrilova, «New Developments in the Biodemography o",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/gavrilov14-gerontology-pmc4475490.xml",
+        "artifact_bytes": 80772,
+        "artifact_sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e",
         "locator": {
-          "doi": null,
+          "doi": "10.1159/000369011",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://doi.org/10.1159/000369011",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -17706,7 +17826,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**вторые руки.** ⚠ **2026-11-27, MSG-DEVIN-S7-Q020-1:** «Tomasik et al. (2024), "
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -17722,7 +17842,7 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
+        "registry_level": "**вторые руки.** ⚠ **2026-11-27, MSG-DEVIN-S7-Q020-1:** «Tomasik et al. (2024), ",
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
@@ -17760,7 +17880,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент**: Moreno & Mossio, «Biological Autonomy», Springer 2015, HAL hal-011"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -17768,7 +17888,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/moreno15-biological-autonomy-intro-hal01151449.pdf",
+          "strength": "moderate",
+          "sha256": "fa1148aacfc7327e43db7851940e96a26b0dd3d8ba99705ca6db9bb69ebaa070"
         }
       ],
       "relations": [],
@@ -17776,18 +17902,18 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: Moreno & Mossio, «Biological Autonomy», Springer 2015, HAL hal-011",
+        "level_kind": "fragment_read",
+        "artifact": "papers/moreno15-biological-autonomy-intro-hal01151449.pdf",
+        "artifact_bytes": 509205,
+        "artifact_sha256": "fa1148aacfc7327e43db7851940e96a26b0dd3d8ba99705ca6db9bb69ebaa070",
         "locator": {
-          "doi": null,
+          "doi": "10.1007/978-94-017-9837-2",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
+          "url": "https://hal.science/hal-01151449",
           "none": true
         },
         "lines_provenance": {
@@ -17869,15 +17995,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст**: Krakauer, Bertschinger, Olbrich, Flack & Ay, «The information "
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/krakauer20-iti.xml",
+          "strength": "strong",
+          "sha256": "0c9c2105544f69e357141d367789b53fb6e7519db5a6fc49779f4ff84a142020"
         }
       ],
       "relations": [],
@@ -17885,11 +18017,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст**: Krakauer, Bertschinger, Olbrich, Flack & Ay, «The information ",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/krakauer20-iti.xml",
+        "artifact_bytes": 417896,
+        "artifact_sha256": "0c9c2105544f69e357141d367789b53fb6e7519db5a6fc49779f4ff84a142020",
         "locator": {
           "doi": null,
           "arxiv": null,
@@ -17919,15 +18051,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст**: Friston, «Life as we know it», J R Soc Interface 10:20130475 ("
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/friston13-rsif.xml",
+          "strength": "strong",
+          "sha256": "bee295d43165ce23f90e76441cfdc40e1a7e18b742f93c2fa0bef3e95674684c"
         }
       ],
       "relations": [],
@@ -17935,18 +18073,18 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст**: Friston, «Life as we know it», J R Soc Interface 10:20130475 (",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/friston13-rsif.xml",
+        "artifact_bytes": 112821,
+        "artifact_sha256": "bee295d43165ce23f90e76441cfdc40e1a7e18b742f93c2fa0bef3e95674684c",
         "locator": {
-          "doi": null,
+          "doi": "10.1098/rsif.2013.0475",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
+          "url": "https://doi.org/10.1098/rsif.2013.0475",
           "none": true
         },
         "lines_provenance": {
@@ -18336,7 +18474,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент**: Dittrich & Speroni di Fenizio, «Chemical organization theory», Bul"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18344,7 +18482,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/dittrich07-bmb-arxiv-qbio0501016.pdf",
+          "strength": "moderate",
+          "sha256": "729aafad73a495e7dbd8f9b3ef7a18e55b103d80cce60abd44e7f0fcfb629391"
         }
       ],
       "relations": [],
@@ -18352,19 +18496,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: Dittrich & Speroni di Fenizio, «Chemical organization theory», Bul",
+        "level_kind": "fragment_read",
+        "artifact": "papers/dittrich07-bmb-arxiv-qbio0501016.pdf",
+        "artifact_bytes": 192340,
+        "artifact_sha256": "729aafad73a495e7dbd8f9b3ef7a18e55b103d80cce60abd44e7f0fcfb629391",
         "locator": {
           "doi": null,
-          "arxiv": null,
-          "arxiv_version": null,
+          "arxiv": "q-bio/0501016",
+          "arxiv_version": "v1",
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://arxiv.org/abs/q-bio/0501016",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -18606,7 +18750,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**аннотация**: Schenkel, Patten & Ågren, «Internal conflicts and the measurement"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18622,18 +18766,18 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
+        "registry_level": "**аннотация**: Schenkel, Patten & Ågren, «Internal conflicts and the measurement",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
         "locator": {
-          "doi": null,
+          "doi": "10.1007/s10539-025-10001-9",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
+          "url": "https://doi.org/10.1007/s10539-025-10001-9",
           "none": true
         },
         "lines_provenance": {
@@ -18703,7 +18847,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**аннотация**: Budin & Szostak, «Physical effects underlying the transition from"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18719,8 +18863,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
+        "registry_level": "**аннотация**: Budin & Szostak, «Physical effects underlying the transition from",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -18863,15 +19007,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст**: тот же обзор Gavrilov & Gavrilova 2015 (PMC4475490), 2026-11-2"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/gavrilov14-gerontology-pmc4475490.xml",
+          "strength": "strong",
+          "sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e"
         }
       ],
       "relations": [],
@@ -18879,11 +19029,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст**: тот же обзор Gavrilov & Gavrilova 2015 (PMC4475490), 2026-11-2",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/gavrilov14-gerontology-pmc4475490.xml",
+        "artifact_bytes": 80772,
+        "artifact_sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e",
         "locator": {
           "doi": null,
           "arxiv": null,
@@ -19013,11 +19163,11 @@
     {
       "id": "L-039",
       "kind": "claim",
-      "text": "Скалярная память: максимум смещён (winner's curse), стандарт — UCB — `E[max]` из `n` шумных чтений строго выше истинного среднего, смещение ≈ `σ·√(2 ln n)` и",
+      "text": "Скалярная память: максимум смещён (winner's curse), стандарт — UCB — Q-learning завышает action values из-за положительного смещения max по шумным оценкам — winner's curse, следует из неравенства Йенсена; double estimator (разделение выбора и оценки, иногда занижает) сходится там, где Q-learning проваливается. Альтернатива — UCB mean+k*sigma/sqrt(n) (Auer et al., вторые руки).",
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент** papers/vanhasselt10-neurips.pdf (NeurIPS 2010, sha256 f94cf09e…), 2"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -19025,7 +19175,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/vanhasselt10-neurips.pdf",
+          "strength": "moderate",
+          "sha256": "f94cf09e58b6392da4d81504cd6349ae432023f08dc040d11c1b6d23a9a4f542"
         }
       ],
       "relations": [],
@@ -19033,19 +19189,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент** papers/vanhasselt10-neurips.pdf (NeurIPS 2010, sha256 f94cf09e…), 2",
+        "level_kind": "fragment_read",
+        "artifact": "papers/vanhasselt10-neurips.pdf",
+        "artifact_bytes": 195211,
+        "artifact_sha256": "f94cf09e58b6392da4d81504cd6349ae432023f08dc040d11c1b6d23a9a4f542",
         "locator": {
           "doi": null,
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2010/file/091d584fced301b442654dd8c23b3fc9-Paper.pdf",
+          "none": false
         }
       },
       "created_at": "2026-11-20",
@@ -19302,15 +19458,21 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**полный текст**: Gavrilov & Gavrilova 2015 (PMC4475490), 2026-11-27; Gompertz б"
       },
       "epistemic": "hypothesis",
-      "provenance": "extracted",
+      "provenance": "verified_agent",
       "evidence": [
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "strong"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/gavrilov14-gerontology-pmc4475490.xml",
+          "strength": "strong",
+          "sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e"
         }
       ],
       "relations": [],
@@ -19318,11 +19480,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**полный текст**: Gavrilov & Gavrilova 2015 (PMC4475490), 2026-11-27; Gompertz б",
+        "level_kind": "full_text_examined",
+        "artifact": "papers/gavrilov14-gerontology-pmc4475490.xml",
+        "artifact_bytes": 80772,
+        "artifact_sha256": "2f37ac4e0bc2952bce7bf8388035dcab7165dd5f91bae252acb4879e24de102e",
         "locator": {
           "doi": null,
           "arxiv": null,
@@ -19489,11 +19651,11 @@
     {
       "id": "L-049",
       "kind": "claim",
-      "text": "Один прибор: калибровка исследователя = калибровка организма — Лог-счёт по strictly proper rule эквивалентен информационному выигрышу; искажением его",
+      "text": "Один прибор: калибровка исследователя = калибровка организма — Log-score по strictly proper scoring rule — локально собственная мера точности вероятностных прогнозов; искажение (недооценка/переоценка) строго проигрывает по ожиданию — эквивалент информационному выигрышу по Кульбаку-Лейблеру.",
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент** papers/gneiting07-jasa.pdf (Gneiting & Raftery 2007, тот же артефак"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -19501,7 +19663,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/gneiting07-jasa.pdf",
+          "strength": "moderate",
+          "sha256": "d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2"
         }
       ],
       "relations": [],
@@ -19509,19 +19677,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент** papers/gneiting07-jasa.pdf (Gneiting & Raftery 2007, тот же артефак",
+        "level_kind": "fragment_read",
+        "artifact": "papers/gneiting07-jasa.pdf",
+        "artifact_bytes": 556804,
+        "artifact_sha256": "d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2",
         "locator": {
           "doi": null,
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf",
+          "none": false
         }
       },
       "created_at": "2026-11-20",
@@ -22399,6 +22567,100 @@
         "lit_ref": [
           "A-0004"
         ]
+      },
+      "created_at": "2026-11-20",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "L-109",
+      "kind": "claim",
+      "text": "Evolution of Swarm Robotics Systems with Novelty Search — Evolution of Swarm Robotics Systems with Novelty Search (2013) — novelty search вознаграждает решения за новизну, а не за качество относительно предзаданной цели; отсутствие статической цели защищает от преждевременной сходимости",
+      "context": {
+        "scope": "literature record from ELEPHANT-LITERATURE",
+        "parameters": "see registry",
+        "conditions": "**фрагмент** arXiv PDF, 2026-11-27T21:02:18Z, abstract+intro+related work; две ц"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "extracted",
+      "evidence": [
+        {
+          "kind": "literature",
+          "ref": "docs/ELEPHANT-LITERATURE.md",
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/gomes16-novelty-swarm-arxiv1304.3362.pdf",
+          "strength": "moderate",
+          "sha256": "ebd7c28ee96b1a8e5be2d606759f811007340764688e656458887638b32adcb9"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "source": "docs/ELEPHANT-LITERATURE.md",
+        "license": "see source",
+        "accessed_at": "2026-11-20",
+        "registry_level": "**фрагмент** arXiv PDF, 2026-11-27T21:02:18Z, abstract+intro+related work; две ц",
+        "level_kind": "fragment_read",
+        "artifact": "papers/gomes16-novelty-swarm-arxiv1304.3362.pdf",
+        "artifact_bytes": 1793000,
+        "artifact_sha256": "ebd7c28ee96b1a8e5be2d606759f811007340764688e656458887638b32adcb9",
+        "locator": {
+          "doi": null,
+          "arxiv": "1304.3362",
+          "arxiv_version": "v1",
+          "openalex": null,
+          "pmid": null,
+          "url": "https://arxiv.org/abs/1304.3362",
+          "none": false
+        }
+      },
+      "created_at": "2026-11-20",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "L-110",
+      "kind": "claim",
+      "text": "A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus — A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus (2014) — DEB-модель ключевого хищника: κ=0.58±0.07 на соматическую ветвь, shrinkage при голодании",
+      "context": {
+        "scope": "literature record from ELEPHANT-LITERATURE",
+        "parameters": "see registry",
+        "conditions": "**фрагмент** PMC XML, 2026-11-27T21:12:21Z, abstract+model description+Fig.1+Tab"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "extracted",
+      "evidence": [
+        {
+          "kind": "literature",
+          "ref": "docs/ELEPHANT-LITERATURE.md",
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/pisaster14-deb.xml",
+          "strength": "moderate",
+          "sha256": "eb6525c309643d2c525c5a2a691d3dbb85775e23aa9d94e5501298c473decfae"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "source": "docs/ELEPHANT-LITERATURE.md",
+        "license": "see source",
+        "accessed_at": "2026-11-20",
+        "registry_level": "**фрагмент** PMC XML, 2026-11-27T21:12:21Z, abstract+model description+Fig.1+Tab",
+        "level_kind": "fragment_read",
+        "artifact": "papers/pisaster14-deb.xml",
+        "artifact_bytes": 182947,
+        "artifact_sha256": "eb6525c309643d2c525c5a2a691d3dbb85775e23aa9d94e5501298c473decfae",
+        "locator": {
+          "doi": "10.1371/journal.pone.0104658",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.1371/journal.pone.0104658",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -30352,6 +30614,36 @@
       "updated_at": "2026-11-27"
     },
     {
+      "id": "DATA-5e177af5fb72c3e3",
+      "kind": "evidence",
+      "text": "experiment result data results/memory-cost/run-2026-11-27T10-26-48.json",
+      "context": {
+        "scope": "immutable result JSON",
+        "parameters": "results/memory-cost/run-2026-11-27T10-26-48.json",
+        "conditions": "sha256-addressed file artifact"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [
+        {
+          "type": "generated_by",
+          "target": "CODE-e55e7659827eb561"
+        }
+      ],
+      "data": {
+        "artifact_type": "result_record",
+        "source": "results/memory-cost/run-2026-11-27T10-26-48.json",
+        "ref": "results/memory-cost/run-2026-11-27T10-26-48.json",
+        "bytes": 134231,
+        "sha256": "241969f4ee353585abb59bfb0235341f2ce50cb0ec89a54cc437bcb940e52008",
+        "seed": 3,
+        "rng_version": null
+      },
+      "created_at": "2026-11-27T10:26:48.521881+00:00",
+      "updated_at": "2026-11-27"
+    },
+    {
       "id": "DATA-9ee99de67341e0d6",
       "kind": "evidence",
       "text": "experiment result data results/memory-question/run-2026-11-16T08-32-15.json",
@@ -30442,6 +30734,36 @@
       "updated_at": "2026-11-27"
     },
     {
+      "id": "DATA-c6e54a5e03e241f9",
+      "kind": "evidence",
+      "text": "experiment result data results/memory-question/run-2026-11-27T10-26-53.json",
+      "context": {
+        "scope": "immutable result JSON",
+        "parameters": "results/memory-question/run-2026-11-27T10-26-53.json",
+        "conditions": "sha256-addressed file artifact"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [
+        {
+          "type": "generated_by",
+          "target": "CODE-4435618e6aa24d48"
+        }
+      ],
+      "data": {
+        "artifact_type": "result_record",
+        "source": "results/memory-question/run-2026-11-27T10-26-53.json",
+        "ref": "results/memory-question/run-2026-11-27T10-26-53.json",
+        "bytes": 34605,
+        "sha256": "911faa5dde878dca9b688f7b1a02192a1d9e6c5605afc3866e6d210a4dc4e66d",
+        "seed": 3,
+        "rng_version": null
+      },
+      "created_at": "2026-11-27T10:26:53.405190+00:00",
+      "updated_at": "2026-11-27"
+    },
+    {
       "id": "DATA-cd2a6173d9b2bd72",
       "kind": "evidence",
       "text": "experiment result data results/memory-sampling/run-2026-11-16T11-11-09.json",
@@ -30529,6 +30851,36 @@
         "rng_version": null
       },
       "created_at": "2026-11-17T05:55:53.059487+00:00",
+      "updated_at": "2026-11-27"
+    },
+    {
+      "id": "DATA-5840bce420fd5b3b",
+      "kind": "evidence",
+      "text": "experiment result data results/memory-sampling/run-2026-11-27T10-27-01.json",
+      "context": {
+        "scope": "immutable result JSON",
+        "parameters": "results/memory-sampling/run-2026-11-27T10-27-01.json",
+        "conditions": "sha256-addressed file artifact"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [
+        {
+          "type": "generated_by",
+          "target": "CODE-5c939868bb456913"
+        }
+      ],
+      "data": {
+        "artifact_type": "result_record",
+        "source": "results/memory-sampling/run-2026-11-27T10-27-01.json",
+        "ref": "results/memory-sampling/run-2026-11-27T10-27-01.json",
+        "bytes": 242713,
+        "sha256": "9f2ce4a44c1f739672a2f39873889ab40c1645b35fe2b3ddb646aea3d85e87fb",
+        "seed": 3,
+        "rng_version": null
+      },
+      "created_at": "2026-11-27T10:27:01.870671+00:00",
       "updated_at": "2026-11-27"
     },
     {
@@ -38377,6 +38729,31 @@
       "updated_at": "2026-11-27"
     },
     {
+      "id": "CODE-e55e7659827eb561",
+      "kind": "evidence",
+      "text": "recorded model source locator path:checks/exp_memory_cost.py",
+      "context": {
+        "scope": "recorded model source locator, not copied source bytes",
+        "parameters": "path:checks/exp_memory_cost.py",
+        "conditions": "path comes from command; revision comes from model_commit"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "artifact_type": "code_locator",
+        "source": "path:checks/exp_memory_cost.py",
+        "ref": "path:checks/exp_memory_cost.py",
+        "model_commit": "27a187da616fc2ac8705d29ec07ef72af4ad083e+dirty",
+        "command_path": "checks/exp_memory_cost.py",
+        "command": "python3 checks/exp_memory_cost.py",
+        "version_pinned": false
+      },
+      "created_at": "2026-11-27T10:26:48.521881+00:00",
+      "updated_at": "2026-11-27"
+    },
+    {
       "id": "CODE-98c838be18f863d5",
       "kind": "evidence",
       "text": "recorded model source locator git:9ac4904:checks/exp_memory_question.py",
@@ -38452,6 +38829,31 @@
       "updated_at": "2026-11-27"
     },
     {
+      "id": "CODE-4435618e6aa24d48",
+      "kind": "evidence",
+      "text": "recorded model source locator path:checks/exp_memory_question.py",
+      "context": {
+        "scope": "recorded model source locator, not copied source bytes",
+        "parameters": "path:checks/exp_memory_question.py",
+        "conditions": "path comes from command; revision comes from model_commit"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "artifact_type": "code_locator",
+        "source": "path:checks/exp_memory_question.py",
+        "ref": "path:checks/exp_memory_question.py",
+        "model_commit": "27a187da616fc2ac8705d29ec07ef72af4ad083e+dirty",
+        "command_path": "checks/exp_memory_question.py",
+        "command": "python3 checks/exp_memory_question.py",
+        "version_pinned": false
+      },
+      "created_at": "2026-11-27T10:26:53.405190+00:00",
+      "updated_at": "2026-11-27"
+    },
+    {
       "id": "CODE-52a4d79255554fec",
       "kind": "evidence",
       "text": "recorded model source locator git:5d35f18:checks/exp_memory_sampling.py",
@@ -38524,6 +38926,31 @@
         "version_pinned": true
       },
       "created_at": "2026-11-17T05:55:53.059487+00:00",
+      "updated_at": "2026-11-27"
+    },
+    {
+      "id": "CODE-5c939868bb456913",
+      "kind": "evidence",
+      "text": "recorded model source locator path:checks/exp_memory_sampling.py",
+      "context": {
+        "scope": "recorded model source locator, not copied source bytes",
+        "parameters": "path:checks/exp_memory_sampling.py",
+        "conditions": "path comes from command; revision comes from model_commit"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "verified_agent",
+      "evidence": [],
+      "relations": [],
+      "data": {
+        "artifact_type": "code_locator",
+        "source": "path:checks/exp_memory_sampling.py",
+        "ref": "path:checks/exp_memory_sampling.py",
+        "model_commit": "27a187da616fc2ac8705d29ec07ef72af4ad083e+dirty",
+        "command_path": "checks/exp_memory_sampling.py",
+        "command": "python3 checks/exp_memory_sampling.py",
+        "version_pinned": false
+      },
+      "created_at": "2026-11-27T10:27:01.870671+00:00",
       "updated_at": "2026-11-27"
     },
     {
@@ -40185,6 +40612,11 @@
     },
     {
       "from": "C-001",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
@@ -40192,11 +40624,6 @@
       "from": "C-001",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
-    },
-    {
-      "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -40220,11 +40647,6 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
@@ -40232,6 +40654,11 @@
       "from": "C-002",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
+    },
+    {
+      "from": "C-002",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -40255,8 +40682,8 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
@@ -40265,8 +40692,8 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -40410,8 +40837,8 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "F-022",
@@ -40420,13 +40847,8 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
@@ -40437,6 +40859,11 @@
       "from": "F-023",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
+    },
+    {
+      "from": "F-023",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
     },
     {
       "from": "F-025",
@@ -41699,6 +42126,11 @@
       "type": "has_data"
     },
     {
+      "from": "X-memory-cost-run-2026-11-27T10-26-48",
+      "to": "DATA-5e177af5fb72c3e3",
+      "type": "has_data"
+    },
+    {
       "from": "X-memory-question-run-2026-11-16T08-32-15",
       "to": "DATA-9ee99de67341e0d6",
       "type": "has_data"
@@ -41714,6 +42146,11 @@
       "type": "has_data"
     },
     {
+      "from": "X-memory-question-run-2026-11-27T10-26-53",
+      "to": "DATA-c6e54a5e03e241f9",
+      "type": "has_data"
+    },
+    {
       "from": "X-memory-sampling-run-2026-11-16T11-11-09",
       "to": "DATA-cd2a6173d9b2bd72",
       "type": "has_data"
@@ -41726,6 +42163,11 @@
     {
       "from": "X-memory-sampling-run-2026-11-17T05-55-53",
       "to": "DATA-c65f5a0cb355a5d7",
+      "type": "has_data"
+    },
+    {
+      "from": "X-memory-sampling-run-2026-11-27T10-27-01",
+      "to": "DATA-5840bce420fd5b3b",
       "type": "has_data"
     },
     {
@@ -42715,6 +43157,11 @@
     },
     {
       "from": "CORR-02",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
@@ -42722,11 +43169,6 @@
       "from": "CORR-02",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
     },
     {
       "from": "CORR-02",
@@ -42750,17 +43192,17 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
       "to": "EV-EXP-PRICE-KINKS",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -43864,6 +44306,11 @@
       "type": "generated_by"
     },
     {
+      "from": "DATA-5e177af5fb72c3e3",
+      "to": "CODE-e55e7659827eb561",
+      "type": "generated_by"
+    },
+    {
       "from": "DATA-9ee99de67341e0d6",
       "to": "CODE-98c838be18f863d5",
       "type": "generated_by"
@@ -43879,6 +44326,11 @@
       "type": "generated_by"
     },
     {
+      "from": "DATA-c6e54a5e03e241f9",
+      "to": "CODE-4435618e6aa24d48",
+      "type": "generated_by"
+    },
+    {
       "from": "DATA-cd2a6173d9b2bd72",
       "to": "CODE-52a4d79255554fec",
       "type": "generated_by"
@@ -43891,6 +44343,11 @@
     {
       "from": "DATA-c65f5a0cb355a5d7",
       "to": "CODE-3b4e3aa8ae8793f3",
+      "type": "generated_by"
+    },
+    {
+      "from": "DATA-5840bce420fd5b3b",
+      "to": "CODE-5c939868bb456913",
       "type": "generated_by"
     },
     {

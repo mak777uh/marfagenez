@@ -8,9 +8,9 @@
 #   wsl -e bash /root/marfagenez/run.sh lean     # только Lean
 #   wsl -e bash /root/marfagenez/run.sh reach    # только достижимость файлов
 #
-# `all` — ровно 11 разделов, в этом порядке:
+# `all` — ровно 12 разделов, в этом порядке:
 #   1 test, 2 lean, 3 reach, 4 dispatcher, 5 verus, 6 exp,
-#   7 kg, 8 claims, 9 audit, 10 export, 11 agents.
+#   7 kg, 8 claims, 9 audit, 10 export, 11 agents, 12 lab.
 #
 # Почему только WSL: Windows-линковка Rust сломана
 # (`undefined reference to GetHostNameW`), поэтому `cargo build` на Windows
@@ -326,22 +326,56 @@ do_kg() {
   section "Граф знаний (инварианты и ссылки)"
   # Своя обёртка: у run.sh нет общего do_py, а терять код возврата нельзя --
   # иначе раздел печатает отчёт и «проходит» при любой ошибке.
-  local out rc
+  # Аудит 28.11.2026 (P0): rc kg/regress.py не сохранялся вовсе, `local rrc=$?`
+  # читал статус OR-list (всегда 0), bad=1 не доходил до return -- раздел
+  # печатал FAIL и оставался зелёным (c896). Теперь каждая команда обязана
+  # сохранить свой rc; провал любой -- красный раздел с явным маркером.
+  local out rc1 rc2 rc3 rc4 rc5 rc rout
   out=$(mktemp)
   python3 kg/kg.py check --refs >"$out" 2>&1
-  rc=$?
+  rc1=$?
   tail -20 "$out"
+  # Слово-вердикт важнее rc: kg-скрипты могут печатать FAIL и выходить с 0
+  # (наблюдено 28.11: regress.py, L-039/L-049). grep FAIL -- второй контур.
+  grep -q "FAIL" "$out" && rc1=1
   rm -f "$out"
   # Second gate: the corpus, not the generated file, is the source of truth,
   # and import must not move a status by itself (D-07).
-  python3 kg/regress.py
+  rout=$(mktemp)
+  python3 kg/regress.py >"$rout" 2>&1
+  rc2=$?
+  cat "$rout"
+  grep -q "FAIL" "$rout" && rc2=1
+  rm -f "$rout"
   echo "--- kg_edges.py ---"
-  python3 checks/kg_edges.py || { echo "KG_FAIL kg_edges.py"; bad=1; }
-  local rrc=$?
+  rout=$(mktemp)
+  python3 checks/kg_edges.py >"$rout" 2>&1
+  rc3=$?
+  cat "$rout"
+  grep -q "FAIL" "$rout" && rc3=1
+  rm -f "$rout"
   # F2: цена обязана быть производной функции значения, а не правилом по флагу.
-  python3 checks/bridge_price_derivative.py || rrc=1
-  if [ "$rrc" -ne 0 ] && [ "$rc" -eq 0 ]; then
-    rc=$rrc
+  rout=$(mktemp)
+  python3 checks/bridge_price_derivative.py >"$rout" 2>&1
+  rc4=$?
+  cat "$rout"
+  grep -q "FAIL" "$rout" && rc4=1
+  rm -f "$rout"
+  # Fail-closed selftest: do_kg обязан оставаться красным при провале любой
+  # из проверок; гоняет do_kg на песочнице с фейковыми kg-скриптами.
+  python3 checks/gate_kg_fail_closed.py
+  rc5=$?
+  [ "$rc3" -ne 0 ] && echo "KG_FAIL kg_edges.py (rc=$rc3)"
+  [ "$rc4" -ne 0 ] && echo "KG_FAIL bridge_price_derivative.py (rc=$rc4)"
+  [ "$rc5" -ne 0 ] && echo "KG_FAIL gate_kg_fail_closed.py (rc=$rc5)"
+  rc=0
+  [ "$rc1" -ne 0 ] && rc=1
+  [ "$rc2" -ne 0 ] && rc=1
+  [ "$rc3" -ne 0 ] && rc=1
+  [ "$rc4" -ne 0 ] && rc=1
+  [ "$rc5" -ne 0 ] && rc=1
+  if [ "$rc" -ne 0 ]; then
+    echo "KG_SECTION_RED rc=$rc (check=$rc1 regress=$rc2 edges=$rc3 price=$rc4 selftest=$rc5)"
   fi
   return $rc
 }
@@ -533,7 +567,7 @@ gate_logs() {
 # Гейт обязан проверять состояние на момент старта, а не живое дерево:
 # worktree-пин HEAD замораживает историю и файлы; mid-gate коммиты
 # проверяет следующий гейт. Симлинк core/target делит сборку с живым деревом.
-PINNED_SECTIONS="exp kg claims audit"
+PINNED_SECTIONS="test lean reach dispatcher verus exp kg claims audit export agents lab"
 GATE_PIN=""
 
 pin_cd() {
@@ -543,15 +577,36 @@ pin_cd() {
 }
 
 make_pin() {
-  GATE_PIN=$(mktemp -d /tmp/marfagenez-gatepin-XXXXXX) || { GATE_PIN=""; return 0; }
-  rmdir "$GATE_PIN"
-  if git worktree add --detach "$GATE_PIN" HEAD >/dev/null 2>&1; then
-    ln -s "$ROOT/core/target" "$GATE_PIN/core/target" 2>/dev/null
-    echo "гейт: пин состояния HEAD -> $GATE_PIN (секции: $PINNED_SECTIONS)"
-  else
-    echo "гейт: worktree-пин недоступен, секции идут по живому дереву"
+  # Аудит 28.11.2026: пин обязан быть fail-closed. Прогон «по живому дереву»
+  # маскировал mid-gate коммиты и незакоммиченные файлы: чеки, читающие git и
+  # kg/docs-состояние, видели переходные пары. Гейт без пина не существует.
+  if ! GATE_PIN=$(mktemp -d /tmp/marfagenez-gatepin-XXXXXX); then
+    echo "PIN_FAIL: mktemp недоступен"
     GATE_PIN=""
+    return 1
   fi
+  rmdir "$GATE_PIN"
+  if ! git worktree add --detach "$GATE_PIN" HEAD >/dev/null 2>&1; then
+    echo "PIN_FAIL: git worktree add недоступен -- гейт без пина не существует"
+    GATE_PIN=""
+    return 1
+  fi
+  if ! ln -s "$ROOT/core/target" "$GATE_PIN/core/target" 2>/dev/null; then
+    echo "PIN_FAIL: core/target symlink не создан"
+    git worktree remove --force "$GATE_PIN" 2>/dev/null
+    GATE_PIN=""
+    return 1
+  fi
+  # lake build идёт из пина: без общего .lake каждая сборка Lean с нуля.
+  if [ -d "$ROOT/laws/.lake" ]; then
+    if ! ln -s "$ROOT/laws/.lake" "$GATE_PIN/laws/.lake" 2>/dev/null; then
+      echo "PIN_FAIL: laws/.lake symlink не создан"
+      git worktree remove --force "$GATE_PIN" 2>/dev/null
+      GATE_PIN=""
+      return 1
+    fi
+  fi
+  echo "гейт: пин состояния HEAD -> $GATE_PIN (секции: $PINNED_SECTIONS)"
 }
 
 drop_pin() {
@@ -571,19 +626,32 @@ gate_group() {
     # идут в её собственную трассу: иначе параллельные выводы перемешиваются
     # и «первый провалившийся шаг» зависит от порядка завершения.
     : "gate: запуск секции do_$n"
-    ( exec 9>"$GATE_LOG_DIR/$n.trace"; BASH_XTRACEFD=9; set -x; pin_cd "$n"; "do_$n" ) \
+    # Аудит 28.11.2026: rc и длительность пишет сама секция в файлы ДО
+    # выхода подпроцесса. Файла нет -- секция убита без отчёта (kill/OOM):
+    # красная, а не «ноль». wait-статус и кумулятивный GATE_T врали:
+    # GATE_T показывал момент, когда дождались, а не длительность секции.
+    ( exec 9>"$GATE_LOG_DIR/$n.trace"; BASH_XTRACEFD=9; set -x; _s=$SECONDS
+      pin_cd "$n"; "do_$n"; _r=$?
+      echo "$_r" >"$GATE_LOG_DIR/$n.rc"
+      echo "$((SECONDS-_s))" >"$GATE_LOG_DIR/$n.dur" ) \
       >"$GATE_LOG_DIR/$n.log" 2>&1 &
     pidx[$n]=$!
   done
   for n in "$@"; do
     wait "${pidx[$n]}"
-    GATE_RC[$n]=$?
-    GATE_T[$n]=$((SECONDS-_t0))
+    if [ -f "$GATE_LOG_DIR/$n.rc" ]; then
+      GATE_RC[$n]=$(cat "$GATE_LOG_DIR/$n.rc")
+      GATE_T[$n]=$(cat "$GATE_LOG_DIR/$n.dur" 2>/dev/null || echo "?")
+    else
+      GATE_RC[$n]=1
+      GATE_T[$n]=$((SECONDS-_t0))
+      echo "    [секция $n: rc-файл не записан -- убита без отчёта; красная]"
+    fi
   done
 }
 
 gate_report() {
-  # Отчёт — строго в каноническом порядке `all` (шапка: 11 разделов), не по
+  # Отчёт — строго в каноническом порядке `all` (шапка: 12 разделов), не по
   # времени завершения и не по группам запуска: RC и «первый провалившийся
   # шаг» даёт первый провал по порядку, как в последовательном диспетчере;
   # поздний код его не затирает.
@@ -684,7 +752,10 @@ case "$WHAT" in
   export) do_export; keep $? export ;;
   agents) do_agents; keep $? agents ;;
   all)
-    make_pin
+    if ! make_pin; then
+      echo "GATE_RED: гейт без пина не существует (fail-closed, аудит 28.11.2026)"
+      exit 1
+    fi
     trap 'drop_pin' EXIT
     gate_group test lean dispatcher verus claims audit kg export agents lab
     gate_group reach exp
