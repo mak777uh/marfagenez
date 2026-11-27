@@ -10723,3 +10723,6 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   Суть 861d: фикс пина гейта (симлинк core/target не матчится паттерном target/)
   и хвосты log_check (410→422 в UNREPRODUCIBLE, три датированных маркера),
   ингест-задачи devin опубликованы (s7zn..s7zav, s7zbw..s7zdu).
+
+- **861f:** интеграция первого научного результата lab-конвейера: FINDING-457 (D-Q4, `SUB-EXP-2026-4101-1`, submission passed) — скрытая память ремонтного износа: ΔT90 = −43.9167 [−61.8333, −26.75], p = 0.0002, 12/12 seeds, 4 нулевых контроля (silent/fires/specific/sham), доза-ответ до −140.9 (a=0.3, k=0.003). Репо-сторона: FINDING + журнал; БД остаётся received (сервисного метода интеграции нет, протокол lab/MAIN.md §3).
+  Журнал также называет коммиты после записи 861e: 6fc26e7a literature: s7zel — F-011 niche as Delta-R ecological signature (Laland NCT guide)
