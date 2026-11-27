@@ -114,16 +114,37 @@ VERDICTS = (
 CONTROL_TESTS = ("fires", "silent", "specific")
 
 
-def _git_commit() -> str:
+def _git_state() -> tuple[str, bool]:
+    """Return the source commit and whether the source tree is dirty.
+
+    `results/` is excluded because saved run records are output artifacts: a
+    result must not make the *next* result dirty merely by being written.
+    Git failures are fail-closed; an unpinned result is not reproducible.
+    """
+    root = Path(__file__).resolve().parents[1]
     try:
-        out = subprocess.run(
-            ["git", "rev-parse", "--short", "HEAD"],
-            capture_output=True, text=True, timeout=5,
-            cwd=Path(__file__).resolve().parents[1],
-        )
-        return out.stdout.strip() or "unknown"
-    except Exception:
-        return "unknown"
+        head = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            capture_output=True, text=True, timeout=5, cwd=root, check=True,
+        ).stdout.strip()
+        status = subprocess.run(
+            ["git", "status", "--porcelain", "--untracked-files=normal",
+             "--", ".", ":!results"],
+            capture_output=True, text=True, timeout=5, cwd=root, check=True,
+        ).stdout
+    except Exception as exc:
+        raise RuntimeError(
+            "cannot pin experiment result: git HEAD/status is unavailable"
+        ) from exc
+    if not head:
+        raise RuntimeError("cannot pin experiment result: git returned an empty HEAD")
+    return head, bool(status.strip())
+
+
+def _git_commit() -> str:
+    """Commit label for a new result; dirty source trees are explicit."""
+    head, dirty = _git_state()
+    return f"{head}+dirty" if dirty else head
 
 
 def new_result(
@@ -347,6 +368,11 @@ def _fingerprint(result: dict[str, Any]) -> str:
         for k, v in result.items()
         if k not in _VOLATILE and k not in _NOT_PART_OF_THE_MEASUREMENT
     }
+    # For ordinary clean reruns, commit remains volatile as before. A dirty
+    # marker changes the provenance class, so it must not deduplicate into a
+    # clean, citable record with otherwise identical measurements.
+    if str(result.get("model_commit", "")).endswith("+dirty"):
+        body["model_commit"] = result["model_commit"]
     return json.dumps(body, sort_keys=True, ensure_ascii=False)
 
 
@@ -359,7 +385,11 @@ def _load(path: Path) -> dict[str, Any] | None:
 
 
 def save(result: dict[str, Any]) -> Path:
-    """Writes the result to `results/<experiment_id>/<run_id>.json`.
+    """Write a result pinned to the current source snapshot.
+
+    `model_commit` is assigned here from `git rev-parse HEAD`, not trusted
+    from caller metadata. A dirty source tree is marked `<full-HEAD>+dirty`;
+    it is forbidden to save a `passed` verdict from that state.
 
     A re-run that reproduces an existing record **byte for byte** (apart from
     `run_id`, `created_at`, `model_commit` and `reproduced_at`) does not get a
@@ -386,9 +416,18 @@ def save(result: dict[str, Any]) -> Path:
     When several committed records hold the same measurement, the **newest** one
     gets the commit, so the chain of rechecks does not attach to an old copy.
     """
+    head, dirty = _git_state()
+    commit = f"{head}+dirty" if dirty else head
+    result["model_commit"] = commit
+    verdict = result.get("verdict") or {}
+    if dirty and verdict.get("kind") == "passed":
+        raise ValueError(
+            "cannot save verdict 'passed' from a dirty working tree; "
+            "commit the source or record a non-passing/void outcome"
+        )
+
     d = RESULTS_DIR / result["experiment_id"]
     d.mkdir(parents=True, exist_ok=True)
-    commit = result.get("model_commit")
     name = f"{result['run_id']}.json"
     for old_path in sorted(d.glob("run-*.json"), reverse=True):
         if old_path.name == name:
