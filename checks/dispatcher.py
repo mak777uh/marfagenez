@@ -18,6 +18,7 @@
 
 from __future__ import annotations
 
+import os
 import re
 import subprocess
 import sys
@@ -39,7 +40,7 @@ RUN = ROOT / "run.sh"
 MARKER = "\nRC=0\ncase \"$WHAT\" in"
 
 STUBS = """do_test(){{ :; }}; do_lean(){{ :; }}; do_reach(){{ :; }}
-do_dispatcher(){{ :; }}; do_verus(){{ :; }}
+do_dispatcher(){{ :; }}; do_verus(){{ :; }}; do_build(){{ :; }}
 do_audit(){{ :; }}
 do_exp(){{ return {exp_rc}; }}
 do_claims(){{ return {claims_rc}; }}; do_export(){{ :; }}; do_models(){{ :; }}
@@ -61,6 +62,7 @@ def build(directory: Path, exp_rc: int, agents_rc: int, claims_rc: int = 0,
         head
         + STUBS.format(exp_rc=exp_rc, agents_rc=agents_rc, claims_rc=claims_rc,
                        kg_rc=kg_rc)
+        + "make_pin() { GATE_PIN=$ROOT; :; }\ndrop_pin() { :; }\n"
         + MARKER
         + tail,
         encoding="utf-8",
@@ -91,6 +93,7 @@ def run(script: Path, target: str) -> tuple[int, str]:
             capture_output=True,
             text=True,
             timeout=TIMEOUT,
+            env={**os.environ, "MARFAGENEZ_SKIP_PREFLIGHT": "1"},
         )
     except subprocess.TimeoutExpired:
         return TIMEOUT_RC, f"ТАЙМАУТ: {target} не уложился в {TIMEOUT} с"

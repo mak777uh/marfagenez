@@ -735,3 +735,25 @@ status: continue
 - c897 пост-мортем: dispatcher (selftest-песочницы без worktree) и exp (dirty pin от симлинков) — фиксы идут внешним агентом в ветке audit/gate-speedup-2026-11-28; мой 604a337f там ещё не влит
 - enforcement: publish write_scope-валидация; claim max_attempts->manual_review + dependency required_task_version + write_scope в response; submit blocks_submit/halt + base_commit + bundle_sha256 пересчёт; test_enforcement.py 9 кейсов, lab suite зелёный
 - статус: гейт c898 -> мердж ветки gate-speedup по готовности внешнего агента -> зелёный гейт -> пуш -> publish 4106 v5 / 4107 v2 (base_commit = мердж) -> exper claim 4106
+
+## 2026-11-28 — gate correctness and first speedup tranche (independent validation pending)
+
+- Рабочая ветка: `audit/gate-speedup-2026-11-28`; база: remote master `bd4a4398`; master не изменён.
+- `run.sh`: fail-closed `do_kg` (rc отдельно для kg check / regress / edges / price + распознавание явного `FAIL:` при ошибочном rc=0); добавлен selftest harness в `checks/gate_kg_fail_closed.py`.
+- Быстрый `preflight`: 12 дешёвых контрактов перед pin и дорогостоящими секциями; те же проверки удалены из поздней exp lane; `log_check` вызывается с `--no-test-count`.
+- Pin: все 13 секций (включая новую `build`) работают из detached worktree по HEAD, зафиксированному перед preflight; отсутствие worktree/обязательных symlink теперь fail-closed. Общие `core/target` и `laws/.lake` используются только как кеши.
+- DAG: `reach` стартует после `lean`, `exp` после `build`; остальные независимые секции запускаются без общего барьера. Длительность и rc секции записываются дочерним процессом в атомарные markers; отсутствие marker красное. Exp checks печатают per-check timing.
+- Rust: default test suite больше не принудительно сериализуется; сериализация Lean-FFI сохранена в выделенном CI шаге.
+- CI: удалены повторные прямые default Rust / Lean build / examples шаги до `run.sh all`; добавлены Rust/Lean caches и ShellCheck; release bins/examples собираются внутри pinned gate; сохранён Lean prebuilt cache fetch внутри `do_lean`.
+- Docs/agent: README и AGENTS обновлены для preflight/DAG; данный state синхронизирован с веткой.
+- Текущая проверка: только статическая сверка исходников через GitHub и структурная проверка замены. Здесь **не** выполнялись `bash -n`, ShellCheck, Python selftests, preflight, полный WSL gate или проверка реального времени. Нужна независимая проверка основным агентом на точном PR HEAD; не мержить до неё.
+- Не включены (оставлены следующими пакетами): P5 section cache, P6 claims/audit parallel + RNG equivalence, P7 background gate service/coalescing, P9 sparse pin/scratch cleanup/counter generator, LTO decision (нужен benchmark).
+
+
+## 2026-11-28 — CI follow-up
+
+- Добавлена branch-scoped concurrency group `gate-${{ github.event.pull_request.head.ref || github.ref_name }}` с `cancel-in-progress: true`, чтобы PR run заменял push run той же ветки, а новый commit не конкурировал с устаревшим gate.
+- Обновлён CI contract: ожидается один прямой Rust test step (serialized Lean-FFI), отсутствие дублирующего direct Lean build, pinned `do_lean` build и `do_build`, кэши Rust/Lean и установка ShellCheck.
+- Убран ложный workflow-комментарий `NOT RUN ON A RUNNER`: hosted GitHub Actions действительно выполняет job. Старый run на промежуточном commit `56e61be` падал только на старом CI contract («WRONG it builds Lean»); контракт обновлён в `f0533c7`.
+- На момент записи актуальный hosted run для commit `f0533c7` запущен, но ещё не завершён. Старые runs, начатые до введения concurrency, могут продолжать работу.
+- P8 выполнен частично: кэши, дедупликация и отмена устаревшего запуска добавлены; path-filter с отдельной облегчённой docs/literature CI lane остаётся отложенным.

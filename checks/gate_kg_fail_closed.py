@@ -1,74 +1,91 @@
 #!/usr/bin/env python3
-"""Fail-closed selftest do_kg (аудит 28.11.2026, P0).
+"""Fail-closed regression test for run.sh's do_kg section."""
+from __future__ import annotations
 
-Извлекает do_kg() из run.sh и прогоняет его в песочнице с фейковыми
-kg/kg.py, kg/regress.py, checks/kg_edges.py, checks/bridge_price_derivative.py,
-каждый из которых выходит с заданным кодом. Провал любой команды обязан
-сделать do_kg красным и напечатать KG_SECTION_RED с номером виновника.
-Раньше `local rrc=$?` читал статус OR-list (всегда 0), rc kg/regress.py не
-сохранялся вовсе, bad=1 не доходил до return: раздел печатал FAIL и
-оставался зелёным (гейт c896).
-"""
-import pathlib
+import os
 import re
 import subprocess
 import sys
 import tempfile
+from pathlib import Path
 
-RUN_SH = pathlib.Path(__file__).resolve().parents[1] / "run.sh"
+ROOT = Path(__file__).resolve().parents[1]
+RUN = ROOT / "run.sh"
 
-FAKE = {
-    "kg/kg.py": "import sys; sys.exit({kg})",
-    "kg/regress.py": "import sys; sys.exit({regress})",
-    "checks/kg_edges.py": "import sys; sys.exit({edges})",
-    "checks/bridge_price_derivative.py": "import sys; sys.exit({price})",
-    # stub: извлечённый do_kg зовёт selftest; в песочнице он всегда зелёный,
-    # чтобы rc do_kg определялся именно проверяемыми командами.
-    "checks/gate_kg_fail_closed.py": "import sys; sys.exit(0)",
+CASES = [
+    ("all checks pass", {}, 0, "KG_SECTION_GREEN"),
+    ("regress nonzero is preserved", {"REGRESS_RC": "1"}, 1, "regress=1"),
+    ("edges nonzero is preserved", {"EDGES_RC": "3"}, 1, "edges=3"),
+    ("price nonzero is preserved", {"PRICE_RC": "2"}, 1, "price=2"),
+    ("KG check nonzero is preserved", {"CHECK_RC": "1"}, 1, "check=1"),
+    ("FAIL transcript with rc=0 stays red", {"CHECK_FAIL": "1"}, 1, "check=1"),
+    ("regress FAIL transcript with rc=0 stays red", {"REGRESS_FAIL": "1"}, 1, "regress=1"),
+]
+
+
+def extract_do_kg() -> str:
+    text = RUN.read_text(encoding="utf-8")
+    match = re.search(r"(?ms)^do_kg\(\) \{\n.*?^\}", text)
+    if not match:
+        raise RuntimeError("do_kg() block not found in run.sh")
+    return match.group(0)
+
+
+def run_case(function: str, values: dict[str, str]) -> tuple[int, str]:
+    fake_python = r'''
+python3() {
+  case "$1" in
+    kg/kg.py)
+      [ "$CHECK_FAIL" = 0 ] || echo "FAIL: fake KG invariant"
+      return "$CHECK_RC" ;;
+    kg/regress.py)
+      [ "$REGRESS_FAIL" = 0 ] || echo "  FAIL: fake generated nodes drift"
+      return "$REGRESS_RC" ;;
+    checks/kg_edges.py) return "$EDGES_RC" ;;
+    checks/bridge_price_derivative.py) return "$PRICE_RC" ;;
+    *) echo "unexpected python command: $*" >&2; return 99 ;;
+  esac
 }
+section() { :; }
+export KG_GATE_SELFTEST=1
+'''
+    script = "#!/usr/bin/env bash\nset +e\n" + fake_python + "\n" + function + "\ndo_kg\n"
+    with tempfile.TemporaryDirectory(prefix="kg-gate-selftest-") as tmp:
+        path = Path(tmp) / "case.sh"
+        path.write_text(script, encoding="utf-8")
+        env = os.environ.copy()
+        env.update(values)
+        for key in ("CHECK_FAIL", "REGRESS_FAIL", "CHECK_RC", "REGRESS_RC", "EDGES_RC", "PRICE_RC"):
+            env.setdefault(key, "0")
+        env["KG_GATE_SELFTEST"] = "1"
+        proc = subprocess.run(
+            ["bash", str(path)], cwd=ROOT, env=env,
+            text=True, capture_output=True, timeout=10,
+        )
+        return proc.returncode, proc.stdout + proc.stderr
 
 
-def extract_do_kg(src: str) -> str:
-    m = re.search(r"^do_kg\(\) \{.*?^\}", src, re.M | re.S)
-    assert m, "do_kg() не найден в run.sh"
-    return m.group(0)
-
-
-def run_case(src: str, rcs: dict):
-    with tempfile.TemporaryDirectory() as td:
-        root = pathlib.Path(td)
-        for rel, tpl in FAKE.items():
-            f = root / rel
-            f.parent.mkdir(parents=True, exist_ok=True)
-            f.write_text(tpl.format(**rcs), encoding="utf-8")
-        script = "section() { :; }\n" + extract_do_kg(src) + "\ndo_kg\n"
-        p = subprocess.run(["bash", "-c", script], cwd=root,
-                           capture_output=True, text=True)
-        return p.returncode, p.stdout + p.stderr
+def selftest() -> int:
+    function = extract_do_kg()
+    failures = 0
+    for name, values, expected_rc, marker in CASES:
+        rc, output = run_case(function, values)
+        ok = rc == expected_rc and marker in output
+        if not ok:
+            failures += 1
+            print(f"  FAIL {name}: rc={rc}, expected={expected_rc}; marker={marker!r}")
+            print("       " + "\n       ".join(output.strip().splitlines()[-5:]))
+        else:
+            print(f"  ok   {name}")
+    print(f"KG fail-closed selftest: {len(CASES)-failures}/{len(CASES)}")
+    return 1 if failures else 0
 
 
 def main() -> int:
-    src = RUN_SH.read_text(encoding="utf-8")
-    cases = [
-        (dict(kg=0, regress=0, edges=0, price=0), 0, None),
-        (dict(kg=0, regress=1, edges=0, price=0), 1, "regress=1"),
-        (dict(kg=0, regress=0, edges=3, price=0), 1, "KG_FAIL kg_edges.py"),
-        (dict(kg=0, regress=0, edges=0, price=2), 1, "KG_FAIL bridge_price_derivative.py"),
-        (dict(kg=1, regress=0, edges=0, price=0), 1, "check=1"),
-    ]
-    fails = 0
-    for rcs, want_rc, marker in cases:
-        rc, out = run_case(src, rcs)
-        ok = rc == want_rc and (marker is None or marker in out)
-        print(f"  case {rcs}: rc={rc} want={want_rc} {'OK' if ok else 'FAIL'}")
-        if not ok:
-            fails += 1
-            print("    tail:", out[-300:])
-    if fails:
-        print(f"GATE_KG_SELFTEST_FAIL: {fails}/5 кейсов провалено")
-        return 1
-    print("GATE_KG_SELFTEST_OK: 5/5 кейсов")
-    return 0
+    if "--selftest" not in sys.argv and len(sys.argv) > 1:
+        print("usage: python3 checks/gate_kg_fail_closed.py [--selftest]", file=sys.stderr)
+        return 2
+    return selftest()
 
 
 if __name__ == "__main__":

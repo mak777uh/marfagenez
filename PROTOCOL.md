@@ -230,6 +230,7 @@ wsl -e bash /root/marfagenez/run.sh all
 | `checks/test_result_design.py` | юнит-тесты схемы v3 role/phase: несовместимая пара validation+confirmatory отклоняется (задача 3) |
 | `checks/test_kg_reach.py` | юнит-тесты достижимости conclusion→experiment→data→code, включая приоритет статусов (задача 4) |
 | `checks/test_kg_edges.py` | юнит-тесты гейта рёбер KG: dangling-рёбра и новые сироты — провал (задача 4) |
+| `checks/gate_kg_fail_closed.py` | fail-closed selftest секции kg: искусственные rc и `FAIL:`-вердикт при rc=0 красят секцию, а не молча зелёнят (аудит 28.11.2026) |
 | `checks/insights_contract.py` | инсайты: обязательные поля, существование опор, опровержение, дизайн опыта с предсказанием и условием провала |
 | `checks/dip_reports.py` | отчёты дип-ресерчера: md-описание с разделами, лимит ячеек задачи, `high` только с проверенным локатором |
 | `checks/map_contract.py` | карта атомарных ячеек: обязательные поля, цитаты при `fragment`, условия при medium/high, `searched`/`scope` у пустот, доля аналогий, рёбра в существующие ячейки |

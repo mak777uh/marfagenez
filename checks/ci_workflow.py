@@ -1,9 +1,9 @@
 """Does the CI workflow describe a gate that can actually run?
 
-`docs/PLAN-NEXT.md` D-3 asked for CI. There is no runner in the environment where the workflow was
-written, so the honest check is not "does CI pass" but "is this file coherent": valid YAML, real
-paths, and the same three stages the local gate has (Rust, Lean, Python checks). The first real run
-on a runner remains an experiment, and the file says so.
+`docs/PLAN-NEXT.md` D-3 asked for CI. GitHub Actions executes the hosted workflow; this check
+validates that its structure matches the current local gate contract, avoids duplicate expensive
+stages, and cancels superseded runs for the same branch. A green result here is not a substitute
+for the hosted job's actual conclusion.
 
     python3 checks/ci_workflow.py
 """
@@ -50,17 +50,28 @@ def main(argv: list[str]) -> int:
     steps = [s for j in jobs.values() for s in (j.get("steps") or [])]
     runs = " ".join((s.get("run") or "") for s in steps)
 
+    rust_test_steps = [s for s in steps if "cargo test" in (s.get("run") or "")]
+    lean_build_steps = [s for s in steps if "lake build" in (s.get("run") or "")]
+    gate = (root / "run.sh").read_text(encoding="utf-8")
     checks = [
         ("the workflow is valid YAML with at least one job", bool(jobs)),
-        ("it runs the Rust tests", "cargo test" in runs),
-        ("it builds Lean", "lake build" in runs),
+        ("the only direct Rust test step is the serialized lean-ffi suite",
+         len(rust_test_steps) == 1 and "lean-ffi" in (rust_test_steps[0].get("run") or "")),
+        ("Lean build is delegated to the pinned full gate", not lean_build_steps and "lake build" in gate),
+        ("release bins and examples are built inside the pinned full gate",
+         "cargo build --release --bins --examples" in gate),
         ("it runs the local gate", "run.sh all" in runs),
         ("it is triggered on push", "push" in (doc.get("on") or doc.get(True) or {})),
         ("the paths it uses exist",
          (root / "core").is_dir()
          and (root / "laws" / "lean-toolchain").exists()
          and (root / "run.sh").exists()),
-        ("it does not claim to have been run", "NOT RUN ON A RUNNER" in text.upper()),
+        ("it cancels obsolete attempts on the same branch",
+         "cancel-in-progress: true" in text
+         and "github.event.pull_request.head.ref || github.ref_name" in text),
+        ("it caches Rust and Lean build state",
+         "Swatinem/rust-cache@v2" in text and "actions/cache@v4" in text),
+        ("it installs ShellCheck for the dispatcher gate", "apt-get install --yes shellcheck" in text),
     ]
     for label, ok in checks:
         print(f"  {'ok   ' if ok else 'WRONG'} {label}")
@@ -71,7 +82,7 @@ def main(argv: list[str]) -> int:
     if bad:
         print(f"РАСХОЖДЕНИЙ: {bad}")
         return 1
-    print("CI-файл согласован; на раннере он ещё не запускался, и это в нём написано.")
+    print("CI-файл согласован с hosted gate и его кешированием/конкурентностью.")
     return 0
 
 

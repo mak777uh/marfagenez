@@ -8,9 +8,9 @@
 #   wsl -e bash /root/marfagenez/run.sh lean     # только Lean
 #   wsl -e bash /root/marfagenez/run.sh reach    # только достижимость файлов
 #
-# `all` — ровно 12 разделов, в этом порядке:
-#   1 test, 2 lean, 3 reach, 4 dispatcher, 5 verus, 6 exp,
-#   7 kg, 8 claims, 9 audit, 10 export, 11 agents, 12 lab.
+# `all` — ровно 13 разделов, в этом порядке:
+#   1 test, 2 lean, 3 reach, 4 dispatcher, 5 verus, 6 build, 7 exp,
+#   8 kg, 9 claims, 10 audit, 11 export, 12 agents, 13 lab.
 #
 # Почему только WSL: Windows-линковка Rust сломана
 # (`undefined reference to GetHostNameW`), поэтому `cargo build` на Windows
@@ -28,9 +28,13 @@ export PATH=/root/.elan/bin:/root/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/s
 ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd) || exit 1
 cd "$ROOT" || { echo "нет каталога скрипта: $ROOT"; exit 1; }
 
+# Зафиксировать точный HEAD до preflight: pin обязан проверять этот commit,
+# даже если другой агент успеет продвинуть branch ref во время preflight.
+GATE_HEAD=$(git rev-parse HEAD 2>/dev/null || true)
+
 WHAT="${1:-all}"
 if [ "$WHAT" = all ]; then
-  echo "all: 12 разделов — test, lean, reach, dispatcher, verus, exp, kg, claims, audit, export, agents, lab"
+  echo "all: 13 разделов — test, lean, reach, dispatcher, verus, build, exp, kg, claims, audit, export, agents, lab"
 fi
 
 # `FAILED` и функция `run()` удалены: `FAILED=1` присваивался, но нигде не
@@ -49,16 +53,17 @@ section() {
 
 do_test() {
   section "Rust: тесты"
-  # --test-threads=1 обязателен: Lean runtime не потокобезопасен.
-  # --tests обязателен: без него cargo запускает ещё и doctest, а rustdoc
-  # не установлен, и в выводе появляется ложный `error:`.
+  # Default features do not enable lean-ffi; tests that touch the Lean runtime
+  # are feature-gated and remain serialized in the dedicated CI step.
+  # The ordinary default-feature suite can use Rust's parallel test runner.
+  # --tests excludes doctests, which are not part of this gate.
   #
   # Раньше код возврата терялся: последним в конвейере стоял `awk`, который
   # возвращает 0 всегда. Провал компиляции давал `библиотек: 0, passed: 0` и
   # код 0 -- то есть ошибка сборки выглядела как успешный прогон нуля тестов.
   local out rc
   out=$(mktemp)
-  ( cd core && cargo test --release --tests -- --test-threads=1 ) >"$out" 2>&1
+  ( cd core && cargo test --release --tests ) >"$out" 2>&1
   rc=$?
   grep -E '^test result' "$out" \
     | awk '{p+=$4; f+=$6; n++} END {print "библиотек: " n ", passed: " p ", failed: " f}'
@@ -70,6 +75,13 @@ do_test() {
   return $rc
 }
 
+do_build() {
+  section "Rust: bins и examples"
+  # Эксперименты вызывают release-бинарники из target/release. Собираем их
+  # внутри pinned HEAD, иначе свежий клон может использовать старые бинарники.
+  ( cd core && cargo build --release --bins --examples )
+}
+
 do_lean() {
   section "Lean: сборка"
   # `lake build` собирается успешно и с `sorry` -- это предупреждение, а не
@@ -77,6 +89,9 @@ do_lean() {
   # ниже -- отдельный критерий провала, а не украшение.
   local out rc=0
   out=$(mktemp)
+  # Fetch the prebuilt Mathlib oleans inside the pinned tree. Without this,
+  # a cold CI runner may rebuild Mathlib from source before the actual gate.
+  ( cd laws && lake exe cache get ) || echo "Lean cache unavailable; build from source"
   ( cd laws && lake build ) >"$out" 2>&1 || rc=$?
   grep -E 'Build completed|error' "$out" | head -5
   ( cd laws && lake build Legacy ) >>"$out" 2>&1 || rc=$?
@@ -117,21 +132,34 @@ do_reach() {
   python3 checks/reach.py --strict
 }
 
+# Таймер отдельной проверки внутри exp-lane. Длительность секции измеряется
+# диспетчером отдельно; этот таймер показывает фактическую цену каждого чека.
+run_timed() {
+  local label="$1"; shift
+  local started ended rc
+  started=$(date +%s)
+  "$@"
+  rc=$?
+  ended=$(date +%s)
+  echo "    [$label: $((ended-started))с, rc=$rc]"
+  return "$rc"
+}
+
 exp_lane1() {
   # Тяжёлые симуляции, лана 1. bad несёт код; имена провалов печатает LANE1_FAIL.
   local bad=0
   echo "--- cli_refuses_bad_numbers.sh ---"
-  bash checks/cli_refuses_bad_numbers.sh || { echo "LANE1_FAIL cli_refuses_bad_numbers.sh"; bad=1; }
+  run_timed "cli_refuses_bad_numbers.sh" bash checks/cli_refuses_bad_numbers.sh || { echo "LANE1_FAIL cli_refuses_bad_numbers.sh"; bad=1; }
   echo "--- cli_refuses_bad_numbers_occupancy.sh ---"
-  bash checks/cli_refuses_bad_numbers_occupancy.sh || { echo "LANE1_FAIL cli_refuses_bad_numbers_occupancy.sh"; bad=1; }
+  run_timed "cli_refuses_bad_numbers_occupancy.sh" bash checks/cli_refuses_bad_numbers_occupancy.sh || { echo "LANE1_FAIL cli_refuses_bad_numbers_occupancy.sh"; bad=1; }
   echo "--- exp_memory_cost.py ---"
-  python3 checks/exp_memory_cost.py || { echo "LANE1_FAIL exp_memory_cost.py"; bad=1; }
+  run_timed "exp_memory_cost.py" python3 checks/exp_memory_cost.py || { echo "LANE1_FAIL exp_memory_cost.py"; bad=1; }
   echo "--- exp_memory_sampling.py ---"
-  python3 checks/exp_memory_sampling.py || { echo "LANE1_FAIL exp_memory_sampling.py"; bad=1; }
+  run_timed "exp_memory_sampling.py" python3 checks/exp_memory_sampling.py || { echo "LANE1_FAIL exp_memory_sampling.py"; bad=1; }
   echo "--- exp_division_threshold.py ---"
-  python3 checks/exp_division_threshold.py || { echo "LANE1_FAIL exp_division_threshold.py"; bad=1; }
+  run_timed "exp_division_threshold.py" python3 checks/exp_division_threshold.py || { echo "LANE1_FAIL exp_division_threshold.py"; bad=1; }
   echo "--- exp_shape_regulator.py ---"
-  python3 checks/exp_shape_regulator.py || { echo "LANE1_FAIL exp_shape_regulator.py"; bad=1; }
+  run_timed "exp_shape_regulator.py" python3 checks/exp_shape_regulator.py || { echo "LANE1_FAIL exp_shape_regulator.py"; bad=1; }
   return $bad
 }
 exp_lane2() {
@@ -139,113 +167,91 @@ exp_lane2() {
   local bad=0 out
   echo "--- exp05_frozen.py ---"
   out=$(mktemp)
-  if python3 checks/exp05_frozen.py >"$out" 2>&1; then tail -12 "$out"; else tail -12 "$out"; echo "LANE2_FAIL exp05_frozen.py"; bad=1; fi
+  if run_timed "exp05_frozen.py" python3 checks/exp05_frozen.py >"$out" 2>&1; then tail -12 "$out"; else tail -12 "$out"; echo "LANE2_FAIL exp05_frozen.py"; bad=1; fi
   rm -f "$out"
   echo "--- exp99_protocol_capacity.py ---"
-  python3 checks/exp99_protocol_capacity.py || { echo "LANE2_FAIL exp99_protocol_capacity.py"; bad=1; }
+  run_timed "exp99_protocol_capacity.py" python3 checks/exp99_protocol_capacity.py || { echo "LANE2_FAIL exp99_protocol_capacity.py"; bad=1; }
   echo "--- exp_look_order.py ---"
-  python3 checks/exp_look_order.py || { echo "LANE2_FAIL exp_look_order.py"; bad=1; }
+  run_timed "exp_look_order.py" python3 checks/exp_look_order.py || { echo "LANE2_FAIL exp_look_order.py"; bad=1; }
   echo "--- life_calibration.py ---"
-  python3 checks/life_calibration.py || { echo "LANE2_FAIL life_calibration.py"; bad=1; }
+  run_timed "life_calibration.py" python3 checks/life_calibration.py || { echo "LANE2_FAIL life_calibration.py"; bad=1; }
   echo "--- env_prior_tails.py ---"
-  python3 checks/env_prior_tails.py || { echo "LANE2_FAIL env_prior_tails.py"; bad=1; }
+  run_timed "env_prior_tails.py" python3 checks/env_prior_tails.py || { echo "LANE2_FAIL env_prior_tails.py"; bad=1; }
   echo "--- exp_memory_question.py ---"
-  python3 checks/exp_memory_question.py || { echo "LANE2_FAIL exp_memory_question.py"; bad=1; }
+  run_timed "exp_memory_question.py" python3 checks/exp_memory_question.py || { echo "LANE2_FAIL exp_memory_question.py"; bad=1; }
   echo "--- damage_clock.py ---"
-  python3 checks/damage_clock.py || { echo "LANE2_FAIL damage_clock.py"; bad=1; }
+  run_timed "damage_clock.py" python3 checks/damage_clock.py || { echo "LANE2_FAIL damage_clock.py"; bad=1; }
   echo "--- rng_seed_noise.py ---"
-  python3 checks/rng_seed_noise.py || { echo "LANE2_FAIL rng_seed_noise.py"; bad=1; }
+  run_timed "rng_seed_noise.py" python3 checks/rng_seed_noise.py || { echo "LANE2_FAIL rng_seed_noise.py"; bad=1; }
   return $bad
 }
 exp_lane3() {
   # Аудиты дерева и контрактов, лана 3.
   local bad=0
   echo "--- stub_covers_bridge.py ---"
-  python3 checks/stub_covers_bridge.py || { echo "LANE3_FAIL stub_covers_bridge.py"; bad=1; }
+  run_timed "stub_covers_bridge.py" python3 checks/stub_covers_bridge.py || { echo "LANE3_FAIL stub_covers_bridge.py"; bad=1; }
   echo "--- stub_links.sh ---"
-  bash checks/stub_links.sh || { echo "LANE3_FAIL stub_links.sh"; bad=1; }
+  run_timed "stub_links.sh" bash checks/stub_links.sh || { echo "LANE3_FAIL stub_links.sh"; bad=1; }
   echo "--- contract.py ---"
-  python3 checks/contract.py || { echo "LANE3_FAIL contract.py"; bad=1; }
+  run_timed "contract.py" python3 checks/contract.py || { echo "LANE3_FAIL contract.py"; bad=1; }
   echo "--- mde.py ---"
-  python3 checks/mde.py --selftest || { echo "LANE3_FAIL mde.py"; bad=1; }
+  run_timed "mde.py" python3 checks/mde.py --selftest || { echo "LANE3_FAIL mde.py"; bad=1; }
   echo "--- lean_ffi_feature.py ---"
-  python3 checks/lean_ffi_feature.py || { echo "LANE3_FAIL lean_ffi_feature.py"; bad=1; }
+  run_timed "lean_ffi_feature.py" python3 checks/lean_ffi_feature.py || { echo "LANE3_FAIL lean_ffi_feature.py"; bad=1; }
   echo "--- rng_result_audit.py ---"
-  python3 tools/rng_result_audit.py || { echo "LANE3_FAIL rng_result_audit.py"; bad=1; }
+  run_timed "rng_result_audit.py" python3 tools/rng_result_audit.py || { echo "LANE3_FAIL rng_result_audit.py"; bad=1; }
   echo "--- test_result_design.py ---"
-  python3 checks/test_result_design.py || { echo "LANE3_FAIL test_result_design.py"; bad=1; }
+  run_timed "test_result_design.py" python3 checks/test_result_design.py || { echo "LANE3_FAIL test_result_design.py"; bad=1; }
   echo "--- test_kg_reach.py ---"
-  python3 checks/test_kg_reach.py || { echo "LANE3_FAIL test_kg_reach.py"; bad=1; }
+  run_timed "test_kg_reach.py" python3 checks/test_kg_reach.py || { echo "LANE3_FAIL test_kg_reach.py"; bad=1; }
   echo "--- test_kg_edges.py ---"
-  python3 checks/test_kg_edges.py || { echo "LANE3_FAIL test_kg_edges.py"; bad=1; }
-  echo "--- paper_numbers.py ---"
-  python3 checks/paper_numbers.py || { echo "LANE3_FAIL paper_numbers.py"; bad=1; }
+  run_timed "test_kg_edges.py" python3 checks/test_kg_edges.py || { echo "LANE3_FAIL test_kg_edges.py"; bad=1; }
   echo "--- paper_claims.py ---"
-  python3 checks/paper_claims.py || { echo "LANE3_FAIL paper_claims.py"; bad=1; }
+  run_timed "paper_claims.py" python3 checks/paper_claims.py || { echo "LANE3_FAIL paper_claims.py"; bad=1; }
   echo "--- paper_format.py ---"
-  python3 checks/paper_format.py || { echo "LANE3_FAIL paper_format.py"; bad=1; }
+  run_timed "paper_format.py" python3 checks/paper_format.py || { echo "LANE3_FAIL paper_format.py"; bad=1; }
   echo "--- paper_prose.py ---"
-  python3 checks/paper_prose.py || { echo "LANE3_FAIL paper_prose.py"; bad=1; }
+  run_timed "paper_prose.py" python3 checks/paper_prose.py || { echo "LANE3_FAIL paper_prose.py"; bad=1; }
   echo "--- readme_features.py ---"
-  python3 checks/readme_features.py || { echo "LANE3_FAIL readme_features.py"; bad=1; }
-  echo "--- protocol_checks.py ---"
-  python3 checks/protocol_checks.py || { echo "LANE3_FAIL protocol_checks.py"; bad=1; }
-  echo "--- doc_numbers.py ---"
-  python3 checks/doc_numbers.py || { echo "LANE3_FAIL doc_numbers.py"; bad=1; }
+  run_timed "readme_features.py" python3 checks/readme_features.py || { echo "LANE3_FAIL readme_features.py"; bad=1; }
   echo "--- stitch_coverage_floor.py ---"
-  python3 checks/stitch_coverage_floor.py || { echo "LANE3_FAIL stitch_coverage_floor.py"; bad=1; }
+  run_timed "stitch_coverage_floor.py" python3 checks/stitch_coverage_floor.py || { echo "LANE3_FAIL stitch_coverage_floor.py"; bad=1; }
   echo "--- formula_units_ceiling.py ---"
-  python3 checks/formula_units_ceiling.py || { echo "LANE3_FAIL formula_units_ceiling.py"; bad=1; }
+  run_timed "formula_units_ceiling.py" python3 checks/formula_units_ceiling.py || { echo "LANE3_FAIL formula_units_ceiling.py"; bad=1; }
   echo "--- units_symbol_audit.py ---"
-  python3 tools/units_symbol_audit.py --strict || { echo "LANE3_FAIL units_symbol_audit.py"; bad=1; }
+  run_timed "units_symbol_audit.py" python3 tools/units_symbol_audit.py --strict || { echo "LANE3_FAIL units_symbol_audit.py"; bad=1; }
   echo "--- map_duplicates.py ---"
-  python3 tools/map_duplicates.py --strict || { echo "LANE3_FAIL map_duplicates.py"; bad=1; }
+  run_timed "map_duplicates.py" python3 tools/map_duplicates.py --strict || { echo "LANE3_FAIL map_duplicates.py"; bad=1; }
   echo "--- map_orphans.py ---"
-  python3 tools/map_orphans.py --strict || { echo "LANE3_FAIL map_orphans.py"; bad=1; }
+  run_timed "map_orphans.py" python3 tools/map_orphans.py --strict || { echo "LANE3_FAIL map_orphans.py"; bad=1; }
   echo "--- wiring_audit.py ---"
-  python3 tools/wiring_audit.py --strict || { echo "LANE3_FAIL wiring_audit.py"; bad=1; }
+  run_timed "wiring_audit.py" python3 tools/wiring_audit.py --strict || { echo "LANE3_FAIL wiring_audit.py"; bad=1; }
   echo "--- unanchored_nodes.py ---"
-  python3 tools/unanchored_nodes.py --strict || { echo "LANE3_FAIL unanchored_nodes.py"; bad=1; }
+  run_timed "unanchored_nodes.py" python3 tools/unanchored_nodes.py --strict || { echo "LANE3_FAIL unanchored_nodes.py"; bad=1; }
   echo "--- support_sources.py ---"
-  python3 checks/support_sources.py || { echo "LANE3_FAIL support_sources.py"; bad=1; }
+  run_timed "support_sources.py" python3 checks/support_sources.py || { echo "LANE3_FAIL support_sources.py"; bad=1; }
   echo "--- cli_refuses.py ---"
-  python3 checks/cli_refuses.py || { echo "LANE3_FAIL cli_refuses.py"; bad=1; }
+  run_timed "cli_refuses.py" python3 checks/cli_refuses.py || { echo "LANE3_FAIL cli_refuses.py"; bad=1; }
   echo "--- no_unseeded_random.py ---"
-  python3 checks/no_unseeded_random.py || { echo "LANE3_FAIL no_unseeded_random.py"; bad=1; }
-  echo "--- ci_workflow.py ---"
-  python3 checks/ci_workflow.py || { echo "LANE3_FAIL ci_workflow.py"; bad=1; }
+  run_timed "no_unseeded_random.py" python3 checks/no_unseeded_random.py || { echo "LANE3_FAIL no_unseeded_random.py"; bad=1; }
   echo "--- goal_features.py ---"
-  python3 checks/goal_features.py || { echo "LANE3_FAIL goal_features.py"; bad=1; }
+  run_timed "goal_features.py" python3 checks/goal_features.py || { echo "LANE3_FAIL goal_features.py"; bad=1; }
   echo "--- finding_elephant_line.py ---"
-  python3 checks/finding_elephant_line.py || { echo "LANE3_FAIL finding_elephant_line.py"; bad=1; }
+  run_timed "finding_elephant_line.py" python3 checks/finding_elephant_line.py || { echo "LANE3_FAIL finding_elephant_line.py"; bad=1; }
   echo "--- embeddings_fresh.py ---"
-  python3 checks/embeddings_fresh.py || { echo "LANE3_FAIL embeddings_fresh.py"; bad=1; }
+  run_timed "embeddings_fresh.py" python3 checks/embeddings_fresh.py || { echo "LANE3_FAIL embeddings_fresh.py"; bad=1; }
   echo "--- tree_contract.py ---"
-  python3 checks/tree_contract.py || { echo "LANE3_FAIL tree_contract.py"; bad=1; }
+  run_timed "tree_contract.py" python3 checks/tree_contract.py || { echo "LANE3_FAIL tree_contract.py"; bad=1; }
   echo "--- insights_contract.py ---"
-  python3 checks/insights_contract.py || { echo "LANE3_FAIL insights_contract.py"; bad=1; }
+  run_timed "insights_contract.py" python3 checks/insights_contract.py || { echo "LANE3_FAIL insights_contract.py"; bad=1; }
   echo "--- dip_reports.py ---"
-  python3 checks/dip_reports.py || { echo "LANE3_FAIL dip_reports.py"; bad=1; }
+  run_timed "dip_reports.py" python3 checks/dip_reports.py || { echo "LANE3_FAIL dip_reports.py"; bad=1; }
   echo "--- map_contract.py ---"
-  python3 checks/map_contract.py || { echo "LANE3_FAIL map_contract.py"; bad=1; }
-  echo "--- candidates_quarantine.py ---"
-  python3 checks/candidates_quarantine.py || { echo "LANE3_FAIL candidates_quarantine.py"; bad=1; }
+  run_timed "map_contract.py" python3 checks/map_contract.py || { echo "LANE3_FAIL map_contract.py"; bad=1; }
   echo "--- budget_ledger.py ---"
-  python3 checks/budget_ledger.py || { echo "LANE3_FAIL budget_ledger.py"; bad=1; }
-  echo "--- litsearch_contract.py ---"
-  python3 checks/litsearch_contract.py || { echo "LANE3_FAIL litsearch_contract.py"; bad=1; }
-  echo "--- results_allowlist.py ---"
-  python3 checks/results_allowlist.py || { echo "LANE3_FAIL results_allowlist.py"; bad=1; }
-  echo "--- literature_contract.py ---"
-  python3 checks/literature_contract.py || { echo "LANE3_FAIL literature_contract.py"; bad=1; }
-  echo "--- guard_self_test.py ---"
-  python3 checks/guard_self_test.py || { echo "LANE3_FAIL guard_self_test.py"; bad=1; }
-  echo "--- log_check.py ---"
-  python3 checks/log_check.py || { echo "LANE3_FAIL log_check.py"; bad=1; }
-  echo "--- hash_version.py ---"
-  python3 checks/hash_version.py || { echo "LANE3_FAIL hash_version.py"; bad=1; }
+  run_timed "budget_ledger.py" python3 checks/budget_ledger.py || { echo "LANE3_FAIL budget_ledger.py"; bad=1; }
   echo "--- capacity_two_answers.py ---"
-  python3 checks/capacity_two_answers.py || { echo "LANE3_FAIL capacity_two_answers.py"; bad=1; }
+  run_timed "capacity_two_answers.py" python3 checks/capacity_two_answers.py || { echo "LANE3_FAIL capacity_two_answers.py"; bad=1; }
   return $bad
 }
 
@@ -324,61 +330,66 @@ do_verus() {
 
 do_kg() {
   section "Граф знаний (инварианты и ссылки)"
-  # Своя обёртка: у run.sh нет общего do_py, а терять код возврата нельзя --
-  # иначе раздел печатает отчёт и «проходит» при любой ошибке.
-  # Аудит 28.11.2026 (P0): rc kg/regress.py не сохранялся вовсе, `local rrc=$?`
-  # читал статус OR-list (всегда 0), bad=1 не доходил до return -- раздел
-  # печатал FAIL и оставался зелёным (c896). Теперь каждая команда обязана
-  # сохранить свой rc; провал любой -- красный раздел с явным маркером.
-  local out rc1 rc2 rc3 rc4 rc5 rc rout
-  out=$(mktemp)
-  python3 kg/kg.py check --refs >"$out" 2>&1
-  rc1=$?
-  tail -20 "$out"
-  # Слово-вердикт важнее rc: kg-скрипты могут печатать FAIL и выходить с 0
-  # (наблюдено 28.11: regress.py, L-039/L-049). grep FAIL -- второй контур.
-  grep -q "FAIL" "$out" && rc1=1
-  rm -f "$out"
-  # Second gate: the corpus, not the generated file, is the source of truth,
-  # and import must not move a status by itself (D-07).
-  rout=$(mktemp)
-  python3 kg/regress.py >"$rout" 2>&1
-  rc2=$?
-  cat "$rout"
-  grep -q "FAIL" "$rout" && rc2=1
-  rm -f "$rout"
-  echo "--- kg_edges.py ---"
-  rout=$(mktemp)
-  python3 checks/kg_edges.py >"$rout" 2>&1
-  rc3=$?
-  cat "$rout"
-  grep -q "FAIL" "$rout" && rc3=1
-  rm -f "$rout"
-  # F2: цена обязана быть производной функции значения, а не правилом по флагу.
-  rout=$(mktemp)
-  python3 checks/bridge_price_derivative.py >"$rout" 2>&1
-  rc4=$?
-  cat "$rout"
-  grep -q "FAIL" "$rout" && rc4=1
-  rm -f "$rout"
-  # Fail-closed selftest: do_kg обязан оставаться красным при провале любой
-  # из проверок; гоняет do_kg на песочнице с фейковыми kg-скриптами.
-  python3 checks/gate_kg_fail_closed.py
-  rc5=$?
-  [ "$rc3" -ne 0 ] && echo "KG_FAIL kg_edges.py (rc=$rc3)"
-  [ "$rc4" -ne 0 ] && echo "KG_FAIL bridge_price_derivative.py (rc=$rc4)"
-  [ "$rc5" -ne 0 ] && echo "KG_FAIL gate_kg_fail_closed.py (rc=$rc5)"
-  rc=0
-  [ "$rc1" -ne 0 ] && rc=1
-  [ "$rc2" -ne 0 ] && rc=1
-  [ "$rc3" -ne 0 ] && rc=1
-  [ "$rc4" -ne 0 ] && rc=1
-  [ "$rc5" -ne 0 ] && rc=1
-  if [ "$rc" -ne 0 ]; then
-    echo "KG_SECTION_RED rc=$rc (check=$rc1 regress=$rc2 edges=$rc3 price=$rc4 selftest=$rc5)"
+  local out rc_check=0 rc_regress=0 rc_edges=0 rc_price=0 rc_selftest=0 rc=0
+
+  # Проверка самой fail-closed обёртки на искусственных rc.
+  if [ "${KG_GATE_SELFTEST:-0}" != 1 ]; then
+    python3 checks/gate_kg_fail_closed.py --selftest || rc_selftest=$?
   fi
-  return $rc
+
+  out=$(mktemp) || {
+    echo "KG_SECTION_RED rc=1 (check=125 regress=125 edges=125 price=125 selftest=$rc_selftest)"
+    return 1
+  }
+
+  python3 kg/kg.py check --refs >"$out" 2>&1
+  rc_check=$?
+  tail -20 "$out"
+  if [ "$rc_check" -eq 0 ] && grep -qE '^[[:space:]]*FAIL:' "$out"; then
+    rc_check=1
+  fi
+
+  : >"$out"
+  python3 kg/regress.py >"$out" 2>&1
+  rc_regress=$?
+  cat "$out"
+  if [ "$rc_regress" -eq 0 ] && grep -qE '^[[:space:]]*FAIL:' "$out"; then
+    rc_regress=1
+  fi
+
+  echo "--- kg_edges.py ---"
+  : >"$out"
+  python3 checks/kg_edges.py >"$out" 2>&1
+  rc_edges=$?
+  cat "$out"
+  if [ "$rc_edges" -eq 0 ] && grep -qE '^[[:space:]]*FAIL:' "$out"; then
+    rc_edges=1
+  fi
+
+  # F2: цена обязана быть производной функции значения, а не правилом по флагу.
+  : >"$out"
+  python3 checks/bridge_price_derivative.py >"$out" 2>&1
+  rc_price=$?
+  cat "$out"
+  if [ "$rc_price" -eq 0 ] && grep -qE '^[[:space:]]*FAIL:' "$out"; then
+    rc_price=1
+  fi
+
+  rm -f "$out"
+  [ "$rc_check" -eq 0 ] || rc=1
+  [ "$rc_regress" -eq 0 ] || rc=1
+  [ "$rc_edges" -eq 0 ] || rc=1
+  [ "$rc_price" -eq 0 ] || rc=1
+  [ "$rc_selftest" -eq 0 ] || rc=1
+
+  if [ "$rc" -ne 0 ]; then
+    echo "KG_SECTION_RED rc=$rc (check=$rc_check regress=$rc_regress edges=$rc_edges price=$rc_price selftest=$rc_selftest)"
+    return 1
+  fi
+  echo "KG_SECTION_GREEN (check=0 regress=0 edges=0 price=0 selftest=0)"
+  return 0
 }
+
 
 do_claims() {
   section "Проверки утверждений (verify_all.js)"
@@ -453,11 +464,6 @@ do_export() {
   python3 checks/export.py
 }
 
-check_doc_links() {
-  echo "    проверка ссылок в документации"
-  python3 checks/doc_links.py || return 1
-}
-
 do_agents() {
   section "Контракт агента"
   # Состояние агента -- часть контракта, а не дневник. AGENT_STATE.md обязан
@@ -520,8 +526,6 @@ do_agents() {
       fi
     fi
   fi
-  # Ссылки в документации -- часть контракта: битая ссылка стоит круга догадок.
-  check_doc_links || rc=1
   return $rc
 }
 
@@ -539,22 +543,75 @@ do_dispatcher() {
   python3 checks/runtime_integrity.py || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
   python3 checks/kg_transaction_integrity.py || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
   python3 checks/bridge_integrity.py || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
+
+  if ! command -v shellcheck >/dev/null 2>&1; then
+    echo "    FAIL: shellcheck не найден в PATH"
+    [ "$rc" -ne 0 ] || rc=1
+  else
+    local sc_out
+    sc_out=$(shellcheck -f gcc -S warning run.sh 2>&1 || true)
+    if printf '%s\n' "$sc_out" | grep -E 'SC2034|SC2154'; then
+      echo "    FAIL: shellcheck обнаружил неиспользуемую или неинициализированную переменную"
+      [ "$rc" -ne 0 ] || rc=1
+    fi
+    shellcheck -S error run.sh || { code=$?; [ "$rc" -ne 0 ] || rc=$code; }
+  fi
   return "$rc"
 }
 
+
+# Дешёвые детерминированные проверки до сборок и тяжёлых экспериментов.
+# --no-test-count не запускает ещё один cargo test в холодном окружении.
+PREFLIGHT_FAILED=""
+preflight_check() {
+  local label="$1"; shift
+  local started ended rc
+  started=$(date +%s)
+  "$@"
+  rc=$?
+  ended=$(date +%s)
+  echo "    [preflight $label: $((ended-started))с, rc=$rc]"
+  if [ "$rc" -ne 0 ]; then
+    echo "PREFLIGHT_FAIL $label (rc=$rc)"
+    PREFLIGHT_FAILED="$PREFLIGHT_FAILED $label"
+  fi
+  return 0
+}
+run_preflight() {
+  if [ "${MARFAGENEZ_SKIP_PREFLIGHT:-0}" = 1 ]; then
+    echo "PREFLIGHT_SKIPPED: dispatcher fixture"
+    return 0
+  fi
+  PREFLIGHT_FAILED=""
+  section "Preflight: дешёвые проверки до тяжёлого гейта"
+  preflight_check log_check python3 checks/log_check.py --no-test-count
+  preflight_check doc_numbers python3 checks/doc_numbers.py
+  preflight_check paper_numbers python3 checks/paper_numbers.py
+  preflight_check protocol_checks python3 checks/protocol_checks.py
+  preflight_check doc_links python3 checks/doc_links.py
+  preflight_check literature_contract python3 checks/literature_contract.py
+  preflight_check litsearch_contract python3 checks/litsearch_contract.py
+  preflight_check results_allowlist python3 checks/results_allowlist.py
+  preflight_check hash_version python3 checks/hash_version.py
+  preflight_check candidates_quarantine python3 checks/candidates_quarantine.py
+  preflight_check guard_self_test python3 checks/guard_self_test.py
+  preflight_check ci_workflow python3 checks/ci_workflow.py
+  if [ -n "$PREFLIGHT_FAILED" ]; then
+    echo "PREFLIGHT_RED: провалились:$PREFLIGHT_FAILED"
+    return 1
+  fi
+  echo "PREFLIGHT_GREEN: 12 проверок"
+  return 0
+}
+
+
 # ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
-# Параллельный планировщик `all` (цикл 822). Секции независимы, кроме двух
-# зависимостей сборки: `reach` ждёт olean от do_lean, `exp` — trace-бинарник
-# от do_test. Группа 1 (сборки + проверки без зависимостей) идёт параллельно,
-# группа 2 — после полного завершения группы 1. Лог каждой секции — свой файл,
-# печатается после её ожидания: вывод не перемешивается, первый провал
-# сохраняется `keep`, имя провалившейся секции видно сразу.
-# Параллельные группы пишут каждую секцию в её собственный файл общего
-# временного каталога; итоговый отчёт по всем группам печатает gate_report.
-# Порядок ВЫЗОВОВ групп разрешает зависимости сборки (reach после lean,
-# exp после test) и на отчёт не влияет.
+# Параллельный планировщик `all`: зависимости выражены как DAG, а не барьер.
+# `reach` стартует сразу после `lean`, `exp` — после release build bins/examples.
+# Каждая секция пишет собственные log/trace/rc/dur; отчёт идёт в каноническом
+# порядке независимо от времени завершения.
 gate_logs() {
   if [ -z "${GATE_LOG_DIR:-}" ]; then
     GATE_LOG_DIR=$(mktemp -d /tmp/marfagenez-gate-XXXXXX) || { echo "нет tmp для гейта"; exit 1; }
@@ -566,98 +623,135 @@ gate_logs() {
 # видели переходные пары и неописанные коммиты (4 красных гейта 859b-859d).
 # Гейт обязан проверять состояние на момент старта, а не живое дерево:
 # worktree-пин HEAD замораживает историю и файлы; mid-gate коммиты
-# проверяет следующий гейт. Симлинк core/target делит сборку с живым деревом.
-PINNED_SECTIONS="test lean reach dispatcher verus exp kg claims audit export agents lab"
+# проверяет следующий гейт. Симлинки core/target и laws/.lake повторно используют
+# release-артефакты и Mathlib cache, но все исходники читаются из pinned HEAD.
+PINNED_SECTIONS="test lean reach dispatcher verus build exp kg claims audit export agents lab"
 GATE_PIN=""
 
 pin_cd() {
   case " $PINNED_SECTIONS " in *" $1 "*)
-    [ -n "$GATE_PIN" ] && cd "$GATE_PIN" || true;;
+    [ -n "$GATE_PIN" ] || { echo "GATE_RED: нет pin для секции $1"; return 1; }
+    cd "$GATE_PIN" || { echo "GATE_RED: не перейти в pin для секции $1"; return 1; };;
   esac
 }
 
 make_pin() {
-  # Аудит 28.11.2026: пин обязан быть fail-closed. Прогон «по живому дереву»
-  # маскировал mid-gate коммиты и незакоммиченные файлы: чеки, читающие git и
-  # kg/docs-состояние, видели переходные пары. Гейт без пина не существует.
-  if ! GATE_PIN=$(mktemp -d /tmp/marfagenez-gatepin-XXXXXX); then
-    echo "PIN_FAIL: mktemp недоступен"
-    GATE_PIN=""
+  [ -n "$GATE_HEAD" ] || {
+    echo "GATE_RED: не удалось зафиксировать HEAD до preflight"
+    return 1
+  }
+  GATE_PIN=$(mktemp -d /tmp/marfagenez-gatepin-XXXXXX) || {
+    GATE_PIN=""; echo "GATE_RED: не создать каталог worktree"; return 1;
+  }
+  rmdir "$GATE_PIN" || {
+    rm -rf "$GATE_PIN"; GATE_PIN=""; echo "GATE_RED: не подготовить путь worktree"; return 1;
+  }
+  mkdir -p "$ROOT/core/target" "$ROOT/laws/.lake" || {
+    GATE_PIN=""; echo "GATE_RED: не подготовить общие каталоги target/.lake"; return 1;
+  }
+  if ! git worktree add --detach "$GATE_PIN" "$GATE_HEAD" >/dev/null 2>&1; then
+    rm -rf "$GATE_PIN"; GATE_PIN=""
+    echo "GATE_RED: git worktree add не создал pin; запуск по живому дереву запрещён"
     return 1
   fi
-  rmdir "$GATE_PIN"
-  if ! git worktree add --detach "$GATE_PIN" HEAD >/dev/null 2>&1; then
-    echo "PIN_FAIL: git worktree add недоступен -- гейт без пина не существует"
-    GATE_PIN=""
-    return 1
+  if ! ln -s "$ROOT/core/target" "$GATE_PIN/core/target"; then
+    echo "GATE_RED: не создать core/target symlink"
+    drop_pin; return 1
   fi
-  if ! ln -s "$ROOT/core/target" "$GATE_PIN/core/target" 2>/dev/null; then
-    echo "PIN_FAIL: core/target symlink не создан"
-    git worktree remove --force "$GATE_PIN" 2>/dev/null
-    GATE_PIN=""
-    return 1
+  if ! ln -s "$ROOT/laws/.lake" "$GATE_PIN/laws/.lake"; then
+    echo "GATE_RED: не создать laws/.lake symlink"
+    drop_pin; return 1
   fi
-  # lake build идёт из пина: без общего .lake каждая сборка Lean с нуля.
-  if [ -d "$ROOT/laws/.lake" ]; then
-    if ! ln -s "$ROOT/laws/.lake" "$GATE_PIN/laws/.lake" 2>/dev/null; then
-      echo "PIN_FAIL: laws/.lake symlink не создан"
-      git worktree remove --force "$GATE_PIN" 2>/dev/null
-      GATE_PIN=""
-      return 1
-    fi
-  fi
-  echo "гейт: пин состояния HEAD -> $GATE_PIN (секции: $PINNED_SECTIONS)"
+  [ -L "$GATE_PIN/core/target" ] && [ -L "$GATE_PIN/laws/.lake" ] || {
+    echo "GATE_RED: отсутствует обязательный symlink в pin"
+    drop_pin; return 1;
+  }
+  echo "гейт: pin HEAD $GATE_HEAD -> $GATE_PIN (секции: $PINNED_SECTIONS)"
 }
-
 drop_pin() {
   [ -n "$GATE_PIN" ] || return 0
   git worktree remove --force "$GATE_PIN" 2>/dev/null
   GATE_PIN=""
 }
 
-gate_group() {
+record_section_status() {
+  local name="$1" started="$2" rc="$3" finished
+  finished=$(date +%s)
+  printf '%s\n' "$rc" >"$GATE_LOG_DIR/$name.rc.tmp.$$" &&
+    mv -f "$GATE_LOG_DIR/$name.rc.tmp.$$" "$GATE_LOG_DIR/$name.rc"
+  printf '%s\n' "$((finished-started))" >"$GATE_LOG_DIR/$name.dur.tmp.$$" &&
+    mv -f "$GATE_LOG_DIR/$name.dur.tmp.$$" "$GATE_LOG_DIR/$name.dur"
+}
+
+gate_start() {
   gate_logs
   local n
-  local -A pidx=()
-  local _t0=$SECONDS
   for n in "$@"; do
-    # Родительская трасса обязана называть каждую секцию (вложенные копии
-    # run.sh и проверки трасс читают её именно так), но внутренности секции
-    # идут в её собственную трассу: иначе параллельные выводы перемешиваются
-    # и «первый провалившийся шаг» зависит от порядка завершения.
     : "gate: запуск секции do_$n"
-    # Аудит 28.11.2026: rc и длительность пишет сама секция в файлы ДО
-    # выхода подпроцесса. Файла нет -- секция убита без отчёта (kill/OOM):
-    # красная, а не «ноль». wait-статус и кумулятивный GATE_T врали:
-    # GATE_T показывал момент, когда дождались, а не длительность секции.
-    ( exec 9>"$GATE_LOG_DIR/$n.trace"; BASH_XTRACEFD=9; set -x; _s=$SECONDS
-      pin_cd "$n"; "do_$n"; _r=$?
-      echo "$_r" >"$GATE_LOG_DIR/$n.rc"
-      echo "$((SECONDS-_s))" >"$GATE_LOG_DIR/$n.dur" ) \
-      >"$GATE_LOG_DIR/$n.log" 2>&1 &
-    pidx[$n]=$!
-  done
-  for n in "$@"; do
-    wait "${pidx[$n]}"
-    if [ -f "$GATE_LOG_DIR/$n.rc" ]; then
-      GATE_RC[$n]=$(cat "$GATE_LOG_DIR/$n.rc")
-      GATE_T[$n]=$(cat "$GATE_LOG_DIR/$n.dur" 2>/dev/null || echo "?")
-    else
-      GATE_RC[$n]=1
-      GATE_T[$n]=$((SECONDS-_t0))
-      echo "    [секция $n: rc-файл не записан -- убита без отчёта; красная]"
-    fi
+    (
+      _section_started=$(date +%s)
+      trap '_section_rc=$?; record_section_status "$n" "$_section_started" "$_section_rc"; exit "$_section_rc"' EXIT
+      exec 9>"$GATE_LOG_DIR/$n.trace"
+      BASH_XTRACEFD=9
+      set -x
+      pin_cd "$n" || exit 125
+      "do_$n"
+    ) >"$GATE_LOG_DIR/$n.log" 2>&1 &
+    GATE_PID[$n]=$!
   done
 }
 
+gate_wait() {
+  local n="$1" pid wait_rc=0 rc_file dur_file recorded_rc recorded_dur
+  pid="${GATE_PID[$n]:-}"
+  [ -n "$pid" ] || return 0
+  wait "$pid" || wait_rc=$?
+  rc_file="$GATE_LOG_DIR/$n.rc"
+  dur_file="$GATE_LOG_DIR/$n.dur"
+  if [ ! -s "$rc_file" ] || [ ! -s "$dur_file" ]; then
+    echo "GATE_RED: секция $n завершилась без rc/duration marker (wait_rc=$wait_rc)"
+    GATE_RC[$n]=125
+    GATE_T[$n]="missing"
+  else
+    recorded_rc=$(cat "$rc_file")
+    recorded_dur=$(cat "$dur_file")
+    if ! [[ "$recorded_rc" =~ ^[0-9]+$ ]] || ! [[ "$recorded_dur" =~ ^[0-9]+$ ]]; then
+      echo "GATE_RED: некорректный rc/duration marker секции $n"
+      GATE_RC[$n]=125
+      GATE_T[$n]="invalid"
+    elif [ "$recorded_rc" -ne "$wait_rc" ]; then
+      echo "GATE_RED: rc marker секции $n ($recorded_rc) != wait rc ($wait_rc)"
+      GATE_RC[$n]=125
+      GATE_T[$n]="$recorded_dur"
+    else
+      GATE_RC[$n]="$recorded_rc"
+      GATE_T[$n]="$recorded_dur"
+    fi
+  fi
+  unset "GATE_PID[$n]"
+}
+
+gate_wait_all() {
+  local n
+  for n in test lean reach dispatcher verus build exp kg claims audit export agents lab; do
+    [ -n "${GATE_PID[$n]:-}" ] && gate_wait "$n"
+  done
+}
+
+gate_group() {
+  gate_start "$@"
+  local n
+  for n in "$@"; do gate_wait "$n"; done
+}
+
 gate_report() {
-  # Отчёт — строго в каноническом порядке `all` (шапка: 12 разделов), не по
+  # Отчёт — строго в каноническом порядке `all` (шапка: 13 разделов), не по
   # времени завершения и не по группам запуска: RC и «первый провалившийся
   # шаг» даёт первый провал по порядку, как в последовательном диспетчере;
   # поздний код его не затирает.
   gate_logs
   local n
-  for n in test lean reach dispatcher verus exp kg claims audit export agents lab; do
+  for n in test lean reach dispatcher verus build exp kg claims audit export agents lab; do
     [ -n "${GATE_RC[$n]:-}" ] || continue
     keep "${GATE_RC[$n]}" "$n"
     echo "    [секция $n: ${GATE_T[$n]}с]"
@@ -683,6 +777,7 @@ gate_report() {
 FAILED=""
 declare -A GATE_RC=()
 declare -A GATE_T=()
+declare -A GATE_PID=()
 GATE_LOG_DIR=""
 # «первый провалившийся шаг» параллельного `all`: шаг первой по порядку
 # провалившейся секции; ищет gate_report по трассе этой секции.
@@ -742,6 +837,8 @@ case "$WHAT" in
   lean)   do_lean;   keep $? lean ;;
   reach)  do_reach;  keep $? reach ;;
   dispatcher) do_dispatcher; keep $? dispatcher ;;
+  preflight) run_preflight; keep $? preflight ;;
+  build)  do_build;  keep $? build ;;
   exp)    do_exp;    keep $? exp ;;
   kg)     do_kg;     keep $? kg ;;
   models) do_models; keep $? models ;;
@@ -752,17 +849,30 @@ case "$WHAT" in
   export) do_export; keep $? export ;;
   agents) do_agents; keep $? agents ;;
   all)
-    if ! make_pin; then
-      echo "GATE_RED: гейт без пина не существует (fail-closed, аудит 28.11.2026)"
+    run_preflight
+    preflight_rc=$?
+    if [ "$preflight_rc" -ne 0 ]; then
+      echo "ЕСТЬ ПРОВАЛЫ (код 1): провалились разделы: preflight"
       exit 1
     fi
+    make_pin || {
+      echo "ЕСТЬ ПРОВАЛЫ (код 1): провалился pin"
+      exit 1
+    }
     trap 'drop_pin' EXIT
-    gate_group test lean dispatcher verus claims audit kg export agents lab
-    gate_group reach exp
+
+    # DAG: reach начинается сразу после lean, exp после build.
+    # Другие независимые секции не ждут завершения этих зависимостей.
+    gate_start test lean dispatcher verus claims audit kg export agents lab build
+    gate_wait lean
+    gate_start reach
+    gate_wait build
+    gate_start exp
+    gate_wait_all
     gate_report
     ;;
   *)
-    echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|kg|claims|audit|export|agents|lab]"
+    echo "usage: run.sh [all|preflight|build|test|lean|reach|dispatcher|verus|exp|models|kg|claims|audit|export|agents|lab]"
     exit 2
     ;;
 esac
