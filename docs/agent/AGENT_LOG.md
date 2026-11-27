@@ -24,3 +24,13 @@
 **Валидация.** Проведена статическая сверка remote-файлов и структуры изменений. В этой среде не запускались `bash -n`, ShellCheck, Python selftests, `run.sh preflight` и полный WSL gate. Нужна независимая валидация основным агентом на точном HEAD PR; до неё не мержить и не пушить master.
 
 **Отложено.** P5 section cache; P6 parallel claims/audit и бит-в-бит RNG equivalence; P7 background gate service/coalescing; P9 sparse pin, scratch cleanup и counter generator; решение по LTO только после отдельного benchmark.
+
+
+### Цикл 2 — 2026-11-28 — CI contract / concurrency
+
+- `bdae360`: добавлена отмена устаревших gate runs в пределах одной ветки.
+- `20a46d3`: workflow-комментарий исправлен — hosted GitHub Actions действительно выполняет job.
+- `f0533c7`: CI contract проверяет single-source-of-truth для Rust/Lean/build, caches, ShellCheck и concurrency.
+- `81ad1a4`: синхронизирован AGENT_STATE.md с уточнённым статусом CI.
+- Run `46072931591` на промежуточном commit `56e61be` завершился красным из-за старого теста CI-contract, который ещё требовал отдельный `lake build`. Проверка и workflow затем согласованы; актуальный hosted run на `f0533c7` на момент записи ещё выполнялся.
+- Валидация WSL основным агентом всё ещё обязательна; merge запрещён до неё.
