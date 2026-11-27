@@ -44,7 +44,8 @@
         "lit_ref": [
           "B26-01-0001",
           "DIP56-0004",
-          "DIP56-0007"
+          "DIP56-0007",
+          "FAST-S2K-03"
         ]
       }
     },
@@ -193,7 +194,12 @@
       "lines": [
         "porog"
       ],
-      "kind": "claim"
+      "kind": "claim",
+      "data": {
+        "lit_ref": [
+          "MAIN-P127-01"
+        ]
+      }
     },
     {
       "id": "C-005",
@@ -323,7 +329,16 @@
       "lines": [
         "porog"
       ],
-      "kind": "claim"
+      "kind": "claim",
+      "data": {
+        "lit_ref": [
+          "FAST-S7B-01",
+          "FAST-S7B-02",
+          "FAST-S7B-03",
+          "FAST-S7B-04",
+          "FAST-S7B-05"
+        ]
+      }
     },
     {
       "id": "C-008",
@@ -471,7 +486,12 @@
           "DIP48-0008",
           "DIP52-0003",
           "DIP52-0005",
-          "DIP57-0002"
+          "DIP57-0002",
+          "FAST-S2N-01",
+          "FAST-S2N-05",
+          "FAST-S2X-02",
+          "FAST-S2X-03",
+          "FAST-S2X-05"
         ]
       }
     },
@@ -585,7 +605,10 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "W4-0011"
+        ]
       }
     },
     {
@@ -626,7 +649,8 @@
           "checked_by": null
         },
         "lit_ref": [
-          "DIP56-0005"
+          "DIP56-0005",
+          "MAIN-P94-01"
         ]
       }
     },
@@ -675,7 +699,8 @@
         },
         "lit_ref": [
           "B24-01-0003",
-          "DIP51-0004"
+          "DIP51-0004",
+          "MAIN-P127-01"
         ]
       }
     },
@@ -716,7 +741,11 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "W3-0006",
+          "W3-0008"
+        ]
       }
     },
     {
@@ -832,6 +861,7 @@
         },
         "lit_ref": [
           "DIP3-0001",
+          "FAST-S7A-02",
           "P-0009"
         ]
       }
@@ -918,7 +948,18 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2I-01",
+          "FAST-S2I-02",
+          "FAST-S2I-03",
+          "FAST-S2I-04",
+          "FAST-S2I-05",
+          "FAST-S2T-01",
+          "FAST-S2T-05",
+          "MAIN-P121-01",
+          "MAIN-P121-02"
+        ]
       }
     },
     {
@@ -969,7 +1010,10 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZN-01"
+        ]
       }
     },
     {
@@ -1061,7 +1105,18 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2J-01",
+          "FAST-S2J-02",
+          "FAST-S2J-03",
+          "FAST-S2J-04",
+          "FAST-S2J-05",
+          "FAST-S2R-01",
+          "FAST-S2R-02",
+          "FAST-S2R-03",
+          "MAIN-P125-01"
+        ]
       }
     },
     {
@@ -1100,7 +1155,15 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2H-02",
+          "FAST-S2U-01",
+          "FAST-S2U-02",
+          "FAST-S2U-03",
+          "FAST-S7Z-01",
+          "MAIN-P123-01"
+        ]
       }
     },
     {
@@ -1140,7 +1203,20 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2F-01",
+          "FAST-S2F-02",
+          "FAST-S2F-05",
+          "FAST-S2L-01",
+          "FAST-S2L-03",
+          "FAST-S2P-01",
+          "FAST-S2P-02",
+          "FAST-S2P-04",
+          "FAST-S2P-05",
+          "MAIN-P122-01",
+          "W3-0006"
+        ]
       }
     },
     {
@@ -1186,7 +1262,10 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP32-0004"
+        ]
       }
     },
     {
@@ -1226,7 +1305,10 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "MAIN-P127-01"
+        ]
       }
     },
     {
@@ -1268,7 +1350,25 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2G-01",
+          "FAST-S2G-02",
+          "FAST-S2G-04",
+          "FAST-S2G-05",
+          "FAST-S2Q-01",
+          "FAST-S2Q-03",
+          "FAST-S2Q-04",
+          "FAST-S7ZN-01",
+          "FAST-S7ZN-02",
+          "FAST-S7ZN-03",
+          "FAST-S7ZN-04",
+          "FAST-S7ZN-05",
+          "MAIN-P124-01",
+          "WIN-L055-01",
+          "WIN-L055-02",
+          "WIN-L055-03"
+        ]
       }
     },
     {
@@ -1317,7 +1417,8 @@
           "DIP56-0004",
           "DIP56-0005",
           "DIP56-0007",
-          "DIP56-0009"
+          "DIP56-0009",
+          "MAIN-P94-01"
         ]
       }
     },
@@ -1365,7 +1466,12 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP11-0003",
+          "DIP19-0008",
+          "FAST-S7O-01"
+        ]
       }
     },
     {
@@ -1414,7 +1520,10 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7P-01"
+        ]
       }
     },
     {
@@ -1557,7 +1666,13 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2H-01",
+          "FAST-S2H-02",
+          "FAST-S2H-03",
+          "FAST-S2H-04"
+        ]
       }
     },
     {
@@ -1612,7 +1727,12 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "B7-06-0003",
+          "B7-10-0003",
+          "W4-0011"
+        ]
       }
     },
     {
@@ -1668,7 +1788,10 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "WIN-L078-04"
+        ]
       }
     },
     {
@@ -1715,6 +1838,8 @@
         },
         "lit_ref": [
           "B22-01-0004",
+          "DIP33-0005",
+          "DIP33-0006",
           "DIP46-0001",
           "DIP47-0002",
           "DIP47-0003",
@@ -1815,7 +1940,14 @@
           "method": "declared in formula record",
           "source": "docs/ELEPHANT-LITERATURE.md",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7A-01",
+          "FAST-S7A-02",
+          "FAST-S7A-03",
+          "FAST-S7A-04",
+          "FAST-S7A-05"
+        ]
       }
     },
     {
@@ -12849,7 +12981,20 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZN-01",
+          "FAST-S7ZN-02",
+          "FAST-S7ZN-03",
+          "FAST-S7ZN-04",
+          "FAST-S7ZN-05",
+          "MAIN-P124-01",
+          "WIN-L001-01",
+          "WIN-L001-02",
+          "WIN-L001-03",
+          "WIN-L001-04",
+          "WIN-L001-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -12893,7 +13038,15 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "FAST-S2G-05",
+          "WIN-L002-01",
+          "WIN-L002-02",
+          "WIN-L002-03",
+          "WIN-L002-04",
+          "WIN-L002-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -12940,7 +13093,11 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZI-01",
+          "FAST-S7ZI-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13041,7 +13198,10 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "MAIN-P127-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13085,7 +13245,14 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "WIN-L006-01",
+          "WIN-L006-02",
+          "WIN-L006-03",
+          "WIN-L006-04",
+          "WIN-L006-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13132,7 +13299,11 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2H-02",
+          "FAST-S7Z-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13182,7 +13353,10 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2U-02"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13226,7 +13400,15 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "FAST-S2-01",
+          "WIN-L009-01",
+          "WIN-L009-02",
+          "WIN-L009-03",
+          "WIN-L009-04",
+          "WIN-L009-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13273,7 +13455,10 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "WIN-L055-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13323,7 +13508,12 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2V-01",
+          "FAST-S2V-02",
+          "FAST-S2V-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13373,7 +13563,15 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2M-02",
+          "FAST-S2W-01",
+          "FAST-S2W-02",
+          "FAST-S2W-03",
+          "FAST-S2W-04",
+          "FAST-S2W-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13423,7 +13621,12 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2M-01",
+          "FAST-S2M-04",
+          "FAST-S2M-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13473,7 +13676,11 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "WIN-L014-01",
+          "WIN-L014-02"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13523,7 +13730,11 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP19-0008",
+          "FAST-S7O-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13574,7 +13785,11 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP11-0004",
+          "FAST-S7ZK-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13724,7 +13939,11 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP5-0005",
+          "FAST-S7ZK-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13768,7 +13987,13 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZH-02",
+          "FAST-S7ZH-04",
+          "FAST-S7ZI-03",
+          "W2-0001"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13809,7 +14034,14 @@
           "pmid": null,
           "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000872",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "WIN-L021-01",
+          "WIN-L021-02",
+          "WIN-L021-03",
+          "WIN-L021-04",
+          "WIN-L021-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13855,7 +14087,10 @@
         "checked_by": null,
         "internal_review": true,
         "override_note": "обзор, не статья",
-        "not_an_external_source": true
+        "not_an_external_source": true,
+        "lit_ref": [
+          "FAST-S7ZI-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13902,7 +14137,10 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "MAIN-P127-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -13952,7 +14190,10 @@
         "internal_review": true,
         "pointer_to": "review",
         "override_note": "утверждение о нашем результате, не цитата из статьи",
-        "not_an_external_source": true
+        "not_an_external_source": true,
+        "lit_ref": [
+          "MAIN-P127-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -13999,7 +14240,11 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP19-0008",
+          "FAST-S7O-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -14049,7 +14294,12 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2S-01",
+          "FAST-S2S-02",
+          "FAST-S2S-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -14100,7 +14350,10 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S2S-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -14144,7 +14397,11 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "DIP14-0003",
+          "DIP14-0006"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14191,7 +14448,10 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "W2-0001"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -14235,7 +14495,11 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "FAST-S7O-02",
+          "FAST-S7P-03"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14373,7 +14637,11 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "W2-0014",
+          "WIN-L074-04"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -14523,7 +14791,12 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "B6-02-0001",
+          "FAST-S7B-05",
+          "W4-0029"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -14567,7 +14840,12 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZH-02",
+          "FAST-S7ZI-01",
+          "MAIN-P127-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14608,7 +14886,13 @@
           "pmid": null,
           "url": null,
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S2H-01",
+          "FAST-S7Z-01",
+          "FAST-S7Z-04",
+          "W2-0022"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14731,7 +15015,12 @@
           "pmid": null,
           "url": null,
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S2J-01",
+          "FAST-S2J-04",
+          "MAIN-P125-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14772,7 +15061,12 @@
           "pmid": null,
           "url": null,
           "none": false
-        }
+        },
+        "lit_ref": [
+          "DIP11-0003",
+          "DIP19-0008",
+          "FAST-S7ZK-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14813,7 +15107,12 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "FAST-S7A-01",
+          "FAST-S7ZQ-04",
+          "P-0009"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14895,7 +15194,13 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "DIP10-0007",
+          "W4-0029",
+          "WIN-L055-01",
+          "WIN-L055-02"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14936,7 +15241,12 @@
           "pmid": null,
           "url": null,
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZH-02",
+          "FAST-S7ZH-04",
+          "FAST-S7ZI-03"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -14948,7 +15258,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**частично первый источник**: Briat, Gupta & Khammash 2016 Cell Systems (arXiv:1"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -14964,7 +15274,7 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
+        "registry_level": "**частично первый источник**: Briat, Gupta & Khammash 2016 Cell Systems (arXiv:1",
         "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
@@ -15018,7 +15328,11 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "W2-0001",
+          "W3-0006"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15100,7 +15414,11 @@
           "pmid": null,
           "url": null,
           "none": true
-        }
+        },
+        "lit_ref": [
+          "FAST-S7P-01",
+          "FAST-S7P-02"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15141,7 +15459,10 @@
           "pmid": null,
           "url": "https://journals.plos.org/plosgenetics/article/figures?id=10.1371/journal.pgen.1001076",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "MAIN-P127-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15182,7 +15503,14 @@
           "pmid": null,
           "url": "https://doi.org/10.1162/isal_a_00722",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "WIN-L052-01",
+          "WIN-L052-02",
+          "WIN-L052-03",
+          "WIN-L052-04",
+          "WIN-L052-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15223,7 +15551,13 @@
           "pmid": null,
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6631810/",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "WIN-L053-01",
+          "WIN-L053-02",
+          "WIN-L053-03",
+          "WIN-L053-04"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15264,7 +15598,10 @@
           "pmid": null,
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2049046/",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZH-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15311,7 +15648,14 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "WIN-L055-01",
+          "WIN-L055-02",
+          "WIN-L055-03",
+          "WIN-L055-04",
+          "WIN-L055-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -15361,7 +15705,10 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "WIN-L002-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -15411,7 +15758,12 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "A-0003",
+          "WIN-L053-01",
+          "WIN-L092-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -15455,7 +15807,11 @@
           "pmid": null,
           "url": "https://ruj.uj.edu.pl/xmlui/handle/item/263279",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZM-04",
+          "MAIN-P127-01"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15502,7 +15858,13 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7N-01",
+          "FAST-S7N-02",
+          "FAST-S7N-03",
+          "FAST-S7N-04"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -15614,7 +15976,14 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7O-01",
+          "FAST-S7O-02",
+          "FAST-S7O-03",
+          "FAST-S7O-04",
+          "FAST-S7O-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -15664,7 +16033,14 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7P-01",
+          "FAST-S7P-02",
+          "FAST-S7P-03",
+          "FAST-S7P-04",
+          "FAST-S7P-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -15708,7 +16084,14 @@
           "pmid": null,
           "url": "https://arxiv.org/pdf/q-bio/0501016",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7Q-01",
+          "FAST-S7Q-02",
+          "FAST-S7Q-03",
+          "FAST-S7Q-04",
+          "FAST-S7Q-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -15752,7 +16135,11 @@
         },
         "lit_ref": [
           "B26-01-0001",
-          "B26-01-0009"
+          "B26-01-0009",
+          "WIN-L064-01",
+          "WIN-L064-02",
+          "WIN-L064-03",
+          "WIN-L064-04"
         ]
       },
       "created_at": "2026-11-20",
@@ -15839,7 +16226,13 @@
           "pmid": null,
           "url": "https://arxiv.org/html/2605.16753",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZE-01",
+          "FAST-S7ZE-03",
+          "V-0001",
+          "V-0002"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16036,7 +16429,14 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7Y-01",
+          "FAST-S7Y-02",
+          "FAST-S7Y-03",
+          "FAST-S7Y-04",
+          "FAST-S7Y-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -16080,7 +16480,10 @@
           "pmid": null,
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4312886/",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7Z-04"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16127,7 +16530,14 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7Z-01",
+          "FAST-S7Z-02",
+          "FAST-S7Z-03",
+          "FAST-S7Z-04",
+          "FAST-S7Z-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -16234,7 +16644,13 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "WIN-L074-01",
+          "WIN-L074-02",
+          "WIN-L074-03",
+          "WIN-L074-04"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -16278,7 +16694,18 @@
           "pmid": null,
           "url": "https://doi.org/10.3390/life11090966",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZQ-01",
+          "FAST-S7ZQ-02",
+          "FAST-S7ZQ-03",
+          "FAST-S7ZQ-04",
+          "FAST-S7ZQ-05",
+          "WIN-L075-01",
+          "WIN-L075-02",
+          "WIN-L075-03",
+          "WIN-L075-04"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16360,7 +16787,14 @@
           "pmid": null,
           "url": "https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2018.00064/full",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZA-01",
+          "FAST-S7ZA-02",
+          "FAST-S7ZA-03",
+          "FAST-S7ZA-04",
+          "FAST-S7ZA-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16401,7 +16835,14 @@
           "pmid": null,
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5660915/",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "WIN-L078-01",
+          "WIN-L078-02",
+          "WIN-L078-03",
+          "WIN-L078-04",
+          "WIN-L078-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16442,7 +16883,13 @@
           "pmid": null,
           "url": "https://doi.org/10.31219/osf.io/ea6yx",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "WIN-L079-01",
+          "WIN-L079-02",
+          "WIN-L079-03",
+          "WIN-L079-04"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16489,7 +16936,14 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZB-01",
+          "FAST-S7ZB-02",
+          "FAST-S7ZB-03",
+          "FAST-S7ZB-04",
+          "FAST-S7ZB-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -16539,7 +16993,12 @@
           "parser_version": "1",
           "source": "docs/ELEPHANT-MAP.md §1",
           "checked_by": null
-        }
+        },
+        "lit_ref": [
+          "DIP2-0006",
+          "DIP32-0006",
+          "DIP32-0011"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21",
@@ -16633,7 +17092,14 @@
           "pmid": null,
           "url": "https://doi.org/10.13140/2.1.1871.8723",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZC-01",
+          "FAST-S7ZC-02",
+          "FAST-S7ZC-03",
+          "FAST-S7ZC-04",
+          "FAST-S7ZC-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16756,7 +17222,14 @@
           "pmid": null,
           "url": "https://doi.org/10.1162/isal_a_00739",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZD-01",
+          "FAST-S7ZD-02",
+          "FAST-S7ZD-03",
+          "FAST-S7ZD-04",
+          "FAST-S7ZD-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16797,7 +17270,16 @@
           "pmid": null,
           "url": "https://www.nature.com/articles/s41540-026-00718-y",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZE-01",
+          "FAST-S7ZE-02",
+          "FAST-S7ZE-03",
+          "FAST-S7ZE-04",
+          "FAST-S7ZE-05",
+          "FAST-S7ZE-06",
+          "FAST-S7ZE-07"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -16838,7 +17320,11 @@
           "pmid": null,
           "url": "https://apsframework.org/articles/viability-the-organising-principle-of-biological-persistence/",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZE-03",
+          "V-0001"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -17012,7 +17498,11 @@
         },
         "lit_ref": [
           "B7-05-0001",
-          "B7-05-0002"
+          "B7-05-0002",
+          "WIN-L092-01",
+          "WIN-L092-02",
+          "WIN-L092-03",
+          "WIN-L092-04"
         ]
       },
       "created_at": "2026-11-20",
@@ -17231,7 +17721,13 @@
           "pmid": null,
           "url": "https://doi.org/10.1073/pnas.49.4.517",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZH-01",
+          "FAST-S7ZH-02",
+          "FAST-S7ZH-03",
+          "FAST-S7ZH-04"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -17272,7 +17768,14 @@
           "pmid": null,
           "url": "https://doi.org/10.1186/s12859-019-2921-3",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZP-01",
+          "FAST-S7ZP-02",
+          "FAST-S7ZP-03",
+          "FAST-S7ZP-04",
+          "FAST-S7ZP-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -17313,7 +17816,14 @@
           "pmid": null,
           "url": "https://doi.org/10.1038/270301a0",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZI-01",
+          "FAST-S7ZI-02",
+          "FAST-S7ZI-03",
+          "FAST-S7ZI-04",
+          "FAST-S7ZI-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -17442,7 +17952,12 @@
           "none": false
         },
         "lit_ref": [
-          "A-0002"
+          "A-0002",
+          "FAST-S7ZM-01",
+          "FAST-S7ZM-02",
+          "FAST-S7ZM-03",
+          "FAST-S7ZM-04",
+          "FAST-S7ZM-05"
         ]
       },
       "created_at": "2026-11-20",
@@ -17525,7 +18040,14 @@
           "pmid": null,
           "url": "https://doi.org/10.1162/1064546041255548",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZL-01",
+          "FAST-S7ZL-02",
+          "FAST-S7ZL-03",
+          "FAST-S7ZL-04",
+          "FAST-S7ZL-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -17566,7 +18088,14 @@
           "pmid": null,
           "url": "https://doi.org/10.1016/j.jtbi.2009.11.010",
           "none": false
-        }
+        },
+        "lit_ref": [
+          "FAST-S7ZK-01",
+          "FAST-S7ZK-02",
+          "FAST-S7ZK-03",
+          "FAST-S7ZK-04",
+          "FAST-S7ZK-05"
+        ]
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -18036,7 +18565,11 @@
           "F-022",
           "FINDING-319"
         ],
-        "status": "open"
+        "status": "open",
+        "lit_ref": [
+          "B26-01-0004",
+          "DIP19-0008"
+        ]
       },
       "created_at": "2026-11-21",
       "updated_at": "2026-11-21"
@@ -18116,7 +18649,11 @@
           "F-024",
           "FINDING-317"
         ],
-        "status": "open"
+        "status": "open",
+        "lit_ref": [
+          "DIP14-0006",
+          "FAST-S7P-01"
+        ]
       },
       "created_at": "2026-11-21",
       "updated_at": "2026-11-21"
@@ -18182,7 +18719,10 @@
           "verdict": "предсказание 3–10 % не выполнено: мост провален в прежней формулировке",
           "why": "alpha — управление, а не координата состояния; проекция ядра на ось управления либо вся, либо пуста",
           "replacement": "полоса = множество управлений с равным выигрышем (плато), измерено в FINDING-314"
-        }
+        },
+        "lit_ref": [
+          "DIP14-0006"
+        ]
       },
       "created_at": "2026-11-21",
       "updated_at": "2026-11-21"
@@ -18253,7 +18793,11 @@
             "value function"
           ],
           "verdict": "правая половина моста подтверждена как «аналог»; левая (производная) на L-062 не опирается"
-        }
+        },
+        "lit_ref": [
+          "FAST-S7P-01",
+          "FAST-S7P-02"
+        ]
       },
       "created_at": "2026-11-21",
       "updated_at": "2026-11-21"
@@ -18539,13 +19083,13 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -18574,12 +19118,12 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18604,13 +19148,13 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -18759,13 +19303,13 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "F-022",
@@ -18779,12 +19323,12 @@
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -18979,13 +19523,13 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
@@ -19014,12 +19558,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
