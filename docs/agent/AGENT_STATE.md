@@ -565,3 +565,11 @@ status: цикл 858 — MAIN.md sec.13 + сообщения, дальше жу�
   (run in_progress на 71ef361c).
 
 status: continue
+
+## 2026-11-27 — фикс CI: Mathlib cache в gate.yml (цикл 861g)
+
+- gate.yml: `lake exe cache get` перед `lake build` (Mathlib с нуля = часы, таймаут 90 мин)
+- 3 рана CI отменены main'ом (Lean build без кэша обречён)
+- v3 EXP-2026-4102/4103 опубликованы (base 4efd39d6), MSG-MAIN-EXPER-861F-01 отправлен
+- FINDING-457 (D-Q4 passed) запушен: 71ef361c..4efd39d6, гейт c864 зелёный
+- status: после зелёного c865 — пуш фикса gate.yml и проверка CI-рана

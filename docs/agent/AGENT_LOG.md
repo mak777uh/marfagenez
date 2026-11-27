@@ -10726,3 +10726,10 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
 
 - **861f:** интеграция первого научного результата lab-конвейера: FINDING-457 (D-Q4, `SUB-EXP-2026-4101-1`, submission passed) — скрытая память ремонтного износа: ΔT90 = −43.9167 [−61.8333, −26.75], p = 0.0002, 12/12 seeds, 4 нулевых контроля (silent/fires/specific/sham), доза-ответ до −140.9 (a=0.3, k=0.003). Репо-сторона: FINDING + журнал; БД остаётся received (сервисного метода интеграции нет, протокол lab/MAIN.md §3).
   Журнал также называет коммиты после записи 861e: 6fc26e7a literature: s7zel — F-011 niche as Delta-R ecological signature (Laland NCT guide)
+
+- **861g:** фикс CI-гейта: шаг Lean build в .github/workflows/gate.yml теперь сначала делает
+  `lake exe cache get` (прекомпилированные oleans Mathlib) — с холодного кэша `lake build`
+  собирал Mathlib часами (laws зависят от mathlib), job-таймаут 90 минут убивал бы каждый ран.
+  Три обречённых рана отменены main'ом (45927530142 на 71ef361c, 45929226792 на 4efd39d6,
+  45929677283 на ветке аналитика audit/lean-ffi-feature-2026-11-27c — все висели в Lean build).
+  ci_workflow.py зелёный (7 ok). Коммит фикса назван «journal 861g» в сообщении.

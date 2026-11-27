@@ -63,7 +63,11 @@ jobs:
 
       - name: Lean build
         working-directory: laws
-        run: lake build
+        run: |
+          set -euo pipefail
+          # Mathlib from source takes hours; fetch the community prebuilt oleans.
+          lake exe cache get || echo "cache get unavailable, building from source"
+          lake build
 
       - name: Full repository gate
         run: bash run.sh all
