@@ -1412,26 +1412,26 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 {
  "L": "L-027",
  "locator": {
-  "doi": null,
+  "doi": "10.3390/e12071733",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.3390/e12071733",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/hordijk10-entropy-e12071733.pdf",
+  "bytes": 178795,
+  "sha256": "2d3aaa9c0217434b2ca86efd2a7b87d3973c60af5d590ff87b621590328ca10b",
+  "retrieved_at": "2026-11-27T09:55:00Z",
+  "via": "publisher-pdf",
+  "via_detail": "mdpi-res Entropy 12(7):1733 (2010), Hordijk-Hein-Steel review, 10 стр.; RAF-определение, polynomial-time алгоритм — сверено; канонические IJMS-2011/2004 работы остаются частично вторыми руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "page", "from": "1733", "to": "1742"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1448,7 +1448,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** Hordijk, Kauffman & Steel (2011), IJMS 12:3085; Mossel & Steel (2005), JTB 233:327–336.
-**Проверено.** **вторые руки.**
+**Проверено.** **фрагмент**: Hordijk-Hein-Steel, «Autocatalytic Sets and the Origin of Life», Entropy 12:1733-1742 (2010), papers/hordijk10-entropy-e12071733.pdf (sha256 2d3aaa9c…), 2026-11-27; RAF = RA (каждая реакция катализируется членом множества) + F (реагенты из food set), polynomial-time алгоритм — сверено. Каноническая IJMS 12:3085 (Hordijk-Kauffman-Steel 2011) и Mossel-Steel 2005 — вторые руки.
 **Утверждение (пересказ).** RAF определимо формально (каждая реакция катализируется членом множества; все реагенты
 строятся из food set), но **универсальной доли** реакций, необходимой для замыкания, нет.
 **Что меняет.** Убрать из плана ожидание «доля реакций»; вместо неё — **порог по вероятности** и размер food set.
@@ -2204,26 +2204,26 @@ doi:10.3390/systems12040111.
 {
  "L": "L-043",
  "locator": {
-  "doi": null,
+  "doi": "10.3390/e12071733",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.3390/e12071733",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/hordijk10-entropy-e12071733.pdf",
+  "bytes": 178795,
+  "sha256": "2d3aaa9c0217434b2ca86efd2a7b87d3973c60af5d590ff87b621590328ca10b",
+  "retrieved_at": "2026-11-27T09:55:00Z",
+  "via": "publisher-pdf",
+  "via_detail": "mdpi-res Entropy 12(7):1733 (2010), Hordijk-Hein-Steel review, 10 стр.; RAF-определение, polynomial-time алгоритм — сверено; канонические IJMS-2011/2004 работы остаются частично вторыми руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "page", "from": "1733", "to": "1742"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2240,7 +2240,7 @@ doi:10.3390/systems12040111.
 
 
 **Кто.** Hordijk & Steel (2004); Hordijk, Kauffman & Steel (2011), IJMS 12:3085; PMC4428007.
-**Проверено.** **вторые руки.**
+**Проверено.** **фрагмент**: тот же обзор Entropy 2010 + J Syst Chem 2015 (papers/hordijk15-jsystchem.xml, PMC4333308), 2026-11-27; polynomial-time алгоритм нахождения RAF и minimal RAF — сверено по тексту; NP-полнота минимальной irrRAF и экспоненциальное число irrRAF — из вторых рук (в обзорах не выписаны явно).
 **Утверждение (пересказ).** Максимальная RAF — **полиномиально**; любая irrRAF — полиномиально; **минимальная по
 мощности** irrRAF — **NP-полна**; число irrRAF может быть экспоненциальным.
 **Что меняет.** `Q-006`: нельзя «найти один irrRAF» превращать в «найти минимальный».
