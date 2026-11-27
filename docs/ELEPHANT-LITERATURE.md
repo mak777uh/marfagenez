@@ -2059,21 +2059,21 @@ bet-hedging оптимален, когда критерий **геометрич
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
+  "url": "https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf",
   "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/gneiting07-jasa.pdf",
+  "bytes": 556804,
+  "sha256": "d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2",
+  "retrieved_at": "2026-11-27T09:15:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "Gneiting2007jasa.pdf с sites.stat.washington.edu/raftery (JASA 102:359-378, 20 стр.); proper scoring rules, calibration, sharpness — сверено; Gneiting-Balabdaoui-Raftery JRSS-B 2007 остаётся вторыми руками"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "page", "from": "359", "to": "378"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2091,8 +2091,8 @@ bet-hedging оптимален, когда критерий **геометрич
 
 **Кто.** Gneiting & Raftery (2007), JASA, doi:10.1198/016214506000001437; Gneiting, Balabdaoui & Raftery (2007),
 JRSS-B, doi:10.1111/j.1467-9868.2007.00587.x.
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Brier (бинарное), CRPS (непрерывное); калибровка и **sharpness** — раздельно; strictly
+**Проверено.** **полный текст** papers/gneiting07-jasa.pdf (JASA 102:359-378, sha256 d31a0c5f…), 2026-11-27; strictly proper scoring rules, calibration vs sharpness — сверено с текстом. Gneiting, Balabdaoui & Raftery (JRSS-B 2007) — вторые руки.
+**Утверждение (по полному тексту; JRSS-B — пересказ).** Brier (бинарное), CRPS (непрерывное); калибровка и **sharpness** — раздельно; strictly
 proper scoring rules — единственные, где честно говорить правду.
 **Что меняет.** `Q-012` и прибор `Q-022`: те же метрики — к исследователю, а не к организму.
 
