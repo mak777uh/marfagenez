@@ -29,6 +29,16 @@ def check(nodes, graph, allowlist):
         degrees[dst] += 1
 
     legacy = set(allowlist.get("ids", []))
+    if len(legacy) != allowlist.get("baseline_isolated_count"):
+        problems.append(
+            "legacy isolation allowlist size differs from its frozen baseline count"
+        )
+    missing_legacy = sorted(legacy - ids)
+    if missing_legacy:
+        problems.append(
+            "legacy isolation allowlist contains nodes absent from the rebuilt graph: "
+            + ", ".join(missing_legacy)
+        )
     new_established = [
         node.get("id")
         for node in nodes
