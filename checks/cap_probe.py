@@ -1,8 +1,9 @@
 import json, subprocess, sys, os, hashlib
-sys.path.insert(0, '/root/marfagenez')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _ROOT)
 
 def run_raw(args, tag):
-    cmd = ['/root/marfagenez/core/target/release/trace'] + args
+    cmd = [os.path.join(_ROOT, 'core', 'target', 'release', 'trace')] + args
     out = subprocess.run(cmd, capture_output=True, text=True)
     return out.stdout, out.stderr
 
@@ -19,7 +20,7 @@ for cap in ['2.0', '1.0', '4.0']:
         print('  STDERR:', err.strip()[:300])
     if line:
         p = line[0].split(':',1)[1].strip()
-        d = json.load(open('/root/marfagenez/' + p))
+        d = json.load(open(os.path.join(_ROOT, p)))
         fl = d['frames'][-1]['field']
         al = sum(1 for s in d['frames'][-1]['samples'] if s['alive'])
         print(f"  hash={d['hash']} last-frame mean={sum(fl)/len(fl):.4f} alive={al}")

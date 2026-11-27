@@ -67,7 +67,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CORE = ROOT / "core"
-WSL_CORE = "/root/marfagenez/core"
+WSL_CORE = str(CORE)
 
 sys.path.insert(0, str(ROOT))
 from checks.experiment import Experiment  # noqa: E402

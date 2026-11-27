@@ -214,6 +214,7 @@ for control, paths in raw.items():
 raw_bytes = sum(os.stat(path, follow_symlinks=False).st_size for path in out.rglob("*") if path.is_file())
 manifest = {
     "schema": "dq6-run/v1",
+    "canon": "json-utf8-sorted-compact-ensure_ascii-false-v1",
     "task": "EXP-2026-4103",
     "task_version": int(task_payload["version"]),
     "task_version_sha256": task_version_sha256,

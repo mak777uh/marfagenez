@@ -25,7 +25,7 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Iterable, TextIO
 
-ANALYSIS_VERSION = "dq6-analysis-1.0.1"
+ANALYSIS_VERSION = "dq6-analysis-1.0.2"
 TASK_ID = "EXP-2026-4103"
 SEEDS = tuple(range(4301, 4313))
 N = 100
@@ -623,6 +623,7 @@ def seed_metrics(data: RawData) -> list[dict]:
                     **{f"events_so_far_{step}": data.summaries[control][(h, seed, step)].events_so_far for step in SAMPLE_STEPS},
                     "global_event_count": histogram.event_count,
                     "global_interval_mean": histogram.global_interval_mean,
+                    "global_zero_interval_share": (histogram.global_intervals.get(0, 0) / histogram.event_count) if histogram.event_count else None,
                     "global_interval_q025": nearest_rank(histogram.global_intervals, 0.025),
                     "global_interval_q50": nearest_rank(histogram.global_intervals, 0.50),
                     "global_interval_q975": nearest_rank(histogram.global_intervals, 0.975),
@@ -1264,7 +1265,8 @@ SEED_METRIC_FIELDS = [
     "h", "seed", "control",
     *[f"Dbar_{step}" for step in SAMPLE_STEPS],
     *[f"events_so_far_{step}" for step in SAMPLE_STEPS],
-    "global_event_count", "global_interval_mean", "global_interval_q025", "global_interval_q50", "global_interval_q975",
+    "global_event_count", "global_interval_mean",
+    "global_zero_interval_share", "global_interval_q025", "global_interval_q50", "global_interval_q975",
     "global_interval_min", "global_interval_max", "global_interval_bin_count", "histogram_detail", "organism_interval_bin_count", "organisms_with_events",
     "reset_value_sum", "reset_value_sumsq", "reset_value_mean", "reset_value_second_moment", "reset_value_variance", "reset_value_std",
     "reset_value_min", "reset_value_max", "reset_schedule_hash", "abs_D800_D400", "relative_D800_D400", "converged",
@@ -1455,6 +1457,34 @@ def self_test() -> None:
     assert zero_derivative_fit["point_estimate"] is None
     assert all(point["log_response"] is None for point in zero_derivative_fit["input_points"])
     checks.append("exact zero-event yoking and zero central derivative without abort")
+
+    majority = HistogramRun(0.999, 4301, "death-reset", MATCHING_MODES["death-reset"], summary_seen=True)
+    majority.global_intervals = {0: 100, 3: 2}
+    majority.event_count = 102
+    assert math.isclose(majority.global_interval_mean, 6.0 / 102)
+    share = majority.global_intervals.get(0, 0) / majority.event_count
+    assert math.isclose(share, 100.0 / 102)
+    assert share > 0.5
+    checks.append("majority-zero interval share reported without abort (share=%.4f)" % share)
+
+    # C2: canonicalization test vectors (json utf-8 sorted compact ensure_ascii=False).
+    # Pins the exact canonical form the lab service uses (control.py) and dq6 tools
+    # must match; NFC and NFD payloads hash differently on purpose.
+    import hashlib as _hashlib
+
+    def _canon(value):
+        return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+
+    _vectors = [
+        ({"text": "ремонт ремонтирует ремонт"}, "e15d07877e3a2c77a4a787a42e6eaab2e1fbad0d01e8c268c871efa4f4f0ca3d"),
+        ({"text": "café"}, "fddf2a5f8e88ebba1f1d753f3f1007780a7cf5af7e7ec350f8fb8af70fdc53d6"),
+        ({"text": "cafe\u0301"}, "747fa934aa290c52fbc6bfd5a6b1e87253d651728f7a68c7ddb79f1ec750358d"),
+        ({"text": "\U0001F418 слон"}, "46a71dcf6ac2df310fb2ef3aab05eb6bfdc6a12cc6211d42aa49e8022934c347"),
+        ({"b": 1, "a": "мир", "c": ["x", "ы"]}, "bae8d0ff76f52901c65683971d9788d0b33925304f40ee341aab7bd2636f6969"),
+    ]
+    for payload, digest in _vectors:
+        assert _hashlib.sha256(_canon(payload)).hexdigest() == digest, payload
+    checks.append("canonicalization vectors: russian, NFC/NFD distinct, emoji, key order")
 
     data = synthetic_data()
     with tempfile.TemporaryDirectory(prefix="dq6-synthetic-self-test-") as temporary:
