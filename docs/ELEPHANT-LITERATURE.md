@@ -891,26 +891,26 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 {
  "L": "L-017",
  "locator": {
-  "doi": null,
+  "doi": "10.1007/s12064-020-00313-7",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1007/s12064-020-00313-7",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "full_text_examined",
+  "artifact": "papers/krakauer20-iti.xml",
+  "bytes": 417896,
+  "sha256": "0c9c2105544f69e357141d367789b53fb6e7519db5a6fc49779f4ff84a142020",
+  "retrieved_at": "2026-11-27T10:30:00Z",
+  "via": "europepmc-oa-fulltext",
+  "via_detail": "Theory Biosci 139:358-368, PMC7244620 fullTextXML; individuals = aggregates preserving measure of temporal information; unique/shared/complementary information decomposition — сверено по полному тексту"
  },
  "inspection": {
-  "scope": "partial",
-  "reviewed_ranges": []
+  "scope": "full",
+  "reviewed_ranges": [{"type": "article", "from": "1", "to": "full"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -928,7 +928,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 **Кто.** Krakauer et al. (2020) — information theory of individuality (ITI).
 **Ссылка.** **вторые руки.**
-**Проверено.** **вторые руки.**
+**Проверено.** **полный текст**: Krakauer, Bertschinger, Olbrich, Flack & Ay, «The information theory of individuality», Theory Biosci 139:358 (2020), papers/krakauer20-iti.xml (PMC7244620, DOI 10.1007/s12064-020-00313-7), 2026-11-27; индивидуум = агрегат, сохраняющий меру темпоральной информации; разложение unique/shared/complementary information — сверено.
 **Утверждение (пересказ).** Индивидуальность — это **мера** (передача информации от частей к целому), а не
 философский статус.
 **Что даёт нам.** Готовый **операциональный** способ мерить «слона» по временным рядам, не зная, какая переменная —
