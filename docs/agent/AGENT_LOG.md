@@ -10670,3 +10670,22 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   обязан ловить и «РАЗДЕЛ ПРОВАЛЕН» (859c/d могли прятать красный kg за
   красным exp). Пин состояния в 860b отработал: log_check и
   literature_contract зелёные под mid-gate коммитами devin.
+
+### Цикл 861 — 2026-11-27 — слияние пакета аналитика (7 веток): контрольная плоскость, RNG2, честность корпуса
+
+- Слиты все семь веток внешнего аналитика (Gaduka Tatarstana, задача
+  TASK-FOR-ANALYST-20261127, ветки по одной теме от `98fd1054`):
+  P0 `dd8d5b2e` (claim идемпотентность под write-lock, submit требует
+  task_version_sha256 + карантин late, requeue expired lease; exp_dq5:
+  точная дискретная доза, семантика mu = 1-exp(-hazard), RNG-потоки по
+  (seed, organism_id); research/closure-world design-only; конфликт run.sh
+  решён в пользу 859/860), D `ba2852bc` (xoshiro256++ RNG2, версия RNG в
+  хэше трассы, LCG сохраняет golden-хэши), B `2919211b` (save() пинит
+  полный SHA, dirty -> запрет passed, legacy-класс в allowlist),
+  C `1aba459e` (MSRV, overflow-checks, LTO, verus_copies_match),
+  A `39f5c6e9` (пять исходов, числа, пути), E `3afea7e9` (live_numbers),
+  F `ce5fb8ae` (.github/workflows/gate.yml; CI включается пушем с
+  workflow-скоуп токеном владельца).
+- live_numbers --write после D: числа дерева обновлены (тесты 416).
+- kg пересобран после всех правок корпуса; embeddings_fresh в префлайте.
+- Co-authored-by: аналитик во всех merge-коммитах (trailer в message).
