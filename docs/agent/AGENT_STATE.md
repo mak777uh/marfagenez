@@ -573,3 +573,11 @@ status: continue
 - v3 EXP-2026-4102/4103 опубликованы (base 4efd39d6), MSG-MAIN-EXPER-861F-01 отправлен
 - FINDING-457 (D-Q4 passed) запушен: 71ef361c..4efd39d6, гейт c864 зелёный
 - status: после зелёного c865 — пуш фикса gate.yml и проверка CI-рана
+
+## 2026-11-27 — интеграция задачника аналитика №2 (цикл 861h)
+
+- 7 веток audit/*-2026-11-27c вмержены: result-role-phase, mde-power, rng-battery,
+  kg-reachability (с фиксом fb50e3b8), lean-ffi-feature, step-invariants, closure-world-design
+- верификация всех чеков прогнана main'ом в worktree — все зелёные
+- KG: изолированные узлы 511→110 после миграции
+- status: полный префлайт в пине → гейт c866 → пуш

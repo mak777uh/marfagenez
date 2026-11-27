@@ -10733,3 +10733,18 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   Три обречённых рана отменены main'ом (45927530142 на 71ef361c, 45929226792 на 4efd39d6,
   45929677283 на ветке аналитика audit/lean-ffi-feature-2026-11-27c — все висели в Lean build).
   ci_workflow.py зелёный (7 ok). Коммит фикса назван «journal 861g» в сообщении.
+
+- **861h:** интеграция отчёта аналитика (задачник №2): все семь веток audit/*-2026-11-27c вмержены в master
+  после верификации в рабочих checkout'ах. Журнал называет коммиты после записи 861g:
+  `674e400b` (s7zem: Kussell & Leibler 2005, bet-hedging/I_env — devin),
+  `830e8be7` (merge result-role-phase: схема v3 role/phase, sidecar 407 записей),
+  `db091645` (merge mde-power: MDE 30 окружений, пороги EXP-176-178/226-229),
+  `7ca27b59` (merge rng-battery: LCG/xoshiro256++, χ², Box-Muller хвосты),
+  `101dbdfc` (merge kg-reachability: 580→1167 узлов, изолированные 511→110, цепочка conclusion→data→code),
+  `6193ca10` (merge lean-ffi: opt-in feature, 10 bridge-тестов, 216 passed),
+  `45bb2f7c` (merge step-invariants: 3 property-теста — ledger, spill, JSON roundtrip),
+  `2ac700c6` (merge closure-world-design: m=3,k=2 кандидат, 5+5 прогнозов, дизайн-only).
+  Верификация: все чеки аналитика прогнаны main'ом в worktree (аналитик не смог — DNS):
+  rng selftest/audit OK, result_design unittest OK, markup_legacy OK, mde unittest/selftest OK,
+  kg 10/10 OK (после фикса fb50e3b8: статус no-link приоритетнее new-isolated для узла с source-ссылкой),
+  lean_ffi_feature OK + cargo 216 passed, step_invariants 3 passed.
