@@ -2,7 +2,7 @@
 
 ## Baseline (master before this change)
 
-Snapshot commit: 4efd39d6aac8e80ca0692f5d1e6c4ceb4ec18b66. The generated graph contained 580 nodes and 101 edges. Degree counting on both endpoints found 511 isolated nodes. The baseline IDs are frozen in kg/legacy-isolated.json; this prevents an existing orphan from blocking migration while stopping a newly added established node from silently becoming another orphan.
+Snapshot commit: 4efd39d6aac8e80ca0692f5d1e6c4ceb4ec18b66. The generated graph contained 580 nodes and 101 edges. Degree counting on both endpoints found 511 isolated nodes. The baseline IDs are frozen in kg/legacy-isolated.json; the gate checks both the exact frozen count and that all baseline IDs still exist. This prevents an existing orphan from blocking migration while stopping a newly added established node from silently becoming another orphan.
 
 ## New artifact chain
 
@@ -28,6 +28,6 @@ Run python3 kg/migrate.py, then the existing kg/kg.py build, then:
 
     python3 tools/kg_reach.py --write
     python3 checks/kg_edges.py
-    python3 -m unittest checks.test_kg_reach
+    python3 -m unittest checks.test_kg_reach checks.test_kg_edges
 
 The generated report includes the before/after isolated counts and per-conclusion paths. The before count is fixed here at 511. The after count is computed from the rebuilt graph rather than predicted from code that has not run.
