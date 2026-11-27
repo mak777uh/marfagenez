@@ -184,6 +184,11 @@ impl Life {
         &self.world
     }
 
+    /// Version of the random source driving this cycle.
+    pub fn rng_version(&self) -> crate::RngVersion {
+        self.rng.version()
+    }
+
     /// Builds a cycle. Returns `None` for an empty population or a field with no cells.
     ///
     /// Also returns `None` when `world` fails [`World::validate`]. Every
@@ -199,6 +204,20 @@ impl Life {
         seed: u64,
         memory_life: usize,
     ) -> Option<Self> {
+        Self::new_with_rng_version(
+            world, field, organisms, policy, seed, memory_life, crate::RngVersion::LcgV1
+        )
+    }
+
+    pub fn new_with_rng_version(
+        world: World,
+        field: Field,
+        organisms: Vec<Remembering>,
+        policy: Policy,
+        seed: u64,
+        memory_life: usize,
+        rng_version: crate::RngVersion,
+    ) -> Option<Self> {
         let n_organisms = organisms.len();
         if organisms.is_empty() || field.cells() == 0 {
             return None;
@@ -211,7 +230,7 @@ impl Life {
             field,
             organisms: organisms.into_iter().map(Some).collect(),
             policies: vec![policy; n_organisms],
-            rng: crate::Rng::new(seed),
+            rng: crate::Rng::with_version(seed, rng_version),
             step: 0,
             moves: 0,
             memory_life,
@@ -243,11 +262,27 @@ impl Life {
         seed: u64,
         memory_life: usize,
     ) -> Option<Self> {
+        Self::new_mixed_with_rng_version(
+            world, field, organisms, policies, seed, memory_life, crate::RngVersion::LcgV1
+        )
+    }
+
+    pub fn new_mixed_with_rng_version(
+        world: World,
+        field: Field,
+        organisms: Vec<Remembering>,
+        policies: Vec<Policy>,
+        seed: u64,
+        memory_life: usize,
+        rng_version: crate::RngVersion,
+    ) -> Option<Self> {
         if policies.len() != organisms.len() {
             return None;
         }
         let first = policies.first().copied()?;
-        let mut life = Self::new(world, field, organisms, first, seed, memory_life)?;
+        let mut life = Self::new_with_rng_version(
+            world, field, organisms, first, seed, memory_life, rng_version
+        )?;
         life.policies = policies;
         Some(life)
     }
@@ -274,6 +309,23 @@ impl Life {
         seed: u64,
         memory_life: usize,
     ) -> Option<Self> {
+        Self::spawn_at_with_rng_version(
+            world, field, cells, energy, move_cost, policy, seed, memory_life,
+            crate::RngVersion::LcgV1
+        )
+    }
+
+    pub fn spawn_at_with_rng_version(
+        world: World,
+        field: Field,
+        cells: &[usize],
+        energy: f64,
+        move_cost: f64,
+        policy: Policy,
+        seed: u64,
+        memory_life: usize,
+        rng_version: crate::RngVersion,
+    ) -> Option<Self> {
         if cells.is_empty() {
             return None;
         }
@@ -288,7 +340,7 @@ impl Life {
             r.memory.best_level = 0.0;
             pop.push(r);
         }
-        Self::new(world, field, pop, policy, seed, memory_life)
+        Self::new_with_rng_version(world, field, pop, policy, seed, memory_life, rng_version)
     }
 
     pub fn spawn_even(
@@ -300,6 +352,23 @@ impl Life {
         policy: Policy,
         seed: u64,
         memory_life: usize,
+    ) -> Option<Self> {
+        Self::spawn_even_with_rng_version(
+            world, field, n, energy, move_cost, policy, seed, memory_life,
+            crate::RngVersion::LcgV1
+        )
+    }
+
+    pub fn spawn_even_with_rng_version(
+        world: World,
+        field: Field,
+        n: usize,
+        energy: f64,
+        move_cost: f64,
+        policy: Policy,
+        seed: u64,
+        memory_life: usize,
+        rng_version: crate::RngVersion,
     ) -> Option<Self> {
         if n == 0 {
             return None;
@@ -316,7 +385,7 @@ impl Life {
             r.memory.best_level = 0.0;
             pop.push(r);
         }
-        Self::new(world, field, pop, policy, seed, memory_life)
+        Self::new_with_rng_version(world, field, pop, policy, seed, memory_life, rng_version)
     }
 
     /// Builds a population of `n` healthy organisms spread over the field.
@@ -330,11 +399,31 @@ impl Life {
         seed: u64,
         memory_life: usize,
     ) -> Option<Self> {
+        Self::spawn_with_rng_version(
+            world, field, n, energy, move_cost, policy, seed, memory_life,
+            crate::RngVersion::LcgV1
+        )
+    }
+
+    pub fn spawn_with_rng_version(
+        world: World,
+        field: Field,
+        n: usize,
+        energy: f64,
+        move_cost: f64,
+        policy: Policy,
+        seed: u64,
+        memory_life: usize,
+        rng_version: crate::RngVersion,
+    ) -> Option<Self> {
         if n == 0 {
             return None;
         }
         let cells = field.cells();
-        let mut rng = crate::Rng::new(seed ^ 0x5DEE_CE66_D1CE_4E5B);
+        if cells == 0 {
+            return None;
+        }
+        let mut rng = crate::Rng::with_version(seed ^ 0x5DEE_CE66_D1CE_4E5B, rng_version);
         let mut pop = Vec::with_capacity(n);
         for _ in 0..n {
             let cell = (rng.uniform() * cells as f64) as usize;
@@ -345,7 +434,7 @@ impl Life {
             r.memory.best_level = 0.0;
             pop.push(r);
         }
-        Self::new(world, field, pop, policy, seed, memory_life)
+        Self::new_with_rng_version(world, field, pop, policy, seed, memory_life, rng_version)
     }
 
     pub fn step(&self) -> usize {
