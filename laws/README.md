@@ -202,6 +202,17 @@ Medium/
 
 ---
 
+## Текущие числа Lean (генерируются)
+
+| Показатель | Значение |
+|---|---:|
+| Модули `Medium` | <!-- live:medium_files -->61<!-- /live --> |
+| Теоремы/леммы `Medium` | <!-- live:medium_theorems -->311<!-- /live --> |
+| Теоремы/леммы `Medium + Legacy` | <!-- live:lean_theorems -->338<!-- /live --> |
+
+Обновить из дерева: `python3 tools/live_numbers.py --write`.
+Проверить: `python3 tools/live_numbers.py --check`.
+
 ## Лицензия
 
 MIT.

@@ -538,6 +538,22 @@ marfagenez/
 
 ---
 
+## Живые числа дерева (генерируются)
+
+Эти значения не редактируются вручную. Обновить: `python3 tools/live_numbers.py --write`;
+проверить: `python3 tools/live_numbers.py --check`.
+
+| Показатель | Значение |
+|---|---:|
+| Rust `#[test]`-атрибуты | <!-- live:tests -->407<!-- /live --> |
+| Файлы Rust-тестов | <!-- live:test_files -->42<!-- /live --> |
+| Файлы ядра `core/src/*.rs` | <!-- live:src_files -->19<!-- /live --> |
+| Бинарники `core/src/bin` | <!-- live:bin_files -->9<!-- /live --> |
+| Модули Lean `Medium` | <!-- live:medium_files -->61<!-- /live --> |
+| Теоремы/леммы `Medium` | <!-- live:medium_theorems -->311<!-- /live --> |
+| Теоремы/леммы `Medium + Legacy` | <!-- live:lean_theorems -->338<!-- /live --> |
+| Экспериментальные `checks/exp*.py` | <!-- live:exp_scripts -->131<!-- /live --> |
+
 ## Лицензия
 
 См. [`LICENSE`](LICENSE).
