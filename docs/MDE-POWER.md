@@ -36,7 +36,7 @@ or not. They do not upgrade a simulation finding to external validation.
 | FINDING-228 | stock0 = 100 vs 50 at f0 = 4; 8/8 vs 0/8 | 8 | nominal binary MDE ≈ 0.700; observed contrast 1.0 |
 | FINDING-229 | stock0 = 50: f0 = 2 vs 4; 8/8 vs 0/8 | 8 | nominal binary MDE ≈ 0.700; observed contrast 1.0 |
 
-Interpretation: the source experiments use one deterministic scene/seed per parameter point in FINDING-176–178; the four world sizes in 176 and the different threshold points in 177–178 are not independent replicates. The table therefore records 1 available observation per point, not a basis for estimating between-seed sigma. FINDING-176 uses four world sizes, not four replicate seeds;
+Interpretation: the source experiments use one deterministic scene/seed per parameter point in FINDING-176–178; the four world sizes in 176 and the different threshold points in 177–178 are not independent replicates. The table therefore records one source-reported run per point for FINDING-176–178. The values 24 and 8 for FINDING-226–229 are run counts reported in those findings; this audit does not infer independent seed replication from a count alone. FINDING-176 uses four world sizes, not four replicate seeds;
 177 and 178 use different deterministic parameter points, not replicate trials.
 FINDING-226 records 24/24 versus 0/24 around its sharp f0 threshold. FINDING-227–229
 report 8 runs per point. Their large binary survival contrasts are detectable under
