@@ -10812,3 +10812,17 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
   как c871 на HEAD с этой записью. Изменений кода нет; doc_numbers/log_check прогнаны заново.
 
 - **861o:** роли по решению владельца (2026-11-27): exper не привязан к experiments — простаивая, может брать любые ready-задачи очереди (knowledge/formulas/ingest); main при простое exper запускает прогоны готовых экспериментов параллельно под шляпой исполнителя `main-exec` (фактический исполнитель фиксируется в submission). §10 `lab/MAIN.md` дополнен; exper уведомляется сообщением очереди. Журнал называет коммит devin `1401abef` (literature: L-023 Chao + L-042 COT upgraded to full_text_examined (PDFs verified, sha256)). Параллельный прогон EXP-2026-4103 v3 (D-Q6 death-reset) берётся main-exec по решению владельца. Гейт c874; пуш при зелёном.
+
+- **861p:** аудит exper (PROP-EXPER-DQ6-CONTROLS-V3-20261127-02 rev2) вскрыл два блокирующих
+  изъяна драйвера D-Q6: построчный event-журнал ~4.6 GiB на значение h (бюджет 256MB) и sham
+  генерировал независимые exogenous resets вместо yoked-расписания. Параллельный прогон
+  4103-a1 (main-exec) остановлен и откатан — научная ценность прогона была бы нулевой.
+  Интегрирован кандидат exper exp_dq6_controls_candidate.rs (sha256 0759ffd7): компактные
+  точные global interval histograms + schedule fingerprint (production ~0.5MB на сетку),
+  yoked sham (те же шаги/количества/reset values), --derivative-neighbors; 16 тестов
+  (+7 нетто, доки 415->422); опер-цепочка dq6 в tools/dq6/ (analyzer 1.0.1 b8a3fe3a,
+  runner 9533b2e6, leased, environment, plan, finding, submit). Smoke: summary 1KB,
+  гистограмма 20.7KB на 2 seed/20k шагов. Журнал называет коммит devin: `4f5201ae`
+  (literature: L-006/L-035/L-047 upgraded to full_text_examined (verified PDFs)).
+  Гейт c875; пуш при зелёном; после — переиздание EXP-2026-4103 с новым base_commit,
+  повторный claim и прогон компактным драйвером.
