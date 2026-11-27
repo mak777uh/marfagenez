@@ -1,5 +1,6 @@
 # Build artifacts
 target/
+core/target
 .lake/
 *.olean
 *.ilean
