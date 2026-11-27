@@ -426,21 +426,27 @@ decreasing side** of the fitness function». Пример там же: птиц�
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1111/j.1469-185X.2012.00225.x",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/starrfelt12-biolrev.pdf",
+  "bytes": 838684,
+  "sha256": "623025f8f036624b5e9677fc397789161eefac20d42c74608f738ae252c8bde2",
+  "retrieved_at": "2026-11-27T09:00:00Z",
+  "via": "publisher-pdf",
+  "via_detail": "тот же артефакт, что L-038 (Starrfelt & Kokko 2012, Biol Rev 87:742-755); DOI канонически у L-038; обзор прямо разбирает Cohen 1966 (germination strategies), Seger & Brockmann 1987, Philippi & Seger 1989 — первичные классические работы остаются вторыми руками через обзор"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "bet-hedging-review",
+    "to": "seed-bank-passage"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -459,8 +465,9 @@ decreasing side** of the fitness function». Пример там же: птиц�
 **Кто.** Cohen (1966); Seger & Brockmann (1987); Philippi & Seger (1989); Starrfelt & Kokko (2012); Evans & Dennehy
 (2005) — «germ banking».
 **Ссылка.** **вторые руки** — из отзывов 2026-11-20.
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** При **мультипликативном** критерии приспособленности и стохастической среде оптимум —
+**Проверено.** **фрагмент** papers/starrfelt12-biolrev.pdf (Starrfelt & Kokko 2012, sha256 623025f8…), 2026-11-27; Cohen 1966/Seger-Brockmann 1987/Philippi-Seger 1989 разобраны в обзоре — первоисточники вторые руки.
+
+**Утверждение (по обзору Starrfelt & Kokko 2012; классика — пересказ).** При **мультипликативном** критерии приспособленности и стохастической среде оптимум —
 диверсификация или «банк» покоящихся единиц; банк семян — bet-hedging против катастроф.
 **Что даёт нам.** Наша «полоса» может быть описана либо как **insurance** (L-007), либо как **банк** — это разные
 формализмы с разными предсказаниями.
