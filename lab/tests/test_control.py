@@ -115,6 +115,54 @@ class TestPublishAndIdempotency(Base):
         self.assertEqual(c.execute("SELECT COUNT(*) FROM task_versions").fetchone()[0], 2)
         self.assertInvariants()
 
+    def test_empty_claim_result_is_cached_after_task_arrives(self):
+        first = self.cp.claim("fast-01", "i", "knowledge", idem_key="empty-k")
+        self.assertIsNone(first["claimed"])
+        self.cp.publish_task(make_task("KG-2026-0090"))
+        replay = self.cp.claim("fast-01", "i", "knowledge", idem_key="empty-k")
+        self.assertEqual(replay, first, "empty-queue response must be idempotent")
+        fresh = self.cp.claim("fast-01", "i", "knowledge", idem_key="fresh-k")
+        self.assertEqual(fresh["claimed"]["task_id"], "KG-2026-0090")
+
+    def test_parallel_claims_with_same_idempotency_key_share_one_lease(self):
+        self.cp.publish_task(make_task("KG-2026-0091"))
+        barrier = threading.Barrier(2)
+        results, errors = [], []
+        lock = threading.Lock()
+
+        def worker():
+            cp = ControlPlane(self.dir / "control.sqlite3",
+                              artifacts=self.dir / "artifacts",
+                              wall=self.clock.wall, mono=self.clock.mono)
+            cp.init()
+            try:
+                barrier.wait(timeout=5)
+                result = cp.claim("fast-same", "instance-same", "knowledge",
+                                  idem_key="same-key", request={"same": True})
+                with lock:
+                    results.append(result)
+            except Exception as exc:  # noqa: BLE001
+                with lock:
+                    errors.append(repr(exc))
+            finally:
+                cp.close()
+
+        threads = [threading.Thread(target=worker) for _ in range(2)]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+        self.assertFalse(errors, f"parallel claim errors: {errors}")
+        self.assertEqual(len(results), 2)
+        self.assertEqual(results[0], results[1])
+        self.assertTrue(results[0]["claimed"])
+        c = self.db()
+        self.assertEqual(c.execute(
+            "SELECT COUNT(*) FROM attempts WHERE task_id='KG-2026-0091'").fetchone()[0], 1)
+        self.assertEqual(c.execute(
+            "SELECT COUNT(*) FROM leases WHERE task_id='KG-2026-0091' AND state='active'"
+        ).fetchone()[0], 1)
+
 
 class TestClaimFencing(Base):
     def test_single_task_ten_threads_one_winner(self):
@@ -203,6 +251,8 @@ class TestClaimFencing(Base):
         blob = self.cp.put_blob("UPL-x", "fast-01", b"atoms") if False else None
         late_sub = {
             "id": "SUB-2026-0001", "task_id": "KG-2026-0003", "task_version": 1,
+            "task_version_sha256": l1["task_version_sha256"],
+            "attempt_id": l1["attempt_id"],
             "lease_id": l1["lease_id"], "lease_epoch": l1["lease_epoch"],
             "agent_id": "fast-01", "artifacts": [{"sha256": "0" * 64, "bytes": 1,
                                                  "media_type": "x"}],
@@ -211,8 +261,11 @@ class TestClaimFencing(Base):
         out = self.cp.submit(late_sub, idem_key="sub-late")
         self.assertEqual(out["status"], "late_submission")
         c = self.db()
-        self.assertEqual(c.execute(
-            "SELECT status FROM submissions WHERE id='SUB-2026-0001'").fetchone()[0], "late")
+        late_row = c.execute(
+            "SELECT status,task_version_sha256 FROM submissions WHERE id='SUB-2026-0001'"
+        ).fetchone()
+        self.assertEqual(late_row["status"], "late")
+        self.assertEqual(late_row["task_version_sha256"], l1["task_version_sha256"])
         # повторный claim вторым агентом: expiry вычислен внутри claim (§14.2)
         r2 = self.cp.claim("fast-02", "i2", "knowledge", idem_key="k2")
         self.assertTrue(r2["claimed"], "задача не вернулась в очередь")
@@ -258,7 +311,8 @@ class TestSubmitAndIdempotency(Base):
         lease = r["claimed"]
         sub = {
             "id": "SUB-2026-0002", "task_id": "KG-2026-0004",
-            "task_version": 1, "lease_id": lease["lease_id"],
+            "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
+            "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
             "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
             "artifacts": [{"sha256": blob["sha256"], "bytes": blob["bytes"],
                            "media_type": "application/x-ndjson"}],
@@ -267,6 +321,10 @@ class TestSubmitAndIdempotency(Base):
         }
         out = self.cp.submit(sub, idem_key="s1")
         self.assertEqual(out["status"], "received")
+        stored_sha = self.db().execute(
+            "SELECT task_version_sha256 FROM submissions WHERE id='SUB-2026-0002'"
+        ).fetchone()[0]
+        self.assertEqual(stored_sha, lease["task_version_sha256"])
         # тот же ключ + тот же payload = тот же ответ (§14.4)
         out2 = self.cp.submit(sub, idem_key="s1")
         self.assertEqual(out2, out)
@@ -284,12 +342,28 @@ class TestSubmitAndIdempotency(Base):
             "SELECT status FROM tasks WHERE id='KG-2026-0004'").fetchone()[0], "submitted")
         self.assertInvariants()
 
+    def test_submit_rejects_wrong_task_version_digest(self):
+        self.cp.publish_task(make_task("KG-2026-0092"))
+        lease = self.cp.claim("fast-01", "i", "knowledge", idem_key="claim-0092")["claimed"]
+        sub = {
+            "id": "SUB-2026-0092", "task_id": "KG-2026-0092", "task_version": 1,
+            "task_version_sha256": "0" * 64, "attempt_id": lease["attempt_id"],
+            "lease_id": lease["lease_id"], "lease_epoch": lease["lease_epoch"],
+            "agent_id": "fast-01", "artifacts": [],
+            "bundle_sha256": "9" * 64,
+        }
+        from lab.service.control import BadRequest
+        with self.assertRaisesRegex(BadRequest, "task_version_sha256"):
+            self.cp.submit(sub, idem_key="wrong-version-sha")
+
     def test_submit_missing_blob_rejected(self):
         self.cp.publish_task(make_task("KG-2026-0005"))
         r = self.cp.claim("fast-01", "i", "knowledge", idem_key="c1")
         lease = r["claimed"]
         sub = {
             "id": "SUB-2026-0003", "task_id": "KG-2026-0005", "task_version": 1,
+            "task_version_sha256": lease["task_version_sha256"],
+            "attempt_id": lease["attempt_id"],
             "lease_id": lease["lease_id"], "lease_epoch": lease["lease_epoch"],
             "agent_id": "fast-01",
             "artifacts": [{"sha256": "f" * 64, "bytes": 1, "media_type": "x"}],

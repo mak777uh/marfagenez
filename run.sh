@@ -8,9 +8,9 @@
 #   wsl -e bash /root/marfagenez/run.sh lean     # только Lean
 #   wsl -e bash /root/marfagenez/run.sh reach    # только достижимость файлов
 #
-# `all` — ровно 11 разделов, в этом порядке:
-#   1 test, 2 lean, 3 reach, 4 dispatcher, 5 verus, 6 exp,
-#   7 kg, 8 claims, 9 audit, 10 export, 11 agents.
+# `all` — ровно 12 разделов, в этом порядке:
+#   1 test, 2 lab, 3 lean, 4 reach, 5 dispatcher, 6 verus, 7 exp,
+#   8 kg, 9 claims, 10 audit, 11 export, 12 agents.
 #
 # Почему только WSL: Windows-линковка Rust сломана
 # (`undefined reference to GetHostNameW`), поэтому `cargo build` на Windows
@@ -30,7 +30,7 @@ cd "$ROOT" || { echo "нет каталога скрипта: $ROOT"; exit 1; }
 
 WHAT="${1:-all}"
 if [ "$WHAT" = all ]; then
-  echo "all: 11 разделов — test, lean, reach, dispatcher, verus, exp, kg, claims, audit, export, agents"
+  echo "all: 12 разделов — test, lab, lean, reach, dispatcher, verus, exp, kg, claims, audit, export, agents"
 fi
 
 # `FAILED` и функция `run()` удалены: `FAILED=1` присваивался, но нигде не
@@ -68,6 +68,11 @@ do_test() {
   fi
   rm -f "$out"
   return $rc
+}
+
+do_lab() {
+  section "Python: мультиагентная лаборатория"
+  python3 -m unittest discover -s lab/tests -v
 }
 
 do_lean() {
@@ -595,7 +600,7 @@ gate_report() {
   # поздний код его не затирает.
   gate_logs
   local n
-  for n in test lean reach dispatcher verus exp kg claims audit export agents; do
+  for n in test lab lean reach dispatcher verus exp kg claims audit export agents; do
     [ -n "${GATE_RC[$n]:-}" ] || continue
     keep "${GATE_RC[$n]}" "$n"
     cat "$GATE_LOG_DIR/$n.log"
@@ -675,6 +680,7 @@ keep() {
 RC=0
 case "$WHAT" in
   test)   do_test;   keep $? test ;;
+  lab)    do_lab;    keep $? lab ;;
   lean)   do_lean;   keep $? lean ;;
   reach)  do_reach;  keep $? reach ;;
   dispatcher) do_dispatcher; keep $? dispatcher ;;
@@ -687,12 +693,12 @@ case "$WHAT" in
   export) do_export; keep $? export ;;
   agents) do_agents; keep $? agents ;;
   all)
-    gate_group test lean dispatcher verus claims audit kg export agents
+    gate_group test lab lean dispatcher verus claims audit kg export agents
     gate_group reach exp
     gate_report
     ;;
   *)
-    echo "usage: run.sh [all|test|lean|reach|dispatcher|verus|exp|models|kg|claims|audit|export|agents]"
+    echo "usage: run.sh [all|test|lab|lean|reach|dispatcher|verus|exp|models|kg|claims|audit|export|agents]"
     exit 2
     ;;
 esac

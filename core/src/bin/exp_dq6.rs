@@ -49,6 +49,21 @@ impl Control {
     }
 }
 
+/// Применяет один переход повреждения. Reset использует среднее ДО обновления шага,
+/// рассчитанное вызывающим кодом; helper нужен и драйверу, и точному unit-тесту.
+fn transition_damage(damage: &mut f64, reset: bool, h: f64, mean_before_step: f64,
+                     control: Control) {
+    if reset {
+        let target = h * mean_before_step;
+        *damage = if control == Control::Cap { target.min(CAP) } else { target };
+    } else {
+        *damage += DELTA;
+        if control == Control::Cap {
+            *damage = (*damage).min(CAP);
+        }
+    }
+}
+
 /// Расписание семплов по спеке задачи: {steps/8, steps/4, steps/2, steps}.
 pub fn build_sample_steps(steps: usize) -> Vec<usize> {
     let e = steps / 8;
@@ -84,16 +99,11 @@ pub fn run_with_control(
                 _ => aging_mortality(Q, RATE, P, FLOOR, LAMBDA, *d),
             };
             let survive = (-mu).exp();
-            if rng.uniform() > survive {
-                let target = h * mean;
-                *d = if control == Control::Cap { target.min(CAP) } else { target };
+            let reset = rng.uniform() > survive;
+            transition_damage(d, reset, h, mean, control);
+            if reset {
                 events += 1;
                 event_log.push((events, step));
-            } else {
-                *d += DELTA;
-                if control == Control::Cap {
-                    *d = (*d).min(CAP);
-                }
             }
         }
         while si < sample_steps.len() && step == sample_steps[si] {
@@ -226,6 +236,27 @@ mod tests {
         let b = run(0.995, 50, 20_000, 11, &[10_000, 20_000]);
         assert_eq!(a.0, b.0);
         assert_eq!(a.1, b.1);
+    }
+
+    #[test]
+    fn reset_uses_exact_pre_step_population_mean() {
+        let mean_before_step = 0.4_f64;
+        let h = 0.75_f64;
+        let mut damage = 0.123_f64;
+        transition_damage(&mut damage, true, h, mean_before_step, Control::None);
+        assert!((damage - 0.3).abs() < 1e-15,
+            "reset must be h * mean_before_step, got {damage}");
+
+        let mut capped = 0.123_f64;
+        transition_damage(&mut capped, true, 2.0, mean_before_step, Control::Cap);
+        assert_eq!(capped, CAP, "cap control must clamp the exact reset target");
+    }
+
+    #[test]
+    fn non_reset_step_adds_one_damage_increment() {
+        let mut damage = 0.2_f64;
+        transition_damage(&mut damage, false, 0.9, 0.4, Control::None);
+        assert!((damage - (0.2 + DELTA)).abs() < 1e-15);
     }
 
     #[test]

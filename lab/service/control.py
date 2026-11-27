@@ -537,15 +537,18 @@ class ControlPlane:
               agent_limit: int = 5) -> dict:
         request = request or {"department": department, "wait": 0}
         c = self.connect()
-        # 1. идемпотентность до блокировок
-        saved = self._idem(c, agent_id, "claim", idem_key)
-        if saved:
-            if saved["request_sha256"] != _sha(_canon(request)):
-                raise Conflict("Idempotency-Key уже использован с другим payload")
-            return json.loads(saved["response_json"])
         now_iso, now_mono = self._now()
         c.execute("BEGIN IMMEDIATE")
         try:
+            # Lookup под той же write-lock, что и claim: параллельный повтор
+            # с тем же ключом возвращает сохранённый результат, а не второй lease.
+            saved = self._idem(c, agent_id, "claim", idem_key)
+            if saved:
+                if saved["request_sha256"] != _sha(_canon(request)):
+                    raise Conflict("Idempotency-Key уже использован с другим payload")
+                response = json.loads(saved["response_json"])
+                c.execute("COMMIT")
+                return response
             # блокирующие сообщения: claim запрещён, heartbeat — нет (§13)
             blocking = self._blocking_messages(c, agent_id, department, now_mono)
             if blocking:
@@ -581,8 +584,12 @@ class ControlPlane:
                 "ORDER BY t.priority DESC, t.created_at ASC LIMIT 1",
                 (department,)).fetchone()
             if not row:
+                response = {"claimed": None, "reason": "нет готовых задач"}
+                # Пустая очередь тоже является результатом запроса: тот же ключ
+                # не должен захватывать задачу, опубликованную после первого ответа.
+                self._idem_save(c, agent_id, "claim", idem_key, request, response)
                 c.execute("COMMIT")
-                return {"claimed": None, "reason": "нет готовых задач"}
+                return response
             tid, version = row["id"], row["current_version"]
             tv = c.execute(
                 "SELECT task_version_sha256,lease_json FROM task_versions "
@@ -738,23 +745,52 @@ class ControlPlane:
         return {"sha256": digest, "bytes": len(data)}
 
     def submit(self, payload: dict, idem_key: str, mark_artifacts_for_task: bool = True) -> dict:
-        for field in ("id", "task_id", "lease_id", "lease_epoch", "agent_id", "artifacts",
-                      "bundle_sha256"):
+        # Минимальная цепочка provenance обязательна на intake:
+        # lease -> attempt -> immutable task version -> SHA-256.
+        for field in ("id", "task_id", "task_version", "task_version_sha256",
+                      "attempt_id", "lease_id", "lease_epoch", "agent_id",
+                      "artifacts", "bundle_sha256"):
             if field not in payload:
                 raise BadRequest(f"submission missing field: {field}")
+        if (not isinstance(payload["task_version"], int)
+                or isinstance(payload["task_version"], bool)
+                or payload["task_version"] < 1):
+            raise BadRequest("submission.task_version должен быть целым числом >= 1")
+        if not isinstance(payload["task_version_sha256"], str):
+            raise BadRequest("submission.task_version_sha256 должен быть SHA-256 строкой")
         request = payload
         c = self.connect()
-        saved = self._idem(c, payload["agent_id"], "submit", idem_key)
-        if saved:
-            if saved["request_sha256"] != _sha(_canon(request)):
-                raise Conflict("Idempotency-Key уже использован с другим payload")
-            return json.loads(saved["response_json"])
         now_iso, now_mono = self._now()
         c.execute("BEGIN IMMEDIATE")
         try:
+            # Lookup под write-lock закрывает гонку двух одинаковых submit.
+            saved = self._idem(c, payload["agent_id"], "submit", idem_key)
+            if saved:
+                if saved["request_sha256"] != _sha(_canon(request)):
+                    raise Conflict("Idempotency-Key уже использован с другим payload")
+                response = json.loads(saved["response_json"])
+                c.execute("COMMIT")
+                return response
+
             row = self._check_lease(c, payload["lease_id"], payload["lease_epoch"],
                                     payload["agent_id"], payload.get("instance_id"))
-            task_id, dep_version = payload["task_id"], int(payload.get("task_version", 0))
+            task_id = payload["task_id"]
+            dep_version = payload["task_version"]
+            if task_id != row["task_id"]:
+                raise BadRequest("submission.task_id не соответствует lease")
+            if dep_version != row["task_version"]:
+                raise BadRequest("submission.task_version не соответствует версии lease")
+            if payload["attempt_id"] != row["attempt_id"]:
+                raise BadRequest("submission.attempt_id не соответствует lease")
+            version_row = c.execute(
+                "SELECT task_version_sha256 FROM task_versions WHERE task_id=? AND version=?",
+                (task_id, dep_version)).fetchone()
+            if version_row is None:
+                raise BadRequest("не найдена immutable task version для lease")
+            expected_task_sha = version_row["task_version_sha256"]
+            if payload["task_version_sha256"] != expected_task_sha:
+                raise BadRequest("submission.task_version_sha256 не соответствует task version")
+
             cur = c.execute("SELECT current_version FROM tasks WHERE id=?", (task_id,)).fetchone()
             if cur is None:
                 raise NotFound(f"нет задачи {task_id}")
@@ -768,9 +804,8 @@ class ControlPlane:
                 self._idem_save(c, payload["agent_id"], "submit", idem_key, request, response)
                 c.execute("COMMIT")
                 return response
-            stale = (cur["current_version"] != dep_version) if dep_version else False
+            stale = cur["current_version"] != dep_version
             if row["state"] != "active" or stale:
-                status = "late"
                 reason = ("lease больше не активен" if row["state"] != "active"
                           else f"постановка обновлена до v{cur['current_version']}")
                 c.execute(
@@ -780,7 +815,7 @@ class ControlPlane:
                     "scientific_outcome,parent_submission_id,complied_messages_json,"
                     "submitted_at,status,status_reason) "
                     "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'late', ?)",
-                    (payload["id"], task_id, dep_version or cur["current_version"], None,
+                    (payload["id"], task_id, dep_version, expected_task_sha,
                      row["attempt_id"], payload["lease_id"], payload["lease_epoch"],
                      payload["agent_id"], payload.get("instance_id"), payload.get("base_commit"),
                      payload["bundle_sha256"], _canon(payload["artifacts"]),
@@ -788,7 +823,7 @@ class ControlPlane:
                      payload.get("scientific_outcome"), payload.get("parent_submission_id"),
                      _canon(payload.get("complied_messages", [])), now_iso, reason))
                 self._audit(c, payload["agent_id"], "submission.late", "submission",
-                            payload["id"], {"reason": reason})
+                            payload["id"], {"reason": reason, "task_version_sha256": expected_task_sha})
                 response = {"status": "late_submission", "reason": reason,
                             "submission_id": payload["id"]}
                 self._idem_save(c, payload["agent_id"], "submit", idem_key, request, response)
@@ -813,7 +848,7 @@ class ControlPlane:
                 "bundle_sha256,artifacts_json,environment_json,toolchain_json,"
                 "scientific_outcome,parent_submission_id,complied_messages_json,"
                 "submitted_at,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'received')",
-                (payload["id"], task_id, row["task_version"], None, row["attempt_id"],
+                (payload["id"], task_id, dep_version, expected_task_sha, row["attempt_id"],
                  payload["lease_id"], payload["lease_epoch"], payload["agent_id"],
                  payload.get("instance_id"), payload.get("base_commit"),
                  payload["bundle_sha256"], _canon(payload["artifacts"]),
@@ -827,7 +862,8 @@ class ControlPlane:
             c.execute("UPDATE leases SET state='released', released_at=? WHERE lease_id=?",
                       (now_iso, payload["lease_id"]))
             self._audit(c, payload["agent_id"], "submission.receive", "submission",
-                        payload["id"], {"task": task_id, "epoch": payload["lease_epoch"]})
+                        payload["id"], {"task": task_id, "epoch": payload["lease_epoch"],
+                                        "task_version_sha256": expected_task_sha})
             response = {"status": "received", "submission_id": payload["id"]}
             self._idem_save(c, payload["agent_id"], "submit", idem_key, request, response)
             c.execute("COMMIT")
