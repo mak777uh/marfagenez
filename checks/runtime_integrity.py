@@ -293,8 +293,9 @@ class CoordIntegrity(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertEqual((status.read_bytes(), status.stat().st_mtime_ns), before)
             result = run([sys.executable, "tools/coord.py", "status", "--write"], root)
-            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            self.assertIn("# Статус координации", status.read_text())
+            self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+            self.assertIn("LEGACY_COORD_READ_ONLY", result.stdout)
+            self.assertEqual((status.read_bytes(), status.stat().st_mtime_ns), before)
 
     def test_status_on_empty_root_creates_no_coord_directory(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -305,7 +306,7 @@ class CoordIntegrity(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertFalse((root / ".coord").exists())
 
-    def test_recover_moves_stale_claims_and_preserves_fresh_and_live_lock(self) -> None:
+    def test_recover_fail_closed_leaves_claims_untouched(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             make_coord_repo(root)
@@ -319,23 +320,20 @@ class CoordIntegrity(unittest.TestCase):
             live_lock = root / ".coord" / "locks" / "live.lock"
             live_lock.mkdir(parents=True)
             (live_lock / "owner.json").write_text(json.dumps({"pid": os.getpid()}), encoding="utf-8")
-            old = time.time() - 3600
-            os.utime(live_lock, (old, old))
 
             result = run([sys.executable, "tools/coord.py", "recover", "--agent", "main"], root)
-            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            self.assertFalse(stale.exists())
-            self.assertEqual((root / ".coord" / "pending" / "stale" / "TASK.md").read_bytes(), stale_card)
+            self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+            self.assertIn("LEGACY_COORD_READ_ONLY", result.stdout)
+            self.assertTrue(stale.exists())
             self.assertTrue(fresh.exists())
-            self.assertFalse(standing.exists())
-            self.assertEqual(pending_standing.read_text(), "standing card\n")
+            self.assertTrue(standing.exists())
             self.assertTrue(finished.exists())
             self.assertTrue(live_lock.exists())
+            self.assertEqual(pending_standing.read_text(), "standing card\n")
             graveyard = root / ".coord" / "graveyard"
-            self.assertTrue(any("stale" in path.name for path in graveyard.iterdir()))
-            self.assertTrue(any("S-round" in path.name for path in graveyard.iterdir()))
+            self.assertFalse(graveyard.exists() and any(graveyard.iterdir()))
 
-    def test_recover_preserves_same_boot_fresh_heartbeat_despite_old_age(self) -> None:
+    def test_recover_fail_closed_preserves_claims_regardless_of_boot(self) -> None:
         for claim_boot in ("current", "changed"):
             with self.subTest(claim_boot=claim_boot), tempfile.TemporaryDirectory() as tmp:
                 root = Path(tmp)
@@ -353,21 +351,18 @@ class CoordIntegrity(unittest.TestCase):
                 self.assertEqual(stale.returncode, 0, stale.stdout + stale.stderr)
                 if claim_boot == "current":
                     self.assertIn("предупреждение", stale.stdout)
-                    self.assertIn("возраст 240 мин", stale.stdout)
                     self.assertNotIn("просрочена:", stale.stdout)
                 else:
                     self.assertIn("просрочена:", stale.stdout)
                 result = run([sys.executable, "tools/coord.py", "recover", "--agent", "main"], root)
-                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-                if claim_boot == "current":
-                    self.assertTrue(active.exists())
-                    self.assertFalse((root / ".coord" / "pending" / "long-running").exists())
-                    self.assertFalse(any((root / ".coord" / "graveyard").iterdir()))
-                else:
-                    self.assertFalse(active.exists())
-                    self.assertEqual((root / ".coord" / "pending" / "long-running" / "TASK.md").read_bytes(), card)
+                self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+                self.assertIn("LEGACY_COORD_READ_ONLY", result.stdout)
+                self.assertTrue(active.exists())
+                self.assertFalse((root / ".coord" / "pending" / "long-running").exists())
+                graveyard = root / ".coord" / "graveyard"
+                self.assertFalse(graveyard.exists() and any(graveyard.iterdir()))
 
-    def test_recover_recovers_same_boot_only_after_heartbeat_expires(self) -> None:
+    def test_recover_fail_closed_keeps_expired_heartbeat_claim_in_place(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             make_coord_repo(root)
@@ -377,40 +372,12 @@ class CoordIntegrity(unittest.TestCase):
             os.utime(claim_path, (old, old))
 
             result = run([sys.executable, "tools/coord.py", "recover", "--agent", "main"], root)
-            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            self.assertIn("нет heartbeat", result.stdout)
-            self.assertFalse(active.exists())
-            self.assertEqual((root / ".coord" / "pending" / "heartbeat-expired" / "TASK.md").read_bytes(), card)
+            self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+            self.assertIn("LEGACY_COORD_READ_ONLY", result.stdout)
+            self.assertTrue(active.exists())
+            self.assertFalse((root / ".coord" / "pending" / "heartbeat-expired").exists())
 
-    def test_recover_finishes_take_after_rename_before_pending_cleanup(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            tool = make_coord_repo(root)
-            spec = importlib.util.spec_from_file_location("coord_status_integrity", tool)
-            module = importlib.util.module_from_spec(spec)
-            assert spec.loader is not None
-            spec.loader.exec_module(module)
-            active, _ = make_claim(root, "disappearing")
-            make_claim(root, "survivor")
-            broken = root / ".coord" / "active" / "broken"
-            broken.mkdir()
-            (broken / ".claim.json").write_text("{broken json\n", encoding="utf-8")
-            real_status_text = module._status_text
-
-            def remove_claim_after_snapshot():
-                claims = module._active_claims()
-                shutil.rmtree(active)
-                return claims
-
-            with mock.patch.object(module, "_active_claims", side_effect=remove_claim_after_snapshot):
-                output = real_status_text()
-            self.assertIn("## Активные: 1", output)
-            self.assertNotIn("disappearing", output)
-            self.assertIn("survivor", output)
-            self.assertFalse(active.exists())
-            self.assertEqual((broken / ".claim.json").read_text(), "{broken json\n")
-
-    def test_recover_finishes_take_after_rename_before_pending_cleanup(self) -> None:
+    def test_recover_fail_closed_does_not_finish_pending_take_window(self) -> None:
         for heartbeat_age in (5, 60 * 60):
             with self.subTest(heartbeat_age=heartbeat_age), tempfile.TemporaryDirectory() as tmp:
                 root = Path(tmp)
@@ -427,13 +394,13 @@ class CoordIntegrity(unittest.TestCase):
                 os.utime(claim_path, (when, when))
 
                 result = run([sys.executable, "tools/coord.py", "recover", "--agent", "main"], root)
-                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-                self.assertIn("завершено взятие", result.stdout)
-                self.assertIn("recover: раундов перенесено 0", result.stdout)
+                self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+                self.assertIn("LEGACY_COORD_READ_ONLY", result.stdout)
                 self.assertTrue(active.exists())
-                self.assertFalse(pending.exists())
-                self.assertEqual((active / "TASK.md").read_bytes(), card)
-                self.assertFalse(any((root / ".coord" / "graveyard").iterdir()))
+                self.assertTrue(pending.exists())
+                self.assertEqual((pending / "TASK.md").read_bytes(), card)
+                graveyard = root / ".coord" / "graveyard"
+                self.assertFalse(graveyard.exists() and any(graveyard.iterdir()))
 
     def test_recover_fail_closed_on_take_window_mismatch(self) -> None:
         for claim_matches in (True, False):
@@ -451,23 +418,25 @@ class CoordIntegrity(unittest.TestCase):
                     claim_path.write_text(json.dumps(claim), encoding="utf-8")
 
                 result = run([sys.executable, "tools/coord.py", "recover", "--agent", "main"], root)
-                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-                self.assertIn("не тронут", result.stdout)
+                self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+                self.assertIn("LEGACY_COORD_READ_ONLY", result.stdout)
                 self.assertTrue(active.exists())
                 self.assertEqual((active / "TASK.md").read_bytes(), card)
                 self.assertEqual((pending / "TASK.md").read_bytes(), card + b"different\n")
-                self.assertFalse(any((root / ".coord" / "graveyard").iterdir()))
+                graveyard = root / ".coord" / "graveyard"
+                self.assertFalse(graveyard.exists() and any(graveyard.iterdir()))
 
-    def test_release_does_not_take_nested_lock(self) -> None:
+    def test_release_fail_closed_keeps_claim_and_no_nested_lock(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             make_coord_repo(root)
             active, card = make_claim(root, "release-me")
             result = run([sys.executable, "tools/coord.py", "release", "release-me",
                           "--agent", "worker", "--reason", "fixture"], root, timeout=5)
-            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            self.assertFalse(active.exists())
-            self.assertEqual((root / ".coord" / "pending" / "release-me" / "TASK.md").read_bytes(), card)
+            self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+            self.assertIn("LEGACY_COORD_READ_ONLY", result.stdout)
+            self.assertTrue(active.exists())
+            self.assertFalse((root / ".coord" / "pending" / "release-me").exists())
 
 
 class ProbeBridgeIntegrity(unittest.TestCase):

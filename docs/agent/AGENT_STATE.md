@@ -42,6 +42,8 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 
 **Дополнение (861bb):** `checks/ingest_integrity.py` — в `COPY_FILES` добавлен `checks/access_levels.py`: временное дерево integrity-тестов секции dispatcher теперь включает общий enum уровней доступа (без него `map_contract.py` падал с `ModuleNotFoundError` в `/tmp/ingest-integrity-*` — провал c926). Локально: ingest_integrity 29/29.
 
+**Дополнение (861bc):** `checks/runtime_integrity.py` — CoordIntegrity-тесты адаптированы под fail-closed контракт `tools/coord.py` (recover/release/`status --write` обязаны отказывать rc=2 с `LEGACY_COORD_READ_ONLY` и не трогать состояние; сценарии сбоя — stale claims, same-boot heartbeat, expired heartbeat, pending take-window, mismatch, release-fence — сохранены как фикстуры). Удалён мёртвый дубль `test_recover_finishes_take_after_rename_before_pending_cleanup` (перекрывался одноимённым def, при выполнении — бесконечная mock-рекурсия). Локально: runtime_integrity 19/19.
+
 ## §2.0 Состояние на 2026-11-25 (цикл 597)
 
 **Этот блок — самый свежий.** Он обновлён вместе с изменениями `checks/` и `run.sh`, как требует
