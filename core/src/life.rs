@@ -184,6 +184,24 @@ impl Life {
         &self.world
     }
 
+    pub fn feed_enabled(&self) -> bool { self.feed }
+    pub fn memory_life(&self) -> usize { self.memory_life }
+    pub fn rng_state_words(&self) -> Vec<u64> { self.rng.state_words() }
+
+    /// Per-slot movement price, memory lifetime and random-generator state.
+    /// Dead/removed slots return None because the current model drops them.
+    pub fn organism_parameters(&self) -> Vec<Option<(f64, usize)>> {
+        self.organisms.iter().map(|slot| {
+            slot.as_ref().map(|organism| (organism.move_cost, organism.memory_life))
+        }).collect()
+    }
+
+    pub fn organism_rng_state_words(&self) -> Vec<Option<Vec<u64>>> {
+        self.organisms.iter().map(|slot| {
+            slot.as_ref().map(|organism| organism.rng.state_words())
+        }).collect()
+    }
+
     /// Version of the random source driving this cycle.
     pub fn rng_version(&self) -> crate::RngVersion {
         self.rng.version()
@@ -1961,6 +1979,12 @@ impl Claims {
     pub fn owner_of(&self, cell: usize) -> Option<usize> {
         self.owner.get(cell).copied().flatten()
     }
+
+    pub fn cells(&self) -> usize { self.owner.len() }
+    pub fn claim_cost(&self) -> f64 { self.cost }
+    pub fn decay_rate(&self) -> f64 { self.decay }
+    pub fn owners(&self) -> &[Option<usize>] { &self.owner }
+    pub fn health(&self) -> &[f64] { &self.health }
 
     /// What share of a cell's income a stranger gets. `1.0` means "no trespass rule".
     pub fn trespass(&self) -> f64 {

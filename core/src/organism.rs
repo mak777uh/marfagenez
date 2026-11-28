@@ -104,6 +104,16 @@ impl Default for OrderProtocol {
     }
 }
 
+impl OrderProtocol {
+    pub fn name(self) -> &'static str {
+        match self {
+            Self::Historical => "historical",
+            Self::Random => "random",
+            Self::Rotate => "rotate",
+        }
+    }
+}
+
 impl Default for ShareProtocol {
     fn default() -> Self {
         Self::Sequential
