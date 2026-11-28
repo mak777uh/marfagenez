@@ -109,6 +109,45 @@ impl Census {
     }
 }
 
+/// Iterator for the three visit-order protocols.
+///
+/// Historical and Rotate are arithmetic iterators and need no temporary Vec.
+/// Random owns a Fisher-Yates permutation because preserving its draw and swap
+/// order is part of the seeded trajectory contract.
+enum VisitOrder {
+    Direct { next: usize, end: usize },
+    Rotate { next: usize, len: usize, shift: usize },
+    Shuffled(std::vec::IntoIter<usize>),
+}
+
+impl Iterator for VisitOrder {
+    type Item = usize;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        match self {
+            Self::Direct { next, end } => {
+                if *next >= *end {
+                    None
+                } else {
+                    let value = *next;
+                    *next += 1;
+                    Some(value)
+                }
+            }
+            Self::Rotate { next, len, shift } => {
+                if *next >= *len {
+                    None
+                } else {
+                    let value = (*next + *shift) % *len;
+                    *next += 1;
+                    Some(value)
+                }
+            }
+            Self::Shuffled(order) => order.next(),
+        }
+    }
+}
+
 /// A population of organisms in a field.
 #[derive(Debug)]
 pub struct Life {
@@ -182,6 +221,24 @@ impl Life {
     /// seed but different read budgets are different experiments.
     pub fn world(&self) -> &World {
         &self.world
+    }
+
+    pub fn feed_enabled(&self) -> bool { self.feed }
+    pub fn memory_life(&self) -> usize { self.memory_life }
+    pub fn rng_state_words(&self) -> Vec<u64> { self.rng.state_words() }
+
+    /// Per-slot movement price, memory lifetime and random-generator state.
+    /// Dead/removed slots return None because the current model drops them.
+    pub fn organism_parameters(&self) -> Vec<Option<(f64, usize)>> {
+        self.organisms.iter().map(|slot| {
+            slot.as_ref().map(|organism| (organism.move_cost, organism.memory_life))
+        }).collect()
+    }
+
+    pub fn organism_rng_state_words(&self) -> Vec<Option<Vec<u64>>> {
+        self.organisms.iter().map(|slot| {
+            slot.as_ref().map(|organism| organism.rng.state_words())
+        }).collect()
     }
 
     /// Version of the random source driving this cycle.
@@ -523,9 +580,16 @@ impl Life {
         // eating is not enough: an organism that eats before the crowd grows
         // takes `income / 1`, and the newcomer then takes `income / 2`, for
         // `1.5 * income` from one cell. See `tests/proportional_share.rs`.
-        let mut share_counts = vec![0usize; cells];
-        let mut share_left = vec![self.world.income; cells];
-        if self.world.share == ShareProtocol::Proportional {
+        let proportional = self.world.share == ShareProtocol::Proportional;
+        // The sequential protocol never consults either scratch array. Avoid
+        // allocating O(cells) memory twice on every step in the default path.
+        let mut share_counts = if proportional { vec![0usize; cells] } else { Vec::new() };
+        let mut share_left = if proportional {
+            vec![self.world.income; cells]
+        } else {
+            Vec::new()
+        };
+        if proportional {
             for slot in self.organisms.iter() {
                 if let Some(r) = slot.as_ref() {
                     if r.organism.is_alive() && r.cell < cells {
@@ -535,22 +599,14 @@ impl Life {
             }
         }
 
-        // Per-organism policies: `policies[i]` belongs to organism `i`. The clone
-        // is cheap (a `Copy` enum per organism) and it is what keeps the borrow
-        // checker out of the way, since the loop holds `self.organisms` mutably.
-        // A newborn takes the policy of the form it came from. The vector is
-        // padded to the current length of the population with the last policy
-        // stored, which for the single-policy constructor is that same policy -
-        // so a run with one policy for everybody keeps its bits exactly.
-        let mut policies = self.policies.clone();
-        if policies.len() < self.organisms.len() {
-            let inherited = policies.last().copied().unwrap_or(Policy::Stay);
-            policies.resize(self.organisms.len(), inherited);
-        }
-
+        // The canonical policy vector was already padded above. Read one Copy
+        // value before borrowing the corresponding organism mutably; cloning
+        // the complete vector here created O(population) allocation/copy work
+        // on every step for no semantic reason.
         let order = self.visit_order();
+        let debug_memory = self.step < 4 && std::env::var("DBG_MEMORY").is_ok();
         for oi in order {
-            let pol = policies.get(oi).copied().unwrap_or(Policy::Stay);
+            let pol = self.policies.get(oi).copied().unwrap_or(Policy::Stay);
             let Some(r) = self.organisms.get_mut(oi).and_then(|slot| slot.as_mut()) else { continue };
             if !r.organism.is_alive() {
                 continue;
@@ -775,7 +831,7 @@ impl Life {
                 }
             }
             // Debug: DBG_MEMORY=1 prints the memory decision each step.
-            if std::env::var("DBG_MEMORY").is_ok() && self.step < 4 {
+            if debug_memory {
                 eprintln!(
                     "step {} org cell {} here {:.3} mem {} level {:.3} dir {}",
                     self.step,
@@ -1127,16 +1183,15 @@ impl Life {
         // Ownership ticks after everyone has acted, so a step is: what each form
         // did, then what that did to who holds what. Off unless claims exist.
         if let Some(claims) = self.claims.as_mut() {
-            let present: Vec<Option<usize>> = self
-                .organisms
-                .iter()
-                .map(|slot| slot.as_ref().filter(|r| r.organism.is_alive()).map(|r| r.cell))
-                .collect();
-            // A form takes a cell by standing on it and paying for it. Another form
-            // takes it away only by overwriting, which is the same act: there is no
-            // separate stealing, because presence is the only claim the model has.
-            for (i, slot) in present.iter().enumerate() {
-                let Some(cell) = *slot else { continue };
+            // Claim processing changes ownership and energy, not organism
+            // presence/cell/death state. Reading each slot just before its own
+            // update is equivalent to the old full presence snapshot, without
+            // allocating one Option<usize> per organism each step.
+            for i in 0..self.organisms.len() {
+                let cell = self.organisms[i].as_ref()
+                    .filter(|r| r.organism.is_alive())
+                    .map(|r| r.cell);
+                let Some(cell) = cell else { continue };
                 if claims.owner[cell] == Some(i) {
                     claims.health[cell] = 1.0;
                     continue;
@@ -1260,6 +1315,21 @@ impl Life {
 
 #[cfg(test)]
 mod tests {
+
+    #[test]
+    fn direct_and_rotated_visit_orders_match_the_legacy_sequences() {
+        let direct = VisitOrder::Direct { next: 0, end: 5 }.collect::<Vec<_>>();
+        assert_eq!(direct, vec![0, 1, 2, 3, 4]);
+
+        let rotated = VisitOrder::Rotate { next: 0, len: 5, shift: 2 }
+            .collect::<Vec<_>>();
+        assert_eq!(rotated, vec![2, 3, 4, 0, 1]);
+
+        let empty = VisitOrder::Rotate { next: 0, len: 0, shift: 0 }
+            .collect::<Vec<_>>();
+        assert!(empty.is_empty());
+    }
+
     use super::*;
     use crate::organism::TieBreak;
 
@@ -1962,6 +2032,12 @@ impl Claims {
         self.owner.get(cell).copied().flatten()
     }
 
+    pub fn cells(&self) -> usize { self.owner.len() }
+    pub fn claim_cost(&self) -> f64 { self.cost }
+    pub fn decay_rate(&self) -> f64 { self.decay }
+    pub fn owners(&self) -> &[Option<usize>] { &self.owner }
+    pub fn health(&self) -> &[f64] { &self.health }
+
     /// What share of a cell's income a stranger gets. `1.0` means "no trespass rule".
     pub fn trespass(&self) -> f64 {
         self.trespass
@@ -2017,24 +2093,27 @@ impl Life {
     ///
     /// `Historical` returns `0..n`, which is what the loop did before the protocol existed. `Rotate`
     /// shifts by `step % n`; `Random` is one Fisher-Yates shuffle of `0..n` from the run's own rng.
-    fn visit_order(&mut self) -> Vec<usize> {
+    fn visit_order(&mut self) -> VisitOrder {
         let n = self.organisms.len();
         match self.order {
-            crate::organism::OrderProtocol::Historical => (0..n).collect(),
-            crate::organism::OrderProtocol::Rotate => {
-                if n == 0 {
-                    return Vec::new();
-                }
-                let shift = self.step % n;
-                (0..n).map(|i| (i + shift) % n).collect()
-            }
+            crate::organism::OrderProtocol::Historical => VisitOrder::Direct {
+                next: 0,
+                end: n,
+            },
+            crate::organism::OrderProtocol::Rotate => VisitOrder::Rotate {
+                next: 0,
+                len: n,
+                shift: if n == 0 { 0 } else { self.step % n },
+            },
             crate::organism::OrderProtocol::Random => {
                 let mut order: Vec<usize> = (0..n).collect();
+                // Preserve the exact Fisher-Yates draws and swap order of the
+                // previous implementation; only deterministic protocols bypass a Vec.
                 for i in (1..n).rev() {
                     let j = (self.rng.uniform() * (i + 1) as f64) as usize % (i + 1);
                     order.swap(i, j);
                 }
-                order
+                VisitOrder::Shuffled(order.into_iter())
             }
         }
     }
