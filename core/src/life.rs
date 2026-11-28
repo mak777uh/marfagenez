@@ -87,6 +87,19 @@ pub enum Policy {
     Sighted,
 }
 
+impl Policy {
+    /// Stable name used in machine-readable experiment configuration.
+    pub const fn name(self) -> &'static str {
+        match self {
+            Self::Stay => "stay",
+            Self::Random => "random",
+            Self::Remember => "remember",
+            Self::Memory => "memory",
+            Self::Sighted => "sighted",
+        }
+    }
+}
+
 /// A reading taken from outside the cycle.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Census {
@@ -107,6 +120,55 @@ impl Census {
             self.alive as f64 / self.total as f64
         }
     }
+}
+
+/// One population slot at the exact start of a recorded run.
+#[derive(Debug, Clone, PartialEq)]
+pub struct OrganismExperimentSnapshot {
+    pub present: bool,
+    pub policy: &'static str,
+    pub cell: Option<usize>,
+    pub energy: Option<f64>,
+    pub damage: Option<f64>,
+    pub alive: Option<bool>,
+    pub memory_cell: Option<usize>,
+    pub memory_level: Option<f64>,
+    pub memory_age: Option<usize>,
+    pub move_cost: Option<f64>,
+    pub memory_life: Option<usize>,
+    pub last_direction: Option<i32>,
+    pub last_taken: Option<f64>,
+    pub last_cell: Option<usize>,
+    pub rng_state: Option<[u64; 5]>,
+}
+
+/// Current ownership state, if the optional Claims mechanism is enabled.
+#[derive(Debug, Clone, PartialEq)]
+pub struct ClaimsExperimentSnapshot {
+    pub owner: Vec<Option<usize>>,
+    pub health: Vec<f64>,
+    pub cost: f64,
+    pub decay: f64,
+    pub trespass: f64,
+    pub takes: u64,
+    pub losses: u64,
+}
+
+/// Exact causal state of Life at the start of a recorded run.
+#[derive(Debug, Clone, PartialEq)]
+pub struct LifeExperimentSnapshot {
+    pub seed: u64,
+    pub step: usize,
+    pub memory_life: usize,
+    pub rng_version: &'static str,
+    pub rng_state: [u64; 5],
+    pub order_protocol: &'static str,
+    pub policy_mutation: f64,
+    pub sight_radius: usize,
+    pub feed: bool,
+    pub policies_by_slot: Vec<&'static str>,
+    pub organisms: Vec<OrganismExperimentSnapshot>,
+    pub claims: Option<ClaimsExperimentSnapshot>,
 }
 
 /// A population of organisms in a field.
@@ -187,6 +249,83 @@ impl Life {
     /// Version of the random source driving this cycle.
     pub fn rng_version(&self) -> crate::RngVersion {
         self.rng.version()
+    }
+
+    /// Capture every Life-owned causal input and the complete starting population.
+    pub fn experiment_snapshot(&self) -> LifeExperimentSnapshot {
+        let policies_by_slot: Vec<&'static str> = (0..self.organisms.len())
+            .map(|slot| {
+                self.policies.get(slot).copied().unwrap_or(Policy::Stay).name()
+            })
+            .collect();
+        let organisms = self.organisms.iter().enumerate().map(|(slot, item)| {
+            let policy = policies_by_slot[slot];
+            match item {
+                Some(r) => OrganismExperimentSnapshot {
+                    present: true,
+                    policy,
+                    cell: Some(r.cell),
+                    energy: Some(r.organism.energy()),
+                    damage: Some(r.organism.damage()),
+                    alive: Some(r.organism.is_alive()),
+                    memory_cell: Some(r.memory.best_cell),
+                    memory_level: Some(r.memory.best_level),
+                    memory_age: Some(r.memory.age),
+                    move_cost: Some(r.move_cost),
+                    memory_life: Some(r.memory_life),
+                    last_direction: Some(r.last_direction),
+                    last_taken: Some(r.last_taken),
+                    last_cell: Some(r.last_cell),
+                    rng_state: Some(r.rng.state_words()),
+                },
+                None => OrganismExperimentSnapshot {
+                    present: false,
+                    policy,
+                    cell: None,
+                    energy: None,
+                    damage: None,
+                    alive: None,
+                    memory_cell: None,
+                    memory_level: None,
+                    memory_age: None,
+                    move_cost: None,
+                    memory_life: None,
+                    last_direction: None,
+                    last_taken: None,
+                    last_cell: None,
+                    rng_state: None,
+                },
+            }
+        }).collect();
+
+        let claims = self.claims.as_ref().map(|c| ClaimsExperimentSnapshot {
+            owner: c.owner.clone(),
+            health: c.health.clone(),
+            cost: c.cost,
+            decay: c.decay,
+            trespass: c.trespass,
+            takes: c.takes,
+            losses: c.losses,
+        });
+        let order_protocol = match self.order {
+            crate::organism::OrderProtocol::Historical => "historical",
+            crate::organism::OrderProtocol::Random => "random",
+            crate::organism::OrderProtocol::Rotate => "rotate",
+        };
+        LifeExperimentSnapshot {
+            seed: self.seed,
+            step: self.step,
+            memory_life: self.memory_life,
+            rng_version: self.rng.version().as_str(),
+            rng_state: self.rng.state_words(),
+            order_protocol,
+            policy_mutation: self.policy_mutation,
+            sight_radius: self.sight_radius,
+            feed: self.feed,
+            policies_by_slot,
+            organisms,
+            claims,
+        }
     }
 
     /// Builds a cycle. Returns `None` for an empty population or a field with no cells.
