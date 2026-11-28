@@ -438,16 +438,6 @@ fn u64_array(values: &[u64]) -> String {
     )
 }
 
-fn optional_index_array(values: &[Option<usize>]) -> String {
-    format!(
-        "[{}]",
-        values.iter()
-            .map(|value| value.map(|v| v.to_string()).unwrap_or_else(|| "null".to_string()))
-            .collect::<Vec<_>>()
-            .join(",")
-    )
-}
-
 fn optional_rng_array(values: &[Option<Vec<u64>>]) -> String {
     format!(
         "[{}]",
@@ -486,12 +476,12 @@ fn config_manifest_json(
     let world = life.world();
     let field = life.field();
     let policies = life.policies().iter().copied().map(policy_name)
-        .map(|name| format!(r#""{}""#, name))
+        .map(|name| format!("\"{}\"", name))
         .collect::<Vec<_>>().join(",");
     let organism_parameters = life.organism_parameters();
     let organism_json = organism_parameters.iter().map(|parameters| match parameters {
         Some((move_cost, memory_life)) => format!(
-            r#"{{"move_cost":{},"memory_life":{}}}"#,
+            "{{\"move_cost\":{},\"memory_life\":{}}}",
             json_number(*move_cost), memory_life
         ),
         None => "null".to_string(),
@@ -502,7 +492,7 @@ fn config_manifest_json(
                 owner.map(|value| value.to_string()).unwrap_or_else(|| "null".to_string())
             }).collect::<Vec<_>>().join(",");
             format!(
-                r#"{{"enabled":true,"cells":{},"cost":{},"decay":{},"trespass":{},"owners":[{}],"health":{}}}"#,
+                "{{\"enabled\":true,\"cells\":{},\"cost\":{},\"decay\":{},\"trespass\":{},\"owners\":[{}],\"health\":{}}}",
                 claims.cells(),
                 json_number(claims.claim_cost()),
                 json_number(claims.decay_rate()),
@@ -515,18 +505,21 @@ fn config_manifest_json(
     };
 
     let mut out = String::new();
-    out.push_str(r#"{"schema":"marfagenez.trace-config.v1",""#);
+    out.push_str("{\"schema\":\"marfagenez.trace-config.v1\",");
     out.push_str(&format!(
-        r#""seed":{},""rng_version":"{}",""#,
+        "\"seed\":{},\"rng_version\":\"{}\",",
         life.seed(), life.rng_version().as_str()
     ));
-    out.push_str(&format!(r#""main_rng_state":{},""#, u64_array(&life.rng_state_words())));
     out.push_str(&format!(
-        r#""recording":{{"start_step":{},"requested_steps":{},"sample_every":{}}},""#,
+        "\"main_rng_state\":{},",
+        u64_array(&life.rng_state_words())
+    ));
+    out.push_str(&format!(
+        "\"recording\":{{\"start_step\":{},\"requested_steps\":{},\"sample_every\":{}}},",
         start_step, requested_steps, sample_every
     ));
     out.push_str(&format!(
-        r#""world":{{"income":{},"maintenance_cost":{},"repair_cost":{},"damage_rate":{},"capacity":{},"read_budget":{},"read_cost":{},"read_period":{},"look_on_shortfall":{},"share":"{}","tiebreak":"{}","look_order":"{}","birth_threshold":{},"birth_cost":{},"max_population":{}}},""#,
+        "\"world\":{{\"income\":{},\"maintenance_cost\":{},\"repair_cost\":{},\"damage_rate\":{},\"capacity\":{},\"read_budget\":{},\"read_cost\":{},\"read_period\":{},\"look_on_shortfall\":{},\"share\":\"{}\",\"tiebreak\":\"{}\",\"look_order\":\"{}\",\"birth_threshold\":{},\"birth_cost\":{},\"max_population\":{}}},",
         json_number(world.income),
         json_number(world.maintenance_cost),
         json_number(world.repair_cost),
@@ -544,7 +537,7 @@ fn config_manifest_json(
         world.max_population
     ));
     out.push_str(&format!(
-        r#""field":{{"cells":{},"max_resource":{},"regrow":{},"poor":{},"period":{},"shift":{},"phase_step":{},"levels":{},"ceilings":{}}},""#,
+        "\"field\":{{\"cells\":{},\"max_resource\":{},\"regrow\":{},\"poor\":{},\"period\":{},\"shift\":{},\"phase_step\":{},\"levels\":{},\"ceilings\":{}}},",
         field.cells(),
         json_number(field.max_resource()),
         json_number(field.regrow_rate()),
@@ -556,7 +549,7 @@ fn config_manifest_json(
         number_array(field.ceilings())
     ));
     out.push_str(&format!(
-        r#""life":{{"feed_before_eat":{},"memory_life":{},"order":"{}","policy_mutation":{},"sight_radius":{},"policies":[{}],"organism_parameters":[{}],"organism_rng_states":{},"claims":{}}},""#,
+        "\"life\":{{\"feed_before_eat\":{},\"memory_life\":{},\"order\":\"{}\",\"policy_mutation\":{},\"sight_radius\":{},\"policies\":[{}],\"organism_parameters\":[{}],\"organism_rng_states\":{},\"claims\":{}}},",
         life.feed_enabled(),
         life.memory_life(),
         life.order_protocol().name(),
@@ -567,7 +560,10 @@ fn config_manifest_json(
         optional_rng_array(&life.organism_rng_state_words()),
         claims_json
     ));
-    out.push_str(&format!(r#""initial_samples":{}"#, samples_json(initial_samples)));
+    out.push_str(&format!(
+        "\"initial_samples\":{}",
+        samples_json(initial_samples)
+    ));
     out.push('}');
     out
 }
@@ -952,6 +948,20 @@ mod tests {
         let tb = record(&mut b, 40, 4);
         assert_eq!(ta.config_hash, tb.config_hash);
         assert_eq!(ta.config_json, tb.config_json);
+    }
+
+    #[test]
+    fn config_manifest_has_one_well_formed_top_level_object() {
+        let mut life = setup(Policy::Stay, 771);
+        let trace = record(&mut life, 10, 2);
+        let json = &trace.config_json;
+        assert!(json.starts_with("{\"schema\":\"marfagenez.trace-config.v1\","));
+        assert!(json.ends_with('}'));
+        assert!(json.contains("\"seed\":771,"));
+        assert!(json.contains("\"policies\":[\"stay\"]"));
+        assert!(!json.contains("\"\"seed\""));
+        assert!(!json.contains("\"\"rng_version\""));
+        assert!(trace.config_hash != 0);
     }
 
     #[test]
