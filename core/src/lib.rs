@@ -624,7 +624,14 @@ mod tests {
         let model = Model::new(room, 0.3, 0.0).unwrap();
         let mut rng = Rng::new(11);
         let mut pop: Vec<f64> = (0..40000).map(|_| rng.normal() * 0.5).collect();
-        for _ in 0..8000 {
+
+        // For a reflected Gaussian step on [-B, B], the slowest Neumann mode
+        // contracts by rho = exp(-sigma^2 * pi^2 / (8 * B^2)) per step.
+        // Here rho^1,000 ~= 4.4e-6; the 40,000-sample relative SE for spread is ~0.35%.
+        // 40,000 samples are retained (same sampling error and fixed seed); the
+        // former 8,000-step burn-in spent 8x the work after practical convergence.
+        const BURN_IN_STEPS: usize = 1_000;
+        for _ in 0..BURN_IN_STEPS {
             for x in pop.iter_mut() {
                 let s = rng.normal();
                 *x = model.step(*x, s);
