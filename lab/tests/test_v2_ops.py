@@ -39,7 +39,7 @@ def make_task(tid: str, dept: str = "knowledge", priority: int = 5, **kw):
         "validators": [{"profile": "knowledge-map-v1", "version": "1.0.0"}],
         "dependencies": [], "lease": dict(LEASE_SPEC), "priority": priority,
         "base_commit": "6a9fa461", "network_profile": "none",
-        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 1,
+        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 16777216,
                    "network_allowlist": []},
         "tags": [], **kw,
     }
@@ -96,17 +96,18 @@ class Base(unittest.TestCase):
 
 class TestSchemaMigration(Base):
     def test_user_version_and_idempotent_init(self):
-        self.assertEqual(self.cp.user_version(), 4)
+        self.assertEqual(self.cp.user_version(), 5)
         tables = {r[0] for r in self.db().execute(
             "SELECT name FROM sqlite_master WHERE type='table'")}
         self.assertIn("proposals", tables)
         self.assertIn("standing_templates", tables)
         self.assertIn("submission_artifacts", tables)
+        self.assertIn("upload_artifacts", tables)
         # Repeated init must not rewind schema version or replay migrations.
         before = self.db().execute(
             "SELECT COUNT(*) FROM audit_events WHERE action='schema.migrate'"
         ).fetchone()[0]
-        self.assertEqual(before, 3)
+        self.assertEqual(before, 4)
         self.cp.init()
         self.assertEqual(self.cp.user_version(), 4)
         after = self.db().execute(
@@ -193,6 +194,94 @@ class TestSchemaMigration(Base):
         ).fetchone()
         self.assertIsNone(legacy["task_id"])
         self.assertInvariants()
+
+
+
+class TestUploadIntake(Base):
+    def test_upload_owner_state_and_close_are_enforced(self):
+        upload = self.cp.create_upload("fast-01")
+        with self.assertRaises(Gone):
+            self.cp.put_blob(upload, "fast-02", b"x")
+        self.cp.close_upload(upload, "fast-01")
+        self.assertEqual(self.cp.close_upload(upload, "fast-01")["state"], "closed")
+        with self.assertRaises(Gone):
+            self.cp.put_blob(upload, "fast-01", b"x")
+
+    def test_blob_limits_and_mime_are_enforced(self):
+        limited = ControlPlane2(
+            self.dir / "limited.sqlite3", artifacts=self.dir / "limited-artifacts",
+            wall=self.clock.wall, mono=self.clock.mono, max_blob_bytes=3,
+        )
+        try:
+            limited.init()
+            upload = limited.create_upload("fast-01")
+            with self.assertRaises(BadRequest):
+                limited.put_blob(upload, "fast-01", b"four")
+            with self.assertRaises(BadRequest):
+                limited.put_blob(upload, "fast-01", b"x", "not-a-mime")
+        finally:
+            limited.close()
+
+    def test_submit_rejects_tampered_blob_bytes(self):
+        task_id = "KG-2026-0501"
+        self.cp.publish_task(make_task(task_id))
+        upload = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(upload, "fast-01", b"trusted bytes",
+                                "application/octet-stream")
+        lease = self.cp.claim("fast-01", "i", "knowledge",
+                              idem_key="claim-tamper")["claimed"]
+        artifact = {"sha256": blob["sha256"], "bytes": blob["bytes"],
+                    "media_type": "application/octet-stream"}
+        payload = {
+            "id": "SUB-2026-0501", "task_id": task_id, "task_version": 1,
+            "task_version_sha256": lease["task_version_sha256"],
+            "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
+            "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
+            "artifacts": [artifact],
+            "bundle_sha256": bundle_sha(task_id, [artifact]),
+            "base_commit": "6a9fa461",
+        }
+        self.cp.store.path(blob["sha256"]).write_bytes(b"tampered bytes")
+        with self.assertRaises(BadRequest):
+            self.cp.submit(payload, idem_key="submit-tamper")
+
+    def test_submit_rejects_path_traversal_before_acceptance(self):
+        task_id = "KG-2026-0502"
+        self.cp.publish_task(make_task(task_id))
+        upload = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(upload, "fast-01", b"safe",
+                                "application/octet-stream")
+        lease = self.cp.claim("fast-01", "i", "knowledge",
+                              idem_key="claim-traversal")["claimed"]
+        artifact = {"sha256": blob["sha256"], "bytes": blob["bytes"],
+                    "media_type": "application/octet-stream", "path": "../escape"}
+        payload = {
+            "id": "SUB-2026-0502", "task_id": task_id, "task_version": 1,
+            "task_version_sha256": lease["task_version_sha256"],
+            "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
+            "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
+            "artifacts": [artifact],
+            "bundle_sha256": bundle_sha(task_id, [artifact]),
+            "base_commit": "6a9fa461",
+        }
+        with self.assertRaises(BadRequest):
+            self.cp.submit(payload, idem_key="submit-traversal")
+
+    def test_canonical_submission_schema_fails_closed(self):
+        with self.assertRaises(BadRequest):
+            self.cp.submit({"schema": "submission/v1"}, idem_key="schema-invalid")
+
+    def test_gc_reclaims_stale_unreferenced_metadata_and_blob(self):
+        upload = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(upload, "fast-01", b"unreferenced",
+                                "application/octet-stream")
+        self.clock.advance(7200)
+        out = self.cp.gc_blobs(grace_seconds=3600)
+        self.assertEqual(out["deleted_blobs"], 1)
+        self.assertIsNone(self.db().execute(
+            "SELECT 1 FROM artifacts WHERE sha256=?", (blob["sha256"],)
+        ).fetchone())
+        self.assertFalse(self.cp.store.path(blob["sha256"]).exists())
 
 
 class TestProposalsCAS(Base):

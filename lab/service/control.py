@@ -17,13 +17,21 @@ import json
 import os
 import re
 import sqlite3
+import stat
 import time
+from pathlib import PurePosixPath
 import uuid
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
 
 PROTOCOL = 1
+MAX_BLOB_BYTES = 128 * 1024 * 1024
+MAX_BUNDLE_BYTES = 512 * 1024 * 1024
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+MEDIA_TYPE_RE = re.compile(r"^[A-Za-z0-9!#PROTOCOL = 1
+FALSE = ("false", 0)^_.+-]{1,63}/[A-Za-z0-9!#PROTOCOL = 1
+FALSE = ("false", 0)^_.+-]{1,63}$")
 FALSE = ("false", 0)
 TRUE = ("true", 1)
 
@@ -217,43 +225,118 @@ CREATE TABLE IF NOT EXISTS audit_events (
 
 
 class ArtifactStore:
-    """Content-addressed blobs: tmp-загрузка -> fsync -> атомарный os.replace."""
+    """Content-addressed store with no-follow reads and durable atomic writes."""
 
     def __init__(self, root: Path):
-        self.root = root
-        self.tmp = root / "tmp"
-        self.blobs = root / "blobs"
+        self.root = Path(root)
+        self.tmp = self.root / "tmp"
+        self.blobs = self.root / "blobs"
+
+    @staticmethod
+    def _require_directory(path: Path) -> None:
+        path.mkdir(parents=True, exist_ok=True)
+        info = path.lstat()
+        if stat.S_ISLNK(info.st_mode) or not stat.S_ISDIR(info.st_mode):
+            raise BadRequest(f"artifact store path is not a real directory: {path}")
 
     def ensure(self):
-        self.tmp.mkdir(parents=True, exist_ok=True)
-        self.blobs.mkdir(parents=True, exist_ok=True)
+        self._require_directory(self.root)
+        self._require_directory(self.tmp)
+        self._require_directory(self.blobs)
+
+    @staticmethod
+    def _fsync_directory(path: Path) -> None:
+        flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
+        fd = os.open(path, flags)
+        try:
+            os.fsync(fd)
+        finally:
+            os.close(fd)
 
     def put(self, data: bytes, upload_id: str | None = None) -> str:
+        if not isinstance(data, bytes):
+            raise BadRequest("blob body must be bytes")
         self.ensure()
         digest = _sha(data)
-        dest = self.blobs / digest[:2] / digest
-        if not dest.exists():
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            t = self.tmp / f"{uuid.uuid4().hex}.part"
-            with open(t, "wb") as f:
-                f.write(data)
-                f.flush()
-                os.fsync(f.fileno())
-            os.replace(t, dest)
+        dest = self.path(digest)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        parent_info = dest.parent.lstat()
+        if stat.S_ISLNK(parent_info.st_mode) or not stat.S_ISDIR(parent_info.st_mode):
+            raise BadRequest("content-addressed shard is not a real directory")
+        try:
+            if self.verify(digest) == len(data):
+                return digest
+        except BadRequest:
+            # Missing/corrupt content is repaired atomically from supplied bytes.
+            pass
+        temp = self.tmp / f"{uuid.uuid4().hex}.part"
+        flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+        fd = os.open(temp, flags, 0o600)
+        try:
+            with os.fdopen(fd, "wb") as stream:
+                stream.write(data)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(temp, dest)
+            self._fsync_directory(dest.parent)
+        finally:
+            try:
+                temp.unlink()
+            except FileNotFoundError:
+                pass
         return digest
 
     def path(self, digest: str) -> Path:
+        if not isinstance(digest, str) or not SHA256_RE.fullmatch(digest):
+            raise BadRequest("blob key must be a lowercase SHA-256 hex digest")
         return self.blobs / digest[:2] / digest
+
+    def verify(self, digest: str) -> int:
+        """Stream a blob, reject symlinks/non-regular files, and verify its name hash."""
+        path = self.path(digest)
+        try:
+            for directory in (self.blobs, path.parent):
+                info = directory.lstat()
+                if stat.S_ISLNK(info.st_mode) or not stat.S_ISDIR(info.st_mode):
+                    raise BadRequest(f"blob directory is not trusted: {directory}")
+            flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+            fd = os.open(path, flags)
+            with os.fdopen(fd, "rb") as stream:
+                info = os.fstat(stream.fileno())
+                if not stat.S_ISREG(info.st_mode):
+                    raise BadRequest("blob is not a regular file")
+                hasher = hashlib.sha256()
+                size = 0
+                for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                    size += len(chunk)
+                    hasher.update(chunk)
+            if hasher.hexdigest() != digest:
+                raise BadRequest(f"stored blob does not match SHA-256: {digest}")
+            return size
+        except FileNotFoundError as exc:
+            raise BadRequest(f"blob is absent from content-addressed store: {digest}") from exc
+        except OSError as exc:
+            raise BadRequest(f"blob cannot be safely read: {digest}: {exc}") from exc
 
 
 class ControlPlane:
     def __init__(self, db_path: Path, artifacts: Path | None = None,
                  wall: Callable[[], float] = time.time,
-                 mono: Callable[[], float] = time.monotonic):
+                 mono: Callable[[], float] = time.monotonic,
+                 max_blob_bytes: int = MAX_BLOB_BYTES,
+                 max_bundle_bytes: int = MAX_BUNDLE_BYTES):
         self.db_path = Path(db_path)
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        if (not isinstance(max_blob_bytes, int) or isinstance(max_blob_bytes, bool)
+                or max_blob_bytes < 1):
+            raise ValueError("max_blob_bytes must be a positive integer")
+        if (not isinstance(max_bundle_bytes, int) or isinstance(max_bundle_bytes, bool)
+                or max_bundle_bytes < 1):
+            raise ValueError("max_bundle_bytes must be a positive integer")
         self.store = ArtifactStore(artifacts or (self.db_path.parent / "artifacts"))
         self.wall, self.mono = wall, mono
+        self.max_blob_bytes = max_blob_bytes
+        self.max_bundle_bytes = max_bundle_bytes
         self._conn: sqlite3.Connection | None = None
 
     # ---------------------------------------------------------------- базовые
@@ -830,29 +913,184 @@ class ControlPlane:
             raise
 
     # ------------------------------------------------------------ submit
+    @staticmethod
+    def _validate_media_type(media_type: Any) -> str:
+        if (not isinstance(media_type, str) or not MEDIA_TYPE_RE.fullmatch(media_type)
+                or media_type != media_type.lower()):
+            raise BadRequest("media_type должен быть каноническим type/subtype MIME")
+        return media_type
+
+    @staticmethod
+    def _validate_artifact_path(path: Any) -> str:
+        if (not isinstance(path, str) or not path or len(path.encode("utf-8")) > 4096
+                or "\\" in path or "\x00" in path or path.startswith("/")
+                or re.match(r"^[A-Za-z]:", path)
+                or any(ord(ch) < 32 or ord(ch) == 127 for ch in path)):
+            raise BadRequest("artifact.path должен быть безопасным относительным POSIX-путём")
+        parts = path.split("/")
+        if (any(part in ("", ".", "..") for part in parts)
+                or PurePosixPath(path).is_absolute()
+                or PurePosixPath(path).as_posix() != path):
+            raise BadRequest("artifact.path содержит абсолютный, пустой или traversal-компонент")
+        return path
+
+    def _validate_artifact_descriptors(self, artifacts: Any) -> int:
+        if not isinstance(artifacts, list):
+            raise BadRequest("submission.artifacts должен быть массивом")
+        total = 0
+        paths: set[str] = set()
+        for index, artifact in enumerate(artifacts):
+            if not isinstance(artifact, dict):
+                raise BadRequest(f"artifact[{index}] должен быть объектом")
+            digest = artifact.get("sha256")
+            if not isinstance(digest, str) or not SHA256_RE.fullmatch(digest):
+                raise BadRequest(f"artifact[{index}].sha256 должен быть lowercase SHA-256")
+            size = artifact.get("bytes")
+            if (not isinstance(size, int) or isinstance(size, bool)
+                    or size < 0 or size > self.max_blob_bytes):
+                raise BadRequest(f"artifact[{index}].bytes вне допустимого диапазона")
+            self._validate_media_type(artifact.get("media_type"))
+            total += size
+            if total > self.max_bundle_bytes:
+                raise BadRequest("суммарный размер submission превышает max_bundle_bytes")
+            if "path" in artifact:
+                path = self._validate_artifact_path(artifact["path"])
+                if path in paths:
+                    raise BadRequest(f"duplicate artifact path: {path}")
+                paths.add(path)
+        return total
+
+    def _validate_submission_schema(self, payload: dict) -> None:
+        schema_name = payload.get("schema")
+        if schema_name is None:
+            return  # legacy internal API; still receives byte/hash/path checks below
+        if schema_name != "submission/v1":
+            raise BadRequest(f"unsupported submission schema: {schema_name!r}")
+        try:
+            import jsonschema
+            from referencing import Registry, Resource
+        except ImportError as exc:
+            raise BadRequest(
+                "submission/v1 требует зависимости из lab/requirements.txt") from exc
+        schema_dir = Path(__file__).resolve().parents[1] / "schemas" / "v1"
+        schema_path = schema_dir / "submission.schema.json"
+        common_path = schema_dir / "common.schema.json"
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        common = json.loads(common_path.read_text(encoding="utf-8"))
+        schema["$id"] = schema_path.resolve().as_uri()
+        common["$id"] = common_path.resolve().as_uri()
+        registry = Registry().with_resource(
+            common_path.resolve().as_uri(), Resource.from_contents(common))
+        validator = jsonschema.Draft202012Validator(
+            schema, registry=registry, format_checker=jsonschema.FormatChecker())
+        errors = sorted(
+            validator.iter_errors(payload),
+            key=lambda err: tuple(str(part) for part in err.absolute_path),
+        )
+        if errors:
+            first = errors[0]
+            location = "/".join(str(part) for part in first.absolute_path) or "$"
+            raise BadRequest(f"submission/v1 schema {location}: {first.message}")
+
     def create_upload(self, agent_id: str) -> str:
+        if not isinstance(agent_id, str) or not agent_id.strip():
+            raise BadRequest("agent_id обязателен")
         now_iso, _ = self._now()
         upload_id = f"UPL-{uuid.uuid4().hex[:12]}"
-        self.connect().execute(
-            "INSERT INTO uploads (upload_id,agent_id,state,created_at) VALUES (?,?, 'open', ?)",
-            (upload_id, agent_id, now_iso))
+        c = self.connect()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            c.execute(
+                "INSERT INTO uploads (upload_id,agent_id,state,created_at) "
+                "VALUES (?,?,'open',?)", (upload_id, agent_id, now_iso))
+            self._audit(c, agent_id, "upload.create", "upload", upload_id, {})
+            c.execute("COMMIT")
+        except Exception:
+            self._safe_rollback(c)
+            raise
         return upload_id
 
     def put_blob(self, upload_id: str, agent_id: str, data: bytes,
                  media_type: str = "application/octet-stream") -> dict:
-        row = self.connect().execute(
-            "SELECT state, agent_id FROM uploads WHERE upload_id=?", (upload_id,)).fetchone()
-        if not row:
-            raise NotFound(f"нет upload {upload_id}")
-        if row["agent_id"] != agent_id:
-            raise Gone("upload принадлежит другому агенту")
-        digest = self.store.put(data)
+        if not isinstance(data, bytes):
+            raise BadRequest("blob body must be bytes")
+        if len(data) > self.max_blob_bytes:
+            raise BadRequest(f"blob exceeds max_blob_bytes ({self.max_blob_bytes})")
+        media_type = self._validate_media_type(media_type)
         now_iso, _ = self._now()
-        self.connect().execute(
-            "INSERT OR IGNORE INTO artifacts (sha256,bytes,media_type,blob_id,upload_id,created_at)"
-            " VALUES (?,?,?,?,?,?)",
-            (digest, len(data), media_type, digest, upload_id, now_iso))
-        return {"sha256": digest, "bytes": len(data)}
+        c = self.connect()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            upload = c.execute(
+                "SELECT state,agent_id FROM uploads WHERE upload_id=?", (upload_id,)
+            ).fetchone()
+            if upload is None:
+                raise NotFound(f"нет upload {upload_id}")
+            if upload["agent_id"] != agent_id:
+                raise Gone("upload принадлежит другому агенту")
+            if upload["state"] != "open":
+                raise Gone(f"upload {upload_id} уже закрыт")
+            # Hold the single-writer lock until the CAS file and its metadata exist.
+            digest = self.store.put(data)
+            existing = c.execute(
+                "SELECT bytes,media_type FROM artifacts WHERE sha256=?", (digest,)
+            ).fetchone()
+            if existing and (existing["bytes"] != len(data)
+                             or existing["media_type"] != media_type):
+                raise BadRequest("inconsistent artifact metadata for existing SHA-256")
+            columns = {row["name"] for row in c.execute("PRAGMA table_info(artifacts)")}
+            if "last_seen_at" in columns:
+                c.execute(
+                    "INSERT INTO artifacts "
+                    "(sha256,bytes,media_type,blob_id,upload_id,created_at,last_seen_at) "
+                    "VALUES (?,?,?,?,?,?,?) "
+                    "ON CONFLICT(sha256) DO UPDATE SET last_seen_at=excluded.last_seen_at",
+                    (digest, len(data), media_type, digest, upload_id, now_iso, now_iso))
+            else:
+                c.execute(
+                    "INSERT OR IGNORE INTO artifacts "
+                    "(sha256,bytes,media_type,blob_id,upload_id,created_at) "
+                    "VALUES (?,?,?,?,?,?)",
+                    (digest, len(data), media_type, digest, upload_id, now_iso))
+            has_upload_artifacts = c.execute(
+                "SELECT 1 FROM sqlite_master WHERE type='table' AND name='upload_artifacts'"
+            ).fetchone()
+            if has_upload_artifacts:
+                c.execute(
+                    "INSERT OR IGNORE INTO upload_artifacts(upload_id,sha256,created_at) "
+                    "VALUES (?,?,?)", (upload_id, digest, now_iso))
+            self._audit(c, agent_id, "blob.put", "blob", digest,
+                        {"upload_id": upload_id, "bytes": len(data), "media_type": media_type})
+            c.execute("COMMIT")
+            return {"sha256": digest, "bytes": len(data)}
+        except Exception:
+            self._safe_rollback(c)
+            raise
+
+    def close_upload(self, upload_id: str, agent_id: str) -> dict:
+        now_iso, _ = self._now()
+        c = self.connect()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            row = c.execute(
+                "SELECT agent_id,state FROM uploads WHERE upload_id=?", (upload_id,)
+            ).fetchone()
+            if row is None:
+                raise NotFound(f"нет upload {upload_id}")
+            if row["agent_id"] != agent_id:
+                raise Gone("upload принадлежит другому агенту")
+            if row["state"] == "open":
+                c.execute(
+                    "UPDATE uploads SET state='closed',finished_at=? "
+                    "WHERE upload_id=? AND state='open'", (now_iso, upload_id))
+                self._audit(c, agent_id, "upload.close", "upload", upload_id, {})
+            elif row["state"] != "closed":
+                raise Conflict(f"upload в неизвестном состоянии: {row['state']}")
+            c.execute("COMMIT")
+            return {"upload_id": upload_id, "state": "closed"}
+        except Exception:
+            self._safe_rollback(c)
+            raise
 
     def submit(self, payload: dict, idem_key: str, mark_artifacts_for_task: bool = True) -> dict:
         # Минимальная цепочка provenance обязательна на intake:
@@ -862,6 +1100,8 @@ class ControlPlane:
                       "artifacts", "bundle_sha256"):
             if field not in payload:
                 raise BadRequest(f"submission missing field: {field}")
+        self._validate_submission_schema(payload)
+        declared_bytes = self._validate_artifact_descriptors(payload["artifacts"])
         if (not isinstance(payload["task_version"], int)
                 or isinstance(payload["task_version"], bool)
                 or payload["task_version"] < 1):
@@ -989,15 +1229,60 @@ class ControlPlane:
             if payload["bundle_sha256"] != expected_bundle:
                 raise BadRequest("submission.bundle_sha256 не совпадает с пересчитанным "
                                  "bundle-хэшем артефактов")
-            # сверка blobs — только для живого lease (поздний уже в карантине)
-            missing = []
+            # Enforce the immutable task's disk budget before inspecting candidate data.
+            task_payload = json.loads(version_row["payload_json"])
+            budget = task_payload.get("budget", {})
+            disk_budget = budget.get("disk_bytes", self.max_bundle_bytes)
+            if (not isinstance(disk_budget, int) or isinstance(disk_budget, bool)
+                    or disk_budget < 1):
+                raise BadRequest("task budget.disk_bytes должен быть положительным целым")
+            if declared_bytes > min(self.max_bundle_bytes, disk_budget):
+                raise BadRequest(
+                    f"submission artifacts ({declared_bytes} bytes) exceed disk budget "
+                    f"({min(self.max_bundle_bytes, disk_budget)} bytes)")
+
+            # A received bundle is trusted only if metadata, owner, on-disk size,
+            # and the SHA-256 recomputed from actual bytes all agree.
             for art in payload["artifacts"]:
-                hit = c.execute("SELECT 1 FROM artifacts WHERE sha256=?",
-                                (art["sha256"],)).fetchone()
-                if not hit:
-                    missing.append(art["sha256"])
-            if missing:
-                raise BadRequest(f"blobs отсутствуют в store: {missing}")
+                hit = c.execute(
+                    "SELECT bytes,media_type,upload_id FROM artifacts WHERE sha256=?",
+                    (art["sha256"],)).fetchone()
+                if hit is None:
+                    raise BadRequest(f"blob отсутствует в metadata store: {art['sha256']}")
+                if hit["bytes"] != art["bytes"] or hit["media_type"] != art["media_type"]:
+                    raise BadRequest(
+                        f"artifact metadata mismatch for {art['sha256']}: "
+                        "bytes/media_type differ from uploaded content")
+                actual_size = self.store.verify(art["sha256"])
+                if actual_size != art["bytes"]:
+                    raise BadRequest(
+                        f"artifact byte count mismatch for {art['sha256']}: "
+                        f"manifest={art['bytes']}, store={actual_size}")
+                has_upload_artifacts = c.execute(
+                    "SELECT 1 FROM sqlite_master WHERE type='table' AND name='upload_artifacts'"
+                ).fetchone()
+                if has_upload_artifacts:
+                    owned = c.execute(
+                        "SELECT 1 FROM upload_artifacts ua "
+                        "JOIN uploads u ON u.upload_id=ua.upload_id "
+                        "WHERE ua.sha256=? AND u.agent_id=? LIMIT 1",
+                        (art["sha256"], payload["agent_id"]),
+                    ).fetchone()
+                else:
+                    owned = c.execute(
+                        "SELECT 1 FROM uploads u WHERE u.upload_id=? AND u.agent_id=?",
+                        (hit["upload_id"], payload["agent_id"]),
+                    ).fetchone() if hit["upload_id"] else None
+                reused = c.execute(
+                    "SELECT 1 FROM submission_artifacts sa "
+                    "JOIN submissions s ON s.id=sa.submission_id "
+                    "WHERE sa.sha256=? AND s.status!='late' LIMIT 1",
+                    (art["sha256"],),
+                ).fetchone() if has_upload_artifacts else None
+                if not owned and not reused:
+                    raise BadRequest(
+                        f"artifact {art['sha256']} was not uploaded by this agent "
+                        "and has no previously received submission")
             c.execute(
                 "INSERT INTO submissions (id,task_id,task_version,task_version_sha256,"
                 "attempt_id,lease_id,lease_epoch,agent_id,instance_id,base_commit,"

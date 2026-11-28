@@ -106,6 +106,19 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("reap", help="просрочить leases и вернуть задачи в очередь")
 
+    uc = sub.add_parser("upload-create", help="создать upload session")
+    uc.add_argument("--agent", required=True)
+
+    up = sub.add_parser("upload-put", help="загрузить blob в content-addressed store")
+    up.add_argument("--upload", required=True)
+    up.add_argument("--agent", required=True)
+    up.add_argument("--file", required=True)
+    up.add_argument("--media-type", default="application/octet-stream")
+
+    ux = sub.add_parser("upload-close", help="закрыть upload session")
+    ux.add_argument("--upload", required=True)
+    ux.add_argument("--agent", required=True)
+
     pj = sub.add_parser("projections", help="выгрузить файловые проекции")
     pj.add_argument("--out", default="lab/state/projections")
 
@@ -162,6 +175,13 @@ def run(args, cp) -> dict:
         return cp.send_message(_json_file(args.file))
     if cmd == "reap":
         return cp.reap()
+    if cmd == "upload-create":
+        return {"upload_id": cp.create_upload(args.agent)}
+    if cmd == "upload-put":
+        return cp.put_blob(args.upload, args.agent,
+                           Path(args.file).read_bytes(), args.media_type)
+    if cmd == "upload-close":
+        return cp.close_upload(args.upload, args.agent)
     if cmd == "projections":
         return cp.write_projections(Path(args.out))
     if cmd == "gc":

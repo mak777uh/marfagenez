@@ -41,7 +41,7 @@ def make_task(tid: str, dept: str = "knowledge", priority: int = 5, **kw):
         "validators": [{"profile": "knowledge-map-v1", "version": "1.0.0"}],
         "dependencies": [], "lease": dict(LEASE_SPEC), "priority": priority,
         "base_commit": "6a9fa461", "network_profile": "none",
-        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 1,
+        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 16777216,
                    "network_allowlist": []},
         "tags": [], **kw,
     }
@@ -262,7 +262,7 @@ class TestClaimFencing(Base):
             "attempt_id": l1["attempt_id"],
             "lease_id": l1["lease_id"], "lease_epoch": l1["lease_epoch"],
             "agent_id": "fast-01", "artifacts": [{"sha256": "0" * 64, "bytes": 1,
-                                                 "media_type": "x"}],
+                                                 "media_type": "application/octet-stream"}],
             "bundle_sha256": "a" * 64, "base_commit": "x",
         }
         out = self.cp.submit(late_sub, idem_key="sub-late")
@@ -424,11 +424,11 @@ class TestSubmitAndIdempotency(Base):
             "attempt_id": lease["attempt_id"],
             "lease_id": lease["lease_id"], "lease_epoch": lease["lease_epoch"],
             "agent_id": "fast-01",
-            "artifacts": [{"sha256": "f" * 64, "bytes": 1, "media_type": "x"}],
+            "artifacts": [{"sha256": "f" * 64, "bytes": 1, "media_type": "application/octet-stream"}],
             "base_commit": "6a9fa461",
             "bundle_sha256": bundle_sha(
                 "KG-2026-0005",
-                [{"sha256": "f" * 64, "bytes": 1, "media_type": "x"}]),
+                [{"sha256": "f" * 64, "bytes": 1, "media_type": "application/octet-stream"}]),
         }
         from lab.service.control import BadRequest
         with self.assertRaises(BadRequest):
@@ -476,7 +476,7 @@ class TestMessages(Base):
             "id": "SUB-0004", "task_id": "KG-2026-0007", "task_version": 1,
             "lease_id": lease["lease_id"], "lease_epoch": lease["lease_epoch"],
             "agent_id": "fast-01",
-            "artifacts": [{"sha256": blob["sha256"], "bytes": 1, "media_type": "b"}],
+            "artifacts": [{"sha256": blob["sha256"], "bytes": 1, "media_type": "application/octet-stream"}],
             "bundle_sha256": "e" * 64,
         }
         # v1: submit при blocks_submit не отклоняется молча — read+ack обязательный путь
