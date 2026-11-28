@@ -1,11 +1,11 @@
 {
   "schema": "kg/2",
   "human_confirmed": [],
-  "built_at": "2026-11-27T21:56:35+00:00",
+  "built_at": "2026-11-28T05:32:33+00:00",
   "counts": {
-    "total": 1202,
+    "total": 1203,
     "by_kind": {
-      "claim": 118,
+      "claim": 119,
       "formula": 31,
       "experiment": 421,
       "definition": 10,
@@ -15,13 +15,13 @@
     },
     "by_epistemic": {
       "established": 321,
-      "hypothesis": 812,
+      "hypothesis": 813,
       "refuted": 68,
       "bounded": 1
     },
     "by_provenance": {
       "verified_agent": 1081,
-      "extracted": 121
+      "extracted": 122
     },
     "edges": 913,
     "edges_by_type": {
@@ -42,7 +42,7 @@
     },
     "by_epistemic_statements": {
       "established": 9,
-      "hypothesis": 148,
+      "hypothesis": 149,
       "refuted": 1,
       "bounded": 1
     },
@@ -375,7 +375,8 @@
       "L-107",
       "L-108",
       "L-109",
-      "L-110"
+      "L-110",
+      "L-111"
     ],
     "refuted_still_referenced": [],
     "contested": []
@@ -397,6 +398,6 @@
     "check"
   ],
   "hashes": {
-    "graph": "b753463947939a2f"
+    "graph": "d947a1c9d78d97e1"
   }
 }

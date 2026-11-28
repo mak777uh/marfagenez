@@ -17491,7 +17491,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент** papers/starrfelt12-biolrev.pdf (Starrfelt & Kokko 2012, sha256 6230"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -17499,7 +17499,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/starrfelt12-biolrev.pdf",
+          "strength": "moderate",
+          "sha256": "623025f8f036624b5e9677fc397789161eefac20d42c74608f738ae252c8bde2"
         }
       ],
       "relations": [],
@@ -17507,19 +17513,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент** papers/starrfelt12-biolrev.pdf (Starrfelt & Kokko 2012, sha256 6230",
+        "level_kind": "fragment_read",
+        "artifact": "papers/starrfelt12-biolrev.pdf",
+        "artifact_bytes": 838684,
+        "artifact_sha256": "623025f8f036624b5e9677fc397789161eefac20d42c74608f738ae252c8bde2",
         "locator": {
           "doi": null,
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://doi.org/10.1111/j.1469-185X.2012.00225.x",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -17654,11 +17660,11 @@
     {
       "id": "L-011",
       "kind": "claim",
-      "text": "Frailty и vitality: две системы с равным состоянием не равны — Скрытая переменная (хрупкость/жизненная сила) объясняет, почему смертность падает у",
+      "text": "Frailty и vitality: две системы с равным состоянием не равны — Скрытая гетерогенность frailty меняет динамику смертности: стандартные таблицы переоценивают ожидаемую продолжительность жизни и недооценивают индивидуальное старение; лица с равным возрастом неравны по скрытой переменной.",
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**аннотация** PubMed (PMID 510638, Vaupel-Manton-Stallard 1979), 2026-11-27; fra"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -17674,8 +17680,8 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
+        "registry_level": "**аннотация** PubMed (PMID 510638, Vaupel-Manton-Stallard 1979), 2026-11-27; fra",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
@@ -17684,9 +17690,9 @@
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
-          "pmid": null,
-          "url": null,
-          "none": true
+          "pmid": "510638",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/510638/",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -17709,11 +17715,11 @@
     {
       "id": "L-012",
       "kind": "claim",
-      "text": "DEB: правило κ и приоритет поддержания — Энергия делится: доля κ идёт на соматическое поддержание, остальное — на рост и",
+      "text": "DEB: правило κ и приоритет поддержания — Мобилизованный из резерва поток J_C делится: доля κ — на соматические нужды (поддержание структуры + рост), остаток — на maturation/reproduction; поддержание — расход на замену потерь метаболизма, пропорционален структуре W; резерв и maturity поддержания не требуют.",
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент** papers/ledder14-deb-lib.pdf (Ledder 2014, sha256 fdcbd10e…), 2026-1"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -17721,7 +17727,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/ledder14-deb-lib.pdf",
+          "strength": "moderate",
+          "sha256": "fdcbd10ec4977254d1650ff155c95d0470509d27c54a66a3c0ab0b492194ed00"
         }
       ],
       "relations": [],
@@ -17729,19 +17741,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент** papers/ledder14-deb-lib.pdf (Ledder 2014, sha256 fdcbd10e…), 2026-1",
+        "level_kind": "fragment_read",
+        "artifact": "papers/ledder14-deb-lib.pdf",
+        "artifact_bytes": 823499,
+        "artifact_sha256": "fdcbd10ec4977254d1650ff155c95d0470509d27c54a66a3c0ab0b492194ed00",
         "locator": {
-          "doi": null,
+          "doi": "10.1080/23737867.2014.11414482",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://doi.org/10.1080/23737867.2014.11414482",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -17771,7 +17783,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**аннотация** OpenAlex (W2052078471, doi:10.1098/rspb.1965.0069), 2026-11-28; Pu"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -17787,19 +17799,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
+        "registry_level": "**аннотация** OpenAlex (W2052078471, doi:10.1098/rspb.1965.0069), 2026-11-28; Pu",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
         "locator": {
-          "doi": null,
+          "doi": "10.1098/rspb.1965.0069",
           "arxiv": null,
           "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": null,
-          "none": true
+          "openalex": "https://openalex.org/W2052078471",
+          "pmid": "4378482",
+          "url": "https://doi.org/10.1098/rspb.1965.0069",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -17941,7 +17953,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**аннотация** OpenAlex (Szathmáry 2003 о работе Gánti, doi:10.1093/acprof:oso/97"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -17957,19 +17969,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
+        "registry_level": "**аннотация** OpenAlex (Szathmáry 2003 о работе Gánti, doi:10.1093/acprof:oso/97",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
         "locator": {
-          "doi": null,
+          "doi": "10.1093/acprof:oso/9780198507260.003.0004",
           "arxiv": null,
           "arxiv_version": null,
-          "openalex": null,
+          "openalex": "https://openalex.org/W2476679662",
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://doi.org/10.1093/acprof:oso/9780198507260.003.0004",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -18107,7 +18119,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**аннотация** OpenAlex (W2125999985, Ruiz-Mirazo & Moreno 2004 Artificial Life, "
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18123,19 +18135,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
+        "registry_level": "**аннотация** OpenAlex (W2125999985, Ruiz-Mirazo & Moreno 2004 Artificial Life, ",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
         "locator": {
-          "doi": null,
+          "doi": "10.1162/1064546041255584",
           "arxiv": null,
           "arxiv_version": null,
-          "openalex": null,
+          "openalex": "https://openalex.org/W2125999985",
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://doi.org/10.1162/1064546041255584",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -18416,11 +18428,11 @@
     {
       "id": "L-025",
       "kind": "claim",
-      "text": "Замыкание ограничений: структура, а не баланс — Замыкание — **причинная сеть взаимно поддерживающих ограничений**; формальное условие:",
+      "text": "Замыкание ограничений: структура, а не баланс — Биологическая организация — замыкание ограничений: причинная сеть взаимно поддерживающих ограничений, где каждое ограничение зависит хотя бы от одного другого и хотя бы одно другое зависит от него; замыкание ≠ баланс потоков.",
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**аннотация** (общий абстракт с L-094, PubMed PMID 25752259), 2026-11-27; полный"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18436,19 +18448,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
+        "registry_level": "**аннотация** (общий абстракт с L-094, PubMed PMID 25752259), 2026-11-27; полный",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
         "locator": {
-          "doi": null,
+          "doi": "10.1016/j.jtbi.2015.02.029",
           "arxiv": null,
           "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": null,
-          "none": true
+          "openalex": "W2107475155",
+          "pmid": "25752259",
+          "url": "https://doi.org/10.1016/j.jtbi.2015.02.029",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -18591,11 +18603,11 @@
     {
       "id": "L-028",
       "kind": "claim",
-      "text": "Viability: выживание — множество траекторий, а не мгновенный порог — Viability kernel — **наибольшее множество состояний**, из которых существует траектория,",
+      "text": "Viability: выживание — множество траекторий, а не мгновенный порог — Viability kernel V(f,D) — множество начальных состояний, из которых существует управление, удерживающее систему в допустимом множестве D для всех t∈N; равно объединению/наибольшему viability domain; вычисляется убывающей последовательностью Vk (условия сходимости — Saint-Pierre 1994).",
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**фрагмент** papers/viability09-ecosystem-arxiv0906.3506.pdf (arXiv 0906.3506, s"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18603,7 +18615,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/viability09-ecosystem-arxiv0906.3506.pdf",
+          "strength": "moderate",
+          "sha256": "2d8f955d6bd1e1faafd9304e230e11ca73d501b6f761ce1bd17bdcad9ca7786d"
         }
       ],
       "relations": [],
@@ -18611,19 +18629,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент** papers/viability09-ecosystem-arxiv0906.3506.pdf (arXiv 0906.3506, s",
+        "level_kind": "fragment_read",
+        "artifact": "papers/viability09-ecosystem-arxiv0906.3506.pdf",
+        "artifact_bytes": 442289,
+        "artifact_sha256": "2d8f955d6bd1e1faafd9304e230e11ca73d501b6f761ce1bd17bdcad9ca7786d",
         "locator": {
           "doi": null,
-          "arxiv": null,
-          "arxiv_version": null,
+          "arxiv": "0906.3506",
+          "arxiv_version": "v1",
           "openalex": null,
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://arxiv.org/abs/0906.3506",
+          "none": false
         },
         "lit_ref": [
           "DIP14-0003",
@@ -18897,11 +18915,11 @@
     {
       "id": "L-034",
       "kind": "claim",
-      "text": "Niche construction: обратная связь есть, скалярной меры нет — Записывают **ΔR** (разницу среды до и после), но универсальной меры «силы конструкции»",
+      "text": "Niche construction: обратная связь есть, скалярной меры нет — Ниша-конструкция — модификация распределения ресурсов организмами; двухлокусная модель показывает: даже слабая конструкция меняет отбор (фиксация deleterious аллелей, стабильные полиморфизмы там, где их не ждали). Записывают ΔR, но универсальной скалярной меры «силы конструкции» нет.",
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**аннотация** PubMed (PMID 10468593, doi:10.1073/pnas.96.18.10242), 2026-11-27; "
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18917,19 +18935,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
+        "registry_level": "**аннотация** PubMed (PMID 10468593, doi:10.1073/pnas.96.18.10242), 2026-11-27; ",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
         "locator": {
-          "doi": null,
+          "doi": "10.1073/pnas.96.18.10242",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
-          "pmid": null,
-          "url": null,
-          "none": true
+          "pmid": "10468593",
+          "url": "https://doi.org/10.1073/pnas.96.18.10242",
+          "none": false
         },
         "lines_provenance": {
           "method": "parsed",
@@ -19417,7 +19435,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки.**"
+        "conditions": "**аннотация** OpenAlex (W2121153333, doi:10.1890/0012-9658(1999)080[0735:TSOCDN]"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -19433,19 +19451,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки.**",
-        "level_kind": "secondary_only",
+        "registry_level": "**аннотация** OpenAlex (W2121153333, doi:10.1890/0012-9658(1999)080[0735:TSOCDN]",
+        "level_kind": "abstract_read",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
         "locator": {
-          "doi": null,
+          "doi": "10.1890/0012-9658(1999)080[0735:TSOCDN]2.0.CO;2",
           "arxiv": null,
           "arxiv_version": null,
-          "openalex": null,
+          "openalex": "https://openalex.org/W2121153333",
           "pmid": null,
-          "url": null,
-          "none": true
+          "url": "https://doi.org/10.1890/0012-9658(1999)080%5B0735:TSOCDN%5D2.0.CO;2",
+          "none": false
         }
       },
       "created_at": "2026-11-20",
@@ -19698,11 +19716,11 @@
     {
       "id": "L-050",
       "kind": "claim",
-      "text": "COT + потоки = LP, и «цена» как двойственная переменная — К организации добавляются ограничения потоков — задача становится **LP**; цена",
+      "text": "COT + потоки = LP, и «цена» как двойственная переменная — FBA: mass-balance Sv=0 + границы потоков + линейная целевая функция → решение LP; выход — распределение потоков v, оптимизирующее objective. Двойственная переменная и её изломы — утверждение синтеза, в прочитанном фрагменте не проверено.",
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**вторые руки** (синтез обзора, не цитата)."
+        "conditions": "**фрагмент** papers/orth10-fba-bioc.xml (Orth-Thiele-Palsson 2010, BioC-текст, s"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -19710,7 +19728,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/orth10-fba-bioc.xml",
+          "strength": "moderate",
+          "sha256": "bdbcff976c0fadaee234bc5f8ec5f2ee1e45848ecbc96b5018025b988d5c9682"
         }
       ],
       "relations": [],
@@ -19718,19 +19742,19 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**вторые руки** (синтез обзора, не цитата).",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент** papers/orth10-fba-bioc.xml (Orth-Thiele-Palsson 2010, BioC-текст, s",
+        "level_kind": "fragment_read",
+        "artifact": "papers/orth10-fba-bioc.xml",
+        "artifact_bytes": 33791,
+        "artifact_sha256": "bdbcff976c0fadaee234bc5f8ec5f2ee1e45848ecbc96b5018025b988d5c9682",
         "locator": {
-          "doi": null,
+          "doi": "10.1038/nbt.1614",
           "arxiv": null,
           "arxiv_version": null,
           "openalex": null,
-          "pmid": null,
-          "url": null,
-          "none": true
+          "pmid": "20212490",
+          "url": "https://doi.org/10.1038/nbt.1614",
+          "none": false
         },
         "lit_ref": [
           "FAST-S7P-01",
@@ -21171,7 +21195,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация/фрагмент.**"
+        "conditions": "**фрагмент (arXiv, полный PDF)** papers/ocal24-arxiv-2411.08327.pdf (sha256 76ec"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21179,7 +21203,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/ocal24-arxiv-2411.08327.pdf",
+          "strength": "moderate",
+          "sha256": "76ec39349b25061244547c21b6e60a99d5ba2f86cbc12acae9b035d9f9cdafe4"
         }
       ],
       "relations": [],
@@ -21187,18 +21217,18 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент (arXiv, полный PDF)** papers/ocal24-arxiv-2411.08327.pdf (sha256 76ec",
+        "level_kind": "fragment_read",
+        "artifact": "papers/ocal24-arxiv-2411.08327.pdf",
+        "artifact_bytes": 629581,
+        "artifact_sha256": "76ec39349b25061244547c21b6e60a99d5ba2f86cbc12acae9b035d9f9cdafe4",
         "locator": {
           "doi": "10.31219/osf.io/ea6yx",
           "arxiv": "2411.08327",
           "arxiv_version": null,
           "openalex": null,
           "pmid": null,
-          "url": "https://doi.org/10.31219/osf.io/ea6yx",
+          "url": "https://arxiv.org/abs/2411.08327",
           "none": false
         },
         "lit_ref": [
@@ -22659,6 +22689,53 @@
           "openalex": null,
           "pmid": null,
           "url": "https://doi.org/10.1371/journal.pone.0104658",
+          "none": false
+        }
+      },
+      "created_at": "2026-11-20",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "L-111",
+      "kind": "claim",
+      "text": "Extreme Value Theory and Applications (NIST SP 866) — Наибольшее из n независимых наблюдений имеет CDF [F_X(x)]^n и при n→∞ сходится к одному из трёх доменов (Gumbel/Fréchet/Weibull); характерное наибольшее значение u_n определяется условием F_X(u_n)=1−1/n; константа нормировки для Gumbel-экстремумов записана как a_i=√(2 ln n).",
+      "context": {
+        "scope": "literature record from ELEPHANT-LITERATURE",
+        "parameters": "see registry",
+        "conditions": "**фрагмент** PDF, 2026-11-28, разделы EVT/домены притяжения и нормировка экстрем"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "extracted",
+      "evidence": [
+        {
+          "kind": "literature",
+          "ref": "docs/ELEPHANT-LITERATURE.md",
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/nist-sp866-evt.pdf",
+          "strength": "moderate",
+          "sha256": "a67e3adac28d7ae9825e2fbdcfab34994c3041c58cf4b7fb499e52c83ba8ded7"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "source": "docs/ELEPHANT-LITERATURE.md",
+        "license": "see source",
+        "accessed_at": "2026-11-20",
+        "registry_level": "**фрагмент** PDF, 2026-11-28, разделы EVT/домены притяжения и нормировка экстрем",
+        "level_kind": "fragment_read",
+        "artifact": "papers/nist-sp866-evt.pdf",
+        "artifact_bytes": 16561869,
+        "artifact_sha256": "a67e3adac28d7ae9825e2fbdcfab34994c3041c58cf4b7fb499e52c83ba8ded7",
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication866.pdf",
           "none": false
         }
       },
@@ -40617,13 +40694,13 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -40647,6 +40724,11 @@
     },
     {
       "from": "C-002",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
@@ -40654,11 +40736,6 @@
       "from": "C-002",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
-    },
-    {
-      "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -40687,13 +40764,13 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
@@ -40842,13 +40919,18 @@
     },
     {
       "from": "F-022",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
+    },
+    {
+      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
-      "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "from": "F-023",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-023",
@@ -40859,11 +40941,6 @@
       "from": "F-023",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
-    },
-    {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
     },
     {
       "from": "F-025",
@@ -43162,13 +43239,13 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
@@ -43192,17 +43269,17 @@
     },
     {
       "from": "CORR-02",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
       "to": "EV-EXP-PRICE-KINKS",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
