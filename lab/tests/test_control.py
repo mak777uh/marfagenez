@@ -330,7 +330,7 @@ class TestWaitingMainExpiry(Base):
             first["lease_id"], first["lease_epoch"], "fast-01", timeout_seconds=5
         )
         self.assertEqual(waiting["status"], "waiting_main")
-        self.clock.advance(6)
+        self.clock.advance(LEASE_SPEC["ttl_seconds"] + 5 + 1)
 
         second = self.cp.claim("fast-02", "i2", "knowledge",
                                idem_key="reclaim-waiting-0601")["claimed"]
