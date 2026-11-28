@@ -78,8 +78,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install --yes shellcheck
 
-      - name: Python YAML dependency
-        run: python3 -m pip install --disable-pip-version-check pyyaml numpy
+      - name: Python dependencies
+        run: python3 -m pip install --disable-pip-version-check pyyaml numpy -r lab/requirements.txt
 
       - name: Validate workflow contract
         run: python3 checks/ci_workflow.py

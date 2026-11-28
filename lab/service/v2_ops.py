@@ -17,8 +17,10 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 import re
+import stat
 import shutil
 import sqlite3
 import time
@@ -138,6 +140,60 @@ class V2OpsMixin:
                             {"from": 3, "to": 4,
                              "submission_artifact_links": linked,
                              "unresolved_legacy_artifacts": unresolved})
+                c.execute("COMMIT")
+            except Exception:
+                self._safe_rollback(c)
+                raise
+
+        v = c.execute("PRAGMA user_version").fetchone()[0]
+        if v < 5:
+            c.execute("BEGIN IMMEDIATE")
+            try:
+                artifact_columns = {
+                    row["name"] for row in c.execute("PRAGMA table_info(artifacts)")
+                }
+                if "last_seen_at" not in artifact_columns:
+                    c.execute("ALTER TABLE artifacts ADD COLUMN last_seen_at TEXT")
+                    c.execute("UPDATE artifacts SET last_seen_at=created_at "
+                              "WHERE last_seen_at IS NULL")
+                c.execute(
+                    "CREATE TABLE IF NOT EXISTS upload_artifacts ("
+                    "upload_id TEXT NOT NULL REFERENCES uploads(upload_id), "
+                    "sha256 TEXT NOT NULL REFERENCES artifacts(sha256), "
+                    "media_type TEXT NOT NULL, created_at TEXT NOT NULL, "
+                    "PRIMARY KEY (upload_id,sha256,media_type))"
+                )
+                c.execute(
+                    "CREATE INDEX IF NOT EXISTS ix_upload_artifacts_sha "
+                    "ON upload_artifacts(sha256,upload_id)"
+                )
+                linked = 0
+                unresolved = 0
+                legacy = c.execute(
+                    "SELECT a.upload_id,a.sha256,a.media_type,a.created_at "
+                    "FROM artifacts a WHERE a.upload_id IS NOT NULL ORDER BY a.sha256"
+                ).fetchall()
+                for artifact in legacy:
+                    exists = c.execute(
+                        "SELECT 1 FROM uploads WHERE upload_id=?",
+                        (artifact["upload_id"],),
+                    ).fetchone()
+                    if not exists:
+                        unresolved += 1
+                        continue
+                    inserted = c.execute(
+                        "INSERT OR IGNORE INTO upload_artifacts "
+                        "(upload_id,sha256,media_type,created_at) VALUES (?,?,?,?)",
+                        (artifact["upload_id"], artifact["sha256"],
+                         artifact["media_type"], artifact["created_at"]),
+                    )
+                    linked += inserted.rowcount
+                c.execute("PRAGMA user_version=5")
+                self._audit(
+                    c, "schema", "schema.migrate", "db", str(self.db_path),
+                    {"from": 4, "to": 5, "upload_artifact_links": linked,
+                     "unresolved_legacy_uploads": unresolved},
+                )
                 c.execute("COMMIT")
             except Exception:
                 self._safe_rollback(c)
@@ -394,41 +450,91 @@ class V2OpsMixin:
 
     # -------------------------------------------------------- GC blobs
     def gc_blobs(self, grace_seconds: float = 3600.0) -> dict:
-        """Mark-and-sweep: .part старше grace; blob без артефакт-ссылки старше
-        grace. Ссылочность определяется по таблице artifacts (mark на upload)."""
+        """Transactional mark-and-sweep; never removes a blob linked to a submission."""
+        if (not isinstance(grace_seconds, (int, float)) or isinstance(grace_seconds, bool)
+                or grace_seconds < 0 or not math.isfinite(grace_seconds)):
+            raise BadRequest("grace_seconds должен быть конечным неотрицательным числом")
         c = self.connect()
         self.store.ensure()
-        deadline = time.time() - grace_seconds
+        file_deadline = time.time() - grace_seconds
+        db_deadline = _utc(self.wall() - grace_seconds)
         deleted_tmp = 0
         deleted_blobs = 0
-        for p in self.store.tmp.glob("*.part"):
-            try:
-                if p.stat().st_mtime < deadline:
-                    p.unlink()
-                    deleted_tmp += 1
-            except FileNotFoundError:
-                pass
-        for p in self.store.blobs.glob("*/*"):
-            if not p.is_file():
-                continue
-            if c.execute("SELECT 1 FROM artifacts WHERE sha256=?",
-                         (p.name,)).fetchone():
-                continue
-            try:
-                if p.stat().st_mtime < deadline:
-                    p.unlink()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            for path in self.store.tmp.glob("*.part"):
+                try:
+                    info = path.lstat()
+                    if info.st_mtime < file_deadline and (
+                        stat.S_ISREG(info.st_mode) or stat.S_ISLNK(info.st_mode)
+                    ):
+                        path.unlink()
+                        deleted_tmp += 1
+                except FileNotFoundError:
+                    pass
+
+            has_submission_links = c.execute(
+                "SELECT 1 FROM sqlite_master WHERE type='table' "
+                "AND name='submission_artifacts'"
+            ).fetchone()
+            has_upload_links = c.execute(
+                "SELECT 1 FROM sqlite_master WHERE type='table' "
+                "AND name='upload_artifacts'"
+            ).fetchone()
+            has_last_seen = "last_seen_at" in {
+                row["name"] for row in c.execute("PRAGMA table_info(artifacts)")
+            }
+            if has_submission_links and has_upload_links and has_last_seen:
+                candidates = c.execute(
+                    "SELECT a.sha256 FROM artifacts a "
+                    "WHERE COALESCE(a.last_seen_at,a.created_at) < ? "
+                    "AND NOT EXISTS (SELECT 1 FROM submission_artifacts sa "
+                    "WHERE sa.sha256=a.sha256) "
+                    "AND NOT EXISTS (SELECT 1 FROM upload_artifacts ua "
+                    "JOIN uploads u ON u.upload_id=ua.upload_id "
+                    "WHERE ua.sha256=a.sha256 AND u.state='open' AND u.created_at>=?)",
+                    (db_deadline, db_deadline),
+                ).fetchall()
+                for candidate in candidates:
+                    digest = candidate["sha256"]
+                    if isinstance(digest, str) and re.fullmatch(r"[0-9a-f]{64}", digest):
+                        path = self.store.path(digest)
+                        try:
+                            info = path.lstat()
+                            if stat.S_ISREG(info.st_mode) or stat.S_ISLNK(info.st_mode):
+                                path.unlink()
+                        except FileNotFoundError:
+                            pass
+                    c.execute("DELETE FROM upload_artifacts WHERE sha256=?", (digest,))
+                    c.execute("DELETE FROM artifacts WHERE sha256=?", (digest,))
                     deleted_blobs += 1
-            except FileNotFoundError:
-                pass
-        if deleted_blobs or deleted_tmp:
-            c.execute("BEGIN IMMEDIATE")
-            try:
+
+            # Remove old physical orphans not represented in metadata. lstat
+            # means a symlink is unlinked as a link and never followed.
+            known = {row["sha256"] for row in c.execute(
+                "SELECT sha256 FROM artifacts"
+            ).fetchall()}
+            for path in self.store.blobs.glob("*/*"):
+                if path.name in known:
+                    continue
+                try:
+                    info = path.lstat()
+                    if info.st_mtime < file_deadline and (
+                        stat.S_ISREG(info.st_mode) or stat.S_ISLNK(info.st_mode)
+                    ):
+                        path.unlink()
+                        deleted_blobs += 1
+                except FileNotFoundError:
+                    pass
+
+            if deleted_blobs or deleted_tmp:
                 self._audit(c, "gc", "blob.sweep", "store", str(self.store.root),
-                            {"blobs": deleted_blobs, "tmp": deleted_tmp})
-                c.execute("COMMIT")
-            except Exception:
-                self._safe_rollback(c)
-                raise
+                            {"blobs": deleted_blobs, "tmp": deleted_tmp,
+                             "cutoff": db_deadline})
+            c.execute("COMMIT")
+        except Exception:
+            self._safe_rollback(c)
+            raise
         return {"deleted_blobs": deleted_blobs, "deleted_tmp": deleted_tmp}
 
 

@@ -91,6 +91,8 @@ Claim — одна транзакция `BEGIN IMMEDIATE`: проверка Idem
 
 ## 9. Валидация и приёмка
 
+Для локального control plane установи Python-зависимости из `lab/requirements.txt`; canonical `submission/v1` валидируется JSON Schema Draft 2020-12 с проверкой форматов. Legacy internal payload без `schema` остаётся совместимым, но всё равно проходит проверку байтов, SHA-256 и безопасных относительных путей.
+
 Этапы: Intake (схема, lease epoch, версия, размер, MIME, SHA-256, идемпотентность, полнота blobs) → Safety (пути, симлинки, архивы, лимиты) → Scope (diff только в `write_scope`) → Reproduce (candidate tree + trusted gate tree, pinned toolchain) → Department gates (точные argv из profiles) → Cross-links (зависимости, ID, provenance, дубли/сироты) → Recommendation → Decision (main) → Integration (только main).
 
 Загрузка артефактов двухфазная: blobs сначала (временный файл, SHA-256, fsync, атомарный `os.replace` в content-addressed store), manifest последним; неполный blob невидим для intake; GC нессыланных blobs — после grace period.
