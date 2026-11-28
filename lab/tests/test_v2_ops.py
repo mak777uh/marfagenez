@@ -198,6 +198,33 @@ class TestSchemaMigration(Base):
 
 
 
+
+    def test_v4_to_v5_migration_skips_uploads_missing_from_legacy_database(self):
+        c = self.db()
+        c.execute("DROP TABLE upload_artifacts")
+        digest = "f" * 64
+        c.execute(
+            "INSERT INTO artifacts "
+            "(sha256,bytes,media_type,blob_id,upload_id,task_id,created_at,last_seen_at) "
+            "VALUES (?,?,?,?,?,?,?,?)",
+            (digest, 4, "application/octet-stream", digest, "UPL-MISSING",
+             None, "2026-11-28T00:00:00Z", "2026-11-28T00:00:00Z"),
+        )
+        c.execute("PRAGMA user_version=4")
+        self.cp.init()
+        self.assertEqual(self.cp.user_version(), 5)
+        self.assertIsNone(c.execute(
+            "SELECT 1 FROM upload_artifacts WHERE sha256=?", (digest,)
+        ).fetchone())
+        migration = c.execute(
+            "SELECT details_json FROM audit_events WHERE action='schema.migrate' "
+            "AND details_json LIKE '%\"to\":5%' ORDER BY seq DESC LIMIT 1"
+        ).fetchone()
+        self.assertIsNotNone(migration)
+        self.assertIn('"unresolved_upload_references":1', migration["details_json"])
+        self.assertInvariants()
+
+
 class TestUploadIntake(Base):
     def test_upload_owner_state_and_close_are_enforced(self):
         upload = self.cp.create_upload("fast-01")

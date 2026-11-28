@@ -167,17 +167,24 @@ class V2OpsMixin:
                     "CREATE INDEX IF NOT EXISTS ix_upload_artifacts_sha "
                     "ON upload_artifacts(sha256)"
                 )
+                orphan_upload_refs = c.execute(
+                    "SELECT COUNT(*) FROM artifacts a LEFT JOIN uploads u "
+                    "ON u.upload_id=a.upload_id "
+                    "WHERE a.upload_id IS NOT NULL AND u.upload_id IS NULL"
+                ).fetchone()[0]
                 c.execute(
                     "INSERT OR IGNORE INTO upload_artifacts(upload_id,sha256,created_at) "
-                    "SELECT upload_id,sha256,created_at FROM artifacts "
-                    "WHERE upload_id IS NOT NULL"
+                    "SELECT a.upload_id,a.sha256,a.created_at FROM artifacts a "
+                    "JOIN uploads u ON u.upload_id=a.upload_id "
+                    "WHERE a.upload_id IS NOT NULL"
                 )
                 linked = c.execute(
                     "SELECT COUNT(*) FROM upload_artifacts"
                 ).fetchone()[0]
                 c.execute("PRAGMA user_version=5")
                 self._audit(c, "schema", "schema.migrate", "db", str(self.db_path),
-                            {"from": 4, "to": 5, "upload_artifact_links": linked})
+                            {"from": 4, "to": 5, "upload_artifact_links": linked,
+                             "unresolved_upload_references": orphan_upload_refs})
                 c.execute("COMMIT")
             except Exception:
                 self._safe_rollback(c)
