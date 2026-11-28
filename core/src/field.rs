@@ -67,7 +67,34 @@ pub struct Field {
     t: usize,
 }
 
+/// The complete medium state needed to resume the field dynamics.
+#[derive(Debug, Clone, PartialEq)]
+pub struct FieldStateSnapshot {
+    pub cells: Vec<f64>,
+    pub ceilings: Vec<f64>,
+    pub poor: f64,
+    pub max_resource: f64,
+    pub regrow: f64,
+    pub period: usize,
+    pub shift: f64,
+    pub step: usize,
+}
+
 impl Field {
+    /// Capture all current values and parameters that determine future regrowth.
+    pub fn experiment_snapshot(&self) -> FieldStateSnapshot {
+        FieldStateSnapshot {
+            cells: self.cells.clone(),
+            ceilings: self.ceil.clone(),
+            poor: self.poor,
+            max_resource: self.max_resource,
+            regrow: self.regrow,
+            period: self.period,
+            shift: self.shift,
+            step: self.t,
+        }
+    }
+
     /// Builds a field. Returns `None` for zero cells or invalid parameters.
     pub fn new(cells: usize, max_resource: f64, regrow: f64) -> Option<Self> {
         if cells == 0 || !max_resource.is_finite() || max_resource <= 0.0 {
