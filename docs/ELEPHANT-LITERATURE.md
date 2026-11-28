@@ -6142,23 +6142,29 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-27T07:20:00Z",
-  "via": "pubmed-efetch",
-  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=10966762 (abstract text)"
+  "level": "fragment_read",
+  "artifact": "papers/ono00-abstract-cell.pdf",
+  "bytes": 382933,
+  "sha256": "32139dbbc938dcc5292ca79d77ea2a31440f4e60b7938d2c56a2618839daddef",
+  "retrieved_at": "2026-11-28T12:30:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "авторская версия Ono & Ikegami, JTB 206:243-253 (2000), doi:10.1006/jtbi.2000.2121, PMID 10966762; sacral.c.u-tokyo.ac.jp мёртв, а publications-страница — JS Google Sites без прямых PDF — PDF (~nono/book2/publications/jtb2000b.pdf) получен через web.archive.org snapshot 20031023142306 (CDX domain-запрос sacral.c.u-tokyo.ac.jp/*.pdf); аннотация и способы воспроизведения сверены дословно: «self-maintaining cell has the potential to reproduce itself spontaneously», «releases autocatalytic chemicals that create new cells outside the mother cell», «grows larger and divides itself into daughter cells by creating a new internal dividing membrane»"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction"
+   }
+  ]
  },
  "abstract_sha256": "86b9b5f7c811481c5a31d275c8dbb094d5a193ddde0e3c4830626369ed0e9daa",
  "bibliographic": {
   "title": "Self-maintenance and Self-reproduction in an Abstract Cell Model",
   "year": 2000,
-  "first_author": "Naoaki Ono"
+  "first_author": "Ono"
  },
  "legacy": false,
  "legacy_reason": null,
@@ -6168,8 +6174,8 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Self-maintenance and Self-reproduction in an Abstract Cell Model (2000). Naoaki Ono; Takashi Ikegami
 **Ссылка.** https://doi.org/10.1006/jtbi.2000.2121
-**Проверено.** **аннотация** PubMed/efetch (PMID 10966762), 2026-11-27, sha256 86b9b5f7c811…; полный текст не читался.
-**Утверждение.** Ono & Ikegami 2000 — самоподдержание и граница в минимальной модели (проверить, что именно содержит)
+**Проверено.** **фрагмент** авторский PDF Ono & Ikegami через web.archive.org snapshot 20031023142306 (papers/ono00-abstract-cell.pdf, sha256 32139dbb…, 2026-11-28); аннотация и оба способа воспроизведения сверены дословно — метаболический цикл производит самосборочную мембрану, клетка либо выпускает автокаталитические химикалии наружу, либо делится внутренней мембраной.
+**Утверждение.** Ono & Ikegami 2000 — самоподдерживающаяся клетка в абстрактной модели: метаболический цикл производит самосборочную мембрану, и показаны два способа самовоспроизведения в зависимости от подвижности химикалий.
 **Что даёт нам.** — (суждение не сделано).
 
 ### L-104 · Thirty Years of Computational Autopoiesis: A Review

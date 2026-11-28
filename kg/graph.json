@@ -22619,11 +22619,11 @@
     {
       "id": "L-103",
       "kind": "claim",
-      "text": "Self-maintenance and Self-reproduction in an Abstract Cell Model — Ono & Ikegami 2000 — самоподдержание и граница в минимальной модели (проверить, что именно содержит)",
+      "text": "Self-maintenance and Self-reproduction in an Abstract Cell Model — Ono & Ikegami 2000 — самоподдерживающаяся клетка в абстрактной модели: метаболический цикл производит самосборочную мембрану, и показаны два способа самовоспроизведения в зависимости от подвижности химикалий.",
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** PubMed/efetch (PMID 10966762), 2026-11-27, sha256 86b9b5f7c811…; п"
+        "conditions": "**фрагмент** авторский PDF Ono & Ikegami через web.archive.org snapshot 20031023"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -22631,7 +22631,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/ono00-abstract-cell.pdf",
+          "strength": "moderate",
+          "sha256": "32139dbbc938dcc5292ca79d77ea2a31440f4e60b7938d2c56a2618839daddef"
         }
       ],
       "relations": [],
@@ -22639,11 +22645,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** PubMed/efetch (PMID 10966762), 2026-11-27, sha256 86b9b5f7c811…; п",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент** авторский PDF Ono & Ikegami через web.archive.org snapshot 20031023",
+        "level_kind": "fragment_read",
+        "artifact": "papers/ono00-abstract-cell.pdf",
+        "artifact_bytes": 382933,
+        "artifact_sha256": "32139dbbc938dcc5292ca79d77ea2a31440f4e60b7938d2c56a2618839daddef",
         "locator": {
           "doi": "10.1006/jtbi.2000.2121",
           "arxiv": null,
@@ -41042,11 +41048,6 @@
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
-    },
-    {
-      "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
@@ -41054,6 +41055,11 @@
       "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
+    },
+    {
+      "from": "C-001",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
@@ -41077,13 +41083,13 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -41117,13 +41123,13 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -41272,23 +41278,23 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
-      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
-      "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
+      "from": "F-022",
+      "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
     },
     {
       "from": "F-023",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
+    },
+    {
+      "from": "F-023",
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
@@ -43587,11 +43593,6 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
@@ -43599,6 +43600,11 @@
       "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
@@ -43622,12 +43628,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
