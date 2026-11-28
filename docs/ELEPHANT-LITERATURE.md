@@ -1475,25 +1475,31 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
  "L": "L-028",
  "locator": {
   "doi": null,
-  "arxiv": null,
-  "arxiv_version": null,
+  "arxiv": "0906.3506",
+  "arxiv_version": "v1",
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://arxiv.org/abs/0906.3506",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/viability09-ecosystem-arxiv0906.3506.pdf",
+  "bytes": 442289,
+  "sha256": "2d8f955d6bd1e1faafd9304e230e11ca73d501b6f761ce1bd17bdcad9ca7786d",
+  "retrieved_at": "2026-11-27T23:30:00Z",
+  "via": "arxiv-pdf",
+  "via_detail": "Ocaña Anaya, De Lara, Oliveros-Ramos & Tam, «Viability Kernel for Ecosystem Management Models», arXiv:0906.3506 (19 стр.); прочитаны §1-2 (определение V(f,D), viability domain, алгоритм Vk); Aubin 1991 и Saint-Pierre 1994 — цитируются внутри как первоисточники, Maidens 2013 не читался"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "sec1-intro",
+    "to": "sec2-discrete-time-viability"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1510,9 +1516,9 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** Aubin (1991); Saint-Pierre (1994); Maidens et al. (2013), Automatica.
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Viability kernel — **наибольшее множество состояний**, из которых существует траектория,
-остающаяся в ограничениях; это строже, чем «жив ли объект сейчас».
+**Проверено.** **фрагмент** papers/viability09-ecosystem-arxiv0906.3506.pdf (arXiv 0906.3506, sha256 2d8f955d…), 2026-11-27; Aubin 1991/Saint-Pierre 1994 — цитируемые первоисточники внутри работы, Maidens 2013 — вторые руки.
+
+**Утверждение (по фрагментам arXiv:0906.3506; Aubin/Saint-Pierre — цитируемые первоисточники).** Viability kernel V(f,D) — множество начальных состояний, из которых существует управление, удерживающее систему в допустимом множестве D для всех t∈N; равно объединению/наибольшему viability domain; вычисляется убывающей последовательностью Vk (условия сходимости — Saint-Pierre 1994).
 **Что даёт нам.** Наш `q_min` — мгновенный порог; viability — **допуск на будущее**. Это готовый ответ на
 «допуск вместо точки» (§4.13): полоса — **сечение viability kernel**.
 **Что меняет.** Проверить, является ли наша полоса проекцией viability kernel; если да — назвать её так.
