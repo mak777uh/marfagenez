@@ -3155,23 +3155,29 @@ selection» (2023), PNAS, PMC10705550.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://ruj.uj.edu.pl/xmlui/handle/item/263279"
+  "level": "fragment_read",
+  "artifact": "papers/cichon00-survivorship-curves.pdf",
+  "bytes": 214309,
+  "sha256": "917d1c4e3e17e35ea3ed3b5380edb5972ab99b1f606ce3cc8da2a8bf963b08e3",
+  "retrieved_at": "2026-11-28T14:20:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "авторский PDF Cichoń & Kozłowski 2000, Evol Ecol Res 2:857-870 (ruj.uj.edu.pl item/263279 — только метаданные, bundles пусты по DSpace 7 API; citeseerx 10.1.1.485.6642 мёртв, snapshots нет); PDF с личной страницы автора cyberspace.cyfronet.krakow.pl/~uxcichon/abs/00_2.pdf через Wayback snapshot 20170809043620 (хост теперь 403 geo-block и редиректит на home.cyf-kr.edu.pl, тоже 403); аннотация и введение сверены дословно: «the rate of ageing is highest under high extrinsic mortality and lowest under low mortality», «repair intensity varies with age, being highest early in life, diminishing later and stopping completely well before the end of the maximum expected life»"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction/model setup"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
   "title": "Ageing and typical survivorship curves result from optimal resource allocation",
   "year": 2000,
-  "first_author": null
+  "first_author": "Cichoń"
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
@@ -3184,7 +3190,7 @@ selection» (2023), PNAS, PMC10705550.
 **Кто.** «Ageing and typical survivorship curves result from optimal resource allocation» (2000); «A life history model
 of somatic damage associated with resource acquisition: damage protection or prevention?» (JCU).
 **Ссылка.** https://ruj.uj.edu.pl/xmlui/handle/item/263279 ; https://researchonline.jcu.edu.au/42556/
-**Проверено.** **аннотация.**
+**Проверено.** **фрагмент** авторский PDF через Wayback (papers/cichon00-survivorship-curves.pdf, sha256 917d1c4e…, 2026-11-28); «rate of ageing is highest under high extrinsic mortality and lowest under low mortality», «repair intensity varies with age… stopping completely well before the end of the maximum expected life» — сверено дословно.
 **Утверждение (пересказ).** Интенсивность починки **меняется с возрастом**; стратегия распределения отвечает на
 **внешнюю смертность**; при высокой внешней смертности темп старения выше. Вторая работа: ресурс не ограничен
 извне — есть **оптимальный приток** и оптимальное распределение.
