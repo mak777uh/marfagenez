@@ -490,7 +490,7 @@ def _atomic_replace_json(path: Path, value: dict[str, Any]) -> None:
         info = None
     if info is not None and (stat.S_ISLNK(info.st_mode) or not stat.S_ISREG(info.st_mode)):
         raise RuntimeError(f"refusing to replace non-regular result path: {path}")
-    payload = (json.dumps(value, indent=2, ensure_ascii=False) + "\\n").encode("utf-8")
+    payload = (json.dumps(value, indent=2, ensure_ascii=False) + "\n").encode("utf-8")
     tmp = _write_temp_file(path, payload)
     try:
         os.replace(tmp, path)
@@ -504,7 +504,7 @@ def _atomic_replace_json(path: Path, value: dict[str, Any]) -> None:
 
 def _atomic_create_json(path: Path, value: dict[str, Any]) -> bool:
     """Atomically create a result without ever overwriting an existing path."""
-    payload = (json.dumps(value, indent=2, ensure_ascii=False) + "\\n").encode("utf-8")
+    payload = (json.dumps(value, indent=2, ensure_ascii=False) + "\n").encode("utf-8")
     tmp = _write_temp_file(path, payload)
     try:
         try:
