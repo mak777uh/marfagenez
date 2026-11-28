@@ -806,3 +806,10 @@ status: continue
 - merge agent/red-line-fixes-2026-11-28 @ 3776af6b в master (стек PR #13-#20 + 861an); hosted gate 46107930304 success на 3776af6b; hosted gate 46106953589 success на e139f9a1
 - в merge-base параллельные лит-коммиты Devin (head decb8dd5)
 - статус: локальный полный гейт c907 на merge HEAD -> при зелёном пуш master; PR #21 закрыть после пуша
+
+## 2026-11-28 — фиксы модели 861au + лит-волна lit-1..lit-9 (цикл 861av)
+
+- 861au: приняты 8 фиксов внешнего агента-фиксера (патч sha256 8fabb48d, 13 файлов, база 34a9850a): (1) движение проверяет границу до списания энергии; (2) sustains() строгое `>`; (3) trace float round-trip (json_number), off_positions хэширует raw bits; (4) HASH_VERSION 2-prev-cell -> 3-move-bounds, golden re-pin, 18 версионированных записей legal stale (hash_version.py --selftest 7/7); (5) maint_debt — явный долг в ledger, accrual-only, rescue не гасит; (6) rescue расходует external_rescue_stock=1; (7) vector wear [f64; 3]; (8) exp_a_p5/exp_b_unit: каноническая смерть, censoring, observed-time метрики. Тесты 463 -> 472 (доки 8 файлов, doc_numbers rc=0); lib 207/207, focused 54/54, golden 2/2, cargo check ok.
+- лит-агент (Devin): волна lit-1..lit-9 (0fb8973f..94054918), ~32 записи подняты abstract_read -> fragment_read через Wayback-обходы paywall; каждый батч с kg-цепочкой (migrate -> build -> build_embeddings, регрессии rc=0) и журнальной записью; очередь открытых источников почти исчерпана. Расхождения DOI/title в L-061/L-083 зафиксированы (via_detail), локаторы не тронуты.
+- c917 (pin 94054918): 12/13 секций зелёные (test 542с, lab 64 OK), красный только agents — docs/agent/AGENT_STATE.md отстал от 861au (state ba618f4c). Коммит 861av закрывает отставание состояния; код не менялся.
+- статус: гейт c918 на новом HEAD (чистое дерево после приземления текущего лит-батча) -> при зелёном sha-пуш master -> hosted gate.

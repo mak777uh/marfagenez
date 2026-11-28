@@ -11050,3 +11050,7 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
 
 Предыдущий коммит ветки: `34a9850a`.
 lit-9: L-070 -> fragment_read. Hilde et al. 2020 TREE (Demographic Buffering Hypothesis, doi:10.1016/j.tree.2020.02.004): живой nva.sikt.no ведёт на NVA, чей /download endpoint требует auth (403 Forbidden на presigned URL); PDF взят через web.archive.org snapshot 20240913045757 старого NTNUOpen DSpace bitstream main.pdf (handle 11250/2672816), файл усечён wayback на 1 MiB — дособран Range-resume (id_), итог 1527901 байт = размеру в NVA-метаданных. Tuljapurkar approximation (Box 1, Eq.1) сверена дословно. papers/hilde20-demographic-buffering.pdf sha256 6252c880. contract+kg+embeddings rc=0.
+
+- **861av:** обновлено состояние агента: в docs/agent/AGENT_STATE.md добавлена секция «фиксы модели 861au + лит-волна lit-1..lit-9». Причина: c917 дал 12/13 зелёных секций, красный только agents — состояние (ba618f4c, цикл 861ao) отстало от 861au, менявшего core/checks (8 фиксов внешнего агента, HASH_VERSION 3-move-bounds). Код и проверки не менялись; правка только docs/agent/AGENT_STATE.md + AGENT_LOG.md. Статус: гейт c918 на новом HEAD.
+
+Предыдущий коммит ветки: `94054918e10a63f431952730cd8c6c0076ff19b3`.
