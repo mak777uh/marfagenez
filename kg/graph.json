@@ -18462,7 +18462,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** (общий абстракт с L-094, PubMed PMID 25752259), 2026-11-27; полный"
+        "conditions": "**фрагмент**: HAL-депозит hal-01192916 (авторская версия JTB 2015), papers/monte"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18470,7 +18470,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/montevil15-closure-constraints.pdf",
+          "strength": "moderate",
+          "sha256": "db728480eee0a144b43140508b9e1976b15be2018919b5a643e600e5c5b0abda"
         }
       ],
       "relations": [],
@@ -18478,11 +18484,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** (общий абстракт с L-094, PubMed PMID 25752259), 2026-11-27; полный",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: HAL-депозит hal-01192916 (авторская версия JTB 2015), papers/monte",
+        "level_kind": "fragment_read",
+        "artifact": "papers/montevil15-closure-constraints.pdf",
+        "artifact_bytes": 691117,
+        "artifact_sha256": "db728480eee0a144b43140508b9e1976b15be2018919b5a643e600e5c5b0abda",
         "locator": {
           "doi": "10.1016/j.jtbi.2015.02.029",
           "arxiv": null,
@@ -20242,7 +20248,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "**фрагмент**: Letters in Biomathematics (PKP-OJS, сайт битый — 400), papers/ledd"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20250,7 +20256,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/ledder14-basic-deb.pdf",
+          "strength": "moderate",
+          "sha256": "dd00c1a909ab54ed30ea5a778c71f99e3cbf5a1ef40cd5b2f8b6aea7224b77ed"
         }
       ],
       "relations": [],
@@ -20258,11 +20270,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: Letters in Biomathematics (PKP-OJS, сайт битый — 400), papers/ledd",
+        "level_kind": "fragment_read",
+        "artifact": "papers/ledder14-basic-deb.pdf",
+        "artifact_bytes": 678638,
+        "artifact_sha256": "dd00c1a909ab54ed30ea5a778c71f99e3cbf5a1ef40cd5b2f8b6aea7224b77ed",
         "locator": {
           "doi": "10.30707/lib1.2ledder",
           "arxiv": null,
@@ -22119,7 +22131,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** PubMed/efetch (PMID 25752259), 2026-11-27, sha256 2875e9cc69fc…; п"
+        "conditions": "**фрагмент**: HAL-депозит hal-01192916 (авторская версия JTB 2015), papers/monte"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -22127,7 +22139,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/montevil15-closure-constraints.pdf",
+          "strength": "moderate",
+          "sha256": "db728480eee0a144b43140508b9e1976b15be2018919b5a643e600e5c5b0abda"
         }
       ],
       "relations": [],
@@ -22135,11 +22153,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** PubMed/efetch (PMID 25752259), 2026-11-27, sha256 2875e9cc69fc…; п",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: HAL-депозит hal-01192916 (авторская версия JTB 2015), papers/monte",
+        "level_kind": "fragment_read",
+        "artifact": "papers/montevil15-closure-constraints.pdf",
+        "artifact_bytes": 691117,
+        "artifact_sha256": "db728480eee0a144b43140508b9e1976b15be2018919b5a643e600e5c5b0abda",
         "locator": {
           "doi": "10.1016/j.jtbi.2015.02.029",
           "arxiv": null,
@@ -40975,12 +40993,12 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
@@ -41040,7 +41058,7 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
@@ -41050,7 +41068,7 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
@@ -41195,7 +41213,7 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
@@ -41205,7 +41223,7 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
@@ -43520,12 +43538,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {

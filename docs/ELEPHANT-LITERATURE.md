@@ -1369,17 +1369,23 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-27T23:45:00Z",
-  "via": "pubmed-efetch",
-  "via_detail": "тот же абстракт, что у канонической записи L-094 (PMID 25752259, PubMed efetch); полный текст JTB недоступен; DOI дублируется — canonical у L-094"
+  "level": "fragment_read",
+  "artifact": "papers/montevil15-closure-constraints.pdf",
+  "bytes": 691117,
+  "sha256": "db728480eee0a144b43140508b9e1976b15be2018919b5a643e600e5c5b0abda",
+  "retrieved_at": "2026-11-28T07:21:00Z",
+  "via": "repository",
+  "via_detail": "HAL author deposit hal-01192916 (Montévil & Mossio 2015, JTB 372:179-191, doi:10.1016/j.jtbi.2015.02.029), файл получен через web.archive.org snapshot 20240513 (hal.science отдаёт 403); «constraints realise closure, i.e. mutual dependence» — дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": "2875e9cc69fc532b616922ab01f3ee14eeb2b0e61bea88418d089064222d3c0f",
  "bibliographic": {
@@ -1397,7 +1403,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** Montévil & Mossio (2015), JTB 372:179–191; Mossio, Saborido & Moreno (2009).
-**Проверено.** **аннотация** (общий абстракт с L-094, PubMed PMID 25752259), 2026-11-27; полный текст JTB не читался.
+**Проверено.** **фрагмент**: HAL-депозит hal-01192916 (авторская версия JTB 2015), papers/montevil15-closure-constraints.pdf через Wayback, 2026-11-28; «constraints realise closure, i.e. mutual dependence such that they both depend on and contribute to maintaining each other» — дословно; прочитаны аннотация и разделы про closure/границы. Дубль L-094 — та же работа.
 
 **Утверждение (по аннотации Montévil, Mossio & Longo 2015 — общий абстракт с L-094; Mossio-Saborido-Moreno 2009 — вторые руки).** Биологическая организация — замыкание ограничений: причинная сеть взаимно поддерживающих ограничений, где каждое ограничение зависит хотя бы от одного другого и хотя бы одно другое зависит от него; замыкание ≠ баланс потоков.
 **Что даёт нам.** Прямой аналог нашего §4.10 — но **структурный тест** (граф зависимостей), а не неравенство.
@@ -3183,17 +3189,23 @@ of somatic damage associated with resource acquisition: damage protection or pre
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://www.sciencedirect.com/science/article/abs/pii/S1385110106000311"
+  "level": "fragment_read",
+  "artifact": "papers/ledder14-basic-deb.pdf",
+  "bytes": 678638,
+  "sha256": "dd00c1a909ab54ed30ea5a778c71f99e3cbf5a1ef40cd5b2f8b6aea7224b77ed",
+  "retrieved_at": "2026-11-28T07:21:00Z",
+  "via": "repository",
+  "via_detail": "Letters in Biomathematics 1(1) 2014, Glenn Ledder, «The Basic Dynamic Energy Budget Model and Some Implications», doi:10.30707/lib1.2ledder; журнал на сломанном PKP-OJS, PDF получен через web.archive.org snapshot 20210415; κ-правило и maintenance costs JS/JH подтверждены в тексте"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3213,7 +3225,7 @@ of somatic damage associated with resource acquisition: damage protection or pre
 Implications» (2014), doi:10.30707/lib1.2ledder.
 **Ссылка.** https://www.sciencedirect.com/science/article/abs/pii/S1385110106000311 ;
 https://doi.org/10.30707/lib1.2ledder
-**Проверено.** **аннотация.**
+**Проверено.** **фрагмент**: Letters in Biomathematics (PKP-OJS, сайт битый — 400), papers/ledder14-basic-deb.pdf через Wayback, 2026-11-28; «the fraction κ allocated for somatic uses and the remaining fraction allocated for maturation or reproduction. Costs JS and JH for somatic and maturity maintenance are deducted» — дословно; starvation и maintenance разобраны в тексте. Kooijman 1986/2000 и обзор 2006 остаются вторыми руками.
 **Утверждение (пересказ).** Энергия делится **правилом κ**: доля κ идёт на поддержание сомы, `1−κ` — на рост и
 размножение; при голодании животное живёт, пока **запас оплачивает поддержание**; в DEBkiss при голодании рост
 останавливается, а поддержание платится из ветви `1−κ`.
@@ -5663,17 +5675,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-27T07:20:00Z",
-  "via": "pubmed-efetch",
-  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=25752259 (abstract text)"
+  "level": "fragment_read",
+  "artifact": "papers/montevil15-closure-constraints.pdf",
+  "bytes": 691117,
+  "sha256": "db728480eee0a144b43140508b9e1976b15be2018919b5a643e600e5c5b0abda",
+  "retrieved_at": "2026-11-28T07:21:00Z",
+  "via": "repository",
+  "via_detail": "HAL author deposit hal-01192916 (Montévil & Mossio 2015, JTB 372:179-191, doi:10.1016/j.jtbi.2015.02.029), файл получен через web.archive.org snapshot 20240513 (hal.science отдаёт 403); «constraints realise closure, i.e. mutual dependence» — дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": "2875e9cc69fc532b616922ab01f3ee14eeb2b0e61bea88418d089064222d3c0f",
  "bibliographic": {
@@ -5689,7 +5707,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Biological organisation as closure of constraints (2015). Maël Montévil; Matteo Mossio
 **Ссылка.** https://doi.org/10.1016/j.jtbi.2015.02.029
-**Проверено.** **аннотация** PubMed/efetch (PMID 25752259), 2026-11-27, sha256 2875e9cc69fc…; полный текст не читался.
+**Проверено.** **фрагмент**: HAL-депозит hal-01192916 (авторская версия JTB 2015), papers/montevil15-closure-constraints.pdf через Wayback, 2026-11-28; «constraints realise closure, i.e. mutual dependence such that they both depend on and contribute to maintaining each other» — дословно; каноническая запись, дубль L-025.
 **Утверждение.** Montévil & Mossio 2015 — организация как замыкание ограничений; словесная рамка «организация оплачивает свои ограничения»
 **Что даёт нам.** — (суждение не сделано).
 
