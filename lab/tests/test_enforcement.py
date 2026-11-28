@@ -14,8 +14,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from lab.service.control import (  # noqa: E402
-    Blocked, BadRequest, ControlPlane)
+from lab.service.control import Blocked, BadRequest  # noqa: E402
+from lab.service.v2_ops import ControlPlane2  # noqa: E402
 
 LEASE_SPEC = {"ttl_seconds": 120, "heartbeat_seconds": 30,
               "max_attempts": 1, "max_lease_seconds": 200}
@@ -34,7 +34,7 @@ def make_task(tid: str, dept: str = "knowledge", priority: int = 5, **kw):
         "validators": [{"profile": "knowledge-map-v1", "version": "1.0.0"}],
         "dependencies": [], "lease": dict(LEASE_SPEC), "priority": priority,
         "base_commit": "deadbeef01", "network_profile": "none",
-        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 1,
+        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 1_048_576,
                    "network_allowlist": []},
         "tags": [], **kw,
     }
@@ -58,9 +58,9 @@ class Base(unittest.TestCase):
     def setUp(self):
         self.dir = Path(tempfile.mkdtemp(prefix="lab-enf-"))
         self.clock = Clock()
-        cp = ControlPlane(self.dir / "control.sqlite3",
-                          artifacts=self.dir / "artifacts",
-                          wall=self.clock.wall, mono=self.clock.mono)
+        cp = ControlPlane2(self.dir / "control.sqlite3",
+                           artifacts=self.dir / "artifacts",
+                           wall=self.clock.wall, mono=self.clock.mono)
         cp.init()
         self.cp = cp
 
@@ -122,6 +122,9 @@ class TestClaimEnforcement(Base):
             "submitted_at,status,status_reason) VALUES ("
             "'SUB-ENF-DEP','KG-2026-0320',1,'d','a1','l1',0,'enf-00',NULL,'deadbeef01',"
             "'b','[]','{}','{}',NULL,NULL,'[]','2026-11-28T00:00:00Z','received',NULL)")
+        c.execute(
+            "INSERT INTO submission_artifacts (submission_id,artifact_index,sha256) "
+            "VALUES ('SUB-ENF-DEP',0,?)", ("e" * 64,))
         r2 = self.cp.claim("enf-02", "i2", "knowledge", idem_key="c2")
         self.assertEqual(r2["claimed"]["task_id"], "KG-2026-0321")
 
@@ -135,8 +138,11 @@ class TestSubmitEnforcement(Base):
         return r["claimed"], blob
 
     def _sub(self, lease, blob, **kw):
-        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
-                 "media_type": "application/x-ndjson"}]
+        arts = [{
+            "path": f"results/{lease['task_id']}/evidence.ndjson",
+            "sha256": blob["sha256"], "bytes": blob["bytes"],
+            "media_type": "application/x-ndjson",
+        }]
         sub = {
             "id": "SUB-ENF-1", "task_id": lease["task_id"],
             "task_version": lease["version"],
