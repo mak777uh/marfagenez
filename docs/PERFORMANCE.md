@@ -67,3 +67,36 @@ Windows ради скорости.
 Если когда-нибудь понадобится Windows-native: переносить стоит **не весь репозиторий**, а только
 **читающую часть** (инструменты анализа) — с сохранением гейта и записи в WSL. Но и это пока не даёт
 выигрыша: 155 мс на проверку не стоят переписывания.
+
+
+---
+
+## Измеримый benchmark для горячего цикла Life
+
+Изменения ниже — сокращение аллокаций, а не утверждение о достигнутом проценте ускорения. Baseline и candidate нужно запускать на одном хосте, с одним Rust toolchain, release flags, режимом питания CPU и одинаковой матрицей. Сравнение разных GitHub runners не является корректным бенчмарком.
+
+Собрать и выполнить:
+
+```bash
+cd core
+cargo build --release --example bench_life
+./target/release/examples/bench_life \
+  --populations 24,256,1024 \
+  --cells 40,256,1024 \
+  --steps 10000 \
+  --repeats 7 \
+  --policy stay \
+  --share sequential
+```
+
+Пример пишет JSON-метаданные и по одной JSON-строке на комбинацию population × cells. Сохранять вывод вместе с `rustc --version --verbose`, `uname -a`, `git rev-parse HEAD` и `lscpu`. Повторить минимум три раза, а также для `--policy random`, `--policy memory` и `--share proportional`. Два scratch-массива нужны протоколу Proportional, поэтому его нельзя смешивать с результатом Sequential.
+
+В горячем цикле этой ветки удалено:
+
+- две O(cells) аллокации на шаг для default Sequential;
+- одна O(population) копия policy vector на шаг;
+- временный Vec порядка обхода для Historical и Rotate; Random сохраняет прежний Fisher–Yates и те же RNG draws;
+- O(population) presence snapshot для claims;
+- чтение переменной окружения на каждого организма на каждом шаге.
+
+Не добавлялись SIMD, многопоточность, смена RNG, структуры поля или перестановка действий организмов. Golden trajectory hashes и полный gate являются критерием корректности. Процент ускорения следует сообщать только после baseline/candidate measurements на одном хосте.

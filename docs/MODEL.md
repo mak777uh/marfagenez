@@ -68,7 +68,7 @@ $$x_{ij}(0) \sim \mathcal{N}(0, 0.5^2) \quad \text{независимо}$$
 
 $$s_{t+1} = (a \cdot s_t + c) \bmod 2^{64}$$
 
-где `a = 6364136223846793005`, `c = 1442695040888963407`.
+где `a = 6364136223846893005`, `c = 1442695040888963407`.
 
 Равномерное на `[0,1)`:
 
@@ -260,7 +260,7 @@ python3 checks/transition3.py
 # alpha сходится к 2mu/sigma^2
 python3 checks/alpha_fit.py
 
-# 467 теста
+# 468 теста
 cd core && cargo test --release --tests -- --test-threads=1
 
 # 41 verified
