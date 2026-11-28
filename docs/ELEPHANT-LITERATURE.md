@@ -851,28 +851,28 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 {
  "L": "L-016",
  "locator": {
-  "doi": null,
+  "doi": "10.1093/acprof:oso/9780198507260.003.0004",
   "arxiv": null,
   "arxiv_version": null,
-  "openalex": null,
+  "openalex": "https://openalex.org/W2476679662",
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1093/acprof:oso/9780198507260.003.0004",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "retrieved_at": "2026-11-28T05:15:33Z",
+  "via": "openalex",
+  "via_detail": "OpenAlex abstract_inverted_index, W2476679662 (Szathmáry 2003, глава в The Major Transitions in Evolution); оригинал Gánti 1975/2003 недоступен — уровень аннотации, не первоисточника"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "6d29472c384e934b26f93ba9227eab933d413369a66c8ebbc0c4af242e836b5a",
  "bibliographic": {
   "title": "Химотон: три подсистемы и требование замкнутости",
   "year": 1975,
@@ -888,7 +888,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 **Кто.** Gánti (1975, 2003).
 **Ссылка.** **вторые руки.**
-**Проверено.** **вторые руки.**
+**Проверено.** **аннотация** OpenAlex (Szathmáry 2003 о работе Gánti, doi:10.1093/acprof:oso/9780198507260.003.0004), 2026-11-28; текст Gánti не читался — цикл метаболизма+шаблон подтверждён аннотацией, третий компонент (мембрана) остаётся вторыми руками.
 **Утверждение (пересказ).** Минимальная живая единица — **три** подсистемы (мембрана, метаболизм, информация),
 связанные в цикл; каждая производится системой.
 **Что даёт нам.** Это ровно наш **потолок 3**: «две независимые величины и обмен». У Ганти — три и с требованием
