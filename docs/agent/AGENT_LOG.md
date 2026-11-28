@@ -10986,6 +10986,6 @@ Rust 410; EXP-2026-4103 переиздана v2, MSG-16 exper'у, MSG-19 devin'�
 Предыдущий коммит ветки: `e139f9a1`.
 
 
-- **861ao:** merge красной линии в master: `agent/red-line-fixes-2026-11-28` @ `3776af6b` (стек PR #13-#20 + 861an: 6 фиксов lab-секции). Hosted gate `46107930304` = success на точном head `3776af6b` (полный gate, включая ранее красную lab: 64 теста OK); параллельно hosted gate `46106953589` = success на master `e139f9a1` (run 75). В merge-base вошли параллельные лит-коммиты Devin (L-013/L-019/L-025/L-044, s8f atoms, head `decb8dd5`). Локальный полный гейт c907 на merge HEAD; при зелёном — пуш master. PR #21 (draft) закрывать после пуша.
+- **861ao:** merge красной линии в master: `agent/red-line-fixes-2026-11-28` @ `3776af6b` (стек PR #13-#20 + 861an: 6 фиксов lab-секции). Hosted gate `46107930304` = success на точном head `3776af6b` (полный gate, включая ранее красную lab: 64 теста OK); параллельно hosted gate `46106953589` = success на master `e139f9a1` (run 75). В merge-base вошли параллельные лит-коммиты Devin: `006bf2d0` L-028 fragment_read (Ocaña Anaya-De Lara, arXiv:0906.3506), `d52600ea` s8f viability kernel atoms (F-008/F-024/L-028), `f52b0d7f` L-025 abstract_read (Montévil-Mossio, duplicate_of L-094), `35e55efb` L-044 locator (Elser-Urabe 1999, Crossref DOI), `7fef0a8f` L-013 locator (Pirt 1965, DOI/PMID), `decb8dd5` L-019 locators (Ruiz-Mirazo-Moreno 2004/2011, Crossref). Локальный полный гейт c907 на merge HEAD; при зелёном — пуш master. PR #21 (draft) закрывать после пуша.
 
 Предыдущий коммит ветки: `3776af6b`.
