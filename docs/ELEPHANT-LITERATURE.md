@@ -4590,23 +4590,29 @@ doi:10.1016/j.cnsns.2016.04.008.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://doi.org/10.1002/cpa.3160320103"
+  "level": "fragment_read",
+  "artifact": "papers/golubitsky79-imperfect-bifurcation.pdf",
+  "bytes": 4330794,
+  "sha256": "f8abfba05b2fe33c4e6e579dd5747c06342c8feea1bf10bd8982bbf3ad23bd15",
+  "retrieved_at": "2026-11-28T14:50:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "авторский репринт Golubitsky & Schaeffer 1979, CPAM 32:1-77 (doi:10.1002/cpa.3160320103; Wiley за бот-блоком, DTIC-копия была чужой работой) с reprint-сайта первого автора asc.ohio-state.edu/golubitsky.4/reprintweb-0.5/output/papers/imperfect_bifurcation.pdf (78 стр., текстовый слой); введение и §1-2 сверены дословно: «we use the theory of singularities to study bifurcation diagrams when subjected to small perturbations or imperfections», «all possible perturbed diagrams in some suitable qualitative way»; показательная ε^(2/3) в этой работе явно не утверждается (классический результат катастроф — помечено в записи как пересказ)"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction / reduction setup"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
   "title": "A theory for imperfect bifurcation via singularity theory",
   "year": 1979,
-  "first_author": "CPAM"
+  "first_author": "Golubitsky"
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
@@ -4621,7 +4627,7 @@ doi:10.1002/cpa.3160320103; «A Statistical Theory for Imperfect Bifurcation» (
 doi:10.1137/0142011; «Universal finite-time scaling in the transcritical, saddle-node, and pitchfork discrete and
 continuous bifurcations» (2024), arXiv:2405.19947.
 **Ссылка.** https://doi.org/10.1002/cpa.3160320103 ; https://arxiv.org/abs/2405.19947
-**Проверено.** **аннотация.**
+**Проверено.** **фрагмент** авторский репринт через сайт Golubitsky (papers/golubitsky79-imperfect-bifurcation.pdf, sha256 f8abfba0…, 2026-11-28); «bifurcation diagrams when subjected to small perturbations or imperfections», классификация всех возмущённых диаграмм — сверено дословно; ε^(2/3) как явная формула в тексте не встречается (отмечено в via_detail).
 **Утверждение (пересказ).** У реальных систем есть **несовершенства** (шум, конечный размер, асимметрия); теория
 несовершенных бифуркаций описывает, как они **сглаживают** переход. Для складки ширина переходной области растёт как
 **`ε^(2/3)`** от величины несовершенства `ε` (классический результат), а не линейно.
