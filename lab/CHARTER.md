@@ -97,6 +97,10 @@ Claim — одна транзакция `BEGIN IMMEDIATE`: проверка Idem
 
 `N/A` не считается зелёным: пропуск проверки явный, обоснованный и виден main. Validation не содержит решения.
 
+Control Plane хранит Validation, Decision и Integration как отдельные связанные записи. `record_validation` проверяет pinned validator profile/version и SHA submission; рекомендация не меняет статус на `accepted`. Decision — отдельная операция main: `accepted` требует всех checks с `rc=0`, без `skipped_reason` и `escalate_to_main`, а также совпадения версии задачи. Отрицательный `scientific_outcome=failed` сам по себе не мешает принять корректный результат. Integration требует принятого Decision, закреплённого `base_commit`, совпадающего `head_before` и фактического списка путей внутри `write_scope` вне PROTECTED.
+
+**Граница реализации:** этот слой записывает и проверяет переходы состояния, но пока не запускает зарегистрированные validator profiles, sandbox/candidate tree, `git apply` или trusted final gates. `record_validation` должен вызываться доверенным validation runner; строка principal в текущем in-process API не является криптографической аутентификацией. Integration API журналирует подтверждённый main результат, но сам не выполняет Git-операции и не доказывает ancestry `head_after`. До появления доверенного runner и защищённого transport это не автоматическая приёмка и не автоматический merge.
+
 ## 10. Интеграция
 
 Только main, из отдельного worktree, с фиксацией `head_before`: проверка `base_commit` и версии → применение только файлов bundle вне PROTECTED → trusted final gates → цепочка `task → attempt → submission → validation → decision → integration` зафиксирована → журнал и accepted-индекс дописаны → commit только с явно перечисленными файлами. Запрещены `reset --hard`, `clean -f`, `checkout .`, force push. HEAD ушёл вперёд — rebase/reapply и повторная валидация.
@@ -107,7 +111,7 @@ Claim — одна транзакция `BEGIN IMMEDIATE`: проверка Idem
 
 ## 12. Канонические схемы
 
-`lab/schemas/v1/`: `common`, `task`, `submission`, `message`, `validation`, `proposal`; в `lab/migration/` — `coord-export.schema.json`. Схема версионирована (`schema: ".../v1"`); несовместимое изменение — новая версия каталога, не правка v1.
+`lab/schemas/v1/`: `common`, `task`, `submission`, `message`, `validation`, `decision`, `integration`, `proposal`; в `lab/migration/` — `coord-export.schema.json`. Схема версионирована (`schema: ".../v1"`); несовместимое изменение — новая версия каталога, не правка v1.
 
 ## 13. Не цели
 

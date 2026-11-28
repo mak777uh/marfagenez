@@ -37,6 +37,12 @@ _MEDIA_TYPE_RE = re.compile(
 _PROTECTED_PATHS = (
     "core/", "laws/", "checks/", "run.sh", "kg/nodes.jsonl",
     "tools/coord.py", ".githooks/", "lab/state/",
+    ".git/", ".coord/", ".github/workflows/", ".github/actions/",
+    "secrets/", "credentials/", ".ssh/", ".aws/",
+)
+_PROTECTED_PATTERNS = (
+    ".env", ".env.*", "*.pem", "*.key", "*.p12", "*.pfx",
+    "id_rsa", "id_rsa.*", "id_ed25519", "id_ed25519.*",
 )
 
 
@@ -101,8 +107,11 @@ def _validate_relative_path(value: Any, *, allow_glob: bool = False,
 
 
 def _path_is_protected(path: str) -> bool:
-    return any(path == prefix.rstrip("/") or path.startswith(prefix)
-               for prefix in _PROTECTED_PATHS)
+    if any(path == prefix.rstrip("/") or path.startswith(prefix)
+           for prefix in _PROTECTED_PATHS):
+        return True
+    return any(fnmatch.fnmatchcase(path, pattern)
+               for pattern in _PROTECTED_PATTERNS)
 
 
 def _path_in_write_scope(path: str, scopes: Any) -> bool:
@@ -741,7 +750,7 @@ class ControlPlane:
                 "SELECT 1 FROM submission_artifacts sa "
                 "JOIN submissions s ON s.id=sa.submission_id "
                 "WHERE sa.sha256=? AND s.task_id=? AND s.task_version=? "
-                "AND s.status='received'",
+                "AND s.status IN ('received','accepted')",
                 (dep["required_artifact_sha256"], dep["required_task_id"],
                  dep["required_task_version"])).fetchone()
         else:
@@ -802,7 +811,8 @@ class ControlPlane:
                     "JOIN submissions s ON s.id=sa.submission_id "
                     "WHERE sa.sha256=d.required_artifact_sha256 "
                     "AND s.task_id=d.required_task_id "
-                    "AND s.task_version=d.required_task_version AND s.status='received')) "
+                    "AND s.task_version=d.required_task_version "
+                    "AND s.status IN ('received','accepted'))) "
                 )
             else:
                 artifact_dependency_sql = (

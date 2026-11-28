@@ -24,11 +24,13 @@ import shutil
 import sqlite3
 import time
 import uuid
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 from lab.service.control import (  # noqa: F401 (re-export для cli/tests)
-    BadRequest, Conflict, ControlPlane, CtlError, Gone, NotFound, _canon, _sha)
+    BadRequest, Conflict, ControlPlane, CtlError, Gone, NotFound,
+    _canon, _path_in_write_scope, _path_is_protected, _sha, _validate_relative_path)
 
 PROPOSAL_ID_RE = re.compile(r"^PROP-[A-Za-z0-9._-]+$")
 DECISIONS = ("published", "rejected", "changes_requested")
@@ -184,6 +186,69 @@ class V2OpsMixin:
                     c, "schema", "schema.migrate", "db", str(self.db_path),
                     {"from": 4, "to": 5, "upload_artifact_links": linked,
                      "unresolved_legacy_uploads": unresolved},
+                )
+                c.execute("COMMIT")
+            except Exception:
+                self._safe_rollback(c)
+                raise
+
+        v = c.execute("PRAGMA user_version").fetchone()[0]
+        if v < 6:
+            c.execute("BEGIN IMMEDIATE")
+            try:
+                c.execute(
+                    "CREATE TABLE IF NOT EXISTS validations ("
+                    "id TEXT PRIMARY KEY, "
+                    "submission_id TEXT NOT NULL REFERENCES submissions(id), "
+                    "bundle_sha256 TEXT NOT NULL, "
+                    "validator_profile TEXT NOT NULL, "
+                    "validator_version TEXT NOT NULL, "
+                    "recommendation TEXT NOT NULL "
+                    "CHECK (recommendation IN ('accepted','needs_work','rejected')), "
+                    "actor TEXT NOT NULL, payload_sha256 TEXT NOT NULL, "
+                    "payload_json TEXT NOT NULL, created_at TEXT NOT NULL)"
+                )
+                c.execute(
+                    "CREATE INDEX IF NOT EXISTS ix_validations_submission "
+                    "ON validations(submission_id,created_at,id)"
+                )
+                c.execute(
+                    "CREATE TABLE IF NOT EXISTS decisions ("
+                    "id TEXT PRIMARY KEY, "
+                    "submission_id TEXT NOT NULL UNIQUE REFERENCES submissions(id), "
+                    "validation_id TEXT NOT NULL REFERENCES validations(id), "
+                    "decision TEXT NOT NULL "
+                    "CHECK (decision IN ('accepted','needs_work','rejected')), "
+                    "reason TEXT NOT NULL, actor TEXT NOT NULL, "
+                    "payload_sha256 TEXT NOT NULL, payload_json TEXT NOT NULL, "
+                    "created_at TEXT NOT NULL)"
+                )
+                c.execute(
+                    "CREATE TABLE IF NOT EXISTS integrations ("
+                    "id TEXT PRIMARY KEY, "
+                    "submission_id TEXT NOT NULL REFERENCES submissions(id), "
+                    "decision_id TEXT NOT NULL REFERENCES decisions(id), "
+                    "attempt_no INTEGER NOT NULL CHECK (attempt_no >= 1), "
+                    "status TEXT NOT NULL "
+                    "CHECK (status IN ('started','integrated','integration_failed')), "
+                    "base_commit TEXT NOT NULL, head_before TEXT NOT NULL, head_after TEXT, "
+                    "changed_files_json TEXT NOT NULL DEFAULT '[]', error TEXT, "
+                    "actor TEXT NOT NULL, started_at TEXT NOT NULL, finished_at TEXT, "
+                    "UNIQUE (submission_id,attempt_no))"
+                )
+                c.execute(
+                    "CREATE UNIQUE INDEX IF NOT EXISTS ux_integrations_started_submission "
+                    "ON integrations(submission_id) WHERE status='started'"
+                )
+                c.execute(
+                    "CREATE INDEX IF NOT EXISTS ix_integrations_submission "
+                    "ON integrations(submission_id,attempt_no)"
+                )
+                c.execute("PRAGMA user_version=6")
+                self._audit(
+                    c, "schema", "schema.migrate", "db", str(self.db_path),
+                    {"from": 5, "to": 6,
+                     "tables": ["validations", "decisions", "integrations"]},
                 )
                 c.execute("COMMIT")
             except Exception:
@@ -397,6 +462,508 @@ class V2OpsMixin:
                 "submit после подтверждения уйдёт в карантин late")
         return super().submit(payload, idem_key)
 
+    # -------------------------------------- Validation / Decision / Integration
+    @staticmethod
+    def _require_rfc3339(value: Any, field: str) -> datetime:
+        if not isinstance(value, str) or not value:
+            raise BadRequest(f"{field} должен быть RFC3339")
+        try:
+            parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        except ValueError as exc:
+            raise BadRequest(f"{field} должен быть RFC3339") from exc
+        if parsed.tzinfo is None or parsed.utcoffset() is None:
+            raise BadRequest(f"{field} должен содержать timezone")
+        return parsed
+
+    @staticmethod
+    def _require_git_sha(value: Any, field: str) -> str:
+        if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{7,40}", value):
+            raise BadRequest(f"{field} должен быть lowercase git SHA длиной 7..40")
+        return value
+
+    def record_validation(self, payload: dict, actor: str = "validation-service") -> dict:
+        """Store a validator report; it records a recommendation, never a decision."""
+        if actor != "validation-service":
+            raise BadRequest("validation может записывать только validation-service")
+        if not isinstance(payload, dict):
+            raise BadRequest("validation payload должен быть объектом")
+
+        required = {
+            "schema", "id", "submission_id", "bundle_sha256",
+            "validator_profile", "validator_version", "gate_script_sha256",
+            "sandbox_image_digest", "toolchain", "checks", "recommendation",
+            "reason", "started_at", "finished_at", "created_at",
+        }
+        optional = {
+            "network_log_artifact", "escalate_to_main", "logs_artifact",
+        }
+        missing = required - set(payload)
+        extra = set(payload) - required - optional
+        if missing:
+            raise BadRequest(f"validation missing fields: {sorted(missing)}")
+        if extra:
+            raise BadRequest(f"validation has unknown fields: {sorted(extra)}")
+        if payload["schema"] != "validation/v1":
+            raise BadRequest("validation.schema должен быть validation/v1")
+        if not isinstance(payload["id"], str) or not re.fullmatch(
+                r"VAL-[A-Za-z0-9._-]+", payload["id"]):
+            raise BadRequest("validation.id должен иметь вид VAL-*")
+        if not isinstance(payload["submission_id"], str) or not payload["submission_id"]:
+            raise BadRequest("validation.submission_id обязателен")
+        for field in ("bundle_sha256", "gate_script_sha256"):
+            if not isinstance(payload[field], str) or not re.fullmatch(
+                    r"[0-9a-f]{64}", payload[field]):
+                raise BadRequest(f"validation.{field} должен быть lowercase SHA-256")
+        for field in ("validator_profile", "sandbox_image_digest", "reason"):
+            if not isinstance(payload[field], str) or not payload[field].strip():
+                raise BadRequest(f"validation.{field} обязателен")
+        if not isinstance(payload["validator_version"], str) or not re.fullmatch(
+                r"\d+\.\d+\.\d+", payload["validator_version"]):
+            raise BadRequest("validation.validator_version должен быть semver")
+        if not isinstance(payload["toolchain"], dict):
+            raise BadRequest("validation.toolchain должен быть объектом")
+        if payload["recommendation"] not in ("accepted", "needs_work", "rejected"):
+            raise BadRequest("неизвестная recommendation")
+        escalate = payload.get("escalate_to_main", False)
+        if not isinstance(escalate, bool):
+            raise BadRequest("validation.escalate_to_main должен быть boolean")
+        for optional_field in ("network_log_artifact", "logs_artifact"):
+            if optional_field in payload and not isinstance(payload[optional_field], str):
+                raise BadRequest(f"validation.{optional_field} должен быть строкой")
+
+        checks = payload["checks"]
+        if not isinstance(checks, list) or not checks:
+            raise BadRequest("validation.checks должен быть непустым массивом")
+        all_checks_green = True
+        for index, check in enumerate(checks):
+            if not isinstance(check, dict) or not {"name", "rc"} <= set(check):
+                raise BadRequest(f"validation.checks[{index}] missing name/rc")
+            if set(check) - {"name", "rc", "skipped_reason", "evidence"}:
+                raise BadRequest(f"validation.checks[{index}] содержит неизвестные поля")
+            if not isinstance(check["name"], str) or not check["name"].strip():
+                raise BadRequest(f"validation.checks[{index}].name обязателен")
+            if not isinstance(check["rc"], int) or isinstance(check["rc"], bool):
+                raise BadRequest(f"validation.checks[{index}].rc должен быть integer")
+            skipped = check.get("skipped_reason")
+            if skipped is not None and (
+                    not isinstance(skipped, str) or not skipped.strip()):
+                raise BadRequest("skipped_reason должен содержать объяснение")
+            if "evidence" in check and not isinstance(check["evidence"], str):
+                raise BadRequest("check.evidence должен быть строкой")
+            if check["rc"] != 0 or skipped:
+                all_checks_green = False
+
+        started = self._require_rfc3339(payload["started_at"], "started_at")
+        finished = self._require_rfc3339(payload["finished_at"], "finished_at")
+        created = self._require_rfc3339(payload["created_at"], "created_at")
+        if finished < started or created < finished:
+            raise BadRequest("validation timestamps нарушают порядок started <= finished <= created")
+        if payload["recommendation"] == "accepted" and (
+                not all_checks_green or escalate):
+            raise BadRequest(
+                "recommendation=accepted невозможна при failed/skipped checks или escalate_to_main")
+
+        payload_json = _canon(payload)
+        payload_sha = _sha(payload_json)
+        c = self.connect()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            existing = c.execute(
+                "SELECT payload_sha256 FROM validations WHERE id=?", (payload["id"],)
+            ).fetchone()
+            if existing:
+                if existing["payload_sha256"] != payload_sha:
+                    raise Conflict("validation id уже использован с другим payload")
+                c.execute("COMMIT")
+                return {"status": "duplicate", "validation_id": payload["id"]}
+
+            row = c.execute(
+                "SELECT s.id,s.task_id,s.task_version,s.task_version_sha256,"
+                "s.bundle_sha256,s.status AS submission_status,"
+                "t.status AS task_status,t.current_version,"
+                "tv.task_version_sha256 AS pinned_task_sha,tv.payload_json "
+                "FROM submissions s JOIN tasks t ON t.id=s.task_id "
+                "JOIN task_versions tv ON tv.task_id=s.task_id AND tv.version=s.task_version "
+                "WHERE s.id=?",
+                (payload["submission_id"],),
+            ).fetchone()
+            if row is None:
+                raise NotFound(f"нет submission {payload['submission_id']}")
+            if row["submission_status"] not in ("received", "validating"):
+                raise Conflict("submission не находится в состоянии received/validating")
+            if row["task_status"] not in ("submitted", "validating"):
+                raise Conflict(f"task status не допускает validation: {row['task_status']}")
+            if row["bundle_sha256"] != payload["bundle_sha256"]:
+                raise BadRequest("validation.bundle_sha256 не совпадает с submission")
+            if (not row["task_version_sha256"]
+                    or row["task_version_sha256"] != row["pinned_task_sha"]):
+                raise BadRequest("submission не pin'ит SHA immutable task version")
+
+            task_payload = json.loads(row["payload_json"])
+            validators = task_payload.get("validators")
+            profile_pinned = (
+                isinstance(validators, list)
+                and any(
+                    isinstance(v, dict)
+                    and v.get("profile") == payload["validator_profile"]
+                    and v.get("version") == payload["validator_version"]
+                    for v in validators
+                )
+            )
+            if not profile_pinned:
+                raise BadRequest("validator profile/version не закреплён в task version")
+            if c.execute(
+                    "SELECT 1 FROM decisions WHERE submission_id=?",
+                    (payload["submission_id"],)).fetchone():
+                raise Conflict("submission уже имеет Decision")
+
+            c.execute(
+                "INSERT INTO validations "
+                "(id,submission_id,bundle_sha256,validator_profile,validator_version,"
+                "recommendation,actor,payload_sha256,payload_json,created_at) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?)",
+                (payload["id"], payload["submission_id"], payload["bundle_sha256"],
+                 payload["validator_profile"], payload["validator_version"],
+                 payload["recommendation"], actor, payload_sha, payload_json,
+                 payload["created_at"]),
+            )
+            c.execute(
+                "UPDATE submissions SET status='validating' "
+                "WHERE id=? AND status IN ('received','validating')",
+                (payload["submission_id"],),
+            )
+            c.execute(
+                "UPDATE tasks SET status='validating' "
+                "WHERE id=? AND status IN ('submitted','validating')",
+                (row["task_id"],),
+            )
+            self._audit(
+                c, actor, "validation.record", "submission", payload["submission_id"],
+                {"validation_id": payload["id"], "bundle_sha256": payload["bundle_sha256"],
+                 "profile": payload["validator_profile"],
+                 "version": payload["validator_version"],
+                 "recommendation": payload["recommendation"],
+                 "payload_sha256": payload_sha},
+            )
+            c.execute("COMMIT")
+            return {"status": "recorded", "validation_id": payload["id"]}
+        except Exception:
+            self._safe_rollback(c)
+            raise
+
+    def decide_submission(self, submission_id: str, validation_id: str,
+                          decision: str, reason: str, actor: str = "main") -> dict:
+        """Append main's scientific decision after a pinned validation report."""
+        if actor != "main":
+            raise BadRequest("Decision может принимать только main")
+        if decision not in ("accepted", "needs_work", "rejected"):
+            raise BadRequest("decision должен быть accepted/needs_work/rejected")
+        if not isinstance(reason, str) or not reason.strip():
+            raise BadRequest("decision reason обязателен")
+        c = self.connect()
+        now_iso, _ = self._now()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            row = c.execute(
+                "SELECT s.id,s.task_id,s.task_version,s.task_version_sha256,"
+                "s.bundle_sha256,s.status AS submission_status,s.attempt_id,"
+                "t.status AS task_status,t.current_version,"
+                "v.id AS validation_id,v.bundle_sha256 AS validation_bundle_sha,"
+                "v.payload_json AS validation_payload,v.actor AS validation_actor "
+                "FROM submissions s JOIN tasks t ON t.id=s.task_id "
+                "JOIN validations v ON v.submission_id=s.id AND v.id=? "
+                "WHERE s.id=?",
+                (validation_id, submission_id),
+            ).fetchone()
+            if row is None:
+                raise NotFound("submission/validation pair does not exist")
+            existing_decision = c.execute(
+                "SELECT id,validation_id,decision,reason,actor FROM decisions "
+                "WHERE submission_id=?", (submission_id,)
+            ).fetchone()
+            if existing_decision:
+                if (existing_decision["validation_id"] == validation_id
+                        and existing_decision["decision"] == decision
+                        and existing_decision["reason"] == reason.strip()
+                        and existing_decision["actor"] == actor):
+                    c.execute("COMMIT")
+                    return {"status": "duplicate",
+                            "decision_id": existing_decision["id"]}
+                raise Conflict("submission уже имеет неизменяемый Decision")
+            if row["validation_actor"] != "validation-service":
+                raise BadRequest("validation record has no validation-service principal")
+            if row["submission_status"] != "validating" or row["task_status"] != "validating":
+                raise Conflict("Decision допустим только после перехода в validating")
+            if row["bundle_sha256"] != row["validation_bundle_sha"]:
+                raise BadRequest("validation относится к другому bundle")
+            if row["task_version_sha256"] is None:
+                raise BadRequest("submission не pin'ит task version")
+
+            validation = json.loads(row["validation_payload"])
+            checks = validation.get("checks", [])
+            all_checks_green = (
+                isinstance(checks, list) and bool(checks)
+                and all(isinstance(check, dict)
+                        and check.get("rc") == 0
+                        and not check.get("skipped_reason")
+                        for check in checks)
+            )
+            if decision == "accepted":
+                if row["current_version"] != row["task_version"]:
+                    raise Conflict("stale task version не может быть accepted/integrated")
+                if validation.get("escalate_to_main") is True:
+                    raise Conflict("escalate_to_main блокирует accepted")
+                if not all_checks_green:
+                    raise Conflict("accepted требует все checks passed без skipped/N/A")
+
+            decision_id = f"DEC-{uuid.uuid4().hex[:16]}"
+            record = {
+                "schema": "decision/v1", "id": decision_id,
+                "submission_id": submission_id, "validation_id": validation_id,
+                "actor": actor, "decision": decision, "reason": reason.strip(),
+                "decided_at": now_iso,
+            }
+            payload_json = _canon(record)
+            payload_sha = _sha(payload_json)
+            c.execute(
+                "INSERT INTO decisions "
+                "(id,submission_id,validation_id,decision,reason,actor,"
+                "payload_sha256,payload_json,created_at) VALUES (?,?,?,?,?,?,?,?,?)",
+                (decision_id, submission_id, validation_id, decision, reason.strip(),
+                 actor, payload_sha, payload_json, now_iso),
+            )
+            task_status = {
+                "accepted": "accepted",
+                "needs_work": "ready",
+                "rejected": "rejected",
+            }[decision]
+            c.execute(
+                "UPDATE submissions SET status=?,status_reason=? WHERE id=?",
+                (decision, reason.strip(), submission_id),
+            )
+            c.execute(
+                "UPDATE tasks SET status=?,claimed_by=NULL,lease_expires_at_mono=NULL "
+                "WHERE id=? AND status='validating'",
+                (task_status, row["task_id"]),
+            )
+            if row["attempt_id"]:
+                c.execute(
+                    "UPDATE attempts SET status=?,ended_at=?,failure_reason=? "
+                    "WHERE attempt_id=? AND status='submitted'",
+                    (decision, now_iso, reason.strip(), row["attempt_id"]),
+                )
+            self._audit(
+                c, actor, "submission.decision", "submission", submission_id,
+                {"decision_id": decision_id, "validation_id": validation_id,
+                 "decision": decision, "reason": reason.strip(),
+                 "payload_sha256": payload_sha},
+            )
+            c.execute("COMMIT")
+            return {"status": decision, "decision_id": decision_id}
+        except Exception:
+            self._safe_rollback(c)
+            raise
+
+    def start_integration(self, submission_id: str, head_before: str,
+                          actor: str = "main") -> dict:
+        """Create a fenced integration attempt; this records intent, not a git push."""
+        if actor != "main":
+            raise BadRequest("Integration может запускать только main")
+        head_before = self._require_git_sha(head_before, "head_before")
+        c = self.connect()
+        now_iso, _ = self._now()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            row = c.execute(
+                "SELECT s.id,s.task_id,s.task_version,s.status AS submission_status,"
+                "t.status AS task_status,t.current_version,"
+                "tv.payload_json,d.id AS decision_id,d.decision "
+                "FROM submissions s JOIN tasks t ON t.id=s.task_id "
+                "JOIN task_versions tv ON tv.task_id=s.task_id AND tv.version=s.task_version "
+                "JOIN decisions d ON d.submission_id=s.id "
+                "WHERE s.id=?",
+                (submission_id,),
+            ).fetchone()
+            if row is None:
+                raise NotFound(f"нет accepted submission {submission_id}")
+            if row["submission_status"] != "accepted" or row["decision"] != "accepted":
+                raise Conflict("Integration требует accepted submission и Decision")
+            if row["current_version"] != row["task_version"]:
+                raise Conflict("stale task version нельзя интегрировать")
+            task_payload = json.loads(row["payload_json"])
+            base_commit = self._require_git_sha(task_payload.get("base_commit"), "base_commit")
+            if not head_before.startswith(base_commit):
+                raise Conflict("head_before не совпадает с pinned task base_commit")
+
+            active = c.execute(
+                "SELECT id,decision_id,base_commit,head_before,actor,attempt_no "
+                "FROM integrations WHERE submission_id=? AND status='started'",
+                (submission_id,),
+            ).fetchone()
+            if active:
+                if (row["task_status"] == "integrating"
+                        and active["decision_id"] == row["decision_id"]
+                        and active["base_commit"] == base_commit
+                        and active["head_before"] == head_before
+                        and active["actor"] == actor):
+                    c.execute("COMMIT")
+                    return {"status": "duplicate", "integration_id": active["id"],
+                            "attempt_no": active["attempt_no"]}
+                raise Conflict("у submission уже есть другая активная integration")
+            if row["task_status"] not in ("accepted", "integration_failed"):
+                raise Conflict(f"task status не допускает integration: {row['task_status']}")
+
+            attempt_no = c.execute(
+                "SELECT COALESCE(MAX(attempt_no),0)+1 FROM integrations WHERE submission_id=?",
+                (submission_id,),
+            ).fetchone()[0]
+            integration_id = f"INT-{uuid.uuid4().hex[:16]}"
+            c.execute(
+                "INSERT INTO integrations "
+                "(id,submission_id,decision_id,attempt_no,status,base_commit,head_before,"
+                "changed_files_json,actor,started_at) "
+                "VALUES (?,?,?,?, 'started',?,?, '[]',?,?)",
+                (integration_id, submission_id, row["decision_id"], attempt_no,
+                 base_commit, head_before, actor, now_iso),
+            )
+            c.execute(
+                "UPDATE tasks SET status='integrating' WHERE id=? "
+                "AND status IN ('accepted','integration_failed')",
+                (row["task_id"],),
+            )
+            self._audit(
+                c, actor, "integration.start", "integration", integration_id,
+                {"submission_id": submission_id, "decision_id": row["decision_id"],
+                 "attempt_no": attempt_no, "base_commit": base_commit,
+                 "head_before": head_before},
+            )
+            c.execute("COMMIT")
+            return {"status": "started", "integration_id": integration_id,
+                    "attempt_no": attempt_no}
+        except Exception:
+            self._safe_rollback(c)
+            raise
+
+    def finish_integration(self, integration_id: str, head_after: str,
+                           changed_files: list[str], actor: str = "main") -> dict:
+        """Record a successful main-owned integration after final trusted gates."""
+        if actor != "main":
+            raise BadRequest("finish Integration может только main")
+        head_after = self._require_git_sha(head_after, "head_after")
+        if not isinstance(changed_files, list) or any(
+                not isinstance(path, str) for path in changed_files):
+            raise BadRequest("changed_files должен быть массивом строк")
+        if len(changed_files) != len(set(changed_files)):
+            raise BadRequest("changed_files содержит дубликаты")
+
+        c = self.connect()
+        now_iso, _ = self._now()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            row = c.execute(
+                "SELECT i.*,s.task_id,s.task_version,t.current_version,"
+                "t.status AS task_status,tv.payload_json "
+                "FROM integrations i JOIN submissions s ON s.id=i.submission_id "
+                "JOIN tasks t ON t.id=s.task_id "
+                "JOIN task_versions tv ON tv.task_id=s.task_id AND tv.version=s.task_version "
+                "WHERE i.id=?",
+                (integration_id,),
+            ).fetchone()
+            if row is None:
+                raise NotFound(f"нет integration {integration_id}")
+            changed_json = _canon(changed_files)
+            if row["status"] == "integrated":
+                if row["head_after"] == head_after and row["changed_files_json"] == changed_json:
+                    c.execute("COMMIT")
+                    return {"status": "duplicate", "integration_id": integration_id}
+                raise Conflict("integration уже завершена с другим содержимым")
+            if row["status"] != "started" or row["task_status"] != "integrating":
+                raise Conflict("integration не находится в started/integrating")
+            if row["current_version"] != row["task_version"]:
+                raise Conflict("task version изменилась во время integration")
+
+            task_payload = json.loads(row["payload_json"])
+            scopes = task_payload.get("write_scope")
+            seen = set()
+            for index, path in enumerate(changed_files):
+                try:
+                    _validate_relative_path(path)
+                except BadRequest as exc:
+                    raise BadRequest(f"changed_files[{index}]: {exc}") from exc
+                if path in seen:
+                    raise BadRequest(f"повторный changed file: {path}")
+                seen.add(path)
+                if _path_is_protected(path):
+                    raise BadRequest(f"integration затрагивает PROTECTED path: {path}")
+                if not _path_in_write_scope(path, scopes):
+                    raise BadRequest(f"integration path вне task.write_scope: {path}")
+
+            c.execute(
+                "UPDATE integrations SET status='integrated',head_after=?,"
+                "changed_files_json=?,finished_at=? WHERE id=? AND status='started'",
+                (head_after, changed_json, now_iso, integration_id),
+            )
+            c.execute(
+                "UPDATE tasks SET status='integrated' WHERE id=? AND status='integrating'",
+                (row["task_id"],),
+            )
+            self._audit(
+                c, actor, "integration.finish", "integration", integration_id,
+                {"submission_id": row["submission_id"], "head_before": row["head_before"],
+                 "head_after": head_after, "changed_files": changed_files},
+            )
+            c.execute("COMMIT")
+            return {"status": "integrated", "integration_id": integration_id}
+        except Exception:
+            self._safe_rollback(c)
+            raise
+
+    def fail_integration(self, integration_id: str, reason: str,
+                         actor: str = "main") -> dict:
+        """Record a failed integration; an explicit retry creates a new attempt."""
+        if actor != "main":
+            raise BadRequest("отметить integration_failed может только main")
+        if not isinstance(reason, str) or not reason.strip():
+            raise BadRequest("integration failure reason обязателен")
+        c = self.connect()
+        now_iso, _ = self._now()
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            row = c.execute(
+                "SELECT i.*,s.task_id,t.status AS task_status "
+                "FROM integrations i JOIN submissions s ON s.id=i.submission_id "
+                "JOIN tasks t ON t.id=s.task_id WHERE i.id=?",
+                (integration_id,),
+            ).fetchone()
+            if row is None:
+                raise NotFound(f"нет integration {integration_id}")
+            if row["status"] == "integration_failed":
+                if row["error"] == reason.strip():
+                    c.execute("COMMIT")
+                    return {"status": "duplicate", "integration_id": integration_id}
+                raise Conflict("integration уже помечена failed с другой причиной")
+            if row["status"] != "started" or row["task_status"] != "integrating":
+                raise Conflict("можно завершить ошибкой только started integration")
+            c.execute(
+                "UPDATE integrations SET status='integration_failed',error=?,finished_at=? "
+                "WHERE id=? AND status='started'",
+                (reason.strip(), now_iso, integration_id),
+            )
+            c.execute(
+                "UPDATE tasks SET status='integration_failed' "
+                "WHERE id=? AND status='integrating'",
+                (row["task_id"],),
+            )
+            self._audit(
+                c, actor, "integration.fail", "integration", integration_id,
+                {"submission_id": row["submission_id"], "reason": reason.strip()},
+            )
+            c.execute("COMMIT")
+            return {"status": "integration_failed", "integration_id": integration_id}
+        except Exception:
+            self._safe_rollback(c)
+            raise
+
     # ------------------------------------------------ файловые проекции
     @staticmethod
     def _fsync_directory(path: Path) -> None:
@@ -535,6 +1102,20 @@ class V2OpsMixin:
                 "blocks_submit,halt,superseded_by,created_at_iso "
                 "FROM messages ORDER BY created_at, id"
             ).fetchall()
+            validations = c.execute(
+                "SELECT id,submission_id,bundle_sha256,validator_profile,validator_version,"
+                "recommendation,actor,payload_sha256,created_at "
+                "FROM validations ORDER BY created_at,id"
+            ).fetchall()
+            decisions = c.execute(
+                "SELECT id,submission_id,validation_id,decision,reason,actor,created_at "
+                "FROM decisions ORDER BY created_at,id"
+            ).fetchall()
+            integrations = c.execute(
+                "SELECT id,submission_id,decision_id,attempt_no,status,base_commit,"
+                "head_before,head_after,changed_files_json,error,actor,started_at,finished_at "
+                "FROM integrations ORDER BY submission_id,attempt_no"
+            ).fetchall()
             head = c.execute(
                 "SELECT event_hash FROM audit_events ORDER BY seq DESC LIMIT 1"
             ).fetchone()
@@ -553,6 +1134,15 @@ class V2OpsMixin:
         ).encode("utf-8")
         files["messages.jsonl"] = "".join(
             _canon({k: row[k] for k in row.keys()}) + "\n" for row in messages
+        ).encode("utf-8")
+        files["validations.jsonl"] = "".join(
+            _canon({k: row[k] for k in row.keys()}) + "\n" for row in validations
+        ).encode("utf-8")
+        files["decisions.jsonl"] = "".join(
+            _canon({k: row[k] for k in row.keys()}) + "\n" for row in decisions
+        ).encode("utf-8")
+        files["integrations.jsonl"] = "".join(
+            _canon({k: row[k] for k in row.keys()}) + "\n" for row in integrations
         ).encode("utf-8")
         files["audit_head.txt"] = audit_head.encode("ascii")
 
@@ -627,6 +1217,9 @@ class V2OpsMixin:
             "task_versions": len(versions),
             "submissions": len(submissions),
             "messages": len(messages),
+            "validations": len(validations),
+            "decisions": len(decisions),
+            "integrations": len(integrations),
         }
 
     # -------------------------------------------------------- GC blobs
