@@ -2296,13 +2296,13 @@ doi:10.3390/systems12040111.
 {
  "L": "L-044",
  "locator": {
-  "doi": null,
+  "doi": "10.1890/0012-9658(1999)080[0735:TSOCDN]2.0.CO;2",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1890/0012-9658(1999)080%5B0735:TSOCDN%5D2.0.CO;2",
+  "none": false
  },
  "access": {
   "level": "secondary_only",
@@ -2311,7 +2311,7 @@ doi:10.3390/systems12040111.
   "sha256": null,
   "retrieved_at": null,
   "via": "none",
-  "via_detail": null
+  "via_detail": "DOI идентифицирован через Crossref (Elser & Urabe 1999, Ecology 80:735-751, «The stoichiometry of consumer-driven nutrient recycling»); Wiley/ESA страница блокирует ботов, аннотация недоступна — уровень остаётся secondary_only"
  },
  "inspection": {
   "scope": "partial",
