@@ -17231,7 +17231,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "аннотация/обзорная страница."
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -17239,7 +17239,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/wikipedia-disposable-soma.html",
+          "strength": "moderate",
+          "sha256": "42ba566425dfaa0728ef7c70eedf880d028cd648709edcb59d6dc4dc747db627"
         }
       ],
       "relations": [],
@@ -17247,11 +17253,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "аннотация/обзорная страница.",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "вторые руки",
+        "level_kind": "fragment_read",
+        "artifact": "papers/wikipedia-disposable-soma.html",
+        "artifact_bytes": 325317,
+        "artifact_sha256": "42ba566425dfaa0728ef7c70eedf880d028cd648709edcb59d6dc4dc747db627",
         "locator": {
           "doi": null,
           "arxiv": null,
@@ -20002,7 +20008,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация/фрагмент** (текст не открылся)."
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20010,7 +20016,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/gavrilov24-mortality-review.html",
+          "strength": "moderate",
+          "sha256": "04f2f16f6aec551675de4bbf7ed447a11382ffd6a159606b5af3172025259b2a"
         }
       ],
       "relations": [],
@@ -20018,11 +20030,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация/фрагмент** (текст не открылся).",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "вторые руки",
+        "level_kind": "fragment_read",
+        "artifact": "papers/gavrilov24-mortality-review.html",
+        "artifact_bytes": 269426,
+        "artifact_sha256": "04f2f16f6aec551675de4bbf7ed447a11382ffd6a159606b5af3172025259b2a",
         "locator": {
           "doi": "10.1196/annals.1297.094",
           "arxiv": null,
@@ -21178,7 +21190,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21186,7 +21198,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/markvoort10-vesicle-matrix.html",
+          "strength": "moderate",
+          "sha256": "e0bf2f51f5bf802f6e37a21a8bcb1c8e354480dc334398871cdfa64f9e5c35e3"
         }
       ],
       "relations": [],
@@ -21194,11 +21212,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "вторые руки",
+        "level_kind": "fragment_read",
+        "artifact": "papers/markvoort10-vesicle-matrix.html",
+        "artifact_bytes": 176762,
+        "artifact_sha256": "e0bf2f51f5bf802f6e37a21a8bcb1c8e354480dc334398871cdfa64f9e5c35e3",
         "locator": {
           "doi": null,
           "arxiv": null,
@@ -21219,7 +21237,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация/фрагмент.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21227,7 +21245,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/thomas18-cell-size-homeostasis.html",
+          "strength": "moderate",
+          "sha256": "3cefaf360324c1ccd32d3bb6c6a7c21a69a3e77020c9deabdd5a48e61b48e7b2"
         }
       ],
       "relations": [],
@@ -21235,11 +21259,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "вторые руки",
+        "level_kind": "fragment_read",
+        "artifact": "papers/thomas18-cell-size-homeostasis.html",
+        "artifact_bytes": 832807,
+        "artifact_sha256": "3cefaf360324c1ccd32d3bb6c6a7c21a69a3e77020c9deabdd5a48e61b48e7b2",
         "locator": {
           "doi": "10.3389/fphy.2018.00064",
           "arxiv": null,
@@ -22126,7 +22150,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** PubMed/efetch (PMID 15038982), 2026-11-27, sha256 af58bbfccf24…; п"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -22134,7 +22158,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/hordijk04-raf-sets.pdf",
+          "strength": "moderate",
+          "sha256": "013fda2a4417bde596ef05427e3636fb8da5cbe11048f7443b44064835340e93"
         }
       ],
       "relations": [],
@@ -22142,11 +22172,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** PubMed/efetch (PMID 15038982), 2026-11-27, sha256 af58bbfccf24…; п",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "вторые руки",
+        "level_kind": "fragment_read",
+        "artifact": "papers/hordijk04-raf-sets.pdf",
+        "artifact_bytes": 1100792,
+        "artifact_sha256": "013fda2a4417bde596ef05427e3636fb8da5cbe11048f7443b44064835340e93",
         "locator": {
           "doi": "10.1016/j.jtbi.2003.11.020",
           "arxiv": null,
@@ -40916,13 +40946,13 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -40956,12 +40986,12 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -40986,6 +41016,11 @@
     },
     {
       "from": "C-003",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
+    },
+    {
+      "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
@@ -40993,11 +41028,6 @@
       "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
-    },
-    {
-      "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -41141,6 +41171,11 @@
     },
     {
       "from": "F-022",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
+    },
+    {
+      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
@@ -41150,23 +41185,18 @@
       "type": "tested_in"
     },
     {
-      "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
       "from": "F-023",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
@@ -43461,13 +43491,13 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
@@ -43501,12 +43531,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {

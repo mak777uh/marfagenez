@@ -170,17 +170,23 @@ mortality», то есть **плато смертности** остаётся 
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
+  "level": "fragment_read",
+  "artifact": "papers/wikipedia-disposable-soma.html",
+  "bytes": 325317,
+  "sha256": "42ba566425dfaa0728ef7c70eedf880d028cd648709edcb59d6dc4dc747db627",
+  "retrieved_at": "2026-11-28T08:05:00Z",
   "via": "publisher",
-  "via_detail": "https://en.wikipedia.org/wiki/Disposable_soma_theory_of_aging"
+  "via_detail": "en.wikipedia.org/wiki/Disposable_soma_theory_of_aging HTML (снимок страницы); цитата «trade-off between growth, reproduction, and DNA repair maintenance» сверена дословно; вторичный источник — уровень не выше fragment_read"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "article",
+    "to": "sections"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -198,7 +204,7 @@ mortality», то есть **плато смертности** остаётся 
 
 **Кто.** Kirkwood; формальные модели — см. L-004; обзор — Wikipedia «Disposable soma theory of aging».
 **Ссылка.** https://en.wikipedia.org/wiki/Disposable_soma_theory_of_aging
-**Проверено.** аннотация/обзорная страница.
+**фрагмент** papers/wikipedia-disposable-soma.html (Wikipedia, sha256 42ba5664…, 2026-11-28); «organisms age due to an evolutionary trade-off between growth, reproduction, and DNA repair maintenance» сверено дословно; источник вторичный — первичная литература Kirkwood остаётся за L-004.
 **Утверждение (цитата из обзора).** «organisms age due to an evolutionary **trade-off between growth, reproduction,
 and DNA repair maintenance**».
 **Что даёт нам.** Наш §4.13 (запас против целости) — **та же постановка в другой валюте**.
@@ -2937,17 +2943,23 @@ damage d, which was conferred to it by its parent…»; параметр `a` —
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "http://longevity-science.org/JTB-01.pdf"
+  "level": "fragment_read",
+  "artifact": "papers/gavrilov24-mortality-review.html",
+  "bytes": 269426,
+  "sha256": "04f2f16f6aec551675de4bbf7ed447a11382ffd6a159606b5af3172025259b2a",
+  "retrieved_at": "2026-11-28T08:05:00Z",
+  "via": "pmc",
+  "via_detail": "PMC11090256 full-text HTML (Gavrilov & Gavrilova 2024, Biochemistry (Mosc) 89:341-355, doi:10.1134/S0006297924020123); «human mortality rates double approximately every 8 years of adult age: μ(x)=Re^αx» и «late-life mortality plateaus» сверены дословно; JTB-2001 (longevity-science.org) и Ann NY Acad Sci 2004 — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "review body"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2967,7 +2979,7 @@ damage d, which was conferred to it by its parent…»; параметр `a` —
 (2004), Ann. NY Acad. Sci., doi:10.1196/annals.1297.094; обзор 2024, PMC11090256.
 **Ссылка.** http://longevity-science.org/JTB-01.pdf ; https://doi.org/10.1196/annals.1297.094 ;
 https://pmc.ncbi.nlm.nih.gov/articles/PMC11090256/ (**fetch заблокирован**: домен резолвится в приватный адрес)
-**Проверено.** **аннотация/фрагмент** (текст не открылся).
+**фрагмент** papers/gavrilov24-mortality-review.html (PMC11090256, sha256 04f2f16f…, 2026-11-28); «human mortality rates double approximately every 8 years of adult age: μ(x) = Re^αx» и «late-life mortality leveling-off… plateaus» сверены дословно; первоисточники (JTB-2001, Ann NY Acad Sci 2004) — вторые руки.
 **Утверждение (цитаты из фрагментов).** «According to the Gompertz law, human mortality rates **double approximately
 every 8 years** of adult age: `μ(x) = R·e^{αx}`». «It predicts the late-life… mortality plateaus, as an inevitable
 consequence of **redundancy exhaustion** at extreme old ages». «Redundancy is a key notion for understanding aging…
@@ -4166,17 +4178,23 @@ Protocells» (2021), Life 11(9):966, doi:10.3390/life11090966.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://ncbi.nlm.nih.gov/pmc/articles/PMC2931742/"
+  "level": "fragment_read",
+  "artifact": "papers/markvoort10-vesicle-matrix.html",
+  "bytes": 176762,
+  "sha256": "e0bf2f51f5bf802f6e37a21a8bcb1c8e354480dc334398871cdfa64f9e5c35e3",
+  "retrieved_at": "2026-11-28T08:05:00Z",
+  "via": "pmc",
+  "via_detail": "PMC2931742 full-text HTML (Markvoort et al. 2010, Biophys J 99:1520-1528, doi:10.1016/j.bpj.2010.06.057); «size distribution of the newly formed vesicles is strongly biased toward that of the seed vesicles» и «matrix effect» сверены дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -4195,7 +4213,7 @@ Protocells» (2021), Life 11(9):966, doi:10.3390/life11090966.
 **Кто.** «Self-Reproduction of Fatty Acid Vesicles: A Combined Experimental and Simulation Study» (2010),
 PMC2931742.
 **Ссылка.** https://ncbi.nlm.nih.gov/pmc/articles/PMC2931742/
-**Проверено.** **аннотация.**
+**фрагмент** papers/markvoort10-vesicle-matrix.html (PMC2931742, sha256 e0bf2f51…, 2026-11-28); «the size distribution of the newly formed vesicles is strongly biased toward that of the seed vesicles. This so-called matrix effect» сверено дословно.
 **Утверждение (цитаты).** «the size distribution of the newly formed vesicles is strongly **biased toward that of the
 seed vesicles**» — эффект **матрицы**.
 **Что даёт нам.** Наследование **формы** (размера) без генетического носителя — аналог нашей линии «наследование
@@ -4220,17 +4238,23 @@ seed vesicles**» — эффект **матрицы**.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
+  "level": "fragment_read",
+  "artifact": "papers/thomas18-cell-size-homeostasis.html",
+  "bytes": 832807,
+  "sha256": "3cefaf360324c1ccd32d3bb6c6a7c21a69a3e77020c9deabdd5a48e61b48e7b2",
+  "retrieved_at": "2026-11-28T08:05:00Z",
   "via": "publisher",
-  "via_detail": "https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2018.00064/full"
+  "via_detail": "Frontiers in Physics full-text HTML (Thomas 2018, doi:10.3389/fphy.2018.00064); «the mean cell size in a forward lineage is independent of the division error CVp while it increases with CVp in backward lineages» сверено дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "results",
+    "to": "figure 1-2"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -4240,7 +4264,7 @@ seed vesicles**» — эффект **матрицы**.
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
+ "downgrade_reason": null
 }
 ```
 
@@ -4249,7 +4273,7 @@ seed vesicles**» — эффект **матрицы**.
 **Кто.** «Analysis of Cell Size Homeostasis at the Single-Cell and Population Level» (2018), Frontiers in Physics,
 doi:10.3389/fphy.2018.00064.
 **Ссылка.** https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2018.00064/full
-**Проверено.** **аннотация/фрагмент.**
+**фрагмент** papers/thomas18-cell-size-homeostasis.html (Frontiers, sha256 3cefaf36…, 2026-11-28); «the mean cell size in a forward lineage is independent of the division error CVp while it increases with CVp in backward lineages» сверено дословно.
 **Утверждение (цитата).** «the mean cell size in a **forward lineage** is independent of the division error CV while it
 **increases** with CV in **backward lineages**».
 **Что даёт нам.** Это **методологическая ловушка**, ровно та же, что мы нашли у себя: измерять по траектории или по
@@ -5670,17 +5694,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-27T07:20:00Z",
-  "via": "pubmed-efetch",
-  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=15038982 (abstract text)"
+  "level": "fragment_read",
+  "artifact": "papers/hordijk04-raf-sets.pdf",
+  "bytes": 1100792,
+  "sha256": "013fda2a4417bde596ef05427e3636fb8da5cbe11048f7443b44064835340e93",
+  "retrieved_at": "2026-11-28T08:05:00Z",
+  "via": "repository",
+  "via_detail": "author-hosted PDF: math.canterbury.ac.nz/~m.steel/Non_UC/files/research/autocatalytic-edited.pdf (Hordijk & Steel, JTB, doi:10.1016/j.jtbi.2003.11.020); «polynomial-time algorithm», RAF-наборы и irreducible subsystems сверены дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "algorithm sections"
+   }
+  ]
  },
  "abstract_sha256": "af58bbfccf244c5807f18ac1617c73c00c5e1099c7a6f7f2846a4fd8f2ae4a71",
  "bibliographic": {
@@ -5696,7 +5726,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Detecting autocatalytic, self-sustaining sets in chemical reaction systems (2003). Wim Hordijk; Mike Steel
 **Ссылка.** https://doi.org/10.1016/j.jtbi.2003.11.020
-**Проверено.** **аннотация** PubMed/efetch (PMID 15038982), 2026-11-27, sha256 af58bbfccf24…; полный текст не читался.
+**фрагмент** papers/hordijk04-raf-sets.pdf (author PDF, sha256 013fda2a…, 2026-11-28); «a polynomial-time algorithm that determines whether any given set of molecules, reactions and catalysations contains a subsystem that is both autocatalytic and able to be sustained» и определение RAF-сетов сверены дословно.
 **Утверждение.** Hordijk & Steel 2004 — детекция автокаталитических самоподдерживающихся множеств (RAF)
 **Что даёт нам.** — (суждение не сделано).
 
