@@ -59,10 +59,16 @@
 
 from __future__ import annotations
 
+import fcntl
+import hashlib
 import json
 import math
+import os
 import re
+import stat
 import subprocess
+import tempfile
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import NormalDist
@@ -176,6 +182,7 @@ def new_result(
     parameters: dict[str, Any],
     command: str,
     *,
+    question: str = "",
     role: str = "verification",
     phase: str = "exploratory",
 ) -> dict[str, Any]:
@@ -185,13 +192,20 @@ def new_result(
     Validation is reserved for independent external empirical comparisons.
     """
     validate_design_fields(role, phase)
+    if not isinstance(experiment_id, str) or not re.fullmatch(
+        r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", experiment_id
+    ):
+        raise ValueError("experiment_id must be a safe 1-128 character identifier")
+    if not isinstance(question, str):
+        raise ValueError("question must be a string")
     now = datetime.now(timezone.utc)
     return {
         "schema": SCHEMA,
         "role": role,
         "phase": phase,
         "experiment_id": experiment_id,
-        "run_id": f"run-{now.strftime('%Y-%m-%dT%H-%M-%S')}",
+        "question": question,
+        "run_id": f"run-{now.strftime('%Y-%m-%dT%H-%M-%S')}-{uuid.uuid4().hex[:12]}",
         "model_commit": _git_commit(),
         "hash_version": HASH_VERSION_PY,
         "seed": seed,
@@ -417,72 +431,152 @@ def _load(path: Path) -> dict[str, Any] | None:
         return None
 
 
+def _results_lock() -> int:
+    """Serialize deduplication and result publication across gate processes."""
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    if RESULTS_DIR.is_symlink() or not RESULTS_DIR.is_dir():
+        raise RuntimeError(f"results root must be a real directory: {RESULTS_DIR}")
+    token = hashlib.sha256(os.fsencode(str(RESULTS_DIR.resolve()))).hexdigest()[:20]
+    lock_path = Path(tempfile.gettempdir()) / f"marfagenez-results-{token}.lock"
+    flags = os.O_CREAT | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0)
+    fd = os.open(lock_path, flags, 0o600)
+    try:
+        if not stat.S_ISREG(os.fstat(fd).st_mode):
+            raise RuntimeError("results lock must be a regular file")
+        fcntl.flock(fd, fcntl.LOCK_EX)
+    except Exception:
+        os.close(fd)
+        raise
+    return fd
+
+
+def _fsync_directory(path: Path) -> None:
+    fd = os.open(path, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
+    try:
+        os.fsync(fd)
+    finally:
+        os.close(fd)
+
+
+def _write_temp_file(path: Path, payload: bytes) -> Path:
+    """Write and fsync a temp file next to its eventual destination."""
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+    tmp = path.parent / f".{path.name}.{uuid.uuid4().hex}.tmp"
+    fd = os.open(tmp, flags, 0o644)
+    try:
+        with os.fdopen(fd, "wb") as stream:
+            stream.write(payload)
+            stream.flush()
+            os.fsync(stream.fileno())
+    except Exception:
+        try:
+            tmp.unlink()
+        except FileNotFoundError:
+            pass
+        raise
+    return tmp
+
+
+def _atomic_replace_json(path: Path, value: dict[str, Any]) -> None:
+    """Atomically replace a regular JSON file after durable temp-file write."""
+    try:
+        info = path.lstat()
+    except FileNotFoundError:
+        info = None
+    if info is not None and (stat.S_ISLNK(info.st_mode) or not stat.S_ISREG(info.st_mode)):
+        raise RuntimeError(f"refusing to replace non-regular result path: {path}")
+    payload = (json.dumps(value, indent=2, ensure_ascii=False) + "\\n").encode("utf-8")
+    tmp = _write_temp_file(path, payload)
+    try:
+        os.replace(tmp, path)
+        _fsync_directory(path.parent)
+    finally:
+        try:
+            tmp.unlink()
+        except FileNotFoundError:
+            pass
+
+
+def _atomic_create_json(path: Path, value: dict[str, Any]) -> bool:
+    """Atomically create a result without ever overwriting an existing path."""
+    payload = (json.dumps(value, indent=2, ensure_ascii=False) + "\\n").encode("utf-8")
+    tmp = _write_temp_file(path, payload)
+    try:
+        try:
+            # Linking a same-filesystem fsynced temp file gives an atomic
+            # no-replace publication; the canonical name never contains
+            # partially written JSON and a collision cannot truncate a record.
+            os.link(tmp, path, follow_symlinks=False)
+        except FileExistsError:
+            return False
+        _fsync_directory(path.parent)
+        return True
+    finally:
+        try:
+            tmp.unlink()
+        except FileNotFoundError:
+            pass
+
+
 def save(result: dict[str, Any]) -> Path:
-    """Write a result pinned to the current source snapshot.
+    """Save with atomic no-overwrite publication and serialized deduplication."""
+    lock_fd = _results_lock()
+    try:
+        head, dirty = _git_state()
+        commit = f"{head}+dirty" if dirty else head
+        result["model_commit"] = commit
+        verdict = result.get("verdict") or {}
+        if dirty and verdict.get("kind") == "passed":
+            raise ValueError(
+                "cannot save verdict 'passed' from a dirty working tree; "
+                "commit the source or record a non-passing/void outcome"
+            )
 
-    `model_commit` is assigned here from `git rev-parse HEAD`, not trusted
-    from caller metadata. A dirty source tree is marked `<full-HEAD>+dirty`;
-    it is forbidden to save a `passed` verdict from that state.
+        experiment_id = result.get("experiment_id")
+        if (not isinstance(experiment_id, str)
+                or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", experiment_id)):
+            raise ValueError("unsafe experiment_id")
+        run_id = result.get("run_id")
+        if (not isinstance(run_id, str)
+                or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", run_id)):
+            raise ValueError("unsafe run_id")
 
-    A re-run that reproduces an existing record **byte for byte** (apart from
-    `run_id`, `created_at`, `model_commit` and `reproduced_at`) does not get a
-    file of its own:
-
-    * the same `model_commit` -- nothing to record, the file is not touched;
-    * a different `model_commit` -- the current commit is appended to the
-      record's `reproduced_at` list (no duplicates, in order of appearance) and
-      the record is rewritten. `model_commit` stays as it was: it names the
-      commit where the numbers were **first** obtained, not the last one that
-      saw them again.
-
-    This is not deduplication for tidiness. `frozen-ceiling` had 122 records on
-    disk and 122 in git, most of them the same measurement written again by
-    successive gate runs, so `git status` was never clean after `run.sh all` and
-    a real new record was invisible among the copies. Keeping a list of commits
-    inside one record is better than a file per commit: the files are identical,
-    and only the list differs -- a copy turns one measurement into N measurements
-    that have to be compared to see they are the same, while `reproduced_at`
-    says "the same numbers, re-checked at these commits" in the place where the
-    numbers already are. A re-run that changes anything else in the body is a
-    new measurement and does get a new file.
-
-    When several committed records hold the same measurement, the **newest** one
-    gets the commit, so the chain of rechecks does not attach to an old copy.
-    """
-    head, dirty = _git_state()
-    commit = f"{head}+dirty" if dirty else head
-    result["model_commit"] = commit
-    verdict = result.get("verdict") or {}
-    if dirty and verdict.get("kind") == "passed":
-        raise ValueError(
-            "cannot save verdict 'passed' from a dirty working tree; "
-            "commit the source or record a non-passing/void outcome"
-        )
-
-    d = RESULTS_DIR / result["experiment_id"]
-    d.mkdir(parents=True, exist_ok=True)
-    name = f"{result['run_id']}.json"
-    for old_path in sorted(d.glob("run-*.json"), reverse=True):
-        if old_path.name == name:
-            continue
-        old = _load(old_path)
-        if old is None or _fingerprint(old) != _fingerprint(result):
-            continue
-        if old.get("model_commit") == commit:
+        d = RESULTS_DIR / experiment_id
+        d.mkdir(parents=True, exist_ok=True)
+        for old_path in sorted(d.glob("run-*.json"), reverse=True):
+            # Never follow links out of the results tree.
+            try:
+                info = old_path.lstat()
+            except FileNotFoundError:
+                continue
+            if stat.S_ISLNK(info.st_mode) or not stat.S_ISREG(info.st_mode):
+                continue
+            old = _load(old_path)
+            if old is None or _fingerprint(old) != _fingerprint(result):
+                continue
+            if old.get("model_commit") == commit:
+                return old_path
+            seen = list(old.get("reproduced_at") or [])
+            if commit in seen:
+                return old_path
+            old["reproduced_at"] = (seen + [commit])[-REPRODUCED_CAP:]
+            _atomic_replace_json(old_path, old)
             return old_path
-        seen = list(old.get("reproduced_at") or [])
-        if commit in seen:
-            return old_path
-        # Список ограничен: без предела каждый прогон гейта добавлял строку, и файлы результатов
-        # копили историю коммитов бесконечно (8 файлов в дереве грязными после каждого прогона).
-        old["reproduced_at"] = (seen + [commit])[-REPRODUCED_CAP:]
-        old_path.write_text(
-            json.dumps(old, indent=2, ensure_ascii=False), encoding="utf-8"
-        )
-        return old_path
-    path = d / name
-    path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
-    return path
+
+        for attempt in range(8):
+            candidate = dict(result)
+            if attempt:
+                candidate["run_id"] = f"{run_id}-{uuid.uuid4().hex[:12]}"
+                result["run_id"] = candidate["run_id"]
+            path = d / f"{candidate['run_id']}.json"
+            if _atomic_create_json(path, candidate):
+                return path
+        raise RuntimeError("could not allocate a unique result run_id")
+    finally:
+        try:
+            fcntl.flock(lock_fd, fcntl.LOCK_UN)
+        finally:
+            os.close(lock_fd)
 
 
 def load_all() -> list[dict[str, Any]]:

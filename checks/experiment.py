@@ -87,11 +87,14 @@ class Experiment:
         if not arms:
             raise ExperimentError("at least one arm is required")
 
+        if not isinstance(question, str) or not question.strip():
+            raise ExperimentError("a non-empty research question is required")
         self.question = question
         self.arm_labels = dict(arms)
         self._arithmetic_done = True
         self._result = R.new_result(
             experiment_id=experiment_id,
+            question=question,
             seed=seed,
             parameters=parameters or {},
             command=command,
