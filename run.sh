@@ -758,6 +758,7 @@ gate_start() {
     : "gate: запуск секции do_$n"
     (
       _section_started=$(date +%s)
+      _section_rc=0
       trap '_section_rc=$?; record_section_status "$n" "$_section_started" "$_section_rc"; exit "$_section_rc"' EXIT
       exec 9>"$GATE_LOG_DIR/$n.trace"
       BASH_XTRACEFD=9

@@ -772,3 +772,10 @@ status: continue
 - контекст: c902 убит дисковым ватчдогом (C: free 1.3G; deref-копия .lake 13G росла ~3.5 ГБ/мин); пины ~1-2G вместо ~14G
 - валидация: bash -n, shellcheck -S error, checks/gate_pin_clean.py OK (make_pin/drop_pin в песочнице), checks/dispatcher.py 9/9
 - статус: гейт c903 (ватчдог /mnt/c free < 1.5G -> kill) -> при зелёном пуш master + сигнал владельцу: эксперименты можно начинать (claim EXP-2026-4106 v5 первым, FIFO 4106 -> 4107)
+
+
+## 2026-11-28 — dispatcher SC2154 фикс (цикл 861ak)
+
+- c903: 12/13 секций зелёные; sparse pin P9 подтверждён (пин ~0.4G, sync-back без WARN, C: стабилен ~9.5G+); красный только dispatcher — SC2154 в gate_start (унаследовано из e5c0648; чек SC2034/SC2154 fail-closed на -S warning, CI ветки гонял -S error, отсюда разница)
+- фикс: _section_rc=0 перед trap; снят устаревший gatepin-1ARkGk; логи c903 в /root/gate-logs/
+- статус: гейт c904 -> при зелёном пуш master + сигнал владельцу: эксперименты можно начинать (claim EXP-2026-4106 v5 первым, FIFO 4106 -> 4107)
