@@ -313,6 +313,13 @@ class TestClaimFencing(Base):
             "submitted_at,status,status_reason) VALUES ("
             "'SUB-DEP-1','KG-2026-0100',1,'d','a1','l1',0,'fast-00',NULL,'6a9fa461',"
             "'b','[]','{}','{}',NULL,NULL,'[]','2026-11-26T00:00:00Z','received',NULL)")
+        c.execute(
+            "UPDATE submissions SET artifacts_json=? WHERE id=?",
+            (json.dumps([{"sha256": digest}]), "SUB-DEP-1"),
+        )
+        c.execute(
+            "INSERT INTO submission_artifacts (submission_id,artifact_index,sha256) "
+            "VALUES (?,?,?)", ("SUB-DEP-1", 0, digest))
         r3 = self.cp.claim("fast-02", "i2", "knowledge", idem_key="k3")
         self.assertTrue(r3["claimed"])
         self.assertEqual(r3["claimed"]["task_id"], "KG-2026-0101")
@@ -343,6 +350,10 @@ class TestSubmitAndIdempotency(Base):
             "SELECT task_version_sha256 FROM submissions WHERE id='SUB-2026-0002'"
         ).fetchone()[0]
         self.assertEqual(stored_sha, lease["task_version_sha256"])
+        linked = self.db().execute(
+            "SELECT sha256 FROM submission_artifacts WHERE submission_id='SUB-2026-0002'"
+        ).fetchall()
+        self.assertEqual([row["sha256"] for row in linked], [blob["sha256"]])
         # тот же ключ + тот же payload = тот же ответ (§14.4)
         out2 = self.cp.submit(sub, idem_key="s1")
         self.assertEqual(out2, out)
@@ -440,6 +451,48 @@ class TestSubmitAndIdempotency(Base):
         self.assertEqual(c.execute(
             "SELECT COUNT(*) FROM attempts WHERE task_id='KG-2026-0006'").fetchone()[0], 1,
             "повторный claim создал вторую попытку")
+
+
+    def test_same_blob_can_be_referenced_by_multiple_tasks(self):
+        upload = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(
+            upload, "fast-01", b"shared immutable evidence", "application/x-ndjson"
+        )
+        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
+                 "media_type": "application/x-ndjson"}]
+        for index, task_id in enumerate(("KG-2026-0301", "KG-2026-0302"), start=1):
+            self.cp.publish_task(make_task(task_id))
+            lease = self.cp.claim(
+                "fast-01", f"i{index}", "knowledge", idem_key=f"claim-shared-{index}"
+            )["claimed"]
+            payload = {
+                "id": f"SUB-2026-03{index:02d}", "task_id": task_id,
+                "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
+                "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
+                "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
+                "artifacts": arts, "bundle_sha256": bundle_sha(task_id, arts),
+                "base_commit": "6a9fa461",
+            }
+            result = self.cp.submit(payload, idem_key=f"submit-shared-{index}")
+            self.assertEqual(result["status"], "received")
+
+        links = self.db().execute(
+            "SELECT s.task_id, sa.sha256 FROM submission_artifacts sa "
+            "JOIN submissions s ON s.id=sa.submission_id "
+            "WHERE sa.sha256=? ORDER BY s.task_id",
+            (blob["sha256"],),
+        ).fetchall()
+        self.assertEqual(
+            [(row["task_id"], row["sha256"]) for row in links],
+            [("KG-2026-0301", blob["sha256"]),
+             ("KG-2026-0302", blob["sha256"])],
+        )
+        # New submissions no longer rewrite the lossy legacy owner column.
+        legacy = self.db().execute(
+            "SELECT task_id FROM artifacts WHERE sha256=?", (blob["sha256"],)
+        ).fetchone()
+        self.assertIsNone(legacy["task_id"])
+        self.assertInvariants()
 
 
 class TestMessages(Base):

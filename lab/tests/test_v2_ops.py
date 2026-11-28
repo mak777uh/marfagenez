@@ -96,22 +96,60 @@ class Base(unittest.TestCase):
 
 class TestSchemaMigration(Base):
     def test_user_version_and_idempotent_init(self):
-        self.assertEqual(self.cp.user_version(), 3)
+        self.assertEqual(self.cp.user_version(), 4)
         tables = {r[0] for r in self.db().execute(
             "SELECT name FROM sqlite_master WHERE type='table'")}
         self.assertIn("proposals", tables)
         self.assertIn("standing_templates", tables)
+        self.assertIn("submission_artifacts", tables)
         # Repeated init must not rewind schema version or replay migrations.
         before = self.db().execute(
             "SELECT COUNT(*) FROM audit_events WHERE action='schema.migrate'"
         ).fetchone()[0]
-        self.assertEqual(before, 2)
+        self.assertEqual(before, 3)
         self.cp.init()
-        self.assertEqual(self.cp.user_version(), 3)
+        self.assertEqual(self.cp.user_version(), 4)
         after = self.db().execute(
             "SELECT COUNT(*) FROM audit_events WHERE action='schema.migrate'"
         ).fetchone()[0]
         self.assertEqual(after, before, "повторный init повторно записал миграции")
+        self.assertInvariants()
+
+
+    def test_v3_migration_backfills_only_resolvable_artifact_references(self):
+        c = self.db()
+        c.execute("DROP TABLE submission_artifacts")
+        c.execute("PRAGMA user_version=3")
+        task_id = "KG-2026-0401"
+        self.cp.publish_task(make_task(task_id))
+        digest = "a" * 64
+        c.execute(
+            "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,created_at) "
+            "VALUES (?,?,?,?,?)",
+            (digest, 12, "application/x-ndjson", digest, "2026-11-28T00:00:00Z"),
+        )
+        descriptors = [
+            {"sha256": digest, "bytes": 12, "media_type": "application/x-ndjson"},
+            {"sha256": "b" * 64, "bytes": 9, "media_type": "application/x-ndjson"},
+        ]
+        c.execute(
+            "INSERT INTO submissions (id,task_id,task_version,agent_id,artifacts_json,"
+            "submitted_at,status) VALUES (?,?,?,?,?,?,?)",
+            ("SUB-2026-0401", task_id, 1, "legacy-agent",
+             json.dumps(descriptors), "2026-11-28T00:00:00Z", "received"),
+        )
+        self.cp.init()
+        links = c.execute(
+            "SELECT artifact_index,sha256 FROM submission_artifacts "
+            "WHERE submission_id='SUB-2026-0401' ORDER BY artifact_index"
+        ).fetchall()
+        self.assertEqual([(x["artifact_index"], x["sha256"]) for x in links], [(0, digest)])
+        migration = c.execute(
+            "SELECT details_json FROM audit_events WHERE action='schema.migrate' "
+            "AND details_json LIKE '%\"to\":4%'"
+        ).fetchone()
+        self.assertIsNotNone(migration)
+        self.assertIn('"unresolved_legacy_artifacts":1', migration["details_json"])
         self.assertInvariants()
 
 

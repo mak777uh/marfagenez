@@ -618,11 +618,11 @@ class ControlPlane:
                 "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id AND NOT EXISTS ("
                 "  SELECT 1 FROM tasks rt WHERE rt.id=d.required_task_id "
                 "  AND rt.status=d.required_state)) "
-                "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id AND NOT EXISTS ("
-                "  SELECT 1 FROM artifacts a WHERE a.sha256=d.required_artifact_sha256 "
-                "  AND a.task_id=d.required_task_id)) "
-                "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id AND NOT EXISTS ("
-                "  SELECT 1 FROM submissions s WHERE s.task_id=d.required_task_id "
+                "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id AND NOT EXISTS("
+                "  SELECT 1 FROM submission_artifacts sa "
+                "  JOIN submissions s ON s.id=sa.submission_id "
+                "  WHERE sa.sha256=d.required_artifact_sha256 "
+                "  AND s.task_id=d.required_task_id "
                 "  AND s.task_version=d.required_task_version AND s.status='received')) "
                 "ORDER BY t.priority DESC, t.created_at ASC LIMIT 1",
                 (department,)).fetchone()
@@ -964,10 +964,6 @@ class ControlPlane:
                     missing.append(art["sha256"])
             if missing:
                 raise BadRequest(f"blobs отсутствуют в store: {missing}")
-            if mark_artifacts_for_task:
-                for art in payload["artifacts"]:
-                    c.execute("UPDATE artifacts SET task_id=? WHERE sha256=?",
-                              (task_id, art["sha256"]))
             c.execute(
                 "INSERT INTO submissions (id,task_id,task_version,task_version_sha256,"
                 "attempt_id,lease_id,lease_epoch,agent_id,instance_id,base_commit,"
@@ -981,6 +977,13 @@ class ControlPlane:
                  _canon(payload.get("environment", {})), _canon(payload.get("toolchain", {})),
                  payload.get("scientific_outcome"), payload.get("parent_submission_id"),
                  _canon(payload.get("complied_messages", [])), now_iso))
+            if mark_artifacts_for_task:
+                for artifact_index, art in enumerate(payload["artifacts"]):
+                    c.execute(
+                        "INSERT INTO submission_artifacts "
+                        "(submission_id,artifact_index,sha256) VALUES (?,?,?)",
+                        (payload["id"], artifact_index, art["sha256"]),
+                    )
             c.execute("UPDATE tasks SET status='submitted' WHERE id=? AND status='claimed'",
                       (task_id,))
             c.execute("UPDATE attempts SET status='submitted' WHERE attempt_id=?",
