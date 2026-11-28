@@ -20879,7 +20879,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация/фрагмент.**"
+        "conditions": "**фрагмент** NTNUOpen Brage/DSpace PDF через web.archive.org snapshot 2024091304"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20887,7 +20887,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/hilde20-demographic-buffering.pdf",
+          "strength": "moderate",
+          "sha256": "6252c8808b5911e9dab2fa150a1aad90154efbfb5d6c73fbccceefedce91b639"
         }
       ],
       "relations": [],
@@ -20895,11 +20901,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент** NTNUOpen Brage/DSpace PDF через web.archive.org snapshot 2024091304",
+        "level_kind": "fragment_read",
+        "artifact": "papers/hilde20-demographic-buffering.pdf",
+        "artifact_bytes": 1527901,
+        "artifact_sha256": "6252c8808b5911e9dab2fa150a1aad90154efbfb5d6c73fbccceefedce91b639",
         "locator": {
           "doi": "10.1016/j.tree.2020.02.004",
           "arxiv": null,
@@ -41070,13 +41076,13 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -41275,13 +41281,13 @@
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-025",
@@ -43615,12 +43621,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {

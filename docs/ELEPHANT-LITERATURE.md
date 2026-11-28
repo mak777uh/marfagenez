@@ -3861,27 +3861,33 @@ PMC12501198.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://www.sciencedirect.com/science/article/pii/S0169534720300501"
+  "level": "fragment_read",
+  "artifact": "papers/hilde20-demographic-buffering.pdf",
+  "bytes": 1527901,
+  "sha256": "6252c8808b5911e9dab2fa150a1aad90154efbfb5d6c73fbccceefedce91b639",
+  "retrieved_at": "2026-11-28T07:43:00Z",
+  "via": "repository",
+  "via_detail": "NTNUOpen Brage/DSpace bitstream main.pdf (handle 11250/2672816, Hilde et al. 2020 TREE 35(6), doi:10.1016/j.tree.2020.02.004); живой nva.sikt.no перенаправляет на NVA, чей /download требует auth — PDF получен через web.archive.org snapshot 20240913045757 (Range-resume, файл 1527901 байт); приближение Tuljapurkar (Box 1, Equation 1) и demographic buffering сверены"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "Box 1 + introduction"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
   "title": "The Demographic Buffering Hypothesis: Evidence and Challenges",
-  "year": 1990,
-  "first_author": null
+  "year": 2020,
+  "first_author": "Hilde"
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
+ "downgrade_reason": null
 }
 ```
 
@@ -3892,9 +3898,9 @@ doi:10.1016/j.tree.2020.02.004; «Environmental variance, population growth and 
 doi:10.1111/j.1365-2656.2009.01619.x.
 **Ссылка.** https://www.sciencedirect.com/science/article/pii/S0169534720300501 ;
 https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
-**Проверено.** **аннотация/фрагмент.**
+**Проверено.** **фрагмент** NTNUOpen Brage/DSpace PDF через web.archive.org snapshot 20240913045757 (papers/hilde20-demographic-buffering.pdf, sha256 6252c880…, 2026-11-28); Box 1 Equation 1 и раздел demographic buffering сверены.
 **Утверждение (пересказ).** При **малой вариации** и **отсутствии временной автокорреляции** долгосрочная стохастическая
-скорость роста большой популяции приближается как `log λ_s ≈ log λ̄ − σ²/(2λ̄²)`.
+скорость роста большой популяции приближается как `log λ_s ≈ log λ̄ − σ²/(2λ̄²)` — в статье это Tuljapurkar approximation, Box 1.
 **Что даёт нам.** Это **цена страховки в числах**, и её можно **предсказать до прогона** (`F-016`). Плюс гипотеза
 демографического буферирования: отбор снижает чувствительность к изменчивости **самых важных** параметров.
 **Что меняет.** `P-010`: измерить `log λ_s` для наших стратегий и сравнить с приближением.
