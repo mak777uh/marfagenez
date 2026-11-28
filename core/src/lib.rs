@@ -533,6 +533,17 @@ impl Rng {
         }
     }
 
+    /// Exact, read-only internal state for run provenance. Word 0 tags the algorithm:
+    /// 0 = LCG-v1, 1 = xoshiro256++-v1. Remaining words are algorithm state.
+    pub fn state_words(&self) -> [u64; 5] {
+        match &self.state {
+            RngState::Lcg(state) => [0, *state, 0, 0, 0],
+            RngState::Xoshiro256PlusPlus(rng) => [
+                1, rng.state[0], rng.state[1], rng.state[2], rng.state[3],
+            ],
+        }
+    }
+
     pub fn next_u64(&mut self) -> u64 {
         match &mut self.state {
             RngState::Lcg(state) => {
