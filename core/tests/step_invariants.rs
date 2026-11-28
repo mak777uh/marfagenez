@@ -251,6 +251,28 @@ impl<'a> Parser<'a> {
     }
 }
 
+
+fn quote_json_string(value: &str) -> String {
+    let mut out = String::from("\"");
+    for character in value.chars() {
+        match character {
+            '"' => out.push_str("\\\""),
+            '\\' => out.push_str("\\\\"),
+            '\u{0008}' => out.push_str("\\b"),
+            '\u{000c}' => out.push_str("\\f"),
+            '\n' => out.push_str("\\n"),
+            '\r' => out.push_str("\\r"),
+            '\t' => out.push_str("\\t"),
+            character if character.is_control() => {
+                out.push_str(&format!("\\u{:04x}", character as u32));
+            }
+            character => out.push(character),
+        }
+    }
+    out.push('"');
+    out
+}
+
 impl Json {
     fn get(&self, key: &str) -> &Json {
         match self {
@@ -299,6 +321,27 @@ impl Json {
     fn static_str(&self) -> &'static str {
         Box::leak(self.string().to_owned().into_boxed_str())
     }
+
+
+    fn to_json_string(&self) -> String {
+        match self {
+            Json::Object(entries) => {
+                let body = entries.iter().map(|(key, value)| {
+                    format!("{}:{}", quote_json_string(key), value.to_json_string())
+                }).collect::<Vec<_>>().join(",");
+                format!("{{{body}}}")
+            }
+            Json::Array(values) => format!(
+                "[{}]",
+                values.iter().map(Json::to_json_string).collect::<Vec<_>>().join(",")
+            ),
+            Json::String(value) => quote_json_string(value),
+            Json::Number(value) => value.clone(),
+            Json::Bool(value) => value.to_string(),
+            Json::Null => "null".to_string(),
+        }
+    }
+
 }
 
 fn trace_from_json(input: &str) -> Trace {
@@ -335,6 +378,11 @@ fn trace_from_json(input: &str) -> Trace {
         read_cost: root.get("read_cost").f64(),
         read_period: root.get("read_period").usize(),
         look_on_shortfall: root.get("look_on_shortfall").boolean(),
+        requested_steps: root.get("requested_steps").usize(),
+        sample_every: root.get("sample_every").usize(),
+        start_step: root.get("start_step").usize(),
+        config_hash: u64::from_str_radix(root.get("config_hash").string(), 16).unwrap(),
+        config_json: root.get("config").to_json_string(),
     }
 }
 
