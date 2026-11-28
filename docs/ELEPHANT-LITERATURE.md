@@ -688,13 +688,13 @@ decreasing side** of the fitness function». Пример там же: птиц�
 {
  "L": "L-013",
  "locator": {
-  "doi": null,
+  "doi": "10.1098/rspb.1965.0069",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
-  "pmid": null,
-  "url": null,
-  "none": true
+  "pmid": "4378482",
+  "url": "https://doi.org/10.1098/rspb.1965.0069",
+  "none": false
  },
  "access": {
   "level": "secondary_only",
@@ -703,7 +703,7 @@ decreasing side** of the fitness function». Пример там же: птиц�
   "sha256": null,
   "retrieved_at": null,
   "via": "none",
-  "via_detail": null
+  "via_detail": "DOI/PMID идентифицированы через Crossref+PubMed (Pirt 1965, Proc R Soc B 163:224-231); PMID 4378482 не содержит аннотации, Royal Society PDF блокирует ботов — уровень остаётся secondary_only"
  },
  "inspection": {
   "scope": "partial",
@@ -724,7 +724,7 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 
 **Кто.** Pirt (1965) — maintenance energy.
-**Ссылка.** **вторые руки.**
+**Ссылка.** https://doi.org/10.1098/rspb.1965.0069 (DOI/PMID верифицированы) **вторые руки.**
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Часть энергии уходит на поддержание, не на рост; есть «коэффициент поддержания».
 **Что даёт нам.** Наш `maintenance` — это их член; наша «цена кожи» — его геометрическая версия.
