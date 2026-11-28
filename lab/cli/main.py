@@ -16,7 +16,7 @@ import uuid
 from pathlib import Path
 
 
-def _json_file(path: str) -> dict:
+def _json_file(path: str):
     with open(path, encoding="utf-8") as f:
         return json.load(f)
 
@@ -93,6 +93,27 @@ def build_parser() -> argparse.ArgumentParser:
     pg = sub.add_parser("proposal-get", help="proposal/v1 целиком")
     pg.add_argument("--id", required=True)
 
+    dc = sub.add_parser("decision", help="Decision/v1: решение main по submission")
+    dc.add_argument("--submission", required=True)
+    dc.add_argument("--validation", required=True)
+    dc.add_argument("--decision", required=True,
+                    choices=["accepted", "needs_work", "rejected"])
+    dc.add_argument("--reason", required=True)
+
+    ist = sub.add_parser("integration-start", help="зафиксировать начало Integration")
+    ist.add_argument("--submission", required=True)
+    ist.add_argument("--head-before", required=True)
+
+    ifn = sub.add_parser("integration-finish", help="зафиксировать успешную Integration")
+    ifn.add_argument("--integration", required=True)
+    ifn.add_argument("--head-after", required=True)
+    ifn.add_argument("--files-json", required=True,
+                     help="JSON-файл с массивом фактически изменённых относительных путей")
+
+    ifl = sub.add_parser("integration-fail", help="зафиксировать integration_failed")
+    ifl.add_argument("--integration", required=True)
+    ifl.add_argument("--reason", required=True)
+
     rd = sub.add_parser("message-read", help="отметить прочитанным")
     rd.add_argument("--message", required=True)
     rd.add_argument("--agent", required=True)
@@ -154,6 +175,16 @@ def run(args, cp) -> dict:
                                    args.revision, review_note=args.note)
     if cmd == "proposal-get":
         return cp.get_proposal(args.id)
+    if cmd == "decision":
+        return cp.decide_submission(
+            args.submission, args.validation, args.decision, args.reason, actor="main")
+    if cmd == "integration-start":
+        return cp.start_integration(args.submission, args.head_before, actor="main")
+    if cmd == "integration-finish":
+        return cp.finish_integration(
+            args.integration, args.head_after, _json_file(args.files_json), actor="main")
+    if cmd == "integration-fail":
+        return cp.fail_integration(args.integration, args.reason, actor="main")
     if cmd == "message-read":
         return cp.mark_read(args.message, args.agent)
     if cmd == "message-ack":

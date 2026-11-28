@@ -321,6 +321,9 @@ class TestClaimFencing(Base):
             "submitted_at,status,status_reason) VALUES ("
             "'SUB-DEP-1','KG-2026-0100',1,'d','a1','l1',0,'fast-00',NULL,'6a9fa461',"
             "'b','[]','{}','{}',NULL,NULL,'[]','2026-11-26T00:00:00Z','received',NULL)")
+        c.execute(
+            "INSERT INTO submission_artifacts (submission_id,artifact_index,sha256) "
+            "VALUES ('SUB-DEP-1',0,?)", (digest,))
         r3 = self.cp.claim("fast-02", "i2", "knowledge", idem_key="k3")
         self.assertTrue(r3["claimed"])
         self.assertEqual(r3["claimed"]["task_id"], "KG-2026-0101")
@@ -536,6 +539,22 @@ class TestIntakeHardening(Base):
         from lab.service.control import BadRequest
         with self.assertRaisesRegex(BadRequest, "указанным media_type"):
             self.cp.submit(payload, idem_key="wrong-media-type")
+
+    def test_submit_rejects_canonical_git_and_secret_paths(self):
+        from lab.service.control import BadRequest
+        cases = (
+            ("KG-2026-0610", ".git/config"),
+            ("KG-2026-0611", ".coord/queue.json"),
+            ("KG-2026-0612", ".env"),
+            ("KG-2026-0613", "secrets/api-token.json"),
+            ("KG-2026-0614", "results/private-key.pem"),
+        )
+        for task_id, path in cases:
+            with self.subTest(path=path):
+                payload, _ = self._prepared_submission(task_id, path=path)
+                payload["bundle_sha256"] = bundle_sha(task_id, payload["artifacts"])
+                with self.assertRaisesRegex(BadRequest, "PROTECTED"):
+                    self.cp.submit(payload, idem_key=f"protected-{task_id}")
 
     def test_submit_rejects_symlink_blob(self):
         payload, blob = self._prepared_submission("KG-2026-0608")
