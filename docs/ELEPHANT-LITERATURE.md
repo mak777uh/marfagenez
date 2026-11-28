@@ -1008,13 +1008,13 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 {
  "L": "L-019",
  "locator": {
-  "doi": null,
+  "doi": "10.1007/s11229-011-9874-z",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1007/s11229-011-9874-z",
+  "none": false
  },
  "access": {
   "level": "secondary_only",
@@ -1023,7 +1023,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
   "sha256": null,
   "retrieved_at": null,
   "via": "none",
-  "via_detail": null
+  "via_detail": "DOI идентифицированы через Crossref: Ruiz-Mirazo & Moreno 2004 Artificial Life 10(3) doi:10.1162/1064546041255584 («Basic Autonomy as a Fundamental Step in the Synthesis of Life») и Ruiz-Mirazo & Moreno, Synthese, doi:10.1007/s11229-011-9874-z («Autonomy in evolution: from minimal to complex life», online 2011 — в записи стоит 2012); полные тексты закрыты (MIT Press/Springer), уровень остаётся secondary_only"
  },
  "inspection": {
   "scope": "partial",
@@ -1044,7 +1044,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 
 **Кто.** Ruiz-Mirazo & Moreno (2004, 2012).
-**Ссылка.** **вторые руки.**
+**Ссылка.** https://doi.org/10.1007/s11229-011-9874-z ; https://doi.org/10.1162/1064546041255584 (DOI верифицированы по Crossref) **вторые руки.**
 **Проверено.** **вторые руки.**
 **Утверждение (пересказ).** Базовая автономия — способность системы поддерживать себя за счёт обмена с внешней
 средой; должна быть **операциональной**.
