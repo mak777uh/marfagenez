@@ -533,6 +533,15 @@ impl Rng {
         }
     }
 
+    /// Exact internal words for deterministic checkpoint/provenance manifests.
+    /// This does not advance the generator or alter its historical sequence.
+    pub fn state_words(&self) -> Vec<u64> {
+        match &self.state {
+            RngState::Lcg(state) => vec![*state],
+            RngState::Xoshiro256PlusPlus(rng) => rng.state.to_vec(),
+        }
+    }
+
     pub fn next_u64(&mut self) -> u64 {
         match &mut self.state {
             RngState::Lcg(state) => {
@@ -628,8 +637,6 @@ mod tests {
         // For a reflected Gaussian step on [-B, B], the slowest Neumann mode
         // contracts by rho = exp(-sigma^2 * pi^2 / (8 * B^2)) per step.
         // Here rho^1,000 ~= 4.4e-6; the 40,000-sample relative SE for spread is ~0.35%.
-        // 40,000 samples are retained (same sampling error and fixed seed); the
-        // former 8,000-step burn-in spent 8x the work after practical convergence.
         const BURN_IN_STEPS: usize = 1_000;
         for _ in 0..BURN_IN_STEPS {
             for x in pop.iter_mut() {
