@@ -37,9 +37,9 @@
 
 #![forbid(unsafe_code)]
 
-use crate::field::Field;
-use crate::life::Life;
-use crate::organism::LookOrder;
+use crate::field::{Field, FieldStateSnapshot};
+use crate::life::{Life, LifeExperimentSnapshot};
+use crate::organism::{LookOrder, World};
 
 /// One organism, at one step.
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -137,6 +137,24 @@ pub struct Trace {
     /// underfoot could not pay the upkeep. `false` is the historical
     /// schedule; `true` is the rule declared in `docs/FINDING-161.md`.
     pub look_on_shortfall: bool,
+    /// Per-slot policy map. `policy` is `mixed` when these are not all equal.
+    pub policy_by_slot: Vec<&'static str>,
+    /// Configuration snapshot at the start of this recording, as canonical JSON.
+    pub configuration: String,
+    /// SHA-256 of `configuration`; separate from the historical dynamics hash.
+    pub config_sha256: String,
+    /// Requested maximum number of advances passed to `record`.
+    pub requested_steps: usize,
+    /// Number of successful advances actually executed by `record`.
+    pub executed_steps: usize,
+    /// Absolute step counter at the start of this recording.
+    pub start_step: usize,
+    /// Caller-provided sampling interval, before the zero-to-one normalization.
+    pub sample_every_requested: usize,
+    /// Effective sampling interval used by the recorder.
+    pub sample_every: usize,
+    /// Number of frames written; retained separately from legacy `steps`.
+    pub frames_written: usize,
 }
 
 /// The version of the dynamics hash.
@@ -158,6 +176,9 @@ pub struct Trace {
 /// reads this constant back with a regexp, so the Python side and the Rust side
 /// cannot drift apart silently.
 pub const HASH_VERSION: &str = "2-prev-cell";
+
+/// Version of the complete starting-configuration fingerprint.
+pub const CONFIG_HASH_VERSION: &str = "sha256-json-v1";
 
 impl Trace {
     /// A stable hash of everything that moved. Two traces with the same hash had the
