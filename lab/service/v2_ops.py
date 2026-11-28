@@ -149,10 +149,10 @@ class V2OpsMixin:
         if v < 5:
             c.execute("BEGIN IMMEDIATE")
             try:
-                columns = {
+                artifact_columns = {
                     row["name"] for row in c.execute("PRAGMA table_info(artifacts)")
                 }
-                if "last_seen_at" not in columns:
+                if "last_seen_at" not in artifact_columns:
                     c.execute("ALTER TABLE artifacts ADD COLUMN last_seen_at TEXT")
                     c.execute("UPDATE artifacts SET last_seen_at=created_at "
                               "WHERE last_seen_at IS NULL")
@@ -160,31 +160,40 @@ class V2OpsMixin:
                     "CREATE TABLE IF NOT EXISTS upload_artifacts ("
                     "upload_id TEXT NOT NULL REFERENCES uploads(upload_id), "
                     "sha256 TEXT NOT NULL REFERENCES artifacts(sha256), "
-                    "created_at TEXT NOT NULL, "
-                    "PRIMARY KEY (upload_id,sha256))"
+                    "media_type TEXT NOT NULL, created_at TEXT NOT NULL, "
+                    "PRIMARY KEY (upload_id,sha256,media_type))"
                 )
                 c.execute(
                     "CREATE INDEX IF NOT EXISTS ix_upload_artifacts_sha "
-                    "ON upload_artifacts(sha256)"
+                    "ON upload_artifacts(sha256,upload_id)"
                 )
-                orphan_upload_refs = c.execute(
-                    "SELECT COUNT(*) FROM artifacts a LEFT JOIN uploads u "
-                    "ON u.upload_id=a.upload_id "
-                    "WHERE a.upload_id IS NOT NULL AND u.upload_id IS NULL"
-                ).fetchone()[0]
-                c.execute(
-                    "INSERT OR IGNORE INTO upload_artifacts(upload_id,sha256,created_at) "
-                    "SELECT a.upload_id,a.sha256,a.created_at FROM artifacts a "
-                    "JOIN uploads u ON u.upload_id=a.upload_id "
-                    "WHERE a.upload_id IS NOT NULL"
-                )
-                linked = c.execute(
-                    "SELECT COUNT(*) FROM upload_artifacts"
-                ).fetchone()[0]
+                linked = 0
+                unresolved = 0
+                legacy = c.execute(
+                    "SELECT a.upload_id,a.sha256,a.media_type,a.created_at "
+                    "FROM artifacts a WHERE a.upload_id IS NOT NULL ORDER BY a.sha256"
+                ).fetchall()
+                for artifact in legacy:
+                    exists = c.execute(
+                        "SELECT 1 FROM uploads WHERE upload_id=?",
+                        (artifact["upload_id"],),
+                    ).fetchone()
+                    if not exists:
+                        unresolved += 1
+                        continue
+                    inserted = c.execute(
+                        "INSERT OR IGNORE INTO upload_artifacts "
+                        "(upload_id,sha256,media_type,created_at) VALUES (?,?,?,?)",
+                        (artifact["upload_id"], artifact["sha256"],
+                         artifact["media_type"], artifact["created_at"]),
+                    )
+                    linked += inserted.rowcount
                 c.execute("PRAGMA user_version=5")
-                self._audit(c, "schema", "schema.migrate", "db", str(self.db_path),
-                            {"from": 4, "to": 5, "upload_artifact_links": linked,
-                             "unresolved_upload_references": orphan_upload_refs})
+                self._audit(
+                    c, "schema", "schema.migrate", "db", str(self.db_path),
+                    {"from": 4, "to": 5, "upload_artifact_links": linked,
+                     "unresolved_legacy_uploads": unresolved},
+                )
                 c.execute("COMMIT")
             except Exception:
                 self._safe_rollback(c)

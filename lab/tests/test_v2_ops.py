@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import shutil
 import sys
 import tempfile
@@ -39,7 +40,7 @@ def make_task(tid: str, dept: str = "knowledge", priority: int = 5, **kw):
         "validators": [{"profile": "knowledge-map-v1", "version": "1.0.0"}],
         "dependencies": [], "lease": dict(LEASE_SPEC), "priority": priority,
         "base_commit": "6a9fa461", "network_profile": "none",
-        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 16777216,
+        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 1_048_576,
                    "network_allowlist": []},
         "tags": [], **kw,
     }
@@ -123,11 +124,22 @@ class TestSchemaMigration(Base):
         c.execute("PRAGMA user_version=3")
         task_id = "KG-2026-0401"
         self.cp.publish_task(make_task(task_id))
+        c.execute(
+            "INSERT INTO uploads (upload_id,agent_id,state,created_at) "
+            "VALUES (?,?,?,?)",
+            ("UPL-LEGACY", "legacy-agent", "open", "2026-11-28T00:00:00Z"),
+        )
         digest = "a" * 64
         c.execute(
-            "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,created_at) "
-            "VALUES (?,?,?,?,?)",
-            (digest, 12, "application/x-ndjson", digest, "2026-11-28T00:00:00Z"),
+            "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,upload_id,created_at) "
+            "VALUES (?,?,?,?,?,?)",
+            (digest, 12, "application/x-ndjson", digest, "UPL-LEGACY", "2026-11-28T00:00:00Z"),
+        )
+        c.execute(
+            "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,upload_id,created_at) "
+            "VALUES (?,?,?,?,?,?)",
+            ("b" * 64, 3, "application/octet-stream", "b" * 64,
+             "UPL-MISSING", "2026-11-28T00:00:00Z"),
         )
         descriptors = [
             {"sha256": digest, "bytes": 12, "media_type": "application/x-ndjson"},
@@ -151,7 +163,21 @@ class TestSchemaMigration(Base):
         ).fetchone()
         self.assertIsNotNone(migration)
         self.assertIn('"unresolved_legacy_artifacts":1', migration["details_json"])
-        self.assertEqual(self.cp.user_version(), 5)
+        upload_links = c.execute(
+            "SELECT upload_id,sha256,media_type FROM upload_artifacts "
+            "WHERE sha256=?",
+            (digest,),
+        ).fetchall()
+        self.assertEqual(
+            [(x["upload_id"], x["sha256"], x["media_type"]) for x in upload_links],
+            [("UPL-LEGACY", digest, "application/x-ndjson")],
+        )
+        migration_v5 = c.execute(
+            "SELECT details_json FROM audit_events WHERE action='schema.migrate' "
+            "AND details_json LIKE '%\"to\":5%' ORDER BY seq DESC LIMIT 1"
+        ).fetchone()
+        self.assertIsNotNone(migration_v5)
+        self.assertIn('"unresolved_legacy_uploads":1', migration_v5["details_json"])
         self.assertInvariants()
 
 
@@ -160,8 +186,8 @@ class TestSchemaMigration(Base):
         blob = self.cp.put_blob(
             upload, "fast-01", b"shared immutable evidence", "application/x-ndjson"
         )
-        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
-                 "media_type": "application/x-ndjson"}]
+        arts = [{"path": "results/shared.ndjson", "sha256": blob["sha256"],
+                 "bytes": blob["bytes"], "media_type": "application/x-ndjson"}]
         for index, task_id in enumerate(("KG-2026-0301", "KG-2026-0302"), start=1):
             self.cp.publish_task(make_task(task_id))
             lease = self.cp.claim(
@@ -194,34 +220,6 @@ class TestSchemaMigration(Base):
             "SELECT task_id FROM artifacts WHERE sha256=?", (blob["sha256"],)
         ).fetchone()
         self.assertIsNone(legacy["task_id"])
-        self.assertInvariants()
-
-
-
-
-    def test_v4_to_v5_migration_skips_uploads_missing_from_legacy_database(self):
-        c = self.db()
-        c.execute("DROP TABLE upload_artifacts")
-        digest = "f" * 64
-        c.execute(
-            "INSERT INTO artifacts "
-            "(sha256,bytes,media_type,blob_id,upload_id,task_id,created_at,last_seen_at) "
-            "VALUES (?,?,?,?,?,?,?,?)",
-            (digest, 4, "application/octet-stream", digest, "UPL-MISSING",
-             None, "2026-11-28T00:00:00Z", "2026-11-28T00:00:00Z"),
-        )
-        c.execute("PRAGMA user_version=4")
-        self.cp.init()
-        self.assertEqual(self.cp.user_version(), 5)
-        self.assertIsNone(c.execute(
-            "SELECT 1 FROM upload_artifacts WHERE sha256=?", (digest,)
-        ).fetchone())
-        migration = c.execute(
-            "SELECT details_json FROM audit_events WHERE action='schema.migrate' "
-            "AND details_json LIKE '%\"to\":5%' ORDER BY seq DESC LIMIT 1"
-        ).fetchone()
-        self.assertIsNotNone(migration)
-        self.assertIn('"unresolved_upload_references":1', migration["details_json"])
         self.assertInvariants()
 
 
@@ -258,7 +256,8 @@ class TestUploadIntake(Base):
                                 "application/octet-stream")
         lease = self.cp.claim("fast-01", "i", "knowledge",
                               idem_key="claim-tamper")["claimed"]
-        artifact = {"sha256": blob["sha256"], "bytes": blob["bytes"],
+        artifact = {"path": "results/evidence.bin",
+                    "sha256": blob["sha256"], "bytes": blob["bytes"],
                     "media_type": "application/octet-stream"}
         payload = {
             "id": "SUB-2026-0501", "task_id": task_id, "task_version": 1,
@@ -322,7 +321,8 @@ class TestUploadIntake(Base):
                                 "application/octet-stream")
         lease_a = self.cp.claim("fast-01", "i-a", "knowledge",
                                 idem_key="claim-owner-a")["claimed"]
-        artifact = {"sha256": blob["sha256"], "bytes": blob["bytes"],
+        artifact = {"path": "results/evidence.bin",
+                    "sha256": blob["sha256"], "bytes": blob["bytes"],
                     "media_type": "application/octet-stream"}
         payload_a = {
             "id": "SUB-2026-0510", "task_id": task_a, "task_version": 1,
@@ -361,10 +361,36 @@ class TestUploadIntake(Base):
         os.link(stored, second_name)
         try:
             with self.assertRaises(BadRequest):
-                self.cp.store.verify(blob["sha256"])
+                self.cp.store.verify_blob(blob["sha256"])
         finally:
             second_name.unlink()
 
+
+
+    def test_v4_to_v5_migration_skips_uploads_missing_from_legacy_database(self):
+        c = self.db()
+        c.execute("DROP TABLE upload_artifacts")
+        digest = "f" * 64
+        c.execute(
+            "INSERT INTO artifacts "
+            "(sha256,bytes,media_type,blob_id,upload_id,task_id,created_at) "
+            "VALUES (?,?,?,?,?,?,?)",
+            (digest, 4, "application/octet-stream", digest, "UPL-MISSING",
+             None, "2026-11-28T00:00:00Z"),
+        )
+        c.execute("PRAGMA user_version=4")
+        self.cp.init()
+        self.assertEqual(self.cp.user_version(), 5)
+        self.assertIsNone(c.execute(
+            "SELECT 1 FROM upload_artifacts WHERE sha256=?", (digest,)
+        ).fetchone())
+        migration = c.execute(
+            "SELECT details_json FROM audit_events WHERE action='schema.migrate' "
+            "AND details_json LIKE '%\"to\":5%' ORDER BY seq DESC LIMIT 1"
+        ).fetchone()
+        self.assertIsNotNone(migration)
+        self.assertIn('"unresolved_legacy_uploads":1', migration["details_json"])
+        self.assertInvariants()
 
 
 class TestProposalsCAS(Base):
@@ -497,8 +523,8 @@ class TestCancellation(Base):
         up = self.cp.create_upload("fast-01")
         blob = self.cp.put_blob(up, "fast-01", b"data",
                                 "application/x-ndjson")
-        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
-                 "media_type": "application/x-ndjson"}]
+        arts = [{"path": "results/data.ndjson", "sha256": blob["sha256"],
+                 "bytes": blob["bytes"], "media_type": "application/x-ndjson"}]
         sub = {"id": "SUB-2022", "task_id": "KG-2026-0022",
                "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
                "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
