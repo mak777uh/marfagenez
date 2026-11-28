@@ -21,7 +21,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from lab.service.control import (  # noqa: E402
-    Blocked, Conflict, ControlPlane, Gone, NotFound)
+    BadRequest, Blocked, Conflict, ControlPlane, Gone, NotFound,
+    MAX_WAITING_MAIN_SECONDS)
 
 LEASE_SPEC = {"ttl_seconds": 120, "heartbeat_seconds": 30,
               "max_attempts": 3, "max_lease_seconds": 200}
@@ -316,6 +317,99 @@ class TestClaimFencing(Base):
         r3 = self.cp.claim("fast-02", "i2", "knowledge", idem_key="k3")
         self.assertTrue(r3["claimed"])
         self.assertEqual(r3["claimed"]["task_id"], "KG-2026-0101")
+
+
+
+class TestWaitingMainExpiry(Base):
+    def test_expired_waiting_main_is_reclaimed_by_next_claim(self):
+        task_id = "KG-2026-0601"
+        self.cp.publish_task(make_task(task_id))
+        first = self.cp.claim("fast-01", "i1", "knowledge",
+                              idem_key="claim-waiting-0601")["claimed"]
+        waiting = self.cp.waiting_main(
+            first["lease_id"], first["lease_epoch"], "fast-01", timeout_seconds=5
+        )
+        self.assertEqual(waiting["status"], "waiting_main")
+        self.clock.advance(LEASE_SPEC["ttl_seconds"] + 5 + 1)
+
+        second = self.cp.claim("fast-02", "i2", "knowledge",
+                               idem_key="reclaim-waiting-0601")["claimed"]
+        self.assertEqual(second["task_id"], task_id)
+        self.assertEqual(second["lease_epoch"], first["lease_epoch"] + 1)
+        old_lease = self.db().execute(
+            "SELECT state FROM leases WHERE lease_id=?", (first["lease_id"],)
+        ).fetchone()
+        old_attempt = self.db().execute(
+            "SELECT status FROM attempts WHERE attempt_id=?", (first["attempt_id"],)
+        ).fetchone()
+        task = self.db().execute(
+            "SELECT status,claimed_by,lease_expires_at_mono,max_expires_at_mono "
+            "FROM tasks WHERE id=?", (task_id,)
+        ).fetchone()
+        self.assertEqual(old_lease["state"], "expired")
+        self.assertEqual(old_attempt["status"], "expired")
+        self.assertEqual((task["status"], task["claimed_by"]), ("claimed", "fast-02"))
+        self.assertIsNotNone(task["lease_expires_at_mono"])
+        self.assertIsNotNone(task["max_expires_at_mono"])
+        self.assertInvariants()
+
+    def test_waiting_main_timeout_is_positive_and_bounded(self):
+        task_id = "KG-2026-0602"
+        self.cp.publish_task(make_task(task_id))
+        lease = self.cp.claim("fast-01", "i", "knowledge",
+                              idem_key="claim-wait-limit")["claimed"]
+        for invalid in (0, -1, MAX_WAITING_MAIN_SECONDS + 1, True):
+            with self.assertRaises(BadRequest):
+                self.cp.waiting_main(
+                    lease["lease_id"], lease["lease_epoch"], "fast-01", invalid
+                )
+        self.cp.waiting_main(
+            lease["lease_id"], lease["lease_epoch"], "fast-01", 60
+        )
+        self.clock.advance(1)
+        self.cp.waiting_main(
+            lease["lease_id"], lease["lease_epoch"], "fast-01", 60
+        )
+        row = self.db().execute(
+            "SELECT expires_at_mono,max_expires_at_mono FROM leases WHERE lease_id=?",
+            (lease["lease_id"],),
+        ).fetchone()
+        self.assertLessEqual(
+            row["expires_at_mono"],
+            row["max_expires_at_mono"] + MAX_WAITING_MAIN_SECONDS,
+        )
+        self.assertInvariants()
+
+    def test_expired_cancellation_request_becomes_cancelled(self):
+        task_id = "KG-2026-0603"
+        self.cp.publish_task(make_task(task_id))
+        lease = self.cp.claim("fast-01", "i", "knowledge",
+                              idem_key="claim-cancel-timeout")["claimed"]
+        # Seed the already-requested cancellation state directly: this base
+        # ControlPlane test is specifically about expiry/reaper terminalization,
+        # not the ControlPlane2 cancellation command.
+        self.db().execute(
+            "UPDATE tasks SET status='cancellation_requested' WHERE id=?",
+            (task_id,),
+        )
+        self.clock.advance(LEASE_SPEC["ttl_seconds"] + 1)
+        result = self.cp.reap()
+        self.assertEqual(result["cancelled"], 1)
+        task = self.db().execute(
+            "SELECT status,claimed_by,lease_expires_at_mono FROM tasks WHERE id=?",
+            (task_id,),
+        ).fetchone()
+        attempt = self.db().execute(
+            "SELECT status,failure_reason FROM attempts WHERE attempt_id=?",
+            (lease["attempt_id"],),
+        ).fetchone()
+        self.assertEqual(task["status"], "cancelled")
+        self.assertIsNone(task["claimed_by"])
+        self.assertIsNone(task["lease_expires_at_mono"])
+        self.assertEqual(attempt["status"], "void")
+        self.assertIn("cancellation", attempt["failure_reason"])
+        self.assertInvariants()
+
 
 
 class TestSubmitAndIdempotency(Base):
