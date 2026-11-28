@@ -195,6 +195,8 @@ expected counts и фактический `repeat.byte_identical`. Analysis пр
 `current_version`, `current_sha256` и вложенный `payload`. На submit время
 сверяются `id`, `version`, task-version SHA256 и `base_commit` между claim,
 task payload, raw manifest, analysis summary, plan и lease-run (если он staged).
-Любое расхождение отклоняет bundle. Submit поддерживает все четыре исхода и не
-превращает non-passed в passed. Dry-run не использует внешние зависимости и не
+Любое расхождение отклоняет bundle. Submit поддерживает исходы, определённые
+для этого пайплайна (passed, failed, void, insensitive_by_construction), и не
+превращает non-passed в passed; общесистемный словарь исходов (пять, включая
+not_applicable) описан в lab/schemas/v1/common.schema.json. Dry-run не использует внешние зависимости и не
 обращается к control plane.
