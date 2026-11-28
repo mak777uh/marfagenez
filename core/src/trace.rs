@@ -137,6 +137,16 @@ pub struct Trace {
     /// underfoot could not pay the upkeep. `false` is the historical
     /// schedule; `true` is the rule declared in `docs/FINDING-161.md`.
     pub look_on_shortfall: bool,
+    /// Requested number of transitions, even if the run died before that horizon.
+    pub requested_steps: usize,
+    /// Requested sampling cadence (normalised to at least one).
+    pub sample_every: usize,
+    /// Life/field step when recording started.
+    pub start_step: usize,
+    /// Stable non-cryptographic fingerprint of the complete recorded config.
+    pub config_hash: u64,
+    /// Canonical JSON manifest. Artifact SHA-256 remains a separate identity.
+    pub config_json: String,
 }
 
 /// The version of the dynamics hash.
@@ -332,6 +342,14 @@ impl Trace {
     pub fn to_json(&self) -> String {
         let mut out = String::new();
         out.push_str("{\n");
+        out.push_str("  \"trace_schema\": \"marfagenez.trace.v1\",\n");
+        out.push_str(&format!("  \"hash_version\": \"{}\",\n", HASH_VERSION));
+        out.push_str("  \"config_hash_algorithm\": \"fnv1a64-v1\",\n");
+        out.push_str(&format!("  \"config_hash\": \"{:016x}\",\n", self.config_hash));
+        out.push_str(&format!("  \"config\": {},\n", self.config_json));
+        out.push_str(&format!("  \"requested_steps\": {},\n", self.requested_steps));
+        out.push_str(&format!("  \"sample_every\": {},\n", self.sample_every));
+        out.push_str(&format!("  \"start_step\": {},\n", self.start_step));
         out.push_str(&format!("  \"policy\": \"{}\",\n", self.policy));
         out.push_str(&format!("  \"seed\": {},\n", self.seed));
         out.push_str(&format!("  \"rng_version\": \"{}\",\n", self.rng_version));
@@ -365,17 +383,18 @@ impl Trace {
                 if j > 0 {
                     out.push(',');
                 }
-                out.push_str(&format!("{:.6}", v));
+                out.push_str(&json_number(*v));
             }
             out.push_str("],\n");
             out.push_str("      \"samples\": [\n");
             for (j, s) in f.samples.iter().enumerate() {
                 out.push_str(&format!(
-                    "        {{\"slot\":{},\"cell\":{},\"energy\":{:.6},\"damage\":{:.6},\
-                     \"alive\":{},\"memory_cell\":{},\"memory_level\":{:.6},\
-                     \"direction\":{},\"taken\":{:.6},\"prev_cell\":{}}}",
-                    s.slot, s.cell, s.energy, s.damage, s.alive, s.memory_cell, s.memory_level,
-                    s.direction, s.taken, s.prev_cell
+                    "        {{\"slot\":{},\"cell\":{},\"energy\":{},\"damage\":{},\
+                     \"alive\":{},\"memory_cell\":{},\"memory_level\":{},\
+                     \"direction\":{},\"taken\":{},\"prev_cell\":{}}}",
+                    s.slot, s.cell, json_number(s.energy), json_number(s.damage),
+                    s.alive, s.memory_cell, json_number(s.memory_level),
+                    s.direction, json_number(s.taken), s.prev_cell
                 ));
                 if j + 1 < f.samples.len() {
                     out.push(',');
@@ -394,6 +413,173 @@ impl Trace {
     }
 }
 
+
+fn policy_name(policy: crate::life::Policy) -> &'static str {
+    match policy {
+        crate::life::Policy::Stay => "stay",
+        crate::life::Policy::Random => "random",
+        crate::life::Policy::Remember => "remember",
+        crate::life::Policy::Memory => "memory",
+        crate::life::Policy::Sighted => "sighted",
+    }
+}
+
+fn number_array(values: &[f64]) -> String {
+    format!(
+        "[{}]",
+        values.iter().map(|value| json_number(*value)).collect::<Vec<_>>().join(",")
+    )
+}
+
+fn u64_array(values: &[u64]) -> String {
+    format!(
+        "[{}]",
+        values.iter().map(|value| value.to_string()).collect::<Vec<_>>().join(",")
+    )
+}
+
+fn optional_rng_array(values: &[Option<Vec<u64>>]) -> String {
+    format!(
+        "[{}]",
+        values.iter().map(|value| {
+            value.as_ref().map(|words| u64_array(words)).unwrap_or_else(|| "null".to_string())
+        }).collect::<Vec<_>>().join(",")
+    )
+}
+
+fn samples_json(samples: &[Sample]) -> String {
+    let rows = samples.iter().map(|sample| {
+        format!(
+            r#"{{"slot":{},"cell":{},"energy":{},"damage":{},"alive":{},"memory_cell":{},"memory_level":{},"direction":{},"taken":{},"prev_cell":{}}}"#,
+            sample.slot,
+            sample.cell,
+            json_number(sample.energy),
+            json_number(sample.damage),
+            sample.alive,
+            sample.memory_cell,
+            json_number(sample.memory_level),
+            sample.direction,
+            json_number(sample.taken),
+            sample.prev_cell
+        )
+    }).collect::<Vec<_>>();
+    format!("[{}]", rows.join(","))
+}
+
+fn config_manifest_json(
+    life: &Life,
+    requested_steps: usize,
+    sample_every: usize,
+    start_step: usize,
+    initial_samples: &[Sample],
+) -> String {
+    let world = life.world();
+    let field = life.field();
+    let policies = life.policies().iter().copied().map(policy_name)
+        .map(|name| format!("\"{}\"", name))
+        .collect::<Vec<_>>().join(",");
+    let organism_parameters = life.organism_parameters();
+    let organism_json = organism_parameters.iter().map(|parameters| match parameters {
+        Some((move_cost, memory_life)) => format!(
+            "{{\"move_cost\":{},\"memory_life\":{}}}",
+            json_number(*move_cost), memory_life
+        ),
+        None => "null".to_string(),
+    }).collect::<Vec<_>>().join(",");
+    let claims_json = match life.claims() {
+        Some(claims) => {
+            let owners = claims.owners().iter().map(|owner| {
+                owner.map(|value| value.to_string()).unwrap_or_else(|| "null".to_string())
+            }).collect::<Vec<_>>().join(",");
+            format!(
+                "{{\"enabled\":true,\"cells\":{},\"cost\":{},\"decay\":{},\"trespass\":{},\"owners\":[{}],\"health\":{}}}",
+                claims.cells(),
+                json_number(claims.claim_cost()),
+                json_number(claims.decay_rate()),
+                json_number(claims.trespass()),
+                owners,
+                number_array(claims.health())
+            )
+        }
+        None => "null".to_string(),
+    };
+
+    let mut out = String::new();
+    out.push_str("{\"schema\":\"marfagenez.trace-config.v1\",");
+    out.push_str(&format!(
+        "\"seed\":{},\"rng_version\":\"{}\",",
+        life.seed(), life.rng_version().as_str()
+    ));
+    out.push_str(&format!(
+        "\"main_rng_state\":{},",
+        u64_array(&life.rng_state_words())
+    ));
+    out.push_str(&format!(
+        "\"recording\":{{\"start_step\":{},\"requested_steps\":{},\"sample_every\":{}}},",
+        start_step, requested_steps, sample_every
+    ));
+    out.push_str(&format!(
+        "\"world\":{{\"income\":{},\"maintenance_cost\":{},\"repair_cost\":{},\"damage_rate\":{},\"capacity\":{},\"read_budget\":{},\"read_cost\":{},\"read_period\":{},\"look_on_shortfall\":{},\"share\":\"{}\",\"tiebreak\":\"{}\",\"look_order\":\"{}\",\"birth_threshold\":{},\"birth_cost\":{},\"max_population\":{}}},",
+        json_number(world.income),
+        json_number(world.maintenance_cost),
+        json_number(world.repair_cost),
+        json_number(world.damage_rate),
+        json_number(world.capacity),
+        world.read_budget,
+        json_number(world.read_cost),
+        world.read_period,
+        world.look_on_shortfall,
+        world.share.name(),
+        world.tiebreak.name(),
+        world.look_order.name(),
+        json_number(world.birth_threshold),
+        json_number(world.birth_cost),
+        world.max_population
+    ));
+    out.push_str(&format!(
+        "\"field\":{{\"cells\":{},\"max_resource\":{},\"regrow\":{},\"poor\":{},\"period\":{},\"shift\":{},\"phase_step\":{},\"levels\":{},\"ceilings\":{}}},",
+        field.cells(),
+        json_number(field.max_resource()),
+        json_number(field.regrow_rate()),
+        json_number(field.poor_level()),
+        field.peak_period(),
+        json_number(field.shift_per_step()),
+        field.phase_step(),
+        number_array(field.levels()),
+        number_array(field.ceilings())
+    ));
+    out.push_str(&format!(
+        "\"life\":{{\"feed_before_eat\":{},\"memory_life\":{},\"order\":\"{}\",\"policy_mutation\":{},\"sight_radius\":{},\"policies\":[{}],\"organism_parameters\":[{}],\"organism_rng_states\":{},\"claims\":{}}},",
+        life.feed_enabled(),
+        life.memory_life(),
+        life.order_protocol().name(),
+        json_number(life.policy_mutation()),
+        life.sight_radius(),
+        policies,
+        organism_json,
+        optional_rng_array(&life.organism_rng_state_words()),
+        claims_json
+    ));
+    out.push_str(&format!(
+        "\"initial_samples\":{}",
+        samples_json(initial_samples)
+    ));
+    out.push('}');
+    out
+}
+
+/// FNV-1a is a deterministic configuration fingerprint, not an integrity hash.
+/// SHA-256 of the saved trace/result artifact is a separate identity.
+fn config_fingerprint(bytes: &[u8]) -> u64 {
+    let mut hash = 0xcbf29ce484222325_u64;
+    for byte in bytes {
+        hash ^= *byte as u64;
+        hash = hash.wrapping_mul(0x100000001b3);
+    }
+    hash
+}
+
+
 /// Records a run of `steps` steps, taking a frame every `every` steps.
 ///
 /// The recording is **outside** the cycle: `Life` does not know it is being watched,
@@ -401,7 +587,13 @@ impl Trace {
 /// project's rule 9 — the readout is a camera, not a hand.
 pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
     let every = every.max(1);
+    let start_step = life.step();
     let read_budget = life.world().read_budget;
+    let initial_samples = life.samples();
+    let config_json = config_manifest_json(
+        life, steps, every, start_step, &initial_samples
+    );
+    let config_hash = config_fingerprint(config_json.as_bytes());
     let mut frames = Vec::new();
     for _ in 0..steps {
         if life.advance().is_none() {
@@ -450,6 +642,11 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         read_cost,
         read_period,
         look_on_shortfall,
+        requested_steps: steps,
+        sample_every: every,
+        start_step,
+        config_hash,
+        config_json,
     }
 }
 
@@ -668,6 +865,103 @@ mod tests {
         let base = Trace::compute_hash(&[]);
         assert_eq!(Trace::hash_with_rng_version(base, crate::RNG_VERSION), base);
         assert_ne!(Trace::hash_with_rng_version(base, crate::RNG2_VERSION), base);
+    }
+
+
+    #[test]
+    fn config_fingerprint_distinguishes_unhashed_world_parameters() {
+        let world_a = World {
+            income: 1.0,
+            maintenance_cost: 0.6,
+            repair_cost: 1.5,
+            damage_rate: 0.01,
+            capacity: 10.0,
+            read_budget: 0,
+            tiebreak: TieBreak::Left,
+            share: Default::default(),
+            look_order: LookOrder::LookThenEat,
+            birth_threshold: f64::INFINITY,
+            birth_cost: 0.0,
+            max_population: 0,
+            read_cost: 0.0,
+            read_period: 1,
+            look_on_shortfall: false,
+        };
+        let world_b = World { read_budget: 3, ..world_a };
+        let field_a = Field::alternating(24, 2.0, 0.2, 0.8).unwrap();
+        let field_b = field_a.clone();
+        let mut a = Life::spawn(world_a, field_a, 24, 5.0, 0.1, Policy::Stay, 9, 100).unwrap();
+        let mut b = Life::spawn(world_b, field_b, 24, 5.0, 0.1, Policy::Stay, 9, 100).unwrap();
+        let ta = record(&mut a, 30, 5);
+        let tb = record(&mut b, 30, 5);
+        assert_eq!(ta.hash, tb.hash, "legacy dynamics hash contract should not be changed");
+        assert_ne!(ta.config_hash, tb.config_hash, "config identity must include read budget");
+    }
+
+    #[test]
+    fn trace_manifest_persists_horizon_initial_conditions_and_float_precision() {
+        let world = World {
+            income: 1.2345678901234567,
+            ..World {
+                income: 1.0,
+                maintenance_cost: 0.6,
+                repair_cost: 1.5,
+                damage_rate: 0.01,
+                capacity: 10.0,
+                read_budget: 0,
+                tiebreak: TieBreak::Left,
+                share: Default::default(),
+                look_order: LookOrder::LookThenEat,
+                birth_threshold: f64::INFINITY,
+                birth_cost: 0.0,
+                max_population: 0,
+                read_cost: 0.0,
+                read_period: 1,
+                look_on_shortfall: false,
+            }
+        };
+        let field = Field::alternating(12, 2.0, 0.2, 0.8).unwrap();
+        let mut life = Life::spawn(world, field, 12, 4.0, 0.1, Policy::Stay, 13, 30).unwrap();
+        life.advance();
+        let trace = record(&mut life, 17, 4);
+        assert_eq!(trace.start_step, 1);
+        assert_eq!(trace.requested_steps, 17);
+        assert_eq!(trace.sample_every, 4);
+        let json = trace.to_json();
+        assert!(json.contains("\"hash_version\": \"2-prev-cell\""));
+        assert!(json.contains("\"config_hash_algorithm\": \"fnv1a64-v1\""));
+        assert!(json.contains("\"requested_steps\": 17"));
+        assert!(json.contains("\"sample_every\": 4"));
+        assert!(json.contains("\"start_step\": 1"));
+        assert!(json.contains("\"income\":1.2345678901234567"));
+        assert!(json.contains("\"main_rng_state\":["));
+        assert!(json.contains("\"organism_rng_states\":["));
+        assert!(json.contains("\"initial_samples\":["));
+        assert!(json.contains("\"ceilings\":["));
+    }
+
+    #[test]
+    fn config_fingerprint_is_stable_for_identical_runs() {
+        let mut a = setup(Policy::Random, 991);
+        let mut b = setup(Policy::Random, 991);
+        let ta = record(&mut a, 40, 4);
+        let tb = record(&mut b, 40, 4);
+        assert_eq!(ta.config_hash, tb.config_hash);
+        assert_eq!(ta.config_json, tb.config_json);
+    }
+
+    #[test]
+    fn config_manifest_has_one_well_formed_top_level_object() {
+        let mut life = setup(Policy::Stay, 771);
+        let trace = record(&mut life, 10, 2);
+        let json = &trace.config_json;
+        assert!(json.starts_with("{\"schema\":\"marfagenez.trace-config.v1\","));
+        assert!(json.ends_with('}'));
+        assert!(json.contains("\"seed\":771,"));
+        assert!(json.contains("\"policies\":[\"stay\",\"stay\""));
+        assert!(!json.contains("\"\"seed\""));
+        assert!(!json.contains("\"\"rng_version\""));
+        assert!(trace.config_hash != 0);
     }
 
     #[test]
