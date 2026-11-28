@@ -786,3 +786,10 @@ status: continue
 - PR #5 lab-control-hardening + PR #6 lab-artifact-provenance влиты (hosted gate зелёный на обоих head; стек на 2e254432, отставания нет); бэкап control.db в /root/backups/
 - красная линия PR #13-#20 не влита: lab 3 failures/3 errors в CI; ветки локально для диагностики; run.sh tail -15 скрывает traceback (чинить в 861am)
 - статус: гейт c905 -> при зелёном пуш master
+
+
+## 2026-11-28 — lean cache timeout + .cache шаринг (цикл 861am)
+
+- c905 прерван: cache get тянул 9100 .ltar по полу-живой сети (часы); фикс: timeout 300 + .cache в sparse-шаринге (P9b)
+- диагностика красной линии PR #13-#20 готова: 6 точных причин (полный лог /root/pr20-lab-full.log); фиксы — следующий цикл в ветке агента
+- статус: гейт c906 -> при зелёном пуш master

@@ -91,7 +91,7 @@ do_lean() {
   out=$(mktemp)
   # Fetch the prebuilt Mathlib oleans inside the pinned tree. Without this,
   # a cold CI runner may rebuild Mathlib from source before the actual gate.
-  ( cd laws && lake exe cache get ) || echo "Lean cache unavailable; build from source"
+  ( cd laws && timeout 300 lake exe cache get ) || echo "Lean cache unavailable; build from source"
   ( cd laws && lake build ) >"$out" 2>&1 || rc=$?
   grep -E 'Build completed|error' "$out" | head -5
   ( cd laws && lake build Legacy ) >>"$out" 2>&1 || rc=$?
@@ -684,21 +684,23 @@ make_pin() {
       echo "PIN_FAIL: не создать laws/.lake в pin"
       drop_pin; return 1;
     }
-    if [ -e "$ROOT/laws/.lake/packages" ] || [ -L "$ROOT/laws/.lake/packages" ]; then
-      PIN_PKG_REAL=$(readlink -f "$ROOT/laws/.lake/packages" 2>/dev/null) || PIN_PKG_REAL=""
-      if [ -z "$PIN_PKG_REAL" ] || [ ! -e "$PIN_PKG_REAL" ]; then
-        echo "PIN_FAIL: laws/.lake/packages недоступен для sparse-линка"
-        drop_pin; return 1;
+    for pin_share in packages .cache; do
+      if [ -e "$ROOT/laws/.lake/$pin_share" ] || [ -L "$ROOT/laws/.lake/$pin_share" ]; then
+        PIN_SHARE_REAL=$(readlink -f "$ROOT/laws/.lake/$pin_share" 2>/dev/null) || PIN_SHARE_REAL=""
+        if [ -z "$PIN_SHARE_REAL" ] || [ ! -e "$PIN_SHARE_REAL" ]; then
+          echo "PIN_FAIL: laws/.lake/$pin_share недоступен для sparse-линка"
+          drop_pin; return 1;
+        fi
+        if ! ln -s "$PIN_SHARE_REAL" "$GATE_PIN/laws/.lake/$pin_share"; then
+          echo "PIN_FAIL: не создать symlink laws/.lake/$pin_share"
+          drop_pin; return 1;
+        fi
       fi
-      if ! ln -s "$PIN_PKG_REAL" "$GATE_PIN/laws/.lake/packages"; then
-        echo "PIN_FAIL: не создать symlink laws/.lake/packages"
-        drop_pin; return 1;
-      fi
-    fi
+    done
     for lake_entry in "$ROOT/laws/.lake"/* "$ROOT/laws/.lake"/.[!.]*; do
       [ -e "$lake_entry" ] || continue
       case "${lake_entry##*/}" in
-        packages) continue;;
+        packages|.cache) continue;;
       esac
       if ! cp -aL --reflink=auto "$lake_entry" "$GATE_PIN/laws/.lake/"; then
         echo "PIN_FAIL: не скопировать Lean cache в pin ($lake_entry)"
@@ -731,7 +733,7 @@ drop_pin() {
     for sync_entry in "$GATE_PIN/laws/.lake"/* "$GATE_PIN/laws/.lake"/.[!.]*; do
       [ -e "$sync_entry" ] || continue
       case "${sync_entry##*/}" in
-        packages) continue;;
+        packages|.cache) continue;;
       esac
       rm -rf "$ROOT/laws/.lake/${sync_entry##*/}"
       if ! mv "$sync_entry" "$ROOT/laws/.lake/" 2>/dev/null; then
