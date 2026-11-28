@@ -385,7 +385,13 @@ class TestWaitingMainExpiry(Base):
         self.cp.publish_task(make_task(task_id))
         lease = self.cp.claim("fast-01", "i", "knowledge",
                               idem_key="claim-cancel-timeout")["claimed"]
-        self.cp.cancel_task(task_id, "main", reason="owner cancelled")
+        # Seed the already-requested cancellation state directly: this base
+        # ControlPlane test is specifically about expiry/reaper terminalization,
+        # not the ControlPlane2 cancellation command.
+        self.db().execute(
+            "UPDATE tasks SET status='cancellation_requested' WHERE id=?",
+            (task_id,),
+        )
         self.clock.advance(LEASE_SPEC["ttl_seconds"] + 1)
         result = self.cp.reap()
         self.assertEqual(result["cancelled"], 1)
