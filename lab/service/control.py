@@ -295,7 +295,7 @@ class ArtifactStore:
         """Stream a blob, reject symlinks/non-regular files, and verify its name hash."""
         path = self.path(digest)
         try:
-            for directory in (self.blobs, path.parent):
+            for directory in (self.root, self.blobs, path.parent):
                 info = directory.lstat()
                 if stat.S_ISLNK(info.st_mode) or not stat.S_ISDIR(info.st_mode):
                     raise BadRequest(f"blob directory is not trusted: {directory}")
@@ -305,6 +305,8 @@ class ArtifactStore:
                 info = os.fstat(stream.fileno())
                 if not stat.S_ISREG(info.st_mode):
                     raise BadRequest("blob is not a regular file")
+                if info.st_nlink != 1:
+                    raise BadRequest("blob has external hard links")
                 hasher = hashlib.sha256()
                 size = 0
                 for chunk in iter(lambda: stream.read(1024 * 1024), b""):
@@ -1276,8 +1278,9 @@ class ControlPlane:
                 reused = c.execute(
                     "SELECT 1 FROM submission_artifacts sa "
                     "JOIN submissions s ON s.id=sa.submission_id "
-                    "WHERE sa.sha256=? AND s.status!='late' LIMIT 1",
-                    (art["sha256"],),
+                    "WHERE sa.sha256=? AND s.status!='late' "
+                    "AND s.agent_id=? LIMIT 1",
+                    (art["sha256"], payload["agent_id"]),
                 ).fetchone() if has_upload_artifacts else None
                 if not owned and not reused:
                     raise BadRequest(

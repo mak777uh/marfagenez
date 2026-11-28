@@ -285,6 +285,61 @@ class TestUploadIntake(Base):
         self.assertFalse(self.cp.store.path(blob["sha256"]).exists())
 
 
+
+    def test_artifact_reuse_is_scoped_to_the_original_agent(self):
+        # Agent A uploads and submits immutable bytes.
+        task_a = "KG-2026-0510"
+        self.cp.publish_task(make_task(task_a))
+        upload_a = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(upload_a, "fast-01", b"private-owner-bytes",
+                                "application/octet-stream")
+        lease_a = self.cp.claim("fast-01", "i-a", "knowledge",
+                                idem_key="claim-owner-a")["claimed"]
+        artifact = {"sha256": blob["sha256"], "bytes": blob["bytes"],
+                    "media_type": "application/octet-stream"}
+        payload_a = {
+            "id": "SUB-2026-0510", "task_id": task_a, "task_version": 1,
+            "task_version_sha256": lease_a["task_version_sha256"],
+            "attempt_id": lease_a["attempt_id"], "lease_id": lease_a["lease_id"],
+            "lease_epoch": lease_a["lease_epoch"], "agent_id": "fast-01",
+            "artifacts": [artifact],
+            "bundle_sha256": bundle_sha(task_a, [artifact]),
+            "base_commit": "6a9fa461",
+        }
+        self.assertEqual(self.cp.submit(payload_a, "submit-owner-a")["status"], "received")
+
+        # Agent B knows the digest but has never uploaded the bytes.
+        task_b = "KG-2026-0511"
+        self.cp.publish_task(make_task(task_b))
+        lease_b = self.cp.claim("fast-02", "i-b", "knowledge",
+                                idem_key="claim-owner-b")["claimed"]
+        payload_b = {
+            "id": "SUB-2026-0511", "task_id": task_b, "task_version": 1,
+            "task_version_sha256": lease_b["task_version_sha256"],
+            "attempt_id": lease_b["attempt_id"], "lease_id": lease_b["lease_id"],
+            "lease_epoch": lease_b["lease_epoch"], "agent_id": "fast-02",
+            "artifacts": [artifact],
+            "bundle_sha256": bundle_sha(task_b, [artifact]),
+            "base_commit": "6a9fa461",
+        }
+        with self.assertRaises(BadRequest):
+            self.cp.submit(payload_b, "submit-owner-b")
+
+    def test_blob_store_rejects_hardlinked_content(self):
+        upload = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(upload, "fast-01", b"hardlink-check",
+                                "application/octet-stream")
+        stored = self.cp.store.path(blob["sha256"])
+        second_name = self.dir / "outside-hardlink"
+        os.link(stored, second_name)
+        try:
+            with self.assertRaises(BadRequest):
+                self.cp.store.verify(blob["sha256"])
+        finally:
+            second_name.unlink()
+
+
+
 class TestProposalsCAS(Base):
     def test_create_idempotent_and_conflict(self):
         prop = {"id": "PROP-0001", "author": "planner",
