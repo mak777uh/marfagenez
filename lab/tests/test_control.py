@@ -21,7 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from lab.service.control import (  # noqa: E402
-    Blocked, Conflict, ControlPlane, Gone, NotFound)
+    BadRequest, Blocked, Conflict, ControlPlane, Gone, NotFound, _task_version_digest)
 from lab.service.v2_ops import ControlPlane2  # noqa: E402
 
 LEASE_SPEC = {"ttl_seconds": 120, "heartbeat_seconds": 30,
@@ -124,6 +124,42 @@ class TestPublishAndIdempotency(Base):
         c = self.db()
         self.assertEqual(c.execute("SELECT COUNT(*) FROM task_versions").fetchone()[0], 2)
         self.assertInvariants()
+
+    def test_publish_writes_self_consistent_version_hash(self):
+        """Stored identity is computed over immutable content, not a draft self-hash."""
+        payload = make_task("KG-2026-0010", task_version_sha256="f" * 64)
+        out = self.cp.publish_task(payload)
+        row = self.db().execute(
+            "SELECT task_version_sha256,payload_json FROM task_versions "
+            "WHERE task_id='KG-2026-0010' AND version=1").fetchone()
+        stored = json.loads(row["payload_json"])
+        self.assertEqual(row["task_version_sha256"], out["task_version_sha256"])
+        self.assertEqual(stored["task_version_sha256"], out["task_version_sha256"])
+        self.assertEqual(_task_version_digest(stored), out["task_version_sha256"])
+        self.assertNotEqual(out["task_version_sha256"], "f" * 64)
+
+    def test_publish_rejects_unfinalized_drafts_and_placeholders(self):
+        cases = (
+            make_task("KG-2026-0011", draft_only=True),
+            make_task("KG-2026-0011", do_not_execute=True),
+            make_task("KG-2026-0011", base_commit="0" * 40),
+            make_task("KG-2026-0011", base_commit="0000000"),
+            make_task("KG-2026-0011", version="1"),
+        )
+        for payload in cases:
+            with self.subTest(payload=payload):
+                with self.assertRaises(BadRequest):
+                    self.cp.publish_task(payload)
+        self.assertEqual(self.db().execute("SELECT COUNT(*) FROM tasks").fetchone()[0], 0)
+
+    def test_publish_enforces_task_v1_shape_and_experiment_controls(self):
+        with self.assertRaises(BadRequest):
+            self.cp.publish_task(make_task("KG-2026-0012", unexpected_field=True))
+        with self.assertRaises(BadRequest):
+            self.cp.publish_task(make_task(
+                "EXP-2026-0012", dept="experiments",
+                spec={"mode": "experiment", "hypothesis": "registered hypothesis"}))
+        self.assertEqual(self.db().execute("SELECT COUNT(*) FROM tasks").fetchone()[0], 0)
 
     def test_legacy_task_ids_allow_safe_suffixes_but_reject_paths(self):
         self.cp.publish_task(make_task("S1-20261126T012345-main"))

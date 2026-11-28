@@ -1,0 +1,134 @@
+{
+  "task_id": "EXP-2026-4106",
+  "draft_only": true,
+  "draft_version": 6,
+  "do_not_execute": true,
+  "finalization_required": [
+    "Интегрировать исправления в репозиторий main и получить итоговый commit.",
+    "Заменить payload.base_commit нулевым placeholder на этот commit.",
+    "Обновить payload.created_at/published_at фактическим временем публикации.",
+    "Передать payload без wrapper-флагов в publish_task; service вычислит task_version_sha256 по каноническому payload без этого поля и вернёт SHA. Не подменять SHA вручную.",
+    "Проверить schema и сохранить выданные task/version/SHA в исполняемой копии; этот wrapper остаётся draft-only."
+  ],
+  "payload": {
+    "schema": "task/v1",
+    "id": "EXP-2026-4106",
+    "department": "experiments",
+    "version": 6,
+    "task_version_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "supersedes_version": 5,
+    "change_reason": "Локальный draft v6 по аудиту 28.11.2026: P3 erase221-base единственный primary scientific contrast; P2/P5 secondary с Holm; P1/P4/silent/ledger/hash/T90 — instrument gates; P6 разделяет survival-to-erase, collapse given applied и unconditional applied fraction; добавлены death/censoring, silent cell, точный event ledger, raw-bit FNV-1a 64, отдельные primary/deferred manifests и строгий outcome policy.",
+    "title": "Мост FINDING-457 N3 v6: причинный тест памяти через стирание износа",
+    "created_by": "exper-local-draft",
+    "published_by": "main",
+    "published_at": "2026-11-28T00:00:00Z",
+    "created_at": "2026-11-28T00:00:00Z",
+    "base_commit": "0000000000000000000000000000000000000000",
+    "write_scope": [
+      "results/experiments/EXP-2026-4106/**",
+      "docs/FINDING-EXP-2026-4106.md"
+    ],
+    "spec": {
+      "mode": "experiment",
+      "hypothesis": "Мост FINDING-457 N3: принудительное обнуление накопленного износа в середине жизни при точном сохранении текущих q, D и энергии возвращает ветку к состоянию молодого аппарата. Единственный primary contrast — DeltaT90(erase221)-DeltaT90(base)>0.",
+      "target_setup": "Standalone paired wear-erase/R model. Match phase даёт обеим рукам одинаковые q/D/energy; A накапливает износ, B — нет. До события руки симулируются lockstep с одинаковым RNG stream. Стирание меняет только wear; q, D и energy не меняются. Смерть и правое цензурирование моделируются явно.",
+      "expected_effect": "В inference cells стирание увеличивает DeltaT90 к нулю относительно base; erase600 даёт условный полный коллапс после события; erase221 дает частичный сдвиг без потери поточечного порядка lifeA<=lifeB. Sham не меняет исход, silent выключает wear hazard и сохраняет парное равенство.",
+      "parameters": {
+        "primary_seed_count": 12,
+        "deferred_seed_count": 8,
+        "primary_seed_base": 5501,
+        "deferred_seed_base": 5513,
+        "pairs_per_cell_seed": 400,
+        "horizon": 5000,
+        "cells": ["base", "erase600", "erase221", "sham600", "erand", "silent"],
+        "erase_mid": 221,
+        "erase_step": 600,
+        "erandom_range": "[600,1000)",
+        "match_state": {"q": 0.5, "D": 0.2, "energy": 0.8},
+        "hazard": "mortality_with_floor(q=0.5, rate=0.01, p=2.0, floor=0.0002) + 0.001*D + 0.001*wear",
+        "repair_window": "шаги 100..1000, request 0.02, budget 0.1; бюджет исчерпан к шагу 500",
+        "bootstrap_draws": 2000,
+        "primary_bootstrap_seed": 20261128,
+        "deferred_bootstrap_seed": 20261129,
+        "t90_survival_level": 0.1
+      },
+      "axes": [
+        {"name": "cohort", "values": ["primary", "deferred"]},
+        {"name": "intervention", "values": ["none", "erase600", "erase221", "sham600", "erand", "silent"]}
+      ],
+      "seeds": [5501, 5502, 5503, 5504, 5505, 5506, 5507, 5508, 5509, 5510, 5511, 5512, 5513, 5514, 5515, 5516, 5517, 5518, 5519, 5520],
+      "controls": {
+        "fires": "Каждый applied erase event имеет applied=1, nonzero wearA_before и wearA_after=0; обе руки живы на начало t_erase. P1 требует непустое множество erase600/applied и точный парный collapse; P6 instrument требует непустое множество erand/applied и точный collapse.",
+        "silent": "silent выключает wear hazard; lifeA/censA обязаны совпадать с lifeB/censB для каждой пары. sham600 совпадает с base по канонической проекции (seed,pair,lifeA,censA,lifeB,censB), а его ledger marker не меняет wear.",
+        "specific": "Интервенция меняет только wear. q/D/e event snapshots обеих рук равны побитово; base/silent имеют not_scheduled/applied=0; not_due_death допускается только при смерти хотя бы одной руки до назначенного события; state_hash независимо пересчитывается из raw f64 bits.",
+        "sham_erase": "sham600: t_erase=600, event_status=sham, applied=0, wear before==after в обеих руках.",
+        "random_moment": "erand: 600+uniform()*400 из отдельного детерминированного (seed,pair) RNG, независимого от состояния и paired simulation stream.",
+        "death_censoring": "life/cens сохраняются отдельно для A и B. cens=1 допустим только при life=5000. T90 это первый KM-время с S<=0.10; deaths применяются до censors на связанном времени; горизонт никогда не подменяет T90.",
+        "ledger": "Точный заголовок 22 полей, клетки/сиды/пары без дублей и пропусков, 28800 primary и 19200 deferred строк; event_status, applied, t_erase, wear, q/D/e, state_hash и life/cens проверяются каждой строкой.",
+        "provenance": "Task id/version/SHA/base, task payload SHA, argv, driver/source SHA, return code, row count и raw SHA сверяются с manifests. Primary decision заморожен до чтения deferred; отсутствие deferred confirmation дает void."
+      },
+      "prior_results": [
+        "FINDING-457",
+        "SUB-EXP-2026-4105-1",
+        "EXP-2026-4105: медиана lifeB=221 и errata анализа",
+        "EXP-2026-4104: A-P5 passed"
+      ],
+      "kg_refs": ["FINDING-457"],
+      "analysis_plan": "Отдельные primary/deferred driver invocations и manifests. KM-T90 с right censoring; DeltaT90=T90_A-T90_B внутри cell/seed. Paired seed-cluster bootstrap 2000 draws: seeds с заменой, внутри выбранного seed 400 pairs с заменой; одинаковые (seed,pair) multiplicities во всех клетках и обеих руках. Point estimate — среднее per-seed DeltaT90. CI — percentile 95%. P3 directional: estimate>0 и CI lower>0. P2/P5 — secondary Holm family размера два, directional plus-one bootstrap p и alpha=0.05. Primary analyzer/decision замораживаются до deferred; deferred подтверждает только P3 и не меняет primary resamples/estimates.",
+      "predictions": {
+        "P1_instrument": "Для erase600Applied=1 и lifeA/lifeB>=600: (lifeA,censA)==(lifeB,censB); множество непустое.",
+        "P2_secondary": "DeltaT90(erase600)-DeltaT90(base)>0 с Holm-adjusted p<0.05; не является outcome gate.",
+        "P3_primary": "DeltaT90(erase221)-DeltaT90(base)>0, point estimate>0 и нижняя граница направленного 95% bootstrap CI>0; единственный primary scientific contrast.",
+        "P4_instrument": "sham600==base по (seed,pair,lifeA,censA,lifeB,censB) для всех пар; ledger metadata исключены из проекции.",
+        "P5_secondary": "DeltaT90(base)<0 с Holm-adjusted p<0.05; не является outcome gate.",
+        "P6_descriptive": "erandApplied=1 имеет точный парный collapse (instrument gate). Descriptive collapse_given_applied докладывается по t_erase bins и survival_to_erase; unconditional_applied_fraction только показывает selection, independence не требуется."
+      },
+      "outcome_policy": {
+        "passed": "Все controls true, primary P3 подтвержден, deferred supplied и подтверждает P3 direction. P2/P5 не определяют outcome.",
+        "failed": "Все controls true и carrier возмущен, но primary P3 не подтвержден или deferred не подтверждает P3.",
+        "void": "Любой schema/ledger/hash/identity/manifest/P1/P4/silent/P6/T90 control false, Task payload invalid или deferred confirmation отсутствует.",
+        "insensitive_by_construction": "Все controls true, но ни один applied erase event в соответствующем cohort не имел nonzero wearA_before. Для passed primary с непригодным deferred outcome также insensitive_by_construction.",
+        "rerun_policy": "Отрицательный scientific outcome не перезапускается до положительного. Изменение гипотезы, definitions, gates или falsification требует новой task version до запуска."
+      },
+      "artifact_contract": {
+        "driver": "core/src/bin/exp_wear_erase.rs",
+        "raw_csv": {
+          "primary": "results/experiments/EXP-2026-4106/primary/raw.csv",
+          "deferred": "results/experiments/EXP-2026-4106/deferred/raw.csv"
+        },
+        "csv_columns": ["cell", "cohort", "seed", "pair", "t_erase", "event_status", "applied", "wearA_before", "wearA_after", "wearB_before", "wearB_after", "qA_event", "dA_event", "eA_event", "qB_event", "dB_event", "eB_event", "state_hash", "lifeA", "censA", "lifeB", "censB"],
+        "event_statuses": ["not_scheduled", "applied", "sham", "not_due_death", "horizon"],
+        "state_hash": "FNV-1a 64 over little-endian raw bits of qA_event,dA_event,eA_event,wearA_after,qB_event,dB_event,eB_event,wearB_after; offset 14695981039346656037; prime 1099511628211; modulo 2^64; 16 lowercase hex.",
+        "ledger_invariants": "base/silent: not_scheduled, applied=0, t_erase=0. applied: erase cell, applied=1, both lives>=t_erase, wearA_after=0. sham: sham600, applied=0, both lives>=600, wear unchanged. not_due_death: applied=0 и хотя бы одна life<t_erase, wear unchanged. horizon недопустим при t_erase<5000. q/D/e snapshots побитово равны.",
+        "analysis_artifacts": ["per_seed.csv", "distribution.csv", "landmarks.csv", "controls.csv", "predictions.csv", "summary.json"],
+        "steps_csv": null
+      },
+      "limitations": "Standalone wear-erase/R model, не live-core и не closure. Вывод ограничен моделью, сидами, парами и закрепленными driver/analyzer artifacts. DeltaT90 — разность KM quantiles, не поточечная разность жизней. P6 условен на applied/survival и не проверяет independence. Deferred — confirmation only.",
+      "falsification": "P3 не подтвержден в primary или deferred при валидных controls -> failed. Любой instrument/provenance/identifiability control провален -> void. Отсутствие реального возмущения износа -> insensitive_by_construction. Критерии не меняются post hoc; negative result не перезапускается.",
+      "reproduce": "Сохранить task/version/service SHA/base, argv, seeds 5501..5520, 400 pairs, horizon 5000, erase schedule, raw/steps policy, manifests, driver/source/analyzer SHA, все analysis artifacts and SHA. Reproduce commands are pinned in pipelines/4106/design.md.",
+      "publication_prerequisites": [
+        "Main интегрировал локальные исправления драйвера и пайплайна; base_commit содержит исправленный exp_wear_erase.rs.",
+        "Service опубликовал version 6 и выдал task_version_sha256.",
+        "FINDING-457, SUB-EXP-2026-4105-1 и errata 4104/4105 доступны.",
+        "Нулевые placeholders удалены; schema validation прошла."
+      ],
+      "no_unseeded_random": true
+    },
+    "validators": [{"profile": "experiments-v1", "version": "1.0.0"}],
+    "dependencies": [],
+    "budget": {
+      "cpu_seconds": 7200,
+      "ram_bytes": 536870912,
+      "disk_bytes": 268435456,
+      "network_allowlist": []
+    },
+    "network_profile": "none",
+    "lease": {
+      "ttl_seconds": 7200,
+      "heartbeat_seconds": 60,
+      "max_attempts": 1,
+      "max_lease_seconds": 7200
+    },
+    "tags": ["FINDING-457", "wear-erase", "causal", "memory", "v6-draft"]
+  }
+}

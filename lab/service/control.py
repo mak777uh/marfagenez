@@ -22,6 +22,7 @@ import stat
 import time
 import uuid
 from datetime import datetime
+from functools import lru_cache
 from pathlib import Path, PureWindowsPath
 from typing import Any, Callable
 
@@ -77,6 +78,180 @@ def _sha(data: bytes | str) -> str:
     if isinstance(data, str):
         data = data.encode("utf-8")
     return hashlib.sha256(data).hexdigest()
+
+
+class _TaskSchemaError(ValueError):
+    pass
+
+
+@lru_cache(maxsize=1)
+def _task_schemas() -> tuple[dict, dict]:
+    """Load the checked-in task/v1 schema without adding a runtime dependency."""
+    schema_dir = Path(__file__).resolve().parents[1] / "schemas" / "v1"
+    try:
+        task_schema = json.loads((schema_dir / "task.schema.json").read_text(encoding="utf-8"))
+        common_schema = json.loads((schema_dir / "common.schema.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise BadRequest(f"task/v1 schema unavailable: {exc}") from exc
+    return task_schema, common_schema
+
+
+def _schema_pointer(document: dict, fragment: str) -> Any:
+    if fragment in ("", "#"):
+        return document
+    if not fragment.startswith("#/"):
+        raise _TaskSchemaError(f"unsupported schema reference: {fragment}")
+    current: Any = document
+    for raw_token in fragment[2:].split("/"):
+        token = raw_token.replace("~1", "/").replace("~0", "~")
+        if not isinstance(current, dict) or token not in current:
+            raise _TaskSchemaError(f"unresolved schema reference: {fragment}")
+        current = current[token]
+    return current
+
+
+def _schema_type_matches(value: Any, expected: str) -> bool:
+    if expected == "object":
+        return isinstance(value, dict)
+    if expected == "array":
+        return isinstance(value, list)
+    if expected == "string":
+        return isinstance(value, str)
+    if expected == "integer":
+        return isinstance(value, int) and not isinstance(value, bool)
+    if expected == "number":
+        return isinstance(value, (int, float)) and not isinstance(value, bool)
+    if expected == "boolean":
+        return isinstance(value, bool)
+    if expected == "null":
+        return value is None
+    raise _TaskSchemaError(f"unsupported schema type: {expected}")
+
+
+def _validate_schema_subset(value: Any, schema: Any, task_schema: dict,
+                            common_schema: dict, path: str = "$") -> None:
+    """Validate the dependency-free JSON-Schema subset used by task/v1.
+
+    Unknown assertion keywords fail closed rather than silently weakening the
+    publication gate. Annotation-only keywords are intentionally ignored.
+    """
+    if not isinstance(schema, dict):
+        raise _TaskSchemaError(f"{path}: schema node must be an object")
+
+    ref = schema.get("$ref")
+    if ref is not None:
+        if not isinstance(ref, str):
+            raise _TaskSchemaError(f"{path}: $ref must be a string")
+        if ref.startswith("#/"):
+            target = _schema_pointer(task_schema, ref)
+        elif ref.startswith("common.schema.json#/"):
+            target = _schema_pointer(common_schema, ref[len("common.schema.json"):])
+        else:
+            raise _TaskSchemaError(f"{path}: unsupported external schema reference: {ref}")
+        _validate_schema_subset(value, target, task_schema, common_schema, path)
+
+    if "type" in schema:
+        expected = schema["type"]
+        if not isinstance(expected, str) or not _schema_type_matches(value, expected):
+            raise _TaskSchemaError(f"{path}: expected {expected}, got {type(value).__name__}")
+
+    if "const" in schema and value != schema["const"]:
+        raise _TaskSchemaError(f"{path}: value must equal {schema['const']!r}")
+    if "enum" in schema and value not in schema["enum"]:
+        raise _TaskSchemaError(f"{path}: value is not in the registered enum")
+
+    if "oneOf" in schema:
+        alternatives = schema["oneOf"]
+        if not isinstance(alternatives, list):
+            raise _TaskSchemaError(f"{path}: oneOf must be an array")
+        matches = 0
+        for alternative in alternatives:
+            try:
+                _validate_schema_subset(value, alternative, task_schema, common_schema, path)
+            except _TaskSchemaError:
+                continue
+            matches += 1
+        if matches != 1:
+            raise _TaskSchemaError(f"{path}: expected exactly one matching spec branch, got {matches}")
+
+    if isinstance(value, dict):
+        for field in schema.get("required", []):
+            if field not in value:
+                raise _TaskSchemaError(f"{path}: missing required field {field!r}")
+        properties = schema.get("properties", {})
+        if not isinstance(properties, dict):
+            raise _TaskSchemaError(f"{path}: properties must be an object")
+        for field, field_schema in properties.items():
+            if field in value:
+                _validate_schema_subset(value[field], field_schema, task_schema,
+                                        common_schema, f"{path}.{field}")
+        additional = schema.get("additionalProperties", True)
+        extras = [field for field in value if field not in properties]
+        if additional is False and extras:
+            raise _TaskSchemaError(f"{path}: unknown field(s): {', '.join(sorted(extras))}")
+        if isinstance(additional, dict):
+            for field in extras:
+                _validate_schema_subset(value[field], additional, task_schema,
+                                        common_schema, f"{path}.{field}")
+
+    if isinstance(value, list):
+        if "minItems" in schema and len(value) < schema["minItems"]:
+            raise _TaskSchemaError(f"{path}: expected at least {schema['minItems']} items")
+        if "items" in schema:
+            for index, item in enumerate(value):
+                _validate_schema_subset(item, schema["items"], task_schema,
+                                        common_schema, f"{path}[{index}]")
+
+    if isinstance(value, str):
+        if "minLength" in schema and len(value) < schema["minLength"]:
+            raise _TaskSchemaError(f"{path}: string is shorter than {schema['minLength']}")
+        if "pattern" in schema:
+            try:
+                matched = re.search(schema["pattern"], value)
+            except re.error as exc:
+                raise _TaskSchemaError(f"{path}: invalid schema pattern: {exc}") from exc
+            if matched is None:
+                raise _TaskSchemaError(f"{path}: string does not match {schema['pattern']!r}")
+        if schema.get("format") == "date-time":
+            if "T" not in value:
+                raise _TaskSchemaError(f"{path}: expected an RFC 3339 date-time")
+            try:
+                parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+            except ValueError as exc:
+                raise _TaskSchemaError(f"{path}: expected an RFC 3339 date-time") from exc
+            if parsed.tzinfo is None:
+                raise _TaskSchemaError(f"{path}: date-time must include a timezone")
+
+    if "minimum" in schema and isinstance(value, (int, float)) and not isinstance(value, bool):
+        if value < schema["minimum"]:
+            raise _TaskSchemaError(f"{path}: value must be at least {schema['minimum']}")
+    if "maximum" in schema and isinstance(value, (int, float)) and not isinstance(value, bool):
+        if value > schema["maximum"]:
+            raise _TaskSchemaError(f"{path}: value must be at most {schema['maximum']}")
+
+    annotations = {"$schema", "$id", "$defs", "title", "description", "default",
+                   "examples", "deprecated", "readOnly", "writeOnly"}
+    assertions = {"$ref", "type", "const", "enum", "oneOf", "required", "properties",
+                  "additionalProperties", "items", "minItems", "minLength", "pattern",
+                  "format", "minimum", "maximum"}
+    unknown = set(schema) - annotations - assertions
+    if unknown:
+        raise _TaskSchemaError(f"{path}: unsupported schema keyword(s): {', '.join(sorted(unknown))}")
+
+
+def _validate_task_schema(payload: dict) -> None:
+    task_schema, common_schema = _task_schemas()
+    try:
+        _validate_schema_subset(payload, task_schema, task_schema, common_schema)
+    except _TaskSchemaError as exc:
+        raise BadRequest(f"task/v1 validation failed: {exc}") from exc
+
+
+def _task_version_digest(payload: dict) -> str:
+    """Hash the canonical immutable task content, excluding its self-hash field."""
+    unsigned = {key: value for key, value in payload.items()
+                if key != "task_version_sha256"}
+    return _sha(_canon(unsigned))
 
 
 def _validate_media_type(value: Any) -> str:
@@ -519,34 +694,40 @@ class ControlPlane:
     TASK_ID_RE = re.compile(r"^(?:(?:EXP|MATH|KG)-\d{4}-\d{4}|[PS][A-Za-z0-9._-]+)$")
 
     def publish_task(self, payload: dict) -> dict:
+        if not isinstance(payload, dict):
+            raise BadRequest("task payload must be a JSON object")
+        if payload.get("draft_only") is True or payload.get("do_not_execute") is True:
+            raise BadRequest("draft task payload must be finalized before publication")
         for field in ("id", "department", "title", "lease", "spec"):
             if field not in payload:
                 raise BadRequest(f"task missing field: {field}")
-        # Аудит 28.11.2026: write_scope не валидировался (4106 v4 указывала
-        # на пути 4103). Обязателен непустой список относительных путей без ..
-        ws = payload.get("write_scope") or []
-        ws_ok = isinstance(ws, list) and len(ws) > 0
-        if ws_ok:
-            for scope in ws:
-                try:
-                    _validate_relative_path(
-                        scope, allow_glob=True, allow_trailing_slash=True)
-                except BadRequest:
-                    ws_ok = False
-                    break
-        if not ws_ok:
-            raise BadRequest(
-                "write_scope: обязателен непустой список относительных путей без ..")
-        if not self.TASK_ID_RE.match(payload["id"]):
-            raise BadRequest(f"task id не по контракту: {payload['id']}")
-        tid, dept = payload["id"], payload["department"]
-        version = int(payload.get("version", 1))
-        payload = dict(payload, schema="task/v1", version=version)
+        version = payload.get("version", 1)
+        if not isinstance(version, int) or isinstance(version, bool) or version < 1:
+            raise BadRequest("task version must be a positive integer")
+        payload = dict(payload)
+        payload.setdefault("schema", "task/v1")
+        payload["version"] = version
         payload.setdefault("created_at", _utc(self.wall()))
         payload.setdefault("published_at", payload["created_at"])
         payload.setdefault("created_by", "main")
         payload.setdefault("published_by", "main")
-        sha = _sha(_canon(payload))
+        # The service owns version identity. A supplied/stale self-hash never
+        # participates in the digest, so a zero draft placeholder is harmless
+        # while a zero base_commit is never executable provenance.
+        payload["task_version_sha256"] = "0" * 64
+        _validate_task_schema(payload)
+        if not payload["base_commit"].strip("0"):
+            raise BadRequest("base_commit still has the draft zero placeholder")
+        # Schema strings/array shape are necessary but not sufficient: scope
+        # paths must also remain relative POSIX paths without traversal.
+        for scope in payload["write_scope"]:
+            _validate_relative_path(scope, allow_glob=True, allow_trailing_slash=True)
+        if not self.TASK_ID_RE.match(payload["id"]):
+            raise BadRequest(f"task id не по контракту: {payload['id']}")
+        sha = _task_version_digest(payload)
+        payload["task_version_sha256"] = sha
+        _validate_task_schema(payload)
+        tid, dept = payload["id"], payload["department"]
         now_iso, _ = self._now()
         c = self.connect()
         c.execute("BEGIN IMMEDIATE")

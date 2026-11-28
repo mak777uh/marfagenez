@@ -44,6 +44,26 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 
 **Дополнение (861bc):** `checks/runtime_integrity.py` — CoordIntegrity-тесты адаптированы под fail-closed контракт `tools/coord.py` (recover/release/`status --write` обязаны отказывать rc=2 с `LEGACY_COORD_READ_ONLY` и не трогать состояние; сценарии сбоя — stale claims, same-boot heartbeat, expired heartbeat, pending take-window, mismatch, release-fence — сохранены как фикстуры). Удалён мёртвый дубль `test_recover_finishes_take_after_rename_before_pending_cleanup` (перекрывался одноимённым def, при выполнении — бесконечная mock-рекурсия). Локально: runtime_integrity 19/19.
 
+## §2.0b Состояние на 2026-11-28 (цикл 861be): exper design-fixes — v6-контракты 4106/4107
+
+**Источник:** патч exper-агента `design-fixes-20261128` (sha256 `1ee4256d…`, 23 файла; exper верифицировал против `588ba585`, main применил чисто на `f6db0cc6`). Это улучшение репо на общих основаниях (§10 lab/MAIN.md), не submission.
+
+**Что изменилось в control-plane (`lab/service/control.py`):** publish_task теперь fail-closed:
+встроенный валидатор task/v1 (подмножество JSON Schema без внешних зависимостей; неизвестные
+ключи schema — ошибка, не молчание), `task_version_sha256` считает сервис по каноническому
+payload **без** самохэш-поля, отказ для драфтов (`draft_only`, `do_not_execute`, zero
+`base_commit`), write_scope-пути проверяются на относительность. Схема: +опциональный
+`priority` (FIFO-аннотация, научный контракт не меняет).
+
+**Драйверы и pipelines:** `exp_wear_erase.rs`/`exp_b_unit.rs` — state-hash, CSV-вывод,
+обновлённые тесты; `pipelines/4106/*`, `pipelines/4107/*` — полный цикл (design, plan, run,
+leased, analyze, finding, submit) + тесты анализаторов. Драфты `EXP-2026-4106-v6` (supersedes
+v5) и `EXP-2026-4107-v3` (supersedes v2) лежат в `task-drafts/` с zero `base_commit` —
+плейсхолдер обязателен к замене интегрированным коммитом при публикации (сервис откажет иначе).
+
+**Проверки локально:** control 34/34, analyzer 4106 20/20, analyzer 4107 25/25, py_compile OK.
+Rust-тесты драйверов и полный preflight — гейт c933.
+
 ## §2.0 Состояние на 2026-11-25 (цикл 597)
 
 **Этот блок — самый свежий.** Он обновлён вместе с изменениями `checks/` и `run.sh`, как требует

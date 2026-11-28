@@ -16,7 +16,14 @@
     "id": { "$ref": "common.schema.json#/$defs/task_id" },
     "department": { "$ref": "common.schema.json#/$defs/department" },
     "version": { "type": "integer", "minimum": 1 },
-    "task_version_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "priority": {
+      "type": "integer",
+      "description": "Приоритет FIFO-очереди. Вычисляется main при публикации; не меняет научный контракт."
+    },
+    "task_version_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256",
+      "description": "SHA-256 канонического payload без самого поля task_version_sha256. Вычисляется и вставляется сервисом при публикации."
+    },
     "supersedes_version": { "type": "integer", "minimum": 1 },
     "change_reason": { "type": "string" },
     "title": { "type": "string", "minLength": 1 },

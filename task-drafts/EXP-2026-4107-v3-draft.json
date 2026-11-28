@@ -1,0 +1,137 @@
+{
+  "task_id": "EXP-2026-4107",
+  "draft_only": true,
+  "draft_version": 3,
+  "do_not_execute": true,
+  "finalization_required": [
+    "Интегрировать исправления в репозиторий main и получить итоговый commit.",
+    "Заменить payload.base_commit нулевым placeholder на этот commit.",
+    "Обновить payload.created_at/published_at фактическим временем публикации.",
+    "Передать payload без wrapper-флагов в publish_task; service вычислит task_version_sha256 по каноническому payload без этого поля и вернёт SHA. Не подменять SHA вручную.",
+    "Проверить schema и сохранить выданные task/version/SHA в исполняемой копии; этот wrapper остаётся draft-only."
+  ],
+  "payload": {
+    "schema": "task/v1",
+    "id": "EXP-2026-4107",
+    "department": "experiments",
+    "version": 3,
+    "task_version_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "supersedes_version": 2,
+    "change_reason": "Локальный draft v3 по аудиту 28.11.2026: устранён confound числа модулей с capacity/maintenance/rescue cost через fixed-capacity cost-yoked A arms и ghost; добавлен 12-рукавный контракт, внешний rescue stock, closed material ledger, death/censoring, independent raw-bit FNV-1a state/trajectory verification, два побайтовых запуска и строгая provenance для insensitive_by_construction. Q-023/C-001/C-002 удалены как неверные якоря.",
+    "title": "Детерминированный B pilot v3: k-out-of-m, cost-yoking и материальный ledger",
+    "created_by": "exper-local-draft",
+    "published_by": "main",
+    "published_at": "2026-11-28T00:00:00Z",
+    "created_at": "2026-11-28T00:00:00Z",
+    "base_commit": "0000000000000000000000000000000000000000",
+    "write_scope": [
+      "results/experiments/EXP-2026-4107/**",
+      "docs/FINDING-EXP-2026-4107.md"
+    ],
+    "spec": {
+      "mode": "experiment",
+      "hypothesis": "B-фаза DESIGN closure-world 13.2/13.9, детерминированный unit-test N=1: при delta_R=0 и только объявленных do-clamp/rescue вмешательствах модульная ремонтная способность R_t=min(R0,r0*n_t)*1[n_t>=k_eff], r0=R0/k, m=3, k=2, воспроизводит k-out-of-m логику. Cost-yoked controls отделяют потерю функции от изменений capacity и оплачиваемого обслуживания.",
+      "target_setup": "Стандартный организм/damage-аппарат A-P5; 3 ремонтных модуля, k_eff=2. Intervention schedule t*=5, t**=10, t***=15 при T=40 не зависит от target damage. Target component не повреждается повторно. Rescue — exogenous inflow из явного внешнего stock, а не создание модуля.",
+      "expected_effect": "B2 ko1 при n=2>=k воспроизводит B1; B3 ko2 при n=1<k замораживает repair; rescue возобновляет repair и дает B2.aurd<rescue.aurd<B3.aurd; AURD_abs при n=3 строго монотонен по D0. Fixed-capacity cost-yoked A arms и ghost воспроизводят целевые траектории, placebo-k1 не замерзает.",
+      "parameters": {
+        "R0": 0.1,
+        "r0": 0.05,
+        "m": 3,
+        "k": 2,
+        "k_D": 0.3,
+        "window_T": 40,
+        "D0": 0.5,
+        "D_half": 0.25,
+        "D_third": 0.16666666666666666,
+        "repair_cost_energy": 0.2,
+        "repair_cost_substrate": 0.2,
+        "maintenance_energy_per_paid_module": 0.01,
+        "initial_energy": 0.1,
+        "initial_substrate": 0.1,
+        "ration_per_step": 0.05,
+        "schedule": {"t_star": 5, "t_double_star": 10, "t_triple_star": 15},
+        "seed_base": 5401,
+        "seeds": 1,
+        "schedule_fingerprint": "schedule: t*=5;t**=10;t***=15;m=3;k=2;r0=R0/2",
+        "sensitivity": {"q0": 0.5, "need_r0": 0.01125, "need_kD": "ln((1-q0)/(1-0.95))/40"}
+      },
+      "axes": [
+        {"name": "arm", "values": ["A-control", "B1-sham", "B2-ko1", "B3-ko2", "rescue", "A-B2-cost", "A-B3-cost", "A-rescue-cost", "D-half", "D-third", "ghost", "placebo-k1"]},
+        {"name": "n_schedule", "values": ["sham", "ko1", "ko2", "ko2+rescue"]},
+        {"name": "k_eff", "values": [2, 1]},
+        {"name": "D0", "values": [0.5, 0.25, 0.16666666666666666]}
+      ],
+      "seeds": [5401],
+      "controls": {
+        "fires": "Расписание t*=5/t**=10/t***=15 и события sham/ko1/ko2/rescue исполняются точно; B3 после t** имеет cap_now=0 и v=0; rescue после t*** возобновляет v>0. Модульные и финансовые потоки имеют непустые зарегистрированные изменения.",
+        "silent": "B1-sham повторяет метку t* без изменения capacity и обязан совпасть с A-control по trajectory_hash. A-B2-cost и A-B3-cost воспроизводят B2/B3 schedule/cost при fixed capacity; A-B3-cost совпадает с ghost; два независимых запуска побайтово идентичны.",
+        "specific": "B2 при n=2>=k воспроизводит B1 recovery; B3 при n=1<k замерзает; placebo-k1 при n=1 сохраняет cap_now=0.05 и продолжающийся repair; ghost fixed R0 с B3 schedule/cost воспроизводит B1; cost-yoking отделяет function loss от оплаты обслуживания и rescue.",
+        "ledger": "На каждом шаге независимо пересчитываются accepted inflow, maintenance shortfall/debt, repair, energy/substrate residuals, active/failed module balances и external rescue stock; max imbalance<1e-12.",
+        "death_censoring": "Смерть после repair при e<=0 или d>=1; после смерти строк нет. Живой рукав: alive=1, death_step=-1, death_cause=none, horizon_censored=1, f_at_death=NaN. Смерть зарегистрированного рукава делает outcome void.",
+        "hashes": "state_hash и trajectory_hash — FNV-1a 64 over little-endian raw bits f64/u64, 16 lowercase hex; offset 14695981039346656037, prime 1099511628211. Анализатор независимо пересчитывает оба хэша.",
+        "provenance": "Task id/version/SHA/base, environment, driver/source SHA, exact argv/schedule fingerprint, run1/run2 rc, SHA/bytes/rows raw/steps и фактическое побайтовое равенство проверяются до scientific outcome."
+      },
+      "prior_results": [
+        "SUB-EXP-2026-4104-1: A-P5 passed",
+        "EXP-2026-4104: AURD ladder 0.0700/0.1225/0.1817/1.0000",
+        "DESIGN closure-world 13.9 revision",
+        "REANALYSIS-EXP-2026-4103: tolerances from bias budget",
+        "FINDING-457"
+      ],
+      "kg_refs": ["FINDING-457"],
+      "analysis_plan": "Детерминированный unit-test N=1 без статистики и Holm. Два запуска; root raw/steps побайтово равны run1/run2. Анализатор независимо проверяет схемы, порядок 12 arms/seed/step, task/driver provenance, event/capacity/cost schedules, FNV raw-bit hashes, repair formula, все ledger residuals, death/censoring, summary recomputation и зарегистрированные равенства/неравенства. Все controls входят в outcome gate.",
+      "predictions": {
+        "P1_a_control_equals_b1_trajectory": "A-control.trajectory_hash==B1-sham.trajectory_hash для каждого сида.",
+        "P2_a_b2_cost_equals_b2_trajectory": "A-B2-cost.trajectory_hash==B2-ko1.trajectory_hash.",
+        "P2b_b2_equals_b1_recovery": "B2-ko1 воспроизводит B1-sham target recovery: v,d,f на каждом шаге и aurd/f_final в допуске.",
+        "P2c_a_b3_cost_equals_ghost_trajectory": "A-B3-cost.trajectory_hash==ghost.trajectory_hash; ghost fixed-capacity B3 schedule/cost воспроизводит B1.",
+        "P3_b3_freezes_at_ko2": "B3-ko2: cap_now=0 и v=0 начиная ровно с t**=10; f_final==f_at_ko2.",
+        "P4_rescue_resumes_and_orders": "Rescue возобновляется с t***=15, расходует ровно один внешний модуль; B2.aurd<rescue.aurd<B3.aurd с margin>1e-6.",
+        "P5_d_ladder_abs_monotone": "При n=3 A-control.aurd_abs>D-half.aurd_abs>D-third.aurd_abs."
+      },
+      "outcome_policy": {
+        "passed": "Все controls и все семь scientific predictions true; repeat byte-identical.",
+        "failed": "Все controls true, но нарушено хотя бы одно scientific prediction.",
+        "void": "Любой control false, смерть зарегистрированного рукава, неидентичный repeat, некорректные hashes/provenance/schedule/ledger или nonzero driver rc кроме зарегистрированного sensitivity exit 3.",
+        "insensitive_by_construction": "Оба запуска rc=3; marker имеет префикс INSENSITIVE_BY_CONSTRUCTION; task/driver/source/artifact provenance и побайтовый repeat валидны. Смешанные rc или испорченный marker/provenance дают void.",
+        "rerun_policy": "Negative scientific outcome не перезапускается до положительного. Изменение predictions, tolerances, controls или falsification требует новой task version до запуска."
+      },
+      "artifact_contract": {
+        "driver": "core/src/bin/exp_b_unit.rs",
+        "raw_csv": "results/experiments/EXP-2026-4107/raw.csv",
+        "steps_csv": "results/experiments/EXP-2026-4107/steps.csv",
+        "raw_columns": ["arm", "k_eff", "d0", "seed", "aurd", "aurd_abs", "f_final", "f_at_ko2", "v_after_ko2", "v_after_rescue", "binary95_10", "t_reach95", "max_imbalance", "v_first", "n_final", "aurd_observed", "aurd_abs_observed", "f_at_death", "maint_short_total", "maint_debt", "rescue_in_total", "external_rescue_stock", "failed_module_stock", "observed_steps", "alive", "death_step", "death_cause", "horizon_censored", "state_hash", "trajectory_hash"],
+        "steps_columns": ["arm", "seed", "step", "n_t", "event", "u_e", "u_s", "e_in", "s_in", "e_unc", "s_unc", "maint_e", "maint_short", "v", "d", "e", "s", "cap_now", "f", "imbalance", "maint_debt", "debt_imbalance", "module_in", "module_out", "module_imbalance", "failed_module_in", "failed_module_stock", "failed_module_imbalance", "external_rescue_stock", "rescue_stock_imbalance", "d_before", "e_before", "s_before", "alive", "death_cause"],
+        "expected_rows": {"raw": 12, "steps": 480},
+        "float_format": "Rust shortest round-trip f64; no inf; NaN only in registered death/missing final metrics",
+        "analysis_artifacts": ["summary.json"]
+      },
+      "limitations": "Детерминированный unit-test N=1 не проверяет вероятностные отказы delta_R, replacement flow или стохастический B pilot. Это верификация механики, а не статистический научный вывод. Резервирование без стоимости не тестируется. Вывод ограничен зарегистрированными параметрами и pinned artifacts.",
+      "falsification": "Любое scientific prediction false при валидных controls -> failed. Любой control/provenance/identifiability failure -> void. Sensitive parameters ниже need_r0/need_kD при валидном marker/provenance/repeat -> insensitive_by_construction. Критерии и tolerances не меняются post hoc.",
+      "reproduce": "Сохранить task/version/service SHA/base, seed 5401, 12 arms, schedule t*=5/t**=10/t***=15, T=40, raw/steps/run1/run2 manifests, driver/source/analyzer SHA, byte-identical repeat and all controls. Reproduce commands are pinned in pipelines/4107/design.md.",
+      "publication_prerequisites": [
+        "Main интегрировал локальные исправления драйвера и пайплайна; base_commit содержит исправленный exp_b_unit.rs.",
+        "Service опубликовал version 3 и выдал task_version_sha256.",
+        "SUB-EXP-2026-4104-1 доступен как prior result.",
+        "Нулевые placeholders удалены; schema validation прошла."
+      ],
+      "no_unseeded_random": true
+    },
+    "validators": [{"profile": "experiments-v1", "version": "1.0.0"}],
+    "dependencies": [],
+    "budget": {
+      "cpu_seconds": 7200,
+      "ram_bytes": 536870912,
+      "disk_bytes": 268435456,
+      "network_allowlist": []
+    },
+    "network_profile": "none",
+    "lease": {
+      "ttl_seconds": 7200,
+      "heartbeat_seconds": 60,
+      "max_attempts": 1,
+      "max_lease_seconds": 7200
+    },
+    "tags": ["D-Q9", "B-pilot", "k-out-of-m", "unit-test", "verification", "ledger", "v3-draft"]
+  }
+}
