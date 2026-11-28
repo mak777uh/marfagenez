@@ -958,7 +958,7 @@ mod tests {
         assert!(json.starts_with("{\"schema\":\"marfagenez.trace-config.v1\","));
         assert!(json.ends_with('}'));
         assert!(json.contains("\"seed\":771,"));
-        assert!(json.contains("\"policies\":[\"stay\"]"));
+        assert!(json.contains("\"policies\":[\"stay\",\"stay\""));
         assert!(!json.contains("\"\"seed\""));
         assert!(!json.contains("\"\"rng_version\""));
         assert!(trace.config_hash != 0);
