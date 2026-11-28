@@ -1782,27 +1782,29 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
   "none": true
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-27T10:15:00Z",
-  "via": "pubmed-abstract",
-  "via_detail": "PNAS 108(13):5249-5254, PMID 21402937, DOI 10.1073/pnas.1100498108; fullTextXML недоступен (не OA-подмножество), PDF PNAS блокирует — только аннотация; Zhu & Szostak 2009 и Budin et al. 2012 остаются вторыми руками"
+  "level": "fragment_read",
+  "artifact": "papers/budin11-protocell-membranes.html",
+  "bytes": 237083,
+  "sha256": "dfe740d431749379a9f3bfda2456f86ed575919924ae81a75cd93e5ccf1d5eb6",
+  "retrieved_at": "2026-11-28T08:05:00Z",
+  "via": "repository",
+  "via_detail": "PNAS 108(13):5249-5254 (2011), Budin & Szostak, doi:10.1073/pnas.1100498108, PMC3069173 не в OA-подмножестве — полный HTML взят из web.archive.org snapshot 20241203220933 (pnas.org/doi/full); аннотация и Results сверены: «surprisingly low levels of phospholipids can drive protocell membrane growth» — дословно"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": [
    {
-    "type": "abstract"
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction/results"
    }
   ]
  },
- "abstract_sha256": "58035fd8539cd2db0caaa65ec4748e4a2a0b4e8bc105bc7f5cdc3bc507267ef9",
+ "abstract_sha256": null,
  "bibliographic": {
-  "title": "Протоклетки: числа по проницаемости и делению",
-  "year": 2009,
-  "first_author": "Zhu & Szostak"
+  "title": "Physical effects underlying the transition from primitive to modern cell membranes",
+  "year": 2011,
+  "first_author": "Budin"
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
@@ -1814,7 +1816,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 **Кто.** Zhu & Szostak (2009) JACS 131:5705; Budin & Szostak (2011) PNAS 108:5249; Budin, Debnath & Szostak (2012)
 JACS 134:20812; Breuer et al. (2019) eLife; Pelletier et al. (2021) Cell 184:2430; Thornburg et al. (2022) Cell.
-**Проверено.** **аннотация**: Budin & Szostak, «Physical effects underlying the transition from primitive to modern cell membranes», PNAS 108:5249 (2011), PMID 21402937, papers/budin11-abstract.txt, 2026-11-27; низкий уровень фосфолипидов уже драйвит рост протоклеточной мембраны, каскад селективных давлений на метаболизм/транспорт — из аннотации; полный текст недоступен.
+**Проверено.** **фрагмент**: PNAS full-text HTML через web.archive.org snapshot 20241203220933 (papers/budin11-protocell-membranes.html, sha256 dfe740d4…, 2026-11-28); аннотация и Results сверены — «surprisingly low levels of phospholipids can drive protocell membrane growth» и каскад селективных давлений на метаболизм/транспорт дословно.
 **Утверждение (пересказ).** Есть измеренные проницаемости и условия роста/деления везикул; **цены** поддержания
 границы как функции целости — нет.
 **Что меняет.** Именно здесь наша цена `c·d·q_min` может быть **числом**, которого у них нет.
