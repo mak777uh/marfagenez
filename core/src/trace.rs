@@ -492,6 +492,203 @@ fn json_number(v: f64) -> String {
     }
 }
 
+fn push_f64_array(out: &mut String, values: &[f64]) {
+    out.push('[');
+    for (i, value) in values.iter().enumerate() {
+        if i > 0 {
+            out.push(',');
+        }
+        out.push_str(&json_number(*value));
+    }
+    out.push(']');
+}
+
+fn push_u64_array(out: &mut String, values: &[u64]) {
+    out.push('[');
+    for (i, value) in values.iter().enumerate() {
+        if i > 0 {
+            out.push(',');
+        }
+        out.push_str(&value.to_string());
+    }
+    out.push(']');
+}
+
+fn push_policy_array(out: &mut String, values: &[&str]) {
+    out.push('[');
+    for (i, value) in values.iter().enumerate() {
+        if i > 0 {
+            out.push(',');
+        }
+        out.push('"');
+        out.push_str(value);
+        out.push('"');
+    }
+    out.push(']');
+}
+
+fn push_opt_usize(out: &mut String, value: Option<usize>) {
+    match value {
+        Some(value) => out.push_str(&value.to_string()),
+        None => out.push_str("null"),
+    }
+}
+
+fn push_opt_i32(out: &mut String, value: Option<i32>) {
+    match value {
+        Some(value) => out.push_str(&value.to_string()),
+        None => out.push_str("null"),
+    }
+}
+
+fn push_opt_f64(out: &mut String, value: Option<f64>) {
+    match value {
+        Some(value) => out.push_str(&json_number(value)),
+        None => out.push_str("null"),
+    }
+}
+
+fn push_opt_bool(out: &mut String, value: Option<bool>) {
+    match value {
+        Some(value) => out.push_str(if value { "true" } else { "false" }),
+        None => out.push_str("null"),
+    }
+}
+
+/// Canonical, complete starting state. Field order is fixed by this function;
+/// no pretty-printer, locale or external JSON dependency participates.
+fn experiment_config_json(
+    world: &World,
+    field: &FieldStateSnapshot,
+    life: &LifeExperimentSnapshot,
+    requested_steps: usize,
+    requested_every: usize,
+    sample_every: usize,
+) -> String {
+    let mut out = String::with_capacity(4096);
+    out.push_str("{\"schema\":\"marfagenez.run-config.v1\"");
+    out.push_str(&format!(",\"requested_steps\":{requested_steps}"));
+    out.push_str(&format!(",\"sample_every_requested\":{requested_every}"));
+    out.push_str(&format!(",\"sample_every\":{sample_every}"));
+    out.push_str(",\"repair_policy\":\"all-or-nothing\"");
+
+    out.push_str(",\"world\":{");
+    out.push_str(&format!("\"income\":{}", json_number(world.income)));
+    out.push_str(&format!(",\"maintenance_cost\":{}", json_number(world.maintenance_cost)));
+    out.push_str(&format!(",\"repair_cost\":{}", json_number(world.repair_cost)));
+    out.push_str(&format!(",\"damage_rate\":{}", json_number(world.damage_rate)));
+    out.push_str(&format!(",\"capacity\":{}", json_number(world.capacity)));
+    out.push_str(&format!(",\"share\":\"{}\"", world.share.name()));
+    out.push_str(&format!(",\"read_budget\":{}", world.read_budget));
+    out.push_str(&format!(",\"read_cost\":{}", json_number(world.read_cost)));
+    out.push_str(&format!(",\"read_period\":{}", world.read_period));
+    out.push_str(&format!(",\"look_on_shortfall\":{}", world.look_on_shortfall));
+    out.push_str(&format!(",\"tiebreak\":\"{}\"", world.tiebreak.name()));
+    out.push_str(&format!(",\"look_order\":\"{}\"", world.look_order.name()));
+    out.push_str(&format!(",\"birth_threshold\":{}", json_number(world.birth_threshold)));
+    out.push_str(&format!(",\"birth_cost\":{}", json_number(world.birth_cost)));
+    out.push_str(&format!(",\"max_population\":{}", world.max_population));
+    out.push('}');
+
+    out.push_str(",\"field\":{");
+    out.push_str("\"cells\":");
+    push_f64_array(&mut out, &field.cells);
+    out.push_str(",\"ceilings\":");
+    push_f64_array(&mut out, &field.ceilings);
+    out.push_str(&format!(",\"poor\":{}", json_number(field.poor)));
+    out.push_str(&format!(",\"max_resource\":{}", json_number(field.max_resource)));
+    out.push_str(&format!(",\"regrow\":{}", json_number(field.regrow)));
+    out.push_str(&format!(",\"period\":{}", field.period));
+    out.push_str(&format!(",\"shift\":{}", json_number(field.shift)));
+    out.push_str(&format!(",\"step\":{}", field.step));
+    out.push('}');
+
+    out.push_str(",\"life\":{");
+    out.push_str(&format!(",\"seed\":{}", life.seed));
+    out.push_str(&format!(",\"step\":{}", life.step));
+    out.push_str(&format!(",\"memory_life\":{}", life.memory_life));
+    out.push_str(&format!(",\"rng_version\":\"{}\"", life.rng_version));
+    out.push_str(",\"rng_state\":");
+    push_u64_array(&mut out, &life.rng_state);
+    out.push_str(&format!(",\"order_protocol\":\"{}\"", life.order_protocol));
+    out.push_str(&format!(",\"policy_mutation\":{}", json_number(life.policy_mutation)));
+    out.push_str(&format!(",\"sight_radius\":{}", life.sight_radius));
+    out.push_str(&format!(",\"feed\":{}", life.feed));
+    out.push_str(",\"policies_by_slot\":");
+    push_policy_array(&mut out, &life.policies_by_slot);
+
+    out.push_str(",\"organisms\":[");
+    for (slot, organism) in life.organisms.iter().enumerate() {
+        if slot > 0 {
+            out.push(',');
+        }
+        out.push('{');
+        out.push_str(&format!("\"slot\":{slot}"));
+        out.push_str(&format!(",\"present\":{}", organism.present));
+        out.push_str(&format!(",\"policy\":\"{}\"", organism.policy));
+        out.push_str(",\"cell\":");
+        push_opt_usize(&mut out, organism.cell);
+        out.push_str(",\"energy\":");
+        push_opt_f64(&mut out, organism.energy);
+        out.push_str(",\"damage\":");
+        push_opt_f64(&mut out, organism.damage);
+        out.push_str(",\"alive\":");
+        push_opt_bool(&mut out, organism.alive);
+        out.push_str(",\"memory_cell\":");
+        push_opt_usize(&mut out, organism.memory_cell);
+        out.push_str(",\"memory_level\":");
+        push_opt_f64(&mut out, organism.memory_level);
+        out.push_str(",\"memory_age\":");
+        push_opt_usize(&mut out, organism.memory_age);
+        out.push_str(",\"move_cost\":");
+        push_opt_f64(&mut out, organism.move_cost);
+        out.push_str(",\"memory_life\":");
+        push_opt_usize(&mut out, organism.memory_life);
+        out.push_str(",\"last_direction\":");
+        push_opt_i32(&mut out, organism.last_direction);
+        out.push_str(",\"last_taken\":");
+        push_opt_f64(&mut out, organism.last_taken);
+        out.push_str(",\"last_cell\":");
+        push_opt_usize(&mut out, organism.last_cell);
+        out.push_str(",\"rng_state\":");
+        match organism.rng_state {
+            Some(words) => push_u64_array(&mut out, &words),
+            None => out.push_str("null"),
+        }
+        out.push('}');
+    }
+    out.push(']');
+
+    out.push_str(",\"claims\":");
+    if let Some(claims) = &life.claims {
+        out.push('{');
+        out.push_str("\"owner\":[");
+        for (i, owner) in claims.owner.iter().enumerate() {
+            if i > 0 {
+                out.push(',');
+            }
+            match owner {
+                Some(owner) => out.push_str(&owner.to_string()),
+                None => out.push_str("null"),
+            }
+        }
+        out.push(']');
+        out.push_str(",\"health\":");
+        push_f64_array(&mut out, &claims.health);
+        out.push_str(&format!(",\"cost\":{}", json_number(claims.cost)));
+        out.push_str(&format!(",\"decay\":{}", json_number(claims.decay)));
+        out.push_str(&format!(",\"trespass\":{}", json_number(claims.trespass)));
+        out.push_str(&format!(",\"takes\":{}", claims.takes));
+        out.push_str(&format!(",\"losses\":{}", claims.losses));
+        out.push('}');
+    } else {
+        out.push_str("null");
+    }
+
+    out.push_str("}}");
+    out
+}
+
 /// One frame, taken from outside.
 fn snapshot(life: &Life) -> Frame {
     let field: &Field = life.field();
