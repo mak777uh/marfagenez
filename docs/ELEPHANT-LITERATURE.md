@@ -377,17 +377,23 @@ threshold**… the lineage becomes mortal above the threshold».
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "pmc",
-  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6590291/"
+  "level": "fragment_read",
+  "artifact": "papers/haaland19-insurance.xml",
+  "bytes": 81281,
+  "sha256": "8fad20679652e0628351b409bada71d0bdceead0bdd1f2418ce6bfe7418b7e3b",
+  "retrieved_at": "2026-11-28T05:39:04Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC6590291 BioC full-text XML (Haaland, Wright, Tufto & Ratikainen 2019, Evolution, doi:10.1111/evo.13659); цитата про сдвиг оптимума при insurance сверена дословно; остальные источники записи — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -397,7 +403,7 @@ threshold**… the lineage becomes mortal above the threshold».
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
+ "downgrade_reason": null
 }
 ```
 
@@ -406,7 +412,7 @@ threshold**… the lineage becomes mortal above the threshold».
 **Кто.** Haaland, Wright, Tufto, Ratikainen (2019). *Short-term insurance versus long-term bet-hedging strategies as
 adaptations to variable environments.* Evolution 73(2): 145–157.
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC6590291/
-**Проверено.** **полный текст** (читал страницу).
+**Проверено.** **фрагмент** PMC6590291 BioC XML (papers/haaland19-insurance.xml, sha256 8fad2067…, 2026-11-28); цитата «insurance causes the optimal phenotype to shift…» найдена в тексте дословно.
 **Утверждение (цитата).** «insurance causes the optimal phenotype to **shift from the peak to down the less steeply
 decreasing side** of the fitness function». Пример там же: птица **запасает жир**, когда температура изменчивее.
 **Что даёт нам.** Наш сдвиг оптимума при засухе (§4.13) — **описанный эффект обрыва**, а не наше открытие.
@@ -2784,17 +2790,23 @@ Undergoing Asymmetrical Division» (2024), PMC11049191.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "pmc",
-  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6631810/"
+  "level": "fragment_read",
+  "artifact": "papers/song19-senescence.xml",
+  "bytes": 76286,
+  "sha256": "9c9af3b9fdc9658b27b062cf19a3a76cca14c61dfc9876e625665014050cf41d",
+  "retrieved_at": "2026-11-28T05:39:04Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC6631810 BioC full-text XML (Song & Açar 2019, BMC Bioinformatics, doi:10.1186/s12859-019-2921-3 «Stochastic modeling of aging cells…»); детерминированная модель асимметрии повреждения/деления сверена; остальные источники — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2813,7 +2825,7 @@ Undergoing Asymmetrical Division» (2024), PMC11049191.
 **Кто.** Stochastic modeling of aging cells reveals how damage accumulation, repair, and cell-division asymmetry affect
 clonal senescence and population fitness (2019), PMC6631810.
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC6631810/
-**Проверено.** **аннотация.**
+**Проверено.** **фрагмент** PMC6631810 BioC XML (papers/song19-senescence.xml, sha256 9c9af3b9…, 2026-11-28); модель асимметричного распределения повреждения и объёма сверена с текстом.
 **Утверждение (пересказ).** Детерминированная модель асимметричного распределения повреждения и объёма клетки давала
 один вывод; **стохастическая** версия меняет предсказания о клональном старении и приспособленности популяции.
 **Что даёт нам.** Это **прямой аналог** нашей линии «прошлое»: повреждение + починка + асимметрия при делении.
@@ -2838,17 +2850,23 @@ clonal senescence and population fitness (2019), PMC6631810.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "pmc",
-  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2049046/"
+  "level": "fragment_read",
+  "artifact": "papers/ackermann07-aging-origin.xml",
+  "bytes": 76018,
+  "sha256": "597ee7dae0322950bc51e35588ff2dac30e6515560d5d56a9fd2181aea273009",
+  "retrieved_at": "2026-11-28T05:39:04Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC2049046 BioC full-text XML (Ackermann, Chao, Bergstrom et al. 2007, doi:10.1111/j.1474-9726.2007.00281.x «On the evolutionary origin of aging»); цитата «At the start of a generation…» сверена дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2858,7 +2876,7 @@ clonal senescence and population fitness (2019), PMC6631810.
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
+ "downgrade_reason": null
 }
 ```
 
@@ -2866,7 +2884,7 @@ clonal senescence and population fitness (2019), PMC6631810.
 
 **Кто.** «On the evolutionary origin of aging» (2007), PMC2049046 (Erjavec и соавт.).
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC2049046/
-**Проверено.** **аннотация/фрагмент.**
+**Проверено.** **фрагмент** PMC2049046 BioC XML (papers/ackermann07-aging-origin.xml, sha256 597ee7da…, 2026-11-28); цитата «At the start of a generation, each individual contains…» найдена дословно.
 **Утверждение (цитата из фрагмента).** «At the start of a generation, each individual contains a certain amount of
 damage d, which was conferred to it by its parent…»; параметр `a` — доля повреждения, передаваемая потомку
 (`a = 0` симметрично, `a = 1` полностью асимметрично).
@@ -2947,17 +2965,23 @@ systems, which are redundant in numbers of irreplaceable elements, do deteriorat
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "pmc",
-  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6703938/"
+  "level": "fragment_read",
+  "artifact": "papers/gavrilov20-mortality-decay.xml",
+  "bytes": 68512,
+  "sha256": "676ef552817c1124745cafced3c093b1a9ad212145d94d87ff16f3b5879b5846",
+  "retrieved_at": "2026-11-28T05:39:04Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC6703938 BioC XML (Gavrilov et al. 2020, doi:10.1159/000500141 — Kannisto-модель, Gompertz law, mortality deceleration/late-life mortality); раздел о позднем плато сверен; обзор 2024 (PMC11090256) и прочие источники — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2967,7 +2991,7 @@ systems, which are redundant in numbers of irreplaceable elements, do deteriorat
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
+ "downgrade_reason": null
 }
 ```
 
@@ -2977,7 +3001,7 @@ systems, which are redundant in numbers of irreplaceable elements, do deteriorat
 (2019), PMC6703938; Laird & Sherratt (2009), JEB — «decelerating selection for system reliability».
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC6703938/ ;
 https://people.uleth.ca/~robert.laird/Laird%20and%20Sherratt%202009%20JEB.pdf
-**Проверено.** **аннотация/фрагмент.**
+**Проверено.** **фрагмент** PMC6703938 BioC XML (papers/gavrilov20-mortality-decay.xml, sha256 676ef552…, 2026-11-28); материал о Kannisto/Gompertz и замедлении смертности в позднем возрасте сверен; остальные источники — вторые руки.
 **Утверждение (пересказ).** Позднее плато смертности — **наблюдаемый** феномен; вопрос не «есть ли оно», а какая
 модель его воспроизводит. Laird & Sherratt дают **эволюционный** механизм: отбор по надёжности системы замедляется с
 возрастом.
@@ -3002,17 +3026,23 @@ https://people.uleth.ca/~robert.laird/Laird%20and%20Sherratt%202009%20JEB.pdf
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "pmc",
-  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10705550/"
+  "level": "fragment_read",
+  "artifact": "papers/biorxiv23-unicellular-damage.xml",
+  "bytes": 121990,
+  "sha256": "085bbcae753e904ca81b711e171ab4e9386c8d285af93f2216d42193330e8649",
+  "retrieved_at": "2026-11-28T05:39:04Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC10705550 BioC XML (bioRxiv 2023.11.21.568103 «Balance between asymmetric allocation and repair of somatic damage…»); два способа обращения с повреждением (асимметрия/репарация, нормировки y≡1, r≡R/E) сверены"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3022,7 +3052,7 @@ https://people.uleth.ca/~robert.laird/Laird%20and%20Sherratt%202009%20JEB.pdf
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
+ "downgrade_reason": null
 }
 ```
 
@@ -3031,7 +3061,7 @@ https://people.uleth.ca/~robert.laird/Laird%20and%20Sherratt%202009%20JEB.pdf
 **Кто.** «Unicellular life balances asymmetric allocation and repair of somatic damage representing the origin of r/K
 selection» (2023), PNAS, PMC10705550.
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC10705550/
-**Проверено.** **аннотация/фрагмент** (в фрагменте — нормировки `y ≡ 1`, `r ≡ R/E`).
+**Проверено.** **фрагмент** PMC10705550 BioC XML (papers/biorxiv23-unicellular-damage.xml, sha256 085bbcae…, 2026-11-28); нормировки y≡1, r≡R/E и два канала утилизации повреждения сверены.
 **Утверждение (пересказ).** В модели одноклеточного есть **два способа обращения с повреждением**: передать его
 асимметрично потомкам или **починить**; баланс между ними объясняет происхождение r/K-стратегий.
 **Что даёт нам.** Это **ближайший аналог** нашей линии «выбор» (`§4.13`, `§4.14`): та же развилка, только второе
@@ -3669,17 +3699,23 @@ Philosophy of Science, doi:10.1007/s13194-023-00566-1.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "pmc",
-  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12501198/"
+  "level": "fragment_read",
+  "artifact": "papers/mediano25-iid-taxonomy.xml",
+  "bytes": 113252,
+  "sha256": "fa1e8c1d7de29894ae4ff804d591916496f8478fec947c6e4751be24b4b7adde",
+  "retrieved_at": "2026-11-28T05:39:04Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC12501198 BioC XML (Mediano, Rosas, Luppi et al. 2025, PNAS, doi:10.1073/pnas.2423297122 «Toward a unified taxonomy of information dynamics via Integrated Information Decomposition»); ΦID-таксономия (storage/transfer/copy…) сверена"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3698,7 +3734,7 @@ Philosophy of Science, doi:10.1007/s13194-023-00566-1.
 **Кто.** «Toward a unified taxonomy of information dynamics via Integrated Information Decomposition» (2025),
 PMC12501198.
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC12501198/
-**Проверено.** **аннотация.**
+**Проверено.** **фрагмент** PMC12501198 BioC XML (papers/mediano25-iid-taxonomy.xml, sha256 fa1e8c1d…, 2026-11-28); ΦID-таксономия информационной динамики сверена с текстом.
 **Утверждение (пересказ).** ΦID даёт **таксономию** информационной динамики: storage, transfer, copy и др. — шесть
 качественно разных режимов; каждый выражается в решётке слагаемых.
 **Что даёт нам.** Язык, чтобы отличить «память» от «передачи» и «копирования» — то, что у нас смешано в линии
@@ -3777,17 +3813,23 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "pmc",
-  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4312886/"
+  "level": "fragment_read",
+  "artifact": "papers/bethedge14-courting-disaster.xml",
+  "bytes": 79153,
+  "sha256": "2265515d5493b7ae9b437fc10256f15e0aefb89fb4701a165a916e3d5876dff8",
+  "retrieved_at": "2026-11-28T05:39:04Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC4312886 BioC XML (Ratcliff, Hawthorne & Libby 2014, Evolution, doi:10.1111/evo.12568 «Courting disaster: How diversification rate affects fitness under risk»); bet-hedging через диверсификацию и роль темпа диверсификации сверены"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3805,7 +3847,7 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
 
 **Кто.** «Courting disaster: How diversification rate affects fitness under risk» (2014), PMC4312886.
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC4312886/
-**Проверено.** **аннотация.**
+**Проверено.** **фрагмент** PMC4312886 BioC XML (papers/bethedge14-courting-disaster.xml, sha256 2265515d…, 2026-11-28); тезис о bet-hedging через диверсификацию фенотипов сверен.
 **Утверждение (пересказ).** Bet-hedging через диверсификацию фенотипов; **темп диверсификации** меняется на порядки,
 и выигрыш зависит от характеристик риска и организации.
 **Что даёт нам.** Предупреждение: «полоса» не обязана быть одинаковой при разных **темпах** и **масштабах** риска —
