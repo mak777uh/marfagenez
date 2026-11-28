@@ -109,7 +109,7 @@ class TestSchemaMigration(Base):
         ).fetchone()[0]
         self.assertEqual(before, 4)
         self.cp.init()
-        self.assertEqual(self.cp.user_version(), 4)
+        self.assertEqual(self.cp.user_version(), 5)
         after = self.db().execute(
             "SELECT COUNT(*) FROM audit_events WHERE action='schema.migrate'"
         ).fetchone()[0]
