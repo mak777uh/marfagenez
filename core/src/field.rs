@@ -238,6 +238,16 @@ impl Field {
         self.cells.len()
     }
 
+    /// Read-only metadata needed to reproduce a recorded environment.
+    pub fn max_resource(&self) -> f64 { self.max_resource }
+    pub fn regrow_rate(&self) -> f64 { self.regrow }
+    pub fn poor_level(&self) -> f64 { self.poor }
+    pub fn peak_period(&self) -> usize { self.period }
+    pub fn shift_per_step(&self) -> f64 { self.shift }
+    pub fn phase_step(&self) -> usize { self.t }
+    pub fn levels(&self) -> &[f64] { &self.cells }
+    pub fn ceilings(&self) -> &[f64] { &self.ceil }
+
     /// The resource in `cell`. A cell outside the field holds nothing, so the
     /// answer is `0.0`, not a panic.
     ///
