@@ -1,7 +1,7 @@
 {
   "schema": "kg/2",
   "human_confirmed": [],
-  "built_at": "2026-11-28T06:30:42+00:00",
+  "built_at": "2026-11-28T06:37:24+00:00",
   "counts": {
     "total": 1203,
     "by_kind": {
@@ -398,6 +398,6 @@
     "check"
   ],
   "hashes": {
-    "graph": "ddf4c95468324004"
+    "graph": "312d8eb7c5cab7c6"
   }
 }

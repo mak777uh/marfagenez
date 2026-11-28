@@ -3614,17 +3614,23 @@ x(t) ∈ K}`»; `x₀` **viable** in `K` если возможно **остав�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://link.springer.com/article/10.1007/s12064-020-00313-7"
+  "level": "fragment_read",
+  "artifact": "papers/krakauer20-iti.xml",
+  "bytes": 417896,
+  "sha256": "0c9c2105544f69e357141d367789b53fb6e7519db5a6fc49779f4ff84a142020",
+  "retrieved_at": "2026-11-28T07:10:00Z",
+  "via": "europepmc-oa-fulltext",
+  "via_detail": "europepmc-oa-fulltext: papers/krakauer20-iti.xml (Krakauer, Flack & Bertschinger 2020, Theory Biosci 139:358-368, PMC7244620, doi:10.1007/s12064-020-00313-7); тот же артефакт, что у L-017; цитаты «temporal integrity», «rigorous quantitative methods», «propagate» сверены в файле"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "formalism"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3635,15 +3641,14 @@ x(t) ∈ K}`»; `x₀` **viable** in `K` если возможно **остав�
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** Krakauer, Flack & Bertschinger (2020), «The information theory of individuality», Theory in Biosciences,
 doi:10.1007/s12064-020-00313-7; препринт arXiv:1412.2447; обзор SFI (2020).
 **Ссылка.** https://link.springer.com/article/10.1007/s12064-020-00313-7 ; https://arxiv.org/abs/1412.2447
-**Проверено.** **аннотация** (PMC-версия не открылась: SSRF).
+**фрагмент** papers/krakauer20-iti.xml (JATS full-text, PMC7244620, sha256 0c9c2105…, 2026-11-28; тот же артефакт, что у L-017); «individuals are aggregates that preserve a measure of temporal integrity, i.e., “propagate” information» и «few rigorous quantitative methods» сверены дословно.
 **Утверждение (цитаты).** «There is little agreement about what individuals are and **few rigorous quantitative
 methods** for their identification. Here, we propose that individuals are aggregates that **preserve a measure of
 temporal integrity**, i.e., “propagate” in time». И: индивидуальность **непрерывна, а не бинарна, вложена, возможна на
@@ -3895,17 +3900,23 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://royalsocietypublishing.org/doi/abs/10.1098/rspb.2019.2070"
+  "level": "fragment_read",
+  "artifact": "papers/haaland19-grain-bethedging.xml",
+  "bytes": 96907,
+  "sha256": "7779305046a966a09582ae4f0d71c4386bcb9bbae1763d0dd1cfecb122fd1525",
+  "retrieved_at": "2026-11-28T07:10:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC6939271 BioC full-text XML (Haaland, Wright & Ratikainen 2019, Proc R Soc B 286:20192070, doi:10.1098/rspb.2019.2070); «multiplicative fitness accumulation, caused by coarser environmental grain and fewer decision events… favours CBH» сверено дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3916,15 +3927,14 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** «Bet-hedging across generations can affect the evolution of variance-sensitive strategies within generations»
 (2019), Proc. R. Soc. B 286:20192070, doi:10.1098/rspb.2019.2070.
 **Ссылка.** https://royalsocietypublishing.org/doi/abs/10.1098/rspb.2019.2070
-**Проверено.** **аннотация.**
+**фрагмент** PMC6939271 BioC XML (papers/haaland19-grain-bethedging.xml, sha256 77793050…, 2026-11-28); «multiplicative fitness accumulation, caused by coarser environmental grain and fewer decision events selection, favours CBH via greater variance aversion» сверено дословно — зерно среды и число решений действительно переключают режим bet-hedging.
 **Утверждение (пересказ).** **Мультипликативное** накопление приспособленности (крупное зерно среды, мало независимых
 решений) благоприятствует **консервативному** bet-hedging; **аддитивное** (много независимых решений) — стратегиям,
 чувствительным к дисперсии **внутри** поколения.
@@ -3950,17 +3960,23 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://www.mdpi.com/2075-1729/15/5/724"
+  "level": "fragment_read",
+  "artifact": "papers/taneja25-protocell-dynamics.xml",
+  "bytes": 115354,
+  "sha256": "2d2e97592b770a62c8855beb79472305f745820fc430ffc38e6d4066729e3b1d",
+  "retrieved_at": "2026-11-28T07:10:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC12113545 BioC full-text XML (Taneja & Higgs 2025, Life 15:724, doi:10.3390/life15050724); «volume growth via osmosis», «membrane growth rate depends on the external lipid concentration and on the tension» сверены дословно; arXiv:1901.04406 — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3971,8 +3987,7 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
@@ -3980,7 +3995,7 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
 (2025), Life 15(5):724, doi:10.3390/life15050724; «Dynamics of growth and form in prebiotic vesicles» (2019),
 arXiv:1901.04406.
 **Ссылка.** https://www.mdpi.com/2075-1729/15/5/724 ; https://arxiv.org/pdf/1901.04406
-**Проверено.** **аннотация.**
+**фрагмент** PMC12113545 BioC XML (papers/taneja25-protocell-dynamics.xml, sha256 2d2e9759…, 2026-11-28); «autocatalytic reaction drives volume growth via osmosis. Membrane area grows due to addition of lipids from the environment. The membrane growth rate depends on the external lipid concentration and on the tension in the membrane» сверено дословно; препринт arXiv:1901.04406 — вторые руки.
 **Утверждение (цитаты).** «The autocatalytic reaction drives volume growth **via osmosis**. Membrane area grows due to
 addition of lipids from the environment. **The membrane growth rate depends on the external** [lipid]». В препринте:
 динамика определяется **встраиванием амфифилов**, **потоком жидкости через мембрану** и **упругими деформациями**.
@@ -4006,17 +4021,23 @@ addition of lipids from the environment. **The membrane growth rate depends on t
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://www.nature.com/articles/s41598-017-02799-6"
+  "level": "fragment_read",
+  "artifact": "papers/piedrafita17-permeability.xml",
+  "bytes": 70595,
+  "sha256": "09fcdf7e1ac44b546427a66475b32c0908b4d607f379c1b349b3b99f485716f4",
+  "retrieved_at": "2026-11-28T07:10:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC5466667 BioC full-text XML (Piedrafita, Monnard & Mavelli 2017, Sci Rep, doi:10.1038/s41598-017-02799-6); «critical amphiphile concentration for vesicle formation (cvc)» и зависимость устойчивости от состава липидов сверены дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -4027,15 +4048,14 @@ addition of lipids from the environment. **The membrane growth rate depends on t
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** «Permeability-driven selection in a semi-empirical protocell model: the roots of prebiotic systems evolution»
 (2017), Scientific Reports, doi:10.1038/s41598-017-02799-6.
 **Ссылка.** https://www.nature.com/articles/s41598-017-02799-6
-**Проверено.** **аннотация.**
+**фрагмент** PMC5466667 BioC XML (papers/piedrafita17-permeability.xml, sha256 09fcdf7e…, 2026-11-28); «critical amphiphile concentration for vesicle formation (cvc)» и «vesicle robustness increased with the content in one or the other fatty-acid derivative» сверено дословно.
 **Утверждение (пересказ).** Устойчивость везикулы зависит от **состава липидов**: есть **критическая концентрация
 амфифила** для образования везикулы (`cvc`), и проницаемость связана с составом; отбор по проницаемости действует как
 эволюционный фактор.
@@ -4060,17 +4080,23 @@ addition of lipids from the environment. **The membrane growth rate depends on t
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://doi.org/10.3390/life11090966"
+  "level": "fragment_read",
+  "artifact": "papers/higgs21-metabolism-criteria.xml",
+  "bytes": 156085,
+  "sha256": "784726251ebc6b5b6c0a89284a8fb85cd564f71da3adcbeaef113aefa297eb1f",
+  "retrieved_at": "2026-11-28T07:10:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC8469938 BioC full-text XML (Higgs 2021, Life 11:966, doi:10.3390/life11090966); критерии «metabolism… support growth and division of protocells» подтверждены по заголовку/аннотации/введению"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -4081,15 +4107,14 @@ addition of lipids from the environment. **The membrane growth rate depends on t
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** «When Is a Reaction Network a Metabolism? Criteria for Simple Metabolisms That Support Growth and Division of
 Protocells» (2021), Life 11(9):966, doi:10.3390/life11090966.
 **Ссылка.** https://doi.org/10.3390/life11090966
-**Проверено.** **аннотация.**
+**фрагмент** PMC8469938 BioC XML (papers/higgs21-metabolism-criteria.xml, sha256 78472625…, 2026-11-28); заголовок «Criteria for Simple Metabolisms That Support Growth and Division of Protocells» и abstract подтверждают заявленный критерий на сеть с ростом и делением.
 **Утверждение (пересказ).** Сформулированы **критерии**, при которых реакционная сеть является метаболизмом, способным
 поддерживать **рост и деление** протоклетки; рост площади мембраны связан с синтезом липида.
 **Что даёт нам.** Прямой конкурент нашему `F-022` (замыкание как граф): у них **критерий на сеть** с требованием роста
@@ -4711,17 +4736,23 @@ appear multiple times but still have distinct identities because their dependenc
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://www.nature.com/articles/s41540-026-00718-y"
+  "level": "fragment_read",
+  "artifact": "papers/mcshaffrey26-viability.xml",
+  "bytes": 123080,
+  "sha256": "31ce2582f93e27353fc18244ef18b8ce52ba7dadfaecd62defcb5ad09c7bafed",
+  "retrieved_at": "2026-11-28T07:10:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC13280017 BioC full-text XML (McShaffrey, Agmon & Beer 2026, npj Syst Biol Appl, doi:10.1038/s41540-026-00718-y); «Computational biology needs a theory of viability that confronts the life-death boundary» сверено дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -4732,15 +4763,14 @@ appear multiple times but still have distinct identities because their dependenc
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** «Matters of life and death in computational cell biology» (2026), npj Systems Biology and Applications,
 doi:10.1038/s41540-026-00718-y.
 **Ссылка.** https://www.nature.com/articles/s41540-026-00718-y
-**Проверено.** **аннотация.**
+**фрагмент** PMC13280017 BioC XML (papers/mcshaffrey26-viability.xml, sha256 31ce2582…, 2026-11-28); «we lack principles for how dynamics interact with them… Computational biology needs a theory of viability that confronts the life-death boundary» сверено дословно.
 **Утверждение (пересказ).** «Many cell models deal with constraints for life's persistence, yet we lack **principles**
 for how dynamics interact with them… **Computational biology needs a theory of viability** that confronts the life–death
 boundary».
@@ -5445,17 +5475,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-21T21:55:51Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1073/pnas.2400008121"
+  "level": "fragment_read",
+  "artifact": "papers/biba24-asymmetric-rk.xml",
+  "bytes": 84278,
+  "sha256": "77ea6a7f4a12efbcd072f9825ec59dda53a063bd937b68860ab6f3f50533d39d",
+  "retrieved_at": "2026-11-28T07:10:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC11145259 BioC full-text XML (Biba, Wolf, Koonin & Rochman 2024, PNAS, doi:10.1073/pnas.2400008121); заголовок и significance подтверждают баланс асимметричного распределения и ремонта повреждений как r/K-стратегию"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "significance"
+   }
+  ]
  },
  "abstract_sha256": "ebabcff3082d5b89ad953d89a0f66a54e364de056ba8b01e029cb7a08ff6c842",
  "bibliographic": {
@@ -5466,12 +5502,11 @@ MODES:                   набор из нескольких метрик ди�
  "legacy": false,
  "legacy_reason": null,
  "downgrade_reason": null
-}
-```
+}```
 
 **Кто.** Balance between asymmetric allocation and repair of somatic damage in unicellular life forms as an ancient form of r/K selection (2024). Dmitry Biba; Yuri I. Wolf; Eugene V. Koonin; Nash D. Rochman
 **Ссылка.** https://doi.org/10.1073/pnas.2400008121
-**Проверено.** **аннотация** OpenAlex, 2026-11-21T21:55:51Z, отпечаток есть; фрагмент не читался.
+**фрагмент** PMC11145259 BioC XML (papers/biba24-asymmetric-rk.xml, sha256 77ea6a7f…, 2026-11-28); заголовок «Balance between asymmetric allocation and repair of somatic damage in unicellular life forms as an ancient form of r/K selection» и significance подтверждают утверждение.
 **Утверждение.** компромисс между асимметричным распределением повреждения и его ремонтом как стратегия популяции
 **Что даёт нам.** — (суждение не сделано).
 

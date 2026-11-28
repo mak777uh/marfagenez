@@ -20575,7 +20575,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** (PMC-версия не открылась: SSRF)."
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20591,20 +20591,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** (PMC-версия не открылась: SSRF).",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1007/s12064-020-00313-7",
-          "arxiv": "1412.2447",
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://link.springer.com/article/10.1007/s12064-020-00313-7",
-          "none": false
-        },
+        "locator": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -20838,7 +20830,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20854,20 +20846,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1098/rspb.2019.2070",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://royalsocietypublishing.org/doi/abs/10.1098/rspb.2019.2070",
-          "none": false
-        },
+        "locator": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -20895,7 +20879,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20911,20 +20895,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.3390/life15050724",
-          "arxiv": "1901.04406",
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://www.mdpi.com/2075-1729/15/5/724",
-          "none": false
-        },
+        "locator": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -20952,7 +20928,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20968,20 +20944,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1038/s41598-017-02799-6",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://www.nature.com/articles/s41598-017-02799-6",
-          "none": false
-        },
+        "locator": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -21008,7 +20976,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21024,20 +20992,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.3390/life11090966",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://doi.org/10.3390/life11090966",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "FAST-S7ZQ-01",
           "FAST-S7ZQ-02",
@@ -21596,7 +21556,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21612,20 +21572,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1038/s41540-026-00718-y",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://www.nature.com/articles/s41540-026-00718-y",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "FAST-S7ZE-01",
           "FAST-S7ZE-02",
@@ -21813,7 +21765,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** OpenAlex, 2026-11-21T21:55:51Z, отпечаток есть; фрагмент не читалс"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21829,20 +21781,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** OpenAlex, 2026-11-21T21:55:51Z, отпечаток есть; фрагмент не читалс",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1073/pnas.2400008121",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": "W4398794048",
-          "pmid": null,
-          "url": "https://doi.org/10.1073/pnas.2400008121",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "B7-05-0001",
           "B7-05-0002",
@@ -40678,13 +40622,13 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -40708,6 +40652,11 @@
     },
     {
       "from": "C-002",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
@@ -40715,11 +40664,6 @@
       "from": "C-002",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
-    },
-    {
-      "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -40743,13 +40687,13 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -40898,17 +40842,22 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
-      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
       "from": "F-022",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
+    },
+    {
+      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
+    },
+    {
+      "from": "F-023",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
@@ -40920,11 +40869,6 @@
       "from": "F-023",
       "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
-    },
-    {
-      "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
     },
     {
       "from": "F-025",
@@ -43223,13 +43167,13 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
@@ -43253,17 +43197,17 @@
     },
     {
       "from": "CORR-02",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
       "to": "EV-EXP-PRICE-KINKS",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
