@@ -82,7 +82,8 @@
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -302,7 +303,8 @@ Evolution 49(6): 1055.
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -1168,7 +1170,8 @@ mortality risk it poses is severe enough and its repair does not pose too large 
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -2722,7 +2725,8 @@ doi:10.3390/systems12040111.
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "duplicate_of": "L-005"
-}```
+}
+```
 
 
 
@@ -2782,7 +2786,8 @@ damage rate of **Πλ = 0.10 is less than the threshold of 1/6** (Equation 11)»
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -3421,7 +3426,8 @@ analogues**, and the objective is to minimise free energy consumption given a fr
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -3479,7 +3485,8 @@ Framework for Analyzing Reaction Networks» (2026), doi:10.46793/match.96-3.0342
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -3596,7 +3603,8 @@ x(t) ∈ K}`»; `x₀` **viable** in `K` если возможно **остав�
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -3656,7 +3664,8 @@ x(t) ∈ K}`»; `x₀` **viable** in `K` если возможно **остав�
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -3942,7 +3951,8 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -4002,7 +4012,8 @@ https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01619.x
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -4063,7 +4074,8 @@ addition of lipids from the environment. **The membrane growth rate depends on t
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -4122,7 +4134,8 @@ addition of lipids from the environment. **The membrane growth rate depends on t
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -4396,7 +4409,8 @@ doi:10.31219/osf.io/ea6yx; «Cell size distributions in lineages» (2024), arXiv
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -4619,7 +4633,8 @@ continuous bifurcations» (2024), arXiv:2405.19947.
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -4681,7 +4696,8 @@ https://arxiv.org/abs/2006.03079
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -4793,7 +4809,8 @@ appear multiple times but still have distinct identities because their dependenc
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -4852,7 +4869,8 @@ boundary».
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}```
+}
+```
 
 
 
@@ -5487,7 +5505,8 @@ MODES:                   набор из нескольких метрик ди�
  "legacy": false,
  "legacy_reason": null,
  "downgrade_reason": null
-}```
+}
+```
 
 **Кто.** Synergistic effects of repair, resilience and retention of damage determine the conditions for replicative ageing (2020). Johannes Borgqvist; Niek Welkenhuysen; Marija Cvijović
 **Ссылка.** https://doi.org/10.1038/s41598-020-58444-2
@@ -5537,7 +5556,8 @@ MODES:                   набор из нескольких метрик ди�
  "legacy": false,
  "legacy_reason": null,
  "downgrade_reason": null
-}```
+}
+```
 
 **Кто.** Balance between asymmetric allocation and repair of somatic damage in unicellular life forms as an ancient form of r/K selection (2024). Dmitry Biba; Yuri I. Wolf; Eugene V. Koonin; Nash D. Rochman
 **Ссылка.** https://doi.org/10.1073/pnas.2400008121
@@ -5812,7 +5832,8 @@ MODES:                   набор из нескольких метрик ди�
  "legacy": false,
  "legacy_reason": null,
  "downgrade_reason": null
-}```
+}
+```
 
 **Кто.** Stochastic modeling of aging cells reveals how damage accumulation, repair, and cell-division asymmetry affect clonal senescence and population fitness (2019). Ruijie Song; Murat Açar
 **Ссылка.** https://doi.org/10.1186/s12859-019-2921-3
@@ -6267,7 +6288,8 @@ MODES:                   набор из нескольких метрик ди�
  "legacy": false,
  "legacy_reason": null,
  "downgrade_reason": null
-}```
+}
+```
 
 **Кто.** Damage dynamics and the role of chance in the timing of E. coli cell death (2023). Yifan Yang; Omer Karin; Avi Mayo; Alon Bar; Xiaohu Song; Peipei Chen
 **Ссылка.** https://doi.org/10.1038/s41467-023-37930-x
@@ -6412,3 +6434,55 @@ MODES:                   набор из нескольких метрик ди�
 **Что даёт нам.** Статистический якорь для F-014 (δ_c≈σ_g√(2 ln N)): порог «полосы без возвращающей силы» — оценка характерного максимума, а не постулат; зависимость от N логарифмически-слабая.
 **Что меняет.** Карта: атомы FAST-S8I-01/02 (literature/map/inbox/fast-s8i-*).
 
+---
+
+### L-112 · Constraint closure: ограничения замыкаются во взаимозависимые сети
+
+```json
+{
+ "L": "L-112",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://apsframework.org/articles/constraint-how-organisation-becomes-persistence/",
+  "none": false
+ },
+ "access": {
+  "level": "fragment_read",
+  "artifact": "papers/aps-constraint-closure.html",
+  "bytes": 31542,
+  "sha256": "7188285d8ee30ee9582f6334c475af9cb1952b5e5e22b8e8131a13dd98f9c882",
+  "retrieved_at": "2026-11-28T07:55:00Z",
+  "via": "publisher",
+  "via_detail": "APS Publishing Platform HTML «Constraint — How Organisation Becomes Persistence» (papers/aps-constraint-closure.html); «Constraint closure occurs when constraints form networks of mutual dependence» сверено дословно; артефакт сохранён в батче lit-3 как второй источник L-088, здесь выделена собственная запись-якорь (R9)"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "quoted passages",
+    "to": "quoted passages"
+   }
+  ]
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Constraint — How Organisation Becomes Persistence",
+  "year": 2026,
+  "first_author": null
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** «Constraint — How Organisation Becomes Persistence». APS Publishing Platform, APS Framework.
+**Ссылка.** https://apsframework.org/articles/constraint-how-organisation-becomes-persistence/
+**фрагмент** papers/aps-constraint-closure.html (APS Framework, sha256 7188285d…, 2026-11-28, батч lit-3); «Constraint closure occurs when constraints form networks of mutual dependence» и «Constraint closure explains how organisation becomes self-maintaining» сверены дословно.
+**Утверждение.** Ограничения — не лимиты, а организованные отношения, направляющие активность в сохраняющее непрерывность русло; constraint closure — сеть взаимозависимых ограничений — делает организацию самоподдерживающейся и устойчиво персистентной.
+**Что даёт нам.** — (суждение не сделано).

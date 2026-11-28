@@ -17121,7 +17121,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/ledberg20-damage-mortality.xml",
+          "strength": "moderate",
+          "sha256": "4e6df105baca4f79b1cb5cca59f257ea7cf1a2ba2481b083d8c456170dfa2e4e"
         }
       ],
       "relations": [],
@@ -17130,11 +17136,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/ledberg20-damage-mortality.xml",
+        "artifact_bytes": 117229,
+        "artifact_sha256": "4e6df105baca4f79b1cb5cca59f257ea7cf1a2ba2481b083d8c456170dfa2e4e",
+        "locator": {
+          "doi": "10.1371/journal.pone.0233384",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0233384",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -17330,7 +17344,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/chao10-damage-load.xml",
+          "strength": "moderate",
+          "sha256": "c3415b4c9b29e3d7e0d55b6993ee146eaa586ada6b4eafa31059e773855b93af"
         }
       ],
       "relations": [],
@@ -17339,11 +17359,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/chao10-damage-load.xml",
+        "artifact_bytes": 71241,
+        "artifact_sha256": "c3415b4c9b29e3d7e0d55b6993ee146eaa586ada6b4eafa31059e773855b93af",
+        "locator": {
+          "doi": "10.1371/journal.pgen.1001076",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1001076",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -18224,7 +18252,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/piedrafita10-self-maintaining.xml",
+          "strength": "moderate",
+          "sha256": "8babfe1b4c5c7cba308a7c264d800380ba4b993f59b39f9314cdd53f5921122d"
         }
       ],
       "relations": [],
@@ -18233,11 +18267,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/piedrafita10-self-maintaining.xml",
+        "artifact_bytes": 61959,
+        "artifact_sha256": "8babfe1b4c5c7cba308a7c264d800380ba4b993f59b39f9314cdd53f5921122d",
+        "locator": {
+          "doi": "10.1371/journal.pcbi.1000872",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000872",
+          "none": false
+        },
         "lit_ref": [
           "WIN-L021-01",
           "WIN-L021-02",
@@ -19761,7 +19803,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/chao10-damage-load.xml",
+          "strength": "moderate",
+          "sha256": "c3415b4c9b29e3d7e0d55b6993ee146eaa586ada6b4eafa31059e773855b93af"
         }
       ],
       "relations": [],
@@ -19770,11 +19818,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/chao10-damage-load.xml",
+        "artifact_bytes": 71241,
+        "artifact_sha256": "c3415b4c9b29e3d7e0d55b6993ee146eaa586ada6b4eafa31059e773855b93af",
+        "locator": {
+          "doi": "10.1371/journal.pgen.1001076",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://journals.plos.org/plosgenetics/article/figures?id=10.1371/journal.pgen.1001076",
+          "none": false
+        },
         "lit_ref": [
           "MAIN-P127-01"
         ]
@@ -19797,7 +19853,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/villani24-asym-division.xml",
+          "strength": "moderate",
+          "sha256": "0e446711a71269584791fece2ae03d3aa9eb1100ac98ce777be1f2e4dd8dbf9b"
         }
       ],
       "relations": [],
@@ -19806,11 +19868,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/villani24-asym-division.xml",
+        "artifact_bytes": 94859,
+        "artifact_sha256": "0e446711a71269584791fece2ae03d3aa9eb1100ac98ce777be1f2e4dd8dbf9b",
+        "locator": {
+          "doi": "10.1162/isal_a_00722",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.1162/isal_a_00722",
+          "none": false
+        },
         "lit_ref": [
           "WIN-L052-01",
           "WIN-L052-02",
@@ -20394,7 +20464,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/dittrich05-arxiv-qbio0501016.pdf",
+          "strength": "moderate",
+          "sha256": "729aafad73a495e7dbd8f9b3ef7a18e55b103d80cce60abd44e7f0fcfb629391"
         }
       ],
       "relations": [],
@@ -20403,11 +20479,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/dittrich05-arxiv-qbio0501016.pdf",
+        "artifact_bytes": 192340,
+        "artifact_sha256": "729aafad73a495e7dbd8f9b3ef7a18e55b103d80cce60abd44e7f0fcfb629391",
+        "locator": {
+          "doi": "10.46793/match.96-3.03426",
+          "arxiv": "q-bio/0501016",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://arxiv.org/pdf/q-bio/0501016",
+          "none": false
+        },
         "lit_ref": [
           "FAST-S7Q-01",
           "FAST-S7Q-02",
@@ -20434,7 +20518,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/warren09-fluxnetworks.pdf",
+          "strength": "moderate",
+          "sha256": "e403fd94d8ba8d7e0f7f89abf14465276c53fe16367046af3bebd21c58e355ab"
         }
       ],
       "relations": [],
@@ -20443,11 +20533,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/warren09-fluxnetworks.pdf",
+        "artifact_bytes": 718600,
+        "artifact_sha256": "e403fd94d8ba8d7e0f7f89abf14465276c53fe16367046af3bebd21c58e355ab",
+        "locator": {
+          "doi": "10.1371/journal.pcbi.1003195",
+          "arxiv": "0808.0321",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://arxiv.org/abs/0808.0321",
+          "none": false
+        },
         "lit_ref": [
           "B26-01-0001",
           "B26-01-0009",
@@ -20520,7 +20618,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/mcshaffrey26-viability-space.html",
+          "strength": "moderate",
+          "sha256": "6e123b909b50112739d889fb909c89770812a2c8767d97d6e5dc4f7aa8e09e1b"
         }
       ],
       "relations": [],
@@ -20529,11 +20633,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/mcshaffrey26-viability-space.html",
+        "artifact_bytes": 500324,
+        "artifact_sha256": "6e123b909b50112739d889fb909c89770812a2c8767d97d6e5dc4f7aa8e09e1b",
+        "locator": {
+          "doi": null,
+          "arxiv": "2605.16753",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://arxiv.org/html/2605.16753",
+          "none": false
+        },
         "lit_ref": [
           "FAST-S7ZE-01",
           "FAST-S7ZE-03",
@@ -20559,7 +20671,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/krakauer20-iti.xml",
+          "strength": "moderate",
+          "sha256": "0c9c2105544f69e357141d367789b53fb6e7519db5a6fc49779f4ff84a142020"
         }
       ],
       "relations": [],
@@ -20568,11 +20686,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/krakauer20-iti.xml",
+        "artifact_bytes": 417896,
+        "artifact_sha256": "0c9c2105544f69e357141d367789b53fb6e7519db5a6fc49779f4ff84a142020",
+        "locator": {
+          "doi": "10.1007/s12064-020-00313-7",
+          "arxiv": "1412.2447",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://link.springer.com/article/10.1007/s12064-020-00313-7",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -20814,7 +20940,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/haaland19-grain-bethedging.xml",
+          "strength": "moderate",
+          "sha256": "7779305046a966a09582ae4f0d71c4386bcb9bbae1763d0dd1cfecb122fd1525"
         }
       ],
       "relations": [],
@@ -20823,11 +20955,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/haaland19-grain-bethedging.xml",
+        "artifact_bytes": 96907,
+        "artifact_sha256": "7779305046a966a09582ae4f0d71c4386bcb9bbae1763d0dd1cfecb122fd1525",
+        "locator": {
+          "doi": "10.1098/rspb.2019.2070",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://royalsocietypublishing.org/doi/abs/10.1098/rspb.2019.2070",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -20863,7 +21003,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/taneja25-protocell-dynamics.xml",
+          "strength": "moderate",
+          "sha256": "2d2e97592b770a62c8855beb79472305f745820fc430ffc38e6d4066729e3b1d"
         }
       ],
       "relations": [],
@@ -20872,11 +21018,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/taneja25-protocell-dynamics.xml",
+        "artifact_bytes": 115354,
+        "artifact_sha256": "2d2e97592b770a62c8855beb79472305f745820fc430ffc38e6d4066729e3b1d",
+        "locator": {
+          "doi": "10.3390/life15050724",
+          "arxiv": "1901.04406",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://www.mdpi.com/2075-1729/15/5/724",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -20912,7 +21066,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/piedrafita17-permeability.xml",
+          "strength": "moderate",
+          "sha256": "09fcdf7e1ac44b546427a66475b32c0908b4d607f379c1b349b3b99f485716f4"
         }
       ],
       "relations": [],
@@ -20921,11 +21081,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/piedrafita17-permeability.xml",
+        "artifact_bytes": 70595,
+        "artifact_sha256": "09fcdf7e1ac44b546427a66475b32c0908b4d607f379c1b349b3b99f485716f4",
+        "locator": {
+          "doi": "10.1038/s41598-017-02799-6",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://www.nature.com/articles/s41598-017-02799-6",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -20960,7 +21128,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/higgs21-metabolism-criteria.xml",
+          "strength": "moderate",
+          "sha256": "784726251ebc6b5b6c0a89284a8fb85cd564f71da3adcbeaef113aefa297eb1f"
         }
       ],
       "relations": [],
@@ -20969,11 +21143,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/higgs21-metabolism-criteria.xml",
+        "artifact_bytes": 156085,
+        "artifact_sha256": "784726251ebc6b5b6c0a89284a8fb85cd564f71da3adcbeaef113aefa297eb1f",
+        "locator": {
+          "doi": "10.3390/life11090966",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://doi.org/10.3390/life11090966",
+          "none": false
+        },
         "lit_ref": [
           "FAST-S7ZQ-01",
           "FAST-S7ZQ-02",
@@ -21200,7 +21382,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/mitocw-12.006j-lec2-3.pdf",
+          "strength": "moderate",
+          "sha256": "d5051fc7d2e80506592b6ca7a54ee6ce21904dcc4b53e7d747a35bf512f1accd"
         }
       ],
       "relations": [],
@@ -21209,11 +21397,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/mitocw-12.006j-lec2-3.pdf",
+        "artifact_bytes": 645234,
+        "artifact_sha256": "d5051fc7d2e80506592b6ca7a54ee6ce21904dcc4b53e7d747a35bf512f1accd",
+        "locator": {
+          "doi": "10.1142/S0218127417501450",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://ocw.mit.edu/courses/12-006j-nonlinear-dynamics-chaos-fall-2022/mit12_006jf22_lec2-3.pdf",
+          "none": false
+        },
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -21402,7 +21598,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/stepney-oee4-oe-metrics.pdf",
+          "strength": "moderate",
+          "sha256": "b588a55930a926f0a5cdbacc6108bc31248726b25de0a2d913f1b47a0cd6b544"
         }
       ],
       "relations": [],
@@ -21411,11 +21613,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null
+        "level_kind": "fragment_read",
+        "artifact": "papers/stepney-oee4-oe-metrics.pdf",
+        "artifact_bytes": 255823,
+        "artifact_sha256": "b588a55930a926f0a5cdbacc6108bc31248726b25de0a2d913f1b47a0cd6b544",
+        "locator": {
+          "doi": null,
+          "arxiv": "2006.03079",
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "http://workshops.alife.org/oee4/papers/stepney-oee4-camera-ready.pdf",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -21435,7 +21645,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/stanley-oee2-subjectivity.pdf",
+          "strength": "moderate",
+          "sha256": "cdf2e9b66e0109fe0745a8c586558df641d523ea3c961791d695e79d7ec26998"
         }
       ],
       "relations": [],
@@ -21444,11 +21660,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null
+        "level_kind": "fragment_read",
+        "artifact": "papers/stanley-oee2-subjectivity.pdf",
+        "artifact_bytes": 32885,
+        "artifact_sha256": "cdf2e9b66e0109fe0745a8c586558df641d523ea3c961791d695e79d7ec26998",
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "http://workshops.alife.org/oee2/abstracts/stanley-soros-oee2-submission.pdf",
+          "none": false
+        }
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -21516,7 +21740,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/mcshaffrey26-viability.xml",
+          "strength": "moderate",
+          "sha256": "31ce2582f93e27353fc18244ef18b8ce52ba7dadfaecd62defcb5ad09c7bafed"
         }
       ],
       "relations": [],
@@ -21525,11 +21755,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/mcshaffrey26-viability.xml",
+        "artifact_bytes": 123080,
+        "artifact_sha256": "31ce2582f93e27353fc18244ef18b8ce52ba7dadfaecd62defcb5ad09c7bafed",
+        "locator": {
+          "doi": "10.1038/s41540-026-00718-y",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://www.nature.com/articles/s41540-026-00718-y",
+          "none": false
+        },
         "lit_ref": [
           "FAST-S7ZE-01",
           "FAST-S7ZE-02",
@@ -21558,7 +21796,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/aps-viability-survival.html",
+          "strength": "moderate",
+          "sha256": "ba42782e4321e7f3a9d2dfda0282cbb533a7163e484620b8b2b6f04655c4027b"
         }
       ],
       "relations": [],
@@ -21567,11 +21811,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/aps-viability-survival.html",
+        "artifact_bytes": 51921,
+        "artifact_sha256": "ba42782e4321e7f3a9d2dfda0282cbb533a7163e484620b8b2b6f04655c4027b",
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://apsframework.org/articles/viability-the-organising-principle-of-biological-persistence/",
+          "none": false
+        },
         "lit_ref": [
           "FAST-S7ZE-03",
           "V-0001"
@@ -21680,7 +21932,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/borgqvist20-repair-resilience.xml",
+          "strength": "moderate",
+          "sha256": "259d798a402f4889092dbe5db03d5a5fe6475e955c98533a1af71f9dc402bf0f"
         }
       ],
       "relations": [],
@@ -21689,11 +21947,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/borgqvist20-repair-resilience.xml",
+        "artifact_bytes": 108090,
+        "artifact_sha256": "259d798a402f4889092dbe5db03d5a5fe6475e955c98533a1af71f9dc402bf0f",
+        "locator": {
+          "doi": "10.1038/s41598-020-58444-2",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": "W3003628019",
+          "pmid": null,
+          "url": "https://doi.org/10.1038/s41598-020-58444-2",
+          "none": false
+        },
         "lit_ref": [
           "FT-0003",
           "FT-0004"
@@ -21717,7 +21983,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/biba24-asymmetric-rk.xml",
+          "strength": "moderate",
+          "sha256": "77ea6a7f4a12efbcd072f9825ec59dda53a063bd937b68860ab6f3f50533d39d"
         }
       ],
       "relations": [],
@@ -21726,11 +21998,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/biba24-asymmetric-rk.xml",
+        "artifact_bytes": 84278,
+        "artifact_sha256": "77ea6a7f4a12efbcd072f9825ec59dda53a063bd937b68860ab6f3f50533d39d",
+        "locator": {
+          "doi": "10.1073/pnas.2400008121",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": "W4398794048",
+          "pmid": null,
+          "url": "https://doi.org/10.1073/pnas.2400008121",
+          "none": false
+        },
         "lit_ref": [
           "B7-05-0001",
           "B7-05-0002",
@@ -21994,7 +22274,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/song19-senescence.xml",
+          "strength": "moderate",
+          "sha256": "9c9af3b9fdc9658b27b062cf19a3a76cca14c61dfc9876e625665014050cf41d"
         }
       ],
       "relations": [],
@@ -22003,11 +22289,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/song19-senescence.xml",
+        "artifact_bytes": 76286,
+        "artifact_sha256": "9c9af3b9fdc9658b27b062cf19a3a76cca14c61dfc9876e625665014050cf41d",
+        "locator": {
+          "doi": "10.1186/s12859-019-2921-3",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": "W2961272871",
+          "pmid": null,
+          "url": "https://doi.org/10.1186/s12859-019-2921-3",
+          "none": false
+        },
         "lit_ref": [
           "FAST-S7ZP-01",
           "FAST-S7ZP-02",
@@ -22452,7 +22746,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/yang23-damage-chance.xml",
+          "strength": "moderate",
+          "sha256": "b07e750ab6bb9474f18e4f135c854a21bea43ccea8444d08ac5ec03513e43799"
         }
       ],
       "relations": [],
@@ -22461,11 +22761,19 @@
         "license": "see source",
         "accessed_at": "2026-11-20",
         "registry_level": "вторые руки",
-        "level_kind": "secondary_only",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
-        "locator": null,
+        "level_kind": "fragment_read",
+        "artifact": "papers/yang23-damage-chance.xml",
+        "artifact_bytes": 88542,
+        "artifact_sha256": "b07e750ab6bb9474f18e4f135c854a21bea43ccea8444d08ac5ec03513e43799",
+        "locator": {
+          "doi": "10.1038/s41467-023-37930-x",
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": "W4366278330",
+          "pmid": null,
+          "url": "https://doi.org/10.1038/s41467-023-37930-x",
+          "none": false
+        },
         "lit_ref": [
           "A-0004"
         ]
@@ -22608,6 +22916,53 @@
           "openalex": null,
           "pmid": null,
           "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication866.pdf",
+          "none": false
+        }
+      },
+      "created_at": "2026-11-20",
+      "updated_at": "2026-11-21"
+    },
+    {
+      "id": "L-112",
+      "kind": "claim",
+      "text": "Constraint closure: ограничения замыкаются во взаимозависимые сети — Ограничения — не лимиты, а организованные отношения, направляющие активность в сохраняющее непрерывность русло; constraint closure — сеть взаимозависимых ограничений — делает организацию самоподдерживающейся и устойчиво персистентной.",
+      "context": {
+        "scope": "literature record from ELEPHANT-LITERATURE",
+        "parameters": "see registry",
+        "conditions": "вторые руки"
+      },
+      "epistemic": "hypothesis",
+      "provenance": "extracted",
+      "evidence": [
+        {
+          "kind": "literature",
+          "ref": "docs/ELEPHANT-LITERATURE.md",
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/aps-constraint-closure.html",
+          "strength": "moderate",
+          "sha256": "7188285d8ee30ee9582f6334c475af9cb1952b5e5e22b8e8131a13dd98f9c882"
+        }
+      ],
+      "relations": [],
+      "data": {
+        "source": "docs/ELEPHANT-LITERATURE.md",
+        "license": "see source",
+        "accessed_at": "2026-11-20",
+        "registry_level": "вторые руки",
+        "level_kind": "fragment_read",
+        "artifact": "papers/aps-constraint-closure.html",
+        "artifact_bytes": 31542,
+        "artifact_sha256": "7188285d8ee30ee9582f6334c475af9cb1952b5e5e22b8e8131a13dd98f9c882",
+        "locator": {
+          "doi": null,
+          "arxiv": null,
+          "arxiv_version": null,
+          "openalex": null,
+          "pmid": null,
+          "url": "https://apsframework.org/articles/constraint-how-organisation-becomes-persistence/",
           "none": false
         }
       },
@@ -40561,7 +40916,7 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -40571,7 +40926,7 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
@@ -43106,7 +43461,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -43116,7 +43471,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
