@@ -4206,31 +4206,31 @@ sizer накапливает ошибку.
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": "https://doi.org/10.31219/osf.io/ea6yx",
+  "url": "https://arxiv.org/abs/2411.08327",
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://doi.org/10.31219/osf.io/ea6yx"
+  "level": "fragment_read",
+  "artifact": "papers/ocal24-arxiv-2411.08327.pdf",
+  "bytes": 629581,
+  "sha256": "76ec39349b25061244547c21b6e60a99d5ba2f86cbc12acae9b035d9f9cdafe4",
+  "retrieved_at": "2026-11-28T05:30:02Z",
+  "via": "arxiv-pdf",
+  "via_detail": "arXiv:2411.08327 PDF (Öçal & Stumpf, Cell size distributions in lineages, 10 стр.); OSF-препринт doi:10.31219/osf.io/ea6yx (источник CV²=ln4−1) остаётся на уровне аннотации — фрагментный уровень по arXiv-источнику"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "page", "from": "1", "to": "10"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
-  "title": "Statistical properties of dynamical models underlying cell size homeostasis",
+  "title": "Предсказание adder в числах: `CV² = ln 4 − 1`",
   "year": 2023,
   "first_author": null
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
+ "downgrade_reason": null
 }
 ```
 
@@ -4239,7 +4239,7 @@ sizer накапливает ошибку.
 **Кто.** «Statistical properties of dynamical models underlying cell size homeostasis» (2023),
 doi:10.31219/osf.io/ea6yx; «Cell size distributions in lineages» (2024), arXiv:2411.08327.
 **Ссылка.** https://doi.org/10.31219/osf.io/ea6yx ; https://arxiv.org/abs/2411.08327
-**Проверено.** **аннотация/фрагмент.**
+**Проверено.** **фрагмент (arXiv, полный PDF)** papers/ocal24-arxiv-2411.08327.pdf (sha256 76ec3934…, 2026-11-28): стационарное распределение размеров при рождении, inspection paradox, моментные тождества Eqs.(12)–(15), pl(V)=Fb(V)−Fb(V/2) для симметричного деления, timer исключён, multi-generational memory допустима; OSF-препринт (doi:10.31219/osf.io/ea6yx) — только аннотация.
 **Утверждение (цитаты).** При `β = 1/2` с вероятностью один «`CV²_s = log(4) − 1`»; в линиях измеряют
 `CV_h ≈ 0.07–0.09` — «small amount of stochasticity at division».
 **Что даёт нам.** **Готовое число для сверки:** `ln 4 − 1 = 0.386` — дисперсия, которую даёт чистый adder. Если наш
@@ -6213,3 +6213,51 @@ MODES:                   набор из нескольких метрик ди�
 **Проверено.** **фрагмент** PMC XML, 2026-11-27T21:12:21Z, abstract+model description+Fig.1+Table 1.
 **Утверждение.** A Dynamic Energy Budget (DEB) Model for the Keystone Predator Pisaster ochraceus (2014) — DEB-модель ключевого хищника: κ=0.58±0.07 на соматическую ветвь, shrinkage при голодании
 **Что даёт нам.** — (суждение не сделано).
+
+
+### L-111 · Extreme Value Theory and Applications (NIST SP 866)
+
+```json
+{
+ "L": "L-111",
+ "locator": {
+  "doi": null,
+  "arxiv": null,
+  "arxiv_version": null,
+  "openalex": null,
+  "pmid": null,
+  "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication866.pdf",
+  "none": false
+ },
+ "access": {
+  "level": "fragment_read",
+  "artifact": "papers/nist-sp866-evt.pdf",
+  "bytes": 16561869,
+  "sha256": "a67e3adac28d7ae9825e2fbdcfab34994c3041c58cf4b7fb499e52c83ba8ded7",
+  "retrieved_at": "2026-11-28T05:30:38Z",
+  "via": "publisher-pdf",
+  "via_detail": "NIST Special Publication 866, proc. Conf. on Extreme Value Theory and Applications vol.3 (Gaithersburg 1993, eds Galambos/Lechner/Simiu), nvlpubs.nist.gov; прочитаны разделы Statistics of Extremes (domain of attraction, characteristic largest value) и раздел нормировки Gumbel-экстремумов в pitting-приложении; OCR-слой скана местами повреждён"
+ },
+ "inspection": {
+  "scope": "partial",
+  "reviewed_ranges": [{"type": "section", "from": "Statistics of Extremes (domain of attraction)", "to": "pitting-depth normalization eq.(16)"}]
+ },
+ "abstract_sha256": null,
+ "bibliographic": {
+  "title": "Extreme Value Theory and Applications (NIST SP 866)",
+  "year": 1994,
+  "first_author": "Galambos, Lechner & Simiu (eds)"
+ },
+ "legacy": false,
+ "legacy_reason": null,
+ "downgrade_reason": null
+}
+```
+
+**Кто.** NIST Special Publication 866 — сборник трудов конференции по EVT (том 3, 1994); статьи Smith (domain of attraction) и др.
+**Ссылка.** https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication866.pdf
+**Проверено.** **фрагмент** PDF, 2026-11-28, разделы EVT/домены притяжения и нормировка экстремумов.
+**Утверждение (по фрагментам).** Наибольшее из n независимых наблюдений имеет CDF [F_X(x)]^n и при n→∞ сходится к одному из трёх доменов (Gumbel/Fréchet/Weibull); характерное наибольшее значение u_n определяется условием F_X(u_n)=1−1/n; константа нормировки для Gumbel-экстремумов записана как a_i=√(2 ln n).
+**Что даёт нам.** Статистический якорь для F-014 (δ_c≈σ_g√(2 ln N)): порог «полосы без возвращающей силы» — оценка характерного максимума, а не постулат; зависимость от N логарифмически-слабая.
+**Что меняет.** Карта: атомы FAST-S8I-01/02 (literature/map/inbox/fast-s8i-*).
+
