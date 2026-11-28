@@ -737,27 +737,65 @@ class ControlPlane:
 
     # ------------------------------------------------------------- claim
     def _dependency_satisfied(self, c, dep: sqlite3.Row, now_mono: float) -> bool:
-        row = c.execute(
-            "SELECT status FROM tasks WHERE id=?", (dep["required_task_id"],)).fetchone()
-        if not row or row["status"] != dep["required_state"]:
+        """A dependency is satisfied by the exact accepted provenance chain.
+
+        'accepted' remains satisfied after later integration. 'integrated' requires
+        an Integration record attached to the same accepted Decision and submission.
+        Legacy databases without v2 provenance fail closed.
+        """
+        required_state = dep["required_state"]
+        if required_state not in ("accepted", "integrated"):
             return False
-        has_links = c.execute(
-            "SELECT 1 FROM sqlite_master WHERE type='table' "
-            "AND name='submission_artifacts'"
-        ).fetchone()
-        if has_links:
-            art = c.execute(
-                "SELECT 1 FROM submission_artifacts sa "
-                "JOIN submissions s ON s.id=sa.submission_id "
-                "WHERE sa.sha256=? AND s.task_id=? AND s.task_version=? "
-                "AND s.status IN ('received','accepted')",
-                (dep["required_artifact_sha256"], dep["required_task_id"],
-                 dep["required_task_version"])).fetchone()
-        else:
-            art = c.execute(
-                "SELECT 1 FROM artifacts WHERE sha256=? AND task_id=?",
-                (dep["required_artifact_sha256"], dep["required_task_id"])).fetchone()
-        return bool(art)
+        required_tables = {
+            "submission_artifacts", "validations", "decisions", "integrations",
+            "task_versions",
+        }
+        present = {
+            row["name"] for row in c.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' "
+                "AND name IN (?,?,?,?,?)",
+                tuple(sorted(required_tables)),
+            )
+        }
+        if present != required_tables:
+            return False
+
+        base = (
+            "SELECT 1 FROM submission_artifacts sa "
+            "JOIN submissions s ON s.id=sa.submission_id "
+            "JOIN task_versions tv ON tv.task_id=s.task_id AND tv.version=s.task_version "
+            "JOIN validations v ON v.submission_id=s.id AND v.bundle_sha256=s.bundle_sha256 "
+            "JOIN decisions dec ON dec.submission_id=s.id AND dec.validation_id=v.id "
+            "WHERE sa.sha256=? AND s.task_id=? AND s.task_version=? "
+            "AND s.task_version_sha256=tv.task_version_sha256 "
+            "AND s.status='accepted' AND v.actor='validation-service' "
+            "AND dec.decision='accepted' AND dec.actor='main' "
+        )
+        params = (
+            dep["required_artifact_sha256"], dep["required_task_id"],
+            dep["required_task_version"],
+        )
+        if required_state == "accepted":
+            return c.execute(base + "LIMIT 1", params).fetchone() is not None
+        integrated = (
+            "JOIN integrations i ON i.submission_id=s.id AND i.decision_id=dec.id "
+            "AND i.status='integrated' AND i.actor='main' "
+            "AND i.head_after IS NOT NULL AND i.finished_at IS NOT NULL "
+        )
+        # The JOIN follows the same submission, validation and Decision as the blob.
+        query = (
+            "SELECT 1 FROM submission_artifacts sa "
+            "JOIN submissions s ON s.id=sa.submission_id "
+            "JOIN task_versions tv ON tv.task_id=s.task_id AND tv.version=s.task_version "
+            "JOIN validations v ON v.submission_id=s.id AND v.bundle_sha256=s.bundle_sha256 "
+            "JOIN decisions dec ON dec.submission_id=s.id AND dec.validation_id=v.id "
+            + integrated
+            + "WHERE sa.sha256=? AND s.task_id=? AND s.task_version=? "
+              "AND s.task_version_sha256=tv.task_version_sha256 "
+              "AND s.status='accepted' AND v.actor='validation-service' "
+              "AND dec.decision='accepted' AND dec.actor='main' LIMIT 1"
+        )
+        return c.execute(query, params).fetchone() is not None
 
     def claim(self, agent_id: str, instance_id: str, department: str,
               idem_key: str, request: dict | None = None,
@@ -800,37 +838,58 @@ class ControlPlane:
                 "WHERE status='claimed' AND lease_id IN "
                 "(SELECT lease_id FROM leases WHERE state='expired')", (now_iso,))
             # 3. кандидат: ready с выполненными зависимостями
-            has_submission_artifacts = c.execute(
-                "SELECT 1 FROM sqlite_master WHERE type='table' "
-                "AND name='submission_artifacts'"
-            ).fetchone()
-            if has_submission_artifacts:
+            provenance_tables = {
+                "submission_artifacts", "validations", "decisions", "integrations",
+                "task_versions",
+            }
+            present_tables = {
+                r["name"] for r in c.execute(
+                    "SELECT name FROM sqlite_master WHERE type='table' "
+                    "AND name IN (?,?,?,?,?)",
+                    tuple(sorted(provenance_tables)),
+                )
+            }
+            if present_tables == provenance_tables:
                 artifact_dependency_sql = (
-                    "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id "
-                    "AND NOT EXISTS (SELECT 1 FROM submission_artifacts sa "
+                    "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id AND ("
+                    "(d.required_state='accepted' AND NOT EXISTS ("
+                    "SELECT 1 FROM submission_artifacts sa "
                     "JOIN submissions s ON s.id=sa.submission_id "
+                    "JOIN task_versions tv ON tv.task_id=s.task_id AND tv.version=s.task_version "
+                    "JOIN validations v ON v.submission_id=s.id AND v.bundle_sha256=s.bundle_sha256 "
+                    "JOIN decisions dec ON dec.submission_id=s.id AND dec.validation_id=v.id "
                     "WHERE sa.sha256=d.required_artifact_sha256 "
                     "AND s.task_id=d.required_task_id "
                     "AND s.task_version=d.required_task_version "
-                    "AND s.status IN ('received','accepted'))) "
+                    "AND s.task_version_sha256=tv.task_version_sha256 "
+                    "AND s.status='accepted' AND v.actor='validation-service' "
+                    "AND dec.decision='accepted' AND dec.actor='main')) "
+                    "OR (d.required_state='integrated' AND NOT EXISTS ("
+                    "SELECT 1 FROM submission_artifacts sa "
+                    "JOIN submissions s ON s.id=sa.submission_id "
+                    "JOIN task_versions tv ON tv.task_id=s.task_id AND tv.version=s.task_version "
+                    "JOIN validations v ON v.submission_id=s.id AND v.bundle_sha256=s.bundle_sha256 "
+                    "JOIN decisions dec ON dec.submission_id=s.id AND dec.validation_id=v.id "
+                    "JOIN integrations i ON i.submission_id=s.id AND i.decision_id=dec.id "
+                    "WHERE sa.sha256=d.required_artifact_sha256 "
+                    "AND s.task_id=d.required_task_id "
+                    "AND s.task_version=d.required_task_version "
+                    "AND s.task_version_sha256=tv.task_version_sha256 "
+                    "AND s.status='accepted' AND v.actor='validation-service' "
+                    "AND dec.decision='accepted' AND dec.actor='main' "
+                    "AND i.status='integrated' AND i.actor='main' "
+                    "AND i.head_after IS NOT NULL AND i.finished_at IS NOT NULL)) "
+                    "OR d.required_state NOT IN ('accepted','integrated'))) "
                 )
             else:
+                # A legacy DB has no validated submission->decision->integration
+                # provenance. It must not satisfy a dependency from metadata alone.
                 artifact_dependency_sql = (
-                    "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id "
-                    "AND NOT EXISTS (SELECT 1 FROM artifacts a "
-                    "WHERE a.sha256=d.required_artifact_sha256 "
-                    "AND a.task_id=d.required_task_id)) "
-                    "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id "
-                    "AND NOT EXISTS (SELECT 1 FROM submissions s "
-                    "WHERE s.task_id=d.required_task_id "
-                    "AND s.task_version=d.required_task_version AND s.status='received')) "
+                    "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id) "
                 )
             query = (
                 "SELECT t.id, t.current_version FROM tasks t "
                 "WHERE t.department=? AND t.status='ready' "
-                "AND NOT EXISTS (SELECT 1 FROM dependencies d WHERE d.task_id=t.id "
-                "AND NOT EXISTS (SELECT 1 FROM tasks rt WHERE rt.id=d.required_task_id "
-                "AND rt.status=d.required_state)) "
                 + artifact_dependency_sql
                 + "ORDER BY t.priority DESC, t.created_at ASC LIMIT 1"
             )
@@ -1103,10 +1162,17 @@ class ControlPlane:
             if payload["task_version_sha256"] != expected_task_sha:
                 raise BadRequest("submission.task_version_sha256 не соответствует task version")
             cur = c.execute(
-                "SELECT current_version, department FROM tasks WHERE id=?", (task_id,)
+                "SELECT current_version, department, status FROM tasks WHERE id=?", (task_id,)
             ).fetchone()
             if cur is None:
                 raise NotFound(f"нет задачи {task_id}")
+            # This check is linearized with cancellation by the surrounding
+            # BEGIN IMMEDIATE transaction. A preflight check in ControlPlane2
+            # alone had a TOCTOU gap before this transaction acquired its lock.
+            if cur["status"] == "cancellation_requested":
+                raise BadRequest(
+                    "задача отменяется main: сначала acknowledge_cancel; "
+                    "submit после подтверждения уйдёт в карантин late")
             # Department-scoped halt/blocks_submit messages apply to the
             # department of the leased task, not the literal None scope.
             blocking = self._blocking_submit_messages(

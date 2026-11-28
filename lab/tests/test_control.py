@@ -183,6 +183,7 @@ class TestPublishAndIdempotency(Base):
 
 
 class TestClaimFencing(Base):
+    control_plane_class = ControlPlane2
     def test_single_task_ten_threads_one_winner(self):
         """§23.2: 10 агентов одновременно claim одну задачу — ровно один winner."""
         self.cp.publish_task(make_task("KG-2026-0002"))
@@ -294,42 +295,94 @@ class TestClaimFencing(Base):
             self.cp.heartbeat(l1["lease_id"], l1["lease_epoch"], "fast-01")
         self.assertInvariants()
 
-    def test_dependencies_gate_claim(self):
-        """Зависимость: задача не выдаётся, пока required не integrated + артефакт."""
-        self.cp.publish_task(make_task("KG-2026-0100"))
+    def test_dependencies_require_accepted_source_and_integration(self):
+        """A received blob is insufficient; the exact accepted Decision and Integration unlock it."""
+        source_id = "KG-2026-0100"
+        dependent_id = "KG-2026-0101"
+        digest_path = "results/dependency.ndjson"
+        self.cp.publish_task(make_task(source_id))
         self.cp.publish_task(make_task(
-            "KG-2026-0101",
-            dependencies=[{"task_id": "KG-2026-0100", "required_task_version": 1,
-                            "required_state": "integrated", "required_artifact_sha256": "e" * 64}]))
-        r = self.cp.claim("fast-01", "i", "knowledge", idem_key="k1")
-        self.assertEqual(r["claimed"]["task_id"], "KG-2026-0100", "зависимая выдана раньше")
-        c = self.db()
-        # интеграция упрощённо: статус integrated, артефакта ещё нет
-        c.execute("UPDATE tasks SET status='integrated' WHERE id='KG-2026-0100'")
-        r2 = self.cp.claim("fast-02", "i2", "knowledge", idem_key="k2")
-        self.assertIsNone(r2["claimed"], "dependency-задача выдана без требуемого артефакта")
-        # появился требуемый артефакт — зависимость удовлетворена
-        digest = "e" * 64
-        c.execute(
-            "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,task_id,created_at)"
-            " VALUES (?,?,?,?,?,?)",
-            (digest, 7, "application/x-ndjson", digest, "KG-2026-0100",
-             "2026-11-26T00:00:00Z"))
-        # аудит 28.11: зависимость требует received-submission нужной версии
-        c.execute(
-            "INSERT INTO submissions (id,task_id,task_version,task_version_sha256,"
-            "attempt_id,lease_id,lease_epoch,agent_id,instance_id,base_commit,"
-            "bundle_sha256,artifacts_json,environment_json,toolchain_json,"
-            "scientific_outcome,parent_submission_id,complied_messages_json,"
-            "submitted_at,status,status_reason) VALUES ("
-            "'SUB-DEP-1','KG-2026-0100',1,'d','a1','l1',0,'fast-00',NULL,'6a9fa461',"
-            "'b','[]','{}','{}',NULL,NULL,'[]','2026-11-26T00:00:00Z','received',NULL)")
-        c.execute(
-            "INSERT INTO submission_artifacts (submission_id,artifact_index,sha256) "
-            "VALUES ('SUB-DEP-1',0,?)", (digest,))
-        r3 = self.cp.claim("fast-02", "i2", "knowledge", idem_key="k3")
-        self.assertTrue(r3["claimed"])
-        self.assertEqual(r3["claimed"]["task_id"], "KG-2026-0101")
+            dependent_id,
+            dependencies=[{"task_id": source_id, "required_task_version": 1,
+                           "required_state": "integrated",
+                           "required_artifact_sha256": "e" * 64}],
+        ))
+
+        source_lease = self.cp.claim(
+            "fast-01", "i", "knowledge", idem_key="dependency-source"
+        )["claimed"]
+        self.assertEqual(source_lease["task_id"], source_id)
+        self.assertIsNone(self.cp.claim(
+            "fast-02", "i2", "knowledge", idem_key="dependency-before-submit"
+        )["claimed"])
+
+        upload = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(
+            upload, "fast-01", b"dependency evidence", "application/x-ndjson"
+        )
+        artifact = {
+            "path": digest_path, "sha256": blob["sha256"],
+            "bytes": blob["bytes"], "media_type": "application/x-ndjson",
+        }
+        artifacts = [artifact]
+        submission_id = "SUB-DEP-LIFECYCLE"
+        bundle = bundle_sha(source_id, artifacts)
+        submitted = self.cp.submit({
+            "id": submission_id, "task_id": source_id, "task_version": 1,
+            "task_version_sha256": source_lease["task_version_sha256"],
+            "attempt_id": source_lease["attempt_id"], "lease_id": source_lease["lease_id"],
+            "lease_epoch": source_lease["lease_epoch"], "agent_id": "fast-01",
+            "artifacts": artifacts, "bundle_sha256": bundle, "base_commit": "6a9fa461",
+        }, idem_key="dependency-submit")
+        self.assertEqual(submitted["status"], "received")
+        self.assertIsNone(self.cp.claim(
+            "fast-02", "i2", "knowledge", idem_key="dependency-after-received"
+        )["claimed"])
+
+        validation_id = "VAL-DEP-LIFECYCLE"
+        self.cp.record_validation({
+            "schema": "validation/v1", "id": validation_id,
+            "submission_id": submission_id, "bundle_sha256": bundle,
+            "validator_profile": "knowledge-map-v1", "validator_version": "1.0.0",
+            "gate_script_sha256": "a" * 64,
+            "sandbox_image_digest": "sha256:" + "b" * 64,
+            "toolchain": {"python": "3.12"},
+            "checks": [{"name": "trusted-gate", "rc": 0}],
+            "recommendation": "accepted", "reason": "all required checks passed",
+            "started_at": "2026-11-28T00:00:00Z",
+            "finished_at": "2026-11-28T00:00:01Z",
+            "created_at": "2026-11-28T00:00:02Z",
+        })
+        decision = self.cp.decide_submission(
+            submission_id, validation_id, "accepted", "accepted for dependency test"
+        )
+        self.assertEqual(decision["status"], "accepted")
+        self.assertIsNone(self.cp.claim(
+            "fast-02", "i2", "knowledge", idem_key="dependency-before-integration"
+        )["claimed"])
+
+        started = self.cp.start_integration(submission_id, "6a9fa461")
+        finished = self.cp.finish_integration(
+            started["integration_id"], "6a9fa462", [digest_path]
+        )
+        self.assertEqual(finished["status"], "integrated")
+        ready = self.cp.claim(
+            "fast-02", "i2", "knowledge", idem_key="dependency-after-integration"
+        )
+        self.assertEqual(ready["claimed"]["task_id"], dependent_id)
+
+        # 'accepted' is a lower lifecycle threshold and remains satisfied after integration.
+        accepted_dependent = "KG-2026-0102"
+        self.cp.publish_task(make_task(
+            accepted_dependent,
+            dependencies=[{"task_id": source_id, "required_task_version": 1,
+                           "required_state": "accepted",
+                           "required_artifact_sha256": blob["sha256"]}],
+        ))
+        dependency = self.db().execute(
+            "SELECT * FROM dependencies WHERE task_id=?", (accepted_dependent,)
+        ).fetchone()
+        self.assertTrue(self.cp._dependency_satisfied(self.db(), dependency, self.clock.t))
 
 
 class TestSubmitAndIdempotency(Base):
