@@ -65,6 +65,10 @@ class ResultDesignTests(unittest.TestCase):
         )
         self.assertEqual(item["question"], "Which boundary decides survival?")
 
+    def test_legacy_new_result_without_question_keeps_legacy_fingerprint_shape(self):
+        item = result_module.new_result("TEST-LEGACY-QUESTION", 1, {}, "selftest")
+        self.assertNotIn("question", item)
+
     def test_experiment_persists_its_required_question(self):
         from checks.experiment import Experiment, ExperimentError
         item = Experiment(

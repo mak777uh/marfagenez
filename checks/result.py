@@ -199,12 +199,11 @@ def new_result(
     if not isinstance(question, str):
         raise ValueError("question must be a string")
     now = datetime.now(timezone.utc)
-    return {
+    result = {
         "schema": SCHEMA,
         "role": role,
         "phase": phase,
         "experiment_id": experiment_id,
-        "question": question,
         "run_id": f"run-{now.strftime('%Y-%m-%dT%H-%M-%S')}-{uuid.uuid4().hex[:12]}",
         "model_commit": _git_commit(),
         "hash_version": HASH_VERSION_PY,
@@ -220,6 +219,12 @@ def new_result(
         "command": command,
         "created_at": now.isoformat(),
     }
+    # Keep the exact legacy fingerprint for callers that haven't supplied a
+    # research question. Experiment requires a non-empty question and always
+    # persists it, so new scientific runs are identified by their question.
+    if question:
+        result["question"] = question
+    return result
 
 
 def set_arithmetic(result: dict[str, Any], arithmetic: dict[str, Any]) -> None:
