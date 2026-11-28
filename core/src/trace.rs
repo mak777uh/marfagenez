@@ -438,26 +438,40 @@ impl Trace {
 /// and nothing the recorder does can change what the organisms do. That is the
 /// project's rule 9 — the readout is a camera, not a hand.
 pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
-    let every = every.max(1);
-    let read_budget = life.world().read_budget;
+    // Capture the complete causal starting point before the first advance.
+    let start_step = life.step();
+    let life_start = life.experiment_snapshot();
+    let field_start = life.field().experiment_snapshot();
+    let world_start = *life.world();
+    let sample_every = every.max(1);
+    let policy_by_slot = life_start.policies_by_slot.clone();
+    let policy = match policy_by_slot.first() {
+        Some(first) if policy_by_slot.iter().all(|value| value == first) => *first,
+        Some(_) => "mixed",
+        None => "none",
+    };
+
     let mut frames = Vec::new();
     for _ in 0..steps {
         if life.advance().is_none() {
             break;
         }
-        if life.step() % every == 0 {
+        if life.step() % sample_every == 0 {
             frames.push(snapshot(life));
         }
     }
-    let share = life.world().share.name();
-    let tiebreak = life.world().tiebreak.name();
-    let look_order = life.world().look_order.name();
-    let birth_threshold = life.world().birth_threshold;
-    let birth_cost = life.world().birth_cost;
-    let max_population = life.world().max_population;
-    let read_cost = life.world().read_cost;
-    let read_period = life.world().read_period;
-    let look_on_shortfall = life.world().look_on_shortfall;
+
+    // Preserve the historical dynamics hash byte-for-byte. The new config SHA
+    // addresses all inputs and initial state that the old FNV frames hash omits.
+    let share = world_start.share.name();
+    let tiebreak = world_start.tiebreak.name();
+    let look_order = world_start.look_order.name();
+    let birth_threshold = world_start.birth_threshold;
+    let birth_cost = world_start.birth_cost;
+    let max_population = world_start.max_population;
+    let read_cost = world_start.read_cost;
+    let read_period = world_start.read_period;
+    let look_on_shortfall = world_start.look_on_shortfall;
     let base_hash = Trace::hash_with_births(
         &frames,
         share,
@@ -470,15 +484,28 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         read_period,
         look_on_shortfall,
     );
-    let rng_version = life.rng_version().as_str();
+    let rng_version = life_start.rng_version;
     let hash = Trace::hash_with_rng_version(base_hash, rng_version);
+
+    let executed_steps = life.step().saturating_sub(start_step);
+    let frames_written = frames.len();
+    let configuration = experiment_config_json(
+        &world_start,
+        &field_start,
+        &life_start,
+        steps,
+        every,
+        sample_every,
+    );
+    let config_sha256 = crate::sha256::digest_hex(configuration.as_bytes());
+
     Trace {
         frames,
         hash,
-        policy: life.policy_name(),
-        seed: life.seed(),
+        policy,
+        seed: life_start.seed,
         rng_version,
-        read_budget,
+        read_budget: world_start.read_budget,
         share,
         tiebreak,
         look_order,
@@ -488,6 +515,15 @@ pub fn record(life: &mut Life, steps: usize, every: usize) -> Trace {
         read_cost,
         read_period,
         look_on_shortfall,
+        policy_by_slot,
+        configuration,
+        config_sha256,
+        requested_steps: steps,
+        executed_steps,
+        start_step,
+        sample_every_requested: every,
+        sample_every,
+        frames_written,
     }
 }
 
