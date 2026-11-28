@@ -47,6 +47,7 @@ def make_task(tid: str, dept: str = "knowledge", priority: int = 5, **kw):
 
 def dir_hash(root: Path) -> str:
     """Стабильный хэш дерева файлов: путь + sha256 содержимого."""
+    root = root.resolve()
     h = hashlib.sha256()
     for p in sorted(root.rglob("*")):
         if p.is_file():
@@ -547,6 +548,37 @@ class TestProjections(Base):
                         "v2.json").exists())
         head = (proj / "audit_head.txt").read_text(encoding="utf-8").strip()
         self.assertNotEqual(head, "GENESIS")
+        self.assertInvariants()
+
+
+
+    def test_projection_publisher_recovers_after_old_directory_rename(self):
+        self.cp.publish_task(make_task("KG-2026-0340"))
+        target = self.dir / "crash-proj"
+        self.cp.write_projections(target)
+        old = self.dir / ".crash-proj.old-simulated-crash"
+        os.replace(target, old)
+        partial = self.dir / ".crash-proj.tmp-simulated-crash"
+        partial.mkdir()
+        (partial / "partial.txt").write_text("interrupted", encoding="utf-8")
+
+        rebuilt = self.cp.write_projections(target)
+        self.assertTrue(target.is_dir())
+        self.assertFalse(target.is_symlink())
+        self.assertTrue((target / "manifest.json").is_file())
+        self.assertTrue((target / "tasks.jsonl").is_file())
+        self.assertFalse(old.exists())
+        self.assertFalse(partial.exists())
+        manifest = json.loads((target / "manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["schema"], "lab-projection/v1")
+        self.assertEqual(
+            manifest["files"]["tasks.jsonl"],
+            hashlib.sha256((target / "tasks.jsonl").read_bytes()).hexdigest(),
+        )
+        self.assertEqual(
+            rebuilt["manifest_sha256"],
+            hashlib.sha256((target / "manifest.json").read_bytes()).hexdigest(),
+        )
         self.assertInvariants()
 
 

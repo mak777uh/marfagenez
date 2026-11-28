@@ -16,6 +16,8 @@
 """
 from __future__ import annotations
 
+import fcntl
+import hashlib
 import json
 import math
 import os
@@ -387,57 +389,215 @@ class V2OpsMixin:
         return super().submit(payload, idem_key)
 
     # ------------------------------------------------ файловые проекции
-    def write_projections(self, target: Path) -> dict:
-        """Детерминированный файловый снимок БД; восстановление = повторный
-        вызов. Атомарная подмена каталога (tmp -> os.replace)."""
-        target = Path(target)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        c = self.connect()
-        tmp = target.parent / f".{target.name}.tmp-{uuid.uuid4().hex[:8]}"
-        if tmp.exists():
-            shutil.rmtree(tmp)
-        (tmp / "task_versions").mkdir(parents=True)
-        tasks = c.execute(
-            "SELECT id,department,status,current_version,lease_epoch,created_at "
-            "FROM tasks ORDER BY id").fetchall()
-        with (tmp / "tasks.jsonl").open("w", encoding="utf-8") as f:
-            for t in tasks:
-                f.write(_canon({k: t[k] for k in t.keys()}) + "\n")
-        versions = c.execute(
-            "SELECT task_id,version,payload_json FROM task_versions "
-            "ORDER BY task_id, version").fetchall()
-        for v in versions:
-            d = tmp / "task_versions" / v["task_id"]
-            d.mkdir(exist_ok=True)
-            (d / f"v{v['version']}.json").write_text(
-                v["payload_json"], encoding="utf-8")
-        submissions = c.execute(
-            "SELECT id,task_id,attempt_id,agent_id,status,bundle_sha256,submitted_at "
-            "FROM submissions ORDER BY id").fetchall()
-        with (tmp / "submissions.jsonl").open("w", encoding="utf-8") as f:
-            for s in submissions:
-                f.write(_canon({k: s[k] for k in s.keys()}) + "\n")
-        messages = c.execute(
-            "SELECT id,recipient,kind,severity,requires_ack,blocks_claim,"
-            "blocks_submit,halt,superseded_by,created_at_iso "
-            "FROM messages ORDER BY created_at, id").fetchall()
-        with (tmp / "messages.jsonl").open("w", encoding="utf-8") as f:
-            for m in messages:
-                f.write(_canon({k: m[k] for k in m.keys()}) + "\n")
-        head = c.execute(
-            "SELECT event_hash FROM audit_events ORDER BY seq DESC LIMIT 1").fetchone()
-        (tmp / "audit_head.txt").write_text(
-            head["event_hash"] if head else "GENESIS", encoding="utf-8")
-        if target.exists():
-            old = target.parent / f".{target.name}.old-{uuid.uuid4().hex[:8]}"
-            os.replace(target, old)
-            os.replace(tmp, target)
-            shutil.rmtree(old, ignore_errors=True)
+    @staticmethod
+    def _fsync_directory(path: Path) -> None:
+        fd = os.open(path, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
+        try:
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+
+    @staticmethod
+    def _write_projection_file(path: Path, data: bytes) -> None:
+        flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+        fd = os.open(path, flags, 0o644)
+        with os.fdopen(fd, "wb") as stream:
+            stream.write(data)
+            stream.flush()
+            os.fsync(stream.fileno())
+
+    @staticmethod
+    def _remove_projection_entry(path: Path) -> None:
+        try:
+            info = path.lstat()
+        except FileNotFoundError:
+            return
+        if stat.S_ISDIR(info.st_mode):
+            shutil.rmtree(path)
         else:
-            os.replace(tmp, target)
-        return {"path": str(target), "tasks": len(tasks),
+            # Symlinks and special files are unlinked, never traversed.
+            path.unlink()
+
+    def _recover_projection_publication(self, target: Path) -> None:
+        """Recover the old snapshot if a process died after target -> .old rename."""
+        parent = target.parent
+        name = target.name
+        try:
+            target_info = target.lstat()
+        except FileNotFoundError:
+            target_info = None
+        if target_info is not None:
+            if stat.S_ISLNK(target_info.st_mode) or not stat.S_ISDIR(target_info.st_mode):
+                raise BadRequest(f"projection target must be a real directory: {target}")
+
+        old_prefix = f".{name}.old-"
+        tmp_prefix = f".{name}.tmp-"
+        entries = list(parent.iterdir())
+        old_dirs = [p for p in entries if p.name.startswith(old_prefix)]
+        temp_dirs = [p for p in entries if p.name.startswith(tmp_prefix)]
+
+        if target_info is None and old_dirs:
+            # There can be several after repeated interrupted recovery attempts.
+            # Restore the newest valid backup; leave no dangling projection path.
+            for old in old_dirs:
+                info = old.lstat()
+                if stat.S_ISLNK(info.st_mode) or not stat.S_ISDIR(info.st_mode):
+                    raise BadRequest(f"unsafe projection recovery entry: {old}")
+            restore = max(old_dirs, key=lambda p: p.lstat().st_mtime_ns)
+            os.replace(restore, target)
+            self._fsync_directory(parent)
+            old_dirs.remove(restore)
+
+        for stale in old_dirs + temp_dirs:
+            self._remove_projection_entry(stale)
+        if old_dirs or temp_dirs:
+            self._fsync_directory(parent)
+
+    def write_projections(self, target: Path) -> dict:
+        """Create a consistent DB snapshot and publish it with crash recovery.
+
+        Readers retain the stable directory interface. Writers are serialized by
+        an advisory lock. If the process dies after moving the old directory but
+        before installing the new one, the next call restores the newest backup.
+        """
+        target = Path(target)
+        if not target.name or target.name in (".", ".."):
+            raise BadRequest("projection target must name a directory")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        lock_path = target.parent / f".{target.name}.lock"
+        lock_flags = os.O_CREAT | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0)
+        try:
+            lock_fd = os.open(lock_path, lock_flags, 0o600)
+        except OSError as exc:
+            raise BadRequest(f"cannot safely open projection lock: {exc}") from exc
+        tmp = target.parent / f".{target.name}.tmp-{uuid.uuid4().hex}"
+        try:
+            fcntl.flock(lock_fd, fcntl.LOCK_EX)
+            self._recover_projection_publication(target)
+
+            # Materialise every query under one SQLite read transaction. No
+            # SELECT below this point observes a newer control-plane commit.
+            c = self.connect()
+            c.execute("BEGIN")
+            try:
+                tasks = c.execute(
+                    "SELECT id,department,status,current_version,lease_epoch,created_at "
+                    "FROM tasks ORDER BY id").fetchall()
+                versions = c.execute(
+                    "SELECT task_id,version,payload_json FROM task_versions "
+                    "ORDER BY task_id, version").fetchall()
+                submissions = c.execute(
+                    "SELECT id,task_id,attempt_id,agent_id,status,bundle_sha256,submitted_at "
+                    "FROM submissions ORDER BY id").fetchall()
+                messages = c.execute(
+                    "SELECT id,recipient,kind,severity,requires_ack,blocks_claim,"
+                    "blocks_submit,halt,superseded_by,created_at_iso "
+                    "FROM messages ORDER BY created_at, id").fetchall()
+                head = c.execute(
+                    "SELECT event_hash FROM audit_events ORDER BY seq DESC LIMIT 1"
+                ).fetchone()
+                audit_head = head["event_hash"] if head else "GENESIS"
+                c.execute("COMMIT")
+            except Exception:
+                self._safe_rollback(c)
+                raise
+
+            (tmp / "task_versions").mkdir(parents=True)
+            task_lines = "".join(
+                _canon({k: task[k] for k in task.keys()}) + "\n" for task in tasks
+            )
+            self._write_projection_file(tmp / "tasks.jsonl", task_lines.encode("utf-8"))
+
+            version_dirs: set[Path] = set()
+            for version in versions:
+                task_id = version["task_id"]
+                if (not isinstance(task_id, str) or not task_id
+                        or "/" in task_id or "\\" in task_id
+                        or task_id in (".", "..")):
+                    raise BadRequest(f"unsafe task id in projection: {task_id!r}")
+                directory = tmp / "task_versions" / task_id
+                if directory not in version_dirs:
+                    directory.mkdir()
+                    version_dirs.add(directory)
+                self._write_projection_file(
+                    directory / f"v{version['version']}.json",
+                    version["payload_json"].encode("utf-8"),
+                )
+
+            submission_lines = "".join(
+                _canon({k: item[k] for k in item.keys()}) + "\n"
+                for item in submissions
+            )
+            self._write_projection_file(
+                tmp / "submissions.jsonl", submission_lines.encode("utf-8"))
+
+            message_lines = "".join(
+                _canon({k: item[k] for k in item.keys()}) + "\n"
+                for item in messages
+            )
+            self._write_projection_file(
+                tmp / "messages.jsonl", message_lines.encode("utf-8"))
+            self._write_projection_file(
+                tmp / "audit_head.txt", (audit_head + "\n").encode("utf-8"))
+
+            file_hashes = {}
+            for item in sorted(tmp.rglob("*")):
+                if item.is_file():
+                    relative = item.relative_to(tmp).as_posix()
+                    file_hashes[relative] = hashlib.sha256(item.read_bytes()).hexdigest()
+            manifest = {
+                "schema": "lab-projection/v1",
+                "counts": {
+                    "tasks": len(tasks),
+                    "task_versions": len(versions),
+                    "submissions": len(submissions),
+                    "messages": len(messages),
+                },
+                "audit_head": audit_head,
+                "files": file_hashes,
+            }
+            manifest_bytes = (_canon(manifest) + "\n").encode("utf-8")
+            self._write_projection_file(tmp / "manifest.json", manifest_bytes)
+
+            # fsync nested directories bottom-up before publishing the name.
+            directories = [p for p in tmp.rglob("*") if p.is_dir()]
+            for directory in sorted(directories, key=lambda p: len(p.parts), reverse=True):
+                self._fsync_directory(directory)
+            self._fsync_directory(tmp)
+
+            old = None
+            if target.exists():
+                old = target.parent / f".{target.name}.old-{uuid.uuid4().hex}"
+                os.replace(target, old)
+                self._fsync_directory(target.parent)
+            try:
+                os.replace(tmp, target)
+                self._fsync_directory(target.parent)
+            except Exception:
+                # Restore synchronously if publication failed in this process.
+                if old is not None and old.exists() and not target.exists():
+                    os.replace(old, target)
+                    self._fsync_directory(target.parent)
+                raise
+            if old is not None:
+                self._remove_projection_entry(old)
+                self._fsync_directory(target.parent)
+
+            return {
+                "path": str(target),
+                "tasks": len(tasks),
                 "task_versions": len(versions),
-                "submissions": len(submissions), "messages": len(messages)}
+                "submissions": len(submissions),
+                "messages": len(messages),
+                "manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest(),
+                "audit_head": audit_head,
+            }
+        finally:
+            self._remove_projection_entry(tmp)
+            try:
+                fcntl.flock(lock_fd, fcntl.LOCK_UN)
+            finally:
+                os.close(lock_fd)
 
     # -------------------------------------------------------- GC blobs
     def gc_blobs(self, grace_seconds: float = 3600.0) -> dict:
