@@ -1,0 +1,108 @@
+{
+ "id": "EXP-2026-4107",
+ "department": "experiments",
+ "title": "Детерминированный B pilot: верификация k-out-of-m логики (unit-test N=1)",
+ "version": 3,
+ "supersedes_version": 2,
+ "change_reason": "Переиздание после цикла 861au (28.11.2026, внешний фикс-агент): драйвер exp_b_unit.rs переписан (+209/-72): rescue — внешний ресурс с external_rescue_stock=1 (материальный баланс замкнут, rescue_stock_imb в module ledger), каноническая смерть (death_step/death_cause), censoring и observed-метрики (aurd_observed, horizon_censored). Предсказания v2 сохранены и усилены встроенными asserts драйвера (rescue_in_total==1, external_rescue_stock==0 после rescue, строгие B-2<rescue<B-3, ledger-баланс < 1e-12). Спека, lease, write_scope и валидаторы без изменений; base v2 879da017 содержал старый драйвер без rescue-stock контракта.",
+ "base_commit": "f11f7e892c0f423e6068a589dfacaae3caa0db96",
+ "lease": {
+  "heartbeat_seconds": 60,
+  "max_attempts": 1,
+  "max_lease_seconds": 7200,
+  "ttl_seconds": 7200
+ },
+ "budget": {
+  "cpu_seconds": 7200,
+  "disk_bytes": 268435456,
+  "network_allowlist": [],
+  "ram_bytes": 536870912
+ },
+ "network_profile": "none",
+ "dependencies": [],
+ "tags": [
+  "D-Q9",
+  "B-pilot",
+  "k-out-of-m",
+  "unit-test",
+  "verification",
+  "ledger"
+ ],
+ "validators": [
+  {
+   "profile": "experiments-v1",
+   "version": "1.0.0"
+  }
+ ],
+ "write_scope": [
+  "results/experiments/EXP-2026-4107/**",
+  "docs/FINDING-EXP-2026-4107.md"
+ ],
+ "spec": {
+  "analysis_plan": "Unit-test N=1: проверка предрегистрированных точных предсказаний (равенства AURD/f_final с допуском 1e-12; v_after_ko2==0 у B-3 и >0 у placebo; строгие неравенства B-2<rescue<B-3; монотонность AURD_abs по D0). Метрики и допуски фиксированы до прогона; post-hoc смена допусков запрещена (уроки D-Q6/переанализа). Window-агрегаты не используются (урок анализатора 1.0.1).",
+  "axes": [
+   {
+    "name": "n_schedule",
+    "values": [
+     "sham",
+     "ko1",
+     "ko2",
+     "ko2+rescue"
+    ]
+   },
+   {
+    "name": "k_eff",
+    "values": [
+     2,
+     1
+    ]
+   },
+   {
+    "name": "D0",
+    "values": [
+     0.5,
+     0.25,
+     0.1667
+    ]
+   }
+  ],
+  "controls": {
+   "a_control": "фиксированная capacity R0, cost-yoked содержание 3 условных модулей по расписанию B-1 (отделяет потерю функции от перераспределения расходов)",
+   "ghost": "то же расписание отключений B-3 в ledger при capacity всегда R0 — восстановление обязано совпадать с B-1",
+   "ledger": "closed ledger по каждому шагу и потоку (энергия, субстрат, обслуживание, невостребованные остатки); rescue помечен external в event-журнале",
+   "mechanism_off": "B-3 — негатив: n<k обязан остановить repair (медиация-негатив)",
+   "placebo_k1": "k_eff=1 при зарегистрированном r0=R0/2: после второго отключения capacity=min(R0,r0)=0.05, ступени в ноль нет, восстановление продолжается",
+   "schedule": "расписание вмешательств t*=5 (do-clamp/sham), t**=10 (второй knockout), t***=15 (external rescue) предрегистрировано, момент не зависит от target damage; fingerprint печатается; времена в середине восстановления (к t** дефицит ~2%, ступень видима в AURD с запасом)",
+   "sham": "B-1 повторяет метку/операцию t* без отключения"
+  },
+  "expected_effect": "7 предрегистрированных точных предсказаний: (1) B-1 sham == A-control (cost-yoked, фиксированная capacity R0) по f_target(t)/AURD, расхождение только в ledger; (2) B-2 knockout-1 (n=2>=k) == B-1: capacity сохранена; (3) B-3 knockout-2 (n=1<k): v_D=0 с t**, f_target заморожен; (4) rescue: восстановление возобновляется с t***, AURD строго между B-2 и B-3; (5) диссоциация: при фикс n=3 AURD_abs=mean(d_t) строго монотонен по D0 (нормализованный AURD не различает demand-bound руки), при фикс D ступень ровно на k, положение=t**, высота предвычислима; (6) closed ledger <1e-12 во всех руках/шагах; (7) детерминизм: повтор байт-в-байт, сиды не биндят.",
+  "falsification": "(а) любое из 7 предсказаний нарушено -> fail: чинить реализацию, НЕ подгонять (критерии не меняются постфактум); (б) ghost-контроль (учёт отключений в ledger без влияния на capacity) даёт ту же ступень -> ступень — артефакт учёта; placebo k_eff=1 (зарегистрированный r0=R0/2) даёт ступень в ноль -> ступень — артефакт порога реализации; (в) чувствительность r0>=(f_goal-q0)/T или k_D>=ln((1-q0)/(1-f_goal))/T нарушена -> insensitive_by_construction (драйвер exit 3).",
+  "hypothesis": "B-фаза (DESIGN closure-world 13.2/13.9, порядок (2)): в детерминированном режиме (delta_R=0; отключения модулей — только объявленные вмешательства do-clamp, rescue помечен external) модульная ремонтная способность R_t=min(R0,r0*n_t)*1[n_t>=k], r0=R0/k, m=3, k=2, воспроизводит заданную k-out-of-m логику точно. Unit-test N=1, без статистики; препроверка механики ДО стохастического B pilot (порядок (3)).",
+  "kg_refs": [
+   "Q-023",
+   "C-001",
+   "C-002",
+   "FINDING-457"
+  ],
+  "limitations": "Детерминированная фаза не проверяет вероятностные отказы delta_R и replacement-поток (порядок (3)); N=1 не даёт статистики; это верификация инструмента, не научный вывод о направлении B. Резервирование без стоимости: B-P1 (вогнутость 5/6, 13/12, 77/60) здесь не тестируется — пилот-ряд m in {3,4}, k in {2,3} в стохастической фазе.",
+  "mode": "experiment",
+  "no_unseeded_random": true,
+  "parameters": {
+   "R0": "0.1",
+   "costs": "как в A-P5 (COST_REPAIR_E/S=0.2, MAINT_E_PER_MODULE=0.01)",
+   "k_D": "0.3",
+   "m_k": "m=3, k=2, r0=R0/k=0.05 (мощность модуля)",
+   "schedule": "t*=5, t**=10, t***=15 при T=40",
+   "window_T": "40"
+  },
+  "prior_results": "SUB-EXP-2026-4104-1 (A-P5 passed: лестница AURD 0.0700/0.1225/0.1817/1.0000 плавная, no-cliff 1.127<=3, порога в A нет, кандидат C бифурцирует по gamma); DESIGN closure-world 13.9 ревизия; REANALYSIS-EXP-2026-4103 (допуски из bias-бюджета).",
+  "publication_prerequisites": [
+   "драйвер exp_b_unit.rs в дереве (base_commit 879da017 через merge e5c0648, цикл 861ag)",
+   "A-P5 passed (SUB-EXP-2026-4104-1)",
+   "расписание вмешательств и 7 предсказаний предегистрированы (v1, без изменений)"
+  ],
+  "reproduce": "Сохранить task/version/sha256, base_commit, argv, seed-реестр (base 5401, N=1), ledger CSV по шагам с событиями (ko1/ko2/rescue/sham) и n_t, seed_metrics CSV, artifact hashes, все проверки баланса; повтор прогона байт-в-байт.",
+  "seeds": "N=1 unit-test, seed 5401 (новый диапазон); в детерминированном режиме сиды не биндят (assert в тестах драйвера)",
+  "target_setup": "Стандартный организм/damage-аппарат A-P5; модульная ремонтная подсистема m=3, k=2; вмешательства только в ремонтные модули (do-clamp в момент, независимый от damage), целевой компонент не повреждается повторно; sham повторяет метку без отключения."
+ }
+}
