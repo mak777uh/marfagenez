@@ -3319,17 +3319,23 @@ doi:10.1016/j.biosystems.2025.105567; препринт arXiv:2411.17012.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://pubmed.ncbi.nlm.nih.gov/25752259/"
+  "level": "fragment_read",
+  "artifact": "papers/moreno15-biological-autonomy.pdf",
+  "bytes": 588518,
+  "sha256": "3aa97f2f76b3f8c53c8052ffabd06e81845f5acc0dde7b728dc86449a6d104e6",
+  "retrieved_at": "2026-11-28T07:31:00Z",
+  "via": "repository",
+  "via_detail": "HAL deposit hal-01151449 — Moreno & Mossio, Biological Autonomy: A Philosophical and Theoretical Enquiry (Springer 2015); книга, не глава: DOI в locator (10.4324/9781003528937-24) ведёт на другую работу (глава El-Hani про closure of constraints) — несоответствие locator оставлено, артефакт соответствует bibliographic; hal.science 403 — PDF через web.archive.org snapshot 20181104"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "introduction",
+    "to": "chapter 1"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3349,7 +3355,7 @@ doi:10.1016/j.biosystems.2025.105567; препринт arXiv:2411.17012.
 (2024), doi:10.4324/9781003528937-24; CASP concept view.
 **Ссылка.** https://pubmed.ncbi.nlm.nih.gov/25752259/ ; https://doi.org/10.4324/9781003528937-24 ;
 https://www.biologicalpurpose.org/conceptual/o
-**Проверено.** **аннотация/фрагмент.**
+**Проверено.** **фрагмент**: HAL-депозит hal-01151449 (Springer book Moreno & Mossio 2015) через web.archive.org snapshot 20181104, papers/moreno15-biological-autonomy.pdf, 2026-11-28; «it starts with the basics, closure and self-maintenance, then a complex form of closure called autonomy, the foundational organisation of all life» и определение autopoiesis/operational closure — дословно. Внимание: DOI в locator указывает на другую работу — зафиксировано в via_detail.
 **Утверждение (цитаты из фрагментов).** «We characterize biological organization as a **closure of constraints**, where
 constraints are defined at a given time scale and are **interdependent**». «A set of constraints C realizes closure if,
 **for each constraint C…**». «In a system exhibiting organizational closure, **each constraint will depend directly on
@@ -3737,17 +3743,23 @@ temporal integrity**, i.e., “propagate” in time». И: индивидуал�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
+  "level": "fragment_read",
+  "artifact": "papers/bourrat24-causal-individuality.html",
+  "bytes": 355879,
+  "sha256": "1d51a1af23f7943c938c15d7bcd59ec46b305c5477c7e051cb86b199c8e0ac71",
+  "retrieved_at": "2026-11-28T07:31:00Z",
   "via": "publisher",
-  "via_detail": "https://link.springer.com/article/10.1007/s13194-023-00566-1"
+  "via_detail": "European Journal for Philosophy of Science (Springer, hybrid OA), Bourrat 2024, doi:10.1007/s13194-023-00566-1; живой Springer за challenge — полный HTML через web.archive.org snapshot 20251214; «deriving a causal information-theoretic measure of individuality» — дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "theory/applications"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3766,7 +3778,7 @@ temporal integrity**, i.e., “propagate” in time». И: индивидуал�
 **Кто.** «Adding causality to the information-theoretic perspective on individuality» (2024), European Journal for
 Philosophy of Science, doi:10.1007/s13194-023-00566-1.
 **Ссылка.** https://link.springer.com/article/10.1007/s13194-023-00566-1
-**Проверено.** **аннотация.**
+**Проверено.** **фрагмент**: Springer full-text HTML через web.archive.org snapshot 20251214 (link.springer.com отдаёт challenge), papers/bourrat24-causal-individuality.html, 2026-11-28; «I rectify this shortcoming by deriving a causal information-theoretic measure of individuality» — дословно; разделы Basics of information theory и реализация меры прочитаны.
 **Утверждение (пересказ).** Информационные меры индивидуальности, основанные на взаимной информации, дают **корреляцию**,
 а не причинность; автор применяет **интервенционистские** меры причинности к индивидуальности.
 **Что даёт нам.** Важное: ITI без интервенций может завышать индивидуальность. **Но наша модель — симулятор**, значит
@@ -5444,17 +5456,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-21T21:55:49Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1162/artl_a_00165"
+  "level": "fragment_read",
+  "artifact": "papers/bigan15-protocell-stationary.pdf",
+  "bytes": 1266917,
+  "sha256": "73f4c354828878700d81fe1c40339c42ae06f6a4003adcda146505941d15e4da",
+  "retrieved_at": "2026-11-28T07:31:00Z",
+  "via": "publisher",
+  "via_detail": "Artificial Life (MIT Press), Bigan, Steyaert & Douady 2015, doi:10.1162/artl_a_00165; живой MIT Press за challenge — PDF из web.archive.org snapshot mitpressjournals.org 20210303; «each moiety must be fed… each siphon is fed» — дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": "b73cd7168aa7f06fdaeaf53b2c2ca5a1fca6ef64294ca7a3e8a7a58f2077c29c",
  "bibliographic": {
@@ -5470,7 +5488,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Minimal Conditions for Protocell Stationary Growth (2015). Erwan Bigan; Jean‐Marc Steyaert; Stéphane Douady
 **Ссылка.** https://doi.org/10.1162/artl_a_00165
-**Проверено.** **аннотация** OpenAlex, 2026-11-21T21:55:49Z, отпечаток есть; фрагмент не читался.
+**Проверено.** **фрагмент**: MIT Press PDF через web.archive.org snapshot 20210303 (direct.mit.edu отдаёт challenge), papers/bigan15-protocell-stationary.pdf, 2026-11-28; «self-replication of a chemical system encapsulated within a membrane growing from within is possible without any explicit feature such as autocatalysis or metabolic closure» и «A necessary condition is that each moiety must be fed, and a sufficient condition is that each siphon is fed» — дословно; минимальные топологические условия (moiety/siphon) подтверждены.
 **Утверждение.** минимальные условия стационарного роста протоклетки: топологическое условие на химическую сеть, а не баланс энергии
 **Что даёт нам.** — (суждение не сделано).
 
@@ -6212,17 +6230,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-27T07:20:00Z",
-  "via": "pubmed-efetch",
-  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=19962389 (abstract text)"
+  "level": "fragment_read",
+  "artifact": "papers/cardenas10-closure-efficient-causation.pdf",
+  "bytes": 890931,
+  "sha256": "ef6c64b37105aa125227b05d364f5f1d2844ce98942727266e858421083f40ff",
+  "retrieved_at": "2026-11-28T07:31:00Z",
+  "via": "repository",
+  "via_detail": "HAL author deposit hal-00564468, Cárdenas, Letelier, Gutiérrez, Cornish-Bowden & Soto-Andrade, Author's Accepted Manuscript JTB 263(1):79 (2010), doi:10.1016/j.jtbi.2009.11.010; hal.science 403 — PDF через web.archive.org snapshot 20200626"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": "54410c5bf7ced90fa118d38659b635a0aec2b75445df995b2a0b3709594606f5",
  "bibliographic": {
@@ -6238,7 +6262,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Closure to efficient causation, computability and artificial life (2009). María Luz Cárdenas; Juan‐Carlos Letelier; Claudio Gutiérrez; Athel J. Cornish-Bowden; Jorge Antonio Soto-Andrade
 **Ссылка.** https://doi.org/10.1016/j.jtbi.2009.11.010
-**Проверено.** **аннотация** PubMed/efetch (PMID 19962389), 2026-11-27, sha256 54410c5bf7ce…; полный текст не читался.
+**Проверено.** **фрагмент**: HAL-депозит hal-00564468 (AAM, JTB 2010) через web.archive.org snapshot 20200626, papers/cardenas10-closure-efficient-causation.pdf, 2026-11-28; «closure to efficient causation can certainly have computable models… autopoiesis… is claimed to have computable models (McMullin, 2004)» и различие organizational vs structural closure — дословно; раздел про hypersets/closure разобран.
 **Утверждение.** Cárdenas et al. 2010 — замыкание организации в формальной модели (есть corrigendum 2011)
 **Что даёт нам.** — (суждение не сделано).
 

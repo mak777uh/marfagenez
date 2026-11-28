@@ -20378,7 +20378,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация/фрагмент.**"
+        "conditions": "**фрагмент**: HAL-депозит hal-01151449 (Springer book Moreno & Mossio 2015) чере"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20386,7 +20386,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/moreno15-biological-autonomy.pdf",
+          "strength": "moderate",
+          "sha256": "3aa97f2f76b3f8c53c8052ffabd06e81845f5acc0dde7b728dc86449a6d104e6"
         }
       ],
       "relations": [],
@@ -20394,11 +20400,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: HAL-депозит hal-01151449 (Springer book Moreno & Mossio 2015) чере",
+        "level_kind": "fragment_read",
+        "artifact": "papers/moreno15-biological-autonomy.pdf",
+        "artifact_bytes": 588518,
+        "artifact_sha256": "3aa97f2f76b3f8c53c8052ffabd06e81845f5acc0dde7b728dc86449a6d104e6",
         "locator": {
           "doi": "10.4324/9781003528937-24",
           "arxiv": null,
@@ -20761,7 +20767,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "**фрагмент**: Springer full-text HTML через web.archive.org snapshot 20251214 (l"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20769,7 +20775,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/bourrat24-causal-individuality.html",
+          "strength": "moderate",
+          "sha256": "1d51a1af23f7943c938c15d7bcd59ec46b305c5477c7e051cb86b199c8e0ac71"
         }
       ],
       "relations": [],
@@ -20777,11 +20789,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: Springer full-text HTML через web.archive.org snapshot 20251214 (l",
+        "level_kind": "fragment_read",
+        "artifact": "papers/bourrat24-causal-individuality.html",
+        "artifact_bytes": 355879,
+        "artifact_sha256": "1d51a1af23f7943c938c15d7bcd59ec46b305c5477c7e051cb86b199c8e0ac71",
         "locator": {
           "doi": "10.1007/s13194-023-00566-1",
           "arxiv": null,
@@ -21899,7 +21911,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** OpenAlex, 2026-11-21T21:55:49Z, отпечаток есть; фрагмент не читалс"
+        "conditions": "**фрагмент**: MIT Press PDF через web.archive.org snapshot 20210303 (direct.mit."
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21907,7 +21919,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/bigan15-protocell-stationary.pdf",
+          "strength": "moderate",
+          "sha256": "73f4c354828878700d81fe1c40339c42ae06f6a4003adcda146505941d15e4da"
         }
       ],
       "relations": [],
@@ -21915,11 +21933,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** OpenAlex, 2026-11-21T21:55:49Z, отпечаток есть; фрагмент не читалс",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: MIT Press PDF через web.archive.org snapshot 20210303 (direct.mit.",
+        "level_kind": "fragment_read",
+        "artifact": "papers/bigan15-protocell-stationary.pdf",
+        "artifact_bytes": 1266917,
+        "artifact_sha256": "73f4c354828878700d81fe1c40339c42ae06f6a4003adcda146505941d15e4da",
         "locator": {
           "doi": "10.1162/artl_a_00165",
           "arxiv": null,
@@ -22688,7 +22706,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** PubMed/efetch (PMID 19962389), 2026-11-27, sha256 54410c5bf7ce…; п"
+        "conditions": "**фрагмент**: HAL-депозит hal-00564468 (AAM, JTB 2010) через web.archive.org sna"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -22696,7 +22714,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/cardenas10-closure-efficient-causation.pdf",
+          "strength": "moderate",
+          "sha256": "ef6c64b37105aa125227b05d364f5f1d2844ce98942727266e858421083f40ff"
         }
       ],
       "relations": [],
@@ -22704,11 +22728,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** PubMed/efetch (PMID 19962389), 2026-11-27, sha256 54410c5bf7ce…; п",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: HAL-депозит hal-00564468 (AAM, JTB 2010) через web.archive.org sna",
+        "level_kind": "fragment_read",
+        "artifact": "papers/cardenas10-closure-efficient-causation.pdf",
+        "artifact_bytes": 890931,
+        "artifact_sha256": "ef6c64b37105aa125227b05d364f5f1d2844ce98942727266e858421083f40ff",
         "locator": {
           "doi": "10.1016/j.jtbi.2009.11.010",
           "arxiv": null,
@@ -41006,11 +41030,6 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
-    },
-    {
-      "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
@@ -41018,6 +41037,11 @@
       "from": "C-001",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
+    },
+    {
+      "from": "C-001",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
@@ -41041,11 +41065,6 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
-    },
-    {
-      "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
@@ -41053,6 +41072,11 @@
       "from": "C-002",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
+    },
+    {
+      "from": "C-002",
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -41076,6 +41100,11 @@
     },
     {
       "from": "C-003",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
@@ -41083,11 +41112,6 @@
       "from": "C-003",
       "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
-    },
-    {
-      "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "type": "tested_in"
     },
     {
       "from": "C-003",
@@ -41231,22 +41255,17 @@
     },
     {
       "from": "F-022",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "type": "tested_in"
+    },
+    {
+      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
       "from": "F-022",
       "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
-      "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
-      "type": "tested_in"
-    },
-    {
-      "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
       "type": "stated_in"
     },
     {
@@ -41258,6 +41277,11 @@
       "from": "F-023",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
+    },
+    {
+      "from": "F-023",
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-025",
@@ -43551,11 +43575,6 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
@@ -43563,6 +43582,11 @@
       "from": "CORR-02",
       "to": "EV-EXP-SHADOW-PRICE",
       "type": "stated_in"
+    },
+    {
+      "from": "CORR-02",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
@@ -43586,17 +43610,17 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "tested_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
