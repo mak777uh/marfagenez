@@ -627,7 +627,7 @@ mod tests {
 
         // For a reflected Gaussian step on [-B, B], the slowest Neumann mode
         // contracts by rho = exp(-sigma^2 * pi^2 / (8 * B^2)) per step.
-        // Here rho ~= 0.9877, so after 1,000 steps its residual is < 4.4e-6.
+        // Here rho^1,000 ~= 4.4e-6; the 40,000-sample relative SE for spread is ~0.35%.
         // 40,000 samples are retained (same sampling error and fixed seed); the
         // former 8,000-step burn-in spent 8x the work after practical convergence.
         const BURN_IN_STEPS: usize = 1_000;
