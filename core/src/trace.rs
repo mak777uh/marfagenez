@@ -376,6 +376,22 @@ impl Trace {
             self.look_on_shortfall
         ));
         out.push_str(&format!("  \"hash\": \"{:016x}\",\n", self.hash));
+        out.push_str(&format!("  \"hash_version\": \"{}\",\n", HASH_VERSION));
+        out.push_str(&format!("  \"config_hash_version\": \"{}\",\n", CONFIG_HASH_VERSION));
+        out.push_str(&format!("  \"config_sha256\": \"{}\",\n", self.config_sha256));
+        out.push_str("  \"configuration\": ");
+        out.push_str(&self.configuration);
+        out.push_str(",\n");
+        out.push_str("  \"policy_by_slot\": ");
+        push_policy_array(&mut out, &self.policy_by_slot);
+        out.push_str(",\n");
+        out.push_str(&format!("  \"requested_steps\": {},\n", self.requested_steps));
+        out.push_str(&format!("  \"executed_steps\": {},\n", self.executed_steps));
+        out.push_str(&format!("  \"start_step\": {},\n", self.start_step));
+        out.push_str(&format!("  \"sample_every_requested\": {},\n", self.sample_every_requested));
+        out.push_str(&format!("  \"sample_every\": {},\n", self.sample_every));
+        out.push_str(&format!("  \"frames_written\": {},\n", self.frames_written));
+        // Legacy field: historically this has always meant frames.len(), not run steps.
         out.push_str(&format!("  \"steps\": {},\n", self.frames.len()));
         out.push_str("  \"frames\": [\n");
         for (i, f) in self.frames.iter().enumerate() {
@@ -386,17 +402,18 @@ impl Trace {
                 if j > 0 {
                     out.push(',');
                 }
-                out.push_str(&format!("{:.6}", v));
+                out.push_str(&json_number(*v));
             }
             out.push_str("],\n");
             out.push_str("      \"samples\": [\n");
             for (j, s) in f.samples.iter().enumerate() {
                 out.push_str(&format!(
-                    "        {{\"slot\":{},\"cell\":{},\"energy\":{:.6},\"damage\":{:.6},\
-                     \"alive\":{},\"memory_cell\":{},\"memory_level\":{:.6},\
-                     \"direction\":{},\"taken\":{:.6},\"prev_cell\":{}}}",
-                    s.slot, s.cell, s.energy, s.damage, s.alive, s.memory_cell, s.memory_level,
-                    s.direction, s.taken, s.prev_cell
+                    "        {{\"slot\":{},\"cell\":{},\"energy\":{},\"damage\":{},\
+                     \"alive\":{},\"memory_cell\":{},\"memory_level\":{},\
+                     \"direction\":{},\"taken\":{},\"prev_cell\":{}}}",
+                    s.slot, s.cell, json_number(s.energy), json_number(s.damage),
+                    s.alive, s.memory_cell, json_number(s.memory_level),
+                    s.direction, json_number(s.taken), s.prev_cell
                 ));
                 if j + 1 < f.samples.len() {
                     out.push(',');
@@ -604,7 +621,7 @@ fn experiment_config_json(
     out.push('}');
 
     out.push_str(",\"life\":{");
-    out.push_str(&format!(",\"seed\":{}", life.seed));
+    out.push_str(&format!("\"seed\":{}", life.seed));
     out.push_str(&format!(",\"step\":{}", life.step));
     out.push_str(&format!(",\"memory_life\":{}", life.memory_life));
     out.push_str(&format!(",\"rng_version\":\"{}\"", life.rng_version));
