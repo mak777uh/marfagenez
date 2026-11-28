@@ -40,6 +40,8 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 
 **Прочее в этом цикле:** `.githooks/post-commit` — явный no-op (автопуш отключён; пуш только вручную после зелёного гейта); `docs/AGENT-ONBOARDING.md`, `docs/AGENT-MAIN-GOAL-PROMPT.md`, `docs/HANDOVER-MAIN.md`, `.coord/README.md` переписаны под активный control plane `lab/` (источник состояния `lab/state/control.db`), прежние версии — в `docs/archive/`; MAIN-P121-01/02: цитаты перенесены с уровня атома в `works[0]` — уровень `full_text_examined` подтверждён цитатой в самой работе.
 
+**Дополнение (861bb):** `checks/ingest_integrity.py` — в `COPY_FILES` добавлен `checks/access_levels.py`: временное дерево integrity-тестов секции dispatcher теперь включает общий enum уровней доступа (без него `map_contract.py` падал с `ModuleNotFoundError` в `/tmp/ingest-integrity-*` — провал c926). Локально: ingest_integrity 29/29.
+
 ## §2.0 Состояние на 2026-11-25 (цикл 597)
 
 **Этот блок — самый свежий.** Он обновлён вместе с изменениями `checks/` и `run.sh`, как требует

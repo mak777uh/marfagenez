@@ -29,6 +29,7 @@ COPY_FILES = (
     'tools/map_orphans.py',
     'tools/map_duplicates.py',
     'checks/map_contract.py',
+    'checks/access_levels.py',
     'checks/stitch_coverage_floor.py',
 )
 ACK_KEYS = {'file', 'status', 'accepted', 'rejected', 'reasons', 'ingest'}
