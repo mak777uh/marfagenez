@@ -588,24 +588,24 @@ decreasing side** of the fitness function». Пример там же: птиц�
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
-  "pmid": null,
-  "url": null,
-  "none": true
+  "pmid": "510638",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/510638/",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "retrieved_at": "2026-11-27T23:00:00Z",
+  "via": "pubmed",
+  "via_detail": "PubMed efetch abstract, PMID 510638 (Vaupel, Manton & Stallard 1979, Demography 16:439-454); PMCID нет, полный текст не запрашивался; вторая половина записи (Li & Anderson, vitality) остаётся вторыми руками"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "145400b20a3a1624b8c3e5d4bd4de6e6426f9d44745653e839e42cb5188a162c",
  "bibliographic": {
   "title": "Frailty и vitality: две системы с равным состоянием не равны",
   "year": 1979,
@@ -621,9 +621,9 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 **Кто.** Vaupel, Manton, Stallard (1979) — frailty; Li & Anderson — vitality.
 **Ссылка.** **вторые руки.**
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Скрытая переменная (хрупкость/жизненная сила) объясняет, почему смертность падает у
-выживших и почему люди с одинаковым возрастом не равны.
+**Проверено.** **аннотация** PubMed (PMID 510638, Vaupel-Manton-Stallard 1979), 2026-11-27; frailty-часть по аннотации, vitality (Li & Anderson) — вторые руки.
+
+**Утверждение (по аннотации Vaupel-Manton-Stallard 1979; vitality — пересказ).** Скрытая гетерогенность frailty меняет динамику смертности: стандартные таблицы переоценивают ожидаемую продолжительность жизни и недооценивают индивидуальное старение; лица с равным возрастом неравны по скрытой переменной.
 **Что даёт нам.** Наш результат «339 / 258 / 128 при равной целости» (§4.12) — **это ровно frailty**.
 **Чем отличается.** У них скрытая переменная — статистический конструкт; у нас — **измеренная** (`damage`), с
 уравнением и проверкой.
