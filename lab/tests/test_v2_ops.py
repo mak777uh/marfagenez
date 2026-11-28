@@ -39,7 +39,7 @@ def make_task(tid: str, dept: str = "knowledge", priority: int = 5, **kw):
         "validators": [{"profile": "knowledge-map-v1", "version": "1.0.0"}],
         "dependencies": [], "lease": dict(LEASE_SPEC), "priority": priority,
         "base_commit": "6a9fa461", "network_profile": "none",
-        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 1,
+        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 1_048_576,
                    "network_allowlist": []},
         "tags": [], **kw,
     }
@@ -96,17 +96,18 @@ class Base(unittest.TestCase):
 
 class TestSchemaMigration(Base):
     def test_user_version_and_idempotent_init(self):
-        self.assertEqual(self.cp.user_version(), 4)
+        self.assertEqual(self.cp.user_version(), 5)
         tables = {r[0] for r in self.db().execute(
             "SELECT name FROM sqlite_master WHERE type='table'")}
         self.assertIn("proposals", tables)
         self.assertIn("standing_templates", tables)
         self.assertIn("submission_artifacts", tables)
+        self.assertIn("upload_artifacts", tables)
         # Repeated init must not rewind schema version or replay migrations.
         before = self.db().execute(
             "SELECT COUNT(*) FROM audit_events WHERE action='schema.migrate'"
         ).fetchone()[0]
-        self.assertEqual(before, 3)
+        self.assertEqual(before, 4)
         self.cp.init()
         self.assertEqual(self.cp.user_version(), 4)
         after = self.db().execute(
@@ -122,11 +123,22 @@ class TestSchemaMigration(Base):
         c.execute("PRAGMA user_version=3")
         task_id = "KG-2026-0401"
         self.cp.publish_task(make_task(task_id))
+        c.execute(
+            "INSERT INTO uploads (upload_id,agent_id,state,created_at) "
+            "VALUES (?,?,?,?)",
+            ("UPL-LEGACY", "legacy-agent", "open", "2026-11-28T00:00:00Z"),
+        )
         digest = "a" * 64
         c.execute(
-            "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,created_at) "
-            "VALUES (?,?,?,?,?)",
-            (digest, 12, "application/x-ndjson", digest, "2026-11-28T00:00:00Z"),
+            "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,upload_id,created_at) "
+            "VALUES (?,?,?,?,?,?)",
+            (digest, 12, "application/x-ndjson", digest, "UPL-LEGACY", "2026-11-28T00:00:00Z"),
+        )
+        c.execute(
+            "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,upload_id,created_at) "
+            "VALUES (?,?,?,?,?,?)",
+            ("b" * 64, 3, "application/octet-stream", "b" * 64,
+             "UPL-MISSING", "2026-11-28T00:00:00Z"),
         )
         descriptors = [
             {"sha256": digest, "bytes": 12, "media_type": "application/x-ndjson"},
@@ -150,6 +162,21 @@ class TestSchemaMigration(Base):
         ).fetchone()
         self.assertIsNotNone(migration)
         self.assertIn('"unresolved_legacy_artifacts":1', migration["details_json"])
+        upload_links = c.execute(
+            "SELECT upload_id,sha256,media_type FROM upload_artifacts "
+            "WHERE sha256=?",
+            (digest,),
+        ).fetchall()
+        self.assertEqual(
+            [(x["upload_id"], x["sha256"], x["media_type"]) for x in upload_links],
+            [("UPL-LEGACY", digest, "application/x-ndjson")],
+        )
+        migration_v5 = c.execute(
+            "SELECT details_json FROM audit_events WHERE action='schema.migrate' "
+            "AND details_json LIKE '%\"to\":5%' ORDER BY seq DESC LIMIT 1"
+        ).fetchone()
+        self.assertIsNotNone(migration_v5)
+        self.assertIn('"unresolved_legacy_uploads":1', migration_v5["details_json"])
         self.assertInvariants()
 
 
@@ -158,8 +185,8 @@ class TestSchemaMigration(Base):
         blob = self.cp.put_blob(
             upload, "fast-01", b"shared immutable evidence", "application/x-ndjson"
         )
-        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
-                 "media_type": "application/x-ndjson"}]
+        arts = [{"path": "results/shared.ndjson", "sha256": blob["sha256"],
+                 "bytes": blob["bytes"], "media_type": "application/x-ndjson"}]
         for index, task_id in enumerate(("KG-2026-0301", "KG-2026-0302"), start=1):
             self.cp.publish_task(make_task(task_id))
             lease = self.cp.claim(
@@ -325,8 +352,8 @@ class TestCancellation(Base):
         up = self.cp.create_upload("fast-01")
         blob = self.cp.put_blob(up, "fast-01", b"data",
                                 "application/x-ndjson")
-        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
-                 "media_type": "application/x-ndjson"}]
+        arts = [{"path": "results/data.ndjson", "sha256": blob["sha256"],
+                 "bytes": blob["bytes"], "media_type": "application/x-ndjson"}]
         sub = {"id": "SUB-2022", "task_id": "KG-2026-0022",
                "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
                "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
