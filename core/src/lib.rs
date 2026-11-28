@@ -789,6 +789,7 @@ mod tests {
 
 #[cfg(test)]
 mod probes;
+pub(crate) mod sha256;
 
 pub mod room;
 
