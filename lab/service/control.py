@@ -30,7 +30,7 @@ MAX_BLOB_BYTES = 128 * 1024 * 1024
 MAX_BUNDLE_BYTES = 512 * 1024 * 1024
 MAX_WAITING_MAIN_SECONDS = 3600
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
-MEDIA_TYPE_RE = re.compile(r"^[A-Za-z0-9!#PROTOCOL = 1
+MEDIA_TYPE_RE = re.compile(r"^[A-Za-z0-9!#$&^_.+-]+/[A-Za-z0-9!#$&^_.+-]+$")
 FALSE = ("false", 0)^_.+-]{1,63}/[A-Za-z0-9!#PROTOCOL = 1
 FALSE = ("false", 0)^_.+-]{1,63}$")
 FALSE = ("false", 0)
