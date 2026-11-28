@@ -10,17 +10,16 @@
 //! So one fixed scenario is pinned to a literal. If any component of the hash
 //! moves -- a field, a sample field, the order they are mixed, the birth tag --
 //! this test goes red, and the author has to decide whether the change is
-//! intentional (bump `HASH_VERSION`, re-pin this constant, update
-//! `docs/hash-unversioned.txt`) or a regression.
+//! intentional (bump `HASH_VERSION` and re-pin this constant; records from the
+//! old semantics remain legal stale history) or a regression.
 //!
 //! ## What the scenario touches
 //!
 //! The world is not a convenient one: 120 steps of `Policy::Memory` on an
 //! alternating field with births on. The assertions below are there because a
 //! golden vector that only exercises half the hash pins nothing about the other
-//! half. This scenario produces, over 7176 samples: 3706 alive and 3470 dead,
-//! 3470 with non-zero `damage`, 2843 with non-zero `taken`, both directions
-//! (`-1`: 2174, `+1`: 1880, `0`: 3122), 3587 samples whose `cell` differs from
+//! half. This scenario produces living and dead samples, non-zero `damage` and
+//! `taken`, both movement directions, samples whose `cell` differs from
 //! `prev_cell`, non-zero `memory_cell`/`memory_level`, and a population that
 //! grows past the starting 24 (births, so the birth tag is in the hash too).
 //!
@@ -35,10 +34,10 @@ use medium_core::life::{Life, Policy};
 use medium_core::organism::{LookOrder, ShareProtocol, TieBreak, World};
 use medium_core::trace::{record, Trace};
 
-/// The hash of the scenario below, computed with `HASH_VERSION = "2-prev-cell"`.
+/// The hash of the scenario below, computed with `HASH_VERSION = "3-move-bounds"`.
 ///
 /// Re-pin this only together with a bump of `HASH_VERSION` in `core/src/trace.rs`.
-const GOLDEN_HASH: u64 = 0x445834e79a0843ee;
+const GOLDEN_HASH: u64 = 0xdd4794034c2148e2;
 
 fn golden_trace() -> Trace {
     let world = World {
@@ -70,10 +69,9 @@ fn the_dynamics_hash_is_pinned_to_a_golden_vector() {
     assert_eq!(trace.frames.len(), 120, "the scenario must run all 120 steps");
     assert_eq!(
         trace.hash, GOLDEN_HASH,
-        "the dynamics hash moved. If the change is intended, bump HASH_VERSION \
-         in core/src/trace.rs, re-pin GOLDEN_HASH, and refresh \
-         docs/hash-unversioned.txt; if it is not, this is the regression that \
-         FINDING-154 was written about"
+        "the dynamics hash moved. If the change is intentional, bump HASH_VERSION \
+         in core/src/trace.rs and re-pin GOLDEN_HASH; versioned records from the \
+         old semantics remain legal stale history and must not be rewritten"
     );
 }
 

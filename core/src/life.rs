@@ -920,21 +920,23 @@ impl Life {
             r.last_cell = r.cell;
             let _reads_used = self.world.read_budget.saturating_sub(reads_left);
 
-            if direction != 0 && r.organism.spend(r.move_cost) {
-                let nc = r.cell as i64 + direction as i64;
-                if nc >= 0 && (nc as usize) < cells {
-                    if self.world.share == ShareProtocol::Proportional
-                        && r.cell < cells
-                        && share_counts[r.cell] > 0
-                    {
-                        share_counts[r.cell] -= 1;
-                    }
-                    r.cell = nc as usize;
-                    if self.world.share == ShareProtocol::Proportional && r.cell < cells {
-                        share_counts[r.cell] += 1;
-                    }
-                    self.moves += 1;
+            let nc = r.cell as i64 + direction as i64;
+            if direction != 0
+                && nc >= 0
+                && (nc as usize) < cells
+                && r.organism.spend(r.move_cost)
+            {
+                if self.world.share == ShareProtocol::Proportional
+                    && r.cell < cells
+                    && share_counts[r.cell] > 0
+                {
+                    share_counts[r.cell] -= 1;
                 }
+                r.cell = nc as usize;
+                if self.world.share == ShareProtocol::Proportional && r.cell < cells {
+                    share_counts[r.cell] += 1;
+                }
+                self.moves += 1;
             }
 
             // 4. Eat. Reading is separate: `read_budget > 0` lets the
@@ -1366,8 +1368,8 @@ mod tests {
     // with the arm letter.
     #[test]
     fn exp79_the_poor_cell_organism_decides_to_move() {
-        // A. A free move must not be refused. `spend` is the gate in
-        //    `Life::advance`: `if direction != 0 && r.organism.spend(cost)`.
+        // A. A free move must not be refused. `spend` is the payment gate in
+        //    `Life::advance`, after the destination has passed the bounds check.
         //    If `spend(0.0)` returned false, every `move_cost = 0` arm in the
         //    project would be a population that silently cannot move.
         let mut o = Organism::healthy(10.0).expect("healthy organism");
@@ -1477,6 +1479,37 @@ mod tests {
             paid_energy,
             free_energy - paid_energy
         );
+    }
+
+    #[test]
+    fn an_out_of_bounds_move_is_not_charged() {
+        let world = World {
+            income: 0.0,
+            maintenance_cost: 0.0,
+            repair_cost: 0.0,
+            damage_rate: 0.0,
+            capacity: 100.0,
+            ..World::default()
+        };
+        let field = Field::new(1, 1.0, 0.8).expect("one-cell field");
+        let mut saw_outward_decision = false;
+        for seed in 0..64u64 {
+            let mut free = Life::spawn(world, field.clone(), 1, 5.0, 0.0, Policy::Random, seed, 100)
+                .expect("free organism");
+            let mut paid = Life::spawn(world, field.clone(), 1, 5.0, 0.25, Policy::Random, seed, 100)
+                .expect("paid organism");
+            free.advance().expect("free step");
+            paid.advance().expect("paid step");
+            let direction = paid.samples()[0].direction;
+            if direction == 0 { continue; }
+            saw_outward_decision = true;
+            assert_eq!(paid.samples()[0].cell, 0, "a one-cell world cannot move");
+            assert_eq!(paid.moves, 0, "an invalid move must not be counted");
+            assert_eq!(paid.samples()[0].energy, free.samples()[0].energy,
+                "an invalid move must not spend energy");
+            break;
+        }
+        assert!(saw_outward_decision, "Random never produced an outward decision");
     }
 
     #[test]

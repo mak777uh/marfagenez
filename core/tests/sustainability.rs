@@ -125,15 +125,11 @@ fn surplus_just_above_repair_price_survives() {
     // A margin of 1e-6 is enough to make the strict test `price < energy` hold
     // on every step, so the steady state is real and not a rounding accident.
     //
-    // The exact boundary is NOT tested as survivable, even though `sustains`
-    // uses `>=`. At exact equality the step's arithmetic is `energy - price`
-    // with both sides equal, and the result depends on the accumulated rounding
-    // of the previous 500 steps: it survives or dies depending on the path, not
-    // on the parameters. `sustains` answers the mathematical question; the
-    // simulation answers the floating-point one, and they agree only away from
-    // every equality, not just this one (`docs/FINDING-148.md`: `dr*rc == s`,
-    // `rc == K*s` and `rc == capacity + s` are all decided by rounding). This
-    // test pins the side where they do.
+    // The exact boundary is NOT tested as survivable. `sustains` now uses the
+    // same strict affordability relation as repair (`price < energy`), so at
+    // exact equality it returns false. `docs/FINDING-148.md` records the older
+    // arithmetic `<=` formulation and the three floating-point equality cases;
+    // this test pins the executable side of the first one.
     let world = World {
         income: 1.0,
         maintenance_cost: 0.8,
@@ -259,19 +255,19 @@ fn a_full_tank_can_outlive_a_short_horizon_even_when_the_world_does_not_sustain(
 // ---------------------------------------------------------------------------
 
 #[test]
-fn sustains_is_not_sufficient_when_one_repair_costs_more_than_the_reserve() {
+fn sustains_is_false_at_exact_repair_price_and_is_not_life_boundary() {
     // `dr = 0.03` is a tooth of the damage clock (`K = 34`, so the cadence
     // edge is 34*0.4 = 13.6), and `rc = 0.4/0.03` makes the per-step price
-    // exactly the step's surplus: `dr*rc == 0.4` in doubles, so `sustains()`
-    // returns `true` by `>=`.
+    // exactly the step's surplus: `dr*rc == 0.4` in doubles. `sustains()` must
+    // use the same strict relation as repair and therefore return `false`.
     //
     // Starting from a zero reserve the organism holds exactly `k*0.4` after
     // `k` steps and is charged exactly `k*0.4` for the damage it carries, so
     // the strict test `price < energy` in step 4 is false on every step: no
     // repair is ever paid. The damage reaches 1.0 at step 34 with the tank at
     // the cap, because one deferred repair costs `rc = 13.33...` and the cap
-    // allows `capacity + surplus = 10.4`. The predicate says the price is
-    // payable; the organism dies of damage.
+    // allows `capacity + surplus = 10.4`. The predicate says the price is not
+    // strictly affordable; the organism dies of damage.
     let world = World {
         income: 1.0,
         maintenance_cost: 0.6,
@@ -287,8 +283,8 @@ fn sustains_is_not_sufficient_when_one_repair_costs_more_than_the_reserve() {
         "the point is the exact equality `dr*rc == surplus`, not a near miss"
     );
     assert!(
-        world.sustains(),
-        "`>=` says the per-step price is payable: {} >= {}",
+        !world.sustains(),
+        "strict affordability must reject exact equality: {} == {}",
         surplus,
         world.damage_rate * world.repair_cost
     );

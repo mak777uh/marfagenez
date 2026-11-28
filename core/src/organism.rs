@@ -439,15 +439,15 @@ impl World {
         self.income > self.maintenance_cost
     }
 
-    /// Whether one step's surplus can pay for one step's repair.
+    /// Whether one step's surplus strictly exceeds one step's repair price.
     ///
     /// This is the **per-step price** test, not the boundary of life.
     ///
     /// Damage grows by `damage_rate` every step, and repairing one step's
-    /// damage costs `damage_rate * repair_cost`. If the step's surplus covers
-    /// that price, the repair is affordable on every step, the damage never
-    /// accumulates, and the damage cap is never reached. That is the whole of
-    /// what this predicate asks.
+    /// damage costs `damage_rate * repair_cost`. If the step's surplus strictly
+    /// exceeds that price, the repair is affordable on every step, the damage
+    /// never accumulates, and the damage cap is never reached. That is the whole
+    /// of what this predicate asks.
     ///
     /// The step order in [`Organism::step`] is why `capacity` is deliberately
     /// not part of the condition: income arrives first (step 1), maintenance is
@@ -476,15 +476,15 @@ impl World {
     ///     where `K` is the model's damage clock -- the number of accumulated
     ///     `damage += dr` steps to the first `damage >= 1.0`, measured as the
     ///     lifetime of the `none` policy. This predicate is the first disjunct
-    ///     of that criterion and nothing more.
+    ///     of that criterion and nothing more. The arithmetic finding writes the
+    ///     first disjunct with `<=`; this executable predicate uses the strict
+    ///     affordability test actually implemented by repair.
     ///   - Returning `true` is sufficient for its own branch but not for life:
-    ///     the branch's boundary is the equality `dr*rc == surplus`, where the
-    ///     strict repair test `price < energy` (step 4) disagrees with the `>=`
-    ///     used here. At `dr = 0.03`, `rc = 13.333333333333334`,
-    ///     `capacity = 10` an organism starting from 0 holds exactly
-    ///     `k*surplus` after `k` steps and is charged exactly that, so
-    ///     `price < energy` is false on every step, the damage reaches `1.0`,
-    ///     and it dies of damage while this predicate returns `true`.
+    ///     at the equality `dr*rc == surplus` the strict repair test
+    ///     `price < energy` (step 4) is false in the zero-reserve steady state.
+    ///     At `dr = 0.03`, `rc = 13.333333333333334`, `capacity = 10` an
+    ///     organism starting from 0 never repairs, the damage reaches `1.0`,
+    ///     and it dies of damage while this predicate returns `false`.
     ///     `tests/sustainability.rs` pins that point, and pins the one from
     ///     148 (`dr = 0.03`, `rc = 13.466666666666669`, `energy0 = 5`), where
     ///     the cadence condition says "alive" and this predicate already says
@@ -503,18 +503,17 @@ impl World {
     /// why it could not see either limit above.
     ///
     /// The boundary itself is a floating-point question, not a mathematical
-    /// one. The repair test in step 4 is `price < energy`, so at
-    /// `dr*rc == surplus` the comparison is decided by the rounding accumulated
-    /// over the previous steps and by `energy0`, and the same parameters can
-    /// survive or die depending on the path. This predicate answers the
-    /// mathematical question and uses `>=`; the simulation answers the
-    /// floating-point one. They agree away from the three equalities
-    /// (`dr*rc == surplus`, `rc == K*surplus`, `rc == capacity + surplus`), and
-    /// `tests/sustainability.rs` pins the sides where they do.
+    /// one. The repair test in step 4 is `price < energy`, so this predicate
+    /// uses the matching strict comparison `surplus > repair_price`: exact
+    /// equality is not reported as sustainable. Away from the three equality
+    /// cases (`dr*rc == surplus`, `rc == K*surplus`,
+    /// `rc == capacity + surplus`) the arithmetic finding and the executable
+    /// per-step test agree; `tests/sustainability.rs` pins the sides where
+    /// they do.
     pub fn sustains(&self) -> bool {
         let surplus = self.income - self.maintenance_cost;
         let repair_price = self.damage_rate * self.repair_cost;
-        surplus >= repair_price
+        surplus > repair_price
     }
 
     /// Rejects parameters that make the arithmetic meaningless.

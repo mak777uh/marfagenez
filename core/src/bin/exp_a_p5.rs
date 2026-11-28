@@ -74,22 +74,55 @@ struct ArmSpec {
     ration_scale: f64,
 }
 
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+enum DeathCause { None, Energy, Damage }
+
+impl DeathCause {
+    fn label(self) -> &'static str {
+        match self { DeathCause::None => "none", DeathCause::Energy => "energy", DeathCause::Damage => "damage" }
+    }
+}
+
 #[derive(Clone, Copy)]
 struct RunOut {
     aurd: f64,
+    aurd_observed: f64,
     dfdt_mean10: f64,
     f_final: f64,
+    f_at_death: f64,
     binary95: bool,
     t_reach95: usize,
     max_imbalance: f64,
     v_first: f64,
+    maint_short_total: f64,
+    maint_debt: f64,
+    observed_steps: usize,
+    alive: bool,
+    death_step: Option<usize>,
+    death_cause: DeathCause,
+    horizon_censored: bool,
 }
 
-/// Одно плечо: WINDOW_T шагов, закрытый ledger, ровно 2 uniform на шаг.
+/// Учёт обслуживания: оплаченная часть списывает энергию, недоплата накапливается
+/// как явный долг. Канонический spec не задаёт repayment/default, поэтому долг
+/// бухгалтерски инертен и не меняет capacity; rescue его не погашает.
+fn pay_maintenance(e: &mut f64, debt: &mut f64, need: f64) -> (f64, f64, f64) {
+    let paid = need.min(*e).max(0.0);
+    *e -= paid;
+    let short = need - paid;
+    *debt += short;
+    (paid, short, *debt)
+}
+
+/// Одно плечо: WINDOW_T шагов, закрытый ledger, ровно 2 uniform на живой шаг.
 /// step_rows: если Some, туда пишутся строки шагового CSV (без заголовка).
-fn run_arm(spec: &ArmSpec, seed: u64, mut step_rows: Option<&mut Vec<String>>) -> RunOut {
+fn run_arm(spec: &ArmSpec, seed: u64, step_rows: Option<&mut Vec<String>>) -> RunOut {
+    run_arm_with_d0(spec, seed, D0, step_rows)
+}
+
+fn run_arm_with_d0(spec: &ArmSpec, seed: u64, d0: f64, mut step_rows: Option<&mut Vec<String>>) -> RunOut {
     let mut rng = Rng::new(seed);
-    let mut d = D0;
+    let mut d = d0;
     let mut e = STOCK_E0;
     let mut s = STOCK_S0;
     let mut c = match spec.cap { CapacityMode::Fixed => spec.frac * R0, CapacityMode::Candidate { .. } => R0 };
@@ -102,11 +135,20 @@ fn run_arm(spec: &ArmSpec, seed: u64, mut step_rows: Option<&mut Vec<String>>) -
     let mut dfdt_sum = 0.0;
     let mut dfdt_n = 0usize;
     let mut f_prev = 0.0f64;
+    let mut f_at_death = 0.0f64;
     let mut binary95 = false;
     let mut t_reach95 = 0usize;
     let mut max_imbalance = 0.0f64;
     let mut v_first = 0.0f64;
+    let mut maint_debt = 0.0f64;
+    let mut maint_short_total = 0.0f64;
+    let mut alive = e > 0.0 && d < 1.0;
+    let mut death_step = if alive { None } else { Some(0) };
+    let mut death_cause = if alive { DeathCause::None } else if e <= 0.0 { DeathCause::Energy } else { DeathCause::Damage };
+    let mut observed_steps = 0usize;
     for t in 0..WINDOW_T {
+        if !alive { break; }
+        observed_steps += 1;
         let u_e = rng.uniform();
         let u_s = rng.uniform();
         let e_in = RATION_E * spec.ration_scale * (1.0 + NOISE_REL * (2.0 * u_e - 1.0));
@@ -117,14 +159,14 @@ fn run_arm(spec: &ArmSpec, seed: u64, mut step_rows: Option<&mut Vec<String>>) -
         let s_add = (STOCK_S_CAP - s).min(s_in).max(0.0);
         let s_unc = s_in - s_add;
         let e_before = e; let s_before = s;
+        let debt_before = maint_debt;
         e += e_add; s += s_add;
         // 2) capacity текущего шага
         let cap_now = match spec.cap { CapacityMode::Fixed => spec.frac * R0, CapacityMode::Candidate { .. } => c };
-        // 3) обслуживание j_pay модулей (энергия); недоплаченное -- долг, capability в A не меняется
+        // 3) обслуживание j_pay модулей; недоплата — явный долг, capability в A не меняется
         let maint_need = j_pay as f64 * MAINT_E_PER_MODULE;
-        let maint_e = maint_need.min(e);
-        let maint_short = maint_need - maint_e;
-        e -= maint_e;
+        let (maint_e, maint_short, debt_now) = pay_maintenance(&mut e, &mut maint_debt, maint_need);
+        maint_short_total += maint_short;
         // 4) ремонт: min(спрос, capacity, энергия, субстрат, потребность)
         let demand = spec.k_d * d;
         let v = demand.min(cap_now).min(e / COST_REPAIR_E).min(s / COST_REPAIR_S).min(d).max(0.0);
@@ -138,35 +180,52 @@ fn run_arm(spec: &ArmSpec, seed: u64, mut step_rows: Option<&mut Vec<String>>) -
             c += (R0 - c) / tau - gamma * d * c;
             if c < 0.0 { c = 0.0; }
         }
-        // 6) метрики
-        let x = X_BASE - d;
-        let f = (D0 - d) / D0;
+        // 6) каноническая смерть после энергетики и ремонта; после неё динамика поглощающая
+        if e <= 0.0 || d >= 1.0 {
+            alive = false;
+            death_step = Some(t);
+            death_cause = if e <= 0.0 { DeathCause::Energy } else { DeathCause::Damage };
+        }
+        // 7) метрики: смерть — конкурирующее событие, фиксированное окно не считается завершённым
+        let f = (d0 - d) / d0;
         let dfdt = if t == 0 { f } else { f - f_prev };
         if t >= 1 && t <= BINARY_STEPS { dfdt_sum += dfdt; dfdt_n += 1; }
-        aurd_sum += d / D0;
-        if t == BINARY_STEPS { binary95 = f >= F_GOAL; }
-        if t_reach95 == 0 && f >= F_GOAL { t_reach95 = t; }
+        aurd_sum += d / d0;
+        if t == BINARY_STEPS { binary95 = alive && f >= F_GOAL; }
+        if t_reach95 == 0 && alive && f >= F_GOAL { t_reach95 = t; }
+        if !alive { f_at_death = f; }
         f_prev = f;
-        // 7) закрытый ledger: баланс по обоим запасам
+        // 8) закрытый физический ledger + отдельная идентичность долга
         let imb_e = (e_before + e_in) - (e + e_unc + maint_e + v * COST_REPAIR_E);
         let imb_s = (s_before + s_in) - (s + s_unc + v * COST_REPAIR_S + repl);
-        let imb = if imb_e.abs() > imb_s.abs() { imb_e } else { imb_s };
-        if imb.abs() > max_imbalance { max_imbalance = imb.abs(); }
-        assert!(imb.abs() < 1e-12, "ledger imbalance at t={t}: {imb}");
+        let debt_imb = maint_debt - (debt_before + maint_short);
+        let imb = imb_e.abs().max(imb_s.abs()).max(debt_imb.abs());
+        if imb > max_imbalance { max_imbalance = imb; }
+        assert!(imb < 1e-12, "ledger imbalance at t={t}: {imb}");
         if let Some(rows) = step_rows.as_mut() {
-            rows.push(format!("{},{},{},{},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.12}",
+            rows.push(format!("{},{},{},{},{},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.12},{},{},{},{:.12}",
                 spec.label, spec.frac, spec.pay_rule.label(), seed, t, u_e, u_s, e_in, s_in,
-                e_unc, s_unc, maint_e, maint_short, v, d, e, s, c, cap_now, f, dfdt, imb));
+                e_unc, s_unc, maint_e, maint_short, v, d, e, s, c, cap_now, f, dfdt, imb,
+                debt_now, debt_imb, alive as u8, death_cause.label()));
         }
     }
     RunOut {
-        aurd: aurd_sum / WINDOW_T as f64,
+        aurd: if alive { aurd_sum / WINDOW_T as f64 } else { f64::NAN },
+        aurd_observed: if observed_steps > 0 { aurd_sum / observed_steps as f64 } else { f64::NAN },
         dfdt_mean10: if dfdt_n > 0 { dfdt_sum / dfdt_n as f64 } else { 0.0 },
-        f_final: f_prev,
+        f_final: if alive { f_prev } else { f64::NAN },
+        f_at_death,
         binary95,
         t_reach95,
         max_imbalance,
         v_first,
+        maint_short_total,
+        maint_debt,
+        observed_steps,
+        alive,
+        death_step,
+        death_cause,
+        horizon_censored: alive,
     }
 }
 
@@ -214,8 +273,8 @@ fn main() {
     }
     let arms = build_arms();
     let mut steps_all: Vec<String> = Vec::new();
-    steps_all.push("arm,frac,pay_rule,seed,step,u_e,u_s,e_in,s_in,e_unc,s_unc,maint_e,maint_short,v,d,e,s,c,cap_now,f,dfdt,imbalance".to_string());
-    println!("arm,frac,pay_rule,gamma,tau,j_pay,seed,aurd,dfdt_mean10,f_final,binary95_10,t_reach95,max_imbalance,v_first");
+    steps_all.push("arm,frac,pay_rule,seed,step,u_e,u_s,e_in,s_in,e_unc,s_unc,maint_e,maint_short,v,d,e,s,c,cap_now,f,dfdt,imbalance,maint_debt,debt_imbalance,alive,death_cause".to_string());
+    println!("arm,frac,pay_rule,gamma,tau,j_pay,seed,aurd,dfdt_mean10,f_final,binary95_10,t_reach95,max_imbalance,v_first,aurd_observed,f_at_death,maint_short_total,maint_debt,observed_steps,alive,death_step,death_cause,horizon_censored");
     for spec in &arms {
         for s_i in 0..seeds {
             let seed = seed_base + s_i as u64;
@@ -236,9 +295,17 @@ fn main() {
                 Some(j) => j,
                 None => match spec.pay_rule { PayRule::DisabledFree => modules_for_frac(spec.frac), PayRule::DisabledPays => 3 },
             };
-            println!("{},{:.4},{},{:.4},{:.2},{},{},{:.6},{:.6},{:.6},{},{},{:.12},{:.6}",
-                spec.label, spec.frac, spec.pay_rule.label(), gamma, tau, j_pay, seed,
-                out.aurd, out.dfdt_mean10, out.f_final, out.binary95 as u8, out.t_reach95, out.max_imbalance, out.v_first);
+            println!(
+                "{label},{frac:.4},{pay},{gamma:.4},{tau:.2},{j_pay},{seed},{aurd:.6},{dfdt:.6},{f_final:.6},{binary},{t_reach},{max_imbalance:.12},{v_first:.6},{aurd_observed:.6},{f_at_death:.6},{maint_short_total:.6},{maint_debt:.6},{observed_steps},{alive},{death_step},{death_cause},{censored}",
+                label=spec.label, frac=spec.frac, pay=spec.pay_rule.label(), gamma=gamma, tau=tau,
+                j_pay=j_pay, seed=seed, aurd=out.aurd, dfdt=out.dfdt_mean10, f_final=out.f_final,
+                binary=out.binary95 as u8, t_reach=out.t_reach95, max_imbalance=out.max_imbalance,
+                v_first=out.v_first, aurd_observed=out.aurd_observed, f_at_death=out.f_at_death,
+                maint_short_total=out.maint_short_total, maint_debt=out.maint_debt,
+                observed_steps=out.observed_steps, alive=out.alive as u8,
+                death_step=out.death_step.map(|s| s as i64).unwrap_or(-1),
+                death_cause=out.death_cause.label(), censored=out.horizon_censored as u8
+            );
         }
     }
     if let Some(path) = steps_path {
@@ -355,7 +422,49 @@ mod tests {
         let full = run_arm(&arm("A", 1.0, PayRule::DisabledFree), SEED_BASE, None);
         let half = ArmSpec { label: "ration-half", frac: 1.0, pay_rule: PayRule::DisabledFree, cap: CapacityMode::Fixed, j_pay_override: None, k_d: K_D, ration_scale: 0.5 };
         let out = run_arm(&half, SEED_BASE, None);
-        assert!(out.aurd > full.aurd * 1.5, "ration bottleneck control does not bite: {} vs {}", out.aurd, full.aurd);
+        assert!(!out.alive && out.death_cause == DeathCause::Energy, "ration-half must exhaust energy: {:?}", out.death_cause);
+        assert!(out.aurd.is_nan() && out.f_final.is_nan(), "a death must not be reported as a completed fixed window");
+        assert!(out.aurd_observed > full.aurd * 1.5, "ration bottleneck control does not bite: {} vs {}", out.aurd_observed, full.aurd);
+    }
+
+    #[test]
+    fn maintenance_shortfall_becomes_explicit_inert_debt() {
+        let mut e = 0.01;
+        let mut debt = 0.0;
+        let (paid, short, stock) = pay_maintenance(&mut e, &mut debt, 0.03);
+        assert!((paid - 0.01).abs() < 1e-15);
+        assert!((short - 0.02).abs() < 1e-15);
+        assert!((stock - 0.02).abs() < 1e-15);
+        assert_eq!(e, 0.0);
+
+        let spec = ArmSpec { label: "exchange-off", frac: 1.0, pay_rule: PayRule::DisabledFree, cap: CapacityMode::Fixed, j_pay_override: None, k_d: 0.0, ration_scale: 0.0 };
+        let mut rows = Vec::new();
+        let out = run_arm(&spec, SEED_BASE, Some(&mut rows));
+        assert!(!out.alive && out.death_cause == DeathCause::Energy);
+        assert_eq!(out.observed_steps, rows.len());
+        assert!(rows.len() < WINDOW_T, "death must stop the run, not freeze rows to the horizon");
+        assert!(out.maint_short_total > 0.0 && out.maint_debt > 0.0);
+        assert!((out.maint_debt - out.maint_short_total).abs() < 1e-15);
+        assert!(out.max_imbalance < 1e-12, "debt identity or physical ledger did not close");
+    }
+
+    #[test]
+    fn canonical_death_is_absorbing_and_damage_boundary_is_exact() {
+        let spec = arm("dead", 1.0, PayRule::DisabledFree);
+        let mut rows = Vec::new();
+        let dead = run_arm_with_d0(&spec, SEED_BASE, 1.0, Some(&mut rows));
+        assert!(!dead.alive && dead.death_cause == DeathCause::Damage);
+        assert_eq!(dead.death_step, Some(0));
+        assert_eq!(dead.observed_steps, 0);
+        assert!(rows.is_empty());
+        assert!(dead.aurd.is_nan() && dead.f_final.is_nan());
+        assert!(!dead.horizon_censored);
+
+        let just_below = f64::from_bits(1.0f64.to_bits() - 1);
+        let live = run_arm_with_d0(&spec, SEED_BASE, just_below, None);
+        assert!(live.alive && live.death_cause == DeathCause::None);
+        assert_eq!(live.observed_steps, WINDOW_T);
+        assert!(live.horizon_censored);
     }
 
     #[test]

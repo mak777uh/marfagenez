@@ -6,8 +6,9 @@
 mixed into the sample hash, so `results/standing-is-a-uniform-third/` holds
 `40bd71fa379e135a` while the binary at `HEAD` gives `f94d3b830971a9e8` for the
 same arm. AGENTS.md §5 -- "two arms with the same hash are one arm" -- is true
-*inside one version of the function*. Across versions it silently means
-nothing, because the same sixteen hex digits no longer measure the same thing.
+*inside one version of the hash function and the dynamics it fingerprints*.
+Across versions it silently means nothing, because the same sixteen hex digits
+no longer measure the same thing.
 
 So every record now carries `hash_version`, and this script is the machine that
 makes the field mean something:
@@ -160,7 +161,7 @@ def run(results_dir: Path, doc: Path, trace_rs: Path, version_py: str) -> int:
 
     if stale:
         print()
-        print("stale -- versioned, but with another hash function. Not a failure:")
+        print("stale -- versioned, but with another hash/dynamics version. Not a failure:")
         print("these records are true about their own version and must never be")
         print("compared with a current hash.")
         for rel, got in stale:

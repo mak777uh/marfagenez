@@ -62,11 +62,23 @@ struct ArmSpec {
     sham: bool,
 }
 
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+enum DeathCause { None, Energy, Damage }
+
+impl DeathCause {
+    fn label(self) -> &'static str {
+        match self { DeathCause::None => "none", DeathCause::Energy => "energy", DeathCause::Damage => "damage" }
+    }
+}
+
 #[derive(Clone, Copy)]
 struct RunOut {
     aurd: f64,
+    aurd_observed: f64,
     aurd_abs: f64,
+    aurd_abs_observed: f64,
     f_final: f64,
+    f_at_death: f64,
     f_at_ko2: f64,
     v_after_ko2: f64,
     v_after_rescue: f64,
@@ -75,18 +87,46 @@ struct RunOut {
     max_imbalance: f64,
     v_first: f64,
     n_final: usize,
+    maint_short_total: f64,
+    maint_debt: f64,
+    rescue_in_total: usize,
+    external_rescue_stock: usize,
+    observed_steps: usize,
+    alive: bool,
+    death_step: Option<usize>,
+    death_cause: DeathCause,
+    horizon_censored: bool,
 }
 
-fn run_arm(spec: &ArmSpec, seed: u64, mut step_rows: Option<&mut Vec<String>>) -> RunOut {
+/// Неоплаченное обслуживание становится явным долгом. Repayment/default не
+/// предрегистрированы, поэтому долг не меняет n/capacity и не гасится rescue.
+fn pay_maintenance(e: &mut f64, debt: &mut f64, need: f64) -> (f64, f64, f64) {
+    let paid = need.min(*e).max(0.0);
+    *e -= paid;
+    let short = need - paid;
+    *debt += short;
+    (paid, short, *debt)
+}
+
+fn run_arm(spec: &ArmSpec, seed: u64, step_rows: Option<&mut Vec<String>>) -> RunOut {
+    run_arm_with_ration_scale(spec, seed, 1.0, step_rows)
+}
+
+fn run_arm_with_ration_scale(spec: &ArmSpec, seed: u64, ration_scale: f64, mut step_rows: Option<&mut Vec<String>>) -> RunOut {
     let mut rng = Rng::new(seed);
     let d0 = spec.d0;
     let mut d = d0;
     let mut e = STOCK_E0;
     let mut s = STOCK_S0;
     let mut n: usize = M_MODULES;
+    // Rescue — экзогенный вмешательство: один модуль приходит из явно
+    // моделируемого внешнего запаса и списывает его; бесплатного n += 1 нет.
+    let mut external_rescue_stock = if spec.rescue { 1 } else { 0 };
+    let mut rescue_in_total = 0usize;
     let mut aurd_sum = 0.0;
     let mut aurd_abs_sum = 0.0;
     let mut f_prev = 0.0f64;
+    let mut f_at_death = 0.0f64;
     let mut f_at_ko2 = 0.0f64;
     let mut v_after_ko2 = 0.0f64;
     let mut v_after_rescue = 0.0f64;
@@ -94,23 +134,46 @@ fn run_arm(spec: &ArmSpec, seed: u64, mut step_rows: Option<&mut Vec<String>>) -
     let mut t_reach95 = 0usize;
     let mut max_imbalance = 0.0f64;
     let mut v_first = 0.0f64;
+    let mut maint_debt = 0.0f64;
+    let mut maint_short_total = 0.0f64;
+    let mut alive = e > 0.0 && d < 1.0;
+    let mut death_step = if alive { None } else { Some(0) };
+    let mut death_cause = if alive { DeathCause::None } else if e <= 0.0 { DeathCause::Energy } else { DeathCause::Damage };
+    let mut observed_steps = 0usize;
     for t in 0..WINDOW_T {
+        if !alive { break; }
+        observed_steps += 1;
         // 0) вмешательства: расписание предрегистрировано, от damage не зависит
+        let n_before = n;
+        let rescue_stock_before = external_rescue_stock;
+        let mut module_in = 0usize;
+        let mut module_out = 0usize;
         let mut event = "";
-        if spec.ko1 && t == T_KO1 { n = n.saturating_sub(1); event = "ko1"; }
-        if spec.ko2 && t == T_KO2 { n = n.saturating_sub(1); event = "ko2"; }
-        if spec.rescue && t == T_RESCUE { n += 1; event = "rescue"; }
+        if spec.ko1 && t == T_KO1 && n > 0 { n -= 1; module_out += 1; event = "ko1"; }
+        if spec.ko2 && t == T_KO2 && n > 0 { n -= 1; module_out += 1; event = "ko2"; }
+        if spec.rescue && t == T_RESCUE {
+            if external_rescue_stock > 0 && n < M_MODULES {
+                n += 1;
+                external_rescue_stock -= 1;
+                module_in += 1;
+                rescue_in_total += module_in;
+                event = "rescue";
+            } else {
+                event = "rescue_unavailable";
+            }
+        }
         if spec.sham && t == T_KO1 { event = "sham"; }
         let u_e = rng.uniform();
         let u_s = rng.uniform();
-        let e_in = RATION_E * (1.0 + NOISE_REL * (2.0 * u_e - 1.0));
-        let s_in = RATION_S * (1.0 + NOISE_REL * (2.0 * u_s - 1.0));
+        let e_in = RATION_E * ration_scale * (1.0 + NOISE_REL * (2.0 * u_e - 1.0));
+        let s_in = RATION_S * ration_scale * (1.0 + NOISE_REL * (2.0 * u_s - 1.0));
         // 1) приток с кэпом; излишек — невостребованный остаток (ledger)
         let e_add = (STOCK_E_CAP - e).min(e_in).max(0.0);
         let e_unc = e_in - e_add;
         let s_add = (STOCK_S_CAP - s).min(s_in).max(0.0);
         let s_unc = s_in - s_add;
         let e_before = e; let s_before = s;
+        let debt_before = maint_debt;
         e += e_add; s += s_add;
         // 2) capacity шага
         let cap_now = match spec.cap {
@@ -120,9 +183,8 @@ fn run_arm(spec: &ArmSpec, seed: u64, mut step_rows: Option<&mut Vec<String>>) -
         // 3) обслуживание: A-control платит за 3 (cost-yoked), модульные — за активные
         let j_pay = match spec.cap { CapMode::Fixed => M_MODULES, _ => n };
         let maint_need = j_pay as f64 * MAINT_E_PER_MODULE;
-        let maint_e = maint_need.min(e);
-        let maint_short = maint_need - maint_e;
-        e -= maint_e;
+        let (maint_e, maint_short, debt_now) = pay_maintenance(&mut e, &mut maint_debt, maint_need);
+        maint_short_total += maint_short;
         // 4) ремонт: min(спрос, capacity, энергия, субстрат, потребность)
         let demand = K_D * d;
         let v = demand.min(cap_now).min(e / COST_REPAIR_E).min(s / COST_REPAIR_S).min(d).max(0.0);
@@ -133,26 +195,66 @@ fn run_arm(spec: &ArmSpec, seed: u64, mut step_rows: Option<&mut Vec<String>>) -
         d -= v;
         e -= v * COST_REPAIR_E;
         s -= v * COST_REPAIR_S;
-        // 5) метрики
+        // 5) каноническая смерть после энергетики и ремонта; после неё динамика поглощающая
+        if e <= 0.0 || d >= 1.0 {
+            alive = false;
+            death_step = Some(t);
+            death_cause = if e <= 0.0 { DeathCause::Energy } else { DeathCause::Damage };
+        }
+        // 6) метрики: смерть — конкурирующее событие, фиксированное окно не завершено
         let f = (d0 - d) / d0;
         aurd_sum += d / d0;
         aurd_abs_sum += d;
-        if t == BINARY_STEPS { binary95 = f >= F_GOAL; }
-        if t_reach95 == 0 && f >= F_GOAL { t_reach95 = t; }
-        // 6) closed ledger
+        if t == BINARY_STEPS { binary95 = alive && f >= F_GOAL; }
+        if t_reach95 == 0 && alive && f >= F_GOAL { t_reach95 = t; }
+        if !alive { f_at_death = f; }
+        // 7) закрытый физический ledger, долг и материальный баланс модулей
         let imb_e = (e_before + e_in) - (e + e_unc + maint_e + v * COST_REPAIR_E);
         let imb_s = (s_before + s_in) - (s + s_unc + v * COST_REPAIR_S);
-        let imb = if imb_e.abs() > imb_s.abs() { imb_e } else { imb_s };
-        if imb.abs() > max_imbalance { max_imbalance = imb.abs(); }
-        assert!(imb.abs() < 1e-12, "ledger imbalance at t={t}: {imb}");
+        let debt_imb = maint_debt - (debt_before + maint_short);
+        let module_imb = n_before as f64 + module_in as f64 - module_out as f64 - n as f64;
+        let rescue_stock_imb = rescue_stock_before as f64 - module_in as f64 - external_rescue_stock as f64;
+        let imb = imb_e.abs().max(imb_s.abs()).max(debt_imb.abs()).max(module_imb.abs()).max(rescue_stock_imb.abs());
+        if imb > max_imbalance { max_imbalance = imb; }
+        assert!(imb < 1e-12, "ledger imbalance at t={t}: {imb}");
         if let Some(rows) = step_rows.as_mut() {
-            rows.push(format!("{},{},{},{},{},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{:.12}",
-                spec.label, seed, t, n, event, u_e, u_s, e_in, s_in, e_unc, s_unc,
-                maint_e, maint_short, v, d, e, s, cap_now, f, imb));
+            rows.push(format!(
+                "{label},{seed},{step},{n},{event},{u_e:.6},{u_s:.6},{e_in:.6},{s_in:.6},{e_unc:.6},{s_unc:.6},{maint_e:.6},{maint_short:.6},{v:.6},{d:.6},{e:.6},{s:.6},{cap_now:.6},{f:.6},{imb:.12},{debt_now:.6},{debt_imb:.6},{module_in},{module_out},{module_imb:.12},{external_rescue_stock},{alive},{death_cause}",
+                label=spec.label, seed=seed, step=t, n=n, event=event, u_e=u_e, u_s=u_s,
+                e_in=e_in, s_in=s_in, e_unc=e_unc, s_unc=s_unc, maint_e=maint_e,
+                maint_short=maint_short, v=v, d=d, e=e, s=s, cap_now=cap_now, f=f, imb=imb,
+                debt_now=debt_now, debt_imb=debt_imb, module_in=module_in, module_out=module_out,
+                module_imb=module_imb, external_rescue_stock=external_rescue_stock,
+                alive=alive as u8, death_cause=death_cause.label()
+            ));
         }
         f_prev = f;
     }
-    RunOut { aurd: aurd_sum / WINDOW_T as f64, aurd_abs: aurd_abs_sum / WINDOW_T as f64, f_final: f_prev, f_at_ko2, v_after_ko2, v_after_rescue, binary95, t_reach95, max_imbalance, v_first, n_final: n }
+    RunOut {
+        aurd: if alive { aurd_sum / WINDOW_T as f64 } else { f64::NAN },
+        aurd_observed: if observed_steps > 0 { aurd_sum / observed_steps as f64 } else { f64::NAN },
+        aurd_abs: if alive { aurd_abs_sum / WINDOW_T as f64 } else { f64::NAN },
+        aurd_abs_observed: if observed_steps > 0 { aurd_abs_sum / observed_steps as f64 } else { f64::NAN },
+        f_final: if alive { f_prev } else { f64::NAN },
+        f_at_death,
+        f_at_ko2,
+        v_after_ko2,
+        v_after_rescue,
+        binary95,
+        t_reach95,
+        max_imbalance,
+        v_first,
+        n_final: n,
+        maint_short_total,
+        maint_debt,
+        rescue_in_total,
+        external_rescue_stock,
+        observed_steps,
+        alive,
+        death_step,
+        death_cause,
+        horizon_censored: alive,
+    }
 }
 
 fn build_arms() -> Vec<ArmSpec> {
@@ -197,8 +299,8 @@ fn main() {
     }
     let arms = build_arms();
     let mut steps_all: Vec<String> = Vec::new();
-    steps_all.push("arm,seed,step,n_t,event,u_e,u_s,e_in,s_in,e_unc,s_unc,maint_e,maint_short,v,d,e,s,cap_now,f,imbalance".to_string());
-    println!("arm,k_eff,d0,seed,aurd,aurd_abs,f_final,f_at_ko2,v_after_ko2,v_after_rescue,binary95_10,t_reach95,max_imbalance,v_first,n_final");
+    steps_all.push("arm,seed,step,n_t,event,u_e,u_s,e_in,s_in,e_unc,s_unc,maint_e,maint_short,v,d,e,s,cap_now,f,imbalance,maint_debt,debt_imbalance,module_in,module_out,module_imbalance,external_rescue_stock,alive,death_cause".to_string());
+    println!("arm,k_eff,d0,seed,aurd,aurd_abs,f_final,f_at_ko2,v_after_ko2,v_after_rescue,binary95_10,t_reach95,max_imbalance,v_first,n_final,aurd_observed,aurd_abs_observed,f_at_death,maint_short_total,maint_debt,rescue_in_total,external_rescue_stock,observed_steps,alive,death_step,death_cause,horizon_censored");
     for spec in &arms {
         for s_i in 0..seeds {
             let seed = seed_base + s_i as u64;
@@ -212,10 +314,13 @@ fn main() {
             };
             let _ = rows;
             let k_eff = match spec.cap { CapMode::Modular { k_eff } => k_eff as f64, _ => -1.0 };
-            println!("{},{:.0},{:.4},{},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{},{},{:.12},{:.6},{}",
+            println!("{},{:.0},{:.4},{},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{},{},{:.12},{:.6},{},{:.6},{:.6},{:.6},{:.6},{:.6},{},{},{},{},{},{},{}",
                 spec.label, k_eff, spec.d0, seed,
                 out.aurd, out.aurd_abs, out.f_final, out.f_at_ko2, out.v_after_ko2, out.v_after_rescue,
-                out.binary95 as u8, out.t_reach95, out.max_imbalance, out.v_first, out.n_final);
+                out.binary95 as u8, out.t_reach95, out.max_imbalance, out.v_first, out.n_final,
+                out.aurd_observed, out.aurd_abs_observed, out.f_at_death, out.maint_short_total, out.maint_debt,
+                out.rescue_in_total, out.external_rescue_stock, out.observed_steps, out.alive as u8,
+                out.death_step.map(|s| s as i64).unwrap_or(-1), out.death_cause.label(), out.horizon_censored as u8);
         }
     }
     if let Some(path) = steps_path {
@@ -240,6 +345,7 @@ mod tests {
         for s in build_arms() {
             let out = run_arm(&s, SEED_BASE, None);
             assert!(out.max_imbalance < 1e-12, "{} imbalance {}", s.label, out.max_imbalance);
+            assert!(out.alive, "registered arm {} unexpectedly died: {:?}", s.label, out.death_cause);
         }
     }
 
@@ -277,6 +383,61 @@ mod tests {
         assert!(b2.aurd < r.aurd, "rescue aurd not above B-2: {} vs {}", b2.aurd, r.aurd);
         assert!(r.aurd < b3.aurd, "rescue aurd not below B-3: {} vs {}", r.aurd, b3.aurd);
         assert!(r.aurd - b2.aurd > 1e-6 && b3.aurd - r.aurd > 1e-6, "step margins too small");
+    }
+
+    #[test]
+    fn rescue_consumes_an_explicit_external_module_unit() {
+        let mut rows = Vec::new();
+        let out = run_arm(&b_spec("R", true, true, true, false), SEED_BASE, Some(&mut rows));
+        assert_eq!(out.rescue_in_total, 1);
+        assert_eq!(out.external_rescue_stock, 0);
+        assert_eq!(out.n_final, 2);
+        assert!(out.max_imbalance < 1e-12, "module or resource ledger did not close");
+        let rescue_row = rows.iter().find(|row| row.split(',').nth(4) == Some("rescue")).expect("rescue event");
+        let fields: Vec<&str> = rescue_row.split(',').collect();
+        assert_eq!(fields[22], "1", "rescue must record one external module inflow");
+        assert_eq!(fields[25], "0", "rescue must debit the external module stock");
+    }
+
+    #[test]
+    fn maintenance_shortfall_and_energy_death_are_explicit() {
+        let mut e = 0.01;
+        let mut debt = 0.0;
+        let (paid, short, stock) = pay_maintenance(&mut e, &mut debt, 0.03);
+        assert!((paid - 0.01).abs() < 1e-15);
+        assert!((short - 0.02).abs() < 1e-15);
+        assert!((stock - 0.02).abs() < 1e-15);
+        assert_eq!(e, 0.0);
+
+        let spec = spec("starved", CapMode::Modular { k_eff: K_MIN }, 0.01, false, false, false, false);
+        let mut rows = Vec::new();
+        let out = run_arm_with_ration_scale(&spec, SEED_BASE, 0.0, Some(&mut rows));
+        assert!(!out.alive && out.death_cause == DeathCause::Energy);
+        assert_eq!(out.observed_steps, rows.len());
+        assert!(rows.len() < WINDOW_T);
+        assert!(out.maint_debt > 0.0 && out.maint_short_total > 0.0);
+        assert!((out.maint_debt - out.maint_short_total).abs() < 1e-15);
+        assert!(out.aurd.is_nan() && out.f_final.is_nan());
+        assert!(out.max_imbalance < 1e-12);
+    }
+
+    #[test]
+    fn damage_death_is_absorbing_and_boundary_is_exact() {
+        let dead_spec = spec("dead", CapMode::Modular { k_eff: K_MIN }, 1.0, false, false, false, false);
+        let mut rows = Vec::new();
+        let dead = run_arm(&dead_spec, SEED_BASE, Some(&mut rows));
+        assert!(!dead.alive && dead.death_cause == DeathCause::Damage);
+        assert_eq!(dead.death_step, Some(0));
+        assert_eq!(dead.observed_steps, 0);
+        assert!(rows.is_empty());
+        assert!(dead.aurd.is_nan() && dead.aurd_abs.is_nan() && dead.f_final.is_nan());
+
+        let just_below = f64::from_bits(1.0f64.to_bits() - 1);
+        let live_spec = spec("live", CapMode::Modular { k_eff: K_MIN }, just_below, false, false, false, false);
+        let live = run_arm(&live_spec, SEED_BASE, None);
+        assert!(live.alive && live.death_cause == DeathCause::None);
+        assert_eq!(live.observed_steps, WINDOW_T);
+        assert!(live.horizon_censored);
     }
 
     #[test]

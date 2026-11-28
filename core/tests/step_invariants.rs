@@ -339,6 +339,80 @@ fn trace_from_json(input: &str) -> Trace {
 }
 
 #[test]
+fn trace_json_preserves_every_serialized_float_bit() {
+    fn ulp(v: f64) -> f64 { f64::from_bits(v.to_bits() + 1) }
+    fn trace_for(frame: Frame) -> Trace {
+        let hash = Trace::compute_hash(std::slice::from_ref(&frame));
+        Trace {
+            frames: vec![frame], hash, policy: "stay", seed: 1, rng_version: "test",
+            read_budget: 0, share: "sequential", tiebreak: "left", look_order: "look_then_eat",
+            birth_threshold: f64::INFINITY, birth_cost: 0.0, max_population: 0,
+            read_cost: 0.0, read_period: 1, look_on_shortfall: false,
+        }
+    }
+    fn check_variant(base: &Frame, name: &str, mutate: impl FnOnce(&mut Frame)) {
+        let mut changed = base.clone();
+        mutate(&mut changed);
+        let before = trace_for(base.clone());
+        let after = trace_for(changed);
+        assert_ne!(before.hash, after.hash, "{name}: dynamics hash lost the change");
+        let before_json = before.to_json();
+        let after_json = after.to_json();
+        assert_ne!(before_json, after_json, "{name}: JSON lost the change");
+        assert_eq!(after.to_json(), after_json, "{name}: serialization is not stable");
+        let parsed = trace_from_json(&after_json);
+        for (a, b) in parsed.frames[0].field.iter().zip(&after.frames[0].field) {
+            if a.is_finite() { assert_eq!(a.to_bits(), b.to_bits(), "{name}: field float did not round-trip"); }
+        }
+        for field in ["energy", "damage", "memory_level", "taken"] {
+            let a = match field {
+                "energy" => parsed.frames[0].samples[0].energy,
+                "damage" => parsed.frames[0].samples[0].damage,
+                "memory_level" => parsed.frames[0].samples[0].memory_level,
+                _ => parsed.frames[0].samples[0].taken,
+            };
+            let b = match field {
+                "energy" => after.frames[0].samples[0].energy,
+                "damage" => after.frames[0].samples[0].damage,
+                "memory_level" => after.frames[0].samples[0].memory_level,
+                _ => after.frames[0].samples[0].taken,
+            };
+            if a.is_finite() { assert_eq!(a.to_bits(), b.to_bits(), "{name}: sample {field} did not round-trip"); }
+        }
+    }
+
+    let base = Frame {
+        step: 1,
+        field: vec![0.12345678901234566],
+        samples: vec![Sample {
+            slot: 0, cell: 0, energy: 1.0000000000000002, damage: 0.25,
+            alive: true, memory_cell: 0, memory_level: 0.3333333333333333,
+            direction: 0, taken: 0.2, prev_cell: 0,
+        }],
+    };
+    check_variant(&base, "field", |f| f.field[0] = ulp(f.field[0]));
+    check_variant(&base, "energy", |f| f.samples[0].energy = ulp(f.samples[0].energy));
+    check_variant(&base, "damage", |f| f.samples[0].damage = ulp(f.samples[0].damage));
+    check_variant(&base, "memory_level", |f| f.samples[0].memory_level = ulp(f.samples[0].memory_level));
+    check_variant(&base, "taken", |f| f.samples[0].taken = ulp(f.samples[0].taken));
+    check_variant(&base, "signed_zero", |f| f.samples[0].taken = -0.0);
+
+    let mut nonfinite = base.clone();
+    nonfinite.field = vec![f64::INFINITY, f64::NEG_INFINITY, f64::NAN];
+    nonfinite.samples[0].energy = f64::INFINITY;
+    nonfinite.samples[0].damage = f64::NEG_INFINITY;
+    nonfinite.samples[0].memory_level = f64::NAN;
+    nonfinite.samples[0].taken = -0.0;
+    let json = trace_for(nonfinite).to_json();
+    let parsed = trace_from_json(&json);
+    assert_eq!(parsed.frames[0].field[0], f64::INFINITY);
+    assert_eq!(parsed.frames[0].field[1], f64::NEG_INFINITY);
+    assert!(parsed.frames[0].field[2].is_nan());
+    assert!(parsed.frames[0].samples[0].memory_level.is_nan());
+    assert_eq!(parsed.frames[0].samples[0].taken.to_bits(), (-0.0f64).to_bits());
+}
+
+#[test]
 fn trace_json_parse_and_serialize_is_byte_for_byte_stable() {
     let world = World {
         income: 1.0,

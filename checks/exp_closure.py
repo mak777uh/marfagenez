@@ -91,7 +91,7 @@ record = {
     'run_id': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H-%M-%S'),
     'model_commit': subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=root, capture_output=True, text=True).stdout.strip(),
     'seed': 0,
-    'hash_version': '2-prev-cell',
+    'hash_version': '3-move-bounds',
     'parameters': {'parts': N, 'configs': list(configs)},
     'arithmetic': {
         'measure': 'share of nodes in the largest strongly connected component (F-022)',

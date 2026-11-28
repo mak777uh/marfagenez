@@ -25,6 +25,18 @@ fn world() -> World {
     }
 }
 
+fn mix(h: &mut u64, x: u64) {
+    *h ^= x;
+    *h = h.wrapping_mul(0x100_0000_01b3);
+}
+
+fn energy_damage_hash(energy: f64, damage: f64) -> u64 {
+    let mut h: u64 = 0xcbf2_9ce4_8422_2325;
+    mix(&mut h, energy.to_bits());
+    mix(&mut h, damage.to_bits());
+    h
+}
+
 /// FNV-1a over the full state after every step: slot, cell, energy, damage, alive.
 ///
 /// A hash, not a metric: it must react to *any* difference, including a one-ulp one.
@@ -36,12 +48,11 @@ fn trace_hash(life: &mut Life, steps: usize) -> u64 {
             for x in [
                 s.slot as u64,
                 s.cell as u64,
-                (s.energy * 1e6) as i64 as u64,
-                (s.damage * 1e6) as i64 as u64,
+                s.energy.to_bits(),
+                s.damage.to_bits(),
                 s.alive as u64,
             ] {
-                h ^= x;
-                h = h.wrapping_mul(0x100_0000_01b3);
+                mix(&mut h, x);
             }
         }
     }
@@ -85,6 +96,22 @@ fn the_off_positions_do_not_move_the_trace() {
     let mut owned = build(world(), 3);
     assert!(owned.enable_claims(0.5, 0.1), "claims with a positive cost are legal");
     assert_eq!(trace_hash(&mut owned, 40) != h_base, true, "enabled claims must be visible");
+}
+
+#[test]
+fn the_harness_sees_one_ulp_and_signed_zero() {
+    let energy = 1.0f64;
+    let damage = 0.25f64;
+    let energy_ulp = f64::from_bits(energy.to_bits() + 1);
+    let damage_ulp = f64::from_bits(damage.to_bits() + 1);
+    assert_ne!(energy, energy_ulp);
+    assert_ne!(damage, damage_ulp);
+    assert_ne!(energy_damage_hash(energy, damage), energy_damage_hash(energy_ulp, damage),
+        "one energy ULP must survive hashing");
+    assert_ne!(energy_damage_hash(energy, damage), energy_damage_hash(energy, damage_ulp),
+        "one damage ULP must survive hashing");
+    assert_ne!(energy_damage_hash(0.0, damage), energy_damage_hash(-0.0, damage),
+        "signed zero is a bit-level difference");
 }
 
 #[test]

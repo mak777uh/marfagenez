@@ -149,15 +149,18 @@ pub struct Trace {
 /// added to the mix after that record was written. A hash with no version is a
 /// comparison between two different functions wearing the same name.
 ///
-/// **This constant changes only together with the hash function.** Bump it in
-/// the same edit that changes what `compute_hash` mixes -- never to make a
-/// mismatch go away, and never without re-pinning `core/tests/hash_golden.rs`.
+/// **This constant changes only together with a deliberate compatibility
+/// break in the hash function or in the dynamics it fingerprints.** Bump it
+/// in the same edit that changes what `compute_hash` mixes or that changes a
+/// recorded dynamics boundary -- never to make a mismatch go away, and never
+/// without re-pinning `core/tests/hash_golden.rs`. Version 3 marks the fix that
+/// checks a move's destination before charging its energy price.
 /// A record that carries no `hash_version` was written before versioning
 /// existed: its hash belongs to that time, and comparing it with a current one
 /// says nothing even when the two strings look alike. `checks/hash_version.py`
 /// reads this constant back with a regexp, so the Python side and the Rust side
 /// cannot drift apart silently.
-pub const HASH_VERSION: &str = "2-prev-cell";
+pub const HASH_VERSION: &str = "3-move-bounds";
 
 impl Trace {
     /// A stable hash of everything that moved. Two traces with the same hash had the
@@ -365,17 +368,18 @@ impl Trace {
                 if j > 0 {
                     out.push(',');
                 }
-                out.push_str(&format!("{:.6}", v));
+                out.push_str(&json_number(*v));
             }
             out.push_str("],\n");
             out.push_str("      \"samples\": [\n");
             for (j, s) in f.samples.iter().enumerate() {
                 out.push_str(&format!(
-                    "        {{\"slot\":{},\"cell\":{},\"energy\":{:.6},\"damage\":{:.6},\
-                     \"alive\":{},\"memory_cell\":{},\"memory_level\":{:.6},\
-                     \"direction\":{},\"taken\":{:.6},\"prev_cell\":{}}}",
-                    s.slot, s.cell, s.energy, s.damage, s.alive, s.memory_cell, s.memory_level,
-                    s.direction, s.taken, s.prev_cell
+                    "        {{\"slot\":{},\"cell\":{},\"energy\":{},\"damage\":{},\
+                     \"alive\":{},\"memory_cell\":{},\"memory_level\":{},\
+                     \"direction\":{},\"taken\":{},\"prev_cell\":{}}}",
+                    s.slot, s.cell, json_number(s.energy), json_number(s.damage), s.alive,
+                    s.memory_cell, json_number(s.memory_level), s.direction,
+                    json_number(s.taken), s.prev_cell
                 ));
                 if j + 1 < f.samples.len() {
                     out.push(',');

@@ -50,7 +50,7 @@ record = {
     'run_id': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H-%M-%S'),
     'model_commit': subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=root, capture_output=True, text=True).stdout.strip(),
     'seed': 0,
-    'hash_version': '2-prev-cell',
+    'hash_version': '3-move-bounds',
     'parameters': {'income': INCOME, 'weights': [W_UPKEEP, W_REPAIR, W_STORE], 'store_floor': STORE_FLOOR,
                    'a_sweep': [r['a'] for r in rows]},
     'arithmetic': {

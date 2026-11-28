@@ -13,7 +13,9 @@
 //!   k_eff(pi) = sum_j k_j*pi_j; слагаемые суммируются в каноническом порядке
 //!   (по убыванию) -> вырожденные перестановки дают байт-равный k_eff.
 //! - Сумма износа векторных плеч равна скаляру (sum pi = 1); рост износа в
-//!   challenge идёт по тому же профилю pi.
+//!   challenge идёт по тому же профилю pi. При фиксированном pi компоненты
+//!   движутся lockstep, поэтому это векторное представление, но не независимая
+//!   компонентная динамика; отдельная регрессия компонент не идентифицируется.
 //! - Предсказания: (P1) c2 == scalar байт-в-байт (k_eff == K_SCALAR точно);
 //!   (P2) lifeA: c3 <= scalar <= c1 на одном потоке (поточечное доминирование
 //!   hazard); (P3) mB == mC и mD == mE байт-равны (вырожденность по k_eff);
@@ -109,13 +111,54 @@ fn profiles() -> Vec<(&'static str, [f64; 3])> {
     ]
 }
 
-struct Arm { q: f64, d: f64, energy: f64, wear: f64 }
+#[derive(Clone, Copy, PartialEq, Debug)]
+enum Wear {
+    Scalar(f64),
+    Vector([f64; 3]),
+}
 
-fn wear_hazard(form: Form, profile: [f64; 3], wear: f64, control: Control) -> f64 {
+impl Wear {
+    fn zero(form: Form) -> Self {
+        match form { Form::Scalar => Wear::Scalar(0.0), Form::Vector => Wear::Vector([0.0; 3]) }
+    }
+
+    fn total(self) -> f64 {
+        match self {
+            Wear::Scalar(v) => v,
+            Wear::Vector(v) => v[0] + v[1] + v[2],
+        }
+    }
+
+    fn add(&mut self, form: Form, profile: [f64; 3], amount: f64) {
+        match (form, self) {
+            (Form::Scalar, Wear::Scalar(v)) => *v += amount,
+            (Form::Vector, Wear::Vector(v)) => {
+                for j in 0..3 { v[j] += profile[j] * amount; }
+            }
+            _ => panic!("wear representation does not match form"),
+        }
+    }
+}
+
+struct Arm { q: f64, d: f64, energy: f64, wear: Wear }
+
+fn vector_wear_hazard(wear: [f64; 3]) -> f64 {
+    let mut terms = [
+        K_COMPONENTS[0] * wear[0],
+        K_COMPONENTS[1] * wear[1],
+        K_COMPONENTS[2] * wear[2],
+    ];
+    // Канонический порядок делает перестановки профилей байт-равными.
+    terms.sort_by(|a, b| b.partial_cmp(a).unwrap());
+    terms[0] + terms[1] + terms[2]
+}
+
+fn wear_hazard(form: Form, wear: Wear, control: Control) -> f64 {
     match control {
-        Control::Repair => match form {
-            Form::Scalar => K_SCALAR * wear,
-            Form::Vector => keff(profile) * wear,
+        Control::Repair => match (form, wear) {
+            (Form::Scalar, Wear::Scalar(v)) => K_SCALAR * v,
+            (Form::Vector, Wear::Vector(v)) => vector_wear_hazard(v),
+            _ => panic!("wear representation does not match form"),
         },
         // silent: механизм выключен (k_j не действуют), износ растёт как число
         Control::Silent => 0.0,
@@ -133,25 +176,25 @@ fn wear_hazard(form: Form, profile: [f64; 3], wear: f64, control: Control) -> f6
 
 /// Фаза выравнивания: A копит износ a одним ремонтом, B -- дрейфом. Обе руки
 /// заканчивают ровно в (q, D, energy) = (0.5, 0.2, 0.8); износ A = a, B = 0.
-fn match_phase(a: f64) -> (Arm, Arm) {
+fn match_phase(a: f64, form: Form, profile: [f64; 3]) -> (Arm, Arm) {
     let mut part = Part::new(Q_TARGET - a, 0.0, COST);
     let mut energy = 1.0;
+    let mut repair_done = 0.0;
     for t in 1..=MATCH_STEPS {
         let u = if t == MATCH_STEPS { a } else { 0.0 };
         let done = part.step(u, 1.0, &mut energy);
+        repair_done += done;
         assert!(done == 0.0 || t == MATCH_STEPS, "repair outside schedule");
     }
-    let r_a = Q_TARGET - (Q_TARGET - a);
-    let arm_a = Arm { q: part.q, d: D_TARGET, energy, wear: r_a };
-    let d_b = 0.002 * MATCH_STEPS as f64;
-    let arm_b = Arm { q: Q_TARGET, d: d_b, energy: 1.0, wear: 0.0 };
-    let arm_a = Arm { q: Q_TARGET, d: D_TARGET, energy: ENERGY_TARGET, wear: arm_a.wear };
-    let arm_b = Arm { q: Q_TARGET, d: D_TARGET, energy: ENERGY_TARGET, wear: arm_b.wear };
+    let mut wear_a = Wear::zero(form);
+    wear_a.add(form, profile, repair_done);
+    let arm_a = Arm { q: Q_TARGET, d: D_TARGET, energy: ENERGY_TARGET, wear: wear_a };
+    let arm_b = Arm { q: Q_TARGET, d: D_TARGET, energy: ENERGY_TARGET, wear: Wear::zero(form) };
     (arm_a, arm_b)
 }
 
-fn hazard(arm: &Arm, form: Form, profile: [f64; 3], control: Control) -> f64 {
-    mortality_with_floor(arm.q, RATE, P, FLOOR) + LAMBDA * arm.d + wear_hazard(form, profile, arm.wear, control)
+fn hazard(arm: &Arm, form: Form, control: Control) -> f64 {
+    mortality_with_floor(arm.q, RATE, P, FLOOR) + LAMBDA * arm.d + wear_hazard(form, arm.wear, control)
 }
 
 /// Challenge как в 457: +0.2 damage, ремонт по расписанию, смерть при u < hazard.
@@ -165,13 +208,13 @@ fn challenge(mut arm: Arm, form: Form, profile: [f64; 3], control: Control, rng:
                 arm.energy -= want * COST;
                 if control != Control::Sham {
                     arm.d -= want;
-                    arm.wear += want;
+                    arm.wear.add(form, profile, want);
                 }
                 budget -= want;
             }
         }
         let u = rng.uniform();
-        if u < hazard(&arm, form, profile, control) {
+        if u < hazard(&arm, form, control) {
             return (t, false);
         }
     }
@@ -179,7 +222,7 @@ fn challenge(mut arm: Arm, form: Form, profile: [f64; 3], control: Control, rng:
 }
 
 fn run_pair(a: f64, form: Form, profile: [f64; 3], control: Control, seed: u64, pair: u64) -> (usize, bool, usize, bool) {
-    let (arm_a, arm_b) = match_phase(a);
+    let (arm_a, arm_b) = match_phase(a, form, profile);
     let mut rng_a = Rng::new(seed.wrapping_mul(1_000_003).wrapping_add(pair));
     let (la, ca) = challenge(arm_a, form, profile, control, &mut rng_a);
     let mut rng_b = Rng::new(seed.wrapping_mul(1_000_003).wrapping_add(pair));
@@ -334,7 +377,7 @@ mod tests {
     #[test]
     fn wear_sum_consistent_across_forms() {
         // Сумма износа A после challenge не зависит от формы/профиля (одинаковое расписание).
-        let (arm_a, _) = match_phase(A_PRIMARY);
+        let (arm_a, _) = match_phase(A_PRIMARY, Form::Vector, prof("uniform"));
         let mut rng = Rng::new(SEED_BASE);
         let mut arm = Arm { ..arm_a };
         arm.d += ADDED_DAMAGE;
@@ -342,10 +385,36 @@ mod tests {
         for t in 1..=1000 {
             if t % 100 == 0 && budget > 0.0 {
                 let want = REPAIR_REQUEST.min(budget).min(arm.d).min(arm.energy / COST);
-                arm.d -= want; arm.energy -= want * COST; arm.wear += want; budget -= want;
+                arm.d -= want; arm.energy -= want * COST;
+                arm.wear.add(Form::Vector, prof("uniform"), want);
+                budget -= want;
             }
             let _ = rng.uniform();
         }
-        assert!((arm.wear - (A_PRIMARY + REPAIR_BUDGET)).abs() < 1e-9, "wear sum mismatch: {}", arm.wear);
+        assert!((arm.wear.total() - (A_PRIMARY + REPAIR_BUDGET)).abs() < 1e-9,
+            "wear sum mismatch: {}", arm.wear.total());
+    }
+
+    #[test]
+    fn vector_wear_is_a_component_state_and_hazard_is_its_dot_product() {
+        let profile = prof("mA");
+        let (arm, _) = match_phase(A_PRIMARY, Form::Vector, profile);
+        let Wear::Vector(components) = arm.wear else { panic!("vector arm must store components") };
+        for j in 0..3 {
+            assert!((components[j] - A_PRIMARY * profile[j]).abs() < 1e-15);
+        }
+        assert!((components[0] + components[1] + components[2] - A_PRIMARY).abs() < 1e-15);
+
+        let c1 = wear_hazard(Form::Vector, Wear::Vector([0.2, 0.0, 0.0]), Control::Repair);
+        let c2 = wear_hazard(Form::Vector, Wear::Vector([0.0, 0.2, 0.0]), Control::Repair);
+        let scalar = wear_hazard(Form::Scalar, Wear::Scalar(0.2), Control::Repair);
+        assert_ne!(c1, c2, "equal total wear in different components must not alias");
+        assert_eq!(c2.to_bits(), scalar.to_bits(), "c2 must remain the exact scalar bridge");
+
+        let (mb, _) = match_phase(A_PRIMARY, Form::Vector, prof("mB"));
+        let (mc, _) = match_phase(A_PRIMARY, Form::Vector, prof("mC"));
+        assert_eq!(wear_hazard(Form::Vector, mb.wear, Control::Repair).to_bits(),
+            wear_hazard(Form::Vector, mc.wear, Control::Repair).to_bits(),
+            "canonical summation must preserve permutation degeneracy");
     }
 }
