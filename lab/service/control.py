@@ -12,20 +12,33 @@ heartbeat не блокируется сообщениями, поздний sub
 """
 from __future__ import annotations
 
+import fnmatch
 import hashlib
 import json
 import os
 import re
 import sqlite3
+import stat
 import time
 import uuid
 from datetime import datetime
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Any, Callable
 
 PROTOCOL = 1
 FALSE = ("false", 0)
 TRUE = ("true", 1)
+_SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+_MEDIA_TYPE_RE = re.compile(
+    r"^[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*/"
+    r"[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*"
+    r"(?:\s*;\s*[A-Za-z0-9!#$&^_.+-]+=[A-Za-z0-9!#$&^_.+-]+)*$"
+)
+_PROTECTED_PATHS = (
+    "core/", "laws/", "checks/", "run.sh", "kg/nodes.jsonl",
+    "tools/coord.py", ".githooks/", "lab/state/",
+)
+
 
 class CtlError(Exception):
     code = 500
@@ -58,6 +71,55 @@ def _sha(data: bytes | str) -> str:
     if isinstance(data, str):
         data = data.encode("utf-8")
     return hashlib.sha256(data).hexdigest()
+
+
+def _validate_media_type(value: Any) -> str:
+    if not isinstance(value, str) or not _MEDIA_TYPE_RE.fullmatch(value):
+        raise BadRequest("artifact.media_type должен быть корректным MIME type")
+    return value
+
+
+def _validate_relative_path(value: Any, *, allow_glob: bool = False,
+                            allow_trailing_slash: bool = False) -> str:
+    """Validate a POSIX bundle path/pattern without normalising attacker input."""
+    if not isinstance(value, str) or not value:
+        raise BadRequest("artifact.path/write_scope должен быть непустой строкой")
+    if "\0" in value or "\\" in value or value.startswith("/"):
+        raise BadRequest("путь должен быть относительным POSIX-путём без NUL/backslash")
+    if PureWindowsPath(value).drive or ":" in value:
+        raise BadRequest("Windows drive/stream paths are not allowed")
+    trailing = allow_trailing_slash and value.endswith("/")
+    core = value[:-1] if trailing else value
+    if not core or core.endswith("/"):
+        raise BadRequest("путь содержит пустой сегмент")
+    parts = core.split("/")
+    if any(part in ("", ".", "..") for part in parts):
+        raise BadRequest("путь содержит пустой, '.' или '..' сегмент")
+    if not allow_glob and any(ch in core for ch in "*?["):
+        raise BadRequest("glob-символы запрещены в artifact.path")
+    return value
+
+
+def _path_is_protected(path: str) -> bool:
+    return any(path == prefix.rstrip("/") or path.startswith(prefix)
+               for prefix in _PROTECTED_PATHS)
+
+
+def _path_in_write_scope(path: str, scopes: Any) -> bool:
+    if not isinstance(scopes, list) or not scopes:
+        return False
+    for scope in scopes:
+        try:
+            _validate_relative_path(
+                scope, allow_glob=True, allow_trailing_slash=True)
+        except BadRequest:
+            return False
+        if scope.endswith("/") and path.startswith(scope):
+            return True
+        if fnmatch.fnmatchcase(path, scope):
+            return True
+    return False
+
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS agents (
@@ -217,32 +279,127 @@ CREATE TABLE IF NOT EXISTS audit_events (
 
 
 class ArtifactStore:
-    """Content-addressed blobs: tmp-загрузка -> fsync -> атомарный os.replace."""
+    """Content-addressed blobs with durable writes and no-follow verification."""
 
     def __init__(self, root: Path):
-        self.root = root
-        self.tmp = root / "tmp"
-        self.blobs = root / "blobs"
+        self.root = Path(root)
+        self.tmp = self.root / "tmp"
+        self.blobs = self.root / "blobs"
+
+    @staticmethod
+    def _require_directory(path: Path, *, create: bool = False) -> None:
+        try:
+            if create:
+                path.mkdir(parents=False, exist_ok=True)
+            mode = path.lstat().st_mode
+        except FileNotFoundError as exc:
+            raise BadRequest(f"artifact store directory is missing: {path.name}") from exc
+        except OSError as exc:
+            raise BadRequest(f"artifact store directory is inaccessible: {path.name}") from exc
+        if stat.S_ISLNK(mode) or not stat.S_ISDIR(mode):
+            raise BadRequest(f"artifact store path is not a real directory: {path.name}")
 
     def ensure(self):
-        self.tmp.mkdir(parents=True, exist_ok=True)
-        self.blobs.mkdir(parents=True, exist_ok=True)
+        try:
+            self.root.mkdir(parents=True, exist_ok=True)
+        except OSError as exc:
+            raise BadRequest("artifact store root is inaccessible") from exc
+        self._require_directory(self.root)
+        self._require_directory(self.tmp, create=True)
+        self._require_directory(self.blobs, create=True)
 
     def put(self, data: bytes, upload_id: str | None = None) -> str:
+        if not isinstance(data, bytes):
+            raise BadRequest("artifact payload must be bytes")
         self.ensure()
         digest = _sha(data)
         dest = self.blobs / digest[:2] / digest
-        if not dest.exists():
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            t = self.tmp / f"{uuid.uuid4().hex}.part"
-            with open(t, "wb") as f:
+        self._require_directory(dest.parent, create=True)
+        if dest.exists() or dest.is_symlink():
+            self.verify_blob(digest, expected_bytes=len(data))
+            return digest
+
+        tmp_path = self.tmp / f"{uuid.uuid4().hex}.part"
+        try:
+            with open(tmp_path, "xb") as f:
                 f.write(data)
                 f.flush()
                 os.fsync(f.fileno())
-            os.replace(t, dest)
+            # replace is atomic on the same filesystem; the target name is
+            # derived only from a validated digest, never from a client path.
+            os.replace(tmp_path, dest)
+            try:
+                dir_fd = os.open(str(dest.parent), os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
+                try:
+                    os.fsync(dir_fd)
+                finally:
+                    os.close(dir_fd)
+            except OSError:
+                # The file itself was fsynced. Directory fsync is best-effort
+                # on platforms/filesystems which do not support it.
+                pass
+        except OSError as exc:
+            raise BadRequest("cannot persist artifact blob") from exc
+        finally:
+            try:
+                tmp_path.unlink(missing_ok=True)
+            except OSError:
+                pass
+        self.verify_blob(digest, expected_bytes=len(data))
         return digest
 
+    def verify_blob(self, digest: str, *, expected_bytes: int | None = None) -> dict:
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise BadRequest("artifact.sha256 должен быть 64 lowercase hex")
+        self.ensure()
+        shard = self.blobs / digest[:2]
+        self._require_directory(shard)
+        blob = shard / digest
+        try:
+            mode = blob.lstat().st_mode
+        except FileNotFoundError as exc:
+            raise BadRequest(f"blob отсутствует в store: {digest}") from exc
+        except OSError as exc:
+            raise BadRequest(f"blob недоступен в store: {digest}") from exc
+        if stat.S_ISLNK(mode) or not stat.S_ISREG(mode):
+            raise BadRequest(f"blob должен быть обычным файлом без symlink: {digest}")
+
+        fd = None
+        try:
+            fd = os.open(str(blob), os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0))
+            opened = os.fstat(fd)
+            if not stat.S_ISREG(opened.st_mode) or opened.st_nlink != 1:
+                raise BadRequest(f"blob должен быть обычным файлом без hardlink: {digest}")
+            hasher = hashlib.sha256()
+            byte_count = 0
+            with os.fdopen(fd, "rb") as stream:
+                fd = None
+                while True:
+                    chunk = stream.read(1024 * 1024)
+                    if not chunk:
+                        break
+                    byte_count += len(chunk)
+                    hasher.update(chunk)
+        except BadRequest:
+            raise
+        except OSError as exc:
+            raise BadRequest(f"blob нельзя безопасно прочитать: {digest}") from exc
+        finally:
+            if fd is not None:
+                os.close(fd)
+
+        actual = hasher.hexdigest()
+        if actual != digest:
+            raise BadRequest(f"blob SHA-256 не совпадает с именем: {digest}")
+        if expected_bytes is not None and byte_count != expected_bytes:
+            raise BadRequest(
+                f"artifact.bytes не совпадает с файлом: {digest} "
+                f"(ожидалось {expected_bytes}, фактически {byte_count})")
+        return {"sha256": actual, "bytes": byte_count}
+
     def path(self, digest: str) -> Path:
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise BadRequest("artifact.sha256 должен быть 64 lowercase hex")
         return self.blobs / digest[:2] / digest
 
 
@@ -357,9 +514,15 @@ class ControlPlane:
         # Аудит 28.11.2026: write_scope не валидировался (4106 v4 указывала
         # на пути 4103). Обязателен непустой список относительных путей без ..
         ws = payload.get("write_scope") or []
-        ws_ok = (isinstance(ws, list) and len(ws) > 0
-                 and all(isinstance(x, str) and x and not x.startswith("/")
-                         and ".." not in x.split("/") for x in ws))
+        ws_ok = isinstance(ws, list) and len(ws) > 0
+        if ws_ok:
+            for scope in ws:
+                try:
+                    _validate_relative_path(
+                        scope, allow_glob=True, allow_trailing_slash=True)
+                except BadRequest:
+                    ws_ok = False
+                    break
         if not ws_ok:
             raise BadRequest(
                 "write_scope: обязателен непустой список относительных путей без ..")
@@ -840,19 +1003,45 @@ class ControlPlane:
 
     def put_blob(self, upload_id: str, agent_id: str, data: bytes,
                  media_type: str = "application/octet-stream") -> dict:
-        row = self.connect().execute(
-            "SELECT state, agent_id FROM uploads WHERE upload_id=?", (upload_id,)).fetchone()
-        if not row:
-            raise NotFound(f"нет upload {upload_id}")
-        if row["agent_id"] != agent_id:
-            raise Gone("upload принадлежит другому агенту")
-        digest = self.store.put(data)
+        if not isinstance(data, bytes):
+            raise BadRequest("artifact payload must be bytes")
+        media_type = _validate_media_type(media_type)
+        c = self.connect()
         now_iso, _ = self._now()
-        self.connect().execute(
-            "INSERT OR IGNORE INTO artifacts (sha256,bytes,media_type,blob_id,upload_id,created_at)"
-            " VALUES (?,?,?,?,?,?)",
-            (digest, len(data), media_type, digest, upload_id, now_iso))
-        return {"sha256": digest, "bytes": len(data)}
+        c.execute("BEGIN IMMEDIATE")
+        try:
+            row = c.execute(
+                "SELECT state, agent_id FROM uploads WHERE upload_id=?", (upload_id,)
+            ).fetchone()
+            if not row:
+                raise NotFound(f"нет upload {upload_id}")
+            if row["agent_id"] != agent_id:
+                raise Gone("upload принадлежит другому агенту")
+            if row["state"] != "open":
+                raise Conflict("upload уже закрыт и не принимает новые blobs")
+
+            digest = self.store.put(data)
+            existing = c.execute(
+                "SELECT bytes FROM artifacts WHERE sha256=?", (digest,)
+            ).fetchone()
+            if existing and existing["bytes"] != len(data):
+                raise BadRequest("metadata bytes не совпадает с content-addressed blob")
+            c.execute(
+                "INSERT OR IGNORE INTO artifacts "
+                "(sha256,bytes,media_type,blob_id,upload_id,created_at) "
+                "VALUES (?,?,?,?,?,?)",
+                (digest, len(data), media_type, digest, upload_id, now_iso))
+            c.execute(
+                "INSERT OR IGNORE INTO upload_artifacts "
+                "(upload_id,sha256,media_type,created_at) VALUES (?,?,?,?)",
+                (upload_id, digest, media_type, now_iso))
+            self._audit(c, agent_id, "artifact.upload", "upload", upload_id,
+                        {"sha256": digest, "bytes": len(data), "media_type": media_type})
+            c.execute("COMMIT")
+            return {"sha256": digest, "bytes": len(data)}
+        except Exception:
+            self._safe_rollback(c)
+            raise
 
     def submit(self, payload: dict, idem_key: str, mark_artifacts_for_task: bool = True) -> dict:
         # Минимальная цепочка provenance обязательна на intake:
@@ -989,15 +1178,70 @@ class ControlPlane:
             if payload["bundle_sha256"] != expected_bundle:
                 raise BadRequest("submission.bundle_sha256 не совпадает с пересчитанным "
                                  "bundle-хэшем артефактов")
-            # сверка blobs — только для живого lease (поздний уже в карантине)
-            missing = []
-            for art in payload["artifacts"]:
-                hit = c.execute("SELECT 1 FROM artifacts WHERE sha256=?",
-                                (art["sha256"],)).fetchone()
-                if not hit:
-                    missing.append(art["sha256"])
-            if missing:
-                raise BadRequest(f"blobs отсутствуют в store: {missing}")
+            # Intake: проверяем точную форму descriptors, размер, scope,
+            # upload ownership и реальные bytes до фиксации submission.
+            descriptors = payload["artifacts"]
+            if not isinstance(descriptors, list):
+                raise BadRequest("submission.artifacts должен быть массивом")
+            task_spec = json.loads(version_row["payload_json"])
+            scopes = task_spec.get("write_scope")
+            budget = task_spec.get("budget")
+            if not isinstance(budget, dict):
+                raise BadRequest("task.budget обязателен для intake")
+            disk_limit = budget.get("disk_bytes")
+            if (not isinstance(disk_limit, int) or isinstance(disk_limit, bool)
+                    or disk_limit < 1):
+                raise BadRequest("task.budget.disk_bytes должен быть целым числом >= 1")
+
+            used_paths: set[str] = set()
+            total_bytes = 0
+            for index, art in enumerate(descriptors):
+                if not isinstance(art, dict):
+                    raise BadRequest(f"artifacts[{index}] должен быть объектом")
+                required = {"path", "sha256", "media_type", "bytes"}
+                if set(art) != required:
+                    raise BadRequest(
+                        f"artifacts[{index}] должен содержать ровно {sorted(required)}")
+                path = _validate_relative_path(art["path"])
+                if _path_is_protected(path):
+                    raise BadRequest(f"artifact path попадает в PROTECTED-зону: {path}")
+                if not _path_in_write_scope(path, scopes):
+                    raise BadRequest(f"artifact path вне task.write_scope: {path}")
+                if path in used_paths:
+                    raise BadRequest(f"повторный artifact.path: {path}")
+                used_paths.add(path)
+
+                digest = art["sha256"]
+                if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+                    raise BadRequest(f"artifacts[{index}].sha256 не является lowercase SHA-256")
+                media_type = _validate_media_type(art["media_type"])
+                byte_count = art["bytes"]
+                if (not isinstance(byte_count, int) or isinstance(byte_count, bool)
+                        or byte_count < 0):
+                    raise BadRequest(f"artifacts[{index}].bytes должен быть целым числом >= 0")
+                total_bytes += byte_count
+                if total_bytes > disk_limit:
+                    raise BadRequest(
+                        f"сумма artifact bytes ({total_bytes}) превышает "
+                        f"task.budget.disk_bytes ({disk_limit})")
+
+                metadata = c.execute(
+                    "SELECT bytes FROM artifacts WHERE sha256=?", (digest,)
+                ).fetchone()
+                if metadata is None:
+                    raise BadRequest(f"blob отсутствует в metadata store: {digest}")
+                if metadata["bytes"] != byte_count:
+                    raise BadRequest(f"artifact.bytes не совпадает с metadata: {digest}")
+                owned_upload = c.execute(
+                    "SELECT 1 FROM upload_artifacts ua "
+                    "JOIN uploads u ON u.upload_id=ua.upload_id "
+                    "WHERE ua.sha256=? AND ua.media_type=? AND u.agent_id=? LIMIT 1",
+                    (digest, media_type, payload["agent_id"]),
+                ).fetchone()
+                if owned_upload is None:
+                    raise BadRequest(
+                        f"blob не загружен этим агентом с указанным media_type: {digest}")
+                self.store.verify_blob(digest, expected_bytes=byte_count)
             c.execute(
                 "INSERT INTO submissions (id,task_id,task_version,task_version_sha256,"
                 "attempt_id,lease_id,lease_epoch,agent_id,instance_id,base_commit,"
