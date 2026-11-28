@@ -19,6 +19,7 @@ import re
 import sqlite3
 import time
 import uuid
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
 
@@ -59,8 +60,6 @@ def _sha(data: bytes | str) -> str:
     return hashlib.sha256(data).hexdigest()
 
 SCHEMA = """
-PRAGMA user_version=1;
-
 CREATE TABLE IF NOT EXISTS agents (
   agent_id TEXT PRIMARY KEY, instance_id TEXT, scopes_json TEXT,
   status TEXT NOT NULL DEFAULT 'active', token_id TEXT,
@@ -272,6 +271,10 @@ class ControlPlane:
     def init(self) -> None:
         c = self.connect()
         c.executescript(SCHEMA)
+        # Version 1 is assigned only to an unversioned database. Re-running
+        # init on a v2/v3 database must not rewind its migration head.
+        if c.execute("PRAGMA user_version").fetchone()[0] == 0:
+            c.execute("PRAGMA user_version=1")
 
     def close(self):
         if self._conn is not None:
@@ -470,6 +473,18 @@ class ControlPlane:
         for b in ("requires_ack", "blocks_claim", "blocks_submit", "halt"):
             msg.setdefault(b, False)
         expires_iso = msg.get("expires_at")
+        expires_mono = None
+        if expires_iso is not None:
+            try:
+                if not isinstance(expires_iso, str):
+                    raise ValueError("expires_at must be a string")
+                expires_dt = datetime.fromisoformat(expires_iso.replace("Z", "+00:00"))
+                if expires_dt.tzinfo is None or expires_dt.utcoffset() is None:
+                    raise ValueError("expires_at must include a timezone")
+                expires_mono = now_mono + (expires_dt.timestamp() - self.wall())
+            except (TypeError, ValueError, OverflowError) as exc:
+                raise BadRequest(
+                    "message.expires_at должен быть RFC3339 с часовым поясом") from exc
         c = self.connect()
         c.execute("BEGIN IMMEDIATE")
         try:
@@ -483,7 +498,7 @@ class ControlPlane:
                  int(bool(msg["requires_read"])), int(bool(msg["requires_ack"])),
                  int(bool(msg["blocks_claim"])), int(bool(msg["blocks_submit"])),
                  int(bool(msg["halt"])), msg["body"], msg.get("ref"),
-                 expires_iso, None, None, msg.get("ack_deadline"), self.wall(), now_iso))
+                 expires_iso, expires_mono, None, msg.get("ack_deadline"), self.wall(), now_iso))
             self._audit(c, msg["sender"], "message.send", "message", msg["id"],
                         {"to": msg["recipient"], "blocks_claim": int(bool(msg["blocks_claim"]))})
             c.execute("COMMIT")
@@ -727,9 +742,19 @@ class ControlPlane:
                 self._audit(c, agent_id, "lease.expire", "lease", lease_id, {"by": "heartbeat"})
                 c.execute("COMMIT")
                 raise Gone("lease истёк к моменту heartbeat")
-            new_expire = min(now_mono + (row["expires_at_mono"] - row["issued_at_mono"]) // 1
-                             if row["expires_at_mono"] > row["issued_at_mono"] else now_mono,
-                             row["max_expires_at_mono"])
+            lease_spec_row = c.execute(
+                "SELECT lease_json FROM task_versions WHERE task_id=? AND version=?",
+                (row["task_id"], row["task_version"])).fetchone()
+            if lease_spec_row is None:
+                raise BadRequest("не найдена lease-конфигурация версии задачи")
+            try:
+                ttl_seconds = int(json.loads(lease_spec_row["lease_json"]).get(
+                    "ttl_seconds", 5400))
+            except (TypeError, ValueError, json.JSONDecodeError) as exc:
+                raise BadRequest("lease.ttl_seconds должен быть положительным целым") from exc
+            if ttl_seconds <= 0:
+                raise BadRequest("lease.ttl_seconds должен быть положительным целым")
+            new_expire = min(now_mono + ttl_seconds, row["max_expires_at_mono"])
             if new_expire <= now_mono:
                 raise Gone("max_lease_seconds исчерпан: вечный zombie-heartbeat запрещён")
             c.execute("UPDATE leases SET expires_at_mono=?, expires_at=? WHERE lease_id=?",
@@ -842,16 +867,18 @@ class ControlPlane:
             expected_task_sha = version_row["task_version_sha256"]
             if payload["task_version_sha256"] != expected_task_sha:
                 raise BadRequest("submission.task_version_sha256 не соответствует task version")
-            # Аудит 28.11.2026: submit не проверял blocks_submit/halt.
+            cur = c.execute(
+                "SELECT current_version, department FROM tasks WHERE id=?", (task_id,)
+            ).fetchone()
+            if cur is None:
+                raise NotFound(f"нет задачи {task_id}")
+            # Department-scoped halt/blocks_submit messages apply to the
+            # department of the leased task, not the literal None scope.
             blocking = self._blocking_submit_messages(
-                c, payload["agent_id"], None, now_mono)
+                c, payload["agent_id"], cur["department"], now_mono)
             if blocking:
                 raise Blocked("submit заблокирован не-acked сообщениями: "
                               + ", ".join(m["id"] for m in blocking))
-
-            cur = c.execute("SELECT current_version FROM tasks WHERE id=?", (task_id,)).fetchone()
-            if cur is None:
-                raise NotFound(f"нет задачи {task_id}")
 
             # Не полагаемся на heartbeat/reaper/следующий claim: отправка после
             # monotonic deadline должна попасть в карантин даже если lease.state

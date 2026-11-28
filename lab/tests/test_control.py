@@ -15,6 +15,7 @@ import sys
 import tempfile
 import threading
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
@@ -489,6 +490,70 @@ class TestMessages(Base):
         r3 = self.cp.claim("fast-01", "i", "knowledge", idem_key="c1c")
         self.assertIsNone(r3["claimed"])  # нет второй свободной задачи — и не Blocked
         del sub
+
+    def test_expiring_blocking_message_uses_monotonic_deadline(self):
+        self.cp.publish_task(make_task("KG-2026-0201"))
+        expires_at = datetime.fromtimestamp(
+            self.clock.wall() + 5, tz=timezone.utc
+        ).isoformat().replace("+00:00", "Z")
+        self.cp.send_message({
+            "id": "MSG-EXPIRY-0201", "sender": "main",
+            "recipient": "department:knowledge", "body": "temporary halt",
+            "requires_ack": True, "blocks_claim": True,
+            "expires_at": expires_at,
+        })
+        stored = self.db().execute(
+            "SELECT expires_at_mono FROM messages WHERE id='MSG-EXPIRY-0201'"
+        ).fetchone()
+        self.assertAlmostEqual(stored["expires_at_mono"], self.clock.mono() + 5)
+        with self.assertRaises(Blocked):
+            self.cp.claim("fast-01", "i", "knowledge", idem_key="before-expiry")
+        self.clock.advance(6)
+        claimed = self.cp.claim(
+            "fast-01", "i", "knowledge", idem_key="after-expiry"
+        )
+        self.assertTrue(claimed["claimed"])
+
+    def test_department_submit_block_applies_to_task_department(self):
+        task_id = "KG-2026-0202"
+        self.cp.publish_task(make_task(task_id))
+        lease = self.cp.claim(
+            "fast-01", "i", "knowledge", idem_key="claim-department-block"
+        )["claimed"]
+        self.cp.send_message({
+            "id": "MSG-DEPT-SUBMIT-0202", "sender": "main",
+            "recipient": "department:knowledge", "body": "pause submissions",
+            "requires_ack": True, "blocks_submit": True,
+        })
+        payload = {
+            "id": "SUB-2026-0202", "task_id": task_id, "task_version": 1,
+            "task_version_sha256": lease["task_version_sha256"],
+            "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
+            "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
+            "artifacts": [], "bundle_sha256": bundle_sha(task_id, []),
+        }
+        with self.assertRaises(Blocked):
+            self.cp.submit(payload, idem_key="submit-department-block")
+
+    def test_heartbeat_ttl_does_not_self_amplify(self):
+        task_id = "KG-2026-0203"
+        self.cp.publish_task(make_task(task_id))
+        lease = self.cp.claim(
+            "fast-01", "i", "knowledge", idem_key="claim-fixed-heartbeat-ttl"
+        )["claimed"]
+        for n in range(2):
+            self.clock.advance(10)
+            self.cp.heartbeat(lease["lease_id"], lease["lease_epoch"], "fast-01")
+            row = self.db().execute(
+                "SELECT expires_at_mono FROM leases WHERE lease_id=?",
+                (lease["lease_id"],),
+            ).fetchone()
+            self.assertAlmostEqual(
+                row["expires_at_mono"] - self.clock.mono(),
+                LEASE_SPEC["ttl_seconds"],
+                places=6,
+                msg=f"heartbeat {n + 1} enlarged the renewal interval",
+            )
 
 
 class TestCrashAndAudit(Base):
