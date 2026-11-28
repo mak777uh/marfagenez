@@ -1047,17 +1047,23 @@ mortality risk it poses is severe enough and its repair does not pose too large 
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-28T05:18:34Z",
-  "via": "openalex",
-  "via_detail": "OpenAlex abstract_inverted_index, W2125999985 — аннотация к Ruiz-Mirazo & Moreno 2004 Artificial Life 10(3), doi:10.1162/1064546041255584 (первый из двух DOI записи); Synthese 2011 закрыт, полного текста нет"
+  "level": "fragment_read",
+  "artifact": "papers/ruizmirazo04-basic-autonomy.pdf",
+  "bytes": 182819,
+  "sha256": "995413cb2786e6cc071f6b7364a8a850aec50ab8b60a37303a763d290fd04683",
+  "retrieved_at": "2026-11-28T12:45:00Z",
+  "via": "web-pdf",
+  "via_detail": "авторская рукопись Ruiz-Mirazo & Moreno, Artificial Life 10(3):235-259 (2004), doi:10.1162/1064546041255584 (MIT Press закрыт, direct.mit.edu за Cloudflare); PDF с reading-list Sussex users.sussex.ac.uk/~inmanh/adsys10/Readings/ (25 стр., штамп c⃝2004 MIT на каждой странице); аннотация и раздел 2 сверены дословно: «the conception of basic autonomy ... as the capacity of a system to manage the flow of matter and energy through it so that it can, at the same time, regulate, modify, and control»"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "section 2 (Origins of Autonomous Systems)"
+   }
+  ]
  },
  "abstract_sha256": "199eeae1bfa96fc993131bdc900113ea6b6a5c7441f78e9608514594dad8271f",
  "bibliographic": {
@@ -1075,7 +1081,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 **Кто.** Ruiz-Mirazo & Moreno (2004, 2012).
 **Ссылка.** https://doi.org/10.1007/s11229-011-9874-z ; https://doi.org/10.1162/1064546041255584 (DOI верифицированы по Crossref) **вторые руки.**
-**Проверено.** **аннотация** OpenAlex (W2125999985, Ruiz-Mirazo & Moreno 2004 Artificial Life, doi:10.1162/1064546041255584), 2026-11-28; Synthese-статья закрыта, полный текст не читался.
+**Проверено.** **фрагмент** авторской рукописи Ruiz-Mirazo & Moreno через reading-list Sussex (papers/ruizmirazo04-basic-autonomy.pdf, sha256 995413cb…, 2026-11-28); аннотация и §2 сверены — basic autonomy как способность управлять потоком вещества и энергии, самоподдерживающая динамика (W-C cycle).
 **Утверждение (пересказ).** Базовая автономия — способность системы поддерживать себя за счёт обмена с внешней
 средой; должна быть **операциональной**.
 **Что даёт нам.** Ещё один «готовый критерий», пересекающийся с L-015.
