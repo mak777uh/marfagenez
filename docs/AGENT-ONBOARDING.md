@@ -1,99 +1,59 @@
-# Подключение внешних моделей (онлайн, только через репозиторий)
+# Agent onboarding — current control plane
 
-**Дата:** 25.11.2026. **Кто:** `main`. **Для кого:** владелец и новые агенты.
+**Status:** active. **Source of truth:** `lab/CHARTER.md`, `lab/MAIN.md`, `lab/schemas/v1/`.
+The old `.coord/` workflow is archived. Do not use its mutation commands.
 
-## Что уже есть
+## First steps
 
-| агент | роль | права |
-|---|---|---|
-| `main` | основной: публикует всё, гоняет гейт, ведёт `kg/` и `literature/map/` | Git, приём партий, `checks/`, `run.sh` |
-| `fast` | литература и граф | пишет только в `literature/map/inbox/fast-*.jsonl`; Git не использует |
+1. Read `lab/CHARTER.md` and `lab/MAIN.md`.
+2. Read the role card under `lab/workcells/<department>/ROLE.md` and the exact task version supplied by `main`.
+3. Inspect the current queue with:
 
-Механика: агент **берёт** раунд (`coord take`), пишет файлы в свою область, кладёт `RESULT.md` и `DONE.json`
-(`coord finish`). `main` **проверяет** (`coord verify`), принимает в карту и **коммитит**. Никто, кроме
-`main`, не делает `git`.
+   ```bash
+   python3 lab/cli/main.py --help
+   python3 lab/cli/main.py status
+   ```
 
-## Что оптимально поручать внешним моделям
+4. Claim only an unclaimed task in the declared department:
 
-Три роли, каждая — с узкой областью и **предложениями**, а не прямыми правками. Порядок — по отношению
-«польза / нагрузка на проверку».
+   ```bash
+   python3 lab/cli/main.py claim --agent <agent-id> --department <experiments|formulas|knowledge>
+   ```
 
-### 1. `lit` — лечение долга сирот (самая дешёвая для проверки)
+   Preserve the returned `lease_id`, `epoch`, task version, and task-version hash. Do not guess missing values.
 
-Что делает: берёт **одну группу сирот** (например `DIP1`: 10 ячеек), читает каждую и присылает
-**предложения рёбер** с обоснованием по роли:
+## Lease and submission
 
-```
-{"from": "DIP1-0003", "to": "DIP1-0001", "type": "refines", "note": "чем именно уточняет"}
-```
+Heartbeat must use the exact returned lease identity:
 
-Почему оптимально: работа **механическая по форме и содержательная по чтению**; проверка одного файла
-занимает у `main` минуты, потому что основания записаны в `note`. Долг сейчас **293 сироты** — это десятки
-раундов, и он идеально делится на группы.
-
-Ограничение: **не более 8 рёбер за раунд**; `analogous` — не больше одного на раунд (доля аналогий уже
-30,3 %, потолок 1/3).
-
-### 2. `ver` — красная команда для `S`-пар (самая ценная)
-
-Что делает: берёт пары «ячейка ↔ узел `kg/`», где уже стоит вердикт `S`, и **пытается его опровергнуть**:
-та же ли величина, тот же ли знак, тот ли диапазон, не `gap` ли выдан за опору.
-
-Почему ценно: за день я понизил **13 пар из 37** именно так — это самая результативная работа в проекте.
-Но она требует чтения, а не поиска.
-
-Ограничение: `вердикт` в предложении + причина; **не более 5 пар за раунд**.
-
-### 3. `probe` — вопросы к данным без правок (страховка)
-
-Что делает: ищет противоречия и странности: две ячейки об одном с разными числами, единицы, которые не
-сходятся, величины «на 2–3 порядка мимо». Пишет **вопросы**, а не связи.
-
-Почему полезно: сегодня две настоящие находки пришли именно так (`DIP24-0005`: см/с против мкм/с;
-`B7-09-0001` против `B7-03-0002`: 10⁶ раз).
-
-Ограничение: только вопросы с числами; без предложений правок.
-
-## Чего внешним моделям делать нельзя
-
-| запрет | почему |
-|---|---|
-| `git add/commit/push` | история — только у `main`; иначе конфликты и потеря чужой работы |
-| править `literature/map/atoms.jsonl`, `edges.jsonl` | приём только через `main` (`map_ingest` с правилами) |
-| править `kg/nodes.jsonl`, `checks/`, `run.sh`, `AGENTS.md` | защищённые зоны |
-| `pip install`, `apt`, изменение окружения | репозиторий должен воспроизводиться у всех |
-| запускать `run.sh all` | `results/` — общий ресурс; гейт гоняет только `main` |
-| создавать `docs/FINDING-*.md` | номера выдаёт `tools/new_finding.py`, диапазоны закреплены за агентами |
-
-## Формат предложения (обязателен)
-
-Один файл на раунд: `literature/map/inbox/<имя>-<раунд>.jsonl`.
-Строки — либо связи (`from`/`to`/`type`/`note`), либо атомы (схема в `.coord/standing/S2-literature-graph.md`).
-
-В `RESULT.md` — обязательные строки:
-
-```
-новых ячеек: N; предложенных рёбер: M
-группа/тема: ...
-что проверено и чем: ...
-что НЕ удалось связать и почему: ...
+```bash
+python3 lab/cli/main.py heartbeat --lease <lease-id> --epoch <epoch> --agent <agent-id>
 ```
 
-Последняя строка важнее первых двух: она показывает, где связи нет, и это тоже результат.
+A voluntary return uses the same fencing fields:
 
-## Как поднять нового агента (шаги)
+```bash
+python3 lab/cli/main.py release --lease <lease-id> --epoch <epoch> --agent <agent-id> --reason "<reason>"
+```
 
-1. `python3 tools/coord.py register --agent lit` — регистрация (создаёт `.coord/agents/lit.md`).
-2. Взять постоянную задачу: `python3 tools/coord.py take S5-orphan-cure --agent lit`.
-3. Прочитать `.coord/standing/S5-orphan-cure.md` **целиком** (там правила карты, схема ячейки и связи,
-   правило цеттелькастена).
-4. Сделать раунд, положить файл предложения, `RESULT.md`, `DONE.json`, `coord finish`.
-5. `main` проверяет, принимает, коммитит.
+Submit only the bundle described by the task contract and use a unique idempotency key:
 
-## Что делать владельцу
+```bash
+python3 lab/cli/main.py submit <submission.json> --idem-key <unique-key>
+```
 
-- Дать модели тот же промпт, что получает `fast`: путь `/root/marfagenez` (WSL), только репозиторий.
-- Сказать ей: **первое действие — `coord inbox --agent <имя>`** и чтение карточки задачи.
-- Не давать ей Git. Вообще.
-- Если модель онлайн и не может писать в WSL — пусть присылает файл предложения в чат, `main` положит его
-  в `inbox` и примет; формат тот же.
+Use `python3 lab/cli/main.py <command> --help` where available. Do not invent endpoints, state transitions, or validator commands. `status` is a queue summary; it is not an inbox listing.
+
+## Hard boundaries
+
+- `lab/state/control.db` is the canonical control state. Do not read/write `.coord/` as live state.
+- `tools/coord.py` is read-only diagnostics only; its mutation commands intentionally fail closed.
+- Executors do not commit, push, merge, or modify another agent's claimed task.
+- Do not edit task versions, schemas, trusted checks, raw data, or sealed result bundles unless the task explicitly grants that scope and `main` approves the integration route.
+- Do not run external actions, enable network access, or access secrets unless the owner explicitly authorizes that exact action.
+- A scientific failure can be a valid submission. Never rerun until a desired outcome appears.
+- `accepted`, `integrated`, and `pushed` are separate states. Push is never automatic; it requires the owner's explicit instruction.
+
+## Where to report blockers
+
+Use the task's documented submission or message channel. If the CLI does not expose a required read/communication operation, report that limitation to `main`; do not fall back to `.coord/` writes.

@@ -34,6 +34,11 @@ import re
 import sys
 import tempfile
 
+try:  # works both as `python checks/literature_contract.py` and as a package
+    from .access_levels import ACCESS_LEVELS, ACCESS_LEVEL_ORDER
+except ImportError:  # pragma: no cover - direct script execution
+    from access_levels import ACCESS_LEVELS, ACCESS_LEVEL_ORDER
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 REGISTRY = ROOT / "docs" / "ELEPHANT-LITERATURE.md"
 PAPERS = ROOT / "papers"
@@ -43,8 +48,8 @@ SECTION_RE = re.compile(r"^### (L-\d{3}) · (.+)$", re.M)
 BLOCK_RE = re.compile(r"```json\s*\n(.*?)\n```", re.S)
 NEGATIVE = ("не читал", "не открыл", "не дост", "не удалось", "не проверял", "не видел")
 
-LEVELS = ["metadata_only", "abstract_read", "fragment_read", "full_text_examined", "secondary_only"]
-LEVEL_ORDER = {name: i for i, name in enumerate(LEVELS)}
+LEVELS = list(ACCESS_LEVELS)
+LEVEL_ORDER = ACCESS_LEVEL_ORDER
 
 REQUIRED = ("L", "locator", "access", "inspection", "bibliographic", "legacy")
 

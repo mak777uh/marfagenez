@@ -5,7 +5,7 @@
 
 M1 обязательные поля и перечисления;
 M2 идентификаторы ячеек уникальны;
-M3 `access: fragment` требует цитаты; `full` тоже;
+M3 канонические `fragment_read`/`full_text_examined` (и их явные legacy aliases) требуют цитаты;
 M4 `medium`/`high` требуют `conditions`;
 M5 у каждой работы есть локатор;
 M6 `gap` требует `searched` и `scope`;
@@ -29,6 +29,11 @@ import json
 import pathlib
 import sys
 import tempfile
+
+try:  # works both as `python checks/map_contract.py` and as a package
+    from .access_levels import normalize_access_level
+except ImportError:  # pragma: no cover - direct script execution
+    from access_levels import normalize_access_level
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ATOMS = ROOT / "literature" / "map" / "atoms.jsonl"
@@ -76,8 +81,12 @@ def check(atoms_path: pathlib.Path, edges_path: pathlib.Path) -> list[str]:
             if not (work.get("doi") or work.get("arxiv") or work.get("pmid")
                     or work.get("isbn") or work.get("url")):
                 errs.append(f"M5 {atom_id}: работа без локатора")
-            if work.get("access") in ("fragment", "full") and not work.get("quote"):
-                errs.append(f"M3 {atom_id}: `access: {work.get('access')}` без цитаты")
+            raw_access = work.get("access")
+            canonical_access = normalize_access_level(raw_access)
+            if raw_access is not None and canonical_access is None:
+                errs.append(f"M3 {atom_id}: неизвестный access level {raw_access!r}; требуется явная миграция/адъюдикация")
+            elif canonical_access in ("fragment_read", "full_text_examined") and not work.get("quote"):
+                errs.append(f"M3 {atom_id}: `{raw_access}` → `{canonical_access}` без цитаты")
         if atom.get("confidence") in ("medium", "high") and not atom.get("conditions"):
             errs.append(f"M4 {atom_id}: нет `conditions` при уверенности `{atom.get('confidence')}`")
         if atom.get("kind") == "gap" and not (atom.get("searched") and atom.get("scope")):
@@ -148,6 +157,9 @@ def selftest() -> int:
         ("claim принимается", write([atom(kind="claim")], [{"from": "A-1", "to": "A-1", "type": "requires"}]), []),
         ("дубль идентификатора", write([atom(), atom()]), ["M2"]),
         ("фрагмент без цитаты", write([atom(works=[{"doi": "10.1/x", "access": "fragment"}])]), ["M3"]),
+        ("канонический fragment_read без цитаты", write([atom(works=[{"doi": "10.1/x", "access": "fragment_read"}])]), ["M3"]),
+        ("канонический full_text_examined без цитаты", write([atom(works=[{"doi": "10.1/x", "access": "full_text_examined"}])]), ["M3"]),
+        ("неизвестный access level", write([atom(works=[{"doi": "10.1/x", "access": "mystery"}])]), ["M3"]),
         ("medium без условий", write([atom(confidence="medium")]), ["M4"]),
         ("gap без searched", write([atom(kind="gap")]), ["M6"]),
         ("contradiction с одной работой", write([atom(kind="contradiction")]), ["M7"]),
@@ -165,7 +177,7 @@ def selftest() -> int:
             print(f"  FAIL {name}: ждали {want or 'чисто'}, получили {got[:3]}")
         else:
             print(f"  ok   {name}")
-    print(f"selftest: {total - bad}/{total}")
+    print(f"selftest: {total - bad}/{total} (M3 canonical + aliases)")
     return 1 if bad else 0
 
 

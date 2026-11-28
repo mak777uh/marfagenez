@@ -1,11 +1,4 @@
-#!/bin/bash
-# Автопуш: владелец сказал «всегда сам пуш».
-# Пушим только master и только когда дерево чистое.
-cd "$(git rev-parse --show-toplevel)" || exit 0
-branch=$(git rev-parse --abbrev-ref HEAD)
-[ "$branch" = "master" ] || exit 0
-if git push origin "$branch" >/tmp/autopush.log 2>&1; then
-  echo "autopush: $branch -> origin ($(git rev-parse --short HEAD))"
-else
-  echo "autopush: ПРОВАЛ, см. /tmp/autopush.log"
-fi
+#!/bin/sh
+# Automatic publishing is disabled by the repository's current policy.
+# A commit hook must never push a branch as a side effect of `git commit`.
+exit 0

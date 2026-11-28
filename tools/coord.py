@@ -1189,6 +1189,16 @@ def main(argv: list[str]) -> int:
     p = sub.add_parser("unread"); p.set_defaults(fn=cmd_unread)
 
     a = ap.parse_args(argv)
+    # `.coord/` is a historical archive. The allow-list is deliberately
+    # default-deny: newly added legacy subcommands are blocked until reviewed.
+    # `read` is mutating (it moves a message from new/ to read/); `status`
+    # is read-only only without --write.
+    legacy_read_only = {"list", "stale", "status", "inbox", "unread"}
+    if a.cmd not in legacy_read_only or (a.cmd == "status" and a.write):
+        print("LEGACY_COORD_READ_ONLY: запись через tools/coord.py отключена.")
+        print("Источник control state: lab/state/control.db")
+        print("Используйте проверенные операции: python3 lab/cli/main.py --help")
+        return 2
     try:
         return a.fn(a)
     except TimeoutError as e:

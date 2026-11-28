@@ -26,6 +26,20 @@ remote `https://github.com/mak777uh/marfagenez.git`, ветка `master`.
 
 ---
 
+## §2.0a Состояние на 2026-11-28 (цикл 861az): R1 coord-cutover + R4 access levels
+
+**Источник:** пакет внешнего аудит-агента (bundle `marfagenez-r1r4-candidate`, sha256 82e71e70b934f59c927ce854252e99d6ee679c580495b162c0f30c8782957979, база аудита `b0de9e63`), принят и адаптирован к текущему HEAD.
+
+**Что появилось в preflight (13 → 16 проверок):**
+
+| проверка | что делает |
+|---|---|
+| `checks/coord_cutover.py` | legacy `tools/coord.py` fail-closed: 14 мутирующих команд отказывают до касания состояния; 5 read-only (list, stale, status, inbox, unread) остаются |
+| `checks/access_levels.py --selftest` | канонические уровни доступа (18/18): `metadata_only`, `abstract_read`, `fragment_read`, `full_text_examined`, `secondary_only` + legacy-алиасы; EuropePMC fullTextXML → `fragment_read`, derived → `secondary_only` |
+| `checks/map_contract.py --selftest` | M3 требует цитату для канонических `fragment_read`/`full_text_examined` и их алиасов; неизвестный уровень — ошибка |
+
+**Прочее в этом цикле:** `.githooks/post-commit` — явный no-op (автопуш отключён; пуш только вручную после зелёного гейта); `docs/AGENT-ONBOARDING.md`, `docs/AGENT-MAIN-GOAL-PROMPT.md`, `docs/HANDOVER-MAIN.md`, `.coord/README.md` переписаны под активный control plane `lab/` (источник состояния `lab/state/control.db`), прежние версии — в `docs/archive/`; MAIN-P121-01/02: цитаты перенесены с уровня атома в `works[0]` — уровень `full_text_examined` подтверждён цитатой в самой работе.
+
 ## §2.0 Состояние на 2026-11-25 (цикл 597)
 
 **Этот блок — самый свежий.** Он обновлён вместе с изменениями `checks/` и `run.sh`, как требует

@@ -600,6 +600,9 @@ run_preflight() {
   preflight_check doc_numbers python3 checks/doc_numbers.py
   preflight_check protocol_checks python3 checks/protocol_checks.py
   preflight_check doc_links python3 checks/doc_links.py
+  preflight_check map_contract_selftest python3 checks/map_contract.py --selftest
+  preflight_check access_levels python3 checks/access_levels.py --selftest
+  preflight_check legacy_coord python3 checks/coord_cutover.py
   preflight_check literature_contract python3 checks/literature_contract.py
   preflight_check litsearch_contract python3 checks/litsearch_contract.py
   preflight_check results_allowlist python3 checks/results_allowlist.py
@@ -612,7 +615,7 @@ run_preflight() {
     echo "PREFLIGHT_RED: провалились:$PREFLIGHT_FAILED"
     return 1
   fi
-  echo "PREFLIGHT_GREEN: 13 проверок"
+  echo "PREFLIGHT_GREEN: 16 проверок"
   return 0
 }
 
