@@ -453,13 +453,7 @@ class V2OpsMixin:
             raise
 
     def submit(self, payload: dict, idem_key: str) -> dict:
-        """Submit в контуре отмены запрещён до acknowledge; иначе — ядро (§14.4)."""
-        row = self.connect().execute(
-            "SELECT status FROM tasks WHERE id=?", (payload.get("task_id"),)).fetchone()
-        if row and row["status"] == "cancellation_requested":
-            raise BadRequest(
-                "задача отменяется main: сначала acknowledge_cancel; "
-                "submit после подтверждения уйдёт в карантин late")
+        """Cancellation fencing is checked atomically by the core submit transaction."""
         return super().submit(payload, idem_key)
 
     # -------------------------------------- Validation / Decision / Integration
