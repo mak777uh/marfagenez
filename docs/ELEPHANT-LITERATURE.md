@@ -1836,17 +1836,23 @@ JACS 134:20812; Breuer et al. (2019) eLife; Pelletier et al. (2021) Cell 184:243
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-27T22:05:00Z",
-  "via": "pubmed",
-  "via_detail": "PubMed efetch abstract, PMID 10468593; PMCID PMC17873, но EuropePMC fullTextXML отдаёт 500 — только аннотация. Внимание: реальный титул статьи — «Evolutionary consequences of niche construction and their implications for ecology»; «Learning to extend your phenotype» — другое название того же авторского блока 1999 (уточнить при следующем чтении)"
+  "level": "fragment_read",
+  "artifact": "papers/laland99-niche-construction.html",
+  "bytes": 246927,
+  "sha256": "f22fc9c2a2ff82f823c8553df0144b1b135b8130eaac3d6957bdb11ea19e569e",
+  "retrieved_at": "2026-11-28T07:27:00Z",
+  "via": "publisher",
+  "via_detail": "PNAS 96(18):10242-10247 (1999), Laland, Odling-Smee & Feldman, doi:10.1073/pnas.96.18.10242; живой pnas.org за Cloudflare — полный HTML взят из web.archive.org snapshot 20200624; «niche construction is responsible for hitherto-neglected forms of feedback in evolution» — дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "discussion"
+   }
+  ]
  },
  "abstract_sha256": "e74a7f37151fd86719ee98a12a10412a1790eed030f5271f93d25ffb46deac68",
  "bibliographic": {
@@ -1864,7 +1870,7 @@ JACS 134:20812; Breuer et al. (2019) eLife; Pelletier et al. (2021) Cell 184:243
 
 **Кто.** Jones, Lawton & Shachak (1994) Oikos 69:373; Laland, Odling-Smee & Feldman (1999) PNAS 96:10242;
 Odling-Smee et al. (2013) Am Nat; Mitteroecker et al. (2016) PNAS.
-**Проверено.** **аннотация** PubMed (PMID 10468593, doi:10.1073/pnas.96.18.10242), 2026-11-27; полный текст недоступен (EuropePMC 500), фрагмент не читался.
+**Проверено.** **фрагмент**: PNAS full-text HTML через web.archive.org snapshot 20200624 (pnas.org живой — Cloudflare), papers/laland99-niche-construction.html, 2026-11-28; прочитаны аннотация, введение и обсуждение: «niche construction is responsible for hitherto-neglected forms of feedback in evolution, whereby legacies of ancestral modified natural selection pressures affect the subsequent evolution of later generations» — дословно; двухлокусная модель и выводы про feedback подтверждены. Jones 1994, Odling-Smee 2013, Mitteroecker 2016 — вторые руки.
 **Утверждение (по аннотации Laland, Odling-Smee & Feldman 1999; Jones 1994, Odling-Smee 2013, Mitteroecker 2016 — вторые руки).** Ниша-конструкция — модификация распределения ресурсов организмами; двухлокусная модель показывает: даже слабая конструкция меняет отбор (фиксация deleterious аллелей, стабильные полиморфизмы там, где их не ждали). Записывают ΔR, но универсальной скалярной меры «силы конструкции» нет.
 **Что меняет.** Наш §4.9 (`spent = 0`) — узкий и измеримый случай; назвать его так.
 
@@ -5777,17 +5783,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-22T00:51:02Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1073/pnas.0708931105"
+  "level": "fragment_read",
+  "artifact": "papers/lindner08-protein-aggregates.html",
+  "bytes": 329369,
+  "sha256": "39e8868dfa27fa6ce107f204676d4448f7d5aa1649d2b6caff5e913d1b76e734",
+  "retrieved_at": "2026-11-28T07:27:00Z",
+  "via": "publisher",
+  "via_detail": "PNAS 105(8):3076 (2008), Lindner, Madden, Démarez, Stewart & Taddéi, doi:10.1073/pnas.0708931105; PMC-запись содержит только front matter, полный HTML взят из web.archive.org snapshot 20210506; «>30% of the loss of reproductive ability» — дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "results/discussion"
+   }
+  ]
  },
  "abstract_sha256": "f40390e03121bbb204842d6b5c8b44d7bdea2c9aac77224eae0f362f2b24213f",
  "bibliographic": {
@@ -5803,7 +5815,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Asymmetric segregation of protein aggregates is associated with cellular aging and rejuvenation (2008). Ariel B. Lindner; Richard Madden; Alice Démarez; Eric J. Stewart; François Taddéi
 **Ссылка.** https://doi.org/10.1073/pnas.0708931105
-**Проверено.** **аннотация** OpenAlex, 2026-11-22T00:51:02Z, отпечаток есть; фрагмент не читался.
+**Проверено.** **фрагмент**: PNAS full-text HTML через web.archive.org snapshot 20210506 (PMC отдаёт только abstract, BioC — no result), papers/lindner08-protein-aggregates.html, 2026-11-28; «This accretion is associated with >30% of the loss of reproductive ability (aging)… asymmetric strategy whereby dividing cells segregate damage at the expense of aging individuals, resulting in the perpetuation of the population» — дословно; time-lapse/IbpA-эксперимент описан в results.
 **Утверждение.** Lindner et al. 2008 — асимметричная сегрегация агрегатов связана со старением и омоложением
 **Что даёт нам.** — (суждение не сделано).
 
@@ -6149,17 +6161,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-22T02:22:34Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1162/1064546041255548"
+  "level": "fragment_read",
+  "artifact": "papers/mcmullin04-computational-autopoiesis.pdf",
+  "bytes": 216408,
+  "sha256": "6ab9e596d27f31e307548ba006bd1a3e58ddb90165caae9af54e4454496075e6",
+  "retrieved_at": "2026-11-28T07:27:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "авторская версия Barry McMullin, «30 Years of Computational Autopoiesis: A Review» (Artificial Life 10(3) 2004, doi:10.1162/1064546041255548); MIT Press за challenge — PDF с eeng.dcu.ie через web.archive.org snapshot 20260403; цитирует Ono & Ikegami JTB 2000 (L-103)"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "history/survey"
+   }
+  ]
  },
  "abstract_sha256": "298331aea217142570d50bfa39ae9f251e936c8ef818f07561665d6aec97646e",
  "bibliographic": {
@@ -6175,7 +6193,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Thirty Years of Computational Autopoiesis: A Review (2004). Barry McMullin
 **Ссылка.** https://doi.org/10.1162/1064546041255548
-**Проверено.** **аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читался.
+**Проверено.** **фрагмент**: author-hosted PDF McMullin (preprint к Artificial Life 10(3) 2004) через web.archive.org snapshot 20260403, papers/mcmullin04-computational-autopoiesis.pdf, 2026-11-28; «Computational Autopoiesis—the realisation of autopoietic entities in computational media—holds an important and distinctive role within the field of Artificial Life» — дословно; обзор истории Varela-Maturana-Uribe и более поздних реализаций прочитан частично.
 **Утверждение.** McMullin & Varela 2004 — реимплементация автопоэзиса: вторичный источник уравнений Varela 1974
 **Что даёт нам.** — (суждение не сделано).
 

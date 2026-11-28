@@ -18961,7 +18961,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** PubMed (PMID 10468593, doi:10.1073/pnas.96.18.10242), 2026-11-27; "
+        "conditions": "**фрагмент**: PNAS full-text HTML через web.archive.org snapshot 20200624 (pnas."
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18969,7 +18969,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/laland99-niche-construction.html",
+          "strength": "moderate",
+          "sha256": "f22fc9c2a2ff82f823c8553df0144b1b135b8130eaac3d6957bdb11ea19e569e"
         }
       ],
       "relations": [],
@@ -18977,11 +18983,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** PubMed (PMID 10468593, doi:10.1073/pnas.96.18.10242), 2026-11-27; ",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: PNAS full-text HTML через web.archive.org snapshot 20200624 (pnas.",
+        "level_kind": "fragment_read",
+        "artifact": "papers/laland99-niche-construction.html",
+        "artifact_bytes": 246927,
+        "artifact_sha256": "f22fc9c2a2ff82f823c8553df0144b1b135b8130eaac3d6957bdb11ea19e569e",
         "locator": {
           "doi": "10.1073/pnas.96.18.10242",
           "arxiv": null,
@@ -22233,7 +22239,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** OpenAlex, 2026-11-22T00:51:02Z, отпечаток есть; фрагмент не читалс"
+        "conditions": "**фрагмент**: PNAS full-text HTML через web.archive.org snapshot 20210506 (PMC о"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -22241,7 +22247,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/lindner08-protein-aggregates.html",
+          "strength": "moderate",
+          "sha256": "39e8868dfa27fa6ce107f204676d4448f7d5aa1649d2b6caff5e913d1b76e734"
         }
       ],
       "relations": [],
@@ -22249,11 +22261,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** OpenAlex, 2026-11-22T00:51:02Z, отпечаток есть; фрагмент не читалс",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: PNAS full-text HTML через web.archive.org snapshot 20210506 (PMC о",
+        "level_kind": "fragment_read",
+        "artifact": "papers/lindner08-protein-aggregates.html",
+        "artifact_bytes": 329369,
+        "artifact_sha256": "39e8868dfa27fa6ce107f204676d4448f7d5aa1649d2b6caff5e913d1b76e734",
         "locator": {
           "doi": "10.1073/pnas.0708931105",
           "arxiv": null,
@@ -22622,7 +22634,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читалс"
+        "conditions": "**фрагмент**: author-hosted PDF McMullin (preprint к Artificial Life 10(3) 2004)"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -22630,7 +22642,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/mcmullin04-computational-autopoiesis.pdf",
+          "strength": "moderate",
+          "sha256": "6ab9e596d27f31e307548ba006bd1a3e58ddb90165caae9af54e4454496075e6"
         }
       ],
       "relations": [],
@@ -22638,11 +22656,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читалс",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: author-hosted PDF McMullin (preprint к Artificial Life 10(3) 2004)",
+        "level_kind": "fragment_read",
+        "artifact": "papers/mcmullin04-computational-autopoiesis.pdf",
+        "artifact_bytes": 216408,
+        "artifact_sha256": "6ab9e596d27f31e307548ba006bd1a3e58ddb90165caae9af54e4454496075e6",
         "locator": {
           "doi": "10.1162/1064546041255548",
           "arxiv": null,
@@ -40988,11 +41006,6 @@
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
-    },
-    {
-      "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
@@ -41000,6 +41013,11 @@
       "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
+    },
+    {
+      "from": "C-001",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
@@ -41028,12 +41046,12 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
@@ -41058,7 +41076,7 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
@@ -41068,7 +41086,7 @@
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
@@ -41213,7 +41231,7 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
     },
     {
@@ -41223,7 +41241,7 @@
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
     {
@@ -41233,12 +41251,12 @@
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
@@ -43533,11 +43551,6 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
@@ -43545,6 +43558,11 @@
       "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
@@ -43573,12 +43591,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {
