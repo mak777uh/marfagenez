@@ -6325,17 +6325,19 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
+  "level": "fragment_read",
+  "artifact": "papers/sitte2000-proteasome-lipofuscin.pdf",
+  "bytes": 2587398,
+  "sha256": "6c2898efac148b3fe3849d8aba8257d1d572a4c572d280890973710c38fcc979",
   "retrieved_at": "2026-11-22T02:22:34Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1096/fj.99-0843com"
+  "via": "wayback",
+  "via_detail": "web.archive.org/web/20210816000912id_/faseb.onlinelibrary.wiley.com/doi/pdf/10.1096/fj.99-0843com"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {"type": "section", "from": "abstract", "to": "results"}
+  ]
  },
  "abstract_sha256": "b5d9d6929ccee2e69aeb3b9ead1f97780de595b122f44a7094620cd765e1c090",
  "bibliographic": {
@@ -6351,7 +6353,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Proteasome inhibition by lipofuscin/ceroid during postmitotic aging of fibroblasts (2000). Nicolle Sitte; Michael Huber; Tilman Grune; Axel Ladhoff; Wolf‐Dietrich Doecke; Thomas Von Zglinicki
 **Ссылка.** https://doi.org/10.1096/fj.99-0843com
-**Проверено.** **аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читался.
+**Проверено.** PDF Sitte et al. 2000 (FASEB J 14:1490-1498), 9 стр., через Wayback-снапшот Wiley; цитата дословно: «We found that proteasome is directly inhibited by lipofuscin/ceroid.» / «A close correlation has been reported between lipofuscin/ceroid accumulation and aging rate in several mammalian species despite widely differing maximum life spans».
 **Утверждение.** Sitte et al. 2000 — липофусцин ингибирует протеасому: измеряемая связь груза повреждения и способности к удалению
 **Что даёт нам.** — (суждение не сделано).
 

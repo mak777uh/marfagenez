@@ -22808,7 +22808,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читалс"
+        "conditions": "PDF Sitte et al. 2000 (FASEB J 14:1490-1498), 9 стр., через Wayback-снапшот Wile"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -22816,7 +22816,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/sitte2000-proteasome-lipofuscin.pdf",
+          "strength": "moderate",
+          "sha256": "6c2898efac148b3fe3849d8aba8257d1d572a4c572d280890973710c38fcc979"
         }
       ],
       "relations": [],
@@ -22824,11 +22830,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читалс",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "PDF Sitte et al. 2000 (FASEB J 14:1490-1498), 9 стр., через Wayback-снапшот Wile",
+        "level_kind": "fragment_read",
+        "artifact": "papers/sitte2000-proteasome-lipofuscin.pdf",
+        "artifact_bytes": 2587398,
+        "artifact_sha256": "6c2898efac148b3fe3849d8aba8257d1d572a4c572d280890973710c38fcc979",
         "locator": {
           "doi": "10.1096/fj.99-0843com",
           "arxiv": null,
@@ -41078,11 +41084,6 @@
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
-    },
-    {
-      "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
@@ -41090,6 +41091,11 @@
       "from": "C-001",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
+    },
+    {
+      "from": "C-001",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
@@ -41113,13 +41119,13 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -41148,11 +41154,6 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
-      "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -41160,6 +41161,11 @@
       "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
       "type": "tested_in"
+    },
+    {
+      "from": "C-003",
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -41303,11 +41309,6 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
-    },
-    {
-      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -41317,14 +41318,19 @@
       "type": "tested_in"
     },
     {
-      "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
+      "from": "F-022",
+      "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
     },
     {
       "from": "F-023",
       "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
+    },
+    {
+      "from": "F-023",
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
@@ -43623,11 +43629,6 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
-    },
-    {
-      "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
@@ -43635,6 +43636,11 @@
       "from": "CORR-02",
       "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
+    },
+    {
+      "from": "CORR-02",
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
@@ -43658,12 +43664,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-04-10",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
