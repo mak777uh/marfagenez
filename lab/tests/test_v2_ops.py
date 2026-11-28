@@ -384,24 +384,65 @@ class TestProjections(Base):
         out1 = self.cp.write_projections(proj)
         self.assertEqual(out1["tasks"], 2)
         self.assertEqual(out1["task_versions"], 3)
-        h1 = dir_hash(proj)
-        # повторная выгрузка байт-в-байт идентична
-        self.cp.write_projections(proj)
-        self.assertEqual(dir_hash(proj), h1)
-        # потеря проекции не страшна: восстановление из БД
-        shutil.rmtree(proj)
-        self.cp.write_projections(proj)
-        self.assertEqual(dir_hash(proj), h1)
-        # содержимое соответствует БД
-        lines = (proj / "tasks.jsonl").read_text(encoding="utf-8").splitlines()
+        snapshot = Path(out1["snapshot_path"])
+        self.assertEqual(self.cp.resolve_projections(proj), snapshot)
+        h1 = dir_hash(snapshot)
+        current1 = (proj / "CURRENT").read_text(encoding="ascii").strip()
+        self.assertEqual(current1, out1["snapshot_id"])
+
+        # Repeated export is byte-identical and does not mutate an immutable snapshot.
+        out2 = self.cp.write_projections(proj)
+        self.assertEqual(out2["snapshot_id"], current1)
+        self.assertEqual(dir_hash(self.cp.resolve_projections(proj)), h1)
+
+        # A lost immutable snapshot can be reconstructed from the DB.
+        shutil.rmtree(snapshot)
+        out3 = self.cp.write_projections(proj)
+        rebuilt = Path(out3["snapshot_path"])
+        self.assertEqual(out3["snapshot_id"], current1)
+        self.assertEqual(dir_hash(rebuilt), h1)
+
+        # Consumers read only the snapshot named by CURRENT.
+        lines = (rebuilt / "tasks.jsonl").read_text(encoding="utf-8").splitlines()
         statuses = {json.loads(l)["id"]: json.loads(l)["status"]
                     for l in lines}
         self.assertEqual(statuses["KG-2026-0030"], "claimed")
         self.assertEqual(statuses["KG-2026-0031"], "ready")
-        self.assertTrue((proj / "task_versions" / "KG-2026-0030" /
+        self.assertTrue((rebuilt / "task_versions" / "KG-2026-0030" /
                         "v2.json").exists())
-        head = (proj / "audit_head.txt").read_text(encoding="utf-8").strip()
+        head = (rebuilt / "audit_head.txt").read_text(encoding="utf-8").strip()
         self.assertNotEqual(head, "GENESIS")
+        self.assertInvariants()
+
+    def test_failed_pointer_replace_keeps_previous_snapshot_available(self):
+        from unittest.mock import patch
+
+        task_id = "KG-2026-0032"
+        self.cp.publish_task(make_task(task_id))
+        proj = self.dir / "atomic-proj"
+        first = self.cp.write_projections(proj)
+        current_before = (proj / "CURRENT").read_text(encoding="ascii")
+        first_snapshot = Path(first["snapshot_path"])
+        self.assertTrue((first_snapshot / "tasks.jsonl").is_file())
+
+        self.cp.claim("fast-01", "i", "knowledge", idem_key="atomic-c32")
+        real_replace = os.replace
+
+        def fail_only_current(src, dst):
+            if Path(dst) == proj / "CURRENT":
+                raise OSError("injected crash before CURRENT publication")
+            return real_replace(src, dst)
+
+        with patch("lab.service.v2_ops.os.replace", side_effect=fail_only_current):
+            with self.assertRaisesRegex(OSError, "injected crash"):
+                self.cp.write_projections(proj)
+
+        self.assertEqual((proj / "CURRENT").read_text(encoding="ascii"), current_before)
+        resolved = self.cp.resolve_projections(proj)
+        self.assertEqual(resolved, first_snapshot)
+        rows = (resolved / "tasks.jsonl").read_text(encoding="utf-8").splitlines()
+        states = {json.loads(line)["id"]: json.loads(line)["status"] for line in rows}
+        self.assertEqual(states[task_id], "ready")
         self.assertInvariants()
 
 

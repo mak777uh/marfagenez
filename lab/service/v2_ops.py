@@ -16,6 +16,7 @@
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
@@ -188,6 +189,17 @@ class V2OpsMixin:
             except Exception:
                 self._safe_rollback(c)
                 raise
+
+    @staticmethod
+    def _validate_relative_projection_path(value: Any) -> str:
+        if (not isinstance(value, str) or not value or value.startswith("/")
+                or "\\" in value or "\0" in value or ":" in value):
+            raise BadRequest("invalid path in projection manifest")
+        parts = value.split("/")
+        if any(part in ("", ".", "..") for part in parts):
+            raise BadRequest("invalid path segment in projection manifest")
+        return value
+
 
     def _audit_migration(self, c, from_v: int, to_v: int) -> None:
         c.execute("BEGIN IMMEDIATE")
@@ -386,57 +398,236 @@ class V2OpsMixin:
         return super().submit(payload, idem_key)
 
     # ------------------------------------------------ файловые проекции
-    def write_projections(self, target: Path) -> dict:
-        """Детерминированный файловый снимок БД; восстановление = повторный
-        вызов. Атомарная подмена каталога (tmp -> os.replace)."""
+    @staticmethod
+    def _fsync_directory(path: Path) -> None:
+        try:
+            fd = os.open(str(path), os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
+            try:
+                os.fsync(fd)
+            finally:
+                os.close(fd)
+        except OSError:
+            # Some supported filesystems/platforms do not implement directory fsync.
+            pass
+
+    @staticmethod
+    def _write_fsynced(path: Path, data: bytes) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fd = os.open(str(path), os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        try:
+            with os.fdopen(fd, "wb") as stream:
+                stream.write(data)
+                stream.flush()
+                os.fsync(stream.fileno())
+        except Exception:
+            try:
+                path.unlink(missing_ok=True)
+            except OSError:
+                pass
+            raise
+
+    def _verify_projection_snapshot(self, snapshot: Path, snapshot_id: str) -> None:
+        """Verify every file against the immutable snapshot content address."""
+        if snapshot.is_symlink() or not snapshot.is_dir():
+            raise NotFound(f"projection snapshot is missing: {snapshot_id}")
+        manifest_path = snapshot / "manifest.json"
+        if manifest_path.is_symlink() or not manifest_path.is_file():
+            raise BadRequest("projection snapshot manifest is missing or unsafe")
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            raise BadRequest("projection snapshot manifest cannot be read") from exc
+        if not isinstance(manifest, dict) or manifest.get("schema") != "projection/v1":
+            raise BadRequest("unsupported projection manifest")
+        expected_files = manifest.get("files")
+        if not isinstance(expected_files, dict):
+            raise BadRequest("projection manifest files must be an object")
+
+        actual_files: dict[str, bytes] = {}
+        for path in snapshot.rglob("*"):
+            if path.is_symlink():
+                raise BadRequest(f"symlink in immutable projection: {path.relative_to(snapshot)}")
+            if path.is_file():
+                rel = path.relative_to(snapshot).as_posix()
+                actual_files[rel] = path.read_bytes()
+            elif not path.is_dir():
+                raise BadRequest(f"special file in immutable projection: {path.relative_to(snapshot)}")
+
+        if set(actual_files) != set(expected_files) | {"manifest.json"}:
+            raise BadRequest("projection snapshot files do not match manifest")
+        for rel, expected_sha in expected_files.items():
+            self._validate_relative_projection_path(rel)
+            if not isinstance(expected_sha, str) or not re.fullmatch(r"[0-9a-f]{64}", expected_sha):
+                raise BadRequest("projection manifest contains an invalid file hash")
+            if _sha(actual_files[rel]) != expected_sha:
+                raise BadRequest(f"projection file hash mismatch: {rel}")
+
+        hasher = hashlib.sha256()
+        for rel in sorted(actual_files):
+            hasher.update(rel.encode("utf-8"))
+            hasher.update(b"\0")
+            hasher.update(actual_files[rel])
+        if hasher.hexdigest() != snapshot_id:
+            raise BadRequest("projection snapshot content hash does not match CURRENT")
+
+    def resolve_projections(self, target: Path) -> Path:
+        """Resolve and verify the immutable snapshot named by CURRENT."""
         target = Path(target)
-        target.parent.mkdir(parents=True, exist_ok=True)
+        if target.is_symlink() or not target.is_dir():
+            raise BadRequest("projection root must be a real directory")
+        current = target / "CURRENT"
+        try:
+            mode = current.lstat().st_mode
+        except FileNotFoundError as exc:
+            raise NotFound(f"projection CURRENT is missing: {target}") from exc
+        if current.is_symlink() or not os.path.isfile(current):
+            raise BadRequest("projection CURRENT must be a regular file")
+        snapshot_id = current.read_text(encoding="ascii").strip()
+        if not re.fullmatch(r"[0-9a-f]{64}", snapshot_id):
+            raise BadRequest("projection CURRENT contains an invalid snapshot id")
+        snapshots = target / "snapshots"
+        if snapshots.is_symlink() or not snapshots.is_dir():
+            raise BadRequest("projection snapshots directory is missing or unsafe")
+        snapshot = snapshots / snapshot_id
+        self._verify_projection_snapshot(snapshot, snapshot_id)
+        return snapshot
+
+    def write_projections(self, target: Path) -> dict:
+        """Build a consistent immutable snapshot and atomically publish CURRENT.
+
+        Consumers must resolve the snapshot with resolve_projections(); the
+        root directory is persistent and CURRENT is the single publication point.
+        An interrupted build can leave an unreferenced snapshot, never a missing
+        or partially replaced current projection.
+        """
+        target = Path(target)
+        if target.is_symlink():
+            raise BadRequest("projection root must not be a symlink")
+        target.mkdir(parents=True, exist_ok=True)
+        if not target.is_dir():
+            raise BadRequest("projection root must be a directory")
+        snapshots_dir = target / "snapshots"
+        if snapshots_dir.is_symlink():
+            raise BadRequest("projection snapshots directory must not be a symlink")
+        snapshots_dir.mkdir(exist_ok=True)
+        if not snapshots_dir.is_dir():
+            raise BadRequest("projection snapshots path is not a directory")
+
+        # Fetch every table under one SQLite read snapshot. Commit before the
+        # slower filesystem write so writers are not held behind projection I/O.
         c = self.connect()
-        tmp = target.parent / f".{target.name}.tmp-{uuid.uuid4().hex[:8]}"
-        if tmp.exists():
-            shutil.rmtree(tmp)
-        (tmp / "task_versions").mkdir(parents=True)
-        tasks = c.execute(
-            "SELECT id,department,status,current_version,lease_epoch,created_at "
-            "FROM tasks ORDER BY id").fetchall()
-        with (tmp / "tasks.jsonl").open("w", encoding="utf-8") as f:
-            for t in tasks:
-                f.write(_canon({k: t[k] for k in t.keys()}) + "\n")
-        versions = c.execute(
-            "SELECT task_id,version,payload_json FROM task_versions "
-            "ORDER BY task_id, version").fetchall()
-        for v in versions:
-            d = tmp / "task_versions" / v["task_id"]
-            d.mkdir(exist_ok=True)
-            (d / f"v{v['version']}.json").write_text(
-                v["payload_json"], encoding="utf-8")
-        submissions = c.execute(
-            "SELECT id,task_id,attempt_id,agent_id,status,bundle_sha256,submitted_at "
-            "FROM submissions ORDER BY id").fetchall()
-        with (tmp / "submissions.jsonl").open("w", encoding="utf-8") as f:
-            for s in submissions:
-                f.write(_canon({k: s[k] for k in s.keys()}) + "\n")
-        messages = c.execute(
-            "SELECT id,recipient,kind,severity,requires_ack,blocks_claim,"
-            "blocks_submit,halt,superseded_by,created_at_iso "
-            "FROM messages ORDER BY created_at, id").fetchall()
-        with (tmp / "messages.jsonl").open("w", encoding="utf-8") as f:
-            for m in messages:
-                f.write(_canon({k: m[k] for k in m.keys()}) + "\n")
-        head = c.execute(
-            "SELECT event_hash FROM audit_events ORDER BY seq DESC LIMIT 1").fetchone()
-        (tmp / "audit_head.txt").write_text(
-            head["event_hash"] if head else "GENESIS", encoding="utf-8")
-        if target.exists():
-            old = target.parent / f".{target.name}.old-{uuid.uuid4().hex[:8]}"
-            os.replace(target, old)
-            os.replace(tmp, target)
-            shutil.rmtree(old, ignore_errors=True)
-        else:
-            os.replace(tmp, target)
-        return {"path": str(target), "tasks": len(tasks),
-                "task_versions": len(versions),
-                "submissions": len(submissions), "messages": len(messages)}
+        c.execute("BEGIN")
+        try:
+            tasks = c.execute(
+                "SELECT id,department,status,current_version,lease_epoch,created_at "
+                "FROM tasks ORDER BY id"
+            ).fetchall()
+            versions = c.execute(
+                "SELECT task_id,version,payload_json FROM task_versions "
+                "ORDER BY task_id, version"
+            ).fetchall()
+            submissions = c.execute(
+                "SELECT id,task_id,attempt_id,agent_id,status,bundle_sha256,submitted_at "
+                "FROM submissions ORDER BY id"
+            ).fetchall()
+            messages = c.execute(
+                "SELECT id,recipient,kind,severity,requires_ack,blocks_claim,"
+                "blocks_submit,halt,superseded_by,created_at_iso "
+                "FROM messages ORDER BY created_at, id"
+            ).fetchall()
+            head = c.execute(
+                "SELECT event_hash FROM audit_events ORDER BY seq DESC LIMIT 1"
+            ).fetchone()
+            audit_head = head["event_hash"] if head else "GENESIS"
+            c.execute("COMMIT")
+        except Exception:
+            self._safe_rollback(c)
+            raise
+
+        files: dict[str, bytes] = {}
+        files["tasks.jsonl"] = "".join(
+            _canon({k: row[k] for k in row.keys()}) + "\n" for row in tasks
+        ).encode("utf-8")
+        files["submissions.jsonl"] = "".join(
+            _canon({k: row[k] for k in row.keys()}) + "\n" for row in submissions
+        ).encode("utf-8")
+        files["messages.jsonl"] = "".join(
+            _canon({k: row[k] for k in row.keys()}) + "\n" for row in messages
+        ).encode("utf-8")
+        files["audit_head.txt"] = audit_head.encode("ascii")
+
+        for version in versions:
+            rel = f"task_versions/{version['task_id']}/v{version['version']}.json"
+            self._validate_relative_projection_path(rel)
+            files[rel] = version["payload_json"].encode("utf-8")
+
+        manifest = {
+            "schema": "projection/v1",
+            "files": {rel: _sha(data) for rel, data in sorted(files.items())},
+        }
+        files["manifest.json"] = _canon(manifest).encode("utf-8")
+        snapshot_hasher = hashlib.sha256()
+        for rel in sorted(files):
+            snapshot_hasher.update(rel.encode("utf-8"))
+            snapshot_hasher.update(b"\0")
+            snapshot_hasher.update(files[rel])
+        snapshot_id = snapshot_hasher.hexdigest()
+        snapshot_dir = snapshots_dir / snapshot_id
+
+        if snapshot_dir.is_symlink():
+            raise BadRequest("snapshot id path must not be a symlink")
+        if not snapshot_dir.exists():
+            tmp = snapshots_dir / f".tmp-{uuid.uuid4().hex}"
+            tmp.mkdir(mode=0o700)
+            try:
+                for rel, data in sorted(files.items()):
+                    self._write_fsynced(tmp / rel, data)
+                # Persist nested directory entries bottom-up before publishing
+                # the immutable snapshot directory itself.
+                dirs = [p for p in tmp.rglob("*") if p.is_dir()]
+                for directory in sorted(dirs, key=lambda p: len(p.parts), reverse=True):
+                    self._fsync_directory(directory)
+                self._fsync_directory(tmp)
+                try:
+                    os.rename(tmp, snapshot_dir)
+                    self._fsync_directory(snapshots_dir)
+                except OSError:
+                    # Another writer may have published the same content hash.
+                    if not snapshot_dir.is_dir() or snapshot_dir.is_symlink():
+                        raise
+            finally:
+                if tmp.exists():
+                    shutil.rmtree(tmp, ignore_errors=True)
+        elif not snapshot_dir.is_dir():
+            raise BadRequest("snapshot id path is not a directory")
+
+        # Verify the completed immutable tree before publishing the pointer.
+        self._verify_projection_snapshot(snapshot_dir, snapshot_id)
+
+        # One small, fsynced pointer is the only mutable publication artifact.
+        # If the replace fails, the previous CURRENT remains readable.
+        current_tmp = target / f".CURRENT-{uuid.uuid4().hex}.tmp"
+        current_path = target / "CURRENT"
+        try:
+            self._write_fsynced(current_tmp, (snapshot_id + "\n").encode("ascii"))
+            os.replace(current_tmp, current_path)
+            self._fsync_directory(target)
+        finally:
+            try:
+                current_tmp.unlink(missing_ok=True)
+            except OSError:
+                pass
+
+        snapshot_path = self.resolve_projections(target)
+        return {
+            "path": str(target),
+            "snapshot_path": str(snapshot_path),
+            "snapshot_id": snapshot_id,
+            "tasks": len(tasks),
+            "task_versions": len(versions),
+            "submissions": len(submissions),
+            "messages": len(messages),
+        }
 
     # -------------------------------------------------------- GC blobs
     def gc_blobs(self, grace_seconds: float = 3600.0) -> dict:

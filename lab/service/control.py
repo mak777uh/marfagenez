@@ -505,7 +505,9 @@ class ControlPlane:
             "INSERT OR IGNORE INTO agents (agent_id,scopes_json,boot_id,created_at) VALUES (?,?,?,?)",
             (agent_id, _canon(scopes or []), boot_id, now_iso))
 
-    TASK_ID_RE = re.compile(r"^(EXP|MATH|KG)-\d{4}-\d{4}$|^[PS]\d+")
+    # Anchored on both ends: legacy P*/S* identifiers may have a suffix,
+    # but never path separators or traversal segments.
+    TASK_ID_RE = re.compile(r"^(?:(?:EXP|MATH|KG)-\d{4}-\d{4}|[PS][A-Za-z0-9._-]+)$")
 
     def publish_task(self, payload: dict) -> dict:
         for field in ("id", "department", "title", "lease", "spec"):
@@ -1292,6 +1294,9 @@ class ControlPlane:
     # ---------------------------------------------------------- waiting_main
     def waiting_main(self, lease_id: str, lease_epoch: int, agent_id: str,
                      timeout_seconds: int) -> dict:
+        if (not isinstance(timeout_seconds, int) or isinstance(timeout_seconds, bool)
+                or timeout_seconds < 1):
+            raise BadRequest("waiting_main timeout должен быть целым числом >= 1")
         c = self.connect()
         now_iso, now_mono = self._now()
         c.execute("BEGIN IMMEDIATE")
@@ -1299,16 +1304,27 @@ class ControlPlane:
             row = self._check_lease(c, lease_id, lease_epoch, agent_id, None)
             if row["state"] != "active":
                 raise Gone(f"lease {row['state']}")
-            new_expire = min(row["expires_at_mono"] + timeout_seconds,
-                             row["max_expires_at_mono"] + timeout_seconds)
+            if row["expires_at_mono"] < now_mono:
+                raise Gone("lease истёк: waiting_main не может возродить его")
+            # max_expires_at_mono is an absolute lease ceiling, not a second
+            # duration to which every waiting_main call may add more time.
+            new_expire = min(
+                row["max_expires_at_mono"],
+                max(row["expires_at_mono"], now_mono) + timeout_seconds,
+            )
+            if new_expire <= now_mono:
+                raise Gone("lease достиг абсолютного max_expires_at_mono")
+            expires_at = _utc(self.wall() + (new_expire - now_mono))
             c.execute("UPDATE leases SET expires_at_mono=?, expires_at=? WHERE lease_id=?",
-                      (new_expire, _utc(self.wall() + (new_expire - now_mono)), lease_id))
+                      (new_expire, expires_at, lease_id))
             c.execute("UPDATE tasks SET status='waiting_main', lease_expires_at_mono=? "
                       "WHERE id=?", (new_expire, row["task_id"]))
             self._audit(c, agent_id, "attempt.waiting_main", "lease", lease_id,
-                        {"timeout": timeout_seconds})
+                        {"timeout": timeout_seconds,
+                         "expires_at_mono": new_expire,
+                         "max_expires_at_mono": row["max_expires_at_mono"]})
             c.execute("COMMIT")
-            return {"status": "waiting_main", "expires_at": _utc(self.wall() + (new_expire - now_mono))}
+            return {"status": "waiting_main", "expires_at": expires_at}
         except Exception:
             self._safe_rollback(c)
             raise

@@ -122,6 +122,14 @@ class TestPublishAndIdempotency(Base):
         self.assertEqual(c.execute("SELECT COUNT(*) FROM task_versions").fetchone()[0], 2)
         self.assertInvariants()
 
+    def test_legacy_task_ids_allow_safe_suffixes_but_reject_paths(self):
+        self.cp.publish_task(make_task("S1-20261126T012345-main"))
+        from lab.service.control import BadRequest
+        for unsafe in ("P1/../../escape", r"S2\..\escape", "P3:stream"):
+            with self.subTest(task_id=unsafe):
+                with self.assertRaises(BadRequest):
+                    self.cp.publish_task(make_task(unsafe))
+
     def test_empty_claim_result_is_cached_after_task_arrives(self):
         first = self.cp.claim("fast-01", "i", "knowledge", idem_key="empty-k")
         self.assertIsNone(first["claimed"])
@@ -552,6 +560,94 @@ class TestIntakeHardening(Base):
             self.cp.put_blob(foreign, "fast-01", b"foreign")
         self.assertEqual(
             self.db().execute("SELECT COUNT(*) FROM artifacts").fetchone()[0], 0)
+
+
+class TestWaitingMain(Base):
+    def test_waiting_main_cannot_extend_the_absolute_lease_ceiling(self):
+        task_id = "KG-2026-0701"
+        self.cp.publish_task(make_task(task_id))
+        lease = self.cp.claim(
+            "fast-01", "waiting-main", "knowledge", idem_key="waiting-main-claim"
+        )["claimed"]
+        stored = self.db().execute(
+            "SELECT expires_at_mono,max_expires_at_mono FROM leases WHERE lease_id=?",
+            (lease["lease_id"],),
+        ).fetchone()
+        absolute_max = stored["max_expires_at_mono"]
+
+        first = self.cp.waiting_main(
+            lease["lease_id"], lease["lease_epoch"], "fast-01", 150)
+        first_expiry = self.db().execute(
+            "SELECT expires_at_mono FROM leases WHERE lease_id=?",
+            (lease["lease_id"],),
+        ).fetchone()[0]
+        self.assertEqual(first_expiry, self.clock.mono() + 150)
+        self.assertLessEqual(first_expiry, absolute_max)
+        self.assertEqual(first["status"], "waiting_main")
+
+        # Repeated calls must not turn the absolute ceiling into a renewable cap.
+        self.clock.advance(30)
+        self.cp.waiting_main(
+            lease["lease_id"], lease["lease_epoch"], "fast-01", 150)
+        second_expiry = self.db().execute(
+            "SELECT expires_at_mono FROM leases WHERE lease_id=?",
+            (lease["lease_id"],),
+        ).fetchone()[0]
+        self.assertEqual(second_expiry, absolute_max)
+
+        self.clock.advance(20)
+        self.cp.waiting_main(
+            lease["lease_id"], lease["lease_epoch"], "fast-01", 500)
+        third_expiry = self.db().execute(
+            "SELECT expires_at_mono FROM leases WHERE lease_id=?",
+            (lease["lease_id"],),
+        ).fetchone()[0]
+        self.assertEqual(third_expiry, absolute_max)
+        self.assertInvariants()
+
+        # At the fixed maximum, reaper releases the task and expires the attempt.
+        self.clock.advance(absolute_max - self.clock.mono() + 1)
+        self.assertEqual(self.cp.reap()["expired"], 1)
+        task = self.db().execute(
+            "SELECT status,claimed_by FROM tasks WHERE id=?", (task_id,)
+        ).fetchone()
+        self.assertEqual(task["status"], "ready")
+        self.assertIsNone(task["claimed_by"])
+        attempt = self.db().execute(
+            "SELECT status FROM attempts WHERE attempt_id=?", (lease["attempt_id"],)
+        ).fetchone()[0]
+        self.assertEqual(attempt, "expired")
+        self.assertInvariants()
+
+    def test_waiting_main_cannot_revive_an_expired_lease(self):
+        task_id = "KG-2026-0703"
+        self.cp.publish_task(make_task(task_id))
+        lease = self.cp.claim(
+            "fast-01", "waiting-main", "knowledge", idem_key="waiting-main-expired"
+        )["claimed"]
+        self.clock.advance(LEASE_SPEC["ttl_seconds"] + 1)
+        from lab.service.control import Gone
+        with self.assertRaisesRegex(Gone, "не может возродить"):
+            self.cp.waiting_main(
+                lease["lease_id"], lease["lease_epoch"], "fast-01", 60)
+        self.assertEqual(self.cp.reap()["expired"], 1)
+        task = self.db().execute(
+            "SELECT status FROM tasks WHERE id=?", (task_id,)
+        ).fetchone()
+        self.assertEqual(task["status"], "ready")
+        self.assertInvariants()
+
+    def test_waiting_main_rejects_non_positive_or_non_integer_timeout(self):
+        self.cp.publish_task(make_task("KG-2026-0702"))
+        lease = self.cp.claim(
+            "fast-01", "waiting-main", "knowledge", idem_key="waiting-main-invalid"
+        )["claimed"]
+        from lab.service.control import BadRequest
+        for timeout in (0, -1, 1.5, True):
+            with self.subTest(timeout=timeout):
+                with self.assertRaises(BadRequest):
+                    self.cp.waiting_main(
+                        lease["lease_id"], lease["lease_epoch"], "fast-01", timeout)
 
 
 class TestMessages(Base):
