@@ -4803,23 +4803,29 @@ https://arxiv.org/abs/2006.03079
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://doi.org/10.1162/isal_a_00739"
+  "level": "fragment_read",
+  "artifact": "papers/beer24-intrinsic-viability.pdf",
+  "bytes": 3444604,
+  "sha256": "1ae03c76d07032cc698707b0fddb94778cacd2ffef97ba7cc10ebbbb3871bb43",
+  "retrieved_at": "2026-11-28T12:35:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "авторская версия Beer, McShaffrey & Gaul, Proc. ALIFE 2024 (MIT Press, doi:10.1162/isal_a_00739, стр. 192-200); direct.mit.edu за Cloudflare-challenge, iris.uniroma1.it proceedings-PDF за JS-check — PDF взят с сайта первого автора rdbeer.pages.iu.edu/Papers/BeerALife2024.pdf (9 стр., совпадает со страницами сборника); аннотация и введение сверены дословно: «derive the intrinsic viability constraint of an emergent individual from its closed network of constitutive process interdependencies», «no explicit construction of the resulting intrinsic viability constraint has ever been carried out»"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
   "title": "Deriving The Intrinsic Viability Constraint of an Emergent Individual from First Principles",
   "year": 2024,
-  "first_author": null
+  "first_author": "Beer"
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
@@ -4832,7 +4838,7 @@ https://arxiv.org/abs/2006.03079
 **Кто.** «Deriving The Intrinsic Viability Constraint of an Emergent Individual from First Principles» (2024),
 ALIFE, doi:10.1162/isal_a_00739.
 **Ссылка.** https://doi.org/10.1162/isal_a_00739
-**Проверено.** **аннотация/фрагмент.**
+**Проверено.** **фрагмент** авторский PDF Beer, McShaffrey & Gaul через rdbeer.pages.iu.edu (papers/beer24-intrinsic-viability.pdf, sha256 1ae03c76…, 2026-11-28); аннотация и введение сверены — интринзикное viability-ограничение выводится из операционного замыкания индивидуума на примере глайдера Game of Life.
 **Утверждение (цитаты).** Граф включает «a total of **352 processes and 5 912 dependency links**»; «the same process may
 appear multiple times but still have distinct identities because their dependencies differ». Работа **выводит
 внутреннее ограничение выживания** (intrinsic viability constraint) индивида из первых принципов.
