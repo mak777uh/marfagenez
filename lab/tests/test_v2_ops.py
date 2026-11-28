@@ -147,7 +147,7 @@ class TestSchemaMigration(Base):
         self.assertEqual([(x["artifact_index"], x["sha256"]) for x in links], [(0, digest)])
         migration = c.execute(
             "SELECT details_json FROM audit_events WHERE action='schema.migrate' "
-            "AND details_json LIKE '%\"to\":4%'"
+            "AND details_json LIKE '%\"to\":4%' ORDER BY seq DESC LIMIT 1"
         ).fetchone()
         self.assertIsNotNone(migration)
         self.assertIn('"unresolved_legacy_artifacts":1', migration["details_json"])
