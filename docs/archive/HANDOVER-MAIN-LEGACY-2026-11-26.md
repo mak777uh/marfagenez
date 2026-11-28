@@ -1,8 +1,8 @@
 # Передача вахты: инструкция агенту-преемнику `main`
 
 **Дата:** 26.11.2026. **Кому:** агенту, который заменяет меня на роли `main`.
-**Что читать в каком порядке:** этот файл → [`docs/CONTEXT-2026-11-25-26.md`](archive/CONTEXT-2026-11-25-26.md)
-(хроника суток) → [`docs/AUTONOMOUS-PLAN.md`](AUTONOMOUS-PLAN.md) (план) → остальное по ссылкам.
+**Что читать в каком порядке:** этот файл → [`docs/CONTEXT-2026-11-25-26.md`](../archive/CONTEXT-2026-11-25-26.md)
+(хроника суток) → [`docs/AUTONOMOUS-PLAN.md`](../AUTONOMOUS-PLAN.md) (план) → остальное по ссылкам.
 
 ---
 
@@ -261,17 +261,17 @@ diskpart
 
 | вопрос | документ |
 |---|---|
-| что было за сутки, какие ошибки | [`docs/CONTEXT-2026-11-25-26.md`](archive/CONTEXT-2026-11-25-26.md) |
-| план и метрики | [`docs/AUTONOMOUS-PLAN.md`](AUTONOMOUS-PLAN.md) |
-| как проверять данные (для `probe`) | [`docs/PROBE-INSTRUCTION.md`](PROBE-INSTRUCTION.md) |
-| как принимать от внешнего агента | [`docs/AGENT-WINDOWS-INSTRUCTION.md`](AGENT-WINDOWS-INSTRUCTION.md) |
-| устройство его канала | [`docs/AGENT-WINDOWS-BRIDGE.md`](AGENT-WINDOWS-BRIDGE.md) |
-| инбокс `kg` (три типа строк) | [`docs/KG-INBOX-SPEC.md`](KG-INBOX-SPEC.md) |
-| реестр исправлений | [`docs/MAP-ERRATA.md`](MAP-ERRATA.md) |
-| вердикты по вопросам | [`docs/PROBE-TRIAGE.md`](PROBE-TRIAGE.md) |
-| единицы и конвенции | [`docs/UNITS-CONVENTIONS.md`](UNITS-CONVENTIONS.md) |
+| что было за сутки, какие ошибки | [`docs/CONTEXT-2026-11-25-26.md`](../archive/CONTEXT-2026-11-25-26.md) |
+| план и метрики | [`docs/AUTONOMOUS-PLAN.md`](../AUTONOMOUS-PLAN.md) |
+| как проверять данные (для `probe`) | [`docs/PROBE-INSTRUCTION.md`](../PROBE-INSTRUCTION.md) |
+| как принимать от внешнего агента | [`docs/AGENT-WINDOWS-INSTRUCTION.md`](../AGENT-WINDOWS-INSTRUCTION.md) |
+| устройство его канала | [`docs/AGENT-WINDOWS-BRIDGE.md`](../AGENT-WINDOWS-BRIDGE.md) |
+| инбокс `kg` (три типа строк) | [`docs/KG-INBOX-SPEC.md`](../KG-INBOX-SPEC.md) |
+| реестр исправлений | [`docs/MAP-ERRATA.md`](../MAP-ERRATA.md) |
+| вердикты по вопросам | [`docs/PROBE-TRIAGE.md`](../PROBE-TRIAGE.md) |
+| единицы и конвенции | [`docs/UNITS-CONVENTIONS.md`](../UNITS-CONVENTIONS.md) |
 | число чисел, закрытие формул | [`docs/FORMULA-*.md`](docs) |
-| журнал всех циклов | [`docs/agent/AGENT_LOG.md`](agent/AGENT_LOG.md) |
+| журнал всех циклов | [`docs/agent/AGENT_LOG.md`](../agent/AGENT_LOG.md) |
 
 ---
 
