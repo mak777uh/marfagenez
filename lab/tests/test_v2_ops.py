@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import shutil
 import sys
 import tempfile
@@ -835,10 +836,11 @@ class TestCLI(Base):
         rc = main(["--db", db, "proposal-review", "--id", "PROP-0050",
                    "--decision", "published", "--revision", "1"])
         self.assertEqual(rc, 0)
-        # проекции через CLI
+        # проекции через CLI: versioned snapshot + CURRENT, проверяем через resolve
         rc = main(["--db", db, "projections", "--out", str(self.dir / "proj")])
         self.assertEqual(rc, 0)
-        self.assertTrue((self.dir / "proj" / "tasks.jsonl").exists())
+        snapshot = self.cp.resolve_projections(self.dir / "proj")
+        self.assertTrue((snapshot / "tasks.jsonl").exists())
         # Reaper has a public CLI path; this task has not expired yet.
         rc = main(["--db", db, "reap"])
         self.assertEqual(rc, 0)

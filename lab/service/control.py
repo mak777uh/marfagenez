@@ -935,7 +935,7 @@ class ControlPlane:
                 "UPDATE tasks SET status='claimed', claimed_by=?, lease_epoch=?, "
                 "lease_expires_at_mono=?, max_expires_at_mono=? "
                 "WHERE id=? AND status='ready'",
-                (agent_id, new_epoch, now_mono + ttl, now_mono + ttl + max_lease, tid))
+                (agent_id, new_epoch, now_mono + ttl, now_mono + max_lease, tid))
             if cur.rowcount != 1:
                 raise Conflict("задача ушла из ready во время claim (повторить)")
             attempt_no = c.execute(
@@ -950,7 +950,7 @@ class ControlPlane:
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,'active')",
                 (lease_id, tid, version, attempt_id, new_epoch, agent_id, instance_id,
                  now_iso, now_mono, now_iso, now_mono + ttl,
-                 _utc(self.wall() + ttl + max_lease), now_mono + ttl + max_lease))
+                 _utc(self.wall() + max_lease), now_mono + max_lease))
             c.execute(
                 "INSERT INTO attempts (attempt_id,task_id,task_version,attempt_no,lease_id,"
                 "lease_epoch,agent_id,started_at,status) VALUES (?,?,?,?,?,?,?,?, 'claimed')",
@@ -1382,11 +1382,12 @@ class ControlPlane:
                 raise Gone(f"lease {row['state']}")
             if row["expires_at_mono"] < now_mono:
                 raise Gone("lease истёк: waiting_main не может возродить его")
-            # max_expires_at_mono is an absolute lease ceiling, not a second
-            # duration to which every waiting_main call may add more time.
-            new_expire = min(
-                row["max_expires_at_mono"],
-                max(row["expires_at_mono"], now_mono) + timeout_seconds,
+            # max_expires_at_mono is an absolute lease ceiling counted from claim:
+            # waiting_main holds the lease until now+timeout, capped by the
+            # ceiling, and never moves the deadline backward.
+            new_expire = max(
+                row["expires_at_mono"],
+                min(row["max_expires_at_mono"], now_mono + timeout_seconds),
             )
             if new_expire <= now_mono:
                 raise Gone("lease достиг абсолютного max_expires_at_mono")

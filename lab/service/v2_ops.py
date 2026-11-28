@@ -124,10 +124,27 @@ class V2OpsMixin:
                         if not isinstance(digest, str) or len(digest) != 64:
                             unresolved += 1
                             continue
-                        exists = c.execute(
-                            "SELECT 1 FROM artifacts WHERE sha256=?", (digest,)
+                        artifact = c.execute(
+                            "SELECT bytes, upload_id FROM artifacts WHERE sha256=?",
+                            (digest,),
                         ).fetchone()
-                        if not exists:
+                        if not artifact:
+                            unresolved += 1
+                            continue
+                        descriptor_bytes = descriptor.get("bytes")
+                        if (not isinstance(descriptor_bytes, int)
+                                or isinstance(descriptor_bytes, bool)
+                                or descriptor_bytes != artifact["bytes"]):
+                            unresolved += 1
+                            continue
+                        if not isinstance(artifact["upload_id"], str):
+                            unresolved += 1
+                            continue
+                        upload_exists = c.execute(
+                            "SELECT 1 FROM uploads WHERE upload_id=?",
+                            (artifact["upload_id"],),
+                        ).fetchone()
+                        if not upload_exists:
                             unresolved += 1
                             continue
                         inserted = c.execute(

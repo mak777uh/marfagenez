@@ -779,3 +779,10 @@ status: continue
 - c903: 12/13 секций зелёные; sparse pin P9 подтверждён (пин ~0.4G, sync-back без WARN, C: стабилен ~9.5G+); красный только dispatcher — SC2154 в gate_start (унаследовано из e5c0648; чек SC2034/SC2154 fail-closed на -S warning, CI ветки гонял -S error, отсюда разница)
 - фикс: _section_rc=0 перед trap; снят устаревший gatepin-1ARkGk; логи c903 в /root/gate-logs/
 - статус: гейт c904 -> при зелёном пуш master + сигнал владельцу: эксперименты можно начинать (claim EXP-2026-4106 v5 первым, FIFO 4106 -> 4107)
+
+
+## 2026-11-28 — red-line fixes PR #13-#20 (цикл 861an)
+
+- 6 красных lab-тестов на вершине стека (dc203ded) починены в ветке agent/red-line-fixes-2026-11-28: TestMessages -> ControlPlane2 (put_blob требует v5); import os; dependency-тест пиннит реальный sha blob'а (имплементация exact-chain не тронута); lease-потолок = claim+max_lease_seconds (было claim+ttl+max_lease), waiting_main = max(current, min(ceiling, now+timeout)); TestCLI проверяет versioned snapshot через resolve_projections; v4 backfill требует bytes+upload (fail-closed)
+- локально: python3 -m unittest discover -s lab/tests: Ran 64, OK (skipped=1), 0 failures/errors (/root/pr20-lab-861an.log)
+- статус: пуш ветки -> CI полный gate на ветке; при зелёном merge в master (861ao) + локальный гейт c907 + пуш master

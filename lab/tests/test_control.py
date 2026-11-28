@@ -300,12 +300,18 @@ class TestClaimFencing(Base):
         source_id = "KG-2026-0100"
         dependent_id = "KG-2026-0101"
         digest_path = "results/dependency.ndjson"
+        # blob загружен до публикации: зависимость пинит ЕГО sha256,
+        # иначе точная цепочка provenance не может быть удовлетворена.
+        upload = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(
+            upload, "fast-01", b"dependency evidence", "application/x-ndjson"
+        )
         self.cp.publish_task(make_task(source_id))
         self.cp.publish_task(make_task(
             dependent_id,
             dependencies=[{"task_id": source_id, "required_task_version": 1,
                            "required_state": "integrated",
-                           "required_artifact_sha256": "e" * 64}],
+                           "required_artifact_sha256": blob["sha256"]}],
         ))
 
         source_lease = self.cp.claim(
@@ -316,10 +322,6 @@ class TestClaimFencing(Base):
             "fast-02", "i2", "knowledge", idem_key="dependency-before-submit"
         )["claimed"])
 
-        upload = self.cp.create_upload("fast-01")
-        blob = self.cp.put_blob(
-            upload, "fast-01", b"dependency evidence", "application/x-ndjson"
-        )
         artifact = {
             "path": digest_path, "sha256": blob["sha256"],
             "bytes": blob["bytes"], "media_type": "application/x-ndjson",
@@ -665,7 +667,8 @@ class TestWaitingMain(Base):
         self.assertEqual(first["status"], "waiting_main")
 
         # Repeated calls must not turn the absolute ceiling into a renewable cap.
-        self.clock.advance(30)
+        # now=+50: 50+150=200 = claim+max_lease_seconds, вызов упирается в потолок.
+        self.clock.advance(50)
         self.cp.waiting_main(
             lease["lease_id"], lease["lease_epoch"], "fast-01", 150)
         second_expiry = self.db().execute(
@@ -730,6 +733,9 @@ class TestWaitingMain(Base):
 
 
 class TestMessages(Base):
+    # put_blob требует upload_artifacts (v5): фикстура по требуемой миграции
+    control_plane_class = ControlPlane2
+
     def test_blocking_message_semantics(self):
         """requires_ack+blocks_claim блокирует claim до ack; heartbeat — нет;
         blocks_submit блокирует submit; supersede снимает блокировку."""
