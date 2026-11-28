@@ -99,34 +99,63 @@ class TestClaimEnforcement(Base):
             "SELECT status FROM tasks WHERE id='KG-2026-0311'").fetchone()[0]
         self.assertEqual(st, "manual_review")
 
-    def test_dependency_requires_received_submission_of_version(self):
-        self.cp.publish_task(make_task("KG-2026-0320"))
-        self.cp.publish_task(make_task("KG-2026-0321", dependencies=[
-            {"task_id": "KG-2026-0320", "required_task_version": 1,
-             "required_state": "integrated", "required_artifact_sha256": "e" * 64}]))
+    def test_dependency_requires_accepted_decision_not_received_submission(self):
+        source_id = "KG-2026-0320"
+        dependent_id = "KG-2026-0321"
+        digest = "e" * 64
+        self.cp.publish_task(make_task(source_id))
+        self.cp.publish_task(make_task(dependent_id, dependencies=[
+            {"task_id": source_id, "required_task_version": 1,
+             "required_state": "accepted", "required_artifact_sha256": digest}]))
         c = self.db()
-        c.execute("UPDATE tasks SET status='integrated' WHERE id='KG-2026-0320'")
+        c.execute("UPDATE tasks SET status='accepted' WHERE id=?", (source_id,))
         c.execute(
             "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,task_id,created_at)"
             " VALUES (?,?,?,?,?,?)",
-            ("e" * 64, 7, "application/x-ndjson", "e" * 64, "KG-2026-0320",
+            (digest, 7, "application/x-ndjson", digest, source_id,
              "2026-11-28T00:00:00Z"))
-        # артефакт есть, received-submission нужной версии нет -> не выдаётся
+        # Artifact metadata alone is not a provenance link.
         r1 = self.cp.claim("enf-01", "i", "knowledge", idem_key="c1")
         self.assertIsNone(r1["claimed"])
+
+        task_sha = c.execute(
+            "SELECT task_version_sha256 FROM task_versions WHERE task_id=? AND version=1",
+            (source_id,),
+        ).fetchone()[0]
         c.execute(
             "INSERT INTO submissions (id,task_id,task_version,task_version_sha256,"
             "attempt_id,lease_id,lease_epoch,agent_id,instance_id,base_commit,"
             "bundle_sha256,artifacts_json,environment_json,toolchain_json,"
             "scientific_outcome,parent_submission_id,complied_messages_json,"
             "submitted_at,status,status_reason) VALUES ("
-            "'SUB-ENF-DEP','KG-2026-0320',1,'d','a1','l1',0,'enf-00',NULL,'deadbeef01',"
-            "'b','[]','{}','{}',NULL,NULL,'[]','2026-11-28T00:00:00Z','received',NULL)")
+            "'SUB-ENF-DEP',?,?,?,'a1','l1',0,'enf-00',NULL,'deadbeef01',"
+            "'b','[]','{}','{}',NULL,NULL,'[]','2026-11-28T00:00:00Z','received',NULL)",
+            (source_id, 1, task_sha),
+        )
         c.execute(
             "INSERT INTO submission_artifacts (submission_id,artifact_index,sha256) "
-            "VALUES ('SUB-ENF-DEP',0,?)", ("e" * 64,))
+            "VALUES ('SUB-ENF-DEP',0,?)", (digest,))
+        # A received submission still cannot satisfy an accepted dependency.
         r2 = self.cp.claim("enf-02", "i2", "knowledge", idem_key="c2")
-        self.assertEqual(r2["claimed"]["task_id"], "KG-2026-0321")
+        self.assertIsNone(r2["claimed"])
+
+        c.execute(
+            "INSERT INTO validations (id,submission_id,bundle_sha256,validator_profile,"
+            "validator_version,recommendation,actor,payload_sha256,payload_json,created_at) "
+            "VALUES ('VAL-ENF-DEP','SUB-ENF-DEP','b','knowledge-map-v1','1.0.0',"
+            "'accepted','validation-service',?,'{}','2026-11-28T00:00:01Z')",
+            ("f" * 64,),
+        )
+        c.execute(
+            "INSERT INTO decisions (id,submission_id,validation_id,decision,reason,actor,"
+            "payload_sha256,payload_json,created_at) "
+            "VALUES ('DEC-ENF-DEP','SUB-ENF-DEP','VAL-ENF-DEP','accepted','test','main',"
+            "?,'{}','2026-11-28T00:00:02Z')",
+            ("a" * 64,),
+        )
+        c.execute("UPDATE submissions SET status='accepted' WHERE id='SUB-ENF-DEP'")
+        r3 = self.cp.claim("enf-02", "i2", "knowledge", idem_key="c3")
+        self.assertEqual(r3["claimed"]["task_id"], dependent_id)
 
 
 class TestSubmitEnforcement(Base):
