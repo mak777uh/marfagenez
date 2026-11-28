@@ -16,6 +16,8 @@
 """
 from __future__ import annotations
 
+import ctypes
+import errno
 import fcntl
 import hashlib
 import json
@@ -418,6 +420,33 @@ class V2OpsMixin:
             # Symlinks and special files are unlinked, never traversed.
             path.unlink()
 
+    @staticmethod
+    def _rename_exchange(source: Path, destination: Path) -> bool:
+        """Atomically exchange two same-filesystem directory names when Linux supports it."""
+        libc = ctypes.CDLL(None, use_errno=True)
+        renameat2 = getattr(libc, "renameat2", None)
+        if renameat2 is None:
+            return False
+        renameat2.argtypes = [
+            ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p,
+            ctypes.c_uint,
+        ]
+        renameat2.restype = ctypes.c_int
+        result = renameat2(
+            -100, os.fsencode(source), -100, os.fsencode(destination), 2
+        )  # AT_FDCWD, RENAME_EXCHANGE
+        if result == 0:
+            return True
+        error = ctypes.get_errno()
+        unsupported = {
+            errno.ENOSYS, errno.EINVAL,
+            getattr(errno, "EOPNOTSUPP", errno.EINVAL),
+            getattr(errno, "ENOTSUP", errno.EINVAL),
+        }
+        if error in unsupported:
+            return False
+        raise OSError(error, os.strerror(error), f"{source} <-> {destination}")
+
     def _recover_projection_publication(self, target: Path) -> None:
         """Recover the old snapshot if a process died after target -> .old rename."""
         parent = target.parent
@@ -456,9 +485,9 @@ class V2OpsMixin:
     def write_projections(self, target: Path) -> dict:
         """Create a consistent DB snapshot and publish it with crash recovery.
 
-        Readers retain the stable directory interface. Writers are serialized by
-        an advisory lock. If the process dies after moving the old directory but
-        before installing the new one, the next call restores the newest backup.
+        Writers are serialized by an advisory lock. Linux uses renameat2
+        RENAME_EXCHANGE for an atomic directory swap; unsupported filesystems
+        fall back to a recoverable old-directory rename protocol.
         """
         target = Path(target)
         if not target.name or target.name in (".", ".."):
@@ -565,23 +594,29 @@ class V2OpsMixin:
                 self._fsync_directory(directory)
             self._fsync_directory(tmp)
 
-            old = None
-            if target.exists():
-                old = target.parent / f".{target.name}.old-{uuid.uuid4().hex}"
-                os.replace(target, old)
+            if target.exists() and self._rename_exchange(tmp, target):
+                # tmp now names the previous complete generation.
                 self._fsync_directory(target.parent)
-            try:
-                os.replace(tmp, target)
+                self._remove_projection_entry(tmp)
                 self._fsync_directory(target.parent)
-            except Exception:
-                # Restore synchronously if publication failed in this process.
-                if old is not None and old.exists() and not target.exists():
-                    os.replace(old, target)
+            else:
+                old = None
+                if target.exists():
+                    old = target.parent / f".{target.name}.old-{uuid.uuid4().hex}"
+                    os.replace(target, old)
                     self._fsync_directory(target.parent)
-                raise
-            if old is not None:
-                self._remove_projection_entry(old)
-                self._fsync_directory(target.parent)
+                try:
+                    os.replace(tmp, target)
+                    self._fsync_directory(target.parent)
+                except Exception:
+                    # Restore synchronously if publication failed in this process.
+                    if old is not None and old.exists() and not target.exists():
+                        os.replace(old, target)
+                        self._fsync_directory(target.parent)
+                    raise
+                if old is not None:
+                    self._remove_projection_entry(old)
+                    self._fsync_directory(target.parent)
 
             return {
                 "path": str(target),
