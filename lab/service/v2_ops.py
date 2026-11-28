@@ -142,6 +142,52 @@ class V2OpsMixin:
             except Exception:
                 self._safe_rollback(c)
                 raise
+        v = c.execute("PRAGMA user_version").fetchone()[0]
+        if v < 5:
+            c.execute("BEGIN IMMEDIATE")
+            try:
+                c.execute(
+                    "CREATE TABLE IF NOT EXISTS upload_artifacts ("
+                    "upload_id TEXT NOT NULL REFERENCES uploads(upload_id), "
+                    "sha256 TEXT NOT NULL REFERENCES artifacts(sha256), "
+                    "media_type TEXT NOT NULL, created_at TEXT NOT NULL, "
+                    "PRIMARY KEY (upload_id,sha256,media_type))"
+                )
+                c.execute(
+                    "CREATE INDEX IF NOT EXISTS ix_upload_artifacts_sha "
+                    "ON upload_artifacts(sha256,upload_id)"
+                )
+                linked = 0
+                unresolved = 0
+                legacy = c.execute(
+                    "SELECT a.upload_id,a.sha256,a.media_type,a.created_at "
+                    "FROM artifacts a WHERE a.upload_id IS NOT NULL ORDER BY a.sha256"
+                ).fetchall()
+                for artifact in legacy:
+                    exists = c.execute(
+                        "SELECT 1 FROM uploads WHERE upload_id=?",
+                        (artifact["upload_id"],),
+                    ).fetchone()
+                    if not exists:
+                        unresolved += 1
+                        continue
+                    inserted = c.execute(
+                        "INSERT OR IGNORE INTO upload_artifacts "
+                        "(upload_id,sha256,media_type,created_at) VALUES (?,?,?,?)",
+                        (artifact["upload_id"], artifact["sha256"],
+                         artifact["media_type"], artifact["created_at"]),
+                    )
+                    linked += inserted.rowcount
+                c.execute("PRAGMA user_version=5")
+                self._audit(
+                    c, "schema", "schema.migrate", "db", str(self.db_path),
+                    {"from": 4, "to": 5, "upload_artifact_links": linked,
+                     "unresolved_legacy_uploads": unresolved},
+                )
+                c.execute("COMMIT")
+            except Exception:
+                self._safe_rollback(c)
+                raise
 
     def _audit_migration(self, c, from_v: int, to_v: int) -> None:
         c.execute("BEGIN IMMEDIATE")
