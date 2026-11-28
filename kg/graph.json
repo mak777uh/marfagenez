@@ -20386,7 +20386,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20402,20 +20402,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.46793/match.96-3.03426",
-          "arxiv": "q-bio/0501016",
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://arxiv.org/pdf/q-bio/0501016",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "FAST-S7Q-01",
           "FAST-S7Q-02",
@@ -20434,7 +20426,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20450,20 +20442,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1371/journal.pcbi.1003195",
-          "arxiv": "0808.0321",
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://arxiv.org/abs/0808.0321",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "B26-01-0001",
           "B26-01-0009",
@@ -20528,7 +20512,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** (полный текст не открылся — SSRF, см. `LITERATURE-GAPS.md` G-002)."
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20544,20 +20528,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** (полный текст не открылся — SSRF, см. `LITERATURE-GAPS.md` G-002).",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": null,
-          "arxiv": "2605.16753",
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://arxiv.org/html/2605.16753",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "FAST-S7ZE-01",
           "FAST-S7ZE-03",
@@ -21216,7 +21192,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация/фрагмент** (лекция — полный конспект в фрагменте)."
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21232,20 +21208,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация/фрагмент** (лекция — полный конспект в фрагменте).",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1142/S0218127417501450",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://ocw.mit.edu/courses/12-006j-nonlinear-dynamics-chaos-fall-2022/mit12_006jf22_lec2-3.pdf",
-          "none": false
-        },
+        "locator": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -21426,7 +21394,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21442,20 +21410,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": null,
-          "arxiv": "2006.03079",
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "http://workshops.alife.org/oee4/papers/stepney-oee4-camera-ready.pdf",
-          "none": false
-        }
+        "locator": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -21467,7 +21427,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21483,20 +21443,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": null,
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "http://workshops.alife.org/oee2/abstracts/stanley-soros-oee2-submission.pdf",
-          "none": false
-        }
+        "locator": null
       },
       "created_at": "2026-11-20",
       "updated_at": "2026-11-21"
@@ -21598,7 +21550,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация/фрагмент.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21614,20 +21566,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация/фрагмент.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": null,
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://apsframework.org/articles/viability-the-organising-principle-of-biological-persistence/",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "FAST-S7ZE-03",
           "V-0001"
@@ -40652,8 +40596,8 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
@@ -40662,8 +40606,8 @@
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -40687,6 +40631,11 @@
     },
     {
       "from": "C-003",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
+    },
+    {
+      "from": "C-003",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -40694,11 +40643,6 @@
       "from": "C-003",
       "to": "EV-EXP-CLOSURE-MEASURE",
       "type": "stated_in"
-    },
-    {
-      "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
     },
     {
       "from": "C-003",
@@ -40842,6 +40786,11 @@
     },
     {
       "from": "F-022",
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
+    },
+    {
+      "from": "F-022",
       "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-00-27",
       "type": "tested_in"
     },
@@ -40851,14 +40800,9 @@
       "type": "stated_in"
     },
     {
-      "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
-    },
-    {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
@@ -40867,8 +40811,8 @@
     },
     {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-025",
@@ -43197,7 +43141,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
@@ -43207,7 +43151,7 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {

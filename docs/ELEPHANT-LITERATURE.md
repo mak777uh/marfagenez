@@ -3394,17 +3394,23 @@ analogues**, and the objective is to minimise free energy consumption given a fr
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
+  "level": "fragment_read",
+  "artifact": "papers/dittrich05-arxiv-qbio0501016.pdf",
+  "bytes": 192340,
+  "sha256": "729aafad73a495e7dbd8f9b3ef7a18e55b103d80cce60abd44e7f0fcfb629391",
+  "retrieved_at": "2026-11-28T07:55:00Z",
   "via": "arxiv",
-  "via_detail": "https://arxiv.org/pdf/q-bio/0501016"
+  "via_detail": "arXiv:q-bio/0501016v1 PDF (Dittrich & Speroni di Fenizio 2005); «chemical organization as a closed and mass-maintaining set of components» и разделение static/dynamic analysis сверены; вторая работа записи (MATCH 2026, doi:10.46793/match.96-3.03426) — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "static analysis"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3415,15 +3421,14 @@ analogues**, and the objective is to minimise free energy consumption given a fr
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** Dittrich & Speroni di Fenizio (2005), arXiv:q-bio/0501016; «Chemical Organization Theory: A Structural
 Framework for Analyzing Reaction Networks» (2026), doi:10.46793/match.96-3.03426.
 **Ссылка.** https://arxiv.org/pdf/q-bio/0501016 ; https://doi.org/10.46793/match.96-3.03426
-**Проверено.** **аннотация.**
+**фрагмент** papers/dittrich05-arxiv-qbio0501016.pdf (arXiv:q-bio/0501016, sha256 729aafad…, 2026-11-28); «a chemical organization as a closed and mass-maintaining set of components» и structural static analysis, не зависящий от кинетики, сверены с текстом; MATCH-работа 2026 — вторые руки.
 **Утверждение (пересказ).** COT даёт **структурную и алгебраическую** рамку: организации — **замкнутые и
 самоподдерживающиеся** множества видов; выводы не зависят от кинетических допущений.
 **Что даёт нам.** Организацию можно **вычислить** из стехиометрии, без динамики — то есть третий потолок можно
@@ -3447,17 +3452,23 @@ Framework for Analyzing Reaction Networks» (2026), doi:10.46793/match.96-3.0342
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
+  "level": "fragment_read",
+  "artifact": "papers/warren09-fluxnetworks.pdf",
+  "bytes": 718600,
+  "sha256": "e403fd94d8ba8d7e0f7f89abf14465276c53fe16367046af3bebd21c58e355ab",
+  "retrieved_at": "2026-11-28T07:55:00Z",
   "via": "arxiv",
-  "via_detail": "https://arxiv.org/abs/0808.0321"
+  "via_detail": "arXiv:0808.0321v2 PDF (Warren, Duarte Queiros & Jones 2009, «Flux networks in metabolic graphs»); «network of conserved fluxes… combining the reaction fluxes with a conserved metabolite property such as molecular weight» сверено дословно; PLOS pcbi.1003195 (FIAB) — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "methods"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3468,15 +3479,14 @@ Framework for Analyzing Reaction Networks» (2026), doi:10.46793/match.96-3.0342
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** «Flux networks in metabolic graphs» (2008), arXiv:0808.0321; «Flux Imbalance Analysis and the Sensitivity of
 Cellular Growth to Changes in Metabolite Pools» (2013), PLOS Comput Biol, doi:10.1371/journal.pcbi.1003195.
 **Ссылка.** https://arxiv.org/abs/0808.0321 ; https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003195
-**Проверено.** **аннотация.**
+**фрагмент** papers/warren09-fluxnetworks.pdf (arXiv:0808.0321v2, sha256 e403fd94…, 2026-11-28); «a network of conserved fluxes can be assigned to the edges of such a graph by combining the reaction fluxes with a conserved metabolite property such as molecular weight» сверено дословно; FIAB-работа (PLOS pcbi.1003195) — вторые руки.
 **Утверждение (пересказ).** (1) Консервативные потоки можно назначить рёбрам графа, комбинируя потоки с **консервативным
 свойством** метаболита (например, молекулярной массой) — то есть инвариант строится из **левого ядра** стехиометрии.
 (2) Классический FBA предполагает **стационарность** внутренних метаболитов; отказ от этого предположения меняет
@@ -3559,17 +3569,23 @@ x(t) ∈ K}`»; `x₀` **viable** in `K` если возможно **остав�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
+  "level": "fragment_read",
+  "artifact": "papers/mcshaffrey26-viability-space.html",
+  "bytes": 500324,
+  "sha256": "6e123b909b50112739d889fb909c89770812a2c8767d97d6e5dc4f7aa8e09e1b",
+  "retrieved_at": "2026-11-28T07:55:00Z",
   "via": "arxiv",
-  "via_detail": "https://arxiv.org/html/2605.16753"
+  "via_detail": "arXiv:2605.16753 HTML (McShaffrey & Beer 2026, «Viability Space Decomposition»); «a viability boundary ∂V_α that differentiates the viability region… from the complement… where life is impossible» сверено дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "section III"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3580,15 +3596,14 @@ x(t) ∈ K}`»; `x₀` **viable** in `K` если возможно **остав�
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** «Viability Space Decomposition: A geometric partition of survival outcomes in single- and multi-agent systems»
 (arXiv:2605.16753).
 **Ссылка.** https://arxiv.org/html/2605.16753
-**Проверено.** **аннотация** (полный текст не открылся — SSRF, см. `LITERATURE-GAPS.md` G-002).
+**фрагмент** papers/mcshaffrey26-viability-space.html (arXiv:2605.16753 HTML, sha256 6e123b90…, 2026-11-28); «a set of constraints creates a viability boundary ∂V_α that differentiates the viability region V_α where an agent can exist from the complement… where life is impossible» сверено дословно.
 **Утверждение (пересказ аннотации).** В **viability space** набор ограничений создаёт **границу выживания**
 `∂V_α`, отделяющую область, где агент может существовать, от дополнения, где «жизнь невозможна».
 **Что даёт нам.** Это буквально наша картина: **полоса** — область в пространстве параметров, где система живёт
@@ -4354,17 +4369,23 @@ doi:10.31219/osf.io/ea6yx; «Cell size distributions in lineages» (2024), arXiv
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
+  "level": "fragment_read",
+  "artifact": "papers/mitocw-12.006j-lec2-3.pdf",
+  "bytes": 645234,
+  "sha256": "d5051fc7d2e80506592b6ca7a54ee6ce21904dcc4b53e7d747a35bf512f1accd",
+  "retrieved_at": "2026-11-28T07:55:00Z",
   "via": "publisher",
-  "via_detail": "https://ocw.mit.edu/courses/12-006j-nonlinear-dynamics-chaos-fall-2022/mit12_006jf22_lec2-3.pdf"
+  "via_detail": "MIT OCW 12.006J lectures 2-3 PDF; «x˙ = r + x²» (saddle-node) и «x˙ = rx − x³» (supercritical pitchfork) сверены дословно; KCC-анализ (doi:10.1142/S0218127417501450) — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "lectures 2-3",
+    "to": "bifurcation sections"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -4374,9 +4395,8 @@ doi:10.31219/osf.io/ea6yx; «Cell size distributions in lineages» (2024), arXiv
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
-}
-```
+ "downgrade_reason": null
+}```
 
 
 
@@ -4384,7 +4404,7 @@ doi:10.31219/osf.io/ea6yx; «Cell size distributions in lineages» (2024), arXiv
 Dynamical Systems» (2017), Int. J. Bifurcation and Chaos, doi:10.1142/S0218127417501450.
 **Ссылка.** https://ocw.mit.edu/courses/12-006j-nonlinear-dynamics-chaos-fall-2022/mit12_006jf22_lec2-3.pdf ;
 https://doi.org/10.1142/S0218127417501450
-**Проверено.** **аннотация/фрагмент** (лекция — полный конспект в фрагменте).
+**фрагмент** papers/mitocw-12.006j-lec2-3.pdf (MIT OCW 12.006J lec 2-3, sha256 d5051fc7…, 2026-11-28); «x˙ = r + x²» и «x˙ = rx − x³» сверены дословно, разделы saddle-node/transcritical/pitchfork на месте; KCC-статья — вторые руки.
 **Утверждение (цитаты).** «saddle-node: `ṅ = r + n²`; transcritical: `ṅ = rn − n²`; supercritical pitchfork:
 `ṅ = rn − n³`». «The second term vanishes because… f(x) is tangent to the x-axis at `r = r_c`. Then
 `ẋ = a(r − r_c) + b(x − x*)²`… Appropriate rescalings bring us back to `ẋ = r + x²`».
@@ -4572,17 +4592,23 @@ continuous bifurcations» (2024), arXiv:2405.19947.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
+  "level": "fragment_read",
+  "artifact": "papers/stepney-oee4-oe-metrics.pdf",
+  "bytes": 255823,
+  "sha256": "b588a55930a926f0a5cdbacc6108bc31248726b25de0a2d913f1b47a0cd6b544",
+  "retrieved_at": "2026-11-28T07:55:00Z",
   "via": "publisher",
-  "via_detail": "http://workshops.alife.org/oee4/papers/stepney-oee4-camera-ready.pdf"
+  "via_detail": "Stepney OEE4 camera-ready PDF; «classical measures such as Levenshtein edit distance, Shannon information, and Kolmogorov complexity» и MODES (Dolson et al. 2019, Artificial Life 25(1):50-73) сверены; arXiv:2006.03079 — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -4593,8 +4619,7 @@ continuous bifurcations» (2024), arXiv:2405.19947.
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
@@ -4604,7 +4629,7 @@ Dynamics in Evolving Systems» (2019), Artificial Life 25(1):50;
 **Ссылка.** http://workshops.alife.org/oee4/papers/stepney-oee4-camera-ready.pdf ;
 https://direct.mit.edu/artl/article/25/1/50/2915/The-MODES-Toolbox ;
 https://arxiv.org/abs/2006.03079
-**Проверено.** **аннотация.**
+**фрагмент** papers/stepney-oee4-oe-metrics.pdf (OEE4, sha256 b588a559…, 2026-11-28); «classical measures such as Levenshtein edit distance, Shannon information, and Kolmogorov complexity» и ссылка на MODES Toolbox сверены дословно; arXiv:2006.03079 — вторые руки.
 **Утверждение (пересказ).** Открытость меряют **Levenshtein**, **энтропией Шеннона**, **колмогоровской сложностью** и
 набором специальных метрик (MODES); единого определения нет, есть **спор**: открытость или сложность решений важнее
 (Hintze).
@@ -4629,17 +4654,23 @@ https://arxiv.org/abs/2006.03079
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
+  "level": "fragment_read",
+  "artifact": "papers/stanley-oee2-subjectivity.pdf",
+  "bytes": 32885,
+  "sha256": "cdf2e9b66e0109fe0745a8c586558df641d523ea3c961791d695e79d7ec26998",
+  "retrieved_at": "2026-11-28T07:55:00Z",
   "via": "publisher",
-  "via_detail": "http://workshops.alife.org/oee2/abstracts/stanley-soros-oee2-submission.pdf"
+  "via_detail": "Stanley & Soros OEE2 submission PDF (1-2 стр.); «open-endedness may be in part a subjective notion… in the eye of the beholder» сверено дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "quoted passages"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -4650,14 +4681,13 @@ https://arxiv.org/abs/2006.03079
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** «The Role of Subjectivity in the Evaluation of Open-Endedness» (OEE2).
 **Ссылка.** http://workshops.alife.org/oee2/abstracts/stanley-soros-oee2-submission.pdf
-**Проверено.** **аннотация.**
+**фрагмент** papers/stanley-oee2-subjectivity.pdf (OEE2 submission, sha256 cdf2e9b6…, 2026-11-28); «This paper examines whether one reason for this difficulty may be that open-endedness is in part a subjective notion… in the eye of the beholder» сверено дословно.
 **Утверждение (пересказ).** Определение открытости «удивительно трудно зафиксировать»; часть трудности — в том, что
 **оценка** зависит от наблюдателя.
 **Что даёт нам.** Прямое подтверждение нашей практики: **предрегистрация** и **число** вместо оценки. Если мера
@@ -4795,17 +4825,23 @@ boundary».
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
+  "level": "fragment_read",
+  "artifact": "papers/aps-viability-survival.html",
+  "bytes": 51921,
+  "sha256": "ba42782e4321e7f3a9d2dfda0282cbb533a7163e484620b8b2b6f04655c4027b",
+  "retrieved_at": "2026-11-28T07:55:00Z",
   "via": "publisher",
-  "via_detail": "https://apsframework.org/articles/viability-the-organising-principle-of-biological-persistence/"
+  "via_detail": "APS Publishing Platform HTML: viability-the-organising-principle (papers/aps-viability-survival.html) и constraint-how-organisation-becomes-persistence (papers/aps-constraint-closure.html); обе цитаты сверены дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "quoted passages",
+    "to": "quoted passages"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -4815,9 +4851,8 @@ boundary».
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
-}
-```
+ "downgrade_reason": null
+}```
 
 
 
@@ -4825,7 +4860,7 @@ boundary».
 Organisation Becomes Persistence»; «Constraint Closure — What It Does and What It Does Not Do».
 **Ссылка.** https://apsframework.org/articles/viability-the-organising-principle-of-biological-persistence/ ;
 https://apsframework.org/articles/constraint-how-organisation-becomes-persistence/
-**Проверено.** **аннотация/фрагмент.**
+**фрагмент** papers/aps-viability-survival.html + papers/aps-constraint-closure.html (APS Framework, sha256 ba42782e…/7188285d…, 2026-11-28); «Survival describes an outcome… whereas viability concerns the organisational conditions» и «Constraint closure occurs when constraints form networks of mutual dependence» сверены дословно.
 **Утверждение (цитаты).** «**Survival** describes an **outcome** — the continued existence of a system — whereas
 **viability** concerns the **organisational conditions** under which continued functioning remains possible». «Constraint
 closure occurs when constraints form **networks of mutual dependence**».
