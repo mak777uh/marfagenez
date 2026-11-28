@@ -346,7 +346,8 @@ class TestSubmitAndIdempotency(Base):
         legacy_owner = self.db().execute(
             "SELECT task_id FROM artifacts WHERE sha256=?", (blob["sha256"],)
         ).fetchone()
-        self.assertEqual(legacy_owner["task_id"], "KG-2026-0004")
+        self.assertIsNone(legacy_owner["task_id"],
+                          "the legacy single-task owner must stay non-authoritative")
         # тот же ключ + тот же payload = тот же ответ (§14.4)
         out2 = self.cp.submit(sub, idem_key="s1")
         self.assertEqual(out2, out)
