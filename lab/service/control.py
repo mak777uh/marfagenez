@@ -28,6 +28,7 @@ from typing import Any, Callable
 PROTOCOL = 1
 MAX_BLOB_BYTES = 128 * 1024 * 1024
 MAX_BUNDLE_BYTES = 512 * 1024 * 1024
+MAX_WAITING_MAIN_SECONDS = 3600
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 MEDIA_TYPE_RE = re.compile(r"^[A-Za-z0-9!#PROTOCOL = 1
 FALSE = ("false", 0)^_.+-]{1,63}/[A-Za-z0-9!#PROTOCOL = 1
@@ -702,8 +703,24 @@ class ControlPlane:
                 "UPDATE leases SET state='expired', expired_at=?, expired_at_mono=? "
                 "WHERE state='active' AND expires_at_mono<?",
                 (now_iso, now_mono, now_mono))
+            cancelled = c.execute(
+                "UPDATE tasks SET status='cancelled', claimed_by=NULL, "
+                "lease_expires_at_mono=NULL, max_expires_at_mono=NULL "
+                "WHERE status='cancellation_requested' "
+                "AND lease_expires_at_mono IS NOT NULL AND lease_expires_at_mono<? "
+                "RETURNING id", (now_mono,)).fetchall()
+            for item in cancelled:
+                c.execute(
+                    "UPDATE attempts SET status='void', ended_at=?, "
+                    "failure_reason='cancellation request lease expired' "
+                    "WHERE task_id=? AND status='claimed'",
+                    (now_iso, item["id"]))
+                self._audit(c, agent_id, "task.cancel_timeout", "task", item["id"],
+                            {"via": "claim", "at_mono": now_mono})
             c.execute(
-                "UPDATE tasks SET status='ready' WHERE status='claimed' "
+                "UPDATE tasks SET status='ready', claimed_by=NULL, "
+                "lease_expires_at_mono=NULL, max_expires_at_mono=NULL "
+                "WHERE status IN ('claimed','waiting_main') "
                 "AND lease_expires_at_mono IS NOT NULL AND lease_expires_at_mono<?",
                 (now_mono,))
             c.execute(
@@ -1343,8 +1360,23 @@ class ControlPlane:
             row = self._check_lease(c, lease_id, lease_epoch, agent_id, None)
             if row["state"] != "active":
                 raise Gone(f"lease {row['state']}")
-            new_expire = min(row["expires_at_mono"] + timeout_seconds,
-                             row["max_expires_at_mono"] + timeout_seconds)
+            if row["task_status"] not in ("claimed", "waiting_main"):
+                raise Conflict(
+                    f"waiting_main допустим только для claimed/waiting_main, "
+                    f"задача сейчас {row['task_status']}")
+            if (not isinstance(timeout_seconds, int) or isinstance(timeout_seconds, bool)
+                    or timeout_seconds < 1 or timeout_seconds > MAX_WAITING_MAIN_SECONDS):
+                raise BadRequest(
+                    f"waiting_main timeout должен быть целым числом от 1 до "
+                    f"{MAX_WAITING_MAIN_SECONDS} секунд")
+            # Repeated requests are bounded by one fixed waiting window beyond
+            # max_lease_seconds; a caller cannot keep a lease alive forever.
+            new_expire = min(
+                row["expires_at_mono"] + timeout_seconds,
+                row["max_expires_at_mono"] + MAX_WAITING_MAIN_SECONDS,
+            )
+            if new_expire <= now_mono:
+                raise Gone("bounded waiting_main window is exhausted")
             c.execute("UPDATE leases SET expires_at_mono=?, expires_at=? WHERE lease_id=?",
                       (new_expire, _utc(self.wall() + (new_expire - now_mono)), lease_id))
             c.execute("UPDATE tasks SET status='waiting_main', lease_expires_at_mono=? "
@@ -1367,15 +1399,35 @@ class ControlPlane:
                 "UPDATE leases SET state='expired', expired_at=?, expired_at_mono=? "
                 "WHERE state='active' AND expires_at_mono<? RETURNING lease_id",
                 (now_iso, now_mono, now_mono)).fetchall()
-            c.execute("UPDATE tasks SET status='ready', claimed_by=NULL, "
-                      "lease_expires_at_mono=NULL WHERE status IN ('claimed','waiting_main') "
-                      "AND lease_expires_at_mono<?", (now_mono,))
+            cancelled = c.execute(
+                "UPDATE tasks SET status='cancelled', claimed_by=NULL, "
+                "lease_expires_at_mono=NULL, max_expires_at_mono=NULL "
+                "WHERE status='cancellation_requested' "
+                "AND lease_expires_at_mono IS NOT NULL AND lease_expires_at_mono<? "
+                "RETURNING id", (now_mono,)).fetchall()
+            for item in cancelled:
+                c.execute(
+                    "UPDATE attempts SET status='void', ended_at=?, "
+                    "failure_reason='cancellation request lease expired' "
+                    "WHERE task_id=? AND status='claimed'",
+                    (now_iso, item["id"]))
+                self._audit(c, "reaper", "task.cancel_timeout", "task", item["id"],
+                            {"at_mono": now_mono})
+            requeued = c.execute(
+                "UPDATE tasks SET status='ready', claimed_by=NULL, "
+                "lease_expires_at_mono=NULL, max_expires_at_mono=NULL "
+                "WHERE status IN ('claimed','waiting_main') "
+                "AND lease_expires_at_mono IS NOT NULL AND lease_expires_at_mono<? "
+                "RETURNING id", (now_mono,)).fetchall()
             c.execute("UPDATE attempts SET status='expired', ended_at=?, "
                       "failure_reason='reaper' WHERE status='claimed' AND lease_id IN "
                       "(SELECT lease_id FROM leases WHERE state='expired')", (now_iso,))
-            self._audit(c, "reaper", "lease.reap", "queue", "all", {"count": len(expired)})
+            self._audit(c, "reaper", "lease.reap", "queue", "all",
+                        {"expired": len(expired), "requeued": len(requeued),
+                         "cancelled": len(cancelled)})
             c.execute("COMMIT")
-            return {"expired": len(expired)}
+            return {"expired": len(expired), "requeued": len(requeued),
+                    "cancelled": len(cancelled)}
         except Exception:
             self._safe_rollback(c)
             raise
