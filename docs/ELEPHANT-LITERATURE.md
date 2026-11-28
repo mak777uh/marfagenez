@@ -617,17 +617,23 @@ decreasing side** of the fitness function». Пример там же: птиц�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-27T23:00:00Z",
-  "via": "pubmed",
-  "via_detail": "PubMed efetch abstract, PMID 510638 (Vaupel, Manton & Stallard 1979, Demography 16:439-454); PMCID нет, полный текст не запрашивался; вторая половина записи (Li & Anderson, vitality) остаётся вторыми руками"
+  "level": "fragment_read",
+  "artifact": "papers/vaupel79-frailty-mortality.pdf",
+  "bytes": 246882,
+  "sha256": "cfae6ebce0450c98731ca6a059fc53390376fa5da4b7ae8732cf038eafcdd184",
+  "retrieved_at": "2026-11-28T13:05:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "скан Vaupel, Manton & Stallard 1979, Demography 16:439-454 (PMID 510638, doi:10.2307/2061224) с сайта первого автора user.demogr.mpg.de/jwv/pdf/ (идентичен копии ressources-actuarielles.net ISFA); Duke ePDF за JS-challenge, JSTOR платный. PDF — скан без текстового слоя, OCR rapidocr по 16 стр.; аннотация и раздел Results сверены дословно: «standard methods overestimate current life expectancy ... while underestimating rates of individual aging», «overestimation becomes more significant as heterogeneity increases»; вторая половина записи (Li & Anderson, vitality) остаётся вторыми руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "results (Tables 1-3)"
+   }
+  ]
  },
  "abstract_sha256": "145400b20a3a1624b8c3e5d4bd4de6e6426f9d44745653e839e42cb5188a162c",
  "bibliographic": {
@@ -645,7 +651,7 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 **Кто.** Vaupel, Manton, Stallard (1979) — frailty; Li & Anderson — vitality.
 **Ссылка.** **вторые руки.**
-**Проверено.** **аннотация** PubMed (PMID 510638, Vaupel-Manton-Stallard 1979), 2026-11-27; frailty-часть по аннотации, vitality (Li & Anderson) — вторые руки.
+**Проверено.** **фрагмент** скан с сайта Vaupel (papers/vaupel79-frailty-mortality.pdf, sha256 cfae6ebc…, OCR rapidocr, 2026-11-28); «standard methods overestimate current life expectancy … underestimating rates of individual aging», «overestimation becomes more significant as heterogeneity increases» — сверено дословно; vitality (Li & Anderson) — вторые руки.
 
 **Утверждение (по аннотации Vaupel-Manton-Stallard 1979; vitality — пересказ).** Скрытая гетерогенность frailty меняет динамику смертности: стандартные таблицы переоценивают ожидаемую продолжительность жизни и недооценивают индивидуальное старение; лица с равным возрастом неравны по скрытой переменной.
 **Что даёт нам.** Наш результат «339 / 258 / 128 при равной целости» (§4.12) — **это ровно frailty**.
