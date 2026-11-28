@@ -153,6 +153,48 @@ class TestSchemaMigration(Base):
         self.assertInvariants()
 
 
+    def test_same_blob_can_be_referenced_by_multiple_tasks(self):
+        upload = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(
+            upload, "fast-01", b"shared immutable evidence", "application/x-ndjson"
+        )
+        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
+                 "media_type": "application/x-ndjson"}]
+        for index, task_id in enumerate(("KG-2026-0301", "KG-2026-0302"), start=1):
+            self.cp.publish_task(make_task(task_id))
+            lease = self.cp.claim(
+                "fast-01", f"i{index}", "knowledge", idem_key=f"claim-shared-{index}"
+            )["claimed"]
+            payload = {
+                "id": f"SUB-2026-03{index:02d}", "task_id": task_id,
+                "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
+                "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
+                "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
+                "artifacts": arts, "bundle_sha256": bundle_sha(task_id, arts),
+                "base_commit": "6a9fa461",
+            }
+            result = self.cp.submit(payload, idem_key=f"submit-shared-{index}")
+            self.assertEqual(result["status"], "received")
+
+        links = self.db().execute(
+            "SELECT s.task_id, sa.sha256 FROM submission_artifacts sa "
+            "JOIN submissions s ON s.id=sa.submission_id "
+            "WHERE sa.sha256=? ORDER BY s.task_id",
+            (blob["sha256"],),
+        ).fetchall()
+        self.assertEqual(
+            [(row["task_id"], row["sha256"]) for row in links],
+            [("KG-2026-0301", blob["sha256"]),
+             ("KG-2026-0302", blob["sha256"])],
+        )
+        # New submissions no longer rewrite the lossy legacy owner column.
+        legacy = self.db().execute(
+            "SELECT task_id FROM artifacts WHERE sha256=?", (blob["sha256"],)
+        ).fetchone()
+        self.assertIsNone(legacy["task_id"])
+        self.assertInvariants()
+
+
 class TestProposalsCAS(Base):
     def test_create_idempotent_and_conflict(self):
         prop = {"id": "PROP-0001", "author": "planner",
