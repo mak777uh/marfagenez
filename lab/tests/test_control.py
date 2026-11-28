@@ -320,6 +320,7 @@ class TestClaimFencing(Base):
 
 
 
+class TestWaitingMainExpiry(Base):
     def test_expired_waiting_main_is_reclaimed_by_next_claim(self):
         task_id = "KG-2026-0601"
         self.cp.publish_task(make_task(task_id))
@@ -402,6 +403,7 @@ class TestClaimFencing(Base):
         self.assertEqual(attempt["status"], "void")
         self.assertIn("cancellation", attempt["failure_reason"])
         self.assertInvariants()
+
 
 
 class TestSubmitAndIdempotency(Base):
