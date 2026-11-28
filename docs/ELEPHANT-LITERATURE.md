@@ -2305,25 +2305,25 @@ doi:10.3390/systems12040111.
   "doi": "10.1890/0012-9658(1999)080[0735:TSOCDN]2.0.CO;2",
   "arxiv": null,
   "arxiv_version": null,
-  "openalex": null,
+  "openalex": "https://openalex.org/W2121153333",
   "pmid": null,
   "url": "https://doi.org/10.1890/0012-9658(1999)080%5B0735:TSOCDN%5D2.0.CO;2",
   "none": false
  },
  "access": {
-  "level": "secondary_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": "DOI идентифицирован через Crossref (Elser & Urabe 1999, Ecology 80:735-751, «The stoichiometry of consumer-driven nutrient recycling»); Wiley/ESA страница блокирует ботов, аннотация недоступна — уровень остаётся secondary_only"
+  "retrieved_at": "2026-11-28T04:46:50Z",
+  "via": "openalex",
+  "via_detail": "OpenAlex abstract_inverted_index, W2121153333; Wiley/ESA страница блокирует ботов, полный текст недоступен — только аннотация"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "f0e9968b01d6475413a6503830bad14cf56531d993aa0b9faa57a7627cf8deb4",
  "bibliographic": {
   "title": "Экологическая стехиометрия: возврат вещества в среду",
   "year": 1999,
@@ -2338,7 +2338,7 @@ doi:10.3390/systems12040111.
 
 
 **Кто.** Elser & Urabe (1999), Ecology; Daufresne & Hedin (2005); Tilman (1982); Nicholson (1954).
-**Проверено.** **вторые руки.**
+**Проверено.** **аннотация** OpenAlex (W2121153333, doi:10.1890/0012-9658(1999)080[0735:TSOCDN]2.0.CO;2), 2026-11-28; полный текст недоступен (Wiley/ESA блокирует ботов), фрагмент не читался.
 **Утверждение (пересказ).** Потребители возвращают азот и фосфор; состав организма задаёт соотношение выделяемого —
 обратная связь «потребитель ↔ ресурс»; выигрывает **наименьший `R*`**; contest vs scramble — разные механизмы дележа.
 **Что меняет.** `Q-011`: `w = α·изъятие` с задержкой `τ` и **инвариант** `Σ(поле + организм + отход) = const`;
