@@ -637,26 +637,32 @@ decreasing side** of the fitness function». Пример там же: птиц�
 {
  "L": "L-012",
  "locator": {
-  "doi": null,
+  "doi": "10.1080/23737867.2014.11414482",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
   "pmid": null,
-  "url": null,
-  "none": true
+  "url": "https://doi.org/10.1080/23737867.2014.11414482",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/ledder14-deb-lib.pdf",
+  "bytes": 823499,
+  "sha256": "fdcbd10ec4977254d1650ff155c95d0470509d27c54a66a3c0ab0b492194ed00",
+  "retrieved_at": "2026-11-28T05:00:00Z",
+  "via": "author-site-pdf",
+  "via_detail": "Ledder 2014 «The basic dynamic energy budget model and some implications», Letters in Biomathematics 1:221-233, PDF с gledder1.github.io (13 стр.); прочитаны §model structure/fluxes/maintenance; Kooijman первоисточники (1986/2000/2010) цитируются внутри, прямого чтения нет"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "model-structure",
+    "to": "maintenance"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -674,9 +680,9 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 **Кто.** Kooijman — Dynamic Energy Budget theory.
 **Ссылка.** **вторые руки.**
-**Проверено.** **вторые руки.**
-**Утверждение (пересказ).** Энергия делится: доля κ идёт на соматическое поддержание, остальное — на рост и
-размножение; при голоде поддержание имеет приоритет.
+**Проверено.** **фрагмент** papers/ledder14-deb-lib.pdf (Ledder 2014, sha256 fdcbd10e…), 2026-11-28; Kooijman — цитируемый первоисточник внутри работы.
+
+**Утверждение (по фрагментам Ledder 2014; Kooijman — пересказ внутри).** Мобилизованный из резерва поток J_C делится: доля κ — на соматические нужды (поддержание структуры + рост), остаток — на maturation/reproduction; поддержание — расход на замену потерь метаболизма, пропорционален структуре W; резерв и maturity поддержания не требуют.
 **Что даёт нам.** Наш `income − maintenance ≥ Σ u_i·cost_i` — **их бюджетное неравенство** в упрощённом виде.
 **Что меняет.** §4.10/§4.11: сослаться на DEB как на общую рамку бюджета.
 
