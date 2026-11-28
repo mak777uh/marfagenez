@@ -779,3 +779,10 @@ status: continue
 - c903: 12/13 секций зелёные; sparse pin P9 подтверждён (пин ~0.4G, sync-back без WARN, C: стабилен ~9.5G+); красный только dispatcher — SC2154 в gate_start (унаследовано из e5c0648; чек SC2034/SC2154 fail-closed на -S warning, CI ветки гонял -S error, отсюда разница)
 - фикс: _section_rc=0 перед trap; снят устаревший gatepin-1ARkGk; логи c903 в /root/gate-logs/
 - статус: гейт c904 -> при зелёном пуш master + сигнал владельцу: эксперименты можно начинать (claim EXP-2026-4106 v5 первым, FIFO 4106 -> 4107)
+
+
+## 2026-11-28 — merge PR #5 + #6 (цикл 861al)
+
+- PR #5 lab-control-hardening + PR #6 lab-artifact-provenance влиты (hosted gate зелёный на обоих head; стек на 2e254432, отставания нет); бэкап control.db в /root/backups/
+- красная линия PR #13-#20 не влита: lab 3 failures/3 errors в CI; ветки локально для диагностики; run.sh tail -15 скрывает traceback (чинить в 861am)
+- статус: гейт c905 -> при зелёном пуш master
