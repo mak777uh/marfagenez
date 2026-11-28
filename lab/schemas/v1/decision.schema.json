@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lab/schemas/v1/decision.schema.json",
+  "title": "Решение Decision/v1",
+  "description": "Неизменяемое решение main по submission. Validation.recommendation — отдельная рекомендация, научный scientific_outcome — отдельный результат. Автоматический приём не допускается.",
+  "type": "object",
+  "required": [
+    "schema", "id", "submission_id", "validation_id",
+    "actor", "decision", "reason", "decided_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "decision/v1" },
+    "id": { "type": "string", "pattern": "^DEC-[A-Za-z0-9._-]+$" },
+    "submission_id": { "type": "string", "minLength": 1 },
+    "validation_id": { "type": "string", "pattern": "^VAL-[A-Za-z0-9._-]+$" },
+    "actor": { "const": "main" },
+    "decision": { "$ref": "common.schema.json#/$defs/decision" },
+    "reason": { "type": "string", "minLength": 1 },
+    "decided_at": { "$ref": "common.schema.json#/$defs/rfc3339" }
+  }
+}

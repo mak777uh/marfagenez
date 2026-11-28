@@ -793,3 +793,16 @@ status: continue
 - c905 прерван: cache get тянул 9100 .ltar по полу-живой сети (часы); фикс: timeout 300 + .cache в sparse-шаринге (P9b)
 - диагностика красной линии PR #13-#20 готова: 6 точных причин (полный лог /root/pr20-lab-full.log); фиксы — следующий цикл в ветке агента
 - статус: гейт c906 -> при зелёном пуш master
+
+## 2026-11-28 — red-line fixes PR #13-#20 (цикл 861an)
+
+- 6 красных lab-тестов на вершине стека (dc203ded) починены в ветке agent/red-line-fixes-2026-11-28: TestMessages -> ControlPlane2 (put_blob требует v5); import os; dependency-тест пиннит реальный sha blob'а (имплементация exact-chain не тронута); lease-потолок = claim+max_lease_seconds (было claim+ttl+max_lease), waiting_main = max(current, min(ceiling, now+timeout)); TestCLI проверяет versioned snapshot через resolve_projections; v4 backfill требует bytes+upload (fail-closed)
+- локально: python3 -m unittest discover -s lab/tests: Ran 64, OK (skipped=1), 0 failures/errors (/root/pr20-lab-861an.log)
+- статус: пуш ветки -> CI полный gate на ветке; при зелёном merge в master (861ao) + локальный гейт c907 + пуш master
+
+
+## 2026-11-28 — merge красной линии (цикл 861ao)
+
+- merge agent/red-line-fixes-2026-11-28 @ 3776af6b в master (стек PR #13-#20 + 861an); hosted gate 46107930304 success на 3776af6b; hosted gate 46106953589 success на e139f9a1
+- в merge-base параллельные лит-коммиты Devin (head decb8dd5)
+- статус: локальный полный гейт c907 на merge HEAD -> при зелёном пуш master; PR #21 закрыть после пуша

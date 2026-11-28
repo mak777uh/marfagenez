@@ -17,9 +17,12 @@ FFI_PREFIX = "bridge::tests::"
 
 
 def list_tests(features: bool) -> tuple[int, str]:
+    # This is a cfg/test-selection probe, not a performance or release-build
+    # test. The actual Lean FFI suite runs separately in release mode. Using
+    # --release here triggers the crate's LTO profile twice just to list names,
+    # adding several minutes to the full gate without improving this check.
     command = [
-        "cargo", "test", "--release", "--no-default-features",
-        "--lib", "--tests",
+        "cargo", "test", "--no-default-features", "--lib",
     ]
     if features:
         command += ["--features", "lean-ffi"]

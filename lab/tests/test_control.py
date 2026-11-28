@@ -22,6 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from lab.service.control import (  # noqa: E402
     Blocked, Conflict, ControlPlane, Gone, NotFound)
+from lab.service.v2_ops import ControlPlane2  # noqa: E402
 
 LEASE_SPEC = {"ttl_seconds": 120, "heartbeat_seconds": 30,
               "max_attempts": 3, "max_lease_seconds": 200}
@@ -41,7 +42,7 @@ def make_task(tid: str, dept: str = "knowledge", priority: int = 5, **kw):
         "validators": [{"profile": "knowledge-map-v1", "version": "1.0.0"}],
         "dependencies": [], "lease": dict(LEASE_SPEC), "priority": priority,
         "base_commit": "6a9fa461", "network_profile": "none",
-        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 1,
+        "budget": {"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": 1_048_576,
                    "network_allowlist": []},
         "tags": [], **kw,
     }
@@ -65,12 +66,14 @@ class Clock:
 
 
 class Base(unittest.TestCase):
+    control_plane_class = ControlPlane
+
     def setUp(self):
         self.dir = Path(tempfile.mkdtemp(prefix="lab-ctl-"))
         self.clock = Clock()
-        cp = ControlPlane(self.dir / "control.sqlite3",
-                          artifacts=self.dir / "artifacts",
-                          wall=self.clock.wall, mono=self.clock.mono)
+        cp = self.control_plane_class(self.dir / "control.sqlite3",
+                                       artifacts=self.dir / "artifacts",
+                                       wall=self.clock.wall, mono=self.clock.mono)
         cp.init()
         self.cp = cp
 
@@ -122,6 +125,14 @@ class TestPublishAndIdempotency(Base):
         self.assertEqual(c.execute("SELECT COUNT(*) FROM task_versions").fetchone()[0], 2)
         self.assertInvariants()
 
+    def test_legacy_task_ids_allow_safe_suffixes_but_reject_paths(self):
+        self.cp.publish_task(make_task("S1-20261126T012345-main"))
+        from lab.service.control import BadRequest
+        for unsafe in ("P1/../../escape", r"S2\..\escape", "P3:stream"):
+            with self.subTest(task_id=unsafe):
+                with self.assertRaises(BadRequest):
+                    self.cp.publish_task(make_task(unsafe))
+
     def test_empty_claim_result_is_cached_after_task_arrives(self):
         first = self.cp.claim("fast-01", "i", "knowledge", idem_key="empty-k")
         self.assertIsNone(first["claimed"])
@@ -172,6 +183,7 @@ class TestPublishAndIdempotency(Base):
 
 
 class TestClaimFencing(Base):
+    control_plane_class = ControlPlane2
     def test_single_task_ten_threads_one_winner(self):
         """§23.2: 10 агентов одновременно claim одну задачу — ровно один winner."""
         self.cp.publish_task(make_task("KG-2026-0002"))
@@ -283,50 +295,109 @@ class TestClaimFencing(Base):
             self.cp.heartbeat(l1["lease_id"], l1["lease_epoch"], "fast-01")
         self.assertInvariants()
 
-    def test_dependencies_gate_claim(self):
-        """Зависимость: задача не выдаётся, пока required не integrated + артефакт."""
-        self.cp.publish_task(make_task("KG-2026-0100"))
+    def test_dependencies_require_accepted_source_and_integration(self):
+        """A received blob is insufficient; the exact accepted Decision and Integration unlock it."""
+        source_id = "KG-2026-0100"
+        dependent_id = "KG-2026-0101"
+        digest_path = "results/dependency.ndjson"
+        # blob загружен до публикации: зависимость пинит ЕГО sha256,
+        # иначе точная цепочка provenance не может быть удовлетворена.
+        upload = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(
+            upload, "fast-01", b"dependency evidence", "application/x-ndjson"
+        )
+        self.cp.publish_task(make_task(source_id))
         self.cp.publish_task(make_task(
-            "KG-2026-0101",
-            dependencies=[{"task_id": "KG-2026-0100", "required_task_version": 1,
-                            "required_state": "integrated", "required_artifact_sha256": "e" * 64}]))
-        r = self.cp.claim("fast-01", "i", "knowledge", idem_key="k1")
-        self.assertEqual(r["claimed"]["task_id"], "KG-2026-0100", "зависимая выдана раньше")
-        c = self.db()
-        # интеграция упрощённо: статус integrated, артефакта ещё нет
-        c.execute("UPDATE tasks SET status='integrated' WHERE id='KG-2026-0100'")
-        r2 = self.cp.claim("fast-02", "i2", "knowledge", idem_key="k2")
-        self.assertIsNone(r2["claimed"], "dependency-задача выдана без требуемого артефакта")
-        # появился требуемый артефакт — зависимость удовлетворена
-        digest = "e" * 64
-        c.execute(
-            "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,task_id,created_at)"
-            " VALUES (?,?,?,?,?,?)",
-            (digest, 7, "application/x-ndjson", digest, "KG-2026-0100",
-             "2026-11-26T00:00:00Z"))
-        # аудит 28.11: зависимость требует received-submission нужной версии
-        c.execute(
-            "INSERT INTO submissions (id,task_id,task_version,task_version_sha256,"
-            "attempt_id,lease_id,lease_epoch,agent_id,instance_id,base_commit,"
-            "bundle_sha256,artifacts_json,environment_json,toolchain_json,"
-            "scientific_outcome,parent_submission_id,complied_messages_json,"
-            "submitted_at,status,status_reason) VALUES ("
-            "'SUB-DEP-1','KG-2026-0100',1,'d','a1','l1',0,'fast-00',NULL,'6a9fa461',"
-            "'b','[]','{}','{}',NULL,NULL,'[]','2026-11-26T00:00:00Z','received',NULL)")
-        r3 = self.cp.claim("fast-02", "i2", "knowledge", idem_key="k3")
-        self.assertTrue(r3["claimed"])
-        self.assertEqual(r3["claimed"]["task_id"], "KG-2026-0101")
+            dependent_id,
+            dependencies=[{"task_id": source_id, "required_task_version": 1,
+                           "required_state": "integrated",
+                           "required_artifact_sha256": blob["sha256"]}],
+        ))
+
+        source_lease = self.cp.claim(
+            "fast-01", "i", "knowledge", idem_key="dependency-source"
+        )["claimed"]
+        self.assertEqual(source_lease["task_id"], source_id)
+        self.assertIsNone(self.cp.claim(
+            "fast-02", "i2", "knowledge", idem_key="dependency-before-submit"
+        )["claimed"])
+
+        artifact = {
+            "path": digest_path, "sha256": blob["sha256"],
+            "bytes": blob["bytes"], "media_type": "application/x-ndjson",
+        }
+        artifacts = [artifact]
+        submission_id = "SUB-DEP-LIFECYCLE"
+        bundle = bundle_sha(source_id, artifacts)
+        submitted = self.cp.submit({
+            "id": submission_id, "task_id": source_id, "task_version": 1,
+            "task_version_sha256": source_lease["task_version_sha256"],
+            "attempt_id": source_lease["attempt_id"], "lease_id": source_lease["lease_id"],
+            "lease_epoch": source_lease["lease_epoch"], "agent_id": "fast-01",
+            "artifacts": artifacts, "bundle_sha256": bundle, "base_commit": "6a9fa461",
+        }, idem_key="dependency-submit")
+        self.assertEqual(submitted["status"], "received")
+        self.assertIsNone(self.cp.claim(
+            "fast-02", "i2", "knowledge", idem_key="dependency-after-received"
+        )["claimed"])
+
+        validation_id = "VAL-DEP-LIFECYCLE"
+        self.cp.record_validation({
+            "schema": "validation/v1", "id": validation_id,
+            "submission_id": submission_id, "bundle_sha256": bundle,
+            "validator_profile": "knowledge-map-v1", "validator_version": "1.0.0",
+            "gate_script_sha256": "a" * 64,
+            "sandbox_image_digest": "sha256:" + "b" * 64,
+            "toolchain": {"python": "3.12"},
+            "checks": [{"name": "trusted-gate", "rc": 0}],
+            "recommendation": "accepted", "reason": "all required checks passed",
+            "started_at": "2026-11-28T00:00:00Z",
+            "finished_at": "2026-11-28T00:00:01Z",
+            "created_at": "2026-11-28T00:00:02Z",
+        })
+        decision = self.cp.decide_submission(
+            submission_id, validation_id, "accepted", "accepted for dependency test"
+        )
+        self.assertEqual(decision["status"], "accepted")
+        self.assertIsNone(self.cp.claim(
+            "fast-02", "i2", "knowledge", idem_key="dependency-before-integration"
+        )["claimed"])
+
+        started = self.cp.start_integration(submission_id, "6a9fa461")
+        finished = self.cp.finish_integration(
+            started["integration_id"], "6a9fa462", [digest_path]
+        )
+        self.assertEqual(finished["status"], "integrated")
+        ready = self.cp.claim(
+            "fast-02", "i2", "knowledge", idem_key="dependency-after-integration"
+        )
+        self.assertEqual(ready["claimed"]["task_id"], dependent_id)
+
+        # 'accepted' is a lower lifecycle threshold and remains satisfied after integration.
+        accepted_dependent = "KG-2026-0102"
+        self.cp.publish_task(make_task(
+            accepted_dependent,
+            dependencies=[{"task_id": source_id, "required_task_version": 1,
+                           "required_state": "accepted",
+                           "required_artifact_sha256": blob["sha256"]}],
+        ))
+        dependency = self.db().execute(
+            "SELECT * FROM dependencies WHERE task_id=?", (accepted_dependent,)
+        ).fetchone()
+        self.assertTrue(self.cp._dependency_satisfied(self.db(), dependency, self.clock.t))
 
 
 class TestSubmitAndIdempotency(Base):
+    # These cases exercise v2 artifact-provenance migrations and intake.
+    control_plane_class = ControlPlane2
     def test_submit_ok_and_dedup(self):
         self.cp.publish_task(make_task("KG-2026-0004"))
         up = self.cp.create_upload("fast-01")
         blob = self.cp.put_blob(up, "fast-01", b"atoms data", "application/x-ndjson")
         r = self.cp.claim("fast-01", "i", "knowledge", idem_key="c1")
         lease = r["claimed"]
-        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
-                 "media_type": "application/x-ndjson"}]
+        arts = [{"path": "results/evidence.ndjson", "sha256": blob["sha256"],
+                 "bytes": blob["bytes"], "media_type": "application/x-ndjson"}]
         sub = {
             "id": "SUB-2026-0002", "task_id": "KG-2026-0004",
             "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
@@ -346,7 +417,8 @@ class TestSubmitAndIdempotency(Base):
         legacy_owner = self.db().execute(
             "SELECT task_id FROM artifacts WHERE sha256=?", (blob["sha256"],)
         ).fetchone()
-        self.assertEqual(legacy_owner["task_id"], "KG-2026-0004")
+        self.assertIsNone(legacy_owner["task_id"],
+                          "the legacy single-task owner must stay non-authoritative")
         # тот же ключ + тот же payload = тот же ответ (§14.4)
         out2 = self.cp.submit(sub, idem_key="s1")
         self.assertEqual(out2, out)
@@ -424,11 +496,13 @@ class TestSubmitAndIdempotency(Base):
             "attempt_id": lease["attempt_id"],
             "lease_id": lease["lease_id"], "lease_epoch": lease["lease_epoch"],
             "agent_id": "fast-01",
-            "artifacts": [{"sha256": "f" * 64, "bytes": 1, "media_type": "x"}],
+            "artifacts": [{"path": "results/missing.ndjson", "sha256": "f" * 64,
+                            "bytes": 1, "media_type": "application/x-ndjson"}],
             "base_commit": "6a9fa461",
             "bundle_sha256": bundle_sha(
                 "KG-2026-0005",
-                [{"sha256": "f" * 64, "bytes": 1, "media_type": "x"}]),
+                [{"path": "results/missing.ndjson", "sha256": "f" * 64,
+                  "bytes": 1, "media_type": "application/x-ndjson"}]),
         }
         from lab.service.control import BadRequest
         with self.assertRaises(BadRequest):
@@ -447,7 +521,221 @@ class TestSubmitAndIdempotency(Base):
 
 
 
+class TestIntakeHardening(Base):
+    # These cases exercise v2 artifact-provenance migrations and intake.
+    control_plane_class = ControlPlane2
+    def _prepared_submission(self, task_id: str, *, uploader: str = "fast-01",
+                             data: bytes = b"evidence", media_type: str = "application/x-ndjson",
+                             path: str = "results/evidence.ndjson", disk_bytes: int = 1024):
+        task = make_task(
+            task_id,
+            budget={"cpu_seconds": 600, "ram_bytes": 1, "disk_bytes": disk_bytes,
+                    "network_allowlist": []},
+        )
+        self.cp.publish_task(task)
+        upload = self.cp.create_upload(uploader)
+        blob = self.cp.put_blob(upload, uploader, data, media_type)
+        lease = self.cp.claim(
+            "fast-01", "intake-test", "knowledge",
+            idem_key=f"claim-{task_id}",
+        )["claimed"]
+        artifact = {
+            "path": path, "sha256": blob["sha256"],
+            "media_type": media_type, "bytes": blob["bytes"],
+        }
+        artifacts = [artifact]
+        payload = {
+            "id": f"SUB-{task_id[-4:]}-INTAKE", "task_id": task_id,
+            "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
+            "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
+            "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
+            "artifacts": artifacts, "bundle_sha256": bundle_sha(task_id, artifacts),
+            "base_commit": "6a9fa461",
+        }
+        return payload, blob
+
+    def test_submit_rejects_blob_uploaded_by_another_agent(self):
+        payload, _ = self._prepared_submission(
+            "KG-2026-0601", uploader="fast-02")
+        from lab.service.control import BadRequest
+        with self.assertRaisesRegex(BadRequest, "этим агентом"):
+            self.cp.submit(payload, idem_key="foreign-upload")
+        self.assertEqual(
+            self.db().execute("SELECT COUNT(*) FROM submissions").fetchone()[0], 0)
+
+    def test_submit_hashes_the_actual_blob_bytes(self):
+        payload, blob = self._prepared_submission("KG-2026-0602")
+        self.cp.store.path(blob["sha256"]).write_bytes(b"tampered")
+        from lab.service.control import BadRequest
+        with self.assertRaisesRegex(BadRequest, "SHA-256"):
+            self.cp.submit(payload, idem_key="corrupted-blob")
+        self.assertEqual(
+            self.db().execute("SELECT COUNT(*) FROM submissions").fetchone()[0], 0)
+
+    def test_submit_rejects_path_traversal_and_out_of_scope_paths(self):
+        from lab.service.control import BadRequest
+        cases = (
+            ("KG-2026-0603", "results/../../core/src/lib.rs", "путь содержит"),
+            ("KG-2026-0604", "docs/evidence.md", "вне task.write_scope"),
+            ("KG-2026-0605", "core/src/lib.rs", "PROTECTED"),
+        )
+        for task_id, path, message in cases:
+            with self.subTest(path=path):
+                payload, _ = self._prepared_submission(task_id, path=path)
+                payload["bundle_sha256"] = bundle_sha(task_id, payload["artifacts"])
+                with self.assertRaisesRegex(BadRequest, message):
+                    self.cp.submit(payload, idem_key=f"unsafe-path-{task_id}")
+
+    def test_submit_enforces_task_disk_budget(self):
+        payload, _ = self._prepared_submission(
+            "KG-2026-0606", data=b"four", disk_bytes=3)
+        from lab.service.control import BadRequest
+        with self.assertRaisesRegex(BadRequest, "превышает task.budget.disk_bytes"):
+            self.cp.submit(payload, idem_key="disk-budget")
+
+    def test_submit_requires_media_type_to_match_owned_upload(self):
+        payload, _ = self._prepared_submission("KG-2026-0607")
+        payload["artifacts"][0]["media_type"] = "text/plain"
+        payload["bundle_sha256"] = bundle_sha(
+            payload["task_id"], payload["artifacts"])
+        from lab.service.control import BadRequest
+        with self.assertRaisesRegex(BadRequest, "указанным media_type"):
+            self.cp.submit(payload, idem_key="wrong-media-type")
+
+    def test_submit_rejects_canonical_git_and_secret_paths(self):
+        from lab.service.control import BadRequest
+        cases = (
+            ("KG-2026-0610", ".git/config"),
+            ("KG-2026-0611", ".coord/queue.json"),
+            ("KG-2026-0612", ".env"),
+            ("KG-2026-0613", "secrets/api-token.json"),
+            ("KG-2026-0614", "results/private-key.pem"),
+        )
+        for task_id, path in cases:
+            with self.subTest(path=path):
+                payload, _ = self._prepared_submission(task_id, path=path)
+                payload["bundle_sha256"] = bundle_sha(task_id, payload["artifacts"])
+                with self.assertRaisesRegex(BadRequest, "PROTECTED"):
+                    self.cp.submit(payload, idem_key=f"protected-{task_id}")
+
+    def test_submit_rejects_symlink_blob(self):
+        payload, blob = self._prepared_submission("KG-2026-0608")
+        target = self.dir / "outside.bin"
+        target.write_bytes(b"outside")
+        stored = self.cp.store.path(blob["sha256"])
+        stored.unlink()
+        stored.symlink_to(target)
+        from lab.service.control import BadRequest
+        with self.assertRaisesRegex(BadRequest, "symlink"):
+            self.cp.submit(payload, idem_key="symlink-blob")
+
+    def test_put_blob_requires_open_upload_owned_by_agent(self):
+        upload = self.cp.create_upload("fast-01")
+        self.db().execute(
+            "UPDATE uploads SET state='closed' WHERE upload_id=?", (upload,))
+        from lab.service.control import BadRequest, Conflict, Gone
+        with self.assertRaises(Conflict):
+            self.cp.put_blob(upload, "fast-01", b"closed")
+        foreign = self.cp.create_upload("fast-02")
+        with self.assertRaises(Gone):
+            self.cp.put_blob(foreign, "fast-01", b"foreign")
+        self.assertEqual(
+            self.db().execute("SELECT COUNT(*) FROM artifacts").fetchone()[0], 0)
+
+
+class TestWaitingMain(Base):
+    def test_waiting_main_cannot_extend_the_absolute_lease_ceiling(self):
+        task_id = "KG-2026-0701"
+        self.cp.publish_task(make_task(task_id))
+        lease = self.cp.claim(
+            "fast-01", "waiting-main", "knowledge", idem_key="waiting-main-claim"
+        )["claimed"]
+        stored = self.db().execute(
+            "SELECT expires_at_mono,max_expires_at_mono FROM leases WHERE lease_id=?",
+            (lease["lease_id"],),
+        ).fetchone()
+        absolute_max = stored["max_expires_at_mono"]
+
+        first = self.cp.waiting_main(
+            lease["lease_id"], lease["lease_epoch"], "fast-01", 150)
+        first_expiry = self.db().execute(
+            "SELECT expires_at_mono FROM leases WHERE lease_id=?",
+            (lease["lease_id"],),
+        ).fetchone()[0]
+        self.assertEqual(first_expiry, self.clock.mono() + 150)
+        self.assertLessEqual(first_expiry, absolute_max)
+        self.assertEqual(first["status"], "waiting_main")
+
+        # Repeated calls must not turn the absolute ceiling into a renewable cap.
+        # now=+50: 50+150=200 = claim+max_lease_seconds, вызов упирается в потолок.
+        self.clock.advance(50)
+        self.cp.waiting_main(
+            lease["lease_id"], lease["lease_epoch"], "fast-01", 150)
+        second_expiry = self.db().execute(
+            "SELECT expires_at_mono FROM leases WHERE lease_id=?",
+            (lease["lease_id"],),
+        ).fetchone()[0]
+        self.assertEqual(second_expiry, absolute_max)
+
+        self.clock.advance(20)
+        self.cp.waiting_main(
+            lease["lease_id"], lease["lease_epoch"], "fast-01", 500)
+        third_expiry = self.db().execute(
+            "SELECT expires_at_mono FROM leases WHERE lease_id=?",
+            (lease["lease_id"],),
+        ).fetchone()[0]
+        self.assertEqual(third_expiry, absolute_max)
+        self.assertInvariants()
+
+        # At the fixed maximum, reaper releases the task and expires the attempt.
+        self.clock.advance(absolute_max - self.clock.mono() + 1)
+        self.assertEqual(self.cp.reap()["expired"], 1)
+        task = self.db().execute(
+            "SELECT status,claimed_by FROM tasks WHERE id=?", (task_id,)
+        ).fetchone()
+        self.assertEqual(task["status"], "ready")
+        self.assertIsNone(task["claimed_by"])
+        attempt = self.db().execute(
+            "SELECT status FROM attempts WHERE attempt_id=?", (lease["attempt_id"],)
+        ).fetchone()[0]
+        self.assertEqual(attempt, "expired")
+        self.assertInvariants()
+
+    def test_waiting_main_cannot_revive_an_expired_lease(self):
+        task_id = "KG-2026-0703"
+        self.cp.publish_task(make_task(task_id))
+        lease = self.cp.claim(
+            "fast-01", "waiting-main", "knowledge", idem_key="waiting-main-expired"
+        )["claimed"]
+        self.clock.advance(LEASE_SPEC["ttl_seconds"] + 1)
+        from lab.service.control import Gone
+        with self.assertRaisesRegex(Gone, "не может возродить"):
+            self.cp.waiting_main(
+                lease["lease_id"], lease["lease_epoch"], "fast-01", 60)
+        self.assertEqual(self.cp.reap()["expired"], 1)
+        task = self.db().execute(
+            "SELECT status FROM tasks WHERE id=?", (task_id,)
+        ).fetchone()
+        self.assertEqual(task["status"], "ready")
+        self.assertInvariants()
+
+    def test_waiting_main_rejects_non_positive_or_non_integer_timeout(self):
+        self.cp.publish_task(make_task("KG-2026-0702"))
+        lease = self.cp.claim(
+            "fast-01", "waiting-main", "knowledge", idem_key="waiting-main-invalid"
+        )["claimed"]
+        from lab.service.control import BadRequest
+        for timeout in (0, -1, 1.5, True):
+            with self.subTest(timeout=timeout):
+                with self.assertRaises(BadRequest):
+                    self.cp.waiting_main(
+                        lease["lease_id"], lease["lease_epoch"], "fast-01", timeout)
+
+
 class TestMessages(Base):
+    # put_blob требует upload_artifacts (v5): фикстура по требуемой миграции
+    control_plane_class = ControlPlane2
+
     def test_blocking_message_semantics(self):
         """requires_ack+blocks_claim блокирует claim до ack; heartbeat — нет;
         blocks_submit блокирует submit; supersede снимает блокировку."""
@@ -476,7 +764,8 @@ class TestMessages(Base):
             "id": "SUB-0004", "task_id": "KG-2026-0007", "task_version": 1,
             "lease_id": lease["lease_id"], "lease_epoch": lease["lease_epoch"],
             "agent_id": "fast-01",
-            "artifacts": [{"sha256": blob["sha256"], "bytes": 1, "media_type": "b"}],
+            "artifacts": [{"path": "results/unused.bin", "sha256": blob["sha256"],
+                            "bytes": 1, "media_type": "application/octet-stream"}],
             "bundle_sha256": "e" * 64,
         }
         # v1: submit при blocks_submit не отклоняется молча — read+ack обязательный путь

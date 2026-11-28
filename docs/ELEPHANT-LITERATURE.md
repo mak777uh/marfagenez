@@ -2604,26 +2604,32 @@ doi:10.3390/systems12040111.
 {
  "L": "L-050",
  "locator": {
-  "doi": null,
+  "doi": "10.1038/nbt.1614",
   "arxiv": null,
   "arxiv_version": null,
   "openalex": null,
-  "pmid": null,
-  "url": null,
-  "none": true
+  "pmid": "20212490",
+  "url": "https://doi.org/10.1038/nbt.1614",
+  "none": false
  },
  "access": {
-  "level": "secondary_only",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": null
+  "level": "fragment_read",
+  "artifact": "papers/orth10-fba-bioc.xml",
+  "bytes": 33791,
+  "sha256": "bdbcff976c0fadaee234bc5f8ec5f2ee1e45848ecbc96b5018025b988d5c9682",
+  "retrieved_at": "2026-11-28T04:45:00Z",
+  "via": "ncbi-bioc",
+  "via_detail": "Orth, Thiele & Palsson 2010 «What is flux balance analysis?», Nat Biotechnol 28:245-248, PMC3108565; получен через NCBI BioC API (BioC_xml, unicode) — текстовый слой ~16k chars; прочитаны §constraints/objective/FBA-определение; двойственные цены в источнике НЕ покрыты — вторая половина записи остаётся синтезом/вторыми руками"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "constraints",
+    "to": "objective-function"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2640,9 +2646,9 @@ doi:10.3390/systems12040111.
 
 
 **Кто.** Dittrich & Speroni di Fenizio (2007) + традиция FBA.
-**Проверено.** **вторые руки** (синтез обзора, не цитата).
-**Утверждение (пересказ).** К организации добавляются ограничения потоков — задача становится **LP**; цена
-ограничения — **двойственная переменная**; двойственные цены **кусочно-постоянны** и скачут при смене базиса.
+**Проверено.** **фрагмент** papers/orth10-fba-bioc.xml (Orth-Thiele-Palsson 2010, BioC-текст, sha256 bdbcff97…), 2026-11-28; LP-половина записи подтверждена первичным текстом; двойственные цены — вторые руки (синтез).
+
+**Утверждение (по фрагменту Orth-Thiele-Palsson 2010; COT-сторона и двойственные цены — пересказ).** FBA: mass-balance Sv=0 + границы потоков + линейная целевая функция → решение LP; выход — распределение потоков v, оптимизирующее objective. Двойственная переменная и её изломы — утверждение синтеза, в прочитанном фрагменте не проверено.
 **Что меняет.** «Цена кожи» может стать вычисляемым числом; предсказание — **изломы** в цене.
 
 ---

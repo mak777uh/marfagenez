@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lab/schemas/v1/integration.schema.json",
+  "title": "Попытка Integration/v1",
+  "description": "Журнал интеграции, выполняемой только main. Запись started фиксирует pinned base_commit и фактический head_before; terminal status фиксирует head_after либо ошибку. Это журнал состояния, а не исполнитель git-команд.",
+  "type": "object",
+  "required": [
+    "schema", "id", "submission_id", "decision_id", "attempt_no",
+    "status", "actor", "base_commit", "head_before",
+    "changed_files", "started_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "integration/v1" },
+    "id": { "type": "string", "pattern": "^INT-[A-Za-z0-9._-]+$" },
+    "submission_id": { "type": "string", "minLength": 1 },
+    "decision_id": { "type": "string", "pattern": "^DEC-[A-Za-z0-9._-]+$" },
+    "attempt_no": { "type": "integer", "minimum": 1 },
+    "status": { "enum": ["started", "integrated", "integration_failed"] },
+    "actor": { "const": "main" },
+    "base_commit": { "$ref": "common.schema.json#/$defs/git_sha" },
+    "head_before": { "$ref": "common.schema.json#/$defs/git_sha" },
+    "head_after": { "$ref": "common.schema.json#/$defs/git_sha" },
+    "changed_files": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Фактические изменённые пути; каждый должен пройти PROTECTED и write_scope checks."
+    },
+    "error": { "type": "string", "minLength": 1 },
+    "started_at": { "$ref": "common.schema.json#/$defs/rfc3339" },
+    "finished_at": { "$ref": "common.schema.json#/$defs/rfc3339" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "integrated" } } },
+      "then": { "required": ["head_after", "finished_at"], "not": { "required": ["error"] } }
+    },
+    {
+      "if": { "properties": { "status": { "const": "integration_failed" } } },
+      "then": { "required": ["error", "finished_at"], "not": { "required": ["head_after"] } }
+    },
+    {
+      "if": { "properties": { "status": { "const": "started" } } },
+      "then": { "not": { "anyOf": [ { "required": ["head_after"] }, { "required": ["error"] }, { "required": ["finished_at"] } ] } }
+    }
+  ]
+}

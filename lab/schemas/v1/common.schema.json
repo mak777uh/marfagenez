@@ -50,7 +50,7 @@
     },
     "legacy_task_id": {
       "type": "string",
-      "pattern": "^(P|S)[0-9]+",
+      "pattern": "^(?:(?:EXP|MATH|KG)-[0-9]{4}-[0-9]{4}|[PS][A-Za-z0-9._-]+)$",
       "description": "Импортированный legacy ID .coord/ (P*, S*, включая раунды вида S1-20261126T...-main). Сохраняется как есть, не переименовывается."
     },
     "task_id": {
