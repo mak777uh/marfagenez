@@ -104,6 +104,8 @@ def build_parser() -> argparse.ArgumentParser:
     sm = sub.add_parser("message-send", help="отправить сообщение из файла")
     sm.add_argument("file")
 
+    sub.add_parser("reap", help="просрочить leases и вернуть задачи в очередь")
+
     pj = sub.add_parser("projections", help="выгрузить файловые проекции")
     pj.add_argument("--out", default="lab/state/projections")
 
@@ -158,6 +160,8 @@ def run(args, cp) -> dict:
         return cp.ack(args.message, args.agent)
     if cmd == "message-send":
         return cp.send_message(_json_file(args.file))
+    if cmd == "reap":
+        return cp.reap()
     if cmd == "projections":
         return cp.write_projections(Path(args.out))
     if cmd == "gc":

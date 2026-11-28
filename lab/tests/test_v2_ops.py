@@ -101,9 +101,17 @@ class TestSchemaMigration(Base):
             "SELECT name FROM sqlite_master WHERE type='table'")}
         self.assertIn("proposals", tables)
         self.assertIn("standing_templates", tables)
-        # повторный init идемпотентен и не роняет версию
+        # Repeated init must not rewind schema version or replay migrations.
+        before = self.db().execute(
+            "SELECT COUNT(*) FROM audit_events WHERE action='schema.migrate'"
+        ).fetchone()[0]
+        self.assertEqual(before, 2)
         self.cp.init()
         self.assertEqual(self.cp.user_version(), 3)
+        after = self.db().execute(
+            "SELECT COUNT(*) FROM audit_events WHERE action='schema.migrate'"
+        ).fetchone()[0]
+        self.assertEqual(after, before, "повторный init повторно записал миграции")
         self.assertInvariants()
 
 
@@ -361,6 +369,9 @@ class TestCLI(Base):
         rc = main(["--db", db, "projections", "--out", str(self.dir / "proj")])
         self.assertEqual(rc, 0)
         self.assertTrue((self.dir / "proj" / "tasks.jsonl").exists())
+        # Reaper has a public CLI path; this task has not expired yet.
+        rc = main(["--db", db, "reap"])
+        self.assertEqual(rc, 0)
         self.assertInvariants()
 
 
