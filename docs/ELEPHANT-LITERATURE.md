@@ -4155,27 +4155,27 @@ doi:10.3389/fphy.2018.00064.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "pmc",
-  "via_detail": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5660915/"
+  "level": "fragment_read",
+  "artifact": "papers/sauls16-adder.xml",
+  "bytes": 79144,
+  "sha256": "6648cd56606b7d3686bd7b65cc6c2925816517c5992c305c9b82d2a160924030",
+  "retrieved_at": "2026-11-28T05:36:12Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC5660915 BioC full-text XML (Sauls, Li & Jun, «Adder and a coarse-grained approach to cell size homeostasis in bacteria», Cell Cycle 2017 Suppl, doi:10.1016/j.ceb.2016.02.004); adder-принцип и coarse-grained модель сверены; PMC4960620 и npj 2024 (doi:10.1038/s41540-024-00383-z) остаются вторыми руками/аннотацией"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [{"type": "section", "from": "abstract", "to": "model"}]
  },
  "abstract_sha256": null,
  "bibliographic": {
-  "title": "A mechanistic stochastic framework for regulating bacterial cell division",
+  "title": "Adder: клетка добавляет **постоянную** величину, а не тянется к размеру",
   "year": 2016,
   "first_author": null
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/"
+ "downgrade_reason": null
 }
 ```
 
@@ -4186,7 +4186,7 @@ coarse-grained approach to cell size homeostasis in bacteria» (2016), PMC566091
 slow-growing E. coli: discriminating models beyond the adder» (2024), npj Syst. Biol.,
 doi:10.1038/s41540-024-00383-z.
 **Ссылка.** https://pmc.ncbi.nlm.nih.gov/articles/PMC5660915/ ; https://www.nature.com/articles/s41540-024-00383-z
-**Проверено.** **аннотация/фрагмент.**
+**Проверено.** **фрагмент** PMC5660915 BioC XML (papers/sauls16-adder.xml, sha256 6648cd56…, 2026-11-28): adder-принцип «add a nearly constant size between birth and division, regardless of their birth size» и coarse-grained модель сверены; PMC4960620 и npj 2024 — вторые руки/аннотация.
 **Утверждение (пересказ).** В устойчивом росте клетки добавляют между рождением и делением **почти постоянный**
 размер, независимо от размера при рождении; механизм связывают с **числом стадий** и накоплением предшественников.
 **Что даёт нам.** Adder — **третий механизм** рядом с нашим «сила ∝ ошибке» и «полоса»; и он **робастен** там, где
