@@ -343,6 +343,10 @@ class TestSubmitAndIdempotency(Base):
             "SELECT task_version_sha256 FROM submissions WHERE id='SUB-2026-0002'"
         ).fetchone()[0]
         self.assertEqual(stored_sha, lease["task_version_sha256"])
+        legacy_owner = self.db().execute(
+            "SELECT task_id FROM artifacts WHERE sha256=?", (blob["sha256"],)
+        ).fetchone()
+        self.assertEqual(legacy_owner["task_id"], "KG-2026-0004")
         # тот же ключ + тот же payload = тот же ответ (§14.4)
         out2 = self.cp.submit(sub, idem_key="s1")
         self.assertEqual(out2, out)
@@ -440,6 +444,7 @@ class TestSubmitAndIdempotency(Base):
         self.assertEqual(c.execute(
             "SELECT COUNT(*) FROM attempts WHERE task_id='KG-2026-0006'").fetchone()[0], 1,
             "повторный claim создал вторую попытку")
+
 
 
 class TestMessages(Base):

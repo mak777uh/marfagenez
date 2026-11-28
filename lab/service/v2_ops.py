@@ -86,6 +86,62 @@ class V2OpsMixin:
         if v < 3:
             c.executescript(SCHEMA_V3)
             self._audit_migration(c, v, 3)
+        v = c.execute("PRAGMA user_version").fetchone()[0]
+        if v < 4:
+            c.execute("BEGIN IMMEDIATE")
+            try:
+                c.execute(
+                    "CREATE TABLE IF NOT EXISTS submission_artifacts ("
+                    "submission_id TEXT NOT NULL REFERENCES submissions(id), "
+                    "artifact_index INTEGER NOT NULL CHECK (artifact_index >= 0), "
+                    "sha256 TEXT NOT NULL REFERENCES artifacts(sha256), "
+                    "PRIMARY KEY (submission_id, artifact_index))"
+                )
+                c.execute(
+                    "CREATE INDEX IF NOT EXISTS ix_submission_artifacts_sha "
+                    "ON submission_artifacts(sha256)"
+                )
+                linked = 0
+                unresolved = 0
+                legacy = c.execute(
+                    "SELECT id, artifacts_json FROM submissions "
+                    "WHERE artifacts_json IS NOT NULL ORDER BY id"
+                ).fetchall()
+                for submission in legacy:
+                    try:
+                        descriptors = json.loads(submission["artifacts_json"])
+                    except (TypeError, ValueError, json.JSONDecodeError):
+                        unresolved += 1
+                        continue
+                    if not isinstance(descriptors, list):
+                        unresolved += 1
+                        continue
+                    for index, descriptor in enumerate(descriptors):
+                        digest = descriptor.get("sha256") if isinstance(descriptor, dict) else None
+                        if not isinstance(digest, str) or len(digest) != 64:
+                            unresolved += 1
+                            continue
+                        exists = c.execute(
+                            "SELECT 1 FROM artifacts WHERE sha256=?", (digest,)
+                        ).fetchone()
+                        if not exists:
+                            unresolved += 1
+                            continue
+                        inserted = c.execute(
+                            "INSERT OR IGNORE INTO submission_artifacts "
+                            "(submission_id,artifact_index,sha256) VALUES (?,?,?)",
+                            (submission["id"], index, digest)
+                        )
+                        linked += inserted.rowcount
+                c.execute("PRAGMA user_version=4")
+                self._audit(c, "schema", "schema.migrate", "db", str(self.db_path),
+                            {"from": 3, "to": 4,
+                             "submission_artifact_links": linked,
+                             "unresolved_legacy_artifacts": unresolved})
+                c.execute("COMMIT")
+            except Exception:
+                self._safe_rollback(c)
+                raise
 
     def _audit_migration(self, c, from_v: int, to_v: int) -> None:
         c.execute("BEGIN IMMEDIATE")
