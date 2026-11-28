@@ -96,22 +96,102 @@ class Base(unittest.TestCase):
 
 class TestSchemaMigration(Base):
     def test_user_version_and_idempotent_init(self):
-        self.assertEqual(self.cp.user_version(), 3)
+        self.assertEqual(self.cp.user_version(), 4)
         tables = {r[0] for r in self.db().execute(
             "SELECT name FROM sqlite_master WHERE type='table'")}
         self.assertIn("proposals", tables)
         self.assertIn("standing_templates", tables)
+        self.assertIn("submission_artifacts", tables)
         # Repeated init must not rewind schema version or replay migrations.
         before = self.db().execute(
             "SELECT COUNT(*) FROM audit_events WHERE action='schema.migrate'"
         ).fetchone()[0]
-        self.assertEqual(before, 2)
+        self.assertEqual(before, 3)
         self.cp.init()
-        self.assertEqual(self.cp.user_version(), 3)
+        self.assertEqual(self.cp.user_version(), 4)
         after = self.db().execute(
             "SELECT COUNT(*) FROM audit_events WHERE action='schema.migrate'"
         ).fetchone()[0]
         self.assertEqual(after, before, "повторный init повторно записал миграции")
+        self.assertInvariants()
+
+
+    def test_v3_migration_backfills_only_resolvable_artifact_references(self):
+        c = self.db()
+        c.execute("DROP TABLE submission_artifacts")
+        c.execute("PRAGMA user_version=3")
+        task_id = "KG-2026-0401"
+        self.cp.publish_task(make_task(task_id))
+        digest = "a" * 64
+        c.execute(
+            "INSERT INTO artifacts (sha256,bytes,media_type,blob_id,created_at) "
+            "VALUES (?,?,?,?,?)",
+            (digest, 12, "application/x-ndjson", digest, "2026-11-28T00:00:00Z"),
+        )
+        descriptors = [
+            {"sha256": digest, "bytes": 12, "media_type": "application/x-ndjson"},
+            {"sha256": "b" * 64, "bytes": 9, "media_type": "application/x-ndjson"},
+        ]
+        c.execute(
+            "INSERT INTO submissions (id,task_id,task_version,agent_id,artifacts_json,"
+            "submitted_at,status) VALUES (?,?,?,?,?,?,?)",
+            ("SUB-2026-0401", task_id, 1, "legacy-agent",
+             json.dumps(descriptors), "2026-11-28T00:00:00Z", "received"),
+        )
+        self.cp.init()
+        links = c.execute(
+            "SELECT artifact_index,sha256 FROM submission_artifacts "
+            "WHERE submission_id='SUB-2026-0401' ORDER BY artifact_index"
+        ).fetchall()
+        self.assertEqual([(x["artifact_index"], x["sha256"]) for x in links], [(0, digest)])
+        migration = c.execute(
+            "SELECT details_json FROM audit_events WHERE action='schema.migrate' "
+            "AND details_json LIKE '%\"to\":4%' ORDER BY seq DESC LIMIT 1"
+        ).fetchone()
+        self.assertIsNotNone(migration)
+        self.assertIn('"unresolved_legacy_artifacts":1', migration["details_json"])
+        self.assertInvariants()
+
+
+    def test_same_blob_can_be_referenced_by_multiple_tasks(self):
+        upload = self.cp.create_upload("fast-01")
+        blob = self.cp.put_blob(
+            upload, "fast-01", b"shared immutable evidence", "application/x-ndjson"
+        )
+        arts = [{"sha256": blob["sha256"], "bytes": blob["bytes"],
+                 "media_type": "application/x-ndjson"}]
+        for index, task_id in enumerate(("KG-2026-0301", "KG-2026-0302"), start=1):
+            self.cp.publish_task(make_task(task_id))
+            lease = self.cp.claim(
+                "fast-01", f"i{index}", "knowledge", idem_key=f"claim-shared-{index}"
+            )["claimed"]
+            payload = {
+                "id": f"SUB-2026-03{index:02d}", "task_id": task_id,
+                "task_version": 1, "task_version_sha256": lease["task_version_sha256"],
+                "attempt_id": lease["attempt_id"], "lease_id": lease["lease_id"],
+                "lease_epoch": lease["lease_epoch"], "agent_id": "fast-01",
+                "artifacts": arts, "bundle_sha256": bundle_sha(task_id, arts),
+                "base_commit": "6a9fa461",
+            }
+            result = self.cp.submit(payload, idem_key=f"submit-shared-{index}")
+            self.assertEqual(result["status"], "received")
+
+        links = self.db().execute(
+            "SELECT s.task_id, sa.sha256 FROM submission_artifacts sa "
+            "JOIN submissions s ON s.id=sa.submission_id "
+            "WHERE sa.sha256=? ORDER BY s.task_id",
+            (blob["sha256"],),
+        ).fetchall()
+        self.assertEqual(
+            [(row["task_id"], row["sha256"]) for row in links],
+            [("KG-2026-0301", blob["sha256"]),
+             ("KG-2026-0302", blob["sha256"])],
+        )
+        # New submissions no longer rewrite the lossy legacy owner column.
+        legacy = self.db().execute(
+            "SELECT task_id FROM artifacts WHERE sha256=?", (blob["sha256"],)
+        ).fetchone()
+        self.assertIsNone(legacy["task_id"])
         self.assertInvariants()
 
 
