@@ -1,11 +1,81 @@
-# Life performance measurements
+# Где на самом деле уходит время (и нужен ли перенос в Windows)
 
-The hot-loop changes in this branch are allocation reductions, not a claim that
-the model has already become faster. Use the same host, Rust toolchain, release
-flags, CPU governor/power mode and input matrix for baseline and candidate.
-Do not compare GitHub runner timings from different machines.
+**Дата:** 25.11.2026. **Кто:** `main`. **Повод:** вопрос владельца, не разумнее ли перенести всё из WSL в
+Windows ради скорости.
 
-## Reproducible command
+## Измерения (WSL, ext4, текущий репозиторий)
+
+| что | время |
+|---|---|
+| размер репозитория | 965 МБ |
+| файлов (без `.git`) | 6 029 |
+| `git status --porcelain` | **0,046 с** |
+| запуск `python3 -c pass` | **0,026 с** |
+| `checks/map_contract.py` | **0,155 с** |
+| раздел гейта `exp` (45 проверок) | **74,5 с** |
+| полный `bash run.sh all` | **≈ 15 мин** |
+
+**Вывод первый: файловый ввод-вывод не является узким местом.** 6 тысяч файлов, `git status` за 46 мс.
+
+## Сравнение ext4 и `/mnt/c`
+
+Скан каталогов, нормировано на запись:
+
+| где | записей | время | скорость |
+|---|---|---|---|
+| ext4 (`/root`) | 49 129 | 0,055 с | **≈ 893 тыс/с** |
+| `/mnt/c` (Windows-диск через 9p) | 400 120 | 3,614 с | **≈ 111 тыс/с** |
+
+**`/mnt/c` примерно в 8 раз медленнее на метаданных.** Это важно по двум причинам:
+1. репозиторий **нельзя** переносить в `C:\` и продолжать работать из WSL — станет медленнее;
+2. нынешнее расположение (`/root/marfagenez` на ext4) — правильное.
+
+## Где реально 15 минут полного гейта
+
+- `exp` — 74 с;
+- остальное — `test`, `agents`, `lean`, `reach`, `models`, `verus`, `kg`, `claims`, `audit`, `export`,
+  `dispatcher`; самые дорогие — сборка/тесты Lean и Rust (кэшируются, но проверяются заново).
+
+То есть **основное время — не файлы, а компиляция и прогоны**, и они не зависят от того, Windows это или WSL.
+
+## Что даст перенос в Windows
+
+**Не даст ничего для основной работы** и добавит риски:
+
+| риск | почему |
+|---|---|
+| `bash run.sh` и 45 проверок | написаны под POSIX: пайпы, `||`, heredoc, `awk`, `/tmp`. Под Windows нужен Git Bash, и совпадение поведения не гарантировано |
+| пути в инструментах | часть скриптов содержит `/root/...` и POSIX-пути; перенос = правка десятков файлов |
+| переводы строк | CRLF в `.jsonl`, `.md`, `.py` ломают контракты (`map_contract`, `log_check`) |
+| Lean и `lake` | уже работают в WSL, и **другой продукт** с ними связан — ваш же аргумент |
+| скорость Python | на Windows запуск интерпретатора обычно медленнее, чем 26 мс здесь |
+
+## Что реально ускорит работу
+
+1. **Не гонять полный гейт каждый раунд** — уже так: пакетом раз в 3–5 раундов, точечные проверки в
+   остальное время (это и записано в плане).
+2. **Кэш модели эмбеддингов** — уже сделано: 241 МБ в `.cache/fastembed`, пересборка 32 с вместо 2–30 мин.
+3. **Кэш Lean/Rust** — уже есть (`laws/.lake`, `core/target`); трогать нельзя, иначе станет медленнее.
+4. **Не читать весь `nodes.jsonl` в каждом скрипте** — сейчас читается целиком (580 строк, это дёшево);
+   оптимизировать нечего.
+
+## Честный ответ на вопрос
+
+**Переносить не нужно.** Узкое место — не операционная система и не диск, а (а) время модели на раунд и
+(б) компиляция в гейте. Оба от Windows не зависят, а перенос добавит риска сломать POSIX-проверки.
+
+Если когда-нибудь понадобится Windows-native: переносить стоит **не весь репозиторий**, а только
+**читающую часть** (инструменты анализа) — с сохранением гейта и записи в WSL. Но и это пока не даёт
+выигрыша: 155 мс на проверку не стоят переписывания.
+
+
+---
+
+## Измеримый benchmark для горячего цикла Life
+
+Изменения ниже — сокращение аллокаций, а не утверждение о достигнутом проценте ускорения. Baseline и candidate нужно запускать на одном хосте, с одним Rust toolchain, release flags, режимом питания CPU и одинаковой матрицей. Сравнение разных GitHub runners не является корректным бенчмарком.
+
+Собрать и выполнить:
 
 ```bash
 cd core
@@ -13,38 +83,20 @@ cargo build --release --example bench_life
 ./target/release/examples/bench_life \
   --populations 24,256,1024 \
   --cells 40,256,1024 \
-  --steps 1000 \
+  --steps 10000 \
   --repeats 7 \
   --policy stay \
   --share sequential
 ```
 
-The example emits one metadata JSON line followed by one JSON line per
-population × field-size pair. Preserve stdout together with:
+Пример пишет JSON-метаданные и по одной JSON-строке на комбинацию population × cells. Сохранять вывод вместе с `rustc --version --verbose`, `uname -a`, `git rev-parse HEAD` и `lscpu`. Повторить минимум три раза, а также для `--policy random`, `--policy memory` и `--share proportional`. Два scratch-массива нужны протоколу Proportional, поэтому его нельзя смешивать с результатом Sequential.
 
-```bash
-rustc --version --verbose
-uname -a
-git rev-parse HEAD
-lscpu
-```
+В горячем цикле этой ветки удалено:
 
-Repeat for `--policy random`, `--policy memory`, and `--share proportional`.
-The proportional protocol must be measured separately: its per-cell arrays are
-required state, while Sequential no longer pays for them. Use 10000 steps for
-stable long-run throughput and repeat the complete command at least three
-times. Report medians across repeats, not a single fastest run.
+- две O(cells) аллокации на шаг для default Sequential;
+- одна O(population) копия policy vector на шаг;
+- временный Vec порядка обхода для Historical и Rotate; Random сохраняет прежний Fisher–Yates и те же RNG draws;
+- O(population) presence snapshot для claims;
+- чтение переменной окружения на каждого организма на каждом шаге.
 
-## Removed work
-
-- Two O(cells) allocations per step for the default Sequential share protocol.
-- One O(population) policy clone per step.
-- One visit-order Vec per step for Historical and Rotate (Random still uses the
-  same Fisher-Yates Vec and consumes exactly the same random draws).
-- One O(population) presence snapshot per step when claims are enabled.
-- One process-environment lookup per organism per step for the debug-only path.
-
-No SIMD, parallel execution, RNG algorithm change, field representation change,
-or reordered organism action is included. The full gate and unchanged golden
-trajectory hashes remain the correctness authority. Performance improvement
-must only be claimed after baseline/candidate measurements on the same host.
+Не добавлялись SIMD, многопоточность, смена RNG, структуры поля или перестановка действий организмов. Golden trajectory hashes и полный gate являются критерием корректности. Процент ускорения следует сообщать только после baseline/candidate measurements на одном хосте.
