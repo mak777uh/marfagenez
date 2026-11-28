@@ -30,25 +30,9 @@ FALSE = ("false", 0)
 TRUE = ("true", 1)
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 _MEDIA_TYPE_RE = re.compile(
-    r"^[A-Za-z0-9][A-Za-z0-9!#PROTOCOL = 1
-FALSE = ("false", 0)
-TRUE = ("true", 1)
-
-class CtlError(Exception):^_.+-]*/"
-    r"[A-Za-z0-9][A-Za-z0-9!#PROTOCOL = 1
-FALSE = ("false", 0)
-TRUE = ("true", 1)
-
-class CtlError(Exception):^_.+-]*"
-    r"(?:\s*;\s*[A-Za-z0-9!#PROTOCOL = 1
-FALSE = ("false", 0)
-TRUE = ("true", 1)
-
-class CtlError(Exception):^_.+-]+=[A-Za-z0-9!#PROTOCOL = 1
-FALSE = ("false", 0)
-TRUE = ("true", 1)
-
-class CtlError(Exception):^_.+-]+)*$"
+    r"^[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*/"
+    r"[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*"
+    r"(?:\s*;\s*[A-Za-z0-9!#$&^_.+-]+=[A-Za-z0-9!#$&^_.+-]+)*$"
 )
 _PROTECTED_PATHS = (
     "core/", "laws/", "checks/", "run.sh", "kg/nodes.jsonl",
@@ -384,8 +368,8 @@ class ArtifactStore:
         try:
             fd = os.open(str(blob), os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0))
             opened = os.fstat(fd)
-            if not stat.S_ISREG(opened.st_mode):
-                raise BadRequest(f"blob не является обычным файлом: {digest}")
+            if not stat.S_ISREG(opened.st_mode) or opened.st_nlink != 1:
+                raise BadRequest(f"blob должен быть обычным файлом без hardlink: {digest}")
             hasher = hashlib.sha256()
             byte_count = 0
             with os.fdopen(fd, "rb") as stream:
