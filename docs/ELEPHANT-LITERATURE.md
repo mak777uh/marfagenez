@@ -697,25 +697,25 @@ decreasing side** of the fitness function». Пример там же: птиц�
   "doi": "10.1098/rspb.1965.0069",
   "arxiv": null,
   "arxiv_version": null,
-  "openalex": null,
+  "openalex": "https://openalex.org/W2052078471",
   "pmid": "4378482",
   "url": "https://doi.org/10.1098/rspb.1965.0069",
   "none": false
  },
  "access": {
-  "level": "secondary_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": "DOI/PMID идентифицированы через Crossref+PubMed (Pirt 1965, Proc R Soc B 163:224-231); PMID 4378482 не содержит аннотации, Royal Society PDF блокирует ботов — уровень остаётся secondary_only"
+  "retrieved_at": "2026-11-28T05:18:34Z",
+  "via": "openalex",
+  "via_detail": "OpenAlex abstract_inverted_index, W2052078471; PubMed PMID 4378482 имеет только титул без аннотации — полный текст (Proc R Soc B 1965) недоступен"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "58377eb9288b34600b4ff957c618cd8f475228280bf3e0f638fd20b01d107040",
  "bibliographic": {
   "title": "Pirt и поддержание у микробов",
   "year": 1965,
@@ -731,7 +731,7 @@ decreasing side** of the fitness function». Пример там же: птиц�
 
 **Кто.** Pirt (1965) — maintenance energy.
 **Ссылка.** https://doi.org/10.1098/rspb.1965.0069 (DOI/PMID верифицированы) **вторые руки.**
-**Проверено.** **вторые руки.**
+**Проверено.** **аннотация** OpenAlex (W2052078471, doi:10.1098/rspb.1965.0069), 2026-11-28; PubMed даёт только титул, полный текст не читался.
 **Утверждение (пересказ).** Часть энергии уходит на поддержание, не на рост; есть «коэффициент поддержания».
 **Что даёт нам.** Наш `maintenance` — это их член; наша «цена кожи» — его геометрическая версия.
 **Что меняет.** В §4.7 указать: `maintenance` — стандартный член, а новое у нас — его зависимость от целости.
@@ -1014,28 +1014,28 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 {
  "L": "L-019",
  "locator": {
-  "doi": "10.1007/s11229-011-9874-z",
+  "doi": "10.1162/1064546041255584",
   "arxiv": null,
   "arxiv_version": null,
-  "openalex": null,
+  "openalex": "https://openalex.org/W2125999985",
   "pmid": null,
-  "url": "https://doi.org/10.1007/s11229-011-9874-z",
+  "url": "https://doi.org/10.1162/1064546041255584",
   "none": false
  },
  "access": {
-  "level": "secondary_only",
+  "level": "abstract_read",
   "artifact": null,
   "bytes": null,
   "sha256": null,
-  "retrieved_at": null,
-  "via": "none",
-  "via_detail": "DOI идентифицированы через Crossref: Ruiz-Mirazo & Moreno 2004 Artificial Life 10(3) doi:10.1162/1064546041255584 («Basic Autonomy as a Fundamental Step in the Synthesis of Life») и Ruiz-Mirazo & Moreno, Synthese, doi:10.1007/s11229-011-9874-z («Autonomy in evolution: from minimal to complex life», online 2011 — в записи стоит 2012); полные тексты закрыты (MIT Press/Springer), уровень остаётся secondary_only"
+  "retrieved_at": "2026-11-28T05:18:34Z",
+  "via": "openalex",
+  "via_detail": "OpenAlex abstract_inverted_index, W2125999985 — аннотация к Ruiz-Mirazo & Moreno 2004 Artificial Life 10(3), doi:10.1162/1064546041255584 (первый из двух DOI записи); Synthese 2011 закрыт, полного текста нет"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": []
  },
- "abstract_sha256": null,
+ "abstract_sha256": "199eeae1bfa96fc993131bdc900113ea6b6a5c7441f78e9608514594dad8271f",
  "bibliographic": {
   "title": "Автономия как базовая организация",
   "year": 2004,
@@ -1051,7 +1051,7 @@ mortality risk it poses is severe enough and its repair does not pose too large 
 
 **Кто.** Ruiz-Mirazo & Moreno (2004, 2012).
 **Ссылка.** https://doi.org/10.1007/s11229-011-9874-z ; https://doi.org/10.1162/1064546041255584 (DOI верифицированы по Crossref) **вторые руки.**
-**Проверено.** **вторые руки.**
+**Проверено.** **аннотация** OpenAlex (W2125999985, Ruiz-Mirazo & Moreno 2004 Artificial Life, doi:10.1162/1064546041255584), 2026-11-28; Synthese-статья закрыта, полный текст не читался.
 **Утверждение (пересказ).** Базовая автономия — способность системы поддерживать себя за счёт обмена с внешней
 средой; должна быть **операциональной**.
 **Что даёт нам.** Ещё один «готовый критерий», пересекающийся с L-015.
