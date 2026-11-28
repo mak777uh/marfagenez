@@ -22,6 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from lab.service.control import (  # noqa: E402
     Blocked, Conflict, ControlPlane, Gone, NotFound)
+from lab.service.v2_ops import ControlPlane2  # noqa: E402
 
 LEASE_SPEC = {"ttl_seconds": 120, "heartbeat_seconds": 30,
               "max_attempts": 3, "max_lease_seconds": 200}
@@ -65,12 +66,14 @@ class Clock:
 
 
 class Base(unittest.TestCase):
+    control_plane_class = ControlPlane
+
     def setUp(self):
         self.dir = Path(tempfile.mkdtemp(prefix="lab-ctl-"))
         self.clock = Clock()
-        cp = ControlPlane(self.dir / "control.sqlite3",
-                          artifacts=self.dir / "artifacts",
-                          wall=self.clock.wall, mono=self.clock.mono)
+        cp = self.control_plane_class(self.dir / "control.sqlite3",
+                                       artifacts=self.dir / "artifacts",
+                                       wall=self.clock.wall, mono=self.clock.mono)
         cp.init()
         self.cp = cp
 
@@ -330,6 +333,8 @@ class TestClaimFencing(Base):
 
 
 class TestSubmitAndIdempotency(Base):
+    # These cases exercise v2 artifact-provenance migrations and intake.
+    control_plane_class = ControlPlane2
     def test_submit_ok_and_dedup(self):
         self.cp.publish_task(make_task("KG-2026-0004"))
         up = self.cp.create_upload("fast-01")
@@ -462,6 +467,8 @@ class TestSubmitAndIdempotency(Base):
 
 
 class TestIntakeHardening(Base):
+    # These cases exercise v2 artifact-provenance migrations and intake.
+    control_plane_class = ControlPlane2
     def _prepared_submission(self, task_id: str, *, uploader: str = "fast-01",
                              data: bytes = b"evidence", media_type: str = "application/x-ndjson",
                              path: str = "results/evidence.ndjson", disk_bytes: int = 1024):
