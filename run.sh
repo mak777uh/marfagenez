@@ -206,6 +206,8 @@ exp_lane3() {
   run_timed "test_kg_reach.py" python3 checks/test_kg_reach.py || { echo "LANE3_FAIL test_kg_reach.py"; bad=1; }
   echo "--- test_kg_edges.py ---"
   run_timed "test_kg_edges.py" python3 checks/test_kg_edges.py || { echo "LANE3_FAIL test_kg_edges.py"; bad=1; }
+  echo "--- paper_numbers.py (requires release examples from build stage) ---"
+  run_timed "paper_numbers.py" python3 checks/paper_numbers.py || { echo "LANE3_FAIL paper_numbers.py"; bad=1; }
   echo "--- paper_claims.py ---"
   run_timed "paper_claims.py" python3 checks/paper_claims.py || { echo "LANE3_FAIL paper_claims.py"; bad=1; }
   echo "--- paper_format.py ---"
@@ -581,7 +583,6 @@ run_preflight() {
   section "Preflight: дешёвые проверки до тяжёлого гейта"
   preflight_check log_check python3 checks/log_check.py --no-test-count
   preflight_check doc_numbers python3 checks/doc_numbers.py
-  preflight_check paper_numbers python3 checks/paper_numbers.py
   preflight_check protocol_checks python3 checks/protocol_checks.py
   preflight_check doc_links python3 checks/doc_links.py
   preflight_check literature_contract python3 checks/literature_contract.py
