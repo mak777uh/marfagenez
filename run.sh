@@ -302,8 +302,23 @@ do_lab() {
   # Аудит №3 P0-6: lab/tests не входили в обязательную регрессию — гейт мог
   # быть зелёным при сломанном control plane (claim/submit/migration).
   # Секция независима, идёт в группе 1 параллельно остальным.
-  python3 -m unittest discover -s lab/tests -t . 2>&1 | tail -15
-  return "${PIPESTATUS[0]}"
+  # 861aw: полный вывод unittest — во временный файл. Конвейер `| tail -15`
+  # прятал traceback-и провалов до итоговой строки: красная секция была без
+  # диагностики (PR #20 разбирался вручную по /root/pr20-lab-full.log).
+  # При провале печатаем хвост 60 строк и путь к полному логу (файл живёт),
+  # при успехе — прежние 15 строк. Код секции — по-прежнему rc unittest.
+  local out rc
+  out=$(mktemp /tmp/marfagenez-lab-XXXXXXXX.log)
+  python3 -m unittest discover -s lab/tests -t . >"$out" 2>&1
+  rc=$?
+  if [ "$rc" -eq 0 ]; then
+    tail -15 "$out"
+    rm -f "$out"
+  else
+    tail -60 "$out"
+    echo "    FAIL: lab/tests rc=$rc; полный лог: $out"
+  fi
+  return "$rc"
 }
 
 do_verus() {
