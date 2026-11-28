@@ -17113,7 +17113,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "аннотация (полный текст не читал)."
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -17129,20 +17129,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "аннотация (полный текст не читал).",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1371/journal.pone.0233384",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0233384",
-          "none": false
-        },
+        "locator": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -17330,7 +17322,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "аннотация."
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -17346,20 +17338,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "аннотация.",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1371/journal.pgen.1001076",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1001076",
-          "none": false
-        },
+        "locator": null,
         "lines_provenance": {
           "method": "parsed",
           "parser_version": "1",
@@ -18232,7 +18216,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "аннотация (обе)."
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18248,20 +18232,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "аннотация (обе).",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1371/journal.pcbi.1000872",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000872",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "WIN-L021-01",
           "WIN-L021-02",
@@ -19777,7 +19753,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация/фрагмент**: на странице рисунков PLOS — «equilibrium is possible… be"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -19793,20 +19769,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация/фрагмент**: на странице рисунков PLOS — «equilibrium is possible… be",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1371/journal.pgen.1001076",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://journals.plos.org/plosgenetics/article/figures?id=10.1371/journal.pgen.1001076",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "MAIN-P127-01"
         ]
@@ -19821,7 +19789,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -19837,20 +19805,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1162/isal_a_00722",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": null,
-          "pmid": null,
-          "url": "https://doi.org/10.1162/isal_a_00722",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "WIN-L052-01",
           "WIN-L052-02",
@@ -21816,7 +21776,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** OpenAlex, 2026-11-21T21:55:50Z, отпечаток есть; фрагмент не читалс"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21832,20 +21792,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** OpenAlex, 2026-11-21T21:55:50Z, отпечаток есть; фрагмент не читалс",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1038/s41598-020-58444-2",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": "W3003628019",
-          "pmid": null,
-          "url": "https://doi.org/10.1038/s41598-020-58444-2",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "FT-0003",
           "FT-0004"
@@ -22146,7 +22098,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** OpenAlex, 2026-11-22T00:51:02Z, отпечаток есть; фрагмент не читалс"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -22162,20 +22114,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** OpenAlex, 2026-11-22T00:51:02Z, отпечаток есть; фрагмент не читалс",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1186/s12859-019-2921-3",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": "W2961272871",
-          "pmid": null,
-          "url": "https://doi.org/10.1186/s12859-019-2921-3",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "FAST-S7ZP-01",
           "FAST-S7ZP-02",
@@ -22612,7 +22556,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читалс"
+        "conditions": "вторые руки"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -22628,20 +22572,12 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читалс",
-        "level_kind": "abstract_read",
+        "registry_level": "вторые руки",
+        "level_kind": "secondary_only",
         "artifact": null,
         "artifact_bytes": null,
         "artifact_sha256": null,
-        "locator": {
-          "doi": "10.1038/s41467-023-37930-x",
-          "arxiv": null,
-          "arxiv_version": null,
-          "openalex": "W4366278330",
-          "pmid": null,
-          "url": "https://doi.org/10.1038/s41467-023-37930-x",
-          "none": false
-        },
+        "locator": null,
         "lit_ref": [
           "A-0004"
         ]
@@ -40742,13 +40678,13 @@
     },
     {
       "from": "C-001",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "C-001",
@@ -40777,13 +40713,13 @@
     },
     {
       "from": "C-002",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "C-002",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "C-002",
@@ -40982,13 +40918,13 @@
     },
     {
       "from": "F-023",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
-      "type": "tested_in"
+      "to": "EV-EXP-PRICE-KINKS",
+      "type": "stated_in"
     },
     {
       "from": "F-023",
-      "to": "EV-EXP-PRICE-KINKS",
-      "type": "stated_in"
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "type": "tested_in"
     },
     {
       "from": "F-025",
@@ -43287,13 +43223,13 @@
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-SHADOW-PRICE",
-      "type": "stated_in"
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
-      "type": "tested_in"
+      "to": "EV-EXP-SHADOW-PRICE",
+      "type": "stated_in"
     },
     {
       "from": "CORR-02",
@@ -43322,12 +43258,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
+      "to": "EV-EXP-PRICE-KINKS",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "EV-EXP-PRICE-KINKS",
+      "to": "X-EXP-PRICE-KINKS-2026-11-20T11-02-03",
       "type": "tested_in"
     },
     {

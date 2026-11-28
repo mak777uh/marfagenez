@@ -55,17 +55,23 @@
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0233384"
+  "level": "fragment_read",
+  "artifact": "papers/ledberg20-damage-mortality.xml",
+  "bytes": 117229,
+  "sha256": "4e6df105baca4f79b1cb5cca59f257ea7cf1a2ba2481b083d8c456170dfa2e4e",
+  "retrieved_at": "2026-11-28T06:40:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC7272078 BioC full-text XML (Ledberg 2020, PLOS ONE, doi:10.1371/journal.pone.0233384); заголовок и аннотация подтверждают: экспоненциальный рост смертности — generic property модели накопления повреждения"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -76,15 +82,14 @@
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** Ledberg, A. (2020). *Exponential increase in mortality with age is a generic property of a simple model
 system of damage accumulation and death.* PLOS ONE 15(6): e0233384.
 **Ссылка.** https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0233384 (DOI 10.1371/journal.pone.0233384)
-**Проверено.** аннотация (полный текст не читал).
+**фрагмент** PMC7272078 BioC XML (papers/ledberg20-damage-mortality.xml, sha256 4e6df105…, 2026-11-28); «generic property of a simple model system of damage accumulation and death» и экспоненциальный рост смертности сверены с abstract/введением.
 **Утверждение (пересказ).** В простой модели накопления повреждения с ограниченной починкой **экспоненциальный рост
 смертности с возрастом** — генерик-свойство, а не особенность людей.
 **Что даёт нам.** Наш §4.12 (`μ = floor + rate·(1−q)^p + λ·damage`) — это **та же рамка**; значит «накопление → смерть»
@@ -270,17 +275,23 @@ Evolution 49(6): 1055.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1001076"
+  "level": "fragment_read",
+  "artifact": "papers/chao10-damage-load.xml",
+  "bytes": 71241,
+  "sha256": "c3415b4c9b29e3d7e0d55b6993ee146eaa586ada6b4eafa31059e773855b93af",
+  "retrieved_at": "2026-11-28T06:40:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC2928801 BioC full-text XML (Chao 2010, PLOS Genetics, doi:10.1371/journal.pgen.1001076); цитата про immortality ниже порога damage rate сверена дословно с abstract"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -291,17 +302,16 @@ Evolution 49(6): 1055.
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** Chao, L. (2010). *A model for damage load and its implications for the evolution of bacterial aging.*
 PLOS Genetics 6(8): e1001076.
 **Ссылка.** https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1001076
-**Проверено.** аннотация.
+**фрагмент** PMC2928801 BioC XML (papers/chao10-damage-load.xml, sha256 c3415b4c…, 2026-11-28); «a cell lineage dividing symmetrically is immortal if lifetime damage rates do not exceed a threshold… the lineage becomes mortal» сверено дословно с abstract.
 **Утверждение (цитата).** «a cell lineage dividing symmetrically is **immortal if lifetime damage rates do not exceed a
-threshold**… the lineage becomes mortal above the threshold».
+threshold**… the lineage **becomes mortal**».
 **Что даёт нам.** Это **тот же порог**, что наш `h = 1`: ниже — плато, выше — рост.
 **Чем отличается.** У нас `h` — доля повреждения, передаваемая потомку, и порог падает **ровно на 1**, потому что
 починки нет вовсе.
@@ -1131,17 +1141,23 @@ mortality risk it poses is severe enough and its repair does not pose too large 
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000872"
+  "level": "fragment_read",
+  "artifact": "papers/piedrafita10-self-maintaining.xml",
+  "bytes": 61959,
+  "sha256": "8babfe1b4c5c7cba308a7c264d800380ba4b993f59b39f9314cdd53f5921122d",
+  "retrieved_at": "2026-11-28T06:40:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC2916848 BioC full-text XML (Piedrafita et al. 2010, PLOS Comput Biol, doi:10.1371/journal.pcbi.1000872); (M,R)-система с автокатализом и бистабильностью подтверждена по abstract/author summary; Piedrafita 2012 и WCM syn3A (Agmon 2020) — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "author summary"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -1152,15 +1168,14 @@ mortality risk it poses is severe enough and its repair does not pose too large 
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** Piedrafita et al. (2010), PLOS Comput Biol; Piedrafita et al. (2012); Agmon (2020) — WCM syn3A.
 **Ссылка.** https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000872 ;
 https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
-**Проверено.** аннотация (обе).
+**фрагмент** PMC2916848 BioC XML (papers/piedrafita10-self-maintaining.xml, sha256 8babfe1b…, 2026-11-28); «self-maintaining metabolic system… autocatalysis, bistability» подтверждено по abstract/author summary; вторая половина записи (WCM syn3A, кинетическое ограничение) — вторые руки.
 **Утверждение (пересказ).** Самоподдерживающаяся метаболическая система с автокатализом и бистабильностью; коллапс —
 переход в тривиальное состояние; в минимальной клетке ограничение — **скорость синтеза**, а не бюджет.
 **Что даёт нам.** Наш закон цены — **энергетический бюджет**, а не кинетика. Это надо писать явно, иначе нас прочтут
@@ -2680,17 +2695,23 @@ doi:10.3390/systems12040111.
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://journals.plos.org/plosgenetics/article/figures?id=10.1371/journal.pgen.1001076"
+  "level": "fragment_read",
+  "artifact": "papers/chao10-damage-load.xml",
+  "bytes": 71241,
+  "sha256": "c3415b4c9b29e3d7e0d55b6993ee146eaa586ada6b4eafa31059e773855b93af",
+  "retrieved_at": "2026-11-28T06:40:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC2928801 BioC full-text XML (Chao 2010, PLOS Genetics, doi:10.1371/journal.pgen.1001076); «Πλ = 0.10 is less than the threshold of 1/6 (Equation 11)» и «Because Πλ>1/6, Equation 11 is not satisfied» сверены дословно; страница рисунков PLOS и глава ASU — вторые руки"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "figure legends",
+    "to": "results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2700,10 +2721,8 @@ doi:10.3390/systems12040111.
  },
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
- "downgrade_reason": "копии текста нет в papers/",
  "duplicate_of": "L-005"
-}
-```
+}```
 
 
 
@@ -2711,7 +2730,7 @@ doi:10.3390/systems12040111.
 учебная глава «Cellular senescence» (ASU, PDF).
 **Ссылка.** https://journals.plos.org/plosgenetics/article/figures?id=10.1371/journal.pgen.1001076 ;
 https://biodesign.asu.edu/cellular-evolution/wp-content/uploads/sites/23/2023/02/Ch11_Senescence_FINAL.pdf
-**Проверено.** **аннотация/фрагмент**: на странице рисунков PLOS — «equilibrium is possible… because the lifetime
+**фрагмент** PMC2928801 BioC XML (papers/chao10-damage-load.xml, sha256 c3415b4c…, 2026-11-28): «lifetime damage rate of Πλ = 0.10 is less than the threshold of 1/6 (Equation 11)» и «Because Πλ>1/6, Equation 11 is not satisfied» найдены в тексте дословно; страница рисунков и глава ASU остаются вторыми руками.
 damage rate of **Πλ = 0.10 is less than the threshold of 1/6** (Equation 11)»; в главе — «With symmetric division
 (α = 1), the criterion for equilibrium reduces to **Pcλ ≤ 1/6**».
 **Утверждение (цитата).** Порог симметричного деления — `Πλ ≤ 1/6`; при `Πλ > 1/6` уравнение 11 не имеет
@@ -2736,17 +2755,23 @@ damage rate of **Πλ = 0.10 is less than the threshold of 1/6** (Equation 11)»
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://doi.org/10.1162/isal_a_00722"
+  "level": "fragment_read",
+  "artifact": "papers/villani24-asym-division.xml",
+  "bytes": 94859,
+  "sha256": "0e446711a71269584791fece2ae03d3aa9eb1100ac98ce777be1f2e4dd8dbf9b",
+  "retrieved_at": "2026-11-28T06:40:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC11049191 BioC full-text XML (Villani, Alboresi & Serra 2024, Entropy 26:281, doi:10.3390/e26040281); «synchronization (between duplication of the genetic material and fission of the lipid container)» сверена дословно; работа ALIFE doi:10.1162/isal_a_00722 — по аннотации"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -2757,15 +2782,14 @@ damage rate of **Πλ = 0.10 is less than the threshold of 1/6** (Equation 11)»
  "legacy": true,
  "legacy_reason": "запись написана до контракта 2026-11-21",
  "downgrade_reason": null
-}
-```
+}```
 
 
 
 **Кто.** «Asymmetrical division in protocells» (ALIFE 2024), doi:10.1162/isal_a_00722; «Models of Protocells
 Undergoing Asymmetrical Division» (2024), PMC11049191.
 **Ссылка.** https://doi.org/10.1162/isal_a_00722 ; https://pmc.ncbi.nlm.nih.gov/articles/PMC11049191/
-**Проверено.** **аннотация.**
+**фрагмент** PMC11049191 BioC XML (papers/villani24-asym-division.xml, sha256 0e446711…, 2026-11-28); «synchronization (between duplication of the genetic material and fission of the lipid container)» сверено дословно; ALIFE-работа (doi:10.1162/isal_a_00722) — по аннотации.
 **Утверждение (пересказ).** Устойчивый рост популяции протоклеток требует **синхронизации** дупликации генетического
 материала и деления липидного контейнера; при асимметричном делении условия синхронизации меняются.
 **Что даёт нам.** Это ближайшая работа к **пустому пересечению** (`L-037`): протоклетки + **асимметричное деление**.
@@ -5371,17 +5395,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-21T21:55:50Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1038/s41598-020-58444-2"
+  "level": "fragment_read",
+  "artifact": "papers/borgqvist20-repair-resilience.xml",
+  "bytes": 108090,
+  "sha256": "259d798a402f4889092dbe5db03d5a5fe6475e955c98533a1af71f9dc402bf0f",
+  "retrieved_at": "2026-11-28T06:40:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC6994596 BioC full-text XML (Borgqvist, Welkenhuysen & Cvijović 2020, Sci Rep, doi:10.1038/s41598-020-58444-2); abstract подтверждает синергию repair/resilience/retention damage для условий репликативного старения"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction"
+   }
+  ]
  },
  "abstract_sha256": "c9aa631adffeebb8170948f9230784453c1b168f2a4e5d088b30febf3044ee1d",
  "bibliographic": {
@@ -5392,12 +5422,11 @@ MODES:                   набор из нескольких метрик ди�
  "legacy": false,
  "legacy_reason": null,
  "downgrade_reason": null
-}
-```
+}```
 
 **Кто.** Synergistic effects of repair, resilience and retention of damage determine the conditions for replicative ageing (2020). Johannes Borgqvist; Niek Welkenhuysen; Marija Cvijović
 **Ссылка.** https://doi.org/10.1038/s41598-020-58444-2
-**Проверено.** **аннотация** OpenAlex, 2026-11-21T21:55:50Z, отпечаток есть; фрагмент не читался.
+**фрагмент** PMC6994596 BioC XML (papers/borgqvist20-repair-resilience.xml, sha256 259d798a…, 2026-11-28); заголовок и abstract подтверждают: repair, resilience и retention of damage совместно определяют условия репликативного старения.
 **Утверждение.** ремонт, устойчивость и удержание повреждения одновременно определяют условия репликативного старения
 **Что даёт нам.** — (суждение не сделано).
 
@@ -5686,17 +5715,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-22T00:51:02Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1186/s12859-019-2921-3"
+  "level": "fragment_read",
+  "artifact": "papers/song19-senescence.xml",
+  "bytes": 76286,
+  "sha256": "9c9af3b9fdc9658b27b062cf19a3a76cca14c61dfc9876e625665014050cf41d",
+  "retrieved_at": "2026-11-28T06:40:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC6631810 BioC full-text XML (Song & Açar 2019, BMC Bioinformatics, doi:10.1186/s12859-019-2921-3); тот же артефакт, что у L-053 — модель повреждение+ремонт+асимметрия деления уже сверена"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "introduction"
+   }
+  ]
  },
  "abstract_sha256": "5475aab1b456e5b6e17e3579f1cdff8bbecb56f89341888972428da424c6aa59",
  "bibliographic": {
@@ -5707,12 +5742,11 @@ MODES:                   набор из нескольких метрик ди�
  "legacy": false,
  "legacy_reason": null,
  "downgrade_reason": null
-}
-```
+}```
 
 **Кто.** Stochastic modeling of aging cells reveals how damage accumulation, repair, and cell-division asymmetry affect clonal senescence and population fitness (2019). Ruijie Song; Murat Açar
 **Ссылка.** https://doi.org/10.1186/s12859-019-2921-3
-**Проверено.** **аннотация** OpenAlex, 2026-11-22T00:51:02Z, отпечаток есть; фрагмент не читался.
+**фрагмент** PMC6631810 BioC XML (papers/song19-senescence.xml, sha256 9c9af3b9…, 2026-11-28; тот же артефакт, что у L-053); abstract подтверждает: damage accumulation, repair и cell-division asymmetry влияют на clonal senescence и fitness.
 **Утверждение.** Song & Acar 2019 — стохастическая модель старения: повреждение, ремонт, асимметрия деления
 **Что даёт нам.** — (суждение не сделано).
 
@@ -6136,17 +6170,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-22T02:22:34Z",
-  "via": "openalex",
-  "via_detail": "api.openalex.org/works/https://doi.org/10.1038/s41467-023-37930-x"
+  "level": "fragment_read",
+  "artifact": "papers/yang23-damage-chance.xml",
+  "bytes": 88542,
+  "sha256": "b07e750ab6bb9474f18e4f135c854a21bea43ccea8444d08ac5ec03513e43799",
+  "retrieved_at": "2026-11-28T06:40:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC10113371 BioC full-text XML (Yang et al. 2023, Nat Commun, doi:10.1038/s41467-023-37930-x); «noise is amplified by a rising production of damage that saturates its own removal» сверено дословно"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "results"
+   }
+  ]
  },
  "abstract_sha256": "4b5d86ce670c0d988861f731158c4d24d22408beb290dc52471c0ebea5e4bb6c",
  "bibliographic": {
@@ -6157,12 +6197,11 @@ MODES:                   набор из нескольких метрик ди�
  "legacy": false,
  "legacy_reason": null,
  "downgrade_reason": null
-}
-```
+}```
 
 **Кто.** Damage dynamics and the role of chance in the timing of E. coli cell death (2023). Yifan Yang; Omer Karin; Avi Mayo; Alon Bar; Xiaohu Song; Peipei Chen
 **Ссылка.** https://doi.org/10.1038/s41467-023-37930-x
-**Проверено.** **аннотация** OpenAlex, 2026-11-22T02:22:34Z, отпечаток есть; фрагмент не читался.
+**фрагмент** PMC10113371 BioC XML (papers/yang23-damage-chance.xml, sha256 b07e750a…, 2026-11-28); «a stochastic mechanism in which noise is amplified by a rising production of damage that saturates its own removal» сверено дословно с abstract.
 **Утверждение.** Damage dynamics and the role of chance in the timing of E. coli cell death (2023) — измеряемая динамика повреждения и насыщаемый ремонт
 **Что даёт нам.** — (суждение не сделано).
 
