@@ -533,6 +533,15 @@ impl Rng {
         }
     }
 
+    /// Exact internal words for deterministic checkpoint/provenance manifests.
+    /// This does not advance the generator or alter its historical sequence.
+    pub fn state_words(&self) -> Vec<u64> {
+        match &self.state {
+            RngState::Lcg(state) => vec![*state],
+            RngState::Xoshiro256PlusPlus(rng) => rng.state.to_vec(),
+        }
+    }
+
     pub fn next_u64(&mut self) -> u64 {
         match &mut self.state {
             RngState::Lcg(state) => {
