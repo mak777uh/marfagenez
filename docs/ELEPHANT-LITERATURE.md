@@ -1674,19 +1674,21 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
   "none": true
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-27T21:30:00Z",
-  "via": "openalex-abstract",
-  "via_detail": "Schenkel, Patten & Agren, Biol Philos (2025), DOI 10.1007/s10539-025-10001-9; полный текст Springer заблокирован — только аннотация; метрики fitness unity / trait unity, коллектив = индивидуум в степени aligned fitness interests; Queller & Strassmann 2009 остаётся вторыми руками"
+  "level": "fragment_read",
+  "artifact": "papers/schenkel24-internal-conflicts.html",
+  "bytes": 376305,
+  "sha256": "9e5d7affe562a90e32969f1eaff64663e01037c98fb53a85e143e674409de25f",
+  "retrieved_at": "2026-11-28T07:13:00Z",
+  "via": "repository",
+  "via_detail": "bioRxiv preprint 10.1101/2024.02.05.578856 (Schenkel, Patten & Agren, те же авторы и ORCID, что у Biol Philos 2025 DOI 10.1007/s10539-025-10001-9): Quantifying internal conflicts and their threats to organismal form and fitness; полный HTML статьи; метрики fitness unity / trait unity подтверждены в тексте"
  },
  "inspection": {
   "scope": "partial",
   "reviewed_ranges": [
    {
-    "type": "abstract"
+    "type": "section",
+    "from": "abstract",
+    "to": "methods/examples"
    }
   ]
  },
@@ -1705,7 +1707,7 @@ https://www.cell.com/cell/fulltext/S0092-8674(21)01488-4
 
 
 **Кто.** Queller & Strassmann (2009); Schenkel, Patten & Ågren (2025), Biol Philos 40:29; Clarke (2010); Krakauer 2020.
-**Проверено.** **аннотация**: Schenkel, Patten & Ågren, «Internal conflicts and the measurement of evolutionary individuality», Biol Philos (2025), DOI 10.1007/s10539-025-10001-9, papers/schenkel25-abstract.txt, 2026-11-27; количественная мера индивидуальности (fitness unity, trait unity) — из аннотации; «единого теста нет» подтверждается тем, что метрик предложено несколько. Queller & Strassmann 2009 — вторые руки.
+**Проверено.** **фрагмент**: bioRxiv-препринт той же работы (Schenkel, Patten & Ågren 2024/2025), papers/schenkel24-internal-conflicts.html, 2026-11-28; «We introduce a mathematical framework to capture the threat posed by internal conflicts and develop two metrics… fitness unity and trait unity» — дословно; применено к genomic imprinting и sex ratio distortion. Springer-версия по-прежнему недоступна; Queller & Strassmann 2009 — вторые руки.
 **Утверждение (пересказ).** Списки критериев есть, единого операционального теста нет; тесты зависят от вопроса.
 **Что меняет.** Не искать «тест индивидуальности», а **выбрать** один (Krakauer ITI) и применить к нашим рядам.
 
@@ -3356,17 +3358,23 @@ at least one other**…».
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://doi.org/10.1103/PhysRevLett.99.108101"
+  "level": "fragment_read",
+  "artifact": "papers/warren07-duality-metabolism.pdf",
+  "bytes": 204308,
+  "sha256": "2ab2db2a8dbcd7184a74de0c8d471c84142eec107575b83abc9d0b9cd4dd486a",
+  "retrieved_at": "2026-11-28T07:13:00Z",
+  "via": "arxiv-pdf",
+  "via_detail": "arXiv:q-bio/0702021v2 PDF (Warren & Jones 2007, версия PRL 99:108101): dual LP задаче метаболизма дана термодинамическая интерпретация; «shadow prices are chemical potential analogues» — дословно в аннотации и разделе 2"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -3385,7 +3393,7 @@ at least one other**…».
 **Кто.** «Duality, Thermodynamics, and the Linear Programming Problem in Constraint-Based Models of Metabolism» (2007),
 Phys. Rev. Lett. 99:108101, doi:10.1103/PhysRevLett.99.108101; препринт arXiv:q-bio/0702021.
 **Ссылка.** https://doi.org/10.1103/PhysRevLett.99.108101
-**Проверено.** **аннотация.**
+**Проверено.** **фрагмент**: arXiv:q-bio/0702021v2 (PDF, 4 с.), papers/warren07-duality-metabolism.pdf, 2026-11-28; цитата «the dual to the linear programming problem… shadow prices are chemical potential analogues… minimise free energy consumption given a free energy drain» подтверждена дословно (abstract + раздел 2, таблица primal/dual). Журнальная версия PRL за paywall.
 **Утверждение (цитата).** «the dual to the linear programming problem that arises in constraint-based models of
 metabolism can be given a **thermodynamic interpretation** in which the **shadow prices are chemical potential
 analogues**, and the objective is to minimise free energy consumption given a free energy drain».
@@ -4467,17 +4475,23 @@ https://doi.org/10.1142/S0218127417501450
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": null,
-  "via": "publisher",
-  "via_detail": "https://doi.org/10.1016/j.cnsns.2016.04.008"
+  "level": "fragment_read",
+  "artifact": "papers/leonel16-universality-classes.pdf",
+  "bytes": 1311444,
+  "sha256": "9207d687073150b19e2b90ae2240d13fdb322794b6db19cec9815528f38c4650",
+  "retrieved_at": "2026-11-28T07:13:00Z",
+  "via": "repository",
+  "via_detail": "UNESP repository (repositorio.unesp.br, handle 11449/168586) — авторская PDF-версия CNSNS 39 (2016) 520-528, doi:10.1016/j.cnsns.2016.04.008; scaling formalism для saddle-node / transcritical / supercritical pitchfork"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": null,
  "bibliographic": {
@@ -4496,7 +4510,7 @@ https://doi.org/10.1142/S0218127417501450
 **Кто.** «Defining universality classes for three different local bifurcations» (2016), CNSNS,
 doi:10.1016/j.cnsns.2016.04.008.
 **Ссылка.** https://doi.org/10.1016/j.cnsns.2016.04.008
-**Проверено.** **аннотация.**
+**Проверено.** **фрагмент**: репозиторий UNESP (авторская версия), papers/leonel16-universality-classes.pdf, 2026-11-28; аннотация и введение подтверждают: скейлинг-формализм для трёх локальных бифуркаций, показатели α, β, z и δ, классы универсальности. Читалась авторская версия из репозитория UNESP.
 **Утверждение (пересказ).** Сходимость к неподвижной точке **у бифуркации и около неё** описывается скейлинг-формализмом
 для трёх типов (складка, транскритическая, надкритическая вилка); у каждого свой набор показателей.
 **Что даёт нам.** Показатель **не универсален по числу каналов** (`F-018`), он привязан к **типу** и порядку ведущего
@@ -5976,17 +5990,23 @@ MODES:                   набор из нескольких метрик ди�
   "none": false
  },
  "access": {
-  "level": "abstract_read",
-  "artifact": null,
-  "bytes": null,
-  "sha256": null,
-  "retrieved_at": "2026-11-27T07:20:00Z",
-  "via": "pubmed-efetch",
-  "via_detail": "eutils.ncbi.nlm.nih.gov efetch db=pubmed id=36804386 (abstract text)"
+  "level": "fragment_read",
+  "artifact": "papers/pikovsky23-damage-segregation.xml",
+  "bytes": 106079,
+  "sha256": "10c712c8dec105cb61e75afa2bf8f381059669bbba82b2b016c3ececcb628155",
+  "retrieved_at": "2026-11-28T07:13:00Z",
+  "via": "pmc-bioc-xml",
+  "via_detail": "PMC9949173 BioC full-text XML (= arXiv:2302.08071, Math. Biosci. 2023, doi:10.1016/j.mbs.2023.108980): статистическая теория асимметричной сегрегации повреждений; хаотические lineage-траектории, фрактальные распределения, Frobenius-Perron"
  },
  "inspection": {
   "scope": "partial",
-  "reviewed_ranges": []
+  "reviewed_ranges": [
+   {
+    "type": "section",
+    "from": "abstract",
+    "to": "model/results"
+   }
+  ]
  },
  "abstract_sha256": "19a77cd8f9276a19512126128eb9b1baecf3c5f8c7ea2fc3ce4dd927878f8078",
  "bibliographic": {
@@ -6002,7 +6022,7 @@ MODES:                   набор из нескольких метрик ди�
 
 **Кто.** Statistical theory of asymmetric damage segregation in clonal cell populations (2023). ARKADY S. PIKOVSKY; Lev S. Tsimring
 **Ссылка.** https://doi.org/10.1016/j.mbs.2023.108980
-**Проверено.** **аннотация** PubMed/efetch (PMID 36804386), 2026-11-27, sha256 19a77cd8f927…; полный текст не читался.
+**Проверено.** **фрагмент**: PMC9949173 BioC XML, papers/pikovsky23-damage-segregation.xml, 2026-11-28; аннотация и введение/модели прочитаны: ADS в одноклеточных, детерминированные правила дают хаотические траектории повреждения и фрактальные стационарные распределения (IFS/Frobenius-Perron). Связь с Chao 2010 подтверждена через модель 1a2a3a и ссылку [9].
 **Утверждение.** Найдено при починке чужого DOI (внешний ответ приписал работе Chao 2010 неверный DOI): статистическая теория асимметричной сегрегации повреждения в клональных популяциях, 2023. Сама работа Chao 2010 по-прежнему не подтверждена — её DOI в ответе был ложным.
 **Что даёт нам.** — (суждение не сделано).
 

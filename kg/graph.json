@@ -18798,7 +18798,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация**: Schenkel, Patten & Ågren, «Internal conflicts and the measurement"
+        "conditions": "**фрагмент**: bioRxiv-препринт той же работы (Schenkel, Patten & Ågren 2024/2025"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -18806,7 +18806,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/schenkel24-internal-conflicts.html",
+          "strength": "moderate",
+          "sha256": "9e5d7affe562a90e32969f1eaff64663e01037c98fb53a85e143e674409de25f"
         }
       ],
       "relations": [],
@@ -18814,11 +18820,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация**: Schenkel, Patten & Ågren, «Internal conflicts and the measurement",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: bioRxiv-препринт той же работы (Schenkel, Patten & Ågren 2024/2025",
+        "level_kind": "fragment_read",
+        "artifact": "papers/schenkel24-internal-conflicts.html",
+        "artifact_bytes": 376305,
+        "artifact_sha256": "9e5d7affe562a90e32969f1eaff64663e01037c98fb53a85e143e674409de25f",
         "locator": {
           "doi": "10.1007/s10539-025-10001-9",
           "arxiv": null,
@@ -20411,7 +20417,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "**фрагмент**: arXiv:q-bio/0702021v2 (PDF, 4 с.), papers/warren07-duality-metabol"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -20419,7 +20425,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/warren07-duality-metabolism.pdf",
+          "strength": "moderate",
+          "sha256": "2ab2db2a8dbcd7184a74de0c8d471c84142eec107575b83abc9d0b9cd4dd486a"
         }
       ],
       "relations": [],
@@ -20427,11 +20439,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: arXiv:q-bio/0702021v2 (PDF, 4 с.), papers/warren07-duality-metabol",
+        "level_kind": "fragment_read",
+        "artifact": "papers/warren07-duality-metabolism.pdf",
+        "artifact_bytes": 204308,
+        "artifact_sha256": "2ab2db2a8dbcd7184a74de0c8d471c84142eec107575b83abc9d0b9cd4dd486a",
         "locator": {
           "doi": "10.1103/PhysRevLett.99.108101",
           "arxiv": "q-bio/0702021",
@@ -21461,7 +21473,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация.**"
+        "conditions": "**фрагмент**: репозиторий UNESP (авторская версия), papers/leonel16-universality"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -21469,7 +21481,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/leonel16-universality-classes.pdf",
+          "strength": "moderate",
+          "sha256": "9207d687073150b19e2b90ae2240d13fdb322794b6db19cec9815528f38c4650"
         }
       ],
       "relations": [],
@@ -21477,11 +21495,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация.**",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: репозиторий UNESP (авторская версия), papers/leonel16-universality",
+        "level_kind": "fragment_read",
+        "artifact": "papers/leonel16-universality-classes.pdf",
+        "artifact_bytes": 1311444,
+        "artifact_sha256": "9207d687073150b19e2b90ae2240d13fdb322794b6db19cec9815528f38c4650",
         "locator": {
           "doi": "10.1016/j.cnsns.2016.04.008",
           "arxiv": null,
@@ -22449,7 +22467,7 @@
       "context": {
         "scope": "literature record from ELEPHANT-LITERATURE",
         "parameters": "see registry",
-        "conditions": "**аннотация** PubMed/efetch (PMID 36804386), 2026-11-27, sha256 19a77cd8f927…; п"
+        "conditions": "**фрагмент**: PMC9949173 BioC XML, papers/pikovsky23-damage-segregation.xml, 202"
       },
       "epistemic": "hypothesis",
       "provenance": "extracted",
@@ -22457,7 +22475,13 @@
         {
           "kind": "literature",
           "ref": "docs/ELEPHANT-LITERATURE.md",
-          "strength": "weak"
+          "strength": "moderate"
+        },
+        {
+          "kind": "artifact",
+          "ref": "papers/pikovsky23-damage-segregation.xml",
+          "strength": "moderate",
+          "sha256": "10c712c8dec105cb61e75afa2bf8f381059669bbba82b2b016c3ececcb628155"
         }
       ],
       "relations": [],
@@ -22465,11 +22489,11 @@
         "source": "docs/ELEPHANT-LITERATURE.md",
         "license": "see source",
         "accessed_at": "2026-11-20",
-        "registry_level": "**аннотация** PubMed/efetch (PMID 36804386), 2026-11-27, sha256 19a77cd8f927…; п",
-        "level_kind": "abstract_read",
-        "artifact": null,
-        "artifact_bytes": null,
-        "artifact_sha256": null,
+        "registry_level": "**фрагмент**: PMC9949173 BioC XML, papers/pikovsky23-damage-segregation.xml, 202",
+        "level_kind": "fragment_read",
+        "artifact": "papers/pikovsky23-damage-segregation.xml",
+        "artifact_bytes": 106079,
+        "artifact_sha256": "10c712c8dec105cb61e75afa2bf8f381059669bbba82b2b016c3ececcb628155",
         "locator": {
           "doi": "10.1016/j.mbs.2023.108980",
           "arxiv": null,
@@ -40951,12 +40975,12 @@
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
       "from": "C-001",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
@@ -41016,13 +41040,13 @@
     },
     {
       "from": "C-003",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "C-003",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "C-003",
@@ -41171,13 +41195,13 @@
     },
     {
       "from": "F-022",
-      "to": "EV-EXP-CLOSURE-MEASURE",
-      "type": "stated_in"
+      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
+      "type": "tested_in"
     },
     {
       "from": "F-022",
-      "to": "X-EXP-CLOSURE-MEASURE-2026-11-20T12-01-14",
-      "type": "tested_in"
+      "to": "EV-EXP-CLOSURE-MEASURE",
+      "type": "stated_in"
     },
     {
       "from": "F-022",
@@ -43496,12 +43520,12 @@
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
       "type": "tested_in"
     },
     {
       "from": "CORR-02",
-      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-09-49",
+      "to": "X-EXP-SHADOW-PRICE-2026-11-20T10-06-53",
       "type": "tested_in"
     },
     {
